@@ -1,4 +1,5 @@
 #include "host/menu_text_geometry.h"
+#include "host/frame_name.h"
 
 #include <cassert>
 #include <cstring>
@@ -14,6 +15,17 @@ void rejects(Operation operation) {
 
 int main() {
     using namespace hd2::host;
+    std::array<unsigned char, 0xf0 + sizeof(const char*)> frame{};
+    const char* name = "text_screen";
+    const char* auxiliary = "Not the frame name";
+    std::memcpy(frame.data() + 0xe8, &name, sizeof(name));
+    std::memcpy(frame.data() + 0xf0, &auxiliary, sizeof(auxiliary));
+    assert(engine_frame_name(frame.data()) == name);
+    assert(std::strcmp(engine_frame_name(frame.data()), "text_screen") == 0);
+    name = nullptr;
+    std::memcpy(frame.data() + 0xe8, &name, sizeof(name));
+    assert(engine_frame_name(frame.data()) == nullptr);
+    rejects([] { engine_frame_name(nullptr); });
     const std::array<float, 8> bounds{0, -.75f, 0, 0, 1, 0, 0, 0};
     const auto full = menu_rectangle(bounds, 800, 600);
     assert(full.left == 0 && full.right == 800 && full.top == 1 && full.bottom == 599);
@@ -86,5 +98,5 @@ int main() {
     assert(menu_label_bindings.size() == 13);
     assert(menu_label_bindings[10].id == 2112);
     assert(std::string_view(menu_label_bindings[10].visual) == "normal07");
-    std::cout << "Original menu bounds, alignment, glyph triangles and Exit click tests passed\n";
+    std::cout << "Frame-name ABI, original menu bounds, glyphs and Exit click tests passed\n";
 }

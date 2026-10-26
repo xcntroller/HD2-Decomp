@@ -545,6 +545,15 @@ The direct Windows log should list all 13 label bindings/bounds, then
 `Exit control activated`, followed by driver and graphics cleanup. These are
 diagnostic expectations, not a claim that the new desktop test has passed.
 
+The first desktop text attempt stopped before rendering with
+`Missing original menu frame: text_screen`, then closed driver/graphics normally.
+The host had confused the separate auxiliary string at frame `+F0` with the name.
+The actual name setter (`1001D330`, vtable `+34`) reads/writes `+E8` and copies
+the supplied NUL-terminated name there. The corrected, native-tested
+[name reader](recovered/host/frame_name.h) distinguishes both fields, including
+an unnamed frame with a nonempty auxiliary string. Hierarchy diagnostics now
+print names as well as types/counts. The corrected desktop result is pending.
+
 ## First mission-format milestone
 
 See [the mission findings](analysis/mission-format.json) for sample fingerprints,

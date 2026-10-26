@@ -54,10 +54,10 @@ $(BUILD_DIR)/cursor_geometry_tests: tests/cursor_geometry_tests.cpp host/cursor_
 $(BUILD_DIR)/bitmap_font_tests: tests/bitmap_font_tests.cpp host/bitmap_font.cpp host/bitmap_font.h | $(BUILD_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) host/bitmap_font.cpp tests/bitmap_font_tests.cpp $(LDFLAGS) -o "$@"
 
-$(BUILD_DIR)/menu_text_geometry_tests: tests/menu_text_geometry_tests.cpp host/menu_text_geometry.h host/bitmap_font.h host/cursor_geometry.h | $(BUILD_DIR)
+$(BUILD_DIR)/menu_text_geometry_tests: tests/menu_text_geometry_tests.cpp host/menu_text_geometry.h host/bitmap_font.h host/cursor_geometry.h host/frame_name.h | $(BUILD_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) tests/menu_text_geometry_tests.cpp $(LDFLAGS) -o "$@"
 
-$(BUILD_DIR)/engine_window.exe: host/engine_window.cpp host/graphics_settings.h host/menu_scene.h host/menu_cursor.h host/cursor_geometry.h host/menu_text.h host/menu_text_geometry.h host/bitmap_font.h host/bitmap_font.cpp | $(BUILD_DIR)
+$(BUILD_DIR)/engine_window.exe: host/engine_window.cpp host/graphics_settings.h host/menu_scene.h host/menu_cursor.h host/cursor_geometry.h host/menu_text.h host/menu_text_geometry.h host/bitmap_font.h host/bitmap_font.cpp host/frame_name.h | $(BUILD_DIR)
 	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/engine_window.cpp host/bitmap_font.cpp -o "$@"
 
 test: all

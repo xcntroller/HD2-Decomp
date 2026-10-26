@@ -3,6 +3,8 @@
 
 #include <windows.h>
 
+#include "host/frame_name.h"
+
 #include <cstddef>
 #include <array>
 #include <cstdint>
@@ -203,8 +205,7 @@ private:
         if (frame == nullptr || depth > 16 || ++nodes > 256) {
             throw std::runtime_error("Invalid original menu binding hierarchy");
         }
-        const char* frame_name = nullptr;
-        std::memcpy(&frame_name, reinterpret_cast<const char*>(frame) + 0xf0, sizeof(frame_name));
+        const char* frame_name = engine_frame_name(frame);
         if (frame_name != nullptr && std::strcmp(frame_name, name) == 0) {
             if (found != nullptr) {
                 throw std::runtime_error(std::string("Ambiguous original menu frame: ") + name);
@@ -235,11 +236,12 @@ private:
             throw std::runtime_error("Invalid menu model child count");
         }
         const auto child = scene_method<Child>(frame, module, 0x40, 0x1dba0);
-        std::printf("Menu node depth=%u vtable_RVA=0x%08x children=%u\n",
+        const char* name = engine_frame_name(frame);
+        std::printf("Menu node depth=%u vtable_RVA=0x%08x children=%u name=%.128s\n",
                     static_cast<unsigned>(depth),
                     static_cast<unsigned>(reinterpret_cast<std::uintptr_t>(frame->methods) -
                                           reinterpret_cast<std::uintptr_t>(module)),
-                    static_cast<unsigned>(count));
+                    static_cast<unsigned>(count), name == nullptr ? "<unnamed>" : name);
         for (std::uint32_t i = 0; i < count; ++i) {
             EngineFrame* next = child(frame, i);
             if (next == nullptr) {

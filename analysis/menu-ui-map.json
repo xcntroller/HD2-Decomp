@@ -1,6 +1,7 @@
 {
   "scope": "Opt-in --menu-ui integration: original English labels, ANSI Set2 bitmaps and model-derived rectangles, with a host-owned Exit adapter. Not a reconstruction of the complete client UI.",
   "runtime_verified": false,
+  "runtime_observation": "First desktop --menu-ui run loaded artwork/cursor then rejected text_screen before submitting frames and closed driver/graphics normally. The name reader incorrectly used +f0; corrected to +e8 with distinct-name/auxiliary regression coverage. Corrected text rendering still awaits a desktop run.",
   "source": "recovered/host/menu_text.h",
   "geometry_source": "recovered/host/menu_text_geometry.h",
   "engine": {
@@ -10,7 +11,9 @@
       "image_base": "10000000"
     },
     "instruction_anchors": [
-      {"address": "1001e330", "hex": "c783f000000000000000", "meaning": "Frame name setter clears the name pointer at frame+f0"},
+      {"address": "1001d33a", "hex": "8b85e8000000", "meaning": "Frame name setter reads the existing name pointer at frame+e8"},
+      {"address": "1001d408", "hex": "8b95e80000008bcb8a014188024284c075f6", "meaning": "Frame name setter copies the requested NUL-terminated name into the buffer at frame+e8"},
+      {"address": "1001e315", "hex": "89bbf0000000", "meaning": "Separate auxiliary-string setter uses frame+f0, not the frame-name field"},
       {"address": "100571ba", "hex": "8b75088b8ed001000081c9000004008bc1a90000020057898ed0010000", "meaning": "World-bounds updater takes stack self and sets the world-bound-valid flag at visual+1d0"},
       {"address": "10057239", "hex": "81c670010000", "meaning": "World-bounds output record starts at visual+170"},
       {"address": "1006c2b0", "hex": "b8f01c0d10c20400", "meaning": "Viewport getter returns the six-DWORD record and cleans self"},
