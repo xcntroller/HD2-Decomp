@@ -13,6 +13,8 @@ We've unpacked copies of both game executables and started identifying the parts
 responsible for startup, the main loop, and loading missions.
 We can also extract selected mission files locally and read the basic structure
 of one real mission.
+We can now identify how some of its objects are named, positioned, rotated,
+scaled, and linked to parent objects.
 
 This is still early research, not a rebuilt or playable version of the game.
 Our findings so far come from examining files; we haven't yet checked them
@@ -31,6 +33,7 @@ every detail of that area.
 - [x] Build an initial map of how the game starts and runs.
 - [x] Locate the code involved in loading missions.
 - [x] Extract sample files for one mission and match their structure to the loader.
+- [x] Decode the first object-placement fields and distinguish lookup from creation.
 - [x] Save our findings and add repeatable checks for the evidence.
 
 ### Next: understand one mission from loading to play

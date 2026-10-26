@@ -1,6 +1,9 @@
 """Synthetic tests: no commercial files required."""
 
 import io
+import copy
+import hashlib
+import json
 from pathlib import Path
 import struct
 import subprocess
@@ -15,7 +18,8 @@ from extract_dta_member import (
     read_index,
     xor_record,
 )
-from inspect_scene2 import chunks, summarize
+from inspect_scene2 import chunks, decode_objects, summarize
+from validate_mission_sample import validate as validate_mission
 
 
 KEY = struct.pack("<II", 0x12345678, 0x87654321)
@@ -180,6 +184,225 @@ class SceneTests(unittest.TestCase):
             data = chunk(0x4C53, chunk(0x4000, chunk(0x4010, chunk(0x10, name))))
             with self.subTest(name=name), self.assertRaises(ValueError):
                 summarize(data)
+
+
+class ObjectDecodingTests(unittest.TestCase):
+    def scene(self, fields: bytes) -> bytes:
+        return chunk(0x4C53, chunk(0x4000, chunk(0x4010, fields)))
+
+    def test_decodes_supported_fields(self):
+        fields = (
+            chunk(0x4011, struct.pack("<I", 6))
+            + chunk(0x10, b"synthetic\0")
+            + chunk(0x20, struct.pack("<3f", 1, -2, 3))
+            + chunk(0x22, struct.pack("<4f", 1, 0, 0, 0))
+            + chunk(0x2C, struct.pack("<3f", 4, 5, 6))
+            + chunk(0x2D, struct.pack("<3f", 2, 3, 4))
+            + chunk(0x4020, chunk(0x10, b"parent\0"))
+        )
+        result = decode_objects(self.scene(fields))
+        decoded = result["records"][0]["fields"]
+        self.assertEqual(result["creation_kind_field_counts"], {"6": 1})
+        self.assertEqual(result["name_action_counts"], {"create_if_missing": 1})
+        self.assertEqual(decoded[1]["active_creation_kind"], 6)
+        self.assertEqual(decoded[2]["value"], [1, -2, 3])
+        self.assertEqual(decoded[3]["value"], [1, 0, 0, 0])
+        self.assertEqual(decoded[3]["engine_xyzw_before_normalization"], [0, 0, 0, 1])
+        self.assertEqual(decoded[4]["value"], [4, 5, 6])
+        self.assertEqual(decoded[5]["value"], [2, 3, 4])
+        self.assertEqual(decoded[6]["children"][0]["name"], "parent")
+
+    def test_name_actions_follow_field_order(self):
+        data = self.scene(
+            chunk(0x10, b"before\0")
+            + chunk(0x4011, struct.pack("<I", 9))
+            + chunk(0x10, b"after\0")
+            + chunk(0x4011, bytes(4))
+            + chunk(0x10, b"zero\0")
+        )
+        result = decode_objects(data)
+        names = [field for field in result["records"][0]["fields"] if field["id"] == "0x0010"]
+        self.assertEqual([field["active_creation_kind"] for field in names], [0, 9, 0])
+        self.assertEqual(result["name_action_counts"], {"lookup_existing": 2, "create_if_missing": 1})
+
+    def test_record_resets_creation_kind(self):
+        first = chunk(0x4010, chunk(0x4011, struct.pack("<I", 2)) + chunk(0x10, b"first\0"))
+        second = chunk(0x4010, chunk(0x10, b"second\0"))
+        result = decode_objects(chunk(0x4C53, chunk(0x4000, first + second)))
+        self.assertEqual(result["name_action_counts"], {"lookup_existing": 1, "create_if_missing": 1})
+
+    def test_opaque_fields_and_missing_values_are_preserved(self):
+        result = decode_objects(self.scene(chunk(0xABCD, b"not a float")))
+        field = result["records"][0]["fields"][0]
+        self.assertEqual(field["id"], "0xabcd")
+        self.assertEqual(field["payload_size"], 11)
+        self.assertNotIn("value", field)
+        self.assertEqual(result["decoded_field_counts"], {})
+        self.assertEqual(result["name_action_counts"], {})
+
+    def test_wrong_fixed_widths(self):
+        for kind, size in [(0x4011, 4), (0x20, 12), (0x22, 16), (0x2C, 12), (0x2D, 12)]:
+            for wrong_size in [size - 1, size + 1]:
+                with self.subTest(kind=kind, size=wrong_size), self.assertRaises(ValueError):
+                    decode_objects(self.scene(chunk(kind, bytes(wrong_size))))
+
+    def test_nonfinite_vectors(self):
+        for value in [float("nan"), float("inf"), float("-inf")]:
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError, "Nonfinite"):
+                decode_objects(self.scene(chunk(0x20, struct.pack("<3f", value, 0, 0))))
+
+    def test_rotation_order_and_no_silent_normalization(self):
+        result = decode_objects(self.scene(chunk(0x22, struct.pack("<4f", 2, 3, 4, 5))))
+        field = result["records"][0]["fields"][0]
+        self.assertEqual(field["value"], [2, 3, 4, 5])
+        self.assertEqual(field["engine_xyzw_before_normalization"], [3, 4, 5, 2])
+
+    def test_parent_boundaries_and_unknown_children(self):
+        result = decode_objects(self.scene(chunk(0x4020, chunk(0x1234, b"opaque"))))
+        child = result["records"][0]["fields"][0]["children"][0]
+        self.assertEqual(child["id"], "0x1234")
+        self.assertNotIn("name", child)
+        with self.assertRaises(ValueError):
+            decode_objects(self.scene(chunk(0x4020, b"broken")))
+
+    def test_rejects_invalid_and_unsupported_names(self):
+        for name in [b"", b"bad", b"a\0b\0", b"\xff\0"]:
+            with self.subTest(name=name), self.assertRaises(ValueError):
+                decode_objects(self.scene(chunk(0x10, name)))
+
+    def test_cli_objects_is_opt_in_and_no_overwrite(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source = Path(directory) / "scene2.bin"
+            output = Path(directory) / "decoded.json"
+            source.write_bytes(self.scene(chunk(0x10, b"synthetic\0")))
+            command = [
+                sys.executable, "-B", str(Path(__file__).with_name("inspect_scene2.py")),
+                str(source),
+            ]
+            result = subprocess.run(command, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertNotIn("object_decoding", result.stdout)
+            result = subprocess.run(command + ["--objects", "--output", str(output)],
+                                    capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            original = output.read_bytes()
+            self.assertIn(b'"object_decoding"', original)
+            result = subprocess.run(command + ["--objects", "--output", str(output)],
+                                    capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(output.read_bytes(), original)
+
+
+class MissionEvidenceTests(unittest.TestCase):
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.root = Path(temporary.name)
+        binary = self.write_fixture("binary.fixture", b"synthetic executable")
+        engine = self.write_fixture("engine.fixture", b"synthetic engine")
+        scene = self.write_fixture("scene2.bin", self.scene(1))
+        summary = summarize(self.scene(1))
+        decoded = decode_objects(self.scene(1))
+        export = {
+            "entry": "00000001", "sha256": binary["sha256"], "decompiled": True,
+            "signature": "synthetic signature",
+            "references": [{"from": "00000010", "to": "00000002", "type": "UNCONDITIONAL_CALL",
+                            "symbol": "Synthetic::Normalize"}],
+        }
+        (self.root / "export.json").write_text(json.dumps(export))
+        (self.root / "export.c").write_text("synthetic export fixture")
+        self.document = {
+            "binary": binary, "engine": engine, "archive": binary, "samples": [scene],
+            "observations": {
+                "top_level_chunks": 1, "object_records": 1,
+                "record_field_counts": summary["record_field_counts"],
+                "object_container_offset": 6, "object_container_total_size": len(self.scene(1)) - 6,
+                "object_decoding": {
+                    "decoded_records": 1,
+                    **{key: decoded[key] for key in (
+                        "creation_kind_field_counts", "name_action_counts", "decoded_field_counts"
+                    )},
+                    "unique_object_names": 1, "parent_name_fields": 1,
+                    "parent_names_matching_scene2_names": 0,
+                    "rotation_squared_norm_tolerance": 0.000001,
+                },
+            },
+            "loader_evidence": {
+                "exports": [{"address": "00000001", "path": "export.json",
+                             "signature": "synthetic signature"}],
+                "calls": [{"from": "00000001", "site": "00000010", "to": "00000002",
+                           "symbol": "Synthetic::Normalize"}],
+            },
+        }
+
+    def scene(self, rotation_scalar):
+        return chunk(0x4C53, chunk(0x4000, chunk(
+            0x4010, chunk(0x10, b"synthetic\0")
+            + chunk(0x22, struct.pack("<4f", rotation_scalar, 0, 0, 0))
+            + chunk(0x4020, chunk(0x10, b"external_parent\0"))
+        )))
+
+    def write_fixture(self, name, data):
+        (self.root / name).write_bytes(data)
+        return {"path": name, "size": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+
+    def test_valid_evidence(self):
+        validate_mission(self.document, self.root, verify_archive=True)
+
+    def test_wrong_binary_fingerprint(self):
+        self.document["binary"]["sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "fingerprint mismatch"):
+            validate_mission(self.document, self.root)
+
+    def test_wrong_counts_and_signatures(self):
+        for path in [
+            ("observations", "object_records"),
+            ("observations", "object_decoding", "decoded_records"),
+            ("observations", "object_decoding", "unique_object_names"),
+            ("observations", "object_decoding", "parent_name_fields"),
+            ("observations", "object_decoding", "parent_names_matching_scene2_names"),
+        ]:
+            document = copy.deepcopy(self.document)
+            target = document
+            for key in path[:-1]:
+                target = target[key]
+            target[path[-1]] += 1
+            with self.subTest(path=path), self.assertRaisesRegex(ValueError, "evidence mismatch"):
+                validate_mission(document, self.root)
+        self.document["loader_evidence"]["exports"][0]["signature"] = "invented signature"
+        with self.assertRaisesRegex(ValueError, "signature"):
+            validate_mission(self.document, self.root)
+
+    def test_fabricated_call(self):
+        for key in ("site", "to", "symbol"):
+            document = copy.deepcopy(self.document)
+            document["loader_evidence"]["calls"][0][key] = "invented"
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, "Unsupported loader call"):
+                validate_mission(document, self.root)
+
+    def test_wrong_export_identity_and_missing_decompilation(self):
+        path = self.root / "export.json"
+        original = json.loads(path.read_text())
+        for key, value in [("entry", "ffffffff"), ("sha256", "0" * 64), ("decompiled", False)]:
+            path.write_text(json.dumps({**original, key: value}))
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                validate_mission(self.document, self.root)
+
+    def test_duplicate_exports(self):
+        self.document["loader_evidence"]["exports"] *= 2
+        with self.assertRaisesRegex(ValueError, "Duplicate evidence"):
+            validate_mission(self.document, self.root)
+
+    def test_nonunit_rotation_is_not_silently_accepted(self):
+        self.document["samples"][0] = self.write_fixture("scene2.bin", self.scene(2))
+        with self.assertRaisesRegex(ValueError, "quaternion norm mismatch"):
+            validate_mission(self.document, self.root)
+
+    def test_tolerance_cannot_be_disabled(self):
+        for tolerance in [0, -1, 0.001, float("nan")]:
+            self.document["observations"]["object_decoding"]["rotation_squared_norm_tolerance"] = tolerance
+            with self.subTest(tolerance=tolerance), self.assertRaisesRegex(ValueError, "tolerance"):
+                validate_mission(self.document, self.root)
 
 
 if __name__ == "__main__":

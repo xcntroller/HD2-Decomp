@@ -47,6 +47,17 @@ public class ExportFunctions extends GhidraScript {
                 record.addProperty("name", function.getName());
                 record.addProperty("body_bytes", function.getBody().getNumAddresses());
                 record.addProperty("signature", function.getSignature().toString());
+                record.addProperty("calling_convention", function.getCallingConventionName());
+                record.addProperty("stack_purge_bytes", function.getStackPurgeSize());
+                if (function.isThunk()) {
+                    Function target = function.getThunkedFunction(true);
+                    JsonObject thunk = new JsonObject();
+                    thunk.addProperty("name", target.getName());
+                    thunk.addProperty("signature", target.getSignature().toString());
+                    thunk.addProperty("calling_convention", target.getCallingConventionName());
+                    thunk.addProperty("stack_purge_bytes", target.getStackPurgeSize());
+                    record.add("thunk_target", thunk);
+                }
                 JsonArray callees = new JsonArray();
                 for (Function callee : function.getCalledFunctions(monitor)) {
                     JsonObject call = new JsonObject();

@@ -1,9 +1,26 @@
 {
-  "scope": "Initial structural map of one ALPS1 scene2.bin from the base missions archive; not a complete format specification.",
+  "scope": "Structural and initial object-field map of one ALPS1 scene2.bin from the base missions archive; not a complete format specification.",
   "runtime_verified": false,
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307"
+  },
+  "engine": {
+    "path": "Hidden and Dangerous 2/LS3DF.dll",
+    "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+    "image_base": "10000000",
+    "corroboration": [
+      {
+        "address": "1001e390",
+        "symbol": "I3D_frame::UpdateWMatrixProc",
+        "observation": "Uses quaternion at frame+0xc0 and multiplies basis components by scale at +0xd0/+0xd4/+0xd8."
+      },
+      {
+        "address": "1002efd0",
+        "symbol": "S_quat::GetDir",
+        "observation": "Rotation formula uses quaternion vector components at +0/+4/+8 and scalar at +0xc."
+      }
+    ]
   },
   "archive": {
     "path": "Hidden and Dangerous 2/missions.dta",
@@ -66,8 +83,80 @@
       "id": "0x0010",
       "observed_once_per_record": true,
       "all_payloads_are_single_nul_terminated_strings": true
+    },
+    "object_decoding": {
+      "decoded_records": 4008,
+      "creation_kind_field_counts": {"2": 13, "3": 2, "6": 103, "9": 1157},
+      "name_action_counts": {"create_if_missing": 1275, "lookup_existing": 2733},
+      "decoded_field_counts": {
+        "creation_kind": 1275,
+        "fallback_position": 1275,
+        "object_name": 4008,
+        "parent_reference": 1200,
+        "position": 1292,
+        "rotation_wxyz": 1332,
+        "scale": 1277
+      },
+      "unique_object_names": 4008,
+      "parent_name_fields": 1200,
+      "parent_names_matching_scene2_names": 200,
+      "rotation_squared_norm_tolerance": 0.000001
     }
   },
+  "object_fields": [
+    {
+      "id": "0x0010",
+      "meaning": "Object name, not necessarily a newly created object",
+      "evidence": "006cdac7 reads the name. Creation kind starts at zero each record. Zero selects the name-table lookup path at 006cdb34; nonzero selects a create-if-missing path and driver dispatch at 006cdbed.",
+      "confidence": "high",
+      "caveat": "Name-table registration is visible in callback 006cc580, passed to the scene interface by 006cbf30. A serialized request is not proof of runtime creation or successful lookup."
+    },
+    {
+      "id": "0x4011",
+      "meaning": "32-bit creation kind, active for subsequent name fields",
+      "confidence": "high",
+      "caveat": "Numeric kinds are deliberately not labeled with engine object-class names yet."
+    },
+    {
+      "id": "0x0020",
+      "meaning": "Position, three little-endian float32 values",
+      "handler": "006cdd7b",
+      "consumer": "0041d110",
+      "frame_offset": "0xb0",
+      "confidence": "high for position dataflow; coordinate conventions not reconstructed"
+    },
+    {
+      "id": "0x0022",
+      "meaning": "Quaternion rotation, four little-endian float32 values in file order w,x,y,z",
+      "handler": "006cde38",
+      "consumer": "0041d180",
+      "frame_offset": "0xc0",
+      "confidence": "high",
+      "evidence": "Loader reorders to engine x,y,z,w; setter copies four components and calls imported S_quat::Normalize at 0041d1a4. Inspector preserves file values and reports the reorder, without silently normalizing."
+    },
+    {
+      "id": "0x002c",
+      "meaning": "Fallback position vector used when the parent-name lookup fails",
+      "handler": "006cdddc",
+      "confidence": "high for fallback dataflow",
+      "caveat": "Do not treat this as an independently resolved world-space position."
+    },
+    {
+      "id": "0x002d",
+      "meaning": "Scale, three little-endian float32 values",
+      "handler": "006cded1",
+      "consumer": "005de200",
+      "frame_offset": "0xd0",
+      "confidence": "high",
+      "evidence": "Default is (1,1,1); named engine matrix-update code uses these components as basis multipliers."
+    },
+    {
+      "id": "0x4020",
+      "meaning": "Parent reference container, observed with one 0x0010 name child",
+      "confidence": "high for name-link dataflow",
+      "caveat": "Only 200 of 1200 parent names also occur in scene2 records; the remaining names are not automatically broken references. The loader's name table includes scene frames outside these records."
+    }
+  ],
   "static_anchors": [
     {
       "address": "006cbf30",
@@ -98,16 +187,46 @@
     "result": "006cd940 unknown in_stack_ occurrences fell from 122 to 0; impossible stack array disappeared. Type propagation and call signatures remain unreliable.",
     "local_exports": "analysis/work/stack-probe-fixed/"
   },
+  "signature_repair": {
+    "script": "tools/ConfigureChunkReaders.java",
+    "scope": "Three archive imports and three chunk helpers in independent research project only; no executable bytes modified.",
+    "basis": "rw_data.dll exports _dtaSeek@12, _dtaRead@12, _dtaWrite@12; callers push three arguments. Helpers use ECX for this and RET 4/8/4.",
+    "result": "Chunk-entry pseudocode now recovers the 6-byte header length and out-ID correctly. Bare dtaSeek() calls in 006cd940 fell from 96 to zero after the earlier stack-probe fix.",
+    "remaining": "Other helper and virtual-interface signatures are still incomplete; type propagation warnings remain."
+  },
+  "loader_evidence": {
+    "exports": [
+      {"address": "006cd940", "path": "analysis/work/chunk-signatures-fixed/006cd940.json"},
+      {"address": "0041d110", "path": "analysis/work/object-setters/0041d110.json"},
+      {"address": "0041d180", "path": "analysis/work/object-setters/0041d180.json"},
+      {"address": "005de200", "path": "analysis/work/object-setters/005de200.json"},
+      {"address": "007e4f38", "path": "analysis/work/chunk-signatures-fixed/007e4f38.json", "signature": "int __stdcall dtaSeek(uint handle, int offset, int origin)"},
+      {"address": "007e4f3e", "path": "analysis/work/chunk-signatures-fixed/007e4f3e.json", "signature": "int __stdcall dtaRead(uint handle, void * buffer, uint count)"},
+      {"address": "007e4f32", "path": "analysis/work/chunk-signatures-fixed/007e4f32.json", "signature": "int __stdcall dtaWrite(uint handle, void * buffer, uint count)"},
+      {"address": "00415c90", "path": "analysis/work/chunk-signatures-fixed/00415c90.json", "signature": "bool __thiscall FUN_00415c90(void * this, ushort * chunk_id)"},
+      {"address": "00405940", "path": "analysis/work/chunk-signatures-fixed/00405940.json", "signature": "bool __thiscall FUN_00405940(void * this, void * buffer, uint count)"},
+      {"address": "00405890", "path": "analysis/work/chunk-signatures-fixed/00405890.json", "signature": "bool __thiscall FUN_00405890(void * this, uint * written_size)"}
+    ],
+    "calls": [
+      {"from": "006cd940", "site": "006d188c", "to": "0041d110"},
+      {"from": "006cd940", "site": "006d1931", "to": "0041d180"},
+      {"from": "006cd940", "site": "006d1948", "to": "005de200"},
+      {"from": "0041d180", "site": "0041d1a4", "to": "007e4e48", "symbol": "LS3DF.DLL::S_quat::Normalize"}
+    ]
+  },
   "verification": {
     "tool": "tools/inspect_scene2.py",
     "local_report": "analysis/work/alps1-scene2-structure.json",
     "synthetic_tests": "tools/test_mission_tools.py",
-    "independent_extractor_comparison": false
+    "independent_extractor_comparison": false,
+    "object_report": "analysis/work/alps1-object-fields.json",
+    "validator": "tools/validate_mission_sample.py"
   },
   "limitations": [
     "4008 object records does not mean 4008 soldiers, enemies, or distinct gameplay entities.",
-    "Only known container levels are parsed; other payloads remain opaque.",
-    "Field meanings, reference resolution and engine virtual methods remain mostly unknown.",
+    "Only known scene/object container levels and parent-name containers are parsed; other payloads remain opaque.",
+    "Selected placement/name fields are decoded, not gameplay properties, full reference resolution or engine virtual interfaces.",
+    "Optional object decoding preserves serialized field order and requires ASCII names, exact known widths and finite floats.",
     "Only a base-archive sample has been checked; patches may replace the runtime mission.",
     "ISD1 and audio-specific codecs are unsupported by the native extractor.",
     "Signatures and stack analysis beyond the verified probe fix still require work.",

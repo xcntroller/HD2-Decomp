@@ -11,7 +11,8 @@ on Linux through Proton.
 both client executables. Static analysis of the base-game client has identified
 startup, the main loop, and a mission-loading pipeline.
 Selected ALPS1 mission resources have also been extracted locally, and the
-`scene2.bin` container structure has been matched to its loader.
+`scene2.bin` container structure and selected object fields have been matched
+to their loader and engine consumers.
 
 **This is not a playable source reconstruction.** We have not run the unpacked
 copies, verified these findings under a debugger, or established that every
@@ -61,10 +62,16 @@ been reconstructed.
 - [x] Validate the scene root, object records, and immediate field boundaries.
 - [x] Fix the recognized stack-probe model in the separate research project.
 - [x] Add tested native archive extraction and scene-structure inspection tools.
+- [x] Repair three archive import signatures and three chunk helpers using
+  assembly-supported argument counts and calling conventions.
+- [x] Decode object names, creation-kind requests, position/rotation/scale,
+  fallback position, and parent-name containers.
+- [x] Verify exact sample counts and selected field-consumer call sites with
+  a repeatable evidence validator.
 
 ### Next: one mission-loading path
 
-- [ ] Inspect the loading helpers and correct inferred signatures in a working
+- [ ] Correct remaining helper and virtual-interface signatures in a working
   project, not the baseline.
 - [ ] Decode object-field meanings and how records become engine objects.
 - [ ] Resolve frontend/controller virtual dispatch into the gameplay-load caller.
@@ -151,7 +158,7 @@ reader requests `0x23F8` stack bytes through it, but Ghidra had no call fixup
 attached. Applying its built-in `alloca_probe` model removed the impossible
 stack array and reduced `in_stack_` occurrences in `006CD940` from 122 to zero.
 This improves analysis, not the executable: no game bytes were modified.
-Type propagation warnings and incomplete import/helper signatures remain;
+Type propagation warnings and incomplete helper/interface signatures remain;
 the resulting pseudocode is **not** a recovered, trustworthy C implementation.
 
 The fingerprint-guarded [ConfigureStackProbe.java](tools/ConfigureStackProbe.java)
@@ -165,6 +172,101 @@ research project**, without `-readOnly` if saving:
   -postScript ExportFunctions.java "$PWD/analysis/work/probe-export" 006cd940 \
   -max-cpu 2
 ```
+
+### First readable object fields
+
+The next obstacle was missing argument lists: Ghidra's archive imports were
+marked `__stdcall` but had no parameters. The DLL export decorations and caller
+instructions establish three stack arguments for `dtaRead`, `dtaWrite`, and
+`dtaSeek`. Three chunk helpers also needed explicit `__thiscall` signatures.
+[ConfigureChunkReaders.java](tools/ConfigureChunkReaders.java) applies these
+fingerprint-guarded corrections in the research project. Reopening that project
+and applying the script again produced unchanged signatures.
+
+The chunk-entry helper now correctly recovers the six-byte header and output
+ID. In `006CD940`, bare `dtaSeek()` calls dropped from 96 to zero, and the
+pseudocode became shorter without deleting any instructions. That allowed
+selected fields to be followed into their consumers:
+
+| ID | Decoded interpretation | ALPS1 occurrences |
+| --- | --- | ---: |
+| `0x0010` | Object name | 4,008 |
+| `0x4011` | Creation-kind request, unsigned 32-bit | 1,275 |
+| `0x0020` | Position, three float32 components | 1,292 |
+| `0x0022` | Quaternion rotation, file order `w,x,y,z` | 1,332 |
+| `0x002C` | Fallback position for failed parent-name lookup | 1,275 |
+| `0x002D` | Scale, three float32 components | 1,277 |
+| `0x4020` | Parent reference with a nested name field | 1,200 |
+
+The position consumer writes frame offset `+0xB0`. Rotation is reordered to
+engine `x,y,z,w`, copied to `+0xC0`, and normalized through the named
+`S_quat::Normalize` import. Scale reaches `+0xD0`; the named engine
+`I3D_frame::UpdateWMatrixProc` uses its three components as basis multipliers.
+All 1,332 sample rotations have squared length within `1e-6` of one. The tool
+reports serialized components without normalizing them or calculating resolved
+world transforms.
+
+**Not every record creates an object.** The creation kind starts at zero for
+each record. When a name field is encountered, zero selects lookup of an
+existing name-table entry; nonzero selects a create-if-missing branch. In this
+sample there are 2,733 lookup requests and 1,275 create-if-missing requests.
+The latter contain kinds `2` (13), `3` (2), `6` (103), and `9` (1,157). These
+numbers are not yet presented as authoritative engine class names.
+
+The loader populates a name table through callback `006CC580` before parsing
+the records. The callback reads a frame's name and stores its pointer in the
+table. All 4,008 record names are unique, but only 200 of the 1,200 parent-name
+references also name a record in this file. This does **not** establish 1,000
+broken links: the name table has sources outside these records. We have not
+resolved each reference or reconstructed the full scene hierarchy.
+
+To reproduce both metadata corrections, use the separate research project
+and a new export directory:
+
+```sh
+"$GHIDRA_HOME/support/analyzeHeadless" "$PROJECT_DIR" HD2Research \
+  -process hd2.unpacked.exe -noanalysis -scriptPath "$PWD/tools" \
+  -preScript ConfigureStackProbe.java \
+  -preScript ConfigureChunkReaders.java \
+  -postScript ExportFunctions.java "$PWD/analysis/work/typed-loader-export" \
+  006cd940 00415c90 00405940 00405890 \
+  -max-cpu 2
+```
+
+For optional field-by-field output, including local asset names:
+
+```sh
+python3 -B tools/inspect_scene2.py extracted/alps1-base/scene2.bin \
+  --objects --output analysis/work/alps1-object-fields.json
+python3 -B tools/validate_mission_sample.py --archive
+```
+
+Without `--objects`, the inspector's existing structural output is unchanged.
+The optional decoder preserves field order, repeated fields, and unknown-field
+IDs/lengths; it does not invent missing values. It currently supports ASCII
+names, exact known payload widths, and finite float values. Parent containers
+are inspected, but other unknown payloads remain opaque. Detailed output stays
+under ignored `analysis/work/`; do not publish it as repository research.
+
+The evidence validator checks fingerprints, exact counts, quaternion tolerance,
+name-link observations, six repaired signatures and four selected direct calls
+against local Ghidra exports. It does not prove every semantic interpretation.
+It needs the ignored local inputs/exports and therefore cannot run from a fresh
+clone alone. `--archive` additionally hashes the full base mission archive.
+
+### Readable reconstruction versus decompiler output
+
+Small, well-understood helpers are candidates for readable reconstructions with
+English names, proper data types, and behavioral tests. Large loader exports
+are not ready: unknown engine calls and poor type propagation must not be hidden
+behind confident-looking names. Generated pseudocode stays local, separate from
+our original tools.
+
+The current Python parsers are **format-analysis tools**, not exact replacements
+for game functions. In particular, they deliberately reject malformed inputs
+more strictly than the observed loader. A future reconstruction should state its
+supported behavior and deviations explicitly rather than claim source recovery
+or binary equivalence.
 
 ### Archive format and prior art
 
@@ -241,9 +343,14 @@ Existing tools:
 - [extract_dta_member.py](tools/extract_dta_member.py): extracts a selected
   ISD0 member using the narrow supported codecs.
 - [inspect_scene2.py](tools/inspect_scene2.py): validates known scene container
-  levels and emits counts/offsets without asset contents.
+  levels and emits counts/offsets without asset contents by default; `--objects`
+  additionally decodes supported fields and local names.
+- [validate_mission_sample.py](tools/validate_mission_sample.py): verifies the
+  curated mission observations against local samples and selected code evidence.
 - [ConfigureStackProbe.java](tools/ConfigureStackProbe.java): applies the verified
   stack-probe model to the base-client research database.
+- [ConfigureChunkReaders.java](tools/ConfigureChunkReaders.java): applies the
+  assembly-supported archive/chunk helper signatures in that research database.
 - [test_mission_tools.py](tools/test_mission_tools.py): synthetic archive and
   scene-framing regression tests.
 
@@ -253,7 +360,7 @@ Generated pseudocode is analysis output, not reconstructed source.
 
 ## Running the existing tools
 
-Use Python 3 for the Python scripts. The Java scripts run inside Ghidra, not with
+Use Python 3.11 or newer for the Python scripts. The Java scripts run inside Ghidra, not with
 `java ScriptName.java`. This workspace has used Ghidra 12.2 with Java 25 and UPX
 5.2.1. Download tools from their official distributions and verify checksums.
 
