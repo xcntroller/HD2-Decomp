@@ -26,7 +26,7 @@ initial 16-byte checks performed by the engine's model-file loader.
 ## Experimental engine-window host
 
 [The engine-window host](host/engine_window.cpp) is independently written
-integration glue, **not another recovered original function or a running menu**.
+integration glue, **not another recovered original function or the complete original menu**.
 Its [56-byte settings layout](host/graphics_settings.h) is statically supported.
 The user has now observed the original-engine windows and blue clear-color
 surface in a desktop Proton run, followed by shutdown.
@@ -89,7 +89,10 @@ and its vertex-format cache. A full device state block would incorrectly restore
 FVF behind that cache and is intentionally not used.
 See the [machine-checkable UI evidence](../analysis/menu-ui-map.json) and
 [desktop test instructions](../RESEARCH.md#static-text-and-exit-slice).
-**Text placement, blending and Exit interaction still need desktop verification.**
+**Desktop-verified:** static text appears and Exit closes the host. Some text
+overflows the button borders; exact placement and visual fidelity are not verified.
+The observed runtime log records 308 submitted frames, Exit activation and
+driver/graphics cleanup. See the [session handoff](../HANDOFF.md) for the next step.
 Neither the original executable nor the user's game prefix is patched.
 See [the preview test command](../RESEARCH.md#original-menu-model-preview).
 

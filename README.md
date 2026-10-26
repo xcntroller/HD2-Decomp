@@ -28,7 +28,7 @@ We can now read the records immediately after that header, including their
 conditional name fields and extra sequence data, while preserving unknown bytes.
 
 This is still early research, not a rebuilt or playable version of the game.
-Most findings come from examining files. The bounded menu artwork and cursor
+Most findings come from examining files. The bounded menu artwork, cursor, text and Exit
 milestones have also been checked in desktop runs of our rebuilt host.
 
 **Our next goal is the menu, not a complete mission.** We'll aim for our own
@@ -42,7 +42,8 @@ camera/model updates. It stages only the needed local assets and uses the
 original engine and menu camera. **The original cursor and mouse tracking are
 also desktop-verified.** A new, opt-in `--menu-ui` build adds static English text
 using the original bitmap fonts and an Exit button that closes this host.
-That addition is built and tested but still needs a desktop check. Other screens,
+The desktop test now confirms visible text and working Exit, but some text runs
+past the button borders; layout fidelity remains unfinished. Other screens,
 profile/save data and the original quit-confirmation flow are not implemented.
 
 ## Progress
@@ -109,9 +110,10 @@ difficulty, playability, or time remaining.
 - [x] Verify cursor appearance and mouse tracking in a desktop run.
 - [x] Implement an opt-in static-text slice using original labels and bitmap fonts.
 - [x] Add a host-owned Exit adapter using the original button's model bounds.
-- [ ] Verify the new text placement and Exit behavior in a desktop run.
-- [ ] Load the original menu content, text and cursor.
-- [ ] Connect mouse/keyboard input and make Exit work cleanly.
+- [x] Verify visible text and working Exit in a desktop run.
+- [x] Load the original menu artwork, static text and cursor.
+- [x] Connect bounded host input and make Exit close the host cleanly.
+- [ ] Correct text overflowing the button borders against original layout evidence.
 - [ ] Compare our running menu with the original game's behavior.
 
 Deeper ALPS1 work is paused. Its findings remain useful for shared file readers
@@ -123,7 +125,8 @@ The [graphics bootstrap instructions](RESEARCH.md#graphics-only-host) describe
 the first successful desktop-terminal window test.
 The [menu preview instructions](RESEARCH.md#original-menu-model-preview) cover
 the artwork/cursor test. The [static text and Exit test](RESEARCH.md#static-text-and-exit-slice)
-is the next desktop milestone. None of these modes plays the logos; the movie
+documents the successful bounded interactive milestone and its layout limitation.
+None of these modes plays the logos; the movie
 files remain untouched.
 
 ### Longer term
@@ -152,6 +155,7 @@ changes.
 
 ## Looking deeper
 
+- [Session handoff](HANDOFF.md): current working state, known issue and restart commands.
 - [Technical research guide](RESEARCH.md): detailed findings, tool instructions,
   and remaining questions.
 - [Research map](analysis/initialization-map.json): structured evidence behind

@@ -498,8 +498,9 @@ Only Exit is enabled. Hover makes its caption white; press and release inside
 its visual rectangle closes the reconstruction host. Dragging out or losing
 focus cancels the press. Escape and the window close button still quit.
 This is a **host-owned interaction adapter**, not the original control dispatcher
-or quit-confirmation flow; other screens remain disabled. New text and Exit
-behavior are **not yet desktop-verified**.
+or quit-confirmation flow; other screens remain disabled. **The 2026-10-26 desktop
+test confirms visible text and working Exit.** The user reports text overflowing
+button borders; exact layout and visual fidelity remain unfinished.
 
 [Text staging](tools/stage_menu_text.py) reads the loose English localization and
 validates the selected printable-ASCII records, both original TBLs and the
@@ -542,8 +543,10 @@ recovered/build/bitmap_font_tests "Hidden and Dangerous 2" analysis/work/engine-
 
 The direct Windows log should list all 13 label bindings/bounds, then
 `Original menu bitmap glyphs submitted`. Activating Exit should log
-`Exit control activated`, followed by driver and graphics cleanup. These are
-diagnostic expectations, not a claim that the new desktop test has passed.
+`Exit control activated`, followed by driver and graphics cleanup. These
+diagnostics were observed in the successful run: all 13 bindings, glyph/cursor
+submissions, Exit activation, 308 submitted frames and normal driver/graphics
+close. This does not establish every hover, drag or focus-cancellation edge case.
 
 The first desktop text attempt stopped before rendering with
 `Missing original menu frame: text_screen`, then closed driver/graphics normally.
@@ -552,7 +555,9 @@ The actual name setter (`1001D330`, vtable `+34`) reads/writes `+E8` and copies
 the supplied NUL-terminated name there. The corrected, native-tested
 [name reader](recovered/host/frame_name.h) distinguishes both fields, including
 an unnamed frame with a nonempty auxiliary string. Hierarchy diagnostics now
-print names as well as types/counts. The corrected desktop result is pending.
+print names as well as types/counts. The correction was committed as `54a7c67`;
+the subsequent desktop run succeeded, with the text-overflow limitation above.
+See [the session handoff](HANDOFF.md) before continuing in a fresh session.
 
 ## First mission-format milestone
 

@@ -1,7 +1,8 @@
 {
   "scope": "Opt-in --menu-ui integration: original English labels, ANSI Set2 bitmaps and model-derived rectangles, with a host-owned Exit adapter. Not a reconstruction of the complete client UI.",
-  "runtime_verified": false,
-  "runtime_observation": "First desktop --menu-ui run loaded artwork/cursor then rejected text_screen before submitting frames and closed driver/graphics normally. The name reader incorrectly used +f0; corrected to +e8 with distinct-name/auxiliary regression coverage. Corrected text rendering still awaits a desktop run.",
+  "runtime_verified": true,
+  "runtime_observation": "2026-10-26: user confirmed corrected --menu-ui works and text appears, but text runs off button borders. Direct host log lists all 13 bindings, glyph and cursor submissions, Exit control activation, 308 submitted frames and normal driver/graphics close. Verified scope is visible static text and bounded host Exit, not accurate layout or original UI behavior. First attempt had rejected text_screen due to reading auxiliary +f0 instead of name +e8; corrected in 54a7c67.",
+  "known_issues": ["Text overflows button borders; investigate original layout, scaling and alignment before claiming visual fidelity."],
   "source": "recovered/host/menu_text.h",
   "geometry_source": "recovered/host/menu_text_geometry.h",
   "engine": {
@@ -57,5 +58,5 @@
   "interaction_policy": "Only Exit is enabled; unsupported button captions use the original disabled alpha 0x60. Exit hover uses white focused-text color. Win32 press/release inside the normal07 visual rectangle closes this host; focus loss and dragging outside cancel. This does not reproduce original hover animation, confirmation flow, tagged-event dispatcher or other screens.",
   "asset_policy": "Read original loose English TEXTY and ANSI Set2 atlases/metrics locally. Stage a provenance-tracked five-asset slice, including a newly defined H2MT label bundle. No game text or atlas is redistributed. Fixed 800x600; dynamic profile/date/save/version values remain absent.",
   "research_outputs": "analysis/work/menu-label-layout (four successful exports; later non-entry request rejected), menu-label-alignment (three), menu-label-final (three), menu-overlay-states (two), menu-overlay-graphics (one format-name query, not a state API). All ignored.",
-  "verification_boundary": "Native glyph/geometry/input tests, parser/staging tests, original-asset parsing, machine-anchor checks and strict i386 cross-build are not desktop rendering proof."
+  "verification_boundary": "User desktop observation and direct host log confirm the bounded static-text/Exit milestone only. Exact text fit, blending fidelity, hover/cancellation edge cases and original UI dispatch are not verified by this run. Native tests and ABI anchors alone are not rendering proof."
 }
