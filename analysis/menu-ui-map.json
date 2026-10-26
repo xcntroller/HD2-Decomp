@@ -1,0 +1,58 @@
+{
+  "scope": "Opt-in --menu-ui integration: original English labels, ANSI Set2 bitmaps and model-derived rectangles, with a host-owned Exit adapter. Not a reconstruction of the complete client UI.",
+  "runtime_verified": false,
+  "source": "recovered/host/menu_text.h",
+  "geometry_source": "recovered/host/menu_text_geometry.h",
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {"address": "1001e330", "hex": "c783f000000000000000", "meaning": "Frame name setter clears the name pointer at frame+f0"},
+      {"address": "100571ba", "hex": "8b75088b8ed001000081c9000004008bc1a90000020057898ed0010000", "meaning": "World-bounds updater takes stack self and sets the world-bound-valid flag at visual+1d0"},
+      {"address": "10057239", "hex": "81c670010000", "meaning": "World-bounds output record starts at visual+170"},
+      {"address": "1006c2b0", "hex": "b8f01c0d10c20400", "meaning": "Viewport getter returns the six-DWORD record and cleans self"},
+      {"address": "1006b389", "hex": "a16c210d10", "meaning": "BeginScene loads the borrowed original IDirect3DDevice8 pointer from 100d216c; runtime check accounts for relocation"}
+    ],
+    "vtables": [
+      {"address": "1009d8c0", "targets": ["1006c2b0"]},
+      {"address": "1009c804", "targets": ["1001db80", "1001dba0"]}
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {"address": "00644aa6", "hex": "56e84a041a0081c670010000b9080000008d7c241033d2f3a5", "meaning": "Layout calls the public bounds updater, then copies eight DWORDs from visual+170"},
+      {"address": "00644b15", "hex": "d84c241cd80dd8048100d82524f58000", "meaning": "Layout bottom is height * minY * -4/3 - 1"},
+      {"address": "00644b35", "hex": "d84c242cd80d883b8100d82d24f58000", "meaning": "Layout top is 1 - height * maxY * 4/3"},
+      {"address": "008104d8", "hex": "abaaaabf", "meaning": "Negative 4/3 layout constant"},
+      {"address": "00813b88", "hex": "abaaaa3f", "meaning": "Positive 4/3 layout constant"},
+      {"address": "00644ec3", "hex": "d84808d80518f58000", "meaning": "Glyph height uses style height times render height, plus 0.5 before integer truncation"},
+      {"address": "00644e66", "hex": "db442414dc0dd0048100dc0530f58000", "meaning": "Zero-aspect character advance uses height * 0.4 + 0.5"},
+      {"address": "006403f3", "hex": "6a0150b8", "meaning": "Font flush selects screen-space vertex format 1"},
+      {"address": "00640407", "hex": "6a0351ff9788000000", "meaning": "Font flush submits kind 3 triangle lists through IGraph+88"},
+      {"address": "00646b75", "hex": "837824010f84de010000", "meaning": "Horizontal alignment 1 takes the unadjusted left position"},
+      {"address": "00646bbd", "hex": "837824027556", "meaning": "Horizontal alignment 2 enters the centered branch; 3 is right alignment"},
+      {"address": "00661a6f", "hex": "8b46508b4e6850518b4e6ce80130feff", "meaning": "Text control forwards its visual at +50 to the bounds layout helper"},
+      {"address": "00624bbb", "hex": "68400800006a0d6815000001", "meaning": "Exit definition binds localization 2112 with style 13"},
+      {"address": "00624c0b", "hex": "68000000046803100006", "meaning": "Exit definition attaches tagged event 06001003 with argument 04000000"}
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "binding_policy": "Literal definition names have spaces, not Ghidra symbol underscores. Static adapter looks up those exact model nodes, then each button's numbered normal00..normal08 visual beneath its container. The parent/child relationship is checked at runtime, not inferred from screen coordinates.",
+  "render_state_policy": "New adapter snapshots and restores every D3D render/texture-stage state it changes, stage-zero texture and pixel shader, and restores viewport through IGraph. Device access is a borrowed, fingerprint/relocation-guarded field bridge, not a recovered font API. Do not apply an all-state block: restoring vertex format behind IGraph's FVF cache would desynchronize it.",
+  "interaction_policy": "Only Exit is enabled; unsupported button captions use the original disabled alpha 0x60. Exit hover uses white focused-text color. Win32 press/release inside the normal07 visual rectangle closes this host; focus loss and dragging outside cancel. This does not reproduce original hover animation, confirmation flow, tagged-event dispatcher or other screens.",
+  "asset_policy": "Read original loose English TEXTY and ANSI Set2 atlases/metrics locally. Stage a provenance-tracked five-asset slice, including a newly defined H2MT label bundle. No game text or atlas is redistributed. Fixed 800x600; dynamic profile/date/save/version values remain absent.",
+  "research_outputs": "analysis/work/menu-label-layout (four successful exports; later non-entry request rejected), menu-label-alignment (three), menu-label-final (three), menu-overlay-states (two), menu-overlay-graphics (one format-name query, not a state API). All ignored.",
+  "verification_boundary": "Native glyph/geometry/input tests, parser/staging tests, original-asset parsing, machine-anchor checks and strict i386 cross-build are not desktop rendering proof."
+}

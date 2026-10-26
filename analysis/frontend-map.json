@@ -10,11 +10,12 @@
   "model_preview": {
     "evidence": "analysis/menu-scene-map.json",
     "implementation": "recovered/host/menu_scene.h",
-    "status": "Original-model artwork confirmed visible by user desktop test after camera/model update correction. Cursor drawing added with separate evidence map and pending desktop check. Does not reconstruct the menu state or UI controls."
+    "status": "Original-model artwork and cursor visibility/tracking confirmed by user desktop tests. Does not reconstruct the complete menu state or UI controls."
   },
   "text_research": {
     "evidence": "analysis/menu-text-map.json",
-    "status": "Client-owned localized label IDs, loose bitmap-font resources and glyph submission path identified. Text rendering, exact alignment and state preservation remain unimplemented."
+    "status": "Client-owned labels/fonts, literal frame names and relevant single-line layout recovered. Opt-in --menu-ui integrates static English labels and a bounded host Exit adapter; desktop verification pending.",
+    "integration_evidence": "analysis/menu-ui-map.json"
   },
   "startup_path": [
     {"address": "006dd550", "role": "WinMain-like entry"},
@@ -110,7 +111,7 @@
     {"site": "0066afd2", "address": "0083a934", "text": "sound_click", "role": "Sound-frame name"}
   ],
   "limitations": [
-    "The user has verified a blue graphics-only engine window through Proton; the original menu is not yet loaded. See engine-host-map.json for the bounded runtime evidence.",
+    "The user has verified graphics bootstrap, original menu artwork and cursor through Proton. New static text and host Exit behavior remain desktop-unverified.",
     "Resource keys and control names are not verified archive paths or localized displayed captions.",
     "Indirect-call signatures remain incomplete; current generated C has incorrect stack/argument propagation and is not recovered source.",
     "Original engine initialization, resource search/archive registration, text/font services, input ABI and teardown still need integration contracts.",

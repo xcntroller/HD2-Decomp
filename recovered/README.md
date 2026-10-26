@@ -61,13 +61,35 @@ original texture and reproduces the original textured-quad layout, UV mapping
 and resolution scaling; its Win32 mouse tracking is new integration glue.
 Its [geometry helper](host/cursor_geometry.h) has native tests, and the
 [cursor evidence map](../analysis/menu-cursor-map.json) checks its engine ABI.
-Cursor appearance still needs a desktop test.
+The user has confirmed the original cursor appears and tracks the mouse.
 
 The Windows host now writes diagnostics directly to the isolated runtime's
 `host-runtime.log`; Proton did not relay the earlier standard-output pipe in
 the observed desktop run. The launcher also saves relayed output and appends
 the direct host log to `host-output.log` after the run.
-Original text, button actions, screen transitions and logo playback remain absent.
+In `--menu-model`, text, button actions, screen transitions and logo playback
+remain absent. Opt-in `--menu-ui` now adds a bounded static-text/Exit slice:
+
+- [font/label parsers](host/bitmap_font.h) validate the original TBL data and our
+  provenance-tracked local label bundle;
+- [glyph geometry](host/menu_text_geometry.h) reproduces single-line font sizing,
+  character advances, triangle/UV order and the relevant alignment styles;
+- [text integration](host/menu_text.h) loads the original ANSI Set2 atlases and
+  uses the actual menu visual bounds, not hand-positioned replacement controls;
+- only Exit responds to press/release inside its model-derived rectangle.
+  The remaining buttons are deliberately disabled; profile/save/date/version
+  values are not invented.
+
+This is new host integration, not a reconstructed menu dispatcher. Exit closes
+the host directly; the original confirmation screen is not reproduced.
+The new overlay explicitly snapshots/restores changed Direct3D render/stage
+states, texture, pixel shader and viewport. Access to the borrowed original
+device uses a guarded engine field; IGraph still owns all primitive submission
+and its vertex-format cache. A full device state block would incorrectly restore
+FVF behind that cache and is intentionally not used.
+See the [machine-checkable UI evidence](../analysis/menu-ui-map.json) and
+[desktop test instructions](../RESEARCH.md#static-text-and-exit-slice).
+**Text placement, blending and Exit interaction still need desktop verification.**
 Neither the original executable nor the user's game prefix is patched.
 See [the preview test command](../RESEARCH.md#original-menu-model-preview).
 

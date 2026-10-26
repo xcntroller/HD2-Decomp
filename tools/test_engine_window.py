@@ -109,6 +109,34 @@ class EngineWindowLaunchTests(unittest.TestCase):
             self.prepare()
         stage.assert_not_called()
 
+    def test_ui_mode_stages_original_fonts_and_artwork_and_is_explicit(self):
+        with patch("run_engine_window.hashlib.sha256") as digest, \
+                patch("run_engine_window.stage_menu_resources") as artwork, \
+                patch("run_engine_window.stage_menu_text") as text:
+            digest.return_value.hexdigest.return_value = ENGINE_SHA256
+            launch = self.prepare(menu_ui=True)
+        artwork.assert_called_once_with(self.game, self.work / "run")
+        text.assert_called_once_with(self.game, self.work / "run")
+        self.assertEqual(launch.command[-1], "--menu-ui")
+        self.assertNotIn("--menu-model", launch.command)
+
+    def test_old_preview_and_bootstrap_do_not_require_fonts(self):
+        with patch("run_engine_window.hashlib.sha256") as digest, \
+                patch("run_engine_window.stage_menu_resources"), \
+                patch("run_engine_window.stage_menu_text") as text:
+            digest.return_value.hexdigest.return_value = ENGINE_SHA256
+            self.prepare(menu_model=True)
+            self.prepare()
+        text.assert_not_called()
+
+    def test_invalid_ui_assets_prevent_command_dispatch(self):
+        with patch("run_engine_window.hashlib.sha256") as digest, \
+                patch("run_engine_window.stage_menu_resources"), \
+                patch("run_engine_window.stage_menu_text", side_effect=ValueError("Bad font")):
+            digest.return_value.hexdigest.return_value = ENGINE_SHA256
+            with self.assertRaisesRegex(ValueError, "Bad font"):
+                self.prepare(menu_ui=True)
+
     def test_missing_menu_assets_prevent_launch(self):
         with patch("run_engine_window.hashlib.sha256") as digest, \
                 patch("run_engine_window.stage_menu_resources",
@@ -168,7 +196,8 @@ class HostOutputTests(unittest.TestCase):
 class EngineHostEvidenceTests(unittest.TestCase):
     def test_both_map_fingerprints_checked_before_file_access(self):
         root = Path(__file__).resolve().parents[1]
-        for name in ("engine-host-map.json", "menu-scene-map.json", "menu-cursor-map.json"):
+        for name in ("engine-host-map.json", "menu-scene-map.json", "menu-cursor-map.json",
+                     "menu-ui-map.json"):
             for key in ("engine", "client"):
                 document = json.loads((root / "analysis" / name).read_text())
                 document[key]["binary"]["sha256"] = "0" * 64

@@ -4,11 +4,13 @@
 #include <windows.h>
 
 #include <cstddef>
+#include <array>
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <memory>
 #include <stdexcept>
+#include <string>
 
 namespace hd2::host {
 
@@ -161,7 +163,66 @@ public:
         return render_(scene_.get(), 0);
     }
 
+    std::array<float, 8> label_bounds(const char* name, const char* visual, HMODULE module) const {
+        EngineFrame* found = nullptr;
+        std::uint32_t nodes = 0;
+        find_named(model_.get(), name, module, 0, nodes, found);
+        if (found == nullptr) {
+            throw std::runtime_error(std::string("Missing original menu frame: ") + name);
+        }
+        if (std::strcmp(name, visual) != 0) {
+            EngineFrame* child = nullptr;
+            nodes = 0;
+            find_named(found, visual, module, 0, nodes, child);
+            if (child == nullptr) {
+                throw std::runtime_error(std::string("Missing normal visual in menu button: ") + name);
+            }
+            found = child;
+        }
+        if (reinterpret_cast<std::uintptr_t>(found->methods) !=
+                reinterpret_cast<std::uintptr_t>(module) + 0x9c7c8) {
+            throw std::runtime_error(std::string("Unsupported menu label visual: ") + name);
+        }
+        const auto entry = GetProcAddress(module, "?UpdateWBoundProc@I3D_visual@@AAGXXZ");
+        if (reinterpret_cast<std::uintptr_t>(entry) !=
+                reinterpret_cast<std::uintptr_t>(module) + 0x571b0) {
+            throw std::runtime_error("Unsupported visual world-bounds export");
+        }
+        using UpdateBounds = void (WINAPI *)(EngineFrame*);
+        UpdateBounds update = nullptr;
+        std::memcpy(&update, &entry, sizeof(entry));
+        update(found);
+        std::array<float, 8> bounds{};
+        std::memcpy(bounds.data(), reinterpret_cast<const char*>(found) + 0x170, sizeof(bounds));
+        return bounds;
+    }
+
 private:
+    static void find_named(EngineFrame* frame, const char* name, HMODULE module,
+                            std::uint32_t depth, std::uint32_t& nodes, EngineFrame*& found) {
+        if (frame == nullptr || depth > 16 || ++nodes > 256) {
+            throw std::runtime_error("Invalid original menu binding hierarchy");
+        }
+        const char* frame_name = nullptr;
+        std::memcpy(&frame_name, reinterpret_cast<const char*>(frame) + 0xf0, sizeof(frame_name));
+        if (frame_name != nullptr && std::strcmp(frame_name, name) == 0) {
+            if (found != nullptr) {
+                throw std::runtime_error(std::string("Ambiguous original menu frame: ") + name);
+            }
+            found = frame;
+        }
+        using Count = std::uint32_t (WINAPI *)(EngineFrame*);
+        using Child = EngineFrame* (WINAPI *)(EngineFrame*, std::uint32_t);
+        const auto count = scene_method<Count>(frame, module, 0x3c, 0x1db80)(frame);
+        if (count > 256) {
+            throw std::runtime_error("Invalid original menu binding child count");
+        }
+        const auto child = scene_method<Child>(frame, module, 0x40, 0x1dba0);
+        for (std::uint32_t i = 0; i < count; ++i) {
+            find_named(child(frame, i), name, module, depth + 1, nodes, found);
+        }
+    }
+
     static void log_hierarchy(EngineFrame* frame, HMODULE module, std::uint32_t depth,
                               std::uint32_t& nodes) {
         if (depth > 16 || ++nodes > 256) {

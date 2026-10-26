@@ -1,6 +1,7 @@
 {
   "scope": "Original cursor texture and screen-space quad reproduced in the new menu integration host. Win32 pointer tracking replaces the unreconstructed client input subsystem.",
-  "runtime_verified": false,
+  "runtime_verified": true,
+  "runtime_observation": "User confirmed original cursor visibility and mouse tracking over the artwork. This does not verify new text or Exit integration.",
   "source": "recovered/host/menu_cursor.h",
   "geometry_source": "recovered/host/cursor_geometry.h",
   "engine": {

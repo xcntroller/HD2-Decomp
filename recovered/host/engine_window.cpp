@@ -5,6 +5,7 @@
 #include "host/graphics_settings.h"
 #include "host/menu_scene.h"
 #include "host/menu_cursor.h"
+#include "host/menu_text.h"
 
 #include <cstdio>
 #include <cstring>
@@ -40,7 +41,8 @@ struct GraphicsVtable {
     Method present;
     Method reserved_74[2];
     std::int32_t (WINAPI *set_viewport)(Graphics*, const hd2::host::CursorViewport*);
-    Method reserved_80[2];
+    const hd2::host::CursorViewport* (WINAPI *viewport)(Graphics*);
+    Method reserved_84;
     std::int32_t (WINAPI *draw_primitive)(Graphics*, std::uint32_t, std::uint32_t,
                                          const hd2::host::CursorVertex*, std::uint32_t);
 };
@@ -57,6 +59,7 @@ static_assert(offsetof(GraphicsVtable, present) == 0x70);
 static_assert(offsetof(GraphicsVtable, load_texture) == 0x3c);
 static_assert(offsetof(GraphicsVtable, bind_texture) == 0x44);
 static_assert(offsetof(GraphicsVtable, set_viewport) == 0x7c);
+static_assert(offsetof(GraphicsVtable, viewport) == 0x80);
 static_assert(offsetof(GraphicsVtable, draw_primitive) == 0x88);
 
 bool running = true;
@@ -119,7 +122,8 @@ int finish(Graphics* graphics, int result) {
     return result;
 }
 
-int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bool menu_model) {
+int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bool menu_model,
+               bool menu_ui) {
     const auto settings = hd2::host::windowed_settings(
         static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr))));
     const auto* methods = graphics->methods;
@@ -134,7 +138,8 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         std::fputs("Engine initialization returned without a valid initialized window\n", stderr);
         return finish(graphics, 1);
     }
-    if (!SetWindowTextW(window, menu_model ?
+    if (!SetWindowTextW(window, menu_ui ?
+            L"HD2 reconstruction - static menu text / Exit only" : menu_model ?
             L"HD2 reconstruction - original menu model (not interactive)" :
             L"HD2 reconstruction - engine bootstrap (not menu)")) {
         windows_error("SetWindowTextW");
@@ -165,6 +170,15 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             cursor = std::make_unique<hd2::host::MenuCursor<Graphics>>(graphics, module);
         }
         bool cursor_drawn = false;
+        bool text_drawn = false;
+        std::unique_ptr<hd2::host::MenuText<Graphics>> text;
+        hd2::host::ExitButton exit_button;
+        if (menu_ui) {
+            if (!expected_method(methods->viewport, module, 0x6c2b0)) {
+                throw std::runtime_error("Unsupported original viewport getter ABI");
+            }
+            text = std::make_unique<hd2::host::MenuText<Graphics>>(graphics, module, *menu);
+        }
         while (running) {
             MSG message{};
             while (PeekMessageW(&message, nullptr, 0, 0, PM_REMOVE)) {
@@ -172,6 +186,21 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     (message.message == WM_KEYDOWN && message.wParam == VK_ESCAPE)) {
                     running = false;
                     break;
+                }
+                if (text) {
+                    const bool inside = text->over_exit(cursor->position(window, &message.pt));
+                    if (message.message == WM_LBUTTONDOWN) {
+                        exit_button.press(inside);
+                    } else if (message.message == WM_LBUTTONUP) {
+                        if (exit_button.release(inside)) {
+                            std::puts("Exit control activated: closing reconstruction host");
+                            running = false;
+                            break;
+                        }
+                    } else if ((message.message == WM_ACTIVATEAPP && message.wParam == 0) ||
+                                message.message == WM_CANCELMODE) {
+                        exit_button.cancel();
+                    }
                 }
                 TranslateMessage(&message);
                 DispatchMessageW(&message);
@@ -191,6 +220,15 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 methods->clear(graphics, 0xff203050, 1.0f, 3);
                 methods->begin_scene(graphics);
                 methods->end_scene(graphics);
+            }
+            if (text) {
+                const bool hover = text->over_exit(cursor->position(window));
+                if (!hover) exit_button.cancel();
+                text->draw(hover);
+                if (!text_drawn) {
+                    std::puts("Original menu bitmap glyphs submitted");
+                    text_drawn = true;
+                }
             }
             if (cursor) {
                 custom_cursor_active = cursor->draw(window);
@@ -213,7 +251,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             }
             Sleep(16);
         }
-    } catch (const std::runtime_error& error) {
+    } catch (const std::exception& error) {
         std::fprintf(stderr, "Menu preview failed: %s\n", error.what());
         result = 1;
     }
@@ -251,18 +289,23 @@ int wmain(int argc, wchar_t** argv) {
     std::setvbuf(stdout, nullptr, _IONBF, 0);
     std::setvbuf(stderr, nullptr, _IONBF, 0);
     if (argc < 2) {
-        std::fputs("Usage: engine_window.exe ABSOLUTE_ENGINE_DLL [--frames COUNT] [--menu-model]\n"
+        std::fputs("Usage: engine_window.exe ABSOLUTE_ENGINE_DLL [--frames COUNT] "
+                   "[--menu-model | --menu-ui]\n"
                    "Use the fingerprint-checking Python launcher. Default: 180 frames; "
                    "0 waits for Escape/Close.\n", stderr);
         return 2;
     }
     std::uint32_t frame_limit = 180;
     bool menu_model = false;
+    bool menu_ui = false;
     bool frames_seen = false;
     try {
         for (int i = 2; i < argc; ++i) {
             if (std::wstring_view(argv[i]) == L"--menu-model" && !menu_model) {
                 menu_model = true;
+            } else if (std::wstring_view(argv[i]) == L"--menu-ui" && !menu_model) {
+                menu_model = true;
+                menu_ui = true;
             } else if (std::wstring_view(argv[i]) == L"--frames" &&
                        !frames_seen && i + 1 < argc) {
                 frame_limit = hd2::host::parse_frame_limit(argv[++i]);
@@ -295,7 +338,7 @@ int wmain(int argc, wchar_t** argv) {
         if (graphics == nullptr || !verify_methods(graphics, module)) {
             std::fputs("Missing graphics singleton or unsupported graphics vtable\n", stderr);
         } else {
-            result = run_window(graphics, module, frame_limit, menu_model);
+            result = run_window(graphics, module, frame_limit, menu_model, menu_ui);
         }
     }
     if (!FreeLibrary(module)) {

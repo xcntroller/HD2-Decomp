@@ -32,33 +32,39 @@ public:
         std::puts("Original cursor texture loaded: Maps\\x_kursor.tga");
     }
 
-    bool draw(HWND main_window) const {
+    std::optional<CursorPoint> position(HWND main_window, const POINT* supplied = nullptr) const {
         HWND window = graphics_->methods->child_window(graphics_);
         if (window == nullptr || !IsWindow(window)) {
             throw std::runtime_error("Cursor requires a valid engine child window");
         }
         if (GetAncestor(GetForegroundWindow(), GA_ROOT) != main_window || IsIconic(main_window)) {
-            return false;
+            return std::nullopt;
         }
         POINT point{};
         RECT rectangle{};
-        if (!GetCursorPos(&point) || !ScreenToClient(window, &point) ||
+        if (supplied != nullptr) point = *supplied;
+        if ((supplied == nullptr && !GetCursorPos(&point)) || !ScreenToClient(window, &point) ||
                 !GetClientRect(window, &rectangle)) {
             throw std::runtime_error("Cannot obtain cursor position in the engine child window");
         }
         const auto client_width = rectangle.right - rectangle.left;
         const auto client_height = rectangle.bottom - rectangle.top;
         if (client_width == 0 || client_height == 0) {
+            return std::nullopt;
+        }
+        const auto width = graphics_->methods->width(graphics_);
+        const auto height = graphics_->methods->height(graphics_);
+        return cursor_position(point.x, point.y, client_width, client_height, width, height);
+    }
+
+    bool draw(HWND main_window) const {
+        const auto point = position(main_window);
+        if (!point) {
             return false;
         }
         const auto width = graphics_->methods->width(graphics_);
         const auto height = graphics_->methods->height(graphics_);
-        const auto position = cursor_position(point.x, point.y, client_width, client_height,
-                                              width, height);
-        if (!position) {
-            return false;
-        }
-        const auto vertices = cursor_quad(*position, width, height);
+        const auto vertices = cursor_quad(*point, width, height);
         const CursorViewport viewport{0, 0, static_cast<std::uint32_t>(width),
                                        static_cast<std::uint32_t>(height), 0, 1};
         graphics_->methods->begin_scene(graphics_);

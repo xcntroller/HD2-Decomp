@@ -452,7 +452,10 @@ while our cursor is active.
 Build and run the same `--menu-model --frames 300` command for a bounded test,
 or `--frames 0` to move the cursor until Escape/Close. The expected addition is
 the game's own cursor following the mouse over the existing artwork. Text is
-still absent. **Cursor visibility has not yet been verified on the desktop.**
+still absent in that mode. **The user has now confirmed cursor visibility and
+mouse tracking on the desktop.** The direct Windows log also contains the cursor
+submission and normal driver/graphics close messages for that run; this is not
+a debugger or leak check.
 
 ```sh
 python3 -B tools/validate_engine_host.py --map analysis/menu-cursor-map.json
@@ -460,8 +463,8 @@ python3 -B tools/validate_engine_host.py --map analysis/menu-cursor-map.json
 
 ### Original text/font contract
 
-The [text research map](analysis/menu-text-map.json) records the next bounded
-implementation target. Text is **client-owned**, not another engine singleton:
+The [text research map](analysis/menu-text-map.json) records the original contract
+behind the new bounded implementation. Text is **client-owned**, not another engine singleton:
 the client resolves localization IDs, allocates text objects, reads glyph
 metrics, lays out glyphs and builds triangles. LS3DF only supplies the texture
 and primitive interfaces already used for the cursor.
@@ -470,8 +473,9 @@ The main-menu definitions bind the title to localization ID `2101`, captions
 to `2102`-`2104`, and static button labels to `2105`-`2112` and `2115`/`2116`
 (not every intervening ID is a main-menu button). Initially empty dynamic fields
 use `2002`. These IDs come from original definitions, not newly hardcoded
-English labels. Definition binding keys and 4DS node names must not be assumed
-identical; their normalization still needs to be established.
+English labels. Ghidra's symbol spellings misleadingly use underscores for
+embedded spaces: the literal names are `bresume game`, `bchange profile` and
+`text_last save00`. No underscore-to-space normalization is applied.
 
 The local resources are already loose: `Text/english/TEXTY.txt` and
 `Text/Fonts/ANSI/SetN/{BIG,SMALL}.{tbl,tga}`. Font set 1 is selected below
@@ -480,10 +484,66 @@ also loads CE and SYMBOLS resources. Each TBL contains 256 records of five
 little-endian floats (5,120 bytes total): UV rectangle and width/height ratio.
 The original atlases use the same `0x402` texture-load flags as the cursor.
 
-This contract is **research, not working text support**. Exact alignment enums,
-model-frame placement, localization parsing and render-state preservation still
-need validation before implementation. We will not replace the original fonts
-with a system font or invent profile/save data to make the screen look complete.
+### Static text and Exit slice
+
+The new `--menu-ui` mode preserves the earlier artwork/cursor test as a separate
+mode. Build the Windows host as above, then run from a desktop terminal:
+
+```sh
+python3 -B "/home/control/Documents/Projects/H&D2 Decomp 4/tools/run_engine_window.py" --menu-ui --frames 0
+```
+
+Expected addition: 13 original static labels in the original bitmap fonts.
+Only Exit is enabled. Hover makes its caption white; press and release inside
+its visual rectangle closes the reconstruction host. Dragging out or losing
+focus cancels the press. Escape and the window close button still quit.
+This is a **host-owned interaction adapter**, not the original control dispatcher
+or quit-confirmation flow; other screens remain disabled. New text and Exit
+behavior are **not yet desktop-verified**.
+
+[Text staging](tools/stage_menu_text.py) reads the loose English localization and
+validates the selected printable-ASCII records, both original TBLs and the
+256x256 32-bit TGA atlases. Five additional local assets are staged beside the
+16 artwork/cursor assets, with a separate source/output SHA256 manifest.
+The `H2MT` label bundle is our own bounded runtime format, not an original game
+file format. Assets and localized content remain ignored and local.
+This slice explicitly requires 800x600/ANSI Set2; other language/font sets,
+wrapping, dynamic profile/date/save/version fields and patch overlays are not
+implemented.
+
+The [UI ABI map](analysis/menu-ui-map.json) validates the world-bound accessor,
+the eight-DWORD bounds record and its XY components, projection constants, character rounding and
+triangle submission. Button containers are not visuals: each binding finds
+its numbered `normal00`-`normal08` child under the actual named button, and
+rejects missing/ambiguous nodes. No guessed screen-coordinate hit areas are used.
+Styles 11/13 are left/vertically centered; style 10 is right/bottom aligned.
+The original projection is `x = width * world_x`,
+`top = 1 - height * max_y * 4/3`,
+`bottom = -height * min_y * 4/3 - 1`.
+
+The overlay is independent integration glue. It borrows the original D3D8
+device through a fingerprint/relocation-guarded field, snapshots and restores
+each render/stage state it changes, the stage-zero texture and pixel shader,
+and restores the viewport through IGraph. Glyphs still use the verified original
+texture wrapper and IGraph primitive method. An all-state block is deliberately
+avoided: restoring FVF directly would invalidate IGraph's cached vertex format.
+This explicit setup is not claimed to be the original client state-save protocol.
+Unsupported controls use the original disabled text alpha; Exit's hover uses
+the original focused-text white, not a recovered button animation.
+
+Validation:
+
+```sh
+make -C recovered test
+TMPDIR="$PWD/analysis/work" python3 -B -m unittest discover -s tools -p 'test_*.py'
+python3 -B tools/validate_engine_host.py --map analysis/menu-ui-map.json
+recovered/build/bitmap_font_tests "Hidden and Dangerous 2" analysis/work/engine-window/run/MenuText/labels.bin
+```
+
+The direct Windows log should list all 13 label bindings/bounds, then
+`Original menu bitmap glyphs submitted`. Activating Exit should log
+`Exit control activated`, followed by driver and graphics cleanup. These are
+diagnostic expectations, not a claim that the new desktop test has passed.
 
 ## First mission-format milestone
 

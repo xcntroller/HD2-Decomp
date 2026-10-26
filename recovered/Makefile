@@ -8,7 +8,7 @@ WINDOWS_CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror -static -mun
 
 .PHONY: all test engine-window
 
-all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks $(BUILD_DIR)/model_resource_key_tests $(BUILD_DIR)/model_resource_key $(BUILD_DIR)/frame_kind_tests $(BUILD_DIR)/model_load_policy_tests $(BUILD_DIR)/model_file_header_tests $(BUILD_DIR)/inspect_model_header $(BUILD_DIR)/model_first_table_tests $(BUILD_DIR)/scan_model_first_table $(BUILD_DIR)/graphics_settings_tests $(BUILD_DIR)/cursor_geometry_tests
+all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks $(BUILD_DIR)/model_resource_key_tests $(BUILD_DIR)/model_resource_key $(BUILD_DIR)/frame_kind_tests $(BUILD_DIR)/model_load_policy_tests $(BUILD_DIR)/model_file_header_tests $(BUILD_DIR)/inspect_model_header $(BUILD_DIR)/model_first_table_tests $(BUILD_DIR)/scan_model_first_table $(BUILD_DIR)/graphics_settings_tests $(BUILD_DIR)/cursor_geometry_tests $(BUILD_DIR)/bitmap_font_tests $(BUILD_DIR)/menu_text_geometry_tests
 
 $(BUILD_DIR):
 	mkdir -p "$@"
@@ -51,8 +51,14 @@ engine-window: $(BUILD_DIR)/engine_window.exe
 $(BUILD_DIR)/cursor_geometry_tests: tests/cursor_geometry_tests.cpp host/cursor_geometry.h | $(BUILD_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) tests/cursor_geometry_tests.cpp $(LDFLAGS) -o "$@"
 
-$(BUILD_DIR)/engine_window.exe: host/engine_window.cpp host/graphics_settings.h host/menu_scene.h host/menu_cursor.h host/cursor_geometry.h | $(BUILD_DIR)
-	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/engine_window.cpp -o "$@"
+$(BUILD_DIR)/bitmap_font_tests: tests/bitmap_font_tests.cpp host/bitmap_font.cpp host/bitmap_font.h | $(BUILD_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) host/bitmap_font.cpp tests/bitmap_font_tests.cpp $(LDFLAGS) -o "$@"
+
+$(BUILD_DIR)/menu_text_geometry_tests: tests/menu_text_geometry_tests.cpp host/menu_text_geometry.h host/bitmap_font.h host/cursor_geometry.h | $(BUILD_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) tests/menu_text_geometry_tests.cpp $(LDFLAGS) -o "$@"
+
+$(BUILD_DIR)/engine_window.exe: host/engine_window.cpp host/graphics_settings.h host/menu_scene.h host/menu_cursor.h host/cursor_geometry.h host/menu_text.h host/menu_text_geometry.h host/bitmap_font.h host/bitmap_font.cpp | $(BUILD_DIR)
+	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/engine_window.cpp host/bitmap_font.cpp -o "$@"
 
 test: all
 	"$(BUILD_DIR)/chunk_reader_tests"
@@ -63,6 +69,8 @@ test: all
 	"$(BUILD_DIR)/model_first_table_tests"
 	"$(BUILD_DIR)/graphics_settings_tests"
 	"$(BUILD_DIR)/cursor_geometry_tests"
+	"$(BUILD_DIR)/bitmap_font_tests"
+	"$(BUILD_DIR)/menu_text_geometry_tests"
 	$(PYTHON) -B tests/compare_scene_scan.py --scanner "$(BUILD_DIR)/scan_scene_chunks"
 	$(PYTHON) -B tests/compare_model_resource_keys.py --normalizer "$(BUILD_DIR)/model_resource_key"
 	$(PYTHON) -B tests/compare_model_headers.py --reader "$(BUILD_DIR)/inspect_model_header"

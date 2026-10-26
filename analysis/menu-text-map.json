@@ -1,5 +1,5 @@
 {
-  "scope": "Static research contract for original main-menu localization and bitmap fonts. No text rendering implementation or runtime verification yet.",
+  "scope": "Research contract for original main-menu localization and bitmap fonts. Bounded --menu-ui implementation now exists; see menu-ui-map.json. No desktop text verification yet.",
   "runtime_verified": false,
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
@@ -20,15 +20,15 @@
     {"address": "006404c0", "role": "Client font virtual +18: character, ARGB, width, height, x, y, z; this in ECX"},
     {"address": "00648860", "role": "Construct glyph triangles"},
     {"address": "00643fb0", "role": "Pack 32-byte screen-space vertices"},
-    {"address": "00644a80", "role": "Derive text layout from original model-frame bounds; exact alignment still needs recovery"}
+    {"address": "00644a80", "role": "Derive text layout from original visual world bounds at +170; relevant single-line projection/alignment now recorded in menu-ui-map.json"}
   ],
   "bindings": [
     {"frame": "text_screen", "style": 10, "localization_id": 2101},
     {"frame": "text_date00", "style": 11, "localization_id": 2102},
     {"frame": "text_profile00", "style": 11, "localization_id": 2103},
-    {"frame": "text_last_save00", "style": 11, "localization_id": 2104},
-    {"frame": "bresume_game", "style": 13, "localization_id": 2105},
-    {"frame": "bchange_profile", "style": 13, "localization_id": 2106},
+    {"frame": "text_last save00", "style": 11, "localization_id": 2104},
+    {"frame": "bresume game", "style": 13, "localization_id": 2105},
+    {"frame": "bchange profile", "style": 13, "localization_id": 2106},
     {"frame": "bsingleplayer", "style": 13, "localization_id": 2107},
     {"frame": "bcinematics", "style": 13, "localization_id": 2109},
     {"frame": "boptions", "style": 13, "localization_id": 2110},
@@ -37,7 +37,7 @@
     {"frame": "bmultiplayerlan", "style": 13, "localization_id": 2115},
     {"frame": "bmultiplayernet", "style": 13, "localization_id": 2116}
   ],
-  "binding_note": "Names above are definition binding keys, not asserted byte-for-byte 4DS node names. Matching/normalization must follow the original binder rather than assuming underscores equal spaces.",
+  "binding_note": "Literal definition strings and model names contain spaces, not Ghidra symbol underscores. Static adapter checks each exact button container and its normal visual child at runtime. No normalization is applied; the full original binder is not reconstructed.",
   "dynamic_fields": {
     "initially_empty": {"frame_suffix": "01", "style": 12, "localization_id": 2002},
     "version_format": {"style": 40, "localization_id": 2006},
@@ -77,10 +77,10 @@
   },
   "research_outputs": "Ignored analysis/work/menu-text-* exports; 48 requested function JSON exports reported decompiled=true. This map records research findings, not an instruction-anchor validator.",
   "remaining_work": [
-    "Recover exact text alignment/layout enums and model binding normalization.",
-    "Validate localization encoding/record framing and bitmap font metrics before staging them.",
-    "Recover renderer state setup/save/restore instead of depending on previous scene state.",
-    "Implement static original localized labels with original glyph atlases; keep dynamic fields empty until their data sources exist.",
-    "Defer hover/disabled colors and button activation until verified control-state behavior is wired."
+    "Desktop-verify the opt-in static original-font text slice and host-owned Exit adapter.",
+    "Recover the complete original layout, wrapping and control-state behavior beyond the current single-line styles.",
+    "Replace the explicitly documented device-state bridge with the original client callback/state protocol when recovered.",
+    "Keep dynamic fields absent until their data sources exist; support other languages/resolutions deliberately.",
+    "Recover original hover animation, tagged-event dispatch, confirmation flow and remaining screen transitions."
   ]
 }
