@@ -180,6 +180,8 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
 }
 
 int wmain(int argc, wchar_t** argv) {
+    std::setvbuf(stdout, nullptr, _IONBF, 0);
+    std::setvbuf(stderr, nullptr, _IONBF, 0);
     if (argc < 2) {
         std::fputs("Usage: engine_window.exe ABSOLUTE_ENGINE_DLL [--frames COUNT] [--menu-model]\n"
                    "Use the fingerprint-checking Python launcher. Default: 180 frames; "

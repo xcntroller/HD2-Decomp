@@ -6,8 +6,10 @@ import tempfile
 import unittest
 from unittest.mock import MagicMock, patch
 import json
+import io
+import sys
 
-from run_engine_window import frame_count, prepare_launch
+from run_engine_window import Launch, frame_count, prepare_launch, run_launch
 from test_engine_model import synthetic_pe
 from validate_engine_model import ENGINE_SHA256
 from validate_engine_host import validate
@@ -74,7 +76,7 @@ class EngineWindowLaunchTests(unittest.TestCase):
         self.assertFalse(self.work.exists())
 
     def test_runtime_symlink_cannot_redirect_writes_to_game(self):
-        for name in ("run", "compat/pfx"):
+        for name in ("run", "compat/pfx", "run/host-output.log"):
             target = self.work / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.symlink_to(self.game, target_is_directory=True)
@@ -114,6 +116,30 @@ class EngineWindowLaunchTests(unittest.TestCase):
             digest.return_value.hexdigest.return_value = ENGINE_SHA256
             with self.assertRaisesRegex(ValueError, "Missing menu texture"):
                 self.prepare(menu_model=True)
+
+
+class HostOutputTests(unittest.TestCase):
+    def test_stdout_and_stderr_are_saved_and_relayed_with_exit_status(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            launch = Launch([sys.executable, "-c",
+                             "import sys; print('model diagnostic', flush=True); "
+                             "print('render failure', file=sys.stderr); sys.exit(7)"], root, {})
+            output = io.StringIO()
+            self.assertEqual(run_launch(launch, output), 7)
+            self.assertEqual((root / "host-output.log").read_text(), output.getvalue())
+            self.assertIn("model diagnostic", output.getvalue())
+            self.assertIn("render failure", output.getvalue())
+
+    def test_symlink_log_is_rejected_without_modifying_target(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "unrelated"
+            target.write_text("preserve")
+            (root / "host-output.log").symlink_to(target)
+            with self.assertRaisesRegex(ValueError, "symlink"):
+                run_launch(Launch(["not-launched"], root, {}), io.StringIO())
+            self.assertEqual(target.read_text(), "preserve")
 
 
 class EngineHostEvidenceTests(unittest.TestCase):

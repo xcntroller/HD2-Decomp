@@ -110,6 +110,8 @@ public:
         scene_method<Float>(camera_.get(), module, 0x74, 0x09e30)(camera_.get(), 1.57079637f);
         scene_method<Projection>(camera_.get(), module, 0x88, 0x09ff0)(camera_.get(), 1);
         scene_method<Float>(camera_.get(), module, 0x84, 0x09fb0)(camera_.get(), 2);
+        using Update = void (WINAPI *)(EngineFrame*);
+        scene_method<Update>(camera_.get(), module, 0x24, 0x1e610)(camera_.get());
         scene_method<Pair>(scene_.get(), module, 0x90, 0x471a0)(scene_.get(), camera_.get());
         add(scene_.get(), camera_.get());
 
@@ -142,6 +144,14 @@ public:
         if (linked < 0) {
             throw std::runtime_error("Menu model could not be linked to the primary sector");
         }
+        scene_method<Update>(model_.get(), module, 0x24, 0x1e610)(model_.get());
+        std::uint32_t nodes = 0;
+        log_hierarchy(model_.get(), module, 0, nodes);
+        if (nodes <= 1) {
+            throw std::runtime_error("Menu model opened without any attached child frames");
+        }
+        std::printf("Menu model hierarchy: %u frames including model root\n",
+                    static_cast<unsigned>(nodes));
         render_ = scene_method<Render>(scene_.get(), module, 0x78, 0x46860);
         std::puts("Original menu model opened; static artwork preview, no menu interaction");
         std::fflush(stdout);
@@ -152,6 +162,32 @@ public:
     }
 
 private:
+    static void log_hierarchy(EngineFrame* frame, HMODULE module, std::uint32_t depth,
+                              std::uint32_t& nodes) {
+        if (depth > 16 || ++nodes > 256) {
+            throw std::runtime_error("Menu model hierarchy exceeds diagnostic bounds");
+        }
+        using Count = std::uint32_t (WINAPI *)(EngineFrame*);
+        using Child = EngineFrame* (WINAPI *)(EngineFrame*, std::uint32_t);
+        const auto count = scene_method<Count>(frame, module, 0x3c, 0x1db80)(frame);
+        if (count > 256) {
+            throw std::runtime_error("Invalid menu model child count");
+        }
+        const auto child = scene_method<Child>(frame, module, 0x40, 0x1dba0);
+        std::printf("Menu node depth=%u vtable_RVA=0x%08x children=%u\n",
+                    static_cast<unsigned>(depth),
+                    static_cast<unsigned>(reinterpret_cast<std::uintptr_t>(frame->methods) -
+                                          reinterpret_cast<std::uintptr_t>(module)),
+                    static_cast<unsigned>(count));
+        for (std::uint32_t i = 0; i < count; ++i) {
+            EngineFrame* next = child(frame, i);
+            if (next == nullptr) {
+                throw std::runtime_error("Menu child getter returned null within child count");
+            }
+            log_hierarchy(next, module, depth + 1, nodes);
+        }
+    }
+
     using Render = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t);
     MenuDriver driver_;
     MenuDriver::Owner scene_;

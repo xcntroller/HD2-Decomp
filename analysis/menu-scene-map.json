@@ -2,6 +2,7 @@
   "scope": "Original-engine static main_menu model preview in independently written integration glue. Not the reconstructed client menu state.",
   "source": "recovered/host/menu_scene.h",
   "runtime_verified": false,
+  "desktop_observation": "User ran --menu-model --frames 300: blue bootstrap surface changed to plain green, with no recognizable artwork. Latest Proton log confirms menu flag and original DLL loading/unloading. This is not a successful artwork test.",
   "engine": {
     "binary": {
       "path": "Hidden and Dangerous 2/LS3DF.dll",
@@ -22,6 +23,9 @@
       {"address": "1001ca48", "hex": "c20800", "meaning": "Position setter cleans self and vector pointer"},
       {"address": "1001c8be", "hex": "c20c00", "meaning": "Direction setter cleans self, direction and optional up pointer"},
       {"address": "1001daed", "hex": "c20c00", "meaning": "LinkTo cleans self, parent and flags; no fourth stack argument"},
+      {"address": "1001db80", "hex": "8b4c24048b890c01000033c085c9740b", "meaning": "Child count getter traverses the frame hierarchy"},
+      {"address": "1001db9b", "hex": "c20400", "meaning": "Child count getter cleans self"},
+      {"address": "1001dbc5", "hex": "c20800", "meaning": "Child getter cleans self and zero-based index"},
       {"address": "10009e82", "hex": "c20800", "meaning": "Camera field-of-view setter cleans self and float"},
       {"address": "10009f46", "hex": "c20c00", "meaning": "Camera range setter cleans self and two floats"},
       {"address": "10009fde", "hex": "c20800", "meaning": "Camera orthographic extent setter cleans self and float"},
@@ -53,6 +57,9 @@
       {"address": "1009bc94", "targets": ["1004ceb0"]},
       {"address": "1009ba50", "targets": ["1001c370"]},
       {"address": "1009ba88", "targets": ["1001d680"]},
+      {"address": "1009ba74", "targets": ["1001e610"]},
+      {"address": "1009bd94", "targets": ["1001e610"]},
+      {"address": "1009ba8c", "targets": ["1001db80", "1001dba0"]},
       {"address": "1009bac4", "targets": ["100340b0"]}
     ],
     "direct_calls": [],
@@ -71,6 +78,7 @@
       {"address": "0066ae96", "hex": "680000a04168cdcc4c3e50", "meaning": "Original near/far range 0.2 and 20"},
       {"address": "0066aeb7", "hex": "6a01508b10ff9288000000", "meaning": "Original menu enables orthographic projection"},
       {"address": "0066aec5", "hex": "6800000040508b08ff9184000000", "meaning": "Original orthographic extent = 2"},
+      {"address": "0066aed3", "hex": "8b4634508b10ff5224", "meaning": "Original client explicitly updates camera after projection setup"},
       {"address": "0066bff1", "hex": "8b88f80100005153ff5238", "meaning": "Original client reads primary sector at scene+1f8 and links its menu model"}
     ],
     "vtables": [],

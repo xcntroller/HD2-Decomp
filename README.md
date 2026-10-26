@@ -37,9 +37,9 @@ engine and game assets through Proton. This is not a replacement menu drawn to
 look similar. **Our own graphics-only program now opens an original-engine
 window through Proton:** the desktop test displayed the blue test surface and
 then shut down. A separate **original menu-artwork preview** is now built and
-ready for a desktop test. It stages only the needed local assets and uses the
-original menu camera. Its appearance has not yet been verified; menu text and
-button behavior are still to come.
+under test. It stages only the needed local assets and uses the original menu
+camera. The first desktop preview showed only a green background, so the menu
+artwork is **not working yet**; menu text and button behavior are also still to come.
 
 ## Progress
 

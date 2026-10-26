@@ -337,7 +337,10 @@ a newly recovered movie-search algorithm.
 
 The optional `--menu-model` mode now builds a scene around the actual
 `MODELS\main_menu.4ds` asset. It is a **static artwork experiment**, not yet the
-original interactive front end, and its desktop appearance remains unverified.
+original interactive front end. The first desktop test showed a plain green
+background, **not the menu artwork**. The latest Proton log confirms that this
+run included `--menu-model --frames 300`; this time it was not the old blue-only
+mode.
 The [scene host](recovered/host/menu_scene.h) is independently written glue and
 receives no original-function reconstruction credit.
 
@@ -389,6 +392,23 @@ The existing desktop/window-driver restriction prevents a visual check in the
 agent environment; a user desktop run is still needed. Fonts, localized text,
 cursor, button binding, audio, logos and the original scene callback remain
 outside this preview.
+
+### Plain-green preview investigation
+
+The green matches the scene initializer's default RGB `(0, 0.5, 0.4)` rather
+than the bootstrap clear color. This supports reaching scene rendering, but
+does not establish that any menu geometry was drawn or textures loaded.
+The host now explicitly performs the original camera's post-configuration
+update and refreshes the model after reparenting. These changes are statically
+supported, **not a confirmed fix for the blank preview**.
+
+To avoid relying on screenshots or manually copied output, the launcher now
+relays combined stdout/stderr while saving it to the ignored runtime
+`host-output.log`. It includes model-open failures, a bounded tree of loaded
+child frames/vtable RVAs, frame counts and cleanup messages. A model with no
+attached children is rejected rather than reporting it ready.
+The next desktop run should use the same bounded command above; its saved output
+will distinguish empty geometry from a populated model that remains invisible.
 
 ## First mission-format milestone
 

@@ -54,7 +54,10 @@ records its verified interfaces, ownership and one scene-layout field.
 The launcher stages a small base-archive asset slice into the ignored runtime
 directory; this does not reproduce original archive-overlay behavior.
 
-This preview is **built but not yet visually verified**. It implements no
+The first desktop preview showed **only a green background, not menu artwork**.
+It is not a successful menu test. Terminal output is now saved automatically
+in the isolated runtime's `host-output.log`, including bounded model-hierarchy
+diagnostics. It implements no
 original text, cursor, UI input, screen transitions or logo playback.
 Neither the original executable nor the user's game prefix is patched.
 See [the preview test command](../RESEARCH.md#original-menu-model-preview).

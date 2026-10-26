@@ -7,6 +7,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+from typing import TextIO
 
 from validate_engine_model import ENGINE_SHA256, PEImage
 from stage_menu_resources import stage_menu_resources
@@ -37,7 +38,7 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
         raise ValueError(f"Proton launcher is missing or not executable: {proton}")
     if not steam.is_dir():
         raise ValueError(f"Steam installation directory does not exist: {steam}")
-    for name in ("run", "compat", "compat/pfx", "shaders"):
+    for name in ("run", "run/host-output.log", "compat", "compat/pfx", "shaders"):
         if not (work / name).resolve().is_relative_to(work):
             raise ValueError(f"Runtime path escapes the isolated workspace: {work / name}")
     run = work / "run"
@@ -63,6 +64,23 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
     if menu_model:
         command.append("--menu-model")
     return Launch(command, run, env)
+
+
+def run_launch(launch: Launch, output: TextIO) -> int:
+    log_path = launch.cwd / "host-output.log"
+    if log_path.is_symlink():
+        raise ValueError("Host output log must not be a symlink")
+    with log_path.open("w", encoding="utf-8") as log:
+        with subprocess.Popen(launch.command, cwd=launch.cwd, env=launch.env,
+                              stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                              text=True, encoding="utf-8", errors="replace") as process:
+            assert process.stdout is not None
+            for line in process.stdout:
+                log.write(line)
+                log.flush()
+                output.write(line)
+                output.flush()
+            return process.wait()
 
 
 def frame_count(text: str) -> int:
@@ -94,13 +112,14 @@ def main() -> None:
               if args.menu_model else
               "Graphics bootstrap only: no original menu or movies are loaded.", flush=True)
         print(f"Isolated runtime files: {launch.cwd}", flush=True)
-        result = subprocess.run(launch.command, cwd=launch.cwd, env=launch.env, check=False)
+        print(f"Saved terminal diagnostics: {launch.cwd / 'host-output.log'}", flush=True)
+        returncode = run_launch(launch, sys.stdout)
     except (OSError, ValueError) as error:
         parser.exit(1, f"Engine-window launch failed: {error}\n")
-    if result.returncode != 0:
-        print(f"Proton exited with status {result.returncode}; no successful window run "
+    if returncode != 0:
+        print(f"Proton exited with status {returncode}; no successful window run "
               f"was verified. Diagnostics: {launch.cwd / 'steam-0.log'}", file=sys.stderr)
-    raise SystemExit(result.returncode if result.returncode >= 0 else 128 - result.returncode)
+    raise SystemExit(returncode if returncode >= 0 else 128 - returncode)
 
 
 if __name__ == "__main__":
