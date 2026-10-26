@@ -11,6 +11,8 @@ Linux through Proton.
 **We've got past the first major obstacle: accessing the game's code.**
 We've unpacked copies of both game executables and started identifying the parts
 responsible for startup, the main loop, and loading missions.
+We can also extract selected mission files locally and read the basic structure
+of one real mission.
 
 This is still early research, not a rebuilt or playable version of the game.
 Our findings so far come from examining files; we haven't yet checked them
@@ -28,11 +30,12 @@ every detail of that area.
 - [x] Set up tools to examine the code.
 - [x] Build an initial map of how the game starts and runs.
 - [x] Locate the code involved in loading missions.
+- [x] Extract sample files for one mission and match their structure to the loader.
 - [x] Save our findings and add repeatable checks for the evidence.
 
 ### Next: understand one mission from loading to play
 
-- [ ] Extract the files for one familiar mission.
+- [x] Extract sample files for one familiar mission.
 - [ ] Follow how the game reads those files and builds the mission.
 - [ ] Connect the menus and loading screen to the start of gameplay.
 - [ ] Check our understanding against the running game.
@@ -66,6 +69,8 @@ changes.
   and remaining questions.
 - [Research map](analysis/initialization-map.json): structured evidence behind
   the initial startup and mission-loading map.
+- [Mission findings](analysis/mission-format.json): the first checked file
+  structures, sample fingerprints, and what remains unknown.
 - [Tools](tools/): scripts created for this project.
 
 ## Keeping game files local

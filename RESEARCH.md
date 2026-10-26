@@ -10,6 +10,8 @@ on Linux through Proton.
 **Current result:** the outer UPX packing layer has been removed from copies of
 both client executables. Static analysis of the base-game client has identified
 startup, the main loop, and a mission-loading pipeline.
+Selected ALPS1 mission resources have also been extracted locally, and the
+`scene2.bin` container structure has been matched to its loader.
 
 **This is not a playable source reconstruction.** We have not run the unpacked
 copies, verified these findings under a debugger, or established that every
@@ -55,13 +57,16 @@ been reconstructed.
 - [x] Identify a mission-load orchestrator and concrete scene-resource references.
 - [x] Record a map with 18 functions, 17 direct-call edges, and 8 resource anchors;
   validate those references against local exports and the binary fingerprint.
+- [x] Extract ALPS1 `scene.4ds`, `loader.4ds`, and `scene2.bin` from the base archive.
+- [x] Validate the scene root, object records, and immediate field boundaries.
+- [x] Fix the recognized stack-probe model in the separate research project.
+- [x] Add tested native archive extraction and scene-structure inspection tools.
 
 ### Next: one mission-loading path
 
-- [ ] Extract one known mission's `Scene` and `scene2.bin` resources locally.
 - [ ] Inspect the loading helpers and correct inferred signatures in a working
   project, not the baseline.
-- [ ] Match loader behavior to that mission's actual file structures.
+- [ ] Decode object-field meanings and how records become engine objects.
 - [ ] Resolve frontend/controller virtual dispatch into the gameplay-load caller.
 - [ ] Verify selected loading stages against the original game under Proton.
 
@@ -110,12 +115,108 @@ High confidence means strong static support for a role, not runtime confirmation
 Some loader pseudocode still has poor stack recovery. Ghidra's recognized function
 count is not a count of understood functions.
 
+## First mission-format milestone
+
+See [the mission findings](analysis/mission-format.json) for sample fingerprints,
+static anchors, counts, and limitations.
+
+The ALPS1 sample comes specifically from the **base `missions.dta` archive**,
+not an established runtime/patch overlay. The native reader extracted three
+members without using game DLLs or executing game code:
+
+| Resource | Bytes | Observation |
+| --- | ---: | --- |
+| `scene2.bin` | 6,727,229 | Root size exactly matches the file |
+| `scene.4ds` | 1,380,788 | `4DS\0` header, version `0x29` |
+| `loader.4ds` | 3,901 | Same header/version |
+
+`scene2.bin` uses six-byte little-endian headers: a two-byte ID and four-byte
+**total size including the header**. Its root ID is `0x4C53`, with 15 direct
+children. The `0x4000` container at file offset `0xFA` contains exactly 4,008
+`0x4010` records. Every record's immediate children also consume its payload
+exactly; all have one `0x0010` field containing a NUL-terminated name-like string.
+This is not an enemy count: records include scene objects whose roles are
+mostly still unknown.
+
+Static code corroborates this framing: `006CBF30` checks the root, `006CC760`
+dispatches top-level chunks, and its `0x4000` handler calls `006CD940` for
+`0x4010` records. `00405940` implements a read bounded by the current chunk.
+The inspector descends only through these understood container levels; it does
+not guess that arbitrary payloads are nested chunks.
+
+### Improving the decompilation
+
+Assembly at `007E5F60` implements an x86 stack-probe/allocation helper. The object
+reader requests `0x23F8` stack bytes through it, but Ghidra had no call fixup
+attached. Applying its built-in `alloca_probe` model removed the impossible
+stack array and reduced `in_stack_` occurrences in `006CD940` from 122 to zero.
+This improves analysis, not the executable: no game bytes were modified.
+Type propagation warnings and incomplete import/helper signatures remain;
+the resulting pseudocode is **not** a recovered, trustworthy C implementation.
+
+The fingerprint-guarded [ConfigureStackProbe.java](tools/ConfigureStackProbe.java)
+script reproduces this metadata change. Use it **only in the independent
+research project**, without `-readOnly` if saving:
+
+```sh
+"$GHIDRA_HOME/support/analyzeHeadless" "$PROJECT_DIR" HD2Research \
+  -process hd2.unpacked.exe -noanalysis -scriptPath "$PWD/tools" \
+  -preScript ConfigureStackProbe.java \
+  -postScript ExportFunctions.java "$PWD/analysis/work/probe-export" 006cd940 \
+  -max-cpu 2
+```
+
+### Archive format and prior art
+
+The [native extractor](tools/extract_dta_member.py) supports **ISD0 only**:
+XOR-decoded index/member metadata, raw blocks, and LZSS/RLE blocks. It reads the
+two 16-bit block-size fields separately and checks the previous-block chain.
+It rejects unsupported codecs, invalid lengths/backreferences, truncation, and
+incorrect output sizes rather than manufacturing fallback bytes. It accepts
+an explicit destination, never uses archive paths as output paths, and refuses
+to overwrite existing files.
+
+Format facts and the public base-archive keys were investigated using
+[jovan-s/DTAUnpacker at faecc881](https://github.com/jovan-s/DTAUnpacker/tree/faecc88143e74adbf116bbf4324c7702f14d31d7)
+and [Richard01CZ/Mafia_DTAExtractor](https://github.com/Richard01CZ/Mafia_DTAExtractor)
+(`DTA Extractor/DTA_Extractor.cpp`, blob
+`e32e4da3ec8984431fe17b0ad015b517c13ea501`). Their source was not copied into our
+tool. The Windows DTAUnpacker attempt failed in this environment; the native
+implementation was checked against local block sizes, file headers, and scene
+boundaries, **not** against an independent successful extraction.
+
+ISD1, sound-specific compression, checksum verification, and patch precedence
+are not implemented. This is a deliberately narrow research tool, not a
+replacement for a general archive manager.
+
+To reproduce the sample extraction and inspection (choose new output files):
+
+```sh
+mkdir -p extracted/alps1-base analysis/work
+python3 -B tools/extract_dta_member.py "Hidden and Dangerous 2/missions.dta" \
+  'missions\alps1\scene2.bin' extracted/alps1-base/scene2.bin \
+  --key1 0x22BCDA98 --key2 0x7654A3F0
+python3 -B tools/inspect_scene2.py extracted/alps1-base/scene2.bin \
+  --output analysis/work/alps1-scene2-structure.json
+```
+
+Select `missions\alps1\scene.4ds` or `missions\alps1\loader.4ds` and a separate
+destination to obtain the other two samples. Names are case-insensitive and
+accept either slash style. Actual output files remain ignored.
+
+Run the synthetic checks without any game inputs or extra packages:
+
+```sh
+python3 -B -m unittest discover -s tools -p 'test_mission_tools.py' -v
+```
+
 ## Repository layout and tools
 
 | Location | Purpose | In Git? |
 | --- | --- | --- |
 | `tools/` | Our analysis and validation scripts | Yes |
 | `analysis/initialization-map.json` | Curated findings and evidence pointers | Yes |
+| `analysis/mission-format.json` | First mission-structure observations and fingerprints | Yes |
 | `analysis/work/` | Local repaired/unpacked binaries and generated exports | No |
 | `Hidden and Dangerous 2/` | Locally supplied game installation | No |
 | `.tools/`, `ghidra/` | Downloaded tool installations | No |
@@ -137,6 +238,14 @@ Existing tools:
   strings and exports their saved cross-references.
 - [validate_initialization_map.py](tools/validate_initialization_map.py): checks
   the curated map against the local binary and generated exports.
+- [extract_dta_member.py](tools/extract_dta_member.py): extracts a selected
+  ISD0 member using the narrow supported codecs.
+- [inspect_scene2.py](tools/inspect_scene2.py): validates known scene container
+  levels and emits counts/offsets without asset contents.
+- [ConfigureStackProbe.java](tools/ConfigureStackProbe.java): applies the verified
+  stack-probe model to the base-client research database.
+- [test_mission_tools.py](tools/test_mission_tools.py): synthetic archive and
+  scene-framing regression tests.
 
 New tools are welcome when they answer a concrete question or make a check
 repeatable. Prefer small, read-only tools; use separate copies for modifications.

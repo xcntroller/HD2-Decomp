@@ -63,6 +63,11 @@ class CompressionTests(unittest.TestCase):
             with self.subTest(data=data), self.assertRaises(ValueError):
                 decompress_lzss(data, 1)
 
+    def test_xor_key_size(self):
+        for key in [b"", bytes(7), bytes(9)]:
+            with self.subTest(length=len(key)), self.assertRaises(ValueError):
+                xor_record(b"data", key)
+
 
 class ArchiveTests(unittest.TestCase):
     def test_round_trip_raw_blocks(self):
@@ -93,6 +98,28 @@ class ArchiveTests(unittest.TestCase):
     def test_member_size_mismatch(self):
         with self.assertRaises(ValueError):
             extract_member(io.BytesIO(), Member("test", 0, 2, 0, False), KEY)
+        with self.assertRaises(ValueError):
+            extract_member(io.BytesIO(struct.pack("<HH", 2, 0) + b"\0A"),
+                           Member("test", 0, 2, 1, False), KEY)
+
+    def test_compressed_member(self):
+        block = b"\x01\x10\0ABC\0\x33"
+        data = struct.pack("<HH", len(block), 0) + xor_record(block, KEY)
+        self.assertEqual(
+            extract_member(io.BytesIO(data), Member("test", 0, 9, 1, True), KEY),
+            b"ABCABCABC",
+        )
+
+    def test_duplicate_names(self):
+        data = archive(b"test")
+        _, offset, _, _ = struct.unpack("<4I", xor_record(data[4:20], KEY))
+        entry = xor_record(data[offset:], KEY)
+        duplicate = (
+            b"ISD0" + xor_record(struct.pack("<4I", 2, offset, 56, 0), KEY)
+            + data[20:offset] + xor_record(entry + entry, KEY)
+        )
+        with self.assertRaisesRegex(ValueError, "duplicate archive member"):
+            read_index(io.BytesIO(duplicate), KEY)
 
     def test_multiple_blocks(self):
         block = b"\0" + b"A" * 32768

@@ -24,6 +24,8 @@ def read_exact(stream: BinaryIO, size: int) -> bytes:
 
 
 def xor_record(data: bytes, key: bytes) -> bytes:
+    if len(key) != 8:
+        raise ValueError("ISD0 XOR keys must contain exactly 8 bytes")
     return bytes(value ^ key[index % 8] for index, value in enumerate(data))
 
 

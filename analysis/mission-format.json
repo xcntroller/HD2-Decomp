@@ -1,0 +1,128 @@
+{
+  "scope": "Initial structural map of one ALPS1 scene2.bin from the base missions archive; not a complete format specification.",
+  "runtime_verified": false,
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307"
+  },
+  "archive": {
+    "path": "Hidden and Dangerous 2/missions.dta",
+    "sha256": "cc37b1ff2f9db2b9b8518556181674bab358edaab1f3a31b1abecf20dd1a9ac2",
+    "format": "ISD0",
+    "members": 761,
+    "patch_precedence_checked": false
+  },
+  "samples": [
+    {
+      "path": "extracted/alps1-base/scene2.bin",
+      "size": 6727229,
+      "sha256": "d3aa324501cf70dce39eedced21c4d58d3f84d946f64c2c31aba6b712dc403d4"
+    },
+    {
+      "path": "extracted/alps1-base/scene.4ds",
+      "size": 1380788,
+      "sha256": "c051ff74dee4653a0d6590bd161784d913a2bed191a20eb98eedaf6dff19c5f4",
+      "header": "4DS followed by NUL; version 0x29"
+    },
+    {
+      "path": "extracted/alps1-base/loader.4ds",
+      "size": 3901,
+      "sha256": "206a5e630d0fb13bcc5f6c0a9a6cda687ce337f803d7164bb3795666953f5f46",
+      "header": "4DS followed by NUL; version 0x29"
+    }
+  ],
+  "chunk_header": {
+    "size": 6,
+    "encoding": "little-endian uint16 id, uint32 total length INCLUDING header",
+    "root_id": "0x4c53",
+    "root_length_equals_file_size": true
+  },
+  "observations": {
+    "top_level_chunks": 15,
+    "object_container_id": "0x4000",
+    "object_container_offset": 250,
+    "object_container_total_size": 6726777,
+    "object_record_id": "0x4010",
+    "object_records": 4008,
+    "all_record_payloads_have_valid_child_boundaries": true,
+    "record_field_counts": {
+      "0x0010": 4008,
+      "0x0020": 1292,
+      "0x0022": 1332,
+      "0x002c": 1275,
+      "0x002d": 1277,
+      "0x2012": 1157,
+      "0x4011": 1275,
+      "0x4020": 1200,
+      "0x4033": 32,
+      "0x4036": 2,
+      "0x4040": 13,
+      "0x4050": 103,
+      "0x4090": 2703,
+      "0x40a0": 2702,
+      "0xb110": 1
+    },
+    "name_like_field": {
+      "id": "0x0010",
+      "observed_once_per_record": true,
+      "all_payloads_are_single_nul_terminated_strings": true
+    }
+  },
+  "static_anchors": [
+    {
+      "address": "006cbf30",
+      "role": "scene2.bin loader; checks root 0x4c53 and invokes 006cc760",
+      "confidence": "high"
+    },
+    {
+      "address": "006cc760",
+      "role": "Root chunk dispatcher; 0x4000 branch invokes 006cd940 for 0x4010 children",
+      "confidence": "high"
+    },
+    {
+      "address": "006cd940",
+      "role": "Object-record reader with cases including 0x0010, 0x4011 and 0x4020",
+      "confidence": "high for framing, incomplete for field semantics"
+    },
+    {
+      "address": "00405940",
+      "role": "Read wrapper bounded by the current chunk end",
+      "confidence": "high"
+    }
+  ],
+  "analysis_repair": {
+    "address": "007e5f60",
+    "script": "tools/ConfigureStackProbe.java",
+    "change": "Apply Ghidra's existing alloca_probe call fixup to the verified x86 stack-probe helper, in the independent research project only.",
+    "executable_bytes_modified": false,
+    "result": "006cd940 unknown in_stack_ occurrences fell from 122 to 0; impossible stack array disappeared. Type propagation and call signatures remain unreliable.",
+    "local_exports": "analysis/work/stack-probe-fixed/"
+  },
+  "verification": {
+    "tool": "tools/inspect_scene2.py",
+    "local_report": "analysis/work/alps1-scene2-structure.json",
+    "synthetic_tests": "tools/test_mission_tools.py",
+    "independent_extractor_comparison": false
+  },
+  "limitations": [
+    "4008 object records does not mean 4008 soldiers, enemies, or distinct gameplay entities.",
+    "Only known container levels are parsed; other payloads remain opaque.",
+    "Field meanings, reference resolution and engine virtual methods remain mostly unknown.",
+    "Only a base-archive sample has been checked; patches may replace the runtime mission.",
+    "ISD1 and audio-specific codecs are unsupported by the native extractor.",
+    "Signatures and stack analysis beyond the verified probe fix still require work.",
+    "No game execution, Proton debugging, or Sabre Squadron format comparison."
+  ],
+  "prior_art": [
+    {
+      "url": "https://github.com/jovan-s/DTAUnpacker/tree/faecc88143e74adbf116bbf4324c7702f14d31d7",
+      "use": "ISD0 header/index facts, published base-archive keys and community tool attempt; source not copied."
+    },
+    {
+      "url": "https://github.com/Richard01CZ/Mafia_DTAExtractor",
+      "file": "DTA Extractor/DTA_Extractor.cpp",
+      "file_blob_sha": "e32e4da3ec8984431fe17b0ad015b517c13ea501",
+      "use": "Block framing and LZSS/RLE format facts, checked against local data; source not copied."
+    }
+  ]
+}
