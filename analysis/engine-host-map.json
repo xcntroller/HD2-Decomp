@@ -83,7 +83,7 @@
     "The host is new integration glue and earns no original-function reconstruction credit.",
     "No client startup/protection code is patched, invoked by address, or claimed reconstructed.",
     "The launcher checks the original engine fingerprint before execution; the host resolves exports and verifies used method RVAs relative to the loaded module, not a fixed load address.",
-    "Archive registration, menu resources, fonts, localized text, sound and original UI behavior are not integrated.",
+    "Default mode remains graphics-only. Optional static menu-model glue has its own unverified-runtime evidence map in analysis/menu-scene-map.json; full archive registration, text and original UI behavior remain unimplemented.",
     "The host uses its own Win32 event loop and Close hook; it does not reconstruct the original input subsystem.",
     "Logos remain untouched in Gamemovie/Logo1.bik, Logo2.bik and Logo3.bik and are not played by this host."
   ]

@@ -1,4 +1,4 @@
-"""Check the window-host ABI against both fingerprinted original binaries."""
+"""Check engine-host ABI maps against both fingerprinted original binaries."""
 
 import argparse
 import hashlib
@@ -37,7 +37,7 @@ def main() -> None:
     except (ValueError, KeyError, OSError, struct.error) as error:
         parser.exit(1, f"Engine-host evidence validation failed: {error}\n")
     print(f"Verified both fingerprints; {sum(c['instructions'] for c in counts.values())} "
-          f"instruction anchors, {counts['engine']['vtable_slots']} graphics vtable slots "
+          f"instruction anchors, {counts['engine']['vtable_slots']} engine vtable slots "
           f"and {counts['engine']['resources']} prerequisite references. Not runtime proof.")
 
 

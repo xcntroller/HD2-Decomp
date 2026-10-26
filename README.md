@@ -36,7 +36,10 @@ small rebuilt program showing the original menu, initially using the existing
 engine and game assets through Proton. This is not a replacement menu drawn to
 look similar. **Our own graphics-only program now opens an original-engine
 window through Proton:** the desktop test displayed the blue test surface and
-then shut down. The menu itself is not loaded yet.
+then shut down. A separate **original menu-artwork preview** is now built and
+ready for a desktop test. It stages only the needed local assets and uses the
+original menu camera. Its appearance has not yet been verified; menu text and
+button behavior are still to come.
 
 ## Progress
 
@@ -96,6 +99,8 @@ difficulty, playability, or time remaining.
 - [x] Find how startup reaches the menu and identify its main dependencies.
 - [x] Build our own small Windows program for testing the original graphics interface.
 - [x] Open an engine window from our own small program through Proton.
+- [x] Build a separate test for the original menu artwork and its required assets.
+- [ ] Verify that the original menu artwork appears in a desktop run.
 - [ ] Load the original menu content, text and cursor.
 - [ ] Connect mouse/keyboard input and make Exit work cleanly.
 - [ ] Compare our running menu with the original game's behavior.
@@ -106,8 +111,9 @@ toward something visible. Other menu screens and gameplay come after this first
 interactive milestone.
 
 The [graphics bootstrap instructions](RESEARCH.md#graphics-only-host) describe
-the first build and successful desktop-terminal window test. It does not
-load the menu or play the logos; the original movie files remain untouched.
+the first successful desktop-terminal window test.
+The [menu preview instructions](RESEARCH.md#original-menu-model-preview) cover
+the new artwork test. Neither mode plays the logos; the movie files remain untouched.
 
 ### Longer term
 

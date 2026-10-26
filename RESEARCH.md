@@ -261,7 +261,7 @@ notification callback. The host selects an 800x600 window with child-window flag
 The original notification dispatcher explicitly permits null. The full display
 configuration policy and callback contract are not reconstructed.
 
-This program requests an original-engine window and plain clear-color frames.
+By default this program requests an original-engine window and plain clear-color frames.
 It loads **no menu, mission, archive, font or movie**. Its title says it is an
 engine bootstrap, not the menu. Its own Win32 message loop handles Escape/Close;
 bounded runs post a real `WM_CLOSE` after the requested frames, restore the
@@ -332,6 +332,63 @@ The user confirmed, and the local installation contains,
 `Gamemovie/Logo1.bik`, `Logo2.bik` and `Logo3.bik`. We keep those files unchanged
 and defer playback. Their directory location is installation/user evidence, not
 a newly recovered movie-search algorithm.
+
+## Original menu-model preview
+
+The optional `--menu-model` mode now builds a scene around the actual
+`MODELS\main_menu.4ds` asset. It is a **static artwork experiment**, not yet the
+original interactive front end, and its desktop appearance remains unverified.
+The [scene host](recovered/host/menu_scene.h) is independently written glue and
+receives no original-function reconstruction credit.
+
+After the build above, run from the desktop terminal:
+
+```sh
+python3 -B tools/run_engine_window.py --menu-model --frames 0
+```
+
+Escape or closing the window ends the test. The main-menu Exit artwork is not
+wired up. For a bounded run, use `--frames 300` instead. Omit `--menu-model` to
+keep using the previous blue-surface bootstrap.
+
+The [staging tool](tools/stage_menu_resources.py) reads the original Models and
+Maps archives without changing them. It parses the menu model's first table,
+extracts its 13 unique textures and the scene initializer's implicit snow
+texture, and stages **15 assets** under the ignored runtime working directory.
+It rejects missing dependencies, ambiguous names and unsafe output paths before
+writing. The local `menu-resources.json` manifest records source-archive and
+member hashes. This is a deliberately bounded **base-archive-only** slice:
+Patch/Maps_U precedence, full archive registration and client resource caching
+are not reproduced. No commercial files are added to Git.
+
+The [ABI map](analysis/menu-scene-map.json) captures the checked engine/client
+instructions, method slots and limitations. Validate it separately:
+
+```sh
+python3 -B tools/validate_engine_host.py --map analysis/menu-scene-map.json
+```
+
+The host initializes graphics, then the driver, and creates scene (13), camera
+(3), ambient light (2) and model (9). It uses stack-self/stdcall public methods
+for the original camera position `(0.5, -0.375, -15.5)`, forward direction,
+near/far `0.2/20`, field of view and orthographic projection with extent `2`.
+The primary sector is the one remaining direct layout dependency: scene+`1F8`,
+also read by the original client. Model LinkTo takes **three** stack arguments,
+including self; a nearby saved register in the caller is not a fourth argument.
+
+The engine's scene render method already brackets BeginScene/EndScene; the
+host must not wrap it again. Negative load/render statuses are reported instead
+of falling back to a success-looking blue window. Local frame references and
+scene are released before driver close and graphics close, including on reported
+initialization errors.
+
+Successful logs should include `3D driver initialized`, the exact model path,
+`Original menu model opened`, a nonzero submitted-frame count, `3D driver closed`
+and `Graphics closed`. These logs alone do not prove the artwork is correct.
+The existing desktop/window-driver restriction prevents a visual check in the
+agent environment; a user desktop run is still needed. Fonts, localized text,
+cursor, button binding, audio, logos and the original scene callback remain
+outside this preview.
 
 ## First mission-format milestone
 

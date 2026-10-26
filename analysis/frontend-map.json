@@ -7,6 +7,11 @@
     "image_base": "00400000"
   },
   "integration_target": "Our own rebuilt 32-bit Windows executable using the original LS3DF.dll and locally installed assets through Proton. No replacement menu mockup or original-client patch.",
+  "model_preview": {
+    "evidence": "analysis/menu-scene-map.json",
+    "implementation": "recovered/host/menu_scene.h",
+    "status": "Optional static original-model preview implemented and cross-built; desktop artwork verification pending. Does not reconstruct the menu state or UI controls."
+  },
   "startup_path": [
     {"address": "006dd550", "role": "WinMain-like entry"},
     {"address": "006dcae0", "role": "Application lifecycle and main loop"},

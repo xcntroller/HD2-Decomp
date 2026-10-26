@@ -25,7 +25,7 @@ initial 16-byte checks performed by the engine's model-file loader.
 
 ## Experimental engine-window host
 
-[The graphics-only host](host/engine_window.cpp) is independently written
+[The engine-window host](host/engine_window.cpp) is independently written
 integration glue, **not another recovered original function or a running menu**.
 Its [56-byte settings layout](host/graphics_settings.h) is statically supported.
 The user has now observed the original-engine windows and blue clear-color
@@ -45,10 +45,19 @@ prefix/working directory. Launch inside the agent environment fails before host
 entry; launch from the user's desktop terminal displayed the test surface.
 Exact frame count, exit status and full cleanup remain unconfirmed.
 
-The intended first test clears/presents an engine-owned window and exits through
-`WM_CLOSE` after a bounded frame count. There is no replacement menu artwork,
-archive setup, menu text, original UI input system or logo playback in this host.
+The default test still clears/presents an engine-owned window and exits through
+`WM_CLOSE` after a bounded frame count. Optional `--menu-model` mode uses
+[scene integration glue](host/menu_scene.h) to open the original menu model,
+configure the original orthographic camera and ambient light, and render through
+the existing engine. A [separate ABI map](../analysis/menu-scene-map.json)
+records its verified interfaces, ownership and one scene-layout field.
+The launcher stages a small base-archive asset slice into the ignored runtime
+directory; this does not reproduce original archive-overlay behavior.
+
+This preview is **built but not yet visually verified**. It implements no
+original text, cursor, UI input, screen transitions or logo playback.
 Neither the original executable nor the user's game prefix is patched.
+See [the preview test command](../RESEARCH.md#original-menu-model-preview).
 
 ## Chunk reader
 

@@ -48,7 +48,7 @@ $(BUILD_DIR)/graphics_settings_tests: tests/graphics_settings_tests.cpp host/gra
 
 engine-window: $(BUILD_DIR)/engine_window.exe
 
-$(BUILD_DIR)/engine_window.exe: host/engine_window.cpp host/graphics_settings.h | $(BUILD_DIR)
+$(BUILD_DIR)/engine_window.exe: host/engine_window.cpp host/graphics_settings.h host/menu_scene.h | $(BUILD_DIR)
 	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/engine_window.cpp -o "$@"
 
 test: all

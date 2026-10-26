@@ -92,17 +92,42 @@ class EngineWindowLaunchTests(unittest.TestCase):
             with self.subTest(text=text), self.assertRaises(argparse.ArgumentTypeError):
                 frame_count(text)
 
+    def test_menu_mode_stages_assets_and_passes_explicit_host_flag(self):
+        with patch("run_engine_window.hashlib.sha256") as digest, \
+                patch("run_engine_window.stage_menu_resources") as stage:
+            digest.return_value.hexdigest.return_value = ENGINE_SHA256
+            launch = self.prepare(menu_model=True)
+        stage.assert_called_once_with(self.game, self.work / "run")
+        self.assertEqual(launch.command[-1], "--menu-model")
+
+    def test_default_does_not_stage_assets(self):
+        with patch("run_engine_window.hashlib.sha256") as digest, \
+                patch("run_engine_window.stage_menu_resources") as stage:
+            digest.return_value.hexdigest.return_value = ENGINE_SHA256
+            self.prepare()
+        stage.assert_not_called()
+
+    def test_missing_menu_assets_prevent_launch(self):
+        with patch("run_engine_window.hashlib.sha256") as digest, \
+                patch("run_engine_window.stage_menu_resources",
+                      side_effect=ValueError("Missing menu texture")):
+            digest.return_value.hexdigest.return_value = ENGINE_SHA256
+            with self.assertRaisesRegex(ValueError, "Missing menu texture"):
+                self.prepare(menu_model=True)
+
 
 class EngineHostEvidenceTests(unittest.TestCase):
     def test_both_map_fingerprints_checked_before_file_access(self):
         root = Path(__file__).resolve().parents[1]
-        for key in ("engine", "client"):
-            document = json.loads((root / "analysis/engine-host-map.json").read_text())
-            document[key]["binary"]["sha256"] = "0" * 64
-            filesystem = MagicMock()
-            with self.subTest(key=key), self.assertRaisesRegex(ValueError, "Unsupported"):
-                validate(document, filesystem)
-            filesystem.__truediv__.assert_not_called()
+        for name in ("engine-host-map.json", "menu-scene-map.json"):
+            for key in ("engine", "client"):
+                document = json.loads((root / "analysis" / name).read_text())
+                document[key]["binary"]["sha256"] = "0" * 64
+                filesystem = MagicMock()
+                with self.subTest(map=name, key=key), \
+                        self.assertRaisesRegex(ValueError, "Unsupported"):
+                    validate(document, filesystem)
+                filesystem.__truediv__.assert_not_called()
 
 
 if __name__ == "__main__":

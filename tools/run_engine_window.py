@@ -1,4 +1,4 @@
-"""Run the rebuilt graphics-only host with the original DLL in an isolated Proton prefix."""
+"""Run the rebuilt engine host, optionally previewing the original static menu model."""
 
 import argparse
 from dataclasses import dataclass
@@ -9,6 +9,7 @@ import subprocess
 import sys
 
 from validate_engine_model import ENGINE_SHA256, PEImage
+from stage_menu_resources import stage_menu_resources
 
 
 @dataclass
@@ -19,7 +20,8 @@ class Launch:
 
 
 def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
-                   work: Path, frames: int, environment: dict[str, str]) -> Launch:
+                   work: Path, frames: int, environment: dict[str, str],
+                   menu_model: bool = False) -> Launch:
     game, executable, proton, steam, work = (
         path.resolve() for path in (game, executable, proton, steam, work)
     )
@@ -42,6 +44,8 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
     compat = work / "compat"
     run.mkdir(parents=True, exist_ok=True)
     compat.mkdir(parents=True, exist_ok=True)
+    if menu_model:
+        stage_menu_resources(game, run)
     env = dict(environment)
     env.update({
         "STEAM_COMPAT_CLIENT_INSTALL_PATH": str(steam),
@@ -55,8 +59,10 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
         "PROTON_LOG_DIR": str(run),
     })
     engine_windows = "Z:" + str(engine).replace("/", "\\")
-    return Launch([str(proton), "run", str(executable), engine_windows,
-                   "--frames", str(frames)], run, env)
+    command = [str(proton), "run", str(executable), engine_windows, "--frames", str(frames)]
+    if menu_model:
+        command.append("--menu-model")
+    return Launch(command, run, env)
 
 
 def frame_count(text: str) -> int:
@@ -76,11 +82,17 @@ def main() -> None:
                         default=steam / "steamapps/common/Proton - Experimental/proton")
     parser.add_argument("--frames", type=frame_count, default=180,
                         help="Post Close after this many frames; 0 waits for Escape/Close")
+    parser.add_argument("--menu-model", action="store_true",
+                        help="Stage and preview the original base-archive menu artwork; "
+                             "not an interactive menu")
     args = parser.parse_args()
     try:
         launch = prepare_launch(args.game_dir, args.executable, args.proton, args.steam_root,
-                                root / "analysis/work/engine-window", args.frames, dict(os.environ))
-        print("Graphics bootstrap only: no original menu or movies are loaded.", flush=True)
+                                root / "analysis/work/engine-window", args.frames, dict(os.environ),
+                                menu_model=args.menu_model)
+        print("Original static menu-model preview: text/input/movies are not implemented."
+              if args.menu_model else
+              "Graphics bootstrap only: no original menu or movies are loaded.", flush=True)
         print(f"Isolated runtime files: {launch.cwd}", flush=True)
         result = subprocess.run(launch.command, cwd=launch.cwd, env=launch.env, check=False)
     except (OSError, ValueError) as error:

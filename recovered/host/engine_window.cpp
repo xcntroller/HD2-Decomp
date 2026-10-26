@@ -3,6 +3,7 @@
 #include <windows.h>
 
 #include "host/graphics_settings.h"
+#include "host/menu_scene.h"
 
 #include <cstdio>
 #include <cstring>
@@ -86,7 +87,7 @@ int finish(Graphics* graphics, int result) {
     return result;
 }
 
-int run_window(Graphics* graphics, std::uint32_t frame_limit) {
+int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bool menu_model) {
     const auto settings = hd2::host::windowed_settings(
         static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr))));
     const auto* methods = graphics->methods;
@@ -101,7 +102,9 @@ int run_window(Graphics* graphics, std::uint32_t frame_limit) {
         std::fputs("Engine initialization returned without a valid initialized window\n", stderr);
         return finish(graphics, 1);
     }
-    if (!SetWindowTextW(window, L"HD2 reconstruction - engine bootstrap (not menu)")) {
+    if (!SetWindowTextW(window, menu_model ?
+            L"HD2 reconstruction - original menu model (not interactive)" :
+            L"HD2 reconstruction - engine bootstrap (not menu)")) {
         windows_error("SetWindowTextW");
         return finish(graphics, 1);
     }
@@ -117,33 +120,52 @@ int run_window(Graphics* graphics, std::uint32_t frame_limit) {
     std::fflush(stdout);
     std::uint32_t frames = 0;
     int result = 0;
-    while (running) {
-        MSG message{};
-        while (PeekMessageW(&message, nullptr, 0, 0, PM_REMOVE)) {
-            if (message.message == WM_QUIT ||
-                (message.message == WM_KEYDOWN && message.wParam == VK_ESCAPE)) {
-                running = false;
+    try {
+        std::unique_ptr<hd2::host::MenuScene> menu;
+        if (menu_model) {
+            menu = std::make_unique<hd2::host::MenuScene>(module);
+        }
+        while (running) {
+            MSG message{};
+            while (PeekMessageW(&message, nullptr, 0, 0, PM_REMOVE)) {
+                if (message.message == WM_QUIT ||
+                    (message.message == WM_KEYDOWN && message.wParam == VK_ESCAPE)) {
+                    running = false;
+                    break;
+                }
+                TranslateMessage(&message);
+                DispatchMessageW(&message);
+            }
+            if (!running) {
                 break;
             }
-            TranslateMessage(&message);
-            DispatchMessageW(&message);
-        }
-        if (!running) {
-            break;
-        }
-        methods->clear(graphics, 0xff203050, 1.0f, 3);
-        methods->begin_scene(graphics);
-        methods->end_scene(graphics);
-        methods->present(graphics);
-        ++frames;
-        if (frame_limit != 0 && frames == frame_limit) {
-            if (!PostMessageW(window, WM_CLOSE, 0, 0)) {
-                windows_error("PostMessageW(WM_CLOSE)");
-                result = 1;
-                break;
+            if (menu) {
+                const auto render_status = menu->render();
+                if (render_status < 0) {
+                    std::fprintf(stderr, "Menu scene render failed: 0x%08x\n",
+                                 static_cast<unsigned>(render_status));
+                    result = 1;
+                    break;
+                }
+            } else {
+                methods->clear(graphics, 0xff203050, 1.0f, 3);
+                methods->begin_scene(graphics);
+                methods->end_scene(graphics);
             }
+            methods->present(graphics);
+            ++frames;
+            if (frame_limit != 0 && frames == frame_limit) {
+                if (!PostMessageW(window, WM_CLOSE, 0, 0)) {
+                    windows_error("PostMessageW(WM_CLOSE)");
+                    result = 1;
+                    break;
+                }
+            }
+            Sleep(16);
         }
-        Sleep(16);
+    } catch (const std::runtime_error& error) {
+        std::fprintf(stderr, "Menu preview failed: %s\n", error.what());
+        result = 1;
     }
     SetLastError(0);
     if (SetWindowLongPtrW(window, GWLP_WNDPROC,
@@ -158,24 +180,30 @@ int run_window(Graphics* graphics, std::uint32_t frame_limit) {
 }
 
 int wmain(int argc, wchar_t** argv) {
-    if (argc != 2 && argc != 4) {
-        std::fputs("Usage: engine_window.exe ABSOLUTE_ENGINE_DLL [--frames COUNT]\n"
+    if (argc < 2) {
+        std::fputs("Usage: engine_window.exe ABSOLUTE_ENGINE_DLL [--frames COUNT] [--menu-model]\n"
                    "Use the fingerprint-checking Python launcher. Default: 180 frames; "
                    "0 waits for Escape/Close.\n", stderr);
         return 2;
     }
     std::uint32_t frame_limit = 180;
-    if (argc == 4) {
-        if (std::wstring_view(argv[2]) != L"--frames") {
-            std::fputs("Expected --frames COUNT\n", stderr);
-            return 2;
+    bool menu_model = false;
+    bool frames_seen = false;
+    try {
+        for (int i = 2; i < argc; ++i) {
+            if (std::wstring_view(argv[i]) == L"--menu-model" && !menu_model) {
+                menu_model = true;
+            } else if (std::wstring_view(argv[i]) == L"--frames" &&
+                       !frames_seen && i + 1 < argc) {
+                frame_limit = hd2::host::parse_frame_limit(argv[++i]);
+                frames_seen = true;
+            } else {
+                throw std::invalid_argument("Unknown, duplicate, or incomplete host option");
+            }
         }
-        try {
-            frame_limit = hd2::host::parse_frame_limit(argv[3]);
-        } catch (const std::invalid_argument& error) {
-            std::fprintf(stderr, "%s\n", error.what());
-            return 2;
-        }
+    } catch (const std::invalid_argument& error) {
+        std::fprintf(stderr, "%s\n", error.what());
+        return 2;
     }
     std::puts("Engine-window host started (i386)");
     std::fflush(stdout);
@@ -197,7 +225,7 @@ int wmain(int argc, wchar_t** argv) {
         if (graphics == nullptr || !verify_methods(graphics, module)) {
             std::fputs("Missing graphics singleton or unsupported graphics vtable\n", stderr);
         } else {
-            result = run_window(graphics, frame_limit);
+            result = run_window(graphics, module, frame_limit, menu_model);
         }
     }
     if (!FreeLibrary(module)) {

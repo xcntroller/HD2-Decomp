@@ -1,0 +1,103 @@
+{
+  "scope": "Original-engine static main_menu model preview in independently written integration glue. Not the reconstructed client menu state.",
+  "source": "recovered/host/menu_scene.h",
+  "runtime_verified": false,
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {"address": "10068fb0", "hex": "a1f8160d10c3", "meaning": "I3DGetDriver returns the singleton"},
+      {"address": "10015553", "hex": "c20800", "meaning": "Driver initialize cleans self and flags"},
+      {"address": "100156de", "hex": "c20400", "meaning": "Driver close cleans self"},
+      {"address": "10019e10", "hex": "8b4424088b4c240450e822f0ffffc20800", "meaning": "Factory wrapper accepts stack self and frame kind"},
+      {"address": "10019276", "hex": "c70698b70910", "meaning": "Kind 13 installs scene vtable"},
+      {"address": "10018f38", "hex": "c70670bd0910", "meaning": "Kind 3 installs camera vtable"},
+      {"address": "10018ed2", "hex": "c70608be0910", "meaning": "Kind 2 installs light vtable"},
+      {"address": "10019011", "hex": "c70620bc0910", "meaning": "Kind 5 installs sector vtable"},
+      {"address": "1001934c", "hex": "899ef80000008b068bce66c786e40000000100ff5060", "meaning": "Factory sets kind/refcount and invokes thiscall initializer before returning"},
+      {"address": "1001c38c", "hex": "c20400", "meaning": "Shared frame Release cleans self"},
+      {"address": "1001ca48", "hex": "c20800", "meaning": "Position setter cleans self and vector pointer"},
+      {"address": "1001c8be", "hex": "c20c00", "meaning": "Direction setter cleans self, direction and optional up pointer"},
+      {"address": "1001daed", "hex": "c20c00", "meaning": "LinkTo cleans self, parent and flags; no fourth stack argument"},
+      {"address": "10009e82", "hex": "c20800", "meaning": "Camera field-of-view setter cleans self and float"},
+      {"address": "10009f46", "hex": "c20c00", "meaning": "Camera range setter cleans self and two floats"},
+      {"address": "10009fde", "hex": "c20800", "meaning": "Camera orthographic extent setter cleans self and float"},
+      {"address": "1000a003", "hex": "c20800", "meaning": "Camera projection-mode setter cleans self and byte in stack word"},
+      {"address": "10021899", "hex": "c20800", "meaning": "Light type setter cleans self and kind"},
+      {"address": "10021ea1", "hex": "c20800", "meaning": "Light color setter cleans self and RGB pointer"},
+      {"address": "10022209", "hex": "c20800", "meaning": "Light intensity setter cleans self and float"},
+      {"address": "10047244", "hex": "c20800", "meaning": "Active-camera setter cleans self and camera; it holds a reference"},
+      {"address": "10046860", "hex": "8b542408a1f8160d108b08528b5424085250ff5120c20800", "meaning": "Scene render forwards self and flags to driver+20 and preserves its status in EAX"}
+    ],
+    "vtables": [
+      {"address": "1009b640", "targets": ["100152f0", "10015650"]},
+      {"address": "1009b694", "targets": ["10019e10"]},
+      {"address": "1009b798", "targets": ["1001c370"]},
+      {"address": "1009b7f8", "targets": ["100462b0"]},
+      {"address": "1009b810", "targets": ["10046860"]},
+      {"address": "1009b818", "targets": ["100469a0"]},
+      {"address": "1009b828", "targets": ["100471a0"]},
+      {"address": "1009bd70", "targets": ["1001c370"]},
+      {"address": "1009bd78", "targets": ["1001c9f0"]},
+      {"address": "1009bd8c", "targets": ["1001c400"]},
+      {"address": "1009bde4", "targets": ["10009e30"]},
+      {"address": "1009bdec", "targets": ["10009ef0"]},
+      {"address": "1009bdf4", "targets": ["10009fb0", "10009ff0"]},
+      {"address": "1009be08", "targets": ["1001c370"]},
+      {"address": "1009be7c", "targets": ["100217e0"]},
+      {"address": "1009be8c", "targets": ["10021db0"]},
+      {"address": "1009be98", "targets": ["10022120"]},
+      {"address": "1009bc94", "targets": ["1004ceb0"]},
+      {"address": "1009ba50", "targets": ["1001c370"]},
+      {"address": "1009ba88", "targets": ["1001d680"]},
+      {"address": "1009bac4", "targets": ["100340b0"]}
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {"address": "0066ae69", "hex": "c780b00000000000003f", "meaning": "Original menu camera x = 0.5"},
+      {"address": "0066ae79", "hex": "c780b40000000000c0be", "meaning": "Original menu camera y = -0.375"},
+      {"address": "0066ae83", "hex": "c780b8000000000078c1", "meaning": "Original menu camera z = -15.5"},
+      {"address": "0066ae96", "hex": "680000a04168cdcc4c3e50", "meaning": "Original near/far range 0.2 and 20"},
+      {"address": "0066aeb7", "hex": "6a01508b10ff9288000000", "meaning": "Original menu enables orthographic projection"},
+      {"address": "0066aec5", "hex": "6800000040508b08ff9184000000", "meaning": "Original orthographic extent = 2"},
+      {"address": "0066bff1", "hex": "8b88f80100005153ff5238", "meaning": "Original client reads primary sector at scene+1f8 and links its menu model"}
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "lifecycle": [
+    "Initialize graphics before driver; driver factory initializes every allocated frame.",
+    "Configure the camera with the original position, direction and orthographic parameters.",
+    "Scene active-camera setter and AddFrame retain references; sector light membership is non-owning.",
+    "Model LinkTo changes hierarchy without retaining it; keep the model alive until after rendering.",
+    "Release model, local light and local camera references, then scene; close driver before graphics."
+  ],
+  "resources": {
+    "model_member": "MODELS\\main_menu.4ds",
+    "model_sha256": "528af4d585f7d403435ac3cd7a901ca90d8ddf15c962856cf4d3207b3a37fece",
+    "model_archive_key_words_low_high": ["5d805259", "10acb252"],
+    "texture_archive_key_words_low_high": ["b438d0a5", "f26527fa"],
+    "texture_selection": "Unique nonempty first-table name fields, plus the implicit scene-default snow texture.",
+    "engine_texture_prefix": "Maps\\%s",
+    "precedence": "Extracted base Models/Maps slice only. No Patch, Maps_U or original archive-overlay behavior."
+  },
+  "limitations": [
+    "Static model preview only; original UI controls, fonts, localized text, cursor, sound, movies and screen transitions are not implemented.",
+    "One verified scene layout field (primary sector at +1f8) is read because no public accessor is known.",
+    "Scene rendering performs its own BeginScene/EndScene; host only presents afterward.",
+    "A desktop runtime test is still required; compile/evidence checks do not prove artwork visibility or clean shutdown.",
+    "New integration code adds no original-function reconstruction credit."
+  ]
+}
