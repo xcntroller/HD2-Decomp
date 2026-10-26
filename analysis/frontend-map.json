@@ -10,7 +10,11 @@
   "model_preview": {
     "evidence": "analysis/menu-scene-map.json",
     "implementation": "recovered/host/menu_scene.h",
-    "status": "Optional static original-model preview implemented and cross-built; desktop artwork verification pending. Does not reconstruct the menu state or UI controls."
+    "status": "Original-model artwork confirmed visible by user desktop test after camera/model update correction. Cursor drawing added with separate evidence map and pending desktop check. Does not reconstruct the menu state or UI controls."
+  },
+  "text_research": {
+    "evidence": "analysis/menu-text-map.json",
+    "status": "Client-owned localized label IDs, loose bitmap-font resources and glyph submission path identified. Text rendering, exact alignment and state preservation remain unimplemented."
   },
   "startup_path": [
     {"address": "006dd550", "role": "WinMain-like entry"},

@@ -1,0 +1,83 @@
+{
+  "scope": "Original cursor texture and screen-space quad reproduced in the new menu integration host. Win32 pointer tracking replaces the unreconstructed client input subsystem.",
+  "runtime_verified": false,
+  "source": "recovered/host/menu_cursor.h",
+  "geometry_source": "recovered/host/cursor_geometry.h",
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {"address": "1006a250", "hex": "a194180d10c20400", "meaning": "Child-window getter returns HWND and cleans stack self"},
+      {"address": "1006a1d4", "hex": "c21400", "meaning": "Texture loader cleans self, primary name, secondary name, flags and output pointer"},
+      {"address": "1006a22d", "hex": "85c00f9dc0c20c00", "meaning": "Texture binder returns a bool in AL and cleans self, texture and stage"},
+      {"address": "1006c27b", "hex": "b906000000bff01c0d1068f01c0d10f3a5", "meaning": "Viewport setter copies six DWORDs"},
+      {"address": "1006c2a7", "hex": "c20800", "meaning": "Viewport setter cleans self and record pointer"},
+      {"address": "1006b63e", "hex": "68c4010000", "meaning": "Vertex format 1 uses D3DFVF_XYZRHW, diffuse, specular and one UV set"},
+      {"address": "1006b652", "hex": "b920000000", "meaning": "Screen-space vertex stride is 32 bytes"},
+      {"address": "1006b6a9", "hex": "c21400", "meaning": "Primitive draw cleans self, kind, count, vertices and format"},
+      {"address": "10073724", "hex": "c70034dc0910", "meaning": "Loaded graphics texture is a wrapper, not the raw texture interface"},
+      {"address": "10073765", "hex": "8b461448894614", "meaning": "Wrapper slot zero decrements its reference count"},
+      {"address": "100737b3", "hex": "c20400", "meaning": "Wrapper Release cleans self"}
+    ],
+    "vtables": [
+      {"address": "1009d858", "targets": ["1006de50", "1006de70"]},
+      {"address": "1009d87c", "targets": ["10069f70"]},
+      {"address": "1009d884", "targets": ["1006a1f0", "1006a240", "1006a250"]},
+      {"address": "1009d8a8", "targets": ["1006b380", "1006b3b0", "1006b3e0"]},
+      {"address": "1009d8bc", "targets": ["1006c270"]},
+      {"address": "1009d8c8", "targets": ["1006b5a0"]},
+      {"address": "1009dc34", "targets": ["10073760"]}
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {"address": "0066a6a4", "hex": "68020400006a00686806840050ff523c", "meaning": "Original cursor loads x_kursor.tga with flags 0x402"},
+      {"address": "008109c8", "hex": "0000803a", "meaning": "Cursor width normalization constant 1/1024"},
+      {"address": "008155d4", "hex": "abaaaa3a", "meaning": "Cursor height normalization constant 1/768"},
+      {"address": "0080fa08", "hex": "0000f041", "meaning": "Cursor extent at reference resolution is 30 pixels"},
+      {"address": "0066a923", "hex": "c705d0e38a0006bfe83c", "meaning": "Screen-space cursor z bits are 0x3ce8bf06"},
+      {"address": "0066a92d", "hex": "c705d4e38a00dfc90c42", "meaning": "Cursor reciprocal-W bits are 0x420cc9df"},
+      {"address": "0066aa01", "hex": "8d4c24145150ff527c", "meaning": "Original viewport record starts at initialized x/y/width/height/minZ/maxZ"},
+      {"address": "0066aa14", "hex": "6a005150ff5244", "meaning": "Bind cursor texture to stage zero"},
+      {"address": "0066aa22", "hex": "6a0168c8e38a006a026a0450ff9288000000", "meaning": "Original quad is kind 4, two primitives, vertex format 1"}
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": [
+      {"site": "0066a6ab", "address": "00840668", "text": "x_kursor.tga"}
+    ]
+  },
+  "resource": {
+    "archive": "Maps.dta",
+    "member": "MAPS\\x_kursor.tga",
+    "sha256": "974a7e01c3e816dbff4e1318fda3dbf227badb3d4635d556f8724a45b91b079a",
+    "size": 4140,
+    "tga_dimensions": [32, 32],
+    "tga_bits_per_pixel": 32
+  },
+  "vertex_layout": {
+    "size": 32,
+    "fields": ["float x", "float y", "float z", "float reciprocal_w", "uint32 diffuse", "uint32 specular", "float u", "float v"],
+    "uv_order_top_left_clockwise": [[0, 0], [0, 1], [1, 1], [1, 0]],
+    "diffuse": "ffffffff",
+    "specular": "00000000"
+  },
+  "intentional_boundaries": [
+    "New integration glue, not a complete reconstruction of either original cursor function.",
+    "Pointer coordinates come from Win32 GetCursorPos/ScreenToClient on the verified engine child HWND; no original input subsystem is invoked.",
+    "Cursor is drawn after the scene and before Present, in its own BeginScene/EndScene pair as in the original caller.",
+    "Draw only while the host is foreground and the pointer is inside the render child client area; no pointer capture or confinement.",
+    "The original cursor model/control binding is not needed for this bounded textured-quad renderer and is not reconstructed.",
+    "No menu click behavior, fonts or localized text are implemented by this cursor."
+  ]
+}

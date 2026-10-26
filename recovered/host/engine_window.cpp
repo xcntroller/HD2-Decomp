@@ -4,10 +4,12 @@
 
 #include "host/graphics_settings.h"
 #include "host/menu_scene.h"
+#include "host/menu_cursor.h"
 
 #include <cstdio>
 #include <cstring>
 #include <exception>
+#include <io.h>
 
 namespace {
 
@@ -24,13 +26,23 @@ struct GraphicsVtable {
     Method pump;
     std::int32_t (WINAPI *width)(Graphics*);
     std::int32_t (WINAPI *height)(Graphics*);
-    Method reserved_20[10];
+    Method reserved_20[7];
+    std::int32_t (WINAPI *load_texture)(Graphics*, const char*, const char*, std::uint32_t,
+                                       hd2::host::EngineFrame**);
+    Method reserved_40;
+    std::uint8_t (WINAPI *bind_texture)(Graphics*, hd2::host::EngineFrame*, std::uint32_t);
     HWND (WINAPI *window)(Graphics*);
-    Method reserved_4c[6];
+    HWND (WINAPI *child_window)(Graphics*);
+    Method reserved_50[5];
     void (WINAPI *clear)(Graphics*, std::uint32_t, float, std::uint32_t);
     Method begin_scene;
     Method end_scene;
     Method present;
+    Method reserved_74[2];
+    std::int32_t (WINAPI *set_viewport)(Graphics*, const hd2::host::CursorViewport*);
+    Method reserved_80[2];
+    std::int32_t (WINAPI *draw_primitive)(Graphics*, std::uint32_t, std::uint32_t,
+                                         const hd2::host::CursorVertex*, std::uint32_t);
 };
 
 struct Graphics {
@@ -42,8 +54,13 @@ static_assert(offsetof(GraphicsVtable, close) == 0x10);
 static_assert(offsetof(GraphicsVtable, window) == 0x48);
 static_assert(offsetof(GraphicsVtable, clear) == 0x64);
 static_assert(offsetof(GraphicsVtable, present) == 0x70);
+static_assert(offsetof(GraphicsVtable, load_texture) == 0x3c);
+static_assert(offsetof(GraphicsVtable, bind_texture) == 0x44);
+static_assert(offsetof(GraphicsVtable, set_viewport) == 0x7c);
+static_assert(offsetof(GraphicsVtable, draw_primitive) == 0x88);
 
 bool running = true;
+bool custom_cursor_active = false;
 WNDPROC previous_window_proc = nullptr;
 
 void windows_error(const char* operation) {
@@ -55,6 +72,10 @@ LRESULT CALLBACK window_proc(HWND window, UINT message, WPARAM wparam, LPARAM lp
         std::puts("WM_CLOSE received");
         running = false;
         return 0;
+    }
+    if (message == WM_SETCURSOR && custom_cursor_active && LOWORD(lparam) == HTCLIENT) {
+        SetCursor(nullptr);
+        return TRUE;
     }
     return CallWindowProcW(previous_window_proc, window, message, wparam, lparam);
 }
@@ -75,6 +96,17 @@ bool verify_methods(Graphics* graphics, HMODULE module) {
            expected_method(methods->begin_scene, module, 0x6b380) &&
            expected_method(methods->end_scene, module, 0x6b3b0) &&
            expected_method(methods->present, module, 0x6b3e0);
+}
+
+bool verify_cursor_methods(Graphics* graphics, HMODULE module) {
+    const auto* methods = graphics->methods;
+    return expected_method(methods->load_texture, module, 0x69f70) &&
+           expected_method(methods->bind_texture, module, 0x6a1f0) &&
+           expected_method(methods->child_window, module, 0x6a250) &&
+           expected_method(methods->width, module, 0x6de50) &&
+           expected_method(methods->height, module, 0x6de70) &&
+           expected_method(methods->set_viewport, module, 0x6c270) &&
+           expected_method(methods->draw_primitive, module, 0x6b5a0);
 }
 
 int finish(Graphics* graphics, int result) {
@@ -125,6 +157,14 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         if (menu_model) {
             menu = std::make_unique<hd2::host::MenuScene>(module);
         }
+        std::unique_ptr<hd2::host::MenuCursor<Graphics>> cursor;
+        if (menu_model) {
+            if (!verify_cursor_methods(graphics, module)) {
+                throw std::runtime_error("Unsupported original-cursor graphics ABI");
+            }
+            cursor = std::make_unique<hd2::host::MenuCursor<Graphics>>(graphics, module);
+        }
+        bool cursor_drawn = false;
         while (running) {
             MSG message{};
             while (PeekMessageW(&message, nullptr, 0, 0, PM_REMOVE)) {
@@ -152,6 +192,16 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 methods->begin_scene(graphics);
                 methods->end_scene(graphics);
             }
+            if (cursor) {
+                custom_cursor_active = cursor->draw(window);
+                if (custom_cursor_active) {
+                    SetCursor(nullptr);
+                    if (!cursor_drawn) {
+                        std::puts("Original cursor quad submitted");
+                        cursor_drawn = true;
+                    }
+                }
+            }
             methods->present(graphics);
             ++frames;
             if (frame_limit != 0 && frames == frame_limit) {
@@ -167,6 +217,16 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         std::fprintf(stderr, "Menu preview failed: %s\n", error.what());
         result = 1;
     }
+    custom_cursor_active = false;
+    if (menu_model) {
+        HCURSOR arrow = LoadCursorW(nullptr, IDC_ARROW);
+        if (arrow == nullptr) {
+            windows_error("LoadCursorW(IDC_ARROW)");
+            result = 1;
+        } else {
+            SetCursor(arrow);
+        }
+    }
     SetLastError(0);
     if (SetWindowLongPtrW(window, GWLP_WNDPROC,
                          reinterpret_cast<LONG_PTR>(previous_window_proc)) == 0) {
@@ -180,6 +240,14 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
 }
 
 int wmain(int argc, wchar_t** argv) {
+    if (std::freopen("host-runtime.log", "w", stdout) == nullptr) {
+        return 1;
+    }
+    if (std::freopen("host-runtime.log", "a", stderr) == nullptr ||
+            _dup2(_fileno(stdout), _fileno(stderr)) != 0) {
+        std::fputs("Cannot redirect host error diagnostics\n", stdout);
+        return 1;
+    }
     std::setvbuf(stdout, nullptr, _IONBF, 0);
     std::setvbuf(stderr, nullptr, _IONBF, 0);
     if (argc < 2) {

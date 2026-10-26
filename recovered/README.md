@@ -54,11 +54,20 @@ records its verified interfaces, ownership and one scene-layout field.
 The launcher stages a small base-archive asset slice into the ignored runtime
 directory; this does not reproduce original archive-overlay behavior.
 
-The first desktop preview showed **only a green background, not menu artwork**.
-It is not a successful menu test. Terminal output is now saved automatically
-in the isolated runtime's `host-output.log`, including bounded model-hierarchy
-diagnostics. It implements no
-original text, cursor, UI input, screen transitions or logo playback.
+The initial plain-green preview was followed by a **user-confirmed successful
+artwork test** after adding the camera/model updates. This is not yet an
+interactive menu. The [cursor renderer](host/menu_cursor.h) now loads the
+original texture and reproduces the original textured-quad layout, UV mapping
+and resolution scaling; its Win32 mouse tracking is new integration glue.
+Its [geometry helper](host/cursor_geometry.h) has native tests, and the
+[cursor evidence map](../analysis/menu-cursor-map.json) checks its engine ABI.
+Cursor appearance still needs a desktop test.
+
+The Windows host now writes diagnostics directly to the isolated runtime's
+`host-runtime.log`; Proton did not relay the earlier standard-output pipe in
+the observed desktop run. The launcher also saves relayed output and appends
+the direct host log to `host-output.log` after the run.
+Original text, button actions, screen transitions and logo playback remain absent.
 Neither the original executable nor the user's game prefix is patched.
 See [the preview test command](../RESEARCH.md#original-menu-model-preview).
 

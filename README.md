@@ -37,9 +37,12 @@ engine and game assets through Proton. This is not a replacement menu drawn to
 look similar. **Our own graphics-only program now opens an original-engine
 window through Proton:** the desktop test displayed the blue test surface and
 then shut down. A separate **original menu-artwork preview** is now built and
-under test. It stages only the needed local assets and uses the original menu
-camera. The first desktop preview showed only a green background, so the menu
-artwork is **not working yet**; menu text and button behavior are also still to come.
+now displays the real menu artwork in a desktop test, after correcting the
+camera/model updates. It stages only the needed local assets and uses the
+original engine and menu camera. Text and button behavior are still missing.
+The next build also draws the original cursor texture; that addition still
+needs a desktop check. We've located the original localized labels and bitmap
+fonts, but haven't connected their text renderer yet.
 
 ## Progress
 
@@ -100,7 +103,9 @@ difficulty, playability, or time remaining.
 - [x] Build our own small Windows program for testing the original graphics interface.
 - [x] Open an engine window from our own small program through Proton.
 - [x] Build a separate test for the original menu artwork and its required assets.
-- [ ] Verify that the original menu artwork appears in a desktop run.
+- [x] Verify that the original menu artwork appears in a desktop run.
+- [x] Add the original cursor texture and its engine drawing path.
+- [ ] Verify cursor appearance and mouse tracking in a desktop run.
 - [ ] Load the original menu content, text and cursor.
 - [ ] Connect mouse/keyboard input and make Exit work cleanly.
 - [ ] Compare our running menu with the original game's behavior.

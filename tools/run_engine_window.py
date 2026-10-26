@@ -38,7 +38,8 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
         raise ValueError(f"Proton launcher is missing or not executable: {proton}")
     if not steam.is_dir():
         raise ValueError(f"Steam installation directory does not exist: {steam}")
-    for name in ("run", "run/host-output.log", "compat", "compat/pfx", "shaders"):
+    for name in ("run", "run/host-output.log", "run/host-runtime.log",
+                 "compat", "compat/pfx", "shaders"):
         if not (work / name).resolve().is_relative_to(work):
             raise ValueError(f"Runtime path escapes the isolated workspace: {work / name}")
     run = work / "run"
@@ -68,8 +69,13 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
 
 def run_launch(launch: Launch, output: TextIO) -> int:
     log_path = launch.cwd / "host-output.log"
-    if log_path.is_symlink():
-        raise ValueError("Host output log must not be a symlink")
+    runtime_path = launch.cwd / "host-runtime.log"
+    for path in (log_path, runtime_path):
+        if path.is_symlink():
+            raise ValueError("Host diagnostic log must not be a symlink")
+        if path.exists() and (not path.is_file() or path.stat().st_nlink != 1):
+            raise ValueError("Host diagnostic log must be a regular non-hardlinked file")
+    runtime_path.write_text("", encoding="utf-8")
     with log_path.open("w", encoding="utf-8") as log:
         with subprocess.Popen(launch.command, cwd=launch.cwd, env=launch.env,
                               stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
@@ -80,7 +86,14 @@ def run_launch(launch: Launch, output: TextIO) -> int:
                 log.flush()
                 output.write(line)
                 output.flush()
-            return process.wait()
+            returncode = process.wait()
+        with runtime_path.open(encoding="utf-8", errors="replace") as runtime:
+            for line in runtime:
+                log.write(line)
+                output.write(line)
+        log.flush()
+        output.flush()
+        return returncode
 
 
 def frame_count(text: str) -> int:
@@ -113,6 +126,7 @@ def main() -> None:
               "Graphics bootstrap only: no original menu or movies are loaded.", flush=True)
         print(f"Isolated runtime files: {launch.cwd}", flush=True)
         print(f"Saved terminal diagnostics: {launch.cwd / 'host-output.log'}", flush=True)
+        print(f"Direct Windows host diagnostics: {launch.cwd / 'host-runtime.log'}", flush=True)
         returncode = run_launch(launch, sys.stdout)
     except (OSError, ValueError) as error:
         parser.exit(1, f"Engine-window launch failed: {error}\n")

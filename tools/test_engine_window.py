@@ -76,7 +76,7 @@ class EngineWindowLaunchTests(unittest.TestCase):
         self.assertFalse(self.work.exists())
 
     def test_runtime_symlink_cannot_redirect_writes_to_game(self):
-        for name in ("run", "compat/pfx", "run/host-output.log"):
+        for name in ("run", "compat/pfx", "run/host-output.log", "run/host-runtime.log"):
             target = self.work / name
             target.parent.mkdir(parents=True, exist_ok=True)
             target.symlink_to(self.game, target_is_directory=True)
@@ -119,6 +119,19 @@ class EngineWindowLaunchTests(unittest.TestCase):
 
 
 class HostOutputTests(unittest.TestCase):
+    def test_direct_windows_log_is_relayed_even_without_standard_handles(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "host-runtime.log").write_text("stale run")
+            launch = Launch([sys.executable, "-c",
+                             "from pathlib import Path; "
+                             "Path('host-runtime.log').write_text('original cursor loaded\\n')"],
+                            root, {})
+            output = io.StringIO()
+            self.assertEqual(run_launch(launch, output), 0)
+            self.assertEqual(output.getvalue(), "original cursor loaded\n")
+            self.assertEqual((root / "host-output.log").read_text(), output.getvalue())
+
     def test_stdout_and_stderr_are_saved_and_relayed_with_exit_status(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -141,11 +154,21 @@ class HostOutputTests(unittest.TestCase):
                 run_launch(Launch(["not-launched"], root, {}), io.StringIO())
             self.assertEqual(target.read_text(), "preserve")
 
+    def test_hardlinked_runtime_log_cannot_truncate_an_unrelated_file(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "unrelated"
+            target.write_text("preserve")
+            (root / "host-runtime.log").hardlink_to(target)
+            with self.assertRaisesRegex(ValueError, "hardlinked"):
+                run_launch(Launch(["not-launched"], root, {}), io.StringIO())
+            self.assertEqual(target.read_text(), "preserve")
+
 
 class EngineHostEvidenceTests(unittest.TestCase):
     def test_both_map_fingerprints_checked_before_file_access(self):
         root = Path(__file__).resolve().parents[1]
-        for name in ("engine-host-map.json", "menu-scene-map.json"):
+        for name in ("engine-host-map.json", "menu-scene-map.json", "menu-cursor-map.json"):
             for key in ("engine", "client"):
                 document = json.loads((root / "analysis" / name).read_text())
                 document[key]["binary"]["sha256"] = "0" * 64

@@ -1,8 +1,9 @@
 {
   "scope": "Original-engine static main_menu model preview in independently written integration glue. Not the reconstructed client menu state.",
   "source": "recovered/host/menu_scene.h",
-  "runtime_verified": false,
-  "desktop_observation": "User ran --menu-model --frames 300: blue bootstrap surface changed to plain green, with no recognizable artwork. Latest Proton log confirms menu flag and original DLL loading/unloading. This is not a successful artwork test.",
+  "runtime_verified": true,
+  "runtime_verification_scope": "User desktop report confirmed recognizable original menu artwork after adding explicit camera/model updates. Does not verify exact frame counts, full cleanup, cursor or menu behavior.",
+  "desktop_observation": "First --menu-model test showed only green. Following the update/diagnostic build, the user confirmed menu artwork loaded, with text missing as expected. host-output.log was empty despite the visible run, so standard-handle forwarding was not reliable runtime evidence.",
   "engine": {
     "binary": {
       "path": "Hidden and Dangerous 2/LS3DF.dll",
@@ -105,7 +106,7 @@
     "Static model preview only; original UI controls, fonts, localized text, cursor, sound, movies and screen transitions are not implemented.",
     "One verified scene layout field (primary sector at +1f8) is read because no public accessor is known.",
     "Scene rendering performs its own BeginScene/EndScene; host only presents afterward.",
-    "A desktop runtime test is still required; compile/evidence checks do not prove artwork visibility or clean shutdown.",
+    "Artwork visibility is user-observed; exact frame count and full cleanup remain unconfirmed. New cursor behavior has a separate runtime-unverified map.",
     "New integration code adds no original-function reconstruction credit."
   ]
 }

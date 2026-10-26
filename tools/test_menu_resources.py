@@ -52,6 +52,7 @@ class MenuResourcesTests(unittest.TestCase):
             (r"MAPS\ONE.BMP", b"one"), (r"MAPS\extra.bmp", b"extra"),
             (r"MAPS\SECOND.BMP", b"second"), (r"OTHER\unused.bmp", b"unused"),
             (r"MAPS\Snow.tga", b"default snow"),
+            (r"MAPS\x_kursor.tga", b"original cursor"),
         ]
         self.write_archives()
 
@@ -78,6 +79,7 @@ class MenuResourcesTests(unittest.TestCase):
         self.assertEqual([asset["path"] for asset in result["assets"]], [
             "Models/main_menu.4ds", "Maps/EXTRA.BMP", "Maps/ONE.BMP", "Maps/SECOND.BMP",
             "Maps/SNOW.TGA",
+            "Maps/X_KURSOR.TGA",
         ])
         self.assertEqual(result, json.loads((self.run / MANIFEST).read_text()))
         for asset in result["assets"]:
@@ -108,7 +110,7 @@ class MenuResourcesTests(unittest.TestCase):
                 self.model = model([record(0, expected.lower().encode("ascii"))])
                 self.write_archives(maps=entries)
                 result = stage_menu_resources(self.game, self.run)
-                self.assertEqual(len(result["assets"]), 2)
+                self.assertEqual(len(result["assets"]), 3)
                 snow = result["assets"][1]
                 self.assertEqual(snow["path"], "Maps/" + expected)
                 self.assertEqual(snow["reason"], "scene_default")
@@ -123,6 +125,13 @@ class MenuResourcesTests(unittest.TestCase):
             (r"OTHER\Snow.dds", b"wrong"), ("MAPS/Snow.tga", b"wrong"),
         ])
         with self.assertRaisesRegex(ValueError, "Missing scene-default texture"):
+            stage_menu_resources(self.game, self.run)
+        self.assert_no_output()
+
+    def test_missing_cursor_rejected_without_outputs(self):
+        self.write_archives(maps=[item for item in self.maps
+                                 if item[0] != r"MAPS\x_kursor.tga"])
+        with self.assertRaisesRegex(ValueError, r"Missing exact texture member: MAPS\\X_KURSOR"):
             stage_menu_resources(self.game, self.run)
         self.assert_no_output()
 

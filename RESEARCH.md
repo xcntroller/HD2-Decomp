@@ -338,9 +338,10 @@ a newly recovered movie-search algorithm.
 The optional `--menu-model` mode now builds a scene around the actual
 `MODELS\main_menu.4ds` asset. It is a **static artwork experiment**, not yet the
 original interactive front end. The first desktop test showed a plain green
-background, **not the menu artwork**. The latest Proton log confirms that this
+background, **not the menu artwork**. That Proton log confirmed that this
 run included `--menu-model --frames 300`; this time it was not the old blue-only
-mode.
+mode. After adding the explicit camera/model updates described below, the user
+confirmed the **original menu artwork appeared**. Missing text was expected.
 The [scene host](recovered/host/menu_scene.h) is independently written glue and
 receives no original-function reconstruction credit.
 
@@ -356,8 +357,9 @@ keep using the previous blue-surface bootstrap.
 
 The [staging tool](tools/stage_menu_resources.py) reads the original Models and
 Maps archives without changing them. It parses the menu model's first table,
-extracts its 13 unique textures and the scene initializer's implicit snow
-texture, and stages **15 assets** under the ignored runtime working directory.
+extracts its 13 unique textures, the scene initializer's implicit snow
+texture and the original cursor texture, and stages **16 assets** under the
+ignored runtime working directory.
 It rejects missing dependencies, ambiguous names and unsafe output paths before
 writing. The local `menu-resources.json` manifest records source-archive and
 member hashes. This is a deliberately bounded **base-archive-only** slice:
@@ -390,8 +392,9 @@ Successful logs should include `3D driver initialized`, the exact model path,
 and `Graphics closed`. These logs alone do not prove the artwork is correct.
 The existing desktop/window-driver restriction prevents a visual check in the
 agent environment; a user desktop run is still needed. Fonts, localized text,
-cursor, button binding, audio, logos and the original scene callback remain
-outside this preview.
+button binding, audio, logos and the original scene callback remain outside
+this preview. Cursor rendering is now implemented separately as described below,
+but has not yet been visually checked.
 
 ### Plain-green preview investigation
 
@@ -400,15 +403,87 @@ than the bootstrap clear color. This supports reaching scene rendering, but
 does not establish that any menu geometry was drawn or textures loaded.
 The host now explicitly performs the original camera's post-configuration
 update and refreshes the model after reparenting. These changes are statically
-supported, **not a confirmed fix for the blank preview**.
+supported. The subsequent user desktop test confirmed visible artwork, so this
+is now the working integration baseline. That report does not establish which
+individual update was decisive or prove full lifecycle correctness.
 
 To avoid relying on screenshots or manually copied output, the launcher now
 relays combined stdout/stderr while saving it to the ignored runtime
 `host-output.log`. It includes model-open failures, a bounded tree of loaded
 child frames/vtable RVAs, frame counts and cleanup messages. A model with no
 attached children is rejected rather than reporting it ready.
-The next desktop run should use the same bounded command above; its saved output
-will distinguish empty geometry from a populated model that remains invisible.
+The successful artwork run left that combined output file empty. Standard
+handle forwarding under this Proton configuration therefore cannot be relied
+on. The host now opens `host-runtime.log` itself, reopens both CRT streams and
+shares the output descriptor, before writing unbuffered diagnostics. The
+launcher checks both log paths for unsafe links, clears stale direct output,
+and appends direct host diagnostics to the relayed log after process exit.
+Direct logging is built and synthetic relay tests pass; its Windows runtime
+behavior still needs to be observed.
+
+### Original cursor integration
+
+The [cursor host](recovered/host/menu_cursor.h) loads the real
+`MAPS\x_kursor.tga` (32x32 RGBA TGA, 4,140 bytes), with the original load flags
+`0x402`. It does not substitute a system arrow or draw a lookalike. The
+[cursor ABI map](analysis/menu-cursor-map.json) checks both binary fingerprints
+and the exact load, bind, viewport, vertex-format and draw contracts.
+
+The original caller `0066A870` draws a four-vertex screen-space triangle fan
+after scene rendering, using an independent BeginScene/EndScene pair. Its
+32-byte vertices contain XYZRHW, diffuse/specular colors and one UV pair.
+The unusual UV order `(0,0),(0,1),(1,1),(1,0)` is preserved, as are the exact
+depth/reciprocal-W bits. At 1024x768 the quad is 30x30 pixels; each axis scales
+independently with resolution. The [geometry helper](recovered/host/cursor_geometry.h)
+is native-testable and checks layout, original bit patterns, scaling and bounds.
+
+The loaded texture is the **graphics wrapper** with vtable `1009DC34`, whose
+slot zero is Release (`10073760`); it is not the raw texture interface with
+vtable `1009D9C0`. The cursor releases that wrapper before driver/graphics
+cleanup and reports negative viewport/draw results or a false bind result.
+
+Pointer tracking uses Win32 rather than the original client input subsystem.
+It converts desktop coordinates into the verified engine child HWND, then
+scales to render coordinates. The cursor is drawn only inside the foreground
+host's client area. No pointer capture, confinement, menu click behavior or
+button highlighting is claimed. The OS cursor is hidden over the client only
+while our cursor is active.
+
+Build and run the same `--menu-model --frames 300` command for a bounded test,
+or `--frames 0` to move the cursor until Escape/Close. The expected addition is
+the game's own cursor following the mouse over the existing artwork. Text is
+still absent. **Cursor visibility has not yet been verified on the desktop.**
+
+```sh
+python3 -B tools/validate_engine_host.py --map analysis/menu-cursor-map.json
+```
+
+### Original text/font contract
+
+The [text research map](analysis/menu-text-map.json) records the next bounded
+implementation target. Text is **client-owned**, not another engine singleton:
+the client resolves localization IDs, allocates text objects, reads glyph
+metrics, lays out glyphs and builds triangles. LS3DF only supplies the texture
+and primitive interfaces already used for the cursor.
+
+The main-menu definitions bind the title to localization ID `2101`, captions
+to `2102`-`2104`, and static button labels to `2105`-`2112` and `2115`/`2116`
+(not every intervening ID is a main-menu button). Initially empty dynamic fields
+use `2002`. These IDs come from original definitions, not newly hardcoded
+English labels. Definition binding keys and 4DS node names must not be assumed
+identical; their normalization still needs to be established.
+
+The local resources are already loose: `Text/english/TEXTY.txt` and
+`Text/Fonts/ANSI/SetN/{BIG,SMALL}.{tbl,tga}`. Font set 1 is selected below
+800 pixels wide, set 2 at 800-1023, and set 3 at 1024+. The original initializer
+also loads CE and SYMBOLS resources. Each TBL contains 256 records of five
+little-endian floats (5,120 bytes total): UV rectangle and width/height ratio.
+The original atlases use the same `0x402` texture-load flags as the cursor.
+
+This contract is **research, not working text support**. Exact alignment enums,
+model-frame placement, localization parsing and render-state preservation still
+need validation before implementation. We will not replace the original fonts
+with a system font or invent profile/save data to make the screen look complete.
 
 ## First mission-format milestone
 

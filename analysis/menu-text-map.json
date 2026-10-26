@@ -1,0 +1,86 @@
+{
+  "scope": "Static research contract for original main-menu localization and bitmap fonts. No text rendering implementation or runtime verification yet.",
+  "runtime_verified": false,
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "ownership": "Client owns localization lookup, text objects, layout, font metrics and glyph triangles. LS3DF supplies texture loading, binding and primitive submission, not a font interface.",
+  "functions": [
+    {"address": "00623dd0", "role": "Build menu definitions with localization ID/style bindings"},
+    {"address": "00661940", "role": "Dispatch localization event 0x1000015 to the control text helper"},
+    {"address": "00644200", "role": "Apply localization ID/style to a text object"},
+    {"address": "006e4fb0", "role": "Client localization lookup"},
+    {"address": "00661b30", "role": "Allocate a client text object with vtable 00810458"},
+    {"address": "00647ee0", "role": "Client text-object render method"},
+    {"address": "0063db50", "role": "Shared font manager initialization"},
+    {"address": "00641e30", "role": "Style-to-font/height selection"},
+    {"address": "00640310", "role": "Load original font atlas and 256 five-float metric records"},
+    {"address": "006404c0", "role": "Client font virtual +18: character, ARGB, width, height, x, y, z; this in ECX"},
+    {"address": "00648860", "role": "Construct glyph triangles"},
+    {"address": "00643fb0", "role": "Pack 32-byte screen-space vertices"},
+    {"address": "00644a80", "role": "Derive text layout from original model-frame bounds; exact alignment still needs recovery"}
+  ],
+  "bindings": [
+    {"frame": "text_screen", "style": 10, "localization_id": 2101},
+    {"frame": "text_date00", "style": 11, "localization_id": 2102},
+    {"frame": "text_profile00", "style": 11, "localization_id": 2103},
+    {"frame": "text_last_save00", "style": 11, "localization_id": 2104},
+    {"frame": "bresume_game", "style": 13, "localization_id": 2105},
+    {"frame": "bchange_profile", "style": 13, "localization_id": 2106},
+    {"frame": "bsingleplayer", "style": 13, "localization_id": 2107},
+    {"frame": "bcinematics", "style": 13, "localization_id": 2109},
+    {"frame": "boptions", "style": 13, "localization_id": 2110},
+    {"frame": "bcredits", "style": 13, "localization_id": 2111},
+    {"frame": "bexit", "style": 13, "localization_id": 2112},
+    {"frame": "bmultiplayerlan", "style": 13, "localization_id": 2115},
+    {"frame": "bmultiplayernet", "style": 13, "localization_id": 2116}
+  ],
+  "binding_note": "Names above are definition binding keys, not asserted byte-for-byte 4DS node names. Matching/normalization must follow the original binder rather than assuming underscores equal spaces.",
+  "dynamic_fields": {
+    "initially_empty": {"frame_suffix": "01", "style": 12, "localization_id": 2002},
+    "version_format": {"style": 40, "localization_id": 2006},
+    "policy": "Do not invent a profile, save timestamp, clock or rebuilt game version."
+  },
+  "assets": {
+    "localization": "Text/english/TEXTY.txt",
+    "english_font_paths": "Text/Fonts/ANSI/SetN/{BIG,SMALL}.{tbl,tga}",
+    "additional_original_initialization": ["Text/Fonts/CE/SetN/{BIG,SMALL}.{tbl,tga}", "Text/Fonts/SYMBOLS.{tbl,tga}"],
+    "set_selection": [
+      {"minimum_width": 0, "maximum_width_exclusive": 800, "set": 1},
+      {"minimum_width": 800, "maximum_width_exclusive": 1024, "set": 2},
+      {"minimum_width": 1024, "maximum_width_exclusive": null, "set": 3}
+    ],
+    "distribution": "Already loose in this local game installation; not inferred archive members. Keep local and ignored."
+  },
+  "metrics": {
+    "byte_size": 5120,
+    "record_count": 256,
+    "record_size": 20,
+    "encoding": "five little-endian float32 values per character",
+    "fields": ["u_left", "v_top", "u_right", "v_bottom", "width_over_height"]
+  },
+  "styles": [
+    {"id": 10, "font_id": 2, "atlas": "BIG", "normalized_height": 0.05},
+    {"id": 11, "font_id": 3, "atlas": "SMALL", "normalized_height": 0.02},
+    {"id": 12, "font_id": 2, "atlas": "BIG", "normalized_height": 0.04},
+    {"id": 13, "font_id": 2, "atlas": "BIG", "normalized_height": 0.04},
+    {"id": 40, "font_id": 3, "atlas": "SMALL", "normalized_height": 0.02}
+  ],
+  "engine_submission": {
+    "atlas_load": "IGraph+3c(self, path, null, 0x402, out_texture)",
+    "bind": "IGraph+44(self, texture, 0)",
+    "triangles": "IGraph+88(self, 3, triangle_count, vertices, 1)",
+    "vertex_size": 32,
+    "base_argb": "ff000000"
+  },
+  "research_outputs": "Ignored analysis/work/menu-text-* exports; 48 requested function JSON exports reported decompiled=true. This map records research findings, not an instruction-anchor validator.",
+  "remaining_work": [
+    "Recover exact text alignment/layout enums and model binding normalization.",
+    "Validate localization encoding/record framing and bitmap font metrics before staging them.",
+    "Recover renderer state setup/save/restore instead of depending on previous scene state.",
+    "Implement static original localized labels with original glyph atlases; keep dynamic fields empty until their data sources exist.",
+    "Defer hover/disabled colors and button activation until verified control-state behavior is wired."
+  ]
+}

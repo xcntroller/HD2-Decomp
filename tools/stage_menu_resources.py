@@ -1,4 +1,4 @@
-"""Stage the baseline menu model, first-table textures, and scene-default Snow.
+"""Stage the baseline menu model, its textures, scene-default Snow, and cursor.
 
 This is a resource slice, not a complete UI: patch/expansion overlays, scripts,
 animation dependencies, and runtime behavior are not reconstructed.
@@ -18,6 +18,7 @@ from inspect_model_table import decode_model_table
 MODEL_KEY = struct.pack("<II", 0x5D805259, 0x10ACB252)
 MAPS_KEY = struct.pack("<II", 0xB438D0A5, 0xF26527FA)
 MODEL_MEMBER = r"MODELS\main_menu.4ds"
+CURSOR_TEXTURE = "X_KURSOR.TGA"
 MANIFEST = "menu-resources.json"
 FORMAT = "hd2-menu-resources-v1"
 LIMITATION = (
@@ -158,7 +159,7 @@ def stage_menu_resources(game: Path, run: Path) -> dict:
         if scene_default is None:
             raise ValueError("Missing scene-default texture: MAPS\\Snow.dds or MAPS\\Snow.tga")
         default_name = _texture_name(scene_default.name.split("\\")[-1].encode("ascii"))
-        for name in sorted(set(textures) | {default_name}):
+        for name in sorted(set(textures) | {default_name, CURSOR_TEXTURE}):
             member = indexed.get(("MAPS\\" + name).casefold())
             if member is None:
                 raise ValueError(f"Missing exact texture member: MAPS\\{name}")
@@ -166,6 +167,8 @@ def stage_menu_resources(game: Path, run: Path) -> dict:
             collect("Maps.dta", member, data, "Maps/" + name)
             if name == default_name:
                 assets[-1]["reason"] = "scene_default"
+            if name == CURSOR_TEXTURE:
+                assets[-1]["reason"] = "menu_cursor"
         archives.append({"path": "Maps.dta", "sha256": _sha256(stream)})
 
     manifest = {
