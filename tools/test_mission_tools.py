@@ -435,6 +435,35 @@ class MissionEvidenceTests(unittest.TestCase):
     def test_valid_evidence(self):
         validate_mission(self.document, self.root, verify_archive=True)
 
+    def add_model_sample(self, data):
+        sample = self.write_fixture("synthetic.4ds", data)
+        sample["model_header"] = {
+            "version": 41, "opaque_metadata_hex": "0001020304050607",
+            "first_table_entry_count": 13,
+        }
+        self.document["samples"].append(sample)
+        return sample
+
+    def test_valid_model_prefix_evidence(self):
+        self.add_model_sample(b"4DS\0" + struct.pack("<H", 41)
+                              + bytes(range(8)) + struct.pack("<H", 13) + b"payload")
+        validate_mission(self.document, self.root)
+
+    def test_fabricated_model_prefix_observations(self):
+        sample = self.add_model_sample(b"4DS\0" + struct.pack("<H", 41)
+                                       + bytes(range(8)) + struct.pack("<H", 13))
+        for key, value in [("version", 40), ("opaque_metadata_hex", "ff" * 8),
+                           ("first_table_entry_count", 14)]:
+            document = copy.deepcopy(self.document)
+            document["samples"][-1]["model_header"] = {**sample["model_header"], key: value}
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, "model prefix"):
+                validate_mission(document, self.root)
+
+    def test_truncated_model_prefix_evidence(self):
+        self.add_model_sample(b"4DS\0" + struct.pack("<H", 41) + bytes(8) + b"\r")
+        with self.assertRaisesRegex(ValueError, "Incomplete"):
+            validate_mission(self.document, self.root)
+
     def test_wrong_binary_fingerprint(self):
         self.document["binary"]["sha256"] = "0" * 64
         with self.assertRaisesRegex(ValueError, "fingerprint mismatch"):

@@ -1,5 +1,5 @@
 {
-  "scope": "Structural and initial object-field map of one ALPS1 scene2.bin from the base missions archive; not a complete format specification.",
+  "scope": "Scene2 structure, initial object fields and two model-file prefixes from the base ALPS1 mission archive; not complete format specifications.",
   "runtime_verified": false,
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
@@ -39,13 +39,23 @@
       "path": "extracted/alps1-base/scene.4ds",
       "size": 1380788,
       "sha256": "c051ff74dee4653a0d6590bd161784d913a2bed191a20eb98eedaf6dff19c5f4",
-      "header": "4DS followed by NUL; version 0x29"
+      "header": "4DS followed by NUL; version 0x29",
+      "model_header": {
+        "version": 41,
+        "opaque_metadata_hex": "80b320ba1288c301",
+        "first_table_entry_count": 86
+      }
     },
     {
       "path": "extracted/alps1-base/loader.4ds",
       "size": 3901,
       "sha256": "206a5e630d0fb13bcc5f6c0a9a6cda687ce337f803d7164bb3795666953f5f46",
-      "header": "4DS followed by NUL; version 0x29"
+      "header": "4DS followed by NUL; version 0x29",
+      "model_header": {
+        "version": 41,
+        "opaque_metadata_hex": "0058149f5048c301",
+        "first_table_entry_count": 13
+      }
     }
   ],
   "chunk_header": {

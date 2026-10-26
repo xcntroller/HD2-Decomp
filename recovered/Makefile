@@ -6,7 +6,7 @@ BUILD_DIR ?= build
 
 .PHONY: all test
 
-all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks $(BUILD_DIR)/model_resource_key_tests $(BUILD_DIR)/model_resource_key $(BUILD_DIR)/frame_kind_tests $(BUILD_DIR)/model_load_policy_tests
+all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks $(BUILD_DIR)/model_resource_key_tests $(BUILD_DIR)/model_resource_key $(BUILD_DIR)/frame_kind_tests $(BUILD_DIR)/model_load_policy_tests $(BUILD_DIR)/model_file_header_tests $(BUILD_DIR)/inspect_model_header
 
 $(BUILD_DIR):
 	mkdir -p "$@"
@@ -29,10 +29,18 @@ $(BUILD_DIR)/frame_kind_tests: scene/frame_kind.cpp tests/frame_kind_tests.cpp s
 $(BUILD_DIR)/model_load_policy_tests: scene/model_load_policy.cpp tests/model_load_policy_tests.cpp scene/model_load_policy.h | $(BUILD_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) scene/model_load_policy.cpp tests/model_load_policy_tests.cpp $(LDFLAGS) -o "$@"
 
+$(BUILD_DIR)/model_file_header_tests: scene/model_file_header.cpp tests/model_file_header_tests.cpp scene/model_file_header.h | $(BUILD_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) scene/model_file_header.cpp tests/model_file_header_tests.cpp $(LDFLAGS) -o "$@"
+
+$(BUILD_DIR)/inspect_model_header: scene/model_file_header.cpp tools/inspect_model_header.cpp scene/model_file_header.h | $(BUILD_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) scene/model_file_header.cpp tools/inspect_model_header.cpp $(LDFLAGS) -o "$@"
+
 test: all
 	"$(BUILD_DIR)/chunk_reader_tests"
 	"$(BUILD_DIR)/model_resource_key_tests"
 	"$(BUILD_DIR)/frame_kind_tests"
 	"$(BUILD_DIR)/model_load_policy_tests"
+	"$(BUILD_DIR)/model_file_header_tests"
 	$(PYTHON) -B tests/compare_scene_scan.py --scanner "$(BUILD_DIR)/scan_scene_chunks"
 	$(PYTHON) -B tests/compare_model_resource_keys.py --normalizer "$(BUILD_DIR)/model_resource_key"
+	$(PYTHON) -B tests/compare_model_headers.py --reader "$(BUILD_DIR)/inspect_model_header"

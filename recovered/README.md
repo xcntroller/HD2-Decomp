@@ -20,6 +20,9 @@ by the DLL's type-name query. The
 [model-load policy](scene/model_load_policy.h) classifies candidate results.
 Neither component creates frames or loads models.
 
+The [model-file header reader](scene/model_file_header.h) implements only the
+initial 16-byte checks performed by the engine's model-file loader.
+
 ## Chunk reader
 
 The reader:
@@ -107,6 +110,27 @@ platform-dependent conversion to signed integers. Evidence and original
 addresses live in the [engine map](../analysis/engine-model-map.json) and
 [policy map](../analysis/model-load-policy.json), not in reconstructed logic.
 
+## Model-file headers
+
+`read_model_file_header()` reads a 16-byte prefix from the stream's current
+position: the exact `4DS` plus NUL signature, little-endian version `0x29`,
+eight opaque metadata bytes, and a little-endian first-table entry count.
+The count limit is **inclusive**: 6,000 is accepted; 6,001 is rejected.
+The first table's complete meaning is not yet established, so its neutral name
+does not claim that its entries are soldiers, models, or materials.
+
+The reader leaves subsequent data unread and supports nonseekable input.
+`ModelHeaderError` exposes a typed reason for incomplete reads, invalid signature,
+unsupported version or excessive count. A stream configured to throw I/O
+exceptions may propagate those exceptions. After failure, do not assume the
+input cursor was rolled back.
+
+Unlike the original archive calls, short reads are explicitly rejected. The
+source does not open/close archives, modify engine globals, interpret the eight
+unknown bytes or construct objects. **An accepted prefix does not validate the
+complete model file.** It is another partial reconstruction, not a complete
+original function for the progress bar.
+
 ## Build and test
 
 From the repository root, with a C++17 compiler, GNU Make, and Python 3.11+:
@@ -125,7 +149,11 @@ This builds with strict warnings and runs:
 - 14 C++ model-key cases, including an embedded-NUL rejection;
 - 71 deterministic model-key comparisons against Python;
 - frame-kind checks for all 16 supported values and unknown values;
-- 17 model-load-result cases covering success, retry, stop, and diagnostics.
+- 17 model-load-result cases covering success, retry, stop, and diagnostics;
+- 39 model-header cases, including exact count boundaries, all prefix truncations,
+  opaque-byte preservation, stopping positions and stream behavior;
+- 30 synthetic model-header comparisons and 27 malformed headers both readers
+  must reject.
 
 No game files are needed for those tests. Build products go into ignored
 `recovered/build/`.
@@ -155,6 +183,18 @@ The ALPS1 sample has 1,157 model-resource references using 61 distinct names.
 All of those names are extensionless, so the suffix-removal edge cases are
 established by assembly inspection and synthetic tests rather than that sample.
 The comparison driver does not print the real asset names.
+
+To compare the already extracted local model-file prefixes:
+
+```sh
+python3 -B recovered/tests/compare_model_headers.py \
+  --reader recovered/build/inspect_model_header \
+  --model extracted/alps1-base/scene.4ds \
+  --model extracted/alps1-base/loader.4ds
+```
+
+Their first-table counts are 86 and 13 respectively. The mission evidence
+validator checks the exact prefixes against the fingerprinted samples.
 
 An address/undefined-behavior sanitizer build can stay in ignored analysis output:
 

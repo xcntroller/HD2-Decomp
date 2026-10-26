@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "programs": {
+    "client": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "engine": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee"
+  },
+  "functions": [
+    {
+      "program": "client",
+      "entry": "00405620",
+      "status": "partial",
+      "coverage": "Chunk-reader constructor: read-mode length and initial seek behavior.",
+      "limitations": "Archive opening, original flags and write mode are excluded; portable API differs.",
+      "evidence": ["analysis/reconstruction-map.json", "recovered/io/chunk_reader.cpp", "recovered/tests/chunk_reader_tests.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "00415c90",
+      "status": "partial",
+      "coverage": "Enter a chunk: header decode, end calculation and nesting.",
+      "limitations": "Supported-subset behavioral reconstruction with different error handling and extra bounds checks; not the complete original function.",
+      "evidence": ["analysis/reconstruction-map.json", "recovered/io/chunk_reader.cpp", "recovered/tests/chunk_reader_tests.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "00405940",
+      "status": "partial",
+      "coverage": "Bounded exact-byte read within the active chunk.",
+      "limitations": "Portable stream and exception API, additional depth-zero bounds checks; not end-to-end original behavior.",
+      "evidence": ["analysis/reconstruction-map.json", "recovered/io/chunk_reader.cpp", "recovered/tests/chunk_reader_tests.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "00405890",
+      "status": "partial",
+      "coverage": "Leave a chunk in read mode.",
+      "limitations": "Write-mode backpatching and optional size output are excluded; original archive API is not reproduced.",
+      "evidence": ["analysis/reconstruction-map.json", "recovered/io/chunk_reader.cpp", "recovered/tests/chunk_reader_tests.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "006cd940",
+      "status": "partial",
+      "coverage": "Two fragments of ONE object-loader function: model-resource key processing and candidate-result classification.",
+      "limitations": "The complete object loader, cache, retries, ownership, engine loading and logging are not reconstructed.",
+      "evidence": ["analysis/reconstruction-map.json", "analysis/model-load-policy.json", "recovered/scene/model_resource_key.cpp", "recovered/scene/model_load_policy.cpp", "recovered/tests/model_resource_key_tests.cpp", "recovered/tests/model_load_policy_tests.cpp"]
+    },
+    {
+      "program": "engine",
+      "entry": "10019f00",
+      "status": "partial",
+      "coverage": "Frame-kind names for the 16 supported numeric kinds.",
+      "limitations": "The original formatted unknown-value fallback is excluded; an empty optional replaces it.",
+      "evidence": ["analysis/engine-model-map.json", "recovered/scene/frame_kind.cpp", "recovered/tests/frame_kind_tests.cpp"]
+    },
+    {
+      "program": "engine",
+      "entry": "1005d970",
+      "status": "partial",
+      "coverage": "Model-file header subset: 16-byte header with 4DS NUL magic, little-endian version 0x29, eight opaque bytes and a little-endian first-table count bounded by 6000.",
+      "limitations": "Only the supported header behavior is reconstructed; the opaque fields and subsequent tables, complete model parsing, object construction and loading behavior are not reconstructed.",
+      "evidence": ["analysis/engine-model-map.json", "recovered/scene/model_file_header.cpp", "recovered/tests/model_file_header_tests.cpp", "recovered/tests/compare_model_headers.py", "tools/inspect_model_header.py"]
+    }
+  ]
+}

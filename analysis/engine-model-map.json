@@ -71,6 +71,26 @@
     "repeatable_decompilation_checked": true,
     "executable_bytes_modified": false
   },
+  "model_file_header": {
+    "function": "1005d970",
+    "local_export": "analysis/work/engine-model-verified/1005d970.json",
+    "read_thunk": "10098f10",
+    "signature_address": "100a70fc",
+    "prefix_size": 16,
+    "fields": [
+      {"offset": 0, "size": 4, "meaning": "Exact 4DS followed by NUL signature"},
+      {"offset": 4, "size": 2, "meaning": "Little-endian version, must equal 0x29"},
+      {"offset": 6, "size": 8, "meaning": "Opaque metadata; read but not interpreted by this prefix reconstruction"},
+      {"offset": 14, "size": 2, "meaning": "Little-endian first-table entry count, inclusive maximum 6000"}
+    ],
+    "failure_result_bits": {
+      "bad_signature": "8000000a",
+      "unsupported_version": "80000013",
+      "first_table_count_exceeded": "80000015"
+    },
+    "subsequent_dispatch": "First-table records begin with four-byte flags. Bit 0x04000000 selects driver slot +0x5c and reader 1002be30; otherwise slot +0x58 and reader 1002bbe0. This does not yet establish a complete table format or authoritative material-type names.",
+    "scope": "Only the prefix checks are reconstructed. Header acceptance does not validate the table, model geometry, parent links, file completeness or successful runtime loading. Short reads are explicitly rejected by our source; the original calls do not consistently check returned read lengths."
+  },
   "byte_checks": [
     {"va": "10068fb0", "hex": "a1 f8 16 0d 10 c3", "meaning": "Singleton getter loads the driver slot and returns."},
     {"va": "100151f9", "hex": "c7 00 40 b6 09 10", "meaning": "Driver constructor writes its vtable."},
@@ -85,7 +105,19 @@
     {"va": "100340bc", "hex": "ff 50 78", "meaning": "Preceding model reset virtual call."},
     {"va": "100340aa", "hex": "c2 04 00", "meaning": "Reset method cleans one stack argument."},
     {"va": "1005d38a", "hex": "b8 7c 70 0a 10", "meaning": "Load the appended filename suffix address."},
-    {"va": "100a707c", "hex": "2e 34 64 73 00", "meaning": "NUL-terminated .4ds filename suffix."}
+    {"va": "100a707c", "hex": "2e 34 64 73 00", "meaning": "NUL-terminated .4ds filename suffix."},
+    {"va": "1005d9c2", "hex": "6a 04", "meaning": "Read four signature bytes."},
+    {"va": "1005d9d4", "hex": "bf fc 70 0a 10", "meaning": "Load the expected model signature address."},
+    {"va": "1005d9dd", "hex": "b9 04 00 00 00 33 d2 f3 a6 74 18", "meaning": "Compare all four signature bytes and branch past failure on equality."},
+    {"va": "100a70fc", "hex": "34 44 53 00", "meaning": "Exact 4DS signature including the terminating NUL."},
+    {"va": "1005d9f6", "hex": "b8 0a 00 00 80", "meaning": "Bad signature result bits."},
+    {"va": "1005da06", "hex": "6a 02", "meaning": "Read the two-byte version."},
+    {"va": "1005da17", "hex": "83 7c 24 18 29 74 18", "meaning": "Accept only version 0x29."},
+    {"va": "1005da2c", "hex": "b8 13 00 00 80", "meaning": "Unsupported version result bits."},
+    {"va": "1005da3c", "hex": "6a 08", "meaning": "Read eight opaque metadata bytes."},
+    {"va": "1005da4e", "hex": "6a 02 68 88 00 0d 10", "meaning": "Read two bytes into the zero-initialized first-table count."},
+    {"va": "1005da6c", "hex": "3d 70 17 00 00 7e 12", "meaning": "Inclusive 6000-entry limit, with equality accepted."},
+    {"va": "1005da75", "hex": "b8 15 00 00 80", "meaning": "Too many first-table entries result bits."}
   ],
   "pointers": [
     {"va": "1009b694", "target": "10019e10", "meaning": "Driver vtable +0x54 factory wrapper."},
@@ -97,7 +129,11 @@
   "direct_calls": [
     {"site": "10019e19", "target": "10018e40"},
     {"site": "100340f6", "target": "1005d260"},
-    {"site": "1005d3ae", "target": "1005d970"}
+    {"site": "1005d3ae", "target": "1005d970"},
+    {"site": "1005d9cf", "target": "10098f10"},
+    {"site": "1005da12", "target": "10098f10"},
+    {"site": "1005da44", "target": "10098f10"},
+    {"site": "1005da62", "target": "10098f10"}
   ],
   "serialized_sample": {
     "mission": "ALPS1 base scene2.bin",

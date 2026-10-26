@@ -3,13 +3,14 @@
 A personal project to discover how Hidden & Dangerous 2 works, from loading a
 mission to controlling a squad, and gradually document its LS3D engine.
 
-We're starting with the Steam release, including Sabre Squadron, running on
-Linux through Proton.
+We're starting with the base game's Steam release and its original LS3DF.dll
+engine, on Linux through Proton. The function tracker below covers only these
+two binaries; the expansion is outside its scope.
 
 ## Where we are
 
 **We've got past the first major obstacle: accessing the game's code.**
-We've unpacked copies of both game executables and started identifying the parts
+We've unpacked copies of the game executables and started identifying the parts
 responsible for startup, the main loop, and loading missions.
 We can also extract selected mission files locally and read the basic structure
 of one real mission.
@@ -21,6 +22,8 @@ We've also identified model-resource references and reconstructed the loader's
 small model-name processing step.
 We can now name the engine's object types and explain when model loading tries
 another file, stops, or accepts a result.
+We've also reconstructed the first checks the engine makes when opening a model
+file, including its supported version and an initial entry-count limit.
 
 This is still early research, not a rebuilt or playable version of the game.
 Our findings so far come from examining files; we haven't yet checked them
@@ -30,6 +33,37 @@ against the game while it's running.
 
 Completed steps mean we've reached a useful milestone, not that we understand
 every detail of that area.
+
+<!-- FUNCTION-PROGRESS:START -->
+### Original-function reconstruction (base game only)
+
+`[------------------------------] 0.00% complete`
+
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **7 unique functions partially reconstructed**.
+
+| Program | Counted functions | Complete | Partial |
+| --- | ---: | ---: | ---: |
+| Base game client | 17,294 | 0 | 5 |
+| Original LS3DF.dll | 1,489 | 0 | 2 |
+
+This covers the **base game and original LS3D engine only**, not Sabre
+Squadron. The total is an estimate from Ghidra, including library code we
+haven't separated yet. Imported routines and small forwarding stubs are
+counted separately, outside this bar.
+
+The bar fills only when an entire original function is reconstructed.
+Our existing source recovers useful **parts** of functions, so it appears
+under Partial rather than Complete. Discoveries and research milestones
+are listed below; **0% complete does not mean no progress**.
+
+Ghidra can miss functions or get their boundaries wrong, so the baseline
+may be deliberately revised. This percentage does not measure understanding,
+difficulty, playability, or time remaining.
+
+[Status ledger](analysis/function-status.json) |
+[Frozen counts](analysis/function-baseline.json) |
+[Counting rules and refresh commands](analysis/function-progress.md)
+<!-- FUNCTION-PROGRESS:END -->
 
 ### Done
 
@@ -43,6 +77,7 @@ every detail of that area.
 - [x] Reconstruct and test a small file-reading component with readable source.
 - [x] Identify model-resource references and reconstruct their name-processing rule.
 - [x] Recover engine object-type names and the model loader's retry/stop decisions.
+- [x] Reconstruct and test the first model-file header checks.
 - [x] Save our findings and add repeatable checks for the evidence.
 
 ### Next: understand one mission from loading to play
@@ -55,12 +90,13 @@ every detail of that area.
 ### Longer term
 
 - [ ] Understand how the game and engine work together.
-- [ ] Compare the original game with Sabre Squadron.
+- [ ] Check more of the original game's behavior against our reconstructions.
 - [ ] Explore individual systems, such as squad orders, AI, and animation.
 - [ ] Create useful tools and reconstruct small, well-understood parts.
 
 A complete source reconstruction is a possible long-term ambition, not a
-promise. We won't put a percentage on progress while the full scope is unknown.
+promise. The function bar is a narrow, reproducible count, not a percentage of
+the whole project or a forecast of when a reconstruction will be finished.
 
 ## How we work
 

@@ -98,8 +98,8 @@ class EngineEvidenceTests(unittest.TestCase):
 
     def test_complete_synthetic_evidence(self):
         counts = validate_evidence(self.document, PEImage(bytes(self.data)))
-        self.assertEqual(counts, {"byte_checks": 14, "pointers": 5,
-                                  "direct_calls": 3, "frame_kinds": 16})
+        self.assertEqual(counts, {"byte_checks": 26, "pointers": 5,
+                                  "direct_calls": 7, "frame_kinds": 16})
 
     def test_instruction_pointer_call_table_case_and_string_mismatches(self):
         for va, message in [

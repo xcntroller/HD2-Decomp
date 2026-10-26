@@ -385,6 +385,87 @@ Full candidate construction, cache ownership/eviction, refcounts, resource
 search directories, and runtime behavior remain open. Neither reconstruction
 executes original game code or establishes ABI/binary equivalence.
 
+### First model-file checks
+
+Following `1005D970` reaches the archive open and the model file's first reads.
+The [new header reader](recovered/scene/model_file_header.cpp) reconstructs only
+this prefix, using these assembly-supported fields:
+
+| Offset | Size | Interpretation |
+| --- | ---: | --- |
+| `0x00` | 4 | Exact bytes `4DS` followed by NUL |
+| `0x04` | 2 | Little-endian version, must equal `0x29` |
+| `0x06` | 8 | Opaque metadata, preserved without interpreting it |
+| `0x0E` | 2 | Little-endian first-table entry count, at most 6,000 |
+
+The signature comparison covers all four bytes at `1005D9DD`. Its failure
+returns `0x8000000A`. The version comparison at `1005DA17` returns
+`0x80000013` on mismatch. The count comparison at `1005DA6C` accepts equality
+with 6,000; larger counts return `0x80000015`. These are observed result bits,
+not invented SDK enum names. They also connect to the client policy: the bad
+signature code stops candidate attempts, while the unsupported-version code
+logs its version diagnostic and can try another candidate.
+
+Subsequent first-table records start with four-byte flags. Bit `0x04000000`
+selects one driver factory/record reader (`+0x5C`, `1002BE30`); the other path
+uses `+0x58`, `1002BBE0`. Their complete record formats and authoritative
+material/resource semantics are not established here, so the public interface
+deliberately calls the field `first_table_entry_count`.
+
+The [engine evidence map](analysis/engine-model-map.json) records the read
+widths, call sites, comparisons, signature and failure immediates; its validator
+now checks these directly against the fingerprinted DLL. The mission validator
+also checks the two fingerprinted ALPS1 prefixes: 86 first-table entries in
+`scene.4ds` and 13 in `loader.4ds`. These are table entries, not model, soldier
+or runtime-object counts.
+
+The source borrows a stream at its current position, consumes at most the
+supported prefix, preserves its eight unknown bytes, and leaves table data
+unread. Exceptions replace the original negative status returns. Unlike the
+original unchecked archive reads, every incomplete prefix is explicitly
+rejected. Streams configured to throw I/O exceptions can propagate them.
+There is no archive ownership, engine-global state, geometry, table parsing,
+reference resolution or complete-file validation. Accepting a header does
+**not** establish that a complete model file is valid or loadable.
+
+```sh
+make -C recovered test
+python3 -B recovered/tests/compare_model_headers.py \
+  --reader recovered/build/inspect_model_header \
+  --model extracted/alps1-base/scene.4ds \
+  --model extracted/alps1-base/loader.4ds
+python3 -B tools/validate_engine_model.py
+python3 -B tools/validate_mission_sample.py
+```
+
+The 39 native cases include the exact 5,999/6,000/6,001 boundary, all 16
+truncations, signature/version failures, opaque-byte preservation, stopping
+positions, nonseekable/current-position input and stream failures. The Python
+comparison matches 30 valid synthetic prefixes and requires both readers to
+reject 27 malformed ones, plus optional real-header comparisons.
+
+### Function-based progress
+
+The [README function bar](README.md#progress) now uses a frozen census of
+the base client and original engine, excluding Sabre Squadron. Full local
+inventories contain 17,294 client and 1,489 engine internal non-thunk entries:
+18,783 counted functions in this initial analysis snapshot. Imported/external
+entries and forwarding thunks are reported separately. Library/runtime routines
+are not yet reliably separated from game code and therefore remain included.
+The census is an estimate, not the exact original source-function total.
+
+The [status ledger](analysis/function-status.json) records seven unique
+partially reconstructed original functions and zero complete ones. Several
+useful source components cover only fragments; the model key and result policy
+belong to the same original object-loader function. No full-function credit is
+assigned to those pieces or to simply naming a function.
+
+[Counting rules and reproduction commands](analysis/function-progress.md)
+describe the read-only inventory export, fingerprints, frozen snapshot,
+explicit baseline revisions, and deterministic README regeneration. The
+synthetic tracker tests need no game files. This is a source-completeness
+metric only, not a percentage of research, difficulty, playability or time left.
+
 ### Readable reconstruction versus decompiler output
 
 The [recovered source directory](recovered/README.md) now contains the first

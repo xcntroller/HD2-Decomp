@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "scope": "base_hd2_and_original_ls3df_only",
+  "denominator": "identified_internal_non_thunk_including_unclassified_and_libraries",
+  "estimated": true,
+  "programs": {
+    "client": {
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "ghidra_version": "12.2",
+      "image_base": "00400000",
+      "counts": {
+        "internal_non_thunk": 17294,
+        "internal_thunk": 112,
+        "external": 281,
+        "identified_total": 17687,
+        "unclassified_internal_non_thunk": 17294
+      },
+      "structure_sha256": "a8fbca268344483fd33730d4955504bc89dafc938cb793cbaedd598dd9a1ac28"
+    },
+    "engine": {
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "ghidra_version": "12.2",
+      "image_base": "10000000",
+      "counts": {
+        "internal_non_thunk": 1489,
+        "internal_thunk": 26,
+        "external": 168,
+        "identified_total": 1683,
+        "unclassified_internal_non_thunk": 1489
+      },
+      "structure_sha256": "3c882371af3603cd197132ce4cc333408816457a8e549d329c0abca5ebfaf69b"
+    }
+  }
+}

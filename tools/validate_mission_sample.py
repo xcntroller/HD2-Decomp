@@ -6,6 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 
+from inspect_model_header import decode_model_header
 from inspect_scene2 import decode_objects, summarize
 
 
@@ -33,6 +34,10 @@ def validate(document: dict, root: Path, verify_archive: bool = False) -> None:
     samples = document["samples"]
     for sample in samples:
         fingerprint(sample, root)
+        if "model_header" in sample:
+            with (root / sample["path"]).open("rb") as stream:
+                check_equal(decode_model_header(stream.read(16)), sample["model_header"],
+                            f"model prefix {sample['path']}")
     scene = next(sample for sample in samples if Path(sample["path"]).name == "scene2.bin")
     data = (root / scene["path"]).read_bytes()
     summary = summarize(data)
@@ -119,7 +124,7 @@ def main() -> None:
     parser.add_argument("--archive", action="store_true", help="Also hash the full missions archive")
     args = parser.parse_args()
     validate(json.loads(args.map.read_text()), args.root, args.archive)
-    print("Verified mission fingerprints, exact record/field counts, quaternion tolerance, "
+    print("Verified mission fingerprints, model prefixes, exact record/field counts, quaternion tolerance, "
           "name-link/model-resource observations, repaired signatures and selected loader evidence.")
 
 
