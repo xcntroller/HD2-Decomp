@@ -15,6 +15,8 @@ We can also extract selected mission files locally and read the basic structure
 of one real mission.
 We can now identify how some of its objects are named, positioned, rotated,
 scaled, and linked to parent objects.
+The first small, readable C++ reconstruction is also in place: the code for
+reading nested sections of a file.
 
 This is still early research, not a rebuilt or playable version of the game.
 Our findings so far come from examining files; we haven't yet checked them
@@ -34,6 +36,7 @@ every detail of that area.
 - [x] Locate the code involved in loading missions.
 - [x] Extract sample files for one mission and match their structure to the loader.
 - [x] Decode the first object-placement fields and distinguish lookup from creation.
+- [x] Reconstruct and test a small file-reading component with readable source.
 - [x] Save our findings and add repeatable checks for the evidence.
 
 ### Next: understand one mission from loading to play
@@ -75,6 +78,8 @@ changes.
 - [Mission findings](analysis/mission-format.json): the first checked file
   structures, sample fingerprints, and what remains unknown.
 - [Tools](tools/): scripts created for this project.
+- [Readable reconstructions](recovered/): small, tested implementations of
+  understood behavior, starting with the chunk reader.
 
 ## Keeping game files local
 

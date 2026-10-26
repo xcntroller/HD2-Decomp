@@ -25,6 +25,7 @@
 *.gar
 
 # Build/cache output and local logs.
+/recovered/build/
 __pycache__/
 *.py[cod]
 *.class

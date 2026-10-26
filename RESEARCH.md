@@ -68,6 +68,8 @@ been reconstructed.
   fallback position, and parent-name containers.
 - [x] Verify exact sample counts and selected field-consumer call sites with
   a repeatable evidence validator.
+- [x] Start readable C++ source with a read-only chunk-reader reconstruction,
+  tested independently against synthetic scenes and the real ALPS1 sample.
 
 ### Next: one mission-loading path
 
@@ -256,15 +258,36 @@ clone alone. `--archive` additionally hashes the full base mission archive.
 
 ### Readable reconstruction versus decompiler output
 
-Small, well-understood helpers are candidates for readable reconstructions with
-English names, proper data types, and behavioral tests. Large loader exports
-are not ready: unknown engine calls and poor type propagation must not be hidden
-behind confident-looking names. Generated pseudocode stays local, separate from
-our original tools.
+The [recovered source directory](recovered/README.md) now contains the first
+small reconstruction: a portable C++17 read-only chunk reader with descriptive
+names and no hardcoded game addresses or registers. Its
+[evidence map](analysis/reconstruction-map.json) identifies the supported subsets
+of `00405620`, `00415C90`, `00405940`, and `00405890`.
+
+This is not source recovery or a drop-in game function. Standard streams replace
+the archive API, exceptions replace Boolean status, and malformed-input safety
+checks are explicit deviations from observed code. The 16 C++ tests cover valid
+behavior and these deliberate checks. A separate C++ scanner agrees with the
+Python inspector on 37 synthetic scenes, 9 rejected malformed scenes, and the
+entire immediate-field census of all 4,008 ALPS1 records. Address and
+undefined-behavior sanitizer tests also pass.
+
+```sh
+make -C recovered test
+python3 -B recovered/tests/compare_scene_scan.py \
+  --scanner recovered/build/scan_scene_chunks \
+  --scene extracted/alps1-base/scene2.bin
+```
+
+The C++ scanner does not validate names or interpret gameplay fields. These
+checks do not execute the original helpers, so runtime equivalence is not
+established. Large loader exports are still not ready: unknown engine calls
+and poor type propagation must not be hidden behind confident-looking names.
+Generated pseudocode stays local, separate from the readable reconstructions.
 
 The current Python parsers are **format-analysis tools**, not exact replacements
 for game functions. In particular, they deliberately reject malformed inputs
-more strictly than the observed loader. A future reconstruction should state its
+more strictly than the observed loader. Every reconstruction should state its
 supported behavior and deviations explicitly rather than claim source recovery
 or binary equivalence.
 
@@ -317,8 +340,11 @@ python3 -B -m unittest discover -s tools -p 'test_mission_tools.py' -v
 | Location | Purpose | In Git? |
 | --- | --- | --- |
 | `tools/` | Our analysis and validation scripts | Yes |
+| `recovered/` | Readable, tested reconstructions with explicit scope | Yes |
+| `recovered/build/` | Native build products | No |
 | `analysis/initialization-map.json` | Curated findings and evidence pointers | Yes |
 | `analysis/mission-format.json` | First mission-structure observations and fingerprints | Yes |
+| `analysis/reconstruction-map.json` | Reconstruction provenance and supported behavior | Yes |
 | `analysis/work/` | Local repaired/unpacked binaries and generated exports | No |
 | `Hidden and Dangerous 2/` | Locally supplied game installation | No |
 | `.tools/`, `ghidra/` | Downloaded tool installations | No |

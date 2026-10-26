@@ -1,0 +1,68 @@
+{
+  "scope": "First readable, portable read-only chunk-reader reconstruction; not original source or a binary-compatible replacement.",
+  "runtime_verified": false,
+  "abi_compatible": false,
+  "binary_equivalent": false,
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307"
+  },
+  "source": {
+    "header": "recovered/io/chunk_reader.h",
+    "implementation": "recovered/io/chunk_reader.cpp",
+    "documentation": "recovered/README.md",
+    "namespace": "hd2::recovered",
+    "language": "C++17",
+    "naming": "All reconstructed names and API choices are ours, not recovered developer symbols."
+  },
+  "coverage": [
+    {
+      "address": "00405620",
+      "implementation": "ChunkReader::ChunkReader",
+      "subset": "Read-mode end seek to measure input length, then beginning seek. Archive opening and the original open/write flags are not implemented.",
+      "local_export": "analysis/work/chunk-helpers/00405620.json"
+    },
+    {
+      "address": "00415c90",
+      "implementation": "ChunkReader::enter_chunk",
+      "subset": "Decode little-endian 6-byte header; end = header position + total size; push current end; report ID. Boundary exhaustion is handled by this API rather than a caller loop.",
+      "local_export": "analysis/work/chunk-signatures-fixed/00415c90.json"
+    },
+    {
+      "address": "00405940",
+      "implementation": "ChunkReader::read_exact",
+      "subset": "Bound reads by the active chunk end and require the requested byte count. This reconstruction also bounds reads at depth zero.",
+      "local_export": "analysis/work/chunk-signatures-fixed/00405940.json"
+    },
+    {
+      "address": "00405890",
+      "implementation": "ChunkReader::leave_chunk",
+      "subset": "Read-mode seek to the current end, then decrement nonzero depth; depth zero uses file size. Write-mode backpatching and optional written-size output are excluded.",
+      "local_export": "analysis/work/chunk-signatures-fixed/00405890.json"
+    }
+  ],
+  "intentional_differences": [
+    "Caller-owned seekable std::istream replaces the game's archive handles.",
+    "Exception-based error reporting replaces Boolean results.",
+    "Reject incomplete/invalid headers, parent overruns, file overruns and failed seeks explicitly.",
+    "Enforce a 256-level safety limit consistent with the inferred end-stack capacity, not an observed original runtime guard.",
+    "Support files only within signed 32-bit offset range, using wider arithmetic internally instead of reproducing overflow.",
+    "No DTA lifecycle, writing, chunk-size patching, original object layout, engine calls or game execution."
+  ],
+  "verification": {
+    "unit_tests": "recovered/tests/chunk_reader_tests.cpp",
+    "unit_test_count": 16,
+    "comparison_driver": "recovered/tests/compare_scene_scan.py",
+    "comparison_reference": "tools/inspect_scene2.py",
+    "synthetic_valid_scene_count": 37,
+    "synthetic_malformed_scene_count": 9,
+    "sanitizers": ["address", "undefined"],
+    "real_sample": "extracted/alps1-base/scene2.bin",
+    "real_sample_sha256": "d3aa324501cf70dce39eedced21c4d58d3f84d946f64c2c31aba6b712dc403d4",
+    "expected_top_level_chunks": 15,
+    "expected_object_records": 4008,
+    "complete_immediate_record_field_census_matches_python": true,
+    "mission_evidence": "analysis/mission-format.json",
+    "limitations": "Synthetic behavior and independent file traversal checks, not differential execution against the original x86 routines. The C++ scanner does not validate name payloads or decode gameplay semantics."
+  }
+}
