@@ -1,0 +1,47 @@
+{
+  "scope": "Candidate-result dispatch inside the client object loader, not the full cache, retry loop or engine loader.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307"
+  },
+  "parent_function": "006cd940",
+  "model_open_call": {
+    "site": "006ce417",
+    "vtable_offset": "0x74",
+    "stack_arguments_in_source_order": ["model", "candidate_name", "0x10", "0", "0"]
+  },
+  "dispatch": {
+    "first_result_bits": "80000001",
+    "selector_address": "006d1a54",
+    "target_address": "006d1a40",
+    "selectors": [0, 1, 4, 4, 4, 4, 4, 4, 4, 1, 4, 4, 4, 4, 4, 4, 4, 4, 2, 3],
+    "targets": ["006ce567", "006ce715", "006ce458", "006ce4d4", "006ce55f"],
+    "target_meanings": ["try_next_candidate", "stop_failure", "bad_file_version_then_signed_check", "bad_file_time_then_signed_check", "signed_check"]
+  },
+  "instruction_anchors": [
+    {"address": "006ce40f", "hex": "6a006a006a105057ff5174", "meaning": "Five model-open stack arguments followed by virtual call at +0x74"},
+    {"address": "006ce43a", "hex": "8d82ffffff7f83f8130f8716010000", "meaning": "Map results 0x80000001 through 0x80000014 into a 20-entry switch; others go to signed check"},
+    {"address": "006ce44b", "hex": "8a88541a6d00ff248d401a6d00", "meaning": "Byte selector table followed by absolute target table"},
+    {"address": "006ce55f", "hex": "8b44242885c07d18", "meaning": "Signed nonnegative results enter success handling at 006ce57f"},
+    {"address": "006ce56c", "hex": "46e88eb0d3ff3bf00f8261feffff", "meaning": "Increment candidate index, compare against count, retry at 006ce3db only if candidates remain"}
+  ],
+  "diagnostics": [
+    {"result_bits": "80000013", "site": "006ce492", "string_address": "00832cac", "text": "Cache : BADFILEVERSION '%s' (3ds filter)"},
+    {"result_bits": "80000014", "site": "006ce50e", "string_address": "00832c84", "text": "Cache : BADFILETIME '%s' (3ds filter)"}
+  ],
+  "reconstruction": {
+    "header": "recovered/scene/model_load_policy.h",
+    "implementation": "recovered/scene/model_load_policy.cpp",
+    "tests": "recovered/tests/model_load_policy_tests.cpp",
+    "test_count": 17,
+    "rule": "High bit clear accepts the candidate result. 0x80000002 and 0x8000000a stop with failure. Other negative results request the next candidate, with the two observed diagnostics reported separately.",
+    "intentional_differences": [
+      "A pure decision object replaces inline control flow and logging; callers must consume both the action and diagnostic.",
+      "Unsigned 32-bit result bits avoid implementation-defined unsigned-to-signed conversion.",
+      "No SDK names are invented for unexplained result codes.",
+      "Try-next describes the branch, not a guarantee that a further candidate exists."
+    ]
+  },
+  "runtime_verified": false,
+  "limitations": "No original code execution, complete cache policy, ownership/refcounts, candidate construction, logging implementation, resource search directories or successful model loading."
+}

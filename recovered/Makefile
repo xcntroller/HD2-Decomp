@@ -6,7 +6,7 @@ BUILD_DIR ?= build
 
 .PHONY: all test
 
-all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks $(BUILD_DIR)/model_resource_key_tests $(BUILD_DIR)/model_resource_key
+all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks $(BUILD_DIR)/model_resource_key_tests $(BUILD_DIR)/model_resource_key $(BUILD_DIR)/frame_kind_tests $(BUILD_DIR)/model_load_policy_tests
 
 $(BUILD_DIR):
 	mkdir -p "$@"
@@ -23,8 +23,16 @@ $(BUILD_DIR)/model_resource_key_tests: scene/model_resource_key.cpp tests/model_
 $(BUILD_DIR)/model_resource_key: scene/model_resource_key.cpp tools/model_resource_key.cpp scene/model_resource_key.h | $(BUILD_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) scene/model_resource_key.cpp tools/model_resource_key.cpp $(LDFLAGS) -o "$@"
 
+$(BUILD_DIR)/frame_kind_tests: scene/frame_kind.cpp tests/frame_kind_tests.cpp scene/frame_kind.h | $(BUILD_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) scene/frame_kind.cpp tests/frame_kind_tests.cpp $(LDFLAGS) -o "$@"
+
+$(BUILD_DIR)/model_load_policy_tests: scene/model_load_policy.cpp tests/model_load_policy_tests.cpp scene/model_load_policy.h | $(BUILD_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) scene/model_load_policy.cpp tests/model_load_policy_tests.cpp $(LDFLAGS) -o "$@"
+
 test: all
 	"$(BUILD_DIR)/chunk_reader_tests"
 	"$(BUILD_DIR)/model_resource_key_tests"
+	"$(BUILD_DIR)/frame_kind_tests"
+	"$(BUILD_DIR)/model_load_policy_tests"
 	$(PYTHON) -B tests/compare_scene_scan.py --scanner "$(BUILD_DIR)/scan_scene_chunks"
 	$(PYTHON) -B tests/compare_model_resource_keys.py --normalizer "$(BUILD_DIR)/model_resource_key"

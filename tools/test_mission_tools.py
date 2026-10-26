@@ -18,7 +18,7 @@ from extract_dta_member import (
     read_index,
     xor_record,
 )
-from inspect_scene2 import chunks, decode_objects, model_resource_key, summarize
+from inspect_scene2 import chunks, decode_objects, frame_kind_name, model_resource_key, summarize
 from validate_mission_sample import validate as validate_mission
 
 
@@ -189,6 +189,47 @@ class SceneTests(unittest.TestCase):
 class ObjectDecodingTests(unittest.TestCase):
     def scene(self, fields: bytes) -> bytes:
         return chunk(0x4C53, chunk(0x4000, chunk(0x4010, fields)))
+
+    def test_frame_kind_labels_match_verified_manifest(self):
+        path = Path(__file__).resolve().parents[1] / "analysis/engine-model-map.json"
+        kinds = json.loads(path.read_text())["frame_kinds"]
+        self.assertEqual([item["kind"] for item in kinds], list(range(1, 17)))
+        for item in kinds:
+            with self.subTest(kind=item["kind"]):
+                self.assertEqual(frame_kind_name(item["kind"]), item["name"])
+        for value in [0, 17, 0xFFFFFFFF]:
+            with self.subTest(unknown=value):
+                self.assertIsNone(frame_kind_name(value))
+
+    def test_labels_preserve_numeric_fields_and_unknown_kinds(self):
+        values = list(range(1, 17)) + [0, 17, 0xFFFFFFFF]
+        fields = b"".join(
+            chunk(0x4011, struct.pack("<I", value))
+            + chunk(0x10, b"synthetic\0") + chunk(0x2012, b"synthetic.4ds\0")
+            for value in values
+        )
+        result = decode_objects(self.scene(fields))
+        decoded = result["records"][0]["fields"]
+        self.assertEqual(result["creation_kind_field_counts"],
+                         {str(value): 1 for value in sorted(values)})
+        expected = []
+        for index, value in enumerate(values):
+            with self.subTest(value=value):
+                creation, name, resource = decoded[index * 3:index * 3 + 3]
+                self.assertEqual(creation["value"], value)
+                self.assertEqual(creation["label"], frame_kind_name(value))
+                for field in [name, resource]:
+                    self.assertEqual(field["active_creation_kind"], value)
+                    self.assertEqual(field["active_creation_kind_label"], frame_kind_name(value))
+                self.assertEqual(resource["required_frame_kind"], 9)
+                self.assertEqual(resource["required_frame_kind_label"], "FRAME_MODEL")
+                self.assertEqual(name["name_action"],
+                                 "lookup_existing" if value == 0 else "create_if_missing")
+            expected.append({"kind": value, "label": frame_kind_name(value), "count": 1})
+        self.assertEqual(result["serialized_creation_kind_field_counts_labeled"],
+                         sorted(expected, key=lambda item: item["kind"]))
+        self.assertIn('"label": null', json.dumps(result))
+        self.assertNotIn("runtime_instance_counts", result)
 
     def test_decodes_supported_fields(self):
         fields = (

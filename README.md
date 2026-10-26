@@ -19,6 +19,8 @@ The first small, readable C++ reconstruction is also in place: the code for
 reading nested sections of a file.
 We've also identified model-resource references and reconstructed the loader's
 small model-name processing step.
+We can now name the engine's object types and explain when model loading tries
+another file, stops, or accepts a result.
 
 This is still early research, not a rebuilt or playable version of the game.
 Our findings so far come from examining files; we haven't yet checked them
@@ -40,6 +42,7 @@ every detail of that area.
 - [x] Decode the first object-placement fields and distinguish lookup from creation.
 - [x] Reconstruct and test a small file-reading component with readable source.
 - [x] Identify model-resource references and reconstruct their name-processing rule.
+- [x] Recover engine object-type names and the model loader's retry/stop decisions.
 - [x] Save our findings and add repeatable checks for the evidence.
 
 ### Next: understand one mission from loading to play

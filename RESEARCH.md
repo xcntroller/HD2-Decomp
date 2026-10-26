@@ -214,10 +214,10 @@ world transforms.
 each record. When a name field is encountered, zero selects lookup of an
 existing name-table entry; nonzero selects a create-if-missing branch. In this
 sample there are 2,733 lookup requests and 1,275 create-if-missing requests.
-The latter contain kinds `2` (13), `3` (2), `6` (103), and `9` (1,157). These
-numbers are not a recovered authoritative engine enum. Kind `9` now has a
-specific model-resource association through the handler described below; the
-remaining kinds are still unlabeled.
+The latter contain kinds `2` (13 lights), `3` (2 cameras), `6` (103 dummies),
+and `9` (1,157 models). These names are now supported by the engine's own
+type-name query, not guesses from the mission data. They remain serialized
+requests, not counts of successfully instantiated runtime objects.
 
 The loader populates a name table through callback `006CC580` before parsing
 the records. The callback reads a frame's name and stores its pointer in the
@@ -280,8 +280,9 @@ Subsequent code has cached and uncached paths, an engine virtual call and
 negative result handling. The failure path references
 `# ERROR LOADER : modelfile '%s' not found` at `006CE750`; that exact anchor is
 checked against the local function export. Cache version/time diagnostics are
-also present. The cache policy, resource directories, extension addition, and
-actual method signatures have not been reconstructed.
+also present. The next section traces the virtual method into the engine and
+recovers the candidate-result policy. Full cache behavior and resource search
+directories remain unresolved.
 
 All 1,157 ALPS1 occurrences are extensionless basenames and have serialized
 active kind `9`; they use 61 distinct names/keys. This is a resource-reference
@@ -295,6 +296,94 @@ Fourteen C++ cases and 71 cross-language synthetic comparisons cover this
 behavior, including leading dots, multiple dots and dots before path separators.
 All 61 real names are checked too, but those extensionless names cannot by
 themselves establish the suffix-removal behavior.
+
+### Engine frame types and the model-open boundary
+
+The original `LS3DF.dll` is now also imported into the separate research project.
+No game binary or baseline project was modified. The driver's
+`I3DGetDriver` export at `10068FB0` returns a singleton initialized through
+constructor `100151C0`. That constructor installs vtable `1009B640`.
+The driver's `+0x7C` slot points to `10019F00`, a type-name query that returns
+16 static `FRAME_*` strings for kinds 1 through 16.
+
+[FrameKind](recovered/scene/frame_kind.h) and its name lookup reproduce that
+supported table. The inspector retains the numeric creation kinds and adds
+their names. Unknown values remain explicit rather than becoming a real type.
+The original query's formatted fallback for out-of-range values is not
+reconstructed. The [engine evidence map](analysis/engine-model-map.json) and
+[validator](tools/validate_engine_model.py) check the DLL fingerprint, PE section
+mapping, relevant vtable entries, dispatch targets, and exact type-name strings.
+
+The driver factory slot `+0x54` points to wrapper `10019E10`, which calls
+`10018E40`. Its kind-9 branch at `1001909A` constructs a model and installs
+vtable `1009BA50` at `100190D6`. The model's `+0x74` slot therefore resolves
+the client call at `006CE417` to engine method `100340B0`.
+The caller pushes five arguments: model, candidate name, `0x10`, zero, zero;
+the engine method returns with `RET 0x14`, confirming stack cleanup for all
+five. The last two arguments are kept opaque in our signature rather than
+assigning unverified interface types.
+
+[ConfigureEngineModel.java](tools/ConfigureEngineModel.java) defines the
+assembly-verified entries when Ghidra misses indirect targets and sets the
+model-open signature. It also corrects the preceding reset call at `100340BC`:
+model slot `+0x78` resolves to `10034020`, whose `RET 4` establishes one
+stack argument. Without that call-site override, Ghidra shifted the following
+arguments and incorrectly treated the model pointer as a filename. The corrected
+wrapper calls `1005D260` with the resource name, flags, two opaque values,
+and model, in that order. These are research-database changes, not executable
+patches.
+
+The internal loader selects a name prefix and appends `.4ds` using the string
+at `100A707C` before calling `1005D970` at `1005D3AE`. This establishes suffix
+addition inside this path, not the complete resource search or archive
+precedence. It also has additional global state, callbacks and cleanup that are
+not yet reconstructed.
+
+To repeat the metadata correction after importing the original DLL into the
+research project, choose a new output directory:
+
+```sh
+"$GHIDRA_HOME/support/analyzeHeadless" "$PROJECT_DIR" HD2Research \
+  -process LS3DF.dll -noanalysis -scriptPath "$PWD/tools" \
+  -preScript ConfigureEngineModel.java \
+  -postScript ExportFunctions.java "$PWD/analysis/work/engine-open-export" \
+  100340b0 1005d260 10019f00 10018e40 10068fb0 100151c0 \
+  -max-cpu 2
+python3 -B tools/validate_engine_model.py
+python3 -B tools/validate_model_load_policy.py
+```
+
+### Candidate-result policy
+
+The [readable classifier](recovered/scene/model_load_policy.cpp) reconstructs
+one bounded decision inside `006CD940`, not a cache or model loader:
+
+| Result bits | Candidate action | Additional diagnostic |
+| --- | --- | --- |
+| `0x00000000` through `0x7FFFFFFF` | Accept the result | None here |
+| `0x80000002`, `0x8000000A` | Stop with failure | None here |
+| `0x80000013` | Try the next candidate, if one remains | `BADFILEVERSION` |
+| `0x80000014` | Try the next candidate, if one remains | `BADFILETIME` |
+| Other values with the high bit set | Try the next candidate, if one remains | None here |
+
+This preserves the important distinction between retryable negatives and the
+two stop codes. It does not invent SDK names for unexplained numbers. The
+returned decision exposes diagnostics instead of performing the original
+logging; callers must handle both fields. Accepting a candidate result does
+not prove that later cache operations or the full mission load succeed.
+
+The [policy evidence map](analysis/model-load-policy.json) records the original
+20-byte selector table, five branch targets, signed success check at `006CE563`,
+candidate-count/retry branch, and two diagnostic strings. Its
+[validator](tools/validate_model_load_policy.py) checks those anchors against the
+fingerprinted client using PE section mappings, not generated pseudocode alone.
+Seventeen native cases cover success boundaries, both stop codes, diagnostics,
+other failures, and neighboring values. Synthetic validator tests also require
+mutated evidence and wrong fingerprints to fail explicitly.
+
+Full candidate construction, cache ownership/eviction, refcounts, resource
+search directories, and runtime behavior remain open. Neither reconstruction
+executes original game code or establishes ABI/binary equivalence.
 
 ### Readable reconstruction versus decompiler output
 

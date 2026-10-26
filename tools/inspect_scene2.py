@@ -10,6 +10,18 @@ from pathlib import Path
 import struct
 
 
+FRAME_KIND_NAMES = (
+    "FRAME_VISUAL", "FRAME_LIGHT", "FRAME_CAMERA", "FRAME_SOUND",
+    "FRAME_SECTOR", "FRAME_DUMMY", "FRAME_TARGET", "FRAME_USER",
+    "FRAME_MODEL", "FRAME_JOINT", "FRAME_VOLUME", "FRAME_OCCLUDER",
+    "FRAME_SCENE", "FRAME_AREA", "FRAME_SHADOW", "FRAME_LANDSCAPE",
+)
+
+
+def frame_kind_name(kind: int) -> str | None:
+    return FRAME_KIND_NAMES[kind - 1] if 1 <= kind <= len(FRAME_KIND_NAMES) else None
+
+
 @dataclass(frozen=True)
 class Chunk:
     offset: int
@@ -108,11 +120,13 @@ def decode_field(data: bytes, field: Chunk) -> dict:
     elif field.kind == 0x2012:
         name = name_value(data, field).decode("ascii")
         result.update(meaning="model_resource", value=name,
-                      lookup_key=model_resource_key(name), required_frame_kind=9)
+                      lookup_key=model_resource_key(name), required_frame_kind=9,
+                      required_frame_kind_label=frame_kind_name(9))
     elif field.kind == 0x4011:
         if field.size != 10:
             raise ValueError(f"Expected a 4-byte creation kind at {field.offset:#x}")
-        result.update(meaning="creation_kind", value=struct.unpack_from("<I", data, field.offset + 6)[0])
+        value = struct.unpack_from("<I", data, field.offset + 6)[0]
+        result.update(meaning="creation_kind", value=value, label=frame_kind_name(value))
     elif field.kind in (0x20, 0x22, 0x2C, 0x2D):
         meaning, count = {
             0x20: ("position", 3),
@@ -163,10 +177,12 @@ def decode_objects(data: bytes) -> dict:
                     creation_kinds[active_kind] += 1
                 elif field.kind == 0x2012:
                     decoded["active_creation_kind"] = active_kind
+                    decoded["active_creation_kind_label"] = frame_kind_name(active_kind)
                 elif field.kind == 0x10:
                     action = "lookup_existing" if active_kind == 0 else "create_if_missing"
                     decoded["name_action"] = action
                     decoded["active_creation_kind"] = active_kind
+                    decoded["active_creation_kind_label"] = frame_kind_name(active_kind)
                     actions[action] += 1
                 fields.append(decoded)
             records.append({"offset": record.offset, "size": record.size, "fields": fields})
@@ -175,6 +191,10 @@ def decode_objects(data: bytes) -> dict:
         "creation_kind_field_counts": {
             str(kind): count for kind, count in sorted(creation_kinds.items())
         },
+        "serialized_creation_kind_field_counts_labeled": [
+            {"kind": kind, "label": frame_kind_name(kind), "count": count}
+            for kind, count in sorted(creation_kinds.items())
+        ],
         "name_action_counts": dict(sorted(actions.items())),
         "decoded_field_counts": dict(sorted(decoded_counts.items())),
         "records": records,

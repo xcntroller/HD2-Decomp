@@ -1,0 +1,107 @@
+{
+  "scope": "Bounded static evidence for frame-kind names and the model factory/open chain, not a reconstruction of complete factory, cache, or model-loading behavior.",
+  "runtime_verified": false,
+  "binary": {
+    "path": "Hidden and Dangerous 2/LS3DF.dll",
+    "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+    "image_base": "10000000"
+  },
+  "driver": {
+    "singleton_getter": "10068fb0",
+    "singleton_slot": "100d16f8",
+    "constructor": "100151c0",
+    "vtable": "1009b640",
+    "factory_slot_offset": "54",
+    "type_query_slot_offset": "7c"
+  },
+  "type_query": {
+    "entry": "10019f00",
+    "jump_table": "10019fb4",
+    "unknown_path": "10019f97",
+    "unknown_policy": "Formatting is not reconstructed. Lookup returns no label and preserves the unknown numeric value."
+  },
+  "frame_kinds": [
+    {"kind": 1, "name": "FRAME_VISUAL", "case_va": "10019f17", "string_va": "100a660c"},
+    {"kind": 2, "name": "FRAME_LIGHT", "case_va": "10019f1f", "string_va": "100a6600"},
+    {"kind": 3, "name": "FRAME_CAMERA", "case_va": "10019f27", "string_va": "100a65f0"},
+    {"kind": 4, "name": "FRAME_SOUND", "case_va": "10019f2f", "string_va": "100a65e4"},
+    {"kind": 5, "name": "FRAME_SECTOR", "case_va": "10019f37", "string_va": "100a65d4"},
+    {"kind": 6, "name": "FRAME_DUMMY", "case_va": "10019f3f", "string_va": "100a65c8"},
+    {"kind": 7, "name": "FRAME_TARGET", "case_va": "10019f47", "string_va": "100a65b8"},
+    {"kind": 8, "name": "FRAME_USER", "case_va": "10019f4f", "string_va": "100a65ac"},
+    {"kind": 9, "name": "FRAME_MODEL", "case_va": "10019f57", "string_va": "100a65a0"},
+    {"kind": 10, "name": "FRAME_JOINT", "case_va": "10019f5f", "string_va": "100a6594"},
+    {"kind": 11, "name": "FRAME_VOLUME", "case_va": "10019f67", "string_va": "100a6584"},
+    {"kind": 12, "name": "FRAME_OCCLUDER", "case_va": "10019f6f", "string_va": "100a6574"},
+    {"kind": 13, "name": "FRAME_SCENE", "case_va": "10019f77", "string_va": "100a6568"},
+    {"kind": 14, "name": "FRAME_AREA", "case_va": "10019f7f", "string_va": "100a655c"},
+    {"kind": 15, "name": "FRAME_SHADOW", "case_va": "10019f87", "string_va": "100a654c"},
+    {"kind": 16, "name": "FRAME_LANDSCAPE", "case_va": "10019f8f", "string_va": "100a653c"}
+  ],
+  "model_chain": {
+    "factory_wrapper": "10019e10",
+    "factory": "10018e40",
+    "factory_jump_table": "10019378",
+    "factory_table_first_kind": 2,
+    "model_kind": 9,
+    "model_case": "1001909a",
+    "model_vtable": "1009ba50",
+    "open_slot_offset": "74",
+    "open_wrapper": "100340b0",
+    "open_worker": "1005d260",
+    "reset_call": "100340bc",
+    "reset_slot_offset": "78",
+    "reset_method": "10034020",
+    "open_wrapper_stack_cleanup_bytes": 20,
+    "scope": "RET 0x14 establishes five stack argument slots including self, not their full semantic contract."
+  },
+  "resource_open_boundary": {
+    "suffix_pointer_load": "1005d38a",
+    "suffix_string_address": "100a707c",
+    "suffix": ".4ds",
+    "call_site": "1005d3ae",
+    "callee": "1005d970",
+    "scope": "Internal worker appends this suffix to its selected name prefix and dispatches to the next loader stage. Resource search directories, archive precedence and the complete filename-selection behavior are not reconstructed."
+  },
+  "ghidra_metadata_repair": {
+    "script": "tools/ConfigureEngineModel.java",
+    "model_open_signature": "int __stdcall FUN_100340b0(void * model, char * resource_name, uint flags, void * opaque_arg4, void * opaque_arg5)",
+    "callsite_override": "The +0x78 reset call cleans one four-byte stack argument. Correcting this prevents the subsequent resource-name argument from shifting into the model slot.",
+    "local_export": "analysis/work/engine-model-verified/100340b0.json",
+    "repeatable_decompilation_checked": true,
+    "executable_bytes_modified": false
+  },
+  "byte_checks": [
+    {"va": "10068fb0", "hex": "a1 f8 16 0d 10 c3", "meaning": "Singleton getter loads the driver slot and returns."},
+    {"va": "100151f9", "hex": "c7 00 40 b6 09 10", "meaning": "Driver constructor writes its vtable."},
+    {"va": "10019f00", "hex": "8b 4c 24 08 8d 41 ff 83 f8 0f 0f 87 87 00 00 00 ff 24 85 b4 9f 01 10", "meaning": "Query uses kind minus one, unsigned upper bound 15, then indexed jump."},
+    {"va": "10019e10", "hex": "8b 44 24 08 8b 4c 24 04 50", "meaning": "Factory wrapper argument setup."},
+    {"va": "10019e1e", "hex": "c2 08 00", "meaning": "Factory wrapper cleans two stack slots."},
+    {"va": "10018e7b", "hex": "8d 43 fe 83 f8 0d 0f 87 af 04 00 00 ff 24 85 78 93 01 10", "meaning": "Factory dispatcher uses kind minus two and a 14-entry jump table; earlier cache behavior is not reconstructed."},
+    {"va": "100190d6", "hex": "c7 06 50 ba 09 10", "meaning": "Model branch writes the model vtable."},
+    {"va": "100340b0", "hex": "53 55 8b 6c 24 0c", "meaning": "Model-open wrapper entry."},
+    {"va": "100341a4", "hex": "c2 14 00", "meaning": "Model-open wrapper early return cleans five stack slots."},
+    {"va": "100341b2", "hex": "c2 14 00", "meaning": "Model-open wrapper final return cleans five stack slots."},
+    {"va": "100340bc", "hex": "ff 50 78", "meaning": "Preceding model reset virtual call."},
+    {"va": "100340aa", "hex": "c2 04 00", "meaning": "Reset method cleans one stack argument."},
+    {"va": "1005d38a", "hex": "b8 7c 70 0a 10", "meaning": "Load the appended filename suffix address."},
+    {"va": "100a707c", "hex": "2e 34 64 73 00", "meaning": "NUL-terminated .4ds filename suffix."}
+  ],
+  "pointers": [
+    {"va": "1009b694", "target": "10019e10", "meaning": "Driver vtable +0x54 factory wrapper."},
+    {"va": "1009b6bc", "target": "10019f00", "meaning": "Driver vtable +0x7c type query."},
+    {"va": "10019394", "target": "1001909a", "meaning": "Factory kind-2 table entry for kind 9."},
+    {"va": "1009bac4", "target": "100340b0", "meaning": "Model vtable +0x74 open wrapper."},
+    {"va": "1009bac8", "target": "10034020", "meaning": "Model vtable +0x78 reset method."}
+  ],
+  "direct_calls": [
+    {"site": "10019e19", "target": "10018e40"},
+    {"site": "100340f6", "target": "1005d260"},
+    {"site": "1005d3ae", "target": "1005d970"}
+  ],
+  "serialized_sample": {
+    "mission": "ALPS1 base scene2.bin",
+    "creation_kind_field_counts": {"2": 13, "3": 2, "6": 103, "9": 1157},
+    "interpretation": "Serialized creation-kind fields/loader requests, NOT runtime instance counts. Sample counts are context, not verified by the DLL validator."
+  }
+}

@@ -15,6 +15,11 @@ The second component is the
 [public interface](scene/model_resource_key.h). This is a small string
 transformation, not a recovered model loader.
 
+The [frame-kind lookup](scene/frame_kind.h) names the 16 engine types supported
+by the DLL's type-name query. The
+[model-load policy](scene/model_load_policy.h) classifies candidate results.
+Neither component creates frames or loads models.
+
 ## Chunk reader
 
 The reader:
@@ -81,6 +86,27 @@ copy-on-write storage and bookkeeping. Resource lookup directories, extension
 addition, actual frame creation, cache behavior, and successful loading remain
 outside this helper's scope.
 
+## Frame kinds and model-load decisions
+
+The frame-kind enum uses the engine's numeric kinds and `FRAME_*` names.
+Unknown numeric kinds return an empty optional; the original engine's formatted
+fallback is deliberately not recreated. The scene inspector retains the
+serialized numbers alongside any recognized labels.
+
+`classify_model_load_result()` accepts the raw 32-bit result bits. Nonnegative
+results select `accept`; `0x80000002` and `0x8000000A` select `stop_failure`.
+Other negative results select `try_next_candidate`, with separate diagnostics
+for `0x80000013` (bad file version) and `0x80000014` (bad file time).
+The caller must consume both action and diagnostic. Trying another candidate
+is conditional on one remaining; accepting a result is not a guarantee that
+the complete load succeeds.
+
+This pure classifier reproduces inline branch decisions, not the retry loop,
+logging, file search, engine method, or cache. Unsigned result bits avoid a
+platform-dependent conversion to signed integers. Evidence and original
+addresses live in the [engine map](../analysis/engine-model-map.json) and
+[policy map](../analysis/model-load-policy.json), not in reconstructed logic.
+
 ## Build and test
 
 From the repository root, with a C++17 compiler, GNU Make, and Python 3.11+:
@@ -97,7 +123,9 @@ This builds with strict warnings and runs:
   inspector;
 - 9 malformed-scene cases that both scanners must reject explicitly;
 - 14 C++ model-key cases, including an embedded-NUL rejection;
-- 71 deterministic model-key comparisons against Python.
+- 71 deterministic model-key comparisons against Python;
+- frame-kind checks for all 16 supported values and unknown values;
+- 17 model-load-result cases covering success, retry, stop, and diagnostics.
 
 No game files are needed for those tests. Build products go into ignored
 `recovered/build/`.

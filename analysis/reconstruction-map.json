@@ -1,5 +1,5 @@
 {
-  "scope": "Readable portable reconstructions of read-only chunk handling and a model-resource key transformation; not original source or binary-compatible replacements.",
+  "scope": "Readable portable reconstructions of read-only chunk handling, model-resource key processing, engine frame-kind names and candidate-result decisions; not original source or binary-compatible replacements.",
   "runtime_verified": false,
   "abi_compatible": false,
   "binary_equivalent": false,
@@ -71,6 +71,39 @@
         "real_unique_keys": 61,
         "real_sample": "extracted/alps1-base/scene2.bin",
         "limitations": "All current real sample names lack dots. Last-dot edge cases are supported by static assembly plus synthetic tests, not execution of the original routine."
+      }
+    },
+    {
+      "name": "frame_kind",
+      "header": "recovered/scene/frame_kind.h",
+      "implementation": "recovered/scene/frame_kind.cpp",
+      "evidence": "analysis/engine-model-map.json",
+      "parent_function": "10019f00 in LS3DF.dll",
+      "subset": "Numeric enum and names for the 16 supported kinds. Unknown values return an empty optional rather than reproducing the engine's formatted fallback.",
+      "verification": {
+        "unit_tests": "recovered/tests/frame_kind_tests.cpp",
+        "unit_test_count": 19,
+        "binary_validator": "tools/validate_engine_model.py",
+        "runtime_verified": false
+      }
+    },
+    {
+      "name": "model_load_policy",
+      "header": "recovered/scene/model_load_policy.h",
+      "implementation": "recovered/scene/model_load_policy.cpp",
+      "evidence": "analysis/model-load-policy.json",
+      "parent_function": "006cd940",
+      "subset": "Candidate-result branch decisions and two diagnostic categories. No retry loop, logging, cache or engine loader.",
+      "intentional_differences": [
+        "Pure decision object exposes the action and diagnostic instead of branching or logging.",
+        "Accept unsigned 32-bit result bits and test the high bit without implementation-defined signed conversion.",
+        "No original SDK names are assigned to unexplained status codes."
+      ],
+      "verification": {
+        "unit_tests": "recovered/tests/model_load_policy_tests.cpp",
+        "unit_test_count": 17,
+        "binary_validator": "tools/validate_model_load_policy.py",
+        "runtime_verified": false
       }
     }
   ],
