@@ -80,6 +80,7 @@ been reconstructed.
 - [x] Locate menu-specific setup, screen definitions, model binding and shared
   update/render paths.
 - [ ] Recover the minimal window/graphics/engine initialization contract.
+- [x] Recover a bounded graphics ABI and compile an independently written window host.
 - [ ] Build a 32-bit Windows host and demonstrate an engine window through Proton.
 - [ ] Integrate archive/resource registration, menu models, text/fonts and cursor.
 - [ ] Wire mouse/keyboard input and clean Exit/teardown.
@@ -87,8 +88,9 @@ been reconstructed.
 
 The working assumption is **Proton first**, retaining the original LS3DF.dll and
 locally installed assets while reconstructing the necessary client code. A
-native Linux engine rewrite is not the immediate target. No rebuilt executable
-or engine window exists yet. Initial video playback is not required for this
+native Linux engine rewrite is not the immediate target. A graphics-only host
+now compiles, but no engine window has been runtime-verified. Initial video
+playback is not required for this
 milestone; the rebuilt host can eventually enter the recovered menu path
 directly once its prerequisites are established, without patching the original
 game.
@@ -187,8 +189,9 @@ dependencies. Calling the existing game's entry point would not demonstrate our
 own reconstructed menu.
 
 Next implementation gate: establish window/graphics/engine ABI and lifecycle,
-then a minimal independently built host. A 32-bit Windows compiler and a usable
-Proton launch command have not yet been configured for this project. Several
+then a minimal independently built host. The graphics-only host below is now
+built, but its Proton launch is blocked before host entry in this environment.
+Several
 indirect-call signatures still corrupt Ghidra's stack recovery; generated C is
 not safe to compile as recovered source. Opaque startup/menu calls must not be
 silently omitted. There is no claim of runtime equivalence or a running menu.
@@ -228,6 +231,97 @@ a script failure. `-readOnly` discards the temporary definitions, preserving the
 research database and frozen function census. Generated exports stay under the
 already ignored `analysis/work/`; neither the user baseline project nor game
 files are edited.
+
+## Graphics-only host
+
+[The host](recovered/host/engine_window.cpp) is **new integration code**, not a
+reconstruction of the whole client initializer. Its bounded
+[settings layout](recovered/host/graphics_settings.h) and
+[ABI evidence](analysis/engine-host-map.json) are based on both original
+binaries. It receives no original-function reconstruction credit.
+
+The graphics singleton comes from exported `GetIGraph` (`10068F90`), constructed
+with vtable `1009D840`. Unlike ordinary client C++ methods, the used graphics
+methods pass **self on the stack with stdcall cleanup**:
+
+| Slot | Target | Host use |
+| --- | --- | --- |
+| `+00` | `1006C2D0` | Initialize from a 56-byte record; `RET 8` |
+| `+0C` | `1006DA20` | Initialized flag returned in **AL**, not a 32-bit BOOL |
+| `+10` | `1006DA40` | Close resources and clear initialized flag; `RET 4` |
+| `+48` | `1006A240` | Main window handle; `RET 4` |
+| `+64` | `1006A6C0` | Clear color/depth, four stack slots; `RET 16` |
+| `+68`, `+6C` | `1006B380`, `1006B3B0` | Begin/end scene via device tail dispatch |
+| `+70` | `1006B3E0` | Present, including original device-loss handling |
+
+The initialization record contains instance/adapter, main and child window
+coordinates, packed color-depth/refresh bytes, flags, menu handle and optional
+notification callback. The host selects an 800x600 window with child-window flag
+`0x80`, no fullscreen flag, no menu handle and a null notification callback.
+The original notification dispatcher explicitly permits null. The full display
+configuration policy and callback contract are not reconstructed.
+
+This program requests an original-engine window and plain clear-color frames.
+It loads **no menu, mission, archive, font or movie**. Its title says it is an
+engine bootstrap, not the menu. Its own Win32 message loop handles Escape/Close;
+bounded runs post a real `WM_CLOSE` after the requested frames, restore the
+window procedure and call the original graphics cleanup before unloading.
+Resource creation, frame presentation and cleanup are still **runtime-unverified**.
+
+### Build and desktop launch
+
+An i386 MinGW-compatible C++17 toolchain is required only for the optional host:
+
+```sh
+make -C recovered engine-window
+```
+
+The initial build failed because `i686-w64-mingw32-g++` was missing. A portable
+official LLVM-MinGW toolchain was then installed under the already ignored
+`.tools/`, without changing system packages:
+
+- Release: `mstorsjo/llvm-mingw`, `20261020`, UCRT Ubuntu 22.04 x86-64 archive.
+- Download SHA-256, checked against the release's published digest:
+  `55064b60b991a1e1e8090b8c2f84e82b22cfe5903d12c159d65064cf5e8ae335`.
+- Compiler target: `i686-w64-windows-gnu`; the resulting host is PE32/i386.
+
+With that local compiler, from the workspace root:
+
+```sh
+make -C recovered engine-window \
+  WINDOWS_CXX="$PWD/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-clang++"
+python3 -B tools/validate_engine_host.py
+python3 -B tools/run_engine_window.py --frames 30
+```
+
+The [launcher](tools/run_engine_window.py) fingerprints the original engine
+**before execution**, rejects non-i386 host files, and creates a separate prefix,
+working directory, shader path and logs under `analysis/work/engine-window/`.
+It does not use the original game's Steam prefix or run from the game directory.
+Runtime path symlinks escaping that workspace are rejected. The host loads the
+DLL by absolute path with its sibling dependency search and verifies used
+method RVAs relative to the **actual loaded module**, rather than assuming its
+preferred load address. Original game files remain untouched.
+
+Defaults use the Steam installation at `~/.local/share/Steam` and its Proton
+Experimental launcher. Override `--steam-root`, `--proton`, `--game-dir` or
+`--executable` if needed. The default run requests Close after 180 frames;
+`--frames 0` keeps it interactive until Escape/Close. A successful bounded run
+should print host entry, graphics initialization, `WM_CLOSE received`,
+`Submitted 30 frames` and `Graphics closed`, then exit zero.
+
+**Current launch result:** the installed Proton Experimental 11.0 returned 1
+before entering the host, reporting process-creation error **731** and
+`nodrv_CreateWindow` / no window driver. This session has no `DISPLAY`; neither
+an engine ABI failure nor a successful window can be inferred from that launch.
+No environment restrictions were bypassed. Retry the same command from a normal
+desktop terminal and inspect `analysis/work/engine-window/run/steam-0.log` if it
+fails. Compilation and static/native tests are not substitutes for this check.
+
+The user confirmed, and the local installation contains,
+`Gamemovie/Logo1.bik`, `Logo2.bik` and `Logo3.bik`. We keep those files unchanged
+and defer playback. Their directory location is installation/user evidence, not
+a newly recovered movie-search algorithm.
 
 ## First mission-format milestone
 

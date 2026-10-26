@@ -1,0 +1,88 @@
+{
+  "scope": "Bounded graphics ABI for independently written window-only integration code, not a reconstructed menu or full original initialization function.",
+  "runtime_verified": false,
+  "source": "recovered/host/engine_window.cpp",
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {"address": "10069a11", "hex": "c70640d80910", "meaning": "Graphics constructor installs verified vtable"},
+      {"address": "10068f90", "hex": "a1f4160d10c3", "meaning": "GetIGraph returns singleton"},
+      {"address": "1006c335", "hex": "8b8424880c0000b90e000000bf181d0d10f3a58b0850ff5110", "meaning": "Init copies fourteen DWORDs and calls close slot +10"},
+      {"address": "1006c30e", "hex": "c20800", "meaning": "Init cleans two stack arguments, self and settings"},
+      {"address": "1006a240", "hex": "a1ec190d10c20400", "meaning": "Window getter returns main HWND and cleans self"},
+      {"address": "1006da20", "hex": "a095210d10c20400", "meaning": "Initialized getter returns one byte in AL and cleans self"},
+      {"address": "1006de0d", "hex": "881d95210d105bc20400", "meaning": "Close clears initialized byte and cleans self"},
+      {"address": "1006a706", "hex": "c21000", "meaning": "Clear cleans self, color, depth and flags"},
+      {"address": "1006b39b", "hex": "ffa188000000", "meaning": "BeginScene tail-dispatch to device +88 after replacing self"},
+      {"address": "1006b3cb", "hex": "ffa18c000000", "meaning": "EndScene tail-dispatch to device +8c after replacing self"},
+      {"address": "10069683", "hex": "8b154c1d0d1085d2741c", "meaning": "Notification dispatcher permits a null settings callback"}
+    ],
+    "vtables": [{
+      "address": "1009d840",
+      "targets": [
+        "1006c2d0", "1006da30", "1006c2c0", "1006da20", "1006da40",
+        "1006a470", "1006de50", "1006de70", "1006de90", "1006deb0",
+        "1006dea0", "1006bb80", "1006dec0", "1006e210", "10069e80",
+        "10069f70", "10069ee0", "1006a1f0", "1006a240", "1006a250",
+        "1006a260", "1006a2f0", "1006a330", "1006a340", "1006a3d0",
+        "1006a6c0", "1006b380", "1006b3b0", "1006b3e0"
+      ]
+    }],
+    "direct_calls": [],
+    "resource_anchors": [
+      {"site": "1006c2e3", "address": "100a845c", "text": "dpnhpast.dll"},
+      {"site": "1006c2f2", "address": "100a8430", "text": "ERROR! DirectX version is lower than 8.1 !"}
+    ]
+  },
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {"address": "006db0f8", "hex": "b90e00000033c08d7db8f3ab", "meaning": "Client zeroes fourteen DWORDs starting at EBP-48"},
+      {"address": "006db122", "hex": "8945bc", "meaning": "Adapter index at settings +04"},
+      {"address": "006db12b", "hex": "894db8", "meaning": "Instance handle at settings +00"},
+      {"address": "006db131", "hex": "8d4dc06a3251", "meaning": "First four-coordinate block begins at settings +08"},
+      {"address": "006db14f", "hex": "8d4dd06a0051", "meaning": "Child four-coordinate block begins at settings +18"},
+      {"address": "006db137", "hex": "c745ece0b06d00", "meaning": "Client notification callback at settings +34"}
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "settings": {
+    "size": 56,
+    "fields": [
+      {"offset": 0, "size": 4, "role": "HINSTANCE"},
+      {"offset": 4, "size": 4, "role": "Adapter index"},
+      {"offset": 8, "size": 16, "role": "Main window x, y, width, height"},
+      {"offset": 24, "size": 16, "role": "Child window x, y, width, height"},
+      {"offset": 40, "size": 1, "role": "Color depth"},
+      {"offset": 41, "size": 1, "role": "Refresh rate"},
+      {"offset": 42, "size": 2, "role": "Reserved/unknown; keep zero"},
+      {"offset": 44, "size": 4, "role": "Flags; host uses 0x80 child-window mode, not fullscreen bit 2"},
+      {"offset": 48, "size": 4, "role": "Menu handle; host uses null"},
+      {"offset": 52, "size": 4, "role": "Optional notification callback; host uses null"}
+    ]
+  },
+  "launch_attempt": {
+    "runtime": "Installed Proton Experimental 11.0, isolated prefix and working directory",
+    "result": "Blocked before the host executable entered; process creation error 731 and no window driver",
+    "local_log": "analysis/work/engine-window/run/steam-0.log",
+    "not_verified": ["Actual graphics initialization", "Visible rendered window", "Runtime calling conventions", "Window close and cleanup"]
+  },
+  "limitations": [
+    "The host is new integration glue and earns no original-function reconstruction credit.",
+    "No client startup/protection code is patched, invoked by address, or claimed reconstructed.",
+    "The launcher checks the original engine fingerprint before execution; the host resolves exports and verifies used method RVAs relative to the loaded module, not a fixed load address.",
+    "Archive registration, menu resources, fonts, localized text, sound and original UI behavior are not integrated.",
+    "The host uses its own Win32 event loop and Close hook; it does not reconstruct the original input subsystem.",
+    "Logos remain untouched in Gamemovie/Logo1.bik, Logo2.bik and Logo3.bik and are not played by this host."
+  ]
+}

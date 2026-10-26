@@ -101,7 +101,7 @@
     {"site": "0066afd2", "address": "0083a934", "text": "sound_click", "role": "Sound-frame name"}
   ],
   "limitations": [
-    "No rebuilt executable, engine window or interactive menu exists yet.",
+    "A graphics-only host now compiles, but no engine window or interactive menu is runtime-verified; see engine-host-map.json.",
     "Resource keys and control names are not verified archive paths or localized displayed captions.",
     "Indirect-call signatures remain incomplete; current generated C has incorrect stack/argument propagation and is not recovered source.",
     "Original engine initialization, resource search/archive registration, text/font services, input ABI and teardown still need integration contracts.",

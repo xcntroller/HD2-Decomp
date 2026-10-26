@@ -3,10 +3,12 @@ PYTHON ?= python3
 CPPFLAGS += -I.
 CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror
 BUILD_DIR ?= build
+WINDOWS_CXX ?= i686-w64-mingw32-g++
+WINDOWS_CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror -static -municode
 
-.PHONY: all test
+.PHONY: all test engine-window
 
-all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks $(BUILD_DIR)/model_resource_key_tests $(BUILD_DIR)/model_resource_key $(BUILD_DIR)/frame_kind_tests $(BUILD_DIR)/model_load_policy_tests $(BUILD_DIR)/model_file_header_tests $(BUILD_DIR)/inspect_model_header $(BUILD_DIR)/model_first_table_tests $(BUILD_DIR)/scan_model_first_table
+all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks $(BUILD_DIR)/model_resource_key_tests $(BUILD_DIR)/model_resource_key $(BUILD_DIR)/frame_kind_tests $(BUILD_DIR)/model_load_policy_tests $(BUILD_DIR)/model_file_header_tests $(BUILD_DIR)/inspect_model_header $(BUILD_DIR)/model_first_table_tests $(BUILD_DIR)/scan_model_first_table $(BUILD_DIR)/graphics_settings_tests
 
 $(BUILD_DIR):
 	mkdir -p "$@"
@@ -41,6 +43,14 @@ $(BUILD_DIR)/model_first_table_tests: scene/model_first_table.cpp tests/model_fi
 $(BUILD_DIR)/scan_model_first_table: scene/model_file_header.cpp scene/model_first_table.cpp tools/scan_model_first_table.cpp scene/model_file_header.h scene/model_first_table.h | $(BUILD_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) scene/model_file_header.cpp scene/model_first_table.cpp tools/scan_model_first_table.cpp $(LDFLAGS) -o "$@"
 
+$(BUILD_DIR)/graphics_settings_tests: tests/graphics_settings_tests.cpp host/graphics_settings.h | $(BUILD_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) tests/graphics_settings_tests.cpp $(LDFLAGS) -o "$@"
+
+engine-window: $(BUILD_DIR)/engine_window.exe
+
+$(BUILD_DIR)/engine_window.exe: host/engine_window.cpp host/graphics_settings.h | $(BUILD_DIR)
+	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/engine_window.cpp -o "$@"
+
 test: all
 	"$(BUILD_DIR)/chunk_reader_tests"
 	"$(BUILD_DIR)/model_resource_key_tests"
@@ -48,6 +58,7 @@ test: all
 	"$(BUILD_DIR)/model_load_policy_tests"
 	"$(BUILD_DIR)/model_file_header_tests"
 	"$(BUILD_DIR)/model_first_table_tests"
+	"$(BUILD_DIR)/graphics_settings_tests"
 	$(PYTHON) -B tests/compare_scene_scan.py --scanner "$(BUILD_DIR)/scan_scene_chunks"
 	$(PYTHON) -B tests/compare_model_resource_keys.py --normalizer "$(BUILD_DIR)/model_resource_key"
 	$(PYTHON) -B tests/compare_model_headers.py --reader "$(BUILD_DIR)/inspect_model_header"
