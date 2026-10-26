@@ -98,8 +98,8 @@ class EngineEvidenceTests(unittest.TestCase):
 
     def test_complete_synthetic_evidence(self):
         counts = validate_evidence(self.document, PEImage(bytes(self.data)))
-        self.assertEqual(counts, {"byte_checks": 26, "pointers": 5,
-                                  "direct_calls": 7, "frame_kinds": 16})
+        self.assertEqual(counts, {"byte_checks": 49, "pointers": 5,
+                                  "direct_calls": 29, "frame_kinds": 16})
 
     def test_instruction_pointer_call_table_case_and_string_mismatches(self):
         for va, message in [
@@ -107,6 +107,8 @@ class EngineEvidenceTests(unittest.TestCase):
             (0x10019E19, "Direct-call opcode"), (0x10019E1A, "Direct-call target"),
             (0x10019FB4, "jump table"), (0x10019F17, "Type-query case"),
             (0x100A660C, "Frame-kind string"), (0x100A6618, "Frame-kind string"),
+            (0x1002BD9D, "Instruction bytes"), (0x1002BF74, "Instruction bytes"),
+            (0x1002BF7F, "Direct-call target"),
         ]:
             data = bytearray(self.data)
             data[0x400 + va - 0x10001000] ^= 1

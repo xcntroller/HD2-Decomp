@@ -5,8 +5,10 @@ from collections import Counter
 import hashlib
 import json
 from pathlib import Path
+import struct
 
 from inspect_model_header import decode_model_header
+from inspect_model_table import summarize_model_table
 from inspect_scene2 import decode_objects, summarize
 
 
@@ -38,6 +40,17 @@ def validate(document: dict, root: Path, verify_archive: bool = False) -> None:
             with (root / sample["path"]).open("rb") as stream:
                 check_equal(decode_model_header(stream.read(16)), sample["model_header"],
                             f"model prefix {sample['path']}")
+        if "model_first_table" in sample:
+            model_data = (root / sample["path"]).read_bytes()
+            table = summarize_model_table(model_data)
+            del table["header"]
+            check_equal(table, sample["model_first_table"], f"model first table {sample['path']}")
+            if "following_frame_count" in sample:
+                end = table["table_end"]
+                if end + 2 > len(model_data):
+                    raise ValueError(f"Missing following model frame count: {sample['path']}")
+                check_equal(struct.unpack_from("<H", model_data, end)[0],
+                            sample["following_frame_count"], "following model frame count")
     scene = next(sample for sample in samples if Path(sample["path"]).name == "scene2.bin")
     data = (root / scene["path"]).read_bytes()
     summary = summarize(data)
@@ -124,7 +137,7 @@ def main() -> None:
     parser.add_argument("--archive", action="store_true", help="Also hash the full missions archive")
     args = parser.parse_args()
     validate(json.loads(args.map.read_text()), args.root, args.archive)
-    print("Verified mission fingerprints, model prefixes, exact record/field counts, quaternion tolerance, "
+    print("Verified mission fingerprints, model prefixes/tables, exact record/field counts, quaternion tolerance, "
           "name-link/model-resource observations, repaired signatures and selected loader evidence.")
 
 

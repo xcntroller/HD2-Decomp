@@ -1,5 +1,5 @@
 {
-  "scope": "Readable portable reconstructions of read-only chunk handling, model-resource key processing, engine frame-kind names, candidate-result decisions and model-file header checks; not original source or binary-compatible replacements.",
+  "scope": "Readable portable reconstructions of read-only chunk handling, model-resource key processing, engine frame-kind names, candidate-result decisions and model-file header/first-table reads; not original source or binary-compatible replacements.",
   "runtime_verified": false,
   "abi_compatible": false,
   "binary_equivalent": false,
@@ -130,6 +130,37 @@
         "binary_validator": "tools/validate_engine_model.py",
         "real_prefix_validator": "tools/validate_mission_sample.py",
         "real_first_table_counts": {"scene.4ds": 86, "loader.4ds": 13},
+        "runtime_verified": false
+      }
+    },
+    {
+      "name": "model_first_table",
+      "header": "recovered/scene/model_first_table.h",
+      "implementation": "recovered/scene/model_first_table.cpp",
+      "parent_function": "1005d970 with readers 1002bbe0 and 1002be30 in LS3DF.dll",
+      "evidence": "analysis/engine-model-map.json",
+      "subset": "Read first-table serialized fields only, preserving original flag bits, opaque payloads, conditional raw name bytes and optional sequence fields.",
+      "intentional_differences": [
+        "Caller-owned stream replaces global archive state; no engine object allocation or resource requests.",
+        "Reject all incomplete fields and counts above the shared 6000-entry limit explicitly.",
+        "Preserve absent optional fields separately from present zero-length fields, and preserve embedded NUL/non-ASCII bytes.",
+        "Do not reproduce runtime flag mutations, generated sequence names, renderer options, playback or reference counting.",
+        "Payloads and sequence parameters remain opaque; no authoritative material-type labels are invented."
+      ],
+      "verification": {
+        "unit_tests": "recovered/tests/model_first_table_tests.cpp",
+        "unit_test_count": 1002,
+        "comparison_driver": "recovered/tests/compare_model_tables.py",
+        "comparison_reference": "tools/inspect_model_table.py",
+        "flag_and_primary_presence_combinations": 128,
+        "synthetic_tables": 4,
+        "synthetic_malformed_tables": 107,
+        "real_record_counts": {"scene.4ds": 86, "loader.4ds": 13},
+        "real_table_end_offsets": {"scene.4ds": 7869, "loader.4ds": 1226},
+        "real_sequence_records": 2,
+        "real_secondary_name_fields": 4,
+        "real_extended_payload_records": 0,
+        "limitations": "The extended-payload path is supported by assembly and synthetic fixtures, not these real samples. No original routine is executed.",
         "runtime_verified": false
       }
     }

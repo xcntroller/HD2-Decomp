@@ -131,6 +131,26 @@ unknown bytes or construct objects. **An accepted prefix does not validate the
 complete model file.** It is another partial reconstruction, not a complete
 original function for the progress bar.
 
+## First model-file table
+
+The [first-table reader](scene/model_first_table.h) reads a specified number of
+records from the stream's current position. Use the preceding header's count;
+both components share the 6,000-entry limit. The reader leaves the following
+frame section untouched.
+
+It preserves serialized flags, 72- or 76-byte opaque payloads, raw length-prefixed
+name fields, and optional sequence counts/parameters. Optional names distinguish
+absence from an encoded zero-length name. Embedded NUL and non-ASCII bytes are
+preserved; the original serialized length, not C-string contents, controls
+whether a secondary field exists.
+
+This is only the file-reading subset of two engine routines. There are no engine
+allocations, renderer options, resource requests, generated sequence filenames,
+playback or opaque-field interpretation. Runtime object-flag changes are not
+recreated; the evidence explains why they do not change the serialized read
+layout. `ModelTableReadError` reports incomplete fields and excessive counts.
+Configured stream exceptions may propagate. No cursor rollback is promised.
+
 ## Build and test
 
 From the repository root, with a C++17 compiler, GNU Make, and Python 3.11+:
@@ -153,7 +173,11 @@ This builds with strict warnings and runs:
 - 39 model-header cases, including exact count boundaries, all prefix truncations,
   opaque-byte preservation, stopping positions and stream behavior;
 - 30 synthetic model-header comparisons and 27 malformed headers both readers
-  must reject.
+  must reject;
+- 1,002 native first-table cases, including all 128 flag/primary-presence
+  combinations and every truncation of a maximal record;
+- four first-table comparison fixtures (including mixed records and 6,000
+  entries), plus 107 malformed tables both readers must reject.
 
 No game files are needed for those tests. Build products go into ignored
 `recovered/build/`.
@@ -195,6 +219,18 @@ python3 -B recovered/tests/compare_model_headers.py \
 
 Their first-table counts are 86 and 13 respectively. The mission evidence
 validator checks the exact prefixes against the fingerprinted samples.
+
+To compare all first-table fields and record boundaries in those same files:
+
+```sh
+python3 -B recovered/tests/compare_model_tables.py \
+  --scanner recovered/build/scan_model_first_table \
+  --model extracted/alps1-base/scene.4ds \
+  --model extracted/alps1-base/loader.4ds
+```
+
+The aggregate scanners print no asset names. Detailed `--records` output from
+the native scanner contains local raw fields; do not publish it as source.
 
 An address/undefined-behavior sanitizer build can stay in ignored analysis output:
 

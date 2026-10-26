@@ -32,13 +32,15 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-Currently seven unique entries are partial and none complete: four chunk-reader
-entries, the client object loader, the engine frame-kind query, and the engine
-model-file loader's header subset. The key
+Currently nine unique entries are partial and none complete: four chunk-reader
+entries, the client object loader, the engine frame-kind query, the engine
+model-file loader's header/first-table framing subset, and two first-table
+record readers. The key
 processing and result-classification reconstructions are **two fragments of the
 same `006cd940` function**, never two functions. Unknown-kind fallback,
 archive/open/write behavior, the larger object loader and the model-file loader
-beyond its supported header subset remain excluded.
+beyond these supported reads, resource requests, renderer state and sequence
+playback remain excluded.
 
 ## Tracked schemas (version 1)
 

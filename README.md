@@ -24,6 +24,8 @@ We can now name the engine's object types and explain when model loading tries
 another file, stops, or accepts a result.
 We've also reconstructed the first checks the engine makes when opening a model
 file, including its supported version and an initial entry-count limit.
+We can now read the records immediately after that header, including their
+conditional name fields and extra sequence data, while preserving unknown bytes.
 
 This is still early research, not a rebuilt or playable version of the game.
 Our findings so far come from examining files; we haven't yet checked them
@@ -39,12 +41,12 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **7 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **9 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
 | Base game client | 17,294 | 0 | 5 |
-| Original LS3DF.dll | 1,489 | 0 | 2 |
+| Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
 Squadron. The total is an estimate from Ghidra, including library code we
@@ -78,6 +80,7 @@ difficulty, playability, or time remaining.
 - [x] Identify model-resource references and reconstruct their name-processing rule.
 - [x] Recover engine object-type names and the model loader's retry/stop decisions.
 - [x] Reconstruct and test the first model-file header checks.
+- [x] Read and cross-check the first table in both sample model files.
 - [x] Save our findings and add repeatable checks for the evidence.
 
 ### Next: understand one mission from loading to play

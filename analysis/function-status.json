@@ -57,9 +57,25 @@
       "program": "engine",
       "entry": "1005d970",
       "status": "partial",
-      "coverage": "Model-file header subset: 16-byte header with 4DS NUL magic, little-endian version 0x29, eight opaque bytes and a little-endian first-table count bounded by 6000.",
-      "limitations": "Only the supported header behavior is reconstructed; the opaque fields and subsequent tables, complete model parsing, object construction and loading behavior are not reconstructed.",
-      "evidence": ["analysis/engine-model-map.json", "recovered/scene/model_file_header.cpp", "recovered/tests/model_file_header_tests.cpp", "recovered/tests/compare_model_headers.py", "tools/inspect_model_header.py"]
+      "coverage": "Model-file header checks plus bounded first-table flag/record traversal.",
+      "limitations": "Engine allocation, global state, resource requests, subsequent frame records, opaque-field meanings and complete model loading are not reconstructed.",
+      "evidence": ["analysis/engine-model-map.json", "recovered/scene/model_file_header.cpp", "recovered/scene/model_first_table.cpp", "recovered/tests/model_file_header_tests.cpp", "recovered/tests/compare_model_headers.py", "tools/inspect_model_header.py", "recovered/tests/compare_model_tables.py"]
+    },
+    {
+      "program": "engine",
+      "entry": "1002bbe0",
+      "status": "partial",
+      "coverage": "Plain first-table record serialization: fixed payload and conditional length-prefixed name bytes.",
+      "limitations": "Runtime flag changes, renderer options and engine resource requests are excluded. Opaque data and asset-name bytes are not interpreted.",
+      "evidence": ["analysis/engine-model-map.json", "analysis/reconstruction-map.json", "recovered/scene/model_first_table.cpp", "recovered/tests/model_first_table_tests.cpp"]
+    },
+    {
+      "program": "engine",
+      "entry": "1002be30",
+      "status": "partial",
+      "coverage": "Sequence-capable first-table record serialization, including two count bytes and 16 parameter bytes.",
+      "limitations": "Resource-name generation, resource loading, engine arrays, sequence playback and renderer state are not reconstructed.",
+      "evidence": ["analysis/engine-model-map.json", "analysis/reconstruction-map.json", "recovered/scene/model_first_table.cpp", "recovered/tests/model_first_table_tests.cpp"]
     }
   ]
 }

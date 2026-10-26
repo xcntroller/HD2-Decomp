@@ -1,5 +1,5 @@
 {
-  "scope": "Scene2 structure, initial object fields and two model-file prefixes from the base ALPS1 mission archive; not complete format specifications.",
+  "scope": "Scene2 structure, initial object fields and two model-file prefixes/first tables from the base ALPS1 mission archive; not complete format specifications.",
   "runtime_verified": false,
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
@@ -44,7 +44,13 @@
         "version": 41,
         "opaque_metadata_hex": "80b320ba1288c301",
         "first_table_entry_count": 86
-      }
+      },
+      "model_first_table": {
+        "records": 86, "table_end": 7869, "plain_records": 84, "sequence_records": 2,
+        "extra_name_fields": 0, "secondary_name_fields": 4, "max_name_length": 15,
+        "flags": {"0x00840001": 80, "0x20848001": 2, "0x40848001": 2, "0x54048001": 2}
+      },
+      "following_frame_count": 790
     },
     {
       "path": "extracted/alps1-base/loader.4ds",
@@ -55,7 +61,13 @@
         "version": 41,
         "opaque_metadata_hex": "0058149f5048c301",
         "first_table_entry_count": 13
-      }
+      },
+      "model_first_table": {
+        "records": 13, "table_end": 1226, "plain_records": 13, "sequence_records": 0,
+        "extra_name_fields": 0, "secondary_name_fields": 0, "max_name_length": 17,
+        "flags": {"0x00170001": 12, "0x00840001": 1}
+      },
+      "following_frame_count": 5
     }
   ],
   "chunk_header": {

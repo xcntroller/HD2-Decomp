@@ -48,7 +48,7 @@ ModelFileHeader read_model_file_header(std::istream& input) {
         result.opaque_metadata[index] = static_cast<std::uint8_t>(metadata[index]);
     }
     result.first_table_entry_count = read_u16(input);
-    if (result.first_table_entry_count > 6000) {
+    if (result.first_table_entry_count > max_model_first_table_entries) {
         throw ModelHeaderError(ModelHeaderFailure::entry_limit_exceeded,
                                "Model first-table count exceeds 6000");
     }

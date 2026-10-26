@@ -8,6 +8,8 @@
 
 namespace hd2::recovered {
 
+inline constexpr std::uint16_t max_model_first_table_entries = 6000;
+
 enum class ModelHeaderFailure {
     incomplete_read,
     invalid_signature,

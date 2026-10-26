@@ -408,9 +408,9 @@ logs its version diagnostic and can try another candidate.
 
 Subsequent first-table records start with four-byte flags. Bit `0x04000000`
 selects one driver factory/record reader (`+0x5C`, `1002BE30`); the other path
-uses `+0x58`, `1002BBE0`. Their complete record formats and authoritative
-material/resource semantics are not established here, so the public interface
-deliberately calls the field `first_table_entry_count`.
+uses `+0x58`, `1002BBE0`. Their serialized read layouts are reconstructed below,
+but opaque-field meanings and authoritative material/resource semantics remain
+unresolved. The interface deliberately uses `first_table_entry_count`.
 
 The [engine evidence map](analysis/engine-model-map.json) records the read
 widths, call sites, comparisons, signature and failure immediates; its validator
@@ -444,6 +444,77 @@ positions, nonseekable/current-position input and stream failures. The Python
 comparison matches 30 valid synthetic prefixes and requires both readers to
 reject 27 malformed ones, plus optional real-header comparisons.
 
+### First-table records
+
+The [first-table reader](recovered/scene/model_first_table.cpp) now follows the
+archive-read subsets of `1002BBE0` and `1002BE30`, plus the parent's flag reads.
+It accepts a caller-owned stream positioned after the header and a count bounded
+by the same shared 6,000-entry constant. The records are not scene2 chunks.
+
+Both record variants use this serialized layout:
+
+1. Four-byte little-endian flags.
+2. Opaque payload: 76 bytes if `flags & 0x00080000`, otherwise 72.
+3. If `flags & 0x00080000`, one extra name field.
+4. One primary name field.
+5. A secondary name field **only** when the primary serialized length is
+   nonzero, `flags & 0x40000000`, and `(flags & 0xA1000000) == 0`.
+6. For the `0x04000000` variant, two sequence-count bytes and 16 opaque parameter
+   bytes, even if the primary name length is zero.
+
+Every name field is a one-byte length followed by exactly that many raw bytes.
+The original appends a NUL in its local buffer before engine calls; the file
+reader must not scan for a terminator instead of honoring the length. Our
+source preserves embedded NUL and non-ASCII bytes and distinguishes an absent
+optional field from a present zero-length one. No name validation, normalization
+or successful resource lookup is implied.
+
+There is a subtle runtime flag change in the plain reader: computed mode bits
+`0x108` can cause `0x40000000` to be ORed into the object's flags. Mode bit
+`0x08` requires original flag `0x20000000`, which is already in the secondary
+field's exclusion mask. Thus this mutation cannot enable a serialized secondary
+name that the raw flags would omit. The parser preserves the raw flags and
+does not recreate renderer-dependent state changes; synthetic checks cover this
+gate equivalence.
+
+Assembly checks cover the dispatch, both payload sizes, name gates, sequence
+read widths, and direct archive-read targets. The sample validator checks all
+record counts, flag histograms, optional-field counts and exact end offsets:
+
+| Sample | Records | Plain | Sequence-capable | Secondary fields | Table end |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| ALPS1 scene model | 86 | 84 | 2 | 4 | 7,869 |
+| ALPS1 loading model | 13 | 13 | 0 | 0 | 1,226 |
+
+The next two bytes at those boundaries give frame counts 790 and 5, consistent
+with the next read in `1005D970`. This corroborates the boundary; it is not a
+traversal or validation of those later frame records. Neither sample uses the
+76-byte payload/extra-name branch, which is supported by assembly and synthetic
+fixtures instead.
+
+The C++ and Python readers agree on **every preserved byte and record boundary**
+for both real tables, not only their aggregate counts. Synthetic comparisons
+cover all 64 relevant flag combinations with both empty and nonempty primary
+names, arbitrary bytes, 255-byte names, mixed records, the 6,000-record limit
+and explicit malformed-input rejection. Native tests also reject every truncated
+prefix of the maximal 866-byte record and check nonseekable input, stream
+exceptions, current-position reading and leaving later sections untouched.
+
+```sh
+python3 -B tools/inspect_model_table.py extracted/alps1-base/scene.4ds \
+  --output analysis/work/alps1-scene-model-table.json
+python3 -B recovered/tests/compare_model_tables.py \
+  --scanner recovered/build/scan_model_first_table \
+  --model extracted/alps1-base/scene.4ds \
+  --model extracted/alps1-base/loader.4ds
+```
+
+The inspector and scanner default to aggregates without asset names. The C++
+scanner's `--records` mode is for local byte-level comparisons; keep such
+detailed output under ignored analysis storage. This reconstruction does not
+make resource requests, allocate engine objects, generate sequence filenames,
+animate anything, interpret the opaque payloads or read model geometry.
+
 ### Function-based progress
 
 The [README function bar](README.md#progress) now uses a frozen census of
@@ -454,7 +525,7 @@ entries and forwarding thunks are reported separately. Library/runtime routines
 are not yet reliably separated from game code and therefore remain included.
 The census is an estimate, not the exact original source-function total.
 
-The [status ledger](analysis/function-status.json) records seven unique
+The [status ledger](analysis/function-status.json) records nine unique
 partially reconstructed original functions and zero complete ones. Several
 useful source components cover only fragments; the model key and result policy
 belong to the same original object-loader function. No full-function credit is

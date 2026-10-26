@@ -464,6 +464,44 @@ class MissionEvidenceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Incomplete"):
             validate_mission(self.document, self.root)
 
+    def add_model_table_sample(self):
+        data = (b"4DS\0" + struct.pack("<H", 41) + bytes(range(8)) + struct.pack("<H", 1)
+                + bytes(4 + 72) + b"\0" + struct.pack("<H", 3))
+        sample = self.add_model_sample(data)
+        sample["model_header"]["first_table_entry_count"] = 1
+        sample["model_first_table"] = {
+            "records": 1, "table_end": 93, "plain_records": 1, "sequence_records": 0,
+            "extra_name_fields": 0, "secondary_name_fields": 0, "max_name_length": 0,
+            "flags": {"0x00000000": 1},
+        }
+        sample["following_frame_count"] = 3
+        return sample
+
+    def test_valid_model_table_evidence(self):
+        self.add_model_table_sample()
+        validate_mission(self.document, self.root)
+
+    def test_fabricated_model_table_observations(self):
+        self.add_model_table_sample()
+        for key, value in [("table_end", 94), ("records", 2), ("secondary_name_fields", 1),
+                           ("flags", {"0x00000001": 1})]:
+            document = copy.deepcopy(self.document)
+            document["samples"][-1]["model_first_table"][key] = value
+            with self.subTest(key=key), self.assertRaisesRegex(ValueError, "model first table"):
+                validate_mission(document, self.root)
+
+    def test_fabricated_following_model_frame_count(self):
+        self.add_model_table_sample()["following_frame_count"] = 4
+        with self.assertRaisesRegex(ValueError, "following model frame count"):
+            validate_mission(self.document, self.root)
+
+    def test_missing_following_model_frame_count(self):
+        sample = self.add_model_table_sample()
+        data = (self.root / sample["path"]).read_bytes()[:-1]
+        sample.update(self.write_fixture(sample["path"], data))
+        with self.assertRaisesRegex(ValueError, "Missing following model frame count"):
+            validate_mission(self.document, self.root)
+
     def test_wrong_binary_fingerprint(self):
         self.document["binary"]["sha256"] = "0" * 64
         with self.assertRaisesRegex(ValueError, "fingerprint mismatch"):
