@@ -1,2 +1,32 @@
 **/Hidden and Dangerous 2/**
-*upx*
+
+# Downloaded tools and Ghidra installations.
+/.tools/
+/ghidra/
+
+# Generated analysis, extracted assets, and runtime captures stay local.
+/analysis/work/
+/analysis/ghidra/
+/assets/
+/extracted/
+/captures/
+
+# Commercial binaries and archives, including copies outside the installation.
+*.exe
+*.dll
+*.dta
+*.DTA
+*.bik
+*.dmp
+
+# Ghidra projects and databases; track scripts and research maps instead.
+*.gpr
+*.rep/
+*.gar
+
+# Build/cache output and local logs.
+__pycache__/
+*.py[cod]
+*.class
+*.log
+*startup*.txt

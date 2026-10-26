@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "binary": {
+    "path": "work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000",
+    "address_kind": "preferred-base virtual addresses, not file offsets or RVAs",
+    "scope": "Base-game client only; not validated against Sabre Squadron",
+    "research_project": "/home/control/Documents/Projects/HD2ResearchProject/HD2Research.gpr"
+  },
+  "method": "Static analysis of a separate Ghidra project. Function roles are research interpretations, not recovered original names. No game execution or baseline-project edits.",
+  "functions": [
+    {
+      "address": "007e8efd",
+      "role": "C/C++ runtime startup",
+      "confidence": "high",
+      "evidence": "Initializes runtime state, reads command line and STARTUPINFO, obtains the module handle, calls 006dd550, and handles its return value.",
+      "export": "work/initialization/007e8efd.json"
+    },
+    {
+      "address": "006dd550",
+      "role": "WinMain-like application entry",
+      "confidence": "high",
+      "evidence": "Called from runtime startup; enforces a single-instance mutex, invokes prerequisites and 006dcae0, and restores system settings. Inferred prototype is not trustworthy yet.",
+      "export": "work/winmain/006dd550.json"
+    },
+    {
+      "address": "006dcae0",
+      "role": "Application lifecycle and main loop",
+      "confidence": "high",
+      "evidence": "Allocates the controller, initializes platform services, loops over timing and update calls, invokes GetIGraph and I3DGetDriver interfaces, and performs shutdown.",
+      "export": "work/initialization/006dcae0.json"
+    },
+    {
+      "address": "006dbfc0",
+      "role": "Platform and engine setup orchestration",
+      "confidence": "high",
+      "evidence": "Calls TEV, reads LS3D_setup from the game registry key, invokes 006db0f0, configures the window, and reads window.cfg.",
+      "export": "work/engine-loop/006dbfc0.json"
+    },
+    {
+      "address": "006db0f0",
+      "role": "Graphics interface initialization",
+      "confidence": "high",
+      "evidence": "Constructs a settings block from stored configuration, checks command-line options, and passes the settings to the first virtual method of GetIGraph's interface. This is interface initialization, not proven object creation.",
+      "export": "work/mission-boundary/006db0f0.json"
+    },
+    {
+      "address": "006c0820",
+      "role": "Application controller startup",
+      "confidence": "high",
+      "evidence": "Initializes controller fields; on the normal startup branch calls 006b65d0, 006b6620 and 006c0ca0.",
+      "export": "work/engine-loop/006c0820.json"
+    },
+    {
+      "address": "006c0ca0",
+      "role": "Initial frontend/logo state setup",
+      "confidence": "high",
+      "evidence": "First tests alternate startup through 006c0af0; otherwise creates an object and starts Logo1.bik.",
+      "export": "work/mission-boundary/006c0ca0.json"
+    },
+    {
+      "address": "006c0af0",
+      "role": "Alternate command-line startup handling",
+      "confidence": "high",
+      "evidence": "Reads GetCommandLineA, references '-cmd ' and 'exec %s', and creates an alternate state. Exact semantics of all options remain unverified.",
+      "export": "work/scene-loading/006c0af0.json"
+    },
+    {
+      "address": "006dc950",
+      "role": "Frame interval calculation and limiting",
+      "confidence": "high",
+      "evidence": "Uses QueryPerformanceCounter/Frequency, converts elapsed time to milliseconds, bounds the interval, and waits on a timer/event when below the minimum.",
+      "export": "work/engine-loop/006dc950.json"
+    },
+    {
+      "address": "006c3100",
+      "role": "Controller accumulated-time update branch",
+      "confidence": "high",
+      "evidence": "Accumulates supplied time at controller+0x18; at 100 or above subtracts 100 and conditionally invokes state vtable+0x10 with argument 100. This does not prove a game-wide or AI tick rate.",
+      "export": "work/engine-loop/006c3100.json"
+    },
+    {
+      "address": "006c20f0",
+      "role": "Controller per-frame update and state-transition dispatch",
+      "confidence": "high",
+      "evidence": "Invokes active-state virtual methods, dispatches returned state codes, and handles logo/intro/credits and other state changes. It is not a pure renderer.",
+      "export": "work/engine-loop/006c20f0.json"
+    },
+    {
+      "address": "006c0ef0",
+      "role": "Construct and activate a state selected from a descriptor",
+      "confidence": "medium",
+      "evidence": "Destroys the previous controller+0x14 state and selects several constructors/vtables using descriptor fields. Exact state names are not established.",
+      "export": "work/mission-boundary/006c0ef0.json"
+    },
+    {
+      "address": "006989b0",
+      "role": "Gameplay activation and mission-load caller",
+      "confidence": "medium",
+      "evidence": "Selects a mission identifier, calls 006ca780 on loading paths, and then performs substantial gameplay-state initialization. Incoming virtual dispatch is not yet resolved.",
+      "export": "work/mission-entry/006989b0.json"
+    },
+    {
+      "address": "006ca780",
+      "role": "Mission loading orchestration",
+      "confidence": "high",
+      "evidence": "Calls loading-screen setup, scene loading and scene2 handling; references missions\\%s\\tree.klz and calls the effects-loading function. Best next investigation entry.",
+      "export": "work/scene-loading/006ca780.json"
+    },
+    {
+      "address": "006d3f20",
+      "role": "Mission-load preparation",
+      "confidence": "high",
+      "evidence": "Calls 006c9640, stores the selected mission identifier, and resets several resource-related objects.",
+      "export": "work/mission-entry/006d3f20.json"
+    },
+    {
+      "address": "006c9640",
+      "role": "Loading-screen resource setup",
+      "confidence": "high",
+      "evidence": "References missions\\%s\\loader, C_LoaderScreen, text_h&dversion, and loadbar.",
+      "export": "work/scene-loading/006c9640.json"
+    },
+    {
+      "address": "006d4180",
+      "role": "Load mission Scene resource via engine interface",
+      "confidence": "high",
+      "evidence": "Builds missions\\%s\\Scene and passes it with a callback and flags to the scene object's virtual method at byte offset 0xf4. Original engine method name remains unknown.",
+      "export": "work/scene-loading/006d4180.json"
+    },
+    {
+      "address": "006cbf30",
+      "role": "scene2.bin loading stage",
+      "confidence": "high",
+      "evidence": "References missions\\%s\\scene2.bin and performs additional scene setup. Stack recovery is poor; complete parsing semantics are not established.",
+      "export": "work/scene-loading/006cbf30.json"
+    }
+  ],
+  "direct_calls": [
+    {"from": "007e8efd", "to": "006dd550", "site": "007e8fd8"},
+    {"from": "006dd550", "to": "006dcae0", "site": "006dd621"},
+    {"from": "006dcae0", "to": "006dbfc0", "site": "006dcb55"},
+    {"from": "006dbfc0", "to": "006db0f0", "site": "006dc1b4"},
+    {"from": "006dcae0", "to": "006c0820", "site": "006dcc52"},
+    {"from": "006c0820", "to": "006c0ca0", "site": "006c08ac"},
+    {"from": "006c0ca0", "to": "006c0af0", "site": "006c0cbb"},
+    {"from": "006dcae0", "to": "006dc950", "site": "006dce27"},
+    {"from": "006dcae0", "to": "006c3100", "site": "006dcfc9"},
+    {"from": "006dcae0", "to": "006c20f0", "site": "006dd008"},
+    {"from": "006c20f0", "to": "006c0ef0", "site": "006c25b7"},
+    {"from": "006989b0", "to": "006ca780", "site": "00698a56"},
+    {"from": "006989b0", "to": "006ca780", "site": "00698cd1"},
+    {"from": "006ca780", "to": "006d3f20", "site": "006ca7fa"},
+    {"from": "006d3f20", "to": "006c9640", "site": "006d3f75"},
+    {"from": "006ca780", "to": "006d4180", "site": "006ca89d"},
+    {"from": "006ca780", "to": "006cbf30", "site": "006ca8b1"}
+  ],
+  "resource_anchors": [
+    {"function": "006dbfc0", "string": "LS3D_setup", "site": "006dc071"},
+    {"function": "006dbfc0", "string": "window.cfg", "site": "006dc2a6"},
+    {"function": "006c0ca0", "string": "Logo1.bik", "site": "006c0d75"},
+    {"function": "006c9640", "string": "missions\\%s\\loader", "site": "006c9690"},
+    {"function": "006c9640", "string": "C_LoaderScreen", "site": "006c9934"},
+    {"function": "006d4180", "string": "missions\\%s\\Scene", "site": "006d420c"},
+    {"function": "006cbf30", "string": "missions\\%s\\scene2.bin", "site": "006cbfed"},
+    {"function": "006ca780", "string": "missions\\%s\\tree.klz", "site": "006ca9f6"}
+  ],
+  "unresolved": [
+    "The exact frontend/controller virtual-dispatch path into 006989b0 is not established; the two graph components must not be joined by an invented direct call.",
+    "Vtable types, original function names, and many inferred calling conventions remain unknown.",
+    "Opaque calls through 00a59000 and arithmetic around them occur in setup and loading paths; their meaning is unresolved.",
+    "Successful decompilation is not proof of correct stack recovery. Several scene-loading exports contain implausible stack variables and unreachable-block warnings.",
+    "006d1ba0 also references scene2.bin and appears to contain chunk-reading logic, but its role relative to 006cbf30 is not established.",
+    "Archive contents have not been extracted or matched to these paths, and no runtime behavior has been verified."
+  ],
+  "next_milestone": "Inspect extracted scene2.bin and Scene resources for one known mission; recover loader helper signatures and validate the loading stages against the original running under Proton."
+}
