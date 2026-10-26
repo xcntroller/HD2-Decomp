@@ -13,6 +13,8 @@ startup, the main loop, and a mission-loading pipeline.
 Selected ALPS1 mission resources have also been extracted locally, and the
 `scene2.bin` container structure and selected object fields have been matched
 to their loader and engine consumers.
+The normal intro-to-front-end transition, menu-state dispatch, and original
+main-menu/control definitions have now also been located.
 
 **This is not a playable source reconstruction.** We have not run the unpacked
 copies, verified these findings under a debugger, or established that every
@@ -72,18 +74,36 @@ been reconstructed.
   tested independently against synthetic scenes and the real ALPS1 sample.
 - [x] Trace model-resource names and reconstruct the backward last-dot name rule.
 
-### Next: one mission-loading path
+### Next: a rebuilt executable reaching the original menu
 
-- [ ] Correct remaining helper and virtual-interface signatures in a working
-  project, not the baseline.
-- [ ] Decode object-field meanings and how records become engine objects.
-- [ ] Resolve frontend/controller virtual dispatch into the gameplay-load caller.
-- [ ] Verify selected loading stages against the original game under Proton.
+- [x] Trace the normal startup/video transition to the front-end state.
+- [x] Locate menu-specific setup, screen definitions, model binding and shared
+  update/render paths.
+- [ ] Recover the minimal window/graphics/engine initialization contract.
+- [ ] Build a 32-bit Windows host and demonstrate an engine window through Proton.
+- [ ] Integrate archive/resource registration, menu models, text/fonts and cursor.
+- [ ] Wire mouse/keyboard input and clean Exit/teardown.
+- [ ] Compare the resulting interactive menu with the original game.
+
+The working assumption is **Proton first**, retaining the original LS3DF.dll and
+locally installed assets while reconstructing the necessary client code. A
+native Linux engine rewrite is not the immediate target. No rebuilt executable
+or engine window exists yet. Initial video playback is not required for this
+milestone; the rebuilt host can eventually enter the recovered menu path
+directly once its prerequisites are established, without patching the original
+game.
+
+Deeper ALPS1 format work is paused. Existing mission/model results remain useful
+supporting evidence, not a prerequisite to understanding every mission before
+attempting the menu.
 
 ### Later
 
 - [ ] Recover relevant engine interface/vtable layouts.
 - [ ] Investigate unresolved opaque calls through `00A59000`.
+- [ ] Finish the menu's other screens, then connect mission selection and loading
+  to gameplay.
+- [ ] Resume object-field decoding where the next runnable milestone needs it.
 - [ ] Compare base-game findings with Sabre Squadron; do not reuse addresses blindly.
 - [ ] Choose and investigate a bounded gameplay system, such as squad orders.
 - [ ] Build tested parsers or behavioral reconstructions where evidence supports them.
@@ -124,6 +144,90 @@ base-game client with SHA-256:
 High confidence means strong static support for a role, not runtime confirmation.
 Some loader pseudocode still has poor stack recovery. Ghidra's recognized function
 count is not a count of understood functions.
+
+## Menu-first integration boundary
+
+See [the front-end evidence map](analysis/frontend-map.json). Everything in this
+section is **static evidence**, not a runtime demonstration or additional
+reconstructed-function credit.
+
+The normal path starts `Logo1.bik`, progresses through the other logos and
+`Intro.bik`, and reaches `006C0EF0(0, 0)` through `006C20F0`'s video-completion
+branch. The null-descriptor path allocates `0x240` bytes, installs vtable
+`00815E30`, stores the active state at controller `+0x14`, and invokes initializer
+slot `+0x04`, resolving to `0066AD10`.
+
+The front-end's type getter `006C1650` returns **2**; the video's `006C0DB0`
+returns **10**. These type IDs, transition status **13**, and the video sequence
+index **4** are different fields/contracts, not a single enum.
+
+| Boundary | Static interpretation |
+| --- | --- |
+| `0066AD10` | Shared front-end setup: scene, camera, light, sound, derived initialization, content and cursor |
+| Menu vtable `+0x40` → `00626340` | Menu-specific setup, including an unresolved `00A59000` call |
+| `0066C5B0` → menu vtable `+0x38` → `00627060` | Cursor/confirmation resources, then menu model/control binding |
+| `00623DD0` | Builds screen/control definitions, including `MAIN MENU` / `main_menu` |
+| `0066BFA0` → `004290A0` | Creates kind-9 model and enters the existing client resource-loading boundary |
+| Menu vtable `+0x34` → `00626B20` | Menu event dispatch |
+| `0066BEA0`, `0066DE00` | Shared update and scene-render paths; the latter calls cursor drawing |
+| `0066A4E0` | Cursor setup referencing `CURZOR` and `x_kursor.tga` |
+
+Main-menu control bindings include `bresume game`, `bchange profile`,
+`bsingleplayer`, `boptions` and `bexit`. These are internal object/control names,
+not necessarily the localized captions shown to the player. Other anchors
+include cursor model key `kurzor_menu`, `button.wav`, and sound-frame name
+`sound_click`. These references do not establish exact archive members or
+resource-overlay precedence.
+
+The menu is not simply an engine feature that can be switched on: client-side
+definitions, control classes, text/localization, input dispatch and resource
+services must also be reconstructed or integrated. Reusing the original engine
+initially avoids rebuilding its renderer first; it does not remove those client
+dependencies. Calling the existing game's entry point would not demonstrate our
+own reconstructed menu.
+
+Next implementation gate: establish window/graphics/engine ABI and lifecycle,
+then a minimal independently built host. A 32-bit Windows compiler and a usable
+Proton launch command have not yet been configured for this project. Several
+indirect-call signatures still corrupt Ghidra's stack recovery; generated C is
+not safe to compile as recovered source. Opaque startup/menu calls must not be
+silently omitted. There is no claim of runtime equivalence or a running menu.
+
+### Repeatable front-end checks and exports
+
+From the workspace root:
+
+```sh
+python3 -B tools/validate_frontend.py
+python3 -B -m unittest discover -s tools -p 'test_frontend.py'
+```
+
+The validator fingerprints the unpacked base client and checks 12 instruction
+anchors, 25 vtable slots, 10 direct calls and 14 resource/control-name references
+through section-mapped PE reads. Its synthetic tests also reject corrupted
+instructions, pointers, calls, strings and terminators without commercial files.
+
+Some indirectly referenced menu methods were absent from Ghidra's function
+list. [The guarded seed script](tools/DefineFrontendFunctions.java) checks the
+client fingerprint, exact vtable prefixes and callback reference, then defines
+missing targets without clearing overlapping functions. Use it transiently:
+
+```sh
+ghidra/support/analyzeHeadless \
+  /home/control/Documents/Projects/HD2ResearchProject HD2Research \
+  -process hd2.unpacked.exe -readOnly -noanalysis -max-cpu 2 \
+  -scriptPath "$PWD/tools" -preScript DefineFrontendFunctions.java \
+  -postScript ExportFunctions.java "$PWD/analysis/work/frontend-inspection" \
+  0066ad10 00626340 00627060 00623dd0 00626b20 0066b140 \
+  0066bea0 0066de00 0066bfa0 0066c5b0 0066a4e0 0066e0f0
+```
+
+Choose a **new output directory** each time. Check the log and every requested
+JSON/C pair, including `decompiled: true`: headless Ghidra can return zero after
+a script failure. `-readOnly` discards the temporary definitions, preserving the
+research database and frozen function census. Generated exports stay under the
+already ignored `analysis/work/`; neither the user baseline project nor game
+files are edited.
 
 ## First mission-format milestone
 

@@ -1,0 +1,112 @@
+{
+  "scope": "Static base-game front-end evidence for a menu-first rebuild, not a running menu or recovered UI implementation.",
+  "runtime_verified": false,
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "integration_target": "Our own rebuilt 32-bit Windows executable using the original LS3DF.dll and locally installed assets through Proton. No replacement menu mockup or original-client patch.",
+  "startup_path": [
+    {"address": "006dd550", "role": "WinMain-like entry"},
+    {"address": "006dcae0", "role": "Application lifecycle and main loop"},
+    {"address": "006dbfc0", "role": "Platform/engine orchestration"},
+    {"address": "006db0f0", "role": "Graphics initialization"},
+    {"address": "006c0820", "role": "Controller startup"},
+    {"address": "006c0ca0", "role": "Normal initial video-state creation"},
+    {"address": "006c20f0", "role": "Controller state transitions; video sequence 4 enters the null-descriptor front end"},
+    {"address": "006c0ef0", "role": "Null descriptor allocates 0x240 bytes, installs 00815e30 and calls initializer slot +04"}
+  ],
+  "menu_dependencies": [
+    {"address": "0066ad10", "role": "Shared front-end initializer: scene, camera, light, sound, derived setup +40, content setup and cursor"},
+    {"address": "00626340", "role": "Menu-specific setup selected by slot +40; also calls unresolved opaque pointer 00a59000"},
+    {"address": "0066c5b0", "role": "Loads cursor/confirmation resources, then invokes derived slot +38"},
+    {"address": "00627060", "role": "Slot +38 builds definitions, loads models and binds typed UI controls"},
+    {"address": "00623dd0", "role": "Constructs main-menu, profile, single-player and other screen/control definitions"},
+    {"address": "0066bfa0", "role": "Creates kind-9 model and calls client resource loader 004290a0"},
+    {"address": "00626b20", "role": "Menu event dispatch, including tagged control events"},
+    {"address": "0066bea0", "role": "Shared update path; invokes derived slot +48 and updates bound objects"},
+    {"address": "0066de00", "role": "Shared scene-render path, ending in cursor draw 0066a870"},
+    {"address": "0066a4e0", "role": "Cursor setup, CURZOR lookup and x_kursor.tga texture request"},
+    {"address": "0066e0f0", "role": "Scene callback supplied by initializer; full callback contract not recovered"}
+  ],
+  "state_ids": {
+    "front_end_type": 2,
+    "video_type": 10,
+    "video_transition_status": 13,
+    "intro_sequence_index": 4,
+    "note": "Type comes from slot +1c; transition status comes from +20. These and the initializer's internal +20 field are not one interchangeable enum."
+  },
+  "vtables": [
+    {
+      "address": "00815e30",
+      "role": "Front-end state; verified prefix only",
+      "targets": [
+        "006c1660", "0066ad10", "0066b140", "0066b3e0",
+        "0066be90", "0066bea0", "0066de00", "006c1650",
+        "0067ea00", "0067ea10", "0067ea20", "0067ea30",
+        "0067ea40", "00626b20", "00627060", "00626950",
+        "00626340"
+      ]
+    },
+    {
+      "address": "00815bc8",
+      "role": "Video state; verified prefix only",
+      "targets": [
+        "006c0dc0", "00688040", "0066ed30", "0066ed50",
+        "0067ec60", "0066ed80", "0066eda0", "006c0db0"
+      ]
+    }
+  ],
+  "instruction_anchors": [
+    {"address": "006c25b1", "hex": "6a006a008bcfe834e9ffff", "meaning": "Post-intro branch calls 006c0ef0 with two zero arguments"},
+    {"address": "006c0f39", "hex": "6a106840020000", "meaning": "Front-end allocation arguments include size 0x240"},
+    {"address": "006c0f94", "hex": "c706305e8100", "meaning": "Install front-end vtable"},
+    {"address": "006c1119", "hex": "894d14", "meaning": "Store active state at controller +14"},
+    {"address": "006c1122", "hex": "ff5204", "meaning": "Dispatch state initialization through +04"},
+    {"address": "0066ad57", "hex": "8b086a0d50ff5154894630", "meaning": "Create FRAME_SCENE through driver +54; store at object +30"},
+    {"address": "0066ad64", "hex": "6a0468f0e0660050ff5274", "meaning": "Scene +74 gets self, callback 0066e0f0 and flags 4"},
+    {"address": "0066aee2", "hex": "8b06518bceff5040", "meaning": "Invoke derived setup +40 with saved descriptor"},
+    {"address": "0066c65e", "hex": "8b068bceff5038", "meaning": "Invoke derived content binding +38"},
+    {"address": "0066bfac", "hex": "8b086a0950ff5154", "meaning": "UI resource helper creates FRAME_MODEL through driver +54"},
+    {"address": "006c1650", "hex": "b802000000c3", "meaning": "Front-end type getter returns 2"},
+    {"address": "006c0db0", "hex": "b80a000000c3", "meaning": "Video type getter returns 10"}
+  ],
+  "direct_calls": [
+    {"site": "006c25b7", "target": "006c0ef0"},
+    {"site": "006c0f5f", "target": "0067ead0"},
+    {"site": "0066aeec", "target": "0066c5b0"},
+    {"site": "0066aef4", "target": "0066a6e0"},
+    {"site": "0066c648", "target": "0066bfa0"},
+    {"site": "0066c659", "target": "0066c1d0"},
+    {"site": "00627087", "target": "00623dd0"},
+    {"site": "006270dd", "target": "0066bfa0"},
+    {"site": "0066bfcd", "target": "004290a0"},
+    {"site": "0066dff3", "target": "0066a870"}
+  ],
+  "resource_anchors": [
+    {"site": "006c0d75", "address": "00842ed8", "text": "Logo1.bik", "role": "Normal initial video"},
+    {"site": "006c25a2", "address": "008424e4", "text": "Intro.bik", "role": "Video before front-end transition"},
+    {"site": "00623e55", "address": "0083f800", "text": "main_menu", "role": "Main-menu model key"},
+    {"site": "00623e5a", "address": "0083f7f4", "text": "MAIN MENU", "role": "Screen definition label, not a filename"},
+    {"site": "006243ec", "address": "0083f7c0", "text": "bresume game", "role": "Bound control name"},
+    {"site": "006244e0", "address": "0083f7b0", "text": "bchange profile", "role": "Bound control name"},
+    {"site": "006245d4", "address": "0083f7a0", "text": "bsingleplayer", "role": "Bound control name"},
+    {"site": "006249a4", "address": "0083f768", "text": "boptions", "role": "Bound control name"},
+    {"site": "00624b8c", "address": "0083ebf0", "text": "bexit", "role": "Bound control name"},
+    {"site": "0066c63c", "address": "00840708", "text": "kurzor_menu", "role": "Cursor model key"},
+    {"site": "0066c641", "address": "00840678", "text": "CURZOR", "role": "Cursor resource label"},
+    {"site": "0066a6ab", "address": "00840668", "text": "x_kursor.tga", "role": "Cursor texture request"},
+    {"site": "0066afb4", "address": "0083a940", "text": "button.wav", "role": "Click-sound request"},
+    {"site": "0066afd2", "address": "0083a934", "text": "sound_click", "role": "Sound-frame name"}
+  ],
+  "limitations": [
+    "No rebuilt executable, engine window or interactive menu exists yet.",
+    "Resource keys and control names are not verified archive paths or localized displayed captions.",
+    "Indirect-call signatures remain incomplete; current generated C has incorrect stack/argument propagation and is not recovered source.",
+    "Original engine initialization, resource search/archive registration, text/font services, input ABI and teardown still need integration contracts.",
+    "Opaque calls through 00a59000 are unresolved and must not be assumed dispensable.",
+    "Transient Ghidra definitions do not revise the frozen function baseline or earn reconstruction credit.",
+    "Sabre Squadron is excluded; no original game files or user baseline database were modified."
+  ]
+}

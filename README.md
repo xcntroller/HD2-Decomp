@@ -31,6 +31,11 @@ This is still early research, not a rebuilt or playable version of the game.
 Our findings so far come from examining files; we haven't yet checked them
 against the game while it's running.
 
+**Our next goal is the menu, not a complete mission.** We'll aim for our own
+small rebuilt program showing the original menu, initially using the existing
+engine and game assets through Proton. This is not a replacement menu drawn to
+look similar. No rebuilt menu or engine window is running yet.
+
 ## Progress
 
 Completed steps mean we've reached a useful milestone, not that we understand
@@ -81,14 +86,21 @@ difficulty, playability, or time remaining.
 - [x] Recover engine object-type names and the model loader's retry/stop decisions.
 - [x] Reconstruct and test the first model-file header checks.
 - [x] Read and cross-check the first table in both sample model files.
+- [x] Trace startup into the original menu and locate its screen/control definitions.
 - [x] Save our findings and add repeatable checks for the evidence.
 
-### Next: understand one mission from loading to play
+### Next: get our rebuilt program to the menu
 
-- [x] Extract sample files for one familiar mission.
-- [ ] Follow how the game reads those files and builds the mission.
-- [ ] Connect the menus and loading screen to the start of gameplay.
-- [ ] Check our understanding against the running game.
+- [x] Find how startup reaches the menu and identify its main dependencies.
+- [ ] Open an engine window from our own small program through Proton.
+- [ ] Load the original menu content, text and cursor.
+- [ ] Connect mouse/keyboard input and make Exit work cleanly.
+- [ ] Compare our running menu with the original game's behavior.
+
+Deeper ALPS1 work is paused. Its findings remain useful for shared file readers
+and model loading, but we don't need to decode an entire mission before working
+toward something visible. Other menu screens and gameplay come after this first
+interactive milestone.
 
 ### Longer term
 
@@ -120,6 +132,8 @@ changes.
   and remaining questions.
 - [Research map](analysis/initialization-map.json): structured evidence behind
   the initial startup and mission-loading map.
+- [Menu findings](analysis/frontend-map.json): the route into the original menu,
+  its known dependencies, and what still prevents a running rebuild.
 - [Mission findings](analysis/mission-format.json): the first checked file
   structures, sample fingerprints, and what remains unknown.
 - [Tools](tools/): scripts created for this project.
