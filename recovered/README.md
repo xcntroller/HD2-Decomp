@@ -27,8 +27,9 @@ initial 16-byte checks performed by the engine's model-file loader.
 
 [The graphics-only host](host/engine_window.cpp) is independently written
 integration glue, **not another recovered original function or a running menu**.
-Its [56-byte settings layout](host/graphics_settings.h) is statically supported,
-but the original graphics calls have not yet been runtime-verified.
+Its [56-byte settings layout](host/graphics_settings.h) is statically supported.
+The user has now observed the original-engine windows and blue clear-color
+surface in a desktop Proton run, followed by shutdown.
 
 It is an optional i386 Windows target:
 
@@ -40,8 +41,9 @@ Set `WINDOWS_CXX` to an i386 MinGW-compatible compiler path when needed; see
 [the technical build/launch instructions](../RESEARCH.md#graphics-only-host).
 Normal `make test` remains native and does not require a Windows compiler.
 The launcher fingerprints the original DLL and uses its own ignored Proton
-prefix/working directory. The current launch here fails before host entry;
-desktop-terminal verification is still required.
+prefix/working directory. Launch inside the agent environment fails before host
+entry; launch from the user's desktop terminal displayed the test surface.
+Exact frame count, exit status and full cleanup remain unconfirmed.
 
 The intended first test clears/presents an engine-owned window and exits through
 `WM_CLOSE` after a bounded frame count. There is no replacement menu artwork,

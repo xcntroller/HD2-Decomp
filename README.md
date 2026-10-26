@@ -34,9 +34,9 @@ against the game while it's running.
 **Our next goal is the menu, not a complete mission.** We'll aim for our own
 small rebuilt program showing the original menu, initially using the existing
 engine and game assets through Proton. This is not a replacement menu drawn to
-look similar. A small graphics-only test program now compiles, but its launch
-is blocked in this VS Code environment before the executable starts. No engine
-window or rebuilt menu has been verified yet.
+look similar. **Our own graphics-only program now opens an original-engine
+window through Proton:** the desktop test displayed the blue test surface and
+then shut down. The menu itself is not loaded yet.
 
 ## Progress
 
@@ -95,7 +95,7 @@ difficulty, playability, or time remaining.
 
 - [x] Find how startup reaches the menu and identify its main dependencies.
 - [x] Build our own small Windows program for testing the original graphics interface.
-- [ ] Open an engine window from our own small program through Proton.
+- [x] Open an engine window from our own small program through Proton.
 - [ ] Load the original menu content, text and cursor.
 - [ ] Connect mouse/keyboard input and make Exit work cleanly.
 - [ ] Compare our running menu with the original game's behavior.
@@ -106,7 +106,7 @@ toward something visible. Other menu screens and gameplay come after this first
 interactive milestone.
 
 The [graphics bootstrap instructions](RESEARCH.md#graphics-only-host) describe
-the first build and the desktop-terminal launch check still needed. It does not
+the first build and successful desktop-terminal window test. It does not
 load the menu or play the logos; the original movie files remain untouched.
 
 ### Longer term

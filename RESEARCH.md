@@ -81,7 +81,7 @@ been reconstructed.
   update/render paths.
 - [ ] Recover the minimal window/graphics/engine initialization contract.
 - [x] Recover a bounded graphics ABI and compile an independently written window host.
-- [ ] Build a 32-bit Windows host and demonstrate an engine window through Proton.
+- [x] Build a 32-bit Windows host and demonstrate an engine window through Proton.
 - [ ] Integrate archive/resource registration, menu models, text/fonts and cursor.
 - [ ] Wire mouse/keyboard input and clean Exit/teardown.
 - [ ] Compare the resulting interactive menu with the original game.
@@ -89,7 +89,7 @@ been reconstructed.
 The working assumption is **Proton first**, retaining the original LS3DF.dll and
 locally installed assets while reconstructing the necessary client code. A
 native Linux engine rewrite is not the immediate target. A graphics-only host
-now compiles, but no engine window has been runtime-verified. Initial video
+now compiles and the user has verified a blue engine window on the desktop. Initial video
 playback is not required for this
 milestone; the rebuilt host can eventually enter the recovered menu path
 directly once its prerequisites are established, without patching the original
@@ -190,7 +190,7 @@ own reconstructed menu.
 
 Next implementation gate: establish window/graphics/engine ABI and lifecycle,
 then a minimal independently built host. The graphics-only host below is now
-built, but its Proton launch is blocked before host entry in this environment.
+built and desktop-tested; only launch within the agent environment is blocked.
 Several
 indirect-call signatures still corrupt Ghidra's stack recovery; generated C is
 not safe to compile as recovered source. Opaque startup/menu calls must not be
@@ -266,7 +266,9 @@ It loads **no menu, mission, archive, font or movie**. Its title says it is an
 engine bootstrap, not the menu. Its own Win32 message loop handles Escape/Close;
 bounded runs post a real `WM_CLOSE` after the requested frames, restore the
 window procedure and call the original graphics cleanup before unloading.
-Resource creation, frame presentation and cleanup are still **runtime-unverified**.
+The user has observed the engine windows, blue clear-color surface and subsequent
+shutdown in a desktop run. Exact completed frame count, process exit status and
+full resource cleanup have not been independently confirmed.
 
 ### Build and desktop launch
 
@@ -310,13 +312,21 @@ Experimental launcher. Override `--steam-root`, `--proton`, `--game-dir` or
 should print host entry, graphics initialization, `WM_CLOSE received`,
 `Submitted 30 frames` and `Graphics closed`, then exit zero.
 
-**Current launch result:** the installed Proton Experimental 11.0 returned 1
+**Initial agent-environment launch result:** Proton Experimental 11.0 returned 1
 before entering the host, reporting process-creation error **731** and
 `nodrv_CreateWindow` / no window driver. This session has no `DISPLAY`; neither
 an engine ABI failure nor a successful window can be inferred from that launch.
 No environment restrictions were bypassed. Retry the same command from a normal
 desktop terminal and inspect `analysis/work/engine-window/run/steam-0.log` if it
 fails. Compilation and static/native tests are not substitutes for this check.
+
+**Desktop result:** the user subsequently ran the host and reported two windows,
+one showing the blue test surface, followed by shutdown. The updated Proton log
+corroborates loading our i386 host and original LS3DF.dll; its recorded frame
+argument is `3000`. No host process remained at inspection. This verifies the
+visible graphics-bootstrap milestone, not the menu, exact frame completion,
+exit status or leak-free cleanup. The main/child window arrangement is expected
+from flag `0x80`; it is not two reconstructed menu screens.
 
 The user confirmed, and the local installation contains,
 `Gamemovie/Logo1.bik`, `Logo2.bik` and `Logo3.bik`. We keep those files unchanged

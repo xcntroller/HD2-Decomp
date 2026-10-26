@@ -1,6 +1,7 @@
 {
   "scope": "Bounded graphics ABI for independently written window-only integration code, not a reconstructed menu or full original initialization function.",
-  "runtime_verified": false,
+  "runtime_verified": true,
+  "runtime_verification_scope": "User-observed desktop run: engine windows, blue clear-color surface and subsequent shutdown. Log corroborates host and original DLL loading. Exact frame count, exit status and resource cleanup are not independently confirmed.",
   "source": "recovered/host/engine_window.cpp",
   "engine": {
     "binary": {
@@ -73,9 +74,10 @@
   },
   "launch_attempt": {
     "runtime": "Installed Proton Experimental 11.0, isolated prefix and working directory",
-    "result": "Blocked before the host executable entered; process creation error 731 and no window driver",
+    "result": "Initial agent-environment launch failed before host entry. Subsequent user desktop run opened engine windows, showed the blue clear-color surface and shut down.",
     "local_log": "analysis/work/engine-window/run/steam-0.log",
-    "not_verified": ["Actual graphics initialization", "Visible rendered window", "Runtime calling conventions", "Window close and cleanup"]
+    "desktop_log_frame_argument": 3000,
+    "not_verified": ["Exact completed frame count", "Process exit status", "Full resource cleanup", "Original menu rendering and interaction"]
   },
   "limitations": [
     "The host is new integration glue and earns no original-function reconstruction credit.",
