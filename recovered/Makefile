@@ -6,7 +6,7 @@ BUILD_DIR ?= build
 
 .PHONY: all test
 
-all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks
+all: $(BUILD_DIR)/chunk_reader_tests $(BUILD_DIR)/scan_scene_chunks $(BUILD_DIR)/model_resource_key_tests $(BUILD_DIR)/model_resource_key
 
 $(BUILD_DIR):
 	mkdir -p "$@"
@@ -17,6 +17,14 @@ $(BUILD_DIR)/chunk_reader_tests: io/chunk_reader.cpp tests/chunk_reader_tests.cp
 $(BUILD_DIR)/scan_scene_chunks: io/chunk_reader.cpp tools/scan_scene_chunks.cpp io/chunk_reader.h | $(BUILD_DIR)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) io/chunk_reader.cpp tools/scan_scene_chunks.cpp $(LDFLAGS) -o "$@"
 
+$(BUILD_DIR)/model_resource_key_tests: scene/model_resource_key.cpp tests/model_resource_key_tests.cpp scene/model_resource_key.h | $(BUILD_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) scene/model_resource_key.cpp tests/model_resource_key_tests.cpp $(LDFLAGS) -o "$@"
+
+$(BUILD_DIR)/model_resource_key: scene/model_resource_key.cpp tools/model_resource_key.cpp scene/model_resource_key.h | $(BUILD_DIR)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) scene/model_resource_key.cpp tools/model_resource_key.cpp $(LDFLAGS) -o "$@"
+
 test: all
 	"$(BUILD_DIR)/chunk_reader_tests"
+	"$(BUILD_DIR)/model_resource_key_tests"
 	$(PYTHON) -B tests/compare_scene_scan.py --scanner "$(BUILD_DIR)/scan_scene_chunks"
+	$(PYTHON) -B tests/compare_model_resource_keys.py --normalizer "$(BUILD_DIR)/model_resource_key"

@@ -1,6 +1,7 @@
 """Check curated mission observations, fingerprints and selected local Ghidra evidence."""
 
 import argparse
+from collections import Counter
 import hashlib
 import json
 from pathlib import Path
@@ -60,6 +61,19 @@ def validate(document: dict, root: Path, verify_archive: bool = False) -> None:
     check_equal(len(parents), observed["parent_name_fields"], "parent names")
     check_equal(sum(name in names for name in parents),
                 observed["parent_names_matching_scene2_names"], "parent-name matches")
+    resources = [field for field in fields if field["id"] == "0x2012"]
+    check_equal(
+        {
+            "fields": len(resources),
+            "unique_names": len({field["value"] for field in resources}),
+            "unique_lookup_keys": len({field["lookup_key"] for field in resources}),
+            "extensionless_names": sum("." not in field["value"] for field in resources),
+            "active_creation_kind_counts": dict(sorted(Counter(
+                str(field["active_creation_kind"]) for field in resources
+            ).items())),
+        },
+        observed["model_resources"], "model resource observations",
+    )
     tolerance = observed["rotation_squared_norm_tolerance"]
     if not 0 < tolerance <= 0.000001:
         raise ValueError("Rotation squared-norm tolerance must be in (0, 1e-6]")
@@ -89,6 +103,12 @@ def validate(document: dict, root: Path, verify_archive: bool = False) -> None:
             for ref in exports[call["from"]]["references"]
         ):
             raise ValueError(f"Unsupported loader call: {call}")
+    for anchor in document["loader_evidence"].get("resource_anchors", []):
+        if not any(
+            ref["from"] == anchor["site"] and ref.get("string") == anchor["string"]
+            for ref in exports[anchor["function"]]["references"]
+        ):
+            raise ValueError(f"Unsupported model resource anchor: {anchor}")
 
 
 def main() -> None:
@@ -100,7 +120,7 @@ def main() -> None:
     args = parser.parse_args()
     validate(json.loads(args.map.read_text()), args.root, args.archive)
     print("Verified mission fingerprints, exact record/field counts, quaternion tolerance, "
-          "name-link observations, repaired signatures and selected loader calls.")
+          "name-link/model-resource observations, repaired signatures and selected loader evidence.")
 
 
 if __name__ == "__main__":

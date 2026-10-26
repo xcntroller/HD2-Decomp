@@ -10,6 +10,11 @@ Its names and API are ours; its supported behavior is based on the observed
 base-game chunk helpers. The [evidence map](../analysis/reconstruction-map.json)
 records addresses, scope, and intentional differences.
 
+The second component is the
+[model resource key helper](scene/model_resource_key.cpp), with its
+[public interface](scene/model_resource_key.h). This is a small string
+transformation, not a recovered model loader.
+
 ## Chunk reader
 
 The reader:
@@ -52,6 +57,30 @@ After an I/O failure, discard the reader rather than assume cursor rollback.
 Malformed headers may have been consumed before their lengths were rejected.
 The reader never silently substitutes data or reports a failed seek as success.
 
+## Model resource keys
+
+The object loader's `0x2012` handler reads a model resource name, and a later
+step scans backward for the last dot. If present, it terminates the string
+there. The recovered helper reproduces that **string-content transformation**:
+
+| Input | Key |
+| --- | --- |
+| `crate` | `crate` |
+| `crate.4ds` | `crate` |
+| `crate.variant.4ds` | `crate.variant` |
+| `.hidden` | empty |
+| `folder.name/object` | `folder` |
+
+The last example is intentional: the observed scan is not aware of directory
+components. Do not replace it with filesystem extension handling. Case,
+whitespace, and path separators are otherwise preserved.
+
+The input is already-decoded name content without its serialized NUL terminator.
+Embedded NUL bytes are rejected explicitly. `std::string` replaces the game's
+copy-on-write storage and bookkeeping. Resource lookup directories, extension
+addition, actual frame creation, cache behavior, and successful loading remain
+outside this helper's scope.
+
 ## Build and test
 
 From the repository root, with a C++17 compiler, GNU Make, and Python 3.11+:
@@ -66,7 +95,9 @@ This builds with strict warnings and runs:
   failed seeks, stream positioning, and the signed offset limit;
 - 37 deterministic synthetic scene comparisons against the independent Python
   inspector;
-- 9 malformed-scene cases that both scanners must reject explicitly.
+- 9 malformed-scene cases that both scanners must reject explicitly;
+- 14 C++ model-key cases, including an embedded-NUL rejection;
+- 71 deterministic model-key comparisons against Python.
 
 No game files are needed for those tests. Build products go into ignored
 `recovered/build/`.
@@ -83,6 +114,19 @@ This compares file size, top-level/container/record counts, every immediate
 record-field count, and unknown record IDs. For the recorded ALPS1 sample, the
 reader matches 15 top-level chunks and all 4,008 records. It does not decode
 payload semantics or check names; use the existing Python inspector for that.
+
+To compare model keys used by the real sample:
+
+```sh
+python3 -B recovered/tests/compare_model_resource_keys.py \
+  --normalizer recovered/build/model_resource_key \
+  --scene extracted/alps1-base/scene2.bin
+```
+
+The ALPS1 sample has 1,157 model-resource references using 61 distinct names.
+All of those names are extensionless, so the suffix-removal edge cases are
+established by assembly inspection and synthetic tests rather than that sample.
+The comparison driver does not print the real asset names.
 
 An address/undefined-behavior sanitizer build can stay in ignored analysis output:
 

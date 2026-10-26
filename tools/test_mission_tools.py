@@ -18,7 +18,7 @@ from extract_dta_member import (
     read_index,
     xor_record,
 )
-from inspect_scene2 import chunks, decode_objects, summarize
+from inspect_scene2 import chunks, decode_objects, model_resource_key, summarize
 from validate_mission_sample import validate as validate_mission
 
 
@@ -292,6 +292,47 @@ class ObjectDecodingTests(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertEqual(output.read_bytes(), original)
 
+    def test_model_resource_key_last_dot_rule(self):
+        cases = {
+            "": "", "crate": "crate", "crate.4ds": "crate",
+            "crate.variant.4ds": "crate.variant", ".hidden": "",
+            "folder.name/object": "folder", "folder\\thing.4ds": "folder\\thing",
+            "MiXeD.4DS": "MiXeD", "name.": "name", " a .b": " a ",
+            ".": "", "..": ".",
+        }
+        for name, expected in cases.items():
+            with self.subTest(name=name):
+                self.assertEqual(model_resource_key(name), expected)
+        with self.assertRaisesRegex(ValueError, "embedded NUL"):
+            model_resource_key("before\0after")
+
+    def test_model_resource_field(self):
+        data = self.scene(chunk(0x4011, struct.pack("<I", 9))
+                          + chunk(0x2012, b"synthetic.variant.4ds\0"))
+        field = decode_objects(data)["records"][0]["fields"][1]
+        self.assertEqual(field["meaning"], "model_resource")
+        self.assertEqual(field["value"], "synthetic.variant.4ds")
+        self.assertEqual(field["lookup_key"], "synthetic.variant")
+        self.assertEqual(field["required_frame_kind"], 9)
+        self.assertEqual(field["active_creation_kind"], 9)
+
+    def test_model_resource_does_not_infer_actual_frame_kind(self):
+        data = self.scene(chunk(0x2012, b"before\0")
+                          + chunk(0x4011, struct.pack("<I", 3))
+                          + chunk(0x2012, b"after\0"))
+        fields = decode_objects(data)["records"][0]["fields"]
+        self.assertEqual(fields[0]["active_creation_kind"], 0)
+        self.assertEqual(fields[2]["active_creation_kind"], 3)
+        self.assertEqual(fields[0]["required_frame_kind"], 9)
+        self.assertNotIn("applied", fields[0])
+
+    def test_model_resource_name_validation(self):
+        for name in [b"", b"unterminated", b"two\0names\0", b"\xff\0"]:
+            with self.subTest(name=name), self.assertRaises(ValueError):
+                decode_objects(self.scene(chunk(0x2012, name)))
+        field = decode_objects(self.scene(chunk(0x2012, b"\0")))["records"][0]["fields"][0]
+        self.assertEqual(field["value"], "")
+
 
 class MissionEvidenceTests(unittest.TestCase):
     def setUp(self):
@@ -325,6 +366,10 @@ class MissionEvidenceTests(unittest.TestCase):
                     "unique_object_names": 1, "parent_name_fields": 1,
                     "parent_names_matching_scene2_names": 0,
                     "rotation_squared_norm_tolerance": 0.000001,
+                    "model_resources": {
+                        "fields": 0, "unique_names": 0, "unique_lookup_keys": 0,
+                        "extensionless_names": 0, "active_creation_kind_counts": {},
+                    },
                 },
             },
             "loader_evidence": {
@@ -361,6 +406,8 @@ class MissionEvidenceTests(unittest.TestCase):
             ("observations", "object_decoding", "unique_object_names"),
             ("observations", "object_decoding", "parent_name_fields"),
             ("observations", "object_decoding", "parent_names_matching_scene2_names"),
+            ("observations", "object_decoding", "model_resources", "fields"),
+            ("observations", "object_decoding", "model_resources", "unique_lookup_keys"),
         ]:
             document = copy.deepcopy(self.document)
             target = document
@@ -379,6 +426,13 @@ class MissionEvidenceTests(unittest.TestCase):
             document["loader_evidence"]["calls"][0][key] = "invented"
             with self.subTest(key=key), self.assertRaisesRegex(ValueError, "Unsupported loader call"):
                 validate_mission(document, self.root)
+
+    def test_fabricated_model_resource_anchor(self):
+        self.document["loader_evidence"]["resource_anchors"] = [
+            {"function": "00000001", "site": "invented", "string": "invented resource error"}
+        ]
+        with self.assertRaisesRegex(ValueError, "Unsupported model resource anchor"):
+            validate_mission(self.document, self.root)
 
     def test_wrong_export_identity_and_missing_decompilation(self):
         path = self.root / "export.json"

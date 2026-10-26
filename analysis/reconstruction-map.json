@@ -1,5 +1,5 @@
 {
-  "scope": "First readable, portable read-only chunk-reader reconstruction; not original source or a binary-compatible replacement.",
+  "scope": "Readable portable reconstructions of read-only chunk handling and a model-resource key transformation; not original source or binary-compatible replacements.",
   "runtime_verified": false,
   "abi_compatible": false,
   "binary_equivalent": false,
@@ -39,6 +39,39 @@
       "implementation": "ChunkReader::leave_chunk",
       "subset": "Read-mode seek to the current end, then decrement nonzero depth; depth zero uses file size. Write-mode backpatching and optional written-size output are excluded.",
       "local_export": "analysis/work/chunk-signatures-fixed/00405890.json"
+    }
+  ],
+  "additional_components": [
+    {
+      "name": "model_resource_key",
+      "header": "recovered/scene/model_resource_key.h",
+      "implementation": "recovered/scene/model_resource_key.cpp",
+      "parent_function": "006cd940",
+      "local_export": "analysis/work/chunk-signatures-fixed/006cd940.json",
+      "subset": "String-content effect of the model name's backward last-dot scan, not the surrounding resource loading/cache behavior.",
+      "instruction_anchors": [
+        {"address": "006ce167", "observation": "Initialize backward scan from string length"},
+        {"address": "006ce1d2", "observation": "Compare the current character with a dot"},
+        {"address": "006ce1d9", "observation": "Decrement scan position while nonzero"},
+        {"address": "006ce242", "observation": "Write a NUL at the last dot"}
+      ],
+      "behavior": "Preserve case, whitespace and separators; remove the last dot and everything after it anywhere in the string. No dot leaves the content unchanged.",
+      "intentional_differences": [
+        "std::string/string_view replace the game's copy-on-write string representation.",
+        "Accept decoded non-NUL string contents, explicitly rejecting embedded NUL rather than modeling inconsistent length metadata or truncation.",
+        "No resource directories, file suffix addition, cache management, engine calls or successful model load is reconstructed."
+      ],
+      "verification": {
+        "unit_tests": "recovered/tests/model_resource_key_tests.cpp",
+        "unit_test_count": 14,
+        "comparison_driver": "recovered/tests/compare_model_resource_keys.py",
+        "comparison_reference": "tools/inspect_scene2.py",
+        "synthetic_key_comparisons": 71,
+        "real_resource_fields": 1157,
+        "real_unique_keys": 61,
+        "real_sample": "extracted/alps1-base/scene2.bin",
+        "limitations": "All current real sample names lack dots. Last-dot edge cases are supported by static assembly plus synthetic tests, not execution of the original routine."
+      }
     }
   ],
   "intentional_differences": [

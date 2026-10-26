@@ -51,6 +51,13 @@ def name_value(data: bytes, field: Chunk) -> bytes:
     return value[:-1]
 
 
+def model_resource_key(name: str) -> str:
+    if "\0" in name:
+        raise ValueError("Model resource names must not contain embedded NUL bytes")
+    suffix = name.rfind(".")
+    return name if suffix == -1 else name[:suffix]
+
+
 def summarize(data: bytes) -> dict:
     top = scene_chunks(data)
     containers = [item for item in top if item.kind == 0x4000]
@@ -98,6 +105,10 @@ def decode_field(data: bytes, field: Chunk) -> dict:
     }
     if field.kind == 0x10:
         result.update(meaning="object_name", value=name_value(data, field).decode("ascii"))
+    elif field.kind == 0x2012:
+        name = name_value(data, field).decode("ascii")
+        result.update(meaning="model_resource", value=name,
+                      lookup_key=model_resource_key(name), required_frame_kind=9)
     elif field.kind == 0x4011:
         if field.size != 10:
             raise ValueError(f"Expected a 4-byte creation kind at {field.offset:#x}")
@@ -150,6 +161,8 @@ def decode_objects(data: bytes) -> dict:
                 if field.kind == 0x4011:
                     active_kind = decoded["value"]
                     creation_kinds[active_kind] += 1
+                elif field.kind == 0x2012:
+                    decoded["active_creation_kind"] = active_kind
                 elif field.kind == 0x10:
                     action = "lookup_existing" if active_kind == 0 else "create_if_missing"
                     decoded["name_action"] = action

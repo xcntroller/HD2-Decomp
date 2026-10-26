@@ -91,6 +91,7 @@
       "decoded_field_counts": {
         "creation_kind": 1275,
         "fallback_position": 1275,
+        "model_resource": 1157,
         "object_name": 4008,
         "parent_reference": 1200,
         "position": 1292,
@@ -100,10 +101,32 @@
       "unique_object_names": 4008,
       "parent_name_fields": 1200,
       "parent_names_matching_scene2_names": 200,
-      "rotation_squared_norm_tolerance": 0.000001
+      "rotation_squared_norm_tolerance": 0.000001,
+      "model_resources": {
+        "fields": 1157,
+        "unique_names": 61,
+        "unique_lookup_keys": 61,
+        "extensionless_names": 1157,
+        "active_creation_kind_counts": {"9": 1157}
+      }
     }
   },
   "object_fields": [
+    {
+      "id": "0x2012",
+      "meaning": "NUL-terminated model resource name",
+      "confidence": "high for resource-name dataflow",
+      "required_actual_frame_kind": 9,
+      "evidence": "006cdf32 branch checks actual frame type at +0xf8 against 9, reads a bounded string, strips its last-dot suffix, then follows cached/uncached resource handling. Failure reports modelfile '%s' not found at 006ce750.",
+      "normalization": {
+        "scan_start": "006ce167",
+        "last_dot_comparison": "006ce1d2",
+        "suffix_terminator_write": "006ce242",
+        "rule": "Scan backward over the entire string; at the last dot, terminate the name. No path-component restriction or case conversion in this step.",
+        "caveat": "This is not generic filesystem suffix handling. A dot in a directory component can also truncate the name. Leading dots and trailing dots are included."
+      },
+      "caveat": "The inspector decodes serialization without claiming the field is applied. Active creation kind is a request, not proof of actual runtime frame type. Resource directories, suffix addition, cache behavior and successful loads are unresolved."
+    },
     {
       "id": "0x0010",
       "meaning": "Object name, not necessarily a newly created object",
@@ -115,7 +138,7 @@
       "id": "0x4011",
       "meaning": "32-bit creation kind, active for subsequent name fields",
       "confidence": "high",
-      "caveat": "Numeric kinds are deliberately not labeled with engine object-class names yet."
+      "caveat": "Kind 9 is associated with the model-resource path. Other numeric kinds remain unlabeled; this is not a recovered authoritative engine enum."
     },
     {
       "id": "0x0020",
@@ -207,6 +230,13 @@
       {"address": "00405940", "path": "analysis/work/chunk-signatures-fixed/00405940.json", "signature": "bool __thiscall FUN_00405940(void * this, void * buffer, uint count)"},
       {"address": "00405890", "path": "analysis/work/chunk-signatures-fixed/00405890.json", "signature": "bool __thiscall FUN_00405890(void * this, uint * written_size)"}
     ],
+    "resource_anchors": [
+      {
+        "function": "006cd940",
+        "site": "006ce750",
+        "string": "# ERROR LOADER : modelfile '%s' not found"
+      }
+    ],
     "calls": [
       {"from": "006cd940", "site": "006d188c", "to": "0041d110"},
       {"from": "006cd940", "site": "006d1931", "to": "0041d180"},
@@ -219,7 +249,7 @@
     "local_report": "analysis/work/alps1-scene2-structure.json",
     "synthetic_tests": "tools/test_mission_tools.py",
     "independent_extractor_comparison": false,
-    "object_report": "analysis/work/alps1-object-fields.json",
+    "object_report": "analysis/work/alps1-object-resources.json",
     "validator": "tools/validate_mission_sample.py"
   },
   "limitations": [

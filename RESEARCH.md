@@ -70,6 +70,7 @@ been reconstructed.
   a repeatable evidence validator.
 - [x] Start readable C++ source with a read-only chunk-reader reconstruction,
   tested independently against synthetic scenes and the real ALPS1 sample.
+- [x] Trace model-resource names and reconstruct the backward last-dot name rule.
 
 ### Next: one mission-loading path
 
@@ -199,6 +200,7 @@ selected fields to be followed into their consumers:
 | `0x002C` | Fallback position for failed parent-name lookup | 1,275 |
 | `0x002D` | Scale, three float32 components | 1,277 |
 | `0x4020` | Parent reference with a nested name field | 1,200 |
+| `0x2012` | Model resource name with a derived lookup key | 1,157 |
 
 The position consumer writes frame offset `+0xB0`. Rotation is reordered to
 engine `x,y,z,w`, copied to `+0xC0`, and normalized through the named
@@ -213,7 +215,9 @@ each record. When a name field is encountered, zero selects lookup of an
 existing name-table entry; nonzero selects a create-if-missing branch. In this
 sample there are 2,733 lookup requests and 1,275 create-if-missing requests.
 The latter contain kinds `2` (13), `3` (2), `6` (103), and `9` (1,157). These
-numbers are not yet presented as authoritative engine class names.
+numbers are not a recovered authoritative engine enum. Kind `9` now has a
+specific model-resource association through the handler described below; the
+remaining kinds are still unlabeled.
 
 The loader populates a name table through callback `006CC580` before parsing
 the records. The callback reads a frame's name and stores its pointer in the
@@ -255,6 +259,42 @@ name-link observations, six repaired signatures and four selected direct calls
 against local Ghidra exports. It does not prove every semantic interpretation.
 It needs the ignored local inputs/exports and therefore cannot run from a fresh
 clone alone. `--archive` additionally hashes the full base mission archive.
+
+### Model-resource field and key processing
+
+The `0x2012` branch beginning at `006CDF32` checks the **actual frame type** at
+`+0xF8` against `9` before reading a bounded, NUL-terminated resource name.
+This is not the same as the record's requested creation kind: a pre-existing
+frame can have a type independent of the request. The inspector reports both
+the required actual kind and the serialized active creation kind without
+claiming the field was applied at runtime.
+
+The model-name string is scanned backward from its length at `006CE167`.
+`006CE1D2` compares a character against a dot, `006CE1D9` decrements the scan,
+and `006CE242` writes a NUL at the last dot. A new string is then made from
+the resulting C-string contents. The resulting rule removes the last dot and
+everything after it **anywhere in the string**, not just in a filename's last
+path component. Case and whitespace are not changed by this step.
+
+Subsequent code has cached and uncached paths, an engine virtual call and
+negative result handling. The failure path references
+`# ERROR LOADER : modelfile '%s' not found` at `006CE750`; that exact anchor is
+checked against the local function export. Cache version/time diagnostics are
+also present. The cache policy, resource directories, extension addition, and
+actual method signatures have not been reconstructed.
+
+All 1,157 ALPS1 occurrences are extensionless basenames and have serialized
+active kind `9`; they use 61 distinct names/keys. This is a resource-reference
+count, not a count of distinct loaded models or enemies. The existing mission
+validator now checks these aggregate observations as well.
+
+The readable [C++ helper](recovered/scene/model_resource_key.cpp) covers only
+the name transformation. It uses ordinary strings instead of the game's
+copy-on-write representation and rejects embedded NUL in decoded input.
+Fourteen C++ cases and 71 cross-language synthetic comparisons cover this
+behavior, including leading dots, multiple dots and dots before path separators.
+All 61 real names are checked too, but those extensionless names cannot by
+themselves establish the suffix-removal behavior.
 
 ### Readable reconstruction versus decompiler output
 
