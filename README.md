@@ -42,9 +42,21 @@ camera/model updates. It stages only the needed local assets and uses the
 original engine and menu camera. **The original cursor and mouse tracking are
 also desktop-verified.** A new, opt-in `--menu-ui` build adds static English text
 using the original bitmap fonts and an Exit button that closes this host.
-The desktop test now confirms visible text and working Exit, but some text runs
-past the button borders; layout fidelity remains unfinished. Other screens,
-profile/save data and the original quit-confirmation flow are not implemented.
+Desktop tests confirm visible text, working Exit and the corrected original
+horizontal text inset. The host now also initializes the original button visual
+pairs and switches Exit's artwork on hover; the user has confirmed this behavior
+on the desktop too. The opt-in `--menu-confirm` experiment also shows the original
+confirmation artwork and labels; the user confirmed Yes, No and the corrected
+layering, the bounded original activation and queue flow, press/release identity,
+confirmation focus routing and identifier lookup. An opt-in engine-picking
+comparison probe, the separate engine-picking interaction with pointer-motion
+events, original button click-event ordering and focused-screen click routing
+have also been desktop-checked. An opt-in shadow probe now observes original
+button-mask and double-click bookkeeping without changing interaction; its
+host-supplied timing remains approximate. Screen effects and much of input remain
+host scaffolding, not the complete
+original dispatcher. Pixel-perfect
+fidelity, other screens and profile/save data are not implemented.
 
 ## Progress
 
@@ -56,11 +68,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **9 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **29 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 5 |
+| Base game client | 17,294 | 0 | 25 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
@@ -113,7 +125,11 @@ difficulty, playability, or time remaining.
 - [x] Verify visible text and working Exit in a desktop run.
 - [x] Load the original menu artwork, static text and cursor.
 - [x] Connect bounded host input and make Exit close the host cleanly.
-- [ ] Correct text overflowing the button borders against original layout evidence.
+- [x] Correct text overflowing the button borders against original layout evidence.
+- [x] Restore original normal/active model-visual selection for Exit hover.
+- [x] Verify the new button visual states in a desktop run.
+- [x] Trace main-menu confirmation events and add opt-in original-art staging.
+- [ ] Integrate the original quit-confirmation screen.
 - [ ] Compare our running menu with the original game's behavior.
 
 Deeper ALPS1 work is paused. Its findings remain useful for shared file readers

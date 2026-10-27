@@ -23,7 +23,12 @@ class Launch:
 
 def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
                    work: Path, frames: int, environment: dict[str, str],
-                   menu_model: bool = False, menu_ui: bool = False) -> Launch:
+                   menu_model: bool = False, menu_ui: bool = False,
+                   confirm_model: bool = False, menu_confirm: bool = False,
+                   probe_confirm_picking: bool = False,
+                   use_confirm_picking: bool = False) -> Launch:
+    if (probe_confirm_picking or use_confirm_picking) and not menu_confirm:
+        raise ValueError("Confirmation picking requires --menu-confirm")
     game, executable, proton, steam, work = (
         path.resolve() for path in (game, executable, proton, steam, work)
     )
@@ -47,9 +52,15 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
     compat = work / "compat"
     run.mkdir(parents=True, exist_ok=True)
     compat.mkdir(parents=True, exist_ok=True)
-    if menu_model or menu_ui:
+    if sum((menu_model, menu_ui, confirm_model, menu_confirm)) > 1:
+        raise ValueError("Menu modes cannot be combined")
+    if confirm_model or menu_confirm:
+        stage_menu_resources(game, run, include_confirm=True)
+    elif menu_model or menu_ui:
         stage_menu_resources(game, run)
-    if menu_ui:
+    if menu_confirm:
+        stage_menu_text(game, run, include_confirm=True)
+    elif menu_ui:
         stage_menu_text(game, run)
     env = dict(environment)
     env.update({
@@ -65,7 +76,15 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
     })
     engine_windows = "Z:" + str(engine).replace("/", "\\")
     command = [str(proton), "run", str(executable), engine_windows, "--frames", str(frames)]
-    if menu_ui:
+    if menu_confirm:
+        command.append("--menu-confirm")
+        if probe_confirm_picking:
+            command.append("--probe-confirm-picking")
+        if use_confirm_picking:
+            command.append("--use-confirm-picking")
+    elif confirm_model:
+        command.append("--confirm-model")
+    elif menu_ui:
         command.append("--menu-ui")
     elif menu_model:
         command.append("--menu-model")
@@ -125,16 +144,34 @@ def main() -> None:
     modes.add_argument("--menu-ui", action="store_true",
                        help="Original artwork, cursor and static English bitmap labels at "
                             "800x600; only Exit is enabled")
+    modes.add_argument("--confirm-model", action="store_true",
+                       help="Preview original confirmation artwork and log its hierarchy; "
+                            "no text or interaction")
+    modes.add_argument("--menu-confirm", action="store_true",
+                       help="Experimental menu with original-art Yes/No Exit confirmation")
+    parser.add_argument("--probe-confirm-picking", action="store_true",
+                        help="Compare original engine picking and observe reconstructed mouse "
+                             "transitions; requires --menu-confirm and does not change interaction")
+    parser.add_argument("--use-confirm-picking", action="store_true",
+                        help="Use original engine picking for confirmation hover and clicks; "
+                             "requires --menu-confirm")
     args = parser.parse_args()
     try:
         launch = prepare_launch(args.game_dir, args.executable, args.proton, args.steam_root,
                                 root / "analysis/work/engine-window", args.frames, dict(os.environ),
-                                menu_model=args.menu_model, menu_ui=args.menu_ui)
-        print("Static original-font menu slice: only Exit closes this host; "
+                                menu_model=args.menu_model, menu_ui=args.menu_ui,
+                                confirm_model=args.confirm_model, menu_confirm=args.menu_confirm,
+                                probe_confirm_picking=args.probe_confirm_picking,
+                                use_confirm_picking=args.use_confirm_picking)
+        print("Experimental original-art Exit confirmation; other controls remain disabled."
+              if args.menu_confirm else
+              "Static original-font menu slice: only Exit closes this host; "
               "other screens, profile/save data and movies are not implemented."
               if args.menu_ui else
               "Original static menu-model preview: text/input/movies are not implemented."
               if args.menu_model else
+              "Original confirmation artwork diagnostic: no text or confirmation interaction."
+              if args.confirm_model else
               "Graphics bootstrap only: no original menu or movies are loaded.", flush=True)
         print(f"Isolated runtime files: {launch.cwd}", flush=True)
         print(f"Saved terminal diagnostics: {launch.cwd / 'host-output.log'}", flush=True)

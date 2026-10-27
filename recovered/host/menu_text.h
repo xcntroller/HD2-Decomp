@@ -122,13 +122,14 @@ inline std::vector<std::uint8_t> read_menu_text_file(const char* name) {
 template<class Graphics>
 class MenuText {
 public:
-    MenuText(Graphics* graphics, HMODULE module, const MenuScene& scene)
+    MenuText(Graphics* graphics, HMODULE module, const MenuScene& scene,
+             bool confirmation_enabled = false)
         : graphics_(graphics), big_(nullptr, nullptr), small_(nullptr, nullptr),
           big_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\BIG.tbl"))),
           small_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\SMALL.tbl"))),
           labels_(decode_menu_labels(read_menu_text_file("MenuText\\labels.bin"))) {
-        if (labels_.size() != menu_label_bindings.size()) {
-            throw std::runtime_error("Static menu requires exactly 13 staged labels");
+        if (labels_.size() != menu_label_bindings.size() + (confirmation_enabled ? 3 : 0)) {
+            throw std::runtime_error("Incorrect staged menu label count");
         }
         if (graphics_->methods->width(graphics_) != 800 ||
                 graphics_->methods->height(graphics_) != 600) {
@@ -152,12 +153,33 @@ public:
             if (labels_.find(binding.id) == labels_.end()) {
                 throw std::runtime_error("Missing staged original menu label");
             }
-            rectangles_[i] = menu_rectangle(
-                scene.label_bounds(binding.frame, binding.visual, module), 800, 600);
-            std::printf("Menu label id=%u frame=%s bounds=(%.1f,%.1f)-(%.1f,%.1f)\n",
+            if (confirmation_enabled) {
+                constexpr std::array<std::uint32_t, 3> ids{{2004, 2001, 2000}};
+                constexpr std::array<const char*, 3> names{{"text", "byes?", "bno?"}};
+                constexpr std::array<const char*, 3> visuals{{"text", "normal02", "normal01"}};
+                for (std::size_t i = 0; i < ids.size(); ++i) {
+                    if (labels_.find(ids[i]) == labels_.end()) {
+                        throw std::runtime_error("Missing staged confirmation label");
+                    }
+                    const auto bounds = scene.label_bounds(names[i], visuals[i], module, true);
+                    confirmation_rectangles_[i] = menu_rectangle(bounds, 800, 600);
+                    confirmation_text_rectangles_[i] = menu_rectangle(bounds, 800, 600, i ? 10 : 1);
+                    const auto& rect = confirmation_text_rectangles_[i];
+                    std::printf("Confirmation label id=%u text=(%.1f,%.1f)-(%.1f,%.1f)\n",
+                                static_cast<unsigned>(ids[i]), rect.left, rect.top,
+                                rect.right, rect.bottom);
+                }
+            }
+            const auto bounds = scene.label_bounds(binding.frame, binding.visual, module);
+            rectangles_[i] = menu_rectangle(bounds, 800, 600);
+            text_rectangles_[i] = menu_rectangle(bounds, 800, 600, binding.button ? 10 : 1);
+            std::printf("Menu label id=%u frame=%s bounds=(%.1f,%.1f)-(%.1f,%.1f)"
+                        " text=(%.1f,%.1f)-(%.1f,%.1f)\n",
                         static_cast<unsigned>(binding.id), binding.frame,
                         rectangles_[i].left, rectangles_[i].top,
-                        rectangles_[i].right, rectangles_[i].bottom);
+                        rectangles_[i].right, rectangles_[i].bottom,
+                        text_rectangles_[i].left, text_rectangles_[i].top,
+                        text_rectangles_[i].right, text_rectangles_[i].bottom);
         }
         std::puts("Original bitmap text ready: 13 labels; only Exit is enabled in this host");
     }
@@ -166,15 +188,32 @@ public:
         return point && rectangles_[10].contains(*point);
     }
 
-    void draw(bool exit_hover) const {
-        std::array<std::vector<CursorVertex>, 13> glyphs;
-        for (std::size_t i = 0; i < menu_label_bindings.size(); ++i) {
-            const auto& binding = menu_label_bindings[i];
-            std::uint32_t color = binding.button && binding.id != 2112 ? 0x60000000 : 0xff000000;
-            if (binding.id == 2112 && exit_hover) color = 0xffffffff;
-            glyphs[i] = menu_label_vertices(labels_.at(binding.id),
-                binding.small ? small_metrics_ : big_metrics_, rectangles_[i],
-                binding.height, 600, binding.id == 2101, color);
+    int confirmation_hit(const std::optional<CursorPoint>& point) const {
+        if (!point) return 0;
+        if (confirmation_rectangles_[1].contains(*point)) return 1;
+        if (confirmation_rectangles_[2].contains(*point)) return 2;
+        return 0;
+    }
+
+    void draw(bool exit_hover, bool confirmation = false, int confirm_hover = 0) const {
+        std::array<std::vector<CursorVertex>, 16> glyphs;
+        if (confirmation) {
+            constexpr std::array<std::uint32_t, 3> ids{{2004, 2001, 2000}};
+            for (std::size_t i = 0; i < ids.size(); ++i) {
+                glyphs[13 + i] = menu_label_vertices(labels_.at(ids[i]), big_metrics_,
+                    confirmation_text_rectangles_[i], .04f, 600, false,
+                    i != 0 && static_cast<int>(i) == confirm_hover ? 0xffffffff : 0xff000000);
+            }
+        } else {
+            for (std::size_t i = 0; i < menu_label_bindings.size(); ++i) {
+                const auto& binding = menu_label_bindings[i];
+                std::uint32_t color = binding.button && binding.id != 2112 ?
+                    0x60000000 : 0xff000000;
+                if (binding.id == 2112 && exit_hover) color = 0xffffffff;
+                glyphs[i] = menu_label_vertices(labels_.at(binding.id),
+                    binding.small ? small_metrics_ : big_metrics_, text_rectangles_[i],
+                    binding.height, 600, binding.id == 2101, color);
+            }
         }
         TextOverlayState state(device_);
         const CursorViewport viewport{0, 0, 800, 600, 0, 1};
@@ -183,10 +222,12 @@ public:
         const auto old_viewport = *old;
         graphics_->methods->begin_scene(graphics_);
         auto status = graphics_->methods->set_viewport(graphics_, &viewport);
-        for (std::size_t i = 0; status >= 0 && i < menu_label_bindings.size(); ++i) {
-            const auto& binding = menu_label_bindings[i];
+        const auto count = confirmation ? glyphs.size() : menu_label_bindings.size();
+        const auto start = confirmation ? menu_label_bindings.size() : 0;
+        for (std::size_t i = start; status >= 0 && i < count; ++i) {
+            const bool small = i < menu_label_bindings.size() && menu_label_bindings[i].small;
             if (graphics_->methods->bind_texture(
-                    graphics_, binding.small ? small_.get() : big_.get(), 0) == 0) {
+                    graphics_, small ? small_.get() : big_.get(), 0) == 0) {
                 status = E_FAIL;
             } else if (!glyphs[i].empty()) {
                 status = graphics_->methods->draw_primitive(graphics_, 3,
@@ -216,6 +257,9 @@ private:
     FontMetrics big_metrics_, small_metrics_;
     std::map<std::uint32_t, std::string> labels_;
     std::array<MenuRectangle, 13> rectangles_{};
+    std::array<MenuRectangle, 13> text_rectangles_{};
+    std::array<MenuRectangle, 3> confirmation_rectangles_{};
+    std::array<MenuRectangle, 3> confirmation_text_rectangles_{};
     IDirect3DDevice8* device_ = nullptr;
 };
 

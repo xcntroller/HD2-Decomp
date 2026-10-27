@@ -46,6 +46,166 @@
       "evidence": ["analysis/reconstruction-map.json", "analysis/model-load-policy.json", "recovered/scene/model_resource_key.cpp", "recovered/scene/model_load_policy.cpp", "recovered/tests/model_resource_key_tests.cpp", "recovered/tests/model_load_policy_tests.cpp"]
     },
     {
+      "program": "client",
+      "entry": "00655250",
+      "status": "partial",
+      "coverage": "Button focus entry: +64 gate, ordered active/normal visibility and updates, tagged event 04003000 with zero argument and result.",
+      "limitations": "Portable operations interface replaces the original object layout and calling convention; the host assumes an unblocked control and only filters the known focus events through a bounded dispatcher.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/button_focus.h", "recovered/host/menu_button_visuals.h"]
+    },
+    {
+      "program": "client",
+      "entry": "006552a0",
+      "status": "partial",
+      "coverage": "Button focus loss: ordered normal/active visibility and updates, tagged event 04004000 with zero argument and result.",
+      "limitations": "Portable operations interface replaces the original object layout and calling convention; the host only filters the known focus events through a bounded dispatcher.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/button_focus.h", "recovered/host/menu_button_visuals.h"]
+    },
+    {
+      "program": "client",
+      "entry": "00656b90",
+      "status": "partial",
+      "coverage": "Screen focus loss validates the focused index, calls the control's leave operation, and clears the index only on success.",
+      "limitations": "Portable callbacks and host-maintained indices replace the original screen and control ABI; only the confirmation buttons are integrated.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_focus.h", "recovered/host/engine_window.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "00656dd0",
+      "status": "partial",
+      "coverage": "Screen click validates the focused control index, invokes its click callback with the pointer target, or returns seven if focus is invalid.",
+      "limitations": "Portable adapters replace the original virtual calls and object ABI; the supported button callback ignores the target. The confirmation host uses this path only when sampled focus matches the clicked button; otherwise it explicitly retains host target selection. Other screens and the original input update order are unsupported.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/engine_window.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "00656c30",
+      "status": "partial",
+      "coverage": "Screen pointer routing handles invalid targets, the already-focused control, failed focus loss and entry of a different control.",
+      "limitations": "Portable callbacks and definition-derived IDs replace original virtual calls and object ABI. The host routes sampled hover changes, plus sampled motion in opt-in picker mode, assumes eligibility, and excludes the special target-15 entry branch and original input timing.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_focus.h", "recovered/frontend/screen_target.h", "recovered/host/engine_window.cpp", "recovered/host/menu_button_visuals.h"]
+    },
+    {
+      "program": "client",
+      "entry": "0065c900",
+      "status": "partial",
+      "coverage": "Control notification override, first matching non-null observer selection, callback arguments and default success result.",
+      "limitations": "Portable callbacks and collections replace the original object layout and calling convention; the override callback is checked for null instead of invoking it unchecked. Only the known Exit and Yes/No control bindings are integrated.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/control_events.h", "recovered/frontend/control_events.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0065cf50",
+      "status": "partial",
+      "coverage": "Observer notification precedes ordered tagged-record filtering, selector-bit clearing, local-target dispatch or queue submission.",
+      "limitations": "Portable records, shared ownership and destination callbacks replace the original object layout, intrusive reference counting and ABI. Only known Exit and Yes/No events are integrated; local delivery and general queue behavior remain unsupported.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/control_events.h", "recovered/frontend/control_events.cpp", "recovered/frontend/menu_event_queue.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0065cd40",
+      "status": "partial",
+      "coverage": "Tagged initialization-event branch copies a selector-bearing event into the control's event vector.",
+      "limitations": "Other control events and virtual callbacks are not reconstructed here. The portable helper rejects untagged input rather than dispatching it and uses different record layout and ownership.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/control_events.h", "recovered/frontend/control_events.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "00669ff0",
+      "status": "partial",
+      "coverage": "Return whether either horizontal or vertical pointer delta is nonzero.",
+      "limitations": "Portable float arguments replace the input object and original ABI; the host derives deltas from sampled cursor positions rather than original clamped relative motion.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_motion.h", "recovered/host/engine_window.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0066b990",
+      "status": "partial",
+      "coverage": "The opt-in confirmation adapter forwards sampled pointer movement to screen focus routing.",
+      "limitations": "Only the normal movement branch is approximated; original drag gating, input polling, update order, wheel and click dispatch, screen stack and object ABI remain excluded. Target changes also trigger host focus routing to preserve existing behavior.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_motion.h", "recovered/host/engine_window.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0066a050",
+      "status": "partial",
+      "coverage": "Selector zero matches any nonzero button state; nonzero selectors match any overlapping button bit.",
+      "limitations": "Portable integer arguments and boolean result replace the original ABI; the diagnostic supplies Win32 message snapshots rather than original engine polling.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h", "recovered/host/engine_window.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0066a080",
+      "status": "partial",
+      "coverage": "Apply the button selector to the previous input state.",
+      "limitations": "Portable state and ABI replace the original object field; the diagnostic uses Win32 message snapshots rather than original engine polling.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h"]
+    },
+    {
+      "program": "client",
+      "entry": "0066a0a0",
+      "status": "partial",
+      "coverage": "Apply the button selector to the current input state.",
+      "limitations": "Portable state and ABI replace the original object field; the diagnostic uses Win32 message snapshots rather than original engine polling.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h"]
+    },
+    {
+      "program": "client",
+      "entry": "0066a0c0",
+      "status": "partial",
+      "coverage": "A press transition requires the selector to match current state but not previous state.",
+      "limitations": "Portable state and ABI replace the original input object; the diagnostic uses Win32 message snapshots rather than original engine polling.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h", "recovered/host/engine_window.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0066a0f0",
+      "status": "partial",
+      "coverage": "A release transition requires the selector to match previous state but not current state.",
+      "limitations": "Portable state and ABI replace the original input object; the diagnostic uses Win32 message snapshots rather than original engine polling.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h", "recovered/host/engine_window.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0066a120",
+      "status": "partial",
+      "coverage": "Cursor pixel ratios produce the original normalized x and negative 0.75-scaled y coordinates used by the picking ray.",
+      "limitations": "The portable ray helper folds in the later z offset and uses host-supplied pixels and dimensions rather than original input globals and object ABI.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_pick.h", "recovered/host/menu_scene.h"]
+    },
+    {
+      "program": "client",
+      "entry": "0066a220",
+      "status": "partial",
+      "coverage": "Press captures the current identifier; release compares and clears the capture. A diagnostic-only tracker also implements counter advancement, signed less-than-400 double-click detection, previous-target updates and release reset.",
+      "limitations": "Portable identifiers and host-supplied messages replace original polling and object ABI. The probe uses Win32 timestamps as a tentative clock, resets across confirmation sessions, and does not dispatch double-clicks; original tick units and full input update gating remain unverified. The interactive host additionally cancels on pointer departure or focus loss.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_click.h", "recovered/frontend/pointer_click_timing.h", "recovered/host/engine_window.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0066a7c0",
+      "status": "partial",
+      "coverage": "Construct the original forward picking ray, call the scene picker with flags 00140000, and return the hit frame identifier or zero.",
+      "limitations": "Portable callbacks and host pixels replace the original input object and +38 store. The guarded engine call is desktop-checked as both a diagnostic and an opt-in interaction, but exhaustive edge coverage, complete input timing and screen/control construction are excluded.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_pick.h", "recovered/host/menu_scene.h", "recovered/host/engine_window.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0066c770",
+      "status": "partial",
+      "coverage": "FIFO front-end event pump processes queued events in order, including events appended during routing.",
+      "limitations": "Portable deque and shared ownership replace original queue storage and intrusive reference handling; only the bounded menu flow is supported and the host pumps immediately after activation.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/menu_event_queue.h", "recovered/frontend/menu_event_queue.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0066c950",
+      "status": "partial",
+      "coverage": "Deferred event storage, release and discard, and the Exit confirmation push, pop and quit event cases.",
+      "limitations": "Only screen-depth-one Exit and its confirmation are implemented; other screen, target and event cases, original screen callbacks, application quit callback, original queue storage and ABI are excluded.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/menu_event_queue.h", "recovered/frontend/menu_event_queue.cpp", "recovered/host/engine_window.cpp"]
+    },
+    {
       "program": "engine",
       "entry": "10019f00",
       "status": "partial",

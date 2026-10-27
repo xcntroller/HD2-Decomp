@@ -4,6 +4,7 @@
 #include <windows.h>
 
 #include "host/frame_name.h"
+#include "frontend/pointer_pick.h"
 
 #include <cstddef>
 #include <array>
@@ -81,6 +82,16 @@ public:
         return Owner(frame, release);
     }
 
+    std::uint32_t render_state(std::uint32_t state) const {
+        using GetState = std::uint32_t (WINAPI *)(EngineFrame*, std::uint32_t);
+        return scene_method<GetState>(driver_, module_, 0x1c, 0x15c20)(driver_, state);
+    }
+
+    std::int32_t set_render_state(std::uint32_t state, std::uint32_t value) const {
+        using SetState = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t, std::uint32_t);
+        return scene_method<SetState>(driver_, module_, 0x18, 0x15770)(driver_, state, value);
+    }
+
 private:
     using Close = std::int32_t (WINAPI *)(EngineFrame*);
     HMODULE module_;
@@ -91,7 +102,8 @@ private:
 
 class MenuScene {
 public:
-    explicit MenuScene(HMODULE module)
+    explicit MenuScene(HMODULE module, bool confirmation_preview = false,
+                       bool confirmation_enabled = false)
         : driver_(module), scene_(driver_.create(13)), camera_(driver_.create(3)),
           light_(driver_.create(2)), model_(driver_.create(9)) {
         using Pair = void (WINAPI *)(EngineFrame*, EngineFrame*);
@@ -133,10 +145,11 @@ public:
         add(scene_.get(), light_.get());
         scene_method<Pair>(sector, module, 0x74, 0x4ceb0)(sector, light_.get());
 
-        std::puts("Opening original model: Models\\main_menu.4ds");
+        const char* model_path = confirmation_preview ? "Models\\confirm" : "Models\\main_menu";
+        std::printf("Opening original model: %s.4ds\n", model_path);
         std::fflush(stdout);
         const auto status = scene_method<Open>(model_.get(), module, 0x74, 0x340b0)(
-            model_.get(), "Models\\main_menu", 0, nullptr, nullptr);
+            model_.get(), model_path, 0, nullptr, nullptr);
         if (status < 0) {
             char message[100];
             std::snprintf(message, sizeof(message), "Menu model open failed: 0x%08x",
@@ -148,6 +161,12 @@ public:
         if (linked < 0) {
             throw std::runtime_error("Menu model could not be linked to the primary sector");
         }
+        if (confirmation_preview) {
+            const float confirmation_position[] = {0.5f, -0.375f, -0.5f};
+            scene_method<Vector>(model_.get(), module, 8, 0x1c9f0)(
+                model_.get(), confirmation_position);
+            std::puts("Confirmation model position: 0.5, -0.375, -0.5");
+        }
         scene_method<Update>(model_.get(), module, 0x24, 0x1e610)(model_.get());
         std::uint32_t nodes = 0;
         log_hierarchy(model_.get(), module, 0, nodes);
@@ -156,8 +175,23 @@ public:
         }
         std::printf("Menu model hierarchy: %u frames including model root\n",
                     static_cast<unsigned>(nodes));
+        if (confirmation_enabled) {
+            confirmation_ = driver_.create(9);
+            if (scene_method<Open>(confirmation_.get(), module, 0x74, 0x340b0)(
+                    confirmation_.get(), "Models\\confirm", 0, nullptr, nullptr) < 0 ||
+                scene_method<Link>(confirmation_.get(), module, 0x38, 0x1d680)(
+                    confirmation_.get(), sector, 0) < 0) {
+                throw std::runtime_error("Cannot open or link original confirmation model");
+            }
+            const float position[] = {0.5f, -0.375f, -0.5f};
+            scene_method<Vector>(confirmation_.get(), module, 8, 0x1c9f0)(
+                confirmation_.get(), position);
+            scene_method<Update>(confirmation_.get(), module, 0x24, 0x1e610)(
+                confirmation_.get());
+            set_confirmation_visible(module, false);
+        }
         render_ = scene_method<Render>(scene_.get(), module, 0x78, 0x46860);
-        std::puts("Original menu model opened; static artwork preview, no menu interaction");
+        std::puts("Original model opened; static artwork preview, no menu interaction");
         std::fflush(stdout);
     }
 
@@ -165,10 +199,34 @@ public:
         return render_(scene_.get(), 0);
     }
 
-    std::array<float, 8> label_bounds(const char* name, const char* visual, HMODULE module) const {
+    std::uint32_t pick_confirmation(HMODULE module, float x, float y,
+                                    float width, float height) const {
+        if (!confirmation_) throw std::logic_error("Confirmation model is not initialized");
+        using Pick = EngineFrame* (WINAPI *)(EngineFrame*, const float*, const float*,
+                                             EngineFrame*, void*, std::uint32_t,
+                                             std::uint32_t, std::uint32_t, std::uint32_t);
+        const auto pick = scene_method<Pick>(scene_.get(), module, 0x104, 0x110f0);
+        const auto ray = frontend::menu_pointer_ray(x, y, width, height);
+        alignas(16) std::array<std::uint8_t, 64> details{};
+        return frontend::menu_pointer_target(ray,
+            [&](const frontend::PointerRay& input, std::uint32_t flags) {
+                return pick(scene_.get(), input.origin.data(), input.direction.data(),
+                            confirmation_.get(), details.data(), flags, 0, 0, 0);
+            },
+            [](EngineFrame* frame) {
+                std::uint32_t target = 0;
+                std::memcpy(&target, reinterpret_cast<const unsigned char*>(frame) + 0xec,
+                            sizeof(target));
+                return target;
+            });
+    }
+
+    EngineFrame* label_visual(const char* name, const char* visual, HMODULE module,
+                              bool confirmation = false) const {
         EngineFrame* found = nullptr;
         std::uint32_t nodes = 0;
-        find_named(model_.get(), name, module, 0, nodes, found);
+        EngineFrame* root = confirmation ? confirmation_.get() : model_.get();
+        find_named(root, name, module, 0, nodes, found);
         if (found == nullptr) {
             throw std::runtime_error(std::string("Missing original menu frame: ") + name);
         }
@@ -177,7 +235,7 @@ public:
             nodes = 0;
             find_named(found, visual, module, 0, nodes, child);
             if (child == nullptr) {
-                throw std::runtime_error(std::string("Missing normal visual in menu button: ") + name);
+                throw std::runtime_error(std::string("Missing visual in menu button: ") + name);
             }
             found = child;
         }
@@ -185,6 +243,12 @@ public:
                 reinterpret_cast<std::uintptr_t>(module) + 0x9c7c8) {
             throw std::runtime_error(std::string("Unsupported menu label visual: ") + name);
         }
+        return found;
+    }
+
+    std::array<float, 8> label_bounds(const char* name, const char* visual, HMODULE module,
+                                      bool confirmation = false) const {
+        EngineFrame* found = label_visual(name, visual, module, confirmation);
         const auto entry = GetProcAddress(module, "?UpdateWBoundProc@I3D_visual@@AAGXXZ");
         if (reinterpret_cast<std::uintptr_t>(entry) !=
                 reinterpret_cast<std::uintptr_t>(module) + 0x571b0) {
@@ -197,6 +261,74 @@ public:
         std::array<float, 8> bounds{};
         std::memcpy(bounds.data(), reinterpret_cast<const char*>(found) + 0x170, sizeof(bounds));
         return bounds;
+    }
+
+    void set_confirmation_visible(HMODULE module, bool visible) const {
+        using Visibility = void (WINAPI *)(EngineFrame*, std::uint8_t);
+        using Update = void (WINAPI *)(EngineFrame*);
+        auto* frame = confirmation_.get();
+        scene_method<Visibility>(frame, module, 0x30, 0x1cfe0)(frame, visible ? 1 : 0);
+        scene_method<Update>(frame, module, 0x24, 0x1e610)(frame);
+    }
+
+    class ModalPass {
+    public:
+        ModalPass(const MenuScene& scene, HMODULE module)
+            : scene_(scene), state_(scene.driver_.render_state(5)),
+              visibility_(scene_method<Visibility>(scene.model_.get(), module, 0x30, 0x1cfe0)),
+              update_(scene_method<Update>(scene.model_.get(), module, 0x24, 0x1e610)) {
+            if (scene.driver_.set_render_state(5, 0) < 0) {
+                throw std::runtime_error("Cannot configure original modal render pass");
+            }
+            visibility_(scene.model_.get(), 0);
+            visibility_(scene.confirmation_.get(), 1);
+            update_(scene.model_.get());
+            update_(scene.confirmation_.get());
+        }
+        ~ModalPass() {
+            if (!restored_ && !restore()) {
+                std::fputs("Failed to restore original modal render state\n", stderr);
+            }
+        }
+        bool restore() {
+            visibility_(scene_.model_.get(), 1);
+            visibility_(scene_.confirmation_.get(), 1);
+            update_(scene_.model_.get());
+            update_(scene_.confirmation_.get());
+            restored_ = true;
+            return scene_.driver_.set_render_state(5, state_) >= 0;
+        }
+        ModalPass(const ModalPass&) = delete;
+        ModalPass& operator=(const ModalPass&) = delete;
+
+    private:
+        using Visibility = void (WINAPI *)(EngineFrame*, std::uint8_t);
+        using Update = void (WINAPI *)(EngineFrame*);
+        const MenuScene& scene_;
+        std::uint32_t state_;
+        Visibility visibility_;
+        Update update_;
+        bool restored_ = false;
+    };
+
+    void hide_confirmation_ok(HMODULE module) const {
+        EngineFrame* found = nullptr;
+        std::uint32_t nodes = 0;
+        find_named(confirmation_.get(), "bok", module, 0, nodes, found);
+        if (found == nullptr) throw std::runtime_error("Missing confirmation OK frame");
+        using Visibility = void (WINAPI *)(EngineFrame*, std::uint8_t);
+        using Update = void (WINAPI *)(EngineFrame*);
+        scene_method<Visibility>(found, module, 0x30, 0x1cfe0)(found, 0);
+        scene_method<Update>(found, module, 0x24, 0x1e610)(found);
+    }
+
+    void initialize_confirmation_text_frame(HMODULE module) const {
+        EngineFrame* frame = label_visual("text", "text", module, true);
+        using Direction = void (WINAPI *)(EngineFrame*, const float*, const float*);
+        using Update = void (WINAPI *)(EngineFrame*);
+        const float direction[] = {0, 0, -1};
+        scene_method<Direction>(frame, module, 0x0c, 0x1c8d0)(frame, direction, nullptr);
+        scene_method<Update>(frame, module, 0x24, 0x1e610)(frame);
     }
 
 private:
@@ -257,6 +389,7 @@ private:
     MenuDriver::Owner camera_;
     MenuDriver::Owner light_;
     MenuDriver::Owner model_;
+    MenuDriver::Owner confirmation_{nullptr, nullptr};
     Render render_ = nullptr;
 };
 

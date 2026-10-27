@@ -494,13 +494,16 @@ python3 -B "/home/control/Documents/Projects/H&D2 Decomp 4/tools/run_engine_wind
 ```
 
 Expected addition: 13 original static labels in the original bitmap fonts.
-Only Exit is enabled. Hover makes its caption white; press and release inside
+Only Exit is enabled. Hover selects its original active artwork and makes its
+caption white; press and release inside
 its visual rectangle closes the reconstruction host. Dragging out or losing
 focus cancels the press. Escape and the window close button still quit.
 This is a **host-owned interaction adapter**, not the original control dispatcher
 or quit-confirmation flow; other screens remain disabled. **The 2026-10-26 desktop
-test confirms visible text and working Exit.** The user reports text overflowing
-button borders; exact layout and visual fidelity remain unfinished.
+test confirms visible text and working Exit.** On 2026-10-27 the user also
+confirmed the original horizontal-inset correction works as expected.
+The user also confirmed the original button-visual switching works as remembered;
+pixel-perfect visual fidelity is not claimed.
 
 [Text staging](tools/stage_menu_text.py) reads the loose English localization and
 validates the selected printable-ASCII records, both original TBLs and the
@@ -518,9 +521,384 @@ triangle submission. Button containers are not visuals: each binding finds
 its numbered `normal00`-`normal08` child under the actual named button, and
 rejects missing/ambiguous nodes. No guessed screen-coordinate hit areas are used.
 Styles 11/13 are left/vertically centered; style 10 is right/bottom aligned.
-The original projection is `x = width * world_x`,
+The original raw visual projection is `x = width * world_x`,
 `top = 1 - height * max_y * 4/3`,
 `bottom = -height * min_y * 4/3 - 1`.
+
+#### Horizontal text inset correction (2026-10-27)
+
+Cached exports revealed that the initial adapter omitted an original layout
+step; section-mapped disassembly confirms it. The text-object constructor
+`00661B30` sets byte `+90` to 10 (`00661C52`). Type-14 button initialization
+(`006550E0`, vtable `00814CB0` slot `+2C`) calls that constructor directly and
+uses the normal visual at control `+70` for layout. Plain type-13 static text
+instead uses `0065C680` (vtable `00813CC0` slot `+2C`), which overrides the byte
+to 1 at `0065C6E7`. The main-menu definitions contain no inset override event.
+
+At `00644AE1`, layout computes `inset_px = trunc(width * (1/1024) * byte_90)`.
+The exact float32 scale at `008109C8` is `0x3A800000`. It adds this integer to
+projected minimum X and subtracts it from maximum X, retaining promoted
+arithmetic until each resulting edge is stored as float32. At width 800 this
+is **7 pixels per button edge**, but **0 pixels for plain static labels**.
+The host now reproduces this step without changing fonts, glyph height,
+vertical placement or artwork. Raw visual rectangles remain the host-owned
+Exit hover/click areas; only text layout uses inset rectangles. Runtime binding
+diagnostics now print both `bounds=` and `text=` rectangles.
+
+An actual C++ geometry audit used the cached staged original fonts/labels and
+the last runtime log's rounded model bounds. All 13 labels fit horizontally in
+their corrected text rectangles: button text width is approximately 309.4 pixels
+and the widest button caption is 204 pixels. This also means simple caption
+width alone did not explain the reported border overflow. The user subsequently
+confirmed that the inset correction works as expected. The direct runtime log
+shows the corrected text rectangles, Exit activation, 971 submitted frames and
+normal cleanup. No guessed offsets, clipping or smaller fonts were introduced.
+No new Ghidra export or unit tests were needed.
+
+The strict i386 host build, existing native geometry checks and UI evidence
+validator pass (30 instruction/data anchors, plus 3 engine and 2 client vtable
+slots). No agent-environment Proton retry was attempted.
+
+#### Main-menu quit-confirmation contract (2026-10-27, experimental integration)
+
+Cached definitions and section-mapped original assembly distinguish two paths
+using the same `confirm` model. The fourth main-menu screen in `00623DD0`
+is `CONFIRM` / `confirm` (definition at `00625B7E`). Its prompt uses style **12**,
+localization 2004; Yes/No use style 13 and localizations 2001/2000; `bok` is
+hidden. The literal definition names are `byes*` and `bno*`, including their
+asterisks; these are not proven exact runtime frame names.
+
+At stack depth one, shared router `0066C950` handles Exit `06001003` by queuing
+`02000002` with screen number 4, then deferred quit `22000004`. Yes emits
+`14001100`: the router's bit-100 reply branch moves deferred events to the main
+queue with bit `20000000` cleared. No emits `14001200`: the bit-200 branch
+discards the deferred queue. Both then emit `06001005`, whose masked handler
+`0066D043` removes the current screen. Released quit `02000004` reaches
+`0066D33B` via table `0066D68C`, invokes an application callback and stores 4 in
+front-end state `+4`. These are binary-checked research anchors in the
+[UI map](analysis/menu-ui-map.json), not a host implementation of the dispatcher.
+
+Separately, common resource loader `0066C1D0` creates a 0x90-byte confirmation
+object at front-end `+100`, vtable `008155D8`. Initializer `00668790` uses prompt
+style **24** and callback `006693A0`, not the main-menu definition's style 12 and
+queued reply events. Independently, main-menu screen setup `00627060` compares
+the fourth definition's identifier against `10000000` at `0062711F`, and sets
+that model's position to `(0.5, -0.375, -0.5)` at `0062712F..00627147`.
+
+The original archive model is 4095 bytes, SHA256
+`4d4844844947665c98725422d69a081556d27abb01efe4b2ff09d338b58d37ac`.
+Its first-table dependencies are `X_B_DNLF.BMP`, `X_B_DNMD.BMP`,
+`X_B_DNRG.BMP`, `X_NMNBTN.BMP`, `X_NMSHD.TGA`; only `X_NMNBTN.BMP` is already
+in the main-menu slice. All were located and decoded from the base archives.
+[Resource staging](tools/stage_menu_resources.py) now supports opt-in collection:
+
+```sh
+python3 -B tools/stage_menu_resources.py \
+  --game-dir "Hidden and Dangerous 2" \
+  --output analysis/work/engine-window/run --include-confirm
+```
+
+Default fresh staging is unchanged. Upgraded manifests retain the optional
+model and dependencies during later default launcher calls rather than
+orphaning their provenance. Staging alone does not display a confirmation:
+the host still exits directly. The opt-in diagnostic below opens that model
+alone at the verified position and logs its original runtime hierarchy; it
+does not claim to reproduce modal composition, text or input:
+
+```sh
+python3 -B tools/run_engine_window.py --confirm-model --frames 0
+```
+
+Run it from the user's desktop terminal and exit with Escape or window close.
+The first run revealed `byes?` (`normal02`/`actived03`), `bno?`
+(`normal01`/`actived01`), `bok` (`normal03`/`actived04`) and `text`.
+The updated diagnostic initializes these three original visual pairs and logs
+the projected prompt and Yes/No bounds; it does not yet hide the disabled `bok`
+or display text. The user observed that diagnostic, and the later interactive
+confirmation described below. The host log is overwritten each run.
+No new unit tests or exports were added for that diagnostic.
+
+The original definition's `01000004` for `bok` is a **hide** event: control
+dispatcher `0065CDA4` and jump-table entry `0065CEDC` call vtable `+14`, button
+callback `0065C790`, which clears visibility and hides/updates the bound frame.
+The [UI map](analysis/menu-ui-map.json) anchors this chain. The experimental
+`--menu-confirm` mode now loads the original confirmation model and labels,
+hides `bok`, and uses host-owned Yes/No clicks. Exit opens it, Yes closes the
+host, No and Escape return to the menu. It is not the original event dispatcher;
+keyboard/default-focus behavior remains incomplete:
+
+```sh
+python3 -B tools/run_engine_window.py --menu-confirm --frames 0
+```
+
+Default `--menu-ui` still exits directly. The real original labels fit their
+projected inset rectangles (98, 23 and 19 pixels), but this is geometry evidence,
+not rendering proof. No new unit tests.
+
+Desktop confirmation showed working No and Yes, but menu captions appeared over
+the popup and the prompt had a grey box behind it. Original render `0066DE00`
+draws the previous screen, disables driver state 5, switches model visibility
+and draws the current screen, then restores state 5. The host now uses these
+two passes and places menu glyphs before the confirmation pass, not after it.
+The user confirmed the corrected layering on the desktop.
+Static text initializer `0065C680` sets its visual direction `(0,0,-1)` through
+vtable `+0C` before calculating bounds. The experimental host now reproduces
+this using `1001C8D0` for the prompt frame; the user confirmed the grey box is gone.
+
+#### Original button visual selection (2026-10-27, desktop-confirmed)
+
+The original type-14 button initializer (`006550E0`) binds `normal*` and
+`actived*` model children at control `+70` and `+74`. If active frame flag
+`+E0 & 0x80` is clear, `0065513B` copies the normal visual's local XYZ at
+`+B0/+B4/+B8` into the active visual, clears dirty-mask bits `0x120` and sets
+`0x40000000`. It then hides active through frame vtable `+30` and explicitly
+updates it through `+24`. These are cached-binary findings, not new exports.
+
+The focus callbacks at button vtable `+30/+34` (`00655250`/`006552A0`) show
+active/hide normal on focus and reverse that selection on focus loss. Both
+visuals receive explicit updates after each switch. The engine's visibility
+method `1001CFE0` takes stack self plus a byte in the next stack word, changes
+visibility bit zero at frame `+E0`, invalidates ancestor visibility and cleans
+eight stack bytes.
+
+The new [button adapter](recovered/host/menu_button_visuals.h) uses the existing
+bounded exact-name lookup, checking both visual vtables and method addresses.
+It initializes all nine pairs in normal state only in `--menu-ui`. Only Exit
+changes state on hover. Its local-position/dirty-flag bridge reproduces the
+original conditional copy directly rather than incorrectly applying a
+world-space position setter. All pointers are borrowed from the menu model;
+they are neither independently released nor retained beyond that model.
+One cursor sample drives both artwork and text before the scene is rendered.
+Cursor absence (including focus loss or leaving the client) restores normal.
+The Exit click rectangle and text inset are unchanged.
+
+This is original model-visual selection driven by host-owned focus detection,
+**not** the complete original button dispatcher or an invented animation.
+Original callbacks also emit tagged focus events `0x04003000`/`0x04004000`;
+their event/sound routing and the original confirmation flow remain deferred.
+The artwork-only preview does not initialize or switch button pairs.
+
+The focused and unfocused callback sequences are now represented in
+[client reconstruction code](recovered/frontend/button_focus.h), including
+the byte `+64` focus-entry gate, ordered frame calls, event values and return
+values. The existing host visual adapter invokes them through an operations
+interface. Its controls are treated as unblocked; event dispatch is currently
+limited to the portable subset described below, and the original object ABI
+is not reconstructed. Both callback functions are counted as partial, not
+complete. The host's preexisting normal-state initialization is unchanged and
+does not manufacture a focus-loss event. The user confirmed the previous wiring
+works on the desktop; the log records Exit focus transitions, No and Yes and
+clean teardown. New dispatcher wiring described below needs another check.
+
+#### Control notification and tagged routing (2026-10-27)
+
+In `0065C900`, control `+40 == 04021000` selects the override callback at
+`+48`, with receiver `+44` and a zero first stack argument. Otherwise it scans
+12-byte observer entries at `+30` in order, compares the full tag, skips null
+callbacks, and invokes the first match with its stored context. No match returns
+true. The callback's result is ignored by its caller `0065CF50`.
+
+That caller subsequently scans 24-byte event records at `+1C`, selects records
+where `(code & 040FF000) == tag`, copies each record and clears those selector
+bits with `FBF00FFF`. Target `FFFFFFFF` calls the emitting control's vtable
+`+6C`; other targets enqueue the copied record. The original copy retains and
+releases the payload at `+14`. The portable
+[routing core](recovered/frontend/control_events.cpp) implements this ordering
+and filtering with explicit callback and destination interfaces, not the
+original object layout, intrusive reference counting or queue. Its two
+functions are partial.
+
+The base constructor `0064DCC0` initializes event and observer vectors empty.
+Control creation `0065D150` calls button vtable `+78` (a no-op at `0065CD30`)
+with definition `+20`, then `+70` (`0065CF00`) with its `+10` initialization
+list. That function passes each record to vtable `+6C`; the button and text
+handlers forward tagged records to `0065CD40`, whose tagged branch appends
+the record to the control vector. Exit defines `(0, 06001003, 04000000)`,
+Yes defines `(0, 14001100, 0)` then `(0, 06001005, 0)`, and No defines
+`(0, 14001200, 1)` then `(0, 06001005, 0)`. All have activation selector
+`04001000`, so none match focus entry/leave selectors.
+
+The host registers these three controls' known tagged records and sends
+their focus callbacks through the portable routing core. Confirmation focus
+changes now invoke leave only for the
+previously hovered control and enter only for the newly hovered control,
+avoiding the prior redundant focus-loss emissions. The user confirmed the
+focus-filter wiring works. The tagged branch of `0065CD40` is counted partial.
+
+The button activation callback `006552F0` checks the same `+64` gate and emits
+`04001000` with argument zero. Its matching records pass through `0065CF50`,
+which clears selector bits before queuing them. Original FIFO pump `0066C770`
+removes the front record, calls `0066C950`, and repeats while records remain.
+At depth one the Exit event queues screen-four push and deferred quit. Yes's
+reply releases the deferred quit onto the back of the main queue, **after** the
+already queued pop; No discards it. Screen-four Escape in `00626B20` queues
+`14001200` then `06001005` directly.
+
+The [bounded portable queue](recovered/frontend/menu_event_queue.cpp) now
+implements those paths and drives host visibility and quit effects in
+`--menu-confirm`. Unsupported local, targeted, screen and event cases report
+errors. The host still detects mouse presses itself and pumps immediately;
+original object layout, intrusive ownership, general routing, full screen
+callbacks and application quit callback remain unreconstructed. The default
+`--menu-ui` direct-Exit path is unchanged. The user confirmed the queue
+integration works. The latest host log independently records Exit, No, Exit,
+Yes, pop before quit and clean teardown; it does not independently show Escape.
+The associated functions are tracked partial.
+`006552F0` and `00626B20` are absent from the frozen inventory, so they receive
+no function-count credit; the inventoried queue pump and router are partial.
+
+The original input update `0066B990` obtains a picked frame via `0066A7C0`,
+updates mouse state through `0066A220`, and routes input to screen callbacks.
+In `0066A220`, a selector-zero press transition stores the current picked target
+at input state `+4C`; on release, it compares that stored target with the
+current target, writes the result at `+49`, then clears `+4C`. It separately
+tracks double-click timing with a 400-unit threshold. The bounded
+[pointer click reconstruction](recovered/frontend/pointer_click.h) implements
+only that target capture, equality and clear, using portable integer identities.
+The `--menu-confirm` host supplies its rectangle-based identities and retains
+its existing cancellation on pointer departure, deactivation and Escape.
+Complete input polling, double-click dispatch, exact timing, screen callback
+routing and the original object ABI are not reconstructed. In particular, original
+`0066A220` does not itself clear the captured target merely on pointer departure.
+The user confirmed the click integration works. A later log also records Escape;
+the original-versus-host drag-off behavior remains unverified.
+
+For the menu screen vtable at `00815540`, the pointer-focus handler `00656C30`
+looks up the target control and checks the index. An invalid target invokes
+screen focus-leave `00656B90`; a target matching the current index invokes
+the control's `+40` method. For a different valid target it first invokes
+focus-leave; a zero leave result causes `00656C30` to return one without entering
+the new control. Otherwise it calls focus-entry `00656B20`. The ordinary
+`00656B20` branch checks the resolved control's `+08` eligibility, stores its
+index and calls its `+30` method. `00656B90` clears the focused index only after
+the old control's `+34` method succeeds. For these buttons, the control's
+`+40` method is `0064DAE0`, which emits `04005000` and returns seven.
+
+The portable [screen focus subset](recovered/frontend/screen_focus.h) implements
+this routing and the ordinary entry branch. In `--menu-confirm`, host adapters
+assume eligibility and invoke the router only when sampled hover changes.
+Special target 15, complete input-update timing and screen/control object ABI
+remain excluded. The user confirmed this integration works; the latest log
+independently records No and Yes and clean teardown, but not Escape.
+
+Screen target lookup `0065C830` scans controls in order and returns the first
+matching identifier field, or -1. If screen `+60` has bits `000FF000`, it
+compares bits `00000FF0`; otherwise, if it has bits `03F00000`, it compares
+`000FF000`; otherwise it compares `03F00000`. Screen initialization `00668470`
+copies definition `+40` to screen `+60`. `00615360` constructs a child
+definition ID by ORing the parent ID with `((count + 1) & 3F) << 20`, and
+`0064DCC0` copies that ID to control `+60`. Button initialization `006550E0`
+copies the control ID to both normal and active frames at `+EC`, the value
+picked by `0066A7C0`.
+
+The confirmation definition order therefore yields screen `10000000`, text
+`10100000`, Yes `10200000`, No `10300000` and OK `10400000`, assuming all
+controls are constructed in definition order. The
+[portable lookup](recovered/frontend/screen_target.h) implements the original
+mask precedence and ordered comparison. The host maps rectangle hits to the
+two button IDs rather than performing original frame picking; other controls
+are not reconstructed as host objects. `00656B20` and `0065C830` are absent
+from the frozen inventory and receive no function-count credit. The user
+confirmed the lookup integration works; the latest log independently records
+No and Yes and clean teardown, but not Escape.
+
+Cursor coordinate helper `0066A120` computes `x / width`,
+`-(y / height) * 0.75`, and `z = -1`. `0066A7C0` adds the original `0.1`
+offset to z, supplies direction `(0,0,1)`, and calls scene vtable `+104`
+with the current screen model and flags `00140000`. The scene slot points to
+engine `100110F0`, whose `ret 24` confirms nine stack words including self.
+On a hit the client reads frame `+EC` into input state `+38`; otherwise it
+stores zero. The [portable ray and target subset](recovered/frontend/pointer_pick.h)
+and a guarded host adapter now implement this sequence for an optional
+comparison probe. The host supplies cursor pixels instead of original input
+globals, initializes vector padding and a 64-byte scratch result, and tags the
+two Yes/No visual pairs. The probe logs engine versus rectangle identifiers
+only when they change. The user confirmed the diagnostic works; the desktop
+log first showed matching Yes and No samples, plus one sample with engine No
+and an empty rectangle. A later log also showed an engine Yes/empty rectangle
+sample. Positions were not recorded, so the exact
+locations and broader edge behavior remain unknown.
+
+The separately gated `--use-confirm-picking` experiment now routes
+confirmation hover and press/release target selection through the original
+engine picker. The comparison probe can be enabled simultaneously without
+deciding interaction. The default `--menu-confirm` remains rectangle-driven.
+Even in the new mode, the original input-state layout, polling, per-update
+timing, complete screen construction, other control objects and the original
+pointer-departure policy remain unsupported. The user confirmed interactive
+picking works; the latest log shows its startup message, No, Escape, Yes, 741
+frames and clean teardown. It does not establish exact edge locations.
+
+Mouse-motion predicate `00669FF0` returns true when either float delta at input
+`+14` or `+18` differs from zero. The ordinary `0066B990` movement branch
+checks that predicate and its drag state before calling screen vtable `+40`;
+if the target is already focused, `00656C30` calls button vtable `+40`, which
+emits `04005000` and returns seven. The opt-in interactive picker now forwards
+sampled host cursor movement through this path. It logs the first such button
+event per button but dispatches every sampled event. Absolute host-position
+differences replace original clamped relative input, and drag gating, screen
+stack, exact update ordering and timing are not reconstructed. A changed
+target still triggers host focus routing even without sampled movement. The
+latest desktop log records a motion event for each button.
+
+Screen click callback `00656DD0` invokes the focused control's vtable `+5C`,
+or returns seven for an invalid focused index. For these buttons, `0064DBC0`
+emits `04012000` with zero argument, forwards the pointer target to virtual
+activation `+38`, and returns its result. Button activation `006552F0` ignores
+the target, checks its `+64` gate and emits `04001000` on success. The
+[portable click wrapper](recovered/frontend/button_input.h) now performs
+that event/activation order for the experimental Exit and Yes/No buttons.
+The latest log confirms it for Exit, No and Yes.
+
+The [portable screen click subset](recovered/frontend/screen_input.h) now
+validates focused index and delegates its click callback, or returns seven for
+invalid focus. The confirmation host uses it when sampled focus equals the
+clicked hit. If sampling is stale or absent, the host explicitly logs the
+mismatch and retains the previous hit-based choice, avoiding a wrong-button
+activation. This fallback and the incomplete input update order are not the
+original dispatcher. The portable button activation omits the unused target.
+The user confirmed the screen-click integration works; the latest desktop log
+shows it for No and Yes, with no logged fallback.
+
+On release `0066A220` sets the double-click flag only if captured and current
+targets match, the previous clicked target matches, and the elapsed counter is
+strictly below 400. Each release resets that counter and capture; a double
+click clears the previous clicked target. `0066B990` invokes screen `+60`
+before ordinary click `+5C`; `00656E00` forwards `+60` to the focused control,
+whose button implementation `0064DBE0` emits `04013000`. The ordinary button
+click `0064DBC0` emits `04012000` and invokes activation. Counter units and
+complete update order and timer units are not established, so double-click
+events are not dispatched by the interactive host.
+
+`0066A050` treats selector zero as any nonzero button state; a nonzero selector
+tests for any overlapping bit. `0066A080` and `0066A0A0` apply this to previous
+and current state, while `0066A0C0` and `0066A0F0` detect press and release
+transitions. Thus `0066A220` captures on transition from no buttons to any,
+not specifically a left-button transition; `0066B990` uses selector 3 for
+its press/release callbacks. Engine `1006FB30`, at graphics vtable `+104`,
+combines five high-bit button bytes into bits 1, 2, 4, 8 and 10 hex.
+Constructor `0066A4B0` initializes the captured target, previous clicked target
+and click timer to zero.
+
+The [portable button state](recovered/frontend/pointer_buttons.h) and
+[click-timing shadow](recovered/frontend/pointer_click_timing.h) implement
+these predicates and the click/double-click bookkeeping, including the signed,
+strict `<400` comparison. The existing comparison probe now observes them with
+Win32 mouse-message button snapshots and picked IDs. It uses message time in
+milliseconds as an approximation, not a verified original clock, resets shadow
+state between confirmation sessions or on focus loss, and does not dispatch
+its results. The probe does not replace original frame polling or interactive
+host cancellation. The user reported it works; the latest log records matched
+left-button captures and `click=1 double=0` for No and Yes. It does not record
+right-button transitions or `double=1`, so those cases are not desktop-verified.
+
+The strict i386 build, existing native geometry checks and expanded UI evidence
+map pass (40 instruction/data anchors, 5 engine and 4 client vtable slots).
+No new unit tests were added. The latest desktop run logged
+`Original button visuals ready: 9 pairs; Exit hover only`, repeated
+`Exit visual state: focused`/`normal` transitions, Exit activation, 575 frames
+and clean teardown. The user confirmed it works as remembered. This is bounded
+desktop confirmation, not exhaustive pixel-perfect or keyboard behavior proof.
 
 The overlay is independent integration glue. It borrows the original D3D8
 device through a fingerprint/relocation-guarded field, snapshots and restores
@@ -530,7 +908,7 @@ texture wrapper and IGraph primitive method. An all-state block is deliberately
 avoided: restoring FVF directly would invalidate IGraph's cached vertex format.
 This explicit setup is not claimed to be the original client state-save protocol.
 Unsupported controls use the original disabled text alpha; Exit's hover uses
-the original focused-text white, not a recovered button animation.
+the original focused-text white and the model-visual selection described above.
 
 Validation:
 
@@ -556,7 +934,8 @@ the supplied NUL-terminated name there. The corrected, native-tested
 [name reader](recovered/host/frame_name.h) distinguishes both fields, including
 an unnamed frame with a nonempty auxiliary string. Hierarchy diagnostics now
 print names as well as types/counts. The correction was committed as `54a7c67`;
-the subsequent desktop run succeeded, with the text-overflow limitation above.
+the subsequent desktop run succeeded. The later inset correction and its
+desktop confirmation are recorded above.
 See [the session handoff](HANDOFF.md) before continuing in a fresh session.
 
 ## First mission-format milestone

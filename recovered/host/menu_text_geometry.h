@@ -19,7 +19,8 @@ struct MenuRectangle {
     }
 };
 
-inline MenuRectangle menu_rectangle(const std::array<float, 8>& bounds, int width, int height) {
+inline MenuRectangle menu_rectangle(
+        const std::array<float, 8>& bounds, int width, int height, std::uint8_t inset = 0) {
     if (width <= 0 || height <= 0) {
         throw std::invalid_argument("Menu projection requires positive dimensions");
     }
@@ -31,13 +32,21 @@ inline MenuRectangle menu_rectangle(const std::array<float, 8>& bounds, int widt
     if (bounds[0] >= bounds[4] || bounds[1] >= bounds[5]) {
         throw std::invalid_argument("Empty or inverted original menu bounds");
     }
-    return {width * bounds[0], 1.0f - height * bounds[5] * (4.0f / 3.0f),
-            width * bounds[4], -height * bounds[1] * (4.0f / 3.0f) - 1.0f};
+    // Text object +90 is in 1/1024-screen-width units, truncated before projection.
+    const int padding = static_cast<int>(static_cast<double>(width) * (1.0 / 1024.0) * inset);
+    const auto left = static_cast<float>(static_cast<double>(width) * bounds[0] + padding);
+    const auto right = static_cast<float>(static_cast<double>(width) * bounds[4] - padding);
+    if (left >= right) {
+        throw std::invalid_argument("Original menu text inset leaves an empty rectangle");
+    }
+    return {left, 1.0f - height * bounds[5] * (4.0f / 3.0f),
+            right, -height * bounds[1] * (4.0f / 3.0f) - 1.0f};
 }
 
 struct MenuLabelBinding {
     const char* frame;
     const char* visual;
+    const char* active_visual;
     std::uint32_t id;
     float height;
     bool small;
@@ -45,19 +54,19 @@ struct MenuLabelBinding {
 };
 
 inline constexpr std::array<MenuLabelBinding, 13> menu_label_bindings{{
-    {"text_screen", "text_screen", 2101, .05f, false, false},
-    {"text_date00", "text_date00", 2102, .02f, true, false},
-    {"text_profile00", "text_profile00", 2103, .02f, true, false},
-    {"text_last save00", "text_last save00", 2104, .02f, true, false},
-    {"bresume game", "normal00", 2105, .04f, false, true},
-    {"bchange profile", "normal01", 2106, .04f, false, true},
-    {"bsingleplayer", "normal02", 2107, .04f, false, true},
-    {"bcinematics", "normal04", 2109, .04f, false, true},
-    {"boptions", "normal05", 2110, .04f, false, true},
-    {"bcredits", "normal06", 2111, .04f, false, true},
-    {"bexit", "normal07", 2112, .04f, false, true},
-    {"bmultiplayerlan", "normal03", 2115, .04f, false, true},
-    {"bmultiplayernet", "normal08", 2116, .04f, false, true},
+    {"text_screen", "text_screen", nullptr, 2101, .05f, false, false},
+    {"text_date00", "text_date00", nullptr, 2102, .02f, true, false},
+    {"text_profile00", "text_profile00", nullptr, 2103, .02f, true, false},
+    {"text_last save00", "text_last save00", nullptr, 2104, .02f, true, false},
+    {"bresume game", "normal00", "actived00", 2105, .04f, false, true},
+    {"bchange profile", "normal01", "actived01", 2106, .04f, false, true},
+    {"bsingleplayer", "normal02", "actived02", 2107, .04f, false, true},
+    {"bcinematics", "normal04", "actived04", 2109, .04f, false, true},
+    {"boptions", "normal05", "actived05", 2110, .04f, false, true},
+    {"bcredits", "normal06", "actived06", 2111, .04f, false, true},
+    {"bexit", "normal07", "actived07", 2112, .04f, false, true},
+    {"bmultiplayerlan", "normal03", "actived03", 2115, .04f, false, true},
+    {"bmultiplayernet", "normal08", "actived08", 2116, .04f, false, true},
 }};
 
 inline int glyph_advance(const GlyphMetrics& metric, int height) {

@@ -1,6 +1,6 @@
 {
-  "scope": "Research contract for original main-menu localization and bitmap fonts. Bounded --menu-ui implementation now exists; see menu-ui-map.json. No desktop text verification yet.",
-  "runtime_verified": false,
+  "scope": "Research contract for original main-menu localization and bitmap fonts. Bounded --menu-ui static text/Exit, corrected horizontal inset and model-visual focus selection are desktop-confirmed. See menu-ui-map.json for per-slice evidence boundaries.",
+  "runtime_verified": true,
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
@@ -77,10 +77,10 @@
   },
   "research_outputs": "Ignored analysis/work/menu-text-* exports; 48 requested function JSON exports reported decompiled=true. This map records research findings, not an instruction-anchor validator.",
   "remaining_work": [
-    "Desktop-verify the opt-in static original-font text slice and host-owned Exit adapter.",
+    "Integrate the researched original confirmation screen; current Exit still closes the host directly. Main-menu prompt style 12 must not be confused with the separate common confirmation API's style 24.",
     "Recover the complete original layout, wrapping and control-state behavior beyond the current single-line styles.",
     "Replace the explicitly documented device-state bridge with the original client callback/state protocol when recovered.",
     "Keep dynamic fields absent until their data sources exist; support other languages/resolutions deliberately.",
-    "Recover original hover animation, tagged-event dispatch, confirmation flow and remaining screen transitions."
+    "Recover original focus sound/events, tagged-event dispatch, confirmation flow and remaining screen transitions beyond the bounded host-owned visual selection."
   ]
 }

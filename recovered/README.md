@@ -73,15 +73,20 @@ remain absent. Opt-in `--menu-ui` now adds a bounded static-text/Exit slice:
 - [font/label parsers](host/bitmap_font.h) validate the original TBL data and our
   provenance-tracked local label bundle;
 - [glyph geometry](host/menu_text_geometry.h) reproduces single-line font sizing,
-  character advances, triangle/UV order and the relevant alignment styles;
+  character advances, triangle/UV order, the relevant alignment styles and the
+  original per-control horizontal text inset;
 - [text integration](host/menu_text.h) loads the original ANSI Set2 atlases and
   uses the actual menu visual bounds, not hand-positioned replacement controls;
+- [button visuals](host/menu_button_visuals.h) initialize all nine original
+  normal/actived pairs, align their local positions as the client does, and
+  switch only Exit's artwork on hover;
 - only Exit responds to press/release inside its model-derived rectangle.
   The remaining buttons are deliberately disabled; profile/save/date/version
   values are not invented.
 
 This is new host integration, not a reconstructed menu dispatcher. Exit closes
-the host directly; the original confirmation screen is not reproduced.
+the host directly in `--menu-ui`; `--menu-confirm` separately previews the
+original confirmation screen using host-owned input and screen flow.
 The new overlay explicitly snapshots/restores changed Direct3D render/stage
 states, texture, pixel shader and viewport. Access to the borrowed original
 device uses a guarded engine field; IGraph still owns all primitive submission
@@ -89,12 +94,144 @@ and its vertex-format cache. A full device state block would incorrectly restore
 FVF behind that cache and is intentionally not used.
 See the [machine-checkable UI evidence](../analysis/menu-ui-map.json) and
 [desktop test instructions](../RESEARCH.md#static-text-and-exit-slice).
-**Desktop-verified:** static text appears and Exit closes the host. Some text
-overflows the button borders; exact placement and visual fidelity are not verified.
-The observed runtime log records 308 submitted frames, Exit activation and
-driver/graphics cleanup. See the [session handoff](../HANDOFF.md) for the next step.
+**Desktop-verified:** static text appears, Exit closes the host and the
+2026-10-27 correction to the original horizontal inset works as expected.
+The correction restores
+the original horizontal inset (7 pixels per button edge at 800x600); plain static
+labels retain their original zero-pixel inset at this resolution. Text rectangles
+are separate from the unchanged Exit hover/click rectangle. The latest observed
+runtime log records 575 submitted frames, repeated Exit normal/focused
+transitions, Exit activation and driver/graphics cleanup. The user also confirmed
+the normal/actived visual switching; it does not add the original focus sound/events,
+dispatcher or quit-confirmation screen. Artwork-only mode remains unchanged.
+See the [session handoff](../HANDOFF.md) for the next step.
 Neither the original executable nor the user's game prefix is patched.
 See [the preview test command](../RESEARCH.md#original-menu-model-preview).
+
+Original confirmation artwork can now be staged explicitly with
+[`stage_menu_resources.py --include-confirm`](../tools/stage_menu_resources.py).
+This adds the original model and its texture dependencies, retaining provenance
+on later default staging. It does not enable a modal in the host yet; the
+[confirmation contract](../analysis/menu-ui-map.json) separates the main-menu
+screen from the distinct common confirmation API.
+For a separate artwork-only diagnostic with the confirmed screen-4 model
+position and hierarchy logging, run from a desktop terminal:
+
+```sh
+python3 -B tools/run_engine_window.py --confirm-model --frames 0
+```
+
+Escape or window close exits; the diagnostic initializes the original button
+visual pairs and logs projected control bounds. No confirmation text or
+interaction is implemented, and the diagnostic is not the final modal layout.
+
+An experimental interactive Exit confirmation is separately available with
+`python3 -B tools/run_engine_window.py --menu-confirm --frames 0`. Yes closes
+the host; No and Escape return to the menu. It uses original art and labels,
+and the user confirmed the corrected popup composition and interaction on the
+desktop. Input and screen flow remain host-owned.
+
+The [button focus callbacks](frontend/button_focus.h) now reconstruct the
+original focus-entry and focus-loss operation sequences through a portable
+interface. The host calls them for its existing visual transitions; it assumes
+the focus-entry gate is clear. The original control object remains to be
+reconstructed, so these functions are recorded as partial. The user confirmed
+that the previous callback wiring still works on the desktop.
+
+The separately built [control-event routing core](frontend/control_events.cpp)
+reconstructs observer selection and tagged-record routing, using portable
+callbacks, event records and destination operations. Runtime control bindings,
+the original object ABI, intrusive payload ownership and queue are not fully
+reconstructed. The host now registers the original Exit/Yes/No activation
+records and routes focus events through the filter; these records do not match
+focus tags. The user confirmed that filtering works.
+
+The [bounded menu event queue](frontend/menu_event_queue.cpp) now accepts
+activation events from these controls in `--menu-confirm`, processes their
+original push/deferred/reply/pop/quit sequence in FIFO order, and uses the
+original screen-four discard/pop events for Escape. Mouse press detection,
+screen visibility and final quit remain host-owned; other event types, local
+control dispatch and the original queue representation are unsupported.
+Default `--menu-ui` still exits directly. The user confirmed the queue wiring;
+the latest host log independently shows No and Yes with expected queue order,
+but does not show Escape. It is not the complete original menu dispatcher.
+
+The [pointer click subset](frontend/pointer_click.h) now supplies the original
+press/release target-identity comparison for `--menu-confirm`. The host still
+selects targets with rectangles, cancels a held press on pointer departure or
+focus loss, and does not reconstruct the original double-click or input-update
+logic. The user confirmed this integration works; the latest log independently
+shows No and Yes with clean teardown, but not Escape or the drag-off result.
+
+The [screen focus subset](frontend/screen_focus.h) now routes changes between
+the confirmation controls using the original leave, eligibility and entry
+sequence. The user confirmed this integration works; the latest log records No
+and Yes and clean teardown, but not Escape. The host assumes the two controls
+are eligible and normally invokes the router when sampled hover changes; full
+input timing and special focus target 15 remain unsupported.
+
+The [target lookup subset](frontend/screen_target.h) now uses the original
+identifier masks and definition-derived confirmation control IDs. The host
+still maps rectangle hits to those IDs rather than performing original frame
+picking. The user confirmed this integration works.
+
+An opt-in `--probe-confirm-picking` diagnostic compares the original engine
+raycast with the host's rectangle result without using the raycast to control
+interaction. It assigns the original Yes/No IDs to their two visual frames,
+and logs changed comparisons. The user confirmed the probe works; the log
+showed both buttons matching and a sample where engine picking returned No
+while the rectangle hit was empty. The latest log also shows an engine
+Yes/empty rectangle sample. Pointer positions were not logged.
+
+```sh
+python3 -B tools/run_engine_window.py --menu-confirm --probe-confirm-picking --frames 0
+```
+
+The separately gated `--use-confirm-picking` mode uses the original engine pick
+for confirmation hover and press/release target selection. It preserves the
+host's existing press cancellation and leaves default modes unchanged. The user
+confirmed this mode works; the latest log confirms it was enabled and records
+No, Escape and Yes, with 741 frames and clean teardown. The
+comparison flag can be used alongside it:
+
+```sh
+python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --probe-confirm-picking --frames 0
+```
+
+In this opt-in mode, the reconstructed [motion predicate](frontend/pointer_motion.h)
+and ordinary screen routing also emit `04005000` when the cursor moves within
+an already-focused button. The first such event per button is logged; further
+events are still dispatched. Host position sampling does not reconstruct
+original relative input, drag gating, double-click timing, or complete screen
+and control construction. The latest log recorded motion events for both buttons.
+
+The bounded confirmation path now uses [button click dispatch](frontend/button_input.h):
+it emits `04012000` before the existing `04001000` activation event for Exit,
+Yes and No. Existing bindings do not select the new click tag. The original
+target argument is omitted because these button activation callbacks ignore it.
+The latest desktop log shows `04012000` immediately followed by `04001000` for
+Exit, No and Yes.
+
+The [screen click subset](frontend/screen_input.h) now routes a confirmation
+click through the focused button when sampled focus matches the hit. When it
+does not match, the host logs this and retains its previous hit-based selection
+to avoid activating a different button with stale sampled focus. The user
+confirmed the routing works; the latest log shows it for No and Yes without a
+logged fallback. This fallback, other screens and the full original input
+update order remain host scaffolding.
+
+The comparison flag also enables an observational input probe using
+[button selectors and transitions](frontend/pointer_buttons.h) and
+[click timing](frontend/pointer_click_timing.h). Selector zero means *any*
+button; selector three matches either of the first two button bits. The probe
+logs Win32 button snapshots, picked IDs, capture, click and double-click flags.
+It uses message timestamps in milliseconds as an approximation, resets its
+shadow state when the confirmation closes or focus is lost, and never dispatches
+the flags. Original polling, timer units and input-update ordering remain
+unverified. The user reported it works; the latest desktop log shows matching
+left-button press/release captures and `click=1 double=0` for No and Yes.
+It contains no right-button or `double=1` samples.
+The established `--menu-ui` behavior remains unchanged.
 
 ## Chunk reader
 

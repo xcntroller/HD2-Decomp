@@ -17,6 +17,7 @@ import struct
 
 LABEL_IDS = (2101, 2102, 2103, 2104, 2105, 2106, 2107,
              2109, 2110, 2111, 2112, 2115, 2116)
+CONFIRM_LABEL_IDS = (2000, 2001, 2004)
 MANIFEST = "menu-text-resources.json"
 FORMAT = "hd2-menu-text-resources-v1"
 LIMITATION = "Original loose English static main-menu slice; ANSI Set2 for 800x600 only."
@@ -30,7 +31,7 @@ SOURCES = {
 }
 
 
-def parse_menu_labels(data: bytes) -> dict[int, str]:
+def parse_menu_labels(data: bytes, label_ids: tuple[int, ...] = LABEL_IDS) -> dict[int, str]:
     """Read only selected decimal-ID quoted records, without transcoding labels."""
     if not data or len(data) > 4 * 1024 * 1024 or b"\0" in data:
         raise ValueError("Invalid TEXTY.txt size or embedded NUL")
@@ -66,7 +67,7 @@ def parse_menu_labels(data: bytes) -> dict[int, str]:
         label_id = int(match[1])
         if label_id > 0xffffffff:
             raise ValueError("Localization ID exceeds uint32")
-        if label_id not in LABEL_IDS:
+        if label_id not in label_ids:
             payload = match[2].lstrip(b" \t")
             # The original file also contains bare numeric section markers.
             if payload and not payload.startswith(b";"):
@@ -84,9 +85,9 @@ def parse_menu_labels(data: bytes) -> dict[int, str]:
         labels[label_id] = record[1].decode("ascii")
     if quoted:
         raise ValueError("Unterminated multiline localization record")
-    if set(labels) != set(LABEL_IDS):
-        raise ValueError(f"Missing static menu labels: {sorted(set(LABEL_IDS) - labels.keys())}")
-    return {label_id: labels[label_id] for label_id in LABEL_IDS}
+    if set(labels) != set(label_ids):
+        raise ValueError(f"Missing static menu labels: {sorted(set(label_ids) - labels.keys())}")
+    return {label_id: labels[label_id] for label_id in label_ids}
 
 
 def encode_menu_labels(labels: dict[int, str]) -> bytes:
@@ -176,7 +177,7 @@ def _owned_outputs(run: Path) -> set[str]:
         raise ValueError("Invalid menu text manifest") from error
 
 
-def stage_menu_text(game: Path, run: Path) -> dict:
+def stage_menu_text(game: Path, run: Path, *, include_confirm: bool = False) -> dict:
     """Preflight sources/owned destinations, then stage a separate provenance slice."""
     game = Path(game).absolute()
     run = Path(run).absolute()
@@ -188,7 +189,8 @@ def stage_menu_text(game: Path, run: Path) -> dict:
     if game == run or game in run.parents or run in game.parents:
         raise ValueError("Game and output directories must not overlap")
     source_data = {relative: _read_source(game, relative) for relative in sorted(set(SOURCES.values()))}
-    labels = parse_menu_labels(source_data[TEXT_SOURCE])
+    ids = LABEL_IDS + CONFIRM_LABEL_IDS if include_confirm else LABEL_IDS
+    labels = parse_menu_labels(source_data[TEXT_SOURCE], ids)
     for relative, data in source_data.items():
         if relative.endswith(".tbl"):
             _validate_font(data)

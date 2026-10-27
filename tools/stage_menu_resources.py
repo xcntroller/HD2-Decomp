@@ -1,4 +1,4 @@
-"""Stage the baseline menu model, its textures, scene-default Snow, and cursor.
+"""Stage baseline menu resources, optionally including original confirmation art.
 
 This is a resource slice, not a complete UI: patch/expansion overlays, scripts,
 animation dependencies, and runtime behavior are not reconstructed.
@@ -18,6 +18,11 @@ from inspect_model_table import decode_model_table
 MODEL_KEY = struct.pack("<II", 0x5D805259, 0x10ACB252)
 MAPS_KEY = struct.pack("<II", 0xB438D0A5, 0xF26527FA)
 MODEL_MEMBER = r"MODELS\main_menu.4ds"
+CONFIRM_MEMBER = r"MODELS\confirm.4ds"
+MODEL_OUTPUTS = {
+    "Models/main_menu.4ds": MODEL_MEMBER,
+    "Models/confirm.4ds": CONFIRM_MEMBER,
+}
 CURSOR_TEXTURE = "X_KURSOR.TGA"
 MANIFEST = "menu-resources.json"
 FORMAT = "hd2-menu-resources-v1"
@@ -81,9 +86,9 @@ def _owned_outputs(run: Path) -> set[str]:
         owned = set()
         for asset in assets:
             relative = asset["path"]
-            valid_model = (relative == "Models/main_menu.4ds"
+            valid_model = (isinstance(relative, str) and relative in MODEL_OUTPUTS
                            and asset["archive"] == "models.dta"
-                           and asset["member"] == MODEL_MEMBER)
+                           and asset["member"] == MODEL_OUTPUTS[relative])
             valid_texture = (
                 isinstance(relative, str) and relative.startswith("Maps/")
                 and relative == "Maps/" + _texture_name(relative[5:].encode("ascii"))
@@ -106,12 +111,14 @@ def _owned_outputs(run: Path) -> set[str]:
         raise ValueError(f"Invalid existing {MANIFEST}: {error}") from error
 
 
-def stage_menu_resources(game: Path, run: Path) -> dict:
+def stage_menu_resources(game: Path, run: Path, *, include_confirm: bool = False) -> dict:
     """Preflight and stage an isolated, deterministic baseline menu resource slice.
 
     Existing unrelated files (including runtime symlinks) are left untouched.
     Only unchanged files identified by a previous provenance manifest may be
     overwritten. Targeted symlinks are rejected, even if they stay inside run.
+    Confirmation assets are opt-in and remain owned/staged on subsequent calls,
+    including calls by the unchanged launcher without include_confirm.
     """
     game = Path(game).resolve(strict=True)
     requested_run = Path(run).absolute()
@@ -123,9 +130,14 @@ def stage_menu_resources(game: Path, run: Path) -> dict:
     if not game.is_dir() or (run.exists() and not run.is_dir()):
         raise ValueError("Game and output paths must be directories")
 
+    owned = _owned_outputs(run)
+    models = ["Models/main_menu.4ds"]
+    if include_confirm or "Models/confirm.4ds" in owned:
+        models.append("Models/confirm.4ds")
     assets = []
     contents = {}
     archives = []
+    textures = set()
 
     def collect(archive: str, member, data: bytes, relative: str):
         assets.append({
@@ -136,18 +148,20 @@ def stage_menu_resources(game: Path, run: Path) -> dict:
 
     with (game / "models.dta").open("rb") as stream:
         members = read_index(stream, MODEL_KEY)
-        matches = [member for member in members if member.name == MODEL_MEMBER]
-        if len(matches) != 1:
-            raise ValueError(f"Missing exact model member: {MODEL_MEMBER}")
-        data = extract_member(stream, matches[0], MODEL_KEY)
+        for relative in models:
+            name = MODEL_OUTPUTS[relative]
+            matches = [member for member in members if member.name == name]
+            if len(matches) != 1:
+                raise ValueError(f"Missing exact model member: {name}")
+            data = extract_member(stream, matches[0], MODEL_KEY)
+            collect("models.dta", matches[0], data, relative)
+            _, records, _ = decode_model_table(data)
+            textures.update(
+                _texture_name(name) for record in records
+                for name in (record.primary_name, record.secondary_name, record.extra_name)
+                if name
+            )
         archives.append({"path": "models.dta", "sha256": _sha256(stream)})
-        collect("models.dta", matches[0], data, "Models/main_menu.4ds")
-    _, records, _ = decode_model_table(data)
-    textures = sorted({
-        _texture_name(name) for record in records
-        for name in (record.primary_name, record.secondary_name, record.extra_name)
-        if name
-    })
     with (game / "Maps.dta").open("rb") as stream:
         members = read_index(stream, MAPS_KEY)
         indexed = {member.name.casefold(): member for member in members}
@@ -176,7 +190,6 @@ def stage_menu_resources(game: Path, run: Path) -> dict:
         "archives": archives, "assets": assets,
     }
     contents[MANIFEST] = (json.dumps(manifest, indent=2) + "\n").encode("utf-8")
-    owned = _owned_outputs(run)
     for relative in contents:
         target = _check_output(run, relative)
         if target.exists() and relative not in owned:
@@ -193,9 +206,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--game-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--include-confirm", action="store_true",
+                        help="Also stage confirm.4ds and its textures; retain on later runs")
     args = parser.parse_args()
     try:
-        result = stage_menu_resources(args.game_dir, args.output)
+        result = stage_menu_resources(args.game_dir, args.output,
+                                      include_confirm=args.include_confirm)
     except (OSError, ValueError) as error:
         parser.exit(1, f"Menu resource staging failed: {error}\n")
     print(f"Staged {len(result['assets'])} baseline menu assets -> {args.output}")
