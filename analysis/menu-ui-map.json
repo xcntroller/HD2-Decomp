@@ -17,6 +17,7 @@
   "mouse_poll_source": "recovered/input/mouse_poll.h",
   "engine_mouse_source": "recovered/host/engine_mouse.h",
   "pointer_wheel_source": "recovered/frontend/pointer_wheel.h",
+  "cursor_frame_source": "recovered/frontend/cursor_frame.h",
   "pointer_cursor_source": "recovered/frontend/pointer_cursor.h",
   "pointer_update_source": "recovered/frontend/pointer_update.h",
   "pointer_motion_source": "recovered/frontend/pointer_motion.h",
@@ -26,12 +27,19 @@
   "screen_target_source": "recovered/frontend/screen_target.h",
   "button_visuals_runtime_verified": true,
   "button_visuals_desktop_observation": "2026-10-27: user confirmed it works well, just as remembered. Direct runtime log initialized nine pairs, recorded repeated focused/normal Exit transitions, Exit activation, 575 submitted frames and normal teardown. Bounded confirmation only; no original dispatcher or focus sound.",
+  "cursor_frame_reconstruction": {
+    "asset": {"member": "MODELS\\kurzor_menu.4ds", "size": 330, "sha256": "d29a19d542f7155e14b82e592a642caf974b068926d6bd30cae59e098fd409f2", "textures": ["X_KURSOR.TGA"]},
+    "staging": "include_cursor_model / --include-cursor-model adds one manifest-owned original model. --use-engine-mouse requests it automatically; default restaging retains ownership. Real-archive audit upgrades 21 to 22 assets with old records unchanged, verifies every hash, checks identical default restaging and rejects a modified model before writes.",
+    "binding": "Create model kind nine, open kurzor_menu, name root CURZOR via +34, link primary sector via +38, hide via +30. Resolve scene +7c with name CURZOR and flags ffff; require returned frame to equal owned model and verify +e8 name. Position +08 and world update +24 are ABI-checked. All resources follow existing scene/driver teardown ownership.",
+    "update": "0066a220 tail projects X/width, ((-1/height)*Y)*0.75, Z=-1 with final float stores, then invokes frame +08 and +24. The functional adapter calls it after successful input processing and before screen callbacks, with an initial host-seeded call on arm/reentry. Hidden model stays hidden; visible bitmap cursor and picking ray Z=-0.9 remain unchanged.",
+    "limits": "No desktop validation of the new model lookup/update yet. Host cursor seed, shared-global replacement, original input initializer/device cursor positioning/refcount object and FPU control word remain incomplete. Model loading/binding is host integration, not a complete original loader reconstruction."
+  },
   "wheel_reconstruction": {
     "scope": "0066a020 getter, 0066a030 predicate, 0066b990 conversion/callback/repick ordering, 00656da0 focused screen forwarding and 0064db40 button event. Portable storage, screen lookup and ABI remain adapters.",
     "conversion": "Raw stored float Z is not divided by 120. 007e5e00 truncates to signed int64; caller passes low DWORD as signed callback word. Portable helper models masked-invalid low-word zero but does not reproduce x87 exception flags or traps.",
     "order": "After click/non-drag motion, invoke screen +4c, then resolve current screen, pick its model and invoke focus +40. Drag and alternate-motion branches still return before wheel. Button emits 04011000 with zero argument and does not activate.",
-    "integration": "--use-engine-mouse now supplies polled Z and re-picks the actual confirmation model using the same frame cursor point. Existing message-driven modes remain unchanged; double-click activation remains disabled. No desktop wheel evidence yet.",
-    "cursor_next": "Cached 0066c5b0 and assembly 0066c63c..0066c648 identify separate model kurzor_menu named CURZOR, loaded through 0066bfa0. This resource/binding is absent from host scene and staging; recover it before wiring original cursor frame +08/+24 updates. Existing visible bitmap cursor remains unchanged."
+    "integration": "--use-engine-mouse now supplies polled Z and re-picks the actual confirmation model using the same frame cursor point. Existing message-driven modes remain unchanged; double-click activation remains disabled. Desktop-confirmed visible no-op; latest direct log records Yes wheel deltas -120/-240/+120, result seven, 04011000 with zero argument, 432 frames and clean teardown. No No-button/outside wheel samples are established by that log.",
+    "cursor_next": "Cached 0066c5b0 and assembly 0066c63c..0066c648 identify separate model kurzor_menu named CURZOR, loaded through 0066bfa0. Resource staging and hidden scene binding are now implemented only for engine-input mode; new cursor-frame calls await desktop validation. Existing visible bitmap cursor remains unchanged."
   },
   "engine_mouse_reconstruction": {
     "mode": "--menu-confirm --use-confirm-picking --use-engine-mouse; existing modes unchanged; user desktop-confirmed 2026-10-29.",
@@ -86,6 +94,10 @@
       "image_base": "10000000"
     },
     "instruction_anchors": [
+      {"address": "1001d330", "hex": "538b5c240c558b6c240c8b85e80000003bc35657", "meaning": "Frame name setter reads stack self/name and frame +e8"},
+      {"address": "1001d458", "hex": "5f5e5d33c05bc20800", "meaning": "Frame name setter returns with cleanup of stack self and name"},
+      {"address": "10046920", "hex": "538b5c24088b8bf8010000568b742414578b7c24145657e8c475fdff", "meaning": "Scene find reads stack self/name/flags and delegates lookup through primary sector"},
+      {"address": "1004698d", "hex": "5f5e5bc20c00", "meaning": "Scene find returns while cleaning three stack arguments"},
       {"address": "1006f710", "hex": "578b7c240c83ffff7509a17c1a0d105fc20800", "meaning": "Mouse setup argument minus one queries mode without replacing device"},
       {"address": "1006f77a", "hex": "8b1656ff92e4000000a10c1d0d108b086a006848210d1068341c0a1050ff510c85c05e7d07", "meaning": "Mouse setup first closes old mouse via +e4 then creates system mouse through DirectInput +0c"},
       {"address": "1006f7a6", "hex": "a148210d1068b01d0d10c705b01d0d102c0000008b1050ff520ca148210d108b08689c1b0a1050ff512c85c07d0768a2130000eb25", "meaning": "Mouse setup obtains 44-byte capabilities and configures the original data format"},
@@ -121,6 +133,9 @@
       {"address": "1006fb49", "hex": "840dd51e0d10740383c802840dd71e0d10740383c808840dd81e0d10740383c810c20400", "meaning": "Graphics input combines button bytes 1, 3 and 4 as mask bits 2, 8 and 10"}
     ],
     "vtables": [
+      {"address": "1009b814", "targets": ["10046920"]},
+      {"address": "1009c7fc", "targets": ["1001d330"]},
+      {"address": "1009c7d0", "targets": ["1001c9f0"]},
       {"address": "1009d91c", "targets": ["1006f710", "1006f840", "1006f850"]},
       {"address": "1009d928", "targets": ["1006f8a0", "1006fa10", "1006fa20", "1006fa30"]},
       {"address": "1009d8c0", "targets": ["1006c2b0"]},
@@ -142,6 +157,14 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "0066bfae", "hex": "6a0950ff51548b5424186a006a006a008bd86a005253b990ec8a00895c2424e8ced0dbff85c0", "meaning": "Original auxiliary-model loader creates kind nine and passes it to resource helper before naming/linking"},
+      {"address": "0066bfda", "hex": "8b44241485c074078b0b5053ff5134", "meaning": "Original auxiliary-model loader optionally applies supplied root name through +34"},
+      {"address": "0066bfe9", "hex": "8b46308b13576a008b88f80100005153ff52388b136a0053ff5230", "meaning": "Original auxiliary-model loader links primary scene sector with zero flags then hides the model"},
+      {"address": "0066a51b", "hex": "68ffff0000897e34897e3cd95e28897e408b08687806840050ff517c3bc7894608", "meaning": "Input initializer finds CURZOR via scene +7c with flags ffff and stores borrowed frame at input +8"},
+      {"address": "0066a460", "hex": "d90560068400d876248b46088d542410c7442418000080bf5250d95c2418", "meaning": "Input update tail divides stored cursor X by range width and prepares frame Z=-1"},
+      {"address": "0066a47e", "hex": "d90528f58000d87628d80d64068400dc0d38018100d95c241c", "meaning": "Input update tail computes (-1/height)*Y*double 0.75 before final float Y store"},
+      {"address": "0066a497", "hex": "8b08ff51088b7608568b06ff5024", "meaning": "Input update tail calls cursor frame position +08 before world update +24"},
+      {"address": "0080f528", "hex": "000080bf", "meaning": "Cursor frame Y projection begins with float minus one"},
       {"address": "0066a020", "hex": "d9411cc3", "meaning": "Wheel getter returns stored float input +1c"},
       {"address": "0066a030", "hex": "d9411cd81d1cf58000dfe0f6c4447b03b001c332c0c3", "meaning": "Wheel predicate returns whether stored Z is nonzero"},
       {"address": "007e5e00", "hex": "558bec83c4f49bd97dfe9b668b45fe80cc0c668945fcd96dfcdf7df4d96dfe8b45f48b55f8c9c3", "meaning": "Conversion helper sets x87 truncation, converts to signed QWORD, restores control word and returns low/high DWORDs"},

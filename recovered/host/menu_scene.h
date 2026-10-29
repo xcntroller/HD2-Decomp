@@ -5,6 +5,7 @@
 
 #include "host/frame_name.h"
 #include "frontend/pointer_pick.h"
+#include "frontend/cursor_frame.h"
 
 #include <cstddef>
 #include <array>
@@ -103,7 +104,7 @@ private:
 class MenuScene {
 public:
     explicit MenuScene(HMODULE module, bool confirmation_preview = false,
-                       bool confirmation_enabled = false)
+                       bool confirmation_enabled = false, bool bind_cursor_model = false)
         : driver_(module), scene_(driver_.create(13)), camera_(driver_.create(3)),
           light_(driver_.create(2)), model_(driver_.create(9)) {
         using Pair = void (WINAPI *)(EngineFrame*, EngineFrame*);
@@ -190,6 +191,39 @@ public:
                 confirmation_.get());
             set_confirmation_visible(module, false);
         }
+        if (bind_cursor_model) {
+            cursor_model_ = driver_.create(9);
+            const auto open = scene_method<Open>(cursor_model_.get(), module, 0x74, 0x340b0);
+            if (open(cursor_model_.get(), "Models\\kurzor_menu", 0, nullptr, nullptr) < 0) {
+                throw std::runtime_error("Cannot open original kurzor_menu model");
+            }
+            using Name = void (WINAPI *)(EngineFrame*, const char*);
+            scene_method<Name>(cursor_model_.get(), module, 0x34, 0x1d330)(
+                cursor_model_.get(), "CURZOR");
+            if (scene_method<Link>(cursor_model_.get(), module, 0x38, 0x1d680)(
+                    cursor_model_.get(), sector, 0) < 0) {
+                throw std::runtime_error("Cannot link original CURZOR to primary sector");
+            }
+            using Visible = void (WINAPI *)(EngineFrame*, std::uint8_t);
+            scene_method<Visible>(cursor_model_.get(), module, 0x30, 0x1cfe0)(
+                cursor_model_.get(), 0);
+            using Find = EngineFrame* (WINAPI *)(EngineFrame*, const char*, std::uint32_t);
+            const auto find = scene_method<Find>(scene_.get(), module, 0x7c, 0x46920);
+            cursor_frame_ = find(scene_.get(), "CURZOR", 0xffff);
+            if (cursor_frame_ != cursor_model_.get()) {
+                throw std::runtime_error("Original CURZOR scene lookup did not resolve owned model");
+            }
+            const char* name = engine_frame_name(cursor_frame_);
+            if (name == nullptr || std::strcmp(name, "CURZOR") != 0) {
+                throw std::runtime_error("Original CURZOR frame name failed verification");
+            }
+            cursor_position_ = scene_method<CursorPosition>(cursor_frame_, module, 8, 0x1c9f0);
+            cursor_update_ = scene_method<CursorUpdate>(cursor_frame_, module, 0x24, 0x1e610);
+            std::uint32_t cursor_nodes = 0;
+            log_hierarchy(cursor_model_.get(), module, 0, cursor_nodes);
+            std::printf("Original CURZOR model bound: %u frames; hidden scene model\n",
+                        static_cast<unsigned>(cursor_nodes));
+        }
         render_ = scene_method<Render>(scene_.get(), module, 0x78, 0x46860);
         std::puts("Original model opened; static artwork preview, no menu interaction");
         std::fflush(stdout);
@@ -197,6 +231,24 @@ public:
 
     std::int32_t render() const {
         return render_(scene_.get(), 0);
+    }
+
+    void update_input_cursor(float x, float y, float width, float height) const {
+        if (cursor_frame_ == nullptr) throw std::logic_error("CURZOR model is not bound");
+        struct FrameAdapter {
+            const MenuScene& scene;
+            void set_position(const std::array<float, 3>& position) {
+                scene.cursor_position_(scene.cursor_frame_, position.data());
+            }
+            void update() { scene.cursor_update_(scene.cursor_frame_); }
+        } adapter{*this};
+        frontend::update_cursor_frame(adapter, x, y, width, height);
+        if (!cursor_update_logged_) {
+            const auto position = frontend::cursor_frame_position(x, y, width, height);
+            std::printf("Original CURZOR position/update: (%.6f,%.6f,%.1f)\n",
+                        position[0], position[1], position[2]);
+            cursor_update_logged_ = true;
+        }
     }
 
     std::uint32_t pick_confirmation(HMODULE module, float x, float y,
@@ -390,6 +442,13 @@ private:
     MenuDriver::Owner light_;
     MenuDriver::Owner model_;
     MenuDriver::Owner confirmation_{nullptr, nullptr};
+    MenuDriver::Owner cursor_model_{nullptr, nullptr};
+    using CursorPosition = void (WINAPI *)(EngineFrame*, const float*);
+    using CursorUpdate = void (WINAPI *)(EngineFrame*);
+    EngineFrame* cursor_frame_ = nullptr; // Borrowed from owned cursor model.
+    CursorPosition cursor_position_ = nullptr;
+    CursorUpdate cursor_update_ = nullptr;
+    mutable bool cursor_update_logged_ = false;
     Render render_ = nullptr;
 };
 

@@ -19,9 +19,11 @@ MODEL_KEY = struct.pack("<II", 0x5D805259, 0x10ACB252)
 MAPS_KEY = struct.pack("<II", 0xB438D0A5, 0xF26527FA)
 MODEL_MEMBER = r"MODELS\main_menu.4ds"
 CONFIRM_MEMBER = r"MODELS\confirm.4ds"
+CURSOR_MODEL_MEMBER = r"MODELS\kurzor_menu.4ds"
 MODEL_OUTPUTS = {
     "Models/main_menu.4ds": MODEL_MEMBER,
     "Models/confirm.4ds": CONFIRM_MEMBER,
+    "Models/kurzor_menu.4ds": CURSOR_MODEL_MEMBER,
 }
 CURSOR_TEXTURE = "X_KURSOR.TGA"
 MANIFEST = "menu-resources.json"
@@ -111,13 +113,14 @@ def _owned_outputs(run: Path) -> set[str]:
         raise ValueError(f"Invalid existing {MANIFEST}: {error}") from error
 
 
-def stage_menu_resources(game: Path, run: Path, *, include_confirm: bool = False) -> dict:
+def stage_menu_resources(game: Path, run: Path, *, include_confirm: bool = False,
+                         include_cursor_model: bool = False) -> dict:
     """Preflight and stage an isolated, deterministic baseline menu resource slice.
 
     Existing unrelated files (including runtime symlinks) are left untouched.
     Only unchanged files identified by a previous provenance manifest may be
     overwritten. Targeted symlinks are rejected, even if they stay inside run.
-    Confirmation assets are opt-in and remain owned/staged on subsequent calls,
+    Confirmation and cursor-model assets are opt-in and remain owned/staged on subsequent calls,
     including calls by the unchanged launcher without include_confirm.
     """
     game = Path(game).resolve(strict=True)
@@ -134,6 +137,8 @@ def stage_menu_resources(game: Path, run: Path, *, include_confirm: bool = False
     models = ["Models/main_menu.4ds"]
     if include_confirm or "Models/confirm.4ds" in owned:
         models.append("Models/confirm.4ds")
+    if include_cursor_model or "Models/kurzor_menu.4ds" in owned:
+        models.append("Models/kurzor_menu.4ds")
     assets = []
     contents = {}
     archives = []
@@ -208,10 +213,13 @@ def main() -> None:
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--include-confirm", action="store_true",
                         help="Also stage confirm.4ds and its textures; retain on later runs")
+    parser.add_argument("--include-cursor-model", action="store_true",
+                        help="Stage original kurzor_menu.4ds; retain ownership on later runs")
     args = parser.parse_args()
     try:
         result = stage_menu_resources(args.game_dir, args.output,
-                                      include_confirm=args.include_confirm)
+                                      include_confirm=args.include_confirm,
+                                      include_cursor_model=args.include_cursor_model)
     except (OSError, ValueError) as error:
         parser.exit(1, f"Menu resource staging failed: {error}\n")
     print(f"Staged {len(result['assets'])} baseline menu assets -> {args.output}")

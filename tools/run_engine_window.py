@@ -57,7 +57,9 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
     compat.mkdir(parents=True, exist_ok=True)
     if sum((menu_model, menu_ui, confirm_model, menu_confirm)) > 1:
         raise ValueError("Menu modes cannot be combined")
-    if confirm_model or menu_confirm:
+    if use_engine_mouse:
+        stage_menu_resources(game, run, include_confirm=True, include_cursor_model=True)
+    elif confirm_model or menu_confirm:
         stage_menu_resources(game, run, include_confirm=True)
     elif menu_model or menu_ui:
         stage_menu_resources(game, run)

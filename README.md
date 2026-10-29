@@ -55,14 +55,16 @@ have also been desktop-checked. An opt-in shadow probe now observes original
 button-mask and double-click bookkeeping without changing interaction; its
 host-supplied timing remains approximate. The original clock is now traced to a
 bounded millisecond frame delta, and the shadow uses reconstructed input gates
-and non-wheel screen callback ordering. Engine mouse polling slots are now
+and screen callback ordering. Engine mouse polling slots are now
 identified; cursor accumulation/clamping and six screen input callbacks now
 have portable reconstructions in the shadow. The host still supplies approximate
 snapshots. A new `--use-engine-mouse` option rebuilds the engine mouse polling
 branch and uses device button snapshots with reconstructed confirmation
 dispatch; the user has confirmed it works, including right-click activation
 consistent with the recovered masks. Wheel routing now follows the recovered
-screen/button path and awaits its own desktop check. Screen effects and much of input remain
+screen/button path; the user confirmed its expected visible no-op. The original
+hidden `CURZOR` scene model and input-driven position/update calls are now
+bound in engine-input mode and await desktop validation. Screen effects and much of input remain
 host scaffolding, not the complete
 original dispatcher. Pixel-perfect
 fidelity, other screens and profile/save data are not implemented.

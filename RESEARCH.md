@@ -1122,6 +1122,56 @@ its scene binding. Recover/stage the original resource and ownership path before
 calling frame setters on an invented substitute. The working visible bitmap
 cursor and its projection remain unchanged in this slice.
 
+Cursor-frame continuation (2026-10-29): user confirmed the wheel no-op. The
+direct log records Yes target `10200000`, raw wheel `-120`/`-240`/`120`, return
+seven, `04011000` with argument zero, 432 frames and clean graphics teardown.
+No No-button/outside wheel sample is established by that log.
+
+The original model prerequisite is now integrated. Archive inspection found
+`MODELS\kurzor_menu.4ds`, 330 bytes, SHA-256
+`d29a19d542f7155e14b82e592a642caf974b068926d6bd30cae59e098fd409f2`,
+with one material referencing the already-staged `X_KURSOR.TGA`. The archive's
+`kurzor.4ds` alias happens to have identical bytes, but the stager requests the
+verified `kurzor_menu` member. `stage_menu_resources` adds optional
+`include_cursor_model` / `--include-cursor-model` and retains manifest ownership
+on later default staging. Engine-input launch requests this asset automatically;
+other modes do not request or instantiate the new model. A real-archive audit
+upgraded 21 to 22 assets, preserved every prior record, checked every output
+hash, confirmed identical default restaging and rejected a modified cursor
+model before writes. The audit used temporary output, not the desktop runtime.
+
+Following `0066BFA0`'s verified naming/link/hide branch, the host creates model
+kind nine, opens `Models\kurzor_menu`, sets root name `CURZOR` through +34,
+links the primary sector through +38 and hides it through +30. It then performs
+`0066A4E0`'s scene +7C name lookup with flags `FFFF`. The returned frame must be
+the owned cursor model and its +E8 name must match. Frame setters and scene
+lookup are runtime-checked against original RVAs; model ownership follows the
+existing driver/scene teardown order. This integration does not reconstruct
+resource manager `004290A0`, original model-vector ownership or the complete
+input initializer. The hidden model remains hidden and does not replace the
+visible bitmap cursor.
+
+The [frame projection/update subset](recovered/frontend/cursor_frame.h)
+reconstructs the tail of `0066A220`: X/width and `((-1/height)*Y)*0.75` become
+float position components, Z is exactly -1, then frame +08 sets position and
++24 updates the world transform. Long-double intermediates preserve the
+instruction grouping; original FPU control-word behavior is still excluded.
+The picking ray's later Z offset is not applied to the frame. The functional
+confirmation adapter invokes this after successful input processing and before
+screen callbacks, plus once when host-seeding the cursor on arm/reentry.
+Suppressed/unchanged input does not trigger the per-update path. Visible cursor,
+picking bounds and cancellation stay as before. This extends existing partial
+`0066A220`; loader/binding glue receives no new function credit (38 partial,
+0 complete / 18,783).
+
+The strict i386 build and static evidence validate the new calls, but scene
+lookup/model updates require the next desktop run. Use the same engine-mouse
+command; expected logs are `Original CURZOR model bound` and
+`Original CURZOR position/update`. Test the working Exit/No/Yes/Escape flow;
+no visible cursor change is expected. Do not start using original engine cursor
+positioning/warping until its shared state and input object lifetime are
+reconstructed. No agent-side Proton launch or new unit tests were added.
+
 The strict i386 build, existing native geometry checks and expanded UI evidence
 map pass (40 instruction/data anchors, 5 engine and 4 client vtable slots).
 No new unit tests were added. The latest desktop run logged

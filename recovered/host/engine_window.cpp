@@ -187,8 +187,10 @@ private:
 // host-owned; button snapshots come from the rebuilt LS3DF polling subset.
 class ConfirmationFrameInput {
 public:
-    ConfirmationFrameInput(ConfirmationFocus& focus, std::function<std::uint32_t(const hd2::host::CursorPoint&)> repick)
-        : focus_(focus), repick_(std::move(repick)) {}
+    ConfirmationFrameInput(ConfirmationFocus& focus,
+                           std::function<std::uint32_t(const hd2::host::CursorPoint&)> repick,
+                           std::function<void(float, float)> update_frame)
+        : focus_(focus), repick_(std::move(repick)), update_frame_(std::move(update_frame)) {}
     void clear() {
         pointer_.clear();
         state_ = {};
@@ -201,6 +203,7 @@ public:
         if (!armed_) {
             if (buttons != 0) return; // Reentry must observe all buttons up first.
             pointer_.cursor().initialize(point.x, point.y, 800, 600);
+            update_frame_(point.x, point.y);
             previous_point_ = point;
             armed_ = true;
         }
@@ -215,6 +218,7 @@ public:
         pending_.delta = delta;
         pending_.target = target;
         const auto result = pointer_.update(pending_);
+        if (result.processed) update_frame_(pointer_.cursor().x(), pointer_.cursor().y());
         const auto& buttons = pointer_.buttons();
         input_ = {buttons.pressed(3), buttons.released(3), buttons.currently_selected(3),
                   result.click.click, false, // Double-click remains observational only.
@@ -268,6 +272,7 @@ public:
 private:
     ConfirmationFocus& focus_;
     std::function<std::uint32_t(const hd2::host::CursorPoint&)> repick_;
+    std::function<void(float, float)> update_frame_;
     hd2::frontend::PointerUpdate pointer_;
     hd2::frontend::PointerDispatchState state_;
     hd2::frontend::PointerDispatchInput input_;
@@ -373,7 +378,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         std::unique_ptr<hd2::host::MenuScene> menu;
         if (menu_model) {
             menu = std::make_unique<hd2::host::MenuScene>(
-                module, confirmation_preview, confirmation_enabled);
+                module, confirmation_preview, confirmation_enabled, use_engine_mouse);
         }
         std::unique_ptr<hd2::host::MenuCursor<Graphics>> cursor;
         if (menu_model) {
@@ -445,6 +450,9 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                             static_cast<float>(methods->height(graphics)));
                         return ConfirmationFocus::target_for_hit(
                             ConfirmationFocus::hit_for_target(picked));
+                    }, [&](float x, float y) {
+                        menu->update_input_cursor(x, y, static_cast<float>(methods->width(graphics)),
+                                                  static_cast<float>(methods->height(graphics)));
                     });
                     engine_mouse = std::make_unique<hd2::host::EngineMouse>(
                         reinterpret_cast<hd2::host::EngineFrame*>(graphics), module);

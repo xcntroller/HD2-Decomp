@@ -2,25 +2,38 @@
 
 ## Resume here
 
-The previous input work is committed at `23bf9b3` on `master`. The wheel
+Input and wheel work is committed through `a295649` on `master`. The cursor
 continuation is checkpointed in the local commit titled
-`Reconstruct menu wheel input and focus refresh`.
-The 2026-10-27 uncommitted-state note is superseded. Preserve later worktree
-changes. Do not push without explicit user approval.
+`Bind original CURZOR model and input frame updates`.
+Preserve later worktree changes. Do not push without explicit user approval.
 
+- Latest continuation stages original `MODELS\kurzor_menu.4ds` only when
+  `--use-engine-mouse` is requested (manifest ownership persists later).
+  The model is 330 bytes, SHA-256
+  `d29a19d542f7155e14b82e592a642caf974b068926d6bd30cae59e098fd409f2`,
+  with existing `X_KURSOR.TGA`; no new texture. Real-archive staging audit
+  upgrades 21 to 22 assets, preserves prior provenance, verifies all hashes,
+  retains identical files/manifest on default restaging and rejects a modified
+  cursor model before writes. All audit files were temporary.
+- Engine-input host now loads model kind nine, names its root `CURZOR`, links
+  primary sector and hides it. Original scene +7C lookup with flags FFFF must
+  return that owned model; +E8 name and setter/update ABIs are checked.
+  `frontend/cursor_frame.h` reconstructs the 0066A220 tail projection and
+  +08 position / +24 world-update order. The confirmation adapter calls it
+  on host-seeded arm/reentry and after processed input, before screen callbacks.
+  Visible bitmap cursor, hit/pick ray and other modes are unchanged. No new
+  cursor binding/update desktop test yet. Look for `Original CURZOR model bound`
+  and `Original CURZOR position/update` logs using the same engine-input command.
 - Latest continuation reconstructs wheel getter/predicate, int64 truncation
   and low-DWORD argument passing, focused-screen +4C forwarding, button
   `04011000` with zero argument, and post-callback current-screen repick/+40.
   `--use-engine-mouse` now consumes polled Z. Drag early return still skips
   wheel; double-click activation remains disabled. Repick uses the same frame
-  cursor point and the actual confirmation model. No new desktop wheel test.
-  Expected scrolling over Yes/No: logs, no activation/dismissal. Three new
+  cursor point and the actual confirmation model. User confirmed scrolling
+  produces no visible effect. Latest log records Yes target 10200000 wheel
+  -120/-240/+120, result 7, event 04011000 with zero argument, 432 frames and
+  clean teardown. No No/outside wheel samples are established by this log. Three new
   partial entries bring totals to 38; no complete functions claimed.
-- Cursor-frame prerequisite found in cached exports and verified assembly:
-  `0066C5B0` loads `kurzor_menu` named `CURZOR` through `0066BFA0` at
-  `0066C63C..48`. That model/scene binding is absent from staging/host. Recover
-  its asset/ownership before wiring original frame +08/+24 updates. Visible
-  bitmap cursor remains unchanged.
 - Current goal is a functional, decompiled/rebuilt menu. User authorized
   prioritizing the engine boundary that helps that goal. New next desktop step:
 
@@ -70,7 +83,8 @@ changes. Do not push without explicit user approval.
   `pointer_cursor.h` accumulation/clamping. XY sums round to float before
   clipping; reported deltas correct overflow using the original subtraction
   order and long-double intermediates. Wheel accumulates without clipping.
-  Original FPU control-word behavior and engine frame updates remain absent.
+  Original FPU control-word behavior remains absent. Engine frame updates are
+  now connected only in the confirmation adapter as described above.
   The observational shadow seeds cursor/ranges from the first available host
   point per entry/reentry and uses host position differences; message timing
   still approximates frame polling. Dispatch reads corrected XY motion.
@@ -101,8 +115,8 @@ changes. Do not push without explicit user approval.
   added as described above.
   Successful-path cursor warping, absolute accumulation and device/focus
   setup remain unreconstructed.
-- Strict i386 host build, all existing native checks, 17 launcher checks,
-  9 frontend checks, 27 accounting checks, 240 UI instruction anchors, 17 engine vtable slots, frontend evidence and
+- Strict i386 host build, all existing native checks, 12 resource checks, 17 launcher checks,
+  9 frontend checks, 27 accounting checks, 252 UI instruction anchors, 20 engine vtable slots, frontend evidence and
   frozen accounting pass. No new unit tests or agent-side Proton launches.
   Function totals are **0 complete / 18,783; 38 partial**.
 
@@ -113,11 +127,11 @@ Next session:
    `analysis/work/initialization/`. Read the new timing section in `RESEARCH.md`.
 2. Read the new desktop log first if the user ran the engine-mouse command.
    Resolve any device/setup/input issue before expanding it. Then continue
-   original CURZOR resource staging/binding, cursor-frame updates and
-   relative motion lifecycle after the wheel desktop check.
+   original relative-motion/device cursor positioning and input object
+   construction after the new CURZOR desktop check.
    The known source/units do not make the host's timestamps equivalent to it.
-   Engine frame updates, original captured-control objects and original
-   screen/control ABI remain absent.
+   Original captured-control objects, shared input object lifetime, engine
+   device cursor positioning and screen/control ABI remain absent.
 3. Keep the probe observational. Selector zero means **any** button, not button
    index zero. Do not remove pointer-departure cancellation until safe Win32
    capture and outside-window releases are implemented.
@@ -127,10 +141,11 @@ Next session:
    python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --probe-confirm-picking --frames 0
    ```
 
-Latest desktop evidence is the 2026-10-29 engine-mouse run described above.
-The earlier 2026-10-27 run used the message probe and logged only left captures
-with `click=1 double=0`. No desktop double-click dispatch claim is made. Logs
-are ignored and overwritten at the next launch.
+Latest desktop evidence is the 2026-10-29 wheel run: user sees expected no-op;
+log confirms Yes wheel deltas/event, 432 frames and clean teardown. Earlier
+engine-button run had No, Escape, Yes, right-click user report and 807 frames.
+New CURZOR binding/update awaits desktop validation; no double-click dispatch
+claim is made. Logs are ignored and overwritten at the next launch.
 
 ## Earlier milestones and detailed evidence
 
