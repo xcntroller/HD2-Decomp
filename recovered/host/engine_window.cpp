@@ -225,8 +225,10 @@ class MenuFrameInput {
 public:
     MenuFrameInput(MenuInputSession& session, Screen& focus,
                    std::function<std::uint32_t(const hd2::host::CursorPoint&)> repick,
-                   std::function<void(float, float)> update_frame)
-        : session_(session), focus_(focus), repick_(std::move(repick)), update_frame_(std::move(update_frame)) {}
+                   std::function<void(float, float)> update_frame,
+                   std::function<void()> accepted_click)
+        : session_(session), focus_(focus), repick_(std::move(repick)), update_frame_(std::move(update_frame)),
+          accepted_click_(std::move(accepted_click)) {}
     void tick(const hd2::host::CursorPoint& point, std::uint32_t target,
               std::uint32_t buttons, std::uint32_t delta, std::int32_t wheel) {
         if (!session_.armed) {
@@ -304,7 +306,7 @@ public:
         }
         throw std::logic_error("Unsupported menu pointer callback");
     }
-    void accepted_click() {} // Original +3c object/helper is still absent.
+    void accepted_click() { accepted_click_(); }
     float wheel_delta() const { return session_.pointer.cursor().wheel_delta(); }
     int screen_wheel(std::uint32_t target, std::int32_t delta) {
         const int result = hd2::frontend::screen_wheel(focus_, target, delta);
@@ -323,6 +325,7 @@ private:
     Screen& focus_;
     std::function<std::uint32_t(const hd2::host::CursorPoint&)> repick_;
     std::function<void(float, float)> update_frame_;
+    std::function<void()> accepted_click_;
     hd2::frontend::PointerUpdateSample pending_{};
 };
 
@@ -501,7 +504,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     }, [&](float x, float y) {
                         menu->update_input_cursor(x, y, static_cast<float>(methods->width(graphics)),
                                                   static_cast<float>(methods->height(graphics)));
-                    });
+                    }, [&] { menu->request_click_sound(); });
                     std::puts("Rebuilt engine input controls main-menu Exit and confirmation");
                     frame_input.emplace(input_session, *confirmation_focus, [&](const hd2::host::CursorPoint& point) {
                         const auto picked = menu->pick_confirmation(
@@ -513,7 +516,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     }, [&](float x, float y) {
                         menu->update_input_cursor(x, y, static_cast<float>(methods->width(graphics)),
                                                   static_cast<float>(methods->height(graphics)));
-                    });
+                    }, [&] { menu->request_click_sound(); });
                     engine_mouse = std::make_unique<hd2::host::EngineMouse>(
                         reinterpret_cast<hd2::host::EngineFrame*>(graphics), module);
                 }

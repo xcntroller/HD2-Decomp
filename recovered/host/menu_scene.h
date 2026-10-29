@@ -6,6 +6,7 @@
 #include "host/frame_name.h"
 #include "frontend/pointer_pick.h"
 #include "frontend/cursor_frame.h"
+#include "frontend/menu_click_sound.h"
 
 #include <cstddef>
 #include <array>
@@ -230,6 +231,31 @@ public:
             std::printf("Original CURZOR model bound: %u frames; hidden scene model\n",
                         static_cast<unsigned>(cursor_nodes));
         }
+        if (bind_cursor_model) {
+            // 0066ad10 creates this frame even when sound is unavailable. The
+            // host has no sound driver/buffer loader yet, so leave it unbuffered.
+            click_sound_ = driver_.create(4);
+            auto* sound = click_sound_.get();
+            scene_method<Integer>(sound, module, 0x7c, 0x549a0)(sound, 3);
+            using Name = std::int32_t (WINAPI *)(EngineFrame*, const char*);
+            if (scene_method<Name>(sound, module, 0x34, 0x1d330)(sound, "sound_click") < 0) {
+                throw std::runtime_error("Cannot name original click-sound frame");
+            }
+            click_sound_enable_ = scene_method<SoundEnable>(sound, module, 0x30, 0x1bb10);
+            // This is the SOUND override, not visual frame visibility 1001cfe0.
+            using SoundPlay = void (WINAPI *)(EngineFrame*, std::uint32_t, std::uint32_t);
+            scene_method<SoundPlay>(sound, module, 0xac, 0x54f30);
+            click_sound_enable_(sound, 0);
+            scene_method<Float>(sound, module, 0x8c, 0x54c40)(sound, 1.0f);
+            click_sound_active_ = scene_method<SoundActive>(sound, module, 0x78, 0x548d0);
+            add(scene_.get(), sound);
+            scene_method<Pair>(sector, module, 0x7c, 0x4dcb0)(sector, sound);
+            const char* name = engine_frame_name(sound);
+            if (name == nullptr || std::strcmp(name, "sound_click") != 0) {
+                throw std::runtime_error("Original click-sound frame name failed verification");
+            }
+            std::puts("Original sound_click frame bound: type 3, volume 1; no audio buffer loaded");
+        }
         render_ = scene_method<Render>(scene_.get(), module, 0x78, 0x46860);
         std::puts("Original model opened; static artwork preview, no menu interaction");
         std::fflush(stdout);
@@ -400,6 +426,18 @@ public:
         scene_method<Update>(frame, module, 0x24, 0x1e610)(frame);
     }
 
+    EngineFrame* click_sound() const { return click_sound_.get(); }
+    bool sound_active(EngineFrame* sound, bool actual) const {
+        return click_sound_active_(sound, actual) != 0;
+    }
+    void enable_sound(EngineFrame* sound, bool enabled) const {
+        click_sound_enable_(sound, enabled);
+    }
+    void request_click_sound() const {
+        frontend::accepted_menu_click(*this);
+        std::puts("Original accepted-click sound callback: no audio buffer loaded");
+    }
+
 private:
     static void find_named(EngineFrame* frame, const char* name, HMODULE module,
                             std::uint32_t depth, std::uint32_t& nodes, EngineFrame*& found) {
@@ -460,6 +498,11 @@ private:
     MenuDriver::Owner model_;
     MenuDriver::Owner confirmation_{nullptr, nullptr};
     MenuDriver::Owner cursor_model_{nullptr, nullptr};
+    MenuDriver::Owner click_sound_{nullptr, nullptr};
+    using SoundActive = std::uint8_t (WINAPI *)(EngineFrame*, std::uint8_t);
+    using SoundEnable = void (WINAPI *)(EngineFrame*, std::uint32_t);
+    SoundActive click_sound_active_ = nullptr;
+    SoundEnable click_sound_enable_ = nullptr;
     using CursorPosition = void (WINAPI *)(EngineFrame*, const float*);
     using CursorUpdate = void (WINAPI *)(EngineFrame*);
     EngineFrame* cursor_frame_ = nullptr; // Borrowed from owned cursor model.

@@ -2026,3 +2026,56 @@ empty/all-disabled collections, subordinate-ID exclusion, leave-veto stop,
 ignored enter result and callback arguments zero/fifteen. The same audit source
 also compiled with strict i386 Windows flags; temporary files were removed.
 No new unit tests or agent-side Proton launch.
+
+
+Click-sound frame continuation (2026-10-29, desktop test pending): shared
+initializer `0066AD10` allocates factory kind four and stores it at front-end
++3C. It queries `ISndGetDriver` +0C and invokes resource loader `0044A1C0`
+with button.wav only if initialized; it still configures/attaches the frame
+when sound is unavailable. Type +7C is set to three, +34 names sound_click,
++30 disables, +8C sets volume one; scene +80 and primary-sector +7C retain
+it before the local reference is released. Cached factory export `10018E40`
+identifies sound vtable `1009BCB8` for kind four.
+
+Important ABI distinction: sound +30 is `1001BB10`, which forwards stack
+self/enable/zero to virtual +AC (`10054F30`), cleaning two caller words.
+The +AC implementation cleans three words; do not call it through the
+visual-frame setter or a two-argument prototype. Sound +78 is `100548D0`,
+returning false immediately when buffer +13C is null. Name +34 uses base
+`1001D330`, type +7C is `100549A0`, volume +8C is `10054C40`; all are guarded
+from the actual sound vtable. Primary-sector +7C is `1004DCB0` sound insertion.
+Adjacent +78 is `1004D040` LIGHT removal, not a sound method.
+
+Client helper `0066B110` checks nullable front-end +3C, queries +78 with zero,
+and only on false rereads +3C and invokes +30 with one. Portable
+`frontend/menu_click_sound.h` preserves the second lookup and short-circuit.
+The engine-input host now owns/configures the original unbuffered frame and
+routes accepted pointer clicks to it before queued screen actions are pumped.
+Keyboard activation remains separate; hover/wheel are not playback requests.
+The host retains its local owning reference until teardown, replacing original
+borrowed front-end storage with scoped ownership. Engine play/query routines
+remain delegated; only 0066B110 gains partial credit, bringing totals to 43
+partial and zero complete. Full initializer reconstruction is not claimed.
+
+This stage remains SILENT: neither sound-driver initialization nor the original
+button.wav archive/codec/buffer loader is reconstructed, and no wave asset is
+staged. It matches the original uninitialized-sound setup branch, not a complete
+audio implementation. New engine frame lifecycle/callback integration still
+requires desktop validation before commit. Look for `Original sound_click frame
+bound` and `Original accepted-click sound callback` in the same engine-input run.
+Next trace startup sound-driver configuration (cached 006DB3B0) and loader
+0044A1C0/008AEC54 before adding an initialized/buffered branch.
+
+Validation: strict i386 host build, all existing native checks, 17 launcher and
+nine frontend checks, 301 UI instruction anchors, 34 engine vtable slots,
+frontend evidence and frozen accounting pass. Temporary native/i386 audit of
+the actual helper and pointer dispatcher covered null/playing/stopped sound,
+binding replacement during query, accepted-only dispatch and callback order;
+files removed. No new unit tests or agent-side Proton launch. Desktop remains
+pending, so this slice stays uncommitted.
+
+
+Sound-frame desktop follow-up (2026-10-29): user confirms it works. Direct log
+records the unbuffered sound callback after mouse Exit/No, Escape, keyboard
+Enter on Exit/Yes, 365 submitted frames and clean driver/graphics teardown.
+No audible playback claimed. This tested frame/helper slice may now be committed.

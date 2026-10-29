@@ -7,6 +7,19 @@
   "functions": [
     {
       "program": "client",
+      "entry": "0066b110",
+      "status": "partial",
+      "coverage": "If click-sound binding exists, query active state with zero; only if false, reread binding and enable it with one. Integrated after accepted pointer clicks in engine-input mode.",
+      "limitations": "Portable context replaces original front-end +3c and object ABI. Original sound active/play engine bodies are delegated; bound frame is unbuffered. Sound-driver initialization and button.wav archive/codec loading remain absent, so playback is silent. Frame binding/callback desktop-confirmed; audible playback remains absent.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/menu_click_sound.h",
+        "recovered/host/menu_scene.h",
+        "recovered/host/engine_window.cpp"
+      ]
+    },
+    {
+      "program": "client",
       "entry": "00668580",
       "status": "partial",
       "coverage": "Scan lower control indices then wrap backward from the final child, skipping subordinate target IDs and stopping when candidate focus handling succeeds.",
@@ -235,7 +248,7 @@
       "entry": "0066b990",
       "status": "partial",
       "coverage": "Portable sequencing reconstructs the front-end gate, pick-before-update call order, target-change gate, alternate-motion branch, mask-3 press/release, captured-control veto, double-before-single click, drag callback order/early return, and raw wheel conversion, focused dispatch and post-callback current-screen repicking. An observational adapter logs the routed screen slots. The opt-in engine-button adapter now routes main-menu Exit and confirmation press/release/drag/click through the reconstructed dispatcher and screen helpers; default interactive modes retain their existing paths.",
-      "limitations": "Device state polling is reconstructed in a bounded separate slice; captured-control objects, stack lookup, accepted-click side effect and ABI remain adapters. The shadow uses reconstructed clamping on host-derived motion, while live interaction retains its existing sampling. Wheel conversion/dispatch/repicking order is reconstructed; original segmented screen-stack storage remains a context adapter. The probe uses message snapshots and does not invoke live callbacks; its capture state is absent. Interactive target changes retain host focus routing to preserve established behavior.",
+      "limitations": "Device state polling is reconstructed in a bounded separate slice; captured-control objects, stack lookup and ABI remain adapters; accepted-click side effect now routes to an original unbuffered sound frame in engine-input mode. The shadow uses reconstructed clamping on host-derived motion, while live interaction retains its existing sampling. Wheel conversion/dispatch/repicking order is reconstructed; original segmented screen-stack storage remains a context adapter. The probe uses message snapshots and does not invoke live callbacks; its capture state is absent. Interactive target changes retain host focus routing to preserve established behavior.",
       "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_motion.h", "recovered/frontend/pointer_dispatch.h", "recovered/host/pointer_dispatch_probe.h", "recovered/host/engine_window.cpp"]
     },
     {

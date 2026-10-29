@@ -2,7 +2,41 @@
 
 ## Resume here
 
-Latest continuation reconstructs previous/next/index focus traversal in
+Desktop-confirmed slice: original click-sound FRAME and accepted-click
+helper, only in `--use-engine-mouse`. This is deliberately still silent:
+sound-driver initialization and `button.wav` archive/codec/buffer loading are
+not implemented; no new sound asset is staged. User confirms it works. Direct
+log: sound callback after mouse Exit/No, Escape, keyboard Enter on Exit/Yes,
+365 frames and clean teardown. This tested slice may now be committed. Original sound vtable 1009BCB8 +30 is 1001BB10 (not visual
+1001CFE0); it forwards self/enable/zero to +AC 10054F30. +78 100548D0 returns
+false when buffer +13C is null. All used sound slots and sector +7C 1004DCB0
+are fingerprint-anchored. Sector +78 1004D040 removes LIGHTS; do not confuse it
+with sound insertion at +7C.
+
+`MenuScene` creates factory kind four, sets type three/name sound_click/disabled/
+volume one, adds it to scene and primary-sector sound list, and retains an owning
+reference until normal teardown. `frontend/menu_click_sound.h` reconstructs
+0066B110: nullable binding, active query with zero, re-read binding, enable with
+one only when inactive. `MenuFrameInput` now invokes that helper only after a
+screen pointer click returns one, before queue pumping. Keyboard direct
+activation stays separate. Counts: 43 partial / zero complete / 18,783 baseline.
+Strict i386 host build, existing native suite, 17 launcher/nine frontend checks,
+301 instruction anchors/34 engine slots, frontend evidence and frozen accounting
+pass. Temporary native/i386 audit passed null/playing/stopped sound, binding
+replacement during query, accepted-only dispatch and callback order; removed.
+No new unit tests or agent-side Proton launch.
+
+Desktop command unchanged:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+Check mouse Exit → No, Exit → Escape, keyboard Enter/Space, then mouse Exit → Yes.
+No new audible sound is expected. Log should include `Original sound_click frame
+bound` and `Original accepted-click sound callback`, plus clean teardown. Read
+that log before committing. Next trace sound-driver
+setup and loader 0044A1C0/008AEC54 before attempting actual button.wav playback.
+Cached startup sound setup: `analysis/work/menu-resource-setup/006db3b0.c`;
+verify its obfuscated arguments against assembly before choosing parameters.
+
+Previous checkpoint 2ade2d7 reconstructs previous/next/index focus traversal in
 `frontend/screen_navigation.h`: 00668580, 006685f0, 006686f0. Original two-pass
 wrap order, subordinate-ID mask 000ff000, candidate eligibility, leave veto
 (reported handled), and enter argument 15/result ignored are preserved.

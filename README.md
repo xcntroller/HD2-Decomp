@@ -70,7 +70,9 @@ is also desktop-confirmed, including held-button cancellation. Enter/Space activ
 control in engine-input mode is desktop-confirmed; keypad Enter remains
 untested on hardware. Original previous/next focus traversal now has portable
 reconstructions; live key bindings remain unidentified, so it is not connected
-to the host. Screen effects and much of input remain
+to the host. The engine-input host now binds the original
+`sound_click` frame and accepted-click callback; it remains silent until sound
+driver/buffer loading is recovered. Frame binding/callback is desktop-confirmed. Screen effects and much of input remain
 host scaffolding, not the complete
 original dispatcher. Pixel-perfect
 fidelity, other screens and profile/save data are not implemented.
@@ -85,11 +87,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **42 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **43 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 38 |
+| Base game client | 17,294 | 0 | 39 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

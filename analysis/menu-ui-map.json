@@ -27,6 +27,7 @@
   "screen_input_source": "recovered/frontend/screen_input.h",
   "screen_key_source": "recovered/frontend/screen_key.h",
   "screen_navigation_source": "recovered/frontend/screen_navigation.h",
+  "menu_click_sound_source": "recovered/frontend/menu_click_sound.h",
   "screen_target_source": "recovered/frontend/screen_target.h",
   "button_visuals_runtime_verified": true,
   "button_visuals_desktop_observation": "2026-10-27: user confirmed it works well, just as remembered. Direct runtime log initialized nine pairs, recorded repeated focused/normal Exit transitions, Exit activation, 575 submitted frames and normal teardown. Bounded confirmation only; no original dispatcher or focus sound.",
@@ -124,6 +125,12 @@
     "safety": "Main and confirmation now reference one host-owned input/dispatcher session across push/pop. A held screen transition cancels capture/drag and absorbs input until all buttons are up while preserving shared sampling. Outside-window/poll failure/cancel resets the session; reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original singleton/refcount ABI and complete screen stack remain absent.",
     "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. That tested slice is committed as 19f30e5. Shared-session continuation subsequently desktop-confirmed: user tried all requested cases; log retains wheel -480 across screens, No, Escape, Yes, 861 frames and clean teardown."
   },
+  "click_sound_reconstruction": {
+    "evidence": "0066ad10 creates factory kind four into front-end +3c. It loads button.wav through 0044a1c0 only when ISndGetDriver +0c reports initialized, then sets frame type three, name sound_click, enabled zero, volume one, adds scene and primary-sector sound references, and releases the local reference. 0066b110 checks +3c, queries sound +78 with zero and, only if false, rereads +3c and invokes +30 with one. Pointer dispatcher calls it only after screen click returns one.",
+    "engine_abi": "Actual sound vtable 1009bcb8: +00 1001c370 release, +30 1001bb10 SOUND enable override, +34 1001d330 base name setter, +78 100548d0 active query, +7c 100549a0 type setter, +8c 10054c40 volume setter, +ac 10054f30 play implementation. +30 forwards self/enable/zero to +ac; do not use visual visibility 1001cfe0. Active query returns false when +13c buffer is null. Primary-sector +7c 1004dcb0 adds sound, unlike +78 1004d040 light removal.",
+    "integration": "Only --use-engine-mouse binds an owned unbuffered sound_click frame with original type/name/enabled/volume and scene/sector calls. Portable accepted_menu_click drives real +78/+30 through MenuFrameInput accepted callback before queued screen actions pump. Keyboard activation remains separate. Host retains a local owning reference until scene teardown. Strict i386 host build, existing native checks, 17 launcher/nine frontend checks, UI/frontend evidence and frozen accounting pass. Temporary native/i386 audit passed null/playing/stopped sound, binding reread, accepted-only dispatch and callback ordering; audit removed. User desktop-confirmed frame/callback integration works. Direct log records accepted callback after mouse Exit/No, Escape, keyboard Enter on Exit/Yes, 365 frames and clean teardown. No audible playback claimed.",
+    "limits": "No audible playback yet: sound-driver initialization, archive/codec path and button.wav loading remain absent; no wave asset staged. Engine query/play bodies are delegated, not reconstructed. One new partial client helper; original front-end ABI/storage and full setup remain adapters."
+  },
   "focus_traversal_reconstruction": {
     "evidence": "00668580 scans backward from focus-1 then wraps from the final child; 006685f0 scans forward from focus+1 then wraps from zero. Both exclude control +60 values with bits 12..19 set and call 006686f0 for eligibility/focus transfer. 006686f0 checks candidate +08 eligibility, asks valid old focus +34 to leave with zero, treats a leave veto as handled, stores candidate at +6c, then calls candidate +30 with 15 and ignores its result.",
     "reconstruction": "frontend/screen_navigation.h implements all three portable sequencing subsets. Forward loops reread control count after failed eligibility callbacks. Caller supplies -1/valid focus and valid candidate; storage, control eligibility and callbacks remain adapters. Three new partial entries; no complete functions.",
@@ -162,7 +169,7 @@
     "engine_slice": "1006f8a0 device read/acquire/retry/zero-on-failure, axis-count wheel suppression and button swapping; 1006fb30 packs first five button high bits. Portable state replaces engine globals; mode-zero window metric queries and exclusive-mode absolute accumulation are omitted.",
     "bridge": "Original +dc / 1006f710 creates a foreground nonexclusive device with argument zero and cooperative flags six. Original +e4 / 1006f850 owns shutdown. Borrowed device +24 reads 20 bytes, +1c acquires. ABI/global addresses are fingerprint-anchored; no direct vtable patch or code injection.",
     "functional_input": "Confirmation button transitions run once per frame through reconstructed update/dispatch/screen helpers and original tagged activation records. Positions/focus remain host-owned; same sampled point supplies hover and click picking. Queue pumps after dispatch. Main Exit now uses the same reconstructed engine-input adapter; this extension has user desktop confirmation. New button press/release/drag callbacks emit their reconstructed tagged events; logs are bounded per type per button.",
-    "limits": "Polled XYZ is available but live motion derives from host cursor positions to keep picking aligned with the visible cursor. QPC supplies clamped 10..100 ms frame deltas; original wait/scale behavior is absent. Departure cancellation remains, and reentry requires all buttons up. Poll failure/focus loss/outside-window state resets input. Wheel dispatch is now reconstructed but not desktop-verified; double-click dispatch remains disabled; captured screen-control objects and accepted-click helper are absent.",
+    "limits": "Polled XYZ is available but live motion derives from host cursor positions to keep picking aligned with the visible cursor. QPC supplies clamped 10..100 ms frame deltas; original wait/scale behavior is absent. Departure cancellation remains, and reentry requires all buttons up. Poll failure/focus loss/outside-window state resets input. Wheel dispatch is now reconstructed but not desktop-verified; double-click dispatch remains disabled; captured screen-control objects remain absent; accepted-click helper now drives an unbuffered sound frame in engine-input mode.",
     "accounting": "1006f8a0, 1006fb30 and 0064db00/20/60/80/a0/e0 are absent from the frozen inventory. Their bounded reconstructions earn no ledger count; baseline remains unchanged."
   },
   "cursor_screen_research": {
@@ -209,6 +216,12 @@
       "image_base": "10000000"
     },
     "instruction_anchors": [
+      {"address": "1001bb10", "hex": "8b5424088b4424048b086a005250ff91ac000000c2080090909090", "meaning": "Sound +30 forwards self/enable/zero to +ac and cleans two words"},
+      {"address": "100548d0", "hex": "83ec08568b7424108b8e3c01000085c9750932c05e83c408c20800", "meaning": "Sound active query returns false when +13c buffer is absent; cleans two words"},
+      {"address": "100549a0", "hex": "8b44240883ec10568b74241839867c010000747d", "meaning": "Sound type setter reads two stack words and current type +17c"},
+      {"address": "10054c40", "hex": "8b4c2404d9816c010000d8642408d95c2404d944240450d9e1d91c245a33c081fa77cc2b320f9cc084c075118b44240889816c01000083892001000008c20800", "meaning": "Sound volume setter updates +16c and dirty bit when changed; cleans two words"},
+      {"address": "1004dcb0", "hex": "568b7424088b86c001000085c08b8eb8010000578b7c241074", "meaning": "Primary sector sound insertion reads stack self/sound and sound list fields"},
+      {"address": "100551f5", "hex": "5f5e5d5b83c408c20c00", "meaning": "Sound play implementation returns cleaning self/enable/extra words"},
       {"address": "100346a0", "hex": "8b442408568b7424085056e8808cfeff85c07c078bcee875ffffff5ec20800", "meaning": "Model +34 name override forwards self/name to base 1001d330, checks success, invokes model propagation 10034630 and cleans two stack words"},
       {"address": "1001d330", "hex": "538b5c240c558b6c240c8b85e80000003bc35657", "meaning": "Frame name setter reads stack self/name and frame +e8"},
       {"address": "1001d458", "hex": "5f5e5d33c05bc20800", "meaning": "Frame name setter returns with cleanup of stack self and name"},
@@ -249,6 +262,12 @@
       {"address": "1006fb49", "hex": "840dd51e0d10740383c802840dd71e0d10740383c808840dd81e0d10740383c810c20400", "meaning": "Graphics input combines button bytes 1, 3 and 4 as mask bits 2, 8 and 10"}
     ],
     "vtables": [
+      {"address": "1009bcb8", "targets": ["1001c370"]},
+      {"address": "1009bce8", "targets": ["1001bb10", "1001d330"]},
+      {"address": "1009bd30", "targets": ["100548d0", "100549a0"]},
+      {"address": "1009bd44", "targets": ["10054c40"]},
+      {"address": "1009bd64", "targets": ["10054f30"]},
+      {"address": "1009bc9c", "targets": ["1004dcb0"]},
       {"address": "1009ba58", "targets": ["1001c9f0"]},
       {"address": "1009ba74", "targets": ["1001e610"]},
       {"address": "1009ba80", "targets": ["1001cfe0", "100346a0", "1001d680"]},
@@ -277,6 +296,10 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "0066af8a", "hex": "e8ad9e17008b106a0450ff52548946", "meaning": "Create sound frame kind four and store front-end +3c"},
+      {"address": "0066af9a", "hex": "e81b9f17008b0850ff510c84c0741b8b563c6a006a006a006a006840a9830052b954ec8a00e8fcf1ddff", "meaning": "Query sound driver initialized state and conditionally invoke button.wav loader"},
+      {"address": "0066afc4", "hex": "8b463c6a03508b08ff517c8b463c6834a98300508b10ff52348b463c6a00508b08ff51308b463c680000803f508b10ff928c000000", "meaning": "Set sound type three, literal frame name, disabled state and volume one"},
+      {"address": "0066aff9", "hex": "8b46308b563c52508b08ff91800000008b46308b563c528b80f8010000508b08ff517c8b463c508b08ff11", "meaning": "Add sound to scene and primary sector, then release local reference"},
       {"address": "00668580", "hex": "53568bf157bb00f00f008b7e6c4f781a8b46088b0cb8855960750c578bcee84d01000084c0753d4f79e68b4e0885c9750433c0eb088b460c2bc1c1f8028d78ff85ff7c1a8b56088b04ba855860750c578bcee81901000084c075094f79e65f5e32c05bc35f5eb0015bc3", "meaning": "Complete previous-focus instruction body: lower-index scan, subordinate-ID filter, candidate selection and wrap"},
       {"address": "006685f0", "hex": "53568bf157bb00f00f008b7e6c8b4e084785c974288b460c2bc1c1f8023bf8731c8bc18b0cb885596075e2578bcee8cd00000084c074d65f5eb0015bc333ff8b4e0885c974258b460c2bc1c1f8023bf873198bd18b04ba855860750c578bcee89c00000084c075cf47ebd45f5e32c05bc3", "meaning": "Complete next-focus instruction body: forward scan, subordinate-ID filter, candidate selection and wrap"},
       {"address": "006686f0", "hex": "568bf1578b7c240c8b46088b0cb88b11ff520884c074418b4e6c8b06518bceff500484c0741b8b566c8b46086a008b0c908b11ff523485c075075fb0015ec204008b4608897e6c6a0f8b0cb88b11ff52305fb0015ec204005f32c05ec20400", "meaning": "Complete index-selection instruction body: eligibility, leave-veto handled return, store focus, enter with fifteen and ignore enter result"},
@@ -375,7 +398,7 @@
       {"address": "0066bd5f", "hex": "8b442418568b088b11ff52505f5e5db0015b83c420c20400", "meaning": "Screen +50 handles drag and returns before wheel handling"},
       {"address": "0066bd77", "hex": "8b8ff4000000e8aee2ffff84c00f84ef000000", "meaning": "Wheel predicate is considered after click and non-drag motion"},
       {"address": "0066bdd0", "hex": "e82ba0170050568bcdff534c", "meaning": "Wheel path converts through 007e5e00 and invokes screen +4c; still delegated by portable dispatcher"},
-      {"address": "0066b110", "hex": "568bf18b463c85c074178b086a0050ff517884c0750b8b763c6a01568b16ff52305ec3", "meaning": "Accepted-click helper checks object at front-end +3c, invokes engine slot +78 with zero, then slot +30 with one if false; not reconstructed here"},
+      {"address": "0066b110", "hex": "568bf18b463c85c074178b086a0050ff517884c0750b8b763c6a01568b16ff52305ec3", "meaning": "Accepted-click helper checks object at front-end +3c, invokes engine slot +78 with zero, then rereads +3c and calls slot +30 with one if false; now reconstructed through portable context"},
       {"address": "006dc95b", "hex": "8b3dc4f1800050895424148be9ffd7", "meaning": "Frame timer loads QueryPerformanceFrequency through IAT 0080f1c4"},
       {"address": "006dc96a", "hex": "8b1dc8f180008d4c241451ffd3", "meaning": "Frame timer loads and invokes QueryPerformanceCounter through IAT 0080f1c8"},
       {"address": "006dc97f", "hex": "6a006840420f005250e8139510008b4c2420518b4c2420515250e892941000", "meaning": "Multiply performance counter by 1000000 and divide by frequency to obtain microseconds"},
