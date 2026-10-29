@@ -162,6 +162,8 @@ public:
         std::printf("Exit visual state: %s\n", hover ? "focused" : "normal");
     }
 
+    ButtonVisualPair& exit_control() { return *exit_; }
+
     bool click_exit(frontend::ControlEventDestination& destination) {
         return exit_->click(destination);
     }

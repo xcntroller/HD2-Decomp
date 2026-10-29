@@ -163,7 +163,7 @@ def main() -> None:
                         help="Use original engine picking for confirmation hover and clicks; "
                              "requires --menu-confirm")
     parser.add_argument("--use-engine-mouse", action="store_true",
-                        help="Use rebuilt LS3DF mouse polling and frame-based confirmation input; "
+                        help="Use rebuilt LS3DF mouse polling and frame-based Exit/confirmation input; "
                              "requires --menu-confirm --use-confirm-picking")
     args = parser.parse_args()
     try:

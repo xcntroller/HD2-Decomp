@@ -257,9 +257,20 @@ public:
         }
     }
 
+    std::uint32_t pick_main_menu(HMODULE module, float x, float y,
+                                 float width, float height) const {
+        return pick_menu_screen(module, x, y, width, height, false);
+    }
+
     std::uint32_t pick_confirmation(HMODULE module, float x, float y,
                                     float width, float height) const {
-        if (!confirmation_) throw std::logic_error("Confirmation model is not initialized");
+        return pick_menu_screen(module, x, y, width, height, true);
+    }
+
+    std::uint32_t pick_menu_screen(HMODULE module, float x, float y,
+                                   float width, float height, bool confirmation) const {
+        EngineFrame* root = confirmation ? confirmation_.get() : model_.get();
+        if (root == nullptr) throw std::logic_error("Menu picking model is not initialized");
         using Pick = EngineFrame* (WINAPI *)(EngineFrame*, const float*, const float*,
                                              EngineFrame*, void*, std::uint32_t,
                                              std::uint32_t, std::uint32_t, std::uint32_t);
@@ -269,7 +280,7 @@ public:
         return frontend::menu_pointer_target(ray,
             [&](const frontend::PointerRay& input, std::uint32_t flags) {
                 return pick(scene_.get(), input.origin.data(), input.direction.data(),
-                            confirmation_.get(), details.data(), flags, 0, 0, 0);
+                            root, details.data(), flags, 0, 0, 0);
             },
             [](EngineFrame* frame) {
                 std::uint32_t target = 0;

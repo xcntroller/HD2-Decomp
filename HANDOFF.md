@@ -2,19 +2,45 @@
 
 ## Resume here
 
-Input and wheel work is committed through `a295649` on `master`. The cursor
-continuation is checkpointed in the local commit titled
-`Bind original CURZOR model and input frame updates`.
-Preserve later worktree changes. Do not push without explicit user approval.
+The main-menu engine-input slice is desktop-confirmed and checkpointed in the
+local commit titled `Route main-menu Exit through rebuilt engine input`.
+User instruction: **do not commit until tested and working**. For interactive
+changes, wait for the user's successful desktop result before a local commit.
+Do not push without explicit approval. Preserve all worktree changes.
 
+- User confirmed main-menu input works. Latest direct log: four main-menu Exit
+  clicks at target `05000000` / focus 15, No twice, Escape, Yes, 364 frames and
+  clean driver/graphics teardown. The log lacks raw button masks and exhaustive
+  drag/focus evidence. Earlier cursor binding and wheel observations still apply.
+- Tested slice moves main-menu Exit onto the same rebuilt engine
+  polling / frame-update / dispatcher path used by confirmation, only under
+  `--use-engine-mouse`. Main-menu model picking tags Exit's normal/active
+  visuals with original ID `05000000`. Definition order: seven static labels,
+  nine buttons, then version; Exit is child 16 / vector index 15 on screen
+  `04000000`. All 17 definition-name pushes and ID arithmetic are anchored.
+- `host/main_menu_focus.h` adapts screen focus/click/press/release/drag/wheel
+  routing for Exit only. `MenuFrameInput<Screen>` is shared by main and confirm
+  adapters; they remain separate state instances, not original shared input ABI.
+  Engine mode bypasses message-driven mouse activation for both screens.
+  Other modes and disabled controls are unchanged. Inactive-screen adapters
+  clear on transitions; outside/poll failure/cancel clears both; reentry requires
+  all buttons up. Original absolute pointer tracking, host pre-focus, queue pump
+  timing, departure cancellation and disabled double-click remain deliberate
+  limits. Main-menu engine picking/input has bounded desktop confirmation.
+- Latest desktop cursor log: owned model vtable `1009BA50`, root `CURZOR`,
+  child `CURZOR.Rectangle02`, two frames, position/update
+  `(0.610000,-0.685000,-1)`, No, Escape, Yes, 553 frames and clean teardown.
+  User reports it works. This validates the prior cursor slice, not the new
+  main-menu engine picking. Use the same engine-input command below and check
+  left/right Exit, No, Escape, Yes, hover/departure and wheel without activation.
 - Cursor desktop attempt stopped at ABI guard `slot 0x34, expected RVA
   0x1d330`, before rendering (0 frames, clean driver/graphics teardown).
   Corrected model-specific name setter: vtable `1009BA50` +34 is `100346A0`,
   which calls base `1001D330` then model propagation `10034630`. Do not bypass
   that override. All model slots used by this path are now anchored from the
   model vtable; other expected method targets were correct. Guard diagnostics
-  now include actual RVA. Strict build/checks pass; corrected desktop retry
-  still needed with the same engine-mouse command.
+  now include actual RVA. Strict build/checks passed; user subsequently confirmed the corrected
+  cursor slice works as described above.
 - Latest continuation stages original `MODELS\kurzor_menu.4ds` only when
   `--use-engine-mouse` is requested (manifest ownership persists later).
   The model is 330 bytes, SHA-256
@@ -29,8 +55,8 @@ Preserve later worktree changes. Do not push without explicit user approval.
   `frontend/cursor_frame.h` reconstructs the 0066A220 tail projection and
   +08 position / +24 world-update order. The confirmation adapter calls it
   on host-seeded arm/reentry and after processed input, before screen callbacks.
-  Visible bitmap cursor, hit/pick ray and other modes are unchanged. No new
-  cursor binding/update desktop test yet. Look for `Original CURZOR model bound`
+  Visible bitmap cursor, hit/pick ray and other modes are unchanged.
+  Cursor binding/update has the bounded desktop confirmation above. Look for `Original CURZOR model bound`
   and `Original CURZOR position/update` logs using the same engine-input command.
 - Latest continuation reconstructs wheel getter/predicate, int64 truncation
   and low-DWORD argument passing, focused-screen +4C forwarding, button
@@ -124,7 +150,7 @@ Preserve later worktree changes. Do not push without explicit user approval.
   Successful-path cursor warping, absolute accumulation and device/focus
   setup remain unreconstructed.
 - Strict i386 host build, all existing native checks, 12 resource checks, 17 launcher checks,
-  9 frontend checks, 27 accounting checks, 253 UI instruction anchors, 26 engine vtable slots, frontend evidence and
+  9 frontend checks, 27 accounting checks, 273 UI instruction anchors, 26 engine vtable slots, frontend evidence and
   frozen accounting pass. No new unit tests or agent-side Proton launches.
   Function totals are **0 complete / 18,783; 38 partial**.
 
@@ -133,10 +159,9 @@ Next session:
 1. Continue from cached exports in `analysis/work/frontend-inspection/`,
    `analysis/work/menu-input-route/`, `analysis/work/engine-loop/` and
    `analysis/work/initialization/`. Read the new timing section in `RESEARCH.md`.
-2. Read the new desktop log first if the user ran the engine-mouse command.
-   Resolve any device/setup/input issue before expanding it. Then continue
-   original relative-motion/device cursor positioning and input object
-   construction after the new CURZOR desktop check.
+2. Read the desktop log for the new main-menu engine-input slice. If the user
+   confirms it works and checks pass, commit that tested slice, then continue
+   original shared input/screen construction and relative-motion lifecycle.
    The known source/units do not make the host's timestamps equivalent to it.
    Original captured-control objects, shared input object lifetime, engine
    device cursor positioning and screen/control ABI remain absent.

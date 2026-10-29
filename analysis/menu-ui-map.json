@@ -17,6 +17,7 @@
   "mouse_poll_source": "recovered/input/mouse_poll.h",
   "engine_mouse_source": "recovered/host/engine_mouse.h",
   "pointer_wheel_source": "recovered/frontend/pointer_wheel.h",
+  "main_menu_focus_source": "recovered/host/main_menu_focus.h",
   "cursor_frame_source": "recovered/frontend/cursor_frame.h",
   "pointer_cursor_source": "recovered/frontend/pointer_cursor.h",
   "pointer_update_source": "recovered/frontend/pointer_update.h",
@@ -27,13 +28,108 @@
   "screen_target_source": "recovered/frontend/screen_target.h",
   "button_visuals_runtime_verified": true,
   "button_visuals_desktop_observation": "2026-10-27: user confirmed it works well, just as remembered. Direct runtime log initialized nine pairs, recorded repeated focused/normal Exit transitions, Exit activation, 575 submitted frames and normal teardown. Bounded confirmation only; no original dispatcher or focus sound.",
+  "main_menu_input_reconstruction": {
+    "definition_order": [
+      {
+        "index": 0,
+        "name": "text_screen",
+        "identifier": "04100000"
+      },
+      {
+        "index": 1,
+        "name": "text_date00",
+        "identifier": "04200000"
+      },
+      {
+        "index": 2,
+        "name": "text_date01",
+        "identifier": "04300000"
+      },
+      {
+        "index": 3,
+        "name": "text_profile00",
+        "identifier": "04400000"
+      },
+      {
+        "index": 4,
+        "name": "text_profile01",
+        "identifier": "04500000"
+      },
+      {
+        "index": 5,
+        "name": "text_last save00",
+        "identifier": "04600000"
+      },
+      {
+        "index": 6,
+        "name": "text_last save01",
+        "identifier": "04700000"
+      },
+      {
+        "index": 7,
+        "name": "bresume game",
+        "identifier": "04800000"
+      },
+      {
+        "index": 8,
+        "name": "bchange profile",
+        "identifier": "04900000"
+      },
+      {
+        "index": 9,
+        "name": "bsingleplayer",
+        "identifier": "04a00000"
+      },
+      {
+        "index": 10,
+        "name": "bmultiplayerlan",
+        "identifier": "04b00000"
+      },
+      {
+        "index": 11,
+        "name": "bmultiplayernet",
+        "identifier": "04c00000"
+      },
+      {
+        "index": 12,
+        "name": "bcinematics",
+        "identifier": "04d00000"
+      },
+      {
+        "index": 13,
+        "name": "boptions",
+        "identifier": "04e00000"
+      },
+      {
+        "index": 14,
+        "name": "bcredits",
+        "identifier": "04f00000"
+      },
+      {
+        "index": 15,
+        "name": "bexit",
+        "identifier": "05000000"
+      },
+      {
+        "index": 16,
+        "name": "text_h&dversion",
+        "identifier": "05100000"
+      }
+    ],
+    "exit_target": "05000000",
+    "scope": "With --use-engine-mouse, tag only Exit normal/active visuals and pick against the actual main-menu model. MainMenuFocus uses original seventeen-entry order and only index fifteen is eligible. Other controls remain disabled.",
+    "routing": "Main Exit and confirmation now instantiate the same MenuFrameInput adapter: polled buttons, original picking, bounded pointer update/dispatch, focused screen callbacks, button events and deferred queue activation. Engine mode bypasses message-driven activation for both screens; other modes unchanged.",
+    "safety": "Inactive screen input clears between push/pop; outside-window/poll failure/cancel resets both. Reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original shared input object/ABI and complete screen stack are still absent.",
+    "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. Desktop confirmation received; tested continuation may be committed."
+  },
   "cursor_frame_reconstruction": {
     "asset": {"member": "MODELS\\kurzor_menu.4ds", "size": 330, "sha256": "d29a19d542f7155e14b82e592a642caf974b068926d6bd30cae59e098fd409f2", "textures": ["X_KURSOR.TGA"]},
     "staging": "include_cursor_model / --include-cursor-model adds one manifest-owned original model. --use-engine-mouse requests it automatically; default restaging retains ownership. Real-archive audit upgrades 21 to 22 assets with old records unchanged, verifies every hash, checks identical default restaging and rejects a modified model before writes.",
     "binding": "Create model kind nine, open kurzor_menu, name root CURZOR via model override +34 / 100346a0 (base 1001d330 plus model-specific name propagation), link primary sector via +38, hide via +30. Resolve scene +7c with name CURZOR and flags ffff; require returned frame to equal owned model and verify +e8 name. Position +08 and world update +24 are ABI-checked. All resources follow existing scene/driver teardown ownership.",
     "update": "0066a220 tail projects X/width, ((-1/height)*Y)*0.75, Z=-1 with final float stores, then invokes frame +08 and +24. The functional adapter calls it after successful input processing and before screen callbacks, with an initial host-seeded call on arm/reentry. Hidden model stays hidden; visible bitmap cursor and picking ray Z=-0.9 remain unchanged.",
     "abi_correction": "First desktop attempt stopped at the name-setter guard before rendering (zero frames, clean teardown): a visual-frame method was incorrectly expected on a model. Model vtable 1009ba50 slot +34 is 100346a0; it calls base 1001d330, then 10034630 after success. Guard now targets that wrapper, retaining model-specific side effects. All model methods used by this adapter are now anchored in the actual model vtable. Retry remains pending.",
-    "limits": "No desktop validation of the corrected model lookup/update yet. Host cursor seed, shared-global replacement, original input initializer/device cursor positioning/refcount object and FPU control word remain incomplete. Model loading/binding is host integration, not a complete original loader reconstruction."
+    "desktop_observation": "User confirmed corrected CURZOR binding works. Direct log: model vtable 1009ba50 named CURZOR, child CURZOR.Rectangle02, two frames, first position/update (0.610000,-0.685000,-1), No, Escape, Yes, 553 frames and clean teardown. Original shared input object lifetime and device cursor synchronization remain unverified.",
+    "limits": "Corrected model lookup/update has bounded desktop confirmation. Host cursor seed, shared-global replacement, original input initializer/device cursor positioning/refcount object and FPU control word remain incomplete. Model loading/binding is host integration, not a complete original loader reconstruction."
   },
   "wheel_reconstruction": {
     "scope": "0066a020 getter, 0066a030 predicate, 0066b990 conversion/callback/repick ordering, 00656da0 focused screen forwarding and 0064db40 button event. Portable storage, screen lookup and ABI remain adapters.",
@@ -47,7 +143,7 @@
     "desktop_observation": "2026-10-29: user says it works well and reports right-click activation. Direct log enables rebuilt nonexclusive polling, records success then one 80000005 failure and recovery, No three times, Escape, Yes, press/release/drag event emissions, 807 frames and clean teardown. The log does not include raw button masks, so right-click identity comes from the user report. Focus-loss and drag-off outcomes are not independently established by this log. Original screen transitions use selector three (left/right); click capture/release uses selector zero (any), so right-click activation matches the recovered path. Additional filtering elsewhere in the complete original menu is not established.",
     "engine_slice": "1006f8a0 device read/acquire/retry/zero-on-failure, axis-count wheel suppression and button swapping; 1006fb30 packs first five button high bits. Portable state replaces engine globals; mode-zero window metric queries and exclusive-mode absolute accumulation are omitted.",
     "bridge": "Original +dc / 1006f710 creates a foreground nonexclusive device with argument zero and cooperative flags six. Original +e4 / 1006f850 owns shutdown. Borrowed device +24 reads 20 bytes, +1c acquires. ABI/global addresses are fingerprint-anchored; no direct vtable patch or code injection.",
-    "functional_input": "Confirmation button transitions run once per frame through reconstructed update/dispatch/screen helpers and original tagged activation records. Positions/focus remain host-owned; same sampled point supplies hover and click picking. Queue pumps after dispatch. Main Exit remains message-driven. New button press/release/drag callbacks emit their reconstructed tagged events; logs are bounded per type per button.",
+    "functional_input": "Confirmation button transitions run once per frame through reconstructed update/dispatch/screen helpers and original tagged activation records. Positions/focus remain host-owned; same sampled point supplies hover and click picking. Queue pumps after dispatch. Main Exit now uses the same reconstructed engine-input adapter; this extension has user desktop confirmation. New button press/release/drag callbacks emit their reconstructed tagged events; logs are bounded per type per button.",
     "limits": "Polled XYZ is available but live motion derives from host cursor positions to keep picking aligned with the visible cursor. QPC supplies clamped 10..100 ms frame deltas; original wait/scale behavior is absent. Departure cancellation remains, and reentry requires all buttons up. Poll failure/focus loss/outside-window state resets input. Wheel dispatch is now reconstructed but not desktop-verified; double-click dispatch remains disabled; captured screen-control objects and accepted-click helper are absent.",
     "accounting": "1006f8a0, 1006fb30 and 0064db00/20/60/80/a0/e0 are absent from the frozen inventory. Their bounded reconstructions earn no ledger count; baseline remains unchanged."
   },
@@ -163,6 +259,26 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "00623f05", "hex": "6800ec8300", "meaning": "Main-menu definition child 1: text_screen"},
+      {"address": "00623fba", "hex": "6828f08300", "meaning": "Main-menu definition child 2: text_date00"},
+      {"address": "0062406d", "hex": "681cf08300", "meaning": "Main-menu definition child 3: text_date01"},
+      {"address": "00624120", "hex": "680cf08300", "meaning": "Main-menu definition child 4: text_profile00"},
+      {"address": "006241d3", "hex": "68e4f78300", "meaning": "Main-menu definition child 5: text_profile01"},
+      {"address": "00624286", "hex": "68d0f78300", "meaning": "Main-menu definition child 6: text_last save00"},
+      {"address": "00624339", "hex": "68a0f28300", "meaning": "Main-menu definition child 7: text_last save01"},
+      {"address": "006243ec", "hex": "68c0f78300", "meaning": "Main-menu definition child 8: bresume game"},
+      {"address": "006244e0", "hex": "68b0f78300", "meaning": "Main-menu definition child 9: bchange profile"},
+      {"address": "006245d4", "hex": "68a0f78300", "meaning": "Main-menu definition child 10: bsingleplayer"},
+      {"address": "006246c8", "hex": "6890f78300", "meaning": "Main-menu definition child 11: bmultiplayerlan"},
+      {"address": "006247bc", "hex": "6880f78300", "meaning": "Main-menu definition child 12: bmultiplayernet"},
+      {"address": "006248b0", "hex": "6874f78300", "meaning": "Main-menu definition child 13: bcinematics"},
+      {"address": "006249a4", "hex": "6868f78300", "meaning": "Main-menu definition child 14: boptions"},
+      {"address": "00624a98", "hex": "685cf78300", "meaning": "Main-menu definition child 15: bcredits"},
+      {"address": "00624b8c", "hex": "68f0eb8300", "meaning": "Main-menu definition child 16: bexit"},
+      {"address": "00624c83", "hex": "68b0eb8300", "meaning": "Main-menu definition child 17: text_h&dversion"},
+      {"address": "00615a50", "hex": "8b510485d2750333c0c38b41082bc2c1f802c3", "meaning": "Definition-count helper returns zero or (end-begin)/4"},
+      {"address": "00624b54", "hex": "8bcee8f50effff40", "meaning": "Exit definition obtains previous child count then increments it"},
+      {"address": "00624b7a", "hex": "8b5424188b4b4083e23fc1e2140bd18bc85268f0eb83006a14e8f804ffff", "meaning": "Exit identifier masks one-based child count to six bits, shifts by twenty, combines parent ID and creates button definition"},
       {"address": "0066bfae", "hex": "6a0950ff51548b5424186a006a006a008bd86a005253b990ec8a00895c2424e8ced0dbff85c0", "meaning": "Original auxiliary-model loader creates kind nine and passes it to resource helper before naming/linking"},
       {"address": "0066bfda", "hex": "8b44241485c074078b0b5053ff5134", "meaning": "Original auxiliary-model loader optionally applies supplied root name through +34"},
       {"address": "0066bfe9", "hex": "8b46308b13576a008b88f80100005153ff52388b136a0053ff5230", "meaning": "Original auxiliary-model loader links primary scene sector with zero flags then hides the model"},

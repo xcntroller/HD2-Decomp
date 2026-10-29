@@ -1842,3 +1842,56 @@ wrapper body. Generic ABI guard logs include both expected and actual RVAs.
 This repairs a guard mismatch; successful cursor lookup/update still requires
 a desktop retry. No original binary was patched and no frame-name offset was
 changed.
+
+
+Shared main-menu input continuation (2026-10-29): user confirmed the corrected
+CURZOR slice works and requested no commits until changes are tested/working.
+The latest log records owned model `CURZOR` with child `CURZOR.Rectangle02`, two
+frames, position/update `(0.610000,-0.685000,-1)`, No, Escape, Yes, 553 frames
+and clean driver/graphics teardown. Future interactive commits wait for the
+user's desktop confirmation; current continuation is left uncommitted.
+
+The next slice removes message-based mouse activation from the remaining
+enabled main-menu control under `--use-engine-mouse`. Original main-menu
+control definitions have seven static labels, nine buttons, then version;
+Exit is the sixteenth child. Count helper `00615A50` returns vector size,
+`00624B56/5B` obtains count then increments it, and `00624B7A..98` masks that
+one-based count to six bits, shifts by twenty and combines parent `04000000`.
+Thus Exit's identifier is `05000000`, independently of its localization ID and
+its activation event's `04000000` screen argument. UI evidence anchors all 17
+definition-name pushes and the count/ID arithmetic, preserving literal spaces
+in the names. Other controls retain their original IDs but remain disabled.
+
+The [main-menu focus adapter](recovered/host/main_menu_focus.h) maps those IDs
+through existing `0065C830` lookup and permits only Exit (index 15). Both Exit
+visuals are tagged. Main-menu picking reuses the same original scene picker,
+flags and ray as confirmation, bounded to the actual main-menu model. Unsupported
+picked IDs normalize to no enabled control. Host hover first updates focus and
+original artwork; then `MenuFrameInput<Screen>` performs rebuilt update/dispatch,
+focused-screen callbacks, button events and queue activation. The same adapter
+type now handles both enabled screens. Main-menu Exit uses polled buttons,
+including original any-button click semantics; it no longer consumes Win32
+mouse press/release in engine mode. Default modes retain existing behavior.
+
+There are still separate host state instances per screen, not the original
+singleton/refcount object. Switching screens clears the inactive adapter;
+outside-window, polling failure or cancellation clears both, and reentry requires
+all buttons up. CURZOR frame updates now also run for processed main-menu input.
+Wheel repicks the appropriate screen model and never activates a button.
+Original relative cursor polling, shared input object lifetime, full screen
+storage/ABI and accepted-click helper remain incomplete; double-click dispatch
+stays disabled. These are bounded adapters reusing existing partial functions,
+so counts stay 38 partial / 0 complete. Main-menu engine picking/input is not
+yet desktop-verified. The same command tests it; look for
+`Rebuilt engine input controls main-menu Exit and confirmation` and
+`Engine mouse main-menu click: target=05000000 focus=15`.
+
+
+Main-menu engine-input desktop follow-up (2026-10-29): user reports it works
+nicely. Direct log records four Exit activations with target `05000000`, focused
+index 15, No twice, Escape, Yes, 364 frames and clean graphics teardown. This
+confirms the shared adapter type and actual main-menu model picking work for the
+bounded enabled controls. Raw button masks and exhaustive focus/drag cases are
+not independently established by this log. This tested slice may now be locally
+committed under the user's no-commit-before-working preference; later behavior
+changes must wait for their own desktop confirmation.
