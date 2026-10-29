@@ -2,7 +2,46 @@
 
 ## Resume here
 
-Desktop-confirmed slice: original click-sound FRAME and accepted-click
+Desktop-confirmed slice: original ISnd driver startup/teardown, only
+under `--use-engine-mouse`. User confirms it works. Direct log: startup
+status zero/initialized one, flags 0402, mouse Exit/No/Yes, 166 frames,
+3D driver close then sound initialized zero then graphics close. This tested
+slice may now be committed.
+`frontend/sound_startup.h` reconstructs 006DB3B0 flag composition: option bytes
+06/08 clear, quality index zero gives 0402. These are bounded host defaults,
+not recovered user preferences. Original disabled-setting gate/global storage
+and obfuscated wrapper remain absent. Parameters verified from assembly are
+HWND from graphics +48, rate 22050, channels two, bits sixteen, flags.
+
+`host/engine_sound.h` verifies ISndGetDriver at 10068FA0 and sound vtable
+1009DDF0 +04=1007B560, +08=1007A850, +0C=1007A840. Six stdcall words for init;
+close/query clean self. Opens before MenuScene so original scene audio setup
+can run; declaration order keeps it alive until after scene/frame/3D-driver
+teardown, then closes before graphics. Rejects pre-owned initialized singleton.
+Failed or partial startup closes before silent fallback; original engine owns
+DirectSound/COM internals. Logs `Original sound driver startup` and `Original
+sound driver closed`, with initialized state. Frame/buffer remains SILENT.
+
+Read-only archive investigation found SOUNDS\button.wav, 5638 bytes, one
+encrypted block, in Sounds.dta (ISD0, 4649 members). Key words low/high are
+4FE85106/8D2965CA, inferred from header count/table-size equation and validated
+end-index metadata layout. Existing native extractor rejects codec type 32.
+No decoded wave or staged sound asset, no game files changed, no checksum or
+payload correctness claim. Exact archive hash/metadata is in UI map. Next trace
+codec 32 in rw_data.dll/original reader plus loader 0044A1C0 before buffer loading.
+
+Checks pass: strict i386 host build, existing native suite, 17 launcher/nine
+frontend checks, UI evidence (309 anchors/37 engine slots), frontend evidence
+and frozen accounting. Temporary native/i386 audit passed all 1024 flag
+combinations, call arguments, success ownership and failure/partial cleanup;
+removed. No new unit tests or agent-side Proton launch. Counts 44 partial /
+zero complete / frozen 18,783. Desktop command unchanged:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+Check startup, mouse Exit → No/Escape, keyboard activation, mouse Yes and clean
+teardown. Still no audible sound expected. Inspect initialized/status log;
+latest run confirms actual audio initialization, not just silent fallback.
+
+Previous tested slice (committed 4bff28a): original click-sound FRAME and accepted-click
 helper, only in `--use-engine-mouse`. This is deliberately still silent:
 sound-driver initialization and `button.wav` archive/codec/buffer loading are
 not implemented; no new sound asset is staged. User confirms it works. Direct

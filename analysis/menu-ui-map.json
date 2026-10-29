@@ -28,6 +28,8 @@
   "screen_key_source": "recovered/frontend/screen_key.h",
   "screen_navigation_source": "recovered/frontend/screen_navigation.h",
   "menu_click_sound_source": "recovered/frontend/menu_click_sound.h",
+  "sound_startup_source": "recovered/frontend/sound_startup.h",
+  "engine_sound_source": "recovered/host/engine_sound.h",
   "screen_target_source": "recovered/frontend/screen_target.h",
   "button_visuals_runtime_verified": true,
   "button_visuals_desktop_observation": "2026-10-27: user confirmed it works well, just as remembered. Direct runtime log initialized nine pairs, recorded repeated focused/normal Exit transitions, Exit activation, 575 submitted frames and normal teardown. Bounded confirmation only; no original dispatcher or focus sound.",
@@ -125,11 +127,34 @@
     "safety": "Main and confirmation now reference one host-owned input/dispatcher session across push/pop. A held screen transition cancels capture/drag and absorbs input until all buttons are up while preserving shared sampling. Outside-window/poll failure/cancel resets the session; reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original singleton/refcount ABI and complete screen stack remain absent.",
     "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. That tested slice is committed as 19f30e5. Shared-session continuation subsequently desktop-confirmed: user tried all requested cases; log retains wheel -480 across screens, No, Escape, Yes, 861 frames and clean teardown."
   },
+  "sound_driver_startup": {
+    "evidence": "006db3b0 skips startup if byte 008aed05 is nonzero. Byte 008aed06 chooses flags 02/12, byte 008aed08 adds 20, byte 008aed09 selects 0400/0800/1000/2000 for 0..3, otherwise no quality bit. It obtains graphics +48 HWND and calls ISnd driver +04 with self/window/22050/2/16/flags. Names of option bytes remain unresolved.",
+    "engine_abi": "ISndGetDriver export 10068fa0 returns singleton at 100d16fc. Vtable 1009ddf0 +04 is stdcall 1007b560 with six stack words, maps inner false result to 80000005 and on success sets initialized byte 100d2c60. +08 1007a850 closes owned resources and clears that flag; +0c 1007a840 returns it. Original engine owns DirectSound/COM handling.",
+    "integration": "Only --use-engine-mouse opens original sound driver before MenuScene construction and closes after scene/frame/3D-driver destruction, before graphics close. Host-selected option bytes clear and quality index zero produce flags 0402; these are not read from original user settings. Refuse pre-owned initialized singleton. Failed/partial startup closes before silent fallback; success stays open until normal teardown. Strict i386 host build, existing native suite, 17 launcher/nine frontend checks, 309 UI anchors/37 engine slots, frontend evidence and frozen accounting pass. Temporary native/i386 audit covered all 1024 flag combinations, startup arguments and success/failure/partial cleanup; audit removed. User desktop-confirms sound-driver lifecycle. Direct log: startup status zero/initialized one/flags 0402, mouse Exit/No/Yes, 166 frames, 3D driver closed then sound initialized zero then graphics closed. Failure fallback is audited only; no audible playback claim.",
+    "archive_probe": {
+      "archive": "Sounds.dta",
+      "sha256": "0c3c532368e01b36abb298dc54257a62e417d64556ee1a8356286e0e348a56fa",
+      "format": "ISD0",
+      "member_count": 4649,
+      "key_words_low_high": [
+        "4fe85106",
+        "8d2965ca"
+      ],
+      "key_provenance": "Read-only header equation n XOR (28*n), validated end-index layout through existing index reader. Metadata validation only; no checksum/payload verification.",
+      "member": "SOUNDS\\button.wav",
+      "size": 5638,
+      "blocks": 1,
+      "encrypted": true,
+      "block_type": 32,
+      "result": "Existing extractor rejects block type 32. No decoded wave or staged sound asset; audio codec remains unreconstructed."
+    },
+    "limits": "Sound flag composition is partial 006db3b0 reconstruction. Disabled-setting gate, original global preferences and obfuscated startup wrapper are absent. Driver initialization/close remain delegated engine code. Still no audible playback: original button.wav codec/loader unresolved."
+  },
   "click_sound_reconstruction": {
     "evidence": "0066ad10 creates factory kind four into front-end +3c. It loads button.wav through 0044a1c0 only when ISndGetDriver +0c reports initialized, then sets frame type three, name sound_click, enabled zero, volume one, adds scene and primary-sector sound references, and releases the local reference. 0066b110 checks +3c, queries sound +78 with zero and, only if false, rereads +3c and invokes +30 with one. Pointer dispatcher calls it only after screen click returns one.",
     "engine_abi": "Actual sound vtable 1009bcb8: +00 1001c370 release, +30 1001bb10 SOUND enable override, +34 1001d330 base name setter, +78 100548d0 active query, +7c 100549a0 type setter, +8c 10054c40 volume setter, +ac 10054f30 play implementation. +30 forwards self/enable/zero to +ac; do not use visual visibility 1001cfe0. Active query returns false when +13c buffer is null. Primary-sector +7c 1004dcb0 adds sound, unlike +78 1004d040 light removal.",
     "integration": "Only --use-engine-mouse binds an owned unbuffered sound_click frame with original type/name/enabled/volume and scene/sector calls. Portable accepted_menu_click drives real +78/+30 through MenuFrameInput accepted callback before queued screen actions pump. Keyboard activation remains separate. Host retains a local owning reference until scene teardown. Strict i386 host build, existing native checks, 17 launcher/nine frontend checks, UI/frontend evidence and frozen accounting pass. Temporary native/i386 audit passed null/playing/stopped sound, binding reread, accepted-only dispatch and callback ordering; audit removed. User desktop-confirmed frame/callback integration works. Direct log records accepted callback after mouse Exit/No, Escape, keyboard Enter on Exit/Yes, 365 frames and clean teardown. No audible playback claimed.",
-    "limits": "No audible playback yet: sound-driver initialization, archive/codec path and button.wav loading remain absent; no wave asset staged. Engine query/play bodies are delegated, not reconstructed. One new partial client helper; original front-end ABI/storage and full setup remain adapters."
+    "limits": "No audible playback yet: original sound-driver startup is now bridged separately, but archive/codec path and button.wav loading remain absent; no wave asset staged. Engine query/play bodies are delegated, not reconstructed. One new partial client helper; original front-end ABI/storage and full setup remain adapters."
   },
   "focus_traversal_reconstruction": {
     "evidence": "00668580 scans backward from focus-1 then wraps from the final child; 006685f0 scans forward from focus+1 then wraps from zero. Both exclude control +60 values with bits 12..19 set and call 006686f0 for eligibility/focus transfer. 006686f0 checks candidate +08 eligibility, asks valid old focus +34 to leave with zero, treats a leave veto as handled, stores candidate at +6c, then calls candidate +30 with 15 and ignores its result.",
@@ -216,6 +241,11 @@
       "image_base": "10000000"
     },
     "instruction_anchors": [
+      {"address": "10068fa0", "hex": "a1fc160d10c3", "meaning": "ISndGetDriver returns singleton pointer at 100d16fc"},
+      {"address": "1007b560", "hex": "8b4424188b4c24148b542410568b742408578b7c2410508b442418515250578bcee8cafbffff84c0750a5fb8050000805ec21800897e04c605602c0d10015fc746340000803f33c05ec21800", "meaning": "Sound initialization wrapper reads six stack words; failure maps to 80000005; success sets initialized flag"},
+      {"address": "1007a840", "hex": "a0602c0d10c20400", "meaning": "Sound initialized query returns byte 100d2c60 and cleans self"},
+      {"address": "1007a898", "hex": "395e0c74708b46", "meaning": "Sound close only tears down DirectSound resources when device +0c is present"},
+      {"address": "1007a90d", "hex": "5f5e881d602c0d105bc20400", "meaning": "Sound close clears initialized flag and cleans self"},
       {"address": "1001bb10", "hex": "8b5424088b4424048b086a005250ff91ac000000c2080090909090", "meaning": "Sound +30 forwards self/enable/zero to +ac and cleans two words"},
       {"address": "100548d0", "hex": "83ec08568b7424108b8e3c01000085c9750932c05e83c408c20800", "meaning": "Sound active query returns false when +13c buffer is absent; cleans two words"},
       {"address": "100549a0", "hex": "8b44240883ec10568b74241839867c010000747d", "meaning": "Sound type setter reads two stack words and current type +17c"},
@@ -262,6 +292,7 @@
       {"address": "1006fb49", "hex": "840dd51e0d10740383c802840dd71e0d10740383c808840dd81e0d10740383c810c20400", "meaning": "Graphics input combines button bytes 1, 3 and 4 as mask bits 2, 8 and 10"}
     ],
     "vtables": [
+      {"address": "1009ddf4", "targets": ["1007b560", "1007a850", "1007a840"]},
       {"address": "1009bcb8", "targets": ["1001c370"]},
       {"address": "1009bce8", "targets": ["1001bb10", "1001d330"]},
       {"address": "1009bd30", "targets": ["100548d0", "100549a0"]},
@@ -296,6 +327,9 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "006db424", "hex": "a005ed8a0084c0756f", "meaning": "Original sound-disabled setting skips initialization"},
+      {"address": "006db42d", "hex": "a006ed8a00bb0200000084c07405bb12000000a008ed8a0084c0740383cb200fbe0509ed8a0083f8037719ff2485a4b46d0080cf04eb0d80cf08eb0880cf10eb0380cf20", "meaning": "Assemble original sound flags from two option bytes and quality index"},
+      {"address": "006db471", "hex": "e8389a10008bf0e83d9a10008b0e8bf8536a108b076a026822560000568945f0ff5148508b45f057ff5004", "meaning": "Get graphics HWND and call sound init with rate 22050, channels two, bits sixteen and flags"},
       {"address": "0066af8a", "hex": "e8ad9e17008b106a0450ff52548946", "meaning": "Create sound frame kind four and store front-end +3c"},
       {"address": "0066af9a", "hex": "e81b9f17008b0850ff510c84c0741b8b563c6a006a006a006a006840a9830052b954ec8a00e8fcf1ddff", "meaning": "Query sound driver initialized state and conditionally invoke button.wav loader"},
       {"address": "0066afc4", "hex": "8b463c6a03508b08ff517c8b463c6834a98300508b10ff52348b463c6a00508b08ff51308b463c680000803f508b10ff928c000000", "meaning": "Set sound type three, literal frame name, disabled state and volume one"},

@@ -233,7 +233,7 @@ public:
         }
         if (bind_cursor_model) {
             // 0066ad10 creates this frame even when sound is unavailable. The
-            // host has no sound driver/buffer loader yet, so leave it unbuffered.
+            // host has no sound-buffer loader yet, so leave it unbuffered.
             click_sound_ = driver_.create(4);
             auto* sound = click_sound_.get();
             scene_method<Integer>(sound, module, 0x7c, 0x549a0)(sound, 3);

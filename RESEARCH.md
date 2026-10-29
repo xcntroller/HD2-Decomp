@@ -2079,3 +2079,52 @@ Sound-frame desktop follow-up (2026-10-29): user confirms it works. Direct log
 records the unbuffered sound callback after mouse Exit/No, Escape, keyboard
 Enter on Exit/Yes, 365 submitted frames and clean driver/graphics teardown.
 No audible playback claimed. This tested frame/helper slice may now be committed.
+
+
+Sound-driver startup continuation (2026-10-29, desktop test pending): original
+startup 006DB3B0 tests disabled byte 008AED05, builds flags from option bytes
+008AED06/08 and quality byte 008AED09, then calls sound-driver +04. Assembly
+006DB471..499 establishes stack arguments self, graphics +48 HWND, 22050, two,
+sixteen, flags. Option 06 chooses 02 or 12; option 08 adds 20; qualities 0..3
+add 0400/0800/1000/2000. Other qualities add nothing. Portable
+`frontend/sound_startup.h` reconstructs this composition only. The host fixes
+options clear/quality zero (0402); original preference loading, disabled-setting
+gate and obfuscated wrapper are not implemented. One new partial entry:
+44 partial, zero complete, frozen denominator unchanged.
+
+ISndGetDriver export 10068FA0 returns singleton 100D16FC. Its constructor sets
+vtable 1009DDF0; +04 1007B560 takes six stdcall words, delegates device setup,
+maps failure to 80000005 and sets initialized byte 100D2C60 on success.
++08 1007A850 tears down engine-owned DirectSound resources and clears that byte;
++0C 1007A840 returns it. Engine initialization/close bodies remain delegated.
+The host bridge rejects an already initialized singleton, opens before scene
+construction (allowing original scene audio registration), and closes after all
+scene/frame/3D-driver teardown, before graphics shutdown. Failed/partial startup
+is closed before silent fallback. This cleanup/fallback policy is host glue;
+it is not credited as reconstructed engine code. No direct borrowed COM release.
+
+Read-only archive probe: Sounds.dta SHA-256 0c3c532368e01b36abb298dc54257a62e417d64556ee1a8356286e0e348a56fa,
+ISD0, 4649 indexed members. Header XOR relation n XOR (28*n) identifies count;
+assuming end-index layout then validates all metadata through the existing
+reader with key words low/high 4FE85106 / 8D2965CA. This is metadata validation,
+not checksum or payload verification. SOUNDS\button.wav is 5638 bytes in one
+encrypted block at offset 241306066. After XOR, block codec is decimal 32;
+existing extractor rejects it. No wave was decoded or staged. Therefore driver
+startup does not yet produce audible clicks. Next trace codec 32 in original
+archive reader/rw_data.dll and loader 0044A1C0 before adding a buffered branch.
+
+Validation passes: strict i386 host build, existing native suite, 17 launcher
+and nine frontend checks, UI evidence (309 anchors, 37 engine slots), frontend
+evidence and frozen accounting. Temporary native/i386 audit exercised all 1024
+flag combinations, original startup arguments, successful ownership and
+failed/partial initialization cleanup; audit files removed. No new unit tests
+or agent-side Proton launch. This new driver lifecycle remains uncommitted
+until desktop confirmation; inspect startup initialized/status and close logs,
+since a working menu through fallback alone does not validate the audio device.
+
+
+Sound-driver desktop follow-up (2026-10-29): user confirms it works. Direct
+log establishes actual initialized audio (startup status zero, initialized one,
+flags 0402), mouse Exit/No/Yes, 166 frames, 3D-driver teardown then sound
+initialized zero then graphics close. Failed-device fallback remains audited
+only. Driver slice may now be committed; wave decoding/playback remains absent.

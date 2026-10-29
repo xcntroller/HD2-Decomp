@@ -11,6 +11,7 @@
 #include "frontend/pointer_click.h"
 #include "host/pointer_dispatch_probe.h"
 #include "host/engine_mouse.h"
+#include "host/engine_sound.h"
 #include "host/main_menu_focus.h"
 #include "frontend/pointer_motion.h"
 #include "frontend/screen_focus.h"
@@ -423,6 +424,9 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
     std::uint32_t frames = 0;
     int result = 0;
     try {
+        // Declaration order keeps audio alive through all scene/frame teardown.
+        std::unique_ptr<hd2::host::EngineSound> sound;
+        if (use_engine_mouse) sound = std::make_unique<hd2::host::EngineSound>(module, window);
         std::unique_ptr<hd2::host::MenuScene> menu;
         if (menu_model) {
             menu = std::make_unique<hd2::host::MenuScene>(
