@@ -2566,3 +2566,69 @@ references; UI map remains 400 anchors/40 engine slots. Two new partial lifecycl
 entries; total 65 partial (61 client/four engine), zero complete, frozen 18,783.
 Inventory/generic container glue receives no additional credit. No new unit tests,
 agent Proton launches or current-slice commit. Generated pseudocode stays ignored.
+
+
+## Targeted screen trees and retained-copy delivery — 2026-10-29
+
+Registered stack user-confirmed as matching original game behavior; direct log
+3320 frames with clean teardown. Committed as 335c519. Targeted tree integration
+is now user desktop-confirmed: latest direct log records 507 frames, keyboard
+confirmation activation and clean 3D/sound/graphics teardown.
+
+0066CA43 routes nonzero event target by its high six bits to registered screen
++6C, after deferred/reply handling and independently of stack top. 006684F0
+routes zero-target or tagged events to screen base 0065CD40. Other codes resolve
+a child through hierarchical masks. For 02000016, leave +34 receives current
+focused INDEX; nonzero result permits enter +30 with event target. Focus occurs
+before target lookup, even for an absent child. Valid target is resolved twice,
+then its +6C is called; child return ignored. Missing target returns false.
+Nonzero screen-family ID with child bits zero is not treated as zero target.
+
+0064DC30, control +74, retains/copies all event fields and payload, invokes +6C
+on the copy, preserves return value and releases copied payload. Query output
+therefore stays in the copy. Native shared payloads/typed strings replace original
+intrusive storage and SEH. Base 0200002C creates fresh zeroed local events for each
+child before using this wrapper. New defined_screen_events.h composes these
+helpers, shared state, screen hide override, lifecycle and native bindings. All
+21 main/confirmation children have message endpoints, including noninteractive
+buttons, static/blank/version fields and hidden OK. Host availability continues
+to govern input alone. The global queue now accepts targeted messages for either
+bound screen; unsupported screens are rejected before unsafe pointer access.
+
+HostMenuEventActions lifecycle uses those same trees. Screen notifications now
+traverse actual native observers/tagged bindings, including owned queued payloads
+and emitter-local delivery. Original dynamic observer lists remain UNATTACHED;
+no original profile/date/save/version callback is executed. Native fixed child
+slots, ownership and frame bridges are not original class/refcount/SEH ABI or
+general factory reconstruction. Visibility-only engine setter and explicit frame
+update are separate, matching screen lifecycle versus base show sequencing.
+Only Exit/Yes/No remain input-bound; no additional flow enabled.
+
+Strict i386 host build, existing native suite and 17 launcher/nine frontend checks
+pass. Temporary native ASan/UBSan and i386-instantiation audit uses actual trees,
+state/text/focus/key/control-events/queue helpers with supplied visual backends.
+Covers 21 endpoints, by-reference text queries, string lifetime, unavailable-child
+state and disabled mirror, zero/tag base bypass, root-family/missing target,
+focus order/veto, second lookup/ignored child result, base screen hide, copied
+fresh layout, native observer false continuation, caption updates behind modal,
+Yes/pop release and No/Escape discard of deferred targeted owned strings. Original
+definition-driven Exit/No/Yes key flow passes. Temporary audits removed.
+
+Screen map: 24 byte anchors/five client vtable slots/178 calls/142 resource
+references; UI evidence remains 400 anchors/40 engine slots. Two partial entries:
+006684F0 and 0064DC30. Totals 67 partial (63 client/four engine), zero complete,
+frozen 18,783. Generic glue earns no extra credit. No new unit tests or agent-side
+Proton run. Tested source and evidence are included in the session checkpoint.
+Plan remains open for original callbacks and nested
+heterogeneous construction needed by another full menu flow.
+
+
+## End-of-session checkpoint — 2026-10-29
+
+User confirmed targeted tree integration works, then requested commit and closure.
+Reviewed plan, README, research and handoff; current statuses now distinguish
+user-tested normal flow from native-audited targeted/observer paths and unfinished
+original dynamic lists. No further implementation or testing is pending for this
+slice. Next session starts with nested group/heterogeneous factory and actual data
+callback dependencies for another full flow; see HANDOFF top. Earlier dated
+entries preserve historical observations/counts and are superseded by this checkpoint.

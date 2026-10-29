@@ -110,13 +110,13 @@ replacement/removal/clear, disabled mirroring and original empty label 2002.
 Build, native/sanitizer audits and existing checks pass; **desktop validation passed** (506 frames, clean teardown). General paragraph layout, original
 font API and dynamic/version callbacks remain incomplete.
 
-The current larger slice replaces the queue depth counter with a registered
-screen stack and reconstructs modal/regular push, pop/back/resume and screen
-visibility/focus ordering. Build, existing checks and sanitized audits pass;
-**desktop validation passed** (3320 frames, clean teardown). Only main and
-confirmation have runtime bindings. The [screen inventory](analysis/menu-screens.md)
-now maps all 14 static registrations and 11 augmentation builders; nested pages,
-original observer/target routing and additional flows remain unfinished.
+The registered screen stack and visibility/focus lifecycle are desktop-confirmed.
+The latest desktop-confirmed slice adds targeted delivery to all 21 current screen children,
+retained-copy messages and native screen observer bindings. It supports updates
+to the menu underneath a modal independently of input availability. Build,
+existing checks, sanitized audits and user desktop testing pass (507 frames and
+clean teardown). The slice is included in the committed session checkpoint. Original dynamic callback lists, nested factories and
+additional menu flows remain incomplete. See the [screen inventory](analysis/menu-screens.md).
 
 ## Progress
 
@@ -128,11 +128,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **65 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **67 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 61 |
+| Base game client | 17,294 | 0 | 63 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

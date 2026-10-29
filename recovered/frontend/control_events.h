@@ -31,6 +31,15 @@ struct ControlEvent {
     std::shared_ptr<const std::string> text{};
 };
 
+// 0064dc30, control +74: retain/copy the event, call +6c on the copy,
+// return the result and release the copy. Mutable query output stays local.
+// Native shared payloads replace the original intrusive pointer/SEH ABI.
+template<class Dispatch>
+bool dispatch_copied_control_event(const ControlEvent& event, Dispatch dispatch) {
+    auto copy = event;
+    return dispatch(copy);
+}
+
 struct ControlObserver {
     std::uint32_t tag;
     void* context;

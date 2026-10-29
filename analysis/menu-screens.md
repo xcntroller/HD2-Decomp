@@ -46,10 +46,11 @@ The reconstructed shared stack supports regular selection (hide current, push,
 activate with focus zero), modal push (retain current visibility, push, activate
 with focus `10200000`), back/pop and resume. Registry ownership outlives stack
 entries. The host binds only slots one/four. Unsupported bindings are rejected
-before changing a live screen. Original targeted dispatch, observer lists,
+before changing a live screen. Targeted delivery for the two live screens is integrated and desktop-confirmed;
+original observer/data lists,
 full factory, application state transitions and resource/cache lifetimes remain
 unfinished. Native vector storage is not the original segmented-deque ABI.
 
-Next implementation dependency: recover screen definition/observer dispatch and
+Next implementation dependency: recover original observer/data callbacks and
 nested group construction, then choose a flow whose data/controller boundary
 can be completed. Do not enable another button solely because its model loads.

@@ -50,7 +50,16 @@ void MenuEventQueue::route(ControlEvent event) {
         if ((event.code & 0x200) != 0) deferred_.clear();
         return;
     }
-    if (event.target != 0) throw std::logic_error("Targeted menu events are not implemented");
+    if (event.target != 0) {
+        // 0066ca43: resolve registered screen from the target's high six bits,
+        // independently of which screen is currently on top of the stack.
+        const auto index = event.target >> 26;
+        if (!actions_.screen_available(index)) {
+            throw std::logic_error("Targeted menu screen has no runtime binding");
+        }
+        actions_.dispatch_screen_event(index, event); // Original ignores result.
+        return;
+    }
 
     switch (event.code & 0x03000fff) {
     case 0x0200000a:

@@ -67,6 +67,14 @@ public:
         }
         return *controls_[static_cast<std::size_t>(index)];
     }
+    // Message delivery follows the original child vector, including controls
+    // that are currently unavailable for user input.
+    Control& message_control_at(std::size_t index) {
+        if (index >= controls_.size() || !controls_[index]) {
+            throw std::logic_error("Missing screen message control");
+        }
+        return *controls_[index];
+    }
     Control& control_for_role(MenuControlRole role) {
         return control_at(index_for_role(role));
     }

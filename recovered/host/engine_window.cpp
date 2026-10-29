@@ -7,6 +7,7 @@
 #include "host/menu_cursor.h"
 #include "host/menu_text.h"
 #include "host/menu_button_visuals.h"
+#include "host/menu_screen_events.h"
 #include "frontend/menu_event_queue.h"
 #include "frontend/screen_lifecycle.h"
 #include "frontend/pointer_click.h"
@@ -108,68 +109,41 @@ std::uint32_t mouse_buttons_from_message(WPARAM keys) {
 
 class HostMenuEventActions : public hd2::frontend::MenuEventActions {
 public:
-    HostMenuEventActions(const hd2::host::MenuScene& scene, HMODULE module, bool& confirming)
-        : scene_(scene), module_(module), confirming_(confirming) {}
+    explicit HostMenuEventActions(bool& confirming) : confirming_(confirming) {}
 
-    void bind_focus(hd2::host::MenuFocus* main, hd2::host::MenuFocus& confirmation) {
-        main_focus_ = main;
-        confirmation_focus_ = &confirmation;
+    void bind_screens(hd2::host::MenuScreenEvents& main, hd2::host::MenuScreenEvents& confirmation) {
+        main_ = &main;
+        confirmation_ = &confirmation;
     }
-
     bool screen_available(std::uint32_t index) const override { return index == 1 || index == 4; }
-
     void activate_screen(const hd2::frontend::ScreenRegistration& screen, std::uint32_t focus) override {
-        auto context = lifecycle(screen);
-        hd2::frontend::activate_screen(context, focus);
+        runtime(screen.identifier >> 26).activate(focus);
         confirming_ = screen.identifier == 0x10000000;
         if (confirming_) std::puts("Original event flow: confirmation opened");
     }
-
     void deactivate_screen(const hd2::frontend::ScreenRegistration& screen) override {
-        auto context = lifecycle(screen);
-        hd2::frontend::deactivate_screen(context);
+        runtime(screen.identifier >> 26).deactivate();
         if (screen.identifier == 0x10000000) {
             confirming_ = false;
             std::puts("Original event flow: confirmation dismissed");
         }
     }
-
+    bool dispatch_screen_event(std::uint32_t index, hd2::frontend::ControlEvent& event) override {
+        return runtime(index).dispatch(event);
+    }
     void quit() override {
         std::puts("Original event flow: closing reconstruction host");
         running = false;
     }
-
 private:
-    struct Lifecycle {
-        HostMenuEventActions& host;
-        bool confirmation;
-        hd2::host::MenuFocus* focus;
-        bool frame_visible() const { return host.scene_.screen_visible(confirmation); }
-        void enter_focus(std::uint32_t target) {
-            if (focus) hd2::frontend::screen_focus_enter(*focus, target);
-        }
-        void leave_focus(std::uint32_t target) {
-            if (focus) hd2::frontend::screen_focus_leave(*focus, target);
-        }
-        void set_frame_visible(bool visible) { host.scene_.set_screen_visible(host.module_, confirmation, visible); }
-        void emit(std::uint32_t tag, std::uint32_t argument) {
-            // Screen observer definition lists/dynamic callbacks remain pending.
-            std::printf("Original screen lifecycle: screen=%s tag=%08x argument=%08x\n",
-                        confirmation ? "confirmation" : "main-menu", tag, argument);
-        }
-    };
-    Lifecycle lifecycle(const hd2::frontend::ScreenRegistration& screen) {
-        if (screen.identifier != 0x04000000 && screen.identifier != 0x10000000) {
-            throw std::logic_error("Screen lifecycle has no host model binding");
-        }
-        const bool confirmation = screen.identifier == 0x10000000;
-        return {*this, confirmation, confirmation ? confirmation_focus_ : main_focus_};
+    hd2::host::MenuScreenEvents& runtime(std::uint32_t index) const {
+        auto* screen = index == 1 ? main_ : index == 4 ? confirmation_ : nullptr;
+        if (!screen) throw std::logic_error("Screen event runtime is not bound");
+        return *screen;
     }
-    const hd2::host::MenuScene& scene_;
-    HMODULE module_;
     bool& confirming_;
-    hd2::host::MenuFocus* main_focus_ = nullptr;
-    hd2::host::MenuFocus* confirmation_focus_ = nullptr;
+    hd2::host::MenuScreenEvents* main_ = nullptr;
+    hd2::host::MenuScreenEvents* confirmation_ = nullptr;
 };
 
 // One host-owned session mirrors the shared input acquired by 0066a6e0 and
@@ -475,6 +449,10 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         std::optional<std::array<std::uint32_t, 2>> previous_pick_probe;
         std::optional<HostMenuEventActions> menu_actions;
         std::optional<hd2::frontend::MenuEventQueue> menu_events;
+        std::optional<hd2::host::MenuScreenFrame> main_screen_frame;
+        std::optional<hd2::host::MenuScreenFrame> confirmation_screen_frame;
+        std::optional<hd2::host::MenuScreenEvents> main_screen_events;
+        std::optional<hd2::host::MenuScreenEvents> confirmation_screen_events;
         std::optional<MenuKeyboardInput> keyboard_input;
         const auto confirmation_hit_for_target = [&](std::uint32_t target) {
             if (!confirmation_focus) throw std::logic_error("Confirmation screen is not constructed");
@@ -506,13 +484,24 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 if (confirmation_pick_active) {
                     std::puts("Confirmation engine picking controls hover and activation");
                 }
-                menu_actions.emplace(*menu, module, confirming);
+                menu_actions.emplace(confirming);
                 menu_events.emplace(*menu_actions);
                 confirmation_focus.emplace(hd2::frontend::confirmation_definition(), *menu_events);
                 confirmation_controls->bind_screen(*confirmation_focus);
+                main_focus.emplace(hd2::frontend::main_menu_definition(), *menu_events);
+                buttons->bind_screen(*main_focus);
+                main_screen_frame.emplace(*menu, module, false, *main_focus);
+                confirmation_screen_frame.emplace(*menu, module, true, *confirmation_focus);
+                main_screen_events.emplace(hd2::frontend::main_menu_definition(), *main_screen_frame, *menu_events);
+                confirmation_screen_events.emplace(hd2::frontend::confirmation_definition(), *confirmation_screen_frame, *menu_events);
+                const auto text_lookup = [&](std::uint32_t id) { return text->object_for(id); };
+                hd2::host::bind_screen_messages(*main_screen_events, hd2::frontend::main_menu_definition(),
+                                               *buttons, text_lookup);
+                hd2::host::bind_screen_messages(*confirmation_screen_events, hd2::frontend::confirmation_definition(),
+                                               *confirmation_controls, text_lookup);
+                menu_actions->bind_screens(*main_screen_events, *confirmation_screen_events);
+                std::puts("Registered screen event trees ready: 17 main / 4 confirmation children");
                 if (use_engine_mouse) {
-                    main_focus.emplace(hd2::frontend::main_menu_definition(), *menu_events);
-                    buttons->bind_screen(*main_focus);
                     keyboard_input.emplace(input_session, *main_focus, *confirmation_focus,
                                            *menu_events, confirming);
                     buttons->bind_pick_targets();
@@ -539,7 +528,6 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     engine_mouse = std::make_unique<hd2::host::EngineMouse>(
                         reinterpret_cast<hd2::host::EngineFrame*>(graphics), module);
                 }
-                menu_actions->bind_focus(main_focus ? &*main_focus : nullptr, *confirmation_focus);
             }
         }
         if (confirmation_preview) {

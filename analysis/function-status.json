@@ -7,10 +7,35 @@
   "functions": [
     {
       "program": "client",
+      "entry": "0064dc30",
+      "status": "partial",
+      "coverage": "Retain/copy event, dispatch mutable copy to derived handler, return result and release copied payload; caller query fields unchanged. Used for fresh child layout propagation.",
+      "limitations": "Native shared immutable strings, typed payloads/callbacks and fixed definition slots replace original class/event layout, intrusive ownership/SEH and mutable heterogeneous child ABI. Original dynamic lists and other screens remain incomplete. Bounded desktop integration confirmed; targeted edge paths native-audit verified.",
+      "evidence": [
+        "analysis/menu-screen-map.json",
+        "recovered/frontend/control_events.h",
+        "recovered/frontend/defined_screen_events.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006684f0",
+      "status": "partial",
+      "coverage": "Zero-target/tagged base delegation; focus request before hierarchical child lookup, conditional enter after successful leave; missing child false, second lookup, ignored child result. Integrated for all 21 current definition slots.",
+      "limitations": "Native shared immutable strings, typed payloads/callbacks and fixed definition slots replace original class/event layout, intrusive ownership/SEH and mutable heterogeneous child ABI. Original dynamic lists and other screens remain incomplete. Bounded desktop integration confirmed; targeted edge paths native-audit verified.",
+      "evidence": [
+        "analysis/menu-screen-map.json",
+        "recovered/frontend/screen_event.h",
+        "recovered/frontend/defined_screen_events.h",
+        "recovered/host/menu_screen_events.h"
+      ]
+    },
+    {
+      "program": "client",
       "entry": "00668440",
       "status": "partial",
-      "coverage": "Model-enabled gate; disable frame, leave-focus with zero, emit 0400c000; callback result ignored.",
-      "limitations": "Portable lifecycle context replaces class ABI/virtual calls. Host bridges model visibility and reconstructed focus, but screen observer lists/dynamic callbacks are not attached; emitted tags diagnostic only. Bounded integration desktop-confirmed.",
+      "coverage": "Model-enabled gate; disable frame, leave-focus with zero, emit 0400c000; callback result ignored. Lifecycle now emits through actual native screen observer/tagged bindings shared with targeted screen dispatch.",
+      "limitations": "Portable screen context replaces original class ABI and virtual calls. Original observer/dynamic callback lists remain unattached; full factory/data callbacks unresolved. Registered stack behavior desktop-confirmed; new tree integration desktop-confirmed.",
       "evidence": [
         "analysis/menu-screen-map.json",
         "recovered/frontend/screen_lifecycle.h",
@@ -22,8 +47,8 @@
       "program": "client",
       "entry": "00668400",
       "status": "partial",
-      "coverage": "Model-enabled gate; enter-focus with supplied argument, enable frame, emit 0400d000; callback result ignored.",
-      "limitations": "Portable lifecycle context replaces class ABI/virtual calls. Host bridges model visibility and reconstructed focus, but screen observer lists/dynamic callbacks are not attached; emitted tags diagnostic only. Bounded integration desktop-confirmed.",
+      "coverage": "Model-enabled gate; enter-focus with supplied argument, enable frame, emit 0400d000; callback result ignored. Lifecycle now emits through actual native screen observer/tagged bindings shared with targeted screen dispatch.",
+      "limitations": "Portable screen context replaces original class ABI and virtual calls. Original observer/dynamic callback lists remain unattached; full factory/data callbacks unresolved. Registered stack behavior desktop-confirmed; new tree integration desktop-confirmed.",
       "evidence": [
         "analysis/menu-screen-map.json",
         "recovered/frontend/screen_lifecycle.h",
@@ -765,8 +790,8 @@
       "program": "client",
       "entry": "0066c950",
       "status": "partial",
-      "coverage": "Deferred storage/release/discard and Exit replies; registered ScreenStack replaces depth counter. Regular select hides then pushes without changing +f8. Modal push retains old visibility, saves +f8 and activates with 10200000. Pop clears +f8, generic back preserves it; both resume current screen.",
-      "limitations": "Native borrowed registry/vector replaces global segmented deque/class ABI. Only main/confirmation bound. Targeted routes, full factory/observer/data callbacks, slot-zero/application transitions and remaining cases excluded. Native binding preflight deliberately precedes live visibility changes. Bounded integration desktop-confirmed.",
+      "coverage": "Deferred storage/release/discard and Exit replies; registered ScreenStack replaces depth counter. Regular select hides then pushes without changing +f8. Modal push retains old visibility, saves +f8 and activates with 10200000. Pop clears +f8, generic back preserves it; both resume current screen. Targeted events select any bound registered screen using target high six bits, preserving deferred/reply priority and ignoring screen return.",
+      "limitations": "Native borrowed registry/vector replaces global segmented deque/class ABI. Only main/confirmation bound. Full factory, original observer/data lists, slot-zero/application transitions and remaining cases excluded. Native unavailable-target validation rejects unsafe bindings. Bounded targeted-tree integration desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/menu_event_queue.h",
@@ -774,7 +799,9 @@
         "recovered/host/engine_window.cpp",
         "analysis/menu-screen-map.json",
         "recovered/frontend/screen_stack.h",
-        "recovered/frontend/screen_registry.h"
+        "recovered/frontend/screen_registry.h",
+        "recovered/frontend/defined_screen_events.h",
+        "recovered/host/menu_screen_events.h"
       ]
     },
     {

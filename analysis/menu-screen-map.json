@@ -10,7 +10,10 @@
     "recovered/frontend/screen_registry.h",
     "recovered/frontend/screen_stack.h",
     "recovered/frontend/screen_lifecycle.h",
-    "recovered/frontend/menu_event_queue.cpp"
+    "recovered/frontend/menu_event_queue.cpp",
+    "recovered/frontend/screen_event.h",
+    "recovered/frontend/defined_screen_events.h",
+    "recovered/host/menu_screen_events.h"
   ],
   "instruction_anchors": [
     {
@@ -77,6 +80,61 @@
       "address": "0066d5a3",
       "hex": "8b4008568b088b11ff9284000000",
       "meaning": "Regular activation uses zero focus argument"
+    },
+    {
+      "address": "006684f9",
+      "hex": "8b1f85db750c57e83b48ffff5f5e5bc204008b4704a9",
+      "meaning": "Zero target delegates to screen base handler"
+    },
+    {
+      "address": "0066850b",
+      "hex": "8b4704a900f00f04740e578bcee82348ffff5f5e5bc20400",
+      "meaning": "Tagged targeted events delegate to screen base rather than child lookup"
+    },
+    {
+      "address": "00668523",
+      "hex": "25ff0f00033d160000027517",
+      "meaning": "Untagged screen message selector and focus-request code 02000016"
+    },
+    {
+      "address": "0066852f",
+      "hex": "8b4e6c8b06518bceff503485c074088b16538bceff5230",
+      "meaning": "Focus request leaves current index then enters target only after nonzero result"
+    },
+    {
+      "address": "00668546",
+      "hex": "8b0f8b06518bceff1085c07d085f5e32c05bc20400",
+      "meaning": "Child lookup rejects a missing target with false"
+    },
+    {
+      "address": "0066855b",
+      "hex": "8b078b16508bceff128b4e08578b0c818b11ff526c",
+      "meaning": "Second target lookup before child +6c; child return ignored"
+    },
+    {
+      "address": "0064dc48",
+      "hex": "8b4424288b10895424008b5004895424048b5008895424088b50",
+      "meaning": "Copied wrapper retains scalar event words before dispatch"
+    },
+    {
+      "address": "0064dc67",
+      "hex": "8b50108b40148954241085c0894424147402ff00",
+      "meaning": "Copied wrapper retains optional intrusive payload"
+    },
+    {
+      "address": "0064dc7b",
+      "hex": "538b018d54240452c744242800000000ff506c",
+      "meaning": "Copied event goes to virtual +6c; result saved"
+    },
+    {
+      "address": "0064dc90",
+      "hex": "8b44241885c074148b104a89108b0885c9750950e81740190083c4048b4c241c8ac35b",
+      "meaning": "Copied wrapper releases retained payload and returns handler result"
+    },
+    {
+      "address": "0066ca3a",
+      "hex": "8b4d0033f63bce74178b934401000055c1e91a8b0c8a8b01ff506ce9150c0000",
+      "meaning": "Global targeted route uses target high six bits to select registered screen +6c"
     }
   ],
   "vtables": [
@@ -93,6 +151,27 @@
         "00668400"
       ],
       "role": "Screen +84 activation"
+    },
+    {
+      "address": "008155ac",
+      "targets": [
+        "006684f0"
+      ],
+      "role": "Screen +6c derived event routing"
+    },
+    {
+      "address": "008155b4",
+      "targets": [
+        "0064dc30"
+      ],
+      "role": "Screen +74 retained-copy dispatch"
+    },
+    {
+      "address": "00814d24",
+      "targets": [
+        "0064dc30"
+      ],
+      "role": "Button +74 retained-copy dispatch"
     }
   ],
   "direct_calls": [
@@ -1520,5 +1599,13 @@
       "address": "0083ff14",
       "text": "11001"
     }
-  ]
+  ],
+  "targeted_event_layer": {
+    "status": "Implemented, audited and user desktop-confirmed. Latest direct log: 507 frames, keyboard confirmation activation, clean 3D/sound/graphics teardown. Included in committed session checkpoint.",
+    "routing": "After deferred/reply processing, nonzero event targets select the registered screen via target >> 26; no top-screen restriction. 006684f0 sends zero-target/tagged messages to screen base, otherwise performs child lookup. 02000016 leaves focused index and conditionally enters event target before child lookup; valid target looked up twice; child result ignored.",
+    "copy_semantics": "0064dc30 retains a copy for virtual +6c and returns its result, keeping mutable query output local. Base 0200002c propagation sends fresh zeroed local events through this copy wrapper for every child. Direct targeted queries preserve by-reference output.",
+    "host": "Both screens use DefinedScreenEvents with all 17/four definition slots, including static/blank/version fields and input-unavailable buttons/hidden OK. Input eligibility still uses existing explicit availability. Button/static message endpoints keep emitter-owned local delivery and the shared upstream queue. Lifecycle emits through real native screen observer/tagged bindings instead of diagnostic-only callbacks. Original dynamic observer lists are not installed.",
+    "validation": "Strict i386 host build; temporary ASan/UBSan native and i386 compile audit. Covers all 21 message endpoints, mutable text record-count queries, retained string lifetime, disabled-text mirroring on input-unbound controls, base state/hide behavior, fresh/copied child layout, missing/root-family targets, focus requests before failed lookup, observer-false continuation, targeted update behind a modal, deferred release after pop and No/Escape discard of owned targeted payloads.",
+    "limits": "Native fixed child bindings and callbacks replace original mutable child vectors/class ABI, SEH and intrusive refcounts. Only main/confirmation runtime-bound; full heterogeneous/nested factory, original screen observer/dynamic data callbacks, version/profile/save state and other flows remain unfinished. Real original dynamic handlers were not executed; existing model/glyph bridges remain."
+  }
 }

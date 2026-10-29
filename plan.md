@@ -24,7 +24,7 @@ Keep an explicit list of delegated calls so the eventual replacement is tractabl
 | --- | --- | --- |
 | Independent i386 host, original engine window and teardown | Desktop-tested | Recover original application lifecycle beyond host scaffolding |
 | Original main-menu artwork, cursor, bitmap text and hover pairs | Desktop-tested, bounded | Dynamic captions, localization and fidelity across settings |
-| Exit and Yes/No confirmation | Shared controls/text desktop-confirmed; registered stack/lifecycle audited, desktop check pending | Full factory/observer routing and remaining flows |
+| Exit and Yes/No confirmation | Shared controls/text, stack and targeted tree integration desktop-confirmed | Full factory, original observer/data callbacks and remaining flows |
 | Shared pointer dispatch, picking, wheel and held-button transitions | Desktop-tested, bounded | Original object ABI, capture/device lifecycle and exact timing |
 | Enter/Space on focused buttons | Desktop-tested | Keypad Enter audited, hardware test unavailable; device/character transport incomplete |
 | Escape opens confirmation; Escape cancels it | Desktop-tested | Application interceptors and other screen-specific back rules |
@@ -61,22 +61,33 @@ This conclusion is from original binary analysis, not a new original-game run.
 - [ ] Recover screen creation, binding, lifetime, push/pop and general event dispatch.
   Registered stack, regular/modal transition distinction, pop/back/resume and
   visibility/focus lifecycle integrated and desktop-confirmed for the two live
-  screens. Original factory, observer/target routing and other screens remain.
+  screens. Targeted screen/child delivery and native observer plumbing are
+  integrated, audited and desktop-confirmed. Original factory, observer/data callback
+  lists and additional screens remain.
+- [x] Integrate bounded registered stack/lifecycle and all 21 current child message endpoints.
+  Desktop-confirmed; background targeting, native observers and retained-copy
+  query semantics additionally audited. Original dynamic lists remain unattached.
 - [ ] Recover keyboard preprocessing, character input, focus entry and navigation callers.
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
 
-Current larger slice: registered screen stack/lifecycle and concrete dependency
-inventory. Native stack replaces the depth counter and preserves original
-regular/modal/back/pop differences. Activation/hiding uses actual model flags
-and shared focus handlers. Modal activation requests Yes focus before showing;
-subsequent pointer input can change it. Screen observer tags are diagnostic-only
-until original lists/dynamic callbacks are integrated.
+Latest completed slice: targeted screen event trees, retained-copy delivery and
+native screen observer bindings. All 17/four child slots accept messages,
+independently of host input availability. Nonzero targets route to any bound
+screen, including the menu under a dialog. Root base messages, child lookup,
+focus requests and lifecycle notifications share the same runtime state.
 
 Strict i386 build, temporary native/sanitized/i386 audits and existing checks
-pass. **Desktop-confirmed** (3320 frames, clean teardown). Only main
-and confirmation are runtime-bound. Previous attached text/caption slice is
-desktop-confirmed and committed as 1410782 (506 frames, clean teardown).
+pass. **User desktop-confirmed** (507 frames, clean teardown). Included in the
+committed session checkpoint. Only main and
+confirmation are bound. Original dynamic observer lists remain unattached;
+profile/date/save/version values and other flows are unfinished. Previous stack
+slice is desktop-confirmed and committed as 335c519 (3320 frames, clean teardown).
+
+Next priority: recover nested group/heterogeneous construction and the original
+observer/data callbacks needed for one additional complete flow. Begin with the
+options group helper 0066dbf0 and factory 0065d150; choose the flow after tracing
+its actual dependencies. Do not enable a screen solely because its model loads.
 
 Prefer complete plan items or cohesive dependency groups per iteration, as
 requested by the user. Avoid returning for desktop checks after individual

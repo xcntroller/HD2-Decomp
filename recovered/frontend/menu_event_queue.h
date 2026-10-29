@@ -17,6 +17,7 @@ public:
     virtual bool screen_available(std::uint32_t index) const = 0;
     virtual void activate_screen(const ScreenRegistration& screen, std::uint32_t focus) = 0;
     virtual void deactivate_screen(const ScreenRegistration& screen) = 0;
+    virtual bool dispatch_screen_event(std::uint32_t index, ControlEvent& event) = 0;
 };
 
 class MenuEventQueue : public ControlEventDestination {

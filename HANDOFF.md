@@ -1,10 +1,110 @@
 # Session handoff - 2026-10-29
 
-## Resume here: registered screen stack/lifecycle and dependency inventory
+## Resume here next session: tested checkpoint; nested construction and data callbacks
+
+Previous registered-stack slice is user desktop-confirmed as matching the game,
+and committed as **335c519** (3320 frames, clean sound/graphics teardown).
+The targeted-tree slice is **user desktop-confirmed and included in this committed
+checkpoint**. Latest direct log: 507 frames, keyboard confirmation activation,
+normal 3D/sound/graphics teardown. User ended work for today; there is no pending
+implementation or desktop-test request from this session. Do not restart testing
+or recommit the same slice. Earlier checkpoints below describe historical state;
+this top section is authoritative.
+
+Next session, continue in a large cohesive slice:
+1. Read plan.md and analysis/menu-screens.md, then inspect current git status.
+2. Recover nested group/heterogeneous construction needed by another real flow.
+   Start with cached options builder 0061cf60 and its group helper 0066dbf0,
+   alongside factory 0065d150; do not assume every group is a screen subclass.
+3. Trace required original observer/data callbacks before enabling that flow.
+   Main show callback 00627520 is cached but NOT installed. Profile/save data
+   and version formatting still require their actual contracts.
+4. Build/audit a complete dependency group, update plan/evidence, then request
+   desktop validation before committing new interactive changes.
+
+Preserve large-slice preference; no agent-side Proton run, no new unit tests,
+no commit before user testing, and no push. No gameplay or engine-wide scope
+expansion solely to improve function counts.
+
+New frontend/screen_event.h reconstructs 006684f0. Zero target OR tagged code
+routes to screen base, even when the tagged event names a child. Untagged
+02000016 FIRST calls leave-focus with the CURRENT FOCUSED INDEX (cast to
+uint32), then enter-focus with event target only if leave result is nonzero.
+This happens BEFORE lookup, including missing/unavailable targets. Lookup runs
+twice on a valid target; missing returns false; child result is ignored and
+handler returns true. A nonzero screen-family target with child bits zero is
+not equivalent to target zero. No inferred focus/default/navigation key bindings.
+
+New dispatch_copied_control_event in control_events.h reconstructs 0064dc30/+74:
+retained copy -> child +6c -> return result -> release copy. Direct +6c queries
+mutate caller fields; +74 queries mutate only the retained copy. Base layout
+0200002c propagates FRESH zeroed local events through +74 for every child.
+
+New frontend/defined_screen_events.h owns native screen properties, observer/
+tagged bindings and fixed per-definition message endpoints. It composes actual
+ControlStateRuntime (screen hide overridden by 00668440), lifecycle helpers,
+hierarchical lookup and emitter-local delivery. Screen initialization accepts
+native typed records and rejects raw executable callback address transport via
+existing observer_request validation. Lifecycle notifications now traverse actual
+native observer/tagged bindings; they are no longer merely diagnostic callbacks.
+HOWEVER original main/profile/dynamic screen observer lists are still UNATTACHED.
+Do not claim profile/date/save/version data is initialized or original callbacks
+executed. Fixed native child slots do not reconstruct mutable original child ABI.
+
+New host/menu_screen_events.h binds all 17 main/four confirmation children:
+static labels, blank fields/deferred version, input-unavailable buttons and hidden
+OK all receive messages. DefinedControls::message_control_at bypasses host input
+availability ONLY for event delivery. Input remains restricted to Exit/Yes/No.
+ButtonVisualPair::receive_event preserves the child as local-event emitter.
+Static text uses its existing emitter destination. Owners outlive borrowed bindings.
+
+MenuEventQueue now routes nonzero targets via target >>26 into ANY bound screen,
+independent of current stack top, after deferred/reply-bit handling. Screen result
+ignored, so missing child declines without an application error. Unsupported
+registered screen IDs throw before unsafe access. Only one/four runtime-bound.
+HostMenuEventActions uses these event-tree runtimes for activation/deactivation;
+main/confirmation focus and model bridges share them. New model enable/update
+methods separate visibility-only screen lifecycle from base show/update ordering.
+Original 00668400/440 themselves have no explicit frame update call. Existing
+modal render/update path unchanged. Main input focus is now constructed in all
+confirmation modes, while keyboard/engine input stays opt-in as before.
+
+Checks: strict i386 host build; temporary native ASan/UBSan audit + i386 audit
+compilation; existing native suite, 17 launcher/nine frontend checks. Audit uses
+ACTUAL event tree/state/text/focus/key/control-event/queue helpers with fake
+visual backends: all 21 endpoints, mutable text count queries, payload ownership,
+input-unbound disabled-text mirroring, root base state/screen hide, fresh copied
+layout, root-family/missing targets, tagged/zero base bypass, focus veto/order,
+second lookup and ignored child result. Root observer false does not veto tagged
+updates. Targeted captions reach the menu behind a modal; deferred targeted text
+releases after Yes/pop and is discarded/released on No/Escape. Original Exit/
+Yes/No definition/key queue flow included. Temporary audits removed after checks.
+
+Screen evidence map now 24 anchors, five client vtable slots, 178 direct calls,
+142 resource references; UI map unchanged 400 anchors/40 engine slots. Existing
+frontend evidence and frozen accounting pass. Two new PARTIAL client entries:
+006684f0 and 0064dc30. Total **67 partial (63 client/four engine), zero complete,
+frozen 18,783**. Generic context/ownership glue earns no extra original credit.
+No original class/event ABI, intrusive refcount/SEH, nested/general factory,
+slot-zero dialogs, original dynamic callback lists or new flows completed.
+
+Desktop command unchanged:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+User confirmed this slice works. Latest runtime log includes:
+`Registered screen event trees ready: 17 main / 4 confirmation children`.
+Only Exit/confirmation enabled. Original keyboard silence preserved. Most new
+targeted/update/observer paths are native-audit verified until real dynamic lists
+are recovered; normal desktop flow exercises shared lifecycle through the trees.
+Checkpoint includes the tested source, evidence and docs. Next dependency: nested group/
+heterogeneous factory and actual screen observer/data callbacks required for a
+complete additional flow. Read analysis/menu-screens.md before choosing; credits
+uses application state 12, options uses settings/groups, Cinematics selects seven.
+
+## Previous checkpoint: registered screen stack/lifecycle and dependency inventory
 
 Previous text slice is user desktop-confirmed and committed as **1410782**
 (506 frames, clean sound/graphics teardown). Current screen-stack slice is
-**desktop-confirmed and ready to commit** (3320 frames, clean teardown).
+**desktop-confirmed and committed as 335c519** (3320 frames, clean teardown).
 User requests large slices. Do not commit interactive changes until user testing.
 No agent-side Proton launches (no window driver); no new unit tests; never push.
 

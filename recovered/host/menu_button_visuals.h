@@ -65,6 +65,11 @@ public:
     bool key(std::uint32_t) const { return false; } // Original button +20 / 0064da30.
     bool disabled() const { return properties_.disabled != 0; }
 
+    bool receive_event(frontend::ControlEvent& event, frontend::ControlEventDestination& upstream) {
+        EventDestination destination{*this, &upstream};
+        return dispatch_control_event(event, destination);
+    }
+
     void bind_pick_target(std::uint32_t target) const {
         std::memcpy(reinterpret_cast<unsigned char*>(normal_) + 0xec, &target, sizeof(target));
         std::memcpy(reinterpret_cast<unsigned char*>(active_) + 0xec, &target, sizeof(target));
