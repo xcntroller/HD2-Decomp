@@ -244,9 +244,14 @@
       "program": "client",
       "entry": "0065cd40",
       "status": "partial",
-      "coverage": "Tagged initialization-event branch copies a selector-bearing event into the control's event vector.",
-      "limitations": "Other control events and virtual callbacks are not reconstructed here. The portable helper rejects untagged input rather than dispatching it and uses different record layout and ownership.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/control_events.h", "recovered/frontend/control_events.cpp"]
+      "coverage": "Tagged event registration plus portable base-control message sequencing: masked state/property/observer events, conditional emit and fresh per-child propagation with live vector bounds.",
+      "limitations": "Tagged registration is integrated; the new untagged handler is source-only pending host controls and definition factory integration. Original object/SEH/refcount ABI, virtual show/hide/disable, observer/override helper bodies and event emission remain callbacks. No complete function claimed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/control_events.h",
+        "recovered/frontend/control_events.cpp",
+        "recovered/frontend/control_state.h"
+      ]
     },
     {
       "program": "client",

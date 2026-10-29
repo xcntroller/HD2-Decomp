@@ -1,10 +1,51 @@
 # Session handoff - 2026-10-29
 
-## Resume here
+## Current checkpoint: menu plan and shared control state
 
-Current continuation: original queued Escape/back flow, engine-input mode only.
-User desktop-confirmed this slice on 2026-10-29 (keyboard silence investigated
-separately next). Safe to commit this tested slice. Main-menu Escape now
+User requested a tracker for the ENTIRE menu. Read [plan.md](plan.md) first for
+scope, screen families, current status and delivery order. Keep it updated each
+slice. Entire base-game menu includes reachable in-game menu variants; gameplay
+and wholesale engine replacement are separate milestones. Current priority is
+reusable control/definition construction, then one low-dependency complete flow.
+
+Keyboard silence is correct for ordinary Exit/Yes/No in the recovered original
+path: concrete front-end +44 = no-op 0067EA80, screen 00668670 calls button +38 /
+006552F0 directly. Sound helper 0066B110 is invoked separately after accepted
+pointer clicks, not keyboard activation. Direct E8 candidates also include
+00620348 in a separate options-control branch; do not generalize to all widgets.
+Static binary verification, not an original-game runtime comparison. Preserve
+current keyboard silence. Evidence in menu-ui-map.json and RESEARCH.md.
+
+Continued decomp in frontend/control_state.h: source-only base 0065CD40 handler
+now handles tagged registration first, ordinary state/property messages,
+observer/override delegation, conditional emit and fresh per-child 0200002C
+propagation with live child bounds. 0064D9F0 eligibility preserves exact byte
+bitwise semantics. Does not alter host behavior yet. Virtual/helper bodies,
+class ABI and definition construction remain adapters. Next: compose reusable
+control state/initialization with existing bindings and screen adapters; trace
+definition factory and screen inventory before enabling more main-menu actions.
+Do not invent Tab/arrow bindings while their original callers remain unresolved.
+
+Validation: temporary native audit covers all 16,777,216 eligibility byte triples,
+all twelve switch cases, disable guards, masked/unknown/tagged messages, property
+roundtrips, fresh child events, shrinking collection and retained payload.
+Strict i386 compilation of instantiated handler passes. Audit removed; no new
+unit tests. Existing native suite, 17 launcher/nine frontend checks, UI evidence
+333 anchors/38 engine slots, frontend evidence and frozen accounting pass.
+0065CD40 extends an ALREADY counted partial; 0064D9F0 absent from baseline.
+Counts remain 44 partial / zero complete / frozen 18,783. No new desktop test
+needed for this source-only slice. No agent-side Proton launch.
+
+Desktop-confirmed queued Escape slice committed as a879727. The user reports
+all behavior works except silent keyboard activation, which matches evidence.
+Latest log: main-menu Escape/0200000a, keyboard Enter on Exit/No/Yes, mouse
+Exit/No, 689 frames, clean teardown. No keypad hardware claim.
+
+## Previous checkpoint: queued Escape
+
+Committed as a879727: original queued Escape/back flow, engine-input mode only.
+User desktop-confirmed this slice on 2026-10-29. Keyboard silence is resolved
+in the current checkpoint above. Main-menu Escape now
 opens quit confirmation; confirmation Escape cancels. `frontend/frontend_key.h`
 reconstructs 0066B3E0 tail: offer full key to current screen, if unconsumed scan
 01, end active drag with +54(0), clear drag flag, resolve current screen again,
@@ -32,7 +73,7 @@ Desktop command unchanged:
 Try Escape on main menu, Escape again to cancel, hold Escape through transition,
 held mouse/drag + Escape, mouse/keyboard Exit/No/Yes and audible clicks. Log
 should show keyboard scan 01 and event 0200000a, then original push/cancel chain.
-User confirms everything else works; latest log records Escape/back chains,
+User confirms everything else works; latest log records main-menu Escape/back,
 keyboard Enter on Exit/No/Yes, mouse Exit/No, 689 frames and clean teardown.
 No agent-side Proton launch.
 

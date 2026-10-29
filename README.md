@@ -7,6 +7,9 @@ We're starting with the base game's Steam release and its original LS3DF.dll
 engine, on Linux through Proton. The function tracker below covers only these
 two binaries; the expansion is outside its scope.
 
+Menu delivery checklist: [plan.md](plan.md). It tracks the entire base-game
+menu separately from the original-function counts below.
+
 ## Where we are
 
 **We've got past the first major obstacle: accessing the game's code.**

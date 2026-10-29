@@ -128,10 +128,22 @@
     "safety": "Main and confirmation now reference one host-owned input/dispatcher session across push/pop. A held screen transition cancels capture/drag and absorbs input until all buttons are up while preserving shared sampling. Outside-window/poll failure/cancel resets the session; reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original singleton/refcount ABI and complete screen stack remain absent.",
     "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. That tested slice is committed as 19f30e5. Shared-session continuation subsequently desktop-confirmed: user tried all requested cases; log retains wheel -480 across screens, No, Escape, Yes, 861 frames and clean teardown."
   },
+  "control_state_source": "recovered/frontend/control_state.h",
+  "keyboard_button_sound_verification": {
+    "result": "Ordinary Exit/Yes/No focused-button keyboard activation is silent in the recovered original path; preserve existing keyboard silence.",
+    "path": "0066b3e0 calls front-end +44; concrete table 00815e30 maps it to no-op 0067ea80. Screen 00668670 forwards activation directly to button +38 / 006552f0, emitting 04001000 without pointer click 04012000 or accepted-click sound. Pointer 0066b990 invokes 0066b110 after screen +5c returns one.",
+    "limits": "Static original-binary evidence, not a new original-game runtime comparison. Direct E8 scan also finds caller 00620348: options control-ID branch ending 00706000 updates a sound preference then invokes the helper. Do not generalize ordinary-button silence to every widget."
+  },
+  "control_state_reconstruction": {
+    "entry": "0065cd40",
+    "status": "Source-only, not integrated with host controls or definition factory.",
+    "coverage": "Tagged events register first; mask 03000fff selects untagged disable/enable, virtual show/hide, focusable byte, observer/override delegation, mutable property getters/setters at +58/+5c, conditional event emission and fresh zeroed 0200002c per child. Child count reread after callbacks. Unknown untagged messages return true. 0064d9f0 eligibility preserves byte bitwise semantics.",
+    "limits": "Portable callbacks replace original storage, children, virtual calls and SEH/refcount ABI. Observer/override registration, emission, show/hide and disable bodies remain delegated. No new visible behavior or original class factory. 0065cd40 extends an existing partial ledger entry; counts remain 44 partial / zero complete; 0064d9f0 is absent from frozen inventory."
+  },
   "keyboard_back_reconstruction": {
     "evidence": "0066b3e0 tail forwards full key word to current screen +20, returns if consumed, otherwise tests low-byte scan 01. If front-end +2c drag is active it resolves current screen, calls +54 with zero and clears +2c. It resolves current screen again and queues target zero/code 0200000a/argument screen +60. Derived menu callback 00626b20 masks the event code, handles 0200000a against the current screen stack, emits 14001200 argument one and 06001005 for screen four, otherwise falls back to 02000003 argument zero for the bounded main-menu case.",
     "integration": "frontend/frontend_key.h reconstructs the post-device/preprocessing tail through fresh-context callbacks. MenuKeyboardInput shares dispatcher drag state and actual MainMenuFocus/ConfirmationFocus adapters. Only engine-input mode routes first Win32 Escape/Enter/Space keydown through this helper; repeat and foreground guards remain host policy. Escape now opens quit confirmation from the main menu and cancels it from confirmation. MenuEventQueue processes 0200000a against live depth, ignoring possibly stale captured screen identifier.",
-    "limits": "Original key device/character preprocessing, outer front-end gates, application interceptors, original stack/queue ABI, and special screens two/fourteen/ten are excluded. Only main-menu/confirmation are supported. 0066b3e0 and 00626b20 are absent from frozen inventory; no ledger credit or count change. Handled means front-end consumption, not activation. Existing direct-preview modes keep established behavior. User desktop-confirms the Escape slice on 2026-10-29; keyboard silence investigated separately.",
+    "limits": "Original key device/character preprocessing, outer front-end gates, application interceptors, original stack/queue ABI, and special screens two/fourteen/ten are excluded. Only main-menu/confirmation are supported. 0066b3e0 and 00626b20 are absent from frozen inventory; no ledger credit or count change. Handled means front-end consumption, not activation. Existing direct-preview modes keep established behavior. User desktop-confirms the Escape slice on 2026-10-29; ordinary keyboard-button silence verified against original code.",
     "audit": "Temporary native/i386 audit linked actual key-tail helper and event queue: queued open/cancel, deferred-quit discard, Yes flow, consumed keys, full-word delivery, stale event identifier/live stack, drag-end/clear/fresh-screen ordering pass; temporary files removed. Strict i386 host build, existing native suite, 17 launcher/nine frontend checks, UI/frontend evidence and frozen accounting pass. No new unit tests."
   },
   "buffered_click_sound": {
@@ -350,6 +362,20 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "0067ea80", "hex": "b001c20800", "meaning": "Concrete menu keyboard pre-hook +44 is a true-returning no-op with two arguments"},
+      {"address": "00815e74", "hex": "80ea6700", "meaning": "Concrete front-end vtable +44 points to 0067ea80"},
+      {"address": "00620345", "hex": "8b4f04e8c3ad0400e984000000", "meaning": "Separate options control callback invokes click sound; ordinary-button silence is not a universal widget rule"},
+      {"address": "0064d9f0", "hex": "8a41668a5165538a596423c233d284db0f94c223c25bc3", "meaning": "Eligibility low byte is focusable +66 AND visible +65 AND disabled +64 equal zero"},
+      {"address": "0065cd59", "hex": "8b420483ec18a900f00f04568bf1", "meaning": "Base control handler routes tagged events before ordinary masked messages"},
+      {"address": "0065cd8c", "hex": "25ff0f0003533da1000001570f87b90000000f8499000000", "meaning": "Ordinary control event mask and switch bounds"},
+      {"address": "0065cdb5", "hex": "c6466600eb14c6466601eb0e8b4a08894e5ceb068b465c894208", "meaning": "Focusable flag stores and +5c property access"},
+      {"address": "0065cde5", "hex": "8b168bceff5214ebe18b068bceff5010ebd88a466484c075d18b166a018bceff527cebc68a466433db3ac374bd8b06538bceff507cebb3", "meaning": "Virtual hide/show and conditional disabled setter dispatch"},
+      {"address": "0065ce1c", "hex": "8b4a08894e58ebab8b4658eba3528bcee88ffcffffeb9c528bcee865fb", "meaning": "Property +58 get/set and observer/override helper calls"},
+      {"address": "0065ce3d", "hex": "8b5208f7c20000000474876a00528bcee8fe000000e978ffffff", "meaning": "Conditional event emission requires argument bit 04000000"},
+      {"address": "0065ce57", "hex": "3d2c0000020f856dffffff33db33ff8b4e083bcb0f845effffff8b460c2bc1c1f8023bf80f834effffff895c2420895c24", "meaning": "Child propagation recognizes 0200002c and rereads vector/count"},
+      {"address": "0065ce81", "hex": "895c2420895c240cc74424102c000002895c24148bc1895c242c8b0cb88d44240c508b11ff5274", "meaning": "Each child propagation event is freshly zeroed and dispatched through +74"},
+      {"address": "0065ced0", "hex": "f7cd650009ce6500eecd6500e5cd6500b5cd6500bbcd650029ce650033ce6500c1cd6500c9cd65001cce650024ce6500", "meaning": "Exact 12-entry control-message jump table, selectors 01000001 through 0100000c"},
+
       {"address": "0066b6d2", "hex": "8b4424248b088b442410508b11ff522084c00f8579010000", "meaning": "Front-end key tail forwards full word to current screen +20 and returns if consumed"},
       {"address": "0066b6ea", "hex": "80fb010f85700100008a452c84c074", "meaning": "Unconsumed key tail recognizes low-byte Escape 01 and tests drag flag"},
       {"address": "0066b730", "hex": "6a008b098b11ff5254c6452c", "meaning": "Escape invokes current screen drag-end +54 with zero then clears drag flag"},

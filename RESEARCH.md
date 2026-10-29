@@ -2247,3 +2247,49 @@ Desktop follow-up 2026-10-29: user confirms the Escape slice and other behavior
 work, apart from keyboard activation being silent. Latest log records scan 01 /
 0200000a, keyboard Enter on Exit/No/Yes, mouse callbacks, 689 frames and clean
 teardown. Keyboard silence is being checked separately against original code.
+
+
+## Ordinary button keyboard sound and shared control messages (2026-10-29)
+
+Original concrete front-end table 00815E30 slot +44 contains 0067EA80, whose
+body is `mov al,1; ret 8`: no sound or other side effects. 0066B3E0 calls this
+before key processing. Screen 00668670 forwards Enter/Space/keypad Enter to
+focused button +38 / 006552F0; that emits 04001000 directly. The pointer path
+0066B990 separately invokes 0066B110 after screen +5C returns one. The ordinary
+Exit/Yes/No definitions contain no extra sound binding. Thus current silent
+keyboard activation matches this original path; no sound fix is appropriate.
+This is static verification, not a new original-game run. Direct E8 scanning
+finds candidates 0066BC6F (pointer dispatch) and 00620348 (separate options
+control-ID branch ending 00706000 after a preference update). The conclusion
+must not be extended to every menu widget. New fingerprint anchors include
+concrete hook table/body and the separate options sound call.
+
+Base control handler 0065CD40 first tests selector mask 040FF000 and copies
+those events into the tagged-event list. Otherwise mask 03000FFF chooses:
+01000001/02 conditional virtual +7C disabled setter (1/0), 03/04 virtual +10/+14
+show/hide, 05/06 direct focusable-byte +66 clear/set, 07/08 observer/override
+helpers 0065CAC0/0065C9A0, 09/0A set/get word +5C, 0B/0C set/get word +58.
+010000A1 emits argument as event tag with zero argument only when bit 04000000
+is set. 0200002C dispatches a fresh zeroed event with that code through each
+child +74; vector/count are reread after callbacks. All other ordinary messages
+still return true. These rules now have readable source in control_state.h;
+helper/virtual bodies and original ownership/ABI remain delegated callbacks.
+Source-only; no new host behavior or new functioning screen yet.
+
+0064D9F0 returns the LOW BYTE of (+66 AND +65 AND (+64 == 0)). It is a bitwise
+AND, so noncanonical nonzero flags are not interchangeable with boolean true.
+0065C760/0065C790 establish +65 as visible; they also update original visuals
+and emit events, so handler show/hide deliberately delegates virtual operations
+rather than reducing them to byte stores. Disabled +7C for a button is
+00661CC0: writes +64 and mirrors into attached text +71 when present; not
+reconstructed by the new dispatcher.
+
+Temporary native audit passed all 16,777,216 eligibility triples, twelve message
+cases, disabled-setter guards, tagged precedence/payload ownership, upper-bit
+masking, unknown messages, both property roundtrips, conditional emission,
+fresh child records and live shrinking bounds. Strict i386 instantiated-header
+compilation passed. Audit files removed; no new unit tests. Existing native
+suite, 17 launcher/nine frontend checks, 333 UI anchors/38 engine slots,
+frontend evidence and frozen accounting pass. 0065CD40 extends its existing
+partial entry; no extra function counted. 0064D9F0 is absent from the frozen
+inventory; totals remain 44 partial, zero complete, 18,783 baseline.
