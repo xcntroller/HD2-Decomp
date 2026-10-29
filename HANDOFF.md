@@ -7,6 +7,14 @@ continuation is checkpointed in the local commit titled
 `Bind original CURZOR model and input frame updates`.
 Preserve later worktree changes. Do not push without explicit user approval.
 
+- Cursor desktop attempt stopped at ABI guard `slot 0x34, expected RVA
+  0x1d330`, before rendering (0 frames, clean driver/graphics teardown).
+  Corrected model-specific name setter: vtable `1009BA50` +34 is `100346A0`,
+  which calls base `1001D330` then model propagation `10034630`. Do not bypass
+  that override. All model slots used by this path are now anchored from the
+  model vtable; other expected method targets were correct. Guard diagnostics
+  now include actual RVA. Strict build/checks pass; corrected desktop retry
+  still needed with the same engine-mouse command.
 - Latest continuation stages original `MODELS\kurzor_menu.4ds` only when
   `--use-engine-mouse` is requested (manifest ownership persists later).
   The model is 330 bytes, SHA-256
@@ -116,7 +124,7 @@ Preserve later worktree changes. Do not push without explicit user approval.
   Successful-path cursor warping, absolute accumulation and device/focus
   setup remain unreconstructed.
 - Strict i386 host build, all existing native checks, 12 resource checks, 17 launcher checks,
-  9 frontend checks, 27 accounting checks, 252 UI instruction anchors, 20 engine vtable slots, frontend evidence and
+  9 frontend checks, 27 accounting checks, 253 UI instruction anchors, 26 engine vtable slots, frontend evidence and
   frozen accounting pass. No new unit tests or agent-side Proton launches.
   Function totals are **0 complete / 18,783; 38 partial**.
 

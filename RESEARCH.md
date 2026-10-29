@@ -1827,3 +1827,18 @@ game executables. They have been removed from the current Git index while
 remaining on disk, but are still present in that commit's history. Ignore rules
 do not remove historical content. Resolve this before publishing the repository;
 history has not been rewritten automatically.
+
+
+Cursor model ABI correction (2026-10-29): first desktop attempt stopped at
+`slot 0x34, expected RVA 0x1d330`; no frames were submitted and driver/graphics
+teardown completed. The host mistakenly guarded the base visual-frame name
+setter on a model. Original model vtable `1009BA50` instead supplies
+`100346A0`: stdcall stack self/name, base `1001D330` call, failure check and
+model-specific `10034630` propagation, then `ret 8`. The host now calls that
+exact wrapper and checks its status. Position +08, update +24, visibility +30,
+link +38 and open +74 were cross-checked against the actual model vtable too;
+no other target differed. UI map now anchors those model slots and the complete
+wrapper body. Generic ABI guard logs include both expected and actual RVAs.
+This repairs a guard mismatch; successful cursor lookup/update still requires
+a desktop retry. No original binary was patched and no frame-name offset was
+changed.

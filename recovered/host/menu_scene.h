@@ -29,8 +29,10 @@ Function scene_method(EngineFrame* frame, HMODULE module, std::size_t offset,
             reinterpret_cast<std::uintptr_t>(module) + rva) {
         char message[100];
         std::snprintf(message, sizeof(message),
-                      "Unsupported menu ABI: slot 0x%x, expected RVA 0x%x",
-                      static_cast<unsigned>(offset), static_cast<unsigned>(rva));
+                      "Unsupported menu ABI: slot 0x%x, expected RVA 0x%x, actual RVA 0x%x",
+                      static_cast<unsigned>(offset), static_cast<unsigned>(rva),
+                      frame == nullptr ? 0u : static_cast<unsigned>(frame->methods[offset / 4] -
+                          reinterpret_cast<std::uintptr_t>(module)));
         throw std::runtime_error(message);
     }
     return reinterpret_cast<Function>(frame->methods[offset / 4]);
@@ -197,9 +199,13 @@ public:
             if (open(cursor_model_.get(), "Models\\kurzor_menu", 0, nullptr, nullptr) < 0) {
                 throw std::runtime_error("Cannot open original kurzor_menu model");
             }
-            using Name = void (WINAPI *)(EngineFrame*, const char*);
-            scene_method<Name>(cursor_model_.get(), module, 0x34, 0x1d330)(
-                cursor_model_.get(), "CURZOR");
+            // Models override the visual/base name setter with a wrapper that
+            // also propagates model name state. Preserve that virtual method.
+            using Name = std::int32_t (WINAPI *)(EngineFrame*, const char*);
+            if (scene_method<Name>(cursor_model_.get(), module, 0x34, 0x346a0)(
+                    cursor_model_.get(), "CURZOR") < 0) {
+                throw std::runtime_error("Cannot name original CURZOR model");
+            }
             if (scene_method<Link>(cursor_model_.get(), module, 0x38, 0x1d680)(
                     cursor_model_.get(), sector, 0) < 0) {
                 throw std::runtime_error("Cannot link original CURZOR to primary sector");
