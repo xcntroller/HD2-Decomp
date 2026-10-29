@@ -51,6 +51,14 @@ void MenuEventQueue::route(ControlEvent event) {
     if (event.target != 0) throw std::logic_error("Targeted menu events are not implemented");
 
     switch (event.code & 0x03000fff) {
+    case 0x0200000a:
+        // Derived menu callback 00626b20 uses the CURRENT stack, not the
+        // identifier captured in the queued keyboard event. Bounded to the
+        // main menu / confirmation; original screen 2/14/10 cases are absent.
+        if (screen_depth_ == 2) cancel_confirmation();
+        else if (screen_depth_ == 1) enqueue({0, 0x02000003, 0, 0, 0, {}});
+        else throw std::logic_error("Unsupported keyboard back screen");
+        break;
     case 0x02000003:
         if (screen_depth_ == 1) {
             enqueue({0, 0x02000002, 4, 0, 0, {}});

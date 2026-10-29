@@ -2198,3 +2198,52 @@ Buffered sound desktop follow-up (2026-10-29): user confirms audible behavior
 works. Direct log records initialized audio, original WAV buffer loaded, buffered
 accepted callbacks for mouse Exit/No/Yes, Escape, 451 frames and clean 3D/audio/
 graphics teardown. Decoder/staging/buffered sound slice may now be committed.
+
+
+Queued Escape/back continuation (2026-10-29, desktop test pending): original
+0066B3E0 performs device/character preprocessing before forwarding the key word
+to current screen +20. If consumed, it returns; otherwise only low-byte scan 01
+enters back handling. Active front-end drag +2C causes a fresh current-screen
+lookup, drag-end +54 with zero and clearing +2C. A second fresh screen lookup
+supplies identifier +60 for queued target zero / code 0200000A. The original
+return value reports front-end consumption even for unconsumed non-Escape keys;
+it does not mean a button activated.
+
+Derived menu callback 00626B20 masks event code and handles 0200000A using the
+CURRENT stack rather than the event's captured screen argument. In the bounded
+screen-four confirmation it enqueues 14001200 argument one then 06001005. For
+the ordinary main menu it enqueues 02000003 argument zero, allowing existing
+quit-confirmation routing. Earlier application interceptors and special screen
+2/14/10 cases are not reconstructed. The two functions are absent from the
+frozen inventory, so they gain no ledger entries: counts remain 44 partial,
+zero complete, denominator 18,783.
+
+`frontend/frontend_key.h` reconstructs this post-preprocessing tail with fresh
+context callbacks. `MenuKeyboardInput` binds the two host screen adapters and
+shared dispatcher drag state. MenuEventQueue adds the bounded derived 0200000A
+callback branch. Engine-input mode now routes Escape with Enter/Space through
+that helper, retaining first-keydown/repeat/foreground guards as host policy.
+The main-menu Escape key now opens confirmation instead of immediately closing
+the host; confirmation Escape cancels through the original event chain.
+Other preview modes retain their established behavior. Original keyboard device,
+character/pre-hook logic, outer dispatch gates, queue timing and object/stack ABI
+remain incomplete. Pointer departure and held-transition safeguards remain.
+
+Temporary native/i386 audit linked the actual helper and menu queue to confirm
+queued open/cancel, stale identifier/live-stack resolution, deferred-quit discard,
+Yes flow, consumed keys, full-word delivery and drag-end/clear/fresh-screen order.
+Audit files were removed; no new unit tests or agent-side Proton launch.
+New interactive behavior remains uncommitted until desktop testing. Test Escape
+from the main menu, Escape again to cancel, hold Escape through a transition,
+then mouse/keyboard Exit/No/Yes and audible clicks.
+
+
+Queued-back validation: strict i386 host build, existing native suite, 17 launcher
+and nine frontend checks, 320 UI instruction anchors/38 engine slots, frontend
+evidence and frozen accounting pass. Desktop Escape/drag/repeat behavior still
+awaits user validation; changes remain uncommitted.
+
+Desktop follow-up 2026-10-29: user confirms the Escape slice and other behavior
+work, apart from keyboard activation being silent. Latest log records scan 01 /
+0200000a, keyboard Enter on Exit/No/Yes, mouse callbacks, 689 frames and clean
+teardown. Keyboard silence is being checked separately against original code.

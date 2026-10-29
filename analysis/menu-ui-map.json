@@ -26,6 +26,7 @@
   "screen_focus_source": "recovered/frontend/screen_focus.h",
   "screen_input_source": "recovered/frontend/screen_input.h",
   "screen_key_source": "recovered/frontend/screen_key.h",
+  "frontend_key_source": "recovered/frontend/frontend_key.h",
   "screen_navigation_source": "recovered/frontend/screen_navigation.h",
   "menu_click_sound_source": "recovered/frontend/menu_click_sound.h",
   "sound_startup_source": "recovered/frontend/sound_startup.h",
@@ -126,6 +127,12 @@
     "routing": "Main Exit and confirmation now instantiate the same MenuFrameInput adapter: polled buttons, original picking, bounded pointer update/dispatch, focused screen callbacks, button events and deferred queue activation. Engine mode bypasses message-driven activation for both screens; other modes unchanged.",
     "safety": "Main and confirmation now reference one host-owned input/dispatcher session across push/pop. A held screen transition cancels capture/drag and absorbs input until all buttons are up while preserving shared sampling. Outside-window/poll failure/cancel resets the session; reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original singleton/refcount ABI and complete screen stack remain absent.",
     "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. That tested slice is committed as 19f30e5. Shared-session continuation subsequently desktop-confirmed: user tried all requested cases; log retains wheel -480 across screens, No, Escape, Yes, 861 frames and clean teardown."
+  },
+  "keyboard_back_reconstruction": {
+    "evidence": "0066b3e0 tail forwards full key word to current screen +20, returns if consumed, otherwise tests low-byte scan 01. If front-end +2c drag is active it resolves current screen, calls +54 with zero and clears +2c. It resolves current screen again and queues target zero/code 0200000a/argument screen +60. Derived menu callback 00626b20 masks the event code, handles 0200000a against the current screen stack, emits 14001200 argument one and 06001005 for screen four, otherwise falls back to 02000003 argument zero for the bounded main-menu case.",
+    "integration": "frontend/frontend_key.h reconstructs the post-device/preprocessing tail through fresh-context callbacks. MenuKeyboardInput shares dispatcher drag state and actual MainMenuFocus/ConfirmationFocus adapters. Only engine-input mode routes first Win32 Escape/Enter/Space keydown through this helper; repeat and foreground guards remain host policy. Escape now opens quit confirmation from the main menu and cancels it from confirmation. MenuEventQueue processes 0200000a against live depth, ignoring possibly stale captured screen identifier.",
+    "limits": "Original key device/character preprocessing, outer front-end gates, application interceptors, original stack/queue ABI, and special screens two/fourteen/ten are excluded. Only main-menu/confirmation are supported. 0066b3e0 and 00626b20 are absent from frozen inventory; no ledger credit or count change. Handled means front-end consumption, not activation. Existing direct-preview modes keep established behavior. User desktop-confirms the Escape slice on 2026-10-29; keyboard silence investigated separately.",
+    "audit": "Temporary native/i386 audit linked actual key-tail helper and event queue: queued open/cancel, deferred-quit discard, Yes flow, consumed keys, full-word delivery, stale event identifier/live stack, drag-end/clear/fresh-screen ordering pass; temporary files removed. Strict i386 host build, existing native suite, 17 launcher/nine frontend checks, UI/frontend evidence and frozen accounting pass. No new unit tests."
   },
   "buffered_click_sound": {
     "evidence": "analysis/sound-codec-map.json fingerprints rw_data 100097f7, sound dispatch/header restore and all 128 row-six magnitudes. Decoder uses canonical PCM16 header, per-block channel seeds, sign bit seven, quadratic magnitude and wrapping sample stores. Only codec 32 is supported.",
@@ -343,6 +350,14 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "0066b6d2", "hex": "8b4424248b088b442410508b11ff522084c00f8579010000", "meaning": "Front-end key tail forwards full word to current screen +20 and returns if consumed"},
+      {"address": "0066b6ea", "hex": "80fb010f85700100008a452c84c074", "meaning": "Unconsumed key tail recognizes low-byte Escape 01 and tests drag flag"},
+      {"address": "0066b730", "hex": "6a008b098b11ff5254c6452c", "meaning": "Escape invokes current screen drag-end +54 with zero then clears drag flag"},
+      {"address": "0066b773", "hex": "33f68b088b4160897424408974242cc74424300a00000289442434", "meaning": "Escape captures current screen +60 into queued 0200000a with zero target"},
+      {"address": "00626b9a", "hex": "8b7f0481e7ff0f000381ef0a0000020f841a010000", "meaning": "Derived menu event callback masks event code and branches for 0200000a"},
+      {"address": "00626f38", "hex": "899c24e0000000899c24cc000000c78424d00000000012001489b424d4000000", "meaning": "Current confirmation screen back request emits 14001200 with argument one"},
+      {"address": "00626f94", "hex": "899c24fc000000899c24e8000000c78424ec00000005100006899c24f0000000", "meaning": "Confirmation back request follows reply with 06001005 pop event"},
+      {"address": "00626fda", "hex": "899c24c8000000899c24b4000000c78424b800000003000002899c24bc000000", "meaning": "Ordinary main-menu back request emits 02000003 with zero argument"},
       {"address": "006db424", "hex": "a005ed8a0084c0756f", "meaning": "Original sound-disabled setting skips initialization"},
       {"address": "006db42d", "hex": "a006ed8a00bb0200000084c07405bb12000000a008ed8a0084c0740383cb200fbe0509ed8a0083f8037719ff2485a4b46d0080cf04eb0d80cf08eb0880cf10eb0380cf20", "meaning": "Assemble original sound flags from two option bytes and quality index"},
       {"address": "006db471", "hex": "e8389a10008bf0e83d9a10008b0e8bf8536a108b076a026822560000568945f0ff5148508b45f057ff5004", "meaning": "Get graphics HWND and call sound init with rate 22050, channels two, bits sixteen and flags"},

@@ -17,6 +17,7 @@
 #include "frontend/screen_focus.h"
 #include "frontend/screen_input.h"
 #include "frontend/screen_key.h"
+#include "frontend/frontend_key.h"
 #include "frontend/screen_target.h"
 
 #include <cstdio>
@@ -217,6 +218,39 @@ struct MenuInputSession {
         awaiting_release = false;
         active_screen = 0;
     }
+};
+
+// Portable keyboard context for the two enabled screens; callbacks always
+// resolve the current screen instead of keeping one across focus/drag changes.
+class MenuKeyboardInput {
+public:
+    MenuKeyboardInput(MenuInputSession& session, hd2::host::MainMenuFocus& main,
+                      ConfirmationFocus& confirmation, hd2::frontend::MenuEventQueue& events,
+                      bool& confirming)
+        : session_(session), main_(main), confirmation_(confirmation), events_(events),
+          confirming_(confirming) {}
+    bool key_current_screen(std::uint32_t key) {
+        return confirming_ ? hd2::frontend::screen_key(confirmation_, key)
+                           : hd2::frontend::screen_key(main_, key);
+    }
+    bool dragging() const { return session_.dispatch.dragging; }
+    void end_current_drag(std::uint32_t target) {
+        if (confirming_) hd2::frontend::screen_drag_end(confirmation_, target);
+        else hd2::frontend::screen_drag_end(main_, target);
+    }
+    void clear_dragging() { session_.dispatch.dragging = false; }
+    std::uint32_t current_screen_identifier() const {
+        return confirming_ ? confirmation_.identifier() : main_.identifier();
+    }
+    void enqueue_back_event(std::uint32_t screen) {
+        events_.enqueue({0, 0x0200000a, screen, 0, 0, {}});
+    }
+private:
+    MenuInputSession& session_;
+    hd2::host::MainMenuFocus& main_;
+    ConfirmationFocus& confirmation_;
+    hd2::frontend::MenuEventQueue& events_;
+    bool& confirming_;
 };
 
 // Functional opt-in bridge. Positions/focus and departure cancellation remain
@@ -467,6 +501,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         std::optional<std::array<std::uint32_t, 2>> previous_pick_probe;
         std::optional<HostMenuEventActions> menu_actions;
         std::optional<hd2::frontend::MenuEventQueue> menu_events;
+        std::optional<MenuKeyboardInput> keyboard_input;
         if (menu_ui) {
             if (!expected_method(methods->viewport, module, 0x6c2b0)) {
                 throw std::runtime_error("Unsupported original viewport getter ABI");
@@ -501,6 +536,8 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 confirmation_focus.emplace(*confirm_yes, *confirm_no, *menu_events);
                 if (use_engine_mouse) {
                     main_focus.emplace(*buttons, *menu_events);
+                    keyboard_input.emplace(input_session, *main_focus, *confirmation_focus,
+                                           *menu_events, confirming);
                     buttons->exit_control().bind_pick_target(hd2::host::MainMenuFocus::exit_target);
                     main_frame_input.emplace(input_session, *main_focus, [&](const hd2::host::CursorPoint& point) {
                         return hd2::host::MainMenuFocus::target_for_pick(menu->pick_main_menu(
@@ -612,18 +649,18 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     }
                 }
                 if (use_engine_mouse && message.message == WM_KEYDOWN &&
-                    (message.wParam == VK_RETURN || message.wParam == VK_SPACE)) {
+                    (message.wParam == VK_RETURN || message.wParam == VK_SPACE ||
+                     message.wParam == VK_ESCAPE)) {
                     // Host transport only: map Win32 make/extended bits to the
                     // original scan-code byte. Ignore auto-repeat to avoid a
                     // held key activating a second screen after a push/pop.
                     if ((static_cast<std::uintptr_t>(message.lParam) & (1u << 30)) == 0 &&
                         GetForegroundWindow() == window) {
-                        const auto scan = message.wParam == VK_SPACE ? 0x39u :
+                        const auto scan = message.wParam == VK_ESCAPE ? 0x01u :
+                            message.wParam == VK_SPACE ? 0x39u :
                             ((static_cast<std::uintptr_t>(message.lParam) & (1u << 24)) != 0
                                 ? 0x9cu : 0x1cu);
-                        const bool handled = confirming
-                            ? hd2::frontend::screen_key(*confirmation_focus, scan)
-                            : hd2::frontend::screen_key(*main_focus, scan);
+                        const bool handled = hd2::frontend::dispatch_frontend_key(*keyboard_input, scan);
                         std::printf("Menu keyboard: screen=%s scan=%02x handled=%u\n",
                                     confirming ? "confirmation" : "main-menu", scan,
                                     static_cast<unsigned>(handled));

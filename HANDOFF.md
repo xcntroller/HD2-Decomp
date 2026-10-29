@@ -2,7 +2,46 @@
 
 ## Resume here
 
-Desktop-confirmed slice: decoded original button.wav and engine-buffer
+Current continuation: original queued Escape/back flow, engine-input mode only.
+User desktop-confirmed this slice on 2026-10-29 (keyboard silence investigated
+separately next). Safe to commit this tested slice. Main-menu Escape now
+opens quit confirmation; confirmation Escape cancels. `frontend/frontend_key.h`
+reconstructs 0066B3E0 tail: offer full key to current screen, if unconsumed scan
+01, end active drag with +54(0), clear drag flag, resolve current screen again,
+enqueue target zero/code 0200000A/argument screen identifier. Host context uses
+shared dispatcher state and both existing screen adapters. First-keydown/repeat/
+foreground guards remain host policy. Enter/Space use same helper. Original
+key preprocessing, outer gates, application interceptors and object ABI remain
+incomplete; no Tab/arrow/default-focus additions.
+
+`MenuEventQueue` adds bounded derived 00626B20 handling for 0200000A against
+CURRENT stack depth, not its possibly stale event argument. Confirmation emits
+14001200 argument one then 06001005; main menu emits 02000003 argument zero.
+Existing deferred quit flow handles the rest. Other preview modes unchanged.
+Special screens 2/14/10 excluded. Neither 0066B3E0 nor 00626B20 appears in frozen
+inventory, so no count credit: 44 partial / zero complete / 18,783 baseline.
+Temporary native/i386 audit of actual helper+queue passed queued open/cancel,
+stale identifier/live stack, deferred-quit discard, Yes, consumed keys, full-word
+delivery, drag-end/clear/fresh-screen order. Removed; no new unit tests.
+Strict i386 host build, existing native suite, 17 launcher/nine frontend
+checks, 320 UI anchors/38 engine slots, frontend evidence and frozen accounting
+pass. Desktop behavior is user-confirmed; no agent-side Proton launch.
+
+Desktop command unchanged:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+Try Escape on main menu, Escape again to cancel, hold Escape through transition,
+held mouse/drag + Escape, mouse/keyboard Exit/No/Yes and audible clicks. Log
+should show keyboard scan 01 and event 0200000a, then original push/cancel chain.
+User confirms everything else works; latest log records Escape/back chains,
+keyboard Enter on Exit/No/Yes, mouse Exit/No, 689 frames and clean teardown.
+No agent-side Proton launch.
+
+The audible sound slice is committed as 062842e. User confirms works; direct
+log shows initialized sound, loaded buffer, buffered mouse Exit/No/Yes callbacks,
+Escape, 451 frames and clean 3D/audio/graphics teardown. Codec and staging
+validation remains documented below; no sound resources/codecs changed this slice.
+
+Previous checkpoint 062842e: decoded original button.wav and engine-buffer
 loading for audible accepted POINTER clicks. User confirms it works. Direct log
 records initialized audio, loaded buffer, buffered callbacks for Exit/No/Yes,
 Escape, 451 frames and clean 3D/audio/graphics teardown. This tested slice may
