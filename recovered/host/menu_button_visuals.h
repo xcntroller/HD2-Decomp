@@ -85,6 +85,12 @@ public:
         return frontend::button_wheel(adapter);
     }
 
+    bool activate(frontend::ControlEventDestination& destination) {
+        if (!events_bound_) throw std::logic_error("Button events are not bound");
+        FocusAdapter adapter{*this, destination};
+        return frontend::button_activate(adapter);
+    }
+
     bool click(frontend::ControlEventDestination& destination) {
         if (!events_bound_) throw std::logic_error("Button events are not bound");
         FocusAdapter adapter{*this, destination};

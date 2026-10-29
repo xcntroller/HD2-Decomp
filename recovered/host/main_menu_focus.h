@@ -26,6 +26,14 @@ public:
         return index >= 0 && static_cast<std::size_t>(index) < control_ids_.size();
     }
     bool control_eligible(int index) const { return index == 15; }
+    bool control_disabled(int index) const { return !control_eligible(index); }
+    bool key_control(int, std::uint32_t) const { return false; } // 0064da30.
+    std::uint32_t control_argument(int index) const {
+        return control_ids_.at(static_cast<std::size_t>(index));
+    }
+    bool activate_control(int index, std::uint32_t) {
+        return control_eligible(index) && buttons_.exit_control().activate(events_);
+    }
     int focused_control() const { return focused_; }
     void set_focused_control(int index) { focused_ = index; }
     int leave_control(int index, std::uint32_t) {

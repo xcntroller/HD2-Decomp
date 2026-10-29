@@ -25,6 +25,7 @@
   "pointer_pick_source": "recovered/frontend/pointer_pick.h",
   "screen_focus_source": "recovered/frontend/screen_focus.h",
   "screen_input_source": "recovered/frontend/screen_input.h",
+  "screen_key_source": "recovered/frontend/screen_key.h",
   "screen_target_source": "recovered/frontend/screen_target.h",
   "button_visuals_runtime_verified": true,
   "button_visuals_desktop_observation": "2026-10-27: user confirmed it works well, just as remembered. Direct runtime log initialized nine pairs, recorded repeated focused/normal Exit transitions, Exit activation, 575 submitted frames and normal teardown. Bounded confirmation only; no original dispatcher or focus sound.",
@@ -121,6 +122,11 @@
     "routing": "Main Exit and confirmation now instantiate the same MenuFrameInput adapter: polled buttons, original picking, bounded pointer update/dispatch, focused screen callbacks, button events and deferred queue activation. Engine mode bypasses message-driven activation for both screens; other modes unchanged.",
     "safety": "Main and confirmation now reference one host-owned input/dispatcher session across push/pop. A held screen transition cancels capture/drag and absorbs input until all buttons are up while preserving shared sampling. Outside-window/poll failure/cancel resets the session; reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original singleton/refcount ABI and complete screen stack remain absent.",
     "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. That tested slice is committed as 19f30e5. Shared-session continuation subsequently desktop-confirmed: user tried all requested cases; log retains wheel -480 across screens, No, Escape, Yes, 861 frames and clean teardown."
+  },
+  "keyboard_reconstruction": {
+    "evidence": "Screen vtable 00815540 +20 points to 00668670. It validates focused index +6c, skips control key +20 when control +64 is set, offers full key word otherwise, and returns on nonzero low-byte result. Fallback compares low byte with 1c/39/9c, revalidates focus, passes control +60 to +38 and returns true regardless of activation result. Button key +20 is 0064da30 (false); activation +38 is 006552f0 (04001000, no 04012000 click).",
+    "integration": "Only --use-engine-mouse: first Win32 Enter/Space keydown maps to original scan bytes 1c/39/9c and routes to current screen adapter. Existing focus must select Exit or Yes/No. ButtonVisualPair.activate calls reconstructed button activation and existing tagged queue. Host ignores auto-repeat and requires foreground window. Escape and all other modes retain established behavior.",
+    "limits": "Original keyboard device/polling/event transport, navigation, default focus and screen/control ABI remain absent. Win32 mapping/repeat guard are host policy. No complete function claimed; 00668670 is partial. Strict i386 build, existing native checks, 17 launcher/nine frontend checks, UI/frontend evidence and frozen accounting pass. Temporary native audit linked actual screen-key helper, button activation, tagged-event dispatcher and queue: full-word delivery, child consumption, focus mutation, disabled activation, scan matching, Exit/No/Yes and no mouse-click event passed; audit removed. User desktop-confirms Enter/Space works. Direct log records main-menu Space 39 opening confirmation, confirmation Enter 1c dismissing No, mouse Exit/Yes, 676 frames and clean teardown. Keypad Enter cannot be tested on their TKL keyboard; 9c and explicit repeat samples are absent from the log. Keypad mapping remains audit-verified only."
   },
   "shared_input_session": {
     "evidence": "0066a6e0 reuses global 008ae448 or allocates/initializes a 0x54-byte object and increments +04. 0066ad10 stores the acquired object at front-end +f4; 0066b140 releases it through 0066a780 and clears +f4. Last release drops +20 texture, deletes the singleton and clears the global. Multiple original controls also acquire it; screen adapters are not separate original reference-count owners.",
@@ -264,6 +270,11 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "00668670", "hex": "53568bf18b4e6c8b06518bceff50048b5c240c84c074218b566c8b46088b0c908a416484c075118b1153ff522084c074075eb0015bc20400", "meaning": "Screen key: validate focus, skip disabled control, offer full key word and return if consumed"},
+      {"address": "006686a8", "hex": "80fb1c740a80fb39740580fb9c7528", "meaning": "Screen key fallback recognizes low bytes 1c, 39 and 9c"},
+      {"address": "006686b7", "hex": "8b4e6c8b06518bceff500484c074198b566c8b46088b0c908b41608b1150ff52385eb0015bc20400", "meaning": "Screen key revalidates focus, passes control +60 to activation +38 and ignores its result"},
+      {"address": "006686df", "hex": "5e32c05bc20400", "meaning": "Screen key invalid/unrecognized fallback returns false"},
+      {"address": "0064da30", "hex": "32c0c20400", "meaning": "Default button key handler returns false and pops one argument"},
       {"address": "0066a6e0", "hex": "a148e48a005685c08bf17552", "meaning": "Shared input global lookup and reuse branch"},
       {"address": "0066a6ec", "hex": "6a54e81cab1700", "meaning": "Allocate original 0x54-byte shared input object"},
       {"address": "0066a6fc", "hex": "c701d0558100e8a9fdffff", "meaning": "Shared input vtable and constructor call"},
@@ -511,6 +522,8 @@
       {"address": "0066dec4", "hex": "8b7f746a01578b17ff52308b86f80000006a008b4074508b08ff51308b4630", "meaning": "Original modal rendering shows current screen and hides the previous screen before the second pass"}
     ],
     "vtables": [
+      {"address": "00815560", "targets": ["00668670"]},
+      {"address": "00814cd0", "targets": ["0064da30"]},
       {"address": "00813cec", "targets": ["0065c680"]},
       {"address": "00814cdc", "targets": ["006550e0", "00655250", "006552a0"]},
       {"address": "00814ce8", "targets": ["006552f0"]},

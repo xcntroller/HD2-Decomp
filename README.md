@@ -66,7 +66,9 @@ screen/button path; the user confirmed its expected visible no-op. The original
 hidden `CURZOR` scene model and position/update calls are desktop-confirmed.
 Engine-input mode now also routes main-menu Exit through the rebuilt dispatcher
 and original model picking; the user has confirmed that extension works. Shared input state across main-menu/confirmation transitions
-is also desktop-confirmed, including held-button cancellation. Screen effects and much of input remain
+is also desktop-confirmed, including held-button cancellation. Enter/Space activation for the focused Exit/Yes/No
+control in engine-input mode is desktop-confirmed; keypad Enter remains
+untested on hardware. Screen effects and much of input remain
 host scaffolding, not the complete
 original dispatcher. Pixel-perfect
 fidelity, other screens and profile/save data are not implemented.
@@ -81,11 +83,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **38 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **39 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 34 |
+| Base game client | 17,294 | 0 | 35 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

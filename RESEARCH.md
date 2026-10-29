@@ -1943,3 +1943,51 @@ Escape and Yes, 861 submitted frames and clean teardown. It lacks raw button
 masks, so held-button identity/outcome relies on the user report. Shared-session
 changes may now be locally committed; future interactive changes require their
 own successful desktop test.
+
+
+Focused keyboard activation continuation (2026-10-29, desktop test pending):
+original screen vtable `00815540` +20 is `00668670`, verified against cached
+export and section-mapped assembly. It validates focused index +6C; for controls
+with byte +64 clear, it offers the full key word to control +20 and returns true
+if that callback's low-byte result is nonzero. Otherwise it compares only the
+key's low byte against 1C, 39 and 9C (Enter, Space, keypad Enter in the host scan
+mapping), revalidates focus, passes control +60 to activation +38 and returns
+true regardless of activation result. The fallback does not check +64 again;
+button activation itself rejects disabled controls. Button vtable `00814CB0`
++20 is `0064DA30`, a false-return stub, and +38 is `006552F0`: it emits activation
+04001000 directly, without the mouse-click event 04012000.
+
+`frontend/screen_key.h` reconstructs those branches using portable callbacks,
+including re-reading focus after the child key callback. Host screen adapters
+provide button false-return key handlers and their original control identifiers;
+`ButtonVisualPair.activate` invokes existing reconstructed button activation and
+tagged bindings. Only engine-input mode consumes Win32 Enter/Space keydowns.
+It maps keypad Enter using the extended bit, ignores repeat keydown, requires the
+foreground window and pumps existing queued actions after dispatch. Repeat
+suppression is a host safeguard. Focus must already be on Exit or Yes/No; no
+keyboard navigation or default focused control is introduced. Escape/default
+modes are unchanged. Keyboard device/polling/event transport and original
+screen/control ABI remain absent. 00668670 is in the frozen inventory and gains
+partial status only: 39 partial, zero complete, unchanged 18,783 denominator.
+No new unit tests. New interactive changes remain uncommitted until user testing.
+
+
+Keyboard slice validation: strict i386 build and existing native checks pass,
+as do 17 launcher and nine frontend checks, 288 UI instruction anchors, 26 engine
+slots, frontend evidence and frozen accounting. A temporary native audit used
+the actual screen-key helper, button activation, tagged-event dispatcher and menu
+queue with mock controls/actions. It verified full-word child delivery, consumed
+keys, focus changes during callbacks, disabled activation, low-byte scan matching,
+Enter/Space/keypad codes, Exit/No/Yes queue flow and absence of mouse-click events.
+Audit files were removed. Original Win32-host transport/repeat behavior still
+requires desktop testing; no new unit tests or agent-side Proton launch.
+
+
+Keyboard desktop follow-up (2026-10-29): user reports intended behavior for
+Enter/Space, but cannot test keypad Enter on their TKL keyboard. Direct runtime
+log records main-menu Space (39) opening confirmation and confirmation Enter
+(1C) dismissing No, followed by mouse Exit and Yes, 676 submitted frames and
+clean driver/graphics teardown. No keypad 9C or explicit repeat samples are
+logged. Keypad scan matching passed the temporary native audit, but actual
+keypad transport remains unverified. The tested keyboard slice may now be
+committed under the user's no-commit-before-working instruction.

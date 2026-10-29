@@ -2,14 +2,38 @@
 
 ## Resume here
 
-The shared-input session slice is now desktop-confirmed. User tried all requested
-cases (Exit → No, Exit → Escape, wheel, held-button Escape/drag-off, Exit → Yes)
-and reports intended behavior. Direct log shows shared wheel state -480 across
-screen changes, No and Escape, Yes, 861 frames and clean driver/graphics teardown.
-Held-button outcome is user-reported; raw masks are not logged. Build, existing
-checks and 283 UI anchors / 26 engine slots passed. This tested slice can now be
-committed. Shared state is host-owned; original singleton/refcount/texture lifetime
-and screen ABI remain incomplete. No new unit tests or agent-side Proton launch.
+Desktop-confirmed slice: focused-control keyboard activation via
+`frontend/screen_key.h` / original 00668670. Only `--use-engine-mouse` maps first
+Win32 Enter/Space keydown (including keypad Enter) to scan bytes 1c/39/9c, offers
+them to the current screen and routes direct button activation through existing
+tagged events/queue. Mouse focus must already select Exit or Yes/No. Repeated
+keydown is suppressed to avoid activation across a push/pop. Original keyboard
+transport, navigation, default focus and object ABI remain absent. Escape and
+other modes retain established behavior. User confirms Enter/Space works; keypad
+Enter cannot be hardware-tested on their TKL keyboard and remains unverified.
+Direct log: main-menu Space (39), confirmation Enter (1c) dismissing No, mouse
+Exit and Yes, 676 frames and clean driver/graphics teardown. No keypad (9c) or
+explicit repeat samples are logged. This tested slice may now be committed.
+One new partial function: 39 partial / zero complete / frozen 18,783 baseline.
+Validation passed: strict i386 build, existing native checks, 17 launcher and
+nine frontend checks, 288 UI instruction anchors / 26 engine slots, frontend
+evidence and frozen accounting. A temporary native audit linked the actual
+screen-key helper, button activation, tagged-event dispatcher and menu queue:
+full-word child delivery, consumed keys, focus mutation, disabled activation,
+low-byte scan matching and Exit/No/Yes flows passed. Audit files removed; no
+new unit tests or agent-side Proton launch. Enter/Space transport has bounded
+desktop confirmation; keypad/repeat coverage is not independently logged.
+Desktop command remains the engine-input command below. Hover Exit, press
+Enter/Space to open confirmation; hover No and activate to return; reopen,
+hover Yes and activate to quit. Also hold activation key through a transition,
+try keypad Enter, move off enabled controls, and check ordinary mouse clicks.
+
+The preceding shared-input slice is committed as `a49df3a`. User tried every
+requested case and confirms intended behavior, including held-button Escape/
+drag-off. Direct log retains wheel -480 across screen changes, records No,
+Escape and Yes, 861 frames and clean teardown. Raw masks are absent; held-button
+outcome is user-reported. Original singleton/refcount/texture lifetime remains
+incomplete. No new unit tests or agent-side Proton launch.
 
 The main-menu engine-input slice is desktop-confirmed and checkpointed in the
 local commit titled `Route main-menu Exit through rebuilt engine input`.
@@ -168,10 +192,10 @@ Next session:
 1. Continue from cached exports in `analysis/work/frontend-inspection/`,
    `analysis/work/menu-input-route/`, `analysis/work/engine-loop/` and
    `analysis/work/initialization/`. Read the new timing section in `RESEARCH.md`.
-2. The main-menu engine-input slice is already committed as 19f30e5. Read the
-   desktop log for the NEW shared-session slice. If the user confirms it works,
-   commit that tested slice, then continue original shared input/screen
-   construction and relative-motion lifecycle.
+2. Main-menu engine input and shared session are committed (19f30e5, a49df3a).
+   Focused keyboard activation is now user-confirmed; keypad Enter is not
+   hardware-tested. Commit that tested slice, then continue original keyboard routing,
+   screen construction/default focus or engine input/resource lifecycle.
    The known source/units do not make the host's timestamps equivalent to it.
    Original captured-control objects, shared input object lifetime, engine
    device cursor positioning and screen/control ABI remain absent.
@@ -186,8 +210,9 @@ Next session:
 
 Latest desktop evidence is the main-menu input run: Exit target 05000000 /
 focus 15, No twice, Escape, Yes, 364 frames and clean teardown. User confirmed
-it works. Shared-session continuation is built/check-passing but awaits a new
-desktop run. Original CURZOR binding and wheel no-op were confirmed previously;
+it works. Shared-session continuation was subsequently desktop-confirmed (861 frames,
+wheel -480 retained across screens, No/Escape/Yes). Keyboard activation was subsequently user-confirmed: Space on Exit, Enter on
+No, mouse Exit/Yes, 676 frames and clean teardown. Keypad Enter is untested. Original CURZOR binding and wheel no-op were confirmed previously;
 no double-click dispatch claim is made. Logs are ignored and overwritten at the
 next launch.
 

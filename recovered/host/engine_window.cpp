@@ -15,6 +15,7 @@
 #include "frontend/pointer_motion.h"
 #include "frontend/screen_focus.h"
 #include "frontend/screen_input.h"
+#include "frontend/screen_key.h"
 #include "frontend/screen_target.h"
 
 #include <cstdio>
@@ -155,6 +156,14 @@ public:
     }
     const char* label() const { return "confirmation"; }
     std::uint32_t identifier() const { return screen_id_; }
+    bool control_disabled(int index) const { return index != 1 && index != 2; }
+    bool key_control(int, std::uint32_t) const { return false; } // 0064da30.
+    std::uint32_t control_argument(int index) const {
+        return control_ids_.at(static_cast<std::size_t>(index));
+    }
+    bool activate_control(int index, std::uint32_t) {
+        return !control_disabled(index) && button(index).activate(events_);
+    }
     int focused_control() const { return focused_; }
     void set_focused_control(int index) { focused_ = index; }
     int leave_control(int index, std::uint32_t) { return button(index).apply(false); }
@@ -593,6 +602,27 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                                 static_cast<unsigned>(update.processed));
                         }
                     }
+                }
+                if (use_engine_mouse && message.message == WM_KEYDOWN &&
+                    (message.wParam == VK_RETURN || message.wParam == VK_SPACE)) {
+                    // Host transport only: map Win32 make/extended bits to the
+                    // original scan-code byte. Ignore auto-repeat to avoid a
+                    // held key activating a second screen after a push/pop.
+                    if ((static_cast<std::uintptr_t>(message.lParam) & (1u << 30)) == 0 &&
+                        GetForegroundWindow() == window) {
+                        const auto scan = message.wParam == VK_SPACE ? 0x39u :
+                            ((static_cast<std::uintptr_t>(message.lParam) & (1u << 24)) != 0
+                                ? 0x9cu : 0x1cu);
+                        const bool handled = confirming
+                            ? hd2::frontend::screen_key(*confirmation_focus, scan)
+                            : hd2::frontend::screen_key(*main_focus, scan);
+                        std::printf("Menu keyboard: screen=%s scan=%02x handled=%u\n",
+                                    confirming ? "confirmation" : "main-menu", scan,
+                                    static_cast<unsigned>(handled));
+                        menu_events->pump();
+                        if (!running) break;
+                    }
+                    continue;
                 }
                 if (message.message == WM_KEYDOWN && message.wParam == VK_ESCAPE) {
                     if (confirming) {

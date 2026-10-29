@@ -7,6 +7,14 @@
   "functions": [
     {
       "program": "client",
+      "entry": "00668670",
+      "status": "partial",
+      "coverage": "Validate focused control, offer full key word to enabled control +20, then recognize low-byte 1c/39/9c, revalidate focus and call activation +38 with control +60 argument, ignoring activation result.",
+      "limitations": "Portable screen/control accessors and callbacks replace original ABI/storage. Host maps first Win32 Enter/Space keydown only in engine-input mode and suppresses repeats; original keyboard device/event transport, navigation and default focus remain absent. Enabled controls are Exit and Yes/No. Enter/Space desktop-confirmed; keypad Enter untested on hardware.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_key.h", "recovered/host/engine_window.cpp", "recovered/host/main_menu_focus.h"]
+    },
+    {
+      "program": "client",
       "entry": "00656da0",
       "status": "partial",
       "coverage": "Validate focused index and forward pointer target plus integer wheel amount to control +4c; return seven for invalid focus.",
