@@ -26,6 +26,13 @@ int button_pointer_event(Button& button, ScreenPointerCallback callback) {
     return 7;
 }
 
+// Client 0064db40 ignores target and wheel amount, emitting a zero argument.
+template<class Button>
+int button_wheel(Button& button) {
+    button.emit_event(std::uint32_t{0x04011000}, std::uint32_t{0});
+    return 7;
+}
+
 // Client 0064dbc0, for buttons whose activation ignores the pointer target.
 template<class Button>
 bool button_click(Button& button) {

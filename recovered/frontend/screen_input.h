@@ -54,6 +54,13 @@ int screen_double_click(Screen& screen, std::uint32_t target) {
     return detail::screen_focused_pointer<ScreenPointerCallback::double_click, 7>(screen, target);
 }
 
+// Client 00656da0, screen +4c -> focused control +4c; both arguments survive.
+template<class Screen>
+int screen_wheel(Screen& screen, std::uint32_t target, std::int32_t delta) {
+    if (!screen.valid_control(screen.focused_control())) return 7;
+    return screen.wheel_control(screen.focused_control(), target, delta);
+}
+
 // Client 00656dd0.
 template<class Screen>
 int screen_click(Screen& screen, std::uint32_t target) {

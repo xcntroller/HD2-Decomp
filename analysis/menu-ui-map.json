@@ -16,6 +16,7 @@
   "pointer_dispatch_probe_source": "recovered/host/pointer_dispatch_probe.h",
   "mouse_poll_source": "recovered/input/mouse_poll.h",
   "engine_mouse_source": "recovered/host/engine_mouse.h",
+  "pointer_wheel_source": "recovered/frontend/pointer_wheel.h",
   "pointer_cursor_source": "recovered/frontend/pointer_cursor.h",
   "pointer_update_source": "recovered/frontend/pointer_update.h",
   "pointer_motion_source": "recovered/frontend/pointer_motion.h",
@@ -25,13 +26,20 @@
   "screen_target_source": "recovered/frontend/screen_target.h",
   "button_visuals_runtime_verified": true,
   "button_visuals_desktop_observation": "2026-10-27: user confirmed it works well, just as remembered. Direct runtime log initialized nine pairs, recorded repeated focused/normal Exit transitions, Exit activation, 575 submitted frames and normal teardown. Bounded confirmation only; no original dispatcher or focus sound.",
+  "wheel_reconstruction": {
+    "scope": "0066a020 getter, 0066a030 predicate, 0066b990 conversion/callback/repick ordering, 00656da0 focused screen forwarding and 0064db40 button event. Portable storage, screen lookup and ABI remain adapters.",
+    "conversion": "Raw stored float Z is not divided by 120. 007e5e00 truncates to signed int64; caller passes low DWORD as signed callback word. Portable helper models masked-invalid low-word zero but does not reproduce x87 exception flags or traps.",
+    "order": "After click/non-drag motion, invoke screen +4c, then resolve current screen, pick its model and invoke focus +40. Drag and alternate-motion branches still return before wheel. Button emits 04011000 with zero argument and does not activate.",
+    "integration": "--use-engine-mouse now supplies polled Z and re-picks the actual confirmation model using the same frame cursor point. Existing message-driven modes remain unchanged; double-click activation remains disabled. No desktop wheel evidence yet.",
+    "cursor_next": "Cached 0066c5b0 and assembly 0066c63c..0066c648 identify separate model kurzor_menu named CURZOR, loaded through 0066bfa0. This resource/binding is absent from host scene and staging; recover it before wiring original cursor frame +08/+24 updates. Existing visible bitmap cursor remains unchanged."
+  },
   "engine_mouse_reconstruction": {
     "mode": "--menu-confirm --use-confirm-picking --use-engine-mouse; existing modes unchanged; user desktop-confirmed 2026-10-29.",
     "desktop_observation": "2026-10-29: user says it works well and reports right-click activation. Direct log enables rebuilt nonexclusive polling, records success then one 80000005 failure and recovery, No three times, Escape, Yes, press/release/drag event emissions, 807 frames and clean teardown. The log does not include raw button masks, so right-click identity comes from the user report. Focus-loss and drag-off outcomes are not independently established by this log. Original screen transitions use selector three (left/right); click capture/release uses selector zero (any), so right-click activation matches the recovered path. Additional filtering elsewhere in the complete original menu is not established.",
     "engine_slice": "1006f8a0 device read/acquire/retry/zero-on-failure, axis-count wheel suppression and button swapping; 1006fb30 packs first five button high bits. Portable state replaces engine globals; mode-zero window metric queries and exclusive-mode absolute accumulation are omitted.",
     "bridge": "Original +dc / 1006f710 creates a foreground nonexclusive device with argument zero and cooperative flags six. Original +e4 / 1006f850 owns shutdown. Borrowed device +24 reads 20 bytes, +1c acquires. ABI/global addresses are fingerprint-anchored; no direct vtable patch or code injection.",
     "functional_input": "Confirmation button transitions run once per frame through reconstructed update/dispatch/screen helpers and original tagged activation records. Positions/focus remain host-owned; same sampled point supplies hover and click picking. Queue pumps after dispatch. Main Exit remains message-driven. New button press/release/drag callbacks emit their reconstructed tagged events; logs are bounded per type per button.",
-    "limits": "Polled XYZ is available but live motion derives from host cursor positions to keep picking aligned with the visible cursor. QPC supplies clamped 10..100 ms frame deltas; original wait/scale behavior is absent. Departure cancellation remains, and reentry requires all buttons up. Poll failure/focus loss/outside-window state resets input. Wheel and double-click dispatch remain disabled; captured screen-control objects and accepted-click helper are absent.",
+    "limits": "Polled XYZ is available but live motion derives from host cursor positions to keep picking aligned with the visible cursor. QPC supplies clamped 10..100 ms frame deltas; original wait/scale behavior is absent. Departure cancellation remains, and reentry requires all buttons up. Poll failure/focus loss/outside-window state resets input. Wheel dispatch is now reconstructed but not desktop-verified; double-click dispatch remains disabled; captured screen-control objects and accepted-click helper are absent.",
     "accounting": "1006f8a0, 1006fb30 and 0064db00/20/60/80/a0/e0 are absent from the frozen inventory. Their bounded reconstructions earn no ledger count; baseline remains unchanged."
   },
   "cursor_screen_research": {
@@ -40,7 +48,7 @@
     "scope": "Portable cursor storage and screen callbacks replace original globals, ABI and objects. Probe seeds cursor from first available host point per entry and supplies host position differences. Only Yes/No are eligible simulated controls; child callbacks return seven and never emit events. Live input, engine frame setters, original polling, device lifecycle and wheel routing remain unchanged or absent. No new desktop validation."
   },
   "pointer_dispatch_research": {
-    "scope": "Portable non-wheel sequencing of 0066b990, exercised only by an observational context. Original ABI, screen stack, captured control objects, engine polling and accepted-click helper remain adapters; wheel conversion/dispatch/repick is delegated.",
+    "scope": "Portable pointer sequencing of 0066b990, including wheel, exercised only by an observational context. Original ABI, screen stack, captured control objects, engine polling and accepted-click helper remain adapters; wheel conversion/dispatch/repick sequencing is reconstructed with portable current-screen callbacks.",
     "callback_order": "Mask-3 press +48; drag release +54 then focus +40 then release +44; double +60 then gated ordinary click +5c; XY motion focus +40, drag begin +58 then drag +50 with early return before wheel.",
     "input_polling": "Main loop graphics +e8 maps to 1006f8a0. It reads 20 bytes at 100d1ec8 through input-device +24, attempts acquisition and one retry on failure, and clears the state on repeated failure. +ec/+f0/+f4 map to 1006fa10/20/30 and return stored signed XYZ. Successful-path cursor warping/absolute accumulation, device setup and focus reacquisition are not yet reconstructed.",
     "runtime": "No desktop validation of new dispatch logging. Probe only logs screen slots; it never invokes actual screen callbacks or activation. Motion starts from host position differences and passes through reconstructed accumulation/clamping; it is not original polled relative XYZ. Portable screen helpers route through simulated Yes/No controls; logs include focus, result, cursor and effective motion. Wheel is not sampled; captured screen-control state stays absent."
@@ -134,6 +142,15 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "0066a020", "hex": "d9411cc3", "meaning": "Wheel getter returns stored float input +1c"},
+      {"address": "0066a030", "hex": "d9411cd81d1cf58000dfe0f6c4447b03b001c332c0c3", "meaning": "Wheel predicate returns whether stored Z is nonzero"},
+      {"address": "007e5e00", "hex": "558bec83c4f49bd97dfe9b668b45fe80cc0c668945fcd96dfcdf7df4d96dfe8b45f48b55f8c9c3", "meaning": "Conversion helper sets x87 truncation, converts to signed QWORD, restores control word and returns low/high DWORDs"},
+      {"address": "00656da0", "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff624cb8070000005ec20800", "meaning": "Screen +4c forwards target and integer wheel amount to valid focused control; invalid focus returns seven"},
+      {"address": "0064db40", "hex": "6a006800100104e804f40000b807000000c20800", "meaning": "Button +4c ignores both parameters, emits 04011000 with argument zero and returns seven"},
+      {"address": "0066bdcb", "hex": "e850e2ffffe82ba0170050568bcdff534c", "meaning": "Wheel dispatch reads raw float Z, truncates to signed int64 and passes only EAX low word to screen +4c"},
+      {"address": "0066be09", "hex": "e89274fcff8b4c2418a1cce48a0089442424a1d0e48a008b118b0dc8e48a008b35d4e48a008b5a74", "meaning": "After wheel callback, dispatcher resolves current screen again and reads its model +74"},
+      {"address": "0066be5f", "hex": "8b4f308b3253518b8ff40000008b2ee84de9ffff508bceff5540", "meaning": "Post-wheel refresh selects screen, repicks its model and invokes its +40 focus callback"},
+      {"address": "0066c63c", "hex": "680807840068780684008bcee853f9ffff", "meaning": "Frontend setup passes CURZOR and kurzor_menu to model loader 0066bfa0"},
       {"address": "0064db00", "hex": "6a006800700004e844f40000b807000000c20400", "meaning": "Button release emits 04007000 with zero argument then returns seven"},
       {"address": "0064db20", "hex": "6a006800600004e824f40000b807000000c20400", "meaning": "Button press emits 04006000 with zero argument then returns seven"},
       {"address": "0064db60", "hex": "6a006800800004e8e4f30000b807000000c20400", "meaning": "Button drag emits 04008000 with zero argument then returns seven"},

@@ -19,6 +19,7 @@
 #include <cstdio>
 #include <cstring>
 #include <exception>
+#include <functional>
 #include <io.h>
 
 namespace {
@@ -157,6 +158,9 @@ public:
     int enter_control(int index, std::uint32_t) { return button(index).apply(true); }
     int move_control(int index, std::uint32_t) { return button(index).pointer_move(); }
     int click_control(int index, std::uint32_t) { return button(index).click(events_); }
+    int wheel_control(int index, std::uint32_t, std::int32_t) {
+        return button(index).wheel_event(events_);
+    }
     int pointer_control(int index, hd2::frontend::ScreenPointerCallback callback, std::uint32_t) {
         return button(index).pointer_event(callback, events_);
     }
@@ -183,7 +187,8 @@ private:
 // host-owned; button snapshots come from the rebuilt LS3DF polling subset.
 class ConfirmationFrameInput {
 public:
-    explicit ConfirmationFrameInput(ConfirmationFocus& focus) : focus_(focus) {}
+    ConfirmationFrameInput(ConfirmationFocus& focus, std::function<std::uint32_t(const hd2::host::CursorPoint&)> repick)
+        : focus_(focus), repick_(std::move(repick)) {}
     void clear() {
         pointer_.clear();
         state_ = {};
@@ -192,7 +197,7 @@ public:
         armed_ = false;
     }
     void tick(const hd2::host::CursorPoint& point, std::uint32_t target,
-              std::uint32_t buttons, std::uint32_t delta) {
+              std::uint32_t buttons, std::uint32_t delta, std::int32_t wheel) {
         if (!armed_) {
             if (buttons != 0) return; // Reentry must observe all buttons up first.
             pointer_.cursor().initialize(point.x, point.y, 800, 600);
@@ -200,7 +205,7 @@ public:
             armed_ = true;
         }
         pending_ = {buttons, target, delta, point.x - previous_point_->x,
-                    point.y - previous_point_->y};
+                    point.y - previous_point_->y, static_cast<float>(wheel)};
         previous_point_ = point;
         pointer_.cancel_departed_press(target); // Retain established host safety.
         hd2::frontend::dispatch_menu_pointer(state_, *this, delta);
@@ -214,7 +219,8 @@ public:
         input_ = {buttons.pressed(3), buttons.released(3), buttons.currently_selected(3),
                   result.click.click, false, // Double-click remains observational only.
                   hd2::frontend::pointer_moved(pointer_.cursor().horizontal(),
-                                             pointer_.cursor().vertical()), false};
+                                             pointer_.cursor().vertical()),
+                  hd2::frontend::pointer_wheel_moved(pointer_.cursor().wheel_delta())};
         return result.processed;
     }
     const hd2::frontend::PointerDispatchInput& input() const { return input_; }
@@ -246,12 +252,22 @@ public:
         throw std::logic_error("Unsupported confirmation pointer callback");
     }
     void accepted_click() {} // Original +3c object/helper is still absent.
-    void wheel_and_refresh(std::uint32_t) {
-        throw std::logic_error("Live wheel routing is not reconstructed");
+    float wheel_delta() const { return pointer_.cursor().wheel_delta(); }
+    int screen_wheel(std::uint32_t target, std::int32_t delta) {
+        const int result = hd2::frontend::screen_wheel(focus_, target, delta);
+        std::printf("Engine mouse wheel: target=%08x delta=%d result=%d\n",
+                    static_cast<unsigned>(target), static_cast<int>(delta), result);
+        return result;
+    }
+    ConfirmationFocus* current_screen() { return &focus_; }
+    std::uint32_t pick_for_screen(ConfirmationFocus*) const { return repick_(*previous_point_); }
+    void focus_screen(ConfirmationFocus* screen, std::uint32_t target) {
+        hd2::frontend::screen_pointer_focus(*screen, target);
     }
 
 private:
     ConfirmationFocus& focus_;
+    std::function<std::uint32_t(const hd2::host::CursorPoint&)> repick_;
     hd2::frontend::PointerUpdate pointer_;
     hd2::frontend::PointerDispatchState state_;
     hd2::frontend::PointerDispatchInput input_;
@@ -422,7 +438,14 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 menu_events.emplace(*menu_actions);
                 confirmation_focus.emplace(*confirm_yes, *confirm_no, *menu_events);
                 if (use_engine_mouse) {
-                    frame_input.emplace(*confirmation_focus);
+                    frame_input.emplace(*confirmation_focus, [&](const hd2::host::CursorPoint& point) {
+                        const auto picked = menu->pick_confirmation(
+                            module, point.x, point.y,
+                            static_cast<float>(methods->width(graphics)),
+                            static_cast<float>(methods->height(graphics)));
+                        return ConfirmationFocus::target_for_hit(
+                            ConfirmationFocus::hit_for_target(picked));
+                    });
                     engine_mouse = std::make_unique<hd2::host::EngineMouse>(
                         reinterpret_cast<hd2::host::EngineFrame*>(graphics), module);
                 }
@@ -646,7 +669,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             if (frame_input) {
                 if (confirming && frame_point && mouse_snapshot->status == 0) {
                     frame_input->tick(*frame_point, frame_target,
-                                      mouse_snapshot->buttons, mouse_snapshot->delta);
+                                      mouse_snapshot->buttons, mouse_snapshot->delta, mouse_snapshot->state.z);
                 } else {
                     frame_input->clear();
                 }

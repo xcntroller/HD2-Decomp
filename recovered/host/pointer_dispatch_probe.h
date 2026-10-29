@@ -47,7 +47,7 @@ public:
         input_ = {buttons.pressed(3), buttons.released(3), buttons.currently_selected(3),
                   update_.click.click, update_.click.double_click,
                   frontend::pointer_moved(pointer_.cursor().horizontal(), pointer_.cursor().vertical()),
-                  pointer_.cursor().wheel_delta() != 0};
+                  frontend::pointer_wheel_moved(pointer_.cursor().wheel_delta())};
         return update_.processed;
     }
     const frontend::PointerDispatchInput& input() const { return input_; }
@@ -100,8 +100,15 @@ public:
     void accepted_click() {
         throw std::logic_error("Observational probe cannot accept a click");
     }
-    void wheel_and_refresh(std::uint32_t) {
-        throw std::logic_error("Original wheel dispatch is not reconstructed");
+    float wheel_delta() const { return pointer_.cursor().wheel_delta(); }
+    int wheel_control(int, std::uint32_t, std::int32_t) const { return 7; }
+    int screen_wheel(std::uint32_t target, std::int32_t delta) {
+        return frontend::screen_wheel(*this, target, delta);
+    }
+    PointerDispatchProbe* current_screen() { return this; }
+    std::uint32_t pick_for_screen(PointerDispatchProbe*) const { return sample_.target; }
+    void focus_screen(PointerDispatchProbe* screen, std::uint32_t target) {
+        frontend::screen_pointer_focus(*screen, target);
     }
 
 private:

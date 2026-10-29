@@ -7,6 +7,30 @@
   "functions": [
     {
       "program": "client",
+      "entry": "00656da0",
+      "status": "partial",
+      "coverage": "Validate focused index and forward pointer target plus integer wheel amount to control +4c; return seven for invalid focus.",
+      "limitations": "Portable accessors and callback dispatch replace original screen/control ABI. Used by the bounded engine-input confirmation adapter; no desktop wheel validation yet.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/engine_window.cpp"]
+    },
+    {
+      "program": "client",
+      "entry": "0066a020",
+      "status": "partial",
+      "coverage": "Return the stored float wheel delta through the portable cursor accessor.",
+      "limitations": "Portable float storage and C++ return ABI replace original input +1c and x87 return.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_cursor.h"]
+    },
+    {
+      "program": "client",
+      "entry": "0066a030",
+      "status": "partial",
+      "coverage": "Return whether the stored wheel delta is nonzero.",
+      "limitations": "Portable float argument and boolean result replace original object ABI; original FPU exception flags are excluded.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_wheel.h"]
+    },
+    {
+      "program": "client",
       "entry": "00656ca0",
       "status": "partial",
       "coverage": "Validate focused control and forward screen press to control +48; return zero for invalid focus.",
@@ -169,8 +193,8 @@
       "program": "client",
       "entry": "0066b990",
       "status": "partial",
-      "coverage": "Portable sequencing reconstructs the front-end gate, pick-before-update call order, target-change gate, alternate-motion branch, mask-3 press/release, captured-control veto, double-before-single click, and drag callback order/early return. An observational adapter logs the routed screen slots. The opt-in engine-button adapter now routes confirmation press/release/drag/click through the reconstructed dispatcher and screen helpers; default interactive modes retain their existing paths.",
-      "limitations": "Device state polling is reconstructed in a bounded separate slice; captured-control objects, stack lookup, accepted-click side effect and ABI remain adapters. The shadow uses reconstructed clamping on host-derived motion, while live interaction retains its existing sampling. Wheel conversion/dispatch/repicking is delegated. The probe uses message snapshots and does not invoke live callbacks; its capture state is absent. Interactive target changes retain host focus routing to preserve established behavior.",
+      "coverage": "Portable sequencing reconstructs the front-end gate, pick-before-update call order, target-change gate, alternate-motion branch, mask-3 press/release, captured-control veto, double-before-single click, drag callback order/early return, and raw wheel conversion, focused dispatch and post-callback current-screen repicking. An observational adapter logs the routed screen slots. The opt-in engine-button adapter now routes confirmation press/release/drag/click through the reconstructed dispatcher and screen helpers; default interactive modes retain their existing paths.",
+      "limitations": "Device state polling is reconstructed in a bounded separate slice; captured-control objects, stack lookup, accepted-click side effect and ABI remain adapters. The shadow uses reconstructed clamping on host-derived motion, while live interaction retains its existing sampling. Wheel conversion/dispatch/repicking order is reconstructed; original segmented screen-stack storage remains a context adapter. The probe uses message snapshots and does not invoke live callbacks; its capture state is absent. Interactive target changes retain host focus routing to preserve established behavior.",
       "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_motion.h", "recovered/frontend/pointer_dispatch.h", "recovered/host/pointer_dispatch_probe.h", "recovered/host/engine_window.cpp"]
     },
     {

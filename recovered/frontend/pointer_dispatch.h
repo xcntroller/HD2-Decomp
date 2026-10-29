@@ -1,6 +1,8 @@
 #ifndef HD2_FRONTEND_POINTER_DISPATCH_H
 #define HD2_FRONTEND_POINTER_DISPATCH_H
 
+#include "frontend/pointer_wheel.h"
+
 #include <cstdint>
 
 namespace hd2::frontend {
@@ -39,7 +41,8 @@ struct PointerDispatchInput {
 // input update, captured-control callbacks, and fresh screen-stack lookup for
 // EVERY screen callback. Do not cache a screen across callbacks: they may
 // change the stack. input() must expose the current flags after callbacks.
-// Wheel conversion/dispatch/repicking is delegated as one unreconstructed hook.
+// Wheel dispatch is followed by a fresh current-screen lookup and pick/focus.
+// Original segmented stack storage and frame ownership remain context adapters.
 template<class Context>
 int dispatch_menu_pointer(PointerDispatchState& state, Context& context,
                           std::uint32_t delta) {
@@ -98,7 +101,13 @@ int dispatch_menu_pointer(PointerDispatchState& state, Context& context,
             }
         }
     }
-    if (context.input().wheel_changed) context.wheel_and_refresh(target);
+    if (context.input().wheel_changed) {
+        context.screen_wheel(target, pointer_wheel_argument(context.wheel_delta()));
+        // A callback may replace the screen/model. Resolve again after it.
+        const auto screen = context.current_screen();
+        const auto refreshed = context.pick_for_screen(screen);
+        context.focus_screen(screen, refreshed);
+    }
     return 1;
 }
 

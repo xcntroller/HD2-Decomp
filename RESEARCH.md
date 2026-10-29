@@ -1083,6 +1083,45 @@ all existing modes retain their prior paths. Function accounting stays at
 35 partial / 0 complete: engine `1006F8A0`/`1006FB30` and these tiny button
 callbacks are absent from the frozen inventory and receive no ledger credit.
 
+Wheel continuation (2026-10-29): the engine-input mode now feeds polled Z into
+the reconstructed update and dispatcher. `0066A020` reads the stored float delta
+and `0066A030` tests it against zero. There is no division by 120 in this path.
+At `0066BDCB`, the dispatcher calls `007E5E00`, which temporarily selects x87
+truncation, converts to signed int64, restores the control word and returns
+EDX:EAX. The caller passes only EAX to the screen. The
+[wheel helper](recovered/frontend/pointer_wheel.h) preserves truncation and
+low-word semantics without undefined out-of-range C++ casts; masked-invalid
+integer-indefinite has low word zero. Original FPU flags and unmasked traps are
+not reproduced, and that helper is not claimed as a complete runtime rebuild.
+
+The [screen wheel subset](recovered/frontend/screen_input.h), `00656DA0`,
+validates focus and forwards both target and wheel word to control +4C, or
+returns seven. Button `0064DB40` ignores those parameters, emits `04011000`
+with argument zero and returns seven. It does not activate. After screen +4C,
+`0066B990` resolves the current screen/model again, repicks and invokes +40.
+The portable dispatcher now expresses this order directly, with original stack
+storage/lookup supplied by context adapters. Existing drag early returns and
+alternate-motion gating still skip wheel. The functional adapter repicks the
+original confirmation model using the same frame's host cursor point, so a
+second asynchronous OS cursor sample cannot change the target mid-dispatch.
+The message shadow still receives no wheel messages, but its context implements
+the same helper interface. Live double-click dispatch remains disabled.
+
+No new flags are required: run the existing `--use-engine-mouse` command and
+scroll over Yes/No and outside them. Expected visible behavior is no activation
+or dismissal; the log should show `Engine mouse wheel` and, for a focused
+button, `04011000`. New wheel behavior has not been desktop-verified. Three
+additional tracked functions are partial (`00656DA0`, `0066A020`, `0066A030`),
+bringing totals to 38 partial / 0 complete; frozen denominator stays 18,783.
+
+Cursor-frame investigation also identified a prerequisite: `0066C5B0` pushes
+`kurzor_menu` and `CURZOR` at `0066C63C/41`, then calls model loader `0066BFA0`.
+The input initializer later finds that frame and updates its +08/+24 transform
+before hiding it through +30. The host currently stages neither that model nor
+its scene binding. Recover/stage the original resource and ownership path before
+calling frame setters on an invented substitute. The working visible bitmap
+cursor and its projection remain unchanged in this slice.
+
 The strict i386 build, existing native geometry checks and expanded UI evidence
 map pass (40 instruction/data anchors, 5 engine and 4 client vtable slots).
 No new unit tests were added. The latest desktop run logged

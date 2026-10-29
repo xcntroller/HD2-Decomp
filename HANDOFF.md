@@ -2,10 +2,25 @@
 
 ## Resume here
 
-The prior menu work is committed at `02dcc9a` on `master`; the 2026-10-27
-uncommitted-state note is superseded. This continuation adds uncommitted input
-sequencing/dispatch code and evidence. Preserve all worktree changes. Do not push.
+The previous input work is committed at `23bf9b3` on `master`. The wheel
+continuation is checkpointed in the local commit titled
+`Reconstruct menu wheel input and focus refresh`.
+The 2026-10-27 uncommitted-state note is superseded. Preserve later worktree
+changes. Do not push without explicit user approval.
 
+- Latest continuation reconstructs wheel getter/predicate, int64 truncation
+  and low-DWORD argument passing, focused-screen +4C forwarding, button
+  `04011000` with zero argument, and post-callback current-screen repick/+40.
+  `--use-engine-mouse` now consumes polled Z. Drag early return still skips
+  wheel; double-click activation remains disabled. Repick uses the same frame
+  cursor point and the actual confirmation model. No new desktop wheel test.
+  Expected scrolling over Yes/No: logs, no activation/dismissal. Three new
+  partial entries bring totals to 38; no complete functions claimed.
+- Cursor-frame prerequisite found in cached exports and verified assembly:
+  `0066C5B0` loads `kurzor_menu` named `CURZOR` through `0066BFA0` at
+  `0066C63C..48`. That model/scene binding is absent from staging/host. Recover
+  its asset/ownership before wiring original frame +08/+24 updates. Visible
+  bitmap cursor remains unchanged.
 - Current goal is a functional, decompiled/rebuilt menu. User authorized
   prioritizing the engine boundary that helps that goal. New next desktop step:
 
@@ -35,12 +50,12 @@ sequencing/dispatch code and evidence. Preserve all worktree changes. Do not pus
   one sampled point supplies hover and click picking. Frame delta uses bounded
   QPC intervals, without original wait/scaling. Button press/release/drag event
   emissions are reconstructed and route through the existing tagged bindings.
-  Queue pumps after input. Live double-click/wheel dispatch stay disabled.
+  Queue pumps after input. Live double-click dispatch stays disabled; wheel is now reconstructed as above.
   Departure cancellation is retained; focus loss/outside/poll failure reset
   frame input; reentry first requires all buttons up. No activation from stale
   focus fallback. Original captured screen-control objects/helper are absent.
 - Frozen inventory lacks the two engine entries and the tiny pointer-event
-  button callbacks, so they receive no ledger credit; totals remain 35 partial.
+  button callbacks, so they receive no ledger credit; totals are now 38 partial (three wheel functions added).
 - Traced the original timer through cached exports and section-mapped assembly:
   `006DC950 -> 006DCAE0 -> 006C20F0 -> state +14 / 0066BEA0 -> 0066B990 ->
   0066A220`. Source is QueryPerformanceCounter/Frequency converted to integer
@@ -69,12 +84,12 @@ sequencing/dispatch code and evidence. Preserve all worktree changes. Do not pus
   these helpers; enter/leave succeed and child callbacks return seven.
   Logs include focus, result, cursor and corrected motion. No live events or
   activation run, and new logging has not been desktop-verified.
-- New `recovered/frontend/pointer_dispatch.h` reconstructs non-wheel
-  `0066B990` sequencing: gate, pick/update, target-change gate, alternate +2D
+- New `recovered/frontend/pointer_dispatch.h` reconstructs
+  `0066B990` sequencing including wheel: gate, pick/update, target-change gate, alternate +2D
   branch, mask-3 press/release, captured-control veto, double-before-single
   click, drag begin/end/move and early return before wheel. Context must
-  resolve the current screen for every callback. Wheel handling and accepted
-  click helper remain delegated. `recovered/host/pointer_dispatch_probe.h`
+  resolve the current screen for every callback. Wheel handling/repick order
+  is now reconstructed; accepted-click helper remains delegated. `recovered/host/pointer_dispatch_probe.h`
   runs portable screen routing against simulated controls; it never invokes
   actual screen/control objects or activation. Capture state is absent; wheel is not sampled.
   Consecutive identical focus/drag logs are suppressed. New logging has not
@@ -87,9 +102,9 @@ sequencing/dispatch code and evidence. Preserve all worktree changes. Do not pus
   Successful-path cursor warping, absolute accumulation and device/focus
   setup remain unreconstructed.
 - Strict i386 host build, all existing native checks, 17 launcher checks,
-  9 frontend checks, 27 accounting checks, 231 UI instruction anchors, 17 engine vtable slots, frontend evidence and
+  9 frontend checks, 27 accounting checks, 240 UI instruction anchors, 17 engine vtable slots, frontend evidence and
   frozen accounting pass. No new unit tests or agent-side Proton launches.
-  Function totals are **0 complete / 18,783; 35 partial**.
+  Function totals are **0 complete / 18,783; 38 partial**.
 
 Next session:
 
@@ -98,9 +113,10 @@ Next session:
    `analysis/work/initialization/`. Read the new timing section in `RESEARCH.md`.
 2. Read the new desktop log first if the user ran the engine-mouse command.
    Resolve any device/setup/input issue before expanding it. Then continue
-   original cursor-frame updates, relative motion lifecycle and wheel routing.
+   original CURZOR resource staging/binding, cursor-frame updates and
+   relative motion lifecycle after the wheel desktop check.
    The known source/units do not make the host's timestamps equivalent to it.
-   Engine frame updates, live drag integration, wheel routing and original
+   Engine frame updates, original captured-control objects and original
    screen/control ABI remain absent.
 3. Keep the probe observational. Selector zero means **any** button, not button
    index zero. Do not remove pointer-departure cancellation until safe Win32

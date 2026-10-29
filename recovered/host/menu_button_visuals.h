@@ -77,6 +77,14 @@ public:
         return frontend::button_pointer_event(adapter, callback);
     }
 
+    int wheel_event(frontend::ControlEventDestination& destination) {
+        if (!events_bound_) throw std::logic_error("Button events are not bound");
+        constexpr auto bit = std::uint32_t{1} << (0x4c / 4);
+        FocusAdapter adapter{*this, destination, (pointer_events_logged_ & bit) == 0};
+        pointer_events_logged_ |= bit;
+        return frontend::button_wheel(adapter);
+    }
+
     bool click(frontend::ControlEventDestination& destination) {
         if (!events_bound_) throw std::logic_error("Button events are not bound");
         FocusAdapter adapter{*this, destination};

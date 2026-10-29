@@ -31,6 +31,7 @@ public:
     float y() const { return y_; }
     float horizontal() const { return horizontal_; }
     float vertical() const { return vertical_; }
+    // Client 0066a020, using portable storage in place of input +1c.
     float wheel_delta() const { return wheel_delta_; }
     float wheel() const { return wheel_; }
 
