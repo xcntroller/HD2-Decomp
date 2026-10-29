@@ -7,6 +7,39 @@
   "functions": [
     {
       "program": "client",
+      "entry": "00668580",
+      "status": "partial",
+      "coverage": "Scan lower control indices then wrap backward from the final child, skipping subordinate target IDs and stopping when candidate focus handling succeeds.",
+      "limitations": "Portable screen/control storage, eligibility and callbacks replace original ABI. Assumes valid candidate and -1/valid current focus. No original live key binding identified; not integrated into the host. Navigation/default-focus behavior remains unresolved.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006685f0",
+      "status": "partial",
+      "coverage": "Scan higher control indices then wrap forward from zero, rereading control count and skipping subordinate target IDs before candidate selection.",
+      "limitations": "Portable screen/control storage, eligibility and callbacks replace original ABI. Assumes valid candidate and -1/valid current focus. No original live key binding identified; not integrated into the host. Navigation/default-focus behavior remains unresolved.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006686f0",
+      "status": "partial",
+      "coverage": "Check candidate eligibility, ask valid old focus to leave with zero, treat leave veto as handled, then store candidate and enter with fifteen while ignoring enter result.",
+      "limitations": "Portable screen/control storage, eligibility and callbacks replace original ABI. Assumes valid candidate and -1/valid current focus. No original live key binding identified; not integrated into the host. Navigation/default-focus behavior remains unresolved.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
       "entry": "00668670",
       "status": "partial",
       "coverage": "Validate focused control, offer full key word to enabled control +20, then recognize low-byte 1c/39/9c, revalidate focus and call activation +38 with control +60 argument, ignoring activation result.",

@@ -1991,3 +1991,38 @@ clean driver/graphics teardown. No keypad 9C or explicit repeat samples are
 logged. Keypad scan matching passed the temporary native audit, but actual
 keypad transport remains unverified. The tested keyboard slice may now be
 committed under the user's no-commit-before-working instruction.
+
+
+Focus traversal primitives (2026-10-29): `00668580` scans from focused index
+minus one downward, then wraps from the final control; `006685F0` scans from
+focus plus one upward, then wraps from zero. Both exclude identifiers whose
+bits 12..19 are nonzero (mask 000FF000) before calling `006686F0`. The latter
+checks candidate eligibility at control +08, asks a valid old focus to leave
+with argument zero, and returns true without changing focus when leave returns
+zero. On transfer it stores the candidate at screen +6C and invokes enter +30
+with argument fifteen; that callback's result is ignored. A handled return
+therefore does not guarantee focus changed. Forward-loop count reads occur
+after failed eligibility checks; the portable reconstruction retains that order.
+
+`frontend/screen_navigation.h` reconstructs these three functions through
+portable storage/callback interfaces, assuming valid candidate indices and
+current focus either -1 or valid. Counts rise to 42 partial, zero complete.
+The UI map fingerprints all three instruction bodies; those full-body anchors
+do not imply complete original object/ABI reconstruction.
+
+An E8/E9 and stored absolute-address scan across file-backed sections found no
+references to the previous/next entry points in this fingerprinted client.
+This does not prove dead code: computed references, inlining and runtime paths
+remain unresolved. Cached 00668670 only establishes activation, not navigation;
+constructor 00668120 starts focus at -1, which alone establishes no later
+default-focus policy. No Tab/arrow binding or default selection was introduced.
+These primitives remain outside the host so current tested menu behavior stays
+unchanged. Next investigate actual navigation call/binding paths or another
+engine dependency such as original sound_click ownership and playback.
+
+Temporary native audit with the original seventeen main-menu and four
+confirmation identifiers verified traversal in both directions, wraparound,
+empty/all-disabled collections, subordinate-ID exclusion, leave-veto stop,
+ignored enter result and callback arguments zero/fifteen. The same audit source
+also compiled with strict i386 Windows flags; temporary files were removed.
+No new unit tests or agent-side Proton launch.

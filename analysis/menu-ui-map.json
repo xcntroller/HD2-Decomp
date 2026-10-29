@@ -26,6 +26,7 @@
   "screen_focus_source": "recovered/frontend/screen_focus.h",
   "screen_input_source": "recovered/frontend/screen_input.h",
   "screen_key_source": "recovered/frontend/screen_key.h",
+  "screen_navigation_source": "recovered/frontend/screen_navigation.h",
   "screen_target_source": "recovered/frontend/screen_target.h",
   "button_visuals_runtime_verified": true,
   "button_visuals_desktop_observation": "2026-10-27: user confirmed it works well, just as remembered. Direct runtime log initialized nine pairs, recorded repeated focused/normal Exit transitions, Exit activation, 575 submitted frames and normal teardown. Bounded confirmation only; no original dispatcher or focus sound.",
@@ -122,6 +123,12 @@
     "routing": "Main Exit and confirmation now instantiate the same MenuFrameInput adapter: polled buttons, original picking, bounded pointer update/dispatch, focused screen callbacks, button events and deferred queue activation. Engine mode bypasses message-driven activation for both screens; other modes unchanged.",
     "safety": "Main and confirmation now reference one host-owned input/dispatcher session across push/pop. A held screen transition cancels capture/drag and absorbs input until all buttons are up while preserving shared sampling. Outside-window/poll failure/cancel resets the session; reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original singleton/refcount ABI and complete screen stack remain absent.",
     "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. That tested slice is committed as 19f30e5. Shared-session continuation subsequently desktop-confirmed: user tried all requested cases; log retains wheel -480 across screens, No, Escape, Yes, 861 frames and clean teardown."
+  },
+  "focus_traversal_reconstruction": {
+    "evidence": "00668580 scans backward from focus-1 then wraps from the final child; 006685f0 scans forward from focus+1 then wraps from zero. Both exclude control +60 values with bits 12..19 set and call 006686f0 for eligibility/focus transfer. 006686f0 checks candidate +08 eligibility, asks valid old focus +34 to leave with zero, treats a leave veto as handled, stores candidate at +6c, then calls candidate +30 with 15 and ignores its result.",
+    "reconstruction": "frontend/screen_navigation.h implements all three portable sequencing subsets. Forward loops reread control count after failed eligibility callbacks. Caller supplies -1/valid focus and valid candidate; storage, control eligibility and callbacks remain adapters. Three new partial entries; no complete functions.",
+    "binding_limit": "Section-mapped scan of the fingerprinted client found no E8/E9 references or stored absolute addresses for 00668580/006685f0. This is not a proof of dead code; computed references, inlining and runtime paths are unresolved. No Tab/arrow binding or default focused control is established. Primitives are not wired into the host and existing desktop behavior is unchanged.",
+    "validation": "Temporary native audit with original main-menu/confirmation ID ordering passed empty/all-disabled cases, forward/backward wrap, subordinate-ID exclusion, leave-veto stop, ignored enter result and zero/15 callback arguments. Strict native and i386 Windows compilation passed; temporary files removed. No new unit tests."
   },
   "keyboard_reconstruction": {
     "evidence": "Screen vtable 00815540 +20 points to 00668670. It validates focused index +6c, skips control key +20 when control +64 is set, offers full key word otherwise, and returns on nonzero low-byte result. Fallback compares low byte with 1c/39/9c, revalidates focus, passes control +60 to +38 and returns true regardless of activation result. Button key +20 is 0064da30 (false); activation +38 is 006552f0 (04001000, no 04012000 click).",
@@ -270,6 +277,9 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "00668580", "hex": "53568bf157bb00f00f008b7e6c4f781a8b46088b0cb8855960750c578bcee84d01000084c0753d4f79e68b4e0885c9750433c0eb088b460c2bc1c1f8028d78ff85ff7c1a8b56088b04ba855860750c578bcee81901000084c075094f79e65f5e32c05bc35f5eb0015bc3", "meaning": "Complete previous-focus instruction body: lower-index scan, subordinate-ID filter, candidate selection and wrap"},
+      {"address": "006685f0", "hex": "53568bf157bb00f00f008b7e6c8b4e084785c974288b460c2bc1c1f8023bf8731c8bc18b0cb885596075e2578bcee8cd00000084c074d65f5eb0015bc333ff8b4e0885c974258b460c2bc1c1f8023bf873198bd18b04ba855860750c578bcee89c00000084c075cf47ebd45f5e32c05bc3", "meaning": "Complete next-focus instruction body: forward scan, subordinate-ID filter, candidate selection and wrap"},
+      {"address": "006686f0", "hex": "568bf1578b7c240c8b46088b0cb88b11ff520884c074418b4e6c8b06518bceff500484c0741b8b566c8b46086a008b0c908b11ff523485c075075fb0015ec204008b4608897e6c6a0f8b0cb88b11ff52305fb0015ec204005f32c05ec20400", "meaning": "Complete index-selection instruction body: eligibility, leave-veto handled return, store focus, enter with fifteen and ignore enter result"},
       {"address": "00668670", "hex": "53568bf18b4e6c8b06518bceff50048b5c240c84c074218b566c8b46088b0c908a416484c075118b1153ff522084c074075eb0015bc20400", "meaning": "Screen key: validate focus, skip disabled control, offer full key word and return if consumed"},
       {"address": "006686a8", "hex": "80fb1c740a80fb39740580fb9c7528", "meaning": "Screen key fallback recognizes low bytes 1c, 39 and 9c"},
       {"address": "006686b7", "hex": "8b4e6c8b06518bceff500484c074198b566c8b46088b0c908b41608b1150ff52385eb0015bc20400", "meaning": "Screen key revalidates focus, passes control +60 to activation +38 and ignores its result"},

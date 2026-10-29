@@ -68,7 +68,9 @@ Engine-input mode now also routes main-menu Exit through the rebuilt dispatcher
 and original model picking; the user has confirmed that extension works. Shared input state across main-menu/confirmation transitions
 is also desktop-confirmed, including held-button cancellation. Enter/Space activation for the focused Exit/Yes/No
 control in engine-input mode is desktop-confirmed; keypad Enter remains
-untested on hardware. Screen effects and much of input remain
+untested on hardware. Original previous/next focus traversal now has portable
+reconstructions; live key bindings remain unidentified, so it is not connected
+to the host. Screen effects and much of input remain
 host scaffolding, not the complete
 original dispatcher. Pixel-perfect
 fidelity, other screens and profile/save data are not implemented.
@@ -83,11 +85,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **39 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **42 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 35 |
+| Base game client | 17,294 | 0 | 38 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -2,31 +2,29 @@
 
 ## Resume here
 
-Desktop-confirmed slice: focused-control keyboard activation via
-`frontend/screen_key.h` / original 00668670. Only `--use-engine-mouse` maps first
-Win32 Enter/Space keydown (including keypad Enter) to scan bytes 1c/39/9c, offers
-them to the current screen and routes direct button activation through existing
-tagged events/queue. Mouse focus must already select Exit or Yes/No. Repeated
-keydown is suppressed to avoid activation across a push/pop. Original keyboard
-transport, navigation, default focus and object ABI remain absent. Escape and
-other modes retain established behavior. User confirms Enter/Space works; keypad
-Enter cannot be hardware-tested on their TKL keyboard and remains unverified.
-Direct log: main-menu Space (39), confirmation Enter (1c) dismissing No, mouse
-Exit and Yes, 676 frames and clean driver/graphics teardown. No keypad (9c) or
-explicit repeat samples are logged. This tested slice may now be committed.
-One new partial function: 39 partial / zero complete / frozen 18,783 baseline.
-Validation passed: strict i386 build, existing native checks, 17 launcher and
-nine frontend checks, 288 UI instruction anchors / 26 engine slots, frontend
-evidence and frozen accounting. A temporary native audit linked the actual
-screen-key helper, button activation, tagged-event dispatcher and menu queue:
-full-word child delivery, consumed keys, focus mutation, disabled activation,
-low-byte scan matching and Exit/No/Yes flows passed. Audit files removed; no
-new unit tests or agent-side Proton launch. Enter/Space transport has bounded
-desktop confirmation; keypad/repeat coverage is not independently logged.
-Desktop command remains the engine-input command below. Hover Exit, press
-Enter/Space to open confirmation; hover No and activate to return; reopen,
-hover Yes and activate to quit. Also hold activation key through a transition,
-try keypad Enter, move off enabled controls, and check ordinary mouse clicks.
+Latest continuation reconstructs previous/next/index focus traversal in
+`frontend/screen_navigation.h`: 00668580, 006685f0, 006686f0. Original two-pass
+wrap order, subordinate-ID mask 000ff000, candidate eligibility, leave veto
+(reported handled), and enter argument 15/result ignored are preserved.
+No original live binding identified: section-mapped client scan found no E8/E9
+sites or absolute-address references for the two traversal entry points. This
+does not prove dead code; computed/inlined/runtime paths remain unresolved.
+Do not invent Tab/arrow mappings or automatic default focus. These standalone
+primitives are not connected to the host; desktop behavior is unchanged.
+Temporary native audit with actual main/confirmation ID order passed empty,
+all-disabled, wraparound, subordinate IDs, leave veto, ignored enter result and
+callback arguments. Strict native/i386 Windows compilation passed; temporary
+files removed. No new unit tests or agent-side Proton launch.
+Accounting: 42 partial / zero complete / frozen 18,783 baseline. UI map adds
+three complete-body instruction anchors (291 total), not completion claims.
+
+The focused Enter/Space activation slice is committed as d87fea4. User confirms
+it works; keypad Enter cannot be hardware-tested on their TKL keyboard. Direct
+log: main-menu Space (39), confirmation Enter (1c) dismissing No, mouse Exit/Yes,
+676 frames and clean teardown. No keypad (9c) or explicit repeat samples logged.
+Keyboard transport, navigation/default focus and original object ABI remain
+incomplete. Existing engine-input command is unchanged; no new desktop test is
+needed for this standalone traversal source.
 
 The preceding shared-input slice is committed as `a49df3a`. User tried every
 requested case and confirms intended behavior, including held-button Escape/
@@ -193,8 +191,8 @@ Next session:
    `analysis/work/menu-input-route/`, `analysis/work/engine-loop/` and
    `analysis/work/initialization/`. Read the new timing section in `RESEARCH.md`.
 2. Main-menu engine input and shared session are committed (19f30e5, a49df3a).
-   Focused keyboard activation is now user-confirmed; keypad Enter is not
-   hardware-tested. Commit that tested slice, then continue original keyboard routing,
+   Focused keyboard activation is committed (d87fea4); keypad Enter is not
+   hardware-tested. Continue locating live keyboard/navigation references,
    screen construction/default focus or engine input/resource lifecycle.
    The known source/units do not make the host's timestamps equivalent to it.
    Original captured-control objects, shared input object lifetime, engine
