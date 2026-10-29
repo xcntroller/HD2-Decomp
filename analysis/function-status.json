@@ -7,6 +7,54 @@
   "functions": [
     {
       "program": "client",
+      "entry": "00656ca0",
+      "status": "partial",
+      "coverage": "Validate focused control and forward screen press to control +48; return zero for invalid focus.",
+      "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+    },
+    {
+      "program": "client",
+      "entry": "00656cd0",
+      "status": "partial",
+      "coverage": "Validate focus, resolve target and forward release to control +44 only when target index equals focused index; otherwise return zero.",
+      "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+    },
+    {
+      "program": "client",
+      "entry": "00656d10",
+      "status": "partial",
+      "coverage": "Validate focused control and forward drag to control +50; return zero for invalid focus.",
+      "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+    },
+    {
+      "program": "client",
+      "entry": "00656d40",
+      "status": "partial",
+      "coverage": "Validate focused control and forward drag end to control +54; return zero for invalid focus.",
+      "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+    },
+    {
+      "program": "client",
+      "entry": "00656d70",
+      "status": "partial",
+      "coverage": "Validate focused control and forward drag begin to control +58; return zero for invalid focus.",
+      "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+    },
+    {
+      "program": "client",
+      "entry": "00656e00",
+      "status": "partial",
+      "coverage": "Validate focused control and forward double-click to control +60; return seven for invalid focus.",
+      "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+    },
+    {
+      "program": "client",
       "entry": "00405620",
       "status": "partial",
       "coverage": "Chunk-reader constructor: read-mode length and initial seek behavior.",
@@ -114,23 +162,23 @@
       "entry": "00669ff0",
       "status": "partial",
       "coverage": "Return whether either horizontal or vertical pointer delta is nonzero.",
-      "limitations": "Portable float arguments replace the input object and original ABI; the host derives deltas from sampled cursor positions rather than original clamped relative motion.",
+      "limitations": "Portable float arguments replace the input object and original ABI; live interaction derives deltas from sampled cursor positions; the shadow now applies reconstructed clamping to host-derived samples rather than polling original relative motion.",
       "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_motion.h", "recovered/host/engine_window.cpp"]
     },
     {
       "program": "client",
       "entry": "0066b990",
       "status": "partial",
-      "coverage": "The opt-in confirmation adapter forwards sampled pointer movement to screen focus routing.",
-      "limitations": "Only the normal movement branch is approximated; original drag gating, input polling, update order, wheel and click dispatch, screen stack and object ABI remain excluded. Target changes also trigger host focus routing to preserve existing behavior.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_motion.h", "recovered/host/engine_window.cpp"]
+      "coverage": "Portable sequencing reconstructs the front-end gate, pick-before-update call order, target-change gate, alternate-motion branch, mask-3 press/release, captured-control veto, double-before-single click, and drag callback order/early return. An observational adapter logs the routed screen slots. The opt-in engine-button adapter now routes confirmation press/release/drag/click through the reconstructed dispatcher and screen helpers; default interactive modes retain their existing paths.",
+      "limitations": "Device state polling is reconstructed in a bounded separate slice; captured-control objects, stack lookup, accepted-click side effect and ABI remain adapters. The shadow uses reconstructed clamping on host-derived motion, while live interaction retains its existing sampling. Wheel conversion/dispatch/repicking is delegated. The probe uses message snapshots and does not invoke live callbacks; its capture state is absent. Interactive target changes retain host focus routing to preserve established behavior.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_motion.h", "recovered/frontend/pointer_dispatch.h", "recovered/host/pointer_dispatch_probe.h", "recovered/host/engine_window.cpp"]
     },
     {
       "program": "client",
       "entry": "0066a050",
       "status": "partial",
       "coverage": "Selector zero matches any nonzero button state; nonzero selectors match any overlapping button bit.",
-      "limitations": "Portable integer arguments and boolean result replace the original ABI; the diagnostic supplies Win32 message snapshots rather than original engine polling.",
+      "limitations": "Portable integer arguments and boolean result replace the original ABI; the shadow supplies Win32 messages and the opt-in bridge supplies rebuilt engine polling snapshots.",
       "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h", "recovered/host/engine_window.cpp"]
     },
     {
@@ -138,7 +186,7 @@
       "entry": "0066a080",
       "status": "partial",
       "coverage": "Apply the button selector to the previous input state.",
-      "limitations": "Portable state and ABI replace the original object field; the diagnostic uses Win32 message snapshots rather than original engine polling.",
+      "limitations": "Portable state and ABI replace the original object field; the shadow uses Win32 messages and the opt-in bridge uses rebuilt engine polling snapshots.",
       "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h"]
     },
     {
@@ -146,7 +194,7 @@
       "entry": "0066a0a0",
       "status": "partial",
       "coverage": "Apply the button selector to the current input state.",
-      "limitations": "Portable state and ABI replace the original object field; the diagnostic uses Win32 message snapshots rather than original engine polling.",
+      "limitations": "Portable state and ABI replace the original object field; the shadow uses Win32 messages and the opt-in bridge uses rebuilt engine polling snapshots.",
       "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h"]
     },
     {
@@ -154,7 +202,7 @@
       "entry": "0066a0c0",
       "status": "partial",
       "coverage": "A press transition requires the selector to match current state but not previous state.",
-      "limitations": "Portable state and ABI replace the original input object; the diagnostic uses Win32 message snapshots rather than original engine polling.",
+      "limitations": "Portable state and ABI replace the original input object; the shadow uses Win32 messages and the opt-in bridge uses rebuilt engine polling snapshots.",
       "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h", "recovered/host/engine_window.cpp"]
     },
     {
@@ -162,7 +210,7 @@
       "entry": "0066a0f0",
       "status": "partial",
       "coverage": "A release transition requires the selector to match previous state but not current state.",
-      "limitations": "Portable state and ABI replace the original input object; the diagnostic uses Win32 message snapshots rather than original engine polling.",
+      "limitations": "Portable state and ABI replace the original input object; the shadow uses Win32 messages and the opt-in bridge uses rebuilt engine polling snapshots.",
       "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h", "recovered/host/engine_window.cpp"]
     },
     {
@@ -177,9 +225,9 @@
       "program": "client",
       "entry": "0066a220",
       "status": "partial",
-      "coverage": "Press captures the current identifier; release compares and clears the capture. A diagnostic-only tracker also implements counter advancement, signed less-than-400 double-click detection, previous-target updates and release reset.",
-      "limitations": "Portable identifiers and host-supplied messages replace original polling and object ABI. The probe uses Win32 timestamps as a tentative clock, resets across confirmation sessions, and does not dispatch double-clicks; original tick units and full input update gating remain unverified. The interactive host additionally cancels on pointer departure or focus loss.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_click.h", "recovered/frontend/pointer_click_timing.h", "recovered/host/engine_window.cpp"]
+      "coverage": "Press captures the current identifier; release compares and clears the capture. A tracker used by the shadow and opt-in engine-button confirmation mode implements button snapshot sequencing, counter advancement before early returns, suppression and unchanged-input gates, target adoption, idle bookkeeping, float-rounded cursor/wheel accumulation and delta-correcting XY clipping, click inhibition, signed less-than-400 double-click detection, previous-target updates and release reset.",
+      "limitations": "Portable identifiers replace original object ABI. The opt-in bridge polls original device buttons; positions/focus remain host supplied and timing is clamped host QPC. The probe uses Win32 timestamps as a tentative clock, resets across confirmation sessions, and does not dispatch double-clicks; the original delta is bounded, potentially scaled milliseconds, but the complete original frame loop and engine frame updates remain absent. Cursor storage is portable and seeded from host coordinates; effective motion is reconstructed but its samples remain approximate. Original x87 control-word behavior is not reproduced. The interactive host additionally cancels on pointer departure or focus loss.",
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_click.h", "recovered/frontend/pointer_click_timing.h", "recovered/frontend/pointer_update.h", "recovered/frontend/pointer_cursor.h", "recovered/host/engine_window.cpp"]
     },
     {
       "program": "client",

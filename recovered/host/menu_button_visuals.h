@@ -68,6 +68,15 @@ public:
         return 7;
     }
 
+    int pointer_event(frontend::ScreenPointerCallback callback,
+                      frontend::ControlEventDestination& destination) {
+        if (!events_bound_) throw std::logic_error("Button events are not bound");
+        const auto bit = std::uint32_t{1} << (static_cast<unsigned>(callback) / 4);
+        FocusAdapter adapter{*this, destination, (pointer_events_logged_ & bit) == 0};
+        pointer_events_logged_ |= bit;
+        return frontend::button_pointer_event(adapter, callback);
+    }
+
     bool click(frontend::ControlEventDestination& destination) {
         if (!events_bound_) throw std::logic_error("Button events are not bound");
         FocusAdapter adapter{*this, destination};
@@ -78,6 +87,7 @@ private:
     struct FocusAdapter {
         ButtonVisualPair& pair;
         frontend::ControlEventDestination& destination;
+        bool logging = true;
         bool focus_blocked() const { return false; }
         void set_active_visible(bool visible) const { pair.visibility_(pair.active_, visible); }
         void set_normal_visible(bool visible) const { pair.visibility_(pair.normal_, visible); }
@@ -87,7 +97,7 @@ private:
         void emit_event(std::uint32_t event, std::uint32_t argument, bool log = true) const {
             frontend::dispatch_tagged_control_events(pair.bindings_, &pair, event,
                                                      argument, destination);
-            if (log) {
+            if (log && logging) {
                 std::printf("Original button event: %08x argument=%08x\n",
                             static_cast<unsigned>(event), static_cast<unsigned>(argument));
             }
@@ -113,6 +123,7 @@ private:
     frontend::ControlEventBindings bindings_;
     bool events_bound_ = false;
     bool pointer_move_logged_ = false;
+    std::uint32_t pointer_events_logged_ = 0;
 };
 
 class MenuButtonVisuals {

@@ -31,6 +31,8 @@ public:
         return {matched, double_click};
     }
 
+    void cancel_press() { click_.clear(); } // Host departure-safety adapter only.
+
     void clear() {
         click_.clear();
         previous_ = 0;

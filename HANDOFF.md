@@ -1,49 +1,120 @@
-# Session handoff - 2026-10-27
+# Session handoff - 2026-10-29
 
 ## Resume here
 
-**End-of-day state (2026-10-27):** the user says the experimental menu works.
-The latest desktop run exercised Exit, No, Escape and Yes with original engine
-picking and the input probe enabled. The direct log recorded focused-control
-clicks, matching left-button capture/release for No and Yes, `click=1 double=0`,
-741 frames and clean graphics teardown. It did **not** record right-button or
-`double=1` samples; do not claim those cases were desktop-verified. Logs are
-ignored and overwritten at the next launch.
+The prior menu work is committed at `02dcc9a` on `master`; the 2026-10-27
+uncommitted-state note is superseded. This continuation adds uncommitted input
+sequencing/dispatch code and evidence. Preserve all worktree changes. Do not push.
 
-Work remains **uncommitted** on branch `master` at `72d1c3e`, including
-untracked [frontend reconstructions](recovered/frontend/) and
-[button visual adapter](recovered/host/menu_button_visuals.h). Preserve all
-existing worktree changes. Do not push without explicit user approval.
+- Current goal is a functional, decompiled/rebuilt menu. User authorized
+  prioritizing the engine boundary that helps that goal. New next desktop step:
+
+  ```sh
+  python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0
+  ```
+
+  User desktop-confirmed it works well (2026-10-29), including right-click
+  activation. This matches recovered mask-three screen transitions and
+  any-button click tracking; no left-only restriction was added. Direct log
+  records No three times, Escape, Yes, one poll failure and recovery, 807
+  frames and clean teardown. It lacks raw button masks, so right-button
+  identity is user-reported. Focus-loss/drag-off outcomes remain unverified. Omit it to restore established message-driven
+  confirmation. No agent-side Proton launch or new unit tests.
+- `recovered/input/mouse_poll.h` reconstructs LS3DF `1006F8A0` device
+  read/Acquire/retry/clear, capability-based wheel suppression and swapped
+  buttons, plus `1006FB30` first-five-button mask packing. Original data format
+  is 20 bytes (signed XYZ, eight button bytes). `host/engine_mouse.h` uses
+  original +DC setup with zero for foreground nonexclusive flags six, borrows
+  the original device for rebuilt polling and calls +E4 for engine-owned close.
+  Portable snapshot storage replaces engine globals. Unused nonexclusive Win32
+  metric queries and exclusive-mode accumulation are excluded; original device
+  creation/configuration/teardown remain in LS3DF.dll.
+- New functional flag feeds polled engine buttons into reconstructed
+  confirmation pointer update/dispatch/screen callbacks once per frame. Main
+  Exit remains message-driven. Position/motion and hover remain host supplied;
+  one sampled point supplies hover and click picking. Frame delta uses bounded
+  QPC intervals, without original wait/scaling. Button press/release/drag event
+  emissions are reconstructed and route through the existing tagged bindings.
+  Queue pumps after input. Live double-click/wheel dispatch stay disabled.
+  Departure cancellation is retained; focus loss/outside/poll failure reset
+  frame input; reentry first requires all buttons up. No activation from stale
+  focus fallback. Original captured screen-control objects/helper are absent.
+- Frozen inventory lacks the two engine entries and the tiny pointer-event
+  button callbacks, so they receive no ledger credit; totals remain 35 partial.
+- Traced the original timer through cached exports and section-mapped assembly:
+  `006DC950 -> 006DCAE0 -> 006C20F0 -> state +14 / 0066BEA0 -> 0066B990 ->
+  0066A220`. Source is QueryPerformanceCounter/Frequency converted to integer
+  microseconds, a wrapping unsigned low-word difference divided by 1000, then
+  bounded to 10..100 ms by the main-loop caller. An optional state time scale
+  and remainder carry precede dispatch; its provider semantics remain unresolved.
+  The 400 threshold is accumulated update milliseconds, potentially scaled.
+- Original queue processing precedes input. Picking precedes input update and
+  relative cursor integration; bound screen updates follow input. Do not swap
+  this ordering based on the host's current event loop.
+- `recovered/frontend/pointer_update.h` now includes idle bookkeeping and
+  `pointer_cursor.h` accumulation/clamping. XY sums round to float before
+  clipping; reported deltas correct overflow using the original subtraction
+  order and long-double intermediates. Wheel accumulates without clipping.
+  Original FPU control-word behavior and engine frame updates remain absent.
+  The observational shadow seeds cursor/ranges from the first available host
+  point per entry/reentry and uses host position differences; message timing
+  still approximates frame polling. Dispatch reads corrected XY motion.
+  Suppression and inhibition stay clear and are not desktop-tested.
+- Six screen helpers (`00656CA0/CD0/D10/D40/D70/E00`) in
+  `recovered/frontend/screen_input.h` reconstruct press/release/drag/end/begin/
+  double-click routing. Invalid focus returns zero for the first five, seven
+  for double-click. Release additionally requires hit index to match focus.
+  All are partial: portable accessors/callbacks replace original ABI/objects.
+  The shadow now maintains its own simulated Yes/No focus and routes through
+  these helpers; enter/leave succeed and child callbacks return seven.
+  Logs include focus, result, cursor and corrected motion. No live events or
+  activation run, and new logging has not been desktop-verified.
+- New `recovered/frontend/pointer_dispatch.h` reconstructs non-wheel
+  `0066B990` sequencing: gate, pick/update, target-change gate, alternate +2D
+  branch, mask-3 press/release, captured-control veto, double-before-single
+  click, drag begin/end/move and early return before wheel. Context must
+  resolve the current screen for every callback. Wheel handling and accepted
+  click helper remain delegated. `recovered/host/pointer_dispatch_probe.h`
+  runs portable screen routing against simulated controls; it never invokes
+  actual screen/control objects or activation. Capture state is absent; wheel is not sampled.
+  Consecutive identical focus/drag logs are suppressed. New logging has not
+  been desktop-tested. Interactive behavior is unchanged.
+- Original mouse poll graphics +E8 is `1006F8A0`: device +24 reads 20 bytes
+  at `100D1EC8`, acquisition and one retry follow failure, repeated failure
+  clears five DWORDs. Graphics +EC/+F0/+F4 return the stored signed XYZ via
+  `1006FA10/20/30`. Opt-in setup/shutdown and rebuilt device polling are now
+  added as described above.
+  Successful-path cursor warping, absolute accumulation and device/focus
+  setup remain unreconstructed.
+- Strict i386 host build, all existing native checks, 17 launcher checks,
+  9 frontend checks, 27 accounting checks, 231 UI instruction anchors, 17 engine vtable slots, frontend evidence and
+  frozen accounting pass. No new unit tests or agent-side Proton launches.
+  Function totals are **0 complete / 18,783; 35 partial**.
 
 Next session:
 
-1. Reuse cached Ghidra exports and binary-anchored evidence; keep costs low.
-   Do not write unit tests or launch Proton from the agent.
-2. Continue replacing host scaffolding with bounded original behavior, ideally
-   in larger coherent slices. Start with original input update sequencing and
-   timer provenance: `0066BEA0` passes an update delta through `0066B990` to
-   `0066A220`, but its source and units are not yet established. Relevant
-   cached exports are in `analysis/work/frontend-inspection/` and
-   `analysis/work/menu-input-route/`; validate pseudocode against assembly.
-3. Keep the current input probe observational. Its Win32 message timestamps
-   approximate the original clock and its state resets between confirmation
-   sessions. Right-button, multi-button and timed double-click probe cases
-   remain unverified on the desktop. Original selector zero means **any**
-   button, not button index zero. Do not dispatch double-click events or remove
-   press cancellation on pointer departure until original timing, input
-   ordering and safe outside-window release/capture are understood.
-4. Preserve established UX and mode gates; any desktop-only validation belongs
-   in the user's terminal. For the current interactive picker and probe:
+1. Continue from cached exports in `analysis/work/frontend-inspection/`,
+   `analysis/work/menu-input-route/`, `analysis/work/engine-loop/` and
+   `analysis/work/initialization/`. Read the new timing section in `RESEARCH.md`.
+2. Read the new desktop log first if the user ran the engine-mouse command.
+   Resolve any device/setup/input issue before expanding it. Then continue
+   original cursor-frame updates, relative motion lifecycle and wheel routing.
+   The known source/units do not make the host's timestamps equivalent to it.
+   Engine frame updates, live drag integration, wheel routing and original
+   screen/control ABI remain absent.
+3. Keep the probe observational. Selector zero means **any** button, not button
+   index zero. Do not remove pointer-departure cancellation until safe Win32
+   capture and outside-window releases are implemented.
+4. Preserve UX/mode gates. User desktop command:
 
    ```sh
    python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --probe-confirm-picking --frames 0
    ```
 
-The strict i386 host build, existing native checks, 17 existing launcher checks,
-151 instruction anchors, 10 engine vtable slots and function accounting passed.
-The frozen base-game inventory remains **0 complete / 18,783**, with **29
-partial** functions. The code is bounded reconstruction and host scaffolding,
-not the complete original menu or dispatcher.
+Latest desktop evidence is the 2026-10-29 engine-mouse run described above.
+The earlier 2026-10-27 run used the message probe and logged only left captures
+with `click=1 double=0`. No desktop double-click dispatch claim is made. Logs
+are ignored and overwritten at the next launch.
 
 ## Earlier milestones and detailed evidence
 

@@ -8,9 +8,9 @@
 #include "host/menu_text.h"
 #include "host/menu_button_visuals.h"
 #include "frontend/menu_event_queue.h"
-#include "frontend/pointer_buttons.h"
 #include "frontend/pointer_click.h"
-#include "frontend/pointer_click_timing.h"
+#include "host/pointer_dispatch_probe.h"
+#include "host/engine_mouse.h"
 #include "frontend/pointer_motion.h"
 #include "frontend/screen_focus.h"
 #include "frontend/screen_input.h"
@@ -157,6 +157,9 @@ public:
     int enter_control(int index, std::uint32_t) { return button(index).apply(true); }
     int move_control(int index, std::uint32_t) { return button(index).pointer_move(); }
     int click_control(int index, std::uint32_t) { return button(index).click(events_); }
+    int pointer_control(int index, hd2::frontend::ScreenPointerCallback callback, std::uint32_t) {
+        return button(index).pointer_event(callback, events_);
+    }
 
 private:
     static constexpr std::uint32_t screen_id_ = 0x10000000;
@@ -174,6 +177,87 @@ private:
     hd2::host::ButtonVisualPair& no_;
     hd2::frontend::ControlEventDestination& events_;
     int focused_ = -1;
+};
+
+// Functional opt-in bridge. Positions/focus and departure cancellation remain
+// host-owned; button snapshots come from the rebuilt LS3DF polling subset.
+class ConfirmationFrameInput {
+public:
+    explicit ConfirmationFrameInput(ConfirmationFocus& focus) : focus_(focus) {}
+    void clear() {
+        pointer_.clear();
+        state_ = {};
+        input_ = {};
+        previous_point_.reset();
+        armed_ = false;
+    }
+    void tick(const hd2::host::CursorPoint& point, std::uint32_t target,
+              std::uint32_t buttons, std::uint32_t delta) {
+        if (!armed_) {
+            if (buttons != 0) return; // Reentry must observe all buttons up first.
+            pointer_.cursor().initialize(point.x, point.y, 800, 600);
+            previous_point_ = point;
+            armed_ = true;
+        }
+        pending_ = {buttons, target, delta, point.x - previous_point_->x,
+                    point.y - previous_point_->y};
+        previous_point_ = point;
+        pointer_.cancel_departed_press(target); // Retain established host safety.
+        hd2::frontend::dispatch_menu_pointer(state_, *this, delta);
+    }
+    std::uint32_t pick_target() const { return pending_.target; }
+    bool update_input(std::uint32_t delta, std::uint32_t target) {
+        pending_.delta = delta;
+        pending_.target = target;
+        const auto result = pointer_.update(pending_);
+        const auto& buttons = pointer_.buttons();
+        input_ = {buttons.pressed(3), buttons.released(3), buttons.currently_selected(3),
+                  result.click.click, false, // Double-click remains observational only.
+                  hd2::frontend::pointer_moved(pointer_.cursor().horizontal(),
+                                             pointer_.cursor().vertical()), false};
+        return result.processed;
+    }
+    const hd2::frontend::PointerDispatchInput& input() const { return input_; }
+    std::optional<std::uint32_t> captured_control_target() const { return std::nullopt; }
+    int captured_control_event(std::uint32_t) {
+        throw std::logic_error("No captured confirmation control object");
+    }
+    void clear_captured_control() {
+        throw std::logic_error("No captured confirmation control object");
+    }
+    int screen_event(hd2::frontend::ScreenPointerCallback callback, std::uint32_t target) {
+        using Callback = hd2::frontend::ScreenPointerCallback;
+        switch (callback) {
+        case Callback::focus: return hd2::frontend::screen_pointer_focus(focus_, target);
+        case Callback::press: return hd2::frontend::screen_press(focus_, target);
+        case Callback::release: return hd2::frontend::screen_release(focus_, target);
+        case Callback::drag: return hd2::frontend::screen_drag(focus_, target);
+        case Callback::drag_end: return hd2::frontend::screen_drag_end(focus_, target);
+        case Callback::drag_begin: return hd2::frontend::screen_drag_begin(focus_, target);
+        case Callback::double_click: return 7;
+        case Callback::click:
+            if (target == 0 || focus_.control_for_target(target) != focus_.focused_control()) {
+                return 7;
+            }
+            std::printf("Engine mouse confirmation click: target=%08x focus=%d\n",
+                        static_cast<unsigned>(target), focus_.focused_control());
+            return hd2::frontend::screen_click(focus_, target);
+        }
+        throw std::logic_error("Unsupported confirmation pointer callback");
+    }
+    void accepted_click() {} // Original +3c object/helper is still absent.
+    void wheel_and_refresh(std::uint32_t) {
+        throw std::logic_error("Live wheel routing is not reconstructed");
+    }
+
+private:
+    ConfirmationFocus& focus_;
+    hd2::frontend::PointerUpdate pointer_;
+    hd2::frontend::PointerDispatchState state_;
+    hd2::frontend::PointerDispatchInput input_;
+    hd2::frontend::PointerUpdateSample pending_{};
+    std::optional<hd2::host::CursorPoint> previous_point_;
+    bool armed_ = false;
 };
 
 void windows_error(const char* operation) {
@@ -234,7 +318,7 @@ int finish(Graphics* graphics, int result) {
 
 int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bool menu_model,
                bool menu_ui, bool confirmation_preview, bool confirmation_enabled,
-               bool confirmation_pick_probe, bool confirmation_pick_active) {
+               bool confirmation_pick_probe, bool confirmation_pick_active, bool use_engine_mouse) {
     const auto settings = hd2::host::windowed_settings(
         static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr))));
     const auto* methods = graphics->methods;
@@ -290,8 +374,8 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         hd2::host::ExitButton exit_button;
         hd2::frontend::PointerClick confirmation_exit_click;
         hd2::frontend::PointerClick confirmation_click;
-        hd2::frontend::PointerClickTiming confirmation_probe_click;
-        hd2::frontend::PointerButtons confirmation_probe_buttons;
+        hd2::host::PointerDispatchProbe confirmation_probe_input;
+        std::optional<hd2::host::CursorPoint> confirmation_probe_point;
         std::optional<DWORD> confirmation_probe_time;
         std::optional<hd2::host::ButtonVisualPair> confirm_yes;
         std::optional<hd2::host::ButtonVisualPair> confirm_no;
@@ -299,6 +383,9 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         int previous_confirm_hover = 0;
         std::optional<hd2::host::CursorPoint> previous_confirmation_point;
         std::optional<ConfirmationFocus> confirmation_focus;
+        std::optional<ConfirmationFrameInput> frame_input;
+        std::unique_ptr<hd2::host::EngineMouse> engine_mouse;
+        std::optional<std::uint32_t> previous_mouse_status;
         std::optional<std::array<std::uint32_t, 2>> previous_pick_probe;
         std::optional<HostMenuEventActions> menu_actions;
         std::optional<hd2::frontend::MenuEventQueue> menu_events;
@@ -334,6 +421,11 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 menu_actions.emplace(*menu, module, confirming);
                 menu_events.emplace(*menu_actions);
                 confirmation_focus.emplace(*confirm_yes, *confirm_no, *menu_events);
+                if (use_engine_mouse) {
+                    frame_input.emplace(*confirmation_focus);
+                    engine_mouse = std::make_unique<hd2::host::EngineMouse>(
+                        reinterpret_cast<hd2::host::EngineFrame*>(graphics), module);
+                }
             }
         }
         if (confirmation_preview) {
@@ -374,26 +466,39 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     if (!confirming ||
                         (message.message == WM_ACTIVATEAPP && message.wParam == 0) ||
                         message.message == WM_CANCELMODE) {
-                        confirmation_probe_buttons.clear();
-                        confirmation_probe_click.clear();
+                        confirmation_probe_input.clear();
+                        confirmation_probe_point.reset();
                         confirmation_probe_time.reset();
                     } else if (mouse_button_state_message(message.message)) {
-                        if (confirmation_probe_time) {
-                            confirmation_probe_click.advance(message.time - *confirmation_probe_time);
-                        }
+                        const auto delta = confirmation_probe_time
+                            ? message.time - *confirmation_probe_time : DWORD{0};
                         confirmation_probe_time = message.time;
-                        confirmation_probe_buttons.update(mouse_buttons_from_message(message.wParam));
+                        const auto point = cursor->position(window, &message.pt);
+                        const auto target = pick_confirmation(point);
+                        if (point && !confirmation_probe_point) {
+                            confirmation_probe_input.initialize_cursor(
+                                point->x, point->y, static_cast<float>(methods->width(graphics)),
+                                static_cast<float>(methods->height(graphics)));
+                        }
+                        // Observational absolute-position differences approximate relative
+                        // input. Original engine polling and clamping are still absent.
+                        const float dx = point && confirmation_probe_point
+                            ? point->x - confirmation_probe_point->x : 0.0f;
+                        const float dy = point && confirmation_probe_point
+                            ? point->y - confirmation_probe_point->y : 0.0f;
+                        confirmation_probe_point = point;
+                        const auto update = confirmation_probe_input.observe({
+                            mouse_buttons_from_message(message.wParam), target, delta, dx, dy});
+                        const auto& confirmation_probe_buttons = confirmation_probe_input.buttons();
                         if (confirmation_probe_buttons.previous() != confirmation_probe_buttons.current()) {
-                            const auto target = pick_confirmation(cursor->position(window, &message.pt));
                             const bool pressed = confirmation_probe_buttons.pressed(0);
                             const bool released = confirmation_probe_buttons.released(0);
-                            if (pressed) confirmation_probe_click.press(target);
-                            const auto captured = confirmation_probe_click.pressed();
-                            hd2::frontend::PointerClickResult result{false, false};
-                            if (released) result = confirmation_probe_click.release(target);
+                            const auto captured = update.captured;
+                            const auto result = update.click;
                             std::printf(
                                 "Confirmation input probe: buttons=%02x->%02x any=%s "
-                                "mask3=%s target=%08x captured=%08x click=%u double=%u\n",
+                                "mask3=%s target=%08x captured=%08x click=%u double=%u "
+                                "delta_ms=%lu processed=%u\n",
                                 static_cast<unsigned>(confirmation_probe_buttons.previous()),
                                 static_cast<unsigned>(confirmation_probe_buttons.current()),
                                 pressed ? "press" : released ? "release" : "unchanged",
@@ -401,7 +506,9 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                                     confirmation_probe_buttons.released(3) ? "release" : "unchanged",
                                 static_cast<unsigned>(target), static_cast<unsigned>(captured),
                                 static_cast<unsigned>(result.click),
-                                static_cast<unsigned>(result.double_click));
+                                static_cast<unsigned>(result.double_click),
+                                static_cast<unsigned long>(delta),
+                                static_cast<unsigned>(update.processed));
                         }
                     }
                 }
@@ -416,7 +523,8 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     running = false;
                     break;
                 }
-                if (text) {
+                if (text && !(use_engine_mouse && confirming &&
+                              mouse_button_state_message(message.message))) {
                     const bool inside = text->over_exit(cursor->position(window, &message.pt));
                     if (confirming && message.message == WM_LBUTTONDOWN) {
                         confirmation_click.press(confirmation_hit(cursor->position(window, &message.pt)));
@@ -475,9 +583,21 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             if (!running) {
                 break;
             }
+            std::optional<hd2::host::EngineMouse::Snapshot> mouse_snapshot;
+            if (engine_mouse) {
+                mouse_snapshot = engine_mouse->poll();
+                if (!previous_mouse_status || *previous_mouse_status != mouse_snapshot->status) {
+                    std::printf("Rebuilt engine mouse poll: status=%08x\n",
+                                static_cast<unsigned>(mouse_snapshot->status));
+                    previous_mouse_status = mouse_snapshot->status;
+                }
+            }
+            std::optional<hd2::host::CursorPoint> frame_point;
+            std::uint32_t frame_target = 0;
             bool exit_hover = false;
             if (text) {
                 const auto point = cursor->position(window);
+                frame_point = point;
                 exit_hover = !confirming && text->over_exit(point);
                 if (!exit_hover) {
                     exit_button.cancel();
@@ -490,6 +610,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 const int rectangle_hit = confirming ? text->confirmation_hit(point) : 0;
                 const int hover = confirmation_pick_active
                     ? ConfirmationFocus::hit_for_target(picked) : rectangle_hit;
+                frame_target = ConfirmationFocus::target_for_hit(hover);
                 const bool moved = confirmation_pick_active && confirming && point &&
                     previous_confirmation_point &&
                     hd2::frontend::pointer_moved(
@@ -501,7 +622,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     confirmation_click.pressed() != static_cast<std::uint32_t>(hover)) {
                     confirmation_click.clear();
                 }
-                if ((hover != previous_confirm_hover || moved) && confirmation_enabled) {
+                if ((hover != previous_confirm_hover || (moved && !use_engine_mouse)) && confirmation_enabled) {
                     if (hd2::frontend::screen_pointer_focus(
                             *confirmation_focus, ConfirmationFocus::target_for_hit(hover)) == 0) {
                         throw std::logic_error("Confirmation focus transition failed");
@@ -521,6 +642,16 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 } else {
                     previous_pick_probe.reset();
                 }
+            }
+            if (frame_input) {
+                if (confirming && frame_point && mouse_snapshot->status == 0) {
+                    frame_input->tick(*frame_point, frame_target,
+                                      mouse_snapshot->buttons, mouse_snapshot->delta);
+                } else {
+                    frame_input->clear();
+                }
+                menu_events->pump();
+                if (!running) break;
             }
             if (menu) {
                 if (confirming) menu->set_confirmation_visible(module, false);
@@ -622,7 +753,7 @@ int wmain(int argc, wchar_t** argv) {
     if (argc < 2) {
         std::fputs("Usage: engine_window.exe ABSOLUTE_ENGINE_DLL [--frames COUNT] "
                    "[--menu-model | --menu-ui | --confirm-model | --menu-confirm] "
-                   "[--probe-confirm-picking] [--use-confirm-picking]\n"
+                   "[--probe-confirm-picking] [--use-confirm-picking] [--use-engine-mouse]\n"
                    "Use the fingerprint-checking Python launcher. Default: 180 frames; "
                    "0 waits for Escape/Close.\n", stderr);
         return 2;
@@ -634,6 +765,7 @@ int wmain(int argc, wchar_t** argv) {
     bool confirmation_enabled = false;
     bool confirmation_pick_probe = false;
     bool confirmation_pick_active = false;
+    bool use_engine_mouse = false;
     bool frames_seen = false;
     try {
         for (int i = 2; i < argc; ++i) {
@@ -655,6 +787,8 @@ int wmain(int argc, wchar_t** argv) {
             } else if (std::wstring_view(argv[i]) == L"--use-confirm-picking" &&
                        !confirmation_pick_active) {
                 confirmation_pick_active = true;
+            } else if (std::wstring_view(argv[i]) == L"--use-engine-mouse" && !use_engine_mouse) {
+                use_engine_mouse = true;
             } else if (std::wstring_view(argv[i]) == L"--frames" &&
                        !frames_seen && i + 1 < argc) {
                 frame_limit = hd2::host::parse_frame_limit(argv[++i]);
@@ -662,6 +796,9 @@ int wmain(int argc, wchar_t** argv) {
             } else {
                 throw std::invalid_argument("Unknown, duplicate, or incomplete host option");
             }
+        }
+        if (use_engine_mouse && (!confirmation_enabled || !confirmation_pick_active)) {
+            throw std::invalid_argument("Engine mouse requires --menu-confirm --use-confirm-picking");
         }
         if ((confirmation_pick_probe || confirmation_pick_active) && !confirmation_enabled) {
             throw std::invalid_argument("Confirmation picking requires --menu-confirm");
@@ -692,7 +829,7 @@ int wmain(int argc, wchar_t** argv) {
         } else {
             result = run_window(graphics, module, frame_limit, menu_model, menu_ui,
                                 confirmation_preview, confirmation_enabled, confirmation_pick_probe,
-                                confirmation_pick_active);
+                                confirmation_pick_active, use_engine_mouse);
         }
     }
     if (!FreeLibrary(module)) {

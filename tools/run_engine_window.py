@@ -26,7 +26,10 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
                    menu_model: bool = False, menu_ui: bool = False,
                    confirm_model: bool = False, menu_confirm: bool = False,
                    probe_confirm_picking: bool = False,
-                   use_confirm_picking: bool = False) -> Launch:
+                   use_confirm_picking: bool = False,
+                   use_engine_mouse: bool = False) -> Launch:
+    if use_engine_mouse and not (menu_confirm and use_confirm_picking):
+        raise ValueError("Engine mouse requires --menu-confirm --use-confirm-picking")
     if (probe_confirm_picking or use_confirm_picking) and not menu_confirm:
         raise ValueError("Confirmation picking requires --menu-confirm")
     game, executable, proton, steam, work = (
@@ -82,6 +85,8 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
             command.append("--probe-confirm-picking")
         if use_confirm_picking:
             command.append("--use-confirm-picking")
+        if use_engine_mouse:
+            command.append("--use-engine-mouse")
     elif confirm_model:
         command.append("--confirm-model")
     elif menu_ui:
@@ -155,6 +160,9 @@ def main() -> None:
     parser.add_argument("--use-confirm-picking", action="store_true",
                         help="Use original engine picking for confirmation hover and clicks; "
                              "requires --menu-confirm")
+    parser.add_argument("--use-engine-mouse", action="store_true",
+                        help="Use rebuilt LS3DF mouse polling and frame-based confirmation input; "
+                             "requires --menu-confirm --use-confirm-picking")
     args = parser.parse_args()
     try:
         launch = prepare_launch(args.game_dir, args.executable, args.proton, args.steam_root,
@@ -162,7 +170,8 @@ def main() -> None:
                                 menu_model=args.menu_model, menu_ui=args.menu_ui,
                                 confirm_model=args.confirm_model, menu_confirm=args.menu_confirm,
                                 probe_confirm_picking=args.probe_confirm_picking,
-                                use_confirm_picking=args.use_confirm_picking)
+                                use_confirm_picking=args.use_confirm_picking,
+                                use_engine_mouse=args.use_engine_mouse)
         print("Experimental original-art Exit confirmation; other controls remain disabled."
               if args.menu_confirm else
               "Static original-font menu slice: only Exit closes this host; "

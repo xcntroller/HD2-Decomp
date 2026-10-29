@@ -866,9 +866,9 @@ strictly below 400. Each release resets that counter and capture; a double
 click clears the previous clicked target. `0066B990` invokes screen `+60`
 before ordinary click `+5C`; `00656E00` forwards `+60` to the focused control,
 whose button implementation `0064DBE0` emits `04013000`. The ordinary button
-click `0064DBC0` emits `04012000` and invokes activation. Counter units and
-complete update order and timer units are not established, so double-click
-events are not dispatched by the interactive host.
+click `0064DBC0` emits `04012000` and invokes activation. The original counter receives a bounded, potentially scaled millisecond frame
+delta (see below). Complete polling and screen-update integration remain absent,
+so double-click events are not dispatched by the interactive host.
 
 `0066A050` treats selector zero as any nonzero button state; a nonzero selector
 tests for any overlapping bit. `0066A080` and `0066A0A0` apply this to previous
@@ -891,6 +891,197 @@ its results. The probe does not replace original frame polling or interactive
 host cancellation. The user reported it works; the latest log records matched
 left-button captures and `click=1 double=0` for No and Yes. It does not record
 right-button transitions or `double=1`, so those cases are not desktop-verified.
+
+Original frame timing and bounded input sequencing (2026-10-29): cached exports
+and section-mapped assembly establish the chain `006DC950 -> 006DCAE0 ->
+006C20F0 -> state +14 / 0066BEA0 -> 0066B990 -> 0066A220`.
+`006DC950` obtains the performance counter/frequency, computes integer
+microseconds, takes the wrapping unsigned low-word difference and divides by
+1000. The main loop requests a 10 ms minimum and 100 ms maximum. Both limiting
+branches resample the baseline; the minimum branch waits on a multimedia timer
+and returns the requested minimum rather than the measured post-wait interval.
+Before dispatch, states with status 1/6/5 can apply an externally supplied time
+scale with integer remainder carry. Thus the 400 threshold measures accumulated
+update milliseconds, potentially scaled, rather than raw message-time distance.
+The scale provider's full semantics are unresolved. The front-end vtable +14 is
+already verified in `analysis/frontend-map.json`; the new call/argument and
+arithmetic anchors are in `analysis/menu-ui-map.json`.
+
+`0066BEA0` processes queued events before input and updates bound screen objects
+after input. `0066B990` first picks with the existing cursor state, then invokes
+`0066A220`; it does not move the cursor and then pick. The input update copies
+previous buttons, polls current buttons, advances both counters, clears output
+flags and reads relative XYZ. A positive signed +44 countdown subtracts the
+frame delta and returns immediately, even if subtraction crosses zero. Otherwise
+unchanged XYZ/buttons/target returns early. Processed input resets the idle
+counter, adopts the picked target, integrates/clamps relative motion and, unless
+byte +48 inhibits it, performs any-button capture/release bookkeeping. This
+ordering also means suppressed button transitions are consumed, not postponed.
+
+The [bounded input update](recovered/frontend/pointer_update.h) reconstructs
+snapshot/click-counter ordering, signed suppression, unchanged-sample gating,
+target adoption and click inhibition around the existing predicates. It now
+includes cursor integration/clamping and idle bookkeeping; engine frame updates
+remain omitted. Only the
+observational probe uses it, with host-picked IDs, approximate host XY deltas and
+Win32 message-time differences; it still samples messages rather than original
+frames. Logs now include `delta_ms` and `processed`. The host leaves suppression
+and inhibition clear. Their code paths are assembly-backed, not desktop-tested.
+No interactive double-click routing or cancellation change is implied.
+
+The next [pointer dispatcher subset](recovered/frontend/pointer_dispatch.h)
+reconstructs the non-wheel sequencing of `0066B990` through portable callbacks.
+It preserves the +24 gate before pick/update, initial previous target `FFFFFFFF`,
+processed-or-target-change gate, and alternate +2D motion branch. Ordinary
+mask-3 press calls screen +48; when a captured screen control has another ID,
+its +64 callback must return exactly one before capture is cleared and dispatch
+continues. This capture is distinct from the input object's press-target capture.
+On mask-3 release, an active drag is cleared before screen +54, focus +40 and
+release +44. The +4A double-click flag triggers +60 before +49 ordinary click
+triggers +5C; ordinary click is gated by captured-control identity. Return one
+from +5C invokes `0066B110`, which checks front-end +3C, calls its engine +78
+with zero, and on false calls +30 with one. That helper remains delegated;
+its purpose is not assumed to be sound playback.
+
+After those callbacks, XY motion invokes +40 when not dragging. Held mask 3
+then invokes +58 before setting the drag flag, invokes +50 and returns before
+wheel processing. The wheel path's float conversion, +4C and fresh pick/focus
+remain an explicitly delegated hook. Each screen callback requires a fresh
+stack lookup; caching a screen across callbacks could use a screen that has
+already been replaced. Input flags are likewise queried after prior callbacks.
+The alternate +2D path only clears drag and calls +40 on XY motion; it skips
+press/release, clicks and wheel. This recovers call order and gates, not the
+original objects, stack storage or callbacks themselves.
+
+The [host dispatch probe](recovered/host/pointer_dispatch_probe.h) exercises
+that function only through logging. Host cursor-position differences now supply
+approximate XY motion to the shadow, so logs can show press +48, drag +58/+50,
+end +54, focus +40, release +44 and click +5C in sequence. Consecutive identical
+focus/drag logs are suppressed; dispatch still occurs. No actual UI callback,
+activation or accepted-click side effect runs. Portable screen callbacks now route through simulated focus and Yes/No controls;
+invalid-focus and release-target results follow the original screen helpers.
+Simulated child callbacks return seven rather than activating buttons. Captured screen
+control state stays absent and no wheel samples are supplied. New logging and
+these branches have not been desktop-verified; interactive input is unchanged.
+
+The [cursor accumulator](recovered/frontend/pointer_cursor.h) now reconstructs
+`0066A220`'s XY and wheel arithmetic. It first rounds each position sum to a
+float, then clips XY inclusively to `[0,width]`/`[0,height]`. For a negative
+position it subtracts that stored position from the sampled delta before setting
+position to zero. For upper overflow it subtracts `(stored_position - limit)`
+from the delta without an intervening float store of the overflow. The code uses
+`long double` for those x87 intermediates (the i386 toolchain reports a 64-bit
+mantissa), with explicit float stores at original boundaries. It does not model
+the original FPU control word or claim bit equivalence for all inputs. Replacing
+the delta calculation with `clamped_position - previous_position` would change
+the rounding path. At an edge, outward motion can become zero effective motion;
+the dispatcher now reads this corrected delta. Wheel accumulates without XY
+clipping. Idle +40 advances before early returns and clears on processed input,
+including a picked-target change. Suppression leaves sampled deltas intact and
+does not integrate the cursor. The shadow seeds XY/ranges from the first
+available host point on entry/reentry; this remains approximate host sampling.
+
+Six additional [screen input helpers](recovered/frontend/screen_input.h)
+reconstruct `00656CA0/CD0/D10/D40/D70/E00`. Press (+48), drag (+50), drag end
+(+54) and drag begin (+58) validate focus and forward to the corresponding
+control slot, returning zero for invalid focus. Release (+44) additionally
+resolves the target and requires its control index to equal the focused index.
+Double-click (+60) forwards to focus or returns seven for invalid focus. The
+confirmation screen vtable sequence at `00815584` verifies these mappings,
+including the intervening scroll slot +4C (not implemented here).
+
+The shadow now routes through these helpers and the existing focus/click
+helpers, maintaining a separate simulated focus. Only Yes/No are eligible;
+enter/leave always succeed and child pointer/click callbacks return seven.
+Logs include focus, callback result, accumulated cursor and corrected XY motion.
+No actual control events, activation, artwork changes or live double-click
+routing are introduced. The six screen functions are counted as partial because
+their object ABI, virtual storage and child callbacks remain adapters. Totals
+are now **35 partial / 0 complete**, with the denominator unchanged at 18,783.
+
+Assembly also resolves the engine polling contract: graphics +E8 maps to
+`1006F8A0`, while +EC/+F0/+F4 map to `1006FA10/20/30`. The poll requires the
+input device at `100D2148`, reads a 20-byte record into `100D1EC8` via device
++24, attempts acquisition via +1C and one retry on failure, and clears all five
+DWORDs with error `80000005` after a second failed read. A missing device
+returns `80000009`. The three getters return stored signed XYZ without consuming
+or repolling them. Thus the frontend reads one previously polled frame snapshot.
+Successful-path cursor warping, accumulated absolute coordinates, swapped-button
+handling and full device/focus setup still need reconstruction. No host calls
+to these input slots were introduced.
+
+Functional engine-button confirmation bridge (2026-10-29): the next step toward
+a rebuilt menu is the engine boundary its input actually needs, rather than
+reconstructing unrelated rendering/gameplay systems first. The new
+[mouse poll slice](recovered/input/mouse_poll.h) reconstructs `1006F8A0`'s
+device-read branch and `1006FB30`'s button-mask packing. Its exact 20-byte state
+has signed XYZ followed by eight button bytes; only the first five high bits
+form the mask. Missing device returns `80000009` without clearing state. Failed
+read ignores the result of one Acquire attempt, retries once, then clears all
+20 bytes and returns `80000005` on another failure. Successful reads clear Z
+when capabilities report fewer than three axes and swap button bytes zero/one
+when the engine's swap setting is enabled.
+
+The [engine mouse adapter](recovered/host/engine_mouse.h) checks original
+setup/enabled/shutdown methods at graphics +DC/+E0/+E4, creates a mouse with
+argument zero (foreground nonexclusive cooperative flags six) and borrows the
+device pointer at module+`D2148`. Its +24 reads the original state format and
++1C acquires it. Teardown calls the engine's +E4, which owns Unacquire/Release
+and clears the pointer/state/enabled flag. Constructor failures clean up after
+a successful setup. The rebuilt poll stores state separately; it does not patch
+the engine or publish replacement methods into its vtables. Nonexclusive-mode
+unused Win32 cursor/window metric queries are omitted. Exclusive-mode wrapping
+absolute accumulation is excluded; no cursor warp, clip or exclusive acquisition
+was added. Original DirectInput creation/data format/capability setup and device
+shutdown still run in LS3DF.dll, so this is not a fully rebuilt input subsystem.
+
+`--menu-confirm --use-confirm-picking --use-engine-mouse` now bypasses
+message-based confirmation button handling and runs the reconstructed pointer
+update, dispatcher and screen helpers once per frame using those device buttons.
+The main menu's Exit remains message-driven. Host cursor coordinates provide
+hover/picking and motion so they stay aligned with the displayed cursor; the
+read raw engine XYZ is not yet used for live cursor movement. Hover and click
+share a single frame sample. Host focus routing precedes dispatch and the queue
+pumps after dispatch; these are explicit integration differences from the full
+original frame loop. QPC supplies wrapping microsecond differences converted to
+clamped 10..100 ms; original minimum wait and time scaling remain absent.
+
+Button +44/+48/+50/+54/+58 emit `04007000`/`04006000`/`04008000`/`04009000`/
+`0400A000`, respectively, then return seven. The
+[button pointer wrapper](recovered/frontend/button_input.h) now reproduces that
+sequence and the separately gated +60 `04013000` event. Live double-click and
+wheel dispatch remain disabled. Tagged dispatch uses original event records;
+none of these new press/release/drag events match the bounded activation list.
+Click still emits `04012000` followed by activation `04001000`. Repeated pointer
+event log lines are limited per type per button; event routing still occurs.
+
+Leaving a button cancels its captured press. Outside-window/focus loss, polling
+failure and closed confirmation clear frame input; reentry must first observe
+all buttons up. These host safeguards remain deliberate deviations. The engine
+bridge emits `Rebuilt engine mouse polling enabled`, poll status transitions and
+`Engine mouse confirmation click` logs. The accepted-click helper and original
+captured screen-control objects remain absent. No new desktop claim is made.
+
+Desktop terminal command (the agent must not launch Proton):
+
+```sh
+python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0
+```
+
+Check Exit, No, Escape and Yes, plus focus loss and press-drag-off-release. The
+old command omitting `--use-engine-mouse` restores message-driven confirmation.
+Desktop follow-up (2026-10-29): user reports it works well and right-click also
+activates buttons. This matches original mask-three screen transitions and
+selector-zero (any-button) click capture/release; no left-only restriction was
+added. Additional original filtering elsewhere remains unverified. The direct
+log confirms rebuilt polling, one `80000005` failure followed by recovery,
+No three times, Escape, Yes, pointer events, 807 frames and clean teardown. Raw
+button masks are not logged in this mode, so right-click identity is based on
+the user report. Focus-loss and drag-off results are not established by this log.
+The new flag requires both confirmation and engine picking in launcher and host;
+all existing modes retain their prior paths. Function accounting stays at
+35 partial / 0 complete: engine `1006F8A0`/`1006FB30` and these tiny button
+callbacks are absent from the frozen inventory and receive no ledger credit.
 
 The strict i386 build, existing native geometry checks and expanded UI evidence
 map pass (40 instruction/data anchors, 5 engine and 4 client vtable slots).

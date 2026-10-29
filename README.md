@@ -53,7 +53,15 @@ comparison probe, the separate engine-picking interaction with pointer-motion
 events, original button click-event ordering and focused-screen click routing
 have also been desktop-checked. An opt-in shadow probe now observes original
 button-mask and double-click bookkeeping without changing interaction; its
-host-supplied timing remains approximate. Screen effects and much of input remain
+host-supplied timing remains approximate. The original clock is now traced to a
+bounded millisecond frame delta, and the shadow uses reconstructed input gates
+and non-wheel screen callback ordering. Engine mouse polling slots are now
+identified; cursor accumulation/clamping and six screen input callbacks now
+have portable reconstructions in the shadow. The host still supplies approximate
+snapshots. A new `--use-engine-mouse` option rebuilds the engine mouse polling
+branch and uses device button snapshots with reconstructed confirmation
+dispatch; the user has confirmed it works, including right-click activation
+consistent with the recovered masks. Screen effects and much of input remain
 host scaffolding, not the complete
 original dispatcher. Pixel-perfect
 fidelity, other screens and profile/save data are not implemented.
@@ -68,11 +76,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **29 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **35 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 25 |
+| Base game client | 17,294 | 0 | 31 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

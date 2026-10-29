@@ -32,8 +32,8 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-Currently twenty-nine unique entries are partial and none complete: four chunk-reader
-entries, the client object loader, two button callbacks, three screen focus/click methods,
+Currently thirty-five unique entries are partial and none complete: four chunk-reader
+entries, the client object loader, two button callbacks, nine screen focus/click/press/release/drag methods,
 three control-event dispatch functions, two menu event and queue functions,
 ten cursor/picking, button-transition, pointer-motion and mouse-state subsets, the engine frame-kind query, the engine
 model-file loader's header/first-table framing subset, and two first-table
