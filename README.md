@@ -98,6 +98,12 @@ slots and button activation bindings are centralized; Exit/Yes/No remain the
 only enabled actions. Build, focused audits and desktop testing pass.
 The reusable-adapter item is checked in [plan.md](plan.md).
 
+The desktop-confirmed slice integrates shared control-state events, observer
+registration/removal and local event delivery. Hidden OK now runs its original
+hide definition through the shared handler. Derived text/button message routing
+also has audited source; its font/layout backend still needs integration.
+Build, native/sanitizer audits, existing checks and user desktop testing pass.
+
 ## Progress
 
 Completed steps mean we've reached a useful milestone, not that we understand
@@ -108,11 +114,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **47 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **54 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 43 |
+| Base game client | 17,294 | 0 | 50 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

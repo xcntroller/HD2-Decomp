@@ -30,7 +30,7 @@ Keep an explicit list of delegated calls so the eventual replacement is tractabl
 | Escape opens confirmation; Escape cancels it | Desktop-tested | Application interceptors and other screen-specific back rules |
 | Previous/next focus traversal | Source reconstructed | Find original callers/key bindings and initial-focus policy before wiring |
 | Original button sound and sound-driver lifecycle | Desktop-tested | Original preferences/resource cache and additional menu sounds |
-| Shared control initialization and state messages | State/initialization desktop-tested; reusable definition-backed collections desktop-confirmed | Derived/text initialization and full heterogeneous factory |
+| Shared control initialization and state messages | Shared state/observer/local-event layer implemented and audited; desktop check pending | Attached text backend, caption/style initialization and full heterogeneous factory |
 | Other main-menu actions/screens | Not functional yet | Inventory, reconstruct and enable one flow at a time |
 
 Keyboard sound check: ordinary Exit/Yes/No keyboard activation is silent in the
@@ -49,6 +49,9 @@ This conclusion is from original binary analysis, not a new original-game run.
 - [x] Restore original button.wav decoding, sound frame and accepted-click playback.
 - [x] Check ordinary-button keyboard sound against original code.
 - [ ] Reconstruct shared control state, initialization/event messages and eligibility.
+  Shared base messages, observer registration/removal, local events and original
+  hidden-OK initialization are integrated and desktop-confirmed. Derived
+  text/button dispatch sequencing is reconstructed, with text helpers delegated.
 - [x] Replace hardcoded Exit/confirmation adapters with reusable controls and definitions.
   **Desktop-confirmed.** Both screens now
   use one `DefinedScreen` routing class and `DefinedControls` construction/ownership
@@ -59,19 +62,18 @@ This conclusion is from original binary analysis, not a new original-game run.
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
 
-Current larger slice: reusable definition-backed controls/screens for the entire
-existing Exit/confirmation flow. `menu_definition.h` holds original IDs/order,
-names/kinds, nine main activation bindings and confirmation bindings;
-`defined_controls.h` constructs stable controls through the factory tail;
-`defined_screen.h` provides all focus, picking, keyboard, pointer and wheel
-routing for both screens. Host roles/availability select only Exit/Yes/No.
-Static labels retain their slots and existing rendering; hidden OK stays hidden.
+Current larger slice: shared control state/event runtime, observer lifecycle,
+show/hide and disabled-state propagation, local dispatch and original hidden-OK
+initialization. All button definitions now initialize independently of host
+input availability. The separate host OK-hide call is removed. Text/button
+message selection and argument routing are reconstructed and audited together.
 
-Strict i386 host build, native/sanitized/i386 audit, binary-backed definition
-comparison and existing checks pass. User confirms the desktop behavior works; the reusable-adapter item is complete.
-Commit this tested slice. Next larger slice: finish derived
-text/state initialization and observer payload contracts as a cohesive layer;
-the complete original heterogeneous factory remains separate unfinished work.
+Strict i386 host build, native/sanitized/i386 audit and existing checks pass.
+User confirms the shared-state/event layer works; commit this tested slice. The host still renders
+text through its existing adapter: the reconstructed derived dispatcher delegates
+font/localization/layout operations, and attached client text storage/backend
+is not integrated. Next larger slice: implement that backend and caption/style
+initialization as a cohesive layer before expanding live screens.
 
 Prefer complete plan items or cohesive dependency groups per iteration, as
 requested by the user. Avoid returning for desktop checks after individual

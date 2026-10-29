@@ -8,8 +8,8 @@ namespace hd2::frontend {
 // Client 0064d9f0, control +08. Preserve byte/bit semantics: noncanonical
 // nonzero visible/focusable bytes are not equivalent to boolean true here.
 inline std::uint8_t control_eligibility(std::uint8_t disabled,
-                                        std::uint8_t visible,
-                                        std::uint8_t focusable) {
+                                       std::uint8_t visible,
+                                       std::uint8_t focusable) {
     return static_cast<std::uint8_t>(focusable & visible & (disabled == 0 ? 1 : 0));
 }
 
@@ -27,10 +27,28 @@ struct ControlProperties {
     }
 };
 
+// Client 0065c760 / 0065c790. Store state before engine side effects; emit only
+// after visibility and update. Repeated show/hide still repeat those effects.
+template<class Control>
+void set_control_visibility(Control& control, std::uint8_t visible) {
+    control.set_visible_state(visible);
+    control.set_frame_visible(visible);
+    control.update_frame();
+    control.emit_event(visible ? 0x0400d000u : 0x0400c000u, 0);
+}
+
+// Client 00661cc0. The text binding is resolved after storing the control byte.
+template<class Control>
+void set_text_control_disabled(Control& control, std::uint8_t disabled) {
+    control.set_disabled_state(disabled);
+    if (control.has_text()) control.set_text_disabled(disabled);
+}
+
 // Client 0065cd40, base control message handler. Portable callbacks replace
 // storage/virtual calls. Derived handlers must still process their own messages.
-// Delegated helpers: register_observer = 0065cac0, register_override = 0065c9a0,
-// emit_event = 0065cf50. Their bodies and the original object ABI are not here.
+// Delegated helpers: register_observer = 0065cac0, unregister_observer = 0065c9a0,
+// emit_event = 0065cf50. Observer/emission bodies are in control_events.cpp;
+// the original object ABI is not reproduced here.
 // All untagged messages, including unknown codes, are consumed by the original.
 template<class Control>
 bool dispatch_control_state_event(Control& control, ControlEvent& event) {
@@ -62,7 +80,7 @@ bool dispatch_control_state_event(Control& control, ControlEvent& event) {
         control.register_observer(event);
         break;
     case 0x01000008:
-        control.register_override(event);
+        control.unregister_observer(event);
         break;
     case 0x01000009:
         control.set_word_5c(event.argument);

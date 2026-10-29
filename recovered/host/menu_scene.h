@@ -316,8 +316,8 @@ public:
             });
     }
 
-    EngineFrame* label_visual(const char* name, const char* visual, HMODULE module,
-                              bool confirmation = false) const {
+    EngineFrame* control_frame(const char* name, HMODULE module,
+                               bool confirmation = false) const {
         EngineFrame* found = nullptr;
         std::uint32_t nodes = 0;
         EngineFrame* root = confirmation ? confirmation_.get() : model_.get();
@@ -325,6 +325,13 @@ public:
         if (found == nullptr) {
             throw std::runtime_error(std::string("Missing original menu frame: ") + name);
         }
+        return found;
+    }
+
+    EngineFrame* label_visual(const char* name, const char* visual, HMODULE module,
+                              bool confirmation = false) const {
+        EngineFrame* found = control_frame(name, module, confirmation);
+        std::uint32_t nodes = 0;
         if (std::strcmp(name, visual) != 0) {
             EngineFrame* child = nullptr;
             nodes = 0;
@@ -405,17 +412,6 @@ public:
         Update update_;
         bool restored_ = false;
     };
-
-    void hide_confirmation_ok(HMODULE module) const {
-        EngineFrame* found = nullptr;
-        std::uint32_t nodes = 0;
-        find_named(confirmation_.get(), "bok", module, 0, nodes, found);
-        if (found == nullptr) throw std::runtime_error("Missing confirmation OK frame");
-        using Visibility = void (WINAPI *)(EngineFrame*, std::uint8_t);
-        using Update = void (WINAPI *)(EngineFrame*);
-        scene_method<Visibility>(found, module, 0x30, 0x1cfe0)(found, 0);
-        scene_method<Update>(found, module, 0x24, 0x1e610)(found);
-    }
 
     void initialize_confirmation_text_frame(HMODULE module) const {
         EngineFrame* frame = label_visual("text", "text", module, true);

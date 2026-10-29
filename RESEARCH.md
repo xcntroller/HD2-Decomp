@@ -2397,3 +2397,71 @@ leave it unchecked and interactive changes uncommitted until user verification.
 User follow-up confirms the larger definition-backed screen slice works. The
 reusable-adapter plan item is now desktop-confirmed and checked. User again
 requests the largest practical cohesive slices per iteration.
+
+
+## Shared control state, observers and derived dispatch (2026-10-29)
+
+Previous shared-definition screens are desktop-confirmed (800 frames, clean
+teardown), committed as ce61b0e. Current larger slice remains uncommitted until
+user desktop verification.
+
+Correction to earlier callback naming: base event 01000008 invokes 0065C9A0
+observer REMOVAL. Override registration is a special branch of 0065CAC0, invoked
+by 01000007. 0065CAC0 rejects zero tag/null callback, appends ordinary observers
+including duplicates, and replaces the override triple for tag 04021000.
+0065C9A0 clears that override for its special-tag filter, then still scans the
+ordinary vector backward. Each supplied callback/tag/context filter assigns BL
+again rather than ANDing: context overrides tag, tag overrides callback. With
+all filters zero, nothing is removed. Preserve this unusual original behavior.
+
+Portable typed requests retain native callback/context pointer width in a
+separate ControlEvent observer field; original 32-bit raw address words are
+rejected as callable pointers. Request ownership is shared, context borrowed;
+original record/intrusive/SEH ABI is not claimed. Emitter-owned local delivery
+now dispatches ffffffff events through the originating control and continues
+ordered tagged delivery even if the observer returned false. Global targeted
+routing and complete queue behavior remain unfinished.
+
+0065C760/0065C790 store visible one/zero before engine frame enable/update and
+then emit 0400D000/0400C000 argument zero. Repeated calls repeat side effects.
+00661CC0 stores disabled +64 before resolving optional attached text and mirroring
+into text +71. control_runtime.h connects those sequences, properties, typed
+observers and child callbacks with the existing base handler. All constructed
+button definitions now initialize, including inactive actions. Hidden OK's
+01000004 now executes the actual shared hide sequence; the separate host helper
+was removed. Dummy frame table 1009BBA8 +24/+30 is verified as base update/
+visibility, matching the bound control root. Model/visual methods keep their
+existing guards and lifetime rules.
+
+text_control_event.h reconstructs all selector/argument sequencing of 00661940:
+payload/localized set and append helper calls, generic value/refresh, positive-z
+frame direction then layout, raw text +94 setter, five-byte-record count output,
+inset low byte then layout and base fallback. All helper results are ignored.
+Button 006551D0 overrides 0200002C (layout on normal visual if text exists) and
+02000076 (text +94 = 0 or ffffffff if text exists); tagged/other messages forward.
+Underlying font/localization/text/layout helper bodies remain delegated. The
+host has no attached client text object and keeps its separate MenuText renderer;
+known unimplemented derived text cases reject explicitly. Text-present mirroring
+and full derived routing are audit-verified, not live text-backend integration.
+
+Temporary native, ASan/UBSan and i386 compilation audit passed actual runtime,
+event, definition and queue code. Coverage: all eight observer-filter presence
+combinations, invalid/duplicate/override registration, native request lifetime,
+raw address rejection, all shared state/property cases, repeated show/hide order
+including notification after update, text-present/absent disabled propagation,
+fresh child records, local mutation plus queued continuation despite false
+observer, copied tagged observer registration, all derived text selectors,
+nullable button overrides and actual Exit/No/Yes flow with hidden OK initialized
+from its definition. Existing native suite and 17 launcher/nine frontend checks
+pass. Strict i386 host build passes; frontend evidence and frozen accounting
+pass. UI map now 371 anchors/40 engine slots. Temporary audit files removed;
+no new unit tests or agent Proton launch.
+
+Seven new PARTIAL entries (0065CAC0, 0065C9A0, 0065C760, 0065C790, 00661CC0,
+00661940, 006551D0), extending existing base/event coverage. Counts: 54 partial
+(50 client/four engine), zero complete, frozen 18,783. Generic runtime glue earns
+no extra function credit. Current desktop check should verify normal menu flow
+and hidden OK, with initialization log `frame=bok records=1 visible=0 disabled=0`.
+
+User desktop-confirmed the shared control/state/event layer, including hidden OK.
+This tested slice can be committed before the next text initialization work.

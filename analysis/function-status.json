@@ -7,6 +7,98 @@
   "functions": [
     {
       "program": "client",
+      "entry": "0065cac0",
+      "status": "partial",
+      "coverage": "Register observer only when tag/callback are nonzero; special 04021000 stores override, ordinary registrations append preserving duplicates.",
+      "limitations": "Portable typed native pointers replace original +0c/+10 words; vector allocation/refcount/ABI are not reconstructed. Only known host definitions are integrated.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/control_events.cpp",
+        "recovered/frontend/control_runtime.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0065c9a0",
+      "status": "partial",
+      "coverage": "Remove observers in reverse order with original last-nonzero-criterion priority (context over tag over callback); all-zero filter removes none. Override-tag removal clears override then still scans ordinary observers.",
+      "limitations": "Portable vectors and typed pointers replace original object layout and storage/erase helpers. No original ABI claim.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/control_events.cpp",
+        "recovered/frontend/control_runtime.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0065c760",
+      "status": "partial",
+      "coverage": "Store visible byte one before enabling/updating current bound frame, then emit 0400d000 with zero argument.",
+      "limitations": "Portable backend and event destination replace original +50/object ABI. Engine visibility/update bodies delegated.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/control_state.h",
+        "recovered/frontend/control_runtime.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0065c790",
+      "status": "partial",
+      "coverage": "Store visible byte zero before disabling/updating current bound frame, then emit 0400c000 with zero argument. Hidden OK definition now uses this live path.",
+      "limitations": "Portable backend and event destination replace original +50/object ABI. Engine visibility/update bodies delegated; hidden OK initialization is user desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/control_state.h",
+        "recovered/frontend/control_runtime.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00661cc0",
+      "status": "partial",
+      "coverage": "Write disabled control byte, then resolve attached text and mirror into text byte +71 only when present.",
+      "limitations": "Portable text-binding callback replaces original pointer/storage. Host buttons have no attached client text object; their separate MenuText renderer is unchanged. Text-present/absent behavior audited only.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/control_state.h",
+        "recovered/frontend/control_runtime.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00661940",
+      "status": "partial",
+      "coverage": "Reconstruct text-derived event selection, exact arguments, mutable record-count output, inset/word updates, positive-z direction/layout order and base fallback; helper results ignored.",
+      "limitations": "Sequencing only; underlying localization/font/text storage/layout/helper bodies and original ABI remain callbacks. Full dispatcher audited but attached client text backend not integrated in host.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_control_event.h",
+        "recovered/frontend/control_runtime.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006551d0",
+      "status": "partial",
+      "coverage": "Tagged button events forward to text parent; 0200002c conditionally lays out on normal visual, 02000076 booleanizes text +94, remaining messages forward.",
+      "limitations": "Portable context replaces original fields/ABI. Host routes tagged/shared-base events through this sequence with no attached client text object; text-backed overrides audited only.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_control_event.h",
+        "recovered/frontend/control_runtime.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
+    },
+
+    {
+      "program": "client",
       "entry": "00623dd0",
       "status": "partial",
       "coverage": "Readable bounded definition data for main-menu and confirmation: exact child IDs/order/kinds/names, nine main button activation bindings, Yes/No ordered reply/pop bindings and hidden OK hide record. Shared definition-backed controls/screens consume the three supported actions.",
@@ -276,7 +368,7 @@
       "entry": "0065cf50",
       "status": "partial",
       "coverage": "Observer notification precedes ordered tagged-record filtering, selector-bit clearing, local-target dispatch or queue submission.",
-      "limitations": "Portable records, shared ownership and destination callbacks replace the original object layout, intrusive reference counting and ABI. Only known Exit and Yes/No events are integrated; local delivery and general queue behavior remain unsupported.",
+      "limitations": "Portable records, shared ownership and destination callbacks replace the original object layout, intrusive reference counting and ABI. Emitter-owned local delivery is now integrated, including shared state messages. Global targeted routing and general queue behavior beyond the bounded screen flow remain unsupported.",
       "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/control_events.h", "recovered/frontend/control_events.cpp", "recovered/frontend/menu_event_queue.cpp"]
     },
     {
@@ -284,7 +376,7 @@
       "entry": "0065cd40",
       "status": "partial",
       "coverage": "Tagged event registration plus portable base-control message sequencing: masked state/property/observer events, conditional emit and fresh per-child propagation with live vector bounds.",
-      "limitations": "Tagged registration is integrated; the new untagged handler is source-only pending host controls and definition factory integration. Original object/SEH/refcount ABI, virtual show/hide/disable, observer/override helper bodies and event emission remain callbacks. No complete function claimed.",
+      "limitations": "Tagged and shared untagged base messages are integrated through ControlStateRuntime, show/hide helpers, typed observer registration/removal and emitter-owned local delivery. Original object/SEH/refcount ABI, real UI child objects and attached text rendering/storage remain incomplete. No complete function claimed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_events.h",

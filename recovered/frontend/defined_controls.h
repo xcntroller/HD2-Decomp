@@ -92,9 +92,9 @@ private:
         }
         void initialize_definition_data() {} // Original button +78 / 0065cd30.
         void initialize_definition_events() {
-            // Unavailable actions cannot run. In particular OK's untagged hide
-            // is applied separately by the host until derived text contracts exist.
-            if (owner.available_[index]) candidate->initialize_events(definition.initialization);
+            // Availability governs input binding, not initialization. Hidden OK
+            // runs its original hide event through the same shared handler.
+            candidate->initialize_events(definition.initialization);
         }
         void append_control() { owner.controls_[index] = std::move(candidate); }
         void destroy_control() { candidate.reset(); }

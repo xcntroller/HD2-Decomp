@@ -5,6 +5,8 @@
 #include "frontend/button_input.h"
 #include "frontend/control_events.h"
 #include "frontend/control_state.h"
+#include "frontend/control_runtime.h"
+#include "frontend/text_control_event.h"
 #include "frontend/control_initialization.h"
 #include "frontend/defined_controls.h"
 #include "host/menu_scene.h"
@@ -15,10 +17,13 @@
 namespace hd2::host {
 
 class ButtonVisualPair {
+    using EventDestination = frontend::EmittingControlDestination<ButtonVisualPair>;
 public:
     ButtonVisualPair(const MenuScene& scene, HMODULE module, const char* frame,
                      const char* normal, const char* active, bool confirmation = false)
-        : normal_(scene.label_visual(frame, normal, module, confirmation)),
+        : module_(module), frame_name_(frame),
+          frame_(scene.control_frame(frame, module, confirmation)),
+          normal_(scene.label_visual(frame, normal, module, confirmation)),
           active_(scene.label_visual(frame, active, module, confirmation)) {
         visibility_ = scene_method<Visibility>(normal_, module, 0x30, 0x1cfe0);
         scene_method<Visibility>(active_, module, 0x30, 0x1cfe0);
@@ -44,9 +49,13 @@ public:
     void initialize_events(const std::vector<frontend::ControlEvent>& events) {
         if (events_bound_) throw std::logic_error("Button events already initialized");
         initialization_events_ = events;
-        InitializationAdapter adapter{*this};
+        EventDestination destination{*this, nullptr};
+        InitializationAdapter adapter{*this, destination};
         frontend::initialize_control_events(adapter, initialization_events_);
         events_bound_ = true;
+        std::printf("Original control initialization: frame=%s records=%u visible=%u disabled=%u\n",
+                    frame_name_, static_cast<unsigned>(initialization_events_.size()),
+                    static_cast<unsigned>(properties_.visible), static_cast<unsigned>(properties_.disabled));
     }
 
     bool eligible() const { return properties_.eligible(); }
@@ -60,7 +69,7 @@ public:
 
     bool apply(bool hover) {
         if (!events_bound_) throw std::logic_error("Button events are not bound");
-        FocusDestination destination;
+        EventDestination destination{*this, nullptr};
         FocusAdapter adapter{*this, destination};
         if (hover) {
             return frontend::button_focus_enter(adapter);
@@ -70,7 +79,7 @@ public:
 
     int pointer_move() {
         if (!events_bound_) throw std::logic_error("Button events are not bound");
-        FocusDestination destination;
+        EventDestination destination{*this, nullptr};
         FocusAdapter adapter{*this, destination};
         adapter.emit_event(0x04005000, 0, !pointer_move_logged_);
         pointer_move_logged_ = true;
@@ -78,7 +87,8 @@ public:
     }
 
     int pointer_event(frontend::ScreenPointerCallback callback,
-                      frontend::ControlEventDestination& destination) {
+                      frontend::ControlEventDestination& upstream) {
+        EventDestination destination{*this, &upstream};
         if (!events_bound_) throw std::logic_error("Button events are not bound");
         const auto bit = std::uint32_t{1} << (static_cast<unsigned>(callback) / 4);
         FocusAdapter adapter{*this, destination, (pointer_events_logged_ & bit) == 0};
@@ -86,7 +96,8 @@ public:
         return frontend::button_pointer_event(adapter, callback);
     }
 
-    int wheel_event(frontend::ControlEventDestination& destination) {
+    int wheel_event(frontend::ControlEventDestination& upstream) {
+        EventDestination destination{*this, &upstream};
         if (!events_bound_) throw std::logic_error("Button events are not bound");
         constexpr auto bit = std::uint32_t{1} << (0x4c / 4);
         FocusAdapter adapter{*this, destination, (pointer_events_logged_ & bit) == 0};
@@ -94,13 +105,15 @@ public:
         return frontend::button_wheel(adapter);
     }
 
-    bool activate(frontend::ControlEventDestination& destination) {
+    bool activate(frontend::ControlEventDestination& upstream) {
+        EventDestination destination{*this, &upstream};
         if (!events_bound_) throw std::logic_error("Button events are not bound");
         FocusAdapter adapter{*this, destination};
         return frontend::button_activate(adapter);
     }
 
-    bool click(frontend::ControlEventDestination& destination) {
+    bool click(frontend::ControlEventDestination& upstream) {
+        EventDestination destination{*this, &upstream};
         if (!events_bound_) throw std::logic_error("Button events are not bound");
         FocusAdapter adapter{*this, destination};
         return frontend::button_click(adapter);
@@ -127,30 +140,66 @@ private:
         }
     };
 
-    struct InitializationAdapter {
+    // Shared state messages are live; client text is still rendered by the
+    // separate MenuText adapter, so there is no attached client text object.
+    bool has_text() const { return false; }
+    void set_text_disabled(std::uint8_t) {
+        throw std::logic_error("Attached client text storage is not reconstructed");
+    }
+    void set_frame_visible(std::uint8_t value) {
+        scene_method<Visibility>(frame_, module_, 0x30, 0x1cfe0)(frame_, value);
+    }
+    void update_frame() { scene_method<Update>(frame_, module_, 0x24, 0x1e610)(frame_); }
+    std::size_t child_count() const { return 0; } // No reconstructed UI child objects on these buttons.
+    void dispatch_child(std::size_t, frontend::ControlEvent&) {
+        throw std::logic_error("Button UI child dispatch is not reconstructed");
+    }
+
+    struct ButtonMessages {
         ButtonVisualPair& pair;
-        bool dispatch_initialization_event(frontend::ControlEvent& event) {
-            // Current Exit/Yes/No lists contain only tagged activation bindings.
-            // This is the shared tagged branch of button 006551d0 -> text
-            // 00661940 -> base 0065cd40. Untagged derived/text initialization
-            // still needs the original layout/font/observer contracts.
-            frontend::register_tagged_control_event(pair.bindings_, event);
-            return true;
+        frontend::ControlStateRuntime<ButtonVisualPair>& state;
+        bool has_text() const { return pair.has_text(); }
+        void layout_text_on_normal() { throw std::logic_error("Attached client text layout is not reconstructed"); }
+        void set_text_word_94(std::uint32_t) { throw std::logic_error("Attached client text storage is not reconstructed"); }
+        bool dispatch_text_event(frontend::ControlEvent& event) {
+            // Delegate shared base events while explicitly rejecting the
+            // parent's known text cases until its rendering backend exists.
+            if ((event.code & 0x040ff000u) == 0) {
+                switch (event.code & 0x03000fffu) {
+                case 0x01000014: case 0x01000015: case 0x01000016:
+                case 0x01000017: case 0x01000018: case 0x01000068:
+                case 0x01000077: case 0x01000099: case 0x010000a3:
+                case 0x02000018: case 0x02000030: case 0x02000073:
+                    throw std::logic_error("Derived client text initialization is not integrated");
+                default: break;
+                }
+            }
+            return state.dispatch(event);
         }
     };
 
-    class FocusDestination : public frontend::ControlEventDestination {
-    public:
-        void dispatch_local(frontend::ControlEvent&) override {
-            throw std::logic_error("Local button event dispatch is not implemented");
-        }
-        void enqueue(const frontend::ControlEvent&) override {
-            throw std::logic_error("Button event queue is not implemented");
+    bool dispatch_control_event(frontend::ControlEvent& event, frontend::ControlEventDestination& destination) {
+        frontend::ControlStateRuntime<ButtonVisualPair> state{*this, properties_, bindings_, destination};
+        ButtonMessages messages{*this, state};
+        return frontend::dispatch_button_control_event(messages, event);
+    }
+
+    struct InitializationAdapter {
+        ButtonVisualPair& pair;
+        frontend::ControlEventDestination& destination;
+        bool dispatch_initialization_event(frontend::ControlEvent& event) {
+            return pair.dispatch_control_event(event, destination);
         }
     };
+
+    friend class frontend::ControlStateRuntime<ButtonVisualPair>;
+    friend class frontend::EmittingControlDestination<ButtonVisualPair>;
 
     using Visibility = void (WINAPI *)(EngineFrame*, std::uint8_t);
     using Update = void (WINAPI *)(EngineFrame*);
+    HMODULE module_;
+    const char* frame_name_;
+    EngineFrame* frame_;
     EngineFrame* normal_;
     EngineFrame* active_;
     Visibility visibility_;

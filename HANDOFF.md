@@ -1,6 +1,76 @@
 # Session handoff - 2026-10-29
 
-## Resume here: reusable definition-backed screens — larger slice
+## Resume here: shared control state/event layer — larger slice
+
+Current shared-state/event slice is user desktop-confirmed and ready to commit. The previous
+shared-definition/screens slice is desktop-confirmed and committed as ce61b0e
+(log: 800 frames and clean teardown). User requests the largest practical
+cohesive slices. Keep plan.md updated and avoid event-sized iterations.
+
+Implemented shared ControlStateRuntime, observer registration/removal, show/hide,
+disabled-text mirror sequencing and emitter-owned local delivery. Every created
+button now runs definition initialization regardless of input availability.
+Hidden OK runs its original 01000004 through shared state -> hide root frame ->
+update -> emit 0400c000. Removed MenuScene::hide_confirmation_ok special path.
+Other main actions remain input-unbound; original keyboard silence preserved.
+Root frame lookup is independent of visual-kind lookup. Dummy vtable 1009BBA8
++24/+30 now anchored to 1001E610/1001CFE0; root/normal/active remain borrowed.
+
+IMPORTANT correction to older notes: 01000008 calls REMOVAL 0065C9A0, not
+register_override. Registration 0065CAC0 handles special override tag 04021000.
+Ordinary duplicate tags append. Removal scans backward; nonzero callback/tag/
+context comparisons OVERWRITE the match in that order (context has highest
+priority). It is not AND filtering. All-zero filter removes none. Override tag
+clears override first, then still scans ordinary records. Source/tests preserve
+this behavior. 01000007 registers; 01000008 unregisters in control_state.h.
+
+ControlEvent now carries a separate typed ControlObserverRequest pointer beside
+its string/payload field, preserving native pointer width. Original raw +0C/+10
+address words are rejected as callable pointers. Context remains borrowed;
+portable event layout is not the original 24-byte ABI. EmittingControlDestination
+routes ffffffff local events through the emitting control; other events go to a
+supplied upstream queue. Focus/init still cannot invent a missing front-end queue.
+Observer false does not veto subsequent tagged events, matching original code.
+
+New text_control_event.h reconstructs COMPLETE selector/argument sequencing of
+00661940 and 006551D0, with helper/storage backends delegated. Text 01000099
+uses POSITIVE z=1 direction before layout (distinct from static initializer's
+negative-z direction). Button overrides check attached text; 0200002C lays out
+on normal visual and 02000076 stores 0/ffffffff into text +94. Host still has
+no attached client text objects; MenuText renders through its existing adapter.
+Known unsupported text cases are explicitly rejected in host. Text-present
+mirroring and full text backend dispatch are audited, not integrated rendering.
+Do not claim complete original font/localization/layout helper reconstruction.
+
+Checks passed before crash: strict i386 host build; temporary native + ASan/UBSan
+and i386 compilation audit using ACTUAL runtime/classes/helpers. Covers all
+observer filter-presence combinations, invalid/duplicate/override registration,
+typed request lifetime and raw address rejection, all shared state cases,
+repeated show/hide with state-before-frame/update-before-notify order, disabled
+text present/absent, mutable properties, fresh child propagation, local-event
+continuation despite false observer, copied tagged observer registration, ALL
+derived text selectors and nullable button overrides, actual definition/queue
+Exit/No/Yes and hidden OK initialization. Existing native suite, 17 launcher/
+nine frontend checks, frontend evidence pass. Temporary audits removed; no new
+unit tests or agent-side Proton run. UI evidence now 371 anchors/40 engine slots.
+Seven new PARTIAL client entries: 0065CAC0, 0065C9A0, 0065C760, 0065C790,
+00661CC0, 00661940, 006551D0. Totals 54 partial (50 client/four engine), zero
+complete, frozen 18,783. Generic context glue earns no extra count.
+
+Desktop command unchanged:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+Check startup/hover, Exit/No/Yes, Escape and Enter/Space, original pointer sound,
+other inactive buttons and hidden OK staying hidden. New log should include
+`Original control initialization: frame=bok records=1 visible=0 disabled=0`.
+The 12 button objects now all initialize through definitions, including inactive
+main controls. Read user confirmation and log before committing this slice.
+
+Next cohesive slice: attached client text state/font/layout backend and caption/
+style initialization, then first additional screen/dependency inventory. The
+current full text dispatcher has portable callback sequencing only; don't mark
+font/backend work complete. Preserve larger-slice preference across crashes.
+
+## Previous checkpoint: reusable definition-backed screens
 
 User asks for larger cohesive slices, ideally an entire plan item per turn.
 This turn implements the entire "Replace hardcoded Exit/confirmation adapters

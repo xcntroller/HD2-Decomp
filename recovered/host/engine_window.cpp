@@ -465,7 +465,6 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 if (confirmation_pick_active) {
                     std::puts("Confirmation engine picking controls hover and activation");
                 }
-                menu->hide_confirmation_ok(module);
                 menu_actions.emplace(*menu, module, confirming);
                 menu_events.emplace(*menu_actions);
                 confirmation_focus.emplace(hd2::frontend::confirmation_definition(), *menu_events);
