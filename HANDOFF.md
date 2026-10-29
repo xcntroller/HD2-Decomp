@@ -2,6 +2,15 @@
 
 ## Resume here
 
+The shared-input session slice is now desktop-confirmed. User tried all requested
+cases (Exit → No, Exit → Escape, wheel, held-button Escape/drag-off, Exit → Yes)
+and reports intended behavior. Direct log shows shared wheel state -480 across
+screen changes, No and Escape, Yes, 861 frames and clean driver/graphics teardown.
+Held-button outcome is user-reported; raw masks are not logged. Build, existing
+checks and 283 UI anchors / 26 engine slots passed. This tested slice can now be
+committed. Shared state is host-owned; original singleton/refcount/texture lifetime
+and screen ABI remain incomplete. No new unit tests or agent-side Proton launch.
+
 The main-menu engine-input slice is desktop-confirmed and checkpointed in the
 local commit titled `Route main-menu Exit through rebuilt engine input`.
 User instruction: **do not commit until tested and working**. For interactive
@@ -159,9 +168,10 @@ Next session:
 1. Continue from cached exports in `analysis/work/frontend-inspection/`,
    `analysis/work/menu-input-route/`, `analysis/work/engine-loop/` and
    `analysis/work/initialization/`. Read the new timing section in `RESEARCH.md`.
-2. Read the desktop log for the new main-menu engine-input slice. If the user
-   confirms it works and checks pass, commit that tested slice, then continue
-   original shared input/screen construction and relative-motion lifecycle.
+2. The main-menu engine-input slice is already committed as 19f30e5. Read the
+   desktop log for the NEW shared-session slice. If the user confirms it works,
+   commit that tested slice, then continue original shared input/screen
+   construction and relative-motion lifecycle.
    The known source/units do not make the host's timestamps equivalent to it.
    Original captured-control objects, shared input object lifetime, engine
    device cursor positioning and screen/control ABI remain absent.
@@ -174,11 +184,12 @@ Next session:
    python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --probe-confirm-picking --frames 0
    ```
 
-Latest desktop evidence is the 2026-10-29 wheel run: user sees expected no-op;
-log confirms Yes wheel deltas/event, 432 frames and clean teardown. Earlier
-engine-button run had No, Escape, Yes, right-click user report and 807 frames.
-New CURZOR binding/update awaits desktop validation; no double-click dispatch
-claim is made. Logs are ignored and overwritten at the next launch.
+Latest desktop evidence is the main-menu input run: Exit target 05000000 /
+focus 15, No twice, Escape, Yes, 364 frames and clean teardown. User confirmed
+it works. Shared-session continuation is built/check-passing but awaits a new
+desktop run. Original CURZOR binding and wheel no-op were confirmed previously;
+no double-click dispatch claim is made. Logs are ignored and overwritten at the
+next launch.
 
 ## Earlier milestones and detailed evidence
 

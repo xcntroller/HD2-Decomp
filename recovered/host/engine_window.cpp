@@ -154,6 +154,7 @@ public:
         return true;
     }
     const char* label() const { return "confirmation"; }
+    std::uint32_t identifier() const { return screen_id_; }
     int focused_control() const { return focused_; }
     void set_focused_control(int index) { focused_ = index; }
     int leave_control(int index, std::uint32_t) { return button(index).apply(false); }
@@ -185,52 +186,88 @@ private:
     int focused_ = -1;
 };
 
+// One host-owned session mirrors the shared input acquired by 0066a6e0 and
+// retained at front-end +f4 (0066ad10). Dispatch state belongs to that same
+// front end, not individual screens. Original singleton/refcount ABI is absent.
+struct MenuInputSession {
+    hd2::frontend::PointerUpdate pointer;
+    hd2::frontend::PointerDispatchState dispatch;
+    hd2::frontend::PointerDispatchInput input;
+    std::optional<hd2::host::CursorPoint> previous_point;
+    bool armed = false;
+    bool awaiting_release = false;
+    std::uint32_t active_screen = 0;
+
+    void clear() {
+        pointer.clear();
+        dispatch = {};
+        input = {};
+        previous_point.reset();
+        armed = false;
+        awaiting_release = false;
+        active_screen = 0;
+    }
+};
+
 // Functional opt-in bridge. Positions/focus and departure cancellation remain
 // host-owned; button snapshots come from the rebuilt LS3DF polling subset.
 template<class Screen>
 class MenuFrameInput {
 public:
-    MenuFrameInput(Screen& focus,
+    MenuFrameInput(MenuInputSession& session, Screen& focus,
                    std::function<std::uint32_t(const hd2::host::CursorPoint&)> repick,
                    std::function<void(float, float)> update_frame)
-        : focus_(focus), repick_(std::move(repick)), update_frame_(std::move(update_frame)) {}
-    void clear() {
-        pointer_.clear();
-        state_ = {};
-        input_ = {};
-        previous_point_.reset();
-        armed_ = false;
-    }
+        : session_(session), focus_(focus), repick_(std::move(repick)), update_frame_(std::move(update_frame)) {}
     void tick(const hd2::host::CursorPoint& point, std::uint32_t target,
               std::uint32_t buttons, std::uint32_t delta, std::int32_t wheel) {
-        if (!armed_) {
+        if (!session_.armed) {
             if (buttons != 0) return; // Reentry must observe all buttons up first.
-            pointer_.cursor().initialize(point.x, point.y, 800, 600);
+            session_.pointer.cursor().initialize(point.x, point.y, 800, 600);
             update_frame_(point.x, point.y);
-            previous_point_ = point;
-            armed_ = true;
+            session_.previous_point = point;
+            session_.armed = true;
         }
-        pending_ = {buttons, target, delta, point.x - previous_point_->x,
-                    point.y - previous_point_->y, static_cast<float>(wheel)};
-        previous_point_ = point;
-        pointer_.cancel_departed_press(target); // Retain established host safety.
-        hd2::frontend::dispatch_menu_pointer(state_, *this, delta);
+        if (session_.active_screen != focus_.identifier()) {
+            // Host safety: never carry a press or drag into a different screen.
+            // Preserve button history, click timer, cursor and wheel accumulation.
+            session_.pointer.cancel_departed_press(0);
+            session_.dispatch.dragging = false;
+            session_.awaiting_release = buttons != 0;
+            session_.active_screen = focus_.identifier();
+            std::printf("Shared menu input: screen=%s cursor=(%.3f,%.3f) wheel=%.3f idle=%u\n",
+                        focus_.label(), session_.pointer.cursor().x(), session_.pointer.cursor().y(),
+                        session_.pointer.cursor().wheel(), static_cast<unsigned>(session_.pointer.idle()));
+        }
+        pending_ = {buttons, target, delta, point.x - session_.previous_point->x,
+                    point.y - session_.previous_point->y, static_cast<float>(wheel)};
+        session_.previous_point = point;
+        if (session_.awaiting_release) {
+            // Keep shared sampling/cursor updates, but absorb a held transition
+            // and its release. A new screen must observe all buttons up first.
+            pending_.inhibit_click = true;
+            update_input(delta, target);
+            session_.dispatch.previous_target = target;
+            if (buttons == 0) session_.awaiting_release = false;
+            return;
+        }
+        session_.pointer.cancel_departed_press(target); // Retain established host safety.
+        hd2::frontend::dispatch_menu_pointer(session_.dispatch, *this, delta);
     }
     std::uint32_t pick_target() const { return pending_.target; }
     bool update_input(std::uint32_t delta, std::uint32_t target) {
         pending_.delta = delta;
         pending_.target = target;
-        const auto result = pointer_.update(pending_);
-        if (result.processed) update_frame_(pointer_.cursor().x(), pointer_.cursor().y());
-        const auto& buttons = pointer_.buttons();
-        input_ = {buttons.pressed(3), buttons.released(3), buttons.currently_selected(3),
+        const auto result = session_.pointer.update(pending_);
+        if (result.processed) update_frame_(session_.pointer.cursor().x(), session_.pointer.cursor().y());
+        const auto& buttons = session_.pointer.buttons();
+        session_.input = {buttons.pressed(3), buttons.released(3), buttons.currently_selected(3),
                   result.click.click, false, // Double-click remains observational only.
-                  hd2::frontend::pointer_moved(pointer_.cursor().horizontal(),
-                                             pointer_.cursor().vertical()),
-                  hd2::frontend::pointer_wheel_moved(pointer_.cursor().wheel_delta())};
+                  hd2::frontend::pointer_moved(session_.pointer.cursor().horizontal(),
+                                             session_.pointer.cursor().vertical()),
+                  hd2::frontend::pointer_wheel_moved(session_.pointer.cursor().wheel_delta())};
         return result.processed;
     }
-    const hd2::frontend::PointerDispatchInput& input() const { return input_; }
+    const hd2::frontend::PointerDispatchInput& input() const { return session_.input; }
     std::optional<std::uint32_t> captured_control_target() const { return std::nullopt; }
     int captured_control_event(std::uint32_t) {
         throw std::logic_error("No captured screen control object");
@@ -259,7 +296,7 @@ public:
         throw std::logic_error("Unsupported menu pointer callback");
     }
     void accepted_click() {} // Original +3c object/helper is still absent.
-    float wheel_delta() const { return pointer_.cursor().wheel_delta(); }
+    float wheel_delta() const { return session_.pointer.cursor().wheel_delta(); }
     int screen_wheel(std::uint32_t target, std::int32_t delta) {
         const int result = hd2::frontend::screen_wheel(focus_, target, delta);
         std::printf("Engine mouse wheel: screen=%s target=%08x delta=%d result=%d\n",
@@ -267,21 +304,17 @@ public:
         return result;
     }
     Screen* current_screen() { return &focus_; }
-    std::uint32_t pick_for_screen(Screen*) const { return repick_(*previous_point_); }
+    std::uint32_t pick_for_screen(Screen*) const { return repick_(*session_.previous_point); }
     void focus_screen(Screen* screen, std::uint32_t target) {
         hd2::frontend::screen_pointer_focus(*screen, target);
     }
 
 private:
+    MenuInputSession& session_;
     Screen& focus_;
     std::function<std::uint32_t(const hd2::host::CursorPoint&)> repick_;
     std::function<void(float, float)> update_frame_;
-    hd2::frontend::PointerUpdate pointer_;
-    hd2::frontend::PointerDispatchState state_;
-    hd2::frontend::PointerDispatchInput input_;
     hd2::frontend::PointerUpdateSample pending_{};
-    std::optional<hd2::host::CursorPoint> previous_point_;
-    bool armed_ = false;
 };
 
 void windows_error(const char* operation) {
@@ -406,6 +439,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         bool confirming = false;
         int previous_confirm_hover = 0;
         std::optional<hd2::host::CursorPoint> previous_confirmation_point;
+        MenuInputSession input_session;
         std::optional<ConfirmationFocus> confirmation_focus;
         std::optional<MenuFrameInput<ConfirmationFocus>> frame_input;
         std::optional<hd2::host::MainMenuFocus> main_focus;
@@ -451,7 +485,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 if (use_engine_mouse) {
                     main_focus.emplace(*buttons, *menu_events);
                     buttons->exit_control().bind_pick_target(hd2::host::MainMenuFocus::exit_target);
-                    main_frame_input.emplace(*main_focus, [&](const hd2::host::CursorPoint& point) {
+                    main_frame_input.emplace(input_session, *main_focus, [&](const hd2::host::CursorPoint& point) {
                         return hd2::host::MainMenuFocus::target_for_pick(menu->pick_main_menu(
                             module, point.x, point.y, static_cast<float>(methods->width(graphics)),
                             static_cast<float>(methods->height(graphics))));
@@ -460,7 +494,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                                                   static_cast<float>(methods->height(graphics)));
                     });
                     std::puts("Rebuilt engine input controls main-menu Exit and confirmation");
-                    frame_input.emplace(*confirmation_focus, [&](const hd2::host::CursorPoint& point) {
+                    frame_input.emplace(input_session, *confirmation_focus, [&](const hd2::host::CursorPoint& point) {
                         const auto picked = menu->pick_confirmation(
                             module, point.x, point.y,
                             static_cast<float>(methods->width(graphics)),
@@ -622,8 +656,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                         exit_button.cancel();
                         confirmation_exit_click.clear();
                         confirmation_click.clear();
-                        if (frame_input) frame_input->clear();
-                        if (main_frame_input) main_frame_input->clear();
+                        input_session.clear();
                     }
                 }
                 TranslateMessage(&message);
@@ -720,17 +753,14 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             if (frame_input) {
                 if (frame_point && mouse_snapshot->status == 0) {
                     if (confirming) {
-                        main_frame_input->clear();
                         frame_input->tick(*frame_point, frame_target, mouse_snapshot->buttons,
                                           mouse_snapshot->delta, mouse_snapshot->state.z);
                     } else {
-                        frame_input->clear();
                         main_frame_input->tick(*frame_point, frame_target, mouse_snapshot->buttons,
                                                mouse_snapshot->delta, mouse_snapshot->state.z);
                     }
                 } else {
-                    frame_input->clear();
-                    main_frame_input->clear();
+                    input_session.clear();
                 }
                 menu_events->pump();
                 if (!running) break;

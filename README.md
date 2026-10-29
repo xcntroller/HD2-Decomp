@@ -65,7 +65,8 @@ consistent with the recovered masks. Wheel routing now follows the recovered
 screen/button path; the user confirmed its expected visible no-op. The original
 hidden `CURZOR` scene model and position/update calls are desktop-confirmed.
 Engine-input mode now also routes main-menu Exit through the rebuilt dispatcher
-and original model picking; the user has confirmed that extension works. Screen effects and much of input remain
+and original model picking; the user has confirmed that extension works. Shared input state across main-menu/confirmation transitions
+is also desktop-confirmed, including held-button cancellation. Screen effects and much of input remain
 host scaffolding, not the complete
 original dispatcher. Pixel-perfect
 fidelity, other screens and profile/save data are not implemented.

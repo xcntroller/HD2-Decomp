@@ -15,6 +15,7 @@ public:
     MainMenuFocus(MenuButtonVisuals& buttons, frontend::ControlEventDestination& events)
         : buttons_(buttons), events_(events) {}
     const char* label() const { return "main-menu"; }
+    std::uint32_t identifier() const { return 0x04000000; }
     static std::uint32_t target_for_pick(std::uint32_t picked) {
         return picked == exit_target ? exit_target : 0;
     }

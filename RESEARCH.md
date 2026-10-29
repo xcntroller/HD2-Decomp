@@ -1895,3 +1895,51 @@ bounded enabled controls. Raw button masks and exhaustive focus/drag cases are
 not independently established by this log. This tested slice may now be locally
 committed under the user's no-commit-before-working preference; later behavior
 changes must wait for their own desktop confirmation.
+
+
+Shared input ownership continuation (2026-10-29, desktop validation pending):
+the tested main-menu input slice is committed as `19f30e5`. Assembly confirms
+`0066A6E0` reads singleton `008AE448`, allocates 0x54 bytes only when absent,
+sets vtable `008155D0`, calls constructor `0066A4B0` and initializer `0066A4E0`,
+then increments object +04. Initializer failure deletes and clears the singleton.
+Front-end initialization `0066AEF1..FE` acquires it with the scene and stores the
+result at +F4. Teardown `0066B22E..42` releases that same pointer through
+`0066A780`, then clears +F4. Last release drops texture +20, deletes the global
+object and clears `008AE448`. Cached acquire callers include several controls,
+so two host screen adapters must not be presented as original reference owners.
+These observations are now fingerprint-checked in the UI map.
+
+The host now owns one `MenuInputSession` for both `MenuFrameInput` adapters.
+It retains cursor, wheel accumulation, button history, click timer and the
+front-end dispatcher state across normal push/pop instead of resetting the
+inactive screen every frame. This restores shared dataflow only: original
+singleton allocation/refcounts, resource ownership and object ABI remain absent.
+It adds no function-ledger credit. Double-click activation stays disabled.
+
+Host safeguards remain explicit departures: a screen transition cancels press
+capture and drag; if a button is held, shared samples/frame updates continue but
+screen callbacks are absorbed through the all-buttons-up sample. Outside-window,
+poll failure and cancellation reset the whole session and require all buttons up
+before reseeding the cursor. Host absolute positions, pre-focus and queue pumping
+are unchanged. `Shared menu input` logs show the retained cursor/wheel/idle state
+before the new screen's first sample. Desktop validation remains pending; this
+slice must stay uncommitted until the user confirms it works.
+
+
+Shared-session validation: final strict i386 host build, existing native suite,
+17 launcher and nine frontend checks pass. UI validator checks 283 instruction
+anchors and 26 engine slots; frontend evidence and frozen accounting also pass
+(38 partial, zero complete). A temporary native audit compiled the actual bridge
+source with mock screens and verified cursor/wheel/idle continuity, left/right
+activation, held-transition callback absorption, a fresh click after release and
+full reset/all-up reentry. Audit files were removed. No new unit tests or
+agent-side Proton launch; real desktop behavior still awaits the user.
+
+
+Shared-session desktop follow-up (2026-10-29): user tried every requested case
+and confirms intended behavior, including held-button Escape/drag-off. Direct
+log retains wheel -480 across main-menu/confirmation switches, records No,
+Escape and Yes, 861 submitted frames and clean teardown. It lacks raw button
+masks, so held-button identity/outcome relies on the user report. Shared-session
+changes may now be locally committed; future interactive changes require their
+own successful desktop test.

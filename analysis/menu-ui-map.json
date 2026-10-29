@@ -119,8 +119,13 @@
     "exit_target": "05000000",
     "scope": "With --use-engine-mouse, tag only Exit normal/active visuals and pick against the actual main-menu model. MainMenuFocus uses original seventeen-entry order and only index fifteen is eligible. Other controls remain disabled.",
     "routing": "Main Exit and confirmation now instantiate the same MenuFrameInput adapter: polled buttons, original picking, bounded pointer update/dispatch, focused screen callbacks, button events and deferred queue activation. Engine mode bypasses message-driven activation for both screens; other modes unchanged.",
-    "safety": "Inactive screen input clears between push/pop; outside-window/poll failure/cancel resets both. Reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original shared input object/ABI and complete screen stack are still absent.",
-    "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. Desktop confirmation received; tested continuation may be committed."
+    "safety": "Main and confirmation now reference one host-owned input/dispatcher session across push/pop. A held screen transition cancels capture/drag and absorbs input until all buttons are up while preserving shared sampling. Outside-window/poll failure/cancel resets the session; reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original singleton/refcount ABI and complete screen stack remain absent.",
+    "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. That tested slice is committed as 19f30e5. Shared-session continuation subsequently desktop-confirmed: user tried all requested cases; log retains wheel -480 across screens, No, Escape, Yes, 861 frames and clean teardown."
+  },
+  "shared_input_session": {
+    "evidence": "0066a6e0 reuses global 008ae448 or allocates/initializes a 0x54-byte object and increments +04. 0066ad10 stores the acquired object at front-end +f4; 0066b140 releases it through 0066a780 and clears +f4. Last release drops +20 texture, deletes the singleton and clears the global. Multiple original controls also acquire it; screen adapters are not separate original reference-count owners.",
+    "integration": "MenuInputSession in host/engine_window.cpp owns one PointerUpdate and front-end PointerDispatchState shared by both adapters. Ordinary screen changes preserve cursor, accumulated wheel, button history, click timing and dispatcher target history. Host screen-transition capture/drag cancellation and held-release absorption are deliberate safeguards. Focus loss/outside/poll failure reset the session.",
+    "validation": "Strict i386 build, existing native checks, 17 launcher checks, nine frontend checks, 283 instruction anchors, 26 engine slots, frontend evidence and frozen accounting pass. Temporary native audit of the actual bridge with mock screens confirms cursor/wheel/idle continuity, left/right activation, held-transition callback absorption, fresh clicks after release and reset/reentry. Audit files removed; no new unit tests or function-ledger credit. Desktop-confirmed by user for all requested cases including held-button cancellation; log records wheel -480 retained across screen changes, No, Escape, Yes, 861 frames and clean teardown. Raw button masks are absent. Original allocation/refcount, texture lifetime and input ABI remain unreconstructed."
   },
   "cursor_frame_reconstruction": {
     "asset": {"member": "MODELS\\kurzor_menu.4ds", "size": 330, "sha256": "d29a19d542f7155e14b82e592a642caf974b068926d6bd30cae59e098fd409f2", "textures": ["X_KURSOR.TGA"]},
@@ -259,6 +264,16 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "0066a6e0", "hex": "a148e48a005685c08bf17552", "meaning": "Shared input global lookup and reuse branch"},
+      {"address": "0066a6ec", "hex": "6a54e81cab1700", "meaning": "Allocate original 0x54-byte shared input object"},
+      {"address": "0066a6fc", "hex": "c701d0558100e8a9fdffff", "meaning": "Shared input vtable and constructor call"},
+      {"address": "0066a70b", "hex": "56890d48e48a00e8c9fdffff", "meaning": "Store shared input global and initialize with scene"},
+      {"address": "0066a73e", "hex": "8b48045e41894804a148e48a00c3", "meaning": "Increment shared input reference count and return singleton"},
+      {"address": "0066aef1", "hex": "8b4e30e8e7f7ffff8986f4000000", "meaning": "Front-end acquires shared input and stores it at +f4"},
+      {"address": "0066b22e", "hex": "8b8bf40000003bce740be843f5ffff89b3f4000000", "meaning": "Front-end releases retained input and clears +f4 on teardown"},
+      {"address": "0066a783", "hex": "8b460448894604752d", "meaning": "Shared input release decrements +04 and skips cleanup while nonzero"},
+      {"address": "0066a78c", "hex": "8b462085c0740c8b0850ff11c7462000000000", "meaning": "Last release drops optional input +20 texture and clears pointer"},
+      {"address": "0066a79f", "hex": "8b0d48e48a0085c974068b116a01ff12c70548e48a00000000005e", "meaning": "Last release deletes shared input singleton and clears global"},
       {"address": "00623f05", "hex": "6800ec8300", "meaning": "Main-menu definition child 1: text_screen"},
       {"address": "00623fba", "hex": "6828f08300", "meaning": "Main-menu definition child 2: text_date00"},
       {"address": "0062406d", "hex": "681cf08300", "meaning": "Main-menu definition child 3: text_date01"},
