@@ -1,10 +1,88 @@
 # Session handoff - 2026-10-29
 
-## Resume here: attached text state and definition-driven captions — larger slice
+## Resume here: registered screen stack/lifecycle and dependency inventory
+
+Previous text slice is user desktop-confirmed and committed as **1410782**
+(506 frames, clean sound/graphics teardown). Current screen-stack slice is
+**desktop-confirmed and ready to commit** (3320 frames, clean teardown).
+User requests large slices. Do not commit interactive changes until user testing.
+No agent-side Proton launches (no window driver); no new unit tests; never push.
+
+New frontend/screen_registry.h records original 14 named definitions, in order,
+plus separate runtime dialog slot zero. All raw name/model strings (including
+spaces) and IDs checked against original binary and compiled registry dump.
+Five/seven are BOTH named SINGLE MISSION 2 and share a model, but 00627060
+sends them to DIFFERENT builders: 006391e0 versus 00614140. Cinematics selects
+seven. Preserve both. Runtime slot zero is separately created by 0066c1d0;
+it is not named confirmation four despite sharing the model.
+
+New analysis/menu-screens.json / menu-screens.md inventory all 14 registrations,
+53 static children and 100 initializer call sites in 00623dd0. Includes exact
+child kind/name/ID, caption/binding/observer metadata and original code addresses.
+Eleven identifier-specific augmentation builders exported read-only and direct
+resource references/callees inventoried. These are NOT complete nested control
+lists or reconstructed builder implementations. Profile japan check conditionally
+adds max-length event; inventory must not be blindly executed as flat data.
+Complete reachable/in-game/nested-screen census is still open.
+
+New frontend/screen_stack.h replaces MenuEventQueue's screen_depth counter with
+borrowed registered identities. Regular 02000001: hide current, push selected
+registered screen, activate focus zero. Modal 02000002: preserve old visibility,
+SAVE current to previous (+f8), push, activate focus 10200000. IMPORTANT regular
+selection jumps directly to 0066d561, bypassing +f8 store: it preserves previous.
+02000005 pop hides before removing, CLEARS previous, then resumes remaining
+current screen with zero focus. General 02000003 back pop preserves previous.
+Clear helper hides each stacked occurrence in LIFO order; source/audit only,
+not wired to application transitions. Empty pops no-op. Native unsupported
+bindings preflight before live state changes (deliberate guard vs original ABI).
+Only slots one/four bound by host; no additional menu actions enabled.
+
+New frontend/screen_lifecycle.h reconstructs 00668400/00668440 model-enabled
+gates and exact ordering: enter focus -> show model -> emit 0400d000; hide model
+-> leave focus zero -> emit 0400c000. Results ignored. HostMenuEventActions now
+uses these helpers with actual model +e0 flag, existing visibility/update bridge
+and shared focus handlers. Old separate show/hide-confirmation action callbacks
+removed. Original modal activation requests Yes focus (10200000); the pointer
+can change it immediately. Screen observer lists/dynamic callbacks remain
+UNATTACHED: lifecycle emitted tags are diagnostic only, not dynamic data updates.
+Main model seeded visible at host startup; full original factory/lifecycle ABI,
+registry allocation/error handling, targeted event routes, slot-zero dialogs,
+application-state transitions and general rendering remain incomplete.
+
+Validation after VSCode crash: strict i386 host build, temporary native
+ASan/UBSan audit and i386 instantiated audit compilation pass. Checks visibility
+gating/order, full registry traversal, regular/modal/back/pop/resume/clear,
+previous-pointer asymmetry, empty operations, unavailable binding preflight,
+and actual definitions/DefinedScreen/screen-key/control-events/queue Exit/No/Yes
+with automatic modal Yes focus. All 14 compiled names/model keys/IDs match
+inventory. Existing native suite, 17 launcher and nine frontend checks pass.
+New menu-screen-map.json verifies exact client fingerprint, 13 instruction
+anchors, two vtable slots, 178 calls and 142 resource references. Existing UI
+map remains 400 anchors/40 engine slots. Two new PARTIAL client entries:
+00668400/00668440. Total **65 partial (61 client/four engine), zero complete,
+frozen 18,783**. Inventory/generic containers earn no function credit.
+Temporary audits removed after checks; generated decompilation stays ignored.
+
+Desktop command unchanged:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+Check repeated Exit -> No and Exit -> Escape -> reopen; final Yes closes.
+Try Enter/Space and mouse, moving between Yes/No, holding a button during
+transitions, and focus loss/reentry. Watch for stuck highlights or hidden dialog.
+The modal push now requests original Yes focus; current pointer routing may
+immediately select/clear another target. Keyboard ordinary-button silence stays.
+New log includes `Original screen lifecycle: ... tag=0400d000/0400c000`.
+After user confirms, inspect runtime log and commit. Do not treat the whole
+screen-creation/dispatch plan item as complete. Next substantial dependency:
+original screen/targeted observer dispatch and nested group construction, then
+choose a flow whose callbacks/data boundary can be completed. Credits changes
+application state 12; it is not a simple registered screen. Options queues slot
+six through 0061bea0 plus settings-backed messages. See inventory before choosing.
+
+## Previous checkpoint: attached text state and definition-driven captions
 
 Previous shared control-state/event slice was desktop-confirmed and committed
 as **8062165** (399 frames, clean teardown). Current larger text slice is
-**desktop-confirmed and ready to commit** (506 frames, clean teardown).
+**desktop-confirmed and committed as 1410782** (506 frames, clean teardown).
 User requests large cohesive slices. Do not commit interactive changes before
 confirmation; do not agent-launch Proton (no window driver). No new unit tests.
 

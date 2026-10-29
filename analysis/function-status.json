@@ -7,6 +7,32 @@
   "functions": [
     {
       "program": "client",
+      "entry": "00668440",
+      "status": "partial",
+      "coverage": "Model-enabled gate; disable frame, leave-focus with zero, emit 0400c000; callback result ignored.",
+      "limitations": "Portable lifecycle context replaces class ABI/virtual calls. Host bridges model visibility and reconstructed focus, but screen observer lists/dynamic callbacks are not attached; emitted tags diagnostic only. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-screen-map.json",
+        "recovered/frontend/screen_lifecycle.h",
+        "recovered/host/menu_scene.h",
+        "recovered/host/engine_window.cpp"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00668400",
+      "status": "partial",
+      "coverage": "Model-enabled gate; enter-focus with supplied argument, enable frame, emit 0400d000; callback result ignored.",
+      "limitations": "Portable lifecycle context replaces class ABI/virtual calls. Host bridges model visibility and reconstructed focus, but screen observer lists/dynamic callbacks are not attached; emitted tags diagnostic only. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-screen-map.json",
+        "recovered/frontend/screen_lifecycle.h",
+        "recovered/host/menu_scene.h",
+        "recovered/host/engine_window.cpp"
+      ]
+    },
+    {
+      "program": "client",
       "entry": "006440f0",
       "status": "partial",
       "coverage": "Signed indexed text record replacement or append fallback; style-byte storage, shared ownership and dirty flag.",
@@ -739,13 +765,16 @@
       "program": "client",
       "entry": "0066c950",
       "status": "partial",
-      "coverage": "Deferred event storage, release and discard, and the Exit confirmation push, pop and quit event cases.",
-      "limitations": "Only screen-depth-one Exit and its confirmation are implemented; other screen, target and event cases, original screen callbacks, application quit callback, original queue storage and ABI are excluded.",
+      "coverage": "Deferred storage/release/discard and Exit replies; registered ScreenStack replaces depth counter. Regular select hides then pushes without changing +f8. Modal push retains old visibility, saves +f8 and activates with 10200000. Pop clears +f8, generic back preserves it; both resume current screen.",
+      "limitations": "Native borrowed registry/vector replaces global segmented deque/class ABI. Only main/confirmation bound. Targeted routes, full factory/observer/data callbacks, slot-zero/application transitions and remaining cases excluded. Native binding preflight deliberately precedes live visibility changes. Bounded integration desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/menu_event_queue.h",
         "recovered/frontend/menu_event_queue.cpp",
-        "recovered/host/engine_window.cpp"
+        "recovered/host/engine_window.cpp",
+        "analysis/menu-screen-map.json",
+        "recovered/frontend/screen_stack.h",
+        "recovered/frontend/screen_registry.h"
       ]
     },
     {

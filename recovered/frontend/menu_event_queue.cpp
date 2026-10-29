@@ -23,7 +23,9 @@ void MenuEventQueue::pump() {
 }
 
 void MenuEventQueue::cancel_confirmation() {
-    if (screen_depth_ != 2) throw std::logic_error("Confirmation is not on the screen stack");
+    if (!screens_.current() || screens_.current()->identifier != 0x10000000) {
+        throw std::logic_error("Confirmation is not on the screen stack");
+    }
     enqueue({0, 0x14001200, 1, 0, 0, {}});
     enqueue({0, 0x06001005, 0, 0, 0, {}});
 }
@@ -55,31 +57,29 @@ void MenuEventQueue::route(ControlEvent event) {
         // Derived menu callback 00626b20 uses the CURRENT stack, not the
         // identifier captured in the queued keyboard event. Bounded to the
         // main menu / confirmation; original screen 2/14/10 cases are absent.
-        if (screen_depth_ == 2) cancel_confirmation();
-        else if (screen_depth_ == 1) enqueue({0, 0x02000003, 0, 0, 0, {}});
+        if (!screens_.current()) break;
+        if (screens_.current_index() == 4) cancel_confirmation();
+        else if (screens_.current_index() == 1) enqueue({0, 0x02000003, 0, 0, 0, {}});
         else throw std::logic_error("Unsupported keyboard back screen");
         break;
     case 0x02000003:
-        if (screen_depth_ == 1) {
+        if (screens_.size() == 1) {
             enqueue({0, 0x02000002, 4, 0, 0, {}});
             enqueue({0, 0x22000004, 0, 0, 0, {}});
-        } else if (screen_depth_ == 2 && (event.argument & 0xfc000000) == 0x10000000) {
+        } else if ((event.argument & 0xfc000000) == 0x10000000) {
             cancel_confirmation();
         } else {
-            throw std::logic_error("Unsupported menu back event");
+            screens_.pop(false);
         }
+        break;
+    case 0x02000001:
+        screens_.push(event.argument, false);
         break;
     case 0x02000002:
-        if (screen_depth_ != 1 || event.argument != 4) {
-            throw std::logic_error("Unsupported menu screen push");
-        }
-        ++screen_depth_;
-        actions_.show_confirmation();
+        screens_.push(event.argument, true);
         break;
     case 0x02000005:
-        if (screen_depth_ != 2) throw std::logic_error("Unsupported menu screen pop");
-        --screen_depth_;
-        actions_.hide_confirmation();
+        screens_.pop(true);
         break;
     case 0x02000004:
         actions_.quit();

@@ -2510,3 +2510,59 @@ Existing native suite, 17 launcher/12 text/nine frontend checks passed. UI map
 has 400 byte anchors/40 engine slots. Nine new partial entries; total 63 partial,
 zero complete, frozen denominator 18,783. No new unit tests, no Proton run, no
 commit pending desktop confirmation. No redistribution of original text/assets.
+
+
+## Registered screens, stack and visibility lifecycle — 2026-10-29
+
+Text integration desktop-confirmed (506 frames/clean teardown), committed as
+1410782. Registered-stack slice desktop-confirmed: 3320 frames and clean teardown.
+
+00623DD0 registers fourteen named definitions. 00627060 loads each model with
+0066BFA0, applies identifier-specific augmentation, constructs 0x84-byte screen
+00668120, initializes +8C and +70, inserts it into the runtime registry, destroys
+temporary definitions and selects main via 02000001 argument one. Failed model
+loads skip entries; original registry error/index behavior remains unresolved.
+Runtime slot zero is separately constructed by 0066C1D0. Duplicate SINGLE MISSION
+2 definitions five/seven have different builders (006391E0/00614140); Cinematics
+selects seven. Exact strings contain spaces; Ghidra symbol underscores are not
+literal model/name characters. No deduplication by name/model is valid here.
+
+analysis/menu-screens.json records fourteen registrations, 53 static children
+and 100 initializer call sites, plus direct string/callee evidence for all eleven
+augmentation builders. This is inventory, not reconstructed builder code or a
+complete reachable-menu census. Profile japan-dependent max-length initialization
+is conditional; candidate records are not a flat program. Options entry 0061BEA0
+queues settings-backed messages then regular selection six. Its builder 0061CF60
+references video/sound/controls/game/multiplayer groups. Credits 00626B20 switches
+application state to twelve, requiring separate lifecycle tracing. Network entry
+006333C0 distinguishes LAN/Internet. Additional pages and in-game variants remain.
+
+ScreenStack reconstructs bounded 0066C950 transition branches with native borrowed
+registry pointers. Regular 02000001 hides current then pushes/activates with zero
+focus; its jump at 0066CD2C goes to 0066D561, BYPASSING +F8 store. Modal 02000002
+stores previous +F8 at 0066CD7D, retains current visibility, pushes and activates
+with 10200000 (Yes) at 0066CDCE. Pop 02000005 hides before removal, clears +F8,
+then resumes remaining current screen; ordinary back preserves +F8. Clear helper
+hides LIFO occurrences but application-state transitions remain unwired. Native
+binding preflight happens before live visibility changes, unlike original raw
+pointer/index assumptions. Original segmented deque/storage/ABI is not recovered.
+
+00668400 checks model +E0 bit one; if hidden, calls focus-enter +30 with supplied
+argument, enables frame +30, emits 0400D000. 00668440 checks same bit; if visible,
+hides first, calls focus-leave +34 with zero, emits 0400C000. Callback results do
+not veto remaining work. Host uses these helpers with existing model bridge and
+shared focus. Screen observer lists/dynamic callbacks are still unattached: tags
+are diagnostic only. The explicit modal Yes focus request is now integrated;
+pointer routing can select/clear focus on the next frame. No keyboard sound added.
+
+Strict i386 build, native ASan/UBSan audit and i386 instantiated audit compile pass
+visibility gates/order, registry traversal, regular/modal/back/pop/resume/clear,
+previous-pointer asymmetry, empty operations, unavailable binding preflight, and
+actual definitions/DefinedScreen/key/control-events/queue Exit/No/Yes. Compiled
+14 registry entries match original names/model keys/IDs. Existing native suite,
+17 launcher/nine frontend checks pass. New menu-screen-map verifies fingerprint,
+13 instruction anchors, two vtable slots, 178 direct calls and 142 resource
+references; UI map remains 400 anchors/40 engine slots. Two new partial lifecycle
+entries; total 65 partial (61 client/four engine), zero complete, frozen 18,783.
+Inventory/generic container glue receives no additional credit. No new unit tests,
+agent Proton launches or current-slice commit. Generated pseudocode stays ignored.

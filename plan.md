@@ -24,13 +24,13 @@ Keep an explicit list of delegated calls so the eventual replacement is tractabl
 | --- | --- | --- |
 | Independent i386 host, original engine window and teardown | Desktop-tested | Recover original application lifecycle beyond host scaffolding |
 | Original main-menu artwork, cursor, bitmap text and hover pairs | Desktop-tested, bounded | Dynamic captions, localization and fidelity across settings |
-| Exit and Yes/No confirmation | Existing behavior desktop-tested; shared construction/routing desktop-confirmed | General screen stack and remaining menu flows |
+| Exit and Yes/No confirmation | Shared controls/text desktop-confirmed; registered stack/lifecycle audited, desktop check pending | Full factory/observer routing and remaining flows |
 | Shared pointer dispatch, picking, wheel and held-button transitions | Desktop-tested, bounded | Original object ABI, capture/device lifecycle and exact timing |
 | Enter/Space on focused buttons | Desktop-tested | Keypad Enter audited, hardware test unavailable; device/character transport incomplete |
 | Escape opens confirmation; Escape cancels it | Desktop-tested | Application interceptors and other screen-specific back rules |
 | Previous/next focus traversal | Source reconstructed | Find original callers/key bindings and initial-focus policy before wiring |
 | Original button sound and sound-driver lifecycle | Desktop-tested | Original preferences/resource cache and additional menu sounds |
-| Shared control initialization and state messages | State/event layer desktop-confirmed; attached text/caption/style slice implemented and audited, desktop check pending | Full factory, dynamic callbacks, paragraph layout and broader widget eligibility |
+| Shared control initialization and state messages | State/events and attached text/caption/style desktop-confirmed | Full factory, dynamic callbacks, paragraph layout and broader widget eligibility |
 | Other main-menu actions/screens | Not functional yet | Inventory, reconstruct and enable one flow at a time |
 
 Keyboard sound check: ordinary Exit/Yes/No keyboard activation is silent in the
@@ -52,36 +52,44 @@ This conclusion is from original binary analysis, not a new original-game run.
   Shared base messages, observer registration/removal, local events and original
   hidden-OK initialization are integrated and desktop-confirmed. Derived
   text/button dispatch is connected to native attached text records, caption/style
-  initializers and the bounded renderer; desktop validation of this integration
-  is pending. General factory/widgets and original ABI remain incomplete.
+  initializers and the bounded renderer; this integration is desktop-confirmed. General factory/widgets and original ABI remain incomplete.
 - [x] Replace hardcoded Exit/confirmation adapters with reusable controls and definitions.
   **Desktop-confirmed.** Both screens now
   use one `DefinedScreen` routing class and `DefinedControls` construction/ownership
   path. Original 17/four child slots, button definitions and supported event
   bindings are centralized; the two specialized adapters are removed.
 - [ ] Recover screen creation, binding, lifetime, push/pop and general event dispatch.
+  Registered stack, regular/modal transition distinction, pop/back/resume and
+  visibility/focus lifecycle integrated and desktop-confirmed for the two live
+  screens. Original factory, observer/target routing and other screens remain.
 - [ ] Recover keyboard preprocessing, character input, focus entry and navigation callers.
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
 
-Current larger slice: attached text storage/runtime, all 17/four caption/style
-initialization definitions and glyph submission from actual text state. Static
-and button records share the same initialization/message path and rendering
-state. Original empty localization 2002 is staged. Version formatting is deferred.
-The former hardcoded label table is no longer used by the live renderer.
+Current larger slice: registered screen stack/lifecycle and concrete dependency
+inventory. Native stack replaces the depth counter and preserves original
+regular/modal/back/pop differences. Activation/hiding uses actual model flags
+and shared focus handlers. Modal activation requests Yes focus before showing;
+subsequent pointer input can change it. Screen observer tags are diagnostic-only
+until original lists/dynamic callbacks are integrated.
 
-Strict i386 build, temporary native/sanitized/i386 audits, all existing checks,
-20 binary caption/style comparisons and 48 real-font geometry comparisons pass.
-**Desktop-confirmed** (506 frames, clean teardown). General paragraph
-layout, full font API/style catalogue, original text +94 color semantics and
-dynamic callbacks are not complete. Next larger work: complete screen/dependency
-inventory and shared creation/dispatch needed to enable another useful flow.
+Strict i386 build, temporary native/sanitized/i386 audits and existing checks
+pass. **Desktop-confirmed** (3320 frames, clean teardown). Only main
+and confirmation are runtime-bound. Previous attached text/caption slice is
+desktop-confirmed and committed as 1410782 (506 frames, clean teardown).
 
 Prefer complete plan items or cohesive dependency groups per iteration, as
 requested by the user. Avoid returning for desktop checks after individual
 message handlers when they can be validated together in one larger slice.
 
 ## 2. Establish the complete screen and dependency inventory
+
+- [x] Inventory all 14 static registrations in 00623DD0 and map the 11
+  identifier-specific augmentation builders in 00627060 (source/evidence only).
+  [Screen inventory](analysis/menu-screens.md) and [structured metadata](analysis/menu-screens.json)
+  record 53 static children, 100 initializer call sites and builder dependencies.
+  Five/seven are distinct despite their shared name/model; runtime zero is a
+  separate dialog. Nested/derived and in-game inventory is still unfinished.
 
 - [ ] Enumerate every definition, derived/dynamic screen and shared dialog reachable
   from startup, the main menu, and the in-game menu; cross-check definitions,
@@ -103,12 +111,12 @@ resume, cinematics and credits; LAN and Internet have separate entry actions.
 | --- | --- | --- |
 | Main menu | All nine original actions, live profile/last-save/date/version labels, eligibility | Exit only functional |
 | Shared dialogs | Yes/No/OK, prompts, text/password entry, errors, cancellation and layering | Quit Yes/No only |
-| Credits and cinematics | Recover entry/controller paths, scrolling/list/playback and return behavior | Not started |
-| Options | Enumerate every page; graphics, audio, controls and other original settings; apply/cancel/persistence | Definition located |
-| Profiles | List/select/create/rename/delete, validation and persistence | Definition located |
+| Credits and cinematics | Recover controller, scrolling/list/playback and return | Credits enters application state 12; Cinematics selects distinct slot seven/builder 00614140 |
+| Options | Recover nested pages, shared widgets, settings/apply/cancel/persistence | Slot six/builder 0061cf60; entry 0061bea0; five settings groups referenced |
+| Profiles | List/select/create/rename/delete, validation and persistence | 17 static children, builder 006211b0 and callback dependencies inventoried |
 | Resume, saves and loading | Original metadata, previews, selection, errors and game-state handoff; save dialogs where reachable | Not started |
 | Single player | Campaign/lone-wolf/carnage and mission-selection flows; recover setup, squad/equipment and briefing screens where reachable | Initial definition located |
-| Multiplayer | LAN/Internet browser, filters, add server, info/password, create/connect, lobby/setup and disconnection/errors | Several definitions located |
+| Multiplayer | LAN/Internet browser, dialogs, create/connect/lobby/setup and errors | Slots eight–fourteen and their builders mapped; entry 006333c0 |
 | In-game menu and return paths | Inventory pause/options/save/load/quit variants and reconcile reused screens | Not inventoried |
 
 ## 3. Deliver complete flows in dependency order

@@ -1,0 +1,2538 @@
+{
+  "schema_version": 1,
+  "scope": "All static registrations and child definitions in original 00623dd0 only. This is not the full reachable menu inventory. Conditional initializer branches are recorded as candidates, not flattened executable programs.",
+  "client": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "definition_function": "00623dd0",
+  "registry_index_zero": {
+    "identifier": "00000000",
+    "model": "confirm",
+    "constructor": "0066c1d0",
+    "status": "Separately constructed runtime modal screen. Shared model with named screen four does not establish shared identity or definition lists."
+  },
+  "screens": [
+    {
+      "index": 1,
+      "identifier": "04000000",
+      "name": "MAIN MENU",
+      "model": "main_menu",
+      "registration_call": "00623e61",
+      "name_address": "0083f7f4",
+      "model_address": "0083f800",
+      "screen_initializers": [
+        {
+          "call": "00623ea1",
+          "helper": "00614da0",
+          "target": "00000000",
+          "code": "01000007",
+          "argument": "0400d000",
+          "callback": "00627520",
+          "context": "menu object"
+        }
+      ],
+      "controls": [
+        {
+          "identifier": "04100000",
+          "kind": "13",
+          "frame": "text_screen",
+          "frame_address": "0083ec00",
+          "creation_call": "00623f0e",
+          "initializers": [
+            {
+              "call": "00623f4f",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000a",
+              "word_0c": "00000835"
+            }
+          ]
+        },
+        {
+          "identifier": "04200000",
+          "kind": "13",
+          "frame": "text_date00",
+          "frame_address": "0083f028",
+          "creation_call": "00623fc1",
+          "initializers": [
+            {
+              "call": "00624002",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000b",
+              "word_0c": "00000836"
+            }
+          ]
+        },
+        {
+          "identifier": "04300000",
+          "kind": "13",
+          "frame": "text_date01",
+          "frame_address": "0083f01c",
+          "creation_call": "00624074",
+          "initializers": [
+            {
+              "call": "006240b5",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000c",
+              "word_0c": "000007d2"
+            }
+          ]
+        },
+        {
+          "identifier": "04400000",
+          "kind": "13",
+          "frame": "text_profile00",
+          "frame_address": "0083f00c",
+          "creation_call": "00624127",
+          "initializers": [
+            {
+              "call": "00624168",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000b",
+              "word_0c": "00000837"
+            }
+          ]
+        },
+        {
+          "identifier": "04500000",
+          "kind": "13",
+          "frame": "text_profile01",
+          "frame_address": "0083f7e4",
+          "creation_call": "006241da",
+          "initializers": [
+            {
+              "call": "0062421b",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000c",
+              "word_0c": "000007d2"
+            }
+          ]
+        },
+        {
+          "identifier": "04600000",
+          "kind": "13",
+          "frame": "text_last save00",
+          "frame_address": "0083f7d0",
+          "creation_call": "0062428d",
+          "initializers": [
+            {
+              "call": "006242ce",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000b",
+              "word_0c": "00000838"
+            }
+          ]
+        },
+        {
+          "identifier": "04700000",
+          "kind": "13",
+          "frame": "text_last save01",
+          "frame_address": "0083f2a0",
+          "creation_call": "00624340",
+          "initializers": [
+            {
+              "call": "00624381",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000c",
+              "word_0c": "000007d2"
+            }
+          ]
+        },
+        {
+          "identifier": "04800000",
+          "kind": "14",
+          "frame": "bresume game",
+          "frame_address": "0083f7c0",
+          "creation_call": "006243f3",
+          "initializers": [
+            {
+              "call": "00624434",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "00000839"
+            },
+            {
+              "call": "00624478",
+              "helper": "00614dd0",
+              "target": "00000000",
+              "code": "06001075",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "04900000",
+          "kind": "14",
+          "frame": "bchange profile",
+          "frame_address": "0083f7b0",
+          "creation_call": "006244e7",
+          "initializers": [
+            {
+              "call": "00624528",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000083a"
+            },
+            {
+              "call": "0062456c",
+              "helper": "00614dd0",
+              "target": "00000000",
+              "code": "06001001",
+              "argument": "00000002"
+            }
+          ]
+        },
+        {
+          "identifier": "04a00000",
+          "kind": "14",
+          "frame": "bsingleplayer",
+          "frame_address": "0083f7a0",
+          "creation_call": "006245db",
+          "initializers": [
+            {
+              "call": "0062461c",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000083b"
+            },
+            {
+              "call": "00624660",
+              "helper": "00614dd0",
+              "target": "00000000",
+              "code": "06001001",
+              "argument": "00000003"
+            }
+          ]
+        },
+        {
+          "identifier": "04b00000",
+          "kind": "14",
+          "frame": "bmultiplayerlan",
+          "frame_address": "0083f790",
+          "creation_call": "006246cf",
+          "initializers": [
+            {
+              "call": "00624710",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "00000843"
+            },
+            {
+              "call": "00624754",
+              "helper": "00614dd0",
+              "target": "00000000",
+              "code": "06001099",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "04c00000",
+          "kind": "14",
+          "frame": "bmultiplayernet",
+          "frame_address": "0083f780",
+          "creation_call": "006247c3",
+          "initializers": [
+            {
+              "call": "00624804",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "00000844"
+            },
+            {
+              "call": "00624848",
+              "helper": "00614dd0",
+              "target": "00000000",
+              "code": "0600109a",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "04d00000",
+          "kind": "14",
+          "frame": "bcinematics",
+          "frame_address": "0083f774",
+          "creation_call": "006248b7",
+          "initializers": [
+            {
+              "call": "006248f8",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000083d"
+            },
+            {
+              "call": "0062493c",
+              "helper": "00614dd0",
+              "target": "00000000",
+              "code": "06001001",
+              "argument": "00000007"
+            }
+          ]
+        },
+        {
+          "identifier": "04e00000",
+          "kind": "14",
+          "frame": "boptions",
+          "frame_address": "0083f768",
+          "creation_call": "006249ab",
+          "initializers": [
+            {
+              "call": "006249ec",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000083e"
+            },
+            {
+              "call": "00624a30",
+              "helper": "00614dd0",
+              "target": "00000000",
+              "code": "06001071",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "04f00000",
+          "kind": "14",
+          "frame": "bcredits",
+          "frame_address": "0083f75c",
+          "creation_call": "00624a9f",
+          "initializers": [
+            {
+              "call": "00624ae0",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000083f"
+            },
+            {
+              "call": "00624b24",
+              "helper": "00614dd0",
+              "target": "00000000",
+              "code": "0600103a",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "05000000",
+          "kind": "14",
+          "frame": "bexit",
+          "frame_address": "0083ebf0",
+          "creation_call": "00624b93",
+          "initializers": [
+            {
+              "call": "00624bd4",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "00000840"
+            },
+            {
+              "call": "00624c1b",
+              "helper": "00614dd0",
+              "target": "00000000",
+              "code": "06001003",
+              "argument": "04000000"
+            }
+          ]
+        },
+        {
+          "identifier": "05100000",
+          "kind": "13",
+          "frame": "text_h&dversion",
+          "frame_address": "0083ebb0",
+          "creation_call": "00624c8a",
+          "initializers": [
+            {
+              "call": "00624cc7",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "00000028",
+              "word_0c": "000007d6"
+            }
+          ]
+        }
+      ],
+      "status": "Bounded definition and host runtime are functional; full original screen object/observer ABI is incomplete."
+    },
+    {
+      "index": 2,
+      "identifier": "08000000",
+      "name": "CHANGE PROFIL",
+      "model": "change_profile",
+      "registration_call": "00624d2d",
+      "name_address": "0083f73c",
+      "model_address": "0083f74c",
+      "screen_initializers": [
+        {
+          "call": "00624d6d",
+          "helper": "00614da0",
+          "target": "00000000",
+          "code": "01000007",
+          "argument": "0400d000",
+          "callback": "00623780",
+          "context": "menu object"
+        }
+      ],
+      "controls": [
+        {
+          "identifier": "08100000",
+          "kind": "1b",
+          "frame": "bcurrent profile",
+          "frame_address": "0083f728",
+          "creation_call": "00624dd2",
+          "initializers": [
+            {
+              "call": "00624e10",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "000007d2"
+            },
+            {
+              "call": "00624e57",
+              "helper": "00625d20",
+              "target": "00000000",
+              "code": "0100009b",
+              "argument": "00000000",
+              "string_address": "0083f71c"
+            },
+            {
+              "call": "00624ea5",
+              "helper": "00614dd0",
+              "target": "00000000",
+              "code": "0100006e",
+              "argument": "00000011"
+            },
+            {
+              "call": "00624ef3",
+              "helper": "00614da0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04016000",
+              "callback": "00621470",
+              "context": "menu object"
+            },
+            {
+              "call": "00624f37",
+              "helper": "00614da0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04017000",
+              "callback": "00621470",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "08200000",
+          "kind": "0f",
+          "frame": "LB_Profile*",
+          "frame_address": "0083f708",
+          "creation_call": "00624fa7",
+          "initializers": [
+            {
+              "call": "00624fec",
+              "helper": "00614da0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "00623ae0",
+              "context": "menu object"
+            },
+            {
+              "call": "00625039",
+              "helper": "00614da0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04013000",
+              "callback": "00623ae0",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "08300000",
+          "kind": "14",
+          "frame": "beasy-*",
+          "frame_address": "0083f700",
+          "creation_call": "006250a8",
+          "initializers": [
+            {
+              "call": "006250e9",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000086d"
+            },
+            {
+              "call": "00625136",
+              "helper": "00614da0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "00622af0",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "08400000",
+          "kind": "14",
+          "frame": "bnormal-*",
+          "frame_address": "0083f6f4",
+          "creation_call": "006251a5",
+          "initializers": [
+            {
+              "call": "006251e6",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000086e"
+            },
+            {
+              "call": "00625233",
+              "helper": "00614da0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "00622af0",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "08500000",
+          "kind": "14",
+          "frame": "bhard-*",
+          "frame_address": "0083f6ec",
+          "creation_call": "006252a2",
+          "initializers": [
+            {
+              "call": "006252e3",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000086f"
+            },
+            {
+              "call": "00625330",
+              "helper": "00614da0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "00622af0",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "08600000",
+          "kind": "14",
+          "frame": "bvery hard-*",
+          "frame_address": "0083f6dc",
+          "creation_call": "0062539f",
+          "initializers": [
+            {
+              "call": "006253e0",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "00000870"
+            },
+            {
+              "call": "0062542d",
+              "helper": "00614da0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "00622af0",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "08700000",
+          "kind": "14",
+          "frame": "bcreate profile",
+          "frame_address": "0083f6cc",
+          "creation_call": "0062549c",
+          "initializers": [
+            {
+              "call": "006254dd",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "00000868"
+            },
+            {
+              "call": "0062552a",
+              "helper": "00614da0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "00621470",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "08800000",
+          "kind": "14",
+          "frame": "brename profile",
+          "frame_address": "0083f6bc",
+          "creation_call": "00625599",
+          "initializers": [
+            {
+              "call": "006255d6",
+              "helper": "00614df0",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000086a"
+            },
+            {
+              "call": "00625618",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "00621470",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "08900000",
+          "kind": "14",
+          "frame": "Bdelete profile",
+          "frame_address": "0083f6ac",
+          "creation_call": "00625629",
+          "initializers": [
+            {
+              "call": "0062563f",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000086b"
+            },
+            {
+              "call": "00625657",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "00621470",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "08a00000",
+          "kind": "14",
+          "frame": "bback",
+          "frame_address": "0083f05c",
+          "creation_call": "00625668",
+          "initializers": [
+            {
+              "call": "0062567e",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000086c"
+            },
+            {
+              "call": "0062568d",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "06001003",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "08b00000",
+          "kind": "13",
+          "frame": "text_h&dversion",
+          "frame_address": "0083ebb0",
+          "creation_call": "0062569e",
+          "initializers": [
+            {
+              "call": "006256b2",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "00000028",
+              "word_0c": "000007d6"
+            }
+          ]
+        },
+        {
+          "identifier": "08c00000",
+          "kind": "13",
+          "frame": "text_current profile and save",
+          "frame_address": "0083f68c",
+          "creation_call": "006256c3",
+          "initializers": [
+            {
+              "call": "006256d7",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000b",
+              "word_0c": "0000088f"
+            }
+          ]
+        },
+        {
+          "identifier": "08d00000",
+          "kind": "13",
+          "frame": "text_date and time",
+          "frame_address": "0083f678",
+          "creation_call": "006256e8",
+          "initializers": []
+        },
+        {
+          "identifier": "08e00000",
+          "kind": "13",
+          "frame": "text_list of profiles",
+          "frame_address": "0083ebc0",
+          "creation_call": "006256f6",
+          "initializers": [
+            {
+              "call": "0062570a",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000b",
+              "word_0c": "00000890"
+            }
+          ]
+        },
+        {
+          "identifier": "08f00000",
+          "kind": "13",
+          "frame": "text01",
+          "frame_address": "0083f670",
+          "creation_call": "0062571b",
+          "initializers": []
+        },
+        {
+          "identifier": "09000000",
+          "kind": "13",
+          "frame": "text_screen",
+          "frame_address": "0083ec00",
+          "creation_call": "00625729",
+          "initializers": [
+            {
+              "call": "0062573d",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000a",
+              "word_0c": "00000867"
+            }
+          ]
+        },
+        {
+          "identifier": "09100000",
+          "kind": "13",
+          "frame": "text_difficulty",
+          "frame_address": "0083f660",
+          "creation_call": "0062574e",
+          "initializers": [
+            {
+              "call": "00625762",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000b",
+              "word_0c": "00000891"
+            }
+          ]
+        }
+      ],
+      "augmentation_function": "006211b0",
+      "augmentation_string_references": [],
+      "augmentation_callees": [
+        "006aef50"
+      ],
+      "augmentation_direct_child_sites": 0,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    },
+    {
+      "index": 3,
+      "identifier": "0c000000",
+      "name": "SINGLEPLAYER",
+      "model": "singleplayer",
+      "registration_call": "00625776",
+      "name_address": "0083f640",
+      "model_address": "0083f650",
+      "screen_initializers": [
+        {
+          "call": "00625790",
+          "helper": "00625de0",
+          "target": "00000000",
+          "code": "01000007",
+          "argument": "0400d000",
+          "callback": "0063b590",
+          "context": "menu object"
+        }
+      ],
+      "controls": [
+        {
+          "identifier": "0c100000",
+          "kind": "13",
+          "frame": "text_screen",
+          "frame_address": "0083ec00",
+          "creation_call": "006257a1",
+          "initializers": [
+            {
+              "call": "006257b5",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000a",
+              "word_0c": "00000899"
+            }
+          ]
+        },
+        {
+          "identifier": "0c200000",
+          "kind": "0c",
+          "frame": "single side",
+          "frame_address": "0083f634",
+          "creation_call": "006257c6",
+          "initializers": [
+            {
+              "call": "006257dc",
+              "helper": "00625d50",
+              "target": "00000000",
+              "code": "01000032",
+              "argument": "00000000",
+              "string_address": "0083f630"
+            },
+            {
+              "call": "006257f0",
+              "helper": "00625d50",
+              "target": "00000000",
+              "code": "01000032",
+              "argument": "00000000",
+              "string_address": "0083f62c"
+            },
+            {
+              "call": "00625804",
+              "helper": "00625d50",
+              "target": "00000000",
+              "code": "01000032",
+              "argument": "00000000",
+              "string_address": "0083f628"
+            },
+            {
+              "call": "00625818",
+              "helper": "00625d50",
+              "target": "00000000",
+              "code": "01000032",
+              "argument": "00000000",
+              "string_address": "0083f624"
+            },
+            {
+              "call": "0062582f",
+              "helper": "00625d50",
+              "target": "00000000",
+              "code": "01000032",
+              "argument": "00000000",
+              "string_address": "0083f620"
+            },
+            {
+              "call": "00625843",
+              "helper": "00625d50",
+              "target": "00000000",
+              "code": "01000032",
+              "argument": "00000000",
+              "string_address": "0083f61c"
+            },
+            {
+              "call": "00625857",
+              "helper": "00625d50",
+              "target": "00000000",
+              "code": "01000032",
+              "argument": "00000000",
+              "string_address": "0083f618"
+            },
+            {
+              "call": "0062586b",
+              "helper": "00625d50",
+              "target": "00000000",
+              "code": "01000032",
+              "argument": "00000000",
+              "string_address": "0083f614"
+            }
+          ]
+        },
+        {
+          "identifier": "0c300000",
+          "kind": "13",
+          "frame": "text00",
+          "frame_address": "0083ec38",
+          "creation_call": "0062587c",
+          "initializers": []
+        },
+        {
+          "identifier": "0c400000",
+          "kind": "14",
+          "frame": "bcampaign",
+          "frame_address": "0083f608",
+          "creation_call": "0062588a",
+          "initializers": [
+            {
+              "call": "006258a0",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000089a"
+            },
+            {
+              "call": "006258b8",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04003000",
+              "callback": "0063b740",
+              "context": "menu object"
+            },
+            {
+              "call": "006258d0",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "0063b740",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "0c500000",
+          "kind": "14",
+          "frame": "blone wolf",
+          "frame_address": "0083f5fc",
+          "creation_call": "006258e1",
+          "initializers": [
+            {
+              "call": "006258f7",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000089b"
+            },
+            {
+              "call": "0062590f",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04003000",
+              "callback": "0063b740",
+              "context": "menu object"
+            },
+            {
+              "call": "00625927",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "0063b740",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "0c600000",
+          "kind": "14",
+          "frame": "carnage",
+          "frame_address": "0083f5f4",
+          "creation_call": "00625938",
+          "initializers": [
+            {
+              "call": "0062594e",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000089c"
+            },
+            {
+              "call": "00625966",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04003000",
+              "callback": "0063b740",
+              "context": "menu object"
+            },
+            {
+              "call": "0062597e",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "0063b740",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "0c700000",
+          "kind": "14",
+          "frame": "bcampaign01",
+          "frame_address": "0083f5e8",
+          "creation_call": "0062598f",
+          "initializers": [
+            {
+              "call": "006259a5",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000089d"
+            },
+            {
+              "call": "006259bd",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04003000",
+              "callback": "0063b740",
+              "context": "menu object"
+            },
+            {
+              "call": "006259d5",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "0063b740",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "0c800000",
+          "kind": "14",
+          "frame": "blone wolf01",
+          "frame_address": "0083f5d8",
+          "creation_call": "006259e6",
+          "initializers": [
+            {
+              "call": "006259fc",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "0000089e"
+            },
+            {
+              "call": "00625a14",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04003000",
+              "callback": "0063b740",
+              "context": "menu object"
+            },
+            {
+              "call": "00625a2c",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "0063b740",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "0c900000",
+          "kind": "14",
+          "frame": "carnage01",
+          "frame_address": "0083f5cc",
+          "creation_call": "00625a3d",
+          "initializers": [
+            {
+              "call": "00625a4c",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "01000004",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "0ca00000",
+          "kind": "14",
+          "frame": "bsingle mission",
+          "frame_address": "0083f5bc",
+          "creation_call": "00625a5d",
+          "initializers": [
+            {
+              "call": "00625a6c",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "01000004",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "0cb00000",
+          "kind": "14",
+          "frame": "bsingle mission- carnage",
+          "frame_address": "0083f5a0",
+          "creation_call": "00625a7d",
+          "initializers": [
+            {
+              "call": "00625a8c",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "01000004",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "0cc00000",
+          "kind": "14",
+          "frame": "bback",
+          "frame_address": "0083f05c",
+          "creation_call": "00625a9d",
+          "initializers": [
+            {
+              "call": "00625ab3",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "000008a0"
+            },
+            {
+              "call": "00625acb",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04003000",
+              "callback": "0063b740",
+              "context": "menu object"
+            },
+            {
+              "call": "00625ae3",
+              "helper": "0061e0a0",
+              "target": "00000000",
+              "code": "01000007",
+              "argument": "04001000",
+              "callback": "0063b740",
+              "context": "menu object"
+            }
+          ]
+        },
+        {
+          "identifier": "0cd00000",
+          "kind": "13",
+          "frame": "text_h&dversion",
+          "frame_address": "0083ebb0",
+          "creation_call": "00625af4",
+          "initializers": [
+            {
+              "call": "00625b08",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "00000028",
+              "word_0c": "000007d6"
+            }
+          ]
+        },
+        {
+          "identifier": "0ce00000",
+          "kind": "13",
+          "frame": "text_HD2original",
+          "frame_address": "0083f58c",
+          "creation_call": "00625b19",
+          "initializers": [
+            {
+              "call": "00625b2f",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "00004fb0"
+            },
+            {
+              "call": "00625b3e",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "01000004",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "0cf00000",
+          "kind": "13",
+          "frame": "text_HD2datadisk",
+          "frame_address": "0083f578",
+          "creation_call": "00625b4f",
+          "initializers": [
+            {
+              "call": "00625b65",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "00004fb1"
+            },
+            {
+              "call": "00625b74",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "01000004",
+              "argument": "00000000"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "identifier": "10000000",
+      "name": "CONFIRM",
+      "model": "confirm",
+      "registration_call": "00625b88",
+      "name_address": "0083f568",
+      "model_address": "0083f570",
+      "screen_initializers": [],
+      "controls": [
+        {
+          "identifier": "10100000",
+          "kind": "13",
+          "frame": "text",
+          "frame_address": "0083a8cc",
+          "creation_call": "00625b98",
+          "initializers": [
+            {
+              "call": "00625bac",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000c",
+              "word_0c": "000007d4"
+            }
+          ]
+        },
+        {
+          "identifier": "10200000",
+          "kind": "14",
+          "frame": "byes*",
+          "frame_address": "0083f560",
+          "creation_call": "00625bbd",
+          "initializers": [
+            {
+              "call": "00625bd3",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "000007d1"
+            },
+            {
+              "call": "00625be2",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "14001100",
+              "argument": "00000000"
+            },
+            {
+              "call": "00625bf1",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "06001005",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "10300000",
+          "kind": "14",
+          "frame": "bno*",
+          "frame_address": "0083f558",
+          "creation_call": "00625c02",
+          "initializers": [
+            {
+              "call": "00625c18",
+              "helper": "00614f10",
+              "target": "00000000",
+              "code": "01000015",
+              "argument": "0000000d",
+              "word_0c": "000007d0"
+            },
+            {
+              "call": "00625c27",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "14001200",
+              "argument": "00000001"
+            },
+            {
+              "call": "00625c36",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "06001005",
+              "argument": "00000000"
+            }
+          ]
+        },
+        {
+          "identifier": "10400000",
+          "kind": "14",
+          "frame": "bok",
+          "frame_address": "0083f554",
+          "creation_call": "00625c47",
+          "initializers": [
+            {
+              "call": "00625c56",
+              "helper": "00614e80",
+              "target": "00000000",
+              "code": "01000004",
+              "argument": "00000000"
+            }
+          ]
+        }
+      ],
+      "status": "Bounded definition and host runtime are functional; full original screen object/observer ABI is incomplete."
+    },
+    {
+      "index": 5,
+      "identifier": "14000000",
+      "name": "SINGLE MISSION 2",
+      "model": "single mission 2",
+      "registration_call": "00625c6a",
+      "name_address": "0083f52c",
+      "model_address": "0083f540",
+      "screen_initializers": [],
+      "controls": [],
+      "augmentation_function": "006391e0",
+      "augmentation_string_references": [
+        {
+          "address": "0083ec40",
+          "value": "video",
+          "sites": [
+            "00639207"
+          ]
+        },
+        {
+          "address": "0083ec2c",
+          "value": "screen_shot",
+          "sites": [
+            "00639224",
+            "006394bd"
+          ]
+        },
+        {
+          "address": "0083ec24",
+          "value": "blong",
+          "sites": [
+            "0063924c"
+          ]
+        },
+        {
+          "address": "0083ec1c",
+          "value": "bshort",
+          "sites": [
+            "0063925b"
+          ]
+        },
+        {
+          "address": "00840110",
+          "value": "GB_Campaign",
+          "sites": [
+            "0063926c"
+          ]
+        },
+        {
+          "address": "008400fc",
+          "value": "GB_SingleMission",
+          "sites": [
+            "006392e2"
+          ]
+        },
+        {
+          "address": "0083ec00",
+          "value": "text_screen",
+          "sites": [
+            "006393e3"
+          ]
+        },
+        {
+          "address": "0083ec38",
+          "value": "text00",
+          "sites": [
+            "00639533"
+          ]
+        },
+        {
+          "address": "0083eb80",
+          "value": "bload mission",
+          "sites": [
+            "006395fc"
+          ]
+        },
+        {
+          "address": "0083ebf0",
+          "value": "bexit",
+          "sites": [
+            "00639745"
+          ]
+        },
+        {
+          "address": "0083ebe4",
+          "value": "scroll00",
+          "sites": [
+            "0063984b"
+          ]
+        },
+        {
+          "address": "0083ebc0",
+          "value": "text_list of profiles",
+          "sites": [
+            "00639913"
+          ]
+        },
+        {
+          "address": "0083ebb0",
+          "value": "text_h&dversion",
+          "sites": [
+            "00639991"
+          ]
+        },
+        {
+          "address": "0083eba0",
+          "value": "bload lastsave",
+          "sites": [
+            "006399b8"
+          ]
+        },
+        {
+          "address": "0083ebf8",
+          "value": "bexit01",
+          "sites": [
+            "006399fd"
+          ]
+        }
+      ],
+      "augmentation_callees": [
+        "00614dd0",
+        "004050e0",
+        "00615d50",
+        "00614f10",
+        "00614e80",
+        "0063a010",
+        "00405100",
+        "00615a50",
+        "00615090",
+        "00614df0",
+        "00639a70",
+        "007e520f",
+        "00615360",
+        "0066dbf0",
+        "00615f50",
+        "007e1cc0"
+      ],
+      "augmentation_direct_child_sites": 3,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    },
+    {
+      "index": 6,
+      "identifier": "18000000",
+      "name": "OPTIONS",
+      "model": "options",
+      "registration_call": "00625c7b",
+      "name_address": "0083f524",
+      "model_address": "0083b4a0",
+      "screen_initializers": [],
+      "controls": [],
+      "augmentation_function": "0061cf60",
+      "augmentation_string_references": [
+        {
+          "address": "0083f0b0",
+          "value": "GROptions",
+          "sites": [
+            "0061cf86",
+            "0061d51f"
+          ]
+        },
+        {
+          "address": "0083f0a0",
+          "value": "bvideo setup",
+          "sites": [
+            "0061d001",
+            "0061d59f"
+          ]
+        },
+        {
+          "address": "0083f090",
+          "value": "bsound setup",
+          "sites": [
+            "0061d012",
+            "0061d6f2"
+          ]
+        },
+        {
+          "address": "0083f084",
+          "value": "bcontrols",
+          "sites": [
+            "0061d01f",
+            "0061d7f8"
+          ]
+        },
+        {
+          "address": "0083f078",
+          "value": "bgame setup",
+          "sites": [
+            "0061d030",
+            "0061d8a8"
+          ]
+        },
+        {
+          "address": "0083f064",
+          "value": "bmultiplayer setup",
+          "sites": [
+            "0061d045",
+            "0061d8f7"
+          ]
+        },
+        {
+          "address": "0083f05c",
+          "value": "bback",
+          "sites": [
+            "0061d052",
+            "0061d946"
+          ]
+        },
+        {
+          "address": "0083f048",
+          "value": "text_min norm max",
+          "sites": [
+            "0061d063"
+          ]
+        },
+        {
+          "address": "0083f034",
+          "value": "text_min norm max02",
+          "sites": [
+            "0061d078"
+          ]
+        },
+        {
+          "address": "0083ec00",
+          "value": "text_screen",
+          "sites": [
+            "0061d1f1"
+          ]
+        },
+        {
+          "address": "0083f028",
+          "value": "text_date00",
+          "sites": [
+            "0061d2c3"
+          ]
+        },
+        {
+          "address": "0083f01c",
+          "value": "text_date01",
+          "sites": [
+            "0061d395"
+          ]
+        },
+        {
+          "address": "0083f00c",
+          "value": "text_profile00",
+          "sites": [
+            "0061d467"
+          ]
+        },
+        {
+          "address": "0083ebb0",
+          "value": "text_h&dversion",
+          "sites": [
+            "0061d9b7"
+          ]
+        }
+      ],
+      "augmentation_callees": [
+        "004050e0",
+        "00614dd0",
+        "0061f350",
+        "00614da0",
+        "0061e390",
+        "00615d50",
+        "00614f10",
+        "00614e80",
+        "0061e140",
+        "00405100",
+        "00615a50",
+        "00615090",
+        "0061f1d0",
+        "00614df0",
+        "0061da10",
+        "0061dbc0",
+        "007e520f",
+        "00615360",
+        "0066dbf0",
+        "00615f50",
+        "007e1cc0",
+        "007e4e36"
+      ],
+      "augmentation_direct_child_sites": 1,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    },
+    {
+      "index": 7,
+      "identifier": "1c000000",
+      "name": "SINGLE MISSION 2",
+      "model": "single mission 2",
+      "registration_call": "00625c8c",
+      "name_address": "0083f52c",
+      "model_address": "0083f540",
+      "screen_initializers": [],
+      "controls": [],
+      "augmentation_function": "00614140",
+      "augmentation_string_references": [
+        {
+          "address": "0083ec40",
+          "value": "video",
+          "sites": [
+            "0061416a",
+            "006144cd"
+          ]
+        },
+        {
+          "address": "0083ec38",
+          "value": "text00",
+          "sites": [
+            "00614187"
+          ]
+        },
+        {
+          "address": "0083ec2c",
+          "value": "screen_shot",
+          "sites": [
+            "006141a0",
+            "00614466"
+          ]
+        },
+        {
+          "address": "0083ec24",
+          "value": "blong",
+          "sites": [
+            "006141c8"
+          ]
+        },
+        {
+          "address": "0083ec1c",
+          "value": "bshort",
+          "sites": [
+            "006141d7"
+          ]
+        },
+        {
+          "address": "0083ec0c",
+          "value": "GB_Cinematics",
+          "sites": [
+            "006141e8",
+            "0061482b"
+          ]
+        },
+        {
+          "address": "0083ec00",
+          "value": "text_screen",
+          "sites": [
+            "006143af"
+          ]
+        },
+        {
+          "address": "0083ebf8",
+          "value": "bexit01",
+          "sites": [
+            "00614534"
+          ]
+        },
+        {
+          "address": "0083ebf0",
+          "value": "bexit",
+          "sites": [
+            "0061467c"
+          ]
+        },
+        {
+          "address": "0083ebe4",
+          "value": "scroll00",
+          "sites": [
+            "00614776"
+          ]
+        },
+        {
+          "address": "0083ebd8",
+          "value": "Anim%02d",
+          "sites": [
+            "006149f9"
+          ]
+        },
+        {
+          "address": "0083ebc0",
+          "value": "text_list of profiles",
+          "sites": [
+            "00614c85"
+          ]
+        },
+        {
+          "address": "0083ebb0",
+          "value": "text_h&dversion",
+          "sites": [
+            "00614cac"
+          ]
+        },
+        {
+          "address": "0083eba0",
+          "value": "bload lastsave",
+          "sites": [
+            "00614cd1"
+          ]
+        },
+        {
+          "address": "0083eb90",
+          "value": "Load Last save",
+          "sites": [
+            "00614ce6"
+          ]
+        },
+        {
+          "address": "0083eb80",
+          "value": "bload mission",
+          "sites": [
+            "00614d17"
+          ]
+        }
+      ],
+      "augmentation_callees": [
+        "004050e0",
+        "00614dd0",
+        "00614e20",
+        "00614da0",
+        "00615d50",
+        "00614fa0",
+        "0066d9f0",
+        "00614f10",
+        "00614e80",
+        "006a7020",
+        "00405100",
+        "00615a50",
+        "00615090",
+        "00614df0",
+        "00615a70",
+        "007e520f",
+        "00615360",
+        "0066dbf0",
+        "00615f50",
+        "00614e50",
+        "007e4f62",
+        "007e1cc0"
+      ],
+      "augmentation_direct_child_sites": 4,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    },
+    {
+      "index": 8,
+      "identifier": "20000000",
+      "name": "multiplayer menu",
+      "model": "multiplayer menu",
+      "registration_call": "00625c9d",
+      "name_address": "0083f510",
+      "model_address": "0083f510",
+      "screen_initializers": [],
+      "controls": [],
+      "augmentation_function": "00633f80",
+      "augmentation_string_references": [
+        {
+          "address": "0083ec00",
+          "value": "text_screen",
+          "sites": [
+            "00633fbe"
+          ]
+        },
+        {
+          "address": "0083fed4",
+          "value": "barrows",
+          "sites": [
+            "00633fe3"
+          ]
+        },
+        {
+          "address": "0083fec8",
+          "value": "bhost name",
+          "sites": [
+            "0063400c"
+          ]
+        },
+        {
+          "address": "0083feb8",
+          "value": "bstyle",
+          "sites": [
+            "00634088"
+          ]
+        },
+        {
+          "address": "0083feb0",
+          "value": "bping",
+          "sites": [
+            "006340c9"
+          ]
+        },
+        {
+          "address": "0083fea0",
+          "value": "bplayers/max",
+          "sites": [
+            "00634108"
+          ]
+        },
+        {
+          "address": "0083fe90",
+          "value": "brestore list",
+          "sites": [
+            "00634152"
+          ]
+        },
+        {
+          "address": "0083fe80",
+          "value": "brefresh list",
+          "sites": [
+            "00634191"
+          ]
+        },
+        {
+          "address": "0083fe6c",
+          "value": "benter server ip",
+          "sites": [
+            "006341d2"
+          ]
+        },
+        {
+          "address": "0083fe5c",
+          "value": "bserver filters",
+          "sites": [
+            "00634217"
+          ]
+        },
+        {
+          "address": "0083fd64",
+          "value": "bjoin game",
+          "sites": [
+            "0063425c"
+          ]
+        },
+        {
+          "address": "0083fe4c",
+          "value": "bcreate server",
+          "sites": [
+            "006342c2"
+          ]
+        },
+        {
+          "address": "0083fe3c",
+          "value": "bview game info",
+          "sites": [
+            "00634307"
+          ]
+        },
+        {
+          "address": "0083f05c",
+          "value": "bback",
+          "sites": [
+            "0063434c"
+          ]
+        },
+        {
+          "address": "0083ebb0",
+          "value": "text_h&dversion",
+          "sites": [
+            "006343b5"
+          ]
+        },
+        {
+          "address": "0083fe30",
+          "value": "gamespylogo",
+          "sites": [
+            "006343da"
+          ]
+        },
+        {
+          "address": "0083fe28",
+          "value": "esrb-US",
+          "sites": [
+            "006343e6"
+          ]
+        },
+        {
+          "address": "0083fe1c",
+          "value": "text_online",
+          "sites": [
+            "006343f4"
+          ]
+        },
+        {
+          "address": "0083fe10",
+          "value": "badd/remove",
+          "sites": [
+            "0063441b"
+          ]
+        },
+        {
+          "address": "0083fe04",
+          "value": "bfavorites",
+          "sites": [
+            "0063445a"
+          ]
+        }
+      ],
+      "augmentation_callees": [
+        "00614e80",
+        "006344b0",
+        "0061e0a0",
+        "00615360",
+        "00614f10",
+        "00625de0"
+      ],
+      "augmentation_direct_child_sites": 21,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    },
+    {
+      "index": 9,
+      "identifier": "24000000",
+      "name": "create server",
+      "model": "create server",
+      "registration_call": "00625cae",
+      "name_address": "0083f500",
+      "model_address": "0083f500",
+      "screen_initializers": [],
+      "controls": [],
+      "augmentation_function": "00628490",
+      "augmentation_string_references": [
+        {
+          "address": "0083f8cc",
+          "value": "bhostname",
+          "sites": [
+            "00628578"
+          ]
+        },
+        {
+          "address": "0083f8c4",
+          "value": "style",
+          "sites": [
+            "00628697"
+          ]
+        },
+        {
+          "address": "0083f8b8",
+          "value": "voice chat",
+          "sites": [
+            "006287b4"
+          ]
+        },
+        {
+          "address": "0083f8b0",
+          "value": "bstart",
+          "sites": [
+            "006288b7"
+          ]
+        },
+        {
+          "address": "0083f05c",
+          "value": "bback",
+          "sites": [
+            "006289c4"
+          ]
+        },
+        {
+          "address": "0083ec00",
+          "value": "text_screen",
+          "sites": [
+            "00628a9a"
+          ]
+        },
+        {
+          "address": "0083f898",
+          "value": "text_hostname and style",
+          "sites": [
+            "00628b37"
+          ]
+        },
+        {
+          "address": "0083f878",
+          "value": "text_available maps checklist",
+          "sites": [
+            "00628ba2"
+          ]
+        },
+        {
+          "address": "0083f864",
+          "value": "text_server options",
+          "sites": [
+            "00628bef"
+          ]
+        },
+        {
+          "address": "0083f854",
+          "value": "text_voice chat",
+          "sites": [
+            "00628c16"
+          ]
+        },
+        {
+          "address": "0083ebb0",
+          "value": "text_h&dversion",
+          "sites": [
+            "00628c3b"
+          ]
+        },
+        {
+          "address": "0083f840",
+          "value": "text_server type",
+          "sites": [
+            "00628c60"
+          ]
+        },
+        {
+          "address": "0083f830",
+          "value": "maplist preset",
+          "sites": [
+            "00628c85"
+          ]
+        },
+        {
+          "address": "0083f81c",
+          "value": "text_maplist preset",
+          "sites": [
+            "00628d2f"
+          ]
+        },
+        {
+          "address": "0083f80c",
+          "value": "text_maplist",
+          "sites": [
+            "00628d54"
+          ]
+        }
+      ],
+      "augmentation_callees": [
+        "004050e0",
+        "00614dd0",
+        "00628e00",
+        "00615d50",
+        "00628da0",
+        "00614f10",
+        "00614da0",
+        "00615a50",
+        "00615090",
+        "00614df0",
+        "0061e0a0",
+        "007e520f",
+        "00629ee0",
+        "00615360",
+        "00615f50",
+        "004145b0",
+        "006ac8d0",
+        "006ac8b0"
+      ],
+      "augmentation_direct_child_sites": 8,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    },
+    {
+      "index": 10,
+      "identifier": "28000000",
+      "name": "PASSWORD",
+      "model": "password",
+      "registration_call": "00625cbf",
+      "name_address": "0083f4e8",
+      "model_address": "0083f4f4",
+      "screen_initializers": [],
+      "controls": [],
+      "augmentation_function": "006377c0",
+      "augmentation_string_references": [
+        {
+          "address": "0083faa0",
+          "value": "binput",
+          "sites": [
+            "0063781d"
+          ]
+        },
+        {
+          "address": "0083f560",
+          "value": "byes*",
+          "sites": [
+            "00637899"
+          ]
+        },
+        {
+          "address": "0083ff38",
+          "value": "binput01",
+          "sites": [
+            "00637923"
+          ]
+        },
+        {
+          "address": "0083ff1c",
+          "value": "binput02",
+          "sites": [
+            "00637943"
+          ]
+        }
+      ],
+      "augmentation_callees": [
+        "00614e80",
+        "00625d50",
+        "0061e0a0",
+        "00615360",
+        "00614f10"
+      ],
+      "augmentation_direct_child_sites": 6,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    },
+    {
+      "index": 11,
+      "identifier": "2c000000",
+      "name": "Server Filters",
+      "model": "server filters",
+      "registration_call": "00625cd0",
+      "name_address": "0083f4c8",
+      "model_address": "0083f4d8",
+      "screen_initializers": [],
+      "controls": [],
+      "augmentation_function": "00638590",
+      "augmentation_string_references": [
+        {
+          "address": "0083ffe4",
+          "value": "scan style",
+          "sites": [
+            "006385b7"
+          ]
+        },
+        {
+          "address": "0083faa8",
+          "value": "bshort00",
+          "sites": [
+            "006385eb"
+          ]
+        },
+        {
+          "address": "0083ffd4",
+          "value": "responding only",
+          "sites": [
+            "00638637"
+          ]
+        },
+        {
+          "address": "0083ffc4",
+          "value": "dedicated only",
+          "sites": [
+            "0063865c"
+          ]
+        },
+        {
+          "address": "0083ffb0",
+          "value": "that are not empty",
+          "sites": [
+            "00638681"
+          ]
+        },
+        {
+          "address": "0083ff9c",
+          "value": "that are not full",
+          "sites": [
+            "006386a6"
+          ]
+        },
+        {
+          "address": "0083ff88",
+          "value": "without password",
+          "sites": [
+            "006386cb"
+          ]
+        },
+        {
+          "address": "0083ff78",
+          "value": "current version",
+          "sites": [
+            "006386f0"
+          ]
+        },
+        {
+          "address": "0083ff70",
+          "value": "baccept",
+          "sites": [
+            "00638715"
+          ]
+        },
+        {
+          "address": "0083f05c",
+          "value": "bback",
+          "sites": [
+            "00638763"
+          ]
+        },
+        {
+          "address": "0083ec00",
+          "value": "text_screen",
+          "sites": [
+            "00638799"
+          ]
+        },
+        {
+          "address": "0083ebb0",
+          "value": "text_h&dversion",
+          "sites": [
+            "006387be"
+          ]
+        },
+        {
+          "address": "0083ff60",
+          "value": "text_scan style",
+          "sites": [
+            "006387e3"
+          ]
+        },
+        {
+          "address": "0083ff4c",
+          "value": "text_show servers",
+          "sites": [
+            "00638808"
+          ]
+        }
+      ],
+      "augmentation_callees": [
+        "00614e80",
+        "0061e0a0",
+        "00615360",
+        "00614f10",
+        "006ac8d0",
+        "00625de0"
+      ],
+      "augmentation_direct_child_sites": 14,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    },
+    {
+      "index": 12,
+      "identifier": "30000000",
+      "name": "Game info",
+      "model": "gameinfo",
+      "registration_call": "00625ce1",
+      "name_address": "0083f4b0",
+      "model_address": "0083f4bc",
+      "screen_initializers": [],
+      "controls": [],
+      "augmentation_function": "0062f3e0",
+      "augmentation_string_references": [
+        {
+          "address": "0083fd40",
+          "value": "text_",
+          "sites": [
+            "0062f418",
+            "0062f5c5"
+          ]
+        },
+        {
+          "address": "0083fd88",
+          "value": "LB_Players",
+          "sites": [
+            "0062f45d"
+          ]
+        },
+        {
+          "address": "0083fd80",
+          "value": "text_01",
+          "sites": [
+            "0062f48e"
+          ]
+        },
+        {
+          "address": "0083fd70",
+          "value": "brefresh status",
+          "sites": [
+            "0062f49a"
+          ]
+        },
+        {
+          "address": "0083fd64",
+          "value": "bjoin game",
+          "sites": [
+            "0062f4db"
+          ]
+        },
+        {
+          "address": "0083fd5c",
+          "value": "breturn",
+          "sites": [
+            "0062f520"
+          ]
+        },
+        {
+          "address": "0083ec00",
+          "value": "text_screen",
+          "sites": [
+            "0062f556"
+          ]
+        },
+        {
+          "address": "0083ebb0",
+          "value": "text_h&dversion",
+          "sites": [
+            "0062f57b"
+          ]
+        },
+        {
+          "address": "0083fd48",
+          "value": "text_team status",
+          "sites": [
+            "0062f5a0"
+          ]
+        },
+        {
+          "address": "0083ae58",
+          "value": "allied",
+          "sites": [
+            "0062f622"
+          ]
+        }
+      ],
+      "augmentation_callees": [
+        "006438e0",
+        "00614e80",
+        "0061e0a0",
+        "00615360",
+        "00614f10",
+        "00625de0"
+      ],
+      "augmentation_direct_child_sites": 11,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    },
+    {
+      "index": 13,
+      "identifier": "34000000",
+      "name": "MP Connect console",
+      "model": "confirm",
+      "registration_call": "00625cf2",
+      "name_address": "0083f49c",
+      "model_address": "0083f570",
+      "screen_initializers": [],
+      "controls": [],
+      "augmentation_function": "00632080",
+      "augmentation_string_references": [
+        {
+          "address": "0083f560",
+          "value": "byes*",
+          "sites": [
+            "006320f7"
+          ]
+        }
+      ],
+      "augmentation_callees": [
+        "00614e80",
+        "006438e0",
+        "00615360",
+        "00614f10",
+        "00625de0"
+      ],
+      "augmentation_direct_child_sites": 4,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    },
+    {
+      "index": 14,
+      "identifier": "38000000",
+      "name": "ADD SERVER",
+      "model": "password",
+      "registration_call": "00625d03",
+      "name_address": "0083f490",
+      "model_address": "0083f4f4",
+      "screen_initializers": [],
+      "controls": [],
+      "augmentation_function": "00636ff0",
+      "augmentation_string_references": [
+        {
+          "address": "0083ff38",
+          "value": "binput01",
+          "sites": [
+            "00637146"
+          ]
+        },
+        {
+          "address": "0083ff1c",
+          "value": "binput02",
+          "sites": [
+            "0063726e"
+          ]
+        },
+        {
+          "address": "0083ff14",
+          "value": "11001",
+          "sites": [
+            "0063729d"
+          ]
+        },
+        {
+          "address": "0083f560",
+          "value": "byes*",
+          "sites": [
+            "00637352"
+          ]
+        },
+        {
+          "address": "0083faa0",
+          "value": "binput",
+          "sites": [
+            "00637407"
+          ]
+        }
+      ],
+      "augmentation_callees": [
+        "007e1cc0",
+        "004050e0",
+        "00614dd0",
+        "00405100",
+        "00615d50",
+        "00628da0",
+        "00614f10",
+        "00615a50",
+        "00614e80",
+        "00615090",
+        "00614df0",
+        "0061e0a0",
+        "007e520f",
+        "00615360",
+        "00615f50",
+        "004145b0"
+      ],
+      "augmentation_direct_child_sites": 3,
+      "augmentation_scope": "Calls may add/alter children or build nested groups. String references are evidence candidates, not a flattened child list; nested page IDs/lifetimes remain unresolved.",
+      "status": "Definition/augmentation inventoried; runtime binding not reconstructed."
+    }
+  ],
+  "unresolved": [
+    "All eleven identifier-specific augmentation entrypoints are mapped and their direct references inventoried. Complete nested controls/pages, callbacks, data state and entry/return semantics still require reconstruction.",
+    "Profile japan check 006b6750 conditionally adds max-length event 0100006e argument 17; do not execute every inventoried initializer unconditionally.",
+    "Screen creation/lookup/model ownership, global targeted routing and application interceptors remain incomplete.",
+    "In-game, save/load, briefing/equipment/network/settings-derived pages still require cross-reference inventory."
+  ],
+  "construction_path": {
+    "function": "00627060",
+    "sequence": [
+      "Build named definitions through 00623dd0.",
+      "For each definition, load model through 0066bfa0; failure skips that entry.",
+      "Apply identifier-specific builder before constructing generic screen.",
+      "Allocate 0x84-byte base screen through 00668120; initialize virtual +8c from definition.",
+      "Run screen definition +4 initialization list through virtual +70; insert in front-end registry.",
+      "Destroy temporary definitions, then route 02000001 argument one directly to select main menu."
+    ],
+    "limits": "Allocation/error rollback, skipped-load index consistency, native class ABI and full factory/augmentations remain unreconstructed."
+  },
+  "duplicate_resolution": {
+    "indices": [
+      5,
+      7
+    ],
+    "same_name_and_model": true,
+    "builders": [
+      "006391e0",
+      "00614140"
+    ],
+    "conclusion": "Distinct definitions and runtime roles: different augmentation builders selected by identifier in 00627060. Preserve both; do not deduplicate by name/model."
+  },
+  "application_routes": [
+    {
+      "main_button": "bcredits",
+      "activation": "0600103a",
+      "controller": "00626b20",
+      "effect": "Sets application state 12, rather than pushing a registered menu screen. Credits controller/rendering/audio/return still need tracing."
+    },
+    {
+      "main_button": "boptions",
+      "activation": "06001071",
+      "controller": "0061bea0",
+      "effect": "Builds options state/settings messages and queues 02000001 argument six. Requires nested options groups and settings backing."
+    },
+    {
+      "main_button": "bmultiplayerlan / bmultiplayernet",
+      "activation": "06001099 / 0600109a",
+      "controller": "006333c0",
+      "effect": "Separate LAN/Internet entry/setup paths eventually queue regular screen selection; network dependencies not implemented."
+    },
+    {
+      "main_button": "bcinematics",
+      "activation": "06001001 argument seven",
+      "controller": "0066c950 -> registry seven",
+      "effect": "Uses second SINGLE MISSION 2 registration, augmented by 00614140. Do not infer functionality from duplicate model name."
+    },
+    {
+      "main_button": "bsingleplayer",
+      "activation": "06001001 argument three",
+      "controller": "0066c950 -> registry three",
+      "effect": "Static selector/radio group plus observer callbacks 0063b590 and 0063b740, mission mode and return dependencies."
+    }
+  ]
+}

@@ -366,9 +366,19 @@ public:
     }
 
     void set_confirmation_visible(HMODULE module, bool visible) const {
+        set_screen_visible(module, true, visible);
+    }
+
+    bool screen_visible(bool confirmation) const {
+        auto* frame = confirmation ? confirmation_.get() : model_.get();
+        if (!frame) throw std::logic_error("Screen model is not loaded");
+        return (reinterpret_cast<const unsigned char*>(frame)[0xe0] & 1) != 0;
+    }
+
+    void set_screen_visible(HMODULE module, bool confirmation, bool visible) const {
         using Visibility = void (WINAPI *)(EngineFrame*, std::uint8_t);
         using Update = void (WINAPI *)(EngineFrame*);
-        auto* frame = confirmation_.get();
+        auto* frame = confirmation ? confirmation_.get() : model_.get();
         scene_method<Visibility>(frame, module, 0x30, 0x1cfe0)(frame, visible ? 1 : 0);
         scene_method<Update>(frame, module, 0x24, 0x1e610)(frame);
     }
