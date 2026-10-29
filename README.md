@@ -83,6 +83,13 @@ host scaffolding, not the complete
 original dispatcher. Pixel-perfect
 fidelity, other screens and profile/save data are not implemented.
 
+The desktop-tested continuation routes Exit/Yes/No tagged definition events
+through reconstructed initialization-list sequencing and reads original control
+state defaults for eligibility. It builds and passes focused native audits;
+desktop behavior is user-confirmed. The control factory's initialization/insertion
+tail also has an audited source reconstruction; full factory and derived text
+initialization remain incomplete. See [plan.md](plan.md) for the remaining work.
+
 ## Progress
 
 Completed steps mean we've reached a useful milestone, not that we understand
@@ -93,11 +100,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **44 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **46 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 40 |
+| Base game client | 17,294 | 0 | 42 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -4,6 +4,8 @@
 #include "frontend/button_focus.h"
 #include "frontend/button_input.h"
 #include "frontend/control_events.h"
+#include "frontend/control_state.h"
+#include "frontend/control_initialization.h"
 #include "host/menu_scene.h"
 #include "host/menu_text_geometry.h"
 
@@ -36,13 +38,18 @@ public:
         update_(active_);
     }
 
-    void bind_activation_events(std::initializer_list<frontend::ControlEvent> events) {
-        if (events_bound_) throw std::logic_error("Button events already bound");
-        for (const auto& event : events) {
-            frontend::register_tagged_control_event(bindings_, event);
-        }
+    // The host owns these portable definition records. Original factory
+    // 0065dfbb/+78 precedes +70/0065cf00; button +78 is the no-op 0065cd30.
+    void initialize_events(std::initializer_list<frontend::ControlEvent> events) {
+        if (events_bound_) throw std::logic_error("Button events already initialized");
+        initialization_events_.assign(events);
+        InitializationAdapter adapter{*this};
+        frontend::initialize_control_events(adapter, initialization_events_);
         events_bound_ = true;
     }
+
+    bool eligible() const { return properties_.eligible(); }
+    bool disabled() const { return properties_.disabled != 0; }
 
     void bind_pick_target(std::uint32_t target) const {
         std::memcpy(reinterpret_cast<unsigned char*>(normal_) + 0xec, &target, sizeof(target));
@@ -102,7 +109,7 @@ private:
         ButtonVisualPair& pair;
         frontend::ControlEventDestination& destination;
         bool logging = true;
-        bool focus_blocked() const { return false; }
+        bool focus_blocked() const { return pair.disabled(); }
         void set_active_visible(bool visible) const { pair.visibility_(pair.active_, visible); }
         void set_normal_visible(bool visible) const { pair.visibility_(pair.normal_, visible); }
         void update_active() const { pair.update_(pair.active_); }
@@ -115,6 +122,18 @@ private:
                 std::printf("Original button event: %08x argument=%08x\n",
                             static_cast<unsigned>(event), static_cast<unsigned>(argument));
             }
+        }
+    };
+
+    struct InitializationAdapter {
+        ButtonVisualPair& pair;
+        bool dispatch_initialization_event(frontend::ControlEvent& event) {
+            // Current Exit/Yes/No lists contain only tagged activation bindings.
+            // This is the shared tagged branch of button 006551d0 -> text
+            // 00661940 -> base 0065cd40. Untagged derived/text initialization
+            // still needs the original layout/font/observer contracts.
+            frontend::register_tagged_control_event(pair.bindings_, event);
+            return true;
         }
     };
 
@@ -134,7 +153,9 @@ private:
     EngineFrame* active_;
     Visibility visibility_;
     Update update_;
+    frontend::ControlProperties properties_;
     frontend::ControlEventBindings bindings_;
+    std::vector<frontend::ControlEvent> initialization_events_;
     bool events_bound_ = false;
     bool pointer_move_logged_ = false;
     std::uint32_t pointer_events_logged_ = 0;
@@ -149,7 +170,7 @@ public:
             ButtonVisualPair pair(scene, module, binding.frame, binding.visual,
                                   binding.active_visual);
             if (binding.id == 2112) {
-                pair.bind_activation_events({{0, 0x06001003, 0x04000000, 0, 0, {}}});
+                pair.initialize_events({{0, 0x06001003, 0x04000000, 0, 0, {}}});
                 exit_ = pair;
             }
             ++count;

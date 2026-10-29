@@ -13,6 +13,20 @@ inline std::uint8_t control_eligibility(std::uint8_t disabled,
     return static_cast<std::uint8_t>(focusable & visible & (disabled == 0 ? 1 : 0));
 }
 
+// State subset of base constructor 0064dcc0. This is portable storage, not
+// the original object layout; derived controls may override these defaults.
+struct ControlProperties {
+    std::uint8_t disabled = 0;   // Original +64.
+    std::uint8_t visible = 1;    // Original +65.
+    std::uint8_t focusable = 1;  // Original +66.
+    std::uint32_t word_58 = 0;
+    std::uint32_t word_5c = 0xffffffffu;
+
+    bool eligible() const {
+        return control_eligibility(disabled, visible, focusable) != 0;
+    }
+};
+
 // Client 0065cd40, base control message handler. Portable callbacks replace
 // storage/virtual calls. Derived handlers must still process their own messages.
 // Delegated helpers: register_observer = 0065cac0, register_override = 0065c9a0,

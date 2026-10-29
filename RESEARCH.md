@@ -2293,3 +2293,48 @@ suite, 17 launcher/nine frontend checks, 333 UI anchors/38 engine slots,
 frontend evidence and frozen accounting pass. 0065CD40 extends its existing
 partial entry; no extra function counted. 0064D9F0 is absent from the frozen
 inventory; totals remain 44 partial, zero complete, 18,783 baseline.
+
+
+## Definition initialization and control defaults (2026-10-29)
+
+0065CF00, control vtable +70, iterates definition +10's 24-byte event records.
+It rereads begin/end on each iteration, passes the actual mutable record through
+control +6C, ignores its result, and returns true even for an empty list.
+frontend/control_initialization.h reconstructs this with portable mutable List
+storage. Exit/Yes/No now own initialization records and run this helper before
+marking bindings ready; the original tagged button -> text -> base branch still
+uses register_tagged_control_event. Their event codes and order are unchanged.
+No untagged text/layout/observer initialization is claimed; current bitmap text
+continues through the existing host adapter. Button +78 is no-op 0065CD30.
+
+0064DCC0's state writes at 0064DD3C..55 establish disabled/visible/focusable
+bytes +64/+65/+66 = 0/1/1 and +58/+5C = 0/ffffffff. Button kind construction
+0065D929..42 calls the base and also explicitly sets focusable one. The new
+ControlProperties recovers only these fields, not the whole constructor or
+original layout/ownership. Live button focus eligibility and activation guards
+now use those state fields; other main-menu controls remain unsupported/disabled.
+
+Factory entry 0065D150 encompasses 0065DF91..DFF6. After successful allocation,
+control +2C initializes visuals. Only if its low-byte result succeeds does it
+invoke +78 with definition +20, then +70 with definition +10 and append the
+control. Both list-handler return values are ignored. On visual-init failure
+it invokes deleting destructor +80 with one, skips insertion, and still reports
+handled=true. initialize_created_control reconstructs this tail through portable
+callbacks, source-only. Kind dispatch/allocation, lookup/errors and full object
+collection ABI remain excluded. Do not interpret handled=true as insertion.
+
+Strict i386 host build passed. Temporary native/i386 audit covered empty,
+growing and shrinking initialization lists, mutable records, ignored false
+returns, retained payloads, default state, eligibility/disabled guards, both
+factory branches and actual reconstructed button/event-queue Exit/No/Yes flow.
+Audit files removed; no new unit tests or agent Proton launch. Existing native
+suite and 17 launcher/nine frontend checks pass. UI evidence: 342 instruction
+anchors, 38 engine slots; frontend evidence and frozen accounting pass.
+0064DCC0 and 0065D150 each gain one partial entry. 0065CF00 is absent from the
+frozen inventory and gains no credit. Totals 46 partial (42 client/four engine),
+zero complete, frozen denominator 18,783. Interactive initialization/eligibility
+changes remain uncommitted pending user desktop confirmation.
+
+User follow-up: initialization/eligibility desktop test works well. This slice
+is desktop-confirmed and may now be committed. User requests larger subsequent
+slices, preferably completing a whole plan item where dependencies allow it.

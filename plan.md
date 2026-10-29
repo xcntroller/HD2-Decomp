@@ -30,7 +30,7 @@ Keep an explicit list of delegated calls so the eventual replacement is tractabl
 | Escape opens confirmation; Escape cancels it | Desktop-tested | Application interceptors and other screen-specific back rules |
 | Previous/next focus traversal | Source reconstructed | Find original callers/key bindings and initial-focus policy before wiring |
 | Original button sound and sound-driver lifecycle | Desktop-tested | Original preferences/resource cache and additional menu sounds |
-| Shared control initialization and state messages | Handler reconstructed and audited; source-only | General control model and integration beyond hardcoded adapters |
+| Shared control initialization and state messages | Base handler audited; tagged initialization/state desktop-tested for Exit/Yes/No | Derived/text initialization, full factory and reusable screens |
 | Other main-menu actions/screens | Not functional yet | Inventory, reconstruct and enable one flow at a time |
 
 Keyboard sound check: ordinary Exit/Yes/No keyboard activation is silent in the
@@ -55,10 +55,12 @@ This conclusion is from original binary analysis, not a new original-game run.
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
 
-Base control event handling (0065CD40) and eligibility (0064D9F0) now have
-audited source in `recovered/frontend/control_state.h`. Next: integrate reusable
-control state and initialization with definition construction and existing
-bindings. Keep the item above open until this works in live screens.
+Base control handling (0065CD40) and eligibility (0064D9F0) have audited source.
+The live Exit/Yes/No adapters now use original state defaults (0064DCC0) and
+initialization-list sequencing (0065CF00); user desktop-confirmed.
+The factory tail (0065D150) is reconstructed and audited, source-only.
+Next: derived/text initialization and observer payloads, then full control
+construction. Keep foundation delivery boxes open until integrated and tested.
 
 ## 2. Establish the complete screen and dependency inventory
 

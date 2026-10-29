@@ -154,11 +154,13 @@ public:
     }
     bool control_eligible(int index) const {
         if (index != 1 && index != 2) throw std::logic_error("Unsupported confirmation control");
-        return true;
+        return index == 1 ? yes_.eligible() : no_.eligible();
     }
     const char* label() const { return "confirmation"; }
     std::uint32_t identifier() const { return screen_id_; }
-    bool control_disabled(int index) const { return index != 1 && index != 2; }
+    bool control_disabled(int index) const {
+        return index == 1 ? yes_.disabled() : index == 2 ? no_.disabled() : true;
+    }
     bool key_control(int, std::uint32_t) const { return false; } // 0064da30.
     std::uint32_t control_argument(int index) const {
         return control_ids_.at(static_cast<std::size_t>(index));
@@ -513,10 +515,10 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             if (confirmation_enabled) {
                 confirm_yes.emplace(*menu, module, "byes?", "normal02", "actived03", true);
                 confirm_no.emplace(*menu, module, "bno?", "normal01", "actived01", true);
-                confirm_yes->bind_activation_events({
+                confirm_yes->initialize_events({
                     {0, 0x14001100, 0, 0, 0, {}}, {0, 0x06001005, 0, 0, 0, {}}
                 });
-                confirm_no->bind_activation_events({
+                confirm_no->initialize_events({
                     {0, 0x14001200, 1, 0, 0, {}}, {0, 0x06001005, 0, 0, 0, {}}
                 });
                 if (confirmation_pick_probe || confirmation_pick_active) {

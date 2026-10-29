@@ -128,6 +128,15 @@
     "safety": "Main and confirmation now reference one host-owned input/dispatcher session across push/pop. A held screen transition cancels capture/drag and absorbs input until all buttons are up while preserving shared sampling. Outside-window/poll failure/cancel resets the session; reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original singleton/refcount ABI and complete screen stack remain absent.",
     "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. That tested slice is committed as 19f30e5. Shared-session continuation subsequently desktop-confirmed: user tried all requested cases; log retains wheel -480 across screens, No, Escape, Yes, 861 frames and clean teardown."
   },
+  "control_initialization_source": "recovered/frontend/control_initialization.h",
+  "control_initialization_reconstruction": {
+    "evidence": "0065cf00 (control +70) rereads definition-list begin/end each iteration and passes actual mutable 24-byte record to virtual +6c. Handler return ignored. Factory 0065d150 tail at 0065df91 gates on +2c initialization, calls definition +20 through +78 then +10 through +70 and inserts control; failed initialization invokes +80(1) and still returns true without insertion. 0064dcc0 initializes disabled/visible/focusable bytes 0/1/1 and +58/+5c words 0/ffffffff. Button construction at 0065d929 also explicitly sets focusable one.",
+    "implementation": "initialize_control_events reconstructs list sequencing with portable mutable storage. initialize_created_control reconstructs the successful-allocation factory tail through callbacks, source-only. ControlProperties reconstructs constructor state defaults; ButtonVisualPair now stores them and live Exit/Yes/No focus/activation reads actual eligibility/disabled state.",
+    "integration": "Exit/Yes/No own portable initialization records and run initialize_control_events before events_bound becomes true. Existing tagged registration represents button -> text -> base tagged branch. Same original event codes/order retained. Original button +78 is no-op. Untagged caption/layout/observer initialization is not integrated; existing host bitmap text adapter remains. Other actions remain disabled.",
+    "limits": "Factory kind allocation/model lookup, original object layout/refcount/SEH, child ownership, derived text/observer payloads and full definition lists remain incomplete. Host visual binding still precedes initialization in its constructor; factory tail itself is not integrated. Do not treat partial defaults as reconstruction of the whole constructor. No new engine ABI or resource changes.",
+    "validation": "Strict i386 host build, native/i386 temporary initialization audit and existing native/17 launcher/nine frontend checks passed. Audit covers empty/live-growing/shrinking lists, mutable records, ignored false returns, payload retention, constructor properties, factory success/destroy sequencing and actual button/event-queue Exit/No/Yes flow. Temporary files removed; no new unit tests. User desktop-confirms eligibility/initialization changes work.",
+    "accounting": "0064dcc0 and 0065d150 each gain one partial entry. 0065cf00 is absent from frozen inventory and gains no credit. Totals 46 partial (42 client, four engine), zero complete, unchanged 18,783 denominator."
+  },
   "control_state_source": "recovered/frontend/control_state.h",
   "keyboard_button_sound_verification": {
     "result": "Ordinary Exit/Yes/No focused-button keyboard activation is silent in the recovered original path; preserve existing keyboard silence.",
@@ -362,6 +371,16 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
+      {"address": "0064dd3c", "hex": "b2015f894850885065884864885066894858c7405cffffffff", "meaning": "Base constructor initializes disabled=0 visible=1 focusable=1 word58=0 word5c=ffffffff"},
+      {"address": "0065d929", "hex": "e89203ffff895d6cc74500b04c8100895d70895d74c64566018bcd", "meaning": "Factory button branch calls base constructor, installs button vtable and explicitly sets focusable byte one"},
+      {"address": "0065cf0a", "hex": "8b4424148b700485f6742c8b4808b8abaaaa2a2bcef7e9c1fa028bc2c1e81f03d03bfa73128b55008d0433", "meaning": "Initialization-list loop rereads begin/end, computes 24-byte record count and selects current record"},
+      {"address": "0065cf35", "hex": "508bcdff526c4783c318ebc95f5e5db0015bc204", "meaning": "Initialization dispatches mutable record through +6c, ignores result, advances and repeats; returns true"},
+      {"address": "0065df9c", "hex": "8b8424fc00000057508b442424894c24188b1150ff522c8b4c241084c0742b", "meaning": "Created control receives visual initialization via virtual +2c before definition event lists"},
+      {"address": "0065dfbb", "hex": "8b118d472050ff52788b4c241083c710578b11ff5270", "meaning": "Factory calls definition +20 through +78, then definition +10 through +70"},
+      {"address": "0065dfd1", "hex": "8b560c8d4e048d4424105052e82e580000b001eb46", "meaning": "After both definition-list handlers, factory appends control and returns true"},
+      {"address": "0065dfe6", "hex": "3bcb740a8b016a01ff9080000000b001", "meaning": "Failed visual initialization destroys control via +80(1), still returns true"},
+      {"address": "0066194f", "hex": "8b4104a900f00f047411518bcee8dfb3ffffb0015e8be55dc20400", "meaning": "Text-derived tagged event handler immediately forwards to base 0065cd40"},
+
       {"address": "0067ea80", "hex": "b001c20800", "meaning": "Concrete menu keyboard pre-hook +44 is a true-returning no-op with two arguments"},
       {"address": "00815e74", "hex": "80ea6700", "meaning": "Concrete front-end vtable +44 points to 0067ea80"},
       {"address": "00620345", "hex": "8b4f04e8c3ad0400e984000000", "meaning": "Separate options control callback invokes click sound; ordinary-button silence is not a universal widget rule"},

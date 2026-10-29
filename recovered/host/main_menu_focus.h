@@ -25,8 +25,12 @@ public:
     bool valid_control(int index) const {
         return index >= 0 && static_cast<std::size_t>(index) < control_ids_.size();
     }
-    bool control_eligible(int index) const { return index == 15; }
-    bool control_disabled(int index) const { return !control_eligible(index); }
+    bool control_eligible(int index) const {
+        return index == 15 && buttons_.exit_control().eligible();
+    }
+    bool control_disabled(int index) const {
+        return index != 15 || buttons_.exit_control().disabled();
+    }
     bool key_control(int, std::uint32_t) const { return false; } // 0064da30.
     std::uint32_t control_argument(int index) const {
         return control_ids_.at(static_cast<std::size_t>(index));

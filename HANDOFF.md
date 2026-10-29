@@ -1,6 +1,51 @@
 # Session handoff - 2026-10-29
 
-## Current checkpoint: menu plan and shared control state
+## Resume here: live button initialization and control state
+
+User desktop-confirms original initialization-list sequencing for Exit/Yes/No
+and original state defaults in their eligibility/disabled checks. This tested
+slice is ready to commit. Last checkpoint f483551 preceded this continuation.
+
+frontend/control_initialization.h reconstructs 0065CF00: actual mutable record,
+live list size/storage each iteration, ignore handler return and continue.
+ButtonVisualPair owns portable records and initializes them before marking
+bindings ready. Current lists are tagged activation events only and route the
+existing original tagged branch. Full untagged caption/layout/observer
+initialization is NOT integrated; preserve existing text adapter and hidden OK.
+Original button +78 is no-op; no new engine ABI calls or assets introduced.
+
+ControlProperties in control_state.h reconstructs only five 0064DCC0 fields:
+disabled=0, visible=1, focusable=1, +58=0, +5C=ffffffff. ButtonVisualPair and
+MainMenuFocus/ConfirmationFocus now use actual eligible/disabled state rather
+than constant answers. Other main controls remain disabled. Expected visible
+behavior is unchanged; no new navigation keys or sounds.
+
+initialize_created_control reconstructs successful-allocation 0065D150 tail:
++2C visual gate, +78 definition +20, +70 definition +10, append. Failed visual
+initialization destroys via +80(1), skips insertion, still returns true. Helper
+is source-only; kind allocation/model lookup/full factory remain unresolved.
+
+Validation: strict i386 host build; temporary native/i386 audit for live-growing/
+shrinking/empty lists, mutable records, ignored false returns, payload lifetime,
+factory success/failure order and real button/event-queue Exit/No/Yes flow.
+Original state defaults and eligibility/disabled behavior audited. Temporary
+files removed; no new unit tests. Existing native suite, 17 launcher/nine frontend
+checks, 342 UI anchors/38 engine slots, frontend evidence and frozen accounting
+pass. Two new PARTIAL entries (0064DCC0 state subset, 0065D150 tail); 0065CF00
+absent from frozen inventory. Totals 46 partial / zero complete / frozen 18,783.
+
+Desktop command:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+Check Exit opens confirmation, No/Escape cancel, Yes exits; repeat using mouse
+and focused Enter/Space. Hover, held transitions and mouse click sound should
+remain as before; ordinary keyboard activation remains silent. Agent must not
+launch Proton. Read user report/log before committing. No new screen enabled.
+
+Next: integrate derived/text definition initialization and observer payload
+contracts, then replace more hardcoded screen/control construction using the
+factory tail. Keep plan.md current; all partial delivery boxes remain open.
+
+## Previous checkpoint: menu plan and shared control state
 
 User requested a tracker for the ENTIRE menu. Read [plan.md](plan.md) first for
 scope, screen families, current status and delivery order. Keep it updated each

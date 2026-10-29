@@ -7,6 +7,30 @@
   "functions": [
     {
       "program": "client",
+      "entry": "0064dcc0",
+      "status": "partial",
+      "coverage": "Portable constructor-state subset initializes disabled/visible/focusable bytes to 0/1/1, word +58 to zero and word +5c to ffffffff; live button adapters use this state for eligibility/activation.",
+      "limitations": "Only five state fields reconstructed. Original vector/storage setup, vtable installation, owner/model/identifier fields, object ABI and constructor lifecycle remain absent. Live button integration awaits desktop check.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/control_state.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0065d150",
+      "status": "partial",
+      "coverage": "Successful-allocation tail sequences visual initialization, definition data +78, initialization list +70 and collection insertion. Failed visual initialization destroys/skips control and returns handled true. Source-only portable factory callbacks.",
+      "limitations": "Original model lookup, kind dispatch/allocation, error cases, object/collection ABI and ownership are not reconstructed. Factory-tail helper not integrated in host; only separate 0065cf00 initialization-list helper is integrated for three tagged button lists.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/control_initialization.h"
+      ]
+    },
+
+    {
+      "program": "client",
       "entry": "006db3b0",
       "status": "partial",
       "coverage": "Compose sound startup flags from two option booleans and quality byte, preserving out-of-range quality behavior. Host calls original sound driver with verified 22050/stereo/16-bit arguments.",
