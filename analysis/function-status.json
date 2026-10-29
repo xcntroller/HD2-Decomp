@@ -7,10 +7,25 @@
   "functions": [
     {
       "program": "client",
+      "entry": "00623dd0",
+      "status": "partial",
+      "coverage": "Readable bounded definition data for main-menu and confirmation: exact child IDs/order/kinds/names, nine main button activation bindings, Yes/No ordered reply/pop bindings and hidden OK hide record. Shared definition-backed controls/screens consume the three supported actions.",
+      "limitations": "Reconstructs only definition data for these two screens; original allocation/registration helpers, other screens, caption/style/observer lists and dynamic data callbacks are incomplete. Text rendering and OK hiding remain existing host adapters. Interactive generalization is user desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/menu_definition.h",
+        "recovered/frontend/defined_screen.h",
+        "recovered/frontend/defined_controls.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
+    },
+
+    {
+      "program": "client",
       "entry": "0064dcc0",
       "status": "partial",
       "coverage": "Portable constructor-state subset initializes disabled/visible/focusable bytes to 0/1/1, word +58 to zero and word +5c to ffffffff; live button adapters use this state for eligibility/activation.",
-      "limitations": "Only five state fields reconstructed. Original vector/storage setup, vtable installation, owner/model/identifier fields, object ABI and constructor lifecycle remain absent. Live button integration awaits desktop check.",
+      "limitations": "Only five state fields reconstructed. Original vector/storage setup, vtable installation, owner/model/identifier fields, object ABI and constructor lifecycle remain absent. Previous live button state integration is desktop-confirmed; generalized screen ownership/routing is also desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_state.h",
@@ -21,8 +36,8 @@
       "program": "client",
       "entry": "0065d150",
       "status": "partial",
-      "coverage": "Successful-allocation tail sequences visual initialization, definition data +78, initialization list +70 and collection insertion. Failed visual initialization destroys/skips control and returns handled true. Source-only portable factory callbacks.",
-      "limitations": "Original model lookup, kind dispatch/allocation, error cases, object/collection ABI and ownership are not reconstructed. Factory-tail helper not integrated in host; only separate 0065cf00 initialization-list helper is integrated for three tagged button lists.",
+      "coverage": "Successful-allocation tail sequences visual initialization, definition data +78, initialization list +70 and collection insertion. Failed visual initialization destroys/skips control and returns handled true. Portable factory callbacks now drive the definition-backed main-menu and confirmation collections.",
+      "limitations": "Original model lookup, kind dispatch/allocation, error cases, object/collection ABI and ownership are not reconstructed. Factory-tail helper is integrated through the host visual creation callback; original allocation/error ABI still differs and interactive generalization is user desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_initialization.h"
@@ -94,7 +109,7 @@
       "status": "partial",
       "coverage": "Validate focused control, offer full key word to enabled control +20, then recognize low-byte 1c/39/9c, revalidate focus and call activation +38 with control +60 argument, ignoring activation result.",
       "limitations": "Portable screen/control accessors and callbacks replace original ABI/storage. Host maps first Win32 Enter/Space keydown only in engine-input mode and suppresses repeats; original keyboard device/event transport, navigation and default focus remain absent. Enabled controls are Exit and Yes/No. Enter/Space desktop-confirmed; keypad Enter untested on hardware.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_key.h", "recovered/host/engine_window.cpp", "recovered/host/main_menu_focus.h"]
+      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_key.h", "recovered/host/engine_window.cpp", "recovered/frontend/defined_screen.h"]
     },
     {
       "program": "client",

@@ -90,6 +90,14 @@ desktop behavior is user-confirmed. The control factory's initialization/inserti
 tail also has an audited source reconstruction; full factory and derived text
 initialization remain incomplete. See [plan.md](plan.md) for the remaining work.
 
+The desktop-confirmed larger slice replaces the separate main-menu and
+confirmation routing adapters with shared definition-backed controls/screens.
+Construction, ownership, target lookup, focus, keys, pointer and wheel routing
+now use the same implementation for both screens. The original 17/four child
+slots and button activation bindings are centralized; Exit/Yes/No remain the
+only enabled actions. Build, focused audits and desktop testing pass.
+The reusable-adapter item is checked in [plan.md](plan.md).
+
 ## Progress
 
 Completed steps mean we've reached a useful milestone, not that we understand
@@ -100,11 +108,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **46 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **47 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 42 |
+| Base game client | 17,294 | 0 | 43 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -2338,3 +2338,62 @@ changes remain uncommitted pending user desktop confirmation.
 User follow-up: initialization/eligibility desktop test works well. This slice
 is desktop-confirmed and may now be committed. User requests larger subsequent
 slices, preferably completing a whole plan item where dependencies allow it.
+
+
+## Reusable definition-backed menu screens (2026-10-29)
+
+User desktop-confirmed previous live initialization/state slice; log recorded
+435 submitted frames and clean 3D/audio/graphics shutdown. Committed as d152b0c.
+User requests larger cohesive work packages, ideally whole plan items.
+
+The current larger slice replaces both specialized screen contexts and their
+separate binding/construction paths. frontend/menu_definition.h captures a
+bounded 00623DD0 subset: exact seventeen main-menu child slots and four
+confirmation slots, IDs/names/kinds, visual bindings, nine main-button activation
+records, ordered Yes/No reply/pop records and hidden OK's hide record. Original
+caption/style/observer and other screen definitions remain absent from this
+bounded representation. Existing host text rendering is preserved. Semantic
+roles and action availability are explicit host metadata, not original fields.
+
+frontend/defined_controls.h supplies stable unique ownership, per-definition
+construction using the existing factory-tail sequence and supplied visual
+creator, supported initialization, binding and pick tagging. Nine main pairs
+and three confirmation pairs are retained; unsupported actions and OK never
+bind to live input. OK's actual hide remains the existing MenuScene helper.
+The host provider throws on visual/resource/ABI failure; original complete
+factory allocation, model lookup, kinds, reporting and object ABI remain absent.
+
+frontend/defined_screen.h provides common hierarchical lookup, eligibility,
+disabled state, focus, key, click, wheel and all pointer callbacks for both
+screens. Target lookup's mask/first-match rule is unchanged; portable vectors
+now share it with arrays. Definition identity and duplicate/invalid bindings
+are checked before exposing a live slot. The engine host removes MainMenuFocus
+and ConfirmationFocus rather than maintaining forwarding specializations.
+Legacy message/rectangle paths and preview also consume centralized definitions.
+No new main-menu action, navigation binding, asset or engine ABI added.
+
+Temporary native audit instantiated the ACTUAL generic collections/screens with
+portable visual controls and the existing reconstructed focus/input/key/button/
+event queue helpers. Covers all original slot IDs, nine/three visual objects,
+stable pick identities, unavailable/static children and hidden OK, every pointer
+callback tag, release mismatch, wheel, focus leave/enter/move, navigation wrap,
+full-word key delivery, consumed keys and focus mutation before activation,
+queued Exit/No/Yes and Escape/back, invalid/duplicate/wrong-definition bindings,
+cached hover, null creation and exception cleanup. Strict i386 compilation
+passed. Same audit passed ASan/UBSan without findings. Temporary compiled
+catalog comparison also matched all seventeen recorded child names/IDs and all
+nine main event/argument pairs read directly from original push instructions.
+Temporary audit sources/binaries removed; no new unit tests.
+
+Strict i386 host build and existing native suite, seventeen launcher/nine
+frontend checks pass. UI map: 351 instruction anchors/38 engine slots; frontend
+evidence and frozen accounting pass. New PARTIAL 00623DD0 covers bounded
+original definition data. Existing 0065D150 entry gains integration coverage;
+generic adapters receive no separate original-function credit. Counts now
+47 partial (43 client/four engine), zero complete, frozen denominator 18,783.
+The reusable-adapter plan item is implemented and awaits desktop confirmation;
+leave it unchecked and interactive changes uncommitted until user verification.
+
+User follow-up confirms the larger definition-backed screen slice works. The
+reusable-adapter plan item is now desktop-confirmed and checked. User again
+requests the largest practical cohesive slices per iteration.

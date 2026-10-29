@@ -24,13 +24,13 @@ Keep an explicit list of delegated calls so the eventual replacement is tractabl
 | --- | --- | --- |
 | Independent i386 host, original engine window and teardown | Desktop-tested | Recover original application lifecycle beyond host scaffolding |
 | Original main-menu artwork, cursor, bitmap text and hover pairs | Desktop-tested, bounded | Dynamic captions, localization and fidelity across settings |
-| Exit and Yes/No confirmation | Desktop-tested | Generalize screen construction, stack and event routing |
+| Exit and Yes/No confirmation | Existing behavior desktop-tested; shared construction/routing desktop-confirmed | General screen stack and remaining menu flows |
 | Shared pointer dispatch, picking, wheel and held-button transitions | Desktop-tested, bounded | Original object ABI, capture/device lifecycle and exact timing |
 | Enter/Space on focused buttons | Desktop-tested | Keypad Enter audited, hardware test unavailable; device/character transport incomplete |
 | Escape opens confirmation; Escape cancels it | Desktop-tested | Application interceptors and other screen-specific back rules |
 | Previous/next focus traversal | Source reconstructed | Find original callers/key bindings and initial-focus policy before wiring |
 | Original button sound and sound-driver lifecycle | Desktop-tested | Original preferences/resource cache and additional menu sounds |
-| Shared control initialization and state messages | Base handler audited; tagged initialization/state desktop-tested for Exit/Yes/No | Derived/text initialization, full factory and reusable screens |
+| Shared control initialization and state messages | State/initialization desktop-tested; reusable definition-backed collections desktop-confirmed | Derived/text initialization and full heterogeneous factory |
 | Other main-menu actions/screens | Not functional yet | Inventory, reconstruct and enable one flow at a time |
 
 Keyboard sound check: ordinary Exit/Yes/No keyboard activation is silent in the
@@ -49,18 +49,33 @@ This conclusion is from original binary analysis, not a new original-game run.
 - [x] Restore original button.wav decoding, sound frame and accepted-click playback.
 - [x] Check ordinary-button keyboard sound against original code.
 - [ ] Reconstruct shared control state, initialization/event messages and eligibility.
-- [ ] Replace hardcoded Exit/confirmation adapters with reusable controls and definitions.
+- [x] Replace hardcoded Exit/confirmation adapters with reusable controls and definitions.
+  **Desktop-confirmed.** Both screens now
+  use one `DefinedScreen` routing class and `DefinedControls` construction/ownership
+  path. Original 17/four child slots, button definitions and supported event
+  bindings are centralized; the two specialized adapters are removed.
 - [ ] Recover screen creation, binding, lifetime, push/pop and general event dispatch.
 - [ ] Recover keyboard preprocessing, character input, focus entry and navigation callers.
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
 
-Base control handling (0065CD40) and eligibility (0064D9F0) have audited source.
-The live Exit/Yes/No adapters now use original state defaults (0064DCC0) and
-initialization-list sequencing (0065CF00); user desktop-confirmed.
-The factory tail (0065D150) is reconstructed and audited, source-only.
-Next: derived/text initialization and observer payloads, then full control
-construction. Keep foundation delivery boxes open until integrated and tested.
+Current larger slice: reusable definition-backed controls/screens for the entire
+existing Exit/confirmation flow. `menu_definition.h` holds original IDs/order,
+names/kinds, nine main activation bindings and confirmation bindings;
+`defined_controls.h` constructs stable controls through the factory tail;
+`defined_screen.h` provides all focus, picking, keyboard, pointer and wheel
+routing for both screens. Host roles/availability select only Exit/Yes/No.
+Static labels retain their slots and existing rendering; hidden OK stays hidden.
+
+Strict i386 host build, native/sanitized/i386 audit, binary-backed definition
+comparison and existing checks pass. User confirms the desktop behavior works; the reusable-adapter item is complete.
+Commit this tested slice. Next larger slice: finish derived
+text/state initialization and observer payload contracts as a cohesive layer;
+the complete original heterogeneous factory remains separate unfinished work.
+
+Prefer complete plan items or cohesive dependency groups per iteration, as
+requested by the user. Avoid returning for desktop checks after individual
+message handlers when they can be validated together in one larger slice.
 
 ## 2. Establish the complete screen and dependency inventory
 

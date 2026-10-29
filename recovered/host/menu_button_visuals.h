@@ -6,6 +6,7 @@
 #include "frontend/control_events.h"
 #include "frontend/control_state.h"
 #include "frontend/control_initialization.h"
+#include "frontend/defined_controls.h"
 #include "host/menu_scene.h"
 #include "host/menu_text_geometry.h"
 
@@ -40,15 +41,16 @@ public:
 
     // The host owns these portable definition records. Original factory
     // 0065dfbb/+78 precedes +70/0065cf00; button +78 is the no-op 0065cd30.
-    void initialize_events(std::initializer_list<frontend::ControlEvent> events) {
+    void initialize_events(const std::vector<frontend::ControlEvent>& events) {
         if (events_bound_) throw std::logic_error("Button events already initialized");
-        initialization_events_.assign(events);
+        initialization_events_ = events;
         InitializationAdapter adapter{*this};
         frontend::initialize_control_events(adapter, initialization_events_);
         events_bound_ = true;
     }
 
     bool eligible() const { return properties_.eligible(); }
+    bool key(std::uint32_t) const { return false; } // Original button +20 / 0064da30.
     bool disabled() const { return properties_.disabled != 0; }
 
     void bind_pick_target(std::uint32_t target) const {
@@ -161,44 +163,22 @@ private:
     std::uint32_t pointer_events_logged_ = 0;
 };
 
-class MenuButtonVisuals {
-public:
-    MenuButtonVisuals(const MenuScene& scene, HMODULE module) {
-        std::size_t count = 0;
-        for (const auto& binding : menu_label_bindings) {
-            if (!binding.button) continue;
-            ButtonVisualPair pair(scene, module, binding.frame, binding.visual,
-                                  binding.active_visual);
-            if (binding.id == 2112) {
-                pair.initialize_events({{0, 0x06001003, 0x04000000, 0, 0, {}}});
-                exit_ = pair;
-            }
-            ++count;
-        }
-        if (!exit_) {
-            throw std::runtime_error("Missing original Exit visual pair");
-        }
-        std::printf("Original button visuals ready: %u pairs; Exit hover only\n",
-                    static_cast<unsigned>(count));
-    }
+using MenuFocus = frontend::DefinedScreen<ButtonVisualPair>;
 
-    void set_exit_hover(bool hover) {
-        if (hover == exit_hover_) return;
-        exit_->apply(hover);
-        exit_hover_ = hover;
-        std::printf("Exit visual state: %s\n", hover ? "focused" : "normal");
-    }
+using MenuScreenControls = frontend::DefinedControls<ButtonVisualPair>;
 
-    ButtonVisualPair& exit_control() { return *exit_; }
-
-    bool click_exit(frontend::ControlEventDestination& destination) {
-        return exit_->click(destination);
-    }
-
-private:
-    std::optional<ButtonVisualPair> exit_;
-    bool exit_hover_ = false;
-};
+inline std::unique_ptr<MenuScreenControls> make_menu_controls(
+        const MenuScene& scene, HMODULE module,
+        const frontend::MenuScreenDefinition& definition, bool confirmation,
+        std::initializer_list<frontend::MenuControlRole> available) {
+    return std::make_unique<MenuScreenControls>(definition, available,
+        [&](const frontend::MenuControlDefinition& entry) {
+            // Resource/ABI errors throw here. The original factory's broader
+            // model lookup/kind selection/error reporting is still unresolved.
+            return std::make_unique<ButtonVisualPair>(scene, module, entry.frame,
+                entry.normal, entry.active, confirmation);
+        });
+}
 
 }
 

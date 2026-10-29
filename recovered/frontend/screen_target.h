@@ -8,12 +8,12 @@
 
 namespace hd2::frontend {
 
-// Client 0065c830.
-template<std::size_t N>
+// Client 0065c830. Controls contains at most INT_MAX identifiers; fixed arrays
+// and definition-backed portable vectors share the original mask/first-match rule.
+template<class Controls>
 int find_screen_control(std::uint32_t screen_id,
-                        const std::array<std::uint32_t, N>& controls,
+                        const Controls& controls,
                         std::uint32_t target) {
-    static_assert(N <= static_cast<std::size_t>(std::numeric_limits<int>::max()));
     const std::uint32_t mask = (screen_id & 0x000ff000) != 0 ? 0x00000ff0 :
                                (screen_id & 0x03f00000) != 0 ? 0x000ff000 :
                                                                0x03f00000;

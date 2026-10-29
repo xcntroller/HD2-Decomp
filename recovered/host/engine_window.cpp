@@ -12,7 +12,6 @@
 #include "host/pointer_dispatch_probe.h"
 #include "host/engine_mouse.h"
 #include "host/engine_sound.h"
-#include "host/main_menu_focus.h"
 #include "frontend/pointer_motion.h"
 #include "frontend/screen_focus.h"
 #include "frontend/screen_input.h"
@@ -20,6 +19,7 @@
 #include "frontend/frontend_key.h"
 #include "frontend/screen_target.h"
 
+#include <algorithm>
 #include <cstdio>
 #include <cstring>
 #include <exception>
@@ -27,6 +27,8 @@
 #include <io.h>
 
 namespace {
+
+using MenuRole = hd2::frontend::MenuControlRole;
 
 struct Graphics;
 using Method = void (WINAPI *)(Graphics*);
@@ -131,74 +133,6 @@ private:
     bool& confirming_;
 };
 
-class ConfirmationFocus {
-public:
-    ConfirmationFocus(hd2::host::ButtonVisualPair& yes, hd2::host::ButtonVisualPair& no,
-                      hd2::frontend::ControlEventDestination& events)
-        : yes_(yes), no_(no), events_(events) {}
-
-    static std::uint32_t target_for_hit(int hit) {
-        if (hit == 0) return 0;
-        if (hit == 1 || hit == 2) return control_ids_[static_cast<std::size_t>(hit)];
-        throw std::logic_error("Invalid confirmation hit");
-    }
-    static int hit_for_target(std::uint32_t target) {
-        const int index = hd2::frontend::find_screen_control(screen_id_, control_ids_, target);
-        return index == 1 || index == 2 ? index : 0;
-    }
-    int control_for_target(std::uint32_t target) const {
-        return hd2::frontend::find_screen_control(screen_id_, control_ids_, target);
-    }
-    bool valid_control(int index) const {
-        return index >= 0 && static_cast<std::size_t>(index) < control_ids_.size();
-    }
-    bool control_eligible(int index) const {
-        if (index != 1 && index != 2) throw std::logic_error("Unsupported confirmation control");
-        return index == 1 ? yes_.eligible() : no_.eligible();
-    }
-    const char* label() const { return "confirmation"; }
-    std::uint32_t identifier() const { return screen_id_; }
-    bool control_disabled(int index) const {
-        return index == 1 ? yes_.disabled() : index == 2 ? no_.disabled() : true;
-    }
-    bool key_control(int, std::uint32_t) const { return false; } // 0064da30.
-    std::uint32_t control_argument(int index) const {
-        return control_ids_.at(static_cast<std::size_t>(index));
-    }
-    bool activate_control(int index, std::uint32_t) {
-        return !control_disabled(index) && button(index).activate(events_);
-    }
-    int focused_control() const { return focused_; }
-    void set_focused_control(int index) { focused_ = index; }
-    int leave_control(int index, std::uint32_t) { return button(index).apply(false); }
-    int enter_control(int index, std::uint32_t) { return button(index).apply(true); }
-    int move_control(int index, std::uint32_t) { return button(index).pointer_move(); }
-    int click_control(int index, std::uint32_t) { return button(index).click(events_); }
-    int wheel_control(int index, std::uint32_t, std::int32_t) {
-        return button(index).wheel_event(events_);
-    }
-    int pointer_control(int index, hd2::frontend::ScreenPointerCallback callback, std::uint32_t) {
-        return button(index).pointer_event(callback, events_);
-    }
-
-private:
-    static constexpr std::uint32_t screen_id_ = 0x10000000;
-    static constexpr std::array<std::uint32_t, 4> control_ids_{{
-        0x10100000, 0x10200000, 0x10300000, 0x10400000
-    }};
-
-    hd2::host::ButtonVisualPair& button(int index) {
-        if (index == 1) return yes_;
-        if (index == 2) return no_;
-        throw std::logic_error("Invalid confirmation control");
-    }
-
-    hd2::host::ButtonVisualPair& yes_;
-    hd2::host::ButtonVisualPair& no_;
-    hd2::frontend::ControlEventDestination& events_;
-    int focused_ = -1;
-};
-
 // One host-owned session mirrors the shared input acquired by 0066a6e0 and
 // retained at front-end +f4 (0066ad10). Dispatch state belongs to that same
 // front end, not individual screens. Original singleton/refcount ABI is absent.
@@ -226,8 +160,8 @@ struct MenuInputSession {
 // resolve the current screen instead of keeping one across focus/drag changes.
 class MenuKeyboardInput {
 public:
-    MenuKeyboardInput(MenuInputSession& session, hd2::host::MainMenuFocus& main,
-                      ConfirmationFocus& confirmation, hd2::frontend::MenuEventQueue& events,
+    MenuKeyboardInput(MenuInputSession& session, hd2::host::MenuFocus& main,
+                      hd2::host::MenuFocus& confirmation, hd2::frontend::MenuEventQueue& events,
                       bool& confirming)
         : session_(session), main_(main), confirmation_(confirmation), events_(events),
           confirming_(confirming) {}
@@ -249,8 +183,8 @@ public:
     }
 private:
     MenuInputSession& session_;
-    hd2::host::MainMenuFocus& main_;
-    ConfirmationFocus& confirmation_;
+    hd2::host::MenuFocus& main_;
+    hd2::host::MenuFocus& confirmation_;
     hd2::frontend::MenuEventQueue& events_;
     bool& confirming_;
 };
@@ -480,23 +414,22 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         bool text_drawn = false;
         bool modal_drawn = false;
         std::unique_ptr<hd2::host::MenuText<Graphics>> text;
-        std::unique_ptr<hd2::host::MenuButtonVisuals> buttons;
+        std::unique_ptr<hd2::host::MenuScreenControls> buttons;
         hd2::host::ExitButton exit_button;
         hd2::frontend::PointerClick confirmation_exit_click;
         hd2::frontend::PointerClick confirmation_click;
         hd2::host::PointerDispatchProbe confirmation_probe_input;
         std::optional<hd2::host::CursorPoint> confirmation_probe_point;
         std::optional<DWORD> confirmation_probe_time;
-        std::optional<hd2::host::ButtonVisualPair> confirm_yes;
-        std::optional<hd2::host::ButtonVisualPair> confirm_no;
+        std::unique_ptr<hd2::host::MenuScreenControls> confirmation_controls;
         bool confirming = false;
         int previous_confirm_hover = 0;
         std::optional<hd2::host::CursorPoint> previous_confirmation_point;
         MenuInputSession input_session;
-        std::optional<ConfirmationFocus> confirmation_focus;
-        std::optional<MenuFrameInput<ConfirmationFocus>> frame_input;
-        std::optional<hd2::host::MainMenuFocus> main_focus;
-        std::optional<MenuFrameInput<hd2::host::MainMenuFocus>> main_frame_input;
+        std::optional<hd2::host::MenuFocus> confirmation_focus;
+        std::optional<MenuFrameInput<hd2::host::MenuFocus>> frame_input;
+        std::optional<hd2::host::MenuFocus> main_focus;
+        std::optional<MenuFrameInput<hd2::host::MenuFocus>> main_frame_input;
         std::unique_ptr<hd2::host::EngineMouse> engine_mouse;
         std::optional<std::uint32_t> previous_mouse_status;
         std::optional<std::uint32_t> previous_main_pick;
@@ -504,6 +437,10 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         std::optional<HostMenuEventActions> menu_actions;
         std::optional<hd2::frontend::MenuEventQueue> menu_events;
         std::optional<MenuKeyboardInput> keyboard_input;
+        const auto confirmation_hit_for_target = [&](std::uint32_t target) {
+            if (!confirmation_focus) throw std::logic_error("Confirmation screen is not constructed");
+            return std::max(0, confirmation_focus->interactive_control_for_target(target));
+        };
         if (menu_ui) {
             if (!expected_method(methods->viewport, module, 0x6c2b0)) {
                 throw std::runtime_error("Unsupported original viewport getter ABI");
@@ -511,19 +448,15 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             if (confirmation_enabled) menu->initialize_confirmation_text_frame(module);
             text = std::make_unique<hd2::host::MenuText<Graphics>>(
                 graphics, module, *menu, confirmation_enabled);
-            buttons = std::make_unique<hd2::host::MenuButtonVisuals>(*menu, module);
+            buttons = hd2::host::make_menu_controls(
+                *menu, module, hd2::frontend::main_menu_definition(), false,
+                std::initializer_list<MenuRole>{MenuRole::exit});
             if (confirmation_enabled) {
-                confirm_yes.emplace(*menu, module, "byes?", "normal02", "actived03", true);
-                confirm_no.emplace(*menu, module, "bno?", "normal01", "actived01", true);
-                confirm_yes->initialize_events({
-                    {0, 0x14001100, 0, 0, 0, {}}, {0, 0x06001005, 0, 0, 0, {}}
-                });
-                confirm_no->initialize_events({
-                    {0, 0x14001200, 1, 0, 0, {}}, {0, 0x06001005, 0, 0, 0, {}}
-                });
+                confirmation_controls = hd2::host::make_menu_controls(
+                    *menu, module, hd2::frontend::confirmation_definition(), true,
+                    std::initializer_list<MenuRole>{MenuRole::yes, MenuRole::no});
                 if (confirmation_pick_probe || confirmation_pick_active) {
-                    confirm_yes->bind_pick_target(ConfirmationFocus::target_for_hit(1));
-                    confirm_no->bind_pick_target(ConfirmationFocus::target_for_hit(2));
+                    confirmation_controls->bind_pick_targets();
                 }
                 if (confirmation_pick_probe) {
                     std::puts("Confirmation engine-picking comparison enabled");
@@ -535,14 +468,16 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 menu->hide_confirmation_ok(module);
                 menu_actions.emplace(*menu, module, confirming);
                 menu_events.emplace(*menu_actions);
-                confirmation_focus.emplace(*confirm_yes, *confirm_no, *menu_events);
+                confirmation_focus.emplace(hd2::frontend::confirmation_definition(), *menu_events);
+                confirmation_controls->bind_screen(*confirmation_focus);
                 if (use_engine_mouse) {
-                    main_focus.emplace(*buttons, *menu_events);
+                    main_focus.emplace(hd2::frontend::main_menu_definition(), *menu_events);
+                    buttons->bind_screen(*main_focus);
                     keyboard_input.emplace(input_session, *main_focus, *confirmation_focus,
                                            *menu_events, confirming);
-                    buttons->exit_control().bind_pick_target(hd2::host::MainMenuFocus::exit_target);
+                    buttons->bind_pick_targets();
                     main_frame_input.emplace(input_session, *main_focus, [&](const hd2::host::CursorPoint& point) {
-                        return hd2::host::MainMenuFocus::target_for_pick(menu->pick_main_menu(
+                        return main_focus->interactive_target(menu->pick_main_menu(
                             module, point.x, point.y, static_cast<float>(methods->width(graphics)),
                             static_cast<float>(methods->height(graphics))));
                     }, [&](float x, float y) {
@@ -555,8 +490,8 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                             module, point.x, point.y,
                             static_cast<float>(methods->width(graphics)),
                             static_cast<float>(methods->height(graphics)));
-                        return ConfirmationFocus::target_for_hit(
-                            ConfirmationFocus::hit_for_target(picked));
+                        return confirmation_focus->target_for_control(
+                            confirmation_hit_for_target(picked));
                     }, [&](float x, float y) {
                         menu->update_input_cursor(x, y, static_cast<float>(methods->width(graphics)),
                                                   static_cast<float>(methods->height(graphics)));
@@ -567,16 +502,22 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             }
         }
         if (confirmation_preview) {
-            const hd2::host::ButtonVisualPair yes(*menu, module, "byes?", "normal02", "actived03");
-            const hd2::host::ButtonVisualPair no(*menu, module, "bno?", "normal01", "actived01");
-            const hd2::host::ButtonVisualPair ok(*menu, module, "bok", "normal03", "actived04");
-            for (const auto& binding : std::array<std::array<const char*, 2>, 3>{{
-                     {{"text", "text"}}, {{"byes?", "normal02"}}, {{"bno?", "normal01"}}
-                 }}) {
-                const auto bounds = menu->label_bounds(binding[0], binding[1], module);
+            const auto& definition = hd2::frontend::confirmation_definition();
+            std::vector<std::unique_ptr<hd2::host::ButtonVisualPair>> preview_controls;
+            for (const auto& entry : definition.controls) {
+                if (entry.kind == hd2::frontend::MenuControlKind::button) {
+                    preview_controls.push_back(std::make_unique<hd2::host::ButtonVisualPair>(
+                        *menu, module, entry.frame, entry.normal, entry.active));
+                }
+            }
+            for (const auto& entry : definition.controls) {
+                if (entry.role == MenuRole::ok) continue;
+                const auto* visual = entry.kind == hd2::frontend::MenuControlKind::text
+                    ? entry.frame : entry.normal;
+                const auto bounds = menu->label_bounds(entry.frame, visual, module);
                 const auto rectangle = hd2::host::menu_rectangle(bounds, 800, 600);
                 std::printf("Confirmation diagnostic frame=%s bounds=(%.1f,%.1f)-(%.1f,%.1f)\n",
-                            binding[0], rectangle.left, rectangle.top,
+                            entry.frame, rectangle.left, rectangle.top,
                             rectangle.right, rectangle.bottom);
             }
             std::puts("Confirmation visual pairs initialized; diagnostic remains non-interactive");
@@ -590,7 +531,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         };
         const auto confirmation_hit = [&](const std::optional<hd2::host::CursorPoint>& point) {
             return confirmation_pick_active
-                ? ConfirmationFocus::hit_for_target(pick_confirmation(point))
+                ? confirmation_hit_for_target(pick_confirmation(point))
                 : text->confirmation_hit(point);
         };
         while (running) {
@@ -695,12 +636,12 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                                 std::printf("Confirmation click: routed through focused control %d\n",
                                             hit);
                                 result = hd2::frontend::screen_click(
-                                    *confirmation_focus, ConfirmationFocus::target_for_hit(hit));
+                                    *confirmation_focus, confirmation_focus->target_for_control(hit));
                             } else {
                                 std::printf("Confirmation click: sampled focus=%d target=%d; "
                                             "using host target selection\n",
                                             confirmation_focus->focused_control(), hit);
-                                auto& button = hit == 1 ? *confirm_yes : *confirm_no;
+                                auto& button = confirmation_controls->control_at(hit);
                                 result = button.click(*menu_events);
                             }
                             if (result != 1) {
@@ -718,7 +659,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                             : exit_button.release(inside);
                         if (activated) {
                             if (confirmation_enabled) {
-                                if (!buttons->click_exit(*menu_events)) {
+                                if (!buttons->control_for_role(MenuRole::exit).click(*menu_events)) {
                                     throw std::logic_error("Exit activation was blocked");
                                 }
                                 menu_events->pump();
@@ -771,30 +712,30 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     previous_main_pick.reset();
                 }
                 exit_hover = !confirming && (use_engine_mouse
-                    ? hd2::host::MainMenuFocus::target_for_pick(main_picked) != 0
+                    ? main_focus->interactive_target(main_picked) != 0
                     : text->over_exit(point));
                 if (!exit_hover) {
                     exit_button.cancel();
                     confirmation_exit_click.clear();
                 }
                 if (main_focus) {
-                    const auto target = exit_hover ? hd2::host::MainMenuFocus::exit_target : 0u;
+                    const auto target = exit_hover ? buttons->target_for_role(MenuRole::exit) : 0u;
                     if (main_focus->control_for_target(target) != main_focus->focused_control()) {
                         if (hd2::frontend::screen_pointer_focus(*main_focus, target) == 0) {
                             throw std::logic_error("Main-menu focus transition failed");
                         }
                     }
                 } else {
-                    buttons->set_exit_hover(exit_hover);
+                    buttons->set_hover(MenuRole::exit, exit_hover);
                 }
                 const std::uint32_t picked =
                     confirming && (confirmation_pick_active || confirmation_pick_probe)
                         ? pick_confirmation(point) : 0;
                 const int rectangle_hit = confirming ? text->confirmation_hit(point) : 0;
                 const int hover = confirmation_pick_active
-                    ? ConfirmationFocus::hit_for_target(picked) : rectangle_hit;
-                frame_target = confirming ? ConfirmationFocus::target_for_hit(hover)
-                    : exit_hover ? hd2::host::MainMenuFocus::exit_target : 0u;
+                    ? confirmation_hit_for_target(picked) : rectangle_hit;
+                frame_target = confirming ? confirmation_focus->target_for_control(hover)
+                    : exit_hover ? buttons->target_for_role(MenuRole::exit) : 0u;
                 const bool moved = confirmation_pick_active && confirming && point &&
                     previous_confirmation_point &&
                     hd2::frontend::pointer_moved(
@@ -808,14 +749,14 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 }
                 if ((hover != previous_confirm_hover || (moved && !use_engine_mouse)) && confirmation_enabled) {
                     if (hd2::frontend::screen_pointer_focus(
-                            *confirmation_focus, ConfirmationFocus::target_for_hit(hover)) == 0) {
+                            *confirmation_focus, confirmation_focus->target_for_control(hover)) == 0) {
                         throw std::logic_error("Confirmation focus transition failed");
                     }
                     previous_confirm_hover = hover;
                 }
                 if (confirmation_pick_probe && confirming) {
                     const std::array<std::uint32_t, 2> comparison{{
-                        ConfirmationFocus::target_for_hit(rectangle_hit), picked
+                        confirmation_focus->target_for_control(rectangle_hit), picked
                     }};
                     if (!previous_pick_probe || *previous_pick_probe != comparison) {
                         std::printf("Confirmation picking probe: rectangle=%08x engine=%08x\n",

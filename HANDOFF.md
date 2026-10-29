@@ -1,6 +1,65 @@
 # Session handoff - 2026-10-29
 
-## Resume here: live button initialization and control state
+## Resume here: reusable definition-backed screens — larger slice
+
+User asks for larger cohesive slices, ideally an entire plan item per turn.
+This turn implements the entire "Replace hardcoded Exit/confirmation adapters
+with reusable controls and definitions" item for the current two-screen flow.
+**User desktop-confirmed: check the plan item and commit this tested slice.** Prior initialization/state slice was desktop-confirmed (435 frames,
+clean teardown) and committed first as d152b0c.
+
+New frontend/menu_definition.h: bounded original 00623DD0 data for 17 main-menu
+children (eight text, nine buttons) and four confirmation children (text, Yes,
+No, hidden OK). Exact IDs/order/kinds/frame names; all nine main activation
+bindings, Yes/No reply+pop order and OK hide record. Caption/style/observer lists
+are NOT reconstructed here; absent from bounded descriptors does not mean
+absent from original game. Existing bitmap text pipeline still renders labels.
+Semantic roles are host metadata; availability remains Exit/Yes/No only.
+
+New frontend/defined_controls.h constructs stable owned controls through the
+reconstructed factory tail, supplied host visual creator, button +78 no-op,
+supported initialization and insertion. Shared collection owns nine main button
+pairs and three confirmation pairs; only supported controls bind to screens or
+picking. OK still hidden via existing MenuScene helper; untagged derived init
+not integrated. Factory/model lookup/kind selection/error ABI remain incomplete.
+Host visual errors throw; native provider can report null creation safely.
+
+New frontend/defined_screen.h supplies ALL focus/key/pointer/wheel/target
+callbacks for both screens. Same generic context for main and confirmation;
+old host/main_menu_focus.h and inline ConfirmationFocus removed. Hierarchical
+lookup now accepts both arrays and vectors, with unchanged mask/first-match
+semantics. bind_screen validates exact definition identity. Stable unique_ptr
+controls outlive screen contexts; unsupported children keep original indices
+but are unbound. No new navigation bindings, screen actions or engine ABI calls.
+Legacy rectangle/message paths and noninteractive preview use same definitions.
+
+Current checks: strict i386 host build; temporary native + i386 compilation and
+ASan/UBSan audit of actual generic classes plus reconstructed helpers/queue.
+Covers construction/cleanup/failure, 17/four slots, nine/three button objects,
+stable targets, unsupported children/OK, every pointer tag, wheel, focus and
+navigation wrapping, full-word/consumed/focus-mutating keys, Exit/No/Yes/Escape,
+wrong/duplicate binding rejection and cached legacy hover. No new unit tests.
+Temporary compiled-definition audit matches all 17 recorded names/IDs and all
+nine event/argument pairs against original binary push instructions. Existing
+native suite, 17 launcher/nine frontend checks, UI 351 anchors/38 engine slots,
+frontend evidence and frozen accounting pass. Temporary audits removed.
+
+One new PARTIAL 00623DD0 (bounded definition data); extend existing 0065D150
+integration coverage. Generic adapters earn no separate reconstruction credit.
+Totals: 47 partial (43 client/four engine), zero complete, frozen 18,783.
+Read plan.md before next work; do not break larger work into event-sized turns.
+
+Desktop command unchanged:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+Verify Exit hover/click, No/Escape cancellation, keyboard Enter/Space activation,
+Yes exit, inactive other buttons, click sound and held transitions. Expect
+`Definition controls ready: screen=main-menu children=17 button-pairs=9` and
+`screen=confirmation children=4 button-pairs=3`, plus normal clean teardown.
+Optional legacy mode checks can omit --use-engine-mouse / use --menu-ui.
+Do not launch Proton in the agent environment. Keep current changes uncommitted
+until user confirms. No visual differences or new enabled actions expected.
+
+## Previous checkpoint: live button initialization and control state
 
 User desktop-confirms original initialization-list sequencing for Exit/Yes/No
 and original state defaults in their eligibility/disabled checks. This tested
