@@ -20,7 +20,7 @@ using FontMetrics = std::array<GlyphMetrics, 256>;
 FontMetrics decode_font_metrics(const std::vector<std::uint8_t>& bytes);
 
 // H2MT, LE32 count (1..256), then LE32 ID/length and printable ASCII bytes.
-// Labels are 1..4096 bytes; total input is at most 1 MiB, without trailing data.
+// Labels are 1..4096 bytes (original empty ID 2002 also permits zero); total input is at most 1 MiB, without trailing data.
 std::map<std::uint32_t, std::string> decode_menu_labels(
     const std::vector<std::uint8_t>& bytes);
 

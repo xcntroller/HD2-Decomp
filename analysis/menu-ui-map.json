@@ -3,7 +3,9 @@
   "runtime_verified": true,
   "runtime_observation": "2026-10-26: user confirmed corrected --menu-ui works and text appears, but text runs off button borders. Direct host log lists all 13 bindings, glyph and cursor submissions, Exit control activation, 308 submitted frames and normal driver/graphics close. Verified scope is visible static text and bounded host Exit, not accurate layout or original UI behavior. First attempt had rejected text_screen due to reading auxiliary +f0 instead of name +e8; corrected in 54a7c67.",
   "layout_desktop_observation": "2026-10-27: user confirmed the horizontal-inset correction works as expected. Direct runtime log shows 7-pixel button insets, unchanged static-label bounds, glyph/cursor submissions, Exit activation, 971 submitted frames and normal teardown. No claim of pixel-perfect fidelity.",
-  "known_issues": ["Default --menu-ui still exits directly; experimental confirmation uses bounded activation, queue, press/release, screen-focus and target-lookup reconstructions. Default confirmation uses rectangle hit testing. Interactive engine picking, motion and focused-screen clicks have bounded desktop confirmation, not exhaustive edge coverage; cancellation and screen effects remain host-owned. The observational input probe has only left-click samples in the latest log; the original source is a bounded, potentially scaled millisecond frame delta, while the probe still uses message timestamps."],
+  "known_issues": [
+    "Default --menu-ui still exits directly; experimental confirmation uses bounded activation, queue, press/release, screen-focus and target-lookup reconstructions. Default confirmation uses rectangle hit testing. Interactive engine picking, motion and focused-screen clicks have bounded desktop confirmation, not exhaustive edge coverage; cancellation and screen effects remain host-owned. The observational input probe has only left-click samples in the latest log; the original source is a bounded, potentially scaled millisecond frame delta, while the probe still uses message timestamps."
+  ],
   "source": "recovered/host/menu_text.h",
   "geometry_source": "recovered/host/menu_text_geometry.h",
   "button_visual_source": "recovered/host/menu_button_visuals.h",
@@ -136,16 +138,16 @@
     "observer_transport": "ControlEvent now has a typed observer request beside its string/payload field. Context/callback native pointers retain full width; original raw 32-bit address words are rejected as callable pointers. Context remains borrowed. Portable record layout is not original 24-byte ABI. Duplicate ordinary registrations append; first matching callback is used; callback false does not veto tagged delivery.",
     "runtime": "control_runtime.h connects all shared base message cases to actual property/binding state, supplied frame/text/child backends and emitter-owned local delivery. Local ffffffff targets route back through the emitting control; queued events forward upstream. No queue is fabricated during focus/init callbacks; queued events there still require a supplied front-end destination.",
     "host_integration": "Every constructed main/confirmation button now runs definition initialization, independently of host availability. Hidden OK executes its original 01000004 record through button/base runtime -> 0065c790 sequencing: clear visible byte, hide root frame, update root, emit 0400c000. Removed MenuScene hide_confirmation_ok special helper. Source control_frame lookup now returns root independently of visual-kind checks; show/hide verify actual frame visibility/update slots. Only Exit/Yes/No remain input-bound.",
-    "derived_dispatch": "text_control_event.h reconstructs 00661940 case/argument sequencing and 006551d0 overrides. Text case 01000099 uses POSITIVE z direction one before layout. Button 0200002c lays out on normal visual only if text exists; 02000076 writes booleanized 0/ffffffff to text +94. Other messages forward through text/base. Helper return values ignored. Full derived-text backend is source-only; original font/localization/layout/helper bodies and attached text storage remain absent from ButtonVisualPair. Host rejects known unsupported text cases, while the existing MenuText renderer remains in use.",
+    "derived_dispatch": "Full derived selector sequencing is now connected through TextControlRuntime to attached native TextObject storage and the existing bounded glyph/visual bridge. See attached_text_layer for current coverage and limitations.",
     "validation": "Strict i386 host build; temporary native, ASan/UBSan and i386-instantiation audit pass. Includes all observer filter-presence combinations, duplicate/override/null registration, native typed payload lifetime, raw-address rejection, mutable state/getters, disabled text present/absent, repeated show/hide and state-before-frame/update-before-notify order, local event continuation despite false observer, copied tagged observer registration, fresh child propagation, all derived text selectors and nullable button overrides, and actual definitions/collections/queue Exit/No/Yes with hidden OK initialized through shared handler. Existing native suite, 17 launcher/nine frontend checks pass. No new unit tests. User desktop-confirms shared-state/initialization/event slice.",
-    "limits": "Portable object/record layout, shared ownership and callbacks replace original ABI/SEH/intrusive storage. Attached client text remains absent in host controls; disabled-text mirroring is audited with a text backend, not integrated with glyph rendering. Full heterogeneous controls, caption/style definitions and global targeted event routing remain unfinished. Seven new partial client entries, none complete."
+    "limits": "Portable object/record layout and callbacks replace original ABI/SEH/intrusive storage. Attached text is now integrated; general heterogeneous factory, dynamic callbacks, paragraph layout and global targeted routing remain incomplete."
   },
   "definition_backed_screens": {
     "status": "Implemented, audited and user desktop-confirmed. Replaces old MainMenuFocus, inline ConfirmationFocus and separate per-screen binding/setup branches.",
-    "definitions": "menu_definition.h reconstructs bounded 00623dd0 data: original main-menu 17 child IDs/order/kinds/names, nine activation bindings, original confirmation four children and Yes/No binding order plus hidden-OK hide record. Caption/style/observer initialization lists remain with existing text adapter; absent from these bounded descriptors, not absent from original client. Semantic roles are host metadata, not original fields.",
+    "definitions": "Original 17/four slots, kinds, identifiers, frame names, caption/style initializers, nine main activation bindings, Yes/No reply/pop and OK hide. Observer/screen callback lists remain incomplete.",
     "construction": "DefinedControls owns stable unique control objects in definition slots. A supplied visual factory calls the existing engine bridge; initialize_created_control sequences visual creation, button +78 no-op, supported tagged initialization and insertion. Original factory kind dispatch/model lookup/error ABI remains incomplete. Host visual/resource failures throw. Unsupported children remain unbound slots. Confirmation OK now runs its original hide record through the shared state handler.",
     "routing": "Both screens instantiate the SAME DefinedScreen<ButtonVisualPair> context for target lookup, eligibility/disabled state, focus, keyboard activation, wheel, click and all pointer callbacks. Dynamic ID vectors use unchanged original hierarchical mask/first-match lookup. Bindings compare exact definition identity and stable child slots; roles replace host Exit/Yes/No numeric event/ID literals. Current host availability permits only Exit, Yes and No, without altering original state flags or enabling unfinished actions.",
-    "limits": "Portable definitions/ownership/context replace original class ABI and heterogeneous control factory. Original fonts/captions/dynamic labels, global screen stack, unsupported widgets/menus and captured object identity remain unresolved. Static labels remain definition-only entries; their rendering is the existing host adapter. Generalized collection glue earns no original-function credit. A bounded definition-data subset gains one partial 00623dd0 entry.",
+    "limits": "Portable definitions/ownership/context replace original class ABI. Dynamic labels/version, global screen stack, other widgets/menus and captured object identity remain unresolved. Static labels now initialize attached text records used by the bounded renderer.",
     "validation": "Native audit exercises exact 17/four definition slots, nine/three visual creations, stable targets, unavailable actions/hidden OK, all pointer callback event tags, hierarchical/zero/invalid target lookup, focus/hover/navigation wrapping, full-word/consumed/focus-mutating keyboard paths, actual reconstructed queue Exit/No/Yes/Escape, same-definition binding validation, null construction and exception cleanup. Strict i386 host build, native audit, ASan/UBSan audit, i386 instantiated-header compilation, native suite and 17 launcher/nine frontend checks passed. Compiled catalog also matches all 17 recorded child names/IDs and nine original-binary event/argument pairs. Temporary audits removed. User confirms desktop behavior works; this slice is safe to commit."
   },
   "control_initialization_source": "recovered/frontend/control_initialization.h",
@@ -233,7 +235,14 @@
     "validation": "Strict i386 build, existing native checks, 17 launcher checks, nine frontend checks, 283 instruction anchors, 26 engine slots, frontend evidence and frozen accounting pass. Temporary native audit of the actual bridge with mock screens confirms cursor/wheel/idle continuity, left/right activation, held-transition callback absorption, fresh clicks after release and reset/reentry. Audit files removed; no new unit tests or function-ledger credit. Desktop-confirmed by user for all requested cases including held-button cancellation; log records wheel -480 retained across screen changes, No, Escape, Yes, 861 frames and clean teardown. Raw button masks are absent. Original allocation/refcount, texture lifetime and input ABI remain unreconstructed."
   },
   "cursor_frame_reconstruction": {
-    "asset": {"member": "MODELS\\kurzor_menu.4ds", "size": 330, "sha256": "d29a19d542f7155e14b82e592a642caf974b068926d6bd30cae59e098fd409f2", "textures": ["X_KURSOR.TGA"]},
+    "asset": {
+      "member": "MODELS\\kurzor_menu.4ds",
+      "size": 330,
+      "sha256": "d29a19d542f7155e14b82e592a642caf974b068926d6bd30cae59e098fd409f2",
+      "textures": [
+        "X_KURSOR.TGA"
+      ]
+    },
     "staging": "include_cursor_model / --include-cursor-model adds one manifest-owned original model. --use-engine-mouse requests it automatically; default restaging retains ownership. Real-archive audit upgrades 21 to 22 assets with old records unchanged, verifies every hash, checks identical default restaging and rejects a modified model before writes.",
     "binding": "Create model kind nine, open kurzor_menu, name root CURZOR via model override +34 / 100346a0 (base 1001d330 plus model-specific name propagation), link primary sector via +38, hide via +30. Resolve scene +7c with name CURZOR and flags ffff; require returned frame to equal owned model and verify +e8 name. Position +08 and world update +24 are ABI-checked. All resources follow existing scene/driver teardown ownership.",
     "update": "0066a220 tail projects X/width, ((-1/height)*Y)*0.75, Z=-1 with final float stores, then invokes frame +08 and +24. The functional adapter calls it after successful input processing and before screen callbacks, with an initial host-seeded call on arm/reentry. Hidden model stays hidden; visible bitmap cursor and picking ray Z=-0.9 remain unchanged.",
@@ -272,26 +281,97 @@
     "runtime_integrated": "Experimental opt-in --menu-confirm: user confirmed popup, No and Yes work and, after two-pass rendering and prompt-frame orientation fixes, the caption overlap and grey box are gone. Focus filtering, activation/queue wiring, pointer-click integration, screen-focus routing, target lookup and the engine-picking probe were user-confirmed. The latest desktop run enabled interactive engine picking and the input shadow probe, logged matching left-button captures and click=1 double=0 for No and Yes, routed both through focused controls without a logged fallback, recorded Escape cancellation, submitted 741 frames and closed cleanly. Right-button and double=1 cases were not logged. Default --menu-ui retains direct Exit.",
     "definition": "00623dd0, instructions 00625b7e..00625c56",
     "screen_number": 4,
-    "control_identifiers": {"text": "10100000", "yes": "10200000", "no": "10300000", "ok": "10400000"},
+    "control_identifiers": {
+      "text": "10100000",
+      "yes": "10200000",
+      "no": "10300000",
+      "ok": "10400000"
+    },
     "screen_number_evidence": "MAIN_MENU, CHANGE_PROFIL, SINGLEPLAYER, CONFIRM definition order; 00626180 assigns (definition_count+1)<<26; 00627060 builds the indexed screen vector.",
     "resource": "CONFIRM / confirm",
-    "model": {"member": "MODELS\\confirm.4ds", "size": 4095, "sha256": "4d4844844947665c98725422d69a081556d27abb01efe4b2ff09d338b58d37ac"},
-    "textures": ["X_B_DNLF.BMP", "X_B_DNMD.BMP", "X_B_DNRG.BMP", "X_NMNBTN.BMP", "X_NMSHD.TGA"],
-    "controls": [
-      {"definition_name": "text", "type": 19, "style": 12, "localization": 2004},
-      {"definition_name": "byes*", "type": 20, "style": 13, "localization": 2001, "events": [["14001100", 0], ["06001005", 0]]},
-      {"definition_name": "bno*", "type": 20, "style": 13, "localization": 2000, "events": [["14001200", 1], ["06001005", 0]]},
-      {"definition_name": "bok", "type": 20, "visible": false}
+    "model": {
+      "member": "MODELS\\confirm.4ds",
+      "size": 4095,
+      "sha256": "4d4844844947665c98725422d69a081556d27abb01efe4b2ff09d338b58d37ac"
+    },
+    "textures": [
+      "X_B_DNLF.BMP",
+      "X_B_DNMD.BMP",
+      "X_B_DNRG.BMP",
+      "X_NMNBTN.BMP",
+      "X_NMSHD.TGA"
     ],
-    "exit_event": ["06001003", "04000000"],
-    "at_stack_depth_one": [["02000002", 4], ["22000004", 0]],
+    "controls": [
+      {
+        "definition_name": "text",
+        "type": 19,
+        "style": 12,
+        "localization": 2004
+      },
+      {
+        "definition_name": "byes*",
+        "type": 20,
+        "style": 13,
+        "localization": 2001,
+        "events": [
+          [
+            "14001100",
+            0
+          ],
+          [
+            "06001005",
+            0
+          ]
+        ]
+      },
+      {
+        "definition_name": "bno*",
+        "type": 20,
+        "style": 13,
+        "localization": 2000,
+        "events": [
+          [
+            "14001200",
+            1
+          ],
+          [
+            "06001005",
+            0
+          ]
+        ]
+      },
+      {
+        "definition_name": "bok",
+        "type": 20,
+        "visible": false
+      }
+    ],
+    "exit_event": [
+      "06001003",
+      "04000000"
+    ],
+    "at_stack_depth_one": [
+      [
+        "02000002",
+        4
+      ],
+      [
+        "22000004",
+        0
+      ]
+    ],
     "yes": "Router 0066c9c5 tests bit 100 and moves deferred events to the main queue with bit 20000000 cleared; 22000004 becomes 02000004.",
     "no": "Router 0066ca09 tests bit 200 and drains the deferred queue without submitting its events.",
     "dismiss": "Both controls then emit 06001005; masked case 02000005 at 0066d043 removes the current screen.",
     "quit": "Jump table 0066d68c entry zero routes 02000004 to 0066d33b; after an application callback, 0066d34a sets front-end state +4 to 4.",
     "placement": "00627060 checks the fourth definition's top bits against 10000000 at 0062711f and sets its model position to (0.5,-0.375,-0.5) at 0062712f..00627147.",
     "separate_api": "0066c1d0 also loads confirm into a distinct 0x90-byte object at front-end+100, vtable 008155d8. Its initializer 00668790 uses prompt style 24 and callbacks 006693a0, unlike the menu definition's style 12 and queued reply events. Do not mix the two paths.",
-    "remaining": ["Desktop-check right-button, multi-button and double-click samples in the observational input probe.", "Replace message snapshots with verified original frame polling and resolve screen/drag ordering before using double-click results interactively.", "Recover default focus and keyboard handling beyond bounded Escape cancellation.", "Reconstruct the rest of the original event queue, router, screen objects and input handling."],
+    "remaining": [
+      "Desktop-check right-button, multi-button and double-click samples in the observational input probe.",
+      "Replace message snapshots with verified original frame polling and resolve screen/drag ordering before using double-click results interactively.",
+      "Recover default focus and keyboard handling beyond bounded Escape cancellation.",
+      "Reconstruct the rest of the original event queue, router, screen objects and input handling."
+    ],
     "asset_staging": "tools/stage_menu_resources.py --include-confirm; optional assets remain manifest-owned on later default launcher staging."
   },
   "engine": {
@@ -301,87 +381,443 @@
       "image_base": "10000000"
     },
     "instruction_anchors": [
-      {"address": "100545a0", "hex": "a1fc160d108b0883ec105355565750ff510c84c0750f5f5e5db8090000805b83c410c20c00", "meaning": "Sound open requires initialized driver and cleans three stdcall words"},
-      {"address": "100547b5", "hex": "a1fc160d108b088db53c0100005650ff512c85c07d0f5f5e5db8050000805b83c410c20c00", "meaning": "Sound open creates playback buffer into sound-frame +13c"},
-      {"address": "100548c1", "hex": "5f5e5d33c05b83c410c20c00", "meaning": "Sound open success returns zero and cleans self/path/flags"},
-      {"address": "10068fa0", "hex": "a1fc160d10c3", "meaning": "ISndGetDriver returns singleton pointer at 100d16fc"},
-      {"address": "1007b560", "hex": "8b4424188b4c24148b542410568b742408578b7c2410508b442418515250578bcee8cafbffff84c0750a5fb8050000805ec21800897e04c605602c0d10015fc746340000803f33c05ec21800", "meaning": "Sound initialization wrapper reads six stack words; failure maps to 80000005; success sets initialized flag"},
-      {"address": "1007a840", "hex": "a0602c0d10c20400", "meaning": "Sound initialized query returns byte 100d2c60 and cleans self"},
-      {"address": "1007a898", "hex": "395e0c74708b46", "meaning": "Sound close only tears down DirectSound resources when device +0c is present"},
-      {"address": "1007a90d", "hex": "5f5e881d602c0d105bc20400", "meaning": "Sound close clears initialized flag and cleans self"},
-      {"address": "1001bb10", "hex": "8b5424088b4424048b086a005250ff91ac000000c2080090909090", "meaning": "Sound +30 forwards self/enable/zero to +ac and cleans two words"},
-      {"address": "100548d0", "hex": "83ec08568b7424108b8e3c01000085c9750932c05e83c408c20800", "meaning": "Sound active query returns false when +13c buffer is absent; cleans two words"},
-      {"address": "100549a0", "hex": "8b44240883ec10568b74241839867c010000747d", "meaning": "Sound type setter reads two stack words and current type +17c"},
-      {"address": "10054c40", "hex": "8b4c2404d9816c010000d8642408d95c2404d944240450d9e1d91c245a33c081fa77cc2b320f9cc084c075118b44240889816c01000083892001000008c20800", "meaning": "Sound volume setter updates +16c and dirty bit when changed; cleans two words"},
-      {"address": "1004dcb0", "hex": "568b7424088b86c001000085c08b8eb8010000578b7c241074", "meaning": "Primary sector sound insertion reads stack self/sound and sound list fields"},
-      {"address": "100551f5", "hex": "5f5e5d5b83c408c20c00", "meaning": "Sound play implementation returns cleaning self/enable/extra words"},
-      {"address": "100346a0", "hex": "8b442408568b7424085056e8808cfeff85c07c078bcee875ffffff5ec20800", "meaning": "Model +34 name override forwards self/name to base 1001d330, checks success, invokes model propagation 10034630 and cleans two stack words"},
-      {"address": "1001d330", "hex": "538b5c240c558b6c240c8b85e80000003bc35657", "meaning": "Frame name setter reads stack self/name and frame +e8"},
-      {"address": "1001d458", "hex": "5f5e5d33c05bc20800", "meaning": "Frame name setter returns with cleanup of stack self and name"},
-      {"address": "10046920", "hex": "538b5c24088b8bf8010000568b742414578b7c24145657e8c475fdff", "meaning": "Scene find reads stack self/name/flags and delegates lookup through primary sector"},
-      {"address": "1004698d", "hex": "5f5e5bc20c00", "meaning": "Scene find returns while cleaning three stack arguments"},
-      {"address": "1006f710", "hex": "578b7c240c83ffff7509a17c1a0d105fc20800", "meaning": "Mouse setup argument minus one queries mode without replacing device"},
-      {"address": "1006f77a", "hex": "8b1656ff92e4000000a10c1d0d108b086a006848210d1068341c0a1050ff510c85c05e7d07", "meaning": "Mouse setup first closes old mouse via +e4 then creates system mouse through DirectInput +0c"},
-      {"address": "1006f7a6", "hex": "a148210d1068b01d0d10c705b01d0d102c0000008b1050ff520ca148210d108b08689c1b0a1050ff512c85c07d0768a2130000eb25", "meaning": "Mouse setup obtains 44-byte capabilities and configures the original data format"},
-      {"address": "1006f7db", "hex": "85ffa148210d108b0dec190d108b1075046a06eb026a055150ff5234", "meaning": "Mouse mode zero selects cooperative flags six (foreground nonexclusive); other modes select five"},
-      {"address": "1006f822", "hex": "a148210d108b1050ff521c893d7c1a0d10c60597210d100133c05fc20800", "meaning": "Mouse setup calls Acquire, records mode and sets enabled byte after successful setup"},
-      {"address": "1006f840", "hex": "a097210d10c20400", "meaning": "Mouse enabled getter returns byte at 100d2197"},
-      {"address": "1006f850", "hex": "a148210d1085c0741b8b0850ff5120a148210d108b1050ff5208c70548210d100000000033c0", "meaning": "Mouse close Unacquires and Releases the device then clears the borrowed pointer"},
-      {"address": "1006f876", "hex": "a3c81e0d10a3cc1e0d10a3d01e0d10a3d41e0d10a3d81e0d10a297210d10c20400", "meaning": "Mouse close clears all five state DWORDs and enabled byte"},
-      {"address": "1006f914", "hex": "833dbc1d0d1003730ac705d01e0d1000000000", "meaning": "Successful poll suppresses wheel Z when capability axis count is below three"},
-      {"address": "1006f927", "hex": "a17c1a0d1085c0560f85850000008d44240450ff15ccb10910", "meaning": "Nonexclusive poll queries Win32 cursor position; portable bridge omits unused position query"},
-      {"address": "1006f9ba", "hex": "8b3578210d108b15c81e0d108b0d7c210d10a1cc1e0d1003f203c8893578210d10890d7c210d10", "meaning": "Exclusive poll mode accumulates raw signed XY in wrapping absolute engine counters; portable bridge excludes this mode"},
-      {"address": "1006f9e1", "hex": "a090180d1084c05e7416a0d41e0d108a0dd51e0d10880dd41e0d10a2d51e0d10", "meaning": "Successful poll swaps first two button bytes when the engine swap setting is enabled"},
-      {"address": "1006f8a0", "hex": "a148210d1083ec1885c0750bb80900008083c418c204008b0868c81e0d106a1450ff512485c07d4c", "meaning": "Graphics +e8 requires mouse input device and reads a 20-byte state record into 100d1ec8 through device +24"},
-      {"address": "1006f8c8", "hex": "a148210d108b1050ff521ca148210d108b0868c81e0d106a1450ff512485c07d2b", "meaning": "Failed read attempts device acquisition once then retries state read"},
-      {"address": "1006f8e9", "hex": "33d28915c81e0d108915cc1e0d108915d01e0d108915d41e0d108915d81e0d10b80500008083c418c20400", "meaning": "Second read failure clears all five mouse-state DWORDs and returns 80000005"},
-      {"address": "1006fa10", "hex": "a1c81e0d10c20400", "meaning": "Graphics +ec returns signed relative X from polled state and cleans stack self"},
-      {"address": "1006fa20", "hex": "a1cc1e0d10c20400", "meaning": "Graphics +f0 returns signed relative Y from polled state and cleans stack self"},
-      {"address": "1006fa30", "hex": "a1d01e0d10c20400", "meaning": "Graphics +f4 returns signed relative Z from polled state and cleans stack self"},
-      {"address": "1001d33a", "hex": "8b85e8000000", "meaning": "Frame name setter reads the existing name pointer at frame+e8"},
-      {"address": "1001d408", "hex": "8b95e80000008bcb8a014188024284c075f6", "meaning": "Frame name setter copies the requested NUL-terminated name into the buffer at frame+e8"},
-      {"address": "1001e315", "hex": "89bbf0000000", "meaning": "Separate auxiliary-string setter uses frame+f0, not the frame-name field"},
-      {"address": "100571ba", "hex": "8b75088b8ed001000081c9000004008bc1a90000020057898ed0010000", "meaning": "World-bounds updater takes stack self and sets the world-bound-valid flag at visual+1d0"},
-      {"address": "10057239", "hex": "81c670010000", "meaning": "World-bounds output record starts at visual+170"},
-      {"address": "1006c2b0", "hex": "b8f01c0d10c20400", "meaning": "Viewport getter returns the six-DWORD record and cleans self"},
-      {"address": "1006b389", "hex": "a16c210d10", "meaning": "BeginScene loads the borrowed original IDirect3DDevice8 pointer from 100d216c; runtime check accounts for relocation"},
-      {"address": "1001cfe0", "hex": "8a44240884c08b4424048b88e0000000", "meaning": "Frame visibility setter takes stack self and a byte in the second stack word, then reads flags at frame+e0"},
-      {"address": "1001cff0", "hex": "740583c901eb0383e1fe8988e0000000", "meaning": "Visibility setter sets or clears bit zero of frame+e0"},
-      {"address": "1001d038", "hex": "c20800", "meaning": "Visibility setter cleans both stack arguments"},
-      {"address": "1001c8eb", "hex": "8b4d108b550c8b06515256ff501c5f5e8be55dc2", "meaning": "Visual direction setter takes stack self, direction and up-vector; forwards all three to slot +1c when no parent transform"},
-      {"address": "10011120", "hex": "8b01a3a0da0a10", "meaning": "Scene picking copies the input ray origin into engine scratch state"},
-      {"address": "10011521", "hex": "c22400", "meaning": "Scene picking returns after cleaning nine stack words including self"},
-      {"address": "1006fb30", "hex": "0fb605d41e0d108a15d61e0d10b180c1e80784d1740383c804", "meaning": "Graphics input combines the high bits of button bytes 0 and 2 as mask bits 1 and 4"},
-      {"address": "1006fb49", "hex": "840dd51e0d10740383c802840dd71e0d10740383c808840dd81e0d10740383c810c20400", "meaning": "Graphics input combines button bytes 1, 3 and 4 as mask bits 2, 8 and 10"}
+      {
+        "address": "100545a0",
+        "hex": "a1fc160d108b0883ec105355565750ff510c84c0750f5f5e5db8090000805b83c410c20c00",
+        "meaning": "Sound open requires initialized driver and cleans three stdcall words"
+      },
+      {
+        "address": "100547b5",
+        "hex": "a1fc160d108b088db53c0100005650ff512c85c07d0f5f5e5db8050000805b83c410c20c00",
+        "meaning": "Sound open creates playback buffer into sound-frame +13c"
+      },
+      {
+        "address": "100548c1",
+        "hex": "5f5e5d33c05b83c410c20c00",
+        "meaning": "Sound open success returns zero and cleans self/path/flags"
+      },
+      {
+        "address": "10068fa0",
+        "hex": "a1fc160d10c3",
+        "meaning": "ISndGetDriver returns singleton pointer at 100d16fc"
+      },
+      {
+        "address": "1007b560",
+        "hex": "8b4424188b4c24148b542410568b742408578b7c2410508b442418515250578bcee8cafbffff84c0750a5fb8050000805ec21800897e04c605602c0d10015fc746340000803f33c05ec21800",
+        "meaning": "Sound initialization wrapper reads six stack words; failure maps to 80000005; success sets initialized flag"
+      },
+      {
+        "address": "1007a840",
+        "hex": "a0602c0d10c20400",
+        "meaning": "Sound initialized query returns byte 100d2c60 and cleans self"
+      },
+      {
+        "address": "1007a898",
+        "hex": "395e0c74708b46",
+        "meaning": "Sound close only tears down DirectSound resources when device +0c is present"
+      },
+      {
+        "address": "1007a90d",
+        "hex": "5f5e881d602c0d105bc20400",
+        "meaning": "Sound close clears initialized flag and cleans self"
+      },
+      {
+        "address": "1001bb10",
+        "hex": "8b5424088b4424048b086a005250ff91ac000000c2080090909090",
+        "meaning": "Sound +30 forwards self/enable/zero to +ac and cleans two words"
+      },
+      {
+        "address": "100548d0",
+        "hex": "83ec08568b7424108b8e3c01000085c9750932c05e83c408c20800",
+        "meaning": "Sound active query returns false when +13c buffer is absent; cleans two words"
+      },
+      {
+        "address": "100549a0",
+        "hex": "8b44240883ec10568b74241839867c010000747d",
+        "meaning": "Sound type setter reads two stack words and current type +17c"
+      },
+      {
+        "address": "10054c40",
+        "hex": "8b4c2404d9816c010000d8642408d95c2404d944240450d9e1d91c245a33c081fa77cc2b320f9cc084c075118b44240889816c01000083892001000008c20800",
+        "meaning": "Sound volume setter updates +16c and dirty bit when changed; cleans two words"
+      },
+      {
+        "address": "1004dcb0",
+        "hex": "568b7424088b86c001000085c08b8eb8010000578b7c241074",
+        "meaning": "Primary sector sound insertion reads stack self/sound and sound list fields"
+      },
+      {
+        "address": "100551f5",
+        "hex": "5f5e5d5b83c408c20c00",
+        "meaning": "Sound play implementation returns cleaning self/enable/extra words"
+      },
+      {
+        "address": "100346a0",
+        "hex": "8b442408568b7424085056e8808cfeff85c07c078bcee875ffffff5ec20800",
+        "meaning": "Model +34 name override forwards self/name to base 1001d330, checks success, invokes model propagation 10034630 and cleans two stack words"
+      },
+      {
+        "address": "1001d330",
+        "hex": "538b5c240c558b6c240c8b85e80000003bc35657",
+        "meaning": "Frame name setter reads stack self/name and frame +e8"
+      },
+      {
+        "address": "1001d458",
+        "hex": "5f5e5d33c05bc20800",
+        "meaning": "Frame name setter returns with cleanup of stack self and name"
+      },
+      {
+        "address": "10046920",
+        "hex": "538b5c24088b8bf8010000568b742414578b7c24145657e8c475fdff",
+        "meaning": "Scene find reads stack self/name/flags and delegates lookup through primary sector"
+      },
+      {
+        "address": "1004698d",
+        "hex": "5f5e5bc20c00",
+        "meaning": "Scene find returns while cleaning three stack arguments"
+      },
+      {
+        "address": "1006f710",
+        "hex": "578b7c240c83ffff7509a17c1a0d105fc20800",
+        "meaning": "Mouse setup argument minus one queries mode without replacing device"
+      },
+      {
+        "address": "1006f77a",
+        "hex": "8b1656ff92e4000000a10c1d0d108b086a006848210d1068341c0a1050ff510c85c05e7d07",
+        "meaning": "Mouse setup first closes old mouse via +e4 then creates system mouse through DirectInput +0c"
+      },
+      {
+        "address": "1006f7a6",
+        "hex": "a148210d1068b01d0d10c705b01d0d102c0000008b1050ff520ca148210d108b08689c1b0a1050ff512c85c07d0768a2130000eb25",
+        "meaning": "Mouse setup obtains 44-byte capabilities and configures the original data format"
+      },
+      {
+        "address": "1006f7db",
+        "hex": "85ffa148210d108b0dec190d108b1075046a06eb026a055150ff5234",
+        "meaning": "Mouse mode zero selects cooperative flags six (foreground nonexclusive); other modes select five"
+      },
+      {
+        "address": "1006f822",
+        "hex": "a148210d108b1050ff521c893d7c1a0d10c60597210d100133c05fc20800",
+        "meaning": "Mouse setup calls Acquire, records mode and sets enabled byte after successful setup"
+      },
+      {
+        "address": "1006f840",
+        "hex": "a097210d10c20400",
+        "meaning": "Mouse enabled getter returns byte at 100d2197"
+      },
+      {
+        "address": "1006f850",
+        "hex": "a148210d1085c0741b8b0850ff5120a148210d108b1050ff5208c70548210d100000000033c0",
+        "meaning": "Mouse close Unacquires and Releases the device then clears the borrowed pointer"
+      },
+      {
+        "address": "1006f876",
+        "hex": "a3c81e0d10a3cc1e0d10a3d01e0d10a3d41e0d10a3d81e0d10a297210d10c20400",
+        "meaning": "Mouse close clears all five state DWORDs and enabled byte"
+      },
+      {
+        "address": "1006f914",
+        "hex": "833dbc1d0d1003730ac705d01e0d1000000000",
+        "meaning": "Successful poll suppresses wheel Z when capability axis count is below three"
+      },
+      {
+        "address": "1006f927",
+        "hex": "a17c1a0d1085c0560f85850000008d44240450ff15ccb10910",
+        "meaning": "Nonexclusive poll queries Win32 cursor position; portable bridge omits unused position query"
+      },
+      {
+        "address": "1006f9ba",
+        "hex": "8b3578210d108b15c81e0d108b0d7c210d10a1cc1e0d1003f203c8893578210d10890d7c210d10",
+        "meaning": "Exclusive poll mode accumulates raw signed XY in wrapping absolute engine counters; portable bridge excludes this mode"
+      },
+      {
+        "address": "1006f9e1",
+        "hex": "a090180d1084c05e7416a0d41e0d108a0dd51e0d10880dd41e0d10a2d51e0d10",
+        "meaning": "Successful poll swaps first two button bytes when the engine swap setting is enabled"
+      },
+      {
+        "address": "1006f8a0",
+        "hex": "a148210d1083ec1885c0750bb80900008083c418c204008b0868c81e0d106a1450ff512485c07d4c",
+        "meaning": "Graphics +e8 requires mouse input device and reads a 20-byte state record into 100d1ec8 through device +24"
+      },
+      {
+        "address": "1006f8c8",
+        "hex": "a148210d108b1050ff521ca148210d108b0868c81e0d106a1450ff512485c07d2b",
+        "meaning": "Failed read attempts device acquisition once then retries state read"
+      },
+      {
+        "address": "1006f8e9",
+        "hex": "33d28915c81e0d108915cc1e0d108915d01e0d108915d41e0d108915d81e0d10b80500008083c418c20400",
+        "meaning": "Second read failure clears all five mouse-state DWORDs and returns 80000005"
+      },
+      {
+        "address": "1006fa10",
+        "hex": "a1c81e0d10c20400",
+        "meaning": "Graphics +ec returns signed relative X from polled state and cleans stack self"
+      },
+      {
+        "address": "1006fa20",
+        "hex": "a1cc1e0d10c20400",
+        "meaning": "Graphics +f0 returns signed relative Y from polled state and cleans stack self"
+      },
+      {
+        "address": "1006fa30",
+        "hex": "a1d01e0d10c20400",
+        "meaning": "Graphics +f4 returns signed relative Z from polled state and cleans stack self"
+      },
+      {
+        "address": "1001d33a",
+        "hex": "8b85e8000000",
+        "meaning": "Frame name setter reads the existing name pointer at frame+e8"
+      },
+      {
+        "address": "1001d408",
+        "hex": "8b95e80000008bcb8a014188024284c075f6",
+        "meaning": "Frame name setter copies the requested NUL-terminated name into the buffer at frame+e8"
+      },
+      {
+        "address": "1001e315",
+        "hex": "89bbf0000000",
+        "meaning": "Separate auxiliary-string setter uses frame+f0, not the frame-name field"
+      },
+      {
+        "address": "100571ba",
+        "hex": "8b75088b8ed001000081c9000004008bc1a90000020057898ed0010000",
+        "meaning": "World-bounds updater takes stack self and sets the world-bound-valid flag at visual+1d0"
+      },
+      {
+        "address": "10057239",
+        "hex": "81c670010000",
+        "meaning": "World-bounds output record starts at visual+170"
+      },
+      {
+        "address": "1006c2b0",
+        "hex": "b8f01c0d10c20400",
+        "meaning": "Viewport getter returns the six-DWORD record and cleans self"
+      },
+      {
+        "address": "1006b389",
+        "hex": "a16c210d10",
+        "meaning": "BeginScene loads the borrowed original IDirect3DDevice8 pointer from 100d216c; runtime check accounts for relocation"
+      },
+      {
+        "address": "1001cfe0",
+        "hex": "8a44240884c08b4424048b88e0000000",
+        "meaning": "Frame visibility setter takes stack self and a byte in the second stack word, then reads flags at frame+e0"
+      },
+      {
+        "address": "1001cff0",
+        "hex": "740583c901eb0383e1fe8988e0000000",
+        "meaning": "Visibility setter sets or clears bit zero of frame+e0"
+      },
+      {
+        "address": "1001d038",
+        "hex": "c20800",
+        "meaning": "Visibility setter cleans both stack arguments"
+      },
+      {
+        "address": "1001c8eb",
+        "hex": "8b4d108b550c8b06515256ff501c5f5e8be55dc2",
+        "meaning": "Visual direction setter takes stack self, direction and up-vector; forwards all three to slot +1c when no parent transform"
+      },
+      {
+        "address": "10011120",
+        "hex": "8b01a3a0da0a10",
+        "meaning": "Scene picking copies the input ray origin into engine scratch state"
+      },
+      {
+        "address": "10011521",
+        "hex": "c22400",
+        "meaning": "Scene picking returns after cleaning nine stack words including self"
+      },
+      {
+        "address": "1006fb30",
+        "hex": "0fb605d41e0d108a15d61e0d10b180c1e80784d1740383c804",
+        "meaning": "Graphics input combines the high bits of button bytes 0 and 2 as mask bits 1 and 4"
+      },
+      {
+        "address": "1006fb49",
+        "hex": "840dd51e0d10740383c802840dd71e0d10740383c808840dd81e0d10740383c810c20400",
+        "meaning": "Graphics input combines button bytes 1, 3 and 4 as mask bits 2, 8 and 10"
+      }
     ],
     "vtables": [
-      {"address": "1009bbcc", "targets": ["1001e610"]},
-      {"address": "1009bbd8", "targets": ["1001cfe0"]},
-      {"address": "1009bd2c", "targets": ["100545a0"]},
-      {"address": "1009ddf4", "targets": ["1007b560", "1007a850", "1007a840"]},
-      {"address": "1009bcb8", "targets": ["1001c370"]},
-      {"address": "1009bce8", "targets": ["1001bb10", "1001d330"]},
-      {"address": "1009bd30", "targets": ["100548d0", "100549a0"]},
-      {"address": "1009bd44", "targets": ["10054c40"]},
-      {"address": "1009bd64", "targets": ["10054f30"]},
-      {"address": "1009bc9c", "targets": ["1004dcb0"]},
-      {"address": "1009ba58", "targets": ["1001c9f0"]},
-      {"address": "1009ba74", "targets": ["1001e610"]},
-      {"address": "1009ba80", "targets": ["1001cfe0", "100346a0", "1001d680"]},
-      {"address": "1009bac4", "targets": ["100340b0"]},
-      {"address": "1009b814", "targets": ["10046920"]},
-      {"address": "1009c7fc", "targets": ["1001d330"]},
-      {"address": "1009c7d0", "targets": ["1001c9f0"]},
-      {"address": "1009d91c", "targets": ["1006f710", "1006f840", "1006f850"]},
-      {"address": "1009d928", "targets": ["1006f8a0", "1006fa10", "1006fa20", "1006fa30"]},
-      {"address": "1009d8c0", "targets": ["1006c2b0"]},
-      {"address": "1009d944", "targets": ["1006fb30"]},
-      {"address": "1009c804", "targets": ["1001db80", "1001dba0"]},
-      {"address": "1009c7ec", "targets": ["1001e610"]},
-      {"address": "1009c7f8", "targets": ["1001cfe0"]},
-      {"address": "1009c7d4", "targets": ["1001c8d0"]},
-      {"address": "1009b658", "targets": ["10015770", "10015c20"]},
-      {"address": "1009b89c", "targets": ["100110f0"]}
+      {
+        "address": "1009bbcc",
+        "targets": [
+          "1001e610"
+        ]
+      },
+      {
+        "address": "1009bbd8",
+        "targets": [
+          "1001cfe0"
+        ]
+      },
+      {
+        "address": "1009bd2c",
+        "targets": [
+          "100545a0"
+        ]
+      },
+      {
+        "address": "1009ddf4",
+        "targets": [
+          "1007b560",
+          "1007a850",
+          "1007a840"
+        ]
+      },
+      {
+        "address": "1009bcb8",
+        "targets": [
+          "1001c370"
+        ]
+      },
+      {
+        "address": "1009bce8",
+        "targets": [
+          "1001bb10",
+          "1001d330"
+        ]
+      },
+      {
+        "address": "1009bd30",
+        "targets": [
+          "100548d0",
+          "100549a0"
+        ]
+      },
+      {
+        "address": "1009bd44",
+        "targets": [
+          "10054c40"
+        ]
+      },
+      {
+        "address": "1009bd64",
+        "targets": [
+          "10054f30"
+        ]
+      },
+      {
+        "address": "1009bc9c",
+        "targets": [
+          "1004dcb0"
+        ]
+      },
+      {
+        "address": "1009ba58",
+        "targets": [
+          "1001c9f0"
+        ]
+      },
+      {
+        "address": "1009ba74",
+        "targets": [
+          "1001e610"
+        ]
+      },
+      {
+        "address": "1009ba80",
+        "targets": [
+          "1001cfe0",
+          "100346a0",
+          "1001d680"
+        ]
+      },
+      {
+        "address": "1009bac4",
+        "targets": [
+          "100340b0"
+        ]
+      },
+      {
+        "address": "1009b814",
+        "targets": [
+          "10046920"
+        ]
+      },
+      {
+        "address": "1009c7fc",
+        "targets": [
+          "1001d330"
+        ]
+      },
+      {
+        "address": "1009c7d0",
+        "targets": [
+          "1001c9f0"
+        ]
+      },
+      {
+        "address": "1009d91c",
+        "targets": [
+          "1006f710",
+          "1006f840",
+          "1006f850"
+        ]
+      },
+      {
+        "address": "1009d928",
+        "targets": [
+          "1006f8a0",
+          "1006fa10",
+          "1006fa20",
+          "1006fa30"
+        ]
+      },
+      {
+        "address": "1009d8c0",
+        "targets": [
+          "1006c2b0"
+        ]
+      },
+      {
+        "address": "1009d944",
+        "targets": [
+          "1006fb30"
+        ]
+      },
+      {
+        "address": "1009c804",
+        "targets": [
+          "1001db80",
+          "1001dba0"
+        ]
+      },
+      {
+        "address": "1009c7ec",
+        "targets": [
+          "1001e610"
+        ]
+      },
+      {
+        "address": "1009c7f8",
+        "targets": [
+          "1001cfe0"
+        ]
+      },
+      {
+        "address": "1009c7d4",
+        "targets": [
+          "1001c8d0"
+        ]
+      },
+      {
+        "address": "1009b658",
+        "targets": [
+          "10015770",
+          "10015c20"
+        ]
+      },
+      {
+        "address": "1009b89c",
+        "targets": [
+          "100110f0"
+        ]
+      }
     ],
     "direct_calls": [],
     "resource_anchors": []
@@ -393,346 +829,1856 @@
       "image_base": "00400000"
     },
     "instruction_anchors": [
-      {"address": "0065cac9", "hex": "8b78088bf185ff0f844a0200008b501085d20f843f020000", "meaning": "Observer registration rejects zero tag or null callback"},
-      {"address": "0065cae1", "hex": "8b400c5381ff0010020455751983c6408bcf5d5b890e5f894604b0018956085e83c410c20400", "meaning": "Special observer tag 04021000 stores override context/callback"},
-      {"address": "0065cd20", "hex": "5f32c05e83c410c20400", "meaning": "Invalid observer registration returns low-byte false"},
-      {"address": "0065c9ae", "hex": "81fa001002045775118d714033c033d233ff8906895604897e08", "meaning": "Removing override tag first clears all three override fields"},
-      {"address": "0065c9f7", "hex": "8b54241c4e83ed0c89742414", "meaning": "Observer removal scans records backward"},
-      {"address": "0065ca03", "hex": "8b4210896c241085c0740a8b79303b442f080f94c38b420885c074098b79303b042f0f94c38b420c85c0740a8b51303b442a040f94c3", "meaning": "Each nonzero callback/tag/context filter overwrites BL rather than combining comparisons"},
-      {"address": "0065caa3", "hex": "32db85f60f854affffff5d5f5eb0015b83c408c20400", "meaning": "Removal resets match after erase, repeats remaining reverse scan and returns true"},
-      {"address": "00661cc0", "hex": "8a4424048841648b496c85c97403884171c20400", "meaning": "Disabled setter writes control byte +64 then mirrors to attached text +71 only if present"},
-      {"address": "0065c760", "hex": "568bf16a018b4650c6466501508b08ff51308b4650508b10ff52246a006800d000048bcee8c70700005ec3", "meaning": "Show stores visible one, enables frame, updates frame, emits 0400d000"},
-      {"address": "00661b1c", "hex": "c7196600cb196600ae19660095196600e6196600", "meaning": "Exact text-message jump table for 01000014 through 01000018"},
-      {"address": "006619c7", "hex": "6a00eb1f8b51088b410c8b4e6c6a005250e82328feffb0015e8be55dc204008b510c528b410883c11450518b4e6ce8c629feff", "meaning": "Text set/localized/payload argument forwarding and ignored return values"},
-      {"address": "00661a32", "hex": "8b566c8b4108898294000000b0015e8be55dc2", "meaning": "Text 010000a3 copies full argument into text +94"},
-      {"address": "00661a47", "hex": "8b46508d542410c744241000000000c744241400000000c74424180000803f8b086a005250ff510c8b46508b4e6850518b4e6ce80130feff", "meaning": "Text 01000099 sets frame direction (0,0,+1) with null up-vector, then lays out"},
-      {"address": "00661aaa", "hex": "518bcee88eb2ffffb0015e8be55dc20400", "meaning": "Unknown text messages forward to base handler and return true"},
-      {"address": "00661abb", "hex": "8b566c8a41088882900000008b4e508b5668518b4e6c52e8a92ffeff", "meaning": "Text 02000073 stores low argument byte as inset then lays out"},
-      {"address": "00661ae0", "hex": "8b766c83c6308b460485c0750e33d2b0018951085e8be55dc204008b76082bf0b867666666f7eed1fa8bc25ec1e81f03d0b0018951088be55dc20400", "meaning": "Text 02000030 counts five-byte records and writes event argument"},
-      {"address": "006551d0", "hex": "8b5424048b4204a900f00f04740b52e85cc70000b001c2040025ff0f00032d2c000002743c83e84a740b52e840c70000b001c20400", "meaning": "Button message handler prioritizes tagged parent routing and recognizes two overrides"},
-      {"address": "00655205", "hex": "8b496c85c9743b8b420885c0740fc78194000000ffffffffb001c20400c7819400000000000000b001c20400", "meaning": "Button 02000076 checks attached text and writes 0 or ffffffff to text +94"},
-      {"address": "00655231", "hex": "8b416c85c0740f8b51708b496852518bc8e839f8feffb001c20400", "meaning": "Button 0200002c lays out attached text against normal visual +70"},
-      {"address": "0065ce33", "hex": "528bcee865fbffffeb92", "meaning": "Control 01000008 dispatches to observer-removal helper 0065c9a0"},
-
-      {"address": "0062446b", "hex": "6a0068751000066a008d4c242ce85309ffff", "meaning": "Main resume button activation binding: event 06001075 argument zero"},
-      {"address": "0062455f", "hex": "6a0268011000066a008d4c242ce85f08ffff", "meaning": "Main profile button activation binding: event 06001001 argument two"},
-      {"address": "00624653", "hex": "6a0368011000066a008d4c242ce86b07ffff", "meaning": "Main single-player button activation binding: event 06001001 argument three"},
-      {"address": "00624747", "hex": "6a0068991000066a008d4c242ce87706ffff", "meaning": "Main LAN button activation binding: event 06001099 argument zero"},
-      {"address": "0062483b", "hex": "6a00689a1000066a008d4c242ce88305ffff", "meaning": "Main Internet button activation binding: event 0600109a argument zero"},
-      {"address": "0062492f", "hex": "6a0768011000066a008d4c242ce88f04ffff", "meaning": "Main cinematics button activation binding: event 06001001 argument seven"},
-      {"address": "00624a23", "hex": "6a0068711000066a008d4c242ce89b03ffff", "meaning": "Main options button activation binding: event 06001071 argument zero"},
-      {"address": "00624b17", "hex": "6a00683a1000066a008d4c242ce8a702ffff", "meaning": "Main credits button activation binding: event 0600103a argument zero"},
-      {"address": "00624c0b", "hex": "680000000468031000066a008d4c242ce8b001ffff", "meaning": "Main Exit activation binding: event 06001003 argument screen 04000000"},
-
-      {"address": "0064dd3c", "hex": "b2015f894850885065884864885066894858c7405cffffffff", "meaning": "Base constructor initializes disabled=0 visible=1 focusable=1 word58=0 word5c=ffffffff"},
-      {"address": "0065d929", "hex": "e89203ffff895d6cc74500b04c8100895d70895d74c64566018bcd", "meaning": "Factory button branch calls base constructor, installs button vtable and explicitly sets focusable byte one"},
-      {"address": "0065cf0a", "hex": "8b4424148b700485f6742c8b4808b8abaaaa2a2bcef7e9c1fa028bc2c1e81f03d03bfa73128b55008d0433", "meaning": "Initialization-list loop rereads begin/end, computes 24-byte record count and selects current record"},
-      {"address": "0065cf35", "hex": "508bcdff526c4783c318ebc95f5e5db0015bc204", "meaning": "Initialization dispatches mutable record through +6c, ignores result, advances and repeats; returns true"},
-      {"address": "0065df9c", "hex": "8b8424fc00000057508b442424894c24188b1150ff522c8b4c241084c0742b", "meaning": "Created control receives visual initialization via virtual +2c before definition event lists"},
-      {"address": "0065dfbb", "hex": "8b118d472050ff52788b4c241083c710578b11ff5270", "meaning": "Factory calls definition +20 through +78, then definition +10 through +70"},
-      {"address": "0065dfd1", "hex": "8b560c8d4e048d4424105052e82e580000b001eb46", "meaning": "After both definition-list handlers, factory appends control and returns true"},
-      {"address": "0065dfe6", "hex": "3bcb740a8b016a01ff9080000000b001", "meaning": "Failed visual initialization destroys control via +80(1), still returns true"},
-      {"address": "0066194f", "hex": "8b4104a900f00f047411518bcee8dfb3ffffb0015e8be55dc20400", "meaning": "Text-derived tagged event handler immediately forwards to base 0065cd40"},
-
-      {"address": "0067ea80", "hex": "b001c20800", "meaning": "Concrete menu keyboard pre-hook +44 is a true-returning no-op with two arguments"},
-      {"address": "00815e74", "hex": "80ea6700", "meaning": "Concrete front-end vtable +44 points to 0067ea80"},
-      {"address": "00620345", "hex": "8b4f04e8c3ad0400e984000000", "meaning": "Separate options control callback invokes click sound; ordinary-button silence is not a universal widget rule"},
-      {"address": "0064d9f0", "hex": "8a41668a5165538a596423c233d284db0f94c223c25bc3", "meaning": "Eligibility low byte is focusable +66 AND visible +65 AND disabled +64 equal zero"},
-      {"address": "0065cd59", "hex": "8b420483ec18a900f00f04568bf1", "meaning": "Base control handler routes tagged events before ordinary masked messages"},
-      {"address": "0065cd8c", "hex": "25ff0f0003533da1000001570f87b90000000f8499000000", "meaning": "Ordinary control event mask and switch bounds"},
-      {"address": "0065cdb5", "hex": "c6466600eb14c6466601eb0e8b4a08894e5ceb068b465c894208", "meaning": "Focusable flag stores and +5c property access"},
-      {"address": "0065cde5", "hex": "8b168bceff5214ebe18b068bceff5010ebd88a466484c075d18b166a018bceff527cebc68a466433db3ac374bd8b06538bceff507cebb3", "meaning": "Virtual hide/show and conditional disabled setter dispatch"},
-      {"address": "0065ce1c", "hex": "8b4a08894e58ebab8b4658eba3528bcee88ffcffffeb9c528bcee865fb", "meaning": "Property +58 get/set and observer/override helper calls"},
-      {"address": "0065ce3d", "hex": "8b5208f7c20000000474876a00528bcee8fe000000e978ffffff", "meaning": "Conditional event emission requires argument bit 04000000"},
-      {"address": "0065ce57", "hex": "3d2c0000020f856dffffff33db33ff8b4e083bcb0f845effffff8b460c2bc1c1f8023bf80f834effffff895c2420895c24", "meaning": "Child propagation recognizes 0200002c and rereads vector/count"},
-      {"address": "0065ce81", "hex": "895c2420895c240cc74424102c000002895c24148bc1895c242c8b0cb88d44240c508b11ff5274", "meaning": "Each child propagation event is freshly zeroed and dispatched through +74"},
-      {"address": "0065ced0", "hex": "f7cd650009ce6500eecd6500e5cd6500b5cd6500bbcd650029ce650033ce6500c1cd6500c9cd65001cce650024ce6500", "meaning": "Exact 12-entry control-message jump table, selectors 01000001 through 0100000c"},
-
-      {"address": "0066b6d2", "hex": "8b4424248b088b442410508b11ff522084c00f8579010000", "meaning": "Front-end key tail forwards full word to current screen +20 and returns if consumed"},
-      {"address": "0066b6ea", "hex": "80fb010f85700100008a452c84c074", "meaning": "Unconsumed key tail recognizes low-byte Escape 01 and tests drag flag"},
-      {"address": "0066b730", "hex": "6a008b098b11ff5254c6452c", "meaning": "Escape invokes current screen drag-end +54 with zero then clears drag flag"},
-      {"address": "0066b773", "hex": "33f68b088b4160897424408974242cc74424300a00000289442434", "meaning": "Escape captures current screen +60 into queued 0200000a with zero target"},
-      {"address": "00626b9a", "hex": "8b7f0481e7ff0f000381ef0a0000020f841a010000", "meaning": "Derived menu event callback masks event code and branches for 0200000a"},
-      {"address": "00626f38", "hex": "899c24e0000000899c24cc000000c78424d00000000012001489b424d4000000", "meaning": "Current confirmation screen back request emits 14001200 with argument one"},
-      {"address": "00626f94", "hex": "899c24fc000000899c24e8000000c78424ec00000005100006899c24f0000000", "meaning": "Confirmation back request follows reply with 06001005 pop event"},
-      {"address": "00626fda", "hex": "899c24c8000000899c24b4000000c78424b800000003000002899c24bc000000", "meaning": "Ordinary main-menu back request emits 02000003 with zero argument"},
-      {"address": "006db424", "hex": "a005ed8a0084c0756f", "meaning": "Original sound-disabled setting skips initialization"},
-      {"address": "006db42d", "hex": "a006ed8a00bb0200000084c07405bb12000000a008ed8a0084c0740383cb200fbe0509ed8a0083f8037719ff2485a4b46d0080cf04eb0d80cf08eb0880cf10eb0380cf20", "meaning": "Assemble original sound flags from two option bytes and quality index"},
-      {"address": "006db471", "hex": "e8389a10008bf0e83d9a10008b0e8bf8536a108b076a026822560000568945f0ff5148508b45f057ff5004", "meaning": "Get graphics HWND and call sound init with rate 22050, channels two, bits sixteen and flags"},
-      {"address": "0066af8a", "hex": "e8ad9e17008b106a0450ff52548946", "meaning": "Create sound frame kind four and store front-end +3c"},
-      {"address": "0066af9a", "hex": "e81b9f17008b0850ff510c84c0741b8b563c6a006a006a006a006840a9830052b954ec8a00e8fcf1ddff", "meaning": "Query sound driver initialized state and conditionally invoke button.wav loader"},
-      {"address": "0066afc4", "hex": "8b463c6a03508b08ff517c8b463c6834a98300508b10ff52348b463c6a00508b08ff51308b463c680000803f508b10ff928c000000", "meaning": "Set sound type three, literal frame name, disabled state and volume one"},
-      {"address": "0066aff9", "hex": "8b46308b563c52508b08ff91800000008b46308b563c528b80f8010000508b08ff517c8b463c508b08ff11", "meaning": "Add sound to scene and primary sector, then release local reference"},
-      {"address": "00668580", "hex": "53568bf157bb00f00f008b7e6c4f781a8b46088b0cb8855960750c578bcee84d01000084c0753d4f79e68b4e0885c9750433c0eb088b460c2bc1c1f8028d78ff85ff7c1a8b56088b04ba855860750c578bcee81901000084c075094f79e65f5e32c05bc35f5eb0015bc3", "meaning": "Complete previous-focus instruction body: lower-index scan, subordinate-ID filter, candidate selection and wrap"},
-      {"address": "006685f0", "hex": "53568bf157bb00f00f008b7e6c8b4e084785c974288b460c2bc1c1f8023bf8731c8bc18b0cb885596075e2578bcee8cd00000084c074d65f5eb0015bc333ff8b4e0885c974258b460c2bc1c1f8023bf873198bd18b04ba855860750c578bcee89c00000084c075cf47ebd45f5e32c05bc3", "meaning": "Complete next-focus instruction body: forward scan, subordinate-ID filter, candidate selection and wrap"},
-      {"address": "006686f0", "hex": "568bf1578b7c240c8b46088b0cb88b11ff520884c074418b4e6c8b06518bceff500484c0741b8b566c8b46086a008b0c908b11ff523485c075075fb0015ec204008b4608897e6c6a0f8b0cb88b11ff52305fb0015ec204005f32c05ec20400", "meaning": "Complete index-selection instruction body: eligibility, leave-veto handled return, store focus, enter with fifteen and ignore enter result"},
-      {"address": "00668670", "hex": "53568bf18b4e6c8b06518bceff50048b5c240c84c074218b566c8b46088b0c908a416484c075118b1153ff522084c074075eb0015bc20400", "meaning": "Screen key: validate focus, skip disabled control, offer full key word and return if consumed"},
-      {"address": "006686a8", "hex": "80fb1c740a80fb39740580fb9c7528", "meaning": "Screen key fallback recognizes low bytes 1c, 39 and 9c"},
-      {"address": "006686b7", "hex": "8b4e6c8b06518bceff500484c074198b566c8b46088b0c908b41608b1150ff52385eb0015bc20400", "meaning": "Screen key revalidates focus, passes control +60 to activation +38 and ignores its result"},
-      {"address": "006686df", "hex": "5e32c05bc20400", "meaning": "Screen key invalid/unrecognized fallback returns false"},
-      {"address": "0064da30", "hex": "32c0c20400", "meaning": "Default button key handler returns false and pops one argument"},
-      {"address": "0066a6e0", "hex": "a148e48a005685c08bf17552", "meaning": "Shared input global lookup and reuse branch"},
-      {"address": "0066a6ec", "hex": "6a54e81cab1700", "meaning": "Allocate original 0x54-byte shared input object"},
-      {"address": "0066a6fc", "hex": "c701d0558100e8a9fdffff", "meaning": "Shared input vtable and constructor call"},
-      {"address": "0066a70b", "hex": "56890d48e48a00e8c9fdffff", "meaning": "Store shared input global and initialize with scene"},
-      {"address": "0066a73e", "hex": "8b48045e41894804a148e48a00c3", "meaning": "Increment shared input reference count and return singleton"},
-      {"address": "0066aef1", "hex": "8b4e30e8e7f7ffff8986f4000000", "meaning": "Front-end acquires shared input and stores it at +f4"},
-      {"address": "0066b22e", "hex": "8b8bf40000003bce740be843f5ffff89b3f4000000", "meaning": "Front-end releases retained input and clears +f4 on teardown"},
-      {"address": "0066a783", "hex": "8b460448894604752d", "meaning": "Shared input release decrements +04 and skips cleanup while nonzero"},
-      {"address": "0066a78c", "hex": "8b462085c0740c8b0850ff11c7462000000000", "meaning": "Last release drops optional input +20 texture and clears pointer"},
-      {"address": "0066a79f", "hex": "8b0d48e48a0085c974068b116a01ff12c70548e48a00000000005e", "meaning": "Last release deletes shared input singleton and clears global"},
-      {"address": "00623f05", "hex": "6800ec8300", "meaning": "Main-menu definition child 1: text_screen"},
-      {"address": "00623fba", "hex": "6828f08300", "meaning": "Main-menu definition child 2: text_date00"},
-      {"address": "0062406d", "hex": "681cf08300", "meaning": "Main-menu definition child 3: text_date01"},
-      {"address": "00624120", "hex": "680cf08300", "meaning": "Main-menu definition child 4: text_profile00"},
-      {"address": "006241d3", "hex": "68e4f78300", "meaning": "Main-menu definition child 5: text_profile01"},
-      {"address": "00624286", "hex": "68d0f78300", "meaning": "Main-menu definition child 6: text_last save00"},
-      {"address": "00624339", "hex": "68a0f28300", "meaning": "Main-menu definition child 7: text_last save01"},
-      {"address": "006243ec", "hex": "68c0f78300", "meaning": "Main-menu definition child 8: bresume game"},
-      {"address": "006244e0", "hex": "68b0f78300", "meaning": "Main-menu definition child 9: bchange profile"},
-      {"address": "006245d4", "hex": "68a0f78300", "meaning": "Main-menu definition child 10: bsingleplayer"},
-      {"address": "006246c8", "hex": "6890f78300", "meaning": "Main-menu definition child 11: bmultiplayerlan"},
-      {"address": "006247bc", "hex": "6880f78300", "meaning": "Main-menu definition child 12: bmultiplayernet"},
-      {"address": "006248b0", "hex": "6874f78300", "meaning": "Main-menu definition child 13: bcinematics"},
-      {"address": "006249a4", "hex": "6868f78300", "meaning": "Main-menu definition child 14: boptions"},
-      {"address": "00624a98", "hex": "685cf78300", "meaning": "Main-menu definition child 15: bcredits"},
-      {"address": "00624b8c", "hex": "68f0eb8300", "meaning": "Main-menu definition child 16: bexit"},
-      {"address": "00624c83", "hex": "68b0eb8300", "meaning": "Main-menu definition child 17: text_h&dversion"},
-      {"address": "00615a50", "hex": "8b510485d2750333c0c38b41082bc2c1f802c3", "meaning": "Definition-count helper returns zero or (end-begin)/4"},
-      {"address": "00624b54", "hex": "8bcee8f50effff40", "meaning": "Exit definition obtains previous child count then increments it"},
-      {"address": "00624b7a", "hex": "8b5424188b4b4083e23fc1e2140bd18bc85268f0eb83006a14e8f804ffff", "meaning": "Exit identifier masks one-based child count to six bits, shifts by twenty, combines parent ID and creates button definition"},
-      {"address": "0066bfae", "hex": "6a0950ff51548b5424186a006a006a008bd86a005253b990ec8a00895c2424e8ced0dbff85c0", "meaning": "Original auxiliary-model loader creates kind nine and passes it to resource helper before naming/linking"},
-      {"address": "0066bfda", "hex": "8b44241485c074078b0b5053ff5134", "meaning": "Original auxiliary-model loader optionally applies supplied root name through +34"},
-      {"address": "0066bfe9", "hex": "8b46308b13576a008b88f80100005153ff52388b136a0053ff5230", "meaning": "Original auxiliary-model loader links primary scene sector with zero flags then hides the model"},
-      {"address": "0066a51b", "hex": "68ffff0000897e34897e3cd95e28897e408b08687806840050ff517c3bc7894608", "meaning": "Input initializer finds CURZOR via scene +7c with flags ffff and stores borrowed frame at input +8"},
-      {"address": "0066a460", "hex": "d90560068400d876248b46088d542410c7442418000080bf5250d95c2418", "meaning": "Input update tail divides stored cursor X by range width and prepares frame Z=-1"},
-      {"address": "0066a47e", "hex": "d90528f58000d87628d80d64068400dc0d38018100d95c241c", "meaning": "Input update tail computes (-1/height)*Y*double 0.75 before final float Y store"},
-      {"address": "0066a497", "hex": "8b08ff51088b7608568b06ff5024", "meaning": "Input update tail calls cursor frame position +08 before world update +24"},
-      {"address": "0080f528", "hex": "000080bf", "meaning": "Cursor frame Y projection begins with float minus one"},
-      {"address": "0066a020", "hex": "d9411cc3", "meaning": "Wheel getter returns stored float input +1c"},
-      {"address": "0066a030", "hex": "d9411cd81d1cf58000dfe0f6c4447b03b001c332c0c3", "meaning": "Wheel predicate returns whether stored Z is nonzero"},
-      {"address": "007e5e00", "hex": "558bec83c4f49bd97dfe9b668b45fe80cc0c668945fcd96dfcdf7df4d96dfe8b45f48b55f8c9c3", "meaning": "Conversion helper sets x87 truncation, converts to signed QWORD, restores control word and returns low/high DWORDs"},
-      {"address": "00656da0", "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff624cb8070000005ec20800", "meaning": "Screen +4c forwards target and integer wheel amount to valid focused control; invalid focus returns seven"},
-      {"address": "0064db40", "hex": "6a006800100104e804f40000b807000000c20800", "meaning": "Button +4c ignores both parameters, emits 04011000 with argument zero and returns seven"},
-      {"address": "0066bdcb", "hex": "e850e2ffffe82ba0170050568bcdff534c", "meaning": "Wheel dispatch reads raw float Z, truncates to signed int64 and passes only EAX low word to screen +4c"},
-      {"address": "0066be09", "hex": "e89274fcff8b4c2418a1cce48a0089442424a1d0e48a008b118b0dc8e48a008b35d4e48a008b5a74", "meaning": "After wheel callback, dispatcher resolves current screen again and reads its model +74"},
-      {"address": "0066be5f", "hex": "8b4f308b3253518b8ff40000008b2ee84de9ffff508bceff5540", "meaning": "Post-wheel refresh selects screen, repicks its model and invokes its +40 focus callback"},
-      {"address": "0066c63c", "hex": "680807840068780684008bcee853f9ffff", "meaning": "Frontend setup passes CURZOR and kurzor_menu to model loader 0066bfa0"},
-      {"address": "0064db00", "hex": "6a006800700004e844f40000b807000000c20400", "meaning": "Button release emits 04007000 with zero argument then returns seven"},
-      {"address": "0064db20", "hex": "6a006800600004e824f40000b807000000c20400", "meaning": "Button press emits 04006000 with zero argument then returns seven"},
-      {"address": "0064db60", "hex": "6a006800800004e8e4f30000b807000000c20400", "meaning": "Button drag emits 04008000 with zero argument then returns seven"},
-      {"address": "0064db80", "hex": "6a006800900004e8c4f30000b807000000c20400", "meaning": "Button drag end emits 04009000 with zero argument then returns seven"},
-      {"address": "0064dba0", "hex": "6a006800a00004e8a4f30000b807000000c20400", "meaning": "Button drag begin emits 0400a000 with zero argument then returns seven"},
-      {"address": "0066a267", "hex": "ff92ec0000008944240cdb44240cd95e14", "meaning": "Input update reads signed relative X and stores its float conversion before early-return gates"},
-      {"address": "0066a280", "hex": "ff91f00000008944240cdb44240cd95e18", "meaning": "Input update reads signed relative Y and stores its float conversion before early-return gates"},
-      {"address": "0066a299", "hex": "ff92f40000008944240cdb44240cd95c240c8b44240c89461c", "meaning": "Input update reads signed relative Z and stores its float conversion before early-return gates"},
-      {"address": "0066a317", "hex": "8b4638c7464000000000894634d90560068400d84614d91d60068400d90564068400d84618d91d64068400d9461cd84610d95e10", "meaning": "Processed input resets idle +40, adopts target and stores float-rounded XY and accumulated wheel sums"},
-      {"address": "0066a35e", "hex": "d94614d82560068400d95e14c7056006840000000000eb2a", "meaning": "Negative X subtracts the stored out-of-range position from reported delta and clamps X to zero"},
-      {"address": "0066a388", "hex": "d90560068400d866248b4e24d86e14d95e14890d60068400", "meaning": "Upper X computes extended-precision overflow before correcting delta and clamps to width"},
-      {"address": "0066a3b3", "hex": "d94618d82564068400d95e18c7056406840000000000eb2a", "meaning": "Negative Y subtracts the stored out-of-range position from reported delta and clamps Y to zero"},
-      {"address": "0066a3dd", "hex": "d90564068400d866288b5628d86e18d95e18891564068400", "meaning": "Upper Y computes extended-precision overflow before correcting delta and clamps to height"},
-      {"address": "0066a4f8", "hex": "8944240cdb44240cd95e24e8a6a91700", "meaning": "Cursor initializer obtains graphics width and stores the signed-to-float range at +24"},
-      {"address": "0066a50e", "hex": "8944240c8b4508db44240c33ff68ffff0000897e34897e3cd95e28897e408b0868", "meaning": "Cursor initializer obtains graphics height and stores range +28 while clearing target and counters"},
-      {"address": "00656ca0", "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff624833c05ec20400", "meaning": "Screen +48 validates focus and forwards to control +48, returning zero for invalid focus"},
-      {"address": "00656cd0", "hex": "53568bf1578b4e6c8b06518bceff500484c074248b5c24108b168b7e6c538bceff123bf875128b4608538b0cb88b11ff52445f5e5bc204005f5e33c05bc20400", "meaning": "Screen +44 requires valid focus and matching target lookup before control +44; otherwise zero"},
-      {"address": "00656d10", "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff625033c05ec20400", "meaning": "Screen +50 validates focus and forwards to control +50; otherwise zero"},
-      {"address": "00656d40", "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff625433c05ec20400", "meaning": "Screen +54 validates focus and forwards to control +54; otherwise zero"},
-      {"address": "00656d70", "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff625833c05ec20400", "meaning": "Screen +58 validates focus and forwards to control +58; otherwise zero"},
-      {"address": "00656e00", "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff6260b8070000005ec20400", "meaning": "Screen +60 validates focus and forwards to control +60; otherwise seven"},
-      {"address": "0067eb0a", "hex": "c74624ffffffff", "meaning": "Base constructor initializes front-end gate +24 to minus one"},
-      {"address": "0067ebcb", "hex": "c7460cffffffff", "meaning": "Base constructor initializes previous picked target +0c to minus one"},
-      {"address": "0067ebdf", "hex": "885e2c", "meaning": "Base constructor clears drag byte +2c"},
-      {"address": "0067ec04", "hex": "885e2d", "meaning": "Base constructor clears alternate motion byte +2d"},
-      {"address": "0066b999", "hex": "837f24ff740c", "meaning": "Input dispatcher returns zero before picking/updating when front-end gate +24 is not minus one"},
-      {"address": "0066ba0b", "hex": "84c0750939770c0f84610400008a472d8b8ff400000033db89770c3ac3745d", "meaning": "Processed input or changed target gates dispatch; adopt target and select byte +2d branch"},
-      {"address": "0066ba2a", "hex": "e8c1e5ffff84c00f8442040000885f2c", "meaning": "Alternate branch requires XY motion and clears drag state before focus callback"},
-      {"address": "0066ba70", "hex": "8b5008568b0a8b01ff5040", "meaning": "Alternate branch invokes screen +40 and returns"},
-      {"address": "0066ba92", "hex": "8b4f103bcb741739716074128b1156ff526483f8010f85cc030000895f10", "meaning": "Mask-3 press checks captured-control identifier, calls control +64 for a different target, aborts unless result is one, then clears captured control"},
-      {"address": "0066bae2", "hex": "8b442418568b088b11ff5248e9d7000000", "meaning": "Press routes to screen +48 before click handling"},
-      {"address": "0066baf3", "hex": "8b8ff40000006a03e8f0e5ffff84c00f84c2000000385f2c747f885f2c", "meaning": "Mask-3 release checks and clears dragging before callbacks"},
-      {"address": "0066bb42", "hex": "8b442418568b088b11ff5254", "meaning": "Drag release first invokes screen +54"},
-      {"address": "0066bb80", "hex": "8b442418568b088b11ff5240", "meaning": "Drag release next invokes screen +40 to refresh focus"},
-      {"address": "0066bbbe", "hex": "8b442418568b088b11ff5244", "meaning": "Release invokes screen +44 after drag-end and focus callbacks"},
-      {"address": "0066bbca", "hex": "8b87f400000038584a743e", "meaning": "Double-click flag gates screen +60 before ordinary click"},
-      {"address": "0066bc13", "hex": "8b87f400000038584974568b47103bc37405397060754a", "meaning": "Ordinary click requires flag +49 and absent or target-matching captured control"},
-      {"address": "0066bc5c", "hex": "8b4c2418568b098b11ff525c83f80175078bcfe89cf4ffff", "meaning": "Screen +5c result one invokes helper 0066b110"},
-      {"address": "0066bcca", "hex": "8b8ff40000006a03e8c9e3ffff84c00f8498000000385f2c7549", "meaning": "Motion with mask-3 held selects drag begin or ongoing drag"},
-      {"address": "0066bd16", "hex": "8b442418568b088b11ff5258c6472c018a472c3ac3744a", "meaning": "Screen +58 precedes setting drag state true"},
-      {"address": "0066bd5f", "hex": "8b442418568b088b11ff52505f5e5db0015b83c420c20400", "meaning": "Screen +50 handles drag and returns before wheel handling"},
-      {"address": "0066bd77", "hex": "8b8ff4000000e8aee2ffff84c00f84ef000000", "meaning": "Wheel predicate is considered after click and non-drag motion"},
-      {"address": "0066bdd0", "hex": "e82ba0170050568bcdff534c", "meaning": "Wheel path converts through 007e5e00 and invokes screen +4c; still delegated by portable dispatcher"},
-      {"address": "0066b110", "hex": "568bf18b463c85c074178b086a0050ff517884c0750b8b763c6a01568b16ff52305ec3", "meaning": "Accepted-click helper checks object at front-end +3c, invokes engine slot +78 with zero, then rereads +3c and calls slot +30 with one if false; now reconstructed through portable context"},
-      {"address": "006dc95b", "hex": "8b3dc4f1800050895424148be9ffd7", "meaning": "Frame timer loads QueryPerformanceFrequency through IAT 0080f1c4"},
-      {"address": "006dc96a", "hex": "8b1dc8f180008d4c241451ffd3", "meaning": "Frame timer loads and invokes QueryPerformanceCounter through IAT 0080f1c8"},
-      {"address": "006dc97f", "hex": "6a006840420f005250e8139510008b4c2420518b4c2420515250e892941000", "meaning": "Multiply performance counter by 1000000 and divide by frequency to obtain microseconds"},
-      {"address": "006dc99e", "hex": "8bc8b8d34d6210895424188b151ced8a002bcaf7e18b4424108bf2c1ee063bf0764a", "meaning": "Unsigned low-word microsecond difference divided by 1000, then compared to maximum delta"},
-      {"address": "006dca0a", "hex": "3bf5736f", "meaning": "Compare elapsed milliseconds with minimum before timer wait branch"},
-      {"address": "006dce1d", "hex": "ba64000000b90a000000e824fbffff8b4f148bf085c98975e8", "meaning": "Main loop requests minimum 10, maximum 100 and stores returned delta"},
-      {"address": "006dce78", "hex": "033520ed8a008975e8db45e8d8c9e8758f10008945e8db45e8d8f1e8688f10002bf0893520ed8a00", "meaning": "Optional state time scale multiplies delta with integer remainder carry"},
-      {"address": "006dd005", "hex": "568bcfe8e350feff", "meaning": "Main loop passes frame delta to controller 006c20f0"},
-      {"address": "006c210e", "hex": "568b7508", "meaning": "Controller saves its supplied frame delta in ESI"},
-      {"address": "006c219a", "hex": "8b4f14568b01ff5014", "meaning": "Controller forwards frame delta through active state slot +14; frontend vtable maps to 0066bea0"},
-      {"address": "0066bf06", "hex": "538bcee882faffff", "meaning": "Frontend forwards unchanged update delta into 0066b990 after queue processing"},
-      {"address": "0066b9ee", "hex": "8b8ff4000000e8c7edffff8b5424348b8ff4000000528bf0e815e8ffff", "meaning": "Pick current target before forwarding delta into input update 0066a220"},
-      {"address": "0066a22d", "hex": "8b463089462c", "meaning": "Input update copies current button mask into previous mask before polling"},
-      {"address": "0066a241", "hex": "8b7d088b563c8946308b464003c703d789464032c089563c88464988464a", "meaning": "Input update stores polled buttons, advances both counters and clears click flags"},
-      {"address": "0066a2b2", "hex": "8b464485c07e0f2bc789464432c05f5e8be55dc20400", "meaning": "Positive signed suppression countdown subtracts delta then returns even when it crosses zero"},
-      {"address": "0066a2f9", "hex": "8b4e308b462c3bc875148b56388b46343bd0750a", "meaning": "No-motion early return also requires equal button masks and picked/current identifiers"},
-      {"address": "0066a317", "hex": "8b4638c7464000000000894634", "meaning": "Processed input resets idle counter and adopts picked target"},
-      {"address": "0066a3f5", "hex": "8a464884c07564", "meaning": "Input byte +48 inhibits click bookkeeping after target/motion processing"},
-      {"address": "00644aa6", "hex": "56e84a041a0081c670010000b9080000008d7c241033d2f3a5", "meaning": "Layout calls the public bounds updater, then copies eight DWORDs from visual+170"},
-      {"address": "00661c52", "hex": "c686900000000a", "meaning": "Text-object constructor defaults horizontal inset byte at +90 to 10"},
-      {"address": "0065c6e7", "hex": "c6809000000001", "meaning": "Plain static-text control initializer overrides the inset byte to 1"},
-      {"address": "0065c6aa", "hex": "c744241000000000c744241400000000c7442418000080bf8b086a005250ff510c", "meaning": "Static-text initializer sets visual direction (0,0,-1), with null up-vector through frame vtable +0c"},
-      {"address": "006550f5", "hex": "e836ca0000", "meaning": "Button initializer calls text-object constructor directly, retaining default inset 10"},
-      {"address": "006551ae", "hex": "8b46708b56685052e8c5f8feff", "meaning": "Button initializer derives text bounds from its normal visual at control+70"},
-      {"address": "0065513b", "hex": "8b90e000000084d278368bb9b0000000", "meaning": "Button initialization checks active frame+e0 bit 80 before reading the normal local position"},
-      {"address": "00655145", "hex": "8bb9b000000081e2dffeffff89b8b00000008bb9b400000089b8b40000008b89b800000081ca000000408988b80000008990e0000000", "meaning": "Button initializer copies normal local XYZ at +b0/+b4/+b8 into active, clears flags 120 and sets 40000000"},
-      {"address": "0065517b", "hex": "8b46746a00508b10ff52308b4674508b08ff5124", "meaning": "Button initializer hides actived visual at control+74 then explicitly updates it"},
-      {"address": "00655250", "hex": "568bf18a466484c0753f", "meaning": "Focus entry checks control byte +64 and returns zero without visual or event operations when nonzero"},
-      {"address": "0065525a", "hex": "8b46746a01508b08ff51308b46706a00", "meaning": "Enabled button focus shows actived and prepares to hide normal"},
-      {"address": "0065526a", "hex": "508b10ff52308b4674508b08ff51248b4670508b10ff5224", "meaning": "Focus hides normal then explicitly updates actived and normal"},
-      {"address": "00655282", "hex": "6a0068003000048bcee8c07c0000b8010000005ec2040033c05ec20400", "meaning": "Successful focus entry emits tagged event 04003000 with zero argument and returns one; blocked entry returns zero"},
-      {"address": "006552a3", "hex": "6a018b4670508b08ff51308b46746a00508b10ff5230", "meaning": "Focus loss shows normal and hides actived"},
-      {"address": "006552b9", "hex": "8b4670508b08ff51248b4674508b10ff5224", "meaning": "Focus loss explicitly updates normal and actived"},
-      {"address": "006552cb", "hex": "6a0068004000048bcee8777c0000b8010000005ec20400", "meaning": "Focus loss emits tagged event 04004000 with zero argument and returns one"},
-      {"address": "006552f0", "hex": "8a416484c075146a006800100004e84d7c0000", "meaning": "Button activation checks control byte +64 then emits tag 04001000 with zero argument"},
-      {"address": "00655303", "hex": "b801000000c2040033c0c20400", "meaning": "Button activation returns one or zero, discarding the unused pointer-target argument"},
-      {"address": "0065c906", "hex": "817e4000100204751a", "meaning": "Control observer dispatch checks the special override tag at control+40"},
-      {"address": "0065c919", "hex": "8b4e44566a00ff5648", "meaning": "Override callback receives control+44 as receiver and zero as its first stack argument"},
-      {"address": "0065c956", "hex": "8b4c24143bca75078b500885d27506", "meaning": "Observer scan matches the exact tag and skips a null callback"},
-      {"address": "0065c975", "hex": "c1e00257518b4c10045651ff541008", "meaning": "First matching observer receives stored context, sender, tag and argument"},
-      {"address": "0065c98b", "hex": "5f5e5db0015bc20800", "meaning": "Observer dispatch returns true when no callback matches"},
-      {"address": "0065cf76", "hex": "50518bcbe881f9ffff", "meaning": "Tagged dispatch invokes control observer notification before examining event records"},
-      {"address": "0065cfc3", "hex": "8b4c060481e100f00f043bca", "meaning": "Tagged dispatch matches each event code masked by 040ff000 against the emitted tag"},
-      {"address": "0065d04d", "hex": "81e1ff0ff0fb83f8ff", "meaning": "Tagged dispatch clears selector bits with fbf00fff and checks target against ffffffff"},
-      {"address": "0065d060", "hex": "8b138d442418508bcbff526c", "meaning": "Target ffffffff invokes the emitting control's vtable slot +6c with the copied event"},
-      {"address": "0065d0e1", "hex": "b980e48a00e81590fbff", "meaning": "Nonlocal tagged events use the shared event queue"},
-      {"address": "0064dce0", "hex": "89481c894820894824", "meaning": "Base control constructor initializes the tagged event vector empty"},
-      {"address": "0064dcec", "hex": "894830894834894838894840894844894848", "meaning": "Base control constructor initializes observers and override fields empty"},
-      {"address": "00614ec3", "hex": "8d4810", "meaning": "Definition event helper appends to the control definition's initialization list at +10"},
-      {"address": "0065dfbb", "hex": "8b118d472050ff5278", "meaning": "Control creation first invokes vtable +78 with the definition list at +20"},
-      {"address": "0065dfc4", "hex": "8b4c241083c710578b11ff5270", "meaning": "Control creation then invokes vtable +70 with the definition initialization list at +10"},
-      {"address": "0065cd30", "hex": "c20400", "meaning": "Button vtable +78 is a no-op for the definition's +20 list"},
-      {"address": "0065cf2f", "hex": "8b55008d0433508bcdff526c", "meaning": "Initialization-list handler sends each event through control vtable +6c in order"},
-      {"address": "0065cd59", "hex": "8b420483ec18a900f00f04", "meaning": "Base event handler detects tagged records by mask 040ff000"},
-      {"address": "0065cd69", "hex": "8b46208d4e18526a0150e8d894fbff", "meaning": "Base event handler appends a copy of each tagged record to control's vector at +18"},
-      {"address": "00644acb", "hex": "8a9690000000", "meaning": "Layout reads the inset byte at text-object+90"},
-      {"address": "00644ae1", "hex": "d9c1d80dc80981008954240cda4c240ce80a131a00", "meaning": "Layout truncates render width * 1/1024 * inset via __ftol before applying it"},
-      {"address": "008109c8", "hex": "0000803a", "meaning": "Exact float32 horizontal inset scale is 1/1024"},
-      {"address": "00644b01", "hex": "d9c2d84c24108b4d0850518bced8c1d95e08", "meaning": "Layout adds the integer inset to projected minimum X"},
-      {"address": "00644b28", "hex": "d9cad84c2428d8e2d95e10", "meaning": "Layout subtracts the same integer inset from projected maximum X"},
-      {"address": "00644b15", "hex": "d84c241cd80dd8048100d82524f58000", "meaning": "Layout bottom is height * minY * -4/3 - 1"},
-      {"address": "00644b35", "hex": "d84c242cd80d883b8100d82d24f58000", "meaning": "Layout top is 1 - height * maxY * 4/3"},
-      {"address": "008104d8", "hex": "abaaaabf", "meaning": "Negative 4/3 layout constant"},
-      {"address": "00813b88", "hex": "abaaaa3f", "meaning": "Positive 4/3 layout constant"},
-      {"address": "00644ec3", "hex": "d84808d80518f58000", "meaning": "Glyph height uses style height times render height, plus 0.5 before integer truncation"},
-      {"address": "00644e66", "hex": "db442414dc0dd0048100dc0530f58000", "meaning": "Zero-aspect character advance uses height * 0.4 + 0.5"},
-      {"address": "006403f3", "hex": "6a0150b8", "meaning": "Font flush selects screen-space vertex format 1"},
-      {"address": "00640407", "hex": "6a0351ff9788000000", "meaning": "Font flush submits kind 3 triangle lists through IGraph+88"},
-      {"address": "00646b75", "hex": "837824010f84de010000", "meaning": "Horizontal alignment 1 takes the unadjusted left position"},
-      {"address": "00646bbd", "hex": "837824027556", "meaning": "Horizontal alignment 2 enters the centered branch; 3 is right alignment"},
-      {"address": "00661a6f", "hex": "8b46508b4e6850518b4e6ce80130feff", "meaning": "Text control forwards its visual at +50 to the bounds layout helper"},
-      {"address": "00624bbb", "hex": "68400800006a0d6815000001", "meaning": "Exit definition binds localization 2112 with style 13"},
-      {"address": "00624c0b", "hex": "68000000046803100006", "meaning": "Exit definition attaches tagged event 06001003 with argument 04000000"},
-      {"address": "00625b7e", "hex": "6870f583006868f58300", "meaning": "Fourth menu screen uses resource label CONFIRM and model key confirm"},
-      {"address": "00625b9d", "hex": "68d40700006a0c", "meaning": "Menu confirmation prompt uses localization 2004 with style 12"},
-      {"address": "00625bc2", "hex": "68d10700006a0d", "meaning": "Menu confirmation Yes uses localization 2001 with style 13"},
-      {"address": "00625bd8", "hex": "6a006800110014", "meaning": "Yes emits deferred-queue release event 14001100 with argument zero"},
-      {"address": "00625c07", "hex": "68d00700006a0d", "meaning": "Menu confirmation No uses localization 2000 with style 13"},
-      {"address": "00625c1d", "hex": "6a016800120014", "meaning": "No emits deferred-queue discard event 14001200 with argument one"},
-      {"address": "00625c4c", "hex": "6a006804000001", "meaning": "Menu definition sends hide event 01000004 to bok"},
-      {"address": "0065cda4", "hex": "2d0100000183f80b7721", "meaning": "Control dispatcher selects 01000001..0100000c using a jump table"},
-      {"address": "0065cedc", "hex": "e5cd6500", "meaning": "Control event 01000004 dispatches to 0065cde5"},
-      {"address": "0065cde5", "hex": "8b168bceff5214", "meaning": "Event 01000004 invokes control vtable +14"},
-      {"address": "0065c790", "hex": "568bf16a008b4650c6466500508b08ff51308b4650508b10ff5224", "meaning": "Button hide callback clears control visibility and hides/updates its bound frame"},
-      {"address": "00626230", "hex": "c1e31a895e40", "meaning": "Screen definition stores the one-based index shifted left 26"},
-      {"address": "0062711f", "hex": "81fa000000107523", "meaning": "Screen setup recognizes fourth screen identifier 10000000"},
-      {"address": "0062712f", "hex": "c74424380000003fc744243c0000c0bec7442440000000bfff5008", "meaning": "Screen-four model position is (0.5,-0.375,-0.5), applied through model vtable +8"},
-      {"address": "0083f554", "hex": "626f6b00626e6f2a00000000627965732a00", "meaning": "Exact definition strings are bok, bno* and byes*, including literal asterisks"},
-      {"address": "0066c9a7", "hex": "a9000000207410", "meaning": "Shared router diverts events carrying bit 20000000 into the deferred queue"},
-      {"address": "0066c8f6", "hex": "8d4c242c518bcbe84e000000", "meaning": "Main event queue pumps its copied front event through the shared router"},
-      {"address": "0066c926", "hex": "a1ace48a0085c00f8566feffff", "meaning": "Main event pump repeats until the queue is empty, including events enqueued by the router"},
-      {"address": "0066c9be", "hex": "a9000000107475f6c401", "meaning": "Reply path tests bit 10000000 then low-word bit 100 for release"},
-      {"address": "0066c9d3", "hex": "beffffffdfa158e48a008b780423fe897804", "meaning": "Deferred release clears bit 20000000 before resubmitting each event"},
-      {"address": "0066ca09", "hex": "8b4504f6c402", "meaning": "Reply path tests low-word bit 200 for deferred discard"},
-      {"address": "0066cde2", "hex": "a1e0e48a00bf010000003bc70f8583000000", "meaning": "Exit/back case selects confirmation only at screen-stack depth one"},
-      {"address": "0066ca7b", "hex": "0f8461030000", "meaning": "Masked event 02000003 selects the Exit/back case"},
-      {"address": "0066cd31", "hex": "3d020000020f852b090000", "meaning": "Masked event 02000002 selects screen push"},
-      {"address": "0066cdfc", "hex": "c744245c02000002c744246004000000", "meaning": "Exit queues screen push event 02000002 with screen number 4"},
-      {"address": "0066ce49", "hex": "c74424740400002289742478", "meaning": "Exit queues deferred quit event 22000004 with zero argument"},
-      {"address": "0066d02a", "hex": "2d04000002bf040000003bc70f872b060000ff24858cd66600", "meaning": "Shared switch establishes edi=4 and dispatches masked events 02000004..08"},
-      {"address": "0066d68c", "hex": "3bd3660043d0660067d6660029d16600cad16600", "meaning": "Masked cases 02000004..08 map to quit, pop, default and two other screen handlers"},
-      {"address": "0066d34a", "hex": "897b04", "meaning": "Quit case stores established edi=4 into front-end state +4"},
-      {"address": "0066a409", "hex": "8b463489464c", "meaning": "Mouse press captures the current picked target in input state +4c"},
-      {"address": "0066a41e", "hex": "8b7e4c8b4e343bf90f94c033d2884649", "meaning": "Mouse release compares captured and current targets and stores the result at +49"},
-      {"address": "0066a45a", "hex": "89564c89563c", "meaning": "Mouse release clears the captured target and click timer"},
-      {"address": "0066a050", "hex": "8b44240485c0740b854424087412b001c208008b44240885c07405b001c2080032c0c20800", "meaning": "Button selector zero matches any nonzero state; nonzero selectors match any overlapping bit"},
-      {"address": "0066a080", "hex": "8b412c8b5424045052e8c2ffffffc20400", "meaning": "Previous button-state query applies the selector to input +2c"},
-      {"address": "0066a0a0", "hex": "8b41308b5424045052e8a2ffffffc20400", "meaning": "Current button-state query applies the selector to input +30"},
-      {"address": "0066a0c0", "hex": "568b74240856e8d5ffffff84c0741056e8abffffff84c07506b001", "meaning": "Button press transition means current selected and previous not selected"},
-      {"address": "0066a0f0", "hex": "568b74240856e8a5ffffff84c0751056e87bffffff84c07406b001", "meaning": "Button release transition means previous selected and current not selected"},
-      {"address": "0066a3fc", "hex": "6a008bcee8bbfcffff84c07408", "meaning": "Input update checks selector zero, meaning any button, before capturing the target"},
-      {"address": "0066ba87", "hex": "6a03e832e6ffff84c07461", "meaning": "Screen input routing checks a press transition for mask 3"},
-      {"address": "0066a432", "hex": "817e3c900100007d0c394e507507", "meaning": "Double-click detection requires signed timer less than 400 and the same previous target"},
-      {"address": "0066a450", "hex": "897e503aca7403895650", "meaning": "Matched release updates previous target, then a double click clears it"},
-      {"address": "0066a4c1", "hex": "89415089414c", "meaning": "Input constructor initializes previous and captured click targets to zero"},
-      {"address": "0066a4d3", "hex": "89413c894144", "meaning": "Input constructor initializes the click timer and suppression counter to zero"},
-      {"address": "0080f51c", "hex": "00000000", "meaning": "Mouse movement predicate compares both floating-point deltas against zero"},
-      {"address": "00669ff0", "hex": "d94114d81d1cf58000dfe0f6c4447a13d94118d81d1cf58000dfe0f6c4447a03", "meaning": "Mouse movement predicate checks input deltas +14 and +18, returning true when either is nonzero"},
-      {"address": "0066bc7a", "hex": "e871e3ffff84c00f84f0000000385f2c", "meaning": "Frontend dispatch checks pointer motion and the drag state before normal screen motion routing"},
-      {"address": "0066bcc3", "hex": "8b088b11ff5240", "meaning": "Normal pointer motion calls current screen vtable +40"},
-      {"address": "00656e18", "hex": "5e8b0c908b11ff6260", "meaning": "Screen double-click forwards to focused control vtable +60"},
-      {"address": "0064dbc0", "hex": "566a0068002001048bf1e881f30000", "meaning": "Button click emits 04012000 before calling control activation at vtable +38"},
-      {"address": "0064dbcf", "hex": "8b4c24088b06518bceff50385ec20400", "meaning": "Button click forwards the pointer target to the virtual activation callback and returns its result"},
-      {"address": "00656dd0", "hex": "568bf18b4e6c8b06518bceff500484c0740f", "meaning": "Screen click validates its focused control index before dispatching"},
-      {"address": "00656de9", "hex": "8b0c908b11ff625cb807000000", "meaning": "Screen click delegates to focused control vtable +5c, or returns seven for an invalid focus"},
-      {"address": "0064dbe0", "hex": "6a006800300104e864f30000b807000000", "meaning": "Button double-click emits 04013000 and returns seven"},
-      {"address": "0066a120", "hex": "d90564068400d87128", "meaning": "Cursor world y starts from the original mouse y divided by its range"},
-      {"address": "0066a12d", "hex": "d9e0dc0d38018100", "meaning": "Cursor world y is negated and multiplied by the double at 00810138"},
-      {"address": "00810138", "hex": "000000000000e83f", "meaning": "Cursor world y scale is the double 0.75"},
-      {"address": "0066a13e", "hex": "c74008000080bf", "meaning": "Cursor world z begins at -1"},
-      {"address": "0080f550", "hex": "cdcccc3d", "meaning": "Picking origin adds the float 0.1 to cursor world z"},
-      {"address": "0066a7ed", "hex": "6800001400", "meaning": "Original screen frame pick uses flags 00140000"},
-      {"address": "0066a820", "hex": "ff910401000085c07410", "meaning": "Client calls scene vtable +104 and checks for a picked frame"},
-      {"address": "0066a82a", "hex": "8b80ec000000894638", "meaning": "Picked frame identifier at +ec is saved to mouse state +38"},
-      {"address": "0066a83a", "hex": "33c0894638", "meaning": "No picked frame clears mouse state +38"},
-      {"address": "00656bb2", "hex": "ff523485c07410c7466cffffffff", "meaning": "Screen focus loss clears the index only after the control leave callback succeeds"},
-      {"address": "00656c3b", "hex": "57ff13508bceff530484c0", "meaning": "Screen pointer routing resolves and validates the target control"},
-      {"address": "00656c57", "hex": "8b168bceff523485c0740e", "meaning": "Screen pointer routing invokes focus loss before entering a different control"},
-      {"address": "00656c7b", "hex": "8b4e088b0c998b11ff5240", "meaning": "A pointer targeting the already-focused control invokes its +40 callback"},
-      {"address": "0064dae0", "hex": "6a006800500004e864f40000b807000000", "meaning": "Button pointer-move callback emits 04005000 and returns seven"},
-      {"address": "006153ae", "hex": "8b454083e73f8d4e04c1e7140bf8", "meaning": "Child definition ID combines the parent ID with the one-based six-bit child number"},
-      {"address": "0061540a", "hex": "897e08", "meaning": "Child definition stores its constructed identifier at +8"},
-      {"address": "0064dd2e", "hex": "8b542410895060", "meaning": "Control constructor stores the child definition identifier at +60"},
-      {"address": "0065518f", "hex": "8b56708b46608982ec0000008b4e748b56608991ec000000", "meaning": "Button setup assigns its identifier to normal and active frame +ec"},
-      {"address": "0065c83d", "hex": "a900f00f00743e", "meaning": "Control lookup first selects the bits 4..11 comparison when the parent has bits 12..19"},
-      {"address": "0065c882", "hex": "a90000f0037436", "meaning": "Control lookup next selects bits 12..19 when the parent has bits 20..25"},
-      {"address": "0065c8d4", "hex": "8bdfc1eb148b148283e33f8b5260c1fa1483e23f33d37406", "meaning": "Fallback control lookup compares target and control bits 20..25 in order"},
-      {"address": "00626f2f", "hex": "80fa040f85a2000000", "meaning": "Menu cancel path recognizes screen 4"},
-      {"address": "00626f46", "hex": "c78424d00000000012001489b424d4000000", "meaning": "Screen-4 cancel queues reply 14001200 with argument one"},
-      {"address": "00626fa2", "hex": "c78424ec00000005100006899c24f0000000", "meaning": "Screen-4 cancel next queues screen-pop event 06001005 with argument zero"},
-      {"address": "0066de7f", "hex": "e8b86f17008b086a0550ff511c8bd8", "meaning": "Original modal rendering saves original driver state 5 before the background pass"},
-      {"address": "0066de8e", "hex": "8b47746a00508b10ff52308b86f80000006a018b4074508b08ff51308b46306a00508b10ff5278", "meaning": "Original modal rendering hides current screen and shows the previous screen for its first scene pass"},
-      {"address": "0066deb5", "hex": "e8826f17008b086a006a0550ff5118", "meaning": "Original modal rendering sets driver state 5 to zero before the next scene pass"},
-      {"address": "0066dec4", "hex": "8b7f746a01578b17ff52308b86f80000006a008b4074508b08ff51308b4630", "meaning": "Original modal rendering shows current screen and hides the previous screen before the second pass"}
+      {
+        "address": "0065cac9",
+        "hex": "8b78088bf185ff0f844a0200008b501085d20f843f020000",
+        "meaning": "Observer registration rejects zero tag or null callback"
+      },
+      {
+        "address": "0065cae1",
+        "hex": "8b400c5381ff0010020455751983c6408bcf5d5b890e5f894604b0018956085e83c410c20400",
+        "meaning": "Special observer tag 04021000 stores override context/callback"
+      },
+      {
+        "address": "0065cd20",
+        "hex": "5f32c05e83c410c20400",
+        "meaning": "Invalid observer registration returns low-byte false"
+      },
+      {
+        "address": "0065c9ae",
+        "hex": "81fa001002045775118d714033c033d233ff8906895604897e08",
+        "meaning": "Removing override tag first clears all three override fields"
+      },
+      {
+        "address": "0065c9f7",
+        "hex": "8b54241c4e83ed0c89742414",
+        "meaning": "Observer removal scans records backward"
+      },
+      {
+        "address": "0065ca03",
+        "hex": "8b4210896c241085c0740a8b79303b442f080f94c38b420885c074098b79303b042f0f94c38b420c85c0740a8b51303b442a040f94c3",
+        "meaning": "Each nonzero callback/tag/context filter overwrites BL rather than combining comparisons"
+      },
+      {
+        "address": "0065caa3",
+        "hex": "32db85f60f854affffff5d5f5eb0015b83c408c20400",
+        "meaning": "Removal resets match after erase, repeats remaining reverse scan and returns true"
+      },
+      {
+        "address": "00661cc0",
+        "hex": "8a4424048841648b496c85c97403884171c20400",
+        "meaning": "Disabled setter writes control byte +64 then mirrors to attached text +71 only if present"
+      },
+      {
+        "address": "0065c760",
+        "hex": "568bf16a018b4650c6466501508b08ff51308b4650508b10ff52246a006800d000048bcee8c70700005ec3",
+        "meaning": "Show stores visible one, enables frame, updates frame, emits 0400d000"
+      },
+      {
+        "address": "00661b1c",
+        "hex": "c7196600cb196600ae19660095196600e6196600",
+        "meaning": "Exact text-message jump table for 01000014 through 01000018"
+      },
+      {
+        "address": "006619c7",
+        "hex": "6a00eb1f8b51088b410c8b4e6c6a005250e82328feffb0015e8be55dc204008b510c528b410883c11450518b4e6ce8c629feff",
+        "meaning": "Text set/localized/payload argument forwarding and ignored return values"
+      },
+      {
+        "address": "00661a32",
+        "hex": "8b566c8b4108898294000000b0015e8be55dc2",
+        "meaning": "Text 010000a3 copies full argument into text +94"
+      },
+      {
+        "address": "00661a47",
+        "hex": "8b46508d542410c744241000000000c744241400000000c74424180000803f8b086a005250ff510c8b46508b4e6850518b4e6ce80130feff",
+        "meaning": "Text 01000099 sets frame direction (0,0,+1) with null up-vector, then lays out"
+      },
+      {
+        "address": "00661aaa",
+        "hex": "518bcee88eb2ffffb0015e8be55dc20400",
+        "meaning": "Unknown text messages forward to base handler and return true"
+      },
+      {
+        "address": "00661abb",
+        "hex": "8b566c8a41088882900000008b4e508b5668518b4e6c52e8a92ffeff",
+        "meaning": "Text 02000073 stores low argument byte as inset then lays out"
+      },
+      {
+        "address": "00661ae0",
+        "hex": "8b766c83c6308b460485c0750e33d2b0018951085e8be55dc204008b76082bf0b867666666f7eed1fa8bc25ec1e81f03d0b0018951088be55dc20400",
+        "meaning": "Text 02000030 counts five-byte records and writes event argument"
+      },
+      {
+        "address": "006551d0",
+        "hex": "8b5424048b4204a900f00f04740b52e85cc70000b001c2040025ff0f00032d2c000002743c83e84a740b52e840c70000b001c20400",
+        "meaning": "Button message handler prioritizes tagged parent routing and recognizes two overrides"
+      },
+      {
+        "address": "00655205",
+        "hex": "8b496c85c9743b8b420885c0740fc78194000000ffffffffb001c20400c7819400000000000000b001c20400",
+        "meaning": "Button 02000076 checks attached text and writes 0 or ffffffff to text +94"
+      },
+      {
+        "address": "00655231",
+        "hex": "8b416c85c0740f8b51708b496852518bc8e839f8feffb001c20400",
+        "meaning": "Button 0200002c lays out attached text against normal visual +70"
+      },
+      {
+        "address": "0065ce33",
+        "hex": "528bcee865fbffffeb92",
+        "meaning": "Control 01000008 dispatches to observer-removal helper 0065c9a0"
+      },
+      {
+        "address": "0062446b",
+        "hex": "6a0068751000066a008d4c242ce85309ffff",
+        "meaning": "Main resume button activation binding: event 06001075 argument zero"
+      },
+      {
+        "address": "0062455f",
+        "hex": "6a0268011000066a008d4c242ce85f08ffff",
+        "meaning": "Main profile button activation binding: event 06001001 argument two"
+      },
+      {
+        "address": "00624653",
+        "hex": "6a0368011000066a008d4c242ce86b07ffff",
+        "meaning": "Main single-player button activation binding: event 06001001 argument three"
+      },
+      {
+        "address": "00624747",
+        "hex": "6a0068991000066a008d4c242ce87706ffff",
+        "meaning": "Main LAN button activation binding: event 06001099 argument zero"
+      },
+      {
+        "address": "0062483b",
+        "hex": "6a00689a1000066a008d4c242ce88305ffff",
+        "meaning": "Main Internet button activation binding: event 0600109a argument zero"
+      },
+      {
+        "address": "0062492f",
+        "hex": "6a0768011000066a008d4c242ce88f04ffff",
+        "meaning": "Main cinematics button activation binding: event 06001001 argument seven"
+      },
+      {
+        "address": "00624a23",
+        "hex": "6a0068711000066a008d4c242ce89b03ffff",
+        "meaning": "Main options button activation binding: event 06001071 argument zero"
+      },
+      {
+        "address": "00624b17",
+        "hex": "6a00683a1000066a008d4c242ce8a702ffff",
+        "meaning": "Main credits button activation binding: event 0600103a argument zero"
+      },
+      {
+        "address": "00624c0b",
+        "hex": "680000000468031000066a008d4c242ce8b001ffff",
+        "meaning": "Main Exit activation binding: event 06001003 argument screen 04000000"
+      },
+      {
+        "address": "0064dd3c",
+        "hex": "b2015f894850885065884864885066894858c7405cffffffff",
+        "meaning": "Base constructor initializes disabled=0 visible=1 focusable=1 word58=0 word5c=ffffffff"
+      },
+      {
+        "address": "0065d929",
+        "hex": "e89203ffff895d6cc74500b04c8100895d70895d74c64566018bcd",
+        "meaning": "Factory button branch calls base constructor, installs button vtable and explicitly sets focusable byte one"
+      },
+      {
+        "address": "0065cf0a",
+        "hex": "8b4424148b700485f6742c8b4808b8abaaaa2a2bcef7e9c1fa028bc2c1e81f03d03bfa73128b55008d0433",
+        "meaning": "Initialization-list loop rereads begin/end, computes 24-byte record count and selects current record"
+      },
+      {
+        "address": "0065cf35",
+        "hex": "508bcdff526c4783c318ebc95f5e5db0015bc204",
+        "meaning": "Initialization dispatches mutable record through +6c, ignores result, advances and repeats; returns true"
+      },
+      {
+        "address": "0065df9c",
+        "hex": "8b8424fc00000057508b442424894c24188b1150ff522c8b4c241084c0742b",
+        "meaning": "Created control receives visual initialization via virtual +2c before definition event lists"
+      },
+      {
+        "address": "0065dfbb",
+        "hex": "8b118d472050ff52788b4c241083c710578b11ff5270",
+        "meaning": "Factory calls definition +20 through +78, then definition +10 through +70"
+      },
+      {
+        "address": "0065dfd1",
+        "hex": "8b560c8d4e048d4424105052e82e580000b001eb46",
+        "meaning": "After both definition-list handlers, factory appends control and returns true"
+      },
+      {
+        "address": "0065dfe6",
+        "hex": "3bcb740a8b016a01ff9080000000b001",
+        "meaning": "Failed visual initialization destroys control via +80(1), still returns true"
+      },
+      {
+        "address": "0066194f",
+        "hex": "8b4104a900f00f047411518bcee8dfb3ffffb0015e8be55dc20400",
+        "meaning": "Text-derived tagged event handler immediately forwards to base 0065cd40"
+      },
+      {
+        "address": "0067ea80",
+        "hex": "b001c20800",
+        "meaning": "Concrete menu keyboard pre-hook +44 is a true-returning no-op with two arguments"
+      },
+      {
+        "address": "00815e74",
+        "hex": "80ea6700",
+        "meaning": "Concrete front-end vtable +44 points to 0067ea80"
+      },
+      {
+        "address": "00620345",
+        "hex": "8b4f04e8c3ad0400e984000000",
+        "meaning": "Separate options control callback invokes click sound; ordinary-button silence is not a universal widget rule"
+      },
+      {
+        "address": "0064d9f0",
+        "hex": "8a41668a5165538a596423c233d284db0f94c223c25bc3",
+        "meaning": "Eligibility low byte is focusable +66 AND visible +65 AND disabled +64 equal zero"
+      },
+      {
+        "address": "0065cd59",
+        "hex": "8b420483ec18a900f00f04568bf1",
+        "meaning": "Base control handler routes tagged events before ordinary masked messages"
+      },
+      {
+        "address": "0065cd8c",
+        "hex": "25ff0f0003533da1000001570f87b90000000f8499000000",
+        "meaning": "Ordinary control event mask and switch bounds"
+      },
+      {
+        "address": "0065cdb5",
+        "hex": "c6466600eb14c6466601eb0e8b4a08894e5ceb068b465c894208",
+        "meaning": "Focusable flag stores and +5c property access"
+      },
+      {
+        "address": "0065cde5",
+        "hex": "8b168bceff5214ebe18b068bceff5010ebd88a466484c075d18b166a018bceff527cebc68a466433db3ac374bd8b06538bceff507cebb3",
+        "meaning": "Virtual hide/show and conditional disabled setter dispatch"
+      },
+      {
+        "address": "0065ce1c",
+        "hex": "8b4a08894e58ebab8b4658eba3528bcee88ffcffffeb9c528bcee865fb",
+        "meaning": "Property +58 get/set and observer/override helper calls"
+      },
+      {
+        "address": "0065ce3d",
+        "hex": "8b5208f7c20000000474876a00528bcee8fe000000e978ffffff",
+        "meaning": "Conditional event emission requires argument bit 04000000"
+      },
+      {
+        "address": "0065ce57",
+        "hex": "3d2c0000020f856dffffff33db33ff8b4e083bcb0f845effffff8b460c2bc1c1f8023bf80f834effffff895c2420895c24",
+        "meaning": "Child propagation recognizes 0200002c and rereads vector/count"
+      },
+      {
+        "address": "0065ce81",
+        "hex": "895c2420895c240cc74424102c000002895c24148bc1895c242c8b0cb88d44240c508b11ff5274",
+        "meaning": "Each child propagation event is freshly zeroed and dispatched through +74"
+      },
+      {
+        "address": "0065ced0",
+        "hex": "f7cd650009ce6500eecd6500e5cd6500b5cd6500bbcd650029ce650033ce6500c1cd6500c9cd65001cce650024ce6500",
+        "meaning": "Exact 12-entry control-message jump table, selectors 01000001 through 0100000c"
+      },
+      {
+        "address": "0066b6d2",
+        "hex": "8b4424248b088b442410508b11ff522084c00f8579010000",
+        "meaning": "Front-end key tail forwards full word to current screen +20 and returns if consumed"
+      },
+      {
+        "address": "0066b6ea",
+        "hex": "80fb010f85700100008a452c84c074",
+        "meaning": "Unconsumed key tail recognizes low-byte Escape 01 and tests drag flag"
+      },
+      {
+        "address": "0066b730",
+        "hex": "6a008b098b11ff5254c6452c",
+        "meaning": "Escape invokes current screen drag-end +54 with zero then clears drag flag"
+      },
+      {
+        "address": "0066b773",
+        "hex": "33f68b088b4160897424408974242cc74424300a00000289442434",
+        "meaning": "Escape captures current screen +60 into queued 0200000a with zero target"
+      },
+      {
+        "address": "00626b9a",
+        "hex": "8b7f0481e7ff0f000381ef0a0000020f841a010000",
+        "meaning": "Derived menu event callback masks event code and branches for 0200000a"
+      },
+      {
+        "address": "00626f38",
+        "hex": "899c24e0000000899c24cc000000c78424d00000000012001489b424d4000000",
+        "meaning": "Current confirmation screen back request emits 14001200 with argument one"
+      },
+      {
+        "address": "00626f94",
+        "hex": "899c24fc000000899c24e8000000c78424ec00000005100006899c24f0000000",
+        "meaning": "Confirmation back request follows reply with 06001005 pop event"
+      },
+      {
+        "address": "00626fda",
+        "hex": "899c24c8000000899c24b4000000c78424b800000003000002899c24bc000000",
+        "meaning": "Ordinary main-menu back request emits 02000003 with zero argument"
+      },
+      {
+        "address": "006db424",
+        "hex": "a005ed8a0084c0756f",
+        "meaning": "Original sound-disabled setting skips initialization"
+      },
+      {
+        "address": "006db42d",
+        "hex": "a006ed8a00bb0200000084c07405bb12000000a008ed8a0084c0740383cb200fbe0509ed8a0083f8037719ff2485a4b46d0080cf04eb0d80cf08eb0880cf10eb0380cf20",
+        "meaning": "Assemble original sound flags from two option bytes and quality index"
+      },
+      {
+        "address": "006db471",
+        "hex": "e8389a10008bf0e83d9a10008b0e8bf8536a108b076a026822560000568945f0ff5148508b45f057ff5004",
+        "meaning": "Get graphics HWND and call sound init with rate 22050, channels two, bits sixteen and flags"
+      },
+      {
+        "address": "0066af8a",
+        "hex": "e8ad9e17008b106a0450ff52548946",
+        "meaning": "Create sound frame kind four and store front-end +3c"
+      },
+      {
+        "address": "0066af9a",
+        "hex": "e81b9f17008b0850ff510c84c0741b8b563c6a006a006a006a006840a9830052b954ec8a00e8fcf1ddff",
+        "meaning": "Query sound driver initialized state and conditionally invoke button.wav loader"
+      },
+      {
+        "address": "0066afc4",
+        "hex": "8b463c6a03508b08ff517c8b463c6834a98300508b10ff52348b463c6a00508b08ff51308b463c680000803f508b10ff928c000000",
+        "meaning": "Set sound type three, literal frame name, disabled state and volume one"
+      },
+      {
+        "address": "0066aff9",
+        "hex": "8b46308b563c52508b08ff91800000008b46308b563c528b80f8010000508b08ff517c8b463c508b08ff11",
+        "meaning": "Add sound to scene and primary sector, then release local reference"
+      },
+      {
+        "address": "00668580",
+        "hex": "53568bf157bb00f00f008b7e6c4f781a8b46088b0cb8855960750c578bcee84d01000084c0753d4f79e68b4e0885c9750433c0eb088b460c2bc1c1f8028d78ff85ff7c1a8b56088b04ba855860750c578bcee81901000084c075094f79e65f5e32c05bc35f5eb0015bc3",
+        "meaning": "Complete previous-focus instruction body: lower-index scan, subordinate-ID filter, candidate selection and wrap"
+      },
+      {
+        "address": "006685f0",
+        "hex": "53568bf157bb00f00f008b7e6c8b4e084785c974288b460c2bc1c1f8023bf8731c8bc18b0cb885596075e2578bcee8cd00000084c074d65f5eb0015bc333ff8b4e0885c974258b460c2bc1c1f8023bf873198bd18b04ba855860750c578bcee89c00000084c075cf47ebd45f5e32c05bc3",
+        "meaning": "Complete next-focus instruction body: forward scan, subordinate-ID filter, candidate selection and wrap"
+      },
+      {
+        "address": "006686f0",
+        "hex": "568bf1578b7c240c8b46088b0cb88b11ff520884c074418b4e6c8b06518bceff500484c0741b8b566c8b46086a008b0c908b11ff523485c075075fb0015ec204008b4608897e6c6a0f8b0cb88b11ff52305fb0015ec204005f32c05ec20400",
+        "meaning": "Complete index-selection instruction body: eligibility, leave-veto handled return, store focus, enter with fifteen and ignore enter result"
+      },
+      {
+        "address": "00668670",
+        "hex": "53568bf18b4e6c8b06518bceff50048b5c240c84c074218b566c8b46088b0c908a416484c075118b1153ff522084c074075eb0015bc20400",
+        "meaning": "Screen key: validate focus, skip disabled control, offer full key word and return if consumed"
+      },
+      {
+        "address": "006686a8",
+        "hex": "80fb1c740a80fb39740580fb9c7528",
+        "meaning": "Screen key fallback recognizes low bytes 1c, 39 and 9c"
+      },
+      {
+        "address": "006686b7",
+        "hex": "8b4e6c8b06518bceff500484c074198b566c8b46088b0c908b41608b1150ff52385eb0015bc20400",
+        "meaning": "Screen key revalidates focus, passes control +60 to activation +38 and ignores its result"
+      },
+      {
+        "address": "006686df",
+        "hex": "5e32c05bc20400",
+        "meaning": "Screen key invalid/unrecognized fallback returns false"
+      },
+      {
+        "address": "0064da30",
+        "hex": "32c0c20400",
+        "meaning": "Default button key handler returns false and pops one argument"
+      },
+      {
+        "address": "0066a6e0",
+        "hex": "a148e48a005685c08bf17552",
+        "meaning": "Shared input global lookup and reuse branch"
+      },
+      {
+        "address": "0066a6ec",
+        "hex": "6a54e81cab1700",
+        "meaning": "Allocate original 0x54-byte shared input object"
+      },
+      {
+        "address": "0066a6fc",
+        "hex": "c701d0558100e8a9fdffff",
+        "meaning": "Shared input vtable and constructor call"
+      },
+      {
+        "address": "0066a70b",
+        "hex": "56890d48e48a00e8c9fdffff",
+        "meaning": "Store shared input global and initialize with scene"
+      },
+      {
+        "address": "0066a73e",
+        "hex": "8b48045e41894804a148e48a00c3",
+        "meaning": "Increment shared input reference count and return singleton"
+      },
+      {
+        "address": "0066aef1",
+        "hex": "8b4e30e8e7f7ffff8986f4000000",
+        "meaning": "Front-end acquires shared input and stores it at +f4"
+      },
+      {
+        "address": "0066b22e",
+        "hex": "8b8bf40000003bce740be843f5ffff89b3f4000000",
+        "meaning": "Front-end releases retained input and clears +f4 on teardown"
+      },
+      {
+        "address": "0066a783",
+        "hex": "8b460448894604752d",
+        "meaning": "Shared input release decrements +04 and skips cleanup while nonzero"
+      },
+      {
+        "address": "0066a78c",
+        "hex": "8b462085c0740c8b0850ff11c7462000000000",
+        "meaning": "Last release drops optional input +20 texture and clears pointer"
+      },
+      {
+        "address": "0066a79f",
+        "hex": "8b0d48e48a0085c974068b116a01ff12c70548e48a00000000005e",
+        "meaning": "Last release deletes shared input singleton and clears global"
+      },
+      {
+        "address": "00623f05",
+        "hex": "6800ec8300",
+        "meaning": "Main-menu definition child 1: text_screen"
+      },
+      {
+        "address": "00623fba",
+        "hex": "6828f08300",
+        "meaning": "Main-menu definition child 2: text_date00"
+      },
+      {
+        "address": "0062406d",
+        "hex": "681cf08300",
+        "meaning": "Main-menu definition child 3: text_date01"
+      },
+      {
+        "address": "00624120",
+        "hex": "680cf08300",
+        "meaning": "Main-menu definition child 4: text_profile00"
+      },
+      {
+        "address": "006241d3",
+        "hex": "68e4f78300",
+        "meaning": "Main-menu definition child 5: text_profile01"
+      },
+      {
+        "address": "00624286",
+        "hex": "68d0f78300",
+        "meaning": "Main-menu definition child 6: text_last save00"
+      },
+      {
+        "address": "00624339",
+        "hex": "68a0f28300",
+        "meaning": "Main-menu definition child 7: text_last save01"
+      },
+      {
+        "address": "006243ec",
+        "hex": "68c0f78300",
+        "meaning": "Main-menu definition child 8: bresume game"
+      },
+      {
+        "address": "006244e0",
+        "hex": "68b0f78300",
+        "meaning": "Main-menu definition child 9: bchange profile"
+      },
+      {
+        "address": "006245d4",
+        "hex": "68a0f78300",
+        "meaning": "Main-menu definition child 10: bsingleplayer"
+      },
+      {
+        "address": "006246c8",
+        "hex": "6890f78300",
+        "meaning": "Main-menu definition child 11: bmultiplayerlan"
+      },
+      {
+        "address": "006247bc",
+        "hex": "6880f78300",
+        "meaning": "Main-menu definition child 12: bmultiplayernet"
+      },
+      {
+        "address": "006248b0",
+        "hex": "6874f78300",
+        "meaning": "Main-menu definition child 13: bcinematics"
+      },
+      {
+        "address": "006249a4",
+        "hex": "6868f78300",
+        "meaning": "Main-menu definition child 14: boptions"
+      },
+      {
+        "address": "00624a98",
+        "hex": "685cf78300",
+        "meaning": "Main-menu definition child 15: bcredits"
+      },
+      {
+        "address": "00624b8c",
+        "hex": "68f0eb8300",
+        "meaning": "Main-menu definition child 16: bexit"
+      },
+      {
+        "address": "00624c83",
+        "hex": "68b0eb8300",
+        "meaning": "Main-menu definition child 17: text_h&dversion"
+      },
+      {
+        "address": "00615a50",
+        "hex": "8b510485d2750333c0c38b41082bc2c1f802c3",
+        "meaning": "Definition-count helper returns zero or (end-begin)/4"
+      },
+      {
+        "address": "00624b54",
+        "hex": "8bcee8f50effff40",
+        "meaning": "Exit definition obtains previous child count then increments it"
+      },
+      {
+        "address": "00624b7a",
+        "hex": "8b5424188b4b4083e23fc1e2140bd18bc85268f0eb83006a14e8f804ffff",
+        "meaning": "Exit identifier masks one-based child count to six bits, shifts by twenty, combines parent ID and creates button definition"
+      },
+      {
+        "address": "0066bfae",
+        "hex": "6a0950ff51548b5424186a006a006a008bd86a005253b990ec8a00895c2424e8ced0dbff85c0",
+        "meaning": "Original auxiliary-model loader creates kind nine and passes it to resource helper before naming/linking"
+      },
+      {
+        "address": "0066bfda",
+        "hex": "8b44241485c074078b0b5053ff5134",
+        "meaning": "Original auxiliary-model loader optionally applies supplied root name through +34"
+      },
+      {
+        "address": "0066bfe9",
+        "hex": "8b46308b13576a008b88f80100005153ff52388b136a0053ff5230",
+        "meaning": "Original auxiliary-model loader links primary scene sector with zero flags then hides the model"
+      },
+      {
+        "address": "0066a51b",
+        "hex": "68ffff0000897e34897e3cd95e28897e408b08687806840050ff517c3bc7894608",
+        "meaning": "Input initializer finds CURZOR via scene +7c with flags ffff and stores borrowed frame at input +8"
+      },
+      {
+        "address": "0066a460",
+        "hex": "d90560068400d876248b46088d542410c7442418000080bf5250d95c2418",
+        "meaning": "Input update tail divides stored cursor X by range width and prepares frame Z=-1"
+      },
+      {
+        "address": "0066a47e",
+        "hex": "d90528f58000d87628d80d64068400dc0d38018100d95c241c",
+        "meaning": "Input update tail computes (-1/height)*Y*double 0.75 before final float Y store"
+      },
+      {
+        "address": "0066a497",
+        "hex": "8b08ff51088b7608568b06ff5024",
+        "meaning": "Input update tail calls cursor frame position +08 before world update +24"
+      },
+      {
+        "address": "0080f528",
+        "hex": "000080bf",
+        "meaning": "Cursor frame Y projection begins with float minus one"
+      },
+      {
+        "address": "0066a020",
+        "hex": "d9411cc3",
+        "meaning": "Wheel getter returns stored float input +1c"
+      },
+      {
+        "address": "0066a030",
+        "hex": "d9411cd81d1cf58000dfe0f6c4447b03b001c332c0c3",
+        "meaning": "Wheel predicate returns whether stored Z is nonzero"
+      },
+      {
+        "address": "007e5e00",
+        "hex": "558bec83c4f49bd97dfe9b668b45fe80cc0c668945fcd96dfcdf7df4d96dfe8b45f48b55f8c9c3",
+        "meaning": "Conversion helper sets x87 truncation, converts to signed QWORD, restores control word and returns low/high DWORDs"
+      },
+      {
+        "address": "00656da0",
+        "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff624cb8070000005ec20800",
+        "meaning": "Screen +4c forwards target and integer wheel amount to valid focused control; invalid focus returns seven"
+      },
+      {
+        "address": "0064db40",
+        "hex": "6a006800100104e804f40000b807000000c20800",
+        "meaning": "Button +4c ignores both parameters, emits 04011000 with argument zero and returns seven"
+      },
+      {
+        "address": "0066bdcb",
+        "hex": "e850e2ffffe82ba0170050568bcdff534c",
+        "meaning": "Wheel dispatch reads raw float Z, truncates to signed int64 and passes only EAX low word to screen +4c"
+      },
+      {
+        "address": "0066be09",
+        "hex": "e89274fcff8b4c2418a1cce48a0089442424a1d0e48a008b118b0dc8e48a008b35d4e48a008b5a74",
+        "meaning": "After wheel callback, dispatcher resolves current screen again and reads its model +74"
+      },
+      {
+        "address": "0066be5f",
+        "hex": "8b4f308b3253518b8ff40000008b2ee84de9ffff508bceff5540",
+        "meaning": "Post-wheel refresh selects screen, repicks its model and invokes its +40 focus callback"
+      },
+      {
+        "address": "0066c63c",
+        "hex": "680807840068780684008bcee853f9ffff",
+        "meaning": "Frontend setup passes CURZOR and kurzor_menu to model loader 0066bfa0"
+      },
+      {
+        "address": "0064db00",
+        "hex": "6a006800700004e844f40000b807000000c20400",
+        "meaning": "Button release emits 04007000 with zero argument then returns seven"
+      },
+      {
+        "address": "0064db20",
+        "hex": "6a006800600004e824f40000b807000000c20400",
+        "meaning": "Button press emits 04006000 with zero argument then returns seven"
+      },
+      {
+        "address": "0064db60",
+        "hex": "6a006800800004e8e4f30000b807000000c20400",
+        "meaning": "Button drag emits 04008000 with zero argument then returns seven"
+      },
+      {
+        "address": "0064db80",
+        "hex": "6a006800900004e8c4f30000b807000000c20400",
+        "meaning": "Button drag end emits 04009000 with zero argument then returns seven"
+      },
+      {
+        "address": "0064dba0",
+        "hex": "6a006800a00004e8a4f30000b807000000c20400",
+        "meaning": "Button drag begin emits 0400a000 with zero argument then returns seven"
+      },
+      {
+        "address": "0066a267",
+        "hex": "ff92ec0000008944240cdb44240cd95e14",
+        "meaning": "Input update reads signed relative X and stores its float conversion before early-return gates"
+      },
+      {
+        "address": "0066a280",
+        "hex": "ff91f00000008944240cdb44240cd95e18",
+        "meaning": "Input update reads signed relative Y and stores its float conversion before early-return gates"
+      },
+      {
+        "address": "0066a299",
+        "hex": "ff92f40000008944240cdb44240cd95c240c8b44240c89461c",
+        "meaning": "Input update reads signed relative Z and stores its float conversion before early-return gates"
+      },
+      {
+        "address": "0066a317",
+        "hex": "8b4638c7464000000000894634d90560068400d84614d91d60068400d90564068400d84618d91d64068400d9461cd84610d95e10",
+        "meaning": "Processed input resets idle +40, adopts target and stores float-rounded XY and accumulated wheel sums"
+      },
+      {
+        "address": "0066a35e",
+        "hex": "d94614d82560068400d95e14c7056006840000000000eb2a",
+        "meaning": "Negative X subtracts the stored out-of-range position from reported delta and clamps X to zero"
+      },
+      {
+        "address": "0066a388",
+        "hex": "d90560068400d866248b4e24d86e14d95e14890d60068400",
+        "meaning": "Upper X computes extended-precision overflow before correcting delta and clamps to width"
+      },
+      {
+        "address": "0066a3b3",
+        "hex": "d94618d82564068400d95e18c7056406840000000000eb2a",
+        "meaning": "Negative Y subtracts the stored out-of-range position from reported delta and clamps Y to zero"
+      },
+      {
+        "address": "0066a3dd",
+        "hex": "d90564068400d866288b5628d86e18d95e18891564068400",
+        "meaning": "Upper Y computes extended-precision overflow before correcting delta and clamps to height"
+      },
+      {
+        "address": "0066a4f8",
+        "hex": "8944240cdb44240cd95e24e8a6a91700",
+        "meaning": "Cursor initializer obtains graphics width and stores the signed-to-float range at +24"
+      },
+      {
+        "address": "0066a50e",
+        "hex": "8944240c8b4508db44240c33ff68ffff0000897e34897e3cd95e28897e408b0868",
+        "meaning": "Cursor initializer obtains graphics height and stores range +28 while clearing target and counters"
+      },
+      {
+        "address": "00656ca0",
+        "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff624833c05ec20400",
+        "meaning": "Screen +48 validates focus and forwards to control +48, returning zero for invalid focus"
+      },
+      {
+        "address": "00656cd0",
+        "hex": "53568bf1578b4e6c8b06518bceff500484c074248b5c24108b168b7e6c538bceff123bf875128b4608538b0cb88b11ff52445f5e5bc204005f5e33c05bc20400",
+        "meaning": "Screen +44 requires valid focus and matching target lookup before control +44; otherwise zero"
+      },
+      {
+        "address": "00656d10",
+        "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff625033c05ec20400",
+        "meaning": "Screen +50 validates focus and forwards to control +50; otherwise zero"
+      },
+      {
+        "address": "00656d40",
+        "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff625433c05ec20400",
+        "meaning": "Screen +54 validates focus and forwards to control +54; otherwise zero"
+      },
+      {
+        "address": "00656d70",
+        "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff625833c05ec20400",
+        "meaning": "Screen +58 validates focus and forwards to control +58; otherwise zero"
+      },
+      {
+        "address": "00656e00",
+        "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff6260b8070000005ec20400",
+        "meaning": "Screen +60 validates focus and forwards to control +60; otherwise seven"
+      },
+      {
+        "address": "0067eb0a",
+        "hex": "c74624ffffffff",
+        "meaning": "Base constructor initializes front-end gate +24 to minus one"
+      },
+      {
+        "address": "0067ebcb",
+        "hex": "c7460cffffffff",
+        "meaning": "Base constructor initializes previous picked target +0c to minus one"
+      },
+      {
+        "address": "0067ebdf",
+        "hex": "885e2c",
+        "meaning": "Base constructor clears drag byte +2c"
+      },
+      {
+        "address": "0067ec04",
+        "hex": "885e2d",
+        "meaning": "Base constructor clears alternate motion byte +2d"
+      },
+      {
+        "address": "0066b999",
+        "hex": "837f24ff740c",
+        "meaning": "Input dispatcher returns zero before picking/updating when front-end gate +24 is not minus one"
+      },
+      {
+        "address": "0066ba0b",
+        "hex": "84c0750939770c0f84610400008a472d8b8ff400000033db89770c3ac3745d",
+        "meaning": "Processed input or changed target gates dispatch; adopt target and select byte +2d branch"
+      },
+      {
+        "address": "0066ba2a",
+        "hex": "e8c1e5ffff84c00f8442040000885f2c",
+        "meaning": "Alternate branch requires XY motion and clears drag state before focus callback"
+      },
+      {
+        "address": "0066ba70",
+        "hex": "8b5008568b0a8b01ff5040",
+        "meaning": "Alternate branch invokes screen +40 and returns"
+      },
+      {
+        "address": "0066ba92",
+        "hex": "8b4f103bcb741739716074128b1156ff526483f8010f85cc030000895f10",
+        "meaning": "Mask-3 press checks captured-control identifier, calls control +64 for a different target, aborts unless result is one, then clears captured control"
+      },
+      {
+        "address": "0066bae2",
+        "hex": "8b442418568b088b11ff5248e9d7000000",
+        "meaning": "Press routes to screen +48 before click handling"
+      },
+      {
+        "address": "0066baf3",
+        "hex": "8b8ff40000006a03e8f0e5ffff84c00f84c2000000385f2c747f885f2c",
+        "meaning": "Mask-3 release checks and clears dragging before callbacks"
+      },
+      {
+        "address": "0066bb42",
+        "hex": "8b442418568b088b11ff5254",
+        "meaning": "Drag release first invokes screen +54"
+      },
+      {
+        "address": "0066bb80",
+        "hex": "8b442418568b088b11ff5240",
+        "meaning": "Drag release next invokes screen +40 to refresh focus"
+      },
+      {
+        "address": "0066bbbe",
+        "hex": "8b442418568b088b11ff5244",
+        "meaning": "Release invokes screen +44 after drag-end and focus callbacks"
+      },
+      {
+        "address": "0066bbca",
+        "hex": "8b87f400000038584a743e",
+        "meaning": "Double-click flag gates screen +60 before ordinary click"
+      },
+      {
+        "address": "0066bc13",
+        "hex": "8b87f400000038584974568b47103bc37405397060754a",
+        "meaning": "Ordinary click requires flag +49 and absent or target-matching captured control"
+      },
+      {
+        "address": "0066bc5c",
+        "hex": "8b4c2418568b098b11ff525c83f80175078bcfe89cf4ffff",
+        "meaning": "Screen +5c result one invokes helper 0066b110"
+      },
+      {
+        "address": "0066bcca",
+        "hex": "8b8ff40000006a03e8c9e3ffff84c00f8498000000385f2c7549",
+        "meaning": "Motion with mask-3 held selects drag begin or ongoing drag"
+      },
+      {
+        "address": "0066bd16",
+        "hex": "8b442418568b088b11ff5258c6472c018a472c3ac3744a",
+        "meaning": "Screen +58 precedes setting drag state true"
+      },
+      {
+        "address": "0066bd5f",
+        "hex": "8b442418568b088b11ff52505f5e5db0015b83c420c20400",
+        "meaning": "Screen +50 handles drag and returns before wheel handling"
+      },
+      {
+        "address": "0066bd77",
+        "hex": "8b8ff4000000e8aee2ffff84c00f84ef000000",
+        "meaning": "Wheel predicate is considered after click and non-drag motion"
+      },
+      {
+        "address": "0066bdd0",
+        "hex": "e82ba0170050568bcdff534c",
+        "meaning": "Wheel path converts through 007e5e00 and invokes screen +4c; still delegated by portable dispatcher"
+      },
+      {
+        "address": "0066b110",
+        "hex": "568bf18b463c85c074178b086a0050ff517884c0750b8b763c6a01568b16ff52305ec3",
+        "meaning": "Accepted-click helper checks object at front-end +3c, invokes engine slot +78 with zero, then rereads +3c and calls slot +30 with one if false; now reconstructed through portable context"
+      },
+      {
+        "address": "006dc95b",
+        "hex": "8b3dc4f1800050895424148be9ffd7",
+        "meaning": "Frame timer loads QueryPerformanceFrequency through IAT 0080f1c4"
+      },
+      {
+        "address": "006dc96a",
+        "hex": "8b1dc8f180008d4c241451ffd3",
+        "meaning": "Frame timer loads and invokes QueryPerformanceCounter through IAT 0080f1c8"
+      },
+      {
+        "address": "006dc97f",
+        "hex": "6a006840420f005250e8139510008b4c2420518b4c2420515250e892941000",
+        "meaning": "Multiply performance counter by 1000000 and divide by frequency to obtain microseconds"
+      },
+      {
+        "address": "006dc99e",
+        "hex": "8bc8b8d34d6210895424188b151ced8a002bcaf7e18b4424108bf2c1ee063bf0764a",
+        "meaning": "Unsigned low-word microsecond difference divided by 1000, then compared to maximum delta"
+      },
+      {
+        "address": "006dca0a",
+        "hex": "3bf5736f",
+        "meaning": "Compare elapsed milliseconds with minimum before timer wait branch"
+      },
+      {
+        "address": "006dce1d",
+        "hex": "ba64000000b90a000000e824fbffff8b4f148bf085c98975e8",
+        "meaning": "Main loop requests minimum 10, maximum 100 and stores returned delta"
+      },
+      {
+        "address": "006dce78",
+        "hex": "033520ed8a008975e8db45e8d8c9e8758f10008945e8db45e8d8f1e8688f10002bf0893520ed8a00",
+        "meaning": "Optional state time scale multiplies delta with integer remainder carry"
+      },
+      {
+        "address": "006dd005",
+        "hex": "568bcfe8e350feff",
+        "meaning": "Main loop passes frame delta to controller 006c20f0"
+      },
+      {
+        "address": "006c210e",
+        "hex": "568b7508",
+        "meaning": "Controller saves its supplied frame delta in ESI"
+      },
+      {
+        "address": "006c219a",
+        "hex": "8b4f14568b01ff5014",
+        "meaning": "Controller forwards frame delta through active state slot +14; frontend vtable maps to 0066bea0"
+      },
+      {
+        "address": "0066bf06",
+        "hex": "538bcee882faffff",
+        "meaning": "Frontend forwards unchanged update delta into 0066b990 after queue processing"
+      },
+      {
+        "address": "0066b9ee",
+        "hex": "8b8ff4000000e8c7edffff8b5424348b8ff4000000528bf0e815e8ffff",
+        "meaning": "Pick current target before forwarding delta into input update 0066a220"
+      },
+      {
+        "address": "0066a22d",
+        "hex": "8b463089462c",
+        "meaning": "Input update copies current button mask into previous mask before polling"
+      },
+      {
+        "address": "0066a241",
+        "hex": "8b7d088b563c8946308b464003c703d789464032c089563c88464988464a",
+        "meaning": "Input update stores polled buttons, advances both counters and clears click flags"
+      },
+      {
+        "address": "0066a2b2",
+        "hex": "8b464485c07e0f2bc789464432c05f5e8be55dc20400",
+        "meaning": "Positive signed suppression countdown subtracts delta then returns even when it crosses zero"
+      },
+      {
+        "address": "0066a2f9",
+        "hex": "8b4e308b462c3bc875148b56388b46343bd0750a",
+        "meaning": "No-motion early return also requires equal button masks and picked/current identifiers"
+      },
+      {
+        "address": "0066a317",
+        "hex": "8b4638c7464000000000894634",
+        "meaning": "Processed input resets idle counter and adopts picked target"
+      },
+      {
+        "address": "0066a3f5",
+        "hex": "8a464884c07564",
+        "meaning": "Input byte +48 inhibits click bookkeeping after target/motion processing"
+      },
+      {
+        "address": "00644aa6",
+        "hex": "56e84a041a0081c670010000b9080000008d7c241033d2f3a5",
+        "meaning": "Layout calls the public bounds updater, then copies eight DWORDs from visual+170"
+      },
+      {
+        "address": "00661c52",
+        "hex": "c686900000000a",
+        "meaning": "Text-object constructor defaults horizontal inset byte at +90 to 10"
+      },
+      {
+        "address": "0065c6e7",
+        "hex": "c6809000000001",
+        "meaning": "Plain static-text control initializer overrides the inset byte to 1"
+      },
+      {
+        "address": "0065c6aa",
+        "hex": "c744241000000000c744241400000000c7442418000080bf8b086a005250ff510c",
+        "meaning": "Static-text initializer sets visual direction (0,0,-1), with null up-vector through frame vtable +0c"
+      },
+      {
+        "address": "006550f5",
+        "hex": "e836ca0000",
+        "meaning": "Button initializer calls text-object constructor directly, retaining default inset 10"
+      },
+      {
+        "address": "006551ae",
+        "hex": "8b46708b56685052e8c5f8feff",
+        "meaning": "Button initializer derives text bounds from its normal visual at control+70"
+      },
+      {
+        "address": "0065513b",
+        "hex": "8b90e000000084d278368bb9b0000000",
+        "meaning": "Button initialization checks active frame+e0 bit 80 before reading the normal local position"
+      },
+      {
+        "address": "00655145",
+        "hex": "8bb9b000000081e2dffeffff89b8b00000008bb9b400000089b8b40000008b89b800000081ca000000408988b80000008990e0000000",
+        "meaning": "Button initializer copies normal local XYZ at +b0/+b4/+b8 into active, clears flags 120 and sets 40000000"
+      },
+      {
+        "address": "0065517b",
+        "hex": "8b46746a00508b10ff52308b4674508b08ff5124",
+        "meaning": "Button initializer hides actived visual at control+74 then explicitly updates it"
+      },
+      {
+        "address": "00655250",
+        "hex": "568bf18a466484c0753f",
+        "meaning": "Focus entry checks control byte +64 and returns zero without visual or event operations when nonzero"
+      },
+      {
+        "address": "0065525a",
+        "hex": "8b46746a01508b08ff51308b46706a00",
+        "meaning": "Enabled button focus shows actived and prepares to hide normal"
+      },
+      {
+        "address": "0065526a",
+        "hex": "508b10ff52308b4674508b08ff51248b4670508b10ff5224",
+        "meaning": "Focus hides normal then explicitly updates actived and normal"
+      },
+      {
+        "address": "00655282",
+        "hex": "6a0068003000048bcee8c07c0000b8010000005ec2040033c05ec20400",
+        "meaning": "Successful focus entry emits tagged event 04003000 with zero argument and returns one; blocked entry returns zero"
+      },
+      {
+        "address": "006552a3",
+        "hex": "6a018b4670508b08ff51308b46746a00508b10ff5230",
+        "meaning": "Focus loss shows normal and hides actived"
+      },
+      {
+        "address": "006552b9",
+        "hex": "8b4670508b08ff51248b4674508b10ff5224",
+        "meaning": "Focus loss explicitly updates normal and actived"
+      },
+      {
+        "address": "006552cb",
+        "hex": "6a0068004000048bcee8777c0000b8010000005ec20400",
+        "meaning": "Focus loss emits tagged event 04004000 with zero argument and returns one"
+      },
+      {
+        "address": "006552f0",
+        "hex": "8a416484c075146a006800100004e84d7c0000",
+        "meaning": "Button activation checks control byte +64 then emits tag 04001000 with zero argument"
+      },
+      {
+        "address": "00655303",
+        "hex": "b801000000c2040033c0c20400",
+        "meaning": "Button activation returns one or zero, discarding the unused pointer-target argument"
+      },
+      {
+        "address": "0065c906",
+        "hex": "817e4000100204751a",
+        "meaning": "Control observer dispatch checks the special override tag at control+40"
+      },
+      {
+        "address": "0065c919",
+        "hex": "8b4e44566a00ff5648",
+        "meaning": "Override callback receives control+44 as receiver and zero as its first stack argument"
+      },
+      {
+        "address": "0065c956",
+        "hex": "8b4c24143bca75078b500885d27506",
+        "meaning": "Observer scan matches the exact tag and skips a null callback"
+      },
+      {
+        "address": "0065c975",
+        "hex": "c1e00257518b4c10045651ff541008",
+        "meaning": "First matching observer receives stored context, sender, tag and argument"
+      },
+      {
+        "address": "0065c98b",
+        "hex": "5f5e5db0015bc20800",
+        "meaning": "Observer dispatch returns true when no callback matches"
+      },
+      {
+        "address": "0065cf76",
+        "hex": "50518bcbe881f9ffff",
+        "meaning": "Tagged dispatch invokes control observer notification before examining event records"
+      },
+      {
+        "address": "0065cfc3",
+        "hex": "8b4c060481e100f00f043bca",
+        "meaning": "Tagged dispatch matches each event code masked by 040ff000 against the emitted tag"
+      },
+      {
+        "address": "0065d04d",
+        "hex": "81e1ff0ff0fb83f8ff",
+        "meaning": "Tagged dispatch clears selector bits with fbf00fff and checks target against ffffffff"
+      },
+      {
+        "address": "0065d060",
+        "hex": "8b138d442418508bcbff526c",
+        "meaning": "Target ffffffff invokes the emitting control's vtable slot +6c with the copied event"
+      },
+      {
+        "address": "0065d0e1",
+        "hex": "b980e48a00e81590fbff",
+        "meaning": "Nonlocal tagged events use the shared event queue"
+      },
+      {
+        "address": "0064dce0",
+        "hex": "89481c894820894824",
+        "meaning": "Base control constructor initializes the tagged event vector empty"
+      },
+      {
+        "address": "0064dcec",
+        "hex": "894830894834894838894840894844894848",
+        "meaning": "Base control constructor initializes observers and override fields empty"
+      },
+      {
+        "address": "00614ec3",
+        "hex": "8d4810",
+        "meaning": "Definition event helper appends to the control definition's initialization list at +10"
+      },
+      {
+        "address": "0065dfbb",
+        "hex": "8b118d472050ff5278",
+        "meaning": "Control creation first invokes vtable +78 with the definition list at +20"
+      },
+      {
+        "address": "0065dfc4",
+        "hex": "8b4c241083c710578b11ff5270",
+        "meaning": "Control creation then invokes vtable +70 with the definition initialization list at +10"
+      },
+      {
+        "address": "0065cd30",
+        "hex": "c20400",
+        "meaning": "Button vtable +78 is a no-op for the definition's +20 list"
+      },
+      {
+        "address": "0065cf2f",
+        "hex": "8b55008d0433508bcdff526c",
+        "meaning": "Initialization-list handler sends each event through control vtable +6c in order"
+      },
+      {
+        "address": "0065cd59",
+        "hex": "8b420483ec18a900f00f04",
+        "meaning": "Base event handler detects tagged records by mask 040ff000"
+      },
+      {
+        "address": "0065cd69",
+        "hex": "8b46208d4e18526a0150e8d894fbff",
+        "meaning": "Base event handler appends a copy of each tagged record to control's vector at +18"
+      },
+      {
+        "address": "00644acb",
+        "hex": "8a9690000000",
+        "meaning": "Layout reads the inset byte at text-object+90"
+      },
+      {
+        "address": "00644ae1",
+        "hex": "d9c1d80dc80981008954240cda4c240ce80a131a00",
+        "meaning": "Layout truncates render width * 1/1024 * inset via __ftol before applying it"
+      },
+      {
+        "address": "008109c8",
+        "hex": "0000803a",
+        "meaning": "Exact float32 horizontal inset scale is 1/1024"
+      },
+      {
+        "address": "00644b01",
+        "hex": "d9c2d84c24108b4d0850518bced8c1d95e08",
+        "meaning": "Layout adds the integer inset to projected minimum X"
+      },
+      {
+        "address": "00644b28",
+        "hex": "d9cad84c2428d8e2d95e10",
+        "meaning": "Layout subtracts the same integer inset from projected maximum X"
+      },
+      {
+        "address": "00644b15",
+        "hex": "d84c241cd80dd8048100d82524f58000",
+        "meaning": "Layout bottom is height * minY * -4/3 - 1"
+      },
+      {
+        "address": "00644b35",
+        "hex": "d84c242cd80d883b8100d82d24f58000",
+        "meaning": "Layout top is 1 - height * maxY * 4/3"
+      },
+      {
+        "address": "008104d8",
+        "hex": "abaaaabf",
+        "meaning": "Negative 4/3 layout constant"
+      },
+      {
+        "address": "00813b88",
+        "hex": "abaaaa3f",
+        "meaning": "Positive 4/3 layout constant"
+      },
+      {
+        "address": "00644ec3",
+        "hex": "d84808d80518f58000",
+        "meaning": "Glyph height uses style height times render height, plus 0.5 before integer truncation"
+      },
+      {
+        "address": "00644e66",
+        "hex": "db442414dc0dd0048100dc0530f58000",
+        "meaning": "Zero-aspect character advance uses height * 0.4 + 0.5"
+      },
+      {
+        "address": "006403f3",
+        "hex": "6a0150b8",
+        "meaning": "Font flush selects screen-space vertex format 1"
+      },
+      {
+        "address": "00640407",
+        "hex": "6a0351ff9788000000",
+        "meaning": "Font flush submits kind 3 triangle lists through IGraph+88"
+      },
+      {
+        "address": "00646b75",
+        "hex": "837824010f84de010000",
+        "meaning": "Horizontal alignment 1 takes the unadjusted left position"
+      },
+      {
+        "address": "00646bbd",
+        "hex": "837824027556",
+        "meaning": "Horizontal alignment 2 enters the centered branch; 3 is right alignment"
+      },
+      {
+        "address": "00661a6f",
+        "hex": "8b46508b4e6850518b4e6ce80130feff",
+        "meaning": "Text control forwards its visual at +50 to the bounds layout helper"
+      },
+      {
+        "address": "00624bbb",
+        "hex": "68400800006a0d6815000001",
+        "meaning": "Exit definition binds localization 2112 with style 13"
+      },
+      {
+        "address": "00624c0b",
+        "hex": "68000000046803100006",
+        "meaning": "Exit definition attaches tagged event 06001003 with argument 04000000"
+      },
+      {
+        "address": "00625b7e",
+        "hex": "6870f583006868f58300",
+        "meaning": "Fourth menu screen uses resource label CONFIRM and model key confirm"
+      },
+      {
+        "address": "00625b9d",
+        "hex": "68d40700006a0c",
+        "meaning": "Menu confirmation prompt uses localization 2004 with style 12"
+      },
+      {
+        "address": "00625bc2",
+        "hex": "68d10700006a0d",
+        "meaning": "Menu confirmation Yes uses localization 2001 with style 13"
+      },
+      {
+        "address": "00625bd8",
+        "hex": "6a006800110014",
+        "meaning": "Yes emits deferred-queue release event 14001100 with argument zero"
+      },
+      {
+        "address": "00625c07",
+        "hex": "68d00700006a0d",
+        "meaning": "Menu confirmation No uses localization 2000 with style 13"
+      },
+      {
+        "address": "00625c1d",
+        "hex": "6a016800120014",
+        "meaning": "No emits deferred-queue discard event 14001200 with argument one"
+      },
+      {
+        "address": "00625c4c",
+        "hex": "6a006804000001",
+        "meaning": "Menu definition sends hide event 01000004 to bok"
+      },
+      {
+        "address": "0065cda4",
+        "hex": "2d0100000183f80b7721",
+        "meaning": "Control dispatcher selects 01000001..0100000c using a jump table"
+      },
+      {
+        "address": "0065cedc",
+        "hex": "e5cd6500",
+        "meaning": "Control event 01000004 dispatches to 0065cde5"
+      },
+      {
+        "address": "0065cde5",
+        "hex": "8b168bceff5214",
+        "meaning": "Event 01000004 invokes control vtable +14"
+      },
+      {
+        "address": "0065c790",
+        "hex": "568bf16a008b4650c6466500508b08ff51308b4650508b10ff5224",
+        "meaning": "Button hide callback clears control visibility and hides/updates its bound frame"
+      },
+      {
+        "address": "00626230",
+        "hex": "c1e31a895e40",
+        "meaning": "Screen definition stores the one-based index shifted left 26"
+      },
+      {
+        "address": "0062711f",
+        "hex": "81fa000000107523",
+        "meaning": "Screen setup recognizes fourth screen identifier 10000000"
+      },
+      {
+        "address": "0062712f",
+        "hex": "c74424380000003fc744243c0000c0bec7442440000000bfff5008",
+        "meaning": "Screen-four model position is (0.5,-0.375,-0.5), applied through model vtable +8"
+      },
+      {
+        "address": "0083f554",
+        "hex": "626f6b00626e6f2a00000000627965732a00",
+        "meaning": "Exact definition strings are bok, bno* and byes*, including literal asterisks"
+      },
+      {
+        "address": "0066c9a7",
+        "hex": "a9000000207410",
+        "meaning": "Shared router diverts events carrying bit 20000000 into the deferred queue"
+      },
+      {
+        "address": "0066c8f6",
+        "hex": "8d4c242c518bcbe84e000000",
+        "meaning": "Main event queue pumps its copied front event through the shared router"
+      },
+      {
+        "address": "0066c926",
+        "hex": "a1ace48a0085c00f8566feffff",
+        "meaning": "Main event pump repeats until the queue is empty, including events enqueued by the router"
+      },
+      {
+        "address": "0066c9be",
+        "hex": "a9000000107475f6c401",
+        "meaning": "Reply path tests bit 10000000 then low-word bit 100 for release"
+      },
+      {
+        "address": "0066c9d3",
+        "hex": "beffffffdfa158e48a008b780423fe897804",
+        "meaning": "Deferred release clears bit 20000000 before resubmitting each event"
+      },
+      {
+        "address": "0066ca09",
+        "hex": "8b4504f6c402",
+        "meaning": "Reply path tests low-word bit 200 for deferred discard"
+      },
+      {
+        "address": "0066cde2",
+        "hex": "a1e0e48a00bf010000003bc70f8583000000",
+        "meaning": "Exit/back case selects confirmation only at screen-stack depth one"
+      },
+      {
+        "address": "0066ca7b",
+        "hex": "0f8461030000",
+        "meaning": "Masked event 02000003 selects the Exit/back case"
+      },
+      {
+        "address": "0066cd31",
+        "hex": "3d020000020f852b090000",
+        "meaning": "Masked event 02000002 selects screen push"
+      },
+      {
+        "address": "0066cdfc",
+        "hex": "c744245c02000002c744246004000000",
+        "meaning": "Exit queues screen push event 02000002 with screen number 4"
+      },
+      {
+        "address": "0066ce49",
+        "hex": "c74424740400002289742478",
+        "meaning": "Exit queues deferred quit event 22000004 with zero argument"
+      },
+      {
+        "address": "0066d02a",
+        "hex": "2d04000002bf040000003bc70f872b060000ff24858cd66600",
+        "meaning": "Shared switch establishes edi=4 and dispatches masked events 02000004..08"
+      },
+      {
+        "address": "0066d68c",
+        "hex": "3bd3660043d0660067d6660029d16600cad16600",
+        "meaning": "Masked cases 02000004..08 map to quit, pop, default and two other screen handlers"
+      },
+      {
+        "address": "0066d34a",
+        "hex": "897b04",
+        "meaning": "Quit case stores established edi=4 into front-end state +4"
+      },
+      {
+        "address": "0066a409",
+        "hex": "8b463489464c",
+        "meaning": "Mouse press captures the current picked target in input state +4c"
+      },
+      {
+        "address": "0066a41e",
+        "hex": "8b7e4c8b4e343bf90f94c033d2884649",
+        "meaning": "Mouse release compares captured and current targets and stores the result at +49"
+      },
+      {
+        "address": "0066a45a",
+        "hex": "89564c89563c",
+        "meaning": "Mouse release clears the captured target and click timer"
+      },
+      {
+        "address": "0066a050",
+        "hex": "8b44240485c0740b854424087412b001c208008b44240885c07405b001c2080032c0c20800",
+        "meaning": "Button selector zero matches any nonzero state; nonzero selectors match any overlapping bit"
+      },
+      {
+        "address": "0066a080",
+        "hex": "8b412c8b5424045052e8c2ffffffc20400",
+        "meaning": "Previous button-state query applies the selector to input +2c"
+      },
+      {
+        "address": "0066a0a0",
+        "hex": "8b41308b5424045052e8a2ffffffc20400",
+        "meaning": "Current button-state query applies the selector to input +30"
+      },
+      {
+        "address": "0066a0c0",
+        "hex": "568b74240856e8d5ffffff84c0741056e8abffffff84c07506b001",
+        "meaning": "Button press transition means current selected and previous not selected"
+      },
+      {
+        "address": "0066a0f0",
+        "hex": "568b74240856e8a5ffffff84c0751056e87bffffff84c07406b001",
+        "meaning": "Button release transition means previous selected and current not selected"
+      },
+      {
+        "address": "0066a3fc",
+        "hex": "6a008bcee8bbfcffff84c07408",
+        "meaning": "Input update checks selector zero, meaning any button, before capturing the target"
+      },
+      {
+        "address": "0066ba87",
+        "hex": "6a03e832e6ffff84c07461",
+        "meaning": "Screen input routing checks a press transition for mask 3"
+      },
+      {
+        "address": "0066a432",
+        "hex": "817e3c900100007d0c394e507507",
+        "meaning": "Double-click detection requires signed timer less than 400 and the same previous target"
+      },
+      {
+        "address": "0066a450",
+        "hex": "897e503aca7403895650",
+        "meaning": "Matched release updates previous target, then a double click clears it"
+      },
+      {
+        "address": "0066a4c1",
+        "hex": "89415089414c",
+        "meaning": "Input constructor initializes previous and captured click targets to zero"
+      },
+      {
+        "address": "0066a4d3",
+        "hex": "89413c894144",
+        "meaning": "Input constructor initializes the click timer and suppression counter to zero"
+      },
+      {
+        "address": "0080f51c",
+        "hex": "00000000",
+        "meaning": "Mouse movement predicate compares both floating-point deltas against zero"
+      },
+      {
+        "address": "00669ff0",
+        "hex": "d94114d81d1cf58000dfe0f6c4447a13d94118d81d1cf58000dfe0f6c4447a03",
+        "meaning": "Mouse movement predicate checks input deltas +14 and +18, returning true when either is nonzero"
+      },
+      {
+        "address": "0066bc7a",
+        "hex": "e871e3ffff84c00f84f0000000385f2c",
+        "meaning": "Frontend dispatch checks pointer motion and the drag state before normal screen motion routing"
+      },
+      {
+        "address": "0066bcc3",
+        "hex": "8b088b11ff5240",
+        "meaning": "Normal pointer motion calls current screen vtable +40"
+      },
+      {
+        "address": "00656e18",
+        "hex": "5e8b0c908b11ff6260",
+        "meaning": "Screen double-click forwards to focused control vtable +60"
+      },
+      {
+        "address": "0064dbc0",
+        "hex": "566a0068002001048bf1e881f30000",
+        "meaning": "Button click emits 04012000 before calling control activation at vtable +38"
+      },
+      {
+        "address": "0064dbcf",
+        "hex": "8b4c24088b06518bceff50385ec20400",
+        "meaning": "Button click forwards the pointer target to the virtual activation callback and returns its result"
+      },
+      {
+        "address": "00656dd0",
+        "hex": "568bf18b4e6c8b06518bceff500484c0740f",
+        "meaning": "Screen click validates its focused control index before dispatching"
+      },
+      {
+        "address": "00656de9",
+        "hex": "8b0c908b11ff625cb807000000",
+        "meaning": "Screen click delegates to focused control vtable +5c, or returns seven for an invalid focus"
+      },
+      {
+        "address": "0064dbe0",
+        "hex": "6a006800300104e864f30000b807000000",
+        "meaning": "Button double-click emits 04013000 and returns seven"
+      },
+      {
+        "address": "0066a120",
+        "hex": "d90564068400d87128",
+        "meaning": "Cursor world y starts from the original mouse y divided by its range"
+      },
+      {
+        "address": "0066a12d",
+        "hex": "d9e0dc0d38018100",
+        "meaning": "Cursor world y is negated and multiplied by the double at 00810138"
+      },
+      {
+        "address": "00810138",
+        "hex": "000000000000e83f",
+        "meaning": "Cursor world y scale is the double 0.75"
+      },
+      {
+        "address": "0066a13e",
+        "hex": "c74008000080bf",
+        "meaning": "Cursor world z begins at -1"
+      },
+      {
+        "address": "0080f550",
+        "hex": "cdcccc3d",
+        "meaning": "Picking origin adds the float 0.1 to cursor world z"
+      },
+      {
+        "address": "0066a7ed",
+        "hex": "6800001400",
+        "meaning": "Original screen frame pick uses flags 00140000"
+      },
+      {
+        "address": "0066a820",
+        "hex": "ff910401000085c07410",
+        "meaning": "Client calls scene vtable +104 and checks for a picked frame"
+      },
+      {
+        "address": "0066a82a",
+        "hex": "8b80ec000000894638",
+        "meaning": "Picked frame identifier at +ec is saved to mouse state +38"
+      },
+      {
+        "address": "0066a83a",
+        "hex": "33c0894638",
+        "meaning": "No picked frame clears mouse state +38"
+      },
+      {
+        "address": "00656bb2",
+        "hex": "ff523485c07410c7466cffffffff",
+        "meaning": "Screen focus loss clears the index only after the control leave callback succeeds"
+      },
+      {
+        "address": "00656c3b",
+        "hex": "57ff13508bceff530484c0",
+        "meaning": "Screen pointer routing resolves and validates the target control"
+      },
+      {
+        "address": "00656c57",
+        "hex": "8b168bceff523485c0740e",
+        "meaning": "Screen pointer routing invokes focus loss before entering a different control"
+      },
+      {
+        "address": "00656c7b",
+        "hex": "8b4e088b0c998b11ff5240",
+        "meaning": "A pointer targeting the already-focused control invokes its +40 callback"
+      },
+      {
+        "address": "0064dae0",
+        "hex": "6a006800500004e864f40000b807000000",
+        "meaning": "Button pointer-move callback emits 04005000 and returns seven"
+      },
+      {
+        "address": "006153ae",
+        "hex": "8b454083e73f8d4e04c1e7140bf8",
+        "meaning": "Child definition ID combines the parent ID with the one-based six-bit child number"
+      },
+      {
+        "address": "0061540a",
+        "hex": "897e08",
+        "meaning": "Child definition stores its constructed identifier at +8"
+      },
+      {
+        "address": "0064dd2e",
+        "hex": "8b542410895060",
+        "meaning": "Control constructor stores the child definition identifier at +60"
+      },
+      {
+        "address": "0065518f",
+        "hex": "8b56708b46608982ec0000008b4e748b56608991ec000000",
+        "meaning": "Button setup assigns its identifier to normal and active frame +ec"
+      },
+      {
+        "address": "0065c83d",
+        "hex": "a900f00f00743e",
+        "meaning": "Control lookup first selects the bits 4..11 comparison when the parent has bits 12..19"
+      },
+      {
+        "address": "0065c882",
+        "hex": "a90000f0037436",
+        "meaning": "Control lookup next selects bits 12..19 when the parent has bits 20..25"
+      },
+      {
+        "address": "0065c8d4",
+        "hex": "8bdfc1eb148b148283e33f8b5260c1fa1483e23f33d37406",
+        "meaning": "Fallback control lookup compares target and control bits 20..25 in order"
+      },
+      {
+        "address": "00626f2f",
+        "hex": "80fa040f85a2000000",
+        "meaning": "Menu cancel path recognizes screen 4"
+      },
+      {
+        "address": "00626f46",
+        "hex": "c78424d00000000012001489b424d4000000",
+        "meaning": "Screen-4 cancel queues reply 14001200 with argument one"
+      },
+      {
+        "address": "00626fa2",
+        "hex": "c78424ec00000005100006899c24f0000000",
+        "meaning": "Screen-4 cancel next queues screen-pop event 06001005 with argument zero"
+      },
+      {
+        "address": "0066de7f",
+        "hex": "e8b86f17008b086a0550ff511c8bd8",
+        "meaning": "Original modal rendering saves original driver state 5 before the background pass"
+      },
+      {
+        "address": "0066de8e",
+        "hex": "8b47746a00508b10ff52308b86f80000006a018b4074508b08ff51308b46306a00508b10ff5278",
+        "meaning": "Original modal rendering hides current screen and shows the previous screen for its first scene pass"
+      },
+      {
+        "address": "0066deb5",
+        "hex": "e8826f17008b086a006a0550ff5118",
+        "meaning": "Original modal rendering sets driver state 5 to zero before the next scene pass"
+      },
+      {
+        "address": "0066dec4",
+        "hex": "8b7f746a01578b17ff52308b86f80000006a008b4074508b08ff51308b4630",
+        "meaning": "Original modal rendering shows current screen and hides the previous screen before the second pass"
+      },
+      {
+        "address": "00623f36",
+        "hex": "68350800006a0a6815000001",
+        "meaning": "Caption initialization pushes label 2101, style 10, then message 01000015"
+      },
+      {
+        "address": "00623fe9",
+        "hex": "68360800006a0b6815000001",
+        "meaning": "Caption initialization pushes label 2102, style 11, then message 01000015"
+      },
+      {
+        "address": "0062409c",
+        "hex": "68d20700006a0c6815000001",
+        "meaning": "Caption initialization pushes label 2002, style 12, then message 01000015"
+      },
+      {
+        "address": "0062414f",
+        "hex": "68370800006a0b6815000001",
+        "meaning": "Caption initialization pushes label 2103, style 11, then message 01000015"
+      },
+      {
+        "address": "00624202",
+        "hex": "68d20700006a0c6815000001",
+        "meaning": "Caption initialization pushes label 2002, style 12, then message 01000015"
+      },
+      {
+        "address": "006242b5",
+        "hex": "68380800006a0b6815000001",
+        "meaning": "Caption initialization pushes label 2104, style 11, then message 01000015"
+      },
+      {
+        "address": "00624368",
+        "hex": "68d20700006a0c6815000001",
+        "meaning": "Caption initialization pushes label 2002, style 12, then message 01000015"
+      },
+      {
+        "address": "0062441b",
+        "hex": "68390800006a0d6815000001",
+        "meaning": "Caption initialization pushes label 2105, style 13, then message 01000015"
+      },
+      {
+        "address": "0062450f",
+        "hex": "683a0800006a0d6815000001",
+        "meaning": "Caption initialization pushes label 2106, style 13, then message 01000015"
+      },
+      {
+        "address": "00624603",
+        "hex": "683b0800006a0d6815000001",
+        "meaning": "Caption initialization pushes label 2107, style 13, then message 01000015"
+      },
+      {
+        "address": "006246f7",
+        "hex": "68430800006a0d6815000001",
+        "meaning": "Caption initialization pushes label 2115, style 13, then message 01000015"
+      },
+      {
+        "address": "006247eb",
+        "hex": "68440800006a0d6815000001",
+        "meaning": "Caption initialization pushes label 2116, style 13, then message 01000015"
+      },
+      {
+        "address": "006248df",
+        "hex": "683d0800006a0d6815000001",
+        "meaning": "Caption initialization pushes label 2109, style 13, then message 01000015"
+      },
+      {
+        "address": "006249d3",
+        "hex": "683e0800006a0d6815000001",
+        "meaning": "Caption initialization pushes label 2110, style 13, then message 01000015"
+      },
+      {
+        "address": "00624ac7",
+        "hex": "683f0800006a0d6815000001",
+        "meaning": "Caption initialization pushes label 2111, style 13, then message 01000015"
+      },
+      {
+        "address": "00624cb2",
+        "hex": "68d60700006a286815000001",
+        "meaning": "Caption initialization pushes label 2006, style 40, then message 01000015"
+      },
+      {
+        "address": "00644116",
+        "hex": "85f60f8c84000000",
+        "meaning": "Text set checks signed record index before replacement"
+      },
+      {
+        "address": "0064416b",
+        "hex": "8a4c2420891e884e04c6477201",
+        "meaning": "Text set stores low style byte and dirty flag +72"
+      },
+      {
+        "address": "006441c0",
+        "hex": "e8cb030000",
+        "meaning": "Invalid index delegates to text append 00644590"
+      },
+      {
+        "address": "00644236",
+        "hex": "83fb28",
+        "meaning": "Localized set special-cases full style 40 for version formatting"
+      },
+      {
+        "address": "00644358",
+        "hex": "e893fdffff",
+        "meaning": "Localized set delegates to indexed record set"
+      },
+      {
+        "address": "00644419",
+        "hex": "e8d2fcffff",
+        "meaning": "String wrapper delegates to indexed record set"
+      },
+      {
+        "address": "006444de",
+        "hex": "e8ad000000",
+        "meaning": "Localized append delegates to append without style-40 formatter"
+      },
+      {
+        "address": "00644560",
+        "hex": "e82b000000",
+        "meaning": "String append delegates to append helper"
+      },
+      {
+        "address": "006445be",
+        "hex": "e83d7a00008b442414c6467201",
+        "meaning": "Append inserts record then marks text dirty"
+      },
+      {
+        "address": "0064489a",
+        "hex": "c64572010f8ca2000000",
+        "meaning": "Remove marks dirty before rejecting negative index"
+      },
+      {
+        "address": "00644938",
+        "hex": "8b44240c85c05e5d0f95c0c20400",
+        "meaning": "Remove tests saved record pointer, not original index: stack argument was overwritten at 006448d3"
+      },
+      {
+        "address": "006449bb",
+        "hex": "897d38b0015f8845725e5d5bc3",
+        "meaning": "Clear updates vector end to beginning and stores dirty flag"
+      },
+      {
+        "address": "006448d3",
+        "hex": "894c2414",
+        "meaning": "Removal replaces original stack argument with record pointer; final non-null result succeeds even for index zero"
+      }
     ],
     "vtables": [
-      {"address": "00815560", "targets": ["00668670"]},
-      {"address": "00814cd0", "targets": ["0064da30"]},
-      {"address": "00813cec", "targets": ["0065c680"]},
-      {"address": "00814cdc", "targets": ["006550e0", "00655250", "006552a0"]},
-      {"address": "00814ce8", "targets": ["006552f0"]},
-      {"address": "00814d1c", "targets": ["006551d0", "0065cf00"]},
-      {"address": "00814d28", "targets": ["0065cd30"]},
-      {"address": "00814cf4", "targets": ["0064db00", "0064db20", "0064db40", "0064db60", "0064db80", "0064dba0"]},
-      {"address": "00814cf0", "targets": ["0064dae0"]},
-      {"address": "00814d0c", "targets": ["0064dbc0", "0064dbe0"]},
-      {"address": "00815540", "targets": ["0065c830"]},
-      {"address": "00815570", "targets": ["00656b20", "00656b90", "00656bd0", "00656c00", "00656c30"]},
-      {"address": "00815584", "targets": ["00656cd0", "00656ca0", "00656da0", "00656d10", "00656d40", "00656d70"]},
-      {"address": "0081559c", "targets": ["00656dd0"]},
-      {"address": "008155a0", "targets": ["00656e00"]}
+      {
+        "address": "00815560",
+        "targets": [
+          "00668670"
+        ]
+      },
+      {
+        "address": "00814cd0",
+        "targets": [
+          "0064da30"
+        ]
+      },
+      {
+        "address": "00813cec",
+        "targets": [
+          "0065c680"
+        ]
+      },
+      {
+        "address": "00814cdc",
+        "targets": [
+          "006550e0",
+          "00655250",
+          "006552a0"
+        ]
+      },
+      {
+        "address": "00814ce8",
+        "targets": [
+          "006552f0"
+        ]
+      },
+      {
+        "address": "00814d1c",
+        "targets": [
+          "006551d0",
+          "0065cf00"
+        ]
+      },
+      {
+        "address": "00814d28",
+        "targets": [
+          "0065cd30"
+        ]
+      },
+      {
+        "address": "00814cf4",
+        "targets": [
+          "0064db00",
+          "0064db20",
+          "0064db40",
+          "0064db60",
+          "0064db80",
+          "0064dba0"
+        ]
+      },
+      {
+        "address": "00814cf0",
+        "targets": [
+          "0064dae0"
+        ]
+      },
+      {
+        "address": "00814d0c",
+        "targets": [
+          "0064dbc0",
+          "0064dbe0"
+        ]
+      },
+      {
+        "address": "00815540",
+        "targets": [
+          "0065c830"
+        ]
+      },
+      {
+        "address": "00815570",
+        "targets": [
+          "00656b20",
+          "00656b90",
+          "00656bd0",
+          "00656c00",
+          "00656c30"
+        ]
+      },
+      {
+        "address": "00815584",
+        "targets": [
+          "00656cd0",
+          "00656ca0",
+          "00656da0",
+          "00656d10",
+          "00656d40",
+          "00656d70"
+        ]
+      },
+      {
+        "address": "0081559c",
+        "targets": [
+          "00656dd0"
+        ]
+      },
+      {
+        "address": "008155a0",
+        "targets": [
+          "00656e00"
+        ]
+      }
     ],
     "direct_calls": [],
     "resource_anchors": []
@@ -743,5 +2689,13 @@
   "interaction_policy": "Only Exit is enabled; unsupported button captions use the original disabled alpha 0x60. UI mode initializes all nine pairs as normal visible/actived hidden. Original conditional local-position alignment at frame+b0 and dirty flags at +e0 are reproduced before updating the active visual. Exit hover switches original normal07/actived07 visibility and uses white focused-text color; cursor absence/focus loss restores normal. One hover sample drives scene and caption in the same frame. Win32 press/release inside the unchanged normal07 rectangle closes this host. This is a host-owned focus adapter, not the original dispatcher, UI sound events, confirmation flow or other screens. Artwork-only mode does not initialize or switch pairs.",
   "asset_policy": "Read original loose English TEXTY and ANSI Set2 atlases/metrics locally. Stage a provenance-tracked five-asset slice, including a newly defined H2MT label bundle. No game text or atlas is redistributed. Fixed 800x600; dynamic profile/date/save/version values remain absent.",
   "research_outputs": "analysis/work/menu-label-layout (four successful exports; later non-entry request rejected), menu-label-alignment (three), menu-label-final (three), menu-overlay-states (two), menu-overlay-graphics (one format-name query, not a state API). All ignored.",
-  "verification_boundary": "User desktop observations and direct host logs confirm bounded static text/Exit, corrected horizontal inset, visual selection, rectangle-driven confirmation interaction, opt-in engine-picking interaction with motion events, button click-event ordering, focused-screen clicks, Escape and left-button input-probe samples. Right-button and double-click probe cases, pixel-perfect blending, exhaustive hover/cancellation edge cases and complete original UI dispatch are not established."
+  "verification_boundary": "User desktop observations and direct host logs confirm bounded static text/Exit, corrected horizontal inset, visual selection, rectangle-driven confirmation interaction, opt-in engine-picking interaction with motion events, button click-event ordering, focused-screen clicks, Escape and left-button input-probe samples. Right-button and double-click probe cases, pixel-perfect blending, exhaustive hover/cancellation edge cases and complete original UI dispatch are not established.",
+  "attached_text_layer": {
+    "status": "Implemented, audited and user desktop-confirmed: 506 frames, keyboard and pointer activation, No/Escape/Yes, clean graphics/sound teardown.",
+    "storage": "Portable TextObject preserves signed indexed replacement/append, style-byte storage, dirty transitions, localized set versus ordinary localized append, remove and clear. Valid removal returns true, including index zero; original overwrites the argument stack slot with the record pointer before its final non-null test. Native shared immutable strings replace original intrusive pointers/SEH; typed event.text owns payload independently of opaque event/observer pointers.",
+    "definitions": "All 17 main and four confirmation children now carry original caption/style initialization before activation bindings; empty ID 2002 is staged explicitly. Version style 40/ID 2006 remains deferred until original formatter/global version values are reconstructed.",
+    "integration": "Stable MenuTextObject state attaches to ButtonVisualPair; static and button initializers execute exactly once. TextControlRuntime connects full derived dispatch and disabled mirror to the same records read by MenuText glyph submission. Font/height/alignment/inset come from bounded original style catalog and text state. Existing glyph/device/visual bounds bridges remain delegated.",
+    "validation": "Strict i386 host build; temporary ASan/UBSan native audit and i386 audit compilation. Covers text storage ownership, index/style/dirty behavior, localized/version boundary, every text selector, 21 definitions and 48 real-font geometry comparisons to previous renderer. Real-asset staging upgrade includes original empty ID 2002, verifies unchanged fonts, idempotence and tamper rejection before writes. Existing native suite and 17 launcher/12 text/nine frontend checks pass. No new unit tests or agent-side Proton run.",
+    "limits": "Single-line printable English ASCII and one visible text record. No paragraph wrapping, full font/style catalog, dynamic profile/date/save/version callbacks, original class ABI/refcount/SEH, general heterogeneous factory or original text +94 color behavior. Current hover/unavailable colors preserve desktop-tested host policy. No complete-function claims."
+  }
 }

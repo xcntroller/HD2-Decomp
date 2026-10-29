@@ -7,6 +7,123 @@
   "functions": [
     {
       "program": "client",
+      "entry": "006440f0",
+      "status": "partial",
+      "coverage": "Signed indexed text record replacement or append fallback; style-byte storage, shared ownership and dirty flag.",
+      "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00644590",
+      "status": "partial",
+      "coverage": "Append native pointer/style record and set text dirty.",
+      "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00644200",
+      "status": "partial",
+      "coverage": "Ordinary localized indexed set; explicit style-40 version formatting callback boundary, without inventing global version values.",
+      "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006443c0",
+      "status": "partial",
+      "coverage": "Portable owned string wrapper delegates to indexed record set.",
+      "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00644510",
+      "status": "partial",
+      "coverage": "Portable owned string wrapper delegates to record append.",
+      "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00644450",
+      "status": "partial",
+      "coverage": "Localized append without special version formatting, preserving distinction from indexed localized set.",
+      "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00644890",
+      "status": "partial",
+      "coverage": "Dirty-before-validation, signed bounds, ordered record erase and true on successful removal including index zero (original stack argument is overwritten with record pointer).",
+      "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00644960",
+      "status": "partial",
+      "coverage": "Clear all records, release shared ownership and mark dirty.",
+      "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00641e30",
+      "status": "partial",
+      "coverage": "Bounded styles 10, 11, 12, 13 and 40: original font index, normalized height, color and alignment.",
+      "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
+      ]
+    },
+    {
+      "program": "client",
       "entry": "0065cac0",
       "status": "partial",
       "coverage": "Register observer only when tag/callback are nonzero; special 04021000 stores override, ordinary registrations append preserving duplicates.",
@@ -74,35 +191,40 @@
       "program": "client",
       "entry": "00661940",
       "status": "partial",
-      "coverage": "Reconstruct text-derived event selection, exact arguments, mutable record-count output, inset/word updates, positive-z direction/layout order and base fallback; helper results ignored.",
-      "limitations": "Sequencing only; underlying localization/font/text storage/layout/helper bodies and original ABI remain callbacks. Full dispatcher audited but attached client text backend not integrated in host.",
+      "coverage": "Reconstruct text-derived event selection, exact arguments, mutable record-count output, inset/word updates, positive-z direction/layout order and base fallback; helper results ignored. Attached text state is now connected to host initialization and glyph submission.",
+      "limitations": "Portable object/event ABI, shared strings and visual/glyph bridge replace original text class/font/layout internals. General paragraph layout and text +94 color semantics remain unresolved. Bounded attached-text integration desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/text_control_event.h",
         "recovered/frontend/control_runtime.h",
-        "recovered/host/menu_button_visuals.h"
+        "recovered/host/menu_button_visuals.h",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
       ]
     },
     {
       "program": "client",
       "entry": "006551d0",
       "status": "partial",
-      "coverage": "Tagged button events forward to text parent; 0200002c conditionally lays out on normal visual, 02000076 booleanizes text +94, remaining messages forward.",
-      "limitations": "Portable context replaces original fields/ABI. Host routes tagged/shared-base events through this sequence with no attached client text object; text-backed overrides audited only.",
+      "coverage": "Tagged button events forward to text parent; 0200002c conditionally lays out on normal visual, 02000076 booleanizes text +94, remaining messages forward. Attached text state is now connected to host initialization and glyph submission.",
+      "limitations": "Portable object/event ABI, shared strings and visual/glyph bridge replace original text class/font/layout internals. General paragraph layout and text +94 color semantics remain unresolved. Bounded attached-text integration desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/text_control_event.h",
         "recovered/frontend/control_runtime.h",
-        "recovered/host/menu_button_visuals.h"
+        "recovered/host/menu_button_visuals.h",
+        "recovered/frontend/text_object.h",
+        "recovered/frontend/text_control_runtime.h",
+        "recovered/host/menu_text_object.h"
       ]
     },
-
     {
       "program": "client",
       "entry": "00623dd0",
       "status": "partial",
-      "coverage": "Readable bounded definition data for main-menu and confirmation: exact child IDs/order/kinds/names, nine main button activation bindings, Yes/No ordered reply/pop bindings and hidden OK hide record. Shared definition-backed controls/screens consume the three supported actions.",
-      "limitations": "Reconstructs only definition data for these two screens; original allocation/registration helpers, other screens, caption/style/observer lists and dynamic data callbacks are incomplete. Text rendering and OK hiding remain existing host adapters. Interactive generalization is user desktop-confirmed.",
+      "coverage": "Readable bounded definition data for main-menu and confirmation: exact child IDs/order/kinds/names, nine main button activation bindings, Yes/No ordered reply/pop bindings and hidden OK hide record. Shared definition-backed controls/screens consume the three supported actions. Original caption/style events for all main and confirmation slots now initialize attached records used by the renderer.",
+      "limitations": "Bounded data for two screens only; original allocation/registration, other screens, observer lists and dynamic data callbacks remain incomplete. Version formatter deferred; glyph bridge is host-owned. Bounded attached-text integration desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/menu_definition.h",
@@ -111,7 +233,6 @@
         "recovered/host/menu_button_visuals.h"
       ]
     },
-
     {
       "program": "client",
       "entry": "0064dcc0",
@@ -135,7 +256,6 @@
         "recovered/frontend/control_initialization.h"
       ]
     },
-
     {
       "program": "client",
       "entry": "006db3b0",
@@ -201,7 +321,12 @@
       "status": "partial",
       "coverage": "Validate focused control, offer full key word to enabled control +20, then recognize low-byte 1c/39/9c, revalidate focus and call activation +38 with control +60 argument, ignoring activation result.",
       "limitations": "Portable screen/control accessors and callbacks replace original ABI/storage. Host maps first Win32 Enter/Space keydown only in engine-input mode and suppresses repeats; original keyboard device/event transport, navigation and default focus remain absent. Enabled controls are Exit and Yes/No. Enter/Space desktop-confirmed; keypad Enter untested on hardware.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_key.h", "recovered/host/engine_window.cpp", "recovered/frontend/defined_screen.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_key.h",
+        "recovered/host/engine_window.cpp",
+        "recovered/frontend/defined_screen.h"
+      ]
     },
     {
       "program": "client",
@@ -209,7 +334,11 @@
       "status": "partial",
       "coverage": "Validate focused index and forward pointer target plus integer wheel amount to control +4c; return seven for invalid focus.",
       "limitations": "Portable accessors and callback dispatch replace original screen/control ABI. Used by the bounded engine-input confirmation adapter; no desktop wheel validation yet.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "client",
@@ -217,7 +346,10 @@
       "status": "partial",
       "coverage": "Return the stored float wheel delta through the portable cursor accessor.",
       "limitations": "Portable float storage and C++ return ABI replace original input +1c and x87 return.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_cursor.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_cursor.h"
+      ]
     },
     {
       "program": "client",
@@ -225,7 +357,10 @@
       "status": "partial",
       "coverage": "Return whether the stored wheel delta is nonzero.",
       "limitations": "Portable float argument and boolean result replace original object ABI; original FPU exception flags are excluded.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_wheel.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_wheel.h"
+      ]
     },
     {
       "program": "client",
@@ -233,7 +368,11 @@
       "status": "partial",
       "coverage": "Validate focused control and forward screen press to control +48; return zero for invalid focus.",
       "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h"
+      ]
     },
     {
       "program": "client",
@@ -241,7 +380,11 @@
       "status": "partial",
       "coverage": "Validate focus, resolve target and forward release to control +44 only when target index equals focused index; otherwise return zero.",
       "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h"
+      ]
     },
     {
       "program": "client",
@@ -249,7 +392,11 @@
       "status": "partial",
       "coverage": "Validate focused control and forward drag to control +50; return zero for invalid focus.",
       "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h"
+      ]
     },
     {
       "program": "client",
@@ -257,7 +404,11 @@
       "status": "partial",
       "coverage": "Validate focused control and forward drag end to control +54; return zero for invalid focus.",
       "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h"
+      ]
     },
     {
       "program": "client",
@@ -265,7 +416,11 @@
       "status": "partial",
       "coverage": "Validate focused control and forward drag begin to control +58; return zero for invalid focus.",
       "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h"
+      ]
     },
     {
       "program": "client",
@@ -273,7 +428,11 @@
       "status": "partial",
       "coverage": "Validate focused control and forward double-click to control +60; return seven for invalid focus.",
       "limitations": "Portable screen accessors and callback dispatch replace original object layout, virtual ABI and control storage. Used by simulated Yes/No controls and the opt-in engine-button confirmation bridge. Child button events are separately reconstructed, but original screen/control objects and ABI remain adapters; live double-click dispatch stays disabled.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/pointer_dispatch_probe.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h"
+      ]
     },
     {
       "program": "client",
@@ -281,7 +440,11 @@
       "status": "partial",
       "coverage": "Chunk-reader constructor: read-mode length and initial seek behavior.",
       "limitations": "Archive opening, original flags and write mode are excluded; portable API differs.",
-      "evidence": ["analysis/reconstruction-map.json", "recovered/io/chunk_reader.cpp", "recovered/tests/chunk_reader_tests.cpp"]
+      "evidence": [
+        "analysis/reconstruction-map.json",
+        "recovered/io/chunk_reader.cpp",
+        "recovered/tests/chunk_reader_tests.cpp"
+      ]
     },
     {
       "program": "client",
@@ -289,7 +452,11 @@
       "status": "partial",
       "coverage": "Enter a chunk: header decode, end calculation and nesting.",
       "limitations": "Supported-subset behavioral reconstruction with different error handling and extra bounds checks; not the complete original function.",
-      "evidence": ["analysis/reconstruction-map.json", "recovered/io/chunk_reader.cpp", "recovered/tests/chunk_reader_tests.cpp"]
+      "evidence": [
+        "analysis/reconstruction-map.json",
+        "recovered/io/chunk_reader.cpp",
+        "recovered/tests/chunk_reader_tests.cpp"
+      ]
     },
     {
       "program": "client",
@@ -297,7 +464,11 @@
       "status": "partial",
       "coverage": "Bounded exact-byte read within the active chunk.",
       "limitations": "Portable stream and exception API, additional depth-zero bounds checks; not end-to-end original behavior.",
-      "evidence": ["analysis/reconstruction-map.json", "recovered/io/chunk_reader.cpp", "recovered/tests/chunk_reader_tests.cpp"]
+      "evidence": [
+        "analysis/reconstruction-map.json",
+        "recovered/io/chunk_reader.cpp",
+        "recovered/tests/chunk_reader_tests.cpp"
+      ]
     },
     {
       "program": "client",
@@ -305,7 +476,11 @@
       "status": "partial",
       "coverage": "Leave a chunk in read mode.",
       "limitations": "Write-mode backpatching and optional size output are excluded; original archive API is not reproduced.",
-      "evidence": ["analysis/reconstruction-map.json", "recovered/io/chunk_reader.cpp", "recovered/tests/chunk_reader_tests.cpp"]
+      "evidence": [
+        "analysis/reconstruction-map.json",
+        "recovered/io/chunk_reader.cpp",
+        "recovered/tests/chunk_reader_tests.cpp"
+      ]
     },
     {
       "program": "client",
@@ -313,7 +488,14 @@
       "status": "partial",
       "coverage": "Two fragments of ONE object-loader function: model-resource key processing and candidate-result classification.",
       "limitations": "The complete object loader, cache, retries, ownership, engine loading and logging are not reconstructed.",
-      "evidence": ["analysis/reconstruction-map.json", "analysis/model-load-policy.json", "recovered/scene/model_resource_key.cpp", "recovered/scene/model_load_policy.cpp", "recovered/tests/model_resource_key_tests.cpp", "recovered/tests/model_load_policy_tests.cpp"]
+      "evidence": [
+        "analysis/reconstruction-map.json",
+        "analysis/model-load-policy.json",
+        "recovered/scene/model_resource_key.cpp",
+        "recovered/scene/model_load_policy.cpp",
+        "recovered/tests/model_resource_key_tests.cpp",
+        "recovered/tests/model_load_policy_tests.cpp"
+      ]
     },
     {
       "program": "client",
@@ -321,7 +503,11 @@
       "status": "partial",
       "coverage": "Button focus entry: +64 gate, ordered active/normal visibility and updates, tagged event 04003000 with zero argument and result.",
       "limitations": "Portable operations interface replaces the original object layout and calling convention; the host assumes an unblocked control and only filters the known focus events through a bounded dispatcher.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/button_focus.h", "recovered/host/menu_button_visuals.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/button_focus.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
     },
     {
       "program": "client",
@@ -329,7 +515,11 @@
       "status": "partial",
       "coverage": "Button focus loss: ordered normal/active visibility and updates, tagged event 04004000 with zero argument and result.",
       "limitations": "Portable operations interface replaces the original object layout and calling convention; the host only filters the known focus events through a bounded dispatcher.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/button_focus.h", "recovered/host/menu_button_visuals.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/button_focus.h",
+        "recovered/host/menu_button_visuals.h"
+      ]
     },
     {
       "program": "client",
@@ -337,7 +527,11 @@
       "status": "partial",
       "coverage": "Screen focus loss validates the focused index, calls the control's leave operation, and clears the index only on success.",
       "limitations": "Portable callbacks and host-maintained indices replace the original screen and control ABI; only the confirmation buttons are integrated.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_focus.h", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_focus.h",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "client",
@@ -345,7 +539,11 @@
       "status": "partial",
       "coverage": "Screen click validates the focused control index, invokes its click callback with the pointer target, or returns seven if focus is invalid.",
       "limitations": "Portable adapters replace the original virtual calls and object ABI; the supported button callback ignores the target. The confirmation host uses this path only when sampled focus matches the clicked button; otherwise it explicitly retains host target selection. Other screens and the original input update order are unsupported.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_input.h", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "client",
@@ -353,7 +551,13 @@
       "status": "partial",
       "coverage": "Screen pointer routing handles invalid targets, the already-focused control, failed focus loss and entry of a different control.",
       "limitations": "Portable callbacks and definition-derived IDs replace original virtual calls and object ABI. The host routes sampled hover changes, plus sampled motion in opt-in picker mode, assumes eligibility, and excludes the special target-15 entry branch and original input timing.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/screen_focus.h", "recovered/frontend/screen_target.h", "recovered/host/engine_window.cpp", "recovered/host/menu_button_visuals.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_focus.h",
+        "recovered/frontend/screen_target.h",
+        "recovered/host/engine_window.cpp",
+        "recovered/host/menu_button_visuals.h"
+      ]
     },
     {
       "program": "client",
@@ -361,7 +565,11 @@
       "status": "partial",
       "coverage": "Control notification override, first matching non-null observer selection, callback arguments and default success result.",
       "limitations": "Portable callbacks and collections replace the original object layout and calling convention; the override callback is checked for null instead of invoking it unchecked. Only the known Exit and Yes/No control bindings are integrated.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/control_events.h", "recovered/frontend/control_events.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/control_events.h",
+        "recovered/frontend/control_events.cpp"
+      ]
     },
     {
       "program": "client",
@@ -369,7 +577,12 @@
       "status": "partial",
       "coverage": "Observer notification precedes ordered tagged-record filtering, selector-bit clearing, local-target dispatch or queue submission.",
       "limitations": "Portable records, shared ownership and destination callbacks replace the original object layout, intrusive reference counting and ABI. Emitter-owned local delivery is now integrated, including shared state messages. Global targeted routing and general queue behavior beyond the bounded screen flow remain unsupported.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/control_events.h", "recovered/frontend/control_events.cpp", "recovered/frontend/menu_event_queue.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/control_events.h",
+        "recovered/frontend/control_events.cpp",
+        "recovered/frontend/menu_event_queue.cpp"
+      ]
     },
     {
       "program": "client",
@@ -390,7 +603,11 @@
       "status": "partial",
       "coverage": "Return whether either horizontal or vertical pointer delta is nonzero.",
       "limitations": "Portable float arguments replace the input object and original ABI; live interaction derives deltas from sampled cursor positions; the shadow now applies reconstructed clamping to host-derived samples rather than polling original relative motion.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_motion.h", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_motion.h",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "client",
@@ -398,7 +615,13 @@
       "status": "partial",
       "coverage": "Portable sequencing reconstructs the front-end gate, pick-before-update call order, target-change gate, alternate-motion branch, mask-3 press/release, captured-control veto, double-before-single click, drag callback order/early return, and raw wheel conversion, focused dispatch and post-callback current-screen repicking. An observational adapter logs the routed screen slots. The opt-in engine-button adapter now routes main-menu Exit and confirmation press/release/drag/click through the reconstructed dispatcher and screen helpers; default interactive modes retain their existing paths.",
       "limitations": "Device state polling is reconstructed in a bounded separate slice; captured-control objects, stack lookup and ABI remain adapters; accepted-click side effect now routes to an original unbuffered sound frame in engine-input mode. The shadow uses reconstructed clamping on host-derived motion, while live interaction retains its existing sampling. Wheel conversion/dispatch/repicking order is reconstructed; original segmented screen-stack storage remains a context adapter. The probe uses message snapshots and does not invoke live callbacks; its capture state is absent. Interactive target changes retain host focus routing to preserve established behavior.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_motion.h", "recovered/frontend/pointer_dispatch.h", "recovered/host/pointer_dispatch_probe.h", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_motion.h",
+        "recovered/frontend/pointer_dispatch.h",
+        "recovered/host/pointer_dispatch_probe.h",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "client",
@@ -406,7 +629,11 @@
       "status": "partial",
       "coverage": "Selector zero matches any nonzero button state; nonzero selectors match any overlapping button bit.",
       "limitations": "Portable integer arguments and boolean result replace the original ABI; the shadow supplies Win32 messages and the opt-in bridge supplies rebuilt engine polling snapshots.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_buttons.h",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "client",
@@ -414,7 +641,10 @@
       "status": "partial",
       "coverage": "Apply the button selector to the previous input state.",
       "limitations": "Portable state and ABI replace the original object field; the shadow uses Win32 messages and the opt-in bridge uses rebuilt engine polling snapshots.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_buttons.h"
+      ]
     },
     {
       "program": "client",
@@ -422,7 +652,10 @@
       "status": "partial",
       "coverage": "Apply the button selector to the current input state.",
       "limitations": "Portable state and ABI replace the original object field; the shadow uses Win32 messages and the opt-in bridge uses rebuilt engine polling snapshots.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_buttons.h"
+      ]
     },
     {
       "program": "client",
@@ -430,7 +663,11 @@
       "status": "partial",
       "coverage": "A press transition requires the selector to match current state but not previous state.",
       "limitations": "Portable state and ABI replace the original input object; the shadow uses Win32 messages and the opt-in bridge uses rebuilt engine polling snapshots.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_buttons.h",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "client",
@@ -438,7 +675,11 @@
       "status": "partial",
       "coverage": "A release transition requires the selector to match previous state but not current state.",
       "limitations": "Portable state and ABI replace the original input object; the shadow uses Win32 messages and the opt-in bridge uses rebuilt engine polling snapshots.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_buttons.h", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_buttons.h",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "client",
@@ -446,7 +687,11 @@
       "status": "partial",
       "coverage": "Cursor pixel ratios produce the original normalized x and negative 0.75-scaled y coordinates used by the picking ray.",
       "limitations": "The portable ray helper folds in the later z offset and uses host-supplied pixels and dimensions rather than original input globals and object ABI.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_pick.h", "recovered/host/menu_scene.h"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_pick.h",
+        "recovered/host/menu_scene.h"
+      ]
     },
     {
       "program": "client",
@@ -454,7 +699,16 @@
       "status": "partial",
       "coverage": "Press captures the current identifier; release compares and clears the capture. A tracker used by the shadow and opt-in engine-button confirmation mode implements button snapshot sequencing, counter advancement before early returns, suppression and unchanged-input gates, target adoption, idle bookkeeping, float-rounded cursor/wheel accumulation, delta-correcting XY clipping, normalized cursor-frame projection and position/world-update order, click inhibition, signed less-than-400 double-click detection, previous-target updates and release reset.",
       "limitations": "Portable identifiers replace original object ABI. The opt-in bridge polls original device buttons; positions/focus remain host supplied and timing is clamped host QPC. The probe uses Win32 timestamps as a tentative clock, resets across confirmation sessions, and does not dispatch double-clicks; the original delta is bounded, potentially scaled milliseconds, but the complete original frame loop remains absent. Cursor-frame position/world updates have bounded desktop confirmation. The opt-in main-menu adapter now shares that update path but awaits its own desktop check. Cursor storage is portable and seeded from host coordinates; effective motion is reconstructed but its samples remain approximate. Original x87 control-word behavior is not reproduced. The interactive host additionally cancels on pointer departure or focus loss.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_click.h", "recovered/frontend/pointer_click_timing.h", "recovered/frontend/pointer_update.h", "recovered/frontend/pointer_cursor.h", "recovered/frontend/cursor_frame.h", "recovered/host/menu_scene.h", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_click.h",
+        "recovered/frontend/pointer_click_timing.h",
+        "recovered/frontend/pointer_update.h",
+        "recovered/frontend/pointer_cursor.h",
+        "recovered/frontend/cursor_frame.h",
+        "recovered/host/menu_scene.h",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "client",
@@ -462,7 +716,12 @@
       "status": "partial",
       "coverage": "Construct the original forward picking ray, call the scene picker with flags 00140000, and return the hit frame identifier or zero.",
       "limitations": "Portable callbacks and host pixels replace the original input object and +38 store. The guarded engine call is desktop-checked as both a diagnostic and an opt-in interaction, but exhaustive edge coverage, complete input timing and screen/control construction are excluded.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/pointer_pick.h", "recovered/host/menu_scene.h", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_pick.h",
+        "recovered/host/menu_scene.h",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "client",
@@ -470,7 +729,11 @@
       "status": "partial",
       "coverage": "FIFO front-end event pump processes queued events in order, including events appended during routing.",
       "limitations": "Portable deque and shared ownership replace original queue storage and intrusive reference handling; only the bounded menu flow is supported and the host pumps immediately after activation.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/menu_event_queue.h", "recovered/frontend/menu_event_queue.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/menu_event_queue.h",
+        "recovered/frontend/menu_event_queue.cpp"
+      ]
     },
     {
       "program": "client",
@@ -478,7 +741,12 @@
       "status": "partial",
       "coverage": "Deferred event storage, release and discard, and the Exit confirmation push, pop and quit event cases.",
       "limitations": "Only screen-depth-one Exit and its confirmation are implemented; other screen, target and event cases, original screen callbacks, application quit callback, original queue storage and ABI are excluded.",
-      "evidence": ["analysis/menu-ui-map.json", "recovered/frontend/menu_event_queue.h", "recovered/frontend/menu_event_queue.cpp", "recovered/host/engine_window.cpp"]
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/menu_event_queue.h",
+        "recovered/frontend/menu_event_queue.cpp",
+        "recovered/host/engine_window.cpp"
+      ]
     },
     {
       "program": "engine",
@@ -486,7 +754,11 @@
       "status": "partial",
       "coverage": "Frame-kind names for the 16 supported numeric kinds.",
       "limitations": "The original formatted unknown-value fallback is excluded; an empty optional replaces it.",
-      "evidence": ["analysis/engine-model-map.json", "recovered/scene/frame_kind.cpp", "recovered/tests/frame_kind_tests.cpp"]
+      "evidence": [
+        "analysis/engine-model-map.json",
+        "recovered/scene/frame_kind.cpp",
+        "recovered/tests/frame_kind_tests.cpp"
+      ]
     },
     {
       "program": "engine",
@@ -494,7 +766,15 @@
       "status": "partial",
       "coverage": "Model-file header checks plus bounded first-table flag/record traversal.",
       "limitations": "Engine allocation, global state, resource requests, subsequent frame records, opaque-field meanings and complete model loading are not reconstructed.",
-      "evidence": ["analysis/engine-model-map.json", "recovered/scene/model_file_header.cpp", "recovered/scene/model_first_table.cpp", "recovered/tests/model_file_header_tests.cpp", "recovered/tests/compare_model_headers.py", "tools/inspect_model_header.py", "recovered/tests/compare_model_tables.py"]
+      "evidence": [
+        "analysis/engine-model-map.json",
+        "recovered/scene/model_file_header.cpp",
+        "recovered/scene/model_first_table.cpp",
+        "recovered/tests/model_file_header_tests.cpp",
+        "recovered/tests/compare_model_headers.py",
+        "tools/inspect_model_header.py",
+        "recovered/tests/compare_model_tables.py"
+      ]
     },
     {
       "program": "engine",
@@ -502,7 +782,12 @@
       "status": "partial",
       "coverage": "Plain first-table record serialization: fixed payload and conditional length-prefixed name bytes.",
       "limitations": "Runtime flag changes, renderer options and engine resource requests are excluded. Opaque data and asset-name bytes are not interpreted.",
-      "evidence": ["analysis/engine-model-map.json", "analysis/reconstruction-map.json", "recovered/scene/model_first_table.cpp", "recovered/tests/model_first_table_tests.cpp"]
+      "evidence": [
+        "analysis/engine-model-map.json",
+        "analysis/reconstruction-map.json",
+        "recovered/scene/model_first_table.cpp",
+        "recovered/tests/model_first_table_tests.cpp"
+      ]
     },
     {
       "program": "engine",
@@ -510,7 +795,12 @@
       "status": "partial",
       "coverage": "Sequence-capable first-table record serialization, including two count bytes and 16 parameter bytes.",
       "limitations": "Resource-name generation, resource loading, engine arrays, sequence playback and renderer state are not reconstructed.",
-      "evidence": ["analysis/engine-model-map.json", "analysis/reconstruction-map.json", "recovered/scene/model_first_table.cpp", "recovered/tests/model_first_table_tests.cpp"]
+      "evidence": [
+        "analysis/engine-model-map.json",
+        "analysis/reconstruction-map.json",
+        "recovered/scene/model_first_table.cpp",
+        "recovered/tests/model_first_table_tests.cpp"
+      ]
     }
   ]
 }

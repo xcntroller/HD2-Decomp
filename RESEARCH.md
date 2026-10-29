@@ -2465,3 +2465,48 @@ and hidden OK, with initialization log `frame=bok records=1 visible=0 disabled=0
 
 User desktop-confirmed the shared control/state/event layer, including hidden OK.
 This tested slice can be committed before the next text initialization work.
+
+
+## Attached text state and caption integration — 2026-10-29
+
+The shared control-state slice was desktop-confirmed (399 frames/clean teardown)
+and committed as 8062165. Text slice desktop-confirmed: 506 frames and clean teardown.
+
+Original 006440F0 replaces a valid signed index in five-byte pointer/style
+records, otherwise calls 00644590 to append; both dirty text +72. 006443C0
+and 00644510 wrap indexed set/append in string ownership helpers. 00644200
+localizes then sets; full style 40 invokes formatter 00405100 with globals
+00844F88/00844F8C/009820F4. That version path is explicitly deferred. 00644450
+localizes then appends without the style-40 special case. 00644890 dirties before
+validating, shifts/releases a valid record and returns true. Its 006448D3 store
+to esp+14 overwrites the argument slot with the record pointer; the final
+00644938 nonzero test is therefore not a test of incoming index. 00644960 clears
+the vector and marks dirty; earlier refresh-style helper names were incorrect.
+Native shared immutable strings replace intrusive ownership, without ABI claims.
+
+00641E30 supplies bounded style tuples (font,height,color,H,V): 10=(2,.05,
+ff000000,3,3), 11=(3,.02,ff000000,1,2), 12/13=(2,.04,ff000000,1,2),
+40=(3,.02,ff000000,1,3). All 20 caption/style definition pairs were compared
+with original immediate pushes: 17 main and three confirmation captions. Three
+main dynamic fields initially contain original empty ID 2002; the fourth blank
+slot is deferred version. Hidden OK has no caption and stays hidden.
+
+TextControlRuntime now drives actual attached TextObject state through all
+00661940 selectors; ButtonVisualPair connects 006551D0 overrides, base disabled
+mirroring and definition initialization. Stable MenuTextObject ownership keeps
+text alive past controls. MenuText renders from those records/catalog/inset;
+the former label table is regression evidence only. The existing original-font
+glyph/device and model-bounds bridge remains. Hover/unavailable colors preserve
+the desktop-tested host policy; original text +94 color semantics, paragraphs,
+other styles, full original font/localization/cache ABI and dynamic callbacks
+are unresolved. Multi-record rendering rejects unsupported paragraph layout.
+
+Strict i386 build, temporary ASan/UBSan native audit and i386 audit compilation
+passed storage/lifetime/dirty/index/style/version boundaries, all text selectors,
+21 definition slots and 48 exact vertex comparisons against the previous
+renderer with original fonts/labels. Real-asset temporary staging audit passed
+16-to-17-label upgrade, empty 2002, font identity, idempotence and tamper preflight.
+Existing native suite, 17 launcher/12 text/nine frontend checks passed. UI map
+has 400 byte anchors/40 engine slots. Nine new partial entries; total 63 partial,
+zero complete, frozen denominator 18,783. No new unit tests, no Proton run, no
+commit pending desktop confirmation. No redistribution of original text/assets.

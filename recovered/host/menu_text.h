@@ -3,6 +3,9 @@
 
 #include "host/menu_cursor.h"
 #include "host/menu_text_geometry.h"
+#include "host/menu_text_object.h"
+
+#include <set>
 
 #include <d3d8.h>
 #include <fstream>
@@ -128,8 +131,17 @@ public:
           big_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\BIG.tbl"))),
           small_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\SMALL.tbl"))),
           labels_(decode_menu_labels(read_menu_text_file("MenuText\\labels.bin"))) {
-        if (labels_.size() != menu_label_bindings.size() + (confirmation_enabled ? 3 : 0)) {
-            throw std::runtime_error("Incorrect staged menu label count");
+        std::set<std::uint32_t> required;
+        const auto require_captions = [&](const frontend::MenuScreenDefinition& definition) {
+            for (const auto& control : definition.controls) for (const auto& event : control.initialization) {
+                if (event.code == 0x01000015 && event.argument != 40) required.insert(event.word_0c);
+            }
+        };
+        require_captions(frontend::main_menu_definition());
+        if (confirmation_enabled) require_captions(frontend::confirmation_definition());
+        if (labels_.size() != required.size()) throw std::runtime_error("Incorrect staged control caption count");
+        for (const auto id : required) if (labels_.find(id) == labels_.end()) {
+            throw std::runtime_error("Missing original control caption");
         }
         if (graphics_->methods->width(graphics_) != 800 ||
                 graphics_->methods->height(graphics_) != 600) {
@@ -148,72 +160,52 @@ public:
         if (device_ == nullptr) throw std::runtime_error("Engine Direct3D device is null");
         big_ = load_atlas("HD2_MENU_BIG.TGA", module);
         small_ = load_atlas("HD2_MENU_SMALL.TGA", module);
-        for (std::size_t i = 0; i < menu_label_bindings.size(); ++i) {
-            const auto& binding = menu_label_bindings[i];
-            if (labels_.find(binding.id) == labels_.end()) {
-                throw std::runtime_error("Missing staged original menu label");
-            }
-            if (confirmation_enabled) {
-                constexpr std::array<std::uint32_t, 3> ids{{2004, 2001, 2000}};
-                constexpr std::array<const char*, 3> names{{"text", "byes?", "bno?"}};
-                constexpr std::array<const char*, 3> visuals{{"text", "normal02", "normal01"}};
-                for (std::size_t i = 0; i < ids.size(); ++i) {
-                    if (labels_.find(ids[i]) == labels_.end()) {
-                        throw std::runtime_error("Missing staged confirmation label");
-                    }
-                    const auto bounds = scene.label_bounds(names[i], visuals[i], module, true);
-                    confirmation_rectangles_[i] = menu_rectangle(bounds, 800, 600);
-                    confirmation_text_rectangles_[i] = menu_rectangle(bounds, 800, 600, i ? 10 : 1);
-                    const auto& rect = confirmation_text_rectangles_[i];
-                    std::printf("Confirmation label id=%u text=(%.1f,%.1f)-(%.1f,%.1f)\n",
-                                static_cast<unsigned>(ids[i]), rect.left, rect.top,
-                                rect.right, rect.bottom);
-                }
-            }
-            const auto bounds = scene.label_bounds(binding.frame, binding.visual, module);
-            rectangles_[i] = menu_rectangle(bounds, 800, 600);
-            text_rectangles_[i] = menu_rectangle(bounds, 800, 600, binding.button ? 10 : 1);
-            std::printf("Menu label id=%u frame=%s bounds=(%.1f,%.1f)-(%.1f,%.1f)"
-                        " text=(%.1f,%.1f)-(%.1f,%.1f)\n",
-                        static_cast<unsigned>(binding.id), binding.frame,
-                        rectangles_[i].left, rectangles_[i].top,
-                        rectangles_[i].right, rectangles_[i].bottom,
-                        text_rectangles_[i].left, text_rectangles_[i].top,
-                        text_rectangles_[i].right, text_rectangles_[i].bottom);
-        }
-        std::puts("Original bitmap text ready: 13 labels; only Exit is enabled in this host");
+        create_objects(scene, module, frontend::main_menu_definition(), false);
+        if (confirmation_enabled) create_objects(scene, module, frontend::confirmation_definition(), true);
+        std::printf("Original attached text objects ready: %u; captions come from definition events\n",
+                    static_cast<unsigned>(objects_.size()));
     }
 
+    MenuTextObject* object_for(std::uint32_t identifier) const { return objects_.at(identifier).get(); }
+
     bool over_exit(const std::optional<CursorPoint>& point) const {
-        return point && rectangles_[10].contains(*point);
+        if (!point) return false;
+        for (const auto& entry : frontend::main_menu_definition().controls) {
+            if (entry.role != frontend::MenuControlRole::exit) continue;
+            auto* text = object_for(entry.identifier);
+            return text->visible() && text->available() && !text->object().disabled &&
+                   text->rectangle(false).contains(*point);
+        }
+        return false;
     }
 
     int confirmation_hit(const std::optional<CursorPoint>& point) const {
         if (!point) return 0;
-        if (confirmation_rectangles_[1].contains(*point)) return 1;
-        if (confirmation_rectangles_[2].contains(*point)) return 2;
+        const auto& definition = frontend::confirmation_definition();
+        for (std::size_t i = 0; i < definition.controls.size(); ++i) {
+            const auto& entry = definition.controls[i];
+            if (entry.role != frontend::MenuControlRole::yes && entry.role != frontend::MenuControlRole::no) continue;
+            auto* text = object_for(entry.identifier);
+            if (text->visible() && text->available() && !text->object().disabled &&
+                text->rectangle(false).contains(*point)) return static_cast<int>(i);
+        }
         return 0;
     }
 
     void draw(bool exit_hover, bool confirmation = false, int confirm_hover = 0) const {
-        std::array<std::vector<CursorVertex>, 16> glyphs;
-        if (confirmation) {
-            constexpr std::array<std::uint32_t, 3> ids{{2004, 2001, 2000}};
-            for (std::size_t i = 0; i < ids.size(); ++i) {
-                glyphs[13 + i] = menu_label_vertices(labels_.at(ids[i]), big_metrics_,
-                    confirmation_text_rectangles_[i], .04f, 600, false,
-                    i != 0 && static_cast<int>(i) == confirm_hover ? 0xffffffff : 0xff000000);
-            }
-        } else {
-            for (std::size_t i = 0; i < menu_label_bindings.size(); ++i) {
-                const auto& binding = menu_label_bindings[i];
-                std::uint32_t color = binding.button && binding.id != 2112 ?
-                    0x60000000 : 0xff000000;
-                if (binding.id == 2112 && exit_hover) color = 0xffffffff;
-                glyphs[i] = menu_label_vertices(labels_.at(binding.id),
-                    binding.small ? small_metrics_ : big_metrics_, text_rectangles_[i],
-                    binding.height, 600, binding.id == 2101, color);
-            }
+        std::vector<MenuTextSubmission> submissions;
+        const auto& definition = confirmation ? frontend::confirmation_definition() : frontend::main_menu_definition();
+        for (std::size_t i = 0; i < definition.controls.size(); ++i) {
+            const auto& entry = definition.controls[i];
+            auto* attached = object_for(entry.identifier);
+            const auto& object = attached->object();
+            if (!attached->visible()) continue;
+            const bool button = entry.kind == frontend::MenuControlKind::button;
+            const bool hovered = confirmation ? static_cast<int>(i) == confirm_hover && button
+                                              : entry.role == frontend::MenuControlRole::exit && exit_hover;
+            auto submission = menu_text_submission(object, [&] { return attached->bounds(); },
+                button, attached->available(), hovered, big_metrics_, small_metrics_);
+            if (submission) submissions.push_back(std::move(*submission));
         }
         TextOverlayState state(device_);
         const CursorViewport viewport{0, 0, 800, 600, 0, 1};
@@ -222,16 +214,13 @@ public:
         const auto old_viewport = *old;
         graphics_->methods->begin_scene(graphics_);
         auto status = graphics_->methods->set_viewport(graphics_, &viewport);
-        const auto count = confirmation ? glyphs.size() : menu_label_bindings.size();
-        const auto start = confirmation ? menu_label_bindings.size() : 0;
-        for (std::size_t i = start; status >= 0 && i < count; ++i) {
-            const bool small = i < menu_label_bindings.size() && menu_label_bindings[i].small;
-            if (graphics_->methods->bind_texture(
-                    graphics_, small ? small_.get() : big_.get(), 0) == 0) {
+        for (const auto& submission : submissions) {
+            if (status < 0) break;
+            if (graphics_->methods->bind_texture(graphics_, submission.small ? small_.get() : big_.get(), 0) == 0) {
                 status = E_FAIL;
-            } else if (!glyphs[i].empty()) {
+            } else if (!submission.vertices.empty()) {
                 status = graphics_->methods->draw_primitive(graphics_, 3,
-                    static_cast<std::uint32_t>(glyphs[i].size() / 3), glyphs[i].data(), 1);
+                    static_cast<std::uint32_t>(submission.vertices.size() / 3), submission.vertices.data(), 1);
             }
         }
         const auto viewport_status = graphics_->methods->set_viewport(graphics_, &old_viewport);
@@ -242,6 +231,18 @@ public:
     }
 
 private:
+    void create_objects(const MenuScene& scene, HMODULE module,
+                        const frontend::MenuScreenDefinition& definition, bool confirmation) {
+        for (const auto& entry : definition.controls) {
+            auto object = std::make_unique<MenuTextObject>(scene, module, entry, confirmation,
+                [&](std::uint32_t id) { return std::make_shared<const std::string>(labels_.at(id)); });
+            if (entry.kind == frontend::MenuControlKind::text) object->initialize_static();
+            if (!objects_.emplace(entry.identifier, std::move(object)).second) {
+                throw std::logic_error("Duplicate attached text identifier");
+            }
+        }
+    }
+
     MenuDriver::Owner load_atlas(const char* name, HMODULE module) const {
         EngineFrame* texture = nullptr;
         const auto status = graphics_->methods->load_texture(graphics_, name, nullptr, 0x402,
@@ -256,10 +257,7 @@ private:
     MenuDriver::Owner big_, small_;
     FontMetrics big_metrics_, small_metrics_;
     std::map<std::uint32_t, std::string> labels_;
-    std::array<MenuRectangle, 13> rectangles_{};
-    std::array<MenuRectangle, 13> text_rectangles_{};
-    std::array<MenuRectangle, 3> confirmation_rectangles_{};
-    std::array<MenuRectangle, 3> confirmation_text_rectangles_{};
+    std::map<std::uint32_t, std::unique_ptr<MenuTextObject>> objects_;
     IDirect3DDevice8* device_ = nullptr;
 };
 

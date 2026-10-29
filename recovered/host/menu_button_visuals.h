@@ -11,6 +11,7 @@
 #include "frontend/defined_controls.h"
 #include "host/menu_scene.h"
 #include "host/menu_text_geometry.h"
+#include "host/menu_text_object.h"
 
 #include <initializer_list>
 
@@ -20,11 +21,13 @@ class ButtonVisualPair {
     using EventDestination = frontend::EmittingControlDestination<ButtonVisualPair>;
 public:
     ButtonVisualPair(const MenuScene& scene, HMODULE module, const char* frame,
-                     const char* normal, const char* active, bool confirmation = false)
-        : module_(module), frame_name_(frame),
+                     const char* normal, const char* active, bool confirmation = false,
+                     MenuTextObject* text = nullptr, bool available = true)
+        : module_(module), frame_name_(frame), text_(text),
           frame_(scene.control_frame(frame, module, confirmation)),
           normal_(scene.label_visual(frame, normal, module, confirmation)),
           active_(scene.label_visual(frame, active, module, confirmation)) {
+        if (text_) text_->attach_control(properties_, available);
         visibility_ = scene_method<Visibility>(normal_, module, 0x30, 0x1cfe0);
         scene_method<Visibility>(active_, module, 0x30, 0x1cfe0);
         update_ = scene_method<Update>(normal_, module, 0x24, 0x1e610);
@@ -140,12 +143,9 @@ private:
         }
     };
 
-    // Shared state messages are live; client text is still rendered by the
-    // separate MenuText adapter, so there is no attached client text object.
-    bool has_text() const { return false; }
-    void set_text_disabled(std::uint8_t) {
-        throw std::logic_error("Attached client text storage is not reconstructed");
-    }
+    // Attached text is owned by MenuText and outlives all button controls.
+    bool has_text() const { return text_ != nullptr; }
+    void set_text_disabled(std::uint8_t value) { text_->object().disabled = value; }
     void set_frame_visible(std::uint8_t value) {
         scene_method<Visibility>(frame_, module_, 0x30, 0x1cfe0)(frame_, value);
     }
@@ -159,22 +159,18 @@ private:
         ButtonVisualPair& pair;
         frontend::ControlStateRuntime<ButtonVisualPair>& state;
         bool has_text() const { return pair.has_text(); }
-        void layout_text_on_normal() { throw std::logic_error("Attached client text layout is not reconstructed"); }
-        void set_text_word_94(std::uint32_t) { throw std::logic_error("Attached client text storage is not reconstructed"); }
+        void layout_text_on_normal() { pair.text_->layout_text_on_normal(); }
+        void set_text_word_94(std::uint32_t value) { pair.text_->object().word_94 = value; }
         bool dispatch_text_event(frontend::ControlEvent& event) {
-            // Delegate shared base events while explicitly rejecting the
-            // parent's known text cases until its rendering backend exists.
-            if ((event.code & 0x040ff000u) == 0) {
-                switch (event.code & 0x03000fffu) {
-                case 0x01000014: case 0x01000015: case 0x01000016:
-                case 0x01000017: case 0x01000018: case 0x01000068:
-                case 0x01000077: case 0x01000099: case 0x010000a3:
-                case 0x02000018: case 0x02000030: case 0x02000073:
-                    throw std::logic_error("Derived client text initialization is not integrated");
-                default: break;
+            if (!pair.text_) {
+                if ((event.code & 0x040ff000u) == 0 &&
+                    (event.code & 0x03000fffu) == 0x01000015) {
+                    throw std::logic_error("Caption initialization requires attached text");
                 }
+                return state.dispatch(event);
             }
-            return state.dispatch(event);
+            frontend::TextControlRuntime<MenuTextObject, decltype(state)> text{*pair.text_, state};
+            return text.dispatch(event);
         }
     };
 
@@ -199,6 +195,7 @@ private:
     using Update = void (WINAPI *)(EngineFrame*);
     HMODULE module_;
     const char* frame_name_;
+    MenuTextObject* text_;
     EngineFrame* frame_;
     EngineFrame* normal_;
     EngineFrame* active_;
@@ -219,13 +216,16 @@ using MenuScreenControls = frontend::DefinedControls<ButtonVisualPair>;
 inline std::unique_ptr<MenuScreenControls> make_menu_controls(
         const MenuScene& scene, HMODULE module,
         const frontend::MenuScreenDefinition& definition, bool confirmation,
-        std::initializer_list<frontend::MenuControlRole> available) {
+        std::initializer_list<frontend::MenuControlRole> available,
+        const std::function<MenuTextObject*(std::uint32_t)>& text_lookup) {
     return std::make_unique<MenuScreenControls>(definition, available,
         [&](const frontend::MenuControlDefinition& entry) {
             // Resource/ABI errors throw here. The original factory's broader
             // model lookup/kind selection/error reporting is still unresolved.
+            bool enabled = false;
+            for (const auto role : available) if (role == entry.role && role != frontend::MenuControlRole::none) enabled = true;
             return std::make_unique<ButtonVisualPair>(scene, module, entry.frame,
-                entry.normal, entry.active, confirmation);
+                entry.normal, entry.active, confirmation, text_lookup(entry.identifier), enabled);
         });
 }
 

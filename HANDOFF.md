@@ -1,8 +1,76 @@
 # Session handoff - 2026-10-29
 
-## Resume here: shared control state/event layer — larger slice
+## Resume here: attached text state and definition-driven captions — larger slice
 
-Current shared-state/event slice is user desktop-confirmed and ready to commit. The previous
+Previous shared control-state/event slice was desktop-confirmed and committed
+as **8062165** (399 frames, clean teardown). Current larger text slice is
+**desktop-confirmed and ready to commit** (506 frames, clean teardown).
+User requests large cohesive slices. Do not commit interactive changes before
+confirmation; do not agent-launch Proton (no window driver). No new unit tests.
+
+New frontend/text_object.h and text_control_runtime.h reconstruct native owned
+text records and connect all text message selectors to storage/layout adapters.
+Indexed set replaces valid signed indices, otherwise appends; styles truncate
+to a byte; mutation marks dirty. Localized set style 40 needs version formatter;
+localized append has no such special case. Remove marks dirty even on invalid
+indices; valid removal returns TRUE including index zero. IMPORTANT assembly
+trap: 006448d3 overwrites the argument stack slot with the record pointer, so
+00644938 does NOT test the original index. Clear removes all records; it is not
+refresh/relocalization. Typed ControlEvent.text preserves shared string lifetime
+without converting original executable addresses into native pointers.
+
+All 17 main/four confirmation definitions carry original caption/style events
+before activation bindings. Empty localization 2002 initializes three blank
+fields. Version style 40/ID 2006 is explicitly deferred; no guessed version.
+Bounded original style catalog covers 10/11/12/13/40. Actual rendering supports
+one nonempty printable ASCII record in supported title/body alignment only.
+
+New stable MenuTextObject instances are owned by MenuText and outlive controls.
+Static labels initialize once there; button captions initialize once through
+ButtonVisualPair's full derived runtime. Disabled state mirrors into the same
+text records used by rendering. Glyph submission reads records/font/height/
+inset/alignment from attached state, replacing the live hardcoded label table.
+Old label table remains only for regression geometry audit. Existing engine
+bounds/device/glyph bridges, hover/unavailable color policy and fonts retained.
+General paragraph wrapping, original +94 color override, full font API/class
+ABI/refcount/SEH, dynamic profile/date/save/version callbacks remain unresolved.
+Only Exit/Yes/No are input-bound; other actions still unfinished.
+
+Stager/decoder permit original empty ID 2002 with opt-in include_control_text
+(flag --include-control-text). Launcher automatically stages it. Same five
+owned assets/manifest format; 13/16-label bundles upgrade to 14/17 as required.
+Temporary real-asset audit verified font identity, idempotence and rejection of
+a modified owned label file before any writes. Original game/runtime untouched.
+
+Validation: strict i386 host build; temporary native ASan/UBSan audit and i386
+compilation cover storage ownership/index/style/dirty semantics, version callback
+boundary, every text selector, all 21 definitions, empty/deferred records and
+48 bit-for-bit geometry comparisons with original fonts/labels against old
+renderer (normal/hover/unavailable). Binary audit verifies 20 original caption/
+style pairs. Existing native suite, 17 launcher, 12 text and nine frontend
+checks pass. UI map: 400 anchors/40 engine slots; frontend evidence passes.
+Nine new PARTIAL client entries (006440f0/00644590/00644200/006443c0/00644510/
+00644450/00644890/00644960/00641e30): **63 partial (59 client/four engine),
+zero complete, frozen 18,783**. Dispatcher/definition entries extended.
+No original full class/font reconstruction claimed. Temporary audits removed.
+
+Desktop command:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+Check caption appearance/placement, hover, Exit/No/Yes, Escape and Enter/Space,
+mouse sound, blank date/profile/save fields and hidden OK. Keyboard silence is
+original ordinary-button behavior. New log: `Original attached text objects
+ready: 21; captions come from definition events`, deferred version formatter,
+and original per-button initialization with caption records included.
+After user confirms, inspect log then commit. Next large slice: expand complete
+screen/dependency inventory and reconstruct screen creation/dispatch needed for
+another useful flow; finish remaining factory/dynamic callbacks as dependencies
+require. Keep plan.md honest; shared foundation is still broader than this slice.
+
+## Previous checkpoint: shared control state/event layer
+
+Shared-state/event slice is user desktop-confirmed and committed as 8062165
+(399 frames, clean teardown). The notes below describe that historical boundary;
+attached text has since been implemented as described above. The previous
 shared-definition/screens slice is desktop-confirmed and committed as ce61b0e
 (log: 800 frames and clean teardown). User requests the largest practical
 cohesive slices. Keep plan.md updated and avoid event-sized iterations.

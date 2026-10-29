@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <cstdint>
 #include <memory>
+#include <string>
 #include <vector>
 
 namespace hd2::frontend {
@@ -27,6 +28,7 @@ struct ControlEvent {
     std::uint32_t word_10;
     std::shared_ptr<void> payload;
     std::shared_ptr<ControlObserverRequest> observer{};
+    std::shared_ptr<const std::string> text{};
 };
 
 struct ControlObserver {

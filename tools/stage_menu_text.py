@@ -17,6 +17,7 @@ import struct
 
 LABEL_IDS = (2101, 2102, 2103, 2104, 2105, 2106, 2107,
              2109, 2110, 2111, 2112, 2115, 2116)
+CONTROL_LABEL_IDS = (2002,)
 CONFIRM_LABEL_IDS = (2000, 2001, 2004)
 MANIFEST = "menu-text-resources.json"
 FORMAT = "hd2-menu-text-resources-v1"
@@ -76,7 +77,7 @@ def parse_menu_labels(data: bytes, label_ids: tuple[int, ...] = LABEL_IDS) -> di
                 quoted = scan_quotes(payload, False)
             continue
         record = re.fullmatch(rb'[ \t]*\d+[ \t]+"([^"\r\n]*)"[ \t]*(?:;[^\r\n]*)?', line)
-        if not record or not 1 <= len(record[1]) <= 4096:
+        if not record or not (0 if label_id == 2002 else 1) <= len(record[1]) <= 4096:
             raise ValueError(f"Malformed static menu label: {label_id}")
         if label_id in labels:
             raise ValueError(f"Duplicate menu label ID: {label_id}")
@@ -177,7 +178,8 @@ def _owned_outputs(run: Path) -> set[str]:
         raise ValueError("Invalid menu text manifest") from error
 
 
-def stage_menu_text(game: Path, run: Path, *, include_confirm: bool = False) -> dict:
+def stage_menu_text(game: Path, run: Path, *, include_confirm: bool = False,
+                    include_control_text: bool = False) -> dict:
     """Preflight sources/owned destinations, then stage a separate provenance slice."""
     game = Path(game).absolute()
     run = Path(run).absolute()
@@ -190,6 +192,8 @@ def stage_menu_text(game: Path, run: Path, *, include_confirm: bool = False) -> 
         raise ValueError("Game and output directories must not overlap")
     source_data = {relative: _read_source(game, relative) for relative in sorted(set(SOURCES.values()))}
     ids = LABEL_IDS + CONFIRM_LABEL_IDS if include_confirm else LABEL_IDS
+    if include_control_text:
+        ids += CONTROL_LABEL_IDS
     labels = parse_menu_labels(source_data[TEXT_SOURCE], ids)
     for relative, data in source_data.items():
         if relative.endswith(".tbl"):
@@ -228,9 +232,10 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--game-dir", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--include-control-text", action="store_true")
     args = parser.parse_args()
     try:
-        result = stage_menu_text(args.game_dir, args.output)
+        result = stage_menu_text(args.game_dir, args.output, include_control_text=args.include_control_text)
     except (OSError, ValueError) as error:
         parser.exit(1, f"Menu text staging failed: {error}\n")
     print(f"Staged {len(result['assets'])} menu text assets -> {args.output}")

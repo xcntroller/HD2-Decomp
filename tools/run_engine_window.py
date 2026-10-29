@@ -65,9 +65,9 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
     elif menu_model or menu_ui:
         stage_menu_resources(game, run)
     if menu_confirm:
-        stage_menu_text(game, run, include_confirm=True)
+        stage_menu_text(game, run, include_confirm=True, include_control_text=True)
     elif menu_ui:
-        stage_menu_text(game, run)
+        stage_menu_text(game, run, include_control_text=True)
     env = dict(environment)
     env.update({
         "STEAM_COMPAT_CLIENT_INSTALL_PATH": str(steam),

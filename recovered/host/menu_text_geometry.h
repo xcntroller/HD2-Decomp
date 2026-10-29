@@ -2,12 +2,14 @@
 #define HD2_HOST_MENU_TEXT_GEOMETRY_H
 
 #include "host/bitmap_font.h"
+#include "frontend/text_object.h"
 #include "host/cursor_geometry.h"
 
 #include <algorithm>
 #include <cmath>
 #include <string_view>
 #include <vector>
+#include <optional>
 
 namespace hd2::host {
 
@@ -114,6 +116,36 @@ inline std::vector<CursorVertex> menu_label_vertices(
         x += advance;
     }
     return result;
+}
+
+struct MenuTextSubmission {
+    bool small;
+    std::vector<CursorVertex> vertices;
+};
+
+// Bounded glyph submission for one attached ASCII record. Bounds are lazy so
+// empty dynamic labels/deferred version text do not request unused visuals.
+// General paragraph wrapping and word_94 color semantics remain unresolved;
+// current hover/unavailable colors preserve the desktop-tested host policy.
+template<class Bounds>
+std::optional<MenuTextSubmission> menu_text_submission(
+        const frontend::TextObject& object, Bounds bounds, bool button,
+        bool available, bool hovered, const FontMetrics& big, const FontMetrics& small) {
+    if (object.records().empty()) return std::nullopt;
+    if (object.records().size() != 1) throw std::logic_error("Multiple text records require original paragraph layout");
+    const auto& record = object.records().front();
+    if (!record.text || record.text->empty()) return std::nullopt;
+    const auto* style = frontend::menu_text_style(record.style);
+    if (!style || !((style->horizontal == 1 && style->vertical == 2) ||
+                    (style->horizontal == 3 && style->vertical == 3))) {
+        throw std::logic_error("Unsupported original text style layout");
+    }
+    std::uint32_t color = object.disabled || (button && !available) ? 0x60000000 : style->color;
+    if (hovered && available && !object.disabled) color = 0xffffffff;
+    return MenuTextSubmission{style->font == 3,
+        menu_label_vertices(*record.text, style->font == 3 ? small : big,
+            menu_rectangle(bounds(), 800, 600, object.inset), style->height, 600,
+            style->horizontal == 3, color)};
 }
 
 class ExitButton {

@@ -116,7 +116,7 @@ class EngineWindowLaunchTests(unittest.TestCase):
             digest.return_value.hexdigest.return_value = ENGINE_SHA256
             launch = self.prepare(menu_ui=True)
         artwork.assert_called_once_with(self.game, self.work / "run")
-        text.assert_called_once_with(self.game, self.work / "run")
+        text.assert_called_once_with(self.game, self.work / "run", include_control_text=True)
         self.assertEqual(launch.command[-1], "--menu-ui")
         self.assertNotIn("--menu-model", launch.command)
 

@@ -75,7 +75,7 @@ std::map<std::uint32_t, std::string> decode_menu_labels(
         const auto id = read_u32(bytes, offset);
         const auto length = read_u32(bytes, offset + 4);
         offset += 8;
-        if (length == 0 || length > max_label_length || length > bytes.size() - offset) {
+        if ((length == 0 && id != 2002) || length > max_label_length || length > bytes.size() - offset) {
             throw std::invalid_argument("Invalid menu label length");
         }
         for (std::size_t j = 0; j < length; ++j) {

@@ -450,11 +450,13 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 graphics, module, *menu, confirmation_enabled);
             buttons = hd2::host::make_menu_controls(
                 *menu, module, hd2::frontend::main_menu_definition(), false,
-                std::initializer_list<MenuRole>{MenuRole::exit});
+                std::initializer_list<MenuRole>{MenuRole::exit},
+                [&](std::uint32_t id) { return text->object_for(id); });
             if (confirmation_enabled) {
                 confirmation_controls = hd2::host::make_menu_controls(
                     *menu, module, hd2::frontend::confirmation_definition(), true,
-                    std::initializer_list<MenuRole>{MenuRole::yes, MenuRole::no});
+                    std::initializer_list<MenuRole>{MenuRole::yes, MenuRole::no},
+                    [&](std::uint32_t id) { return text->object_for(id); });
                 if (confirmation_pick_probe || confirmation_pick_active) {
                     confirmation_controls->bind_pick_targets();
                 }

@@ -101,8 +101,14 @@ The reusable-adapter item is checked in [plan.md](plan.md).
 The desktop-confirmed slice integrates shared control-state events, observer
 registration/removal and local event delivery. Hidden OK now runs its original
 hide definition through the shared handler. Derived text/button message routing
-also has audited source; its font/layout backend still needs integration.
+also has audited source. Attached text/caption integration is described below.
 Build, native/sanitizer audits, existing checks and user desktop testing pass.
+
+The next larger slice connects definition caption/style events to attached text
+records and renders from that state. It includes localized set/append, indexed
+replacement/removal/clear, disabled mirroring and original empty label 2002.
+Build, native/sanitizer audits and existing checks pass; **desktop validation passed** (506 frames, clean teardown). General paragraph layout, original
+font API and dynamic/version callbacks remain incomplete.
 
 ## Progress
 
@@ -114,11 +120,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **54 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **63 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 50 |
+| Base game client | 17,294 | 0 | 59 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
