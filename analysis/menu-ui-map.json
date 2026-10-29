@@ -127,6 +127,18 @@
     "safety": "Main and confirmation now reference one host-owned input/dispatcher session across push/pop. A held screen transition cancels capture/drag and absorbs input until all buttons are up while preserving shared sampling. Outside-window/poll failure/cancel resets the session; reentry requires all buttons up. Host absolute cursor/focus and departure cancellation remain, double-click disabled. Original singleton/refcount ABI and complete screen stack remain absent.",
     "runtime": "User desktop-confirmed main-menu engine picking/input works. Latest direct log records main-menu clicks target 05000000/focus 15, No twice, Escape, Yes, 364 frames and clean teardown. Raw button masks and exhaustive drag/focus cases are not logged. Existing cursor binding/update was user-confirmed; log records two CURZOR frames, position/update, No, Escape, Yes, 553 frames and clean teardown. That tested slice is committed as 19f30e5. Shared-session continuation subsequently desktop-confirmed: user tried all requested cases; log retains wheel -480 across screens, No, Escape, Yes, 861 frames and clean teardown."
   },
+  "buffered_click_sound": {
+    "evidence": "analysis/sound-codec-map.json fingerprints rw_data 100097f7, sound dispatch/header restore and all 128 row-six magnitudes. Decoder uses canonical PCM16 header, per-block channel seeds, sign bit seven, quadratic magnitude and wrapping sample stores. Only codec 32 is supported.",
+    "asset": {
+      "member": "SOUNDS\\button.wav",
+      "path": "Sounds/button.wav",
+      "size": 5638,
+      "sha256": "ced364c301e041d9b7e8c3e78672cb2b967b79c9f2542888fb8c7bf38416500a",
+      "format": "PCM16 mono, 22050 Hz, 2797 frames"
+    },
+    "integration": "Engine-input launcher opts into include_click_sound. Manifest owns and retains Sounds/button.wav on default restaging. Initialized sound driver permits original sound frame +74 / 100545a0 open with path and flags zero; verify nonnull buffer +13c. Accepted pointer clicks then query/play buffered frame. Keyboard/hover/wheel semantics unchanged. Driver failure retains silent fallback. Original sound loader/playback remain delegated; host bypasses original 0044a1c0 cache with a staged original decoded WAV.",
+    "validation": "Byte-identical original WAV and 18 differential vectors (78224 bytes) passed; eight malformed inputs rejected. Strict i386 build, existing native suite, 90 existing Python checks, UI/codec/frontend evidence and frozen accounting pass. Real-archive staging 22-to-23 upgrade preserved prior records, verified all hashes, retained identical default restaging and rejected modified sound before writes; temporary assets removed. User desktop-confirms audible playback. Direct log records initialized audio, loaded sound buffer, buffered callbacks for mouse Exit/No/Yes, Escape, 451 frames and clean 3D/audio/graphics teardown. No frozen function count change for supporting rw_data codec."
+  },
   "sound_driver_startup": {
     "evidence": "006db3b0 skips startup if byte 008aed05 is nonzero. Byte 008aed06 chooses flags 02/12, byte 008aed08 adds 20, byte 008aed09 selects 0400/0800/1000/2000 for 0..3, otherwise no quality bit. It obtains graphics +48 HWND and calls ISnd driver +04 with self/window/22050/2/16/flags. Names of option bytes remain unresolved.",
     "engine_abi": "ISndGetDriver export 10068fa0 returns singleton at 100d16fc. Vtable 1009ddf0 +04 is stdcall 1007b560 with six stack words, maps inner false result to 80000005 and on success sets initialized byte 100d2c60. +08 1007a850 closes owned resources and clears that flag; +0c 1007a840 returns it. Original engine owns DirectSound/COM handling.",
@@ -241,6 +253,9 @@
       "image_base": "10000000"
     },
     "instruction_anchors": [
+      {"address": "100545a0", "hex": "a1fc160d108b0883ec105355565750ff510c84c0750f5f5e5db8090000805b83c410c20c00", "meaning": "Sound open requires initialized driver and cleans three stdcall words"},
+      {"address": "100547b5", "hex": "a1fc160d108b088db53c0100005650ff512c85c07d0f5f5e5db8050000805b83c410c20c00", "meaning": "Sound open creates playback buffer into sound-frame +13c"},
+      {"address": "100548c1", "hex": "5f5e5d33c05b83c410c20c00", "meaning": "Sound open success returns zero and cleans self/path/flags"},
       {"address": "10068fa0", "hex": "a1fc160d10c3", "meaning": "ISndGetDriver returns singleton pointer at 100d16fc"},
       {"address": "1007b560", "hex": "8b4424188b4c24148b542410568b742408578b7c2410508b442418515250578bcee8cafbffff84c0750a5fb8050000805ec21800897e04c605602c0d10015fc746340000803f33c05ec21800", "meaning": "Sound initialization wrapper reads six stack words; failure maps to 80000005; success sets initialized flag"},
       {"address": "1007a840", "hex": "a0602c0d10c20400", "meaning": "Sound initialized query returns byte 100d2c60 and cleans self"},
@@ -292,6 +307,7 @@
       {"address": "1006fb49", "hex": "840dd51e0d10740383c802840dd71e0d10740383c808840dd81e0d10740383c810c20400", "meaning": "Graphics input combines button bytes 1, 3 and 4 as mask bits 2, 8 and 10"}
     ],
     "vtables": [
+      {"address": "1009bd2c", "targets": ["100545a0"]},
       {"address": "1009ddf4", "targets": ["1007b560", "1007a850", "1007a840"]},
       {"address": "1009bcb8", "targets": ["1001c370"]},
       {"address": "1009bce8", "targets": ["1001bb10", "1001d330"]},

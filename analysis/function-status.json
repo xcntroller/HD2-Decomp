@@ -10,7 +10,7 @@
       "entry": "006db3b0",
       "status": "partial",
       "coverage": "Compose sound startup flags from two option booleans and quality byte, preserving out-of-range quality behavior. Host calls original sound driver with verified 22050/stereo/16-bit arguments.",
-      "limitations": "Original disabled-setting gate, global preference storage and obfuscated wrapper are absent. Host selects options clear/quality zero (0402); engine sound initialization/shutdown are delegated. Original button.wav codec 32/loading remains absent, so no audible playback. Driver startup/shutdown desktop-confirmed; original driver bodies remain delegated.",
+      "limitations": "Original disabled-setting gate, global preference storage and obfuscated wrapper are absent. Host selects options clear/quality zero (0402); engine sound initialization/shutdown are delegated. Codec-32 button.wav decoding and staged engine-buffer loading are now added; audible playback is desktop-confirmed. Driver startup/shutdown desktop-confirmed; original driver bodies remain delegated.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/sound_startup.h",
@@ -23,7 +23,7 @@
       "entry": "0066b110",
       "status": "partial",
       "coverage": "If click-sound binding exists, query active state with zero; only if false, reread binding and enable it with one. Integrated after accepted pointer clicks in engine-input mode.",
-      "limitations": "Portable context replaces original front-end +3c and object ABI. Original sound active/play engine bodies are delegated; bound frame is unbuffered. Original sound-driver startup is now bridged separately; button.wav codec/loading remains absent, so playback is silent. Frame binding/callback desktop-confirmed; audible playback remains absent.",
+      "limitations": "Portable context replaces original front-end +3c and object ABI. Original sound active/play engine bodies are delegated. Host now loads staged original codec-32 button.wav through original sound +74 when driver initializes. Original resource cache 0044a1c0 remains bypassed. Frame/callback and driver desktop-confirmed; buffered audible playback is desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/menu_click_sound.h",

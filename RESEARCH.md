@@ -1668,7 +1668,8 @@ or binary equivalence.
 ### Archive format and prior art
 
 The [native extractor](tools/extract_dta_member.py) supports **ISD0 only**:
-XOR-decoded index/member metadata, raw blocks, and LZSS/RLE blocks. It reads the
+XOR-decoded index/member metadata, raw blocks, LZSS/RLE blocks and bounded
+canonical PCM16 mono/stereo codec-32 sound blocks. It reads the
 two 16-bit block-size fields separately and checks the previous-block chain.
 It rejects unsupported codecs, invalid lengths/backreferences, truncation, and
 incorrect output sizes rather than manufacturing fallback bytes. It accepts
@@ -1684,7 +1685,7 @@ tool. The Windows DTAUnpacker attempt failed in this environment; the native
 implementation was checked against local block sizes, file headers, and scene
 boundaries, **not** against an independent successful extraction.
 
-ISD1, sound-specific compression, checksum verification, and patch precedence
+ISD1, other sound codecs/formats, checksum verification and patch precedence
 are not implemented. This is a deliberately narrow research tool, not a
 replacement for a general archive manager.
 
@@ -2128,3 +2129,72 @@ log establishes actual initialized audio (startup status zero, initialized one,
 flags 0402), mouse Exit/No/Yes, 166 frames, 3D-driver teardown then sound
 initialized zero then graphics close. Failed-device fallback remains audited
 only. Driver slice may now be committed; wave decoding/playback remains absent.
+
+
+Codec-32/button.wav continuation (2026-10-29, audible desktop test pending):
+the sound-driver lifecycle slice is committed as 8f28c2f after actual initialized
+startup/shutdown was confirmed. The next dependency was traced in original
+rw_data.dll, a supporting library outside the frozen client/LS3DF function
+inventory. No new ledger credit is assigned for its codec or host loader glue.
+
+Original decoder 100097F7 (thunk 10001221) maps codec byte 20 hex to table row
+six. It restores/copies a canonical 44-byte WAV header when signatures match,
+checks PCM bytes-per-sample through block alignment/channel count, copies fresh
+16-bit seed samples per block/channel, then integrates signed-magnitude bytes.
+Bit seven is the sign; lower seven bits index the magnitude table. The row at
+10037370 is exactly floor(i*i*32767/(127*127)) for all 128 entries. Sample stores
+wrap to sixteen bits; they do not saturate. Stereo maintains separate alternating
+histories. `tools/sound_dpcm.py` reconstructs that bounded path with explicit
+header, size, alignment and input/output checks. It supports only codec 32,
+canonical PCM16 mono/stereo and seeded continuation blocks. Other quality codes,
+widths, WAV metadata layouts and the non-PCM fallback remain rejected.
+
+`tools/extract_dta_member.py` now uses this decoder for block type 32 and verifies
+final RIFF/member size. Real SOUNDS\button.wav decodes to 5638 bytes, PCM16 mono,
+22050 Hz, 2797 frames, SHA-256
+ced364c301e041d9b7e8c3e78672cb2b967b79c9f2542888fb8c7bf38416500a.
+It matches original 100097F7 output byte-for-byte. Eighteen additional differential
+vectors (78224 output bytes) match the original for all sign/magnitude codes,
+mono/stereo, first/continuation blocks, seed extrema, wraparound and maximum
+block size. Eight malformed/truncated/overlong/wrong-code vectors are rejected.
+A temporary native i386 ELF/GDB audit executed only the original decoder/memcpy
+routine against controlled buffers, stopped before OS calls, then read outputs.
+No DLL initialization, original game or Proton launch occurred. An initial direct
+ELF attempt hit the environment's i386 syscall restriction; debugger-stopped pure
+computation supplied the successful audit. Temporary copied code, vectors and
+oracle outputs were removed; cached disassembly remains ignored for research.
+New sound-codec map/validator pins rw_data identity, eight instruction anchors
+and the complete magnitude formula/table. This is not audible playback proof.
+
+Resource staging adds opt-in include_click_sound / --include-click-sound and
+manifest-owned Sounds/button.wav, retaining ownership on later default staging.
+The engine-input launcher requests it automatically. A temporary real-archive
+audit upgraded 22 to 23 assets with all prior records unchanged, verified every
+hash and exact WAV hash, retained identical output/manifest on default restaging,
+and rejected a modified sound before writes. Temporary assets were removed;
+the original game and desktop runtime were untouched.
+
+After successful original sound-driver initialization the host invokes sound
+frame +74 / 100545A0 with Sounds\button.wav and flags zero. This method takes
+three stdcall words (self/path/flags), requires initialized audio, creates an
+original playback buffer at +13C and returns status zero on success. The host
+checks status and nonnull borrowed buffer; it never releases that borrowed
+pointer. Existing sound-frame and scene/driver ownership release resources at
+teardown. Original 0044A1C0 resource caching is still bypassed by the staged WAV;
+engine file/buffer loader, active query and playback remain delegated code.
+Accepted pointer clicks use the recovered helper; keyboard, hover and wheel
+behavior is unchanged. Failed sound-driver initialization retains silent fallback.
+
+Strict i386 host build, all existing native checks, 90 relevant existing Python
+checks (52 mission/archive, 12 resources, 17 launcher, nine frontend), 312 UI
+anchors/38 engine slots, sound-codec evidence and frontend/frozen accounting
+pass. No new unit tests. Desktop audible behavior remains pending, and this
+slice stays uncommitted until the user confirms it works. Test mouse Exit/No
+for clicks, Escape/Enter/Space behavior and clean teardown; look for
+`Original button.wav loaded` and `Original accepted-click sound callback: buffered`.
+
+
+Buffered sound desktop follow-up (2026-10-29): user confirms audible behavior
+works. Direct log records initialized audio, original WAV buffer loaded, buffered
+accepted callbacks for mouse Exit/No/Yes, Escape, 451 frames and clean 3D/audio/
+graphics teardown. Decoder/staging/buffered sound slice may now be committed.

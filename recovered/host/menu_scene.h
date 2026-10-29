@@ -233,7 +233,7 @@ public:
         }
         if (bind_cursor_model) {
             // 0066ad10 creates this frame even when sound is unavailable. The
-            // host has no sound-buffer loader yet, so leave it unbuffered.
+            // host initially leaves it unbuffered; loading follows if audio initialized.
             click_sound_ = driver_.create(4);
             auto* sound = click_sound_.get();
             scene_method<Integer>(sound, module, 0x7c, 0x549a0)(sound, 3);
@@ -426,6 +426,21 @@ public:
         scene_method<Update>(frame, module, 0x24, 0x1e610)(frame);
     }
 
+    void load_click_sound(HMODULE module) {
+        if (!click_sound_) throw std::logic_error("Click-sound frame is not bound");
+        using OpenSound = std::int32_t (WINAPI *)(EngineFrame*, const char*, std::uint32_t);
+        const auto status = scene_method<OpenSound>(click_sound_.get(), module, 0x74, 0x545a0)(
+            click_sound_.get(), "Sounds\\button.wav", 0);
+        if (status < 0) throw std::runtime_error("Cannot load original button.wav sound buffer");
+        // 100548d0's active query treats +13c as its buffer pointer. Borrow only.
+        EngineFrame* buffer = nullptr;
+        std::memcpy(&buffer, reinterpret_cast<const unsigned char*>(click_sound_.get()) + 0x13c,
+                    sizeof(buffer));
+        if (buffer == nullptr) throw std::runtime_error("Click-sound loader returned no sound buffer");
+        click_sound_loaded_ = true;
+        std::puts("Original button.wav loaded: sound buffer bound for accepted pointer clicks");
+    }
+
     EngineFrame* click_sound() const { return click_sound_.get(); }
     bool sound_active(EngineFrame* sound, bool actual) const {
         return click_sound_active_(sound, actual) != 0;
@@ -435,7 +450,8 @@ public:
     }
     void request_click_sound() const {
         frontend::accepted_menu_click(*this);
-        std::puts("Original accepted-click sound callback: no audio buffer loaded");
+        std::printf("Original accepted-click sound callback: %s\n",
+                    click_sound_loaded_ ? "buffered" : "no audio buffer loaded");
     }
 
 private:
@@ -503,6 +519,7 @@ private:
     using SoundEnable = void (WINAPI *)(EngineFrame*, std::uint32_t);
     SoundActive click_sound_active_ = nullptr;
     SoundEnable click_sound_enable_ = nullptr;
+    bool click_sound_loaded_ = false;
     using CursorPosition = void (WINAPI *)(EngineFrame*, const float*);
     using CursorUpdate = void (WINAPI *)(EngineFrame*);
     EngineFrame* cursor_frame_ = nullptr; // Borrowed from owned cursor model.

@@ -70,12 +70,10 @@ is also desktop-confirmed, including held-button cancellation. Enter/Space activ
 control in engine-input mode is desktop-confirmed; keypad Enter remains
 untested on hardware. Original previous/next focus traversal now has portable
 reconstructions; live key bindings remain unidentified, so it is not connected
-to the host. The engine-input host now binds the original
-`sound_click` frame and accepted-click callback; it remains silent until sound
-buffer loading is recovered. Frame binding/callback is desktop-confirmed.
-Original sound-driver startup/shutdown is now desktop-confirmed; failed
-initialization retains silent fallback. The archived button
-sound uses an unsupported codec, so this stage remains silent. Screen effects and much of input remain
+to the host. Original `sound_click` frame/callback and sound-driver startup/
+shutdown are desktop-confirmed. Original `button.wav` decoding and engine-buffer loading for accepted pointer
+clicks are now desktop-confirmed, including audible playback. Driver initialization failure retains
+silent fallback. Screen effects and much of input remain
 host scaffolding, not the complete
 original dispatcher. Pixel-perfect
 fidelity, other screens and profile/save data are not implemented.

@@ -1,10 +1,12 @@
-"""Extract one ISD0 archive member using raw or LZSS/RLE blocks; no game DLLs."""
+"""Extract one ISD0 archive member using raw, LZSS/RLE or bounded PCM16 codec-32 blocks; no game DLLs."""
 
 import argparse
 from dataclasses import dataclass
 from pathlib import Path
 import struct
 from typing import BinaryIO
+
+from sound_dpcm import decompress_sound32
 
 
 @dataclass(frozen=True)
@@ -115,6 +117,7 @@ def extract_member(stream: BinaryIO, member: Member, key: bytes) -> bytes:
     stream.seek(member.data_offset)
     output = bytearray()
     previous_size = 0
+    used_sound32 = False
     for _ in range(member.blocks):
         stored_size, previous_field = struct.unpack("<HH", read_exact(stream, 4))
         if stored_size == 0 or previous_field != previous_size:
@@ -130,6 +133,9 @@ def extract_member(stream: BinaryIO, member: Member, key: bytes) -> bytes:
             decoded = block[1:]
         elif block[0] == 1:
             decoded = decompress_lzss(block[1:], limit)
+        elif block[0] == 32:
+            used_sound32 = True
+            decoded = decompress_sound32(block, limit, bytes(output[:44]) if output else None)
         else:
             raise ValueError(f"Unsupported block type: {block[0]}")
         if len(decoded) != limit:
@@ -137,6 +143,8 @@ def extract_member(stream: BinaryIO, member: Member, key: bytes) -> bytes:
         output.extend(decoded)
     if len(output) != member.size:
         raise ValueError(f"Decoded member size {len(output)} does not match {member.size}")
+    if used_sound32 and struct.unpack_from("<I", output, 4)[0] + 8 != member.size:
+        raise ValueError("Codec-32 WAV size does not match archive member")
     return bytes(output)
 
 

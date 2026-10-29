@@ -2,7 +2,51 @@
 
 ## Resume here
 
-Desktop-confirmed slice: original ISnd driver startup/teardown, only
+Desktop-confirmed slice: decoded original button.wav and engine-buffer
+loading for audible accepted POINTER clicks. User confirms it works. Direct log
+records initialized audio, loaded buffer, buffered callbacks for Exit/No/Yes,
+Escape, 451 frames and clean 3D/audio/graphics teardown. This tested slice may
+now be committed. Codec-32 PCM16 mono/stereo is now independently reconstructed
+in `tools/sound_dpcm.py`; extractor supports it with bounds/final WAV-size checks.
+Other qualities/widths/header layouts/non-PCM remain unsupported. Decoder uses
+fresh block seeds, sign bit seven, magnitude floor(i*i*32767/16129) and wrapping
+16-bit stores. Original rw_data 100097F7/table 10037370 are fingerprint-anchored
+in `analysis/sound-codec-map.json`; validator checks all 128 magnitudes.
+
+Actual SOUNDS\button.wav equals original decoder byte-for-byte: 5638 bytes,
+PCM16 mono/22050 Hz/2797 frames, SHA-256
+ced364c301e041d9b7e8c3e78672cb2b967b79c9f2542888fb8c7bf38416500a.
+Temporary native i386/GDB differential audit: real WAV plus 18 vectors (78224
+bytes), all codes, mono/stereo, first/continuation, extrema/wrap/max blocks.
+Eight malformed cases rejected. No DLL init/game/Proton launch. Direct ELF
+attempt hit i386 syscall restriction; debugger-stopped pure computation succeeded.
+Temporary copied code/vectors/oracle outputs removed; ignored disassembly cached.
+No new unit tests. rw_data is outside frozen ledger: counts remain 44 partial /
+zero complete / frozen 18,783; do not grant client/LS3DF credit for this codec.
+
+Stage resources now opts into include_click_sound / --include-click-sound,
+manifest owns Sounds/button.wav and retains it on default restaging. Engine-input
+launcher enables it. Temporary real-archive audit passed 22→23 upgrade, preserved
+prior provenance, all hashes, identical default restaging and modified-wave
+rejection before writes. Original game/desktop runtime untouched by audit.
+Only when sound driver initializes does MenuScene call sound +74 (100545A0)
+with path Sounds\button.wav and flags zero; it checks status/buffer +13C.
+Three stdcall args, not model-open ABI. Original resource cache 0044A1C0 is still
+bypassed; actual engine file/buffer/query/play bodies remain delegated. Existing
+frame/scene/driver ownership handles release. Keyboard/hover/wheel unchanged;
+driver-init failure retains silent fallback. Audio slice is desktop-confirmed.
+
+Checks passed: strict i386 build, existing native suite, 90 existing Python
+checks (52 mission/archive, 12 resources, 17 launcher, nine frontend), UI evidence
+312 anchors/38 engine slots, codec evidence eight anchors/all 128 magnitudes,
+frontend evidence and frozen accounting. Desktop command unchanged:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+Try mouse Exit → No, Escape/keyboard activation, then Yes. Audible clicks now
+expected for accepted pointer activation (assess Exit/No; quitting may cut off
+Yes). Logs: `Original button.wav loaded` and `Original accepted-click sound
+callback: buffered`. Read direct log and user hearing report before committing.
+
+Previous checkpoint 8f28c2f: original ISnd driver startup/teardown, only
 under `--use-engine-mouse`. User confirms it works. Direct log: startup
 status zero/initialized one, flags 0402, mouse Exit/No/Yes, 166 frames,
 3D driver close then sound initialized zero then graphics close. This tested

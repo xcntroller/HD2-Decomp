@@ -1,0 +1,67 @@
+{
+  "scope": "Bounded codec-32 PCM16 mono/stereo reconstruction; rw_data.dll is outside frozen client/LS3DF function ledger. No complete-function credit.",
+  "source": "tools/sound_dpcm.py",
+  "binary": {
+    "path": "Hidden and Dangerous 2/rw_data.dll",
+    "sha256": "95a65ee003e2d7ab6047ed47d9adad1db330bd5482e33cfb18127d15af5879be",
+    "image_base": "10000000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "10001221",
+      "hex": "e9d1850000",
+      "meaning": "Thunk to sound decoder 100097f7"
+    },
+    {
+      "address": "10009878",
+      "hex": "8b4d080fb61183fa207507c745f406000000",
+      "meaning": "Codec byte 20 selects magnitude table row six"
+    },
+    {
+      "address": "100098a1",
+      "hex": "8b4dfc8b55148b013b0275468b4dfc8b55148b410c3b420c75388b4dfc8b55148b41243b4224752a6a2c8b4d08034dec518b550c0355f852e812b7000083c40c8b45f883c02c8945f88b4dec83c12c894dec",
+      "meaning": "Compare RIFF/fmt/data identifiers and copy canonical 44-byte header when matched"
+    },
+    {
+      "address": "100098ff",
+      "hex": "8b45140fb740208b4d140fb7491699f7f983f8020f85a30200008b55140fb7421683f8020f8596010000",
+      "meaning": "Read block alignment/channel count and select PCM16 mono/stereo branches"
+    },
+    {
+      "address": "100099cf",
+      "hex": "8b45080345ec0fb60883e17f884ddf8b55080355ec0fb602258000000085c0741e8b4df4c1e1080fb655df0fbf8451706d03100fbf4df22bc866894df2eb1c8b55f4c1e2080fb645df0fbf8c42706d03100fbf55f203d1668955f28b45ec83c0018945ec8b4dd8668b55f26689118b45080345ec0fb60883e17f884ddf8b55080355ec0fb602258000000085c0741e8b4df4c1e1080fb655df0fbf8451706d03100fbf4dea2bc866894deaeb1c8b55f4c1e2080fb645df0fbf8c42706d03100fbf55ea03d1668955ea8b45ec83c0018945ec8b4dd4668b55ea668911",
+      "meaning": "Stereo signed-magnitude deltas use row-six table and independent wrapping 16-bit histories"
+    },
+    {
+      "address": "10009abf",
+      "hex": "c745d0020000008b4dd08b55d083ea018955d085c974248b450c0345f88b4d08034dec8a1188108b45f883c0018945f88b4dec83c101894decebcc8b55ec3b55100f83b4000000",
+      "meaning": "Mono copies two-byte seed before decoding deltas"
+    },
+    {
+      "address": "10009b3c",
+      "hex": "8b55080355ec0fb60283e07f8845cb8b4d08034dec0fb61181e28000000085d2741e8b45f4c1e0080fb64dcb0fbf9448706d03100fbf45f22bc2668945f2eb1c8b4df4c1e1080fb655cb0fbf8451706d03100fbf4df203c866894df28b55ec83c2018955ec8b45cc668b4df26689088b55ec3b55107202eb05e963ffffff",
+      "meaning": "Mono delta sign/magnitude lookup and wrapping 16-bit sample stores"
+    },
+    {
+      "address": "10006109",
+      "hex": "0fb68dd87fffff83f9087c6f83bd9c7fffff0075320fb695bb7fffff85d275278b450850b94c370410e85bb3ffff8b4844518b5040526a2c8d85d97fffff50e877b3ffff83c410",
+      "meaning": "Archive reader dispatches sound codes and restores first-block 44-byte header state"
+    }
+  ],
+  "vtables": [],
+  "direct_calls": [],
+  "resource_anchors": [],
+  "codec32_table": {
+    "address": "10037370",
+    "entries": 128,
+    "format": "signed little-endian int16",
+    "sha256": "1379e27e9e32883c15cfb944ce8114f3d0f45b1dee71f2e255b20db3b54a3d2f",
+    "formula": "floor(index * index * 32767 / (127 * 127))"
+  },
+  "limitations": [
+    "Only codec byte 32, canonical PCM WAV header, 16-bit mono/stereo and independently seeded continuation blocks. Other quality codes, widths, metadata layouts and original reader/error ABI remain unsupported.",
+    "Host bounds checks reject truncated/overlong/alignment/size mismatches; original routine did not perform those checks.",
+    "No sound checksum verification or patch overlay precedence reconstruction."
+  ],
+  "audit": "Rebuilt button.wav equals original decoder output byte-for-byte: 5638 bytes, SHA-256 ced364c301e041d9b7e8c3e78672cb2b967b79c9f2542888fb8c7bf38416500a. Eighteen differential vectors (78224 bytes) cover all signed magnitude bytes, mono/stereo, first/continuation, extrema/wrapping and maximum blocks. Native i386 routine audit used temporary ELF/GDB, stopped before OS calls; no DLL startup, game or Proton launched. Temporary copied code/vectors removed after audit."
+}

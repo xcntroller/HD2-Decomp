@@ -281,7 +281,7 @@
     "Selected placement/name fields are decoded, not gameplay properties, full reference resolution or engine virtual interfaces.",
     "Optional object decoding preserves serialized field order and requires ASCII names, exact known widths and finite floats.",
     "Only a base-archive sample has been checked; patches may replace the runtime mission.",
-    "ISD1 and audio-specific codecs are unsupported by the native extractor.",
+    "ISD1 and audio codecs other than bounded canonical PCM16 codec 32 remain unsupported by the native extractor.",
     "Signatures and stack analysis beyond the verified probe fix still require work.",
     "No game execution, Proton debugging, or Sabre Squadron format comparison."
   ],

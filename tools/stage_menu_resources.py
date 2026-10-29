@@ -17,6 +17,8 @@ from inspect_model_table import decode_model_table
 
 MODEL_KEY = struct.pack("<II", 0x5D805259, 0x10ACB252)
 MAPS_KEY = struct.pack("<II", 0xB438D0A5, 0xF26527FA)
+SOUNDS_KEY = struct.pack("<II", 0x4FE85106, 0x8D2965CA)
+CLICK_SOUND_MEMBER = r"SOUNDS\button.wav"
 MODEL_MEMBER = r"MODELS\main_menu.4ds"
 CONFIRM_MEMBER = r"MODELS\confirm.4ds"
 CURSOR_MODEL_MEMBER = r"MODELS\kurzor_menu.4ds"
@@ -97,7 +99,9 @@ def _owned_outputs(run: Path) -> set[str]:
                 and asset["archive"] == "Maps.dta"
                 and asset["member"].casefold() == ("MAPS\\" + relative[5:]).casefold()
             )
-            if not (valid_model or valid_texture) or relative in owned:
+            valid_sound = (relative == "Sounds/button.wav" and asset["archive"] == "Sounds.dta"
+                           and asset["member"] == CLICK_SOUND_MEMBER)
+            if not (valid_model or valid_texture or valid_sound) or relative in owned:
                 raise ValueError("Invalid manifest asset")
             output = _check_output(run, relative)
             if output.exists():
@@ -114,13 +118,13 @@ def _owned_outputs(run: Path) -> set[str]:
 
 
 def stage_menu_resources(game: Path, run: Path, *, include_confirm: bool = False,
-                         include_cursor_model: bool = False) -> dict:
+                         include_cursor_model: bool = False, include_click_sound: bool = False) -> dict:
     """Preflight and stage an isolated, deterministic baseline menu resource slice.
 
     Existing unrelated files (including runtime symlinks) are left untouched.
     Only unchanged files identified by a previous provenance manifest may be
     overwritten. Targeted symlinks are rejected, even if they stay inside run.
-    Confirmation and cursor-model assets are opt-in and remain owned/staged on subsequent calls,
+    Confirmation, cursor-model and click-sound assets are opt-in and remain owned/staged on subsequent calls,
     including calls by the unchanged launcher without include_confirm.
     """
     game = Path(game).resolve(strict=True)
@@ -190,6 +194,17 @@ def stage_menu_resources(game: Path, run: Path, *, include_confirm: bool = False
                 assets[-1]["reason"] = "menu_cursor"
         archives.append({"path": "Maps.dta", "sha256": _sha256(stream)})
 
+    if include_click_sound or "Sounds/button.wav" in owned:
+        with (game / "Sounds.dta").open("rb") as stream:
+            matches = [member for member in read_index(stream, SOUNDS_KEY)
+                       if member.name == CLICK_SOUND_MEMBER]
+            if len(matches) != 1:
+                raise ValueError("Missing exact click-sound member: " + CLICK_SOUND_MEMBER)
+            data = extract_member(stream, matches[0], SOUNDS_KEY)
+            collect("Sounds.dta", matches[0], data, "Sounds/button.wav")
+            assets[-1]["reason"] = "menu_click_sound"
+            archives.append({"path": "Sounds.dta", "sha256": _sha256(stream)})
+
     manifest = {
         "format": FORMAT, "limitation": LIMITATION,
         "archives": archives, "assets": assets,
@@ -215,11 +230,14 @@ def main() -> None:
                         help="Also stage confirm.4ds and its textures; retain on later runs")
     parser.add_argument("--include-cursor-model", action="store_true",
                         help="Stage original kurzor_menu.4ds; retain ownership on later runs")
+    parser.add_argument("--include-click-sound", action="store_true",
+                        help="Decode/stage original button.wav; retain ownership on later runs")
     args = parser.parse_args()
     try:
         result = stage_menu_resources(args.game_dir, args.output,
                                       include_confirm=args.include_confirm,
-                                      include_cursor_model=args.include_cursor_model)
+                                      include_cursor_model=args.include_cursor_model,
+                                      include_click_sound=args.include_click_sound)
     except (OSError, ValueError) as error:
         parser.exit(1, f"Menu resource staging failed: {error}\n")
     print(f"Staged {len(result['assets'])} baseline menu assets -> {args.output}")

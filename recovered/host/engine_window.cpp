@@ -431,6 +431,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         if (menu_model) {
             menu = std::make_unique<hd2::host::MenuScene>(
                 module, confirmation_preview, confirmation_enabled, use_engine_mouse);
+            if (sound && sound->initialized()) menu->load_click_sound(module);
         }
         std::unique_ptr<hd2::host::MenuCursor<Graphics>> cursor;
         if (menu_model) {
