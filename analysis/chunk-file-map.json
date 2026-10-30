@@ -1,0 +1,287 @@
+{
+  "scope": "Original client chunk-file read/write lifecycle, raw header nesting, mode gates, short-transfer state effects, writer size backpatching and close unwinding. Native pointer/count/stack guards explicit; original rw_data file API delegated. Application GameData/HumanStore/profile parsers remain open.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "00405620",
+        "hex": "53568bf1803e00755f8a5c2410c7460cffffffff84db74118b44240c680000010050e803f93d00eb0c8b4c240c6a0051e8eff83d0083f8ff894604742b84db885e08750d6a026a0050e8caf83d0089460c8b56046a006a0052e8baf83d00c606015eb0015bc208005e32c05bc20800",
+        "meaning": "Verified original function body range; readable coverage/native differences documented in chunk-file.md"
+      },
+      {
+        "address": "00405690",
+        "hex": "51568bf1803e000f84ae0000008a46085784c00f848e0000008b861004000085c00f8480000000803e0074718a4e0884c974498b46046a016a0050e868f83d008b8e100400008bf88bd76a008b448e0c2bd083c002508b46045089542414e845f83d008b56048d4c24086a045152e82ff83d008b46046a005750eb0b8b4c860c8b56046a005152e81cf83d008b861004000085c07411488986100400008b861004000085c075808b460450e810f83d00c74604ffffffffc606005f5e59c3",
+        "meaning": "Verified original function body range; readable coverage/native differences documented in chunk-file.md"
+      },
+      {
+        "address": "00405750",
+        "hex": "51568bf1803e000f84b30000008a46085784c00f848e0000008b861004000085c00f8480000000803e0074718a4e0884c974498b46046a016a0050e8a8f73d008b8e100400008bf88bd76a008b448e0c2bd083c002508b46045089542414e885f73d008b56048d4c24086a045152e86ff73d008b46046a005750eb0b8b4c860c8b56046a005152e85cf73d008b861004000085c07411488986100400008b861004000085c075808b460450e850f73d00c74604ffffffffc606005fb0015e59c332c05e59c3",
+        "meaning": "Verified original function body range; readable coverage/native differences documented in chunk-file.md"
+      },
+      {
+        "address": "00405820",
+        "hex": "83ec08568bf1803e0074538b4e04668b4424106a016a00516689442410c744241200000000e8eef63d008b96100400006a06894496108b86100400008b4e04408986100400008d4424085051e8c1f63d0083f8065e0f94c083c408c2040032c05e83c408c20400",
+        "meaning": "Verified original function body range; readable coverage/native differences documented in chunk-file.md"
+      },
+      {
+        "address": "00405890",
+        "hex": "51568bf1803e000f84930000008a460884c0745e8b4604576a016a0050e886f63d008b8e100400008bf88bd76a008b448e0c2bd083c002508b46045089542414e863f63d008b56048d4c24086a045152e84df63d008b46046a005750e847f63d008b4424105f85c0741e8b4c24048908eb168b96100400008b4e046a008b44960c5051e820f63d008b861004000085c0740748898610040000b0015e59c2040032c05e59c20400",
+        "meaning": "Verified original function body range; readable coverage/native differences documented in chunk-file.md"
+      },
+      {
+        "address": "00405940",
+        "hex": "5153568bf1803e00745e8a460884c075578b86100400008b5c241485c0742f578b7c860c8b46046a016a0050e8c7f53d002bf8c744241800000000897c240c5f8d44241478048d4424083b187f1a8b4c24108b5604535152e8a1f53d003bc35e0f9dc05b59c208005e32c05b59c20800",
+        "meaning": "Verified original function body range; readable coverage/native differences documented in chunk-file.md"
+      },
+      {
+        "address": "004059b0",
+        "hex": "80390074288a410884c074218b4424048b4904568b74240c565051e862f53d0033d23bc60f94c28ac25ec2080032c0c20800",
+        "meaning": "Verified original function body range; readable coverage/native differences documented in chunk-file.md"
+      },
+      {
+        "address": "004059f0",
+        "hex": "83ec08568bf1803e000f84e90000008b4e04668b4424106a016a00516689442410c744241200000000e81af53d008b96100400006a06894496108b8e10040000418d442408898e100400008b4e045051e8edf43d00803e000f849a0000008a460884c074138b5424188b4424148b4e04525051e8caf43d00803e00747b8a46088b560484c0744d576a016a0052e8b6f43d008bf88b86100400008b56048bcf8b44860c6a002bc883c0025052894c2420e893f43d008b4e048d4424146a045051e87df43d008b56046a005752e877f43d005feb138b86100400006a008b4c860c5152e861f43d008b861004000085c07407488986100400005e83c408c20c00",
+        "meaning": "Verified original function body range; readable coverage/native differences documented in chunk-file.md"
+      },
+      {
+        "address": "00415c90",
+        "hex": "83ec08568bf1803e0074568b4e048d4424046a065051e893f23c0083f80675418b56046a016a0052e87bf23c008b4c24068b96100400008d4408fa894496108b8610040000668b4c2404408986100400008b4424105e668908b00183c408c2040032c05e83c408c20400",
+        "meaning": "Verified original function body range; readable coverage/native differences documented in chunk-file.md"
+      },
+      {
+        "address": "007e4f32",
+        "hex": "ff2590f48000",
+        "meaning": "Original imported rw_data stdcall thunk"
+      },
+      {
+        "address": "007e4f38",
+        "hex": "ff2594f48000",
+        "meaning": "Original imported rw_data stdcall thunk"
+      },
+      {
+        "address": "007e4f3e",
+        "hex": "ff2598f48000",
+        "meaning": "Original imported rw_data stdcall thunk"
+      },
+      {
+        "address": "007e4f44",
+        "hex": "ff259cf48000",
+        "meaning": "Original imported rw_data stdcall thunk"
+      },
+      {
+        "address": "007e4f4a",
+        "hex": "ff25a4f48000",
+        "meaning": "Original imported rw_data stdcall thunk"
+      },
+      {
+        "address": "007e4f50",
+        "hex": "ff25a0f48000",
+        "meaning": "Original imported rw_data stdcall thunk"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [
+      {
+        "site": "00405642",
+        "target": "007e4f4a"
+      },
+      {
+        "site": "00405650",
+        "target": "007e4f44"
+      },
+      {
+        "site": "00405669",
+        "target": "007e4f38"
+      },
+      {
+        "site": "00405679",
+        "target": "007e4f38"
+      },
+      {
+        "site": "004056cb",
+        "target": "007e4f38"
+      },
+      {
+        "site": "004056ee",
+        "target": "007e4f38"
+      },
+      {
+        "site": "004056fe",
+        "target": "007e4f32"
+      },
+      {
+        "site": "00405717",
+        "target": "007e4f38"
+      },
+      {
+        "site": "0040573b",
+        "target": "007e4f50"
+      },
+      {
+        "site": "0040578b",
+        "target": "007e4f38"
+      },
+      {
+        "site": "004057ae",
+        "target": "007e4f38"
+      },
+      {
+        "site": "004057be",
+        "target": "007e4f32"
+      },
+      {
+        "site": "004057d7",
+        "target": "007e4f38"
+      },
+      {
+        "site": "004057fb",
+        "target": "007e4f50"
+      },
+      {
+        "site": "00405845",
+        "target": "007e4f38"
+      },
+      {
+        "site": "0040586c",
+        "target": "007e4f32"
+      },
+      {
+        "site": "004058ad",
+        "target": "007e4f38"
+      },
+      {
+        "site": "004058d0",
+        "target": "007e4f38"
+      },
+      {
+        "site": "004058e0",
+        "target": "007e4f32"
+      },
+      {
+        "site": "004058ec",
+        "target": "007e4f38"
+      },
+      {
+        "site": "00405913",
+        "target": "007e4f38"
+      },
+      {
+        "site": "0040596c",
+        "target": "007e4f38"
+      },
+      {
+        "site": "00405998",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "004059cb",
+        "target": "007e4f32"
+      },
+      {
+        "site": "00405a19",
+        "target": "007e4f38"
+      },
+      {
+        "site": "00405a40",
+        "target": "007e4f32"
+      },
+      {
+        "site": "00405a63",
+        "target": "007e4f32"
+      },
+      {
+        "site": "00405a7d",
+        "target": "007e4f38"
+      },
+      {
+        "site": "00405aa0",
+        "target": "007e4f38"
+      },
+      {
+        "site": "00405ab0",
+        "target": "007e4f32"
+      },
+      {
+        "site": "00405abc",
+        "target": "007e4f38"
+      },
+      {
+        "site": "00405ad2",
+        "target": "007e4f38"
+      },
+      {
+        "site": "00415ca6",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "00415cb8",
+        "target": "007e4f38"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10068f90",
+        "hex": "a1f4160d10c3",
+        "meaning": "Unchanged engine context fingerprint anchor; no newly recovered engine behavior"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "rw_data": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/rw_data.dll",
+      "sha256": "95a65ee003e2d7ab6047ed47d9adad1db330bd5482e33cfb18127d15af5879be",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "100012c1",
+        "hex": "e9c6380000",
+        "meaning": "Checked dtaOpen export thunk to 0x10004b8c"
+      },
+      {
+        "address": "1000145b",
+        "hex": "e9026c0000",
+        "meaning": "Checked dtaOpenWrite export thunk to 0x10008062"
+      },
+      {
+        "address": "10001528",
+        "hex": "e983640000",
+        "meaning": "Checked dtaSeek export thunk to 0x100079b0"
+      },
+      {
+        "address": "1000152d",
+        "hex": "e9093c0000",
+        "meaning": "Checked dtaRead export thunk to 0x1000513b"
+      },
+      {
+        "address": "1000101e",
+        "hex": "e998750000",
+        "meaning": "Checked dtaWrite export thunk to 0x100085bb"
+      },
+      {
+        "address": "100014f1",
+        "hex": "e9ce370000",
+        "meaning": "Checked dtaClose export thunk to 0x10004cc4"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}

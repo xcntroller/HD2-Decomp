@@ -10,6 +10,13 @@ Its names and API are ours; its supported behavior is based on the observed
 base-game chunk helpers. The [evidence map](../analysis/reconstruction-map.json)
 records addresses, scope, and intentional differences.
 
+The [original DTA chunk-file object](io/chunk_file.h) is now also reconstructed,
+including read/write modes, partial transfers, nesting and size backpatching,
+through [checked DLL exports](host/chunk_files.h). It preserves behavior that
+the early strict portable reader intentionally rejects. Temporary sanitizer
+audits, real base HumanStore/GameData comparisons and i386 compile/link pass;
+no original file API is executed. See [scope](../analysis/chunk-file.md).
+
 The second component is the
 [model resource key helper](scene/model_resource_key.cpp), with its
 [public interface](scene/model_resource_key.h). This is a small string

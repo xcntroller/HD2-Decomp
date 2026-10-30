@@ -3,7 +3,17 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest source: [resource-directory registration and native lists](analysis/resource-directories.md).
+Latest source: [original application chunk-file lifecycle](analysis/chunk-file.md).
+Follows `edf16bd` graphics input forwarding and `2af59e0` window persistence.
+Nine client helper behaviors now cover original DTA read/write open, header
+nesting, signed bounded reads, exact writes, backpatch/leave and close. Four
+existing entries gain coverage; five new partial entries bring totals to 167
+(162 client/five engine), none complete. Native guards and object ABI differences
+remain explicit. Sanitizer/i386 audits and actual HumanStore/GameData bytes pass.
+Run `python3 -B tools/validate_chunk_file.py`. GameData/HumanStore/profile record
+semantics and startup protection remain open; no original code executed.
+
+Prior source: [resource-directory registration and native lists](analysis/resource-directories.md).
 Eight roots, recursive Win32 preorder enumeration, five distinct client lists
 and add/remove semantics are recovered and sanitizer/i386-audited. Four method
 pairs match instruction-for-instruction after relocation/EH normalization.

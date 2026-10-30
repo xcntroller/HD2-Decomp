@@ -55,9 +55,10 @@ The existing host preview is useful for validation, but it is not this milestone
   mouse and joystick. Binding replacement, mode/dirty application and both
   original 92-record default layouts are now also source-recovered and audited.
   Manager construction, borrowed graphics attachment and retained joystick
-  lifetime are now also source-recovered and audited. Concrete graphics device
-  services, archive setup, profile persistence and character services remain
-  open. Graphics input-setup order, installed-language resolution and actual text
+  lifetime are now also source-recovered and audited. Concrete graphics input
+  forwarding and archive/directory setup are also source-recovered. Live device
+  lifecycle, profile persistence and character services remain open.
+  Graphics input-setup order, installed-language resolution and actual text
   preloading/parsing are now also source-recovered and audited. See [producer scope](analysis/binding-producer.md).
   See [frame/input evidence](analysis/frame-input.md).
 - [x] Recover binding-to-buffer evaluation, binding replacement and both compiled
@@ -107,6 +108,12 @@ The existing host preview is useful for validation, but it is not this milestone
   calls and their surrounding lifecycle order are reconstructed; caller-supplied
   initial bytes preserve the short-read boundary. Full wrappers and protection
   state remain open. See [window position evidence](analysis/window-position.md).
+- [x] Recover the original DTA chunk-file read/write lifecycle shared by
+  application-data and profile loaders. **Source-only, audited.** Preserve
+  partial transfers, stale read nesting, writer backpatching and close behavior;
+  native safety guards remain explicit. Actual HumanStore/GameData record
+  parsers and profile services are next, with no successful placeholder bodies.
+  See [chunk-file scope](analysis/chunk-file.md).
 - [ ] Build the independent executable in that path, then desktop-test normal
   playback, skipping, missing-movie behavior, menu entry and teardown. Commit
   the interactive slice only after the user confirms it works.
@@ -197,9 +204,9 @@ profiles and other real screens, rather than expanding this section indefinitely
   joystick, including configured packed key snapshots; controller-to-front-end
   Escape routing is sanitizer/i386-audited. Original binding installation, mode/
   dirty application and both default layouts are now also source-recovered.
-  Manager ownership/attachment is also source-recovered. Concrete graphics
-  input services, archive setup, profile persistence, text targets, focus
-  entry and navigation callers remain open. Graphics setup/localization source
+  Manager ownership/attachment, concrete graphics input forwarding and archive
+  setup are source-recovered. Live device lifecycle, profile persistence, text
+  targets, focus entry and navigation callers remain open. Graphics setup/localization source
   now includes installed-language selection and real text-cache parsing. See [preprocessing evidence](analysis/keyboard-preprocessing.md).
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
@@ -208,19 +215,17 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current checkpoint follows `227a3c1` archive registration. Resource-directory
-setup now recovers all eight roots, recursive Win32 traversal and five DISTINCT
-native directory lists. All add/remove specializations match original instruction
-streams after relocation normalization. Sanitizer audits cover 10,000 list
-operations, case/separator rules, owner routing, traversal and handle cleanup;
-concrete Win32/engine forwarding compiles/links for i386. No live menu changes.
-Next: resolve the startup protection-state dependencies and remaining application/
-state services, complete loaded-resource cache contracts and concrete graphics
-input services before controller integration. Directory lists alone do not
-implement their caches' resource consumers. Joystick factory callers remain
-unresolved; do not invent enumeration for the empty-list path. Profile
-persistence, renderer/text consumers and focus/navigation remain open.
-See [directory scope](analysis/resource-directories.md).
+Current checkpoint follows `edf16bd` concrete input forwarding and `2af59e0`
+window persistence. The original shared DTA chunk-file lifecycle now includes
+read/write modes, raw header nesting, failed-transfer state effects, writer
+backpatching and close semantics. Native sanitizer and strict i386 audits pass;
+real HumanStore and GameData bytes validate the recovered reader. No live change.
+Next: actual HumanStore/GameData record parsers and profile selection in the
+application preparation chain, then remaining application/state services and
+controller integration. Startup protection-state effects, loaded-resource cache
+consumers, live device lifecycle, renderer/text consumers and navigation remain
+open. Do not guess protection code or add dormant joystick enumeration.
+See [chunk-file scope](analysis/chunk-file.md).
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,

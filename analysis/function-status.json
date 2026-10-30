@@ -586,48 +586,64 @@
       "program": "client",
       "entry": "00405620",
       "status": "partial",
-      "coverage": "Chunk-reader constructor: read-mode length and initial seek behavior.",
-      "limitations": "Archive opening, original flags and write mode are excluded; portable API differs.",
+      "coverage": "Original DTA read/write open: flags0 or10000, exact -1 failure gate, root-end capture, ignored rewind result, preserve mode byte and stale depth. Early strict portable stream implementation remains separately available where previously covered.",
+      "limitations": "Native source-only owner and initial state, not original class ABI/allocator. Explicit stack capacity, null buffer and negative-read-count guards prevent original unsafe cases. File calls delegated through checked borrowed rw_data exports; no game/DLL execution. Backend callbacks must not throw or mutate owner. Original application parsers/profiles remain unreconstructed. Native ASan/UBSan and strict i386 audit, including real base HumanStore/GameData byte comparisons, pass.",
       "evidence": [
         "analysis/reconstruction-map.json",
         "recovered/io/chunk_reader.cpp",
-        "recovered/tests/chunk_reader_tests.cpp"
+        "recovered/tests/chunk_reader_tests.cpp",
+        "analysis/chunk-file.md",
+        "analysis/chunk-file-map.json",
+        "recovered/io/chunk_file.h",
+        "recovered/host/chunk_files.h"
       ]
     },
     {
       "program": "client",
       "entry": "00415c90",
       "status": "partial",
-      "coverage": "Enter a chunk: header decode, end calculation and nesting.",
-      "limitations": "Supported-subset behavioral reconstruction with different error handling and extra bounds checks; not the complete original function.",
+      "coverage": "Raw six-byte header read, WORD output only on full header, wrapping read-end calculation and push; no mode or parent/file-size validation. Early strict portable stream implementation remains separately available where previously covered.",
+      "limitations": "Native source-only owner and initial state, not original class ABI/allocator. Explicit stack capacity, null buffer and negative-read-count guards prevent original unsafe cases. File calls delegated through checked borrowed rw_data exports; no game/DLL execution. Backend callbacks must not throw or mutate owner. Original application parsers/profiles remain unreconstructed. Native ASan/UBSan and strict i386 audit, including real base HumanStore/GameData byte comparisons, pass.",
       "evidence": [
         "analysis/reconstruction-map.json",
         "recovered/io/chunk_reader.cpp",
-        "recovered/tests/chunk_reader_tests.cpp"
+        "recovered/tests/chunk_reader_tests.cpp",
+        "analysis/chunk-file.md",
+        "analysis/chunk-file-map.json",
+        "recovered/io/chunk_file.h",
+        "recovered/host/chunk_files.h"
       ]
     },
     {
       "program": "client",
       "entry": "00405940",
       "status": "partial",
-      "coverage": "Bounded exact-byte read within the active chunk.",
-      "limitations": "Portable stream and exception API, additional depth-zero bounds checks; not end-to-end original behavior.",
+      "coverage": "Original mode and signed per-chunk read gates; no root bound at depth zero, short-transfer side effects and signed >= return comparison. Early strict portable stream implementation remains separately available where previously covered.",
+      "limitations": "Native source-only owner and initial state, not original class ABI/allocator. Explicit stack capacity, null buffer and negative-read-count guards prevent original unsafe cases. File calls delegated through checked borrowed rw_data exports; no game/DLL execution. Backend callbacks must not throw or mutate owner. Original application parsers/profiles remain unreconstructed. Native ASan/UBSan and strict i386 audit, including real base HumanStore/GameData byte comparisons, pass.",
       "evidence": [
         "analysis/reconstruction-map.json",
         "recovered/io/chunk_reader.cpp",
-        "recovered/tests/chunk_reader_tests.cpp"
+        "recovered/tests/chunk_reader_tests.cpp",
+        "analysis/chunk-file.md",
+        "analysis/chunk-file-map.json",
+        "recovered/io/chunk_file.h",
+        "recovered/host/chunk_files.h"
       ]
     },
     {
       "program": "client",
       "entry": "00405890",
       "status": "partial",
-      "coverage": "Leave a chunk in read mode.",
-      "limitations": "Write-mode backpatching and optional size output are excluded; original archive API is not reproduced.",
+      "coverage": "Read seek/end pop and write size-backpatch/restore pop with optional write-only size output; ignore underlying results and preserve depth-zero behavior. Early strict portable stream implementation remains separately available where previously covered.",
+      "limitations": "Native source-only owner and initial state, not original class ABI/allocator. Explicit stack capacity, null buffer and negative-read-count guards prevent original unsafe cases. File calls delegated through checked borrowed rw_data exports; no game/DLL execution. Backend callbacks must not throw or mutate owner. Original application parsers/profiles remain unreconstructed. Native ASan/UBSan and strict i386 audit, including real base HumanStore/GameData byte comparisons, pass.",
       "evidence": [
         "analysis/reconstruction-map.json",
         "recovered/io/chunk_reader.cpp",
-        "recovered/tests/chunk_reader_tests.cpp"
+        "recovered/tests/chunk_reader_tests.cpp",
+        "analysis/chunk-file.md",
+        "analysis/chunk-file-map.json",
+        "recovered/io/chunk_file.h",
+        "recovered/host/chunk_files.h"
       ]
     },
     {
@@ -2091,6 +2107,71 @@
         "recovered/frontend/window_position.h",
         "recovered/host/window_position.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00405690",
+      "status": "partial",
+      "evidence": [
+        "analysis/chunk-file.md",
+        "analysis/chunk-file-map.json",
+        "recovered/io/chunk_file.h",
+        "recovered/host/chunk_files.h"
+      ],
+      "coverage": "Destructor close phase: unwind/backpatch writer nesting only, close handle and clear opened/handle; preserve read nesting and mode.",
+      "limitations": "Native source-only owner and initial state, not original class ABI/allocator. Explicit stack capacity, null buffer and negative-read-count guards prevent original unsafe cases. File calls delegated through checked borrowed rw_data exports; no game/DLL execution. Backend callbacks must not throw or mutate owner. Original application parsers/profiles remain unreconstructed. Native ASan/UBSan and strict i386 audit, including real base HumanStore/GameData byte comparisons, pass."
+    },
+    {
+      "program": "client",
+      "entry": "00405750",
+      "status": "partial",
+      "evidence": [
+        "analysis/chunk-file.md",
+        "analysis/chunk-file-map.json",
+        "recovered/io/chunk_file.h",
+        "recovered/host/chunk_files.h"
+      ],
+      "coverage": "Explicit close with false-if-closed result and same writer-only unwind; read-mode close retains nesting stack.",
+      "limitations": "Native source-only owner and initial state, not original class ABI/allocator. Explicit stack capacity, null buffer and negative-read-count guards prevent original unsafe cases. File calls delegated through checked borrowed rw_data exports; no game/DLL execution. Backend callbacks must not throw or mutate owner. Original application parsers/profiles remain unreconstructed. Native ASan/UBSan and strict i386 audit, including real base HumanStore/GameData byte comparisons, pass."
+    },
+    {
+      "program": "client",
+      "entry": "00405820",
+      "status": "partial",
+      "evidence": [
+        "analysis/chunk-file.md",
+        "analysis/chunk-file-map.json",
+        "recovered/io/chunk_file.h",
+        "recovered/host/chunk_files.h"
+      ],
+      "coverage": "Begin chunk records header start and increments depth before attempting six-byte id/zero-size write, including failed writes and read-mode calls.",
+      "limitations": "Native source-only owner and initial state, not original class ABI/allocator. Explicit stack capacity, null buffer and negative-read-count guards prevent original unsafe cases. File calls delegated through checked borrowed rw_data exports; no game/DLL execution. Backend callbacks must not throw or mutate owner. Original application parsers/profiles remain unreconstructed. Native ASan/UBSan and strict i386 audit, including real base HumanStore/GameData byte comparisons, pass."
+    },
+    {
+      "program": "client",
+      "entry": "004059b0",
+      "status": "partial",
+      "evidence": [
+        "analysis/chunk-file.md",
+        "analysis/chunk-file-map.json",
+        "recovered/io/chunk_file.h",
+        "recovered/host/chunk_files.h"
+      ],
+      "coverage": "Write only when opened and write-mode byte nonzero; exact byte-count equality determines result.",
+      "limitations": "Native source-only owner and initial state, not original class ABI/allocator. Explicit stack capacity, null buffer and negative-read-count guards prevent original unsafe cases. File calls delegated through checked borrowed rw_data exports; no game/DLL execution. Backend callbacks must not throw or mutate owner. Original application parsers/profiles remain unreconstructed. Native ASan/UBSan and strict i386 audit, including real base HumanStore/GameData byte comparisons, pass."
+    },
+    {
+      "program": "client",
+      "entry": "004059f0",
+      "status": "partial",
+      "evidence": [
+        "analysis/chunk-file.md",
+        "analysis/chunk-file-map.json",
+        "recovered/io/chunk_file.h",
+        "recovered/host/chunk_files.h"
+      ],
+      "coverage": "One-shot header/data/backpatch helper with original mode gates and ignored individual write/seek results.",
+      "limitations": "Native source-only owner and initial state, not original class ABI/allocator. Explicit stack capacity, null buffer and negative-read-count guards prevent original unsafe cases. File calls delegated through checked borrowed rw_data exports; no game/DLL execution. Backend callbacks must not throw or mutate owner. Original application parsers/profiles remain unreconstructed. Native ASan/UBSan and strict i386 audit, including real base HumanStore/GameData byte comparisons, pass."
     }
   ]
 }

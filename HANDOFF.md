@@ -1,6 +1,80 @@
 # Session handoff - 2026-10-30
 
-## Resume here: concrete graphics input forwarding recovered
+## Resume here: original DTA chunk-file lifecycle recovered
+
+Follows outside-conversation commits edf16bd graphics input forwarding and
+2af59e0 window persistence, both preserved. Source-only; no live changes or
+desktop test. New io/chunk_file.h + host/chunk_files.h recover actual client
+chunk-file lifecycle, separate from early strict portable ChunkReader. See
+analysis/chunk-file.md, its map and checked plan entry. No application-data
+success stubs or guessed protection operation.
+
+State offsets: opened00, handle04, mode08, offsets[257]0C, depth410, size414.
+Static assertions on all. Root slot0 holds file end/read or FFFFFFFF/write.
+Open exact handleFFFFFFFF failure ONLY (other high-bit handles valid), flags0
+read/10000 write, read-end query then rewind ignored. Neither open nor close
+resets depth! Read close preserves stack; write close backpatches all chunks.
+Close callback sees old handle/opened, then handle invalid/opened0; mode stays.
+
+Enter00415C90 reads raw6 bytes (no bounded payload call/mode/min-size/parent
+gate), pushes wrapping(position-6+size), writes WORD id only on full header.
+Partial header consumes bytes without changing id/depth. Begin00405820 pushes
+header start BEFORE six-byte write; false short-write still leaves stack live.
+No write-mode gate on begin. Payload read00405940 gates open/read, signed
+max(0,end-position) only if depth>0, returns signed read_count>=request. Root
+reads not bounded. Write004059B0 gates open/write and exact count equality.
+Leave00405890 read seeks end, leaves optional output alone; write records position,
+patches four-byte total at header+2, restores position, stores optional size. Ignore all
+seek/write failures. Depth-zero leave still operates root and returns true.
+One-shot004059F0 ignores operation results, follows original mode gates.
+Destructor00405690/close00405750 share close phase. Backend/module outlive owner;
+actual DLL callbacks do not throw or mutate owner. Native guards stack256,
+null nonempty buffers and negative original read-count cases. Native initial
+zero state/RAII differs from arbitrary original placement. All entries partial.
+
+Concrete ChunkFiles borrows SAME rw_data used by archives/engine, checks six
+stdcall exports/RVAs, never agent-executed. Audit writes ONLY memory. Nested
+writer output depths0..31 matches independently built format; failed opens/
+seeks, short transfers, mode gates, stale read stack, depthzero, wrapping,
+optional output, high-bit handles, signed results and capacity cleanup pass
+ASan/UBSan. Strict i386 fixture instantiates ALL source/adapter methods and
+links ONLY, never run. Existing native checks, 158 Python tests and host build
+pass; temporary fixtures and two extracted samples removed after checking.
+
+Real base Others.dta has TABLES\HumanStore.def (9,170 bytes): root 029A with 65
+record 2328 children, 651 verified chunks/fields total. GAMEDATA\Gamedata00.gdt
+(22,161 bytes) has root3 metadata then root1 with child47/5; four verified chunks
+through known levels (do not guess all payload bytes are nested headers).
+All leaf payload bytes compare against independently decoded raw offsets.
+
+NEXT actual application preparation:006B65D0 calls GameData006BB540, then sets
+application+04 object's +E8=1, then HumanStore006A18E0("tables\HumanStore.def");
+both run even if first fails, result bitwise byte AND&1. Normal controller then
+006B6620 (profile scan/selection, NOT trivial reset) before movie-state creation.
+Read-only exports ignored: application-profile-startup includes006AEF50 profile
+directory scan,006A6560 current-profile string accessor,006AF1D0 profile select,
+006A1B40 HumanStore outer parse. human-store-startup includes0069F930 reset,
+006A1D80 default record creation,006A00A0 field parser,006A0F30 usernames overlay.
+Those bodies are RESEARCH ONLY; not source recovered in this slice. HumanStore
+field parser calls default/model/name/stat finalizers still to export. Existing
+chunk source now supplies actual read/write semantics for these loaders.
+
+Important HumanStore details: creation recordsize74hex, fields default first/
+last names and textures; 006A1D80 has calls0069FEF0/0069FDE0; parser006A00A0
+487 decomp lines (mostly string allocation noise), stats fields26AC/26AD and
+older24B8/2648; finalize006A0E10/006A0EA0. Reset localizes8 default namepairs.
+006A0F30 applies profile-path usernames.sav overlays; do not silently omit.
+GameData006BB540 scans sequential GameData\Gamedata%02d.gdt until first missing,
+metadata chunk3 affects parse/reset branch; actual record methods still open.
+
+Evidence: python3 -B tools/validate_chunk_file.py checks three hashes, 22 anchors
+covering nine original body ranges + import/export thunks, 34 calls; seven negative
+mutations rejected. Read-only exports chunk-file-lifecycle. Four existing chunk
+ledger entries extended, FIVE new partial client entries: 167 total (162 client/five
+engine), zero complete, frozen 18,783. No duplicate portable/native credit or DLL
+credit. Original binaries/saved project untouched; no game execution/push.
+
+## Earlier checkpoint: concrete graphics input forwarding recovered
 
 Source-only host/graphics_input_services.h connects actual manager/producer and
 input setup to checked LS3DF graphics slots and existing IJoy forwarding.
