@@ -1426,6 +1426,31 @@
         "analysis/application-controller.md",
         "recovered/frontend/application_controller.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "006dc950",
+      "status": "partial",
+      "coverage": "Unsigned low-32-bit microsecond subtraction, milliseconds conversion, maximum-before-minimum decisions, one-shot event-pulse wait and fresh baseline read in every branch. Integrated into both movie/menu loops; mouse polling receives the same recovered delta.",
+      "limitations": "Native state and Win32 event lifetime replace original globals/calling ABI. Failed event/performance-clock setup throws instead of original invalid-state behavior. Timer scheduling and wait results remain intentionally ignored as original. Strict i386 and temporary sanitizer/native/i386 audit pass; user desktop-confirms movies/menu pacing and clean teardown (899 frames). Keyboard integration is a subsequent pending slice.",
+      "evidence": [
+        "analysis/frame-input-map.json",
+        "analysis/frame-input.md",
+        "recovered/frontend/frame_clock.h",
+        "recovered/host/frame_clock.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0066b380",
+      "status": "partial",
+      "coverage": "Drain original text FIFO through zero or 1023 reads, zero first UTF16 unit, invoke CP_ACP conversion including empty input and return source count greater than one independent of conversion result.",
+      "limitations": "Conversion remains a required operating-system service. Native source rejects unterminated maximum input instead of original stack overread; caller output storage is zero-initialized. Source-only sanitizer/i386-audited; original front-end and text-target ABI not integrated.",
+      "evidence": [
+        "analysis/keyboard-preprocessing-map.json",
+        "analysis/keyboard-preprocessing.md",
+        "recovered/frontend/keyboard_preprocessing.h"
+      ]
     }
   ]
 }

@@ -46,6 +46,13 @@ The existing host preview is useful for validation, but it is not this milestone
   `recovered/frontend/application_controller.h`. Original application services,
   input producer and concrete state owners are required before live integration;
   no no-op service bodies are used to enable it. See [controller scope](analysis/application-controller.md).
+  Follow-up: original frame clock now drives movie/menu loops and their shared
+  mouse delta; desktop timing is confirmed. Engine keyboard poll/scan/character,
+  modifiers and fixed-table translation now use a concrete keyboard device
+  alongside `--use-engine-mouse`; desktop keyboard and focus return are confirmed.
+  Client preprocessing/text FIFO are now source-recovered and audited; concrete
+  input-manager production and character services remain open.
+  See [frame/input evidence](analysis/frame-input.md).
 - [ ] Build the independent executable in that path, then desktop-test normal
   playback, skipping, missing-movie behavior, menu entry and teardown. Commit
   the interactive slice only after the user confirms it works.
@@ -128,6 +135,12 @@ profiles and other real screens, rather than expanding this section indefinitely
   Desktop-confirmed; background targeting, native observers and retained-copy
   query semantics additionally audited. Original dynamic lists remain unattached.
 - [ ] Recover keyboard preprocessing, character input, focus entry and navigation callers.
+  Recovered keyboard device polling/modifier/character translation is integrated
+  alongside engine mouse and desktop-confirmed, including focus return.
+  Client preprocessing, ANSI/UTF16 character dispatch, modifier fallback and
+  the separate text FIFO are source-recovered and sanitizer/i386-audited.
+  Concrete input buffers/text targets, focus entry and navigation callers remain
+  open. See [preprocessing evidence](analysis/keyboard-preprocessing.md).
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
 - [ ] Supply the options widget backends and connect original settings observers.
@@ -135,14 +148,12 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current session checkpoint: screen creation/stack/dispatch entry is complete
-for the shared native contract. Live factories and dialogs are desktop-confirmed
-and committed as `6782cf0`; the additional common service routes are source-only,
-queue/sanitizer/i386-audited and uncommitted. No new desktop interaction is enabled.
-After the launch-path milestone: keyboard preprocessing/navigation callers or
-options visual/settings backends, keeping device timing/capture and resource
-cache integration in their own open entries. Concrete screen callbacks and
-builders progress with actual flows.
+Current session checkpoint: pacing and keyboard device integration are now
+desktop-confirmed, including focus return. Client preprocessing and the separate
+text FIFO are source-recovered and sanitizer/i386-audited, with no new live
+interaction. Concrete input-buffer production and character services precede
+controller wiring; focus/navigation callers remain open. Last commit is
+`8eef91d`; these follow-up slices remain uncommitted.
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,

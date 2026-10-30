@@ -19,6 +19,9 @@
 #include "host/engine_mouse.h"
 #include "host/engine_sound.h"
 #include "host/engine_video.h"
+#include "host/frame_clock.h"
+#include "host/engine_keyboard.h"
+#include "frontend/frame_clock.h"
 #include "frontend/pointer_motion.h"
 #include "frontend/screen_focus.h"
 #include "frontend/screen_input.h"
@@ -399,7 +402,9 @@ int finish(Graphics* graphics, int result) {
 }
 
 void run_opening_movies(Graphics* graphics, HMODULE module, std::uint32_t frame_limit,
-                        std::uint32_t& frames) {
+                        std::uint32_t& frames,
+                        hd2::frontend::FrameClock<hd2::host::FrameClockPlatform>& frame_clock,
+                        hd2::host::EngineKeyboard* keyboard) {
     hd2::host::EngineVideo video(reinterpret_cast<hd2::host::EngineFrame*>(graphics), module);
     hd2::frontend::OpeningPlayback playback(video, graphics->methods->width(graphics),
                                            graphics->methods->height(graphics), 1.0f);
@@ -412,12 +417,21 @@ void run_opening_movies(Graphics* graphics, HMODULE module, std::uint32_t frame_
             }
             // Existing host message transport supplies the original Escape
             // scan word; held-key repeats must not skip successive movies.
-            if (message.message == WM_KEYDOWN && message.wParam == VK_ESCAPE &&
+            if (!keyboard && message.message == WM_KEYDOWN && message.wParam == VK_ESCAPE &&
                     (message.lParam & (LPARAM{1} << 30)) == 0) playback.key(1);
             TranslateMessage(&message);
             DispatchMessageW(&message);
         }
         if (!running) break;
+        if (keyboard) {
+            const auto scan = keyboard->poll();
+            if (!running) break; // Reacquisition may pump WM_CLOSE.
+            if (scan) {
+                playback.key(scan);
+                keyboard->take_character();
+            }
+        }
+        frame_clock.next(10, 100);
         playback.update();
         if (playback.finished()) break;
         video.draw();
@@ -426,7 +440,6 @@ void run_opening_movies(Graphics* graphics, HMODULE module, std::uint32_t frame_
             running = false;
             break;
         }
-        Sleep(1); // BinkWait in the original draw method supplies movie timing.
     }
     if (playback.finished()) std::puts("Opening sequence completed; entering compiled menu");
 }
@@ -471,11 +484,19 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
     std::uint32_t frames = 0;
     int result = 0;
     try {
+        hd2::host::FrameClockPlatform clock_platform;
+        hd2::frontend::FrameClock frame_clock(clock_platform);
+        std::puts("Recovered application frame clock: minimum=10 maximum=100 ms");
         // Declaration order keeps audio alive through all scene/frame teardown.
         std::unique_ptr<hd2::host::EngineSound> sound;
         if (use_engine_mouse || opening_movies)
             sound = std::make_unique<hd2::host::EngineSound>(module, window);
-        if (opening_movies) run_opening_movies(graphics, module, frame_limit, frames);
+        std::unique_ptr<hd2::host::EngineKeyboard> engine_keyboard;
+        if (use_engine_mouse)
+            engine_keyboard = std::make_unique<hd2::host::EngineKeyboard>(
+                reinterpret_cast<hd2::host::EngineFrame*>(graphics), module);
+        if (opening_movies) run_opening_movies(graphics, module, frame_limit, frames, frame_clock,
+                                               engine_keyboard.get());
         if (running) {
         std::unique_ptr<hd2::host::MenuScene> menu;
         if (menu_model) {
@@ -717,6 +738,14 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     std::puts("Runtime confirmation diagnostic opened by F9");
                     continue;
                 }
+                if (engine_keyboard && message.message == WM_KEYDOWN &&
+                    (message.wParam == VK_RETURN || message.wParam == VK_SPACE ||
+                     message.wParam == VK_ESCAPE)) {
+                    // Engine DirectInput snapshots provide these keys below.
+                    TranslateMessage(&message);
+                    DispatchMessageW(&message);
+                    continue;
+                }
                 if (runtime_active && message.message == WM_KEYDOWN &&
                     (message.wParam == VK_RETURN || message.wParam == VK_SPACE ||
                      message.wParam == VK_ESCAPE)) {
@@ -827,9 +856,25 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             if (!running) {
                 break;
             }
+            if (engine_keyboard) {
+                const auto scan = engine_keyboard->poll();
+                if (!running) break;
+                if (scan) {
+                    const auto character = engine_keyboard->take_character();
+                    bool handled = false;
+                    if (runtime_active) handled = runtime_confirmation->key(scan);
+                    else if (keyboard_input)
+                        handled = hd2::frontend::dispatch_frontend_key(*keyboard_input, scan);
+                    std::printf("Recovered keyboard: scan=%02x character=%02x handled=%u\n",
+                                scan, character, static_cast<unsigned>(handled));
+                    if (menu_events) menu_events->pump();
+                    if (!running) break;
+                }
+            }
+            const auto frame_milliseconds = frame_clock.next(10, 100);
             std::optional<hd2::host::EngineMouse::Snapshot> mouse_snapshot;
             if (engine_mouse) {
-                mouse_snapshot = engine_mouse->poll();
+                mouse_snapshot = engine_mouse->poll(frame_milliseconds);
                 if (!previous_mouse_status || *previous_mouse_status != mouse_snapshot->status) {
                     std::printf("Rebuilt engine mouse poll: status=%08x\n",
                                 static_cast<unsigned>(mouse_snapshot->status));
@@ -988,7 +1033,6 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     break;
                 }
             }
-            Sleep(16);
         }
         }
     } catch (const std::exception& error) {

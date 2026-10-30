@@ -40,6 +40,16 @@ make -C recovered engine-window
 Set `WINDOWS_CXX` to an i386 MinGW-compatible compiler path when needed; see
 [the technical build/launch instructions](../RESEARCH.md#graphics-only-host).
 Normal `make test` remains native and does not require a Windows compiler.
+The host now uses [recovered frame pacing](frontend/frame_clock.h) through
+[original Win32 timer calls](host/frame_clock.h), sharing the interval with
+mouse input. Pacing is desktop-confirmed.
+[Keyboard polling, scan production and modifier/character lookup](input/keyboard.h)
+now run through a [keyboard device owner](host/engine_keyboard.h) alongside
+engine mouse; keyboard behavior and focus return are desktop-confirmed.
+[Client preprocessing](frontend/keyboard_preprocessing.h) and the separate
+[text FIFO](input/text_queue.h) are source-only and sanitizer/i386-audited.
+Concrete input production and text-target services remain open. See
+[evidence](../analysis/keyboard-preprocessing.md).
 With `--menu-confirm --opening-movies`, the host now runs the recovered normal
 Logo1/Logo2/Logo3/Intro sequence through the original engine IShow/Bink interface
 before constructing the compiled menu. The user desktop-confirmed this path.

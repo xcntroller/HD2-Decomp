@@ -3,6 +3,16 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
+Latest startup slice: [original frame pacing and keyboard production](analysis/frame-input.md).
+Frame clock 006DC950 replaces host sleeps and the separate mouse timer and is
+desktop-confirmed. Keyboard polling, modifiers and fixed-table translation now
+run through the original keyboard device alongside engine mouse and are
+desktop-confirmed, including focus return. Subsequent
+[client preprocessing and text FIFO](analysis/keyboard-preprocessing.md) are
+source-recovered and sanitizer/i386-audited. Concrete input production, text
+targets and navigation callers remain open. Checkpoint `8eef91d` contains
+the preceding confirmed opening playback and audited controller.
+
 An early-stage effort to understand Hidden & Dangerous 2 and its LS3D engine.
 The reference installation is the Steam release with Sabre Squadron, running
 on Linux through Proton.

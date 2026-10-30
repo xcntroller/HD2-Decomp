@@ -1,0 +1,250 @@
+{
+  "scope": "Desktop-confirmed recovered frame pacing and keyboard modifier/translation/DirectInput bridge in engine-mouse movie/menu path.",
+  "runtime_verified": true,
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "1006f19c",
+        "hex": "5fb8090000805ec20400",
+        "meaning": "Missing keyboard device returns error before copying key state"
+      },
+      {
+        "address": "1006f1a6",
+        "hex": "b940000000be88170d10bfe81b0d10f3a56888170d1033c0b940000000bf88170d106800010000f3ab8b0252ff5024",
+        "meaning": "Copy previous, clear current and perform 256-byte keyboard read"
+      },
+      {
+        "address": "1006f1e4",
+        "hex": "3d1e000780751d8b74240c908b1656ff5214a1c8190d108b0850ff511c3d1e00078074e8",
+        "meaning": "Input-lost acquisition retries with graphics pumping"
+      },
+      {
+        "address": "1006f225",
+        "hex": "b94000000033c0bf88170d10f3ab5f5ec20400",
+        "meaning": "Exhausted read retry clears current keys and returns zero"
+      },
+      {
+        "address": "1006f238",
+        "hex": "f705441d0d1000000100757d8a0db2170d10b08084c874718405c0170d1074698405a5170d107461",
+        "meaning": "Hotkey toggle gate requires clear disable flag and left Shift Alt Control"
+      },
+      {
+        "address": "1006f32c",
+        "hex": "8b152c210d10a18c1a0d105f33c95e890d8c1a0d108915801a0d10890d2c210d105bc20400",
+        "meaning": "Message mode consumes pending scan and character and resets both"
+      },
+      {
+        "address": "1006f360",
+        "hex": "8a8688170d1084c0792e8a86e81b0d1084c07524",
+        "meaning": "New key requires high current bit and zero entire previous byte"
+      },
+      {
+        "address": "1006f3a1",
+        "hex": "a1601d0d1083f8ff74358a8888170d1084c90f848b000000",
+        "meaning": "Repeat block within scan loop checks zero release before reading time"
+      },
+      {
+        "address": "1006f3c5",
+        "hex": "8bd02bd183fa22eb108b3dcc210d108bc82bcf81f95e0100007f76",
+        "meaning": "Repeat delay strict signed comparisons at 34 and 350 milliseconds"
+      },
+      {
+        "address": "1006f405",
+        "hex": "83e00d505657ff95cc00000033d28ad0f6053c170d10045d8915801a0d10",
+        "meaning": "Character modifier mask 0d, translation and zero-extension of AL"
+      },
+      {
+        "address": "1006f444",
+        "hex": "5f5ec705601d0d10ffffffff33c05bc20400",
+        "meaning": "Released repeat key clears index and returns zero immediately"
+      },
+      {
+        "address": "1006f470",
+        "hex": "a1801a0d10c705801a0d1000000000",
+        "meaning": "Character getter clears stored DWORD after reading it"
+      },
+      {
+        "address": "1006f040",
+        "hex": "558b6c24088b450055ff9098000000",
+        "meaning": "Keyboard initializer closes old device first"
+      },
+      {
+        "address": "1006f04f",
+        "hex": "8b4c240ca10c1d0d106a0068c8190d1068241c0a10890d3c170d108b1050",
+        "meaning": "Keyboard initializer loads flags and creates system keyboard device"
+      },
+      {
+        "address": "1006f096",
+        "hex": "a03c170d108b0dec190d10a801a1c8190d108b1074046a05eb026a065150ff5234",
+        "meaning": "Foreground exclusive bit selects cooperative flags 5 or 6"
+      },
+      {
+        "address": "1006f0ef",
+        "hex": "c60596210d10018b450055ff909c000000b940000000be88170d10bfe81b0d10f3a5",
+        "meaning": "Successful acquisition marks enabled and snapshots held keyboard state"
+      },
+      {
+        "address": "1006f13e",
+        "hex": "c20800",
+        "meaning": "Keyboard initialize pops self and flags"
+      },
+      {
+        "address": "1006f160",
+        "hex": "a1c8190d1085c0741b8b0850ff5120a1c8190d108b1050ff5208c705c8190d1000000000c60596210d",
+        "meaning": "Keyboard close unacquires/releases, clears device and initialized flag"
+      },
+      {
+        "address": "1006f5b0",
+        "hex": "8a44240884c05356578b7c241074098b07",
+        "meaning": "Modifier getter optionally polls before calculating flags"
+      },
+      {
+        "address": "1006f660",
+        "hex": "a068780a1084c0b968780a1074128a5424083ac2740f8a410383c10384c075f232c0c20c00f644240c0174068a4102c20c008a4101c20c00",
+        "meaning": "Character translation matches scan byte and selects shifted column only for bit zero"
+      },
+      {
+        "address": "100a7868",
+        "hex": "3920200b302902312103324004332305342406352507365e08372609382a0a39281e61413062422e6343206444126545216646226747236848176949246a4a256b4b266c4c326d4d316e4e186f4f1970501071511372521f73531474541675552f76561177572d78581579592c7a5a5230304f31315032325133334b34344c35354d3636473737483838493939372a2a4e2b2b4a2d2d532e2eb52f2f273b3a0d3d2b332c3c0c2d5f342e3e352f3f29607e1a5b7b2b5c7c1b5d7d282722000000",
+        "meaning": "Original 63-entry scan/normal/shifted table and sentinel"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d840",
+        "targets": [
+          "1006c2d0",
+          "1006da30",
+          "1006c2c0",
+          "1006da20",
+          "1006da40",
+          "1006a470",
+          "1006de50",
+          "1006de70",
+          "1006de90",
+          "1006deb0",
+          "1006dea0",
+          "1006bb80",
+          "1006dec0",
+          "1006e210",
+          "10069e80",
+          "10069f70",
+          "10069ee0",
+          "1006a1f0",
+          "1006a240",
+          "1006a250",
+          "1006a260",
+          "1006a2f0",
+          "1006a330",
+          "1006a340",
+          "1006a3d0",
+          "1006a6c0",
+          "1006b380",
+          "1006b3b0",
+          "1006b3e0",
+          "1006abc0",
+          "1006b220",
+          "1006c270",
+          "1006c2b0",
+          "1006b360",
+          "1006b5a0",
+          "1006b6e0",
+          "1006f040",
+          "1006f150",
+          "1006f160",
+          "1006f190",
+          "1006f320",
+          "1006f470",
+          "1006f2d0",
+          "1006f300",
+          "1006f490",
+          "1006f4b0",
+          "1006f500",
+          "1006f550",
+          "1006f570",
+          "1006f590",
+          "1006f5b0",
+          "1006f660"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006dce1d",
+        "hex": "ba64000000b90a000000e824fbffff",
+        "meaning": "Original main loop supplies maximum 100 in EDX and minimum 10 in ECX"
+      },
+      {
+        "address": "006dc99e",
+        "hex": "8bc8b8d34d6210895424188b151ced8a002bcaf7e18b4424108bf2c1ee063bf0764a",
+        "meaning": "Unsigned low-word microseconds subtraction, divide by 1000 and maximum-first comparison"
+      },
+      {
+        "address": "006dca0a",
+        "hex": "3bf5736f",
+        "meaning": "Unsigned minimum comparison follows maximum test"
+      },
+      {
+        "address": "006dca0e",
+        "hex": "8b1510ed8a006a208bc56a00522bc66a0050ff15fcf38000",
+        "meaning": "Schedule one-shot timer using event-pulse flags 20 and minimum deficit"
+      },
+      {
+        "address": "006dca26",
+        "hex": "8b0d10ed8a006a6451ff1584f18000",
+        "meaning": "Wait for event with timeout 100, ignoring timer/wait result"
+      },
+      {
+        "address": "006dc9f5",
+        "hex": "a31ced8a008b442410",
+        "meaning": "Maximum branch stores fresh baseline then returns supplied maximum"
+      },
+      {
+        "address": "006dca6a",
+        "hex": "a31ced8a008bc5",
+        "meaning": "Wait branch stores fresh baseline and returns supplied minimum"
+      },
+      {
+        "address": "006dcab2",
+        "hex": "a31ced8a008bc6",
+        "meaning": "Unclamped branch stores fresh baseline and returns measured interval"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [
+      {
+        "site": "006dce27",
+        "target": "006dc950"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "sources": [
+    "recovered/frontend/frame_clock.h",
+    "recovered/host/frame_clock.h",
+    "recovered/input/keyboard.h",
+    "recovered/host/engine_keyboard.h"
+  ],
+  "limitations": [
+    "Original input-manager binding/axis/joystick production and full application startup remain unfinished.",
+    "Keyboard device creation/data format/cooperative ownership and final close are delegated original LS3DF calls; key snapshots, reacquisition, scan selection, modifier flags and character lookup are reconstructed.",
+    "Host keyboard bridge uses foreground nonexclusive flags zero without repeat; alternate non-engine-mouse paths retain Win32 message transport. Debug toggle state is native and is not connected to original debug rendering.",
+    "The immutable original scan table is copied from the fingerprinted loaded DLL; no original keyboard mutable globals are read for selection except configuration at startup and the borrowed device pointer.",
+    "Frame clock retains original timer-failure behavior; unavailable event/performance-clock setup throws."
+  ],
+  "runtime_verification_scope": "User confirms movie/menu keyboard interaction and focus loss/return work as expected. Keypad Enter is source-audited; TKL hardware test unavailable. Earlier pacing log records four successful movie opens and clean teardown after 899 frames. This does not establish original application focus-loss policy."
+}

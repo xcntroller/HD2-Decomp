@@ -24,17 +24,6 @@ public:
             close_(graphics);
             throw std::runtime_error("Original nonexclusive mouse initialization failed");
         }
-        QueryPerformanceFrequency(&frequency_);
-        if (frequency_.QuadPart <= 0) {
-            close_(graphics);
-            throw std::runtime_error("Performance-counter frequency is unavailable");
-        }
-        try {
-            baseline_ = microseconds();
-        } catch (...) {
-            close_(graphics);
-            throw;
-        }
         std::puts("Rebuilt engine mouse polling enabled: nonexclusive foreground device");
     }
     ~EngineMouse() { close_(graphics_); }
@@ -45,16 +34,11 @@ public:
         std::uint32_t status, buttons, delta;
         input::MouseState state;
     };
-    Snapshot poll() {
+    Snapshot poll(std::uint32_t milliseconds) {
         Device adapter{device()};
         const auto status = input::poll_mouse(adapter, state_,
             global<std::uint32_t>(0xd1dbc), global<std::uint8_t>(0xd1890) != 0);
-        const auto now = microseconds();
-        const auto elapsed = (now - baseline_) / 1000u;
-        baseline_ = now;
-        // Same units/bounds as original caller; host Sleep supplies pacing.
-        const auto delta = elapsed < 10 ? 10u : elapsed > 100 ? 100u : elapsed;
-        return {status, input::mouse_button_mask(state_), delta, state_};
+        return {status, input::mouse_button_mask(state_), milliseconds, state_};
     }
 
 private:
@@ -76,22 +60,11 @@ private:
         return value;
     }
     EngineFrame* device() const { return global<EngineFrame*>(0xd2148); }
-    std::uint32_t microseconds() const {
-        LARGE_INTEGER counter{};
-        if (!QueryPerformanceCounter(&counter)) {
-            throw std::runtime_error("Performance counter is unavailable");
-        }
-        return static_cast<std::uint32_t>(
-            static_cast<std::uint64_t>(counter.QuadPart) * 1000000u /
-            static_cast<std::uint64_t>(frequency_.QuadPart));
-    }
     using Close = std::int32_t (WINAPI *)(EngineFrame*);
     EngineFrame* graphics_;
     HMODULE module_;
     Close close_;
     input::MouseState state_;
-    LARGE_INTEGER frequency_{};
-    std::uint32_t baseline_ = 0;
 };
 
 }

@@ -1,5 +1,118 @@
 # Session handoff - 2026-10-30
 
+## Resume here: device confirmed; client preprocessing and text FIFO source recovered
+
+The user desktop-confirms keyboard interaction and focus loss/return. The
+pacing/keyboard slice remains uncommitted; last commit 8eef91d. Current request
+is continuation, not a new commit. No new live interaction in this follow-up.
+
+`frontend/keyboard_preprocessing.h` recovers 0066B3E0 and 0066B380: blocked gate,
+prehook/availability order, scan before character callbacks, legacy versus ACP
+UTF16 dispatch, all-units consumption latch, modifier shortcut/fallback,
+secondary-buffer +B8 Escape and existing fresh-screen/drag/back tail.
+`input/text_queue.h` recovers separate engine +A8/+AC FIFO and WM_CHAR insertion
+branch. +A8 is NOT +A4 scan translation. Queue slot zero is last result; pending
+values use 1..31 and getter shifts before reading. See
+[scope and evidence](analysis/keyboard-preprocessing.md).
+
+Source-only: actual application input production, character target, ACP conversion
+and diagnostic services are required before integration. Do not wire successful
+no-op services. Original has uninitialized upper key DWORD bytes; native forwards
+zero-extended meaningful byte. Unterminated 1023-byte source throws rather than
+original stack overread; wide storage is initialized. Focus/navigation callers
+remain open in plan.md. Next: original 006C7870 input-buffer production and
+focus/navigation callers, following original call order toward controller wiring.
+
+Temporary sanitizer and strict Windows i386 audits cover queue capacity/order,
+all scan bytes, modifier sides/priority, shortcut, character consumption, UTF16
+latch, failed/empty conversion, callback mutation and NaN/signed zero. Map checks
+both hashes, 26 anchors, 12 graphics slots, one client slot and three calls.
+Existing native checks and all 158 tooling checks pass; live host build is
+up to date. Temporary audits removed after verification.
+One new partial 0066B380: 116 total (112 client/four engine), zero complete,
+frozen denominator 18,783. Other indirect entries absent, no new credit.
+Read-only exports: ignored analysis/work/engine-character-fifo-defined and
+frontend-key-preprocessing; seed script verifies new slots before transient
+function creation. No original project/binary changes, Proton launch or push.
+
+## Earlier checkpoint: keyboard device integration built; desktop test pending
+
+The user confirms recovered frame pacing works. Latest log records the new
+10/100 ms clock, all four movie opens and clean 3D/sound/graphics teardown
+after 899 frames. New keyboard work is not desktop-confirmed and remains
+uncommitted with the pacing slice. Last commit is 8eef91d.
+
+`input/keyboard.h` now also recovers separate left/right modifier flags and
+the original fixed scan-table translation. `host/engine_keyboard.h` owns an
+original LS3DF DirectInput keyboard: verified +90 initialize/+94 enabled/+98
+close, foreground nonexclusive host-selected flags zero/no repeat. It copies
+the immutable 63-entry plus sentinel table from fingerprinted LS3DF; native
+source handles poll/reacquire, scan/repeat, modifiers and character lookup.
+Device creation/data format/cooperative setup and release remain delegated.
+It snapshots held keys at initialization and closes partial initialization.
+
+The existing --use-engine-mouse path now enables the keyboard owner for movies
+and menu. Duplicate Win32 Enter/Space/Escape activation is bypassed; fallback
+paths without engine mouse, including F9 diagnostics, retain message transport.
+Client input-manager/preprocessing still open; the complete recovered controller
+is not live. Native debug-toggle state does not affect engine debug rendering.
+
+Desktop command remains:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --opening-movies --frames 0`.
+Check Escape skips one movie; then menu Enter/Space/Escape and Exit/No/Yes.
+Holding keys should not activate successive screens. Check focus loss/return
+and normal close. Keypad Enter is audited; user has TKL, no hardware check.
+Expected log: 'Recovered keyboard polling enabled', key scan/character records
+and 'Keyboard closed' before sound/graphics close. Do not commit before testing.
+
+Temporary sanitizer/i386 audit checks all 64 modifier combinations, 131,072
+scan/modifier combinations against original table, duplicate/sentinel lookup,
+actual poll/scan-to-front-end dispatch, held keys and read/reacquire failures.
+Strict host build, existing native suite, 158 tooling checks, byte map,
+frozen accounting and diff formatting checks pass.
+Combined frame/input map now validates 29 anchors, 52 graphics slots and timer
+call against both fingerprints. Function counts unchanged: 115 partial
+(111 client/four engine), zero complete, frozen denominator 18,783. Modifier/
+translation functions are absent from frozen inventory; delegated initialization
+does not earn credit. Temporary audits removed after checks. Read-only original
+exports are in ignored analysis/work/engine-keyboard-services; guarded seed
+script now includes verified modifier/translation/ownership slots.
+See analysis/frame-input.md and plan.md for remaining startup dependencies.
+
+## Resume here: checkpoint committed; original frame pacing desktop test pending
+
+User requested commit and continuation. **8eef91d** commits the confirmed four
+movies → menu path, audited controller and prior common-service closure.
+New uncommitted slice: `frontend/frame_clock.h` recovers 006DC950, including
+unsigned low-32-bit micros, maximum-before-minimum, fresh baseline per branch
+and ignored timer/wait results. `host/frame_clock.h` supplies original Win32
+manual-reset event, multimedia event-pulse timer and 100 ms wait. Both loops
+now use minimum 10/maximum 100. Sleep(1)/Sleep(16) and mouse-local timer removed;
+mouse polling gets the same frame delta. Links winmm. Desktop test pending.
+
+`input/keyboard.h` recovers 1006F190 poll/reacquire, 1006F320 message/scan/repeat
+and 1006F470 character consumption. Source-only: actual device lifecycle,
+character/modifier and message producer remain services; live keys unchanged.
+Important: retry success bypasses debug toggles; retry failure clears keys but
+returns success; repeat check is inside scan loop, strict >350/>34 signed
+wrapping milliseconds; it can beat higher new scans. Character repeats do not
+retranslate. All three engine entries absent from frozen inventory, no credit.
+
+Temporary sanitizer/native/i386 audits pass; strict host build and 158 tooling
+checks pass. `frame-input-map.json` validates both fingerprints, 20 anchors,
+52 graphics slots and timer call. One new partial client 006DC950: total 115
+(111 client/four engine), zero complete, frozen denominator 18,783. See
+`analysis/frame-input.md`. Temporary audits removed after final checks.
+
+Desktop: `python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --opening-movies --frames 0`.
+Check video/audio pacing, Escape skip, menu pointer/keyboard/Exit/No/Yes and
+window close. Do not commit this interactive slice before desktop confirmation.
+No agent-side Proton/game run or push. Read-only original exports in ignored
+`analysis/work/engine-keyboard-loop` and `startup-input-prerequisites`.
+Next: concrete keyboard/input producer services. 006C7870 includes bindings,
+axes and joystick logic requiring assembly review; 006B65D0 startup also needs
+game-data/HumanStore loaders and profile reset. Do not stub these as success.
+
 ## Resume here: controller source audited; opening playback desktop-confirmed
 
 The user confirms the opening-movies path works as intended. Their runtime log

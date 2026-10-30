@@ -1,0 +1,208 @@
+{
+  "scope": "Source-only client keyboard preprocessing, ANSI/UTF16 conversion and engine text FIFO. Existing live keyboard transport remains desktop-confirmed separately.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "0066b38f",
+        "hex": "66c7070000",
+        "meaning": "Initialize first UTF16 output unit"
+      },
+      {
+        "address": "0066b39c",
+        "hex": "ff91a8000000",
+        "meaning": "Read text FIFO at IGraph +a8"
+      },
+      {
+        "address": "0066b3ab",
+        "hex": "81feff0300007ce1",
+        "meaning": "Bound source reads to 1023 bytes"
+      },
+      {
+        "address": "0066b3b3",
+        "hex": "53578d5424146aff526a006a00ff15a4f18000",
+        "meaning": "CP_ACP flags zero and source length minus one conversion"
+      },
+      {
+        "address": "0066b3c8",
+        "hex": "83fe015f5e0f9fc0",
+        "meaning": "Return source byte count greater than one ignoring conversion result"
+      },
+      {
+        "address": "0066b401",
+        "hex": "8a452d84c00f8557040000",
+        "meaning": "Blocked-input byte gates prehook and all reads"
+      },
+      {
+        "address": "0066b421",
+        "hex": "ff5044a1e0e48a0033ff3bc70f8430040000",
+        "meaning": "Prehook before shared availability gate"
+      },
+      {
+        "address": "0066b43b",
+        "hex": "ff92a000000089442418a02ce98a00",
+        "meaning": "Read scan before selecting wide character mode"
+      },
+      {
+        "address": "0066b452",
+        "hex": "baff0300008d4c2454",
+        "meaning": "Wide output capacity 1023"
+      },
+      {
+        "address": "0066b4d1",
+        "hex": "8b4d1085c9740f8b1156ff522484c07405c644241701",
+        "meaning": "Fresh character target and latch without early return"
+      },
+      {
+        "address": "0066b507",
+        "hex": "8a5c24188ac3885c24103c4e0f85",
+        "meaning": "Only low key byte initialized"
+      },
+      {
+        "address": "0066b521",
+        "hex": "ff91c4000000",
+        "meaning": "Shortcut queries Alt first"
+      },
+      {
+        "address": "0066b537",
+        "hex": "ff92bc000000",
+        "meaning": "Shortcut then queries Shift"
+      },
+      {
+        "address": "0066b54d",
+        "hex": "ff91c0000000",
+        "meaning": "Shortcut finally queries Control"
+      },
+      {
+        "address": "0066b563",
+        "hex": "c74424307d000002897c2434",
+        "meaning": "Queue debug code 0200007d with zero argument"
+      },
+      {
+        "address": "0066b5a7",
+        "hex": "ff91a8000000",
+        "meaning": "Legacy path consumes a single FIFO value"
+      },
+      {
+        "address": "0066b5ca",
+        "hex": "25ff00000050ff5224",
+        "meaning": "Zero-extend low character byte before character callback"
+      },
+      {
+        "address": "0066b5f0",
+        "hex": "ff91c0000000",
+        "meaning": "Zero scan fallback checks Control first"
+      },
+      {
+        "address": "0066b623",
+        "hex": "ff91c4000000",
+        "meaning": "Then Alt"
+      },
+      {
+        "address": "0066b653",
+        "hex": "ff91bc000000",
+        "meaning": "Then Shift"
+      },
+      {
+        "address": "0066b67b",
+        "hex": "3bf70f84e0010000d986b8000000d81d1cf58000dfe0f6c4440f8bc9010000b301885c2410",
+        "meaning": "Secondary +b8 float synthesizes Escape when nonzero or unordered"
+      },
+      {
+        "address": "0066b6d8",
+        "hex": "8b442410508b11ff5220",
+        "meaning": "Screen receives DWORD whose upper bytes are uninitialized in original"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "00815e3c",
+        "targets": [
+          "0066b3e0"
+        ]
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "0066b460",
+        "target": "0066b380"
+      },
+      {
+        "site": "0066b580",
+        "target": "00615a90"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "1006a4f3",
+        "hex": "8b54241481fa020100008b4c24188b74241c752185f6781db801000000391c85481e0d1074084083f8207cf1eb07890c85481e0d10",
+        "meaning": "WM_CHAR positive lParam appends at first zero in slots 1 through 31"
+      },
+      {
+        "address": "1006f2d0",
+        "hex": "6a7c684c1e0d1068481e0d10e89fea0100a1481e0d1083c40cc705c41e0d1000000000c20400",
+        "meaning": "Move 31 DWORDs left then return new element zero and zero final slot"
+      },
+      {
+        "address": "1006f300",
+        "hex": "57b92000000033c0bf481e0d10f3ab5fc20400",
+        "meaning": "Clear all 32 DWORDs"
+      },
+      {
+        "address": "1006f490",
+        "hex": "0fb64424088a8088170d10c0e807",
+        "meaning": "Key state query truncates scan and returns high state bit"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d8e0",
+        "targets": [
+          "1006f320",
+          "1006f470",
+          "1006f2d0",
+          "1006f300",
+          "1006f490",
+          "1006f4b0",
+          "1006f500",
+          "1006f550",
+          "1006f570",
+          "1006f590",
+          "1006f5b0",
+          "1006f660"
+        ]
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "1006f2dc",
+        "target": "1008dd80"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "sources": [
+    "recovered/frontend/keyboard_preprocessing.h",
+    "recovered/frontend/frontend_key.h",
+    "recovered/input/text_queue.h"
+  ],
+  "limitations": [
+    "Concrete original input producer and text target/character callbacks are required before integration. CP_ACP conversion and diagnostic remain explicit services.",
+    "Native source zero-extends meaningful scan byte rather than reproducing uninitialized upper bytes in original DWORD.",
+    "Native source rejects unterminated 1023-byte input instead of reproducing original stack overread; wide output storage is zero-initialized.",
+    "Only WM_CHAR insertion branch is recovered, not the complete engine message pump."
+  ]
+}
