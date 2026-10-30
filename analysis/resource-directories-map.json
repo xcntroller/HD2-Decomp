@@ -1,0 +1,745 @@
+{
+  "scope": "Source-only directory region of 006dbe60, recursive Win32 preorder enumeration, all five separate native client directory lists and exact add/remove semantics. Original graphics list uses checked delegated +110(flags0). Protection postlude, loaded resource objects and full startup remain excluded.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006dbe60",
+        "hex": "558bec83ec10535633d2b904348400e8ec18010033d2b9fc338400e8e018010033d2b9f4",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006ed570",
+        "hex": "81ec00020000538bda8d542404562bd18a0188040a4184c075f655578d7c241083c9ff33",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006ed6b0",
+        "hex": "81ec4003000055568bea8bf18d942448010000578bc62bd68a08880c024084c975f68dbc",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006ed760",
+        "hex": "81ecec030000568bf28d5424042bd18a0188040a4184c075f683fe050f87b0000000ff24",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006d7590",
+        "hex": "6aff6881bc800064a100000000506489250000000083ec0c53558be9568b742428896c24",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006d8550",
+        "hex": "6aff68a1bd800064a100000000506489250000000083ec0c53558be9568b742428896c24",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006d9640",
+        "hex": "6aff68c1be800064a100000000506489250000000083ec0c53558be9568b742428896c24",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006d6b80",
+        "hex": "6aff68e1bb800064a100000000506489250000000083ec0c53558be9568b742428896c24",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006d7770",
+        "hex": "6aff68a6bc800064a100000000506489250000000083ec108b4424205355568bd9578d4c",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006d8730",
+        "hex": "6aff68c6bd800064a100000000506489250000000083ec108b4424205355568bd9578d4c",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006d9820",
+        "hex": "6aff68e6be800064a100000000506489250000000083ec108b4424205355568bd9578d4c",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006d6d60",
+        "hex": "6aff6806bc800064a100000000506489250000000083ec108b4424205355568bd9578d4c",
+        "meaning": "Original entry/control flow of recovered directory behavior; detailed scope in resource-directories.md"
+      },
+      {
+        "address": "006dbe60",
+        "hex": "558bec83ec10535633d2b904348400e8ec18010033d2b9fc338400e8e018010033d2b9f4338400e8d4180100ba01000000b9ec338400e8c5180100ba02000000b9e4338400e8b6180100ba03000000b9ec338400e8a7180100ba04000000b9ec338400e898180100ba05000000b9ec338400e889180100",
+        "meaning": "Exact eight root/category registrations"
+      },
+      {
+        "address": "006dbed7",
+        "hex": "33c033c966a1bab28c00668b0dbaab8c00c1e0028b148d30a78c00c745f8bc76420a8db030ac8c008d8030ae8c008975fc8955f08945f45053518b4df0518b45f4508b4df851e88c8f10008b0850ff5148508906ff150090a5008906585b03c3592bc10145fc595b",
+        "meaning": "Unresolved protection postlude excluded from native source"
+      },
+      {
+        "address": "006ed5e9",
+        "hex": "00803b2e751a8a430184c00f84920000003c2e750b8a430284c00f84830000008bb4241002000083fe05776cff24b598d66e00e88d780f008b088d5424086a005250ff9110010000eb4e8d442408b990ec8a0050eb3d8d4c240851b954ec8a00e802affeffeb318d542408b918ec8a0052e8e1bffeffeb208d442408b9dceb8a0050e81095feffeb0f8d4c240851b9a0eb8a00e80f9ffeff8bd68d4c2408e8240000005e5b81c400020000c20800901cd6",
+        "meaning": "Lowercase before filter; directory flag, exact dot names and distinct category owners"
+      },
+      {
+        "address": "006ed633",
+        "hex": "8d442408b990ec8a0050eb3d8d4c240851b954ec8a00e802affeffeb318d542408b918ec8a0052e8e1bffeffeb208d442408b9dceb8a0050e81095feffeb0f8d4c240851b9a0eb8a00e80f9ffeff",
+        "meaning": "Categories1 and5 use same body but different owners"
+      },
+      {
+        "address": "006ed7b1",
+        "hex": "8d442404b990ec8a0050eb708d4c240451b954ec8a00e884adfeff8bd68d4c2404e8d9feffff5e81c4ec030000c38d542404b918ec8a0052e852befeff8bd68d4c2404e8b7feffff5e81c4ec030000c38d442404b9dceb8a0050e87093feff8bd68d4c2404e895feffff5e81c4ec030000c38d4c240451b9a0eb8a00e85e9dfeff8bd68d4c2404e873feffff",
+        "meaning": "Distinct root category dispatch owners"
+      },
+      {
+        "address": "006d75b5",
+        "hex": "8b450056ff501c",
+        "meaning": "Insertion dispatches removal before constructing/appending path"
+      },
+      {
+        "address": "006d7652",
+        "hex": "8b4c2410807c01075c0f84c2000000",
+        "meaning": "Only trailing backslash suppresses separator append"
+      },
+      {
+        "address": "006d7723",
+        "hex": "8b452c8d4d248d54242c526a0150e8bac6d3ff",
+        "meaning": "Directory append uses vector end at owner+2c"
+      },
+      {
+        "address": "006d78c4",
+        "hex": "8bd88d1cab8b43fc83eb044d3bc2744e85c074058b7004eb0233f685d274058b4a04eb0233c93bf1752e85c074058b4804eb0233c985d28d7a087505bf8079860085c08d70087505be8079860033c0f3a60f94c084c0750685ed75a9eb52",
+        "meaning": "Reverse search and case-sensitive equal-length byte comparison"
+      },
+      {
+        "address": "006d7922",
+        "hex": "8b4c24108bd98b41288b7b2c8d04a88d70043bf774188be82bee568d0c2ee88bccd3ff83c6043bf775f08b5424308b7b2c8d77fc3bf774168b0e85c97409e87bd7d2ff8b54243083c6043bf775ea83432cfc",
+        "meaning": "Remove one matching entry and shift suffix left"
+      },
+      {
+        "address": "007e5c34",
+        "hex": "8b45088bd08038000f840e0100008a0a80f9417c0a80f95a7f0580c120880a42803a0075e9e9f2000000",
+        "meaning": "CRT default C locale lowercases ASCII A-Z only"
+      },
+      {
+        "address": "00843328",
+        "hex": "5c00",
+        "meaning": "Original directory separator constant"
+      },
+      {
+        "address": "008440a8",
+        "hex": "5c2a2e2a00",
+        "meaning": "Original directory search suffix"
+      },
+      {
+        "address": "006d4f71",
+        "hex": "c706c85f8100",
+        "meaning": "Final derived cache vtable installation"
+      },
+      {
+        "address": "006d52b1",
+        "hex": "c70668608100",
+        "meaning": "Final derived cache vtable installation"
+      },
+      {
+        "address": "006d55e1",
+        "hex": "c70608618100",
+        "meaning": "Final derived cache vtable installation"
+      },
+      {
+        "address": "006d5901",
+        "hex": "c706a8618100",
+        "meaning": "Final derived cache vtable installation"
+      },
+      {
+        "address": "006d5ca1",
+        "hex": "c706e0618100",
+        "meaning": "Final derived cache vtable installation"
+      },
+      {
+        "address": "00843404",
+        "hex": "4d61707300",
+        "meaning": "Exact root-name bytes referenced by recovered setup: Maps"
+      },
+      {
+        "address": "008433fc",
+        "hex": "4d6170735f4300",
+        "meaning": "Exact root-name bytes referenced by recovered setup: Maps_C"
+      },
+      {
+        "address": "008433f4",
+        "hex": "4d6170735f5500",
+        "meaning": "Exact root-name bytes referenced by recovered setup: Maps_U"
+      },
+      {
+        "address": "008433ec",
+        "hex": "4d6f64656c7300",
+        "meaning": "Exact root-name bytes referenced by recovered setup: Models"
+      },
+      {
+        "address": "008433e4",
+        "hex": "536f756e647300",
+        "meaning": "Exact root-name bytes referenced by recovered setup: Sounds"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "00815fc8",
+        "targets": [
+          "006d7480",
+          "004290a0",
+          "004c76c0",
+          "006d4fe0",
+          "006d7490",
+          "006d4ff0",
+          "006d7590",
+          "006d7770"
+        ]
+      },
+      {
+        "address": "00816068",
+        "targets": [
+          "006d7e90",
+          "0044a1c0",
+          "006d7ea0",
+          "006d5310",
+          "006d8450",
+          "006d5320",
+          "006d8550",
+          "006d8730"
+        ]
+      },
+      {
+        "address": "00816108",
+        "targets": [
+          "006d8e50",
+          "006d5600",
+          "0041fc10",
+          "006d5620",
+          "006d9540",
+          "006d5640",
+          "006d9640",
+          "006d9820"
+        ]
+      },
+      {
+        "address": "008161a8",
+        "targets": [
+          "006d5de0",
+          "006d5df0",
+          "006d64d0",
+          "006d59d0",
+          "006d6a80",
+          "006d59e0",
+          "006d6b80",
+          "006d6d60"
+        ]
+      },
+      {
+        "address": "008161e0",
+        "targets": [
+          "006d7480",
+          "004290a0",
+          "004c76c0",
+          "006d5d10",
+          "006d7490",
+          "006d5d20",
+          "006d7590",
+          "006d7770"
+        ]
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "006dbe6f",
+        "target": "006ed760"
+      },
+      {
+        "site": "006dbe7b",
+        "target": "006ed760"
+      },
+      {
+        "site": "006dbe87",
+        "target": "006ed760"
+      },
+      {
+        "site": "006dbe96",
+        "target": "006ed760"
+      },
+      {
+        "site": "006dbea5",
+        "target": "006ed760"
+      },
+      {
+        "site": "006dbeb4",
+        "target": "006ed760"
+      },
+      {
+        "site": "006dbec3",
+        "target": "006ed760"
+      },
+      {
+        "site": "006dbed2",
+        "target": "006ed760"
+      },
+      {
+        "site": "006dbf1d",
+        "target": "007e4eae"
+      },
+      {
+        "site": "006ed5d1",
+        "target": "007e5c20"
+      },
+      {
+        "site": "006ed61c",
+        "target": "007e4eae"
+      },
+      {
+        "site": "006ed649",
+        "target": "006d8550"
+      },
+      {
+        "site": "006ed65a",
+        "target": "006d9640"
+      },
+      {
+        "site": "006ed66b",
+        "target": "006d6b80"
+      },
+      {
+        "site": "006ed67c",
+        "target": "006d7590"
+      },
+      {
+        "site": "006ed687",
+        "target": "006ed6b0"
+      },
+      {
+        "site": "006ed718",
+        "target": "006ed570"
+      },
+      {
+        "site": "006ed73b",
+        "target": "006ed570"
+      },
+      {
+        "site": "006ed789",
+        "target": "007e4eae"
+      },
+      {
+        "site": "006ed7a4",
+        "target": "006ed6b0"
+      },
+      {
+        "site": "006ed7c7",
+        "target": "006d8550"
+      },
+      {
+        "site": "006ed7d2",
+        "target": "006ed6b0"
+      },
+      {
+        "site": "006ed7e9",
+        "target": "006d9640"
+      },
+      {
+        "site": "006ed7f4",
+        "target": "006ed6b0"
+      },
+      {
+        "site": "006ed80b",
+        "target": "006d6b80"
+      },
+      {
+        "site": "006ed816",
+        "target": "006ed6b0"
+      },
+      {
+        "site": "006ed82d",
+        "target": "006d7590"
+      },
+      {
+        "site": "006ed838",
+        "target": "006ed6b0"
+      },
+      {
+        "site": "006d75c2",
+        "target": "00405100"
+      },
+      {
+        "site": "006d75f4",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d7644",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d767e",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d769b",
+        "target": "004050a0"
+      },
+      {
+        "site": "006d76b2",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d76d2",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d76f8",
+        "target": "00414550"
+      },
+      {
+        "site": "006d7717",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d7731",
+        "target": "00413df0"
+      },
+      {
+        "site": "006d774b",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d8582",
+        "target": "00405100"
+      },
+      {
+        "site": "006d85b4",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d8604",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d863e",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d865b",
+        "target": "004050a0"
+      },
+      {
+        "site": "006d8672",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d8692",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d86b8",
+        "target": "00414550"
+      },
+      {
+        "site": "006d86d7",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d86f1",
+        "target": "00413df0"
+      },
+      {
+        "site": "006d870b",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d9672",
+        "target": "00405100"
+      },
+      {
+        "site": "006d96a4",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d96f4",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d972e",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d974b",
+        "target": "004050a0"
+      },
+      {
+        "site": "006d9762",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d9782",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d97a8",
+        "target": "00414550"
+      },
+      {
+        "site": "006d97c7",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d97e1",
+        "target": "00413df0"
+      },
+      {
+        "site": "006d97fb",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d6bb2",
+        "target": "00405100"
+      },
+      {
+        "site": "006d6be4",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d6c34",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d6c6e",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d6c8b",
+        "target": "004050a0"
+      },
+      {
+        "site": "006d6ca2",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d6cc2",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d6ce8",
+        "target": "00414550"
+      },
+      {
+        "site": "006d6d07",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d6d21",
+        "target": "00413df0"
+      },
+      {
+        "site": "006d6d3b",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d779c",
+        "target": "00405100"
+      },
+      {
+        "site": "006d77c7",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d7808",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d782b",
+        "target": "00405180"
+      },
+      {
+        "site": "006d7857",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d787d",
+        "target": "00414550"
+      },
+      {
+        "site": "006d789d",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d7940",
+        "target": "004145d0"
+      },
+      {
+        "site": "006d7960",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d7986",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d875c",
+        "target": "00405100"
+      },
+      {
+        "site": "006d8787",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d87c8",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d87eb",
+        "target": "00405180"
+      },
+      {
+        "site": "006d8817",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d883d",
+        "target": "00414550"
+      },
+      {
+        "site": "006d885d",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d8900",
+        "target": "004145d0"
+      },
+      {
+        "site": "006d8920",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d8946",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d984c",
+        "target": "00405100"
+      },
+      {
+        "site": "006d9877",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d98b8",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d98db",
+        "target": "00405180"
+      },
+      {
+        "site": "006d9907",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d992d",
+        "target": "00414550"
+      },
+      {
+        "site": "006d994d",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d99f0",
+        "target": "004145d0"
+      },
+      {
+        "site": "006d9a10",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d9a36",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d6d8c",
+        "target": "00405100"
+      },
+      {
+        "site": "006d6db7",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d6df8",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d6e1b",
+        "target": "00405180"
+      },
+      {
+        "site": "006d6e47",
+        "target": "007e520f"
+      },
+      {
+        "site": "006d6e6d",
+        "target": "00414550"
+      },
+      {
+        "site": "006d6e8d",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006d6f30",
+        "target": "004145d0"
+      },
+      {
+        "site": "006d6f50",
+        "target": "004050e0"
+      },
+      {
+        "site": "006d6f76",
+        "target": "007e1cc0"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10068f90",
+        "hex": "a1f4160d10c390909090",
+        "meaning": "GetIGraph export"
+      },
+      {
+        "address": "1006ff80",
+        "hex": "8b44240c8b54240850b9f41e0d10e8cdfdffffc20c00",
+        "meaning": "Checked graphics+110 stdcall wrapper, path and low-byte recursive flag"
+      },
+      {
+        "address": "1006fd60",
+        "hex": "81ec4c0200005355568be98bda5783c9ff33c08bfbf2aef7d1498bf18d460250895c2418e893d601008bf883c40485ff897c24107530683c870a10e87093ffff83c4045757ba03000000b902000080e8cc98ffff5f5e5db8020000805b81c44c020000c204008bd78bc32bd38d6424008a08880c024084c975f6807c1eff5c7408c6043e5c884c3e018b45043945",
+        "meaning": "Delegated graphics path copy and trailing separator append, no duplicate removal"
+      },
+      {
+        "address": "1006fe34",
+        "hex": "8b4d088b55008a842460020000893c8a8b4d084184c0894d080f8410010000",
+        "meaning": "Graphics append and recurse flag gate; native caller uses flags zero"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d950",
+        "targets": [
+          "1006ff80"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}

@@ -3,7 +3,16 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest source: [archive registration and masked key exchange](analysis/startup-archives.md).
+Latest source: [resource-directory registration and native lists](analysis/resource-directories.md).
+Eight roots, recursive Win32 preorder enumeration, five distinct client lists
+and add/remove semantics are recovered and sanitizer/i386-audited. Four method
+pairs match instruction-for-instruction after relocation/EH normalization.
+Graphics +110(flags0) remains delegated. Original protection postlude in
+006DBE60, full loaded-resource caches and complete startup remain open.
+Run `python3 -B tools/validate_engine_host.py --map analysis/resource-directories-map.json`.
+No live changes; 161 partial (156 client/five engine), none complete.
+
+Prior source: [archive registration and masked key exchange](analysis/startup-archives.md).
 The archive region of 006DB6E0, cleanup phase of 006DC3A0 and CRT random arithmetic
 now have readable source and checked i386 rw_data calls. Exhaustive sanitizer
 audits cover all 2,048 availability patterns; independent assembly decoding

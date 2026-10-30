@@ -70,9 +70,16 @@ profile persistence and renderer/text consumers remain open. See
 [concrete rw_data adapter](host/startup_archives.h) sharing that text/engine
 context. Fallback, creation order, masked key protocol and forward cleanup are
 sanitizer-audited across 2,048 availability patterns and compile/link with the
-actual text loader for i386. Full-wrapper protection and resource-directory
-registration remain open; no live resource path changes. See
+actual text loader for i386. Full-wrapper protection and loaded-resource caches
+remain open; no live resource path changes. See
 [scope and key validation](../analysis/startup-archives.md).
+[Resource-directory setup and native lists](io/resource_directories.h) now also
+recover root/category ordering, depth-first Win32 traversal and exact duplicate
+removal before append, with [concrete forwarding](host/resource_directories.h).
+Five client list owners remain separate; graphics storage stays delegated.
+Source-only sanitizer/i386 checks pass. Full loaded-resource caches and the
+original setup protection postlude remain open. See
+[directory evidence](../analysis/resource-directories.md).
 With `--menu-confirm --opening-movies`, the host now runs the recovered normal
 Logo1/Logo2/Logo3/Intro sequence through the original engine IShow/Bink interface
 before constructing the compiled menu. The user desktop-confirmed this path.

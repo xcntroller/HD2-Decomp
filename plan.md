@@ -88,9 +88,15 @@ The existing host preview is useful for validation, but it is not this milestone
   ownership, and establish original lookup precedence. **Source-only, audited.**
   Concrete rw_data forwarding shares the engine/text context. All 2,048 file
   availability patterns pass sanitizer audits; compiled keys match installed
-  assets. The preceding protection-state operation and subsequent resource
-  directory/cache setup remain open before full startup integration. See
+  assets. The preceding protection-state operation and full loaded-resource
+  caches remain open before full startup integration. See
   [archive scope](analysis/startup-archives.md).
+- [x] Recover resource-directory registration, recursive enumeration and all
+  five client directory lists. **Source-only, audited.** Preserve category owner
+  separation, case/separator rules, reverse exact removal and preorder traversal;
+  graphics registration uses checked original +110 with recursion off. Full
+  loaded-resource caches and the setup wrapper's protection postlude remain open.
+  See [directory scope](analysis/resource-directories.md).
 - [ ] Build the independent executable in that path, then desktop-test normal
   playback, skipping, missing-movie behavior, menu entry and teardown. Commit
   the interactive slice only after the user confirms it works.
@@ -192,19 +198,19 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current checkpoint follows `7f35909` joystick ownership and `7becea0`
-input setup/localization. Archive registration now has readable source for
-creation/fallback order, the exact set/get/set key handshake, shared random-state
-arithmetic and forward cleanup, plus concrete checked i386 rw_data forwarding.
-Sanitizer audits cover 2,048 availability patterns; all compiled keys match
-independent original instruction decoding and installed base archive checks.
-No live menu changes. The original protection prelude is explicitly excluded.
-Next: resource-directory/cache setup (006DBE60 / 006ED760 / 006ED6B0 / 006ED570),
-the protection-state and remaining application/state startup dependencies, and
-concrete graphics input services before controller integration. Joystick factory
-callers remain unresolved; do not invent enumeration for the empty-list path.
-Profile persistence, renderer/text consumers and focus/navigation remain open.
-See [archive scope](analysis/startup-archives.md).
+Current checkpoint follows `227a3c1` archive registration. Resource-directory
+setup now recovers all eight roots, recursive Win32 traversal and five DISTINCT
+native directory lists. All add/remove specializations match original instruction
+streams after relocation normalization. Sanitizer audits cover 10,000 list
+operations, case/separator rules, owner routing, traversal and handle cleanup;
+concrete Win32/engine forwarding compiles/links for i386. No live menu changes.
+Next: resolve the startup protection-state dependencies and remaining application/
+state services, complete loaded-resource cache contracts and concrete graphics
+input services before controller integration. Directory lists alone do not
+implement their caches' resource consumers. Joystick factory callers remain
+unresolved; do not invent enumeration for the empty-list path. Profile
+persistence, renderer/text consumers and focus/navigation remain open.
+See [directory scope](analysis/resource-directories.md).
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,

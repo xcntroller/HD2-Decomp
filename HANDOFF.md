@@ -1,6 +1,66 @@
 # Session handoff - 2026-10-30
 
-## Resume here: archive registration/key exchange recovered; full wrapper still open
+## Resume here: resource-directory setup/lists recovered; full startup remains open
+
+Source checkpoint follows `227a3c1`. User permits sensible tested commits.
+No live behavior/host changes or desktop test. New io/resource_directories.h and
+host/resource_directories.h recover ordinary 006DBE60 root calls, recursive
+006ED760/006ED6B0/006ED570 and directory-only add/remove for all five client
+cache owners. See [scope](analysis/resource-directories.md), new checked plan entry.
+
+Exact root order: Maps/Maps_C/Maps_U cat0 (original graphics+110 flags0), Models1,
+Sounds2, Models3, Models4, Models5. Root spelling preserved, registered even if
+missing. Descendants composite parent+backslash+name, lowercase BEFORE filter,
+default C-locale ASCII only. Attribute10 required, skip ONLY exact . / ..;
+include dot-prefixed/reparse dirs. Win32 FindFirst/Next (NOT CRT), process first
+record, depth-first preorder in API order; parent handles stay open across child
+recursion. No sort/cycle/dedup policy. Unknown category still enumerates.
+
+List insertion first invokes original derived +1C removal, normalizes trailing
+BACKSLASH only, appends at end. Removal normalizes and erases last case-sensitive
+exact match, preserving suffix order/capacity. Five DISTINCT owners even when
+code shared: cat1 008AEC90 vtable815FC8 and cat5 008AEBA0 vtable8161E0 both
+add006D7590/remove7770; cat2 008AEC54/vtable816068 add8550/remove8730;
+cat3 008AEC18/vtable816108 add9640/remove9820; cat4 008AEBDC/vtable8161A8
+add6B80/remove6D60. These are DIRECTORY lists, not loaded-resource caches.
+Constructor final vtables and add/remove slots verified; original cache +24
+vector has begin+28/end+2C. All four add/remove specialization instruction
+streams compare identically except EH constants and relocated local branches.
+
+Concrete Win32 search and borrowed LS3DF GetIGraph/+110 adapters compile/link
+for i386, NEVER executed. Fresh GetIGraph per category0 call; engine recursion
+flags0 avoids double enumeration. Engine path storage remains delegated (its
+append does not use client remove-before-add). Native lists use vector/string,
+normal derived behavior rather than arbitrary subclass virtual overrides.
+Empty client path/oversize guards explicit; exception cleanup closes active
+searches, including first-result assignment allocation failure. Root may already
+be registered when later enumeration fails, preserving operation order.
+
+NEXT: protection-state and remaining application/state services, full loaded-
+resource cache contracts and concrete graphics input before controller wiring.
+The eight-call directory region ends at 006DBED7; protection postlude calls through
+00A59000 at 006DBF2B with fresh graphics/window and state effects. EXCLUDED, no
+success stubs. Archive setup similarly retains excluded preceding protection.
+Do not say full startup/cache wrappers are reconstructed. Static findings do not
+justify adding dormant joystick creation to normal empty-list startup.
+
+Audits: ASan/UBSan 10,000 list ops/reference, all 255 non-NUL lowercase bytes,
+NUL/separator/case rules, category owner separation, root/traversal order,
+dot/reparse/unknown routing and nested handle/oversize/exception cleanup pass.
+Strict i386 fixture instantiates all native/Win32/graphics registration paths
+and links ONLY. Existing native suite, all 158 Python tests, unchanged host build
+pass. Temporary audits removed after validation. Map negative audit rejects
+seven hash/byte/slot/call mutations. No permanent tests added.
+
+Run python3 -B tools/validate_engine_host.py --map analysis/resource-directories-map.json:
+both hashes, 39 anchors, 40 client + one engine slots, 112 calls; string constants stored
+as data anchors (root refs use MOV not PUSH). Ignored read-only exports:
+resource-search-directories, resource-directory-caches, resource-directory-removal.
+Twelve new partial client functions: 161 total (156 client/five engine), zero complete,
+frozen 18,783. No delegated-engine/constructor/vector-helper extra credit.
+Original binaries/saved project unchanged; no game execution/push.
+
+## Earlier checkpoint: archive registration/key exchange recovered; full wrapper still open
 
 Source checkpoint follows `7f35909`. User permits sensible tested commits.
 No live host changes or desktop test required. New io/startup_archives.h and

@@ -28,8 +28,11 @@ startup does not gain an invented enumeration step.
 [Archive registration and key exchange](analysis/startup-archives.md) now have
 readable source and checked DLL calls. Creation/fallback order, cleanup and
 2,048 combinations of available files pass audits; keys match installed assets.
-The preceding protection operation and resource-directory setup remain open,
-so this does not yet enable the complete original startup path.
+The preceding protection operation remains open, so this does not yet enable
+the complete original startup path. [Resource-directory setup](analysis/resource-directories.md)
+now also has readable source for recursive traversal and five separate client
+directory lists, with audited ordering, case rules and cleanup. Their loaded
+resource caches and consumers still need reconstruction.
 
 The shared control-state foundation entry is complete: initialization, base
 messages, observers, event ownership and eligibility are recovered and audited.
@@ -183,11 +186,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **149 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **161 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 144 |
+| Base game client | 17,294 | 0 | 156 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

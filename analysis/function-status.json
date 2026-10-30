@@ -1912,6 +1912,162 @@
         "recovered/io/startup_archives.h",
         "recovered/host/startup_archives.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "006dbe60",
+      "status": "partial",
+      "coverage": "Eight original root/category registration calls in order, before the unresolved protection-state postlude.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ed760",
+      "status": "partial",
+      "coverage": "Preserve root spelling, route to the actual graphics or distinct client list, then enumerate even when category has no registration branch.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ed6b0",
+      "status": "partial",
+      "coverage": "Win32 wildcard enumeration in API order, first record included, parent handles retained through depth-first child recursion and closed after traversal.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ed570",
+      "status": "partial",
+      "coverage": "Construct/lowercase composite before filtering, require directory attribute, exclude exact dot/dotdot and route category before recursive enumeration.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d7590",
+      "status": "partial",
+      "coverage": "Normal derived directory insertion: dispatch matching removal, normalize trailing backslash and append at vector end. Used by independent category1 and5 owners.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d7770",
+      "status": "partial",
+      "coverage": "Normalize trailing backslash, reverse search for last case-sensitive exact match, erase one preserving suffix order.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d8550",
+      "status": "partial",
+      "coverage": "Category2 directory insertion with matching removal before append and trailing-backslash normalization.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d8730",
+      "status": "partial",
+      "coverage": "Category2 directory removal: erase last case-sensitive exact normalized match only.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d9640",
+      "status": "partial",
+      "coverage": "Category3 directory insertion with matching removal before append and trailing-backslash normalization.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d9820",
+      "status": "partial",
+      "coverage": "Category3 directory removal: erase last case-sensitive exact normalized match only.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d6b80",
+      "status": "partial",
+      "coverage": "Category4 directory insertion with matching removal before append and trailing-backslash normalization.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d6d60",
+      "status": "partial",
+      "coverage": "Category4 directory removal: erase last case-sensitive exact normalized match only.",
+      "limitations": "Source-only native directory strings/vectors and normal derived callback dispatch, not original allocator/refcount/object ABI or loaded-resource caches. Default C-locale ASCII lowercasing only. Empty/oversize path guards and native exception handle cleanup differ. Graphics directory storage stays delegated through checked +110(flags0). Full 006dbe60 protection-state postlude and live startup integration remain excluded. Sanitizer/native/i386 audits and instruction-level specialization comparison pass.",
+      "evidence": [
+        "analysis/resource-directories-map.json",
+        "analysis/resource-directories.md",
+        "recovered/io/resource_directories.h",
+        "recovered/host/resource_directories.h"
+      ]
     }
   ]
 }
