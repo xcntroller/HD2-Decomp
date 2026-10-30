@@ -1457,11 +1457,14 @@
       "entry": "006c7870",
       "status": "partial",
       "coverage": "Reverse device snapshots and optional poll order; packed key/mouse snapshots, saturation and persistent gate updates; reverse keyboard/mouse/joystick bindings into held/gated float-word buffers including shared binding counts, axis filtering, POV masks and original stale-output cases.",
-      "limitations": "Source-only native vectors/typed records replace original object/vector ABI. Actual binding installation/defaults and concrete graphics/joystick services remain required. Malformed native buffers/POV indices throw; x87 environment and signaling NaNs not reproduced. Sanitizer/i386-audited with controller-to-front-end Escape path.",
+      "limitations": "Source-only native vectors/typed records replace original object/vector ABI. Binding installation/defaults and concrete graphics/joystick forwarding are source-recovered; live lifecycle and controller integration remain required. Malformed native buffers/POV indices throw; x87 environment and signaling NaNs not reproduced. Sanitizer/i386-audited with controller-to-front-end Escape path.",
       "evidence": [
         "analysis/binding-producer-map.json",
         "analysis/binding-producer.md",
-        "recovered/input/binding_producer.h"
+        "recovered/input/binding_producer.h",
+        "analysis/graphics-input-services-map.json",
+        "analysis/graphics-input-services.md",
+        "recovered/host/graphics_input_services.h"
       ]
     },
     {
@@ -1699,14 +1702,17 @@
       "entry": "006db620",
       "status": "partial",
       "coverage": "Resolve graphics/init keyboard flags zero, clear bindings, snapshot joystick view before second graphics query, attach ignoring results, resolve installed language and preload original localized text.",
-      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; graphics input forwarding and archive initialization are source-recovered; device lifecycle and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
       "evidence": [
         "analysis/startup-localization-map.json",
         "analysis/startup-localization.md",
         "recovered/frontend/input_setup.h",
         "recovered/frontend/startup_language.h",
         "recovered/frontend/localized_text.h",
-        "recovered/host/startup_localization.h"
+        "recovered/host/startup_localization.h",
+        "analysis/graphics-input-services-map.json",
+        "analysis/graphics-input-services.md",
+        "recovered/host/graphics_input_services.h"
       ]
     },
     {

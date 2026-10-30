@@ -97,6 +97,11 @@ The existing host preview is useful for validation, but it is not this milestone
   graphics registration uses checked original +110 with recursion off. Full
   loaded-resource caches and the setup wrapper's protection postlude remain open.
   See [directory scope](analysis/resource-directories.md).
+- [x] Connect recovered input setup and manager to original graphics and IJoy
+  methods. **Source-only, i386 compile/link audited.** Checked graphics slots,
+  packed keyboard return, joystick forwarding and actual setup/localization
+  composition are in place. Live device lifecycle and controller integration
+  remain open. See [graphics input services](analysis/graphics-input-services.md).
 - [x] Recover startup window-position restoration and teardown persistence.
   **Source-only, audited.** Both four-byte transfers, ignored errors, window
   calls and their surrounding lifecycle order are reconstructed; caller-supplied

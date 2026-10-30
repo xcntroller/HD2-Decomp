@@ -1,5 +1,24 @@
 # Session handoff - 2026-10-30
 
+## Resume here: concrete graphics input forwarding recovered
+
+Source-only host/graphics_input_services.h connects actual manager/producer and
+input setup to checked LS3DF graphics slots and existing IJoy forwarding.
+See analysis/graphics-input-services.md and its fingerprinted map. Manager
+uses borrowed attached graphics; setup resolves GetIGraph separately per query
+and snapshots existing list, without inventing joystick enumeration. +B8 returns
+64-bit EDX:EAX. Main loop already polls mouse/joysticks, so use produce(false).
+Do not mix preview native input state with this engine-owned device state.
+
+Strict i386 full manager/defaults/setup/localization/producer composition links
+only; compiler output confirms EDX:EAX, binary evidence and three negative
+mutations pass, existing native checks, 158 Python tests and host build pass.
+No live integration or desktop execution. Protection through 00A59000 remains
+dynamically populated/opaque; no guessed implementation. Next: application/state
+services, protection, loaded caches, concrete device lifecycle and controller
+wiring. Original executable startup remains open. No new function credit for
+delegated DLL methods.
+
 ## Resume here: window position persistence recovered; startup remains open
 
 Source-only window.cfg restoration and save are reconstructed in

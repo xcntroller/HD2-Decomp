@@ -1,0 +1,130 @@
+{
+  "scope": "Original graphics setup and input-manager interface forwarding; original engine and IJoy bodies delegated.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006db636",
+        "hex": "e8739810008b086a0050ff9190000000b948ea8a00e8a0b9feff8b0d3cea8a0085c9750433c0eb0aa140ea8a002bc1c1f8025051e83f98100050b948ea8a00e846b6feff",
+        "meaning": "Setup: initialize, clear, snapshot and attach"
+      },
+      {
+        "address": "006c78af",
+        "hex": "81ee8c00000084db740d8b4d086a018b0c0e8b11ff52588b450803c68b0883c004508b11ff52508b450803c68b0883c048508b11ff52544f75c684db74218b4500508b08ff51148b4500508b10ff92e80000008b4500508b08ff919c0000008b4500508b10ff92b80000008944242c8b45008bda508b08895c2434ff91040100008bf08b450050897424248b10ff92ec000000894424788b4500db4424788b0850d95c2414ff91f0000000894424788b4500db4424788b1050d95c247cff92f4000000",
+        "meaning": "Joystick polling, graphics polling and snapshots"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10068f90",
+        "hex": "a1f4160d10c3",
+        "meaning": "Graphics singleton export"
+      },
+      {
+        "address": "1006f040",
+        "hex": "558b6c24088b450055ff90980000008b4c240ca10c1d0d106a0068c8190d1068",
+        "meaning": "Keyboard initialization"
+      },
+      {
+        "address": "1006f190",
+        "hex": "8b15c8190d1085d25657750a5fb8090000805ec20400b940",
+        "meaning": "Keyboard polling"
+      },
+      {
+        "address": "1006f4b0",
+        "hex": "568b74240c85f674348b54241083fa40772b5733c0b910000000bf681d0d10f3ab8bca8bc1c1e902bf681d0d10f3a58bc883e103f3a45f33c05ec20c00b8070000805ec2",
+        "meaning": "Keyboard snapshot map"
+      },
+      {
+        "address": "1006f500",
+        "hex": "55565733ff33ed33f68da424000000008a86681d0d1084c0761f0fb6c08a8888170d1084c97912b80100000033d28bcee8bbf901000bf80bea4683fe407cd18bc75f5e8bd55dc20400",
+        "meaning": "64-bit snapshot return"
+      },
+      {
+        "address": "1006f8a0",
+        "hex": "a148210d1083ec1885c0750bb80900008083c418c204008b0868c8",
+        "meaning": "Mouse poll entry"
+      },
+      {
+        "address": "1006fa10",
+        "hex": "a1c81e0d10c20400",
+        "meaning": "Mouse X"
+      },
+      {
+        "address": "1006fa20",
+        "hex": "a1cc1e0d10c20400",
+        "meaning": "Mouse Y"
+      },
+      {
+        "address": "1006fa30",
+        "hex": "a1d01e0d10c20400",
+        "meaning": "Mouse Z"
+      },
+      {
+        "address": "1006fb30",
+        "hex": "0fb605d41e0d108a15d61e0d10b180c1",
+        "meaning": "Mouse button mask"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d854",
+        "targets": [
+          "1006a470"
+        ]
+      },
+      {
+        "address": "1009d8d0",
+        "targets": [
+          "1006f040",
+          "1006f150",
+          "1006f160",
+          "1006f190",
+          "1006f320",
+          "1006f470",
+          "1006f2d0",
+          "1006f300",
+          "1006f490",
+          "1006f4b0",
+          "1006f500",
+          "1006f550",
+          "1006f570",
+          "1006f590",
+          "1006f5b0",
+          "1006f660",
+          "1006f6a0",
+          "10057630",
+          "1006f700",
+          "1006f710",
+          "1006f840",
+          "1006f850",
+          "1006f8a0",
+          "1006fa10",
+          "1006fa20",
+          "1006fa30",
+          "1006fa40",
+          "1006fb10",
+          "1006fb20",
+          "1006fb30"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}

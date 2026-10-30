@@ -16,8 +16,9 @@ graphics query, which may return a different object after a callback.
 
 The recovered manager, defaults and producer remain independently composable.
 This setup does not install control defaults: the original tail handles text.
-Concrete device setup/list providers and remaining application/state startup
-services still precede live controller integration. No empty-string or successful
+Concrete device setup/list forwarding is now source-recovered; device lifecycle
+and remaining application/state startup services still precede live controller integration.
+See [graphics input services](graphics-input-services.md). No empty-string or successful
 no-op services are used to force that integration.
 
 ## Language cache and wide-character input
