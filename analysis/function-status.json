@@ -2172,6 +2172,240 @@
       ],
       "coverage": "One-shot header/data/backpatch helper with original mode gates and ignored individual write/seek results.",
       "limitations": "Native source-only owner and initial state, not original class ABI/allocator. Explicit stack capacity, null buffer and negative-read-count guards prevent original unsafe cases. File calls delegated through checked borrowed rw_data exports; no game/DLL execution. Backend callbacks must not throw or mutate owner. Original application parsers/profiles remain unreconstructed. Native ASan/UBSan and strict i386 audit, including real base HumanStore/GameData byte comparisons, pass."
+    },
+    {
+      "program": "client",
+      "entry": "0069f930",
+      "status": "partial",
+      "coverage": "Forward record destruction with retained vector capacity and eight localized default name pairs.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069fa60",
+      "status": "partial",
+      "coverage": "Release owned portrait before destroying record array and strings, with forward store destruction.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069fde0",
+      "status": "partial",
+      "coverage": "Derive full and abbreviated names, optional nickname punctuation and empty-first-name behavior.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069fef0",
+      "status": "partial",
+      "coverage": "Derive eye texture using lowercased first x_f_ substring, with fallback texture.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a00a0",
+      "status": "partial",
+      "coverage": "Parse all recognized HumanStore fields and legacy stats/name formats; retain unknown-chunk traversal and run text/portrait finalizers.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a0aa0",
+      "status": "partial",
+      "coverage": "Assign profile user name then finalize six name strings, without rebuilding names or reloading portrait.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a0ae0",
+      "status": "partial",
+      "coverage": "Check stored human text encoding with empty-string success and original UTF8 predicate.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a0b20",
+      "status": "partial",
+      "coverage": "Convert ASCII plus ED to C3 AD, preserving original contents when any other high byte fails.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a0e10",
+      "status": "partial",
+      "coverage": "Conditionally validate/convert six record strings in original field order.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a0ea0",
+      "status": "partial",
+      "coverage": "Release previous portrait and forward original graphics texture load with opacity x_fc_a.bmp and flags4; failure clears output and remains nonfatal.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a0f30",
+      "status": "partial",
+      "coverage": "Optional usernames.sav root/index/name nesting, sequential overrides and partial state retained on later invalid entry.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a18e0",
+      "status": "partial",
+      "coverage": "Open HumanStore data with original ChunkFile; missing main file leaves existing records intact; raw root enter, parse, close.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a1b40",
+      "status": "partial",
+      "coverage": "Reset loaded store, accept unvalidated record IDs, append defaults before field parse, leave record and apply optional profile overlay ignoring its result.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a1c80",
+      "status": "partial",
+      "coverage": "Bounds-checked signed record-index lookup, negative/out-of-range returns null.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a1d80",
+      "status": "partial",
+      "coverage": "Create and append initialized human record with original string, texture, numeric, stat and tail defaults.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e4fb0",
+      "status": "partial",
+      "coverage": "Lookup loaded localization cache and return original missing-index diagnostic when absent.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064d0b0",
+      "status": "partial",
+      "coverage": "Advance UTF8 sequences using original lead-length table and validate every sequence through the stored end.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064d0e0",
+      "status": "partial",
+      "coverage": "Original one-to-four byte UTF8 predicate including surrogate acceptance and F4 second-byte lower-bound omission.",
+      "limitations": "Native strings, vector/unique ownership and borrowed graphics replace original ABI/refcount/SEH. Explicit guards reject failed headers, unterminated/oversize strings and undefined short numeric reads except original persistent 26AC scratch behavior. Profile directory is supplied by still-unrecovered current-profile resolver; original DLL file/texture implementations delegated. Source-only sanitizer/native/i386 audit; no live startup integration.",
+      "evidence": [
+        "analysis/human-store-map.json",
+        "analysis/human-store.md",
+        "recovered/frontend/human_store.h",
+        "recovered/host/human_store.h"
+      ]
     }
   ]
 }

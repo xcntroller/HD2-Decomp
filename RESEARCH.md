@@ -3,7 +3,19 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest source: [original application chunk-file lifecycle](analysis/chunk-file.md).
+Latest source: [original HumanStore startup loading](analysis/human-store.md).
+Follows `6273f26`. Record creation/reset/destruction, every known field format,
+derived names/eye textures, legacy encoding and profile-name overlays now have
+readable source. Portrait loading/releases forward checked original LS3DF
+methods, with original nonfatal failure behavior. All 65 installed records match
+an independent raw-offset decode; old formats, overrides, UTF8 quirks and cleanup
+pass temporary sanitizer audits. Actual DTA/graphics composition links for i386
+only, never executed. Eighteen new partial client entries: 185 total (180 client/
+five engine), zero complete. Run `python3 -B tools/validate_engine_host.py --map
+analysis/human-store-map.json`. GameData, current-profile path/scan/selection,
+startup protection and full application/controller integration remain open.
+
+Prior source: [original application chunk-file lifecycle](analysis/chunk-file.md).
 Follows `edf16bd` graphics input forwarding and `2af59e0` window persistence.
 Nine client helper behaviors now cover original DTA read/write open, header
 nesting, signed bounded reads, exact writes, backpatch/leave and close. Four

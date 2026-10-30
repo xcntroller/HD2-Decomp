@@ -1,0 +1,1095 @@
+{
+  "scope": "Original HumanStore startup load/reset, all recognized field formats, name/text finalizers, optional profile usernames overlay and delegated original portrait loading. Native storage and malformed-input guards explicit. Actual current-profile path resolution, GameData, startup protection and live controller integration remain open.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "0069f930",
+        "hex": "83ec085356578bf933db8b4f0485c974308b47082bc1c1f8023bd873248b349985f6741a8bcee80501000056e85f2314008b470483c404c704980000000043ebc98b57088b4f048bc23bc2740e8b3083c004893183c1043bc275f2894f08be58e88a008b4ef88d54240c5152b958128c00e80a5604008bf88b0785c07402ff008b0685c074108b08498908750950e8fd22140083c4048b0789068b44240c85c074148b104a89108b0885c9750950e8dd22140083c4048b4efc8d5424105152b958128c00e8b75504008bf88b0785c07402ff008b460485c074108b08498908750950e8a922140083c4048b078946048b44241085c074148b104a89108b0885c9750950e88822140083c40483c61081fed8e88a000f8c49ffffff5f5e5b83c408c3",
+        "meaning": "Forward record destruction with retained vector capacity and eight localized default name pairs."
+      },
+      {
+        "address": "0069fa60",
+        "hex": "6aff684099800064a100000000506489250000000051568bf157897424088b462033ff3bc7c74424140800000074058b0850ff11897e208b562c52e820221400897e2c897e30897e348b461c83c4043bc774108b08498908750950e80022140083c4048b46183bc774108b08498908750950e8e921140083c4048b46143bc774108b08498908750950e8d221140083c4048b46103bc774108b08498908750950e8bb21140083c4048b460c3bc774108b08498908750950e8a421140083c4048b46083bc774108b08498908750950e88d21140083c4048b46043bc774108b08498908750950e87621140083c4048b363bf774108b06488906750956e86021140083c4048b4c240c5f5e64890d0000000083c410c3",
+        "meaning": "Release owned portrait before destroying record array and strings, with forward store destruction."
+      },
+      {
+        "address": "0069fde0",
+        "hex": "81ec080100005355568bf168807986008d4e0c894c2414e88453d6ff8d4e106880798600894c2410e87353d6ff8b0685c08d68087505bd807986008b460485c08d58087505bb807986008b760885f68d56087505ba8079860085ed7505bd8079860085db7505bb8079860085d27505ba80798600578bfa83c9ff33c0f2aef7d14953741652558d44242468e423840050e85f60140083c414eb13558d4c242068f4a8830051e84a60140083c4108b4c24148d54241852e8e552d6ff8bfd83c9ff33c0f2aef7d15f495374190fbe4500508d4c241c68dc23840051e81560140083c410eb128d54241868fc2c830052e80160140083c40c8b4c240c8d44241450e89c52d6ff5e5d5b81c408010000c3",
+        "meaning": "Derive full and abbreviated names, optional nickname punctuation and empty-first-name behavior."
+      },
+      {
+        "address": "0069fef0",
+        "hex": "81ec0008000053568bf168fc2384008d5e1c8bcbe87752d6ff8b761885f68d4e087505b9807986008d5424088a014188024284c075f68d44240850e8f05c14008d4c240c68f423840051e8015b14008bd083c40c85d2746433c08a88f0238400888c04080400004084c975ee5557bff423840083c9ff33c0f2aef7d1498bf983c9ff03fa8d942410040000f2aef7d12bf98bf78be98bfa83c9fff2ae8bcd4fc1e902f3a58bcd8d84241004000083e10350f3a48bcbe8d651d6ff5f5d5e5b81c400080000c3",
+        "meaning": "Derive eye texture using lowercased first x_f_ substring, with fallback texture."
+      },
+      {
+        "address": "006a00a0",
+        "hex": "6aff64a10000000068c199800050b89414000064892500000000e8a15e1400538bd98b4b2c558b43308d5328565750518bca895c2424e8a506d8ff8bb424b414000033ed803e000f840a09000039ae100400000f84fe0800008b46046a015550e8334e140083f8ff0f84e90800008b8e100400008b4c8e0c2bc8894c24140f84d3080000803e0074488b46048d5424306a065250e8054e140083f80675338b4e046a015551e8ee4d14008b5424328b8e100400008d4410fa89448e108b86100400008b54243040898610040000895424288b44242825ffff00003d482600000f8f470600000f84360600003daa2300000f8fc50400000f84550400002d8c2300000f84c300000083e80a746483e80a0f85dd0700008b86100400008b4e046a01558b7c860c51e86d4d14002bf8c7442418e703000081ffe7030000897c24208d4424187f048d4424208b108d8424d40c000052508bcee84557d6ff8d8c24d40c0000518d4b04e8754fd6ffe97a0700008b96100400008b46046a01558b7c960c50e8124d14002bf8c7442418e703000081ffe7030000897c24208d4424187f048d4424208b088d94241c01000051528bcee8ea56d6ff8d84241c0100008bcb50e81b4fd6ffe920070000896c24188b8e100400008b56046a01558b7c8e0c5289ac24b8140000e8ad4c14002bf8c7442420e703000081ffe7030000897c24148d4424207f048d4424148b008d8c240405000050518bcee88556d6ff8d9424040500008d4c241852e8b44ed6ff558bcee8bc55d6ff8b4424183bc58d48087505b9807986008d94249c0000008a014188024284c075f68dbc249c00000083c9ff33c0f2aef7d1490f84b70200008d84249c0000006a2050e8155814008d8c24a40000008bf86a2851897c2430e8005814008d9424ac0000006a29528be8e8ef57140083c4188bd885ff746d8bc78dbc249c00000083c9ffc6000033c0f2aef7d1498bf9897c24148d4f0951e8a04e140083c4048944242485c0c68424ac1400000174148d94249c00000057528bc8e80e4dd6ff8bf8eb0233ff8b44241cc68424ac140000008b0885c97405e8314dd6ff8b4c241c8939eb7285ed0f84de0000008dbc249c00000083c9ff33c0c6450000f2aef7d1498bf9897c24248d570952e82c4e140083c4048944241485c0c68424ac1400000274148d8c249c00000057518bc8e89a4cd6ff8bf8eb0233ff8b54241cc68424ac140000008b0a85c97405e8bd4cd6ff8b44241c893885ed747085db0f841d01000045c6030085ed750433ffeb458bfd83c9ff33c0f2aef7d1498bf9897c24248d4f0951e8b34d140083c4048944241485c0c68424ac14000003740b57558bc8e8284cd6ffeb0233c0c68424ac140000008bf88b54241c8b4a0885c97405e84a4cd6ff8b44241c89780885db0f84ad0000008a43018d6b013c20c60300745c85ed750433ffeb388bfd83c9ff33c0f2aef7d1498bf9897c24248d4f0951e83a4d140083c40489442414c68424ac14000004eb5d33c0c68424ac140000008bf88b54241c8b4a0485c97405e8de4bd6ff8b44241c897804e9b50000008d6b0285ed750433ffebd98bfd83c9ff33c0f2aef7d1498bf9897c24248d4f0951e8db4c140083c40489442414c68424ac1400000585c0749f57558bc8e8504bd6ffeb968b44242085c074698bc88d690185ed750433ffeb458bfd83c9ff33c0f2aef7d1498bf9897c24248d570952e88d4c140083c4048944241485c0c68424ac14000006740b57558bc8e8024bd6ffeb0233c0c68424ac140000008bf88b44241c8b480485c97405e8244bd6ff8b4c241c8979048b5c241c8bcbe812f8ffff8b4c241833ed3bcdc78424ac140000ffffffff0f84ab030000e8f44ad6ffe9a10300008b96100400008b46046a01558b7c960c50e8314914002bf8c7442414e703000081ffe7030000897c24188d4424147f048d4424188b088d9424ec08000051528bcee80953d6ff8d8424ec0800008d4b0850e8394bd6ff558bcee84152d6ff8bcbe88af7ffffe9370300003df02300000f84f10000003db824000074163d802500000f851a0300008d4b6c6a0851e900030000803e000f84060300008a460884c075438b86100400003bc574298b56048b7c860c6a015552e88b4814002bf8896c2414897c24188d44241478048d4424188338487c108b4e048d4424506a485051e868481400803e000f84b30200008a46088b560484c074426a015552e8464814008bf88b86100400008b56048bcf8b44860c552bc883c0025052894c244ce8244814008b4e048d4424406a045051e80e4814008b56045557eb0c8b8610040000558b4c860c5152e8fb4714008b86100400003bc50f844702000048898610040000e93b0200008b86100400008b4e046a01558b7c860c51e8cb4714002bf8c7442414e703000081ffe7030000897c24188d4424147f048d4424188b108d8424bc10000052508bcee8a351d6ff8d8c24bc100000518d4b18e8d349d6ff558bcee8db50d6ff8bcbe834f7ffffe9d10100006a4c8d542454e9b60100002dac26000083f8500f87b801000033c98a88440a6a00ff248d240a6a008d5424446a04528bcee84951d6ff558bcee89150d6ff8b442444894324e9870100008d4c244c6a04518bcee82751d6ff558bcee86f50d6ff8b54244c895338e9650100008d4424486a04508bcee80551d6ff558bcee84d50d6ff8b4c2448894b3ce9430100008d54242c6a04528bcee8e350d6ff558bcee82b50d6ff8b44242c894340e9210100008d4c24386a04518bcee8c150d6ff558bcee80950d6ff8b5424388d4b288954243c8d44243c8b51085052e820fdd7ffe9ed0000008d4424106a04508bce896c2418e88950d6ff8b4c24108d542410894b446a04528bcee87450d6ffdb4424108d4424106a04508bced95b48e85f50d6ffdb4424108d4c24106a04518bced95b4ce84a50d6ffdb4424108d5424106a04528bced95b50e83550d6ffdb4424108d4424106a04508bced95b54e82050d6ffdb4424108d4c24106a04518bced95b58e80b50d6ffdb4424108d5424106a04528bced95b5ce8f64fd6ffdb4424108d4424106a04508bced95b60e8e14fd6ffdb4424108d4c24106a04518bced95b64e8cc4fd6ffdb442410d95b68eb0d6a288d5344528bcee8b64fd6ff8bce55e8fe4ed6ff8b442428663db824740a663d48260f853ef7ffffdb4424548b442450894344d95b48db442458d95b4cdb442460d95b50db442464d95b54db44246cd95b58db442474d95b5cdb442468d95b60db842484000000d95b64db842480000000d95b68e9edf6ffff8bcbe8120400008bcbe89b0400008b8c24a41400005f5e5db0015b64890d0000000081c4a0140000c20400",
+        "meaning": "Parse all recognized HumanStore fields and legacy stats/name formats; retain unknown-chunk traversal and run text/portrait finalizers."
+      },
+      {
+        "address": "006a0aa0",
+        "hex": "56578b7c240c8bf18b0785c07402ff008b461485c074108b08498908750950e8fc11140083c4048b078bce894614e83d0300005f5ec20400",
+        "meaning": "Assign profile user name then finalize six name strings, without rebuilding names or reloading portrait."
+      },
+      {
+        "address": "006a0ae0",
+        "hex": "568bf1578b0685c074078b780485ff75055fb0015ec3536a008bcee870cbd7ff8bd88bce6a0003dfe863cbd7ff8bd38bc8e89ac5faff84c05b5f0f95c05ec3",
+        "meaning": "Check stored human text encoding with empty-string success and original UTF8 predicate."
+      },
+      {
+        "address": "006a0b20",
+        "hex": "6aff68ff99800064a100000000506489250000000083ec18535533db56578be9895c2414895c243033ff8b4500897c24183bc30f84700200008b48043bf90f8365020000833801745083c10951e89d46140083c4043bc374338b4d008d78088b51048d71088bcac700010000008bd9895004c1e902f3a58bcb83e10333dbf3a48b7c2418885c10088bf0eb0233f68b4d00e82a45d6ff8975008b45008a4c380880f9808b080f83ea00000083f90174538b400483c00950e83346140083c4043bc374338b4d008d78088b51048d71088bcac700010000008bd9895004c1e902f3a58bcb83e10333dbf3a48b7c2418885c10088bf0eb0233f68b4d00e8c044d6ff8975008b45008a4c38088b4424143bc3884c241c75148b54241c8d4c241452e85c43000047e900ffffff8b7004c744242001000000897424188d460a50e8ad45140083c404894424243bc3c644243001741b8b5424146a018d4c24205683c20851528bc8e8c738d7ff8bf0eb0233f68b442414885c24308b104a89108b083bcb750950e81810140083c4048974241447e995feffff83f90174478b40048944242483c00950e84545140083c404894424203bc3c64424300274168b4d008b510483c10852518bc8e8b443d6ff8bf0eb0233f68b4d00885c2430e8e243d6ff8975008b4500807c3808ed0f85900000008b442414c6442410c33bc3751c6ac38d4c2418e8794200008d4c24146aade8be41000047e912feffff8b7004c744242001000000897424248d4e0a51e8bf44140083c404894424183bc3c644243003741b8b4c24146a018d5424145683c10852518bc8e8d937d7ff8bf0eb0233f68b4c2414885c2430e85643d6ff8d4c2414897424146aade85741000047e9abfdffff8b4c2414c7442430ffffffff3bcb7405e82c43d6ff5f5e5d32c05b8b4c241864890d0000000083c424c38d5424148bcd52e8fb37d7ff8b4424143bc374148b104a89108b083bcb750950e8d20e140083c4048b4c24285f5e5db0015b64890d0000000083c424c3",
+        "meaning": "Convert ASCII plus ED to C3 AD, preserving original contents when any other high byte fails."
+      },
+      {
+        "address": "006a0e10",
+        "hex": "a02ce98a005684c08bf1747ce8bffcffff3c0174078bcee8f4fcffff578d7e048bcfe8a9fcffff3c0174078bcfe8defcffff8d7e088bcfe894fcffff3c0174078bcfe8c9fcffff8d7e0c8bcfe87ffcffff3c0174078bcfe8b4fcffff8d7e108bcfe86afcffff3c0174078bcfe89ffcffff83c6148bcee855fcffff3c015f74088bce5ee988fcffff5ec3",
+        "meaning": "Conditionally validate/convert six record strings in original field order."
+      },
+      {
+        "address": "006a0ea0",
+        "hex": "568bf1578b46208d7e2085c074058b0850ff118b761885f6740583c608eb05be80798600e8e53f14008b10576a046814b383005650ff523c85c07d0bc707000000005f32c05ec35fb0015ec3",
+        "meaning": "Release previous portrait and forward original graphics texture load with opacity x_fc_a.bmp and flags4; failure clears output and remains nonfatal."
+      },
+      {
+        "address": "006a0f30",
+        "hex": "6aff68489a800064a100000000506489250000000081ec20080000535533db83cdff5657894c2430885c2434896c2438885c243c899c2444040000899c2438080000895c24148d442410b9fce88a0050c684243c08000001e8736101008b442410c6842438080000023bc3751468082484008d4c2414e8d541d6ff8b742410eb698b7004bf082484008bcd33c0f2aef7d149897424208bf9897c24248d4c3e0951e83942140083c404894424183bc3c684243808000003741a8b542410575683c2086808248400528bc8e85135d7ff8bf0eb0233f68b4c2410c684243808000002e8ca40d6ff897424103bf38d46087505b88079860053508d4c243ce8ef45d6ff84c00f841f030000385c2434744b8b4c24388d4424186a065051e8ee3e140083f80675358b5424386a015352e8d63e14008b4c241a8b9424440400008b7c24188d4408fa894494448b8424440400004089842444040000eb048b7c24146681ff9a02747a385c24347434385c243c741c399c24440400007413538d4c2438e8dc47d6ff399c244404000075ed8b44243850e8893e1400896c2438885c24348b4c2410c6842438080000013bcb7405e8fc3fd6ff8b4c2414889c24380800003bcb7405e8e83fd6ff8d4c243489ac2438080000e84846d6ff32c0e984020000385c24340f842c020000399c24440400000f841f0200008b4c24386a015351e8053e14003bc50f840a0200008b9424440400008b4c94402bc83bcb0f8ef5010000385c243474498b4c24388d4424186a065051e8d73d140083f80675338b5424386a015352e8bf3d14008b4c241a8b9424440400008b7c24188d4408fa894494448b84244404000040898424440400008b4c24308bc725ffff000050e8d00a00008be88a4424343beb0f84db0000003ac374498b5424388d4c24286a065152e86b3d140083f80675338b4424386a015350e8533d14008b4c242a8b9424440400008b7c24288d4408fa894494448b84244404000040898424440400006681ffb4230f85b00000008b8424440400008b4c24386a01538b74844851e80a3d14002bf0c7442424e703000081fee7030000897424208d4424247f048d4424208b108d84244804000052508d4c243ce8e046d6ff8d8c2448040000518d4c2418e80f3fd6ff538d4c2438e81546d6ff8d5424148bcd52e819f8ffff538d4c2438e8ff45d6ff83cdffe976feffff3ac37467385c243c741c399c24440400007413538d4c2438e8da45d6ff399c244404000075ed8b44243850eb2d385c24347438385c243c741c399c24440400007413538d4c2438e8ab45d6ff399c244404000075ed8b4c243851e8583c1400885c2434c7442438ffffffff8b4c2410c6842438080000013bcb7405e8c73dd6ff8b4c2414889c24380800003bcb7405e8b33dd6ff8d4c2434c7842438080000ffffffffe80f44d6ff32c0eb4e538d4c2438e84145d6ff8d4c2434e8f843d6ff8b4c2410c6842438080000013bcb7405e8733dd6ff8b4c2414889c24380800003bcb7405e85f3dd6ff8d4c243489ac2438080000e8bf43d6ffb0018b8c24300800005f5e5d5b64890d0000000081c42c080000c3",
+        "meaning": "Optional usernames.sav root/index/name nesting, sequential overrides and partial state retained on later invalid entry."
+      },
+      {
+        "address": "006a18e0",
+        "hex": "6aff68b39a800064a100000000506489250000000081ec200400005356578bf133dbc744241cffffffff899c2434040000885c2418885c2420899c24280400008bbc243c040000c6842434040000013bfb8d47087505b88079860053508d4c2420e8da3cd6ff84c08a442418755e3ac3889c24340400007438385c2420741c399c24280400007413538d4c241ce81e3fd6ff399c242804000075ed8b44241c50e8cb351400c744241cffffffff885c24183bfb74108b07488907750957e81e03140083c40432c0e9710100003ac374458b54241c8d4c24106a065152e87d35140083f806752f8b44241c6a015350e8653514008b4c24128b9424280400008d4408fa894494288b84242804000040898424280400008d4424188bce50e83f0100008a4c24188844240f3acb0f84b1000000385c24200f848f0000008b8424280400003bc30f84800000003acb7478385c2420744b8b4c241c6a015351e8f73414008b9424280400008bf08bce538b4494288b5424202bc883c0025052894c241ce8d33414008b4c241c8d4424106a045051e8bc3414008b54241c535652eb0b8b44842453508b44242450e8a93414008b8424280400003bc374108a4c241848898424280400003bc375808b4c241c51e89c34140032c9c744241cffffffff884c24183acb889c24340400007438385c2420741c399c24280400007413538d4c241ce8aa3dd6ff399c242804000075ed8b54241c52e857341400c744241cffffffff885c24183bfb74108b07488907750957e8aa01140083c4048a44240f8b8c242c0400005f5e5b64890d0000000081c42c040000c20400",
+        "meaning": "Open HumanStore data with original ChunkFile; missing main file leaves existing records intact; raw root enter, parse, close."
+      },
+      {
+        "address": "006a1b40",
+        "hex": "83ec0c5356578bd9e8e3ddffff8b74241c803e000f84140100008b861004000085c00f84060100008b46046a016a0050e8c333140083f8ff0f84f00000008b8e100400008b548e0c2bd08954240c0f84da000000803e0074418b4e048d4424106a065051e89533140083f806752c8b56046a016a0052e87d3314008b4c24128b96100400008d4408fa894496108b8610040000408986100400008bcbe89f0100008b4b04568b0c81e8b3e4ffff803e00747c8a46088b560484c074456a016a0052e8323314008bf88b86100400008b56048bcf8b44860c6a002bc883c0025052894c2428e80f3314008b4e048d44241c6a045051e8f93214008b56046a0057eb0d8b86100400006a008b4c860c5152e8e43214008b861004000085c00f84effeffff48898610040000e9e3feffff8bcbe8bbf2ffff5f5eb0015b83c40cc20400",
+        "meaning": "Reset loaded store, accept unvalidated record IDs, append defaults before field parse, leave record and apply optional profile overlay ignoring its result."
+      },
+      {
+        "address": "006a1c80",
+        "hex": "8b510485d274108b41088b4c24042bc2c1f8023bc8720533c0c2040085c97d0533c0c204008b048ac20400",
+        "meaning": "Bounds-checked signed record-index lookup, negative/out-of-range returns null."
+      },
+      {
+        "address": "006a1d80",
+        "hex": "6aff682b9b800064a100000000506489250000000083ec0c5355566a748be9e86b3414008bf083c4048974241433db3bf3895c24200f84b000000057682c24840056e83933d6ff8d4604682424840050c644243401e82633d6ff8d4e08688079860051c644243c02e81333d6ff895e0c895e10895e148d5618681824840052c644244406e8f732d6ff8d461c68fc23840050c644244c07e8e432d6ff83c4288a4c2413895e2c884e28895e30895e348d5644b90a00000033c08bfa885e70c644242409f3ab8bcec702ffffffff895e20895e24e898e0ffff8bcee881dfffff895e38895e3c895e405feb0233f6897424108d542410c7466c010000008b4508526a01508bcdc744242cffffffffe8ae3600008b45043bc375155e8d43ff5d5b8b4c240c64890d0000000083c418c38b6d088b4c24182be85ec1fd0264890d000000008d45ff5d5b83c418c3",
+        "meaning": "Create and append initialized human record with original string, texture, numeric, stat and tail defaults."
+      },
+      {
+        "address": "006e4fb0",
+        "hex": "5156578b7c24148bf157c744240c00000000e899ffffff83f8ff741e8b4e048d04408b0c818b44241085c9890874208b115f425e891159c208008b7424105768c43e840056e80601d2ff83c40c8bc65f5e59c20800",
+        "meaning": "Lookup loaded localization cache and return original missing-index diagnostic when absent."
+      },
+      {
+        "address": "0064d0b0",
+        "hex": "56578bfa33c08a010fbe90a03b8100428d340a3bf77712e8140000003c0175098bce3bcf72de5f5ec35f32c05ec3",
+        "meaning": "Advance UTF8 sequences using original lead-length table and validate every sequence through the stored end."
+      },
+      {
+        "address": "0064d0e0",
+        "hex": "8d04114a83fa037744ff249550d164008a50ff4880fa80723480fabf772f8a50ff4880fa80722680fabf77218a40ff3cbf771a33d28a1181eae0000000741c83ea10741383ea0474073c80731232c0c33c8f760b32c0c33c90ebf03ca072ee8a013c8072043cc272e43cf40f96c0c3",
+        "meaning": "Original one-to-four byte UTF8 predicate including surrogate acceptance and F4 second-byte lower-bound omission."
+      },
+      {
+        "address": "0069f6e0",
+        "hex": "68a62700006892270000b950e88a00e89c00000068a72700006893270000b960e88a00e88800000068a82700006894270000b970e88a00e87400000068a92700006895270000b980e88a00e86000000068aa2700006896270000b990e88a00e84c00000068ab2700006897270000b9a0e88a00e83800000068ac2700006898270000b9b0e88a00e82400000068ad2700006899270000b9c0e88a00e810000000c3",
+        "meaning": "Static initialization of all eight default name ID pairs, first ID27A6+i and second2792+i"
+      },
+      {
+        "address": "0069f790",
+        "hex": "8b5424088bc133c989480889480c8b4c24048910894804c20800",
+        "meaning": "Default-pair constructor proves pushed ID argument order and empty initial strings"
+      },
+      {
+        "address": "00813ba0",
+        "hex": "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001010101010101010101010101010101010101010101010101010101010101010202020202020202020202020202020203030303030303030404040405050505",
+        "meaning": "Original lead-byte sequence length minus one table"
+      },
+      {
+        "address": "0084242c",
+        "hex": "466972737400",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "00842424",
+        "hex": "4c61737400",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "00842418",
+        "hex": "785f665f3030312e626d7000",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "008423fc",
+        "hex": "655f663030312e626d7000",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "008423f4",
+        "hex": "785f665f00",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "008423f0",
+        "hex": "655f6600",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "008423e4",
+        "hex": "2573202825732920257300",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "008423dc",
+        "hex": "25632e20257300",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "0083a8f4",
+        "hex": "257320257300",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "00832cfc",
+        "hex": "257300",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "0083b314",
+        "hex": "785f66635f612e626d7000",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "00842408",
+        "hex": "757365726e616d65732e73617600",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      },
+      {
+        "address": "00843ec4",
+        "hex": "5f5f756e646566696e656420696e646578203c25643e20696e20616c6c5f747874205f5f00",
+        "meaning": "Original record/name/texture/overlay or missing-localization string constant"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [
+      {
+        "site": "0069f956",
+        "target": "0069fa60"
+      },
+      {
+        "site": "0069f95c",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069f9a1",
+        "target": "006e4fb0"
+      },
+      {
+        "site": "0069f9be",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069f9de",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069f9f4",
+        "target": "006e4fb0"
+      },
+      {
+        "site": "0069fa12",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fa33",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fa9b",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fabb",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fad2",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fae9",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fb00",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fb17",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fb2e",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fb45",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fb5b",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0069fdf7",
+        "target": "00405180"
+      },
+      {
+        "site": "0069fe08",
+        "target": "00405180"
+      },
+      {
+        "site": "0069fe70",
+        "target": "007e5ed4"
+      },
+      {
+        "site": "0069fe85",
+        "target": "007e5ed4"
+      },
+      {
+        "site": "0069fe96",
+        "target": "00405180"
+      },
+      {
+        "site": "0069feba",
+        "target": "007e5ed4"
+      },
+      {
+        "site": "0069fece",
+        "target": "007e5ed4"
+      },
+      {
+        "site": "0069fedf",
+        "target": "00405180"
+      },
+      {
+        "site": "0069ff04",
+        "target": "00405180"
+      },
+      {
+        "site": "0069ff2b",
+        "target": "007e5c20"
+      },
+      {
+        "site": "0069ff3a",
+        "target": "007e5a40"
+      },
+      {
+        "site": "0069ffa5",
+        "target": "00405180"
+      },
+      {
+        "site": "006a00ba",
+        "target": "007e5f60"
+      },
+      {
+        "site": "006a00d6",
+        "target": "00420780"
+      },
+      {
+        "site": "006a0100",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a0134",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006a0145",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a01c6",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a01f6",
+        "target": "00405940"
+      },
+      {
+        "site": "006a0206",
+        "target": "00405180"
+      },
+      {
+        "site": "006a0221",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a0251",
+        "target": "00405940"
+      },
+      {
+        "site": "006a0260",
+        "target": "00405180"
+      },
+      {
+        "site": "006a0286",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a02b6",
+        "target": "00405940"
+      },
+      {
+        "site": "006a02c7",
+        "target": "00405180"
+      },
+      {
+        "site": "006a02cf",
+        "target": "00405890"
+      },
+      {
+        "site": "006a0316",
+        "target": "007e5b30"
+      },
+      {
+        "site": "006a032b",
+        "target": "007e5b30"
+      },
+      {
+        "site": "006a033c",
+        "target": "007e5b30"
+      },
+      {
+        "site": "006a036a",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a038d",
+        "target": "004050a0"
+      },
+      {
+        "site": "006a03aa",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a03de",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a0401",
+        "target": "004050a0"
+      },
+      {
+        "site": "006a041e",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a0457",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a0473",
+        "target": "004050a0"
+      },
+      {
+        "site": "006a0491",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a04d0",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a04fd",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a052f",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a054b",
+        "target": "004050a0"
+      },
+      {
+        "site": "006a057d",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a0599",
+        "target": "004050a0"
+      },
+      {
+        "site": "006a05b7",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a05c9",
+        "target": "0069fde0"
+      },
+      {
+        "site": "006a05e7",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a0602",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a0632",
+        "target": "00405940"
+      },
+      {
+        "site": "006a0642",
+        "target": "00405180"
+      },
+      {
+        "site": "006a064a",
+        "target": "00405890"
+      },
+      {
+        "site": "006a0651",
+        "target": "0069fde0"
+      },
+      {
+        "site": "006a06a8",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a06d1",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006a06ed",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a070f",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a071f",
+        "target": "007e4f32"
+      },
+      {
+        "site": "006a0738",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a0768",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a0798",
+        "target": "00405940"
+      },
+      {
+        "site": "006a07a8",
+        "target": "00405180"
+      },
+      {
+        "site": "006a07b0",
+        "target": "00405890"
+      },
+      {
+        "site": "006a07b7",
+        "target": "0069fef0"
+      },
+      {
+        "site": "006a07f2",
+        "target": "00405940"
+      },
+      {
+        "site": "006a07fa",
+        "target": "00405890"
+      },
+      {
+        "site": "006a0814",
+        "target": "00405940"
+      },
+      {
+        "site": "006a081c",
+        "target": "00405890"
+      },
+      {
+        "site": "006a0836",
+        "target": "00405940"
+      },
+      {
+        "site": "006a083e",
+        "target": "00405890"
+      },
+      {
+        "site": "006a0858",
+        "target": "00405940"
+      },
+      {
+        "site": "006a0860",
+        "target": "00405890"
+      },
+      {
+        "site": "006a087a",
+        "target": "00405940"
+      },
+      {
+        "site": "006a0882",
+        "target": "00405890"
+      },
+      {
+        "site": "006a089b",
+        "target": "004205c0"
+      },
+      {
+        "site": "006a08b2",
+        "target": "00405940"
+      },
+      {
+        "site": "006a08c7",
+        "target": "00405940"
+      },
+      {
+        "site": "006a08dc",
+        "target": "00405940"
+      },
+      {
+        "site": "006a08f1",
+        "target": "00405940"
+      },
+      {
+        "site": "006a0906",
+        "target": "00405940"
+      },
+      {
+        "site": "006a091b",
+        "target": "00405940"
+      },
+      {
+        "site": "006a0930",
+        "target": "00405940"
+      },
+      {
+        "site": "006a0945",
+        "target": "00405940"
+      },
+      {
+        "site": "006a095a",
+        "target": "00405940"
+      },
+      {
+        "site": "006a096f",
+        "target": "00405940"
+      },
+      {
+        "site": "006a0985",
+        "target": "00405940"
+      },
+      {
+        "site": "006a098d",
+        "target": "00405890"
+      },
+      {
+        "site": "006a09f9",
+        "target": "006a0e10"
+      },
+      {
+        "site": "006a0a00",
+        "target": "006a0ea0"
+      },
+      {
+        "site": "006a0abf",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006a0ace",
+        "target": "006a0e10"
+      },
+      {
+        "site": "006a0afb",
+        "target": "0041d670"
+      },
+      {
+        "site": "006a0b08",
+        "target": "0041d670"
+      },
+      {
+        "site": "006a0b11",
+        "target": "0064d0b0"
+      },
+      {
+        "site": "006a0b6d",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a0bb1",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a0bd7",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a0c1b",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a0c3f",
+        "target": "006a4fa0"
+      },
+      {
+        "site": "006a0c5d",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a0c84",
+        "target": "00414550"
+      },
+      {
+        "site": "006a0ca3",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006a0cc5",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a0ce7",
+        "target": "004050a0"
+      },
+      {
+        "site": "006a0cf9",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a0d22",
+        "target": "006a4fa0"
+      },
+      {
+        "site": "006a0d2d",
+        "target": "006a4ef0"
+      },
+      {
+        "site": "006a0d4b",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a0d72",
+        "target": "00414550"
+      },
+      {
+        "site": "006a0d85",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a0d94",
+        "target": "006a4ef0"
+      },
+      {
+        "site": "006a0daf",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a0dd0",
+        "target": "004145d0"
+      },
+      {
+        "site": "006a0de9",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006a0e1c",
+        "target": "006a0ae0"
+      },
+      {
+        "site": "006a0e27",
+        "target": "006a0b20"
+      },
+      {
+        "site": "006a0e32",
+        "target": "006a0ae0"
+      },
+      {
+        "site": "006a0e3d",
+        "target": "006a0b20"
+      },
+      {
+        "site": "006a0e47",
+        "target": "006a0ae0"
+      },
+      {
+        "site": "006a0e52",
+        "target": "006a0b20"
+      },
+      {
+        "site": "006a0e5c",
+        "target": "006a0ae0"
+      },
+      {
+        "site": "006a0e67",
+        "target": "006a0b20"
+      },
+      {
+        "site": "006a0e71",
+        "target": "006a0ae0"
+      },
+      {
+        "site": "006a0e7c",
+        "target": "006a0b20"
+      },
+      {
+        "site": "006a0e86",
+        "target": "006a0ae0"
+      },
+      {
+        "site": "006a0ec4",
+        "target": "007e4eae"
+      },
+      {
+        "site": "006a0f88",
+        "target": "006b7100"
+      },
+      {
+        "site": "006a0fa6",
+        "target": "00405180"
+      },
+      {
+        "site": "006a0fd1",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a0ffa",
+        "target": "00414550"
+      },
+      {
+        "site": "006a1011",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a102c",
+        "target": "00405620"
+      },
+      {
+        "site": "006a104b",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006a105d",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a10af",
+        "target": "00405890"
+      },
+      {
+        "site": "006a10c2",
+        "target": "007e4f50"
+      },
+      {
+        "site": "006a10df",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a10f3",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a1103",
+        "target": "00405750"
+      },
+      {
+        "site": "006a112e",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a1162",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006a1174",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a11ab",
+        "target": "006a1c80"
+      },
+      {
+        "site": "006a11ce",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006a11e0",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a1229",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a125b",
+        "target": "00405940"
+      },
+      {
+        "site": "006a126c",
+        "target": "00405180"
+      },
+      {
+        "site": "006a1276",
+        "target": "00405890"
+      },
+      {
+        "site": "006a1282",
+        "target": "006a0aa0"
+      },
+      {
+        "site": "006a128c",
+        "target": "00405890"
+      },
+      {
+        "site": "006a12b1",
+        "target": "00405890"
+      },
+      {
+        "site": "006a12e0",
+        "target": "00405890"
+      },
+      {
+        "site": "006a12f3",
+        "target": "007e4f50"
+      },
+      {
+        "site": "006a1314",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a1328",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a133c",
+        "target": "00405750"
+      },
+      {
+        "site": "006a134a",
+        "target": "00405890"
+      },
+      {
+        "site": "006a1353",
+        "target": "00405750"
+      },
+      {
+        "site": "006a1368",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a137c",
+        "target": "004050e0"
+      },
+      {
+        "site": "006a138c",
+        "target": "00405750"
+      },
+      {
+        "site": "006a1941",
+        "target": "00405620"
+      },
+      {
+        "site": "006a196d",
+        "target": "00405890"
+      },
+      {
+        "site": "006a1980",
+        "target": "007e4f50"
+      },
+      {
+        "site": "006a199d",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006a19bc",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006a19ce",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a19fc",
+        "target": "006a1b40"
+      },
+      {
+        "site": "006a1a3c",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a1a60",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a1a71",
+        "target": "007e4f32"
+      },
+      {
+        "site": "006a1a8a",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a1aaf",
+        "target": "007e4f50"
+      },
+      {
+        "site": "006a1ae1",
+        "target": "00405890"
+      },
+      {
+        "site": "006a1af4",
+        "target": "007e4f50"
+      },
+      {
+        "site": "006a1b11",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006a1b48",
+        "target": "0069f930"
+      },
+      {
+        "site": "006a1b70",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a1ba4",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006a1bb6",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a1bdc",
+        "target": "006a1d80"
+      },
+      {
+        "site": "006a1be8",
+        "target": "006a00a0"
+      },
+      {
+        "site": "006a1c01",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a1c24",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a1c34",
+        "target": "007e4f32"
+      },
+      {
+        "site": "006a1c4f",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a1c70",
+        "target": "006a0f30"
+      },
+      {
+        "site": "006a1d9f",
+        "target": "007e520f"
+      },
+      {
+        "site": "006a1dc2",
+        "target": "00405100"
+      },
+      {
+        "site": "006a1dd5",
+        "target": "00405100"
+      },
+      {
+        "site": "006a1de8",
+        "target": "00405100"
+      },
+      {
+        "site": "006a1e04",
+        "target": "00405100"
+      },
+      {
+        "site": "006a1e17",
+        "target": "00405100"
+      },
+      {
+        "site": "006a1e53",
+        "target": "0069fef0"
+      },
+      {
+        "site": "006a1e5a",
+        "target": "0069fde0"
+      },
+      {
+        "site": "006a1e8d",
+        "target": "006a5540"
+      },
+      {
+        "site": "006e4fc2",
+        "target": "006e4f60"
+      },
+      {
+        "site": "006e4ff5",
+        "target": "00405100"
+      },
+      {
+        "site": "0064d0c7",
+        "target": "0064d0e0"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10068f90",
+        "hex": "a1f4160d10c3",
+        "meaning": "GetIGraph singleton export used afresh per portrait load"
+      },
+      {
+        "address": "10069f70",
+        "hex": "81ec000200005355568bb4241402000085f657742783c9ff",
+        "meaning": "Original graphics texture load entry; implementation delegated"
+      },
+      {
+        "address": "10073760",
+        "hex": "568b7424088b46144889461479295668508d0a10e89759ff",
+        "meaning": "Original texture release entry; implementation delegated"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d87c",
+        "targets": [
+          "10069f70"
+        ]
+      },
+      {
+        "address": "1009dc34",
+        "targets": [
+          "10073760"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}

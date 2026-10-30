@@ -125,6 +125,7 @@ partial client entries bring totals to 167 (162 client/five engine), zero
 complete, frozen denominator 18,783. No duplicate credit for portable/native
 versions, and no new credit for delegated DLL calls.
 
-Next: port actual HumanStore and GameData record semantics onto this object,
-then profile selection and remaining application/state prerequisites. Original
-protection-state effects and full executable startup remain unresolved.
+Follow-up: [HumanStore record loading](human-store.md) now uses this object,
+including profile-name overlays and portrait ownership. Next: actual GameData
+loading, current-profile resolution/selection and remaining application/state
+prerequisites. Protection-state effects and full executable startup remain open.

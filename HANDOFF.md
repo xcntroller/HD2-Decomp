@@ -1,6 +1,90 @@
 # Session handoff - 2026-10-30
 
-## Resume here: original DTA chunk-file lifecycle recovered
+## Resume here: HumanStore startup loading recovered
+
+Current user priority: **complete the original launch path rebuild**. Continue
+this chain. Source follows `6273f26`; no live changes or desktop test in this
+slice. New `frontend/human_store.h` owns native records, parsing, default/derived
+names, text finalization and profile-name overlays. `host/human_store.h` forwards
+original portrait operations. See `analysis/human-store.md` and its map.
+
+Actual preparation: 006B65D0 calls GameData 006BB540, sets the application +04
+object's +E8 to one, then calls HumanStore 006A18E0 with tables\HumanStore.def.
+Both loaders run even if GameData fails; return their byte AND masked with one.
+Controller 006B6620 then scans/selects profiles before movie creation. HumanStore
+now has native source; the remaining preparation/controller services stay open.
+
+Missing main file preserves old records. Raw root/record IDs are not validated;
+reset after root enter, append defaults before parsing. Unknown fields do not
+leave their chunks, so nested known tags can be visited. Reset destroys records
+forward, retains vector capacity, then looks up eight localized pairs: first
+27A6+i, then second 2792+i. Static initializer 0069F6E0 / ctor 0069F790 prove
+ID order; BSS 008AE850 has no file bytes. Missing text is exactly
+"__undefined index <%d> in all_txt __". Defaults: First/Last, x_f_001.bmp,
+e_f001.bmp, rank FFFFFFFF, nine zero floats, tail [1,0]. Unknown uninitialized
++28 byte is omitted; native tail padding starts zero. Keep raw +24/+38/+3C/+40
+offset names. Stats 26AD preserve bits; 26AC converts signed ints and reuses one
+initialized scratch word on ignored short reads. Legacy 24B8/2648 read 72/76
+bytes and map stat indices 1,2,4,5,7,9,6,13,12.
+
+First/last tags do not refresh display names; nickname and combined-name tags
+do. Legacy parsing captures search pointers before inserting NULs: for example,
+"John(Nick) Smith" yields first "John(Nick)", nickname "Nick", empty last.
+Eye derivation uses the first lowercased x_f_ substring anywhere. Wide finalizer
+checks/converts six fields in order. Old UTF8 admits ED surrogates and F4 second
+bytes below 80. Conversion supports ASCII plus only ED->C3AD; any other high
+byte leaves the old string intact. Portrait finalizer releases the previous
+texture, obtains fresh GetIGraph (68F90), then graphics +3C (69F70) with face,
+"x_fc_a.bmp", flags4, output slot. Negative result clears output; nonnegative
+null is accepted. Parser ignores failure. Texture release is slot0 / 73760.
+
+Optional usernames.sav uses the caller's actual profile directory, with trailing
+separator. Current-profile resolver 006B7100 and wide mapping 006AE530 remain
+open; do not substitute a guessed directory. Missing overlay returns true.
+Present file: root029A, child tag = zero-based record index, nested23B4 string.
+Leave name chunk, assign +14 / finalize text, leave index chunk; no derived-name
+or texture refresh. Invalid later entry returns false, retaining prior overrides.
+Store ignores overlay result. Overlay loop uses signed remaining >0; record/
+store loops use !=0. Native guards reject failed headers, nonpositive or
+unterminated strings, name-buffer overflow and undefined short numeric reads
+except 26AC. Native strings/ownership/SEH differences explicit; entries partial.
+Backends must outlive store; callbacks must not throw or mutate its structure.
+
+Temporary sanitizer audit: all 65 installed records match independent raw-offset
+Python decoding (eight strings, four numeric fields, ten stat words, tail/items).
+Real English cache, all four stats formats, legacy name quirks, unknown traversal,
+valid/invalid/partially applied overlays, missing-main preservation, all 65,536
+two-byte UTF8 inputs plus boundary cases, texture failure/null success and forward
+release pass. Strict i386 actual ChunkFiles/HumanPortraits/store composition
+compiles and links only, never run. Existing native checks, 158 Python tests and
+unchanged host target pass. Temporary fixtures/extracted assets removed after
+checking; ignored Ghidra exports remain. No permanent tests, original-code/game/
+Windows executable execution or push.
+
+Evidence: both hashes, 37 anchors, 217 calls, two texture vtable slots. Six
+negative map mutations rejected; all 256 original UTF8 length entries match
+source arithmetic. Eighteen new partial client functions, all in frozen inventory:
+185 total (180 client / five engine), zero complete, denominator 18,783.
+Function-progress render/check passes. Run:
+python3 -B tools/validate_engine_host.py --map analysis/human-store-map.json
+
+NEXT: actual GameData 006BB540 loading, then current-profile path and 006B6620
+profile scan/selection, preserving original order/state. GameData scans
+GameData\Gamedata%02d.gdt until first missing; metadata chunk3 affects the parse/
+reset branch. Export downstream record/reset/finalize methods before source.
+Real Gamedata00.gdt (22,161 bytes): root3 metadata, then root1 with child47/5;
+do not assume every payload is nested chunks. Existing profile exports in
+application-profile-startup: 006AEF50 scan, 006A6560 current string, 006AF1D0
+select. Application/state ownership, protection through 00A59000, loaded-cache
+consumers and controller wiring remain launch dependencies. No guessed
+protection or successful no-op services. Independent original launch stays open.
+
+Ignored read-only exports: human-store-startup, human-store-record-helpers,
+human-store-wide-helpers, human-store-utf8, human-store-utf8-sequence,
+application-profile-startup, startup-input-prerequisites and menu-text-final.
+Original binaries and saved Ghidra project untouched.
+
+## Earlier checkpoint: original DTA chunk-file lifecycle recovered
 
 Follows outside-conversation commits edf16bd graphics input forwarding and
 2af59e0 window persistence, both preserved. Source-only; no live changes or

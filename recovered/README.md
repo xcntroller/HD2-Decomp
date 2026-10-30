@@ -17,6 +17,15 @@ the early strict portable reader intentionally rejects. Temporary sanitizer
 audits, real base HumanStore/GameData comparisons and i386 compile/link pass;
 no original file API is executed. See [scope](../analysis/chunk-file.md).
 
+The [HumanStore loader](frontend/human_store.h) now uses that file lifecycle to
+recover startup soldier records, older stat/name formats, localization defaults,
+encoding finalizers and profile `usernames.sav` overrides. Its
+[portrait adapter](host/human_store.h) forwards checked original texture calls.
+All 65 installed records match an independent decode; sanitizer and strict
+i386 compile/link audits pass. Source-only: actual profile-path resolution,
+GameData loading and full application/controller wiring remain open.
+See [evidence and limits](../analysis/human-store.md).
+
 The second component is the
 [model resource key helper](scene/model_resource_key.cpp), with its
 [public interface](scene/model_resource_key.h). This is a small string

@@ -111,9 +111,20 @@ The existing host preview is useful for validation, but it is not this milestone
 - [x] Recover the original DTA chunk-file read/write lifecycle shared by
   application-data and profile loaders. **Source-only, audited.** Preserve
   partial transfers, stale read nesting, writer backpatching and close behavior;
-  native safety guards remain explicit. Actual HumanStore/GameData record
-  parsers and profile services are next, with no successful placeholder bodies.
+  native safety guards remain explicit. Application record parsers use this
+  lifecycle, with no successful placeholder bodies.
   See [chunk-file scope](analysis/chunk-file.md).
+- [x] Recover original HumanStore startup loading, all recognized record formats,
+  default/derived names, encoding finalizers, profile name overlays and portrait
+  ownership/loading. **Source-only, audited.** All 65 installed records match an
+  independent decode; older formats, overrides and failure paths pass sanitizer
+  audits. Actual DTA/graphics adapters compile/link for i386. Current-profile
+  directory resolution, GameData and full application integration remain open.
+  See [HumanStore evidence](analysis/human-store.md).
+- [ ] Recover the actual GameData loader and current-profile path/scan/selection
+  used by application preparation before opening movies. Preserve loader order,
+  loaded state and failure behavior; then finish remaining original application/
+  state services and protection-state dependencies before controller wiring.
 - [ ] Build the independent executable in that path, then desktop-test normal
   playback, skipping, missing-movie behavior, menu entry and teardown. Commit
   the interactive slice only after the user confirms it works.
@@ -215,17 +226,17 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current checkpoint follows `edf16bd` concrete input forwarding and `2af59e0`
-window persistence. The original shared DTA chunk-file lifecycle now includes
-read/write modes, raw header nesting, failed-transfer state effects, writer
-backpatching and close semantics. Native sanitizer and strict i386 audits pass;
-real HumanStore and GameData bytes validate the recovered reader. No live change.
-Next: actual HumanStore/GameData record parsers and profile selection in the
-application preparation chain, then remaining application/state services and
-controller integration. Startup protection-state effects, loaded-resource cache
+Current checkpoint follows `6273f26` original DTA chunk-file lifecycle. HumanStore
+startup load/reset, every recognized record format, default/derived names,
+encoding finalizers, profile-name overlays and original portrait forwarding now
+have source. All 65 installed records match an independent decode; sanitizer
+and strict i386 composition audits pass. No live change.
+Next: actual GameData loading and current-profile path/scan/selection in the
+same application preparation chain, then remaining application/state services
+and controller integration. Startup protection-state effects, loaded-resource cache
 consumers, live device lifecycle, renderer/text consumers and navigation remain
 open. Do not guess protection code or add dormant joystick enumeration.
-See [chunk-file scope](analysis/chunk-file.md).
+See [HumanStore scope](analysis/human-store.md).
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,
