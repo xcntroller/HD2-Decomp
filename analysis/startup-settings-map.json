@@ -1,0 +1,793 @@
+{
+  "scope": "Options.bin, settings/defaults/binding reader, six ordered application helpers, native client sound setters and borrowed COM control forwarding, outer selection and distinct startup owners. Source-only; full sound/control creation, application/protection/state ownership and live controller integration remain open. Native malformed-data and undefined-word policies explicit.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006b2d80",
+        "hex": "6aff683da2800064a100000000506489250000000081ec44040000535556578bf933db897c2410885c2440c7442444ffffffff885c2448899c2450040000899c245c040000895c2428a02ce98a00c684245c040000013ac38b070f84c40000003bc3740583c008eb05b8807986008d4c242351508d4c2438e8e366d5ff8d5424308d44241c5250b9d8e88a00c684246404000002e857f2ffff6a018d4c2434c684246004000001e81422d5ffa1dce88a008b4c241c3bc874538b71203bf37505be10f580008bfe83c9ff33c0f2aef7d1498bf9897c242c8d4f0951e8af23130083c404894424143bc3c684245c04000003741f57568bc8e82422d5ff8b7c2410c684245c040000018be8eb2033c08be8eb1a8b7c241033c0c684245c040000018be8eb083bc37402ff008b2f3beb896c24288d45087505b88079860068102c84005068e4ef83008d54243068042c840052e82a22d5ff83c4148b442424c684245c040000043bc3740583c008eb05b88079860053508d4c2448e82227d5ff3ac30f844e020000385c24400f84440200008b4c24448d4424146a065051e81d20130083f8060f852a0200008b5424446a015352e8012013008b4c24168b9424500400008d4408fa894494508b9424500400008b44241442663da025899424500400008bf80f85e70100008d44241c6a04508d4c2448e8c729d5ff538d4c2444e80d29d5ff817c241c410100000f85bf010000385c244074678b5424448d4c24146a065152e8961f130083f80675518b4424446a015350e87e1f13008b4c24168b9424500400008d4408fa894494508b9424500400008b44241442663da625899424500400008bf875168b4c24108d4424405081c1ec000000e80459ffffeb098b4c2410e8b9010000385c24400f84ca000000385c2448744b8b5424446a015352e8141f13008bf08b8424500400008b5424448bce8b44844c532bc883c0025052894c2428e8f01e13008b4c24448d44241c6a045051e8d91e13008b542444535652eb128b8424500400008b4c2444538b4484505051e8bf1e13008b8424500400003bc374084889842450040000385c244074498b4424448d5424146a065250e89b1e130083f80675338b4c24446a015351e8831e13008b5424168b8c24500400008b7c24148d4410fa89448c508b84245004000040898424500400006681ffa52575138b4424108d542440528d4838e85d060000eb098b4c2410e8c2000000538d4c2444e88827d5ff8d4c2440e83f26d5ff8b4c2424c684245c040000013bcb7405e8ba1fd5ff3beb889c245c04000074078bcde8a81fd5ff8d4c2440c784245c040000ffffffffe80426d5ffb001eb518b7c24108bcfe8650000008d4c2440e8ec25d5ff8b4c2424c684245c040000013bcb7405e8671fd5ff3beb889c245c04000074078bcde8551fd5ff8d4c2440c784245c040000ffffffffe8b125d5ff32c08b8c24540400005f5e5d5b64890d0000000081c450040000c3",
+        "meaning": "Sequential options chunks, exact version and independent reset-both fallbacks."
+      },
+      {
+        "address": "006a8900",
+        "hex": "83ec245556578be9e833feffff8b742434803e0074478b4e048d44240c6a065051e818c6130083f80675328b56046a016a0052e800c613008b4c240e8b96100400008d4408fa894496108b8610040000408986100400008b44240ceb048b442434663db8220f84940000006a008bcde86c020000803e000f84880100008a460884c08b460474456a016a0050e8a7c513008b8e100400008bf88bd76a008b448e0c2bd083c002508b46045089542440e884c513008b56048d4c24346a045152e86ec513008b46046a0057eb0d8b8e100400006a008b548e0c5250e859c513008b861004000085c00f8418010000485f8986100400005e32c05d83c424c204008d4c24346a04518bcee833cfd5ff6a008bcee87aced5ff837c24344274146a008bcde8ba0100005f5e32c05d83c424c20400803e00744e8b46048d54240c6a065250e8f8c4130083f80675398b4e046a016a0051e8e0c413008b54240e8b8e100400008d4410fa89448e108b8e100400004166817c240cb922898e100400000f848c0000006a008bcde853010000803e0074738a46088b560484c074456a016a0052e892c413008bf88b86100400008b56048bcf8b44860c6a002bc883c0025052894c2440e86fc413008b4e048d4424346a045051e859c413008b56046a0057eb0d8b86100400006a008b4c860c5152e844c413008b861004000085c07407488986100400005f5e32c05d83c424c20400b90700000033c08d7c2414f3ab89442420803e000f849a0000008b861004000085c00f848c0000008b46046a016a0050e8f3c3130083f8ff747a8b8e100400008b7c8e0c8bd72bd0895424347466803e0074458a460884c0753e85c9742a8b46046a016a0050e8bdc313002bf8c744243400000000897c240c8d44243478048d44240c83381c7c108b56048d4c24146a1c5152e896c313008b4d088d442414506a01518bcdc644243801e8f1380000e95dffffff6a008bcee8c3ccd5ff8bcde8ecfaffff5f5eb0015d83c424c20400",
+        "meaning": "Binding settings-only clear, branch-specific leaves, reused raw record and dirty application."
+      },
+      {
+        "address": "006b3750",
+        "hex": "83ec085355568b74241833db8be9381e0f84990200008b4e048d44240c6a065051e8c817130083f8060f85800200008b56046a015352e8ad1713008b4c240e8b96100400008d4408fa894496108b96100400004266817c240c01128996100400008bc20f85460200008a0e573acb0f84c5010000385e0875393bc374298b7c860c8b46046a015350e85b1713002bf8895c241c897c24108d44241c78048d4424108338047c0c8b4e046a045551e83c171300381e0f847f010000385e0875428b86100400003bc374298b56048b7c860c6a015352e80f1713002bf8895c241c897c24108d44241c78048d4424108338047c0f8b4e048d45046a045051e8ed161300381e0f8430010000385e0875428b86100400003bc374298b56048b7c860c6a015352e8c01613002bf8895c241c897c24108d44241c78048d4424108338047c0f8b4e048d45086a045051e89e161300381e0f84e1000000385e0875428b86100400003bc374298b56048b7c860c6a015352e8711613002bf8895c241c897c24108d44241c78048d4424108338047c0f8b4e048d450c6a045051e84f161300381e0f8492000000385e0875428b86100400003bc374298b56048b7c860c6a015352e8221613002bf8895c241c897c24108d44241c78048d4424108338047c0f8b4e048d45106a045051e800161300381e7447385e0875428b86100400003bc374298b56048b7c860c6a015352e8d71513002bf8895c241c897c24108d44241c78048d4424108338047c0f8b4e048d45146a045051e8b51513008d55186a04528bcee8aa1fd5ff8d451c6a07508bcee89d1fd5ff8d4d236a07518bcee8901fd5ff8d552a6a07528bcee8831fd5ff8d45316a07508bcee8761fd5ff8d4d386a01518bcee8691fd5ff8d55396a01528bcee85c1fd5ff8d453a6a01508bcee84f1fd5ff83c53b6a01558bcee8421fd5ff5f538bcee8891ed5ff5e5d5b83c408c20400",
+        "meaning": "Settings 60-byte transfer boundaries and ignored partial reads."
+      },
+      {
+        "address": "006b3420",
+        "hex": "83ec205332d25657885424248854242588542426885424278b7c24248d711c8854242888542429893e668b7c242832dbb00166897e048854240c8844240d8854240e885e068844240f8b7c240c8d71238854241088442411893e668b7c24108ada8844241466897e048844241588442416884424178b7c2414885e068d712a88442418884424198ad8893e668b7c24188854241c8844241d66897e048854241e8844241f8b7c241c885e068d71318854242088442421893e668b7c2420c74118020000008854241266897e045f884424168844241e885e06be0000484289710489710c8971088971105ec7013333854288513988513888413b88413a5b83c420c3",
+        "meaning": "Exact default stores, with no write to +14."
+      },
+      {
+        "address": "006b31c0",
+        "hex": "83ec3c53568bd9578d4c240ce84f0200008d7b38b90f0000008d74240c6a00f3a58d8bec000000e8f459ffff5f5e5b83c43cc3",
+        "meaning": "Stack temporary copied as fifteen words, then binding layout0."
+      },
+      {
+        "address": "006b33e0",
+        "hex": "8b411885c0750b8b4424048a44081cc2040083f801750b8b5424048a440a23c2040083f802750b8b4424048a44082ac204008b5424048a440a31c20400",
+        "meaning": "Quality byte selection for 0/1/2/other."
+      },
+      {
+        "address": "006b3340",
+        "hex": "578bf9e8f41a130085c074235356e8e91a13008bf06a008d4f388b1ee87f00000025ff000000506a2b56ff53185e5b5fc3",
+        "meaning": "Two driver getter calls and +18 state2B forwarding."
+      },
+      {
+        "address": "006b3210",
+        "hex": "d9413cdc25f8f8800081ec00060000dcc0565733f6dc05e8598100e8d02b13008bf833d281e7ffff00008bce668974540881e1ffff00006689b4540802000003cf6689b4540804000081f9ff0000007307beff000000eb1181f9ffff0000730403f0eb05beffff00004281fa000100007cb8e8271c13008b088d5424086a005250ff912c0100005f5e81c400060000c3",
+        "meaning": "x87 gamma increment, low16 arithmetic, clamp/emission and graphics+12C."
+      },
+      {
+        "address": "006b32a0",
+        "hex": "568bf1e81804d8ffd94640d80d74f580008b10518bc8d91c24ff9284000000ddd85ec3",
+        "meaning": "Float32-scaled sound argument and CLIENT thiscall +84."
+      },
+      {
+        "address": "006b32d0",
+        "hex": "568bf1e8e803d8ffd94644d80d74f580008b10518bc8d91c24ff527cddd85ec3",
+        "meaning": "Float32-scaled movie argument and CLIENT thiscall +7C."
+      },
+      {
+        "address": "006b3320",
+        "hex": "d94148dc0d68198100e8d22a130050b970d09700e8e7b60700c3",
+        "meaning": "Float64 scale followed by integer conversion and owner0097D070."
+      },
+      {
+        "address": "006b32f0",
+        "hex": "568bf1d94638d80df0598100d80508f78000e8f92a13006a785050b948ea8a00e87b3901008a46715ea2fcea8a00c3",
+        "meaning": "x87 input limit, actual input-manager tuning and global flag."
+      },
+      {
+        "address": "006b2d40",
+        "hex": "53568bf1e8370000008bce8ad8e8ee0500008bcee8b70400008bcee8400500008bcee8690500008bcee8b20500008bcee87b0500008ac35e5bc3",
+        "meaning": "Load then apply all six helpers, including load failure."
+      },
+      {
+        "address": "004323e0",
+        "hex": "8b414885c0740d8b0850ff510884c07403b001c332c0c3",
+        "meaning": "Non-null active movie plus movie+08 query."
+      },
+      {
+        "address": "00433510",
+        "hex": "a00021980056a8028bf174238b442408894644e8b8eeffff84c074138b4648d946548b08d84e4451d91c2450ff513cd946445ec20400",
+        "meaning": "Gate2, stored movie volume, scale and movie+3C."
+      },
+      {
+        "address": "00433550",
+        "hex": "a00021980056a8028bf174168b44240889463ce852193b008b563c8b085250ff5114d9463c5ec20400",
+        "meaning": "Gate2, stored driver volume and ISnd+14."
+      },
+      {
+        "address": "0072ea20",
+        "hex": "8b510c83ec2085d2745b57b90800000033c08d7c2404f3ab8b4424288d4c2404518bcac744240820000000c744240c2800000089442414c744241c00000000c744242000000000c7442418feffffffc744241001000000c744242400000000e88c3701005f83c420c20400",
+        "meaning": "Real optional-wrapper branch and exact eight-word submission."
+      },
+      {
+        "address": "00742210",
+        "hex": "8b410485c07508b8f0010480c204008b5424048b085250ff512033c985c00f9dc14923c1c20400",
+        "meaning": "Null interface HRESULT, +20 stdcall and HRESULT normalization."
+      },
+      {
+        "address": "006af1d0",
+        "hex": "6aff68d09f800064a100000000506489250000000083ec1c5355568b742438578d4424105650894c241ce8015fd5ff83c408a02ce98a0033db3ac3895c24340f84c80000008a4c243c53884c24208d4c2420e8195ed5ff8bfe83c9ff33c0f2aef7d14951568d4c2424e8c215d7ff8d54241c8d4424185250b9d8e88a00c644243c01e8192e00006a018d4c2420885c2438e8da5dd5ff8b4424188b0ddce88a003bc1744c8b70203bf37505be10f580008bfe83c9ff33c0f2aef7d1498be98d4d0951e8785f130083c4043bc374268bcd8d78088bd1c70001000000c1e902896804f3a58bca83e103f3a4885c2808eb0633ffeb0833c08b74243c8bf88b4c24103bcb7405e8075ed5ff897c2410bf8079860083c9ff33c0f2aef7d1498be98d450950e8185f130083c4043bc3742d8bcdbe807986008bd18d7808c1e902c70001000000896804f3a58bca83e103f3a48b74243c885c28088bf8eb0233ff8b6c24148b4d003bcb7405e8a35dd5ff8b442410897d003bc3747639580474718d500853b9e4ef8300e8b59b030084c0745f3bf3750433f6eb488bfe83c9ff33c0f2aef7d1498be98d450950e8915e130083c4043bc374228bcd8d78088bd1c70001000000c1e902896804f3a58bca83e103f3a4885c2808eb0233c08b6c24148bf08b4d003bcb7405e8255dd5ff8975005333d233c9e8489b0300b82404000083e80483f8248998088a860075f28bcde85e3900008bcde8170700008b4424103bc374148b104a89108b083bcb750950e8be28130083c4048b4c242c5f5e5db0015b64890d0000000083c428c20400",
+        "meaning": "Retained input, exact mapping/chdir, cwd restore, full256-word clear and both loads."
+      },
+      {
+        "address": "006b6620",
+        "hex": "568bf18a463084c0740c8b4e206a006a00e81a89ffff8b4e08e822fffeff8b0085c0740e8b4e2083c00850e8808bffff5ec38b4e20b88079860050e8708bffff5ec3",
+        "meaning": "Optional scan, distinct application+08 name and application+20 selection owner."
+      },
+      {
+        "address": "006a6560",
+        "hex": "8d4108c3",
+        "meaning": "Original startup-name string accessor returns this+08."
+      },
+      {
+        "address": "004336d0",
+        "hex": "6aff686aa97f0064a1000000005064892500000000518b44241853568bf18b4c241c50518bce89742410e851a20500c70658f8800033dbc746184d010000895c2414895e0c895e10895e14b8e8030000895e1c895e20895e24894628895e2c895e30895e348946388a542420899e8000000088567c899e84000000899e880000008a442420899e9000000088868c000000899e94000000899e98000000687003420068603e43006a048d8ec40000006a1051c644242805e803283b00b80000803fc644241406c706b8f78000895e48895e68894654c7464cffffffff894658894650894644885e406a03538bcee8feecffff4383fb047cf08b4c240c8bc65e5b64890d0000000083c410c20800",
+        "meaning": "Sound-manager final vtable and relevant movie/scale initial values; constructor not credited."
+      },
+      {
+        "address": "0080f574",
+        "hex": "0ad7233c",
+        "meaning": "Float32 scale .01"
+      },
+      {
+        "address": "0080f8f8",
+        "hex": "0000000000004940",
+        "meaning": "Double50"
+      },
+      {
+        "address": "008159e8",
+        "hex": "0000000000e06f40",
+        "meaning": "Double255"
+      },
+      {
+        "address": "008159f0",
+        "hex": "000010c1",
+        "meaning": "Float32 -9"
+      },
+      {
+        "address": "0080f708",
+        "hex": "00007a44",
+        "meaning": "Float32 1000"
+      },
+      {
+        "address": "00811968",
+        "hex": "7b14ae47e17a843f",
+        "meaning": "Double .01"
+      },
+      {
+        "address": "007e5e00",
+        "hex": "558bec83c4f49bd97dfe9b668b45fe80cc0c668945fcd96dfcdf7df4d96dfe8b45f48b55f8c9c3",
+        "meaning": "Actual __ftol signed64 FISTP, truncation and low-word return"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "0080f834",
+        "targets": [
+          "00433510"
+        ],
+        "meaning": "Client sound movie setter slot7C"
+      },
+      {
+        "address": "0080f83c",
+        "targets": [
+          "00433550"
+        ],
+        "meaning": "Client sound driver setter slot84"
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "006b2df8",
+        "target": "004094e0"
+      },
+      {
+        "site": "006b2e14",
+        "target": "006b2070"
+      },
+      {
+        "site": "006b2e27",
+        "target": "00405040"
+      },
+      {
+        "site": "006b2e5b",
+        "target": "007e520f"
+      },
+      {
+        "site": "006b2e77",
+        "target": "004050a0"
+      },
+      {
+        "site": "006b2ed1",
+        "target": "00405100"
+      },
+      {
+        "site": "006b2ef9",
+        "target": "00405620"
+      },
+      {
+        "site": "006b2f1c",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006b2f32",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b2f74",
+        "target": "00405940"
+      },
+      {
+        "site": "006b2f7e",
+        "target": "00405890"
+      },
+      {
+        "site": "006b2fa3",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006b2fb5",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b2ff7",
+        "target": "006a8900"
+      },
+      {
+        "site": "006b3002",
+        "target": "006b31c0"
+      },
+      {
+        "site": "006b301f",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b3043",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b3054",
+        "target": "007e4f32"
+      },
+      {
+        "site": "006b3074",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b309e",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006b30b0",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b30ee",
+        "target": "006b3750"
+      },
+      {
+        "site": "006b30f9",
+        "target": "006b31c0"
+      },
+      {
+        "site": "006b3103",
+        "target": "00405890"
+      },
+      {
+        "site": "006b310c",
+        "target": "00405750"
+      },
+      {
+        "site": "006b3121",
+        "target": "004050e0"
+      },
+      {
+        "site": "006b3133",
+        "target": "004050e0"
+      },
+      {
+        "site": "006b3147",
+        "target": "00405750"
+      },
+      {
+        "site": "006b3156",
+        "target": "006b31c0"
+      },
+      {
+        "site": "006b315f",
+        "target": "00405750"
+      },
+      {
+        "site": "006b3174",
+        "target": "004050e0"
+      },
+      {
+        "site": "006b3186",
+        "target": "004050e0"
+      },
+      {
+        "site": "006b319a",
+        "target": "00405750"
+      },
+      {
+        "site": "006a8908",
+        "target": "006a8740"
+      },
+      {
+        "site": "006a8921",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006a8933",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a896f",
+        "target": "006a8be0"
+      },
+      {
+        "site": "006a898c",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a89af",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a89bf",
+        "target": "007e4f32"
+      },
+      {
+        "site": "006a89da",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a8a08",
+        "target": "00405940"
+      },
+      {
+        "site": "006a8a11",
+        "target": "00405890"
+      },
+      {
+        "site": "006a8a21",
+        "target": "006a8be0"
+      },
+      {
+        "site": "006a8a41",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006a8a53",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a8a88",
+        "target": "006a8be0"
+      },
+      {
+        "site": "006a8aa1",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a8ac4",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a8ad4",
+        "target": "007e4f32"
+      },
+      {
+        "site": "006a8aef",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a8b40",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a8b76",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006a8ba3",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006a8bba",
+        "target": "006ac4b0"
+      },
+      {
+        "site": "006a8bc8",
+        "target": "00405890"
+      },
+      {
+        "site": "006a8bcf",
+        "target": "006a86c0"
+      },
+      {
+        "site": "006b3771",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006b3786",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b37d8",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b37fd",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006b3824",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b384c",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006b3873",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b389b",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006b38c2",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b38ea",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006b3911",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b3939",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006b395c",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006b3984",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006b3991",
+        "target": "00405940"
+      },
+      {
+        "site": "006b399e",
+        "target": "00405940"
+      },
+      {
+        "site": "006b39ab",
+        "target": "00405940"
+      },
+      {
+        "site": "006b39b8",
+        "target": "00405940"
+      },
+      {
+        "site": "006b39c5",
+        "target": "00405940"
+      },
+      {
+        "site": "006b39d2",
+        "target": "00405940"
+      },
+      {
+        "site": "006b39df",
+        "target": "00405940"
+      },
+      {
+        "site": "006b39ec",
+        "target": "00405940"
+      },
+      {
+        "site": "006b39f9",
+        "target": "00405940"
+      },
+      {
+        "site": "006b3a02",
+        "target": "00405890"
+      },
+      {
+        "site": "006b31cc",
+        "target": "006b3420"
+      },
+      {
+        "site": "006b31e7",
+        "target": "006a8be0"
+      },
+      {
+        "site": "006b3343",
+        "target": "007e4e3c"
+      },
+      {
+        "site": "006b334e",
+        "target": "007e4e3c"
+      },
+      {
+        "site": "006b335c",
+        "target": "006b33e0"
+      },
+      {
+        "site": "006b322b",
+        "target": "007e5e00"
+      },
+      {
+        "site": "006b3282",
+        "target": "007e4eae"
+      },
+      {
+        "site": "006b32a3",
+        "target": "004336c0"
+      },
+      {
+        "site": "006b32d3",
+        "target": "004336c0"
+      },
+      {
+        "site": "006b3329",
+        "target": "007e5e00"
+      },
+      {
+        "site": "006b3334",
+        "target": "0072ea20"
+      },
+      {
+        "site": "006b3302",
+        "target": "007e5e00"
+      },
+      {
+        "site": "006b3310",
+        "target": "006c6c90"
+      },
+      {
+        "site": "006b2d44",
+        "target": "006b2d80"
+      },
+      {
+        "site": "006b2d4d",
+        "target": "006b3340"
+      },
+      {
+        "site": "006b2d54",
+        "target": "006b3210"
+      },
+      {
+        "site": "006b2d5b",
+        "target": "006b32a0"
+      },
+      {
+        "site": "006b2d62",
+        "target": "006b32d0"
+      },
+      {
+        "site": "006b2d69",
+        "target": "006b3320"
+      },
+      {
+        "site": "006b2d70",
+        "target": "006b32f0"
+      },
+      {
+        "site": "00433523",
+        "target": "004323e0"
+      },
+      {
+        "site": "00433563",
+        "target": "007e4eba"
+      },
+      {
+        "site": "0072ea7f",
+        "target": "00742210"
+      },
+      {
+        "site": "006af1fa",
+        "target": "00405100"
+      },
+      {
+        "site": "006af222",
+        "target": "00405040"
+      },
+      {
+        "site": "006af239",
+        "target": "00420800"
+      },
+      {
+        "site": "006af252",
+        "target": "006b2070"
+      },
+      {
+        "site": "006af261",
+        "target": "00405040"
+      },
+      {
+        "site": "006af292",
+        "target": "007e520f"
+      },
+      {
+        "site": "006af2d4",
+        "target": "004050e0"
+      },
+      {
+        "site": "006af2f2",
+        "target": "007e520f"
+      },
+      {
+        "site": "006af338",
+        "target": "004050e0"
+      },
+      {
+        "site": "006af356",
+        "target": "006e8f10"
+      },
+      {
+        "site": "006af379",
+        "target": "007e520f"
+      },
+      {
+        "site": "006af3b6",
+        "target": "004050e0"
+      },
+      {
+        "site": "006af3c3",
+        "target": "006e8f10"
+      },
+      {
+        "site": "006af3dd",
+        "target": "006b2d40"
+      },
+      {
+        "site": "006af3e4",
+        "target": "006afb00"
+      },
+      {
+        "site": "006af3fd",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006b6631",
+        "target": "006aef50"
+      },
+      {
+        "site": "006b6639",
+        "target": "006a6560"
+      },
+      {
+        "site": "006b664b",
+        "target": "006af1d0"
+      },
+      {
+        "site": "006b665b",
+        "target": "006af1d0"
+      },
+      {
+        "site": "004336fa",
+        "target": "0048d950"
+      },
+      {
+        "site": "00433787",
+        "target": "007e5f8f"
+      },
+      {
+        "site": "004337bd",
+        "target": "004324c0"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10015770",
+        "hex": "56578b7c241083ff457c0a5fb8070000",
+        "meaning": "I3D state+18 delegated entry/calling convention"
+      },
+      {
+        "address": "100700a0",
+        "hex": "f605ac1d0d1020750532c0c20c008b54",
+        "meaning": "IGraph gamma+12C delegated entry/calling convention"
+      },
+      {
+        "address": "1007a9b0",
+        "hex": "a0602c0d1084c056570f84a60000008b",
+        "meaning": "ISnd volume+14 delegated entry/calling convention"
+      },
+      {
+        "address": "10071b70",
+        "hex": "8b4424048a4020c20400909090909090",
+        "meaning": "IShow opened+08 delegated entry/calling convention"
+      },
+      {
+        "address": "100724d0",
+        "hex": "568b7424088a462084c057750a5fb809",
+        "meaning": "IShow volume+3C delegated entry/calling convention"
+      },
+      {
+        "address": "10068f90",
+        "hex": "a1f4160d10c3",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "10068fa0",
+        "hex": "a1fc160d10c3",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "10068fb0",
+        "hex": "a1f8160d10c3",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "1007aa65",
+        "hex": "5f33c05ec20800",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "100700cb",
+        "hex": "b0015ec20c00",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "10071b70",
+        "hex": "8b4424048a4020c2040090",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "100724dd",
+        "hex": "5fb8090000805ec20800",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009b658",
+        "targets": [
+          "10015770"
+        ],
+        "meaning": "I3D state+18"
+      },
+      {
+        "address": "1009d96c",
+        "targets": [
+          "100700a0"
+        ],
+        "meaning": "IGraph gamma+12C"
+      },
+      {
+        "address": "1009de04",
+        "targets": [
+          "1007a9b0"
+        ],
+        "meaning": "ISnd volume+14"
+      },
+      {
+        "address": "1009d9c8",
+        "targets": [
+          "10071b70"
+        ],
+        "meaning": "IShow opened+08"
+      },
+      {
+        "address": "1009d9fc",
+        "targets": [
+          "100724d0"
+        ],
+        "meaning": "IShow volume+3C"
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}

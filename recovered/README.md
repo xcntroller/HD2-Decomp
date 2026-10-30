@@ -33,8 +33,26 @@ The larger [application data/profile slice](../analysis/startup-data.md) now add
 [binary payload/movie flags](frontend/profile_payload.h) and
 [legacy fallback/save finalization](frontend/profile_load.h). All 304 installed
 GameData records match an independent decode, and actual i386 file/graphics/
-Win32 profile composition links. Options/settings application, outer profile
-selection and complete original startup remain open; no live changes.
+Win32 profile composition links. Complete original startup remains open.
+
+The [settings/profile-selection batch](../analysis/startup-settings.md) now adds
+[Options.bin/defaults and ordered application](frontend/profile_settings.h),
+[client sound setters/control forwarding](frontend/settings_sound.h),
+[outer/startup profile selection](frontend/profile_selection.h) and
+[checked DLL/COM calls](host/settings_services.h). It composes actual recovered
+bindings/input/profile bodies; sanitizer, independent x87 arithmetic and real
+i386 adapter compile/link checks pass. The
+[startup owner follow-up](../analysis/startup-owners.md) adds actual
+[game.cfg configuration](frontend/startup_configuration.h),
+[shared raw text persistence](frontend/legacy_text.h),
+[owning startup data composition](frontend/application_startup_data.h) and
+[sound movie change/fade helpers](frontend/sound_movie.h). The
+[catalog/primary music slice](../analysis/sound-catalog.md) adds the owning
+[catalog and nested parsers](frontend/sound_catalog.h) and
+[primary movie selection](frontend/sound_movie_selection.h), composed with actual
+DTA/movie adapters. Full application, sound/control initialization and controller
+integration remain open. Source-only;
+no new live behavior or successful placeholder services.
 
 The second component is the
 [model resource key helper](scene/model_resource_key.cpp), with its

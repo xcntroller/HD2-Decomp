@@ -3063,3 +3063,137 @@ device/resource integration remain tracked in other existing entries. Full
 scope, deviations and verification are in `analysis/menu-screen-foundation.md`.
 The source-only changes are uncommitted. Host/native/158 Python checks pass;
 function counts remain unchanged. No permanent tests or agent-side Proton run.
+
+
+## 2026-10-30: original options, settings application and profile selection
+
+The next coherent launch batch now has source in frontend/profile_settings.h,
+settings_sound.h and profile_selection.h, with concrete host/settings_services.h.
+It uses the existing chunk object, both actual binding defaults/installer and
+input-manager tuning, exact directory map, and binary/legacy profile finalizer.
+Options.bin has three sequential chunks, with both outer fallbacks resetting
+settings AND bindings; inner results remain ignored. Native settings storage
+preserves partial transfers and all60 bytes. The original unwritten default
+word+14 is defined as zero on native reset, explicitly distinct from original
+undefined stack provenance. Trailing/nonprogress binding reads are guarded.
+
+All six helpers run after the loader even when it returns false, preserving
+quality/gamma/sound/movie/control/input order. Independent x87 instruction
+arithmetic confirms float32 versus double scaling, signed64 truncation and
+low32/16 consumption. The client sound-manager setters are native gate2/stored
+value bodies, with checked real ISnd+14 and active IShow+08/+3C forwarding.
+ISnd target1007A9B0 returns integer; it is not the client's x87 float return.
+The separate optional control wrapper submits its exact eight-word block through
+external COM+20, preserving absent-interface HRESULT and negative-result rules.
+Full manager/movie/gate and control-interface construction/lifetime stay open.
+
+Selection retains aliased input, uses exact wide physical-name mapping, restores
+executable cwd unconditionally, clears all256 shared selection DWORDs and calls
+actual options application then actual profile loading regardless of results.
+Startup scan precedes the distinct application+08 startup-name accessor; the
+application+20 profile owner composes name/options/payload. The accessor's native
+string representation does not claim startup-name constructor/persistence recovery.
+
+Temporary ASan/UBSan audit covers defaults, all settings payload lengths0..60,
+partial reads, binding dirty/mode/reverse install, fallback/leave branches,
+trailing-record guards, gamma limits, absent driver, sound gate/movie states,
+HRESULT paths and composed scan/select/load failures.175877 finite random cases
+match independent new x87 arithmetic code. Actual DTA/Win32/graphics/joystick/
+input/settings/profile composition links strictly for i386, never executed.
+Existing native checks and158Python tests pass; the host target is unchanged
+and up to date. Map validation checks both hashes,41anchors,127calls,
+2client/5engine slots; seven negative mutations are rejected. Temporary audits
+removed; no permanent tests, original binaries/DLL execution, desktop changes,
+commit or push. Full details: analysis/startup-settings.md and its map.
+
+Nineteen newly represented census entries raise the ledger to240partial
+(235client/five engine),zero complete; frozen18783 denominator unchanged.
+00433510/00433550 are absent from the frozen inventory and earn no credit.
+No constructor/delegated-engine/COM credit. Original launch remains open for
+startup-name/sound/control owners, application/state/protection and cache
+consumers before controller wiring. The preparation checkpoint remains historical.
+
+
+## 2026-10-30: startup configuration, owning data subset and sound movie helper
+
+The next launch batch recovers actual application+08 game.cfg configuration,
+with frontend/startup_configuration.h and shared frontend/legacy_text.h. The
+constructor sequence006B4A60 loads config immediately between GameData and
+profile/HumanStore construction, before normal archive/text setup. Exact read
+keys LASTPROFIL/PARENTLOC/NETCDKEY use independently reset100-byte scratch;
+load failures assign empty strings. Save reads/writes relative game.cfg, while
+load uses executable-directory path. Save updates LASTPROFIL/PARENTLOCK/NETCDKEY
+and ignores its actual write result, preserving unknown/later duplicate lines.
+Setters mutate before saving; lock clear compares case-insensitively first.
+Native scratch/pointer guards and COW/ABI differences remain explicit. No actual
+installed key is read/printed; audit fixtures use synthetic values.
+
+Shared006E9230/9840 bodies are moved without duplicate credit; new006E9690
+updates the first substring match and006E94B0 writes exact raw lengths/CRLF,
+closing even high-bit handles. Legacy profile fallback still uses these bodies.
+006B6670 now composes actual select then remember-request persistence. Normal
+startup006B6620 still never saves game.cfg. Aliased input gets a native retained
+copy across selection to guard the original wrapper's raw-pointer lifetime.
+
+Frontend/application_startup_data.h owns ONLY the four recovered startup data
+components, constructs in observed order and explicitly destroys GameData,
+configuration,profile,HumanStore. Profile initial difficultyword34=0, eight
+savewordsFFFFFFFF, settings initialized directly and bindings empty/mode0;
+calling reset() here would incorrectly install difficulty2. Native settings+14
+retains the prior zero policy. Actual preparation/reset delegates real existing
+readers/installers/finalizers; full application constructor/cleanup not claimed.
+
+Frontend/sound_movie.h recovers00437210 through concrete checked IShow methods:
+gate2clear true/untouched, lazy factory only for nonnull filename, no-object false,
+stop/close opened object, sounds prefix and loop flags0/2, only exactzero open
+plays. Failed open stilltrue and no object is released/cleared. This is separate
+from opening-state GameMovie ownership.00436E90 fade schedule stores target and
+abs((current-target)/max(signed-duration,1)) float32 rate. Full frame update,
+manager registration/catalog loading and cleanup stay open; no no-op bodies.
+
+Temporary ASan/UBSan audit covers shared text/NULs/read/write failures and handle
+sign rules, exactconfigkeys/path/order/missing/partial/99vs100-byte behavior,
+lock/setter failures, real data/profile owning composition and startup-vs-remember
+persistence,144movie cases plus callback replacement and fade boundaries. Strict
+i386 composes real DTA/Win32/portrait/joystick/input/settings/profile/movie
+adapters and links ONLY, never run. Existingnativechecks/158Pythontests pass;
+unchangedhosttargetup-to-date; threeadjacentmapsvalidate. Newmap twohashes,
+34anchors,115calls,7engineslots; sevennegative mutations rejected. Temporary
+fixtures removed; no permanenttests/originalgame/DLL/configwrites/commit/push.
+
+Twelve new census-backed partial client bodies:252total(247client/5engine),
+zero complete,frozen18783. Shared reader/lookup, constructors, forward thunks and
+delegated engine bodies receive no extra credit. Details and next work are in
+analysis/startup-owners.md. Full sound-manager/catalog/gate/control and remaining
+application/state/protection/cache ownership remain before controller wiring.
+
+## 2026-10-30 — sound catalog and primary music source
+
+Compressed HANDOFF.md to the latest result/next work and shortened plan.md
+checklist entries, preserving delivery scope and source-only distinctions.
+
+Recovered catalog00439080, clear004398B0, group/entry/variant parsers00432040,
+0043A6F0,0043AA50 and reverse cleanup00431F80/1FD0,0043A5E0/A630 in
+frontend/sound_catalog.h. Constructor categories come from original00838A8C;
+Music is group12. DEF precedes DAT, valid root clears old data, duplicate signed
+keys overwrite, every ordinary noncached exit pads14 groups. Only cached return
+is true: successful fresh/forced loads return false. Unknown group/root children
+skip; unknown entry/variant children fail (including variant1460).
+
+Frontend/sound_movie_selection.h composes actual catalog, shared settings/fade,
+movie change helper and original primary selection004370F0: ungated load,
+stop/close before validation, request/pending writes, CRT unsigned modulo,
+target1/current0 with rate preserved, looped sounds path, optional opened seek
+without a second gate. Host adds actual CRT/debug output/sample slot0 release
+and checked IShow+30 ->100722A0; type-specific sample factory validation stays
+open. No complete manager/update or cache population is substituted.
+
+Temporary sanitizer audit and real i386 adapter compile/link pass; native checks
+and158 Python tests pass. Sound evidence has45 anchors/124 calls/eight engine
+slots, both hashes; three adjacent maps pass and six mutations reject. Native
+guards reject undefined stack/string/header/backward-chunk cases; optional byte20
+records unknown constructor provenance. Audits removed; no permanent tests,
+original execution, commit or push. Nine census-backed partial client additions:
+261 total (256 client/five engine), zero complete, frozen18783. Constructor context,
+absent-census004370F0 and delegated engine implementations get no new credit.
+Contracts and remaining manager/gate/control/launch work: analysis/sound-catalog.md.

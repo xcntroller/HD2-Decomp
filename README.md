@@ -12,10 +12,17 @@ menu separately from the original-function counts below.
 
 The [original application data/profile path](analysis/startup-data.md) now loads
 GameData, HumanStore and binary/legacy profile data, including saved-game checks.
-All 304 GameData and 65 soldier records match independent decodes; sanitizer and
-i386 composition audits pass. Options/settings application and outer profile
-selection are next. This remains source-only; full original startup integration
-is open.
+All 304 GameData and 65 soldier records match independent decodes. The follow-up
+[settings/profile-selection slice](analysis/startup-settings.md) now loads
+Options.bin, applies recovered graphics/sound/input settings, and composes outer
+and startup profile selection with actual loaders. Sanitizer, x87 arithmetic and
+i386 composition audits pass. The [startup owner follow-up](analysis/startup-owners.md)
+now loads/persists actual game.cfg configuration and owns the recovered data
+subset, with sound-manager movie change/fade helpers. The
+[sound catalog and primary music selection](analysis/sound-catalog.md) now compose
+the recovered chunk loader, nested parsers, cleanup and real movie calls.
+This remains source-only; full sound/control ownership and original
+application/controller integration are open.
 
 Movie/menu keyboard device input and focus return are desktop-confirmed. The
 [keyboard preprocessing and text-input slice](analysis/keyboard-preprocessing.md)
@@ -194,11 +201,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **221 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **261 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 216 |
+| Base game client | 17,294 | 0 | 256 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
@@ -273,7 +280,7 @@ opening sequence through the engine's original IShow/Bink interface before
 constructing the compiled menu. The user desktop-confirmed this path; the log
 records all four movie opens and clean teardown. Movie copies live in the isolated runtime directory;
 original files remain untouched. Full startup/controller recovery, subtitles,
-music coordination and original settings remain open;
+music coordination and original settings lifecycle/integration remain open;
 see [the launch plan](plan.md#0-rebuild-the-original-launch-path-to-the-menu--current-delivery-priority)
 and [video evidence](analysis/opening-video.md).
 

@@ -2966,7 +2966,8 @@
         "recovered/frontend/profile_directories.h",
         "recovered/frontend/profile_payload.h",
         "recovered/frontend/profile_load.h",
-        "recovered/host/profile_directories.h"
+        "recovered/host/profile_directories.h",
+        "recovered/frontend/legacy_text.h"
       ]
     },
     {
@@ -2983,7 +2984,8 @@
         "recovered/frontend/profile_directories.h",
         "recovered/frontend/profile_payload.h",
         "recovered/frontend/profile_load.h",
-        "recovered/host/profile_directories.h"
+        "recovered/host/profile_directories.h",
+        "recovered/frontend/legacy_text.h"
       ]
     },
     {
@@ -3018,6 +3020,504 @@
         "recovered/frontend/profile_payload.h",
         "recovered/frontend/profile_load.h",
         "recovered/host/profile_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b2d80",
+      "status": "partial",
+      "coverage": "Resolve actual current profile directory, load sequential version/binding/settings chunks, reset both on each fallback, ignore inner results and preserve outer return/close order.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8900",
+      "status": "partial",
+      "coverage": "Clear only configuration records, read version and raw28-byte reused scratch records with forced dirty byte, preserve branch-specific leaves, then use actual reverse dirty installer.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b3750",
+      "status": "partial",
+      "coverage": "Read recognized1201 child as exact 4/7/1-byte transfers, ignore partial field read results and leave even a wrong child.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b3420",
+      "status": "partial",
+      "coverage": "Write all established60-byte default fields, seven-byte quality blocks and flags while preserving unwritten word14.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b31c0",
+      "status": "partial",
+      "coverage": "Copy settings defaults then reset actual bindings to layout0 without clearing installed manager state or selected mode.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b33e0",
+      "status": "partial",
+      "coverage": "Select one of four quality blocks for quality0/1/2/other and return its requested byte.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b3340",
+      "status": "partial",
+      "coverage": "Query driver twice on present-device path and forward state2B with selected quality byte0.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b3210",
+      "status": "partial",
+      "coverage": "Compute x87 gamma increment with low16 truncation and three identical emit-before-add saturated256-word ramps, then real graphics+12C.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b32a0",
+      "status": "partial",
+      "coverage": "Round float32-scaled setting08 and invoke native reconstructed client driver-volume setter.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b32d0",
+      "status": "partial",
+      "coverage": "Round float32-scaled setting0C and invoke native reconstructed client active-movie volume setter.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b3320",
+      "status": "partial",
+      "coverage": "Scale setting10 by double.01, truncate through signed64/low32 convention and pass to actual optional-wrapper control path.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b32f0",
+      "status": "partial",
+      "coverage": "Compute original x87 sensitivity integer, tune actual manager x/y and z120, then copy raw byte39 to caller-owned shared input flag.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b2d40",
+      "status": "partial",
+      "coverage": "Save options loader result and apply all six graphics/sound/control/input helpers in exact order even on false loader result.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004323e0",
+      "status": "partial",
+      "coverage": "Check actual borrowed movie field nonnull then invoke its real opened+08 query.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/settings_sound.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072ea20",
+      "status": "partial",
+      "coverage": "Check borrowed owner wrapper, submit exact eight-word control block and ignore result.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/settings_sound.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00742210",
+      "status": "partial",
+      "coverage": "Return800401F0 on absent interface, otherwise forward self/block through external stdcall+20 and retain only negative HRESULTs.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/settings_sound.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006af1d0",
+      "status": "partial",
+      "coverage": "Retain aliased name, resolve exact physical mapping, clear/select name through real chdir, restore cwd, clear shared256 words, then actual options apply and profile load regardless of results.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_selection.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b6620",
+      "status": "partial",
+      "coverage": "Optionally scan actual profile directories, query distinct startup-name owner after scan and select through same application profile/options/payload owner.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_selection.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a6560",
+      "status": "partial",
+      "coverage": "Return the distinct startup owner current-profile string value corresponding to original this+08 accessor.",
+      "limitations": "Native storage/templates/borrowed owners replace original object, string, vector, vtable and SEH ABI. Explicit guards replace undefined/stale headers, nonprogress/trailing binding records and invalid integer conversions; reset word14 is defined as zero instead of original undefined stack provenance. Source-only sanitizer/x87/i386 compile-link audited; full startup-name/sound/control ownership, application/protection/state integration and live controller wiring remain open. Engine/COM methods remain delegated.",
+      "evidence": [
+        "analysis/startup-settings-map.json",
+        "analysis/startup-settings.md",
+        "recovered/frontend/profile_selection.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a60a0",
+      "status": "partial",
+      "coverage": "Load executable-relative game.cfg into actual three-string config owner, clear scratch independently for LASTPROFIL/PARENTLOC/NETCDKEY, assign in original order and ignore file/lookup booleans.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/startup_configuration.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a5f80",
+      "status": "partial",
+      "coverage": "Read relative game.cfg, update LASTPROFIL/PARENTLOCK/NETCDKEY in order, perform actual raw DTA save and preserve unconditional outer result.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/startup_configuration.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a6320",
+      "status": "partial",
+      "coverage": "Retain/assign parent-lock value before invoking actual configuration persistence, without rollback on write failure.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/startup_configuration.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a63a0",
+      "status": "partial",
+      "coverage": "Compare parent lock case-insensitively, return false without save on mismatch, clear field then persist on match including empty/empty.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/startup_configuration.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a64b0",
+      "status": "partial",
+      "coverage": "Query stored parent-lock presence by nonempty string length.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/startup_configuration.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a64e0",
+      "status": "partial",
+      "coverage": "Assign CD-key value before actual configuration persistence, keeping failure mutation and avoiding diagnostics of the value.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/startup_configuration.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a6570",
+      "status": "partial",
+      "coverage": "Assign distinct startup profile string then invoke actual relative game.cfg persistence.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/startup_configuration.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b6670",
+      "status": "partial",
+      "coverage": "Select via actual application profile/options owner, then persist requested spelling through distinct configuration owner only on successful selection; normal startup remains nonpersisting.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/profile_selection.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e94b0",
+      "status": "partial",
+      "coverage": "Open real raw DTA writer flags10000, write exact stored line length then CRLF, retain failed prefix and close every successful handle including high-bit handles.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/legacy_text.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e9690",
+      "status": "partial",
+      "coverage": "Replace entire first case-sensitive substring-matching line with key=value or append, preserving later duplicates and unknown lines.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/legacy_text.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00437210",
+      "status": "partial",
+      "coverage": "Gate shared sound-manager IShow change, lazily create only for nonnull names, stop/close opened object, open sounds prefix with low-byte loop flag, and set volume/play only on exact zero; retain object and original failure returns.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/sound_movie.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00436e90",
+      "status": "partial",
+      "coverage": "Schedule ungated primary movie fade target and absolute float32 rate from current54, signed duration minimum1 and extended intermediates.",
+      "limitations": "Native strings/vectors/borrowed movie slots/templates replace original COW/object/vtable/allocator/SEH ABI. Config scratch>=100 and invalid legacy value pointers throw; remembered-profile wrapper retains aliased request natively. Default C-locale comparison only. Source-only sanitizer/native/i386 compile-link verified; full application/sound/catalog/gate/control/protection/state ownership and live controller wiring remain open. IShow/real file backend remain delegated; no substituted successful services.",
+      "evidence": [
+        "analysis/startup-owners-map.json",
+        "analysis/startup-owners.md",
+        "recovered/frontend/sound_movie.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00439080",
+      "status": "partial",
+      "coverage": "Catalog load with DEF/DAT precedence, cached-only true result, root validation, actual nested parsers, signed mappings, failure retention and fourteen-group padding.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "evidence": [
+        "analysis/sound-catalog-map.json",
+        "analysis/sound-catalog.md",
+        "recovered/frontend/sound_catalog.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004398b0",
+      "status": "partial",
+      "coverage": "Reverse group destruction through actual entry/variant cleanup, group storage release, map clear and loaded flag reset.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "evidence": [
+        "analysis/sound-catalog-map.json",
+        "analysis/sound-catalog.md",
+        "recovered/frontend/sound_catalog.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00432040",
+      "status": "partial",
+      "coverage": "Clear old entries preserving name; parse group name and entries, skip unknown group children and propagate entry failure.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "evidence": [
+        "analysis/sound-catalog-map.json",
+        "analysis/sound-catalog.md",
+        "recovered/frontend/sound_catalog.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00431f80",
+      "status": "partial",
+      "coverage": "Destroy group entries in reverse through recovered entry cleanup, release/reset entry storage while preserving group name.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "evidence": [
+        "analysis/sound-catalog-map.json",
+        "analysis/sound-catalog.md",
+        "recovered/frontend/sound_catalog.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00431fd0",
+      "status": "partial",
+      "coverage": "Destroy entry variants through actual recovered cleanup and release the entry name/storage.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "evidence": [
+        "analysis/sound-catalog-map.json",
+        "analysis/sound-catalog.md",
+        "recovered/frontend/sound_catalog.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043a5e0",
+      "status": "partial",
+      "coverage": "Destroy variants in reverse through actual sample cleanup and release/reset variant storage.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "evidence": [
+        "analysis/sound-catalog-map.json",
+        "analysis/sound-catalog.md",
+        "recovered/frontend/sound_catalog.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043a630",
+      "status": "partial",
+      "coverage": "Release primary sample then extra sample references in reverse through real virtual slot0 calls, free extra storage and name.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "evidence": [
+        "analysis/sound-catalog-map.json",
+        "analysis/sound-catalog.md",
+        "recovered/frontend/sound_catalog.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043a6f0",
+      "status": "partial",
+      "coverage": "Clear old variants, preserve name/flag, parse name/raw flag/variants; propagate variant and unknown-child failure.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "evidence": [
+        "analysis/sound-catalog-map.json",
+        "analysis/sound-catalog.md",
+        "recovered/frontend/sound_catalog.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043aa50",
+      "status": "partial",
+      "coverage": "Parse original name and six numeric variant fields with exact accepted tags; leave successful children and reject unknown tags including1460.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "evidence": [
+        "analysis/sound-catalog-map.json",
+        "analysis/sound-catalog.md",
+        "recovered/frontend/sound_catalog.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h"
       ]
     }
   ]

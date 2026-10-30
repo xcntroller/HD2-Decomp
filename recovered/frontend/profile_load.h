@@ -4,6 +4,7 @@
 #include "frontend/game_data.h"
 #include "frontend/localized_text.h"
 #include "frontend/profile_payload.h"
+#include "frontend/legacy_text.h"
 
 namespace hd2::frontend {
 
@@ -17,39 +18,13 @@ inline std::int32_t profile_signed_word(std::uint32_t word) {
 // only nonnegative signed handles; preserve that distinction from ChunkFile.
 template<class Files>
 bool load_profile_pr_lines(Files& files, std::vector<std::string>& lines) {
-    const auto handle = files.open("profile.pr", 0);
-    if (handle == 0xffffffffu) return false;
-    const auto close = [&] { if (handle <= 0x7fffffffu) files.close(handle); };
-    try {
-        const auto size = files.seek(handle, 0, 2);
-        if (!size || size > 0x7fffffffu) { close(); return false; }
-        std::vector<char> bytes(size);
-        files.seek(handle, 0, 0); // Original ignores seek result.
-        if (files.read(handle, bytes.data(), size) != size) { close(); return false; }
-        std::size_t at = 0;
-        while (at < bytes.size()) {
-            const auto begin = at;
-            while (at < bytes.size() && bytes[at] != '\r' && bytes[at] != '\n') ++at;
-            if (at != begin) lines.emplace_back(bytes.data() + begin, at - begin);
-            ++at;
-        }
-    } catch (...) { close(); throw; }
-    close();
-    return true;
+    return load_legacy_text_lines(files, "profile.pr", lines);
 }
 
 // 006E9840: first case-sensitive SUBSTRING match, then first '=' on that line.
 // Neither key anchoring, comment handling, quoting nor whitespace trimming.
 inline const char* profile_pr_value(const std::vector<std::string>& lines, const char* key) {
-    for (const auto& stored : lines) {
-        const std::string_view line(stored.c_str());
-        if (line.find(key) != std::string_view::npos) {
-            const auto equal = line.find('=');
-            if (equal == std::string_view::npos) throw std::runtime_error("Original profile.pr value pointer is invalid");
-            return stored.c_str() + equal + 1;
-        }
-    }
-    return nullptr;
+    return legacy_text_value(lines, key);
 }
 
 // 006E9920: sscanf %s then strtol(base10), whole token consumed. Saturate as
@@ -209,7 +184,7 @@ bool finalize_profile(ProfilePayload& state, const GameData* game,
 }
 
 // Actual 006AFB00 file/payload/finalize path and 006AF490 missing-file fallback.
-// Options application and outer profile-selection006AF1D0 remain separate.
+// profile_selection.h composes options application and outer selection006AF1D0.
 template<class Files, class Platform>
 bool load_profile(ProfilePayload& state, ProfileDirectories& profiles, Files& files,
                    Platform& platform, const GameData* game, const LocalizedTextCache& text, bool wide) {
