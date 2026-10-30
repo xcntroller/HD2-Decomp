@@ -13,6 +13,12 @@ from validate_model_load_policy import CLIENT_SHA256
 def validate_image(image: PEImage, document: dict) -> dict:
     if image.image_base != int(document["binary"]["image_base"], 16):
         raise ValueError("Front-end image-base mismatch")
+    for storage in document.get("zero_initialized_storage", []):
+        rva = int(storage["address"], 16) - image.image_base
+        size = storage["size"]
+        if size <= 0 or not any(start + raw_size <= rva and rva + size <= start + extent
+                                for start, extent, _, raw_size in image.sections):
+            raise ValueError("Front-end storage is not entirely PE zero-initialized memory")
     for anchor in document["instruction_anchors"]:
         image.expect(int(anchor["address"], 16), bytes.fromhex(anchor["hex"]),
                      "Front-end instruction")

@@ -2,27 +2,26 @@
 
 ## Just completed
 
-- Compressed this handoff and simplified plan.md; technical history stays in
-  RESEARCH.md and linked analysis documents. Keep these delivery notes concise.
-- Recovered sound catalog00439080: original category data, file precedence,
-  three nested parsers, signed mappings, failure/padding behavior and reverse
-  resource cleanup. Added primary music selection004370F0 using actual catalog,
-  shared settings/fades and retained IShow calls. [Details](analysis/sound-catalog.md).
-- Native sanitizer audit, real i386 adapter compile/link, existing native checks,
-  all 158 Python tests and fingerprinted maps pass. Temporary audits removed.
-  Ledger: 261 partial (256 client/five engine), zero complete; denominator 18,783.
-  Source-only; live preview unchanged. Verified source slices are ready to commit.
+- Recovered indexed catalog entry004326D0: signed negative/unsigned upper-bound
+  checks, borrowed result, no implicit load/gate/retain. Native guard rejects a
+  null in-range group. [Contracts and preceding runtime work](analysis/sound-runtime.md).
+- Focused sanitizer audit (42 boundary combinations plus guards), strict i386
+  compile/link, existing native checks,158 Python tests and evidence maps pass.
+  Temporary fixtures removed; Windows fixture never run. No permanent tests added.
+- Committed the source-only movie/runtime/query checkpoint, including the preceding
+  primary playback-position helper. See git history for the checkpoint hash.
+- Ledger:278 partial (273 client/five engine), zero complete; denominator18,783.
+  Live preview unchanged; no desktop delivery claimed.
 
 ## Next
 
-1. Recover full sound-manager registration/state/destruction and update004368D0,
-   including sounds/listeners, secondary-movie coordination and sample caches.
-   Current selection/helper state is not the complete manager lifetime.
-2. Finish gate00982100/control-interface initialization, remaining application
-   owners, state/protection and loaded-cache consumers before live controller wiring.
+1. Recover playback/cache population00433FA0 and restore00435240; include required
+   spatial routing00432BE0. Reuse confirmed update/reset ownership and movie contracts.
+2. Finish shared gate/control lifecycle and concrete application/camera/state/
+   protection/cache owners before original controller/launch wiring. The live
+   sound world/camera view must come from those real owners.
 
-Resume from ignored exports in analysis/work and section-mapped original assembly
-in analysis/work/hd2.unpacked.exe. Latest sound evidence anchors original catalog
-and selection bodies; sample type-specific factory/vtable validation stays open.
-See [startup owners](analysis/startup-owners.md), [settings](analysis/startup-settings.md)
-and [data](analysis/startup-data.md) for the preceding source composition.
+Use existing ignored exports and section-mapped assembly in analysis/work.
+[Runtime](analysis/sound-runtime.md), [movies](analysis/sound-movie-channels.md),
+[catalog](analysis/sound-catalog.md) and [startup owners](analysis/startup-owners.md)
+hold detailed contracts; do not repeat confirmed research.

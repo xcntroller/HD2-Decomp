@@ -1,0 +1,318 @@
+{
+  "scope": "Source-only secondary movie selection, signed fades, queued primary changes and movie phase00436A42..00436BC5 of update004368D0. Full voice/listener/driver update and manager lifetime remain open; no complete manager update substitute.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "00432400",
+        "hex": "8b416885c0740d8b0850ff510884c07403b001c332c0c3",
+        "meaning": "Ungated secondary opened query."
+      },
+      {
+        "address": "00436ed0",
+        "hex": "518b54240cb801000000894424003bd08d4424007c048d44240c8b008b542408d94160d86424088944240c89515cda74240cd9596459c20800",
+        "meaning": "Secondary signed fade rate without fabs, signed duration minimum1."
+      },
+      {
+        "address": "00436f10",
+        "hex": "db44240856578bf1d80d18f58000e8ddee3a008bf88bce57680ad7233ce89effffff8b0657680ad7233c8bceff50648b4c240c8b542414897e74c6466c01894e708956785f5ec20c00",
+        "meaning": "Halved signed duration, both fade schedules, pending and metadata writes; absent census."
+      },
+      {
+        "address": "00436f60",
+        "hex": "64a1000000006aff68e8aa7f005064892500000000535556578bf1e880b4ffff8b7c242084c0740983ffff0f851f0100008a466c84c00f851401000083ffff753c8b466885c00f84040100008b0850ff510884c074128b4668508b10ff52188b4668508b08ff51108b4668508b10ff5204c7466800000000e9d30000008b46688d5e6885c0750de8c2de3a008b0850ff5138890385ff0f8cb40000008b153c9889008b42303b780c0f83a20000008b40048b3cb88b6f0c85ed0f8491000000e80fef3a0033d28d4c2420f7f58b4704518b0c90e8980000008b00c74424180000000085c0740583c008eb05b8807986006a006a0050538bcee8b30100008ad88b44242085c0c7442418ffffffff74148b104a89108b0885c9750950e840ac3a0083c40484dbc7466000000000742268d0070000680000803f8bcee831feffff8b1668d0070000689a99193e8bceff52648b4c24105f5e5d64890d000000005b83c40cc20400",
+        "meaning": "Secondary selection/cancel, early exits, ungated factory, shared helper and ducking; absent census."
+      },
+      {
+        "address": "004368d0",
+        "hex": "558bec83e4f083ec28a00021980056a802578bf10f84dc0200008b7e2485ff0f844d0100008b461c4f897c24088b04b885c00f84320100008a481084c90f84270100008b481485c90f85880000008848108b4e30394e3475688b4638c744240c0100000003c18944240883f8018d44240c72048d4424088b008946308d0c850000000051e8b6e83a008b56348bc883c40433c085d2894c240c7e138b562c408b5482fc895481fc8b56343bc27ced8b462c50e839b33a008b4c241083c404894e2c8b56348b462c893c908b463440894634e9940000008b116a0051ff52788b7c240884c0751e8b461c8b0cb8f641340475788b168d44240c508bce897c2410ff525ceb668b4e1c8b0cb9f6413410745a8b5114d9826c010000db4508d80d14f58000dec1d9542408d85924dfe0250041000075108b4124894424088b413483c0f08941348b4e1c8b14b98b42148b54240852508b08ff918c0000008b461c8b0cb88b4114508b10ff522485ff0f85b3feffffd94650d85e54dfe0f6c4440f8b8b000000d94650d85e54db4508d84e58dfe0f6c4057a42d86e54d95654d85e50dfe0f6c4417a4a8b46508946548a466c84c0743d8b46788b4e708b1650518bcec6466c00ff52608b46748b1650680000803f8bceff5264eb18d84654d95654d85e50dfe0250001000075068b4e50894e548bcee819b9ffff84c07413d94644d84e548b4648518b10d91c2450ff523cd9465cd85e60dfe0f6c4447b56d9465cd85e60db4508d84e64dfe0d86e60f6c405d95660d85e5cdfe07a0df6c4417a158b465c894660eb0d250001000075068b4e5c894e608bcee8d6b8ffff84c07413d94644d84e608b4668518b10d91c2450ff523c8b466885c074588b0850ff512c83f801740d8b4668508b10ff520884c075408b4668508b08ff510884c074128b4668508b10ff52188b4668508b08ff51108b4668508b10ff52048b066810270000680000803f8bcec7466800000000ff50648b464885c0741f8b0850ff512c83f80175148b46486a00508b10ff52308b4648508b08ff5114e83519260085c00f84b50200008b55088b0d3098890003ca890d30988900e8171926008b40188b885c010000f681e0000000207505e836e23a008b0d3098890081f9e80300000f8e1e0100008d9117fcffffb8d34d6210f7e2c1ea0683c8ff2bc28d04808d04808d04808d0cc1890d309889008b869c00000085c00f84e90000008b869000000085c00f84db0000008bbe940000002bf8c1ff020f84ca0000008b96900000004f8b04ba8a480484c90f84ad0000008b008944240cf680e00000002075078bc8e8a5e13a00e86a1826008b54240c8b401883c2708b085250ff91e00000008b8e900000008b0cb93b410874708941088b969c0000006a0052508d44241c8d4c242c508d54241851528bcec74424200000803fc744242800000000c744242c00000000c744243000000000c744243800000000c744243c00000000c744244000000000e81dc6ffff8b8e900000008b442408508b0cb9ddd8e868b7ffff85ff0f8536ffffffe8cb1726008bc8e8143626008b108bc8ff928c0000008b8e9c0000008944240c3bc80f849d0000008b8e9000000085c90f84890000008bbe940000002bf9c1ff02747cc744242000000000c744242400000000c744242800000000c744241000000000c744241400000000c7442418000000006a00508b86900000004fc74424100000803f8b0cb88d4424288b51088d4c241852508d54241851528bcee85ec5ffff8b8e900000008b442408508b0cb9ddd8e8a9b6ffff8b44240c85ff75b489869c0000008b86a000000085c074172b450885c08986a00000007f0ac786a0000000000000008a464084c0756b8b86a000000085c0744ed9051cf580003dd00700007d22b9d00700002bc8b8d34d6210f7e9ddd8c1fa078bc2c1e81f03d08954240cdb44240cd84e3cd95c240ce858e03a008b54240c8b085250ff51145f5e8be55dc20400e840e03a008b563c8b085250ff5114c64640015f5e8be55dc20400",
+        "meaning": "Full frame context: only movie phase00436A42..00436BC5 implemented; preceding voices and following listeners/driver remain open."
+      },
+      {
+        "address": "004370f0",
+        "hex": "64a1000000006aff6808ab7f005064892500000000535556578bf16a00b938988900e8691f00006a018d5e486a006a00538bcee8e80000008b442420c6466c0085c089464c0f8cb60000008b0d3c9889008b49303b410c0f83a40000008b51048b3c828b6f0c85ed0f8493000000e8d0ed3a0033d2c746500000803ff7f533ed8d442420896e548b4f04508b0c91e84dffffff8b00896c24183bc5740583c008eb05b880798600d94644d84e546a01518bced91c245053e8640000008b442420c7442418ffffffff3bc574148b104a89108b083bcd750950e8f3aa3a0083c4048b7424243bf574198b033bc574138b1050ff520884c074098b1b56538b03ff50308b4c24105f5e5d64890d000000005b83c40cc20800",
+        "meaning": "Primary movie selection group12, unsigned random modulo, fade and optional seek; absent census."
+      },
+      {
+        "address": "00437210",
+        "hex": "64a1000000006aff6828ab7f0050a000219800648925000000005356a802570f84e80000008b74241c8b5c24208b0685c0752d85db740de862dc3a008b0850ff513889068b0685c0751632c08b4c240c64890d000000005f5e5b83c40cc210008b1050ff520884c074108b06508b08ff51188b06508b10ff521085db0f848b0000008bfb83c9ff33c0f2aef7d149747d538d44242068788a830050e850defcff83c40c8b00c74424140000000085c08d48087505b9807986008a5c24288b06f6db8b101bdb83e302535150ff520c8bf88b44241c85c0c7442414ffffffff74148b104a89108b0885c9750950e8bfa93a0083c40485ff75158b068b54242452508b08ff513c8b36568b06ff50148b4c240c5f5eb00164890d000000005b83c40cc2100090909090909090909090909090",
+        "meaning": "Existing retained IShow change helper context; no new credit."
+      },
+      {
+        "address": "0080f518",
+        "hex": "0000003f",
+        "meaning": "Original float0.5 duration multiplier."
+      },
+      {
+        "address": "004368d9",
+        "hex": "a00021980056a802578bf10f84dc020000",
+        "meaning": "Single bit2 gate precedes voices and movie phase."
+      },
+      {
+        "address": "00436a42",
+        "hex": "d94650d85e54dfe0f6c4440f8b8b000000d94650d85e54db4508d84e58dfe0f6c4057a42d86e54d95654d85e50dfe0f6c4417a4a8b46508946548a466c84c0743d8b46788b4e708b1650518bcec6466c00ff52608b46748b1650680000803f8bceff5264eb18d84654d95654d85e50dfe0250001000075068b4e50894e548bcee819b9ffff84c07413d94644d84e548b4648518b10d91c2450ff523cd9465cd85e60dfe0f6c4447b56d9465cd85e60db4508d84e64dfe0d86e60f6c405d95660d85e5cdfe07a0df6c4417a158b465c894660eb0d250001000075068b4e5c894e608bcee8d6b8ffff84c07413d94644d84e608b4668518b10d91c2450ff523c8b466885c074588b0850ff512c83f801740d8b4668508b10ff520884c075408b4668508b08ff510884c074128b4668508b10ff52188b4668508b08ff51108b4668508b10ff52048b066810270000680000803f8bcec7466800000000ff50648b464885c0741f8b0850ff512c83f80175148b46486a00508b10ff52308b4648508b08ff5114",
+        "meaning": "Entire implemented movie phase, ending before application/listener query."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "0080f818",
+        "targets": [
+          "004370f0",
+          "00436e90"
+        ],
+        "meaning": "Final sound manager+60 primary selection and +64 primary fade targets."
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "00436f1e",
+        "target": "007e5e00"
+      },
+      {
+        "site": "00436f2d",
+        "target": "00436ed0"
+      },
+      {
+        "site": "00436f7b",
+        "target": "00432400"
+      },
+      {
+        "site": "00436fe7",
+        "target": "007e4eae"
+      },
+      {
+        "site": "0043701f",
+        "target": "007e5f33"
+      },
+      {
+        "site": "00437033",
+        "target": "004370d0"
+      },
+      {
+        "site": "00437058",
+        "target": "00437210"
+      },
+      {
+        "site": "0043707b",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0043709a",
+        "target": "00436ed0"
+      },
+      {
+        "site": "00436954",
+        "target": "007e520f"
+      },
+      {
+        "site": "00436982",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00436ac2",
+        "target": "004323e0"
+      },
+      {
+        "site": "00436b25",
+        "target": "00432400"
+      },
+      {
+        "site": "00436bc6",
+        "target": "00698500"
+      },
+      {
+        "site": "00436be4",
+        "target": "00698500"
+      },
+      {
+        "site": "00436bfb",
+        "target": "007e4e36"
+      },
+      {
+        "site": "00436c8c",
+        "target": "007e4e36"
+      },
+      {
+        "site": "00436c91",
+        "target": "00698500"
+      },
+      {
+        "site": "00436d0e",
+        "target": "00433330"
+      },
+      {
+        "site": "00436d23",
+        "target": "00432490"
+      },
+      {
+        "site": "00436d30",
+        "target": "00698500"
+      },
+      {
+        "site": "00436d37",
+        "target": "0069a350"
+      },
+      {
+        "site": "00436dcd",
+        "target": "00433330"
+      },
+      {
+        "site": "00436de2",
+        "target": "00432490"
+      },
+      {
+        "site": "00436e5d",
+        "target": "007e4eba"
+      },
+      {
+        "site": "00436e75",
+        "target": "007e4eba"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10069e80",
+        "hex": "6aff683b98091064a100000000506489",
+        "meaning": "IGraph factory+38 delegated entry"
+      },
+      {
+        "address": "10071b70",
+        "hex": "8b4424048a4020c20400909090909090",
+        "meaning": "IShow opened+08 delegated entry"
+      },
+      {
+        "address": "10071630",
+        "hex": "81ec840200005355568bb42494020000",
+        "meaning": "IShow open+0C delegated entry"
+      },
+      {
+        "address": "10071b80",
+        "hex": "5355568b7424108b0656ff50188b6e48",
+        "meaning": "IShow close+10 delegated entry"
+      },
+      {
+        "address": "10071c50",
+        "hex": "568b7424088a462084c07509b8090000",
+        "meaning": "IShow play+14 delegated entry"
+      },
+      {
+        "address": "10071d10",
+        "hex": "568b7424088a462084c07509b8090000",
+        "meaning": "IShow stop+18 delegated entry"
+      },
+      {
+        "address": "100724d0",
+        "hex": "568b7424088a462084c057750a5fb809",
+        "meaning": "IShow volume+3C delegated entry"
+      },
+      {
+        "address": "10068f90",
+        "hex": "a1f4160d10c3",
+        "meaning": "Real borrowed graphics singleton getter."
+      },
+      {
+        "address": "100722a0",
+        "hex": "83ec1053568b74241c8a462033db3ac357750e5f5eb8090000805b83c410c208008b7e1c3bfb744a8b87c00200000faf4424248b8fbc0200008944240c895c241053df6c2410894c2410895c2414df6c2410d80ddcb40910def9e889b101005057ff1554b209105f5e33c05b83c410c208008b462885c00f89b2000000a90000002074098b46708b1050ff52488b4424248b8e840000008944240c895c2410df6c240c83ec08d80ddcb40910dd1c2451e8b741010083c40c85c075658b462825ffffffbf6a018bce894628889e80000000e8aaecffff8b56288b467081ca00000008538956288b1050ff52348b4628a90000002074188b76708b066a01535356ff50305f5e33c05b83c410c208000d000000105f8946285e33c05b83c410c208005f5eb8050000805b83c410c208008b4c24248b760c69c91027000053536a018d44242050894c2424895c24288b1656ff52385f5e33c05b83c410c20800",
+        "meaning": "IShow seek+30, self and DWORD argument on stack; HRESULT delegated."
+      },
+      {
+        "address": "10070fd0",
+        "hex": "568b7424088b0656ff50108b46244889462479145668cc870a10e82181ffff83c40833c05ec2040085c075128bcee8adfeffff56e807c3010083c40433c05ec20400",
+        "meaning": "IShow+04 release closes, decrements count and destroys at zero; delegated."
+      },
+      {
+        "address": "10072160",
+        "hex": "83ec08568b7424108a462084c0750cb8ffffffff5e83c408c204008b461c85c074258b7628f7c6000000200f859f000000f7c600000010b8000000000f95c05e4083c408c204008b462885c0791ca900000020757ba900000010b8000000000f95c05e4083c408c204008b46188b086a008d542408528d542410528d54241c5250ff512085c07c488b5424048b46188b08528b54240c528b5424185250ff51308b44241085c07e0a83f8027e3883f80e74278b46188b086a008d542408528d542410528d54241c5250ff512085c07db833c05e83c408c20400b8020000005e83c408c204008b0656ff5018b8010000005e83c408c20400",
+        "meaning": "IShow+2C exact status result and self-on-stack return; delegated."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d878",
+        "targets": [
+          "10069e80"
+        ],
+        "meaning": "IGraph factory+38"
+      },
+      {
+        "address": "1009d9c8",
+        "targets": [
+          "10071b70"
+        ],
+        "meaning": "IShow opened+08"
+      },
+      {
+        "address": "1009d9cc",
+        "targets": [
+          "10071630"
+        ],
+        "meaning": "IShow open+0C"
+      },
+      {
+        "address": "1009d9d0",
+        "targets": [
+          "10071b80"
+        ],
+        "meaning": "IShow close+10"
+      },
+      {
+        "address": "1009d9d4",
+        "targets": [
+          "10071c50"
+        ],
+        "meaning": "IShow play+14"
+      },
+      {
+        "address": "1009d9d8",
+        "targets": [
+          "10071d10"
+        ],
+        "meaning": "IShow stop+18"
+      },
+      {
+        "address": "1009d9fc",
+        "targets": [
+          "100724d0"
+        ],
+        "meaning": "IShow volume+3C"
+      },
+      {
+        "address": "1009d9f0",
+        "targets": [
+          "100722a0"
+        ],
+        "meaning": "Verified IShow seek+30."
+      },
+      {
+        "address": "1009d9c4",
+        "targets": [
+          "10070fd0"
+        ],
+        "meaning": "IShow release+04."
+      },
+      {
+        "address": "1009d9ec",
+        "targets": [
+          "10072160"
+        ],
+        "meaning": "IShow status+2C."
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}

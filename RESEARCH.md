@@ -3197,3 +3197,113 @@ original execution, commit or push. Nine census-backed partial client additions:
 261 total (256 client/five engine), zero complete, frozen18783. Constructor context,
 absent-census004370F0 and delegated engine implementations get no new credit.
 Contracts and remaining manager/gate/control/launch work: analysis/sound-catalog.md.
+
+## 2026-10-30 — secondary movies, queued transitions and frame phase
+
+Committed prior settings/configuration/catalog work and authorized AGENTS.md
+refinements as039e528. Continued one bounded source-only movie subsystem.
+
+Frontend/sound_movie_channels.h recovers secondary opened00432400, signed fade
+00436ED0, queue00436F10, secondary select/cancel00436F60 and the complete movie
+phase00436A42..00436BC5 within004368D0. Uses actual catalog/primary/settings/movie
+helpers; no voice/listener placeholders or whole-manager update substitute.
+Secondary creation is ungated and precedes validation, pending blocks cancel,
+helper false still resets scale, and helper true schedules1/0.15 over2000ms.
+Queue halves signed duration, fades both to0.01 and retains metadata. Only a
+primary DOWNWARD clamp consumes pending; status exact1/unopened secondary
+releases and restores primary over10000ms, primary status exact1 seeks/replays.
+
+Native long-double calculations preserve x87 comparison before float32 rounding;
+2,016 scheduler results and4,320 frame cases match independent hardware x87
+arithmetic/condition codes including NaN/infinity/signedzero/negative time.
+Original stored float rate can require another tick beyond nominal duration.
+Unset secondary/pending/metadata values use guarded optionals rather than guessed
+constructor defaults. Caller supplies gate snapshot from before voice processing,
+while actual queued selection uses live gate. Checked IShow+04/+2C methods forward
+release/status; concrete DTA/LS3DF i386 composition links only, never run.
+
+Temporary sanitizer audits, existing native checks and158 Python tests pass.
+New map: both hashes,21 anchors,26 calls,two client virtual targets,ten engine
+slots; seven altered maps reject, adjacent maps pass. Audits removed, no permanent
+tests/original execution/live changes. Three partial client entries add264 total
+(259client/fiveengine), zero complete, frozen18783;004368D0 coverage is MOVIES ONLY.
+Absent-census queue/select and delegated engine bodies get no credit. Full
+contracts/next registration, voice, listener, driver and cache work:
+analysis/sound-movie-channels.md. New slice remains uncommitted.
+
+## 2026-10-30 — full sound update, resource lifetime and registered data
+
+Recovered frontend/sound_runtime.h: full004368D0 voice/movie/environment ordering,
+owned voice teardown004361B0, pooled reclaim00437340, lookup004374A0,
+tracked construction/find/scale00432420/00432710/00432490, group limit004324C0,
+sector build/clear/callback004328D0/00432860/00432900 and attenuation00433330.
+Reset004361F0 composes actual primary selection and sample caches;
+start00433840/stop004338A0 preserve independent force/bit1 and reset bit2 gates.
+Application fallback006B66B0 uses actual activity/mode fields. No successful
+placeholder world, driver, cache or playback service is substituted.
+
+Voice stop transfers cached references without addref, or releases; unavailable
+driver retains frame/cache while deactivating. Frame uses one gate snapshot,
+strict extended fade comparison and ungated environment. Tracked registration
+can compound volume. Both directed portal arrays feed stored-float area/scale;
+listener changes rescale disabled entries too. Clock1000 is unchanged,1001=>1.
+Original INTEGER driver fade remains silent for positive delays below2000;
+delay0 applies configured volume. Reset's primary retention, direct secondary
+release and retained storage/rate/request semantics are preserved.
+
+Module registration0048D950/destruction0048DA30 and manager final constructor
+004336D0/destructor004335D0 now have native owners. Static wrapper00433590 points
+at00899728, wholly beyond section raw data but within virtual storage. PE loader
+zero-fill proves previously unknown fields for THIS singleton; arbitrary borrowed
+instances still use guarded optionals. Clock00899830/catalog00899838 are separate.
+Manager destructor frees buffers/unregisters without engine shutdown. Native
+allocation/class ABI remains partial. Real playback snippets prove sound-frame
+cache provenance; the large producer00433FA0/restore00435240 remain open.
+
+Host SoundServices checks actual sound frame/scene/sector/driver targets, uses
+the real thiscall UpdateWMatrixProc export and original fields/callback ABI.
+It borrows the actual live scene/camera view; concrete application/derived camera
+creation remains a prerequisite. Portal opened+04 dispatch is real but its
+type-specific factory target remains unverified. Engine bodies stay delegated.
+
+ASan/UBSan audit passes lifetime, gates, caches, metadata, clock/delay and registry
+contracts;90 fades and12 portal calculations match independent x87 arithmetic.
+Strict real-adapter i386 fixture compiles/links only; never run. Existing native
+checks and158 Python tests pass. New both-hash map validates58 anchors/90 direct
+calls/seven client targets/20 engine slots/three zero-fill ranges; eight altered
+maps reject. Temporary audits removed, no permanent tests or desktop claims.
+Fourteen census-backed partial client additions:278 partial (273client/5engine),
+zero complete, frozen18783. Existing004368D0 now covers full algorithm. Absent
+census reset/start/stop/reclaim/lookup, wrapper/forwarder and engine bodies receive
+no extra credit. Work remains uncommitted. Detailed contracts and remaining
+playback/cache, gate/control, application/state/protection and launch dependencies:
+analysis/sound-runtime.md.
+
+## 2026-10-30 — bounded primary playback-position follow-up
+
+Recovered00433810 (manager+74): zero-initialize DWORD, call primary IShow+38
+when nonnull, ignore HRESULT and return output; no gate/opened query. Actual
+SettingsServices adapter checks10072400 with self/output-pointer stack ABI.
+Engine unopened/error paths can leave output unchanged, so zero initialization
+matters. Engine time conversion remains delegated. Extended sound-runtime map
+now has60 anchors,90 direct calls,eight client targets,21 engine slots and three
+zero-fill ranges, both fingerprints. Focused temporary sanitizer audit covers15
+success/failure/write cases; strict i386 composition links only;158 Python tests
+pass. Fixtures removed; no original execution/live change/commit. Body absent
+from census: ledger remains278 partial, zero complete. Playback/cache producers
+and launch-owner prerequisites remain unchanged.
+
+## 2026-10-30 — tiny catalog-entry lookup and commit checkpoint
+
+Recovered004326D0 (manager+8C) as SoundCatalog::sound_entry: negative signed
+indices and unsigned bounds failures return null, valid entries are borrowed,
+no load/gate/refcount/mutation occurs. Native null-group guard follows the
+original negative-entry check. Body absent from census;278 partial remains.
+ASan/UBSan audit passes42 boundary combinations plus null-group/clear cases;
+strict i386 compile/link, existing native checks and158 Python tests pass.
+Sound-runtime map now verifies61 anchors/90 direct calls/nine client targets/
+21 engine slots/three zero-fill ranges. Temporary fixtures removed. Updated
+handoff/plan/readmes and committed accumulated movie/runtime/query source work
+at the user's request. Live behavior unchanged; no desktop delivery or push.
+Next session starts at actual playback/cache producer00433FA0/restore00435240,
+then required spatial routing, shared gate/control and real launch owners.

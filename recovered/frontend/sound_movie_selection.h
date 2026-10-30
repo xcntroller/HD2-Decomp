@@ -7,11 +7,27 @@
 
 namespace hd2::frontend {
 
+struct SoundMovieRequest {
+    std::int32_t request;      // +70
+    std::int32_t duration;     // +74, already halved by the queue operation
+    std::uint32_t position;   // +78
+};
+
 // Only the selection fields; this is not a replacement sound-manager lifetime.
 struct SoundMovieSelection {
     std::int32_t requested = -1; // +4c, constructor004336d0
     std::optional<std::uint8_t> pending; // +6c, undefined until first write
+    std::optional<SoundMovieRequest> transition; // +70..78, undefined until queued
 };
+
+// 00433810 (absent from frozen census): no gate or opened query. The output
+// starts at zero; return the written word even if IShow reports failure.
+template<class Backend>
+std::uint32_t primary_sound_movie_position(const SettingsSoundState& state, Backend& backend) {
+    std::uint32_t position = 0;
+    if (state.movie) backend.query_sound_movie_position(state.movie, position);
+    return position;
+}
 
 // 004370F0 (absent from frozen census). Catalog load is ungated and its unusual
 // result ignored. Stop/close runs BEFORE request validation. Music is group12,

@@ -57,8 +57,12 @@ menu. The existing host preview is desktop-confirmed but is not this milestone.
   helpers. **Source-only.** [Startup owners](analysis/startup-owners.md).
 - [x] Recover sound catalog/parsers/cleanup and primary music selection.
   **Source-only.** [Sound catalog](analysis/sound-catalog.md).
-- [ ] Recover full sound-manager registration/update/movie lifetime, sample caches
-  and shared gate lifecycle.
+- [x] Recover secondary movies, queued primary changes and the movie update phase.
+  **Source-only.** [Movie coordination](analysis/sound-movie-channels.md).
+- [x] Recover registered sound data, full voice/movie/listener update and reset/start/stop.
+  **Source-only.** [Sound runtime](analysis/sound-runtime.md).
+- [ ] Recover sound playback/cache producers, spatial routing and shared gate lifecycle.
+  Playback-position/catalog-entry queries are **source-only**; producer/restore remain open.
 - [ ] Recover optional control interface, remaining application/state/protection
   owners and loaded-cache consumers; complete live device/text integration.
 - [ ] Build the independent launch executable and desktop-test normal playback,

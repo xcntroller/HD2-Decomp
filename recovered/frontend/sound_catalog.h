@@ -187,6 +187,18 @@ public:
     SoundCatalog(const SoundCatalog&) = delete;
     SoundCatalog& operator=(const SoundCatalog&) = delete;
 
+    // 004326D0: ungated lookup of already-owned data; no implicit catalog load.
+    // Reject negative/out-of-range indices. A null in-range group was undefined
+    // in the original; native rejects it rather than inventing an empty group.
+    CatalogSoundEntry* sound_entry(std::int32_t group, std::int32_t index) const {
+        if (group < 0 || static_cast<std::uint32_t>(group) >= groups.size() || index < 0)
+            return nullptr;
+        const auto& value = groups[static_cast<std::uint32_t>(group)];
+        if (!value) throw std::runtime_error("Null original sound catalog group");
+        if (static_cast<std::uint32_t>(index) >= value->entries.size()) return nullptr;
+        return value->entries[static_cast<std::uint32_t>(index)].get();
+    }
+
     // 004398B0: reverse destruction, reset groups/map, loaded last.
     void clear() {
         for (auto at = groups.rbegin(); at != groups.rend(); ++at) {

@@ -50,9 +50,18 @@ i386 adapter compile/link checks pass. The
 [catalog/primary music slice](../analysis/sound-catalog.md) adds the owning
 [catalog and nested parsers](frontend/sound_catalog.h) and
 [primary movie selection](frontend/sound_movie_selection.h), composed with actual
-DTA/movie adapters. Full application, sound/control initialization and controller
-integration remain open. Source-only;
+DTA/movie adapters. [Two-channel movie coordination](../analysis/sound-movie-channels.md)
+adds [secondary selection, queued changes and the movie frame phase](frontend/sound_movie_channels.h).
+The [sound runtime follow-up](../analysis/sound-runtime.md) composes the
+[full update and resource lifecycle](frontend/sound_runtime.h),
+[registered manager data](frontend/sound_manager_data.h) and
+[actual sound/scene adapter](host/sound_services.h). Playback/cache producers,
+shared gate/control initialization and application/controller integration remain
+open. Source-only;
 no new live behavior or successful placeholder services.
+
+Small follow-ups recover primary playback-position and borrowed indexed catalog
+entry queries; neither introduces an implicit load or new live startup wiring.
 
 The second component is the
 [model resource key helper](scene/model_resource_key.cpp), with its

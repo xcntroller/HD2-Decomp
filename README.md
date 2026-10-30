@@ -21,8 +21,13 @@ now loads/persists actual game.cfg configuration and owns the recovered data
 subset, with sound-manager movie change/fade helpers. The
 [sound catalog and primary music selection](analysis/sound-catalog.md) now compose
 the recovered chunk loader, nested parsers, cleanup and real movie calls.
-This remains source-only; full sound/control ownership and original
-application/controller integration are open.
+The [two-channel movie phase](analysis/sound-movie-channels.md) adds secondary
+selection, queued changes, fades and completion cleanup.
+The [sound runtime follow-up](analysis/sound-runtime.md) adds the full voice,
+movie and listener update, resource reset/start/stop, sector metadata and
+registered manager data, plus playback-position and bounded catalog-entry queries.
+This remains source-only; playback/cache producers,
+shared gate/control ownership and application/controller integration are open.
 
 Movie/menu keyboard device input and focus return are desktop-confirmed. The
 [keyboard preprocessing and text-input slice](analysis/keyboard-preprocessing.md)
@@ -201,11 +206,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **261 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **278 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 256 |
+| Base game client | 17,294 | 0 | 273 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
@@ -280,7 +285,7 @@ opening sequence through the engine's original IShow/Bink interface before
 constructing the compiled menu. The user desktop-confirmed this path; the log
 records all four movie opens and clean teardown. Movie copies live in the isolated runtime directory;
 original files remain untouched. Full startup/controller recovery, subtitles,
-music coordination and original settings lifecycle/integration remain open;
+live music coordination and original settings lifecycle/integration remain open;
 see [the launch plan](plan.md#0-rebuild-the-original-launch-path-to-the-menu--current-delivery-priority)
 and [video evidence](analysis/opening-video.md).
 

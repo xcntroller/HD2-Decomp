@@ -3399,7 +3399,7 @@
       "entry": "00439080",
       "status": "partial",
       "coverage": "Catalog load with DEF/DAT precedence, cached-only true result, root validation, actual nested parsers, signed mappings, failure retention and fourteen-group padding.",
-      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Registered data/full update/resource lifecycle now have source-only recovery in analysis/sound-runtime.md; playback/cache producers, shared gate and live launch integration remain unfinished. New SoundServices validates frame release provenance; the earlier generic SettingsServices adapter remains type-unchecked.",
       "evidence": [
         "analysis/sound-catalog-map.json",
         "analysis/sound-catalog.md",
@@ -3413,7 +3413,7 @@
       "entry": "004398b0",
       "status": "partial",
       "coverage": "Reverse group destruction through actual entry/variant cleanup, group storage release, map clear and loaded flag reset.",
-      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Registered data/full update/resource lifecycle now have source-only recovery in analysis/sound-runtime.md; playback/cache producers, shared gate and live launch integration remain unfinished. New SoundServices validates frame release provenance; the earlier generic SettingsServices adapter remains type-unchecked.",
       "evidence": [
         "analysis/sound-catalog-map.json",
         "analysis/sound-catalog.md",
@@ -3427,7 +3427,7 @@
       "entry": "00432040",
       "status": "partial",
       "coverage": "Clear old entries preserving name; parse group name and entries, skip unknown group children and propagate entry failure.",
-      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Registered data/full update/resource lifecycle now have source-only recovery in analysis/sound-runtime.md; playback/cache producers, shared gate and live launch integration remain unfinished. New SoundServices validates frame release provenance; the earlier generic SettingsServices adapter remains type-unchecked.",
       "evidence": [
         "analysis/sound-catalog-map.json",
         "analysis/sound-catalog.md",
@@ -3441,7 +3441,7 @@
       "entry": "00431f80",
       "status": "partial",
       "coverage": "Destroy group entries in reverse through recovered entry cleanup, release/reset entry storage while preserving group name.",
-      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Registered data/full update/resource lifecycle now have source-only recovery in analysis/sound-runtime.md; playback/cache producers, shared gate and live launch integration remain unfinished. New SoundServices validates frame release provenance; the earlier generic SettingsServices adapter remains type-unchecked.",
       "evidence": [
         "analysis/sound-catalog-map.json",
         "analysis/sound-catalog.md",
@@ -3455,7 +3455,7 @@
       "entry": "00431fd0",
       "status": "partial",
       "coverage": "Destroy entry variants through actual recovered cleanup and release the entry name/storage.",
-      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Registered data/full update/resource lifecycle now have source-only recovery in analysis/sound-runtime.md; playback/cache producers, shared gate and live launch integration remain unfinished. New SoundServices validates frame release provenance; the earlier generic SettingsServices adapter remains type-unchecked.",
       "evidence": [
         "analysis/sound-catalog-map.json",
         "analysis/sound-catalog.md",
@@ -3469,7 +3469,7 @@
       "entry": "0043a5e0",
       "status": "partial",
       "coverage": "Destroy variants in reverse through actual sample cleanup and release/reset variant storage.",
-      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Registered data/full update/resource lifecycle now have source-only recovery in analysis/sound-runtime.md; playback/cache producers, shared gate and live launch integration remain unfinished. New SoundServices validates frame release provenance; the earlier generic SettingsServices adapter remains type-unchecked.",
       "evidence": [
         "analysis/sound-catalog-map.json",
         "analysis/sound-catalog.md",
@@ -3483,7 +3483,7 @@
       "entry": "0043a630",
       "status": "partial",
       "coverage": "Release primary sample then extra sample references in reverse through real virtual slot0 calls, free extra storage and name.",
-      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Registered data/full update/resource lifecycle now have source-only recovery in analysis/sound-runtime.md; playback/cache producers, shared gate and live launch integration remain unfinished. New SoundServices validates frame release provenance; the earlier generic SettingsServices adapter remains type-unchecked.",
       "evidence": [
         "analysis/sound-catalog-map.json",
         "analysis/sound-catalog.md",
@@ -3497,7 +3497,7 @@
       "entry": "0043a6f0",
       "status": "partial",
       "coverage": "Clear old variants, preserve name/flag, parse name/raw flag/variants; propagate variant and unknown-child failure.",
-      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Registered data/full update/resource lifecycle now have source-only recovery in analysis/sound-runtime.md; playback/cache producers, shared gate and live launch integration remain unfinished. New SoundServices validates frame release provenance; the earlier generic SettingsServices adapter remains type-unchecked.",
       "evidence": [
         "analysis/sound-catalog-map.json",
         "analysis/sound-catalog.md",
@@ -3511,13 +3511,245 @@
       "entry": "0043aa50",
       "status": "partial",
       "coverage": "Parse original name and six numeric variant fields with exact accepted tags; leave successful children and reject unknown tags including1460.",
-      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Full sound-manager registration/update/lifetime and live launch integration remain unfinished.",
+      "limitations": "Source-only native strings/unique ownership/vectors/map replace original COW/refcount/container/allocation/SEH ABI. Guards reject undefined short-header/scalar/string and backward-chunk paths; failed temporary objects are freed instead of leaking. Real DTA/movie adapters compile/link only; sample slot0 dispatch is real but type-specific factory/vtable validation and cache population remain open. Registered data/full update/resource lifecycle now have source-only recovery in analysis/sound-runtime.md; playback/cache producers, shared gate and live launch integration remain unfinished. New SoundServices validates frame release provenance; the earlier generic SettingsServices adapter remains type-unchecked.",
       "evidence": [
         "analysis/sound-catalog-map.json",
         "analysis/sound-catalog.md",
         "recovered/frontend/sound_catalog.h",
         "recovered/frontend/sound_movie_selection.h",
         "recovered/host/settings_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00432400",
+      "status": "partial",
+      "coverage": "Ungated secondary IShow opened query through the actual movie slot and checked DLL method.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths. Arbitrary borrowed movie state retains guarded unknown fields; the static owner now has proven zero-fill provenance.",
+      "evidence": [
+        "analysis/sound-movie-channels-map.json",
+        "analysis/sound-movie-channels.md",
+        "recovered/frontend/sound_movie_channels.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_manager_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00436ed0",
+      "status": "partial",
+      "coverage": "Signed secondary fade rate (current-target)/max(signed-duration,1), preserving sign and float32 storage without the primary scheduler absolute value.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths. Arbitrary borrowed movie state retains guarded unknown fields; the static owner now has proven zero-fill provenance.",
+      "evidence": [
+        "analysis/sound-movie-channels-map.json",
+        "analysis/sound-movie-channels.md",
+        "recovered/frontend/sound_movie_channels.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_manager_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004368d0",
+      "status": "partial",
+      "coverage": "Full update algorithm: one initial gate2 snapshot, reverse voice reclaim/fade with extended comparison, actual two-channel movie phase, ungated wrapping clock/listener/tracked attenuation and original integer driver-delay volume. Movie queued selection uses the live gate.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-movie-channels-map.json",
+        "analysis/sound-movie-channels.md",
+        "recovered/frontend/sound_movie_channels.h",
+        "recovered/frontend/sound_movie_selection.h",
+        "recovered/host/settings_services.h",
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00432420",
+      "status": "partial",
+      "coverage": "Construct tracked sound: always resolve position/sector, capture live base volume, scale1 and wrap-increment frame WORD+E4.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00432490",
+      "status": "partial",
+      "coverage": "Store independent track scale, apply float32 base-volume product, update actual sound frame.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004324c0",
+      "status": "partial",
+      "coverage": "Set group limit, reset cursor using signed comparison, preserve slot prefix and append -1.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00432710",
+      "status": "partial",
+      "coverage": "Reverse tracked lookup; update enabled, refresh sector only when enabled, reread live base volume and reapply retained scale, or construct/retain new entry.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00432860",
+      "status": "partial",
+      "coverage": "Reverse attached-sector userdata clear and metadata destruction, retaining vector capacity.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004328d0",
+      "status": "partial",
+      "coverage": "Enumerate actual root sectors with original callback/user/filter10/null-name arguments.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00432900",
+      "status": "partial",
+      "coverage": "Attach sector metadata, accumulate root-connected directed portal areas in original order, preserve float stores and asymmetric radius-query ordering, cap40 and derive attenuation.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00433330",
+      "status": "partial",
+      "coverage": "Resolve absent sectors from copied positions, use metadata scale only across root boundary, compute original-input distance with ordered stored squared sum and bit/near-unit shortcuts.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004335d0",
+      "status": "partial",
+      "coverage": "Destroy registered manager data/container ownership and unregister, without automatic engine voice/movie/sector shutdown.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_manager_data.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004336d0",
+      "status": "partial",
+      "coverage": "Construct module6 Sound data with four limit3 groups and explicit primary defaults; apply proven singleton PE zero-fill to unwritten secondary/pending/listener/delay fields.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_manager_data.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004361b0",
+      "status": "partial",
+      "coverage": "Destroy owned voice: volume0, mode(0,1), frame update, release and clear sound pointer.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048d950",
+      "status": "partial",
+      "coverage": "Own module name, store kind and install borrowed registration; duplicate kinds overwrite their slot.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/module_registration.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048da30",
+      "status": "partial",
+      "coverage": "Unconditionally clear own registry kind even if another registration overwrote it, then destroy owned name.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/module_registration.h",
+        "recovered/host/sound_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b66b0",
+      "status": "partial",
+      "coverage": "Evaluate actual borrowed application activity+04 nonnull and mode+224 equal3 for the reset fallback.",
+      "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
+      "evidence": [
+        "analysis/sound-runtime-map.json",
+        "analysis/sound-runtime.md",
+        "recovered/frontend/sound_runtime.h",
+        "recovered/host/sound_services.h"
       ]
     }
   ]

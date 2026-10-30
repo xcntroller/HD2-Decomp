@@ -33,6 +33,11 @@ public:
         auto* sound = get_sound_();
         scene_method<Function>(sound, engine_, 0x14, 0x7a9b0)(sound, volume);
     }
+    bool sound_driver_initialized() const {
+        using Function = std::uint8_t (WINAPI *)(EngineFrame*);
+        auto* sound = get_sound_();
+        return scene_method<Function>(sound, engine_, 0x0c, 0x7a840)(sound) != 0;
+    }
     bool movie_opened(void* movie) const {
         using Function = std::uint8_t (WINAPI *)(EngineFrame*);
         auto* frame = static_cast<EngineFrame*>(movie);
@@ -51,6 +56,17 @@ public:
     void stop_sound_movie(void* movie) const { movie_operation(movie, 0x18, 0x71d10); }
     void close_sound_movie(void* movie) const { movie_operation(movie, 0x10, 0x71b80); }
     void play_sound_movie(void* movie) const { movie_operation(movie, 0x14, 0x71c50); }
+    void release_sound_movie(void* movie) const { movie_operation(movie, 4, 0x70fd0); }
+    std::int32_t sound_movie_status(void* movie) const {
+        using Function = std::int32_t (WINAPI *)(EngineFrame*);
+        auto* frame = static_cast<EngineFrame*>(movie);
+        return scene_method<Function>(frame, engine_, 0x2c, 0x72160)(frame);
+    }
+    std::int32_t query_sound_movie_position(void* movie, std::uint32_t& position) const {
+        using Function = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t*);
+        auto* frame = static_cast<EngineFrame*>(movie);
+        return scene_method<Function>(frame, engine_, 0x38, 0x72400)(frame, &position);
+    }
     void seek_sound_movie(void* movie, std::uint32_t position) const {
         using Function = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t);
         auto* frame = static_cast<EngineFrame*>(movie);

@@ -36,8 +36,8 @@ bool change_sound_movie(const std::uint32_t& gate, void*& movie, const char* fil
 
 // 00436E90: ungated primary-channel fade scheduling. Duration is SIGNED and
 // clamped to at least one, rate is abs((current54-target)/duration), stored f32.
-// The separate full manager frame update consumes this state; it is not
-// replaced with a no-op update here.
+// The recovered movie phase consumes this state; the rest of the full manager
+// frame update remains separate and is not replaced by a no-op.
 struct SoundMovieFade {
     float target = 1; // +50
     float rate = 1;   // +58, original final constructor writes 1.
