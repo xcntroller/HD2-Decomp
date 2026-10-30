@@ -22,6 +22,9 @@ public:
     DefinedContainerEvents(const DefinedContainerEvents&) = delete;
     DefinedContainerEvents& operator=(const DefinedContainerEvents&) = delete;
 
+    bool eligible() const { return properties_.eligible(); }
+    bool disabled() const { return properties_.disabled != 0; }
+
     void append_child(std::uint32_t identifier, Child child) {
         if (!child) throw std::logic_error("Container child has no message endpoint");
         // Keep parallel vectors consistent if allocation fails.

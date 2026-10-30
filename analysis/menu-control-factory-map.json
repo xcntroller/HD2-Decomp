@@ -1,5 +1,5 @@
 {
-  "scope": "Bounded control-factory front/tail, kind-five child routing/recursive initialization and definition-ID arithmetic. Host supports text/button leaves only; nested runtime audited with supplied frame backends.",
+  "scope": "Bounded shared control factory, recursively owned kind-five containers with scoped frame lookup, nested state/input routing and definition IDs. Live text/button leaf construction remains bounded; original options callbacks/widgets are unfinished.",
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
@@ -12,7 +12,11 @@
     "recovered/frontend/defined_container_events.h",
     "recovered/frontend/control_definition_ids.h",
     "recovered/frontend/defined_controls.h",
-    "recovered/host/menu_control.h"
+    "recovered/host/menu_control.h",
+    "recovered/frontend/container_input.h",
+    "recovered/frontend/defined_control_tree.h",
+    "recovered/host/menu_control_tree.h",
+    "recovered/host/menu_group_probe.h"
   ],
   "instruction_anchors": [
     {
@@ -99,6 +103,36 @@
       "address": "0066dc33",
       "hex": "8b4424088b54241c52508b08ff5108",
       "meaning": "Engine group frame receives supplied position"
+    },
+    {
+      "address": "00656aa3",
+      "hex": "8b4e6c8b06518bceff500484c0742f8b566c8b46088b0c908b11ff520884c0741d",
+      "meaning": "Group keyboard path validates focus and checks full child eligibility before forwarding"
+    },
+    {
+      "address": "00656ac4",
+      "hex": "8b466c8b4e088b0c818b442408508b11ff522084c07406b0015ec20400",
+      "meaning": "Group forwards full key word and reports consumption; no screen activation fallback"
+    },
+    {
+      "address": "00656b28",
+      "hex": "83ff0f75148b0657ff502084c0744e5fb8070000005ec20400",
+      "meaning": "Special focus target fifteen calls virtual key and maps handled result to seven"
+    },
+    {
+      "address": "00656b42",
+      "hex": "8b1e57ff13508bceff530484c05b74338b16578bceff128b4e088b0c818b11ff520884c0741d8b06578bceff108b4e0889466c578b04818bc88b10ff52305f5e",
+      "meaning": "Ordinary focus entry performs three target lookups and stores focus before child entry"
+    },
+    {
+      "address": "00656bd3",
+      "hex": "8b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff623833c05ec2",
+      "meaning": "Group activation validates focused child and tail-forwards +38 without an eligibility gate"
+    },
+    {
+      "address": "00656c39",
+      "hex": "8b1e57ff13508bceff530484c08b068bce57743f8b5e6cff103bd85774248b168bceff523485c0740e8b06578bceff50305f5e5bc204005f5eb8010000005bc204008b4e088b0c998b11ff52405f5e5bc20400ff50345f5e5b",
+      "meaning": "Pointer focus repeats lookup, uses virtual leave/enter, retains leave-veto result and forwards movement"
     }
   ],
   "vtables": [
@@ -129,6 +163,24 @@
         "0065cd30"
       ],
       "role": "Button definition-data +78 no-op"
+    },
+    {
+      "address": "00814450",
+      "targets": [
+        "00656aa0"
+      ],
+      "role": "Kind-five keyboard +20"
+    },
+    {
+      "address": "00814460",
+      "targets": [
+        "00656b20",
+        "00656b90",
+        "00656bd0",
+        "00656c00",
+        "00656c30"
+      ],
+      "role": "Kind-five focus/activation/pointer slots +30..40"
     }
   ],
   "direct_calls": [
@@ -142,6 +194,6 @@
     }
   ],
   "resource_anchors": [],
-  "validation": "Strict i386 host build, existing native suite/17 launcher/nine frontend checks and temporary ASan/UBSan + i386 compilation audit. Audits all original kind selectors, unknown/missing/allocation/visual-failure paths and ordering, all 21 leaf init records once, nested-ID wrap/OR, null definition, layout-root preservation, fresh recursion after list growth, three-level text query/updates, tagged child routing, missing-child base fallback and ignored/propagated return distinctions. Desktop test pending.",
-  "limits": "Full native constructors exist only for leaf types 13/14. Kind-five message/state and recursive initialization are source/audit only; engine frame creation, container input/focus and actual options/settings callbacks remain unfinished. Original FindFrame matching/error UI, allocation/SEH/refcount/class ABI remain delegated. Native null allocation explicitly throws instead of reproducing original null dereference. No new flow enabled."
+  "validation": "Prior leaf factory and two-frame group probe desktop-confirmed. New recursive tree: strict i386 build, temporary ASan/UBSan mixed-tree audit and i386 audit compilation; scoped duplicate names, independent layout root, failed/missing child compaction/cleanup, nested caption/query/layout and focus/key/pointer/activation. Updated five-frame engine diagnostic desktop-confirmed: 372 frames and clean teardown.",
+  "limits": "Native construction supports kind-five container state/input plus supplied text/button leaves. Actual options definitions, additional widget kinds, original dynamic settings/data callbacks, broader text rendering and lifecycle remain unfinished. Original FindFrame flags/error UI, allocation/SEH/refcount/class ABI are not reconstructed. Native allocation failure throws; definition storage is immutable and externally owned. Diagnostic has no user input bindings or visible geometry. No new menu flow enabled."
 }

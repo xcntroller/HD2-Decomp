@@ -645,11 +645,16 @@
     "vtables": [
       {
         "address": "1009bbb0",
-        "targets": ["1001c9f0"]
+        "targets": [
+          "1001c9f0"
+        ]
       },
       {
         "address": "1009bbdc",
-        "targets": ["1001d330", "1001d680"]
+        "targets": [
+          "1001d330",
+          "1001d680"
+        ]
       },
       {
         "address": "1009bbcc",
@@ -2724,11 +2729,11 @@
     "limits": "Native fixed child bindings and callbacks replace original mutable child vectors/class ABI, SEH and intrusive refcounts. Only main/confirmation runtime-bound; full heterogeneous/nested factory, original screen observer/dynamic data callbacks, version/profile/save state and other flows remain unfinished. Real original dynamic handlers were not executed; existing model/glyph bridges remain."
   },
   "shared_factory_layer": {
-    "status": "Implemented and audited; desktop confirmation pending. Previous tested checkpoint ea0134f remains committed.",
+    "status": "Leaf factory and engine group bridge desktop-confirmed and committed through 85ba432. New recursive ownership/scoped lookup/input slice implemented and audited; updated diagnostic desktop-confirmed.",
     "source": "recovered/host/menu_control.h",
     "factory": "All static text and buttons now use frame lookup, native allocation, virtual visual initialization, definition-data and initialization-list sequence. Input availability does not exclude construction/message delivery. Text owner no longer initializes static labels separately. All 21 leaves initialize once. Normal/active button frames and static frame pick words now receive original identifiers during visual initialization.",
-    "nested": "Kind-five child-first routing, compact successful-child endpoints, fresh recursion with independent layout root, native base state/layout and nested identifier helpers reconstructed and audited. Container engine/input backend is not yet instantiated in host. Engine frame type six is distinct from client widget type six.",
-    "limits": "Full native constructors exist only for leaf types 13/14. Kind-five message/state and recursive initialization are source/audit only; engine frame creation, container input/focus and actual options/settings callbacks remain unfinished. Original FindFrame matching/error UI, allocation/SEH/refcount/class ABI remain delegated. Native null allocation explicitly throws instead of reproducing original null dereference. No new flow enabled.",
-    "validation": "Strict i386 host build, existing native suite/17 launcher/nine frontend checks and temporary ASan/UBSan + i386 compilation audit. Audits all original kind selectors, unknown/missing/allocation/visual-failure paths and ordering, all 21 leaf init records once, nested-ID wrap/OR, null definition, layout-root preservation, fresh recursion after list growth, three-level text query/updates, tagged child routing, missing-child base fallback and ignored/propagated return distinctions. Desktop test pending."
+    "nested": "DefinedControlTree owns successful kind-five children in compact order and preserves IDs, parent frame search roots and independent layout roots. Group key/focus/activation and shared pointer methods compose recursively. Host backend uses real frame state and existing leaf constructors. Updated five-frame diagnostic constructs three levels from definitions with duplicate names across branches; mixed nested text/button paths are native-audited only. Engine frame type six is distinct from UI kind five.",
+    "limits": "Supported native products are kind-five groups and text/button leaves. Actual options definitions, additional widgets, original settings/data callbacks and nested screen availability remain unfinished. Leaf renderer does not implement original layout-root geometry. Immutable native definitions, ownership and bounded traversal replace original class/vector/refcount/SEH and full FindFrame ABI. No new flow enabled.",
+    "validation": "Strict i386 build, existing native suite/17 launcher/nine frontend checks, temporary ASan/UBSan mixed-tree audit and i386 audit compilation passed. Prior 21-leaf construction and two-frame engine probe desktop-confirmed. New audit covers three-level mixed text/button routing, scoped duplicate names, separate layout root, failed/missing child cleanup, caption/query/layout, three target lookups, target fifteen, fresh focused-index reads, leave veto, release filtering and disabled activation/key gates. Updated engine diagnostic and pinned leaf lookup are desktop-confirmed (372 frames, clean teardown)."
   }
 }

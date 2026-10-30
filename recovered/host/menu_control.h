@@ -14,11 +14,11 @@ public:
                 const frontend::MenuControlDefinition& definition, EngineFrame* frame,
                 MenuTextObject& text, bool available)
         : scene_(scene), module_(module), confirmation_(confirmation), definition_(definition),
-          frame_(frame), text_(text), available_(available) {}
+          frame_(frame), text_(text), available_(available) { text_.bind_frame(frame_); }
     bool initialize_visuals() {
         if (definition_.kind == frontend::MenuControlKind::button) {
             button_ = std::make_unique<ButtonVisualPair>(scene_, module_, definition_.frame,
-                definition_.normal, definition_.active, confirmation_, &text_, available_);
+                definition_.normal, definition_.active, confirmation_, &text_, available_, frame_);
             button_->bind_pick_target(definition_.identifier);
         } else if (definition_.kind == frontend::MenuControlKind::text) {
             // 006618a0 writes control +60 to its bound frame's pick word.

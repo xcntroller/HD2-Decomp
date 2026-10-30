@@ -30,6 +30,12 @@ public:
     frontend::TextObject& object() { return text_; }
     const frontend::TextObject& object() const { return text_; }
     const frontend::MenuControlDefinition& definition() const { return definition_; }
+    void bind_frame(EngineFrame* frame) {
+        if (!frame || (bound_frame_ && bound_frame_ != frame))
+            throw std::logic_error("Attached text rebound to another frame");
+        bound_frame_ = frame;
+        bounds_.reset();
+    }
     void attach_control(const frontend::ControlProperties& properties, bool available) {
         owner_ = &properties;
         available_ = available;
@@ -51,12 +57,12 @@ public:
     void layout_text_on_frame() { layout_text_on_normal(); }
     void layout_text_on_normal() {
         bounds_ = scene_.label_bounds(definition_.frame,
-            definition_.normal ? definition_.normal : definition_.frame, module_, confirmation_);
+            definition_.normal ? definition_.normal : definition_.frame, module_, confirmation_, bound_frame_);
         text_.dirty = true;
     }
     void set_frame_direction(float x, float y, float z) {
         auto* frame = scene_.label_visual(definition_.frame,
-            definition_.normal ? definition_.normal : definition_.frame, module_, confirmation_);
+            definition_.normal ? definition_.normal : definition_.frame, module_, confirmation_, bound_frame_);
         using Direction = void (WINAPI *)(EngineFrame*, const float*, const float*);
         const float direction[]{x,y,z};
         scene_method<Direction>(frame, module_, 0x0c, 0x1c8d0)(frame, direction, nullptr);
@@ -85,12 +91,12 @@ public:
     bool has_text() const { return true; }
     void set_text_disabled(std::uint8_t value) { text_.disabled = value; }
     void set_frame_visible(std::uint8_t value) {
-        auto* frame = scene_.control_frame(definition_.frame, module_, confirmation_);
+        auto* frame = scene_.control_frame(definition_.frame, module_, confirmation_, bound_frame_);
         using Visibility = void (WINAPI *)(EngineFrame*, std::uint8_t);
         scene_method<Visibility>(frame, module_, 0x30, 0x1cfe0)(frame, value);
     }
     void update_frame() {
-        auto* frame = scene_.control_frame(definition_.frame, module_, confirmation_);
+        auto* frame = scene_.control_frame(definition_.frame, module_, confirmation_, bound_frame_);
         using Update = void (WINAPI *)(EngineFrame*);
         scene_method<Update>(frame, module_, 0x24, 0x1e610)(frame);
     }
@@ -109,6 +115,7 @@ private:
     frontend::ControlEventBindings bindings_;
     const frontend::ControlProperties* owner_ = nullptr;
     bool available_ = true;
+    EngineFrame* bound_frame_ = nullptr; // Borrowed leaf root; names may repeat in other groups.
     std::optional<std::array<float,8>> bounds_;
 };
 

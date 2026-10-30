@@ -317,12 +317,16 @@ public:
             });
     }
 
-    EngineFrame* control_frame(const char* name, HMODULE module,
-                               bool confirmation = false) const {
+    EngineFrame* find_control_frame(EngineFrame* root, const char* name, HMODULE module) const {
         EngineFrame* found = nullptr;
         std::uint32_t nodes = 0;
-        EngineFrame* root = confirmation ? confirmation_.get() : model_.get();
         find_named(root, name, module, 0, nodes, found);
+        return found;
+    }
+    EngineFrame* control_frame(const char* name, HMODULE module,
+                               bool confirmation = false, EngineFrame* search_root = nullptr) const {
+        EngineFrame* root = search_root ? search_root : (confirmation ? confirmation_.get() : model_.get());
+        auto* found = find_control_frame(root, name, module);
         if (found == nullptr) {
             throw std::runtime_error(std::string("Missing original menu frame: ") + name);
         }
@@ -355,8 +359,8 @@ public:
     EngineFrame* main_model_frame() const { return model_.get(); }
 
     EngineFrame* label_visual(const char* name, const char* visual, HMODULE module,
-                              bool confirmation = false) const {
-        EngineFrame* found = control_frame(name, module, confirmation);
+                              bool confirmation = false, EngineFrame* search_root = nullptr) const {
+        EngineFrame* found = control_frame(name, module, confirmation, search_root);
         std::uint32_t nodes = 0;
         if (std::strcmp(name, visual) != 0) {
             EngineFrame* child = nullptr;
@@ -375,8 +379,8 @@ public:
     }
 
     std::array<float, 8> label_bounds(const char* name, const char* visual, HMODULE module,
-                                      bool confirmation = false) const {
-        EngineFrame* found = label_visual(name, visual, module, confirmation);
+                                      bool confirmation = false, EngineFrame* search_root = nullptr) const {
+        EngineFrame* found = label_visual(name, visual, module, confirmation, search_root);
         const auto entry = GetProcAddress(module, "?UpdateWBoundProc@I3D_visual@@AAGXXZ");
         if (reinterpret_cast<std::uintptr_t>(entry) !=
                 reinterpret_cast<std::uintptr_t>(module) + 0x571b0) {

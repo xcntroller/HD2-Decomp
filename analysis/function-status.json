@@ -7,6 +7,30 @@
   "functions": [
     {
       "program": "client",
+      "entry": "00656bd0",
+      "status": "partial",
+      "coverage": "Validate focused child and tail-forward activation with original target and child result, without adding eligibility or disabled gates at the container layer.",
+      "limitations": "Native borrowed frames, owned children and method calls replace original object/virtual ABI. Recursive mixed text/button backend audited under sanitizers; real engine group diagnostic is desktop-confirmed. No new flow or nested screen availability policy enabled.",
+      "evidence": [
+        "analysis/menu-control-factory-map.json",
+        "recovered/frontend/container_input.h",
+        "recovered/frontend/defined_control_tree.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00656aa0",
+      "status": "partial",
+      "coverage": "Validate focused child, gate by full eligibility, reread focus and forward the complete key word. Group path has no Enter/Space activation fallback.",
+      "limitations": "Native borrowed frames, owned children and method calls replace original object/virtual ABI. Recursive mixed text/button backend audited under sanitizers; real engine group diagnostic is desktop-confirmed. No new flow or nested screen availability policy enabled.",
+      "evidence": [
+        "analysis/menu-control-factory-map.json",
+        "recovered/frontend/container_input.h",
+        "recovered/frontend/defined_control_tree.h"
+      ]
+    },
+    {
+      "program": "client",
       "entry": "0066dbf0",
       "status": "partial",
       "coverage": "Create an engine dummy group, link to parent with mode zero, assign name and position, retain frame for frontend lifetime.",
@@ -45,10 +69,12 @@
       "entry": "006618a0",
       "status": "partial",
       "coverage": "Bind own frame and pick ID before definition-kind setup; fresh recursive child iteration preserving independent layout root; ignore child-factory results and return true.",
-      "limitations": "Portable callbacks/native vectors replace original mutable pointers, definition/object layout, allocation/refcount/SEH. ID helpers do not reconstruct original allocation/string registration. Container engine/input backend and actual settings/data callbacks remain unfinished; nested paths native-audit verified only.",
+      "limitations": "Native tree ownership, immutable definition storage and bounded scoped traversal replace original class/vector/refcount/SEH and FindFrame ABI. Only kind-five groups and supplied text/button leaves are implemented; actual options callbacks/widgets and nested screen input availability remain unfinished. Mixed-tree paths native-audited; updated engine diagnostic desktop-confirmed.",
       "evidence": [
         "analysis/menu-control-factory-map.json",
-        "recovered/frontend/control_initialization.h"
+        "recovered/frontend/control_initialization.h",
+        "recovered/frontend/defined_control_tree.h",
+        "recovered/host/menu_control_tree.h"
       ]
     },
     {
@@ -56,11 +82,13 @@
       "entry": "00656e80",
       "status": "partial",
       "coverage": "Kind-five child-first hierarchical dispatch, including tagged and zero targets; validate then look up again, preserve child return, missing-child base fallback always handled.",
-      "limitations": "Portable callbacks/native vectors replace original mutable pointers, definition/object layout, allocation/refcount/SEH. ID helpers do not reconstruct original allocation/string registration. Container engine/input backend and actual settings/data callbacks remain unfinished; nested paths native-audit verified only.",
+      "limitations": "Native tree ownership, immutable definition storage and bounded scoped traversal replace original class/vector/refcount/SEH and FindFrame ABI. Only kind-five groups and supplied text/button leaves are implemented; actual options callbacks/widgets and nested screen input availability remain unfinished. Mixed-tree paths native-audited; updated engine diagnostic desktop-confirmed.",
       "evidence": [
         "analysis/menu-control-factory-map.json",
         "recovered/frontend/container_event.h",
-        "recovered/frontend/defined_container_events.h"
+        "recovered/frontend/defined_container_events.h",
+        "recovered/frontend/defined_control_tree.h",
+        "recovered/host/menu_control_tree.h"
       ]
     },
     {
@@ -358,15 +386,17 @@
       "program": "client",
       "entry": "0065d150",
       "status": "partial",
-      "coverage": "Frame lookup with 10021 precedes complete original kind-range dispatch (2..28), supplied constructor, visual gate, definition-data +78, initialization list +70 and insertion. Failed visual gate destroys/skips and reports true. Main/confirmation now construct all 21 text/button leaves through this sequence.",
-      "limitations": "Full native constructors exist only for leaf types 13/14. Kind-five message/state and recursive initialization are source/audit only; engine frame creation, container input/focus and actual options/settings callbacks remain unfinished. Original FindFrame matching/error UI, allocation/SEH/refcount/class ABI remain delegated. Native null allocation explicitly throws instead of reproducing original null dereference. No new flow enabled.",
+      "coverage": "Frame lookup with 10021 precedes complete original kind-range dispatch (2..28), supplied constructor, visual gate, definition-data +78, initialization list +70 and insertion. Failed visual gate destroys/skips and reports true. Main/confirmation now construct all 21 text/button leaves through this sequence. Native recursive construction now owns successful kind-five children in compact insertion order, preserving definition IDs, search roots and independent layout roots.",
+      "limitations": "Native tree ownership, immutable definition storage and bounded scoped traversal replace original class/vector/refcount/SEH and FindFrame ABI. Only kind-five groups and supplied text/button leaves are implemented; actual options callbacks/widgets and nested screen input availability remain unfinished. Mixed-tree paths native-audited; updated engine diagnostic desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_initialization.h",
         "analysis/menu-control-factory-map.json",
         "recovered/frontend/control_factory.h",
         "recovered/frontend/defined_controls.h",
-        "recovered/host/menu_control.h"
+        "recovered/host/menu_control.h",
+        "recovered/frontend/defined_control_tree.h",
+        "recovered/host/menu_control_tree.h"
       ]
     },
     {
@@ -662,14 +692,17 @@
       "program": "client",
       "entry": "00656c30",
       "status": "partial",
-      "coverage": "Screen pointer routing handles invalid targets, the already-focused control, failed focus loss and entry of a different control.",
+      "coverage": "Screen pointer routing handles invalid targets, the already-focused control, failed focus loss and entry of a different control. Recursive tree preserves repeated lookup and virtual leave/enter forwarding, including the special focus target branch.",
       "limitations": "Portable callbacks and definition-derived IDs replace original virtual calls and object ABI. The host routes sampled hover changes, plus sampled motion in opt-in picker mode, assumes eligibility, and excludes the special target-15 entry branch and original input timing.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/screen_focus.h",
         "recovered/frontend/screen_target.h",
         "recovered/host/engine_window.cpp",
-        "recovered/host/menu_button_visuals.h"
+        "recovered/host/menu_button_visuals.h",
+        "analysis/menu-control-factory-map.json",
+        "recovered/frontend/container_input.h",
+        "recovered/frontend/defined_control_tree.h"
       ]
     },
     {

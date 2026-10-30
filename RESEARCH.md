@@ -2698,3 +2698,50 @@ six settings groups and several additional widget types; the bounded
 [options inventory](analysis/menu-options.md) records dependencies and limits.
 Settings initialization, actual recursive definitions, input and callbacks
 remain prerequisites to enabling options.
+
+## Recursive ownership and nested control input — 2026-10-30
+
+The tested two-frame engine bridge is committed as 85ba432 (425 frames, clean
+teardown). A new portable recursive owner composes the recovered shared factory
+and container initialization/dispatch. Each successful child is owned at a stable
+address and appended in original insertion order; failed/missing children leave
+definition IDs intact. Group child search uses the group's bound frame, while
+the independently supplied layout root survives every recursive call. Original
+class/refcount/vector/SEH storage is not reconstructed, and native definitions
+are immutable external storage.
+
+Container +20/00656AA0 validates focused index, checks full eligibility at child
++08, rereads focus and forwards the full key word at +20. It adds no screen
+Enter/Space fallback. Shared +30/00656B20 target 15 invokes the object's virtual
+key and maps handled to seven; ordinary entry resolves target three times around
+validation, eligibility and focused-index assignment. +38/00656BD0 forwards
+activation after validity only. +40/00656C30 repeats target lookup, invokes virtual
+leave/enter, maps leave veto to one and sends movement to an unchanged focused
+child. Existing shared release/press/drag/click/wheel helpers compose through the
+owned tree. 00656B20 is absent from the frozen inventory and receives no credit.
+
+The host backend borrows actual engine frames and existing text/button products.
+Leaf controls pin the bound frame for text and visual lookup; repeated names in
+different groups no longer require a global unique match. Leaf geometry remains
+the existing bounded renderer, not the original layout-root implementation.
+The updated opt-in diagnostic builds a three-level five-group definition tree
+with duplicate names in separate branches, then checks initialization/state
+isolation and nested input. Normal screen ownership remains flat, with only
+Exit/Yes/No enabled. Actual options definitions, widget constructors, nested
+screen availability and original settings callbacks remain open.
+
+Strict i386 build, existing native suite, 17 launcher/nine frontend checks and
+temporary ASan/UBSan mixed-tree audit plus i386 compilation pass. Audits cover
+scoped frames and layout root, sparse successful-child ownership and destruction,
+caption/query/layout through actual native state/text helpers, original button
+tagged events, focus lookup order and target 15, fresh focus reads, leave veto,
+release filtering and disabled keyboard/activation. Desktop confirmation is
+passed for the updated engine diagnostic and pinned leaf lookup (372 frames,
+successful probe, clean teardown). Factory map:
+23 anchors/10 vtable slots/two calls. Two new partial entries 00656AA0/00656BD0:
+74 partial (70 client/four engine), zero complete, frozen 18,783.
+
+Credits dependency check confirms application state twelve creates a retained
+movie/controller around 0066EAE0/00688040, including a special `credits` path,
+scroll setup, timing and music changes. Cached exports show it is not a static
+registered screen. Options remains the construction priority.

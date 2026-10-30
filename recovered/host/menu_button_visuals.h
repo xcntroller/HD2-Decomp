@@ -22,11 +22,11 @@ class ButtonVisualPair {
 public:
     ButtonVisualPair(const MenuScene& scene, HMODULE module, const char* frame,
                      const char* normal, const char* active, bool confirmation = false,
-                     MenuTextObject* text = nullptr, bool available = true)
+                     MenuTextObject* text = nullptr, bool available = true, EngineFrame* search_root = nullptr)
         : module_(module), frame_name_(frame), text_(text),
-          frame_(scene.control_frame(frame, module, confirmation)),
-          normal_(scene.label_visual(frame, normal, module, confirmation)),
-          active_(scene.label_visual(frame, active, module, confirmation)) {
+          frame_(scene.control_frame(frame, module, confirmation, search_root)),
+          normal_(scene.label_visual(frame, normal, module, confirmation, search_root)),
+          active_(scene.label_visual(frame, active, module, confirmation, search_root)) {
         if (text_) text_->attach_control(properties_, available);
         visibility_ = scene_method<Visibility>(normal_, module, 0x30, 0x1cfe0);
         scene_method<Visibility>(active_, module, 0x30, 0x1cfe0);

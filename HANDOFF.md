@@ -1,6 +1,75 @@
 # Session handoff - 2026-10-30
 
-## Resume here: engine group probe, desktop-confirmed
+## Resume here: recursive control factory and container input, desktop-confirmed
+
+Previous group bridge is user desktop-confirmed and committed as **85ba432**
+(425 frames, successful probe, clean teardown). Current recursive construction
+slice is user desktop-confirmed: five-frame factory probe passed, 372 frames,
+clean graphics/3D/sound teardown. Record this tested checkpoint before new work.
+This top section is authoritative; earlier sections describe historical state.
+
+New `frontend/defined_control_tree.h` owns kind-five groups and supplied leaf
+products, using the existing original factory sequence for every node. It binds
+group frame/ID before recursion, searches children under their parent's bound
+frame, preserves the separate layout root, and compacts only successful child
+owners/endpoints without changing definition IDs. Immutable definitions, backend,
+frames and queue must outlive the tree. Native ownership is not original class,
+vector, SEH or intrusive ABI. Only text/button leaves and kind-five groups are
+supported by the host backend. Leaf layout still uses the existing bounded
+renderer; passing the layout root is not a reconstruction of original layout.
+
+New `container_input.h` implements group key 00656AA0 (full child eligibility,
+fresh focused-index reads, no Enter/Space activation fallback), full 00656B20
+entry (target 15 calls virtual key, maps handled to seven; ordinary target looked
+up three times), activation 00656BD0 and exact virtual pointer focus 00656C30.
+The native tree composes these with existing shared leave/press/release/drag/
+click/wheel helpers, preserving full targets through nested levels. Normal flat
+screen input policy is unchanged; nested screen availability/navigation policy
+and other widgets are still prerequisites to a real additional flow. 00656B20
+is absent from the frozen census, so receives no extra function credit.
+
+Host `menu_control_tree.h` supplies real frame lookup/state and existing leaf
+constructors. Existing normal text/button controls now pin their bound leaf
+frame; bounds, direction, visibility and normal/active lookup stay in that
+subtree, allowing names to repeat across groups. Existing main/confirmation
+construction remains the tested flat collection; the new recursive owner is
+exercised by the opt-in diagnostic and native audits.
+
+`--probe-groups` now creates five engine dummy frames over three levels, with
+duplicate `codex_shared_leaf` names in separate branches, and constructs their
+control tree from definitions instead of manual bindings. Checks scoped lookup,
+preserved layout root, IDs, initialization, targeted state isolation and nested
+input forwarding. Empty end groups deliberately decline focus/key/press and
+report the original no-focus click result. Diagnostic frames have no geometry
+or user bindings; no extra menu action is enabled.
+
+Desktop command:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --probe-groups --frames 0`
+Check captions/hover, unavailable buttons and hidden OK, repeated Exit/No/Escape
+and final Yes by mouse and keyboard. Expected startup log:
+`Original recursive group factory: five controls, scoped duplicate names, three-level state and input passed`.
+User confirmed this slice; the runtime log was inspected. No agent-side Proton run,
+new unit tests, untested commits or pushes.
+
+Strict i386 build, existing native suite, 17 launcher/nine frontend checks,
+temporary ASan/UBSan mixed-tree audit and i386 compilation pass. Audit uses the
+actual recursive tree/state/text/button-event helpers with fake frames/leaves:
+three-level mixed children, duplicate names, distinct layout root, failed/missing
+child compaction and cleanup, caption/query/layout, three focus lookups, target
+15, fresh focused-index reads, leave veto, release filtering and disabled child
+activation/key gates. Temporary audit source/binaries are removed after checks.
+Factory evidence now 23 anchors/10 slots/two calls; engine evidence unchanged
+400 anchors/43 slots. Ledger **74 partial (70 client/four engine), zero
+complete, frozen 18,783**. No claim of live mixed nested leaf validation.
+
+Next large dependency after testing: recover options widget kinds 8/10/24 and
+their settings contracts, then complete actual options definitions, model edits,
+nested input availability, callbacks and entry/apply/back behavior. Use
+analysis/menu-options.md and local menu-options-subbuilders exports. Avoid
+enabling a partial options page. Credits also needs its application-state/movie/
+scroll/music controller, so is not a simple alternative screen push.
+
+## Previous checkpoint: engine group probe, desktop-confirmed
 
 The prior factory slice is user-tested and committed as **4fc2eac** (1003
 frames, clean teardown). The new group bridge and diagnostic are now user

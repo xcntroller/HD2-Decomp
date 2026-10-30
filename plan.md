@@ -31,7 +31,7 @@ Keep an explicit list of delegated calls so the eventual replacement is tractabl
 | Previous/next focus traversal | Source reconstructed | Find original callers/key bindings and initial-focus policy before wiring |
 | Original button sound and sound-driver lifecycle | Desktop-tested | Original preferences/resource cache and additional menu sounds |
 | Shared control initialization and state messages | State/events and attached text/caption/style desktop-confirmed | Full factory, dynamic callbacks, paragraph layout and broader widget eligibility |
-| Shared factory and nested containers | Leaf factory and two-level engine group diagnostic desktop-confirmed | Actual model-backed recursive construction, other widget kinds and original ABI |
+| Shared factory and nested containers | Leaf factory, engine bridge and recursive group diagnostic desktop-confirmed; mixed leaves native-audited | Actual options definitions, nested screen availability, other widget kinds and original ABI |
 | Other main-menu actions/screens | Not functional yet | Inventory, reconstruct and enable one flow at a time |
 
 Keyboard sound check: ordinary Exit/Yes/No keyboard activation is silent in the
@@ -65,6 +65,10 @@ This conclusion is from original binary analysis, not a new original-game run.
   screens. Targeted screen/child delivery and native observer plumbing are
   integrated, audited and desktop-confirmed. Original factory, observer/data callback
   lists and additional screens remain.
+- [x] Integrate bounded recursive kind-five construction, ownership and input routing.
+  Implemented with existing leaf backends; mixed-tree sanitizer/i386 audits pass.
+  Updated five-frame engine diagnostic desktop-confirmed (372 frames). Actual
+  options definitions, widget constructors and nested screen policy remain open.
 - [x] Integrate bounded registered stack/lifecycle and all 21 current child message endpoints.
   Desktop-confirmed; background targeting, native observers and retained-copy
   query semantics additionally audited. Original dynamic lists remain unattached.
@@ -96,9 +100,14 @@ desktop-confirmed (425 frames, clean teardown). The probe is not the actual opti
 [options inventory](analysis/menu-options.md) identifies six settings groups,
 their widgets and remaining callback dependencies.
 
-Next priority: implement a model-backed recursive factory, nested input/focus
-and original settings/data callbacks needed for a complete additional flow. Do
-not enable a screen solely because its model loads.
+Current slice: recursive kind-five ownership/factory, scoped frame lookup and
+nested input are implemented and audited. The engine diagnostic now constructs
+five controls over three levels from definitions and is desktop-confirmed (372 frames);
+mixed nested text/button controls are native-audit verified only.
+
+Next priority: options widgets (kinds 8/10/24), actual definitions and original
+settings/data callbacks, then nested screen availability and full entry/apply/
+back behavior. Do not enable a screen solely because its model loads.
 
 Prefer complete plan items or cohesive dependency groups per iteration, as
 requested by the user. Avoid returning for desktop checks after individual

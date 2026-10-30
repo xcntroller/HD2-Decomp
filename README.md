@@ -120,14 +120,20 @@ additional menu flows remain incomplete. See the [screen inventory](analysis/men
 
 The latest desktop-confirmed slice routes all 21 existing leaf controls through a
 shared definition factory. Nested kind-five container construction, identifiers
-and event dispatch are reconstructed and audited with fake backends; the live
-engine container bridge and other widget constructors remain unfinished. The
+and event dispatch are reconstructed; other widget constructors and actual
+options integration remain unfinished. The
 build and existing checks pass; the desktop run ended cleanly after 1003 frames.
 
 An opt-in group diagnostic now connects recovered container state and routing to
 two linked original-engine dummy frames. Its i386 build and existing checks pass;
 desktop validation passed (425 frames, clean teardown). The [options inventory](analysis/menu-options.md)
 records the further widgets and callbacks required before options can work.
+
+The latest desktop-confirmed slice adds recursively owned controls and nested
+focus/key/pointer forwarding, with mixed text/button trees checked under
+sanitizers. Leaf visual lookup is scoped to its bound frame. The updated engine
+diagnostic constructs a three-level tree of five groups from definitions and
+checks duplicate names in separate branches; desktop validation passed (372 frames, clean teardown).
 
 ## Progress
 
@@ -139,11 +145,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **72 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **74 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 68 |
+| Base game client | 17,294 | 0 | 70 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
