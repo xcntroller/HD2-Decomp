@@ -19,6 +19,7 @@ LABEL_IDS = (2101, 2102, 2103, 2104, 2105, 2106, 2107,
              2109, 2110, 2111, 2112, 2115, 2116)
 CONTROL_LABEL_IDS = (2002,)
 CONFIRM_LABEL_IDS = (2000, 2001, 2004)
+RUNTIME_CONFIRM_LABEL_IDS = (2013,)
 MANIFEST = "menu-text-resources.json"
 FORMAT = "hd2-menu-text-resources-v1"
 LIMITATION = "Original loose English static main-menu slice; ANSI Set2 for 800x600 only."
@@ -179,6 +180,7 @@ def _owned_outputs(run: Path) -> set[str]:
 
 
 def stage_menu_text(game: Path, run: Path, *, include_confirm: bool = False,
+                    include_runtime_confirm: bool = False,
                     include_control_text: bool = False) -> dict:
     """Preflight sources/owned destinations, then stage a separate provenance slice."""
     game = Path(game).absolute()
@@ -191,7 +193,8 @@ def stage_menu_text(game: Path, run: Path, *, include_confirm: bool = False,
     if game == run or game in run.parents or run in game.parents:
         raise ValueError("Game and output directories must not overlap")
     source_data = {relative: _read_source(game, relative) for relative in sorted(set(SOURCES.values()))}
-    ids = LABEL_IDS + CONFIRM_LABEL_IDS if include_confirm else LABEL_IDS
+    ids = LABEL_IDS + (CONFIRM_LABEL_IDS if include_confirm else ()) + (
+        RUNTIME_CONFIRM_LABEL_IDS if include_runtime_confirm else ())
     if include_control_text:
         ids += CONTROL_LABEL_IDS
     labels = parse_menu_labels(source_data[TEXT_SOURCE], ids)

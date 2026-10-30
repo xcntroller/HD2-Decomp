@@ -2913,3 +2913,38 @@ Next: concrete owning screen products and engine-backed slot-zero model/children
 input integration, then remaining application callback routes. Keep the broad
 screen checklist open and request desktop validation when the new dialog is
 actually connected. No push or original-install edits.
+
+## 2026-10-30: owning products and slot-zero engine diagnostic
+
+The user desktop-confirmed the live main/slot-four ownership migration. Each
+screen now retains a copied definition and string storage with controls, focus,
+frame and message endpoints in one product. A new opt-in F9 diagnostic constructs
+another original `confirm` model and a separate slot-zero product, binds its four
+children and text objects, and routes the recovered request/key/observer/stack
+protocol through the live queue. The host's frame lookup accepts the original
+trailing-asterisk `byes*`/`bno*` patterns against the staged model names; the
+ordinary slot-four exact-name path is unchanged. Localized OK label 2013 is
+staged only for this diagnostic. It has strict i386/native/Python and isolated
+staging-only validation, but no desktop run yet. F9 is a diagnostic trigger,
+not a recovered application callback. The general factory and application
+routing remain open, with no new function-count credit or commit.
+
+## 2026-10-30: live factory startup and common application-back routing
+
+User desktop-confirmed the slot-zero dialog after prompt-style and keyboard
+transport fixes. Both named screens now use the recovered construction loop
+with separate allocation, definition binding and root initialization; slot zero
+uses its recovered singleton construction helper. Temporary definitions are
+discarded before direct initial selection into an initially empty queue stack.
+Indexed host bindings resolve the original static screen families; the native
+owning vector separately records successful construction order. Resource/model
+loading stays with the existing preloaded engine bridge. Original per-screen
+builders are still explicit unsupported dependencies.
+
+The application router now preserves original five-handler priority, fresh
+current-ID back family checks and reply/deferred ordering. Credits/resume and
+profile cleanup are service boundaries with explicit unsupported defaults.
+No new menu button is enabled. New evidence map has 17 anchors/six calls;
+sanitizer/native/i386 audit, strict host build, native suite and 158 Python
+checks pass. Desktop startup/interaction confirmation is pending. Census stays
+104 partial, zero complete: 00626b20 is absent from the frozen inventory.

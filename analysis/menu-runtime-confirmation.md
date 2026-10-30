@@ -69,15 +69,19 @@ family is zero; the test does not use registry index. It hides/removes that
 screen and clears the previous pointer, without reactivating the underlying
 screen. Missing native runtime bindings are rejected before live stack changes.
 
-These routes are installed in the real menu queue. The current host still binds
-only main/slot-four confirmation; its slot-zero engine product is not constructed.
-The protocol and definition builder therefore enable no new desktop interaction.
+These routes are installed in the real menu queue. The host now constructs a
+separate engine-backed slot-zero model and owning product in an opt-in diagnostic
+(`--menu-confirm --probe-runtime-confirmation`). F9 opens localized Yes/No mode;
+mouse and focused Enter/Space activate a button, Escape dismisses. The Yes reply
+closes the diagnostic host. This path is desktop-confirmed and is not
+yet called by any recovered application observer. The regular Exit path is
+unchanged; the diagnostic disallows engine-mouse/picking combinations for now.
 Services/queue must outlive the stable protocol object, and it must outlive the
 typed button observers that borrow its context.
 
 ## Verification and remaining work
 
-Temporary ASan/UBSan audit passes across all modes, unknown mode words, open
+Earlier temporary ASan/UBSan audit passes across all modes, unknown mode words, open
 guards, raw/localized captions, key forwarding, low-byte Escape, force-close,
 null/inactive/unknown-ID observer paths, reply order and state at submission.
 The integrated audit uses the actual menu queue, screen event runtime, state,
@@ -88,6 +92,18 @@ Constructor success/load failure/binding failure and an ID-family versus index
 stack case also pass. Strict Windows i386 audit compilation, strict host build,
 the existing native suite and nine frontend/seventeen launcher checks pass.
 Temporary audit files are removed; no permanent tests or agent-side Proton run.
+The new host diagnostic compiles under strict i386, and staging-only launch
+preparation validates the additional localized OK label and resources.
+
+The first desktop run constructed/bound all four runtime children and processed
+the F9 request through 02000096, then the renderer rejected missing style 24.
+The host logged 155 frames and clean engine teardown. The style catalogue now
+includes original 00641e30 entries 24/25 (font 2, black, left/vertical center,
+.04/.03 height). A temporary sanitizer audit passes actual definition captions
+and mode-three style through glyph submission. Strict i386/native checks pass;
+the user subsequently confirmed display and keyboard activation work. General
+paragraph wrapping remains open. The latest slice connects the recovered
+constructor helper to this live product; the user desktop-confirmed that change too.
 
 Read-only Ghidra exports are cached in `analysis/work/menu-runtime-confirmation-defined`.
 `tools/DefineRuntimeConfirmationFunctions.java` verifies subclass slots, forwarding

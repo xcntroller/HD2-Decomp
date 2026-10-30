@@ -1,0 +1,128 @@
+{
+  "scope": "00626b20 callback ordering and common back/credits/resume routing. Screen-specific callback bodies, profile cleanup, credits and resume services remain supplied contracts.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "sources": [
+    "recovered/frontend/application_events.h",
+    "recovered/frontend/menu_event_queue.cpp",
+    "recovered/host/menu_screen_factory.h"
+  ],
+  "instruction_anchors": [
+    {
+      "address": "00626b49",
+      "hex": "e892a6ffff84c00f85e0040000",
+      "meaning": "Profile callback then short-circuit on handled"
+    },
+    {
+      "address": "00626b59",
+      "hex": "e862c8000084c00f85d0040000",
+      "meaning": "Multiplayer callback second"
+    },
+    {
+      "address": "00626b69",
+      "hex": "e8c221010084c00f85c0040000",
+      "meaning": "Mission callback third"
+    },
+    {
+      "address": "00626b7d",
+      "hex": "e81e53ffff84c00f85ac040000",
+      "meaning": "Options callback fourth"
+    },
+    {
+      "address": "00626b8d",
+      "hex": "e82eb7000084c00f859c040000",
+      "meaning": "Connection callback fifth"
+    },
+    {
+      "address": "00626b9a",
+      "hex": "8b7f0481e7ff0f0003",
+      "meaning": "Mask event only after all handlers decline"
+    },
+    {
+      "address": "00626cbd",
+      "hex": "c746040c000000",
+      "meaning": "Credits selects application state twelve"
+    },
+    {
+      "address": "00626ce4",
+      "hex": "8b4060c1f81a83e03f3c02",
+      "meaning": "Back tests CURRENT screen identifier family two"
+    },
+    {
+      "address": "00626cf1",
+      "hex": "535353538bcee894bdffff",
+      "meaning": "Profile back cleanup receives four zero words"
+    },
+    {
+      "address": "00626d71",
+      "hex": "c744245000020010",
+      "meaning": "Family fourteen queues deferred-event discard"
+    },
+    {
+      "address": "00626dbf",
+      "hex": "c744246805000002",
+      "meaning": "Family fourteen then queues pop/resume"
+    },
+    {
+      "address": "00626e3a",
+      "hex": "80fa0a",
+      "meaning": "Fresh current-screen query tests family ten"
+    },
+    {
+      "address": "00626e51",
+      "hex": "c784248400000000020010",
+      "meaning": "Family ten also queues deferred-event discard"
+    },
+    {
+      "address": "00626f2f",
+      "hex": "80fa04",
+      "meaning": "Fresh current-screen query tests family four"
+    },
+    {
+      "address": "00626f46",
+      "hex": "c78424d000000000120014",
+      "meaning": "Named confirmation back queues negative reply release"
+    },
+    {
+      "address": "00626fa2",
+      "hex": "c78424ec00000005100006",
+      "meaning": "Named confirmation back then queues pop/resume"
+    },
+    {
+      "address": "00626fe8",
+      "hex": "c78424b800000003000002",
+      "meaning": "Other/empty current screen queues generic back"
+    }
+  ],
+  "vtables": [],
+  "direct_calls": [
+    {
+      "site": "00626b49",
+      "target": "006211e0"
+    },
+    {
+      "site": "00626b59",
+      "target": "006333c0"
+    },
+    {
+      "site": "00626b69",
+      "target": "00638d30"
+    },
+    {
+      "site": "00626b7d",
+      "target": "0061bea0"
+    },
+    {
+      "site": "00626b8d",
+      "target": "006322c0"
+    },
+    {
+      "site": "00626cf7",
+      "target": "00622a90"
+    }
+  ],
+  "resource_anchors": []
+}

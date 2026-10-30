@@ -9,6 +9,9 @@
 #include "host/menu_text.h"
 #include "host/menu_button_visuals.h"
 #include "host/menu_screen_events.h"
+#include "host/menu_screen_product.h"
+#include "host/menu_screen_factory.h"
+#include "frontend/runtime_confirmation.h"
 #include "frontend/menu_event_queue.h"
 #include "frontend/screen_lifecycle.h"
 #include "frontend/pointer_click.h"
@@ -110,16 +113,24 @@ std::uint32_t mouse_buttons_from_message(WPARAM keys) {
 
 class HostMenuEventActions : public hd2::frontend::MenuEventActions {
 public:
-    explicit HostMenuEventActions(bool& confirming) : confirming_(confirming) {}
+    HostMenuEventActions(bool& confirming, bool& runtime_active)
+        : confirming_(confirming), runtime_active_(runtime_active) {}
 
-    void bind_screens(hd2::host::MenuScreenEvents& main, hd2::host::MenuScreenEvents& confirmation) {
-        main_ = &main;
-        confirmation_ = &confirmation;
+    void bind_screen(std::uint32_t index, hd2::host::MenuScreenEvents& screen) {
+        if (index >= screens_.size() || screens_[index])
+            throw std::logic_error("Invalid or duplicate registered screen binding");
+        if ((screen.identifier() >> 26) != index)
+            throw std::logic_error("Registered screen family mismatch");
+        screens_[index] = &screen;
     }
-    bool screen_available(std::uint32_t index) const override { return index == 1 || index == 4; }
+    bool screen_available(std::uint32_t index) const override {
+        return index < screens_.size() && screens_[index] != nullptr;
+    }
     void activate_screen(const hd2::frontend::ScreenRegistration& screen, std::uint32_t focus) override {
         runtime(screen.identifier >> 26).activate(focus);
         confirming_ = screen.identifier == 0x10000000;
+        runtime_active_ = screen.identifier == 0;
+        if (runtime_active_) confirming_ = true;
         if (confirming_) std::puts("Original event flow: confirmation opened");
     }
     void deactivate_screen(const hd2::frontend::ScreenRegistration& screen) override {
@@ -127,6 +138,11 @@ public:
         if (screen.identifier == 0x10000000) {
             confirming_ = false;
             std::puts("Original event flow: confirmation dismissed");
+        }
+        if (screen.identifier == 0) {
+            runtime_active_ = false;
+            confirming_ = false;
+            std::puts("Original event flow: runtime confirmation dismissed");
         }
     }
     bool dispatch_screen_event(std::uint32_t index, hd2::frontend::ControlEvent& event) override {
@@ -138,13 +154,24 @@ public:
     }
 private:
     hd2::host::MenuScreenEvents& runtime(std::uint32_t index) const {
-        auto* screen = index == 1 ? main_ : index == 4 ? confirmation_ : nullptr;
+        auto* screen = index < screens_.size() ? screens_[index] : nullptr;
         if (!screen) throw std::logic_error("Screen event runtime is not bound");
         return *screen;
     }
     bool& confirming_;
-    hd2::host::MenuScreenEvents* main_ = nullptr;
-    hd2::host::MenuScreenEvents* confirmation_ = nullptr;
+    bool& runtime_active_;
+    std::array<hd2::host::MenuScreenEvents*, 64> screens_{};
+};
+
+struct HostRuntimeConfirmationServices {
+    hd2::host::MenuFocus* focus = nullptr;
+    bool screen_key(std::uint32_t word) {
+        if (!focus) throw std::logic_error("Runtime confirmation focus is unbound");
+        return hd2::frontend::screen_key(*focus, word);
+    }
+    std::uint32_t sender_identifier(void* sender) const {
+        return static_cast<hd2::host::ButtonVisualPair*>(sender)->identifier();
+    }
 };
 
 // One host-owned session mirrors the shared input acquired by 0066a6e0 and
@@ -373,7 +400,7 @@ int finish(Graphics* graphics, int result) {
 int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bool menu_model,
                bool menu_ui, bool confirmation_preview, bool confirmation_enabled,
                bool confirmation_pick_probe, bool confirmation_pick_active, bool use_engine_mouse,
-               bool group_probe) {
+               bool group_probe, bool runtime_probe) {
     const auto settings = hd2::host::windowed_settings(
         static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr))));
     const auto* methods = graphics->methods;
@@ -415,7 +442,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         std::unique_ptr<hd2::host::MenuScene> menu;
         if (menu_model) {
             menu = std::make_unique<hd2::host::MenuScene>(
-                module, confirmation_preview, confirmation_enabled, use_engine_mouse);
+                module, confirmation_preview, confirmation_enabled, use_engine_mouse, runtime_probe);
             if (group_probe) hd2::host::probe_menu_group_frames(*menu, module);
             if (sound && sound->initialized()) menu->load_click_sound(module);
         }
@@ -429,22 +456,25 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         bool cursor_drawn = false;
         bool text_drawn = false;
         bool modal_drawn = false;
+        std::optional<hd2::frontend::MenuScreenDefinition> runtime_definition;
         std::unique_ptr<hd2::host::MenuText<Graphics>> text;
-        std::unique_ptr<hd2::host::MenuScreenControls> buttons;
+        std::unique_ptr<hd2::host::MenuScreenControls> preview_buttons;
+        hd2::host::MenuScreenControls* buttons = nullptr;
         hd2::host::ExitButton exit_button;
         hd2::frontend::PointerClick confirmation_exit_click;
         hd2::frontend::PointerClick confirmation_click;
         hd2::host::PointerDispatchProbe confirmation_probe_input;
         std::optional<hd2::host::CursorPoint> confirmation_probe_point;
         std::optional<DWORD> confirmation_probe_time;
-        std::unique_ptr<hd2::host::MenuScreenControls> confirmation_controls;
+        hd2::host::MenuScreenControls* confirmation_controls = nullptr;
         bool confirming = false;
+        bool runtime_active = false;
         int previous_confirm_hover = 0;
         std::optional<hd2::host::CursorPoint> previous_confirmation_point;
         MenuInputSession input_session;
-        std::optional<hd2::host::MenuFocus> confirmation_focus;
+        hd2::host::MenuFocus* confirmation_focus = nullptr;
         std::optional<MenuFrameInput<hd2::host::MenuFocus>> frame_input;
-        std::optional<hd2::host::MenuFocus> main_focus;
+        hd2::host::MenuFocus* main_focus = nullptr;
         std::optional<MenuFrameInput<hd2::host::MenuFocus>> main_frame_input;
         std::unique_ptr<hd2::host::EngineMouse> engine_mouse;
         std::optional<std::uint32_t> previous_mouse_status;
@@ -452,31 +482,55 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         std::optional<std::array<std::uint32_t, 2>> previous_pick_probe;
         std::optional<HostMenuEventActions> menu_actions;
         std::optional<hd2::frontend::MenuEventQueue> menu_events;
-        std::optional<hd2::host::MenuScreenFrame> main_screen_frame;
-        std::optional<hd2::host::MenuScreenFrame> confirmation_screen_frame;
-        std::optional<hd2::host::MenuScreenEvents> main_screen_events;
-        std::optional<hd2::host::MenuScreenEvents> confirmation_screen_events;
+        HostRuntimeConfirmationServices runtime_services;
+        std::unique_ptr<hd2::frontend::RuntimeConfirmation<HostRuntimeConfirmationServices>> runtime_confirmation;
+        hd2::frontend::OwnedScreens<hd2::host::MenuScreenProduct> named_products;
+        std::unique_ptr<hd2::host::MenuScreenProduct> runtime_product;
         std::optional<MenuKeyboardInput> keyboard_input;
         const auto confirmation_hit_for_target = [&](std::uint32_t target) {
             if (!confirmation_focus) throw std::logic_error("Confirmation screen is not constructed");
             return std::max(0, confirmation_focus->interactive_control_for_target(target));
+        };
+        const auto active_confirmation_focus = [&]() -> hd2::host::MenuFocus& {
+            return runtime_active ? runtime_product->focus() : *confirmation_focus;
+        };
+        const auto active_confirmation_controls = [&]() -> hd2::host::MenuScreenControls& {
+            return runtime_active ? runtime_product->controls() : *confirmation_controls;
         };
         if (menu_ui) {
             if (!expected_method(methods->viewport, module, 0x6c2b0)) {
                 throw std::runtime_error("Unsupported original viewport getter ABI");
             }
             if (confirmation_enabled) menu->initialize_confirmation_text_frame(module);
+            if (runtime_probe) menu->initialize_confirmation_text_frame(module, menu->runtime_confirmation_frame());
             text = std::make_unique<hd2::host::MenuText<Graphics>>(
-                graphics, module, *menu, confirmation_enabled);
-            buttons = hd2::host::make_menu_controls(
-                *menu, module, hd2::frontend::main_menu_definition(), false,
-                std::initializer_list<MenuRole>{MenuRole::exit},
-                [&](std::uint32_t id) { return text->object_for(id); });
+                graphics, module, *menu, confirmation_enabled, runtime_probe);
             if (confirmation_enabled) {
-                confirmation_controls = hd2::host::make_menu_controls(
-                    *menu, module, hd2::frontend::confirmation_definition(), true,
-                    std::initializer_list<MenuRole>{MenuRole::yes, MenuRole::no},
-                    [&](std::uint32_t id) { return text->object_for(id); });
+                menu_actions.emplace(confirming, runtime_active);
+                menu_events.emplace(*menu_actions, false);
+                if (runtime_probe) {
+                    runtime_confirmation = std::make_unique<hd2::frontend::RuntimeConfirmation<HostRuntimeConfirmationServices>>(
+                        runtime_services, *menu_events);
+                    runtime_definition.emplace(runtime_confirmation->definition());
+                    text->attach_runtime_definition(*menu, module, *runtime_definition);
+                }
+                if (runtime_probe) {
+                    hd2::host::RuntimeMenuScreenFactory<HostMenuEventActions> runtime_factory(
+                        *menu, module, *runtime_definition,
+                        [&](std::uint32_t id) { return text->object_for(id); },
+                        *menu_events, runtime_product, *menu_actions);
+                    if (!hd2::frontend::construct_runtime_confirmation(runtime_factory))
+                        throw std::runtime_error("Runtime confirmation construction failed");
+                    runtime_services.focus = &runtime_product->focus();
+                }
+                hd2::host::MenuScreenFactory<HostMenuEventActions> factory(*menu, module,
+                    [&](std::uint32_t id) { return text->object_for(id); },
+                    *menu_events, named_products, *menu_actions);
+                hd2::frontend::construct_registered_screens(factory);
+                buttons = &named_products.screen(0).controls();
+                confirmation_controls = &named_products.screen(1).controls();
+                main_focus = &named_products.screen(0).focus();
+                confirmation_focus = &named_products.screen(1).focus();
                 if (confirmation_pick_probe || confirmation_pick_active) {
                     confirmation_controls->bind_pick_targets();
                 }
@@ -487,25 +541,10 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 if (confirmation_pick_active) {
                     std::puts("Confirmation engine picking controls hover and activation");
                 }
-                menu_actions.emplace(confirming);
-                menu_events.emplace(*menu_actions);
-                confirmation_focus.emplace(hd2::frontend::confirmation_definition(), *menu_events);
-                confirmation_controls->bind_screen(*confirmation_focus);
-                main_focus.emplace(hd2::frontend::main_menu_definition(), *menu_events);
-                buttons->bind_screen(*main_focus);
-                main_screen_frame.emplace(*menu, module, false, *main_focus);
-                confirmation_screen_frame.emplace(*menu, module, true, *confirmation_focus);
-                main_screen_events.emplace(hd2::frontend::main_menu_definition(), *main_screen_frame, *menu_events);
-                confirmation_screen_events.emplace(hd2::frontend::confirmation_definition(), *confirmation_screen_frame, *menu_events);
-                hd2::host::bind_screen_messages(*main_screen_events, hd2::frontend::main_menu_definition(),
-                                               *buttons);
-                hd2::host::bind_screen_messages(*confirmation_screen_events, hd2::frontend::confirmation_definition(),
-                                               *confirmation_controls);
-                menu_actions->bind_screens(*main_screen_events, *confirmation_screen_events);
                 std::puts("Registered screen event trees ready: 17 main / 4 confirmation children");
+                keyboard_input.emplace(input_session, *main_focus, *confirmation_focus,
+                                       *menu_events, confirming);
                 if (use_engine_mouse) {
-                    keyboard_input.emplace(input_session, *main_focus, *confirmation_focus,
-                                           *menu_events, confirming);
                     buttons->bind_pick_targets();
                     main_frame_input.emplace(input_session, *main_focus, [&](const hd2::host::CursorPoint& point) {
                         return main_focus->interactive_target(menu->pick_main_menu(
@@ -530,6 +569,12 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                     engine_mouse = std::make_unique<hd2::host::EngineMouse>(
                         reinterpret_cast<hd2::host::EngineFrame*>(graphics), module);
                 }
+            } else {
+                preview_buttons = hd2::host::make_menu_controls(
+                    *menu, module, hd2::frontend::main_menu_definition(), false,
+                    std::initializer_list<MenuRole>{MenuRole::exit},
+                    [&](std::uint32_t id) { return text->object_for(id); });
+                buttons = preview_buttons.get();
             }
         }
         if (confirmation_preview) {
@@ -561,6 +606,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 : std::uint32_t{0};
         };
         const auto confirmation_hit = [&](const std::optional<hd2::host::CursorPoint>& point) {
+            if (runtime_active) return text->confirmation_hit(*runtime_definition, point);
             return confirmation_pick_active
                 ? confirmation_hit_for_target(pick_confirmation(point))
                 : text->confirmation_hit(point);
@@ -622,7 +668,35 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                         }
                     }
                 }
-                if (use_engine_mouse && message.message == WM_KEYDOWN &&
+                if (runtime_probe && !confirming && message.message == WM_KEYDOWN &&
+                    message.wParam == VK_F9 &&
+                    (static_cast<std::uintptr_t>(message.lParam) & (1u << 30)) == 0 &&
+                    GetForegroundWindow() == window) {
+                    previous_confirm_hover = 0;
+                    confirmation_click.clear();
+                    runtime_confirmation->open_localized(1, 2004, 0x02000004, 0);
+                    menu_events->pump();
+                    std::puts("Runtime confirmation diagnostic opened by F9");
+                    continue;
+                }
+                if (runtime_active && message.message == WM_KEYDOWN &&
+                    (message.wParam == VK_RETURN || message.wParam == VK_SPACE ||
+                     message.wParam == VK_ESCAPE)) {
+                    if ((static_cast<std::uintptr_t>(message.lParam) & (1u << 30)) == 0 &&
+                        GetForegroundWindow() == window) {
+                        const auto scan = message.wParam == VK_ESCAPE ? 0x01u :
+                            message.wParam == VK_SPACE ? 0x39u :
+                            ((static_cast<std::uintptr_t>(message.lParam) & (1u << 24)) != 0
+                                ? 0x9cu : 0x1cu);
+                        const bool handled = runtime_confirmation->key(scan);
+                        std::printf("Menu keyboard: screen=runtime-confirmation scan=%02x handled=%u\n",
+                                    scan, static_cast<unsigned>(handled));
+                        menu_events->pump();
+                        if (!running) break;
+                    }
+                    continue;
+                }
+                if (keyboard_input && message.message == WM_KEYDOWN &&
                     (message.wParam == VK_RETURN || message.wParam == VK_SPACE ||
                      message.wParam == VK_ESCAPE)) {
                     // Host transport only: map Win32 make/extended bits to the
@@ -663,16 +737,17 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                         const bool matched = confirmation_click.release(hit);
                         if (hit != 0 && matched) {
                             int result;
-                            if (confirmation_focus->focused_control() == hit) {
+                            auto& active_focus = active_confirmation_focus();
+                            if (active_focus.focused_control() == hit) {
                                 std::printf("Confirmation click: routed through focused control %d\n",
                                             hit);
                                 result = hd2::frontend::screen_click(
-                                    *confirmation_focus, confirmation_focus->target_for_control(hit));
+                                    active_focus, active_focus.target_for_control(hit));
                             } else {
                                 std::printf("Confirmation click: sampled focus=%d target=%d; "
                                             "using host target selection\n",
-                                            confirmation_focus->focused_control(), hit);
-                                auto& button = confirmation_controls->control_at(hit);
+                                            active_focus.focused_control(), hit);
+                                auto& button = active_confirmation_controls().control_at(hit);
                                 result = button.click(*menu_events);
                             }
                             if (result != 1) {
@@ -765,7 +840,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 const int rectangle_hit = confirming ? text->confirmation_hit(point) : 0;
                 const int hover = confirmation_pick_active
                     ? confirmation_hit_for_target(picked) : rectangle_hit;
-                frame_target = confirming ? confirmation_focus->target_for_control(hover)
+                frame_target = confirming ? active_confirmation_focus().target_for_control(hover)
                     : exit_hover ? buttons->target_for_role(MenuRole::exit) : 0u;
                 const bool moved = confirmation_pick_active && confirming && point &&
                     previous_confirmation_point &&
@@ -780,7 +855,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 }
                 if ((hover != previous_confirm_hover || (moved && !use_engine_mouse)) && confirmation_enabled) {
                     if (hd2::frontend::screen_pointer_focus(
-                            *confirmation_focus, confirmation_focus->target_for_control(hover)) == 0) {
+                            active_confirmation_focus(), active_confirmation_focus().target_for_control(hover)) == 0) {
                         throw std::logic_error("Confirmation focus transition failed");
                     }
                     previous_confirm_hover = hover;
@@ -816,6 +891,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             }
             if (menu) {
                 if (confirming) menu->set_confirmation_visible(module, false);
+                if (runtime_active) menu->set_screen_visible(module, menu->runtime_confirmation_frame(), false);
                 const auto render_status = menu->render();
                 if (render_status < 0) {
                     std::fprintf(stderr, "Menu scene render failed: 0x%08x\n",
@@ -831,7 +907,8 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             if (text) {
                 text->draw(exit_hover);
                 if (confirming) {
-                    hd2::host::MenuScene::ModalPass modal(*menu, module);
+                    hd2::host::MenuScene::ModalPass modal(*menu, module,
+                        runtime_active ? menu->runtime_confirmation_frame() : nullptr);
                     const auto status = menu->render();
                     if (status < 0) {
                         std::fprintf(stderr, "Confirmation scene render failed: 0x%08x\n",
@@ -839,7 +916,8 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                         result = 1;
                         break;
                     }
-                    text->draw(false, true, previous_confirm_hover);
+                    if (runtime_active) text->draw_runtime_confirmation(*runtime_definition, previous_confirm_hover);
+                    else text->draw(false, true, previous_confirm_hover);
                     if (!modal.restore()) {
                         throw std::runtime_error("Cannot restore original modal render state");
                     }
@@ -914,7 +992,7 @@ int wmain(int argc, wchar_t** argv) {
     if (argc < 2) {
         std::fputs("Usage: engine_window.exe ABSOLUTE_ENGINE_DLL [--frames COUNT] "
                    "[--menu-model | --menu-ui | --confirm-model | --menu-confirm] "
-                   "[--probe-confirm-picking] [--use-confirm-picking] [--use-engine-mouse] [--probe-groups]\n"
+                   "[--probe-confirm-picking] [--use-confirm-picking] [--use-engine-mouse] [--probe-groups] [--probe-runtime-confirmation]\n"
                    "Use the fingerprint-checking Python launcher. Default: 180 frames; "
                    "0 waits for Escape/Close.\n", stderr);
         return 2;
@@ -928,6 +1006,7 @@ int wmain(int argc, wchar_t** argv) {
     bool confirmation_pick_active = false;
     bool use_engine_mouse = false;
     bool group_probe = false;
+    bool runtime_probe = false;
     bool frames_seen = false;
     try {
         for (int i = 2; i < argc; ++i) {
@@ -953,6 +1032,8 @@ int wmain(int argc, wchar_t** argv) {
                 use_engine_mouse = true;
             } else if (std::wstring_view(argv[i]) == L"--probe-groups" && !group_probe) {
                 group_probe = true;
+            } else if (std::wstring_view(argv[i]) == L"--probe-runtime-confirmation" && !runtime_probe) {
+                runtime_probe = true;
             } else if (std::wstring_view(argv[i]) == L"--frames" &&
                        !frames_seen && i + 1 < argc) {
                 frame_limit = hd2::host::parse_frame_limit(argv[++i]);
@@ -969,6 +1050,10 @@ int wmain(int argc, wchar_t** argv) {
         }
         if (group_probe && !confirmation_enabled) {
             throw std::invalid_argument("Group probe requires --menu-confirm");
+        }
+        if (runtime_probe && (!confirmation_enabled || confirmation_pick_probe ||
+                              confirmation_pick_active || use_engine_mouse)) {
+            throw std::invalid_argument("Runtime confirmation probe requires --menu-confirm without picking or engine mouse");
         }
     } catch (const std::invalid_argument& error) {
         std::fprintf(stderr, "%s\n", error.what());
@@ -996,7 +1081,7 @@ int wmain(int argc, wchar_t** argv) {
         } else {
             result = run_window(graphics, module, frame_limit, menu_model, menu_ui,
                                 confirmation_preview, confirmation_enabled, confirmation_pick_probe,
-                                confirmation_pick_active, use_engine_mouse, group_probe);
+                                confirmation_pick_active, use_engine_mouse, group_probe, runtime_probe);
         }
     }
     if (!FreeLibrary(module)) {

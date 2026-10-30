@@ -6,6 +6,16 @@
 
 namespace hd2::frontend {
 
+void MenuEventActions::profile_back_cleanup() {
+    throw std::logic_error("Profile back service is not reconstructed");
+}
+void MenuEventActions::select_application_state(std::uint32_t) {
+    throw std::logic_error("Application state service is not reconstructed");
+}
+void MenuEventActions::resume_last_save() {
+    throw std::logic_error("Resume/save service is not reconstructed");
+}
+
 void MenuEventQueue::dispatch_local(ControlEvent&) {
     throw std::logic_error("Local control event dispatch is not implemented");
 }
@@ -62,15 +72,6 @@ void MenuEventQueue::route(ControlEvent event) {
     }
 
     switch (event.code & 0x03000fff) {
-    case 0x0200000a:
-        // Derived menu callback 00626b20 uses the CURRENT stack, not the
-        // identifier captured in the queued keyboard event. Bounded to the
-        // main menu / confirmation; original screen 2/14/10 cases are absent.
-        if (!screens_.current()) break;
-        if (screens_.current_index() == 4) cancel_confirmation();
-        else if (screens_.current_index() == 1) enqueue({0, 0x02000003, 0, 0, 0, {}});
-        else throw std::logic_error("Unsupported keyboard back screen");
-        break;
     case 0x02000003:
         if (screens_.size() == 1) {
             enqueue({0, 0x02000002, 4, 0, 0, {}});
@@ -100,6 +101,28 @@ void MenuEventQueue::route(ControlEvent event) {
         actions_.quit();
         break;
     default:
+        route_application(event);
+    }
+}
+
+void MenuEventQueue::route_application(ControlEvent& event) {
+    struct Services {
+        MenuEventActions& actions;
+        MenuEventQueue& queue;
+        bool dispatch_handler(MenuApplicationHandler handler, ControlEvent& value) {
+            return actions.dispatch_menu_handler(handler, value);
+        }
+        std::optional<std::uint32_t> current_identifier() const {
+            const auto* screen = queue.screens().current();
+            if (!screen) return std::nullopt;
+            return screen->identifier;
+        }
+        void profile_back_cleanup() { actions.profile_back_cleanup(); }
+        void select_application_state(std::uint32_t state) { actions.select_application_state(state); }
+        void resume_last_save() { actions.resume_last_save(); }
+        void enqueue(const ControlEvent& value) { queue.enqueue(value); }
+    } services{actions_, *this};
+    if (!dispatch_menu_application_event(services, event)) {
         throw std::logic_error("Unsupported front-end event");
     }
 }

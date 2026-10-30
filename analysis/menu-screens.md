@@ -118,3 +118,38 @@ callbacks and remaining application routing are still open.
 Next implementation dependency: recover original observer/data callbacks and
 nested group construction, then choose a flow whose data/controller boundary
 can be completed. Do not enable another button solely because its model loads.
+
+## 2026-10-30: live construction and application routing integration
+
+The main/confirmation host now calls `construct_registered_screens` through
+`host/menu_screen_factory.h`. Engine model loading remains a supplied resource
+service: this adapter receives the existing preloaded model roots. Each product
+separately allocates, copies/binds a definition, initializes mutable root records
+and enters `OwnedScreens`. Factory definitions are destroyed before direct
+02000001 initial selection; the queue starts empty rather than pre-seeding a
+screen. Host event bindings now use an indexed family table. The native owner
+contains only two implemented named screens in construction order; the host's
+original static event registry remains at indices 1/4, with slot zero separate.
+No unavailable screen builder is silently treated as successful.
+
+The slot-zero engine/input path was user desktop-confirmed before this slice.
+It now uses the separate `construct_runtime_confirmation` adapter, installs its
+owner before binding and registers after success without root initialization.
+This factory startup integration is user desktop-confirmed (732 frames, clean teardown).
+
+`frontend/application_events.h` recovers the five 00626b20 callback-service
+priorities and common current-screen back routing, including profile cleanup,
+family 14/10 deferred discard/pop, family four cancellation and generic back.
+Credits selects state 12 through a service; resume remains a service rather
+than reconstructing the unreliable exported save-string body. Concrete screen
+callbacks, application transitions and remaining common dispatcher service cases
+remain open. Unknown derived events retain the host's explicit failure instead
+of the original silent ignore. The [routing map](menu-application-routing-map.json)
+validates 17 original anchors and six calls. 00626b20 is absent from the frozen
+inventory; existing partial-function coverage expands without count credit.
+
+Temporary sanitizer/native/i386 audit covers factory stage order, definition
+teardown before startup selection, direct selection before pending work,
+runtime singleton stages, all 64 back families, callback precedence, and actual
+queue deferred quit/cancel behavior. Strict host build, existing native suite
+and 158 Python checks pass. No permanent tests or agent-side Proton run.

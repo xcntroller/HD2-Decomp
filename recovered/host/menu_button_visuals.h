@@ -73,7 +73,9 @@ public:
     void bind_pick_target(std::uint32_t target) const {
         std::memcpy(reinterpret_cast<unsigned char*>(normal_) + 0xec, &target, sizeof(target));
         std::memcpy(reinterpret_cast<unsigned char*>(active_) + 0xec, &target, sizeof(target));
+        identifier_ = target;
     }
+    std::uint32_t identifier() const { return identifier_; }
 
     bool apply(bool hover) {
         if (!events_bound_) throw std::logic_error("Button events are not bound");
@@ -212,6 +214,7 @@ private:
     bool events_bound_ = false;
     bool pointer_move_logged_ = false;
     std::uint32_t pointer_events_logged_ = 0;
+    mutable std::uint32_t identifier_ = 0;
 };
 
 }

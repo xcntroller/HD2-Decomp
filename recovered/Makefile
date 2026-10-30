@@ -61,6 +61,9 @@ $(BUILD_DIR)/engine_window.exe: host/engine_window.cpp host/graphics_settings.h 
 	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/engine_window.cpp host/bitmap_font.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp -o "$@"
 
 $(BUILD_DIR)/engine_window.exe: frontend/container_input.h frontend/defined_control_tree.h host/menu_control_tree.h
+$(BUILD_DIR)/engine_window.exe: host/menu_screen_product.h frontend/runtime_confirmation.h
+$(BUILD_DIR)/engine_window.exe: host/menu_screen_factory.h frontend/screen_construction.h frontend/owned_screens.h
+$(BUILD_DIR)/engine_window.exe: frontend/application_events.h
 
 test: all
 	"$(BUILD_DIR)/chunk_reader_tests"

@@ -71,18 +71,22 @@ profiles and other real screens, rather than expanding this section indefinitely
   path. Original 17/four child slots, button definitions and supported event
   bindings are centralized; the two specialized adapters are removed.
 - [ ] Recover screen creation, binding, lifetime, push/pop and general event dispatch.
-  Registered stack, regular/modal transition distinction, pop/back/resume and
-  visibility/focus lifecycle integrated and desktop-confirmed for the two live
-  screens. Targeted screen/child delivery and native observer plumbing are
-  integrated, audited and desktop-confirmed. Shared factory loop and screen +8c
-  binding now reconstructed with typed builder hooks, mutable root initialization,
-  retained metadata and an owning registry accepted by the shared stack; native
-  sanitizer/i386 audits pass. The host still uses its two-screen construction.
-  Slot-zero definition/request/reply/key protocol, construction ordering and
-  02000096/97 routing are now native-audited; actual engine slot-zero product/input
-  binding is absent. Concrete builder/backend integration, application callbacks
-  and remaining routing stay open. See [screen notes](analysis/menu-screens.md)
-  and [modal evidence](analysis/menu-runtime-confirmation.md).
+  Stack/lifecycle, targeted screen/child messages, observers and native ownership
+  are desktop-confirmed. Slot-zero engine model/text/buttons, request/reply,
+  Escape and keyboard activation are now desktop-confirmed too.
+  The live host now runs the recovered registered-screen factory for main and
+  confirmation, with separate allocate/bind/root-initialize/register stages,
+  temporary-definition teardown and direct initial selection. Slot zero runs
+  its separate recovered install-before-bind helper without root initialization.
+  Indexed runtime bindings replace the three special-case host bindings.
+  This factory startup change is desktop-confirmed (732 frames, clean teardown).
+  Application routing now preserves five callback-service priorities, current-ID
+  back rules for families 2/14/10/4 and generic back, with explicit credits/resume
+  service boundaries. Sanitizer/native/i386 audits pass. Callback/builder bodies
+  for unavailable screens, original resource-cache loading and remaining common
+  event services are unfinished. See [screen notes](analysis/menu-screens.md),
+  [application routing](analysis/menu-application-routing-map.json) and
+  [modal evidence](analysis/menu-runtime-confirmation.md).
 - [x] Integrate bounded recursive kind-five construction, ownership and input routing.
   Implemented with existing leaf backends; mixed-tree sanitizer/i386 audits pass.
   Updated five-frame engine diagnostic desktop-confirmed (372 frames). Actual
@@ -98,11 +102,11 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current session checkpoint: shared-state entry complete; screen construction and
-slot-zero protocol recovered and native-audited. User confirmed the preceding
-screen metadata/stack changes (380 frames, clean teardown). Next work is concrete
-screen-product ownership and engine-backed slot-zero integration, followed by
-remaining application callbacks. The broad screen entry above remains open.
+Current session checkpoint: live slot-zero model/input and keyboard fix are
+user desktop-confirmed. Shared factory construction and application-back routing
+are integrated, audited and desktop-confirmed (732 frames, clean teardown).
+The broad screen entry stays open for remaining common event services; actual
+screen-specific callback/builder bodies remain dependencies of their real flows.
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,

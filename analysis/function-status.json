@@ -893,7 +893,7 @@
       "entry": "0066c950",
       "status": "partial",
       "coverage": "Deferred storage/release/discard and Exit replies; registered ScreenStack replaces depth counter. Regular select hides then pushes without changing +f8. Modal push retains old visibility, saves +f8 and activates with 10200000. Pop clears +f8, generic back preserves it; both resume current screen. Targeted events select any bound registered screen using target high six bits, preserving deferred/reply priority and ignoring screen return. Slot-zero 02000096 saves previous/pushes with focus zero; 02000097 tests current identifier family, hides/removes/clears previous without reactivating underneath.",
-      "limitations": "Native registry/vector replaces original global segmented deque/class ABI. Host binds only main/confirmation; slot-zero routing is integrated and native-audited with fake screen services, but concrete slot-zero engine/product binding, remaining application transitions/capture and other routing cases remain unfinished. Unsupported bindings fail before live state changes.",
+      "limitations": "Native registry/vector replaces original global segmented deque/class ABI. Main/confirmation and opt-in slot-zero engine products are desktop-confirmed; live factory startup is desktop-confirmed. Remaining application transitions/capture and other common routing cases remain unfinished. Unsupported bindings fail before live state changes.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/menu_event_queue.h",
@@ -904,7 +904,9 @@
         "recovered/frontend/screen_registry.h",
         "recovered/frontend/defined_screen_events.h",
         "recovered/host/menu_screen_events.h",
-        "analysis/menu-runtime-confirmation-map.json"
+        "analysis/menu-runtime-confirmation-map.json",
+        "recovered/frontend/application_events.h",
+        "analysis/menu-application-routing-map.json"
       ]
     },
     {
@@ -1208,12 +1210,14 @@
       "entry": "00627060",
       "status": "partial",
       "coverage": "Portable registered-screen construction loop: fresh definition traversal, model-load skip, eleven typed builder routes, confirmation position, +8c binding gate, mutable +70 initialization, successful-product insertion, definition teardown then direct initial selection.",
-      "limitations": "Model/resource loading, original screen constructors, eleven screen-specific builders and application services remain supplied backend contracts. Native unique ownership replaces original vector/SEH/class ABI; rejected products are reclaimed rather than leaked, and null allocation throws. The generalized factory is native-audited with fake services; the host still constructs its two supported screens through its existing path.",
+      "limitations": "Original resource loading/cache, screen-specific builders and original screen/SEH/class ABI remain supplied backend contracts. Native products retain definitions/strings and children. The live main/confirmation host now runs the recovered factory with preloaded engine models and an owning product registry; initial direct selection happens after temporary definitions are discarded. Native registry order is separate from the bounded host static identifier-family lookup.",
       "evidence": [
         "analysis/menu-screen-construction-map.json",
         "recovered/frontend/screen_construction.h",
         "recovered/frontend/defined_screen_events.h",
-        "recovered/frontend/owned_screens.h"
+        "recovered/frontend/owned_screens.h",
+        "recovered/host/menu_screen_factory.h",
+        "recovered/host/menu_screen_product.h"
       ]
     },
     {

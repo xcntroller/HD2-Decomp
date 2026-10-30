@@ -1,5 +1,110 @@
 # Session handoff - 2026-10-30
 
+## Committed checkpoint: live shared factory and application-back router
+
+User confirms the slot-zero diagnostic and keyboard fix now work. New slice:
+`host/menu_screen_factory.h` connects actual main/confirmation engine model roots
+to `construct_registered_screens`; products now have separate allocation/binding
+and root-initialization stages. `OwnedScreens` retains both named products;
+temporary factory definitions die before direct initial main selection. Queue
+can start empty for factory startup. Host screen bindings are indexed by ID
+family rather than three special pointers. The host retains static original
+registry indices 1/4; native owner indices 0/1 represent successful construction
+order and must not be confused with them. Unsupported models/builders throw.
+The scene/resource bridge still supplies preloaded model roots and session text.
+
+Slot zero now also uses its recovered constructor helper: singleton ownership
+is installed before binding, registration follows successful binding, no root
+initialization. No additional action is enabled. Both existing desktop commands
+remain applicable (ordinary engine mouse and F9 diagnostic).
+
+New `frontend/application_events.h` recovers 00626b20's five service priorities,
+fresh current-ID back tests for families 2/14/10/4, generic back and explicit
+credits/resume delegation. The real queue uses it. Screen-specific callback
+bodies and profile cleanup/credits/resume implementations remain unavailable;
+they do not become no-op successful flows. Unknown events still fail explicitly
+in the bounded host. Remaining common dispatcher service cases are open.
+
+Strict i386 host build, native suite and 158 tool Python checks pass. Temporary
+ASan/UBSan plus strict i386 audit covers startup selection before pending work,
+definition teardown, owning registration, runtime construction stages, callback
+precedence, all 64 ID-family back cases and real deferred quit/cancel queue.
+The new map validates 17 original byte anchors and six calls. 00626b20 is absent
+from the frozen inventory, so no census count change: 104 partial, zero complete.
+Temporary audits removed. User desktop-confirmed the complete slice and requested
+a local commit. Latest log: 732 frames, keyboard confirmation and clean teardown.
+No agent-side Proton launch. Earlier no-commit notes below are historical.
+
+Next desktop checks: ordinary Exit -> No, Escape, keyboard confirmation and
+Exit -> Yes; separately F9 -> No/Escape, reopen and keyboard Yes. Then continue
+the shared entry's remaining common service routes and concrete next-screen
+builders; do not mark the broad entry complete merely from this integration.
+
+## Latest fix: keyboard transport independent of mouse mode
+
+User confirms the prompt-style fix works, but keyboard activation regressed.
+The diagnostic command excludes engine mouse, while ordinary keyboard adapter
+construction and WM_KEYDOWN delivery were still gated by `use_engine_mouse`.
+Both are now enabled whenever the registered screen keyboard adapter exists.
+Runtime keys retain their subclass route; added handled/scan logging and stop
+message processing immediately after a runtime affirmative quits. Strict i386
+build and 158 Python checks pass. Desktop retest pending; no commit.
+Use the same runtime diagnostic command below and check hovered Exit/Yes/No
+Enter/Space, Escape, and F9 dialog activation.
+
+## Latest fix: runtime prompt style support, awaiting desktop retest
+
+User's slot-zero diagnostic reached F9/open successfully, then exited cleanly
+after 155 frames with `Unsupported original text style layout`. Engine binding,
+four-child construction and 02000096 push succeeded. The glyph style catalogue
+omitted runtime prompt styles 24/25. Added their original 00641e30 values:
+font 2, black, left/vertically centered, heights .04/.03. No general paragraph
+wrapping is claimed. Temporary ASan/UBSan audit submits all four actual runtime
+definition captions and style 25 through the real glyph helper; strict i386
+build and existing native suite pass. Temporary audit removed. No commit or
+agent-side Proton run. Retest with the runtime diagnostic command below.
+
+## Current uncommitted slice: owning live screen products
+
+The user desktop-tested the product ownership migration and reported it works.
+Do not commit the current combined interactive slice until the new slot-zero
+diagnostic is desktop-tested as well.
+
+New opt-in `--probe-runtime-confirmation` with `--menu-confirm` constructs a
+separate original `confirm` engine model, an owning screen product with four
+children, copied definitions, attached bitmap text and the recovered runtime
+protocol. It registers slot zero in the real queue/stack and routes mouse
+clicks, focus, Enter/Space and Escape. F9 opens a localized Yes/No diagnostic;
+Yes submits a quit reply, No/Escape dismiss. Pattern frame lookup supports
+the original `byes*`/`bno*` definitions against the model's `byes?`/`bno?`
+frames. It is gated separately from the confirmed Exit flow and currently
+disallows engine-mouse/picking combinations. The application callback that
+normally requests this dialog remains unrecovered. The broad screen checklist
+entry stays open.
+
+Strict i386 build and 158 tool Python checks pass. Staging-only launch
+preparation completed with the extra OK label; no Proton launch. User desktop
+command: `python3 -B tools/run_engine_window.py --menu-confirm --probe-runtime-confirmation --frames 0`.
+Check F9, hover, Yes/No, keyboard Enter/Space on a focused button, Escape,
+reopen after No/Escape, and clean shutdown. If the model binding fails, the
+first error and host log are the useful evidence. No new function census credit
+is claimed for this host integration.
+
+The live `--menu-confirm` main/confirmation path now builds each screen through
+`host/menu_screen_product.h`: one product retains copied definition strings,
+controls, focus, frame and event endpoints in destruction-safe order. The
+scene, text store and queue remain session services and outlive both products.
+The `--menu-ui` path without confirmation still builds only its bounded preview
+controls. Original `screen_construction.h` generalized factory is not yet the
+live construction path; the new slot-zero diagnostic awaits desktop validation.
+
+Strict i386 host build, existing native suite and 158 tool Python checks pass.
+No agent-side Proton run. Earlier diagnostic command:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --probe-groups --frames 0`
+Check Exit, No, Escape and Yes with pointer and keyboard and normal teardown.
+The repository contains uncommitted host, launcher, staging and documentation
+changes. The last committed checkpoint remains `44c2053`.
+
 ## Resume here: slot-zero modal protocol audited; engine product integration next
 
 User desktop-confirmed the preceding screen construction/metadata slice; log

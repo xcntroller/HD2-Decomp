@@ -126,7 +126,7 @@ template<class Graphics>
 class MenuText {
 public:
     MenuText(Graphics* graphics, HMODULE module, const MenuScene& scene,
-             bool confirmation_enabled = false)
+             bool confirmation_enabled = false, bool runtime_confirmation_enabled = false)
         : graphics_(graphics), big_(nullptr, nullptr), small_(nullptr, nullptr),
           big_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\BIG.tbl"))),
           small_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\SMALL.tbl"))),
@@ -139,6 +139,7 @@ public:
         };
         require_captions(frontend::main_menu_definition());
         if (confirmation_enabled) require_captions(frontend::confirmation_definition());
+        if (runtime_confirmation_enabled) required.insert(2013);
         if (labels_.size() != required.size()) throw std::runtime_error("Incorrect staged control caption count");
         for (const auto id : required) if (labels_.find(id) == labels_.end()) {
             throw std::runtime_error("Missing original control caption");
@@ -168,6 +169,13 @@ public:
 
     MenuTextObject* object_for(std::uint32_t identifier) const { return objects_.at(identifier).get(); }
 
+    // The runtime dialog definition is produced after the queue exists. Its
+    // owner must outlive these attached text objects.
+    void attach_runtime_definition(const MenuScene& scene, HMODULE module,
+                                   const frontend::MenuScreenDefinition& definition) {
+        create_objects(scene, module, definition, true);
+    }
+
     bool over_exit(const std::optional<CursorPoint>& point) const {
         if (!point) return false;
         for (const auto& entry : frontend::main_menu_definition().controls) {
@@ -180,11 +188,15 @@ public:
     }
 
     int confirmation_hit(const std::optional<CursorPoint>& point) const {
+        return confirmation_hit(frontend::confirmation_definition(), point);
+    }
+    int confirmation_hit(const frontend::MenuScreenDefinition& definition,
+                         const std::optional<CursorPoint>& point) const {
         if (!point) return 0;
-        const auto& definition = frontend::confirmation_definition();
         for (std::size_t i = 0; i < definition.controls.size(); ++i) {
             const auto& entry = definition.controls[i];
-            if (entry.role != frontend::MenuControlRole::yes && entry.role != frontend::MenuControlRole::no) continue;
+            if (entry.role != frontend::MenuControlRole::yes && entry.role != frontend::MenuControlRole::no &&
+                entry.role != frontend::MenuControlRole::ok) continue;
             auto* text = object_for(entry.identifier);
             if (text->visible() && text->available() && !text->object().disabled &&
                 text->rectangle(false).contains(*point)) return static_cast<int>(i);
@@ -193,16 +205,26 @@ public:
     }
 
     void draw(bool exit_hover, bool confirmation = false, int confirm_hover = 0) const {
+        draw_definition(confirmation ? frontend::confirmation_definition() : frontend::main_menu_definition(),
+                        exit_hover, confirmation ? confirm_hover : -1);
+    }
+
+    void draw_runtime_confirmation(const frontend::MenuScreenDefinition& definition, int hover) const {
+        draw_definition(definition, false, hover);
+    }
+
+private:
+    void draw_definition(const frontend::MenuScreenDefinition& definition,
+                         bool exit_hover, int confirm_hover) const {
         std::vector<MenuTextSubmission> submissions;
-        const auto& definition = confirmation ? frontend::confirmation_definition() : frontend::main_menu_definition();
         for (std::size_t i = 0; i < definition.controls.size(); ++i) {
             const auto& entry = definition.controls[i];
             auto* attached = object_for(entry.identifier);
             const auto& object = attached->object();
             if (!attached->visible()) continue;
             const bool button = entry.kind == frontend::MenuControlKind::button;
-            const bool hovered = confirmation ? static_cast<int>(i) == confirm_hover && button
-                                              : entry.role == frontend::MenuControlRole::exit && exit_hover;
+            const bool hovered = confirm_hover >= 0 ? static_cast<int>(i) == confirm_hover && button
+                                                    : entry.role == frontend::MenuControlRole::exit && exit_hover;
             auto submission = menu_text_submission(object, [&] { return attached->bounds(); },
                 button, attached->available(), hovered, big_metrics_, small_metrics_);
             if (submission) submissions.push_back(std::move(*submission));

@@ -108,7 +108,8 @@ private:
 class MenuScene {
 public:
     explicit MenuScene(HMODULE module, bool confirmation_preview = false,
-                       bool confirmation_enabled = false, bool bind_cursor_model = false)
+                       bool confirmation_enabled = false, bool bind_cursor_model = false,
+                       bool runtime_confirmation_enabled = false)
         : driver_(module), scene_(driver_.create(13)), camera_(driver_.create(3)),
           light_(driver_.create(2)), model_(driver_.create(9)) {
         using Pair = void (WINAPI *)(EngineFrame*, EngineFrame*);
@@ -194,6 +195,21 @@ public:
             scene_method<Update>(confirmation_.get(), module, 0x24, 0x1e610)(
                 confirmation_.get());
             set_confirmation_visible(module, false);
+        }
+        if (runtime_confirmation_enabled) {
+            runtime_confirmation_ = driver_.create(9);
+            if (scene_method<Open>(runtime_confirmation_.get(), module, 0x74, 0x340b0)(
+                    runtime_confirmation_.get(), "Models\\confirm", 0, nullptr, nullptr) < 0 ||
+                scene_method<Link>(runtime_confirmation_.get(), module, 0x38, 0x1d680)(
+                    runtime_confirmation_.get(), sector, 0) < 0) {
+                throw std::runtime_error("Cannot open or link runtime confirmation model");
+            }
+            const float position[] = {0.5f, -0.375f, -0.5f};
+            scene_method<Vector>(runtime_confirmation_.get(), module, 8, 0x1c9f0)(
+                runtime_confirmation_.get(), position);
+            scene_method<Update>(runtime_confirmation_.get(), module, 0x24, 0x1e610)(
+                runtime_confirmation_.get());
+            set_screen_visible(module, runtime_confirmation_.get(), false);
         }
         if (bind_cursor_model) {
             cursor_model_ = driver_.create(9);
@@ -357,6 +373,13 @@ public:
         return result;
     }
     EngineFrame* main_model_frame() const { return model_.get(); }
+    EngineFrame* confirmation_model_frame() const { return confirmation_.get(); }
+    EngineFrame* runtime_confirmation_frame() const { return runtime_confirmation_.get(); }
+    void position_menu_model(HMODULE module, EngineFrame* frame, float x, float y, float z) const {
+        using Position = void (WINAPI *)(EngineFrame*, const float*);
+        const float position[]{x, y, z};
+        scene_method<Position>(frame, module, 8, 0x1c9f0)(frame, position);
+    }
 
     EngineFrame* label_visual(const char* name, const char* visual, HMODULE module,
                               bool confirmation = false, EngineFrame* search_root = nullptr) const {
@@ -400,41 +423,51 @@ public:
     }
 
     bool screen_visible(bool confirmation) const {
-        auto* frame = confirmation ? confirmation_.get() : model_.get();
+        return screen_visible(confirmation ? confirmation_.get() : model_.get());
+    }
+    bool screen_visible(EngineFrame* frame) const {
         if (!frame) throw std::logic_error("Screen model is not loaded");
         return (reinterpret_cast<const unsigned char*>(frame)[0xe0] & 1) != 0;
     }
 
     void set_screen_visible(HMODULE module, bool confirmation, bool visible) const {
-        set_screen_enabled(module, confirmation, visible);
-        update_screen_frame(module, confirmation);
+        set_screen_visible(module, confirmation ? confirmation_.get() : model_.get(), visible);
+    }
+    void set_screen_visible(HMODULE module, EngineFrame* frame, bool visible) const {
+        set_screen_enabled(module, frame, visible);
+        update_screen_frame(module, frame);
     }
 
     void set_screen_enabled(HMODULE module, bool confirmation, bool visible) const {
+        set_screen_enabled(module, confirmation ? confirmation_.get() : model_.get(), visible);
+    }
+    void set_screen_enabled(HMODULE module, EngineFrame* frame, bool visible) const {
         using Visibility = void (WINAPI *)(EngineFrame*, std::uint8_t);
-        auto* frame = confirmation ? confirmation_.get() : model_.get();
         scene_method<Visibility>(frame, module, 0x30, 0x1cfe0)(frame, visible ? 1 : 0);
     }
 
     void update_screen_frame(HMODULE module, bool confirmation) const {
+        update_screen_frame(module, confirmation ? confirmation_.get() : model_.get());
+    }
+    void update_screen_frame(HMODULE module, EngineFrame* frame) const {
         using Update = void (WINAPI *)(EngineFrame*);
-        auto* frame = confirmation ? confirmation_.get() : model_.get();
         scene_method<Update>(frame, module, 0x24, 0x1e610)(frame);
     }
 
     class ModalPass {
     public:
-        ModalPass(const MenuScene& scene, HMODULE module)
+        ModalPass(const MenuScene& scene, HMODULE module, EngineFrame* overlay = nullptr)
             : scene_(scene), state_(scene.driver_.render_state(5)),
+              overlay_(overlay ? overlay : scene.confirmation_.get()),
               visibility_(scene_method<Visibility>(scene.model_.get(), module, 0x30, 0x1cfe0)),
               update_(scene_method<Update>(scene.model_.get(), module, 0x24, 0x1e610)) {
             if (scene.driver_.set_render_state(5, 0) < 0) {
                 throw std::runtime_error("Cannot configure original modal render pass");
             }
             visibility_(scene.model_.get(), 0);
-            visibility_(scene.confirmation_.get(), 1);
+            visibility_(overlay_, 1);
             update_(scene.model_.get());
-            update_(scene.confirmation_.get());
+            update_(overlay_);
         }
         ~ModalPass() {
             if (!restored_ && !restore()) {
@@ -443,9 +476,9 @@ public:
         }
         bool restore() {
             visibility_(scene_.model_.get(), 1);
-            visibility_(scene_.confirmation_.get(), 1);
+            visibility_(overlay_, 1);
             update_(scene_.model_.get());
-            update_(scene_.confirmation_.get());
+            update_(overlay_);
             restored_ = true;
             return scene_.driver_.set_render_state(5, state_) >= 0;
         }
@@ -457,13 +490,14 @@ public:
         using Update = void (WINAPI *)(EngineFrame*);
         const MenuScene& scene_;
         std::uint32_t state_;
+        EngineFrame* overlay_;
         Visibility visibility_;
         Update update_;
         bool restored_ = false;
     };
 
-    void initialize_confirmation_text_frame(HMODULE module) const {
-        EngineFrame* frame = label_visual("text", "text", module, true);
+    void initialize_confirmation_text_frame(HMODULE module, EngineFrame* root = nullptr) const {
+        EngineFrame* frame = label_visual("text", "text", module, true, root);
         using Direction = void (WINAPI *)(EngineFrame*, const float*, const float*);
         using Update = void (WINAPI *)(EngineFrame*);
         const float direction[] = {0, 0, -1};
@@ -506,7 +540,10 @@ private:
             throw std::runtime_error("Invalid original menu binding hierarchy");
         }
         const char* frame_name = engine_frame_name(frame);
-        if (frame_name != nullptr && std::strcmp(frame_name, name) == 0) {
+        const auto length = std::strlen(name);
+        const bool suffix_pattern = length != 0 && name[length - 1] == '*';
+        if (frame_name != nullptr && (std::strcmp(frame_name, name) == 0 ||
+                (suffix_pattern && std::strncmp(frame_name, name, length - 1) == 0))) {
             if (found != nullptr) {
                 throw std::runtime_error(std::string("Ambiguous original menu frame: ") + name);
             }
@@ -558,6 +595,7 @@ private:
     MenuDriver::Owner light_;
     MenuDriver::Owner model_;
     MenuDriver::Owner confirmation_{nullptr, nullptr};
+    MenuDriver::Owner runtime_confirmation_{nullptr, nullptr};
     MenuDriver::Owner cursor_model_{nullptr, nullptr};
     MenuDriver::Owner click_sound_{nullptr, nullptr};
     // Released before the models and driver; links retain their engine references.

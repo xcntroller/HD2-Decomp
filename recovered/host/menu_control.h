@@ -80,15 +80,16 @@ struct MenuControlCreator {
     const MenuScene& scene;
     HMODULE module;
     bool confirmation;
-    std::initializer_list<frontend::MenuControlRole> available;
+    const std::vector<frontend::MenuControlRole>& available;
     const std::function<MenuTextObject*(std::uint32_t)>& text_lookup;
+    EngineFrame* model_root = nullptr;
     EngineFrame* frame = nullptr;
 
     bool find_frame(const frontend::MenuControlDefinition& definition, std::uint32_t flags) {
         if (flags != 0x10021) throw std::logic_error("Unexpected original control lookup flags");
         // Existing verified traversal bridges FindFrame. Broader flag matching
         // and original error UI are not reconstructed by this native adapter.
-        frame = scene.control_frame(definition.frame, module, confirmation);
+        frame = scene.control_frame(definition.frame, module, confirmation, model_root);
         return frame != nullptr;
     }
     void report_missing_frame(const frontend::MenuControlDefinition& definition) {
@@ -106,10 +107,11 @@ struct MenuControlCreator {
 
 inline std::unique_ptr<MenuScreenControls> make_menu_controls(
         const MenuScene& scene, HMODULE module, const frontend::MenuScreenDefinition& definition,
-        bool confirmation, std::initializer_list<frontend::MenuControlRole> available,
-        const std::function<MenuTextObject*(std::uint32_t)>& text_lookup) {
+        bool confirmation, const std::vector<frontend::MenuControlRole>& available,
+        const std::function<MenuTextObject*(std::uint32_t)>& text_lookup,
+        EngineFrame* model_root = nullptr) {
     return std::make_unique<MenuScreenControls>(definition, available,
-        MenuControlCreator{scene, module, confirmation, available, text_lookup});
+        MenuControlCreator{scene, module, confirmation, available, text_lookup, model_root});
 }
 
 }

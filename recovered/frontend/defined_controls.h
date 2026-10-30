@@ -17,7 +17,7 @@ class DefinedControls {
 public:
     template<class Create>
     DefinedControls(const MenuScreenDefinition& definition,
-                    std::initializer_list<MenuControlRole> available, Create create)
+                    const std::vector<MenuControlRole>& available, Create create)
         : definition_(definition), controls_(definition.controls.size()),
           available_(definition.controls.size(), false), hovered_(definition.controls.size(), false) {
         if (definition.controls.size() > static_cast<std::size_t>(std::numeric_limits<int>::max())) {

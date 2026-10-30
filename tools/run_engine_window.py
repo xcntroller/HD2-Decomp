@@ -27,7 +27,11 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
                    confirm_model: bool = False, menu_confirm: bool = False,
                    probe_confirm_picking: bool = False,
                    use_confirm_picking: bool = False,
-                   use_engine_mouse: bool = False, probe_groups: bool = False) -> Launch:
+                   use_engine_mouse: bool = False, probe_groups: bool = False,
+                   probe_runtime_confirmation: bool = False) -> Launch:
+    if probe_runtime_confirmation and (not menu_confirm or probe_confirm_picking or
+                                       use_confirm_picking or use_engine_mouse):
+        raise ValueError("Runtime confirmation probe requires --menu-confirm without picking or engine mouse")
     if probe_groups and not menu_confirm:
         raise ValueError("Group probe requires --menu-confirm")
     if use_engine_mouse and not (menu_confirm and use_confirm_picking):
@@ -67,7 +71,8 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
     elif menu_model or menu_ui:
         stage_menu_resources(game, run)
     if menu_confirm:
-        stage_menu_text(game, run, include_confirm=True, include_control_text=True)
+        stage_menu_text(game, run, include_confirm=True, include_control_text=True,
+                        include_runtime_confirm=probe_runtime_confirmation)
     elif menu_ui:
         stage_menu_text(game, run, include_control_text=True)
     env = dict(environment)
@@ -94,6 +99,8 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
             command.append("--use-engine-mouse")
         if probe_groups:
             command.append("--probe-groups")
+        if probe_runtime_confirmation:
+            command.append("--probe-runtime-confirmation")
     elif confirm_model:
         command.append("--confirm-model")
     elif menu_ui:
@@ -172,6 +179,8 @@ def main() -> None:
                              "requires --menu-confirm --use-confirm-picking")
     parser.add_argument("--probe-groups", action="store_true",
                         help="Exercise nested original-engine dummy groups; requires --menu-confirm")
+    parser.add_argument("--probe-runtime-confirmation", action="store_true",
+                        help="F9 opens the recovered slot-zero Yes/No dialog; requires --menu-confirm alone")
     args = parser.parse_args()
     try:
         launch = prepare_launch(args.game_dir, args.executable, args.proton, args.steam_root,
@@ -180,7 +189,8 @@ def main() -> None:
                                 confirm_model=args.confirm_model, menu_confirm=args.menu_confirm,
                                 probe_confirm_picking=args.probe_confirm_picking,
                                 use_confirm_picking=args.use_confirm_picking,
-                                use_engine_mouse=args.use_engine_mouse, probe_groups=args.probe_groups)
+                                use_engine_mouse=args.use_engine_mouse, probe_groups=args.probe_groups,
+                                probe_runtime_confirmation=args.probe_runtime_confirmation)
         print("Experimental original-art Exit confirmation; other controls remain disabled."
               if args.menu_confirm else
               "Static original-font menu slice: only Exit closes this host; "
