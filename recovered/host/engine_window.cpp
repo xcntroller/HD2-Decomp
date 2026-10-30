@@ -494,11 +494,10 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                 confirmation_screen_frame.emplace(*menu, module, true, *confirmation_focus);
                 main_screen_events.emplace(hd2::frontend::main_menu_definition(), *main_screen_frame, *menu_events);
                 confirmation_screen_events.emplace(hd2::frontend::confirmation_definition(), *confirmation_screen_frame, *menu_events);
-                const auto text_lookup = [&](std::uint32_t id) { return text->object_for(id); };
                 hd2::host::bind_screen_messages(*main_screen_events, hd2::frontend::main_menu_definition(),
-                                               *buttons, text_lookup);
+                                               *buttons);
                 hd2::host::bind_screen_messages(*confirmation_screen_events, hd2::frontend::confirmation_definition(),
-                                               *confirmation_controls, text_lookup);
+                                               *confirmation_controls);
                 menu_actions->bind_screens(*main_screen_events, *confirmation_screen_events);
                 std::puts("Registered screen event trees ready: 17 main / 4 confirmation children");
                 if (use_engine_mouse) {

@@ -7,6 +7,51 @@
   "functions": [
     {
       "program": "client",
+      "entry": "0061da10",
+      "status": "partial",
+      "coverage": "Nested definition ID arithmetic: one-based eight-bit ordinal shifted 12 or four depending on parent bits 12..19, OR parent with wrapping.",
+      "limitations": "Portable callbacks/native vectors replace original mutable pointers, definition/object layout, allocation/refcount/SEH. ID helpers do not reconstruct original allocation/string registration. Container engine/input backend and actual settings/data callbacks remain unfinished; nested paths native-audit verified only.",
+      "evidence": [
+        "analysis/menu-control-factory-map.json",
+        "recovered/frontend/control_definition_ids.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00615360",
+      "status": "partial",
+      "coverage": "Definition ID arithmetic: one-based six-bit child ordinal shifted 20, OR unchanged parent; original wrapping preserved.",
+      "limitations": "Portable callbacks/native vectors replace original mutable pointers, definition/object layout, allocation/refcount/SEH. ID helpers do not reconstruct original allocation/string registration. Container engine/input backend and actual settings/data callbacks remain unfinished; nested paths native-audit verified only.",
+      "evidence": [
+        "analysis/menu-control-factory-map.json",
+        "recovered/frontend/control_definition_ids.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006618a0",
+      "status": "partial",
+      "coverage": "Bind own frame and pick ID before definition-kind setup; fresh recursive child iteration preserving independent layout root; ignore child-factory results and return true.",
+      "limitations": "Portable callbacks/native vectors replace original mutable pointers, definition/object layout, allocation/refcount/SEH. ID helpers do not reconstruct original allocation/string registration. Container engine/input backend and actual settings/data callbacks remain unfinished; nested paths native-audit verified only.",
+      "evidence": [
+        "analysis/menu-control-factory-map.json",
+        "recovered/frontend/control_initialization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00656e80",
+      "status": "partial",
+      "coverage": "Kind-five child-first hierarchical dispatch, including tagged and zero targets; validate then look up again, preserve child return, missing-child base fallback always handled.",
+      "limitations": "Portable callbacks/native vectors replace original mutable pointers, definition/object layout, allocation/refcount/SEH. ID helpers do not reconstruct original allocation/string registration. Container engine/input backend and actual settings/data callbacks remain unfinished; nested paths native-audit verified only.",
+      "evidence": [
+        "analysis/menu-control-factory-map.json",
+        "recovered/frontend/container_event.h",
+        "recovered/frontend/defined_container_events.h"
+      ]
+    },
+    {
+      "program": "client",
       "entry": "0064dc30",
       "status": "partial",
       "coverage": "Retain/copy event, dispatch mutable copy to derived handler, return result and release copied payload; caller query fields unchanged. Used for fresh child layout propagation.",
@@ -300,11 +345,15 @@
       "program": "client",
       "entry": "0065d150",
       "status": "partial",
-      "coverage": "Successful-allocation tail sequences visual initialization, definition data +78, initialization list +70 and collection insertion. Failed visual initialization destroys/skips control and returns handled true. Portable factory callbacks now drive the definition-backed main-menu and confirmation collections.",
-      "limitations": "Original model lookup, kind dispatch/allocation, error cases, object/collection ABI and ownership are not reconstructed. Factory-tail helper is integrated through the host visual creation callback; original allocation/error ABI still differs and interactive generalization is user desktop-confirmed.",
+      "coverage": "Frame lookup with 10021 precedes complete original kind-range dispatch (2..28), supplied constructor, visual gate, definition-data +78, initialization list +70 and insertion. Failed visual gate destroys/skips and reports true. Main/confirmation now construct all 21 text/button leaves through this sequence.",
+      "limitations": "Full native constructors exist only for leaf types 13/14. Kind-five message/state and recursive initialization are source/audit only; engine frame creation, container input/focus and actual options/settings callbacks remain unfinished. Original FindFrame matching/error UI, allocation/SEH/refcount/class ABI remain delegated. Native null allocation explicitly throws instead of reproducing original null dereference. No new flow enabled.",
       "evidence": [
         "analysis/menu-ui-map.json",
-        "recovered/frontend/control_initialization.h"
+        "recovered/frontend/control_initialization.h",
+        "analysis/menu-control-factory-map.json",
+        "recovered/frontend/control_factory.h",
+        "recovered/frontend/defined_controls.h",
+        "recovered/host/menu_control.h"
       ]
     },
     {

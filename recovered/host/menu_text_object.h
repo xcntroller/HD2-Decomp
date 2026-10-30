@@ -36,6 +36,8 @@ public:
     }
     bool visible() const { return (owner_ ? owner_->visible : properties_.visible) != 0; }
     bool available() const { return available_; }
+    bool eligible() const { return properties_.eligible(); }
+    bool disabled() const { return properties_.disabled != 0; }
     bool set_localized(std::uint32_t id, std::uint32_t style, std::int32_t index) {
         if (style == 40) {
             std::printf("Deferred original version formatter: frame=%s localization=%u\n", definition_.frame, id);
@@ -66,10 +68,9 @@ public:
     MenuRectangle rectangle(bool inset) {
         return menu_rectangle(bounds(), 800, 600, inset ? text_.inset : 0);
     }
-    // Static labels initialize here; button records are initialized by their
-    // control through the same attached text state, exactly once.
-    void initialize_static() {
-        auto events = definition_.initialization;
+    // Both static labels and buttons now initialize through the shared factory.
+    void initialize_events(const std::vector<frontend::ControlEvent>& initialization) {
+        auto events = initialization;
         frontend::initialize_control_events(*this, events);
     }
     bool dispatch_initialization_event(frontend::ControlEvent& event) {

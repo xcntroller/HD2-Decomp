@@ -1,0 +1,147 @@
+{
+  "scope": "Bounded control-factory front/tail, kind-five child routing/recursive initialization and definition-ID arithmetic. Host supports text/button leaves only; nested runtime audited with supplied frame backends.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "sources": [
+    "recovered/frontend/control_factory.h",
+    "recovered/frontend/control_initialization.h",
+    "recovered/frontend/container_event.h",
+    "recovered/frontend/defined_container_events.h",
+    "recovered/frontend/control_definition_ids.h",
+    "recovered/frontend/defined_controls.h",
+    "recovered/host/menu_control.h"
+  ],
+  "instruction_anchors": [
+    {
+      "address": "0065d190",
+      "hex": "682100010051508b10ff5248",
+      "meaning": "Frame lookup uses 10021 before kind dispatch"
+    },
+    {
+      "address": "0065d1a8",
+      "hex": "8b4f0c8d41fe83f8260f87410e0000ff248548e06500",
+      "meaning": "Complete kind range 2..28 checked before constructor jump table"
+    },
+    {
+      "address": "00656e89",
+      "hex": "8b078b1e50ff13508bceff530484c08bce7419",
+      "meaning": "Kind five looks up child and validates index before base fallback"
+    },
+    {
+      "address": "00656e9c",
+      "hex": "8b078b1650ff128b4e08578b0c818b11ff526c5f5e5bc20400",
+      "meaning": "Second child lookup and forwarded child result preserved"
+    },
+    {
+      "address": "00656eb5",
+      "hex": "8b470457e8825e00005f5eb0015bc2",
+      "meaning": "Missing child falls back to base and returns true"
+    },
+    {
+      "address": "006618ad",
+      "hex": "8b4360896b5085f68985ec000000",
+      "meaning": "Store bound frame and frame +ec pick identifier before recursive children"
+    },
+    {
+      "address": "006618bd",
+      "hex": "8b4e0c57894b5433ff",
+      "meaning": "Definition kind stored before child iteration"
+    },
+    {
+      "address": "006618c6",
+      "hex": "8b4e3485c974228b46382bc1c1f8023bf87316",
+      "meaning": "Fresh definition child-vector/count lookup each iteration"
+    },
+    {
+      "address": "006618db",
+      "hex": "8b4c24188b04ba5051558bcbe864b8ffff47eb",
+      "meaning": "Preserve layout-root argument and call child factory; ignore child result"
+    },
+    {
+      "address": "006153b1",
+      "hex": "83e73f8d4e04c1e7140bf8",
+      "meaning": "Top-level IDs use six-bit ordinal shifted 20 and OR parent"
+    },
+    {
+      "address": "0061da43",
+      "hex": "8d78018b4508a900f00f006a400f8494000000",
+      "meaning": "Nested IDs branch according to existing parent bits 12..19"
+    },
+    {
+      "address": "0061da6c",
+      "hex": "8b450881e7ff0000008d4e04c1e7040bf8",
+      "meaning": "Deep child uses eight-bit ordinal shifted four and OR parent"
+    },
+    {
+      "address": "0061db04",
+      "hex": "8b550881e7ff000000c1e70c0bfa",
+      "meaning": "First nested child uses eight-bit ordinal shifted 12 and OR parent"
+    },
+    {
+      "address": "0066dbf5",
+      "hex": "e8427217008b5424148b085250ff5154",
+      "meaning": "Options group helper creates engine frame through driver +54"
+    },
+    {
+      "address": "0066dc0d",
+      "hex": "8b086a005250ff5138",
+      "meaning": "Engine group frame links to supplied parent with mode zero"
+    },
+    {
+      "address": "0066dc28",
+      "hex": "8b44240851508b10ff5234",
+      "meaning": "Engine group frame receives its name"
+    },
+    {
+      "address": "0066dc33",
+      "hex": "8b4424088b54241c52508b08ff5108",
+      "meaning": "Engine group frame receives supplied position"
+    }
+  ],
+  "vtables": [
+    {
+      "address": "0081445c",
+      "targets": [
+        "00656e60"
+      ],
+      "role": "Kind five visual initialization +2c"
+    },
+    {
+      "address": "0081449c",
+      "targets": [
+        "00656e80"
+      ],
+      "role": "Kind five event dispatch +6c"
+    },
+    {
+      "address": "00813d38",
+      "targets": [
+        "0065cd30"
+      ],
+      "role": "Static text definition-data +78 no-op"
+    },
+    {
+      "address": "00814d28",
+      "targets": [
+        "0065cd30"
+      ],
+      "role": "Button definition-data +78 no-op"
+    }
+  ],
+  "direct_calls": [
+    {
+      "site": "00656e6f",
+      "target": "006618a0"
+    },
+    {
+      "site": "006618e7",
+      "target": "0065d150"
+    }
+  ],
+  "resource_anchors": [],
+  "validation": "Strict i386 host build, existing native suite/17 launcher/nine frontend checks and temporary ASan/UBSan + i386 compilation audit. Audits all original kind selectors, unknown/missing/allocation/visual-failure paths and ordering, all 21 leaf init records once, nested-ID wrap/OR, null definition, layout-root preservation, fresh recursion after list growth, three-level text query/updates, tagged child routing, missing-child base fallback and ignored/propagated return distinctions. Desktop test pending.",
+  "limits": "Full native constructors exist only for leaf types 13/14. Kind-five message/state and recursive initialization are source/audit only; engine frame creation, container input/focus and actual options/settings callbacks remain unfinished. Original FindFrame matching/error UI, allocation/SEH/refcount/class ABI remain delegated. Native null allocation explicitly throws instead of reproducing original null dereference. No new flow enabled."
+}

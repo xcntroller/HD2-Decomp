@@ -3,7 +3,7 @@
 
 #include "frontend/defined_screen_events.h"
 #include "frontend/screen_focus.h"
-#include "host/menu_button_visuals.h"
+#include "host/menu_control.h"
 
 namespace hd2::host {
 
@@ -33,23 +33,12 @@ private:
 using MenuScreenEvents = frontend::DefinedScreenEvents<MenuScreenFrame>;
 
 inline void bind_screen_messages(MenuScreenEvents& screen,
-        const frontend::MenuScreenDefinition& definition, MenuScreenControls& controls,
-        const std::function<MenuTextObject*(std::uint32_t)>& text_lookup) {
+        const frontend::MenuScreenDefinition& definition, MenuScreenControls& controls) {
     for (std::size_t i = 0; i < definition.controls.size(); ++i) {
-        const auto& child = definition.controls[i];
-        if (child.kind == frontend::MenuControlKind::button) {
-            auto* button = &controls.message_control_at(i);
-            screen.bind_child(i, [button](frontend::ControlEvent& event, frontend::ControlEventDestination& upstream) {
-                return button->receive_event(event, upstream);
-            });
-        } else {
-            auto* text = text_lookup(child.identifier);
-            if (!text) throw std::logic_error("Missing static text message endpoint");
-            screen.bind_child(i, [text](frontend::ControlEvent& event, frontend::ControlEventDestination& upstream) {
-                frontend::EmittingControlDestination<MenuTextObject> destination{*text, &upstream};
-                return text->dispatch_control_event(event, destination);
-            });
-        }
+        auto* control = &controls.message_control_at(i);
+        screen.bind_child(i, [control](frontend::ControlEvent& event, frontend::ControlEventDestination& upstream) {
+            return control->receive_event(event, upstream);
+        });
     }
 }
 

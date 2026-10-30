@@ -2,7 +2,7 @@
 #define HD2_FRONTEND_DEFINED_CONTROLS_H
 
 #include "frontend/defined_screen.h"
-#include "frontend/control_initialization.h"
+#include "frontend/control_factory.h"
 
 #include <cstdio>
 #include <memory>
@@ -26,15 +26,14 @@ public:
         std::size_t count = 0;
         for (std::size_t i = 0; i < definition.controls.size(); ++i) {
             const auto& entry = definition.controls[i];
-            if (entry.kind != MenuControlKind::button) continue;
             for (const auto role : available) {
                 if (role != MenuControlRole::none && role == entry.role) available_[i] = true;
             }
             Factory<Create> factory{*this, create, entry, i, {}};
-            initialize_created_control(factory);
+            construct_defined_control(factory);
             if (controls_[i]) ++count;
         }
-        std::printf("Definition controls ready: screen=%s children=%u button-pairs=%u\n",
+        std::printf("Definition controls ready: screen=%s children=%u constructed=%u\n",
                     definition.label, static_cast<unsigned>(controls_.size()), static_cast<unsigned>(count));
     }
 
@@ -94,11 +93,18 @@ private:
         const MenuControlDefinition& definition;
         std::size_t index;
         std::unique_ptr<Control> candidate;
-        bool initialize_visuals() {
+        bool find_frame(std::uint32_t flags) { return create.find_frame(definition, flags); }
+        void report_missing_frame() { create.report_missing_frame(definition); }
+        void report_unknown_kind(std::uint32_t kind) { create.report_unknown_kind(kind); }
+        std::uint32_t control_kind() const { return static_cast<std::uint32_t>(definition.kind); }
+        bool allocate_control(std::uint32_t) {
             candidate = create(definition);
             return candidate != nullptr;
         }
-        void initialize_definition_data() {} // Original button +78 / 0065cd30.
+        bool initialize_visuals() {
+            return candidate->initialize_visuals();
+        }
+        void initialize_definition_data() { candidate->initialize_definition_data(); }
         void initialize_definition_events() {
             // Availability governs input binding, not initialization. Hidden OK
             // runs its original hide event through the same shared handler.

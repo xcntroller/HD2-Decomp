@@ -1,6 +1,6 @@
 # Entire menu reconstruction plan
 
-Updated: 2026-10-29. This is the menu delivery tracker. [HANDOFF.md](HANDOFF.md)
+Updated: 2026-10-30. This is the menu delivery tracker. [HANDOFF.md](HANDOFF.md)
 records how to resume; [RESEARCH.md](RESEARCH.md) records detailed evidence.
 
 ## Goal and completion criteria
@@ -31,6 +31,7 @@ Keep an explicit list of delegated calls so the eventual replacement is tractabl
 | Previous/next focus traversal | Source reconstructed | Find original callers/key bindings and initial-focus policy before wiring |
 | Original button sound and sound-driver lifecycle | Desktop-tested | Original preferences/resource cache and additional menu sounds |
 | Shared control initialization and state messages | State/events and attached text/caption/style desktop-confirmed | Full factory, dynamic callbacks, paragraph layout and broader widget eligibility |
+| Shared factory and nested containers | Leaf factory desktop-confirmed; nested kind-five runtime audited with fake backends | Engine-backed recursive construction, other widget kinds and original ABI |
 | Other main-menu actions/screens | Not functional yet | Inventory, reconstruct and enable one flow at a time |
 
 Keyboard sound check: ordinary Exit/Yes/No keyboard activation is silent in the
@@ -71,7 +72,7 @@ This conclusion is from original binary analysis, not a new original-game run.
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
 
-Latest completed slice: targeted screen event trees, retained-copy delivery and
+Latest desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,
 independently of host input availability. Nonzero targets route to any bound
 screen, including the menu under a dialog. Root base messages, child lookup,
@@ -84,10 +85,16 @@ confirmation are bound. Original dynamic observer lists remain unattached;
 profile/date/save/version values and other flows are unfinished. Previous stack
 slice is desktop-confirmed and committed as 335c519 (3320 frames, clean teardown).
 
-Next priority: recover nested group/heterogeneous construction and the original
-observer/data callbacks needed for one additional complete flow. Begin with the
-options group helper 0066dbf0 and factory 0065d150; choose the flow after tracing
-its actual dependencies. Do not enable a screen solely because its model loads.
+Latest desktop-confirmed slice: all 21 leaf controls use the shared
+definition factory, and source-only kind-five container initialization, IDs and
+dispatch have been audited with fake backends. This does not complete the general
+factory or enable another screen. The options helper 0066dbf0 creates an engine
+type-six dummy frame, distinct from a kind-five UI container.
+
+Next priority: implement the engine dummy-frame bridge,
+model-backed recursive factory and the input/focus and original settings/data
+callbacks needed for a complete additional flow. Do not enable a screen solely
+because its model loads.
 
 Prefer complete plan items or cohesive dependency groups per iteration, as
 requested by the user. Avoid returning for desktop checks after individual

@@ -236,7 +236,6 @@ private:
         for (const auto& entry : definition.controls) {
             auto object = std::make_unique<MenuTextObject>(scene, module, entry, confirmation,
                 [&](std::uint32_t id) { return std::make_shared<const std::string>(labels_.at(id)); });
-            if (entry.kind == frontend::MenuControlKind::text) object->initialize_static();
             if (!objects_.emplace(entry.identifier, std::move(object)).second) {
                 throw std::logic_error("Duplicate attached text identifier");
             }

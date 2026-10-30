@@ -2632,3 +2632,41 @@ original dynamic lists. No further implementation or testing is pending for this
 slice. Next session starts with nested group/heterogeneous factory and actual data
 callback dependencies for another full flow; see HANDOFF top. Earlier dated
 entries preserve historical observations/counts and are superseded by this checkpoint.
+
+## Shared factory and nested containers — 2026-10-30
+
+0065D150 recognizes every control kind from 2 through 0x28. The native factory
+models the common frame lookup (flags 0x10021), allocation, visual initialization,
+definition data, event initialization and successful insertion sequence. A failed
+visual initialization destroys the candidate and does not insert it. The host
+implements text and button constructors only; its existing frame traversal is a
+bounded adapter, and native allocation failure throws rather than imitating the
+original possible null dereference. All 21 existing leaf definitions now use this
+path, including unavailable controls and static labels. Their frames get control
+pick IDs, while host input binding remains restricted to Exit/Yes/No.
+
+006618A0 binds the frame and pick ID, then creates definition children with the
+bound frame as search root and the separately supplied layout root. It rereads
+child count and ignores individual creation failures. The arithmetic portions of
+00615360 and 0061DA10 assign child fields with the original masks, shifts, ORs
+and wrapping. Kind-five handler 00656E80 attempts child routing first, including
+tagged and zero-target events, looks up a valid target twice and returns its
+result; failed lookup calls base and returns true. This differs from a screen's
+handler. Native recursive event/visual implementations are fake-backend audited
+only, not yet connected to original engine models or input.
+
+The options group helper 0066DBF0 creates an engine type-six dummy frame, not a
+kind-five UI container: it creates, links, names and positions the frame and
+retains it in a frontend-owned list. Its engine bridge and the options callbacks
+remain to be reconstructed before enabling the screen. The fingerprinted
+[factory map](analysis/menu-control-factory-map.json) records 17 anchors, four
+vtable slots and two calls. Four new partial client entries plus the extended
+factory entry bring the ledger to 71 partial (67 client/four engine), zero
+complete, frozen 18,783.
+
+Strict i386 host build, the existing native suite, 17 launcher and nine frontend
+checks passed. A temporary ASan/UBSan native audit and i386 compilation exercised
+all recognized and invalid kinds, failure/cleanup order, all 21 leaf initializers,
+ID arithmetic, recursive visual construction and three-level event delivery.
+The user confirmed desktop behavior; the log records 1003 frames and clean
+teardown. No new menu action is enabled and no agent-side Proton run was performed.

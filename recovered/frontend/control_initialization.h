@@ -34,6 +34,22 @@ bool initialize_created_control(Factory& factory) {
     return true;
 }
 
+// 006618a0, called by kind-five +2c/00656e60. Assign this control's frame
+// and frame pick identifier before definition-dependent recursion. Child
+// creation results are ignored; reread the list on every iteration.
+template<class Container, class Frame, class Definition>
+bool initialize_container_visuals(Container& container, Frame frame, Frame layout_root, Definition* definition) {
+    container.bind_frame(frame);
+    container.set_frame_identifier(frame, container.identifier());
+    if (definition) {
+        container.set_definition_kind(definition->kind);
+        for (std::size_t i = 0; i < definition->children.size(); ++i) {
+            container.create_child(frame, layout_root, definition->children[i]);
+        }
+    }
+    return true;
+}
+
 }
 
 #endif

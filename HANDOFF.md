@@ -1,6 +1,58 @@
-# Session handoff - 2026-10-29
+# Session handoff - 2026-10-30
 
-## Resume here next session: tested checkpoint; nested construction and data callbacks
+## Resume here: factory and nested containers, desktop-tested
+
+The previous targeted-tree slice is user-tested and committed as **ea0134f**.
+The current factory and container slice is user desktop-confirmed. The log shows
+1003 frames, mouse and keyboard transitions, and clean graphics/3D/sound teardown.
+Earlier sections describe historical checkpoints; this section is authoritative.
+
+All 17 main-menu and four confirmation leaf controls now share the native
+definition factory and initialize once in visual, definition-data, event, then
+insertion order. Native host constructors currently cover text and buttons only.
+Their visual frames receive original control pick IDs; availability still limits
+input to Exit/Yes/No. Static text initialization now runs through this same path.
+The host's frame lookup uses its existing verified traversal, not a complete
+implementation of original FindFrame flags or error handling. Native allocation
+failure throws rather than reproducing original potential null dereferences.
+
+Recovered kind-five UI container initialization, hierarchical identifier
+arithmetic and child-first event dispatch have source implementations and
+fake-backend audits, but are **not connected to a live engine container backend**.
+Container dispatch tries children even for tagged or zero-target events and
+retains the child result, unlike screen dispatch. The options helper 0066DBF0
+creates an engine dummy frame of engine type 6; that is distinct from UI control
+kind 5. Recursive initialization preserves the separate child-search frame and
+layout root, rereads the definition child count, and ignores individual child
+creation failures. Original widget ABI, full factory and callbacks remain open.
+
+Strict i386 host build, existing native suite, 17 launcher and nine frontend
+checks passed. A temporary native ASan/UBSan audit and i386 compilation exercise
+the factory's kinds, failure and cleanup ordering, all 21 leaf initializations,
+ID wrap/OR behavior, recursive visuals and three-level container event delivery.
+The new fingerprinted factory evidence map has 17 anchors, four client vtable
+slots and two direct calls. Ledger: **71 partial (67 client/four engine), zero
+complete, frozen 18,783**. The integrated leaf path was also desktop-confirmed.
+
+Desktop command:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --frames 0`
+Check captions and hover, Exit/No/Escape/reopen and final Yes using mouse and
+keyboard. Check unavailable buttons remain unavailable and hidden OK stays
+hidden: more frames now receive pick IDs. Expected log lines include
+`Definition controls ready` with 17/17 main and 4/4 confirmation children and
+`Original static initialization`. Only Exit/Yes/No are enabled; keyboard button
+silence remains original behavior. No agent-side Proton run or new unit tests.
+
+Next, recover the engine dummy-frame creation/link/
+position bridge and connect a model-backed kind-five container factory and its
+recursive controls. Trace input/focus and options settings callbacks before
+enabling a complete additional flow. 0066DBF0 creates the frame via driver +54,
+links it to its parent via +38 mode 0, names it via +34, positions via +08 and
+retains it in a frontend-owned list. Inspect 0061CF60, 0061DA10 and 0065D150.
+Profile, last-save and version callbacks remain unresolved. Preserve large slices,
+do not commit before user testing, and do not push.
+
+## Previous checkpoint: tested targeted trees
 
 Previous registered-stack slice is user desktop-confirmed as matching the game,
 and committed as **335c519** (3320 frames, clean sound/graphics teardown).

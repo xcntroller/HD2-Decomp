@@ -214,26 +214,6 @@ private:
     std::uint32_t pointer_events_logged_ = 0;
 };
 
-using MenuFocus = frontend::DefinedScreen<ButtonVisualPair>;
-
-using MenuScreenControls = frontend::DefinedControls<ButtonVisualPair>;
-
-inline std::unique_ptr<MenuScreenControls> make_menu_controls(
-        const MenuScene& scene, HMODULE module,
-        const frontend::MenuScreenDefinition& definition, bool confirmation,
-        std::initializer_list<frontend::MenuControlRole> available,
-        const std::function<MenuTextObject*(std::uint32_t)>& text_lookup) {
-    return std::make_unique<MenuScreenControls>(definition, available,
-        [&](const frontend::MenuControlDefinition& entry) {
-            // Resource/ABI errors throw here. The original factory's broader
-            // model lookup/kind selection/error reporting is still unresolved.
-            bool enabled = false;
-            for (const auto role : available) if (role == entry.role && role != frontend::MenuControlRole::none) enabled = true;
-            return std::make_unique<ButtonVisualPair>(scene, module, entry.frame,
-                entry.normal, entry.active, confirmation, text_lookup(entry.identifier), enabled);
-        });
-}
-
 }
 
 #endif
