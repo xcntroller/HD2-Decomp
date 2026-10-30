@@ -644,6 +644,14 @@
     ],
     "vtables": [
       {
+        "address": "1009bbb0",
+        "targets": ["1001c9f0"]
+      },
+      {
+        "address": "1009bbdc",
+        "targets": ["1001d330", "1001d680"]
+      },
+      {
         "address": "1009bbcc",
         "targets": [
           "1001e610"

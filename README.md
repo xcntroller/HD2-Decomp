@@ -124,6 +124,11 @@ and event dispatch are reconstructed and audited with fake backends; the live
 engine container bridge and other widget constructors remain unfinished. The
 build and existing checks pass; the desktop run ended cleanly after 1003 frames.
 
+An opt-in group diagnostic now connects recovered container state and routing to
+two linked original-engine dummy frames. Its i386 build and existing checks pass;
+desktop validation passed (425 frames, clean teardown). The [options inventory](analysis/menu-options.md)
+records the further widgets and callbacks required before options can work.
+
 ## Progress
 
 Completed steps mean we've reached a useful milestone, not that we understand
@@ -134,11 +139,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **71 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **72 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 67 |
+| Base game client | 17,294 | 0 | 68 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

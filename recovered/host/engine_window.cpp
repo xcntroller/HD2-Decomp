@@ -4,6 +4,7 @@
 
 #include "host/graphics_settings.h"
 #include "host/menu_scene.h"
+#include "host/menu_group_probe.h"
 #include "host/menu_cursor.h"
 #include "host/menu_text.h"
 #include "host/menu_button_visuals.h"
@@ -371,7 +372,8 @@ int finish(Graphics* graphics, int result) {
 
 int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bool menu_model,
                bool menu_ui, bool confirmation_preview, bool confirmation_enabled,
-               bool confirmation_pick_probe, bool confirmation_pick_active, bool use_engine_mouse) {
+               bool confirmation_pick_probe, bool confirmation_pick_active, bool use_engine_mouse,
+               bool group_probe) {
     const auto settings = hd2::host::windowed_settings(
         static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr))));
     const auto* methods = graphics->methods;
@@ -414,6 +416,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         if (menu_model) {
             menu = std::make_unique<hd2::host::MenuScene>(
                 module, confirmation_preview, confirmation_enabled, use_engine_mouse);
+            if (group_probe) hd2::host::probe_menu_group_frames(*menu, module);
             if (sound && sound->initialized()) menu->load_click_sound(module);
         }
         std::unique_ptr<hd2::host::MenuCursor<Graphics>> cursor;
@@ -911,7 +914,7 @@ int wmain(int argc, wchar_t** argv) {
     if (argc < 2) {
         std::fputs("Usage: engine_window.exe ABSOLUTE_ENGINE_DLL [--frames COUNT] "
                    "[--menu-model | --menu-ui | --confirm-model | --menu-confirm] "
-                   "[--probe-confirm-picking] [--use-confirm-picking] [--use-engine-mouse]\n"
+                   "[--probe-confirm-picking] [--use-confirm-picking] [--use-engine-mouse] [--probe-groups]\n"
                    "Use the fingerprint-checking Python launcher. Default: 180 frames; "
                    "0 waits for Escape/Close.\n", stderr);
         return 2;
@@ -924,6 +927,7 @@ int wmain(int argc, wchar_t** argv) {
     bool confirmation_pick_probe = false;
     bool confirmation_pick_active = false;
     bool use_engine_mouse = false;
+    bool group_probe = false;
     bool frames_seen = false;
     try {
         for (int i = 2; i < argc; ++i) {
@@ -947,6 +951,8 @@ int wmain(int argc, wchar_t** argv) {
                 confirmation_pick_active = true;
             } else if (std::wstring_view(argv[i]) == L"--use-engine-mouse" && !use_engine_mouse) {
                 use_engine_mouse = true;
+            } else if (std::wstring_view(argv[i]) == L"--probe-groups" && !group_probe) {
+                group_probe = true;
             } else if (std::wstring_view(argv[i]) == L"--frames" &&
                        !frames_seen && i + 1 < argc) {
                 frame_limit = hd2::host::parse_frame_limit(argv[++i]);
@@ -960,6 +966,9 @@ int wmain(int argc, wchar_t** argv) {
         }
         if ((confirmation_pick_probe || confirmation_pick_active) && !confirmation_enabled) {
             throw std::invalid_argument("Confirmation picking requires --menu-confirm");
+        }
+        if (group_probe && !confirmation_enabled) {
+            throw std::invalid_argument("Group probe requires --menu-confirm");
         }
     } catch (const std::invalid_argument& error) {
         std::fprintf(stderr, "%s\n", error.what());
@@ -987,7 +996,7 @@ int wmain(int argc, wchar_t** argv) {
         } else {
             result = run_window(graphics, module, frame_limit, menu_model, menu_ui,
                                 confirmation_preview, confirmation_enabled, confirmation_pick_probe,
-                                confirmation_pick_active, use_engine_mouse);
+                                confirmation_pick_active, use_engine_mouse, group_probe);
         }
     }
     if (!FreeLibrary(module)) {

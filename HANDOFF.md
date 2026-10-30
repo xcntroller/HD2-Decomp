@@ -1,6 +1,48 @@
 # Session handoff - 2026-10-30
 
-## Resume here: factory and nested containers, desktop-tested
+## Resume here: engine group probe, desktop-confirmed
+
+The prior factory slice is user-tested and committed as **4fc2eac** (1003
+frames, clean teardown). The new group bridge and diagnostic are now user
+desktop-confirmed: the probe succeeded and teardown was clean after 425 frames. Earlier sections
+are historical; this section is authoritative.
+
+`MenuScene::create_group_frame` implements the bounded dummy-frame portion of
+0066DBF0: driver factory kind 6, parent link mode 0, name, position, retained
+owner. It checks the verified dummy vtable and operation results; the original
+accepts other frame kinds, has a distinct string/vector ABI and ignores those
+operation results. Group owners are released before models and driver. The
+opt-in `--probe-groups` creates two named nested dummy frames under the main
+model, verifies traversal and direct child relation, binds frame pick IDs via
+the recovered container visual helper, and exercises targeted nested hide/show
+and state query through `DefinedContainerEvents` using real engine frame
+visibility/update calls. These invisible diagnostic groups have no geometry or
+input binding. The probe is not the actual options definition or recursive
+widget factory; it does not establish options behavior.
+
+Desktop command:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --probe-groups --frames 0`
+Confirm menu rendering and Exit/No/Escape/Yes by mouse and keyboard as before.
+Startup should log `Original dummy group probe: linked two frames, bound IDs and
+routed nested state/events`; absence or a preview failure is significant. After
+user confirmation inspect the runtime log and commit. Never run Proton from the
+agent, add unit tests, commit untested interaction changes or push.
+
+The five options sub-builders are exported under ignored
+`analysis/work/menu-options-subbuilders`; [options inventory](analysis/menu-options.md)
+describes six settings groups (controls has two) and widgets/callbacks. Options
+entry 0061BEA0 initializes settings before transition, and show observer 006204D0
+updates the third caption. Full widget factory, recursive actual model bindings,
+focus/input, settings and callback contracts remain open. Prioritize these in a
+large cohesive slice after confirmation; avoid enabling incomplete options.
+
+Strict i386 build, existing native suite and 17 launcher checks passed; temporary
+launcher audit confirms flag forwarding/mode rejection. Client group call sites
+and engine dummy vtable targets are fingerprint-validated. Ledger: **72 partial
+(68 client/four engine), zero complete, frozen 18,783**. The new real-engine
+diagnostic is desktop-confirmed for this bounded path.
+
+## Previous checkpoint: factory and nested containers, desktop-tested
 
 The previous targeted-tree slice is user-tested and committed as **ea0134f**.
 The current factory and container slice is user desktop-confirmed. The log shows

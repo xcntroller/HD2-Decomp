@@ -31,7 +31,7 @@ Keep an explicit list of delegated calls so the eventual replacement is tractabl
 | Previous/next focus traversal | Source reconstructed | Find original callers/key bindings and initial-focus policy before wiring |
 | Original button sound and sound-driver lifecycle | Desktop-tested | Original preferences/resource cache and additional menu sounds |
 | Shared control initialization and state messages | State/events and attached text/caption/style desktop-confirmed | Full factory, dynamic callbacks, paragraph layout and broader widget eligibility |
-| Shared factory and nested containers | Leaf factory desktop-confirmed; nested kind-five runtime audited with fake backends | Engine-backed recursive construction, other widget kinds and original ABI |
+| Shared factory and nested containers | Leaf factory and two-level engine group diagnostic desktop-confirmed | Actual model-backed recursive construction, other widget kinds and original ABI |
 | Other main-menu actions/screens | Not functional yet | Inventory, reconstruct and enable one flow at a time |
 
 Keyboard sound check: ordinary Exit/Yes/No keyboard activation is silent in the
@@ -91,10 +91,14 @@ dispatch have been audited with fake backends. This does not complete the genera
 factory or enable another screen. The options helper 0066dbf0 creates an engine
 type-six dummy frame, distinct from a kind-five UI container.
 
-Next priority: implement the engine dummy-frame bridge,
-model-backed recursive factory and the input/focus and original settings/data
-callbacks needed for a complete additional flow. Do not enable a screen solely
-because its model loads.
+The engine dummy-frame bridge and nested state/event probe are implemented and
+desktop-confirmed (425 frames, clean teardown). The probe is not the actual options screen. The
+[options inventory](analysis/menu-options.md) identifies six settings groups,
+their widgets and remaining callback dependencies.
+
+Next priority: implement a model-backed recursive factory, nested input/focus
+and original settings/data callbacks needed for a complete additional flow. Do
+not enable a screen solely because its model loads.
 
 Prefer complete plan items or cohesive dependency groups per iteration, as
 requested by the user. Avoid returning for desktop checks after individual

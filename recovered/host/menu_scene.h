@@ -16,6 +16,7 @@
 #include <memory>
 #include <stdexcept>
 #include <string>
+#include <vector>
 
 namespace hd2::host {
 
@@ -328,6 +329,31 @@ public:
         return found;
     }
 
+    // 0066dbf0: create a named engine frame, link it to its parent, set its
+    // position and retain it with the frontend. The original accepts other
+    // frame kinds; this bounded bridge is for verified kind-six dummy groups.
+    EngineFrame* create_group_frame(HMODULE module, EngineFrame* parent,
+                                    const char* name, const std::array<float, 3>& position) {
+        if (!parent || !name) throw std::invalid_argument("Group frame needs a parent and name");
+        auto frame = driver_.create(6);
+        if (reinterpret_cast<std::uintptr_t>(frame->methods) !=
+                reinterpret_cast<std::uintptr_t>(module) + 0x9bba8) {
+            throw std::runtime_error("Unsupported original dummy-frame vtable");
+        }
+        using Link = std::int32_t (WINAPI *)(EngineFrame*, EngineFrame*, std::uint32_t);
+        using Name = std::int32_t (WINAPI *)(EngineFrame*, const char*);
+        using Position = void (WINAPI *)(EngineFrame*, const float*);
+        if (scene_method<Link>(frame.get(), module, 0x38, 0x1d680)(frame.get(), parent, 0) < 0)
+            throw std::runtime_error("Cannot link original dummy group frame");
+        if (scene_method<Name>(frame.get(), module, 0x34, 0x1d330)(frame.get(), name) < 0)
+            throw std::runtime_error("Cannot name original dummy group frame");
+        scene_method<Position>(frame.get(), module, 8, 0x1c9f0)(frame.get(), position.data());
+        EngineFrame* result = frame.get();
+        group_frames_.push_back(std::move(frame));
+        return result;
+    }
+    EngineFrame* main_model_frame() const { return model_.get(); }
+
     EngineFrame* label_visual(const char* name, const char* visual, HMODULE module,
                               bool confirmation = false) const {
         EngineFrame* found = control_frame(name, module, confirmation);
@@ -530,6 +556,8 @@ private:
     MenuDriver::Owner confirmation_{nullptr, nullptr};
     MenuDriver::Owner cursor_model_{nullptr, nullptr};
     MenuDriver::Owner click_sound_{nullptr, nullptr};
+    // Released before the models and driver; links retain their engine references.
+    std::vector<MenuDriver::Owner> group_frames_;
     using SoundActive = std::uint8_t (WINAPI *)(EngineFrame*, std::uint8_t);
     using SoundEnable = void (WINAPI *)(EngineFrame*, std::uint32_t);
     SoundActive click_sound_active_ = nullptr;

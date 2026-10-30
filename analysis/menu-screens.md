@@ -41,6 +41,8 @@ The options builder references Video, Sound, Controls, Game and Multiplayer
 groups; their nested controls/settings semantics are unfinished. Profiles need
 editable text, lists, difficulty state and profile persistence. Single Player
 needs selector/radio controls and callbacks `0063B590`/`0063B740` before activation.
+See the [options construction inventory](menu-options.md) for its six settings
+groups, navigation group and unresolved widget/callback dependencies.
 
 The reconstructed shared stack supports regular selection (hide current, push,
 activate with focus zero), modal push (retain current visibility, push, activate

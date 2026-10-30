@@ -7,6 +7,19 @@
   "functions": [
     {
       "program": "client",
+      "entry": "0066dbf0",
+      "status": "partial",
+      "coverage": "Create an engine dummy group, link to parent with mode zero, assign name and position, retain frame for frontend lifetime.",
+      "limitations": "Bridge supports dummy kind six only, requires non-null parent/name and throws on engine failures; original accepts a frame kind, has different string/vector ABI and does not check these errors. Bounded real-engine diagnostic is desktop-confirmed; options integration is unfinished.",
+      "evidence": [
+        "analysis/menu-control-factory-map.json",
+        "analysis/menu-ui-map.json",
+        "recovered/host/menu_scene.h",
+        "recovered/host/menu_group_probe.h"
+      ]
+    },
+    {
+      "program": "client",
       "entry": "0061da10",
       "status": "partial",
       "coverage": "Nested definition ID arithmetic: one-based eight-bit ordinal shifted 12 or four depending on parent bits 12..19, OR parent with wrapping.",

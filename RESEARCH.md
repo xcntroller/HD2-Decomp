@@ -2670,3 +2670,31 @@ all recognized and invalid kinds, failure/cleanup order, all 21 leaf initializer
 ID arithmetic, recursive visual construction and three-level event delivery.
 The user confirmed desktop behavior; the log records 1003 frames and clean
 teardown. No new menu action is enabled and no agent-side Proton run was performed.
+
+## Engine-backed dummy group diagnostic — 2026-10-30
+
+0066DBF0 obtains the engine driver, creates the requested frame kind through
++54, links the frame to its supplied parent with +38 mode zero, assigns the
+supplied name via +34 and sets its position via +08, then retains it in the
+frontend-owned vector. The bounded `MenuScene::create_group_frame` implements
+this for kind-six dummy frames with native ownership and checks; original string,
+vector, failure and other frame-kind paths are not reconstructed. Dummy table
+1009BBA8 resolves +08/+34/+38 to 1001C9F0/1001D330/1001D680; existing
++24/+30 evidence covers update/visibility. The engine map now validates all
+five slots alongside the client call-site anchors.
+
+An opt-in diagnostic constructs two linked dummy frames, checks their parent/
+child relation and model lookup, sets and reads IDs using the recovered visual
+binding helper, then routes nested hide/show and state set/query through real
+dummy-frame backends and the native container event runtime. It leaves the real
+menu definitions and input bindings alone. Build, existing native tests, 17
+launcher checks and a temporary flag forwarding/rejection audit pass. Desktop
+validation passed: the probe succeeded and teardown was clean after 425 frames.
+One partial function is added: total 72 partial (68
+client/four engine), zero complete, frozen 18,783.
+
+Read-only exports of five options sub-builders and entry/show callbacks expose
+six settings groups and several additional widget types; the bounded
+[options inventory](analysis/menu-options.md) records dependencies and limits.
+Settings initialization, actual recursive definitions, input and callbacks
+remain prerequisites to enabling options.
