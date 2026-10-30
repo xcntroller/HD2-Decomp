@@ -20,53 +20,26 @@ Checked delivery items mean integrated and desktop-tested unless marked
 Deliver original opening movies → recovered controller transition → compiled
 menu. The existing host preview is desktop-confirmed but is not this milestone.
 
-- [x] Trace normal four-movie sequence and completion codes; desktop-confirmed.
-  [Opening video](analysis/opening-video.md).
-- [ ] Finish movie creation/playback/input/sound/cleanup. Core IShow playback,
-  sizing, Escape and menu entry are confirmed; music/subtitles remain.
-- [ ] Integrate the recovered controller startup/update/state lifetime with the
-  compiled menu factory. Shared source is audited; concrete owners/services remain.
-  [Controller](analysis/application-controller.md).
-- [x] Recover keyboard/mouse/joystick binding production, installation and both
-  default layouts. **Source-only.** [Bindings](analysis/binding-installation.md).
-- [x] Recover input-manager ownership, attachment and teardown. **Source-only.**
-  [Manager](analysis/input-manager.md).
-- [x] Recover input setup, installed language and text loading/cache. **Source-only.**
-  [Localization](analysis/startup-localization.md).
-- [x] Recover joystick-list lifecycle and checked IJoy calls. **Source-only.**
-  Do not add unreachable factory enumeration. [Joysticks](analysis/joystick-devices.md).
-- [x] Recover archive order, fallback, keys and ownership. **Source-only.**
-  [Archives](analysis/startup-archives.md).
-- [x] Recover resource-directory registration, traversal and five client lists.
-  **Source-only.** [Directories](analysis/resource-directories.md).
-- [x] Connect input setup/manager to real graphics/IJoy methods. **Source-only.**
-  [Input services](analysis/graphics-input-services.md).
-- [x] Recover startup window-position restoration/persistence. **Source-only.**
-  [Window position](analysis/window-position.md).
-- [x] Recover original DTA chunk-file read/write lifecycle. **Source-only.**
-  [Chunk files](analysis/chunk-file.md).
-- [x] Recover HumanStore formats, names, overlays and portraits. **Source-only.**
-  [HumanStore](analysis/human-store.md).
-- [x] Recover both GameData formats/all kinds and combined data preparation.
-  **Source-only.** [Application data](analysis/startup-data.md).
-- [x] Recover profile directories/map, binary/legacy loading, movie flags and save
-  finalization. **Source-only.** [Profiles](analysis/startup-data.md).
-- [x] Recover Options.bin/defaults, settings application and profile selection.
-  **Source-only.** [Settings](analysis/startup-settings.md).
-- [x] Recover game.cfg owner/I/O and owning data subset; sound-movie change/fade
-  helpers. **Source-only.** [Startup owners](analysis/startup-owners.md).
-- [x] Recover sound catalog/parsers/cleanup and primary music selection.
-  **Source-only.** [Sound catalog](analysis/sound-catalog.md).
-- [x] Recover secondary movies, queued primary changes and the movie update phase.
-  **Source-only.** [Movie coordination](analysis/sound-movie-channels.md).
-- [x] Recover registered sound data, full voice/movie/listener update and reset/start/stop.
-  **Source-only.** [Sound runtime](analysis/sound-runtime.md).
-- [ ] Recover sound playback/cache producers, spatial routing and shared gate lifecycle.
-  Playback-position/catalog-entry queries are **source-only**; producer/restore remain open.
-- [ ] Recover optional control interface, remaining application/state/protection
-  owners and loaded-cache consumers; complete live device/text integration.
-- [ ] Build the independent launch executable and desktop-test normal playback,
-  skip, missing movies, menu entry and teardown; commit after user confirmation.
+Keep this delivery checklist stable. Record subsystem slices in the linked
+[recovery index](analysis/launch-next-steps.md#recovered-source-index), not as new
+checkboxes. Add prerequisites only when original call evidence proves launch
+requires them; recovery of a helper alone does not complete a delivery item.
+
+- [x] Integrate original startup owners, resources, settings, input and localization.
+  [Bounded startup checkpoint](analysis/startup-integration.md) desktop-confirmed 2026-10-30.
+- [ ] Integrate original video/menu states and controller update/render transitions.
+- [ ] Complete opening playback, skips, music/subtitles and movie-to-menu cleanup.
+- [ ] Preserve failure handling, partial-startup cleanup and normal shutdown.
+- [ ] Build the independent launch target; desktop-confirm playback, skips, missing
+  movies, menu entry and teardown, then commit after user confirmation.
+
+Baseline: the four-movie sequence and host preview are desktop-confirmed.
+[Opening evidence](analysis/opening-video.md). Recovered source components remain
+separate from delivery; their completed work is preserved in the recovery index.
+
+Next: connect concrete video/menu state owners to the recovered controller.
+[Priorities and starting points](analysis/launch-next-steps.md). Full registry/setup
+bootstrap and binary-specific integrity VM remain outside the bounded checkpoint.
 
 ## Current position
 

@@ -63,6 +63,20 @@ no new live behavior or successful placeholder services.
 Small follow-ups recover primary playback-position and borrowed indexed catalog
 entry queries; neither introduces an implicit load or new live startup wiring.
 
+[Launch control initialization](../analysis/control-startup.md) adds actual
+[gate/data reset and partial record defaults](frontend/control_startup.h) with
+[Win32 critical-section storage](host/control_startup.h). It is called before
+graphics initialization in the original setup. Full control/device/interface
+construction, callback services, protection and live launch wiring remain open.
+
+Build `make startup-probe` with the same i386 compiler as engine-window for the
+[bounded startup integration target](../analysis/startup-integration.md).
+[StartupSession](host/startup_session.h) composes actual recovered resource,
+input/text/data/profile/settings bodies; [module startup](frontend/startup_modules.h)
+includes the real [vertex-animation loader](frontend/vertex_animations.h).
+The user desktop-confirmed this bounded checkpoint on 2026-10-30. Original controller/
+menu states and the full setup wrapper are not replaced by this diagnostic.
+
 The second component is the
 [model resource key helper](scene/model_resource_key.cpp), with its
 [public interface](scene/model_resource_key.h). This is a small string

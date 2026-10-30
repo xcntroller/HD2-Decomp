@@ -28,6 +28,12 @@ movie and listener update, resource reset/start/stop, sector metadata and
 registered manager data, plus playback-position and bounded catalog-entry queries.
 This remains source-only; playback/cache producers,
 shared gate/control ownership and application/controller integration are open.
+The [launch gate initializer](analysis/control-startup.md) now has source and
+real Win32 lock services; full control lifecycle and protection remain open.
+The [startup integration executable](analysis/startup-integration.md) now composes
+the real archive/input/text/data/profile/settings adapters and required module
+loading. The bounded startup checkpoint is desktop-confirmed (2026-10-30);
+original video/menu controller integration is next.
 
 Movie/menu keyboard device input and focus return are desktop-confirmed. The
 [keyboard preprocessing and text-input slice](analysis/keyboard-preprocessing.md)
@@ -206,11 +212,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **278 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **284 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 273 |
+| Base game client | 17,294 | 0 | 279 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

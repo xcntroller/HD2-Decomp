@@ -3307,3 +3307,110 @@ handoff/plan/readmes and committed accumulated movie/runtime/query source work
 at the user's request. Live behavior unchanged; no desktop delivery or push.
 Next session starts at actual playback/cache producer00433FA0/restore00435240,
 then required spatial routing, shared gate/control and real launch owners.
+
+## 2026-10-30 — launch planning review after050b112
+
+Reviewed current handoff/plan, controller source, startup data owner and sound/
+settings/archive contracts. No new implementation or binary-behavior claims.
+The next priority is to establish normal launch's missing owners and shared-gate
+writers, inspect the unresolved protection prelude early, then close a proven
+required slice. Full playback/cache/spatial sound remains available follow-up
+work; its necessity for normal opening/menu must be established before expanding
+all branches. Older notes describing006B65D0/006B6620 or full sound update as
+wholly unrecovered predate subsequent source work. Concrete application/state
+ownership and live composition remain open. Starting addresses, deliverables,
+validation boundaries and selective reading: analysis/launch-next-steps.md.
+Documentation-only review; previous test results and278-partial ledger unchanged.
+
+At the user's agreement, milestone0 now tracks five stable delivery outcomes.
+Its former source-recovery checklist is preserved as a compact linked index in
+analysis/launch-next-steps.md. Future helpers update subsystem contracts rather
+than expanding the delivery checklist; additional launch prerequisites need
+original call evidence. No delivery or function status changed.
+
+## 2026-10-30 — launch dependency trace and actual gate/data initializer
+
+Read existing Ghidra launch/setup/video exports and exported actual control
+0072E1A0/00725A50/full-owner context read-only from the separate research project.
+Main006DCAE0 calls setup006DBFC0 before controller006C0820. Setup006DC1AA uses
+ECX0097D070 for0072E1A0 before graphics006DB0F0. That same owner supplies settings
+control+0C. Full constructor0072DE00 separately sets gate7; other runtime writers
+include1/3,2,12hex and7. No permanent constant-gate policy is inferred.
+
+Implemented frontend/control_startup.h and actual Win32 host lock storage:
+explicit initializer field order/gate7, locks+418/+430, callback identity and32
+APPENDED0xC4 records with ordinary capacity doubling. Existing entries survive;
+constructor00725A50 writes95 bytes and leaves101 unknown. Native byte-validity
+masks preserve undefined provenance rather than fabricating zeros. Callback
+identity is not executable original-client code. Full owner, devices/interfaces,
+callback consumers, shutdown and protection remain open; no success stubs added.
+
+Video initializer00688040 calls00A59000 at00688081/006880D7 before descriptor
+installation. Protection therefore also appears inside the normal state path;
+solving or excluding archive-only prelude is insufficient. Static call presence
+is confirmed, effects/signatures still require recovery. The first new Ghidra
+export run stopped at invalid0072DF60 after four successes; corrected second run
+uses0072DE00 and all five requested exports decompile. Saved projects untouched.
+
+Temporary ASan/UBSan audit passes256 record sentinels, exact95/101 validity,
+eight prefixes/copies/append, ordered callback-visible startup writes, injected
+lock failures and existing sound/settings composition with initialized gate.
+Actual Win32/LS3DF i386 composition links only; never run. Existing native checks
+and158 Python tests pass. Map validates25 anchors/46 calls and zero-fill gate;
+five altered maps reject. Fixtures removed, no permanent tests or desktop claim.
+Two census-backed partial client additions:280 partial (275client/5engine), zero
+complete, frozen18783. Full-owner context/wrappers/APIs get no credit. Source-only
+work uncommitted; five launch delivery outcomes remain unchecked. Next concrete
+protection/control/owner dependencies and evidence: analysis/control-startup.md.
+
+## 2026-10-30 — concrete startup integration checkpoint
+
+Moved from isolated recovery to a strict i386 executable: startup_probe.exe,
+host/startup_session.h and tools/run_startup_probe.py. Composes existing actual
+configuration/data ownership, gate/locks, archive key exchange, directory lists,
+input/joystick attachment, text preload, module startup, GameData/HumanStore,
+profile/options/defaults and settings adapters. Data consumers close before
+3D/sound/graphics; archives close afterward. No successful placeholder interfaces.
+Existing preview unchanged; original controller/menu states remain separate.
+
+00A59000 points009967E0; its resolver0099690A maps return addresses to real IAT
+slots before the tail jump009977DC. Confirmed688087→IsWindow,6880DD/6DB8CD→GetFocus,
+6DBF31→IsZoomed. Native probe calls actual APIs directly; original binary-specific
+integrity VM/private state is unported, not claimed equivalent or replaced with
+an always-success callback. Full006DBFC0 registry/device/setup.exe wrapper is not
+reconstructed by the bounded windowed bootstrap. Preserve that delivery scope.
+
+Discovered required006DBFB0→0048DA60 module startup after text/input. Eighteen
+normal registrations:16 startup slot04 targets are actual RETs; Items3 starts
+with a constructor-zeroed deque and writes current=-1; dirty restarts reject.
+Vertex anim9 gate2 invokes00473EC0, now implemented in vertex_animations.h with
+record ownership00473700/00473720, inclusive frame/group rows and16-byte-aligned
+size*32 blobs. Missing-open retains old data and closesFFFFFFFF; positive-open
+clears old data, ignores header, commits complete records. Native short-positive
+read/dimension guards reject undefined original paths. Replacement modules reject.
+
+Native sanitizer audit matches independent extraction/decoding of five base
+Vertanim records,1,591,588 file bytes/1,591,424 vertex bytes; malformed/gated/
+restart/replacement paths pass. Staging audit verifies actual copies, original
+preservation, retained staged config/profiles and hash/link/overlap/mismatch
+rejection. Strict real-adapter i386 executable, existing native checks and158
+Python tests pass. Map validates both hashes,47 anchors/36 calls/18 client slots/
+10 engine slots; four mutations reject. Temporary audits removed, no permanent
+tests, game execution, commit or desktop claims. Four census-backed partial
+client additions bring284 partial (279client/fiveengine), zero complete, frozen
+18783. Integration glue and actual RETs/absent00474A00/delegated bodies add none.
+Run guide, expected log markers and remaining setup/state/VM limitations:
+analysis/startup-integration.md. First checkbox remains open pending actual
+desktop feedback and integration scope review; do not count a build as delivery.
+
+## 2026-10-30 — startup integration desktop acceptance
+
+User confirmed startup integration and teardown markers. Staged host-runtime.log
+records gate7, text2590, game-roots1, vertex-tables5, prepare=1, profile/options
+applied, and teardown result=0. This run had bindings0/joysticks0/input-words0/0;
+live controller input remains part of the next integration. First milestone0
+checkbox is complete for the bounded startup executable; full registry/setup
+bootstrap, integrity VM and original controller/menu are not claimed complete.
+No new function credit:284 partial, zero complete. Agent did not run Windows code.
+User authorized committing the verified checkpoint, then researching the next
+video/menu/controller checkbox.

@@ -3751,6 +3751,92 @@
         "recovered/frontend/sound_runtime.h",
         "recovered/host/sound_services.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0072e1a0",
+      "status": "partial",
+      "coverage": "Actual launch data initialization: ordered field clears/defaults, gate7, two critical-section initializations, callback identity and32 appended partially initialized records, preserving existing prefix and ordinary capacity growth.",
+      "limitations": "Source-only native field view/vectors/validity masks replace original full owner, raw allocation/class/SEH ABI and undefined stack reads. Callback is a non-executable typed identity; its service/destinations, full constructor/device/interface/shutdown and protection remain unrecovered. Real Win32 lock/LS3DF settings composition links only, never run. Native guards and RAII differ on invalid/repeated initialization and failure. No live startup integration or desktop delivery.",
+      "evidence": [
+        "analysis/control-startup-map.json",
+        "analysis/control-startup.md",
+        "recovered/frontend/control_startup.h",
+        "recovered/host/control_startup.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00725a50",
+      "status": "partial",
+      "coverage": "Reset exactly95 defined bytes of original196-byte control record; preserve unwritten101 bytes and retain their native known/unknown provenance, including partial byte stores and explicit2/-1/50 defaults.",
+      "limitations": "Source-only native field view/vectors/validity masks replace original full owner, raw allocation/class/SEH ABI and undefined stack reads. Callback is a non-executable typed identity; its service/destinations, full constructor/device/interface/shutdown and protection remain unrecovered. Real Win32 lock/LS3DF settings composition links only, never run. Native guards and RAII differ on invalid/repeated initialization and failure. No live startup integration or desktop delivery.",
+      "evidence": [
+        "analysis/control-startup-map.json",
+        "analysis/control-startup.md",
+        "recovered/frontend/control_startup.h",
+        "recovered/host/control_startup.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00473ec0",
+      "status": "partial",
+      "coverage": "Actual required startup Vertex anim table loader: missing-open retains entries and closes invalid handle; valid-open clears reverse, ignores header, reads20-byte names/counts and sizes, inclusive frame/group aligned32-byte blocks, commits only complete records and closes on exit.",
+      "limitations": "Bounded startup integration, not desktop-verified. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application/controller/state lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
+      "evidence": [
+        "analysis/startup-integration-map.json",
+        "analysis/startup-integration.md",
+        "recovered/frontend/vertex_animations.h",
+        "recovered/frontend/startup_modules.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/startup_probe.cpp"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00473700",
+      "status": "partial",
+      "coverage": "Initialize the vertex-animation count and ownership fields to zero; native name storage is read fully before use, with short positive reads rejected.",
+      "limitations": "Bounded startup integration, not desktop-verified. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application/controller/state lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
+      "evidence": [
+        "analysis/startup-integration-map.json",
+        "analysis/startup-integration.md",
+        "recovered/frontend/vertex_animations.h",
+        "recovered/frontend/startup_modules.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/startup_probe.cpp"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00473720",
+      "status": "partial",
+      "coverage": "Own/free vertex-animation sizes, rows and aligned frame/group allocations using native vectors/unique ownership; partial native construction also unwinds safely.",
+      "limitations": "Bounded startup integration, not desktop-verified. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application/controller/state lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
+      "evidence": [
+        "analysis/startup-integration-map.json",
+        "analysis/startup-integration.md",
+        "recovered/frontend/vertex_animations.h",
+        "recovered/frontend/startup_modules.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/startup_probe.cpp"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048da60",
+      "status": "partial",
+      "coverage": "Ascending fresh registration iteration, skipping null slots and executing verified normal startup handlers: actual RET methods, cold Items reset and gate2 vertex-table load; unknown replacements/restarts rejected.",
+      "limitations": "Bounded startup integration, not desktop-verified. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application/controller/state lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
+      "evidence": [
+        "analysis/startup-integration-map.json",
+        "analysis/startup-integration.md",
+        "recovered/frontend/vertex_animations.h",
+        "recovered/frontend/startup_modules.h",
+        "recovered/host/startup_session.h",
+        "recovered/host/startup_probe.cpp"
+      ]
     }
   ]
 }

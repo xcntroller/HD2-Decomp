@@ -29,7 +29,8 @@ public:
             profile_->payload.words[at] = 0xffffffffu;
         humans_ = std::make_unique<HumanStore<Graphics>>(graphics);
     }
-    ~ApplicationStartupData() {
+    ~ApplicationStartupData() { close(); }
+    void close() {
         // 006B6010 destroys these four owners in this order, not reverse member
         // declaration order. Other original application owners are outside scope.
         game_.reset(); configuration_.reset(); profile_.reset(); humans_.reset();

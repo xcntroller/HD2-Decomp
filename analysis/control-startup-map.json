@@ -1,0 +1,331 @@
+{
+  "scope": "Source-only actual launch control-data initialization0072E1A0 and partial record defaults00725A50; gate/control ownership and normal launch dependency evidence. Full control manager constructor/device/interface/shutdown and protection operations remain unrecovered.",
+  "runtime_verified": false,
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "image_base": "00400000",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307"
+  },
+  "instruction_anchors": [
+    {
+      "address": "0072e1a0",
+      "hex": "81ecd40000005355568bf133db578b3db8f180008d8618040000899ee04e0000899e3c500000bd32000000c70500219800070000005089ae54500000899e58500000c6866050000001899e48040000899ee4040000ffd78d8e3004000051ffd7c6861850000001899e44500000889ef84d0000c7863c4d0000ffffffff895e14899e6450000089ae68500000c7866c500000e0930400895e10895e0c885e08c7861404000060c3720081c6dc010000c7442410200000008d4c2420e8e077ffff8b4e088b560c8be82bd1b89d829753896c241cf7eac1fa068bc28bf9c1e81f03d083fa010f83160100008b6e043beb741c8bd1b89d8297532bd5f7eac1fa068bc2c1e81f03d083fa018bda7705bb0100000085ed750433d2eb132bcdb89d829753f7e9c1fa068bcac1e91f03d18d041a85c0894424147d0233c08d1440c1e20403d0c1e20252e8246f0b008b5e0483c4043bdf894424188be874198bd38bcde84cdaffff81c3c400000081c5c40000003bdf75e78b44241c8bce506a0155e85dd6ffff8b4e0881c5c40000005551578bcee8ead4ffff8b56088b460452508bcee8cbd4ffff8b4e0451e872390b008b4424188b7c241c83c4048d1440c1e20403d08d049789460c8b460485c0750433d2eb168b4e082bc8b89d829753f7e9c1fa068bcac1e91f03d18d4201897e048d1440c1e20403d033db8d0497e9a10000008bd1b89d8297532bd7f7eac1fa068bc2c1e81f03d083fa0173508d97c40000005251578bcee856d4ffff8b5e08b89d8297538bcb552bcff7e9c1fa068bc2b901000000c1e81f03d02bca51538bcee88dd5ffff8b5608558bcfe8e2d6ffff8b460805c400000033dbeb37515181c13cffffff518bcee806d4ffff8b46088bcf508d903cffffffe8e5d7ffff558d97c40000008bcfe8a7d6ffff8b460805c40000008946088b44241048894424100f8504feffff5f5e5d5b81c4d4000000c3",
+      "meaning": "Entire recovered data initializer; gate7, ordered Win32 lock creation and append32 records, preserving existing entries."
+    },
+    {
+      "address": "00725a50",
+      "hex": "8bd1535733dbb90900000033c08d7a40885a08f3abb802000000899ab4000000895a6c895a74891a895a3c895a7c889aa1000000889aa2000000899aa4000000899aac000000899ab0000000899abc0000005f894268894264c74270ffffffffc782b8000000320000005bc3",
+      "meaning": "Entire recovered record reset; only explicit bytes are defined, all other bytes survive."
+    },
+    {
+      "address": "00725a40",
+      "hex": "568bf1e8080000008bc65ec3",
+      "meaning": "Record-constructor wrapper context; no separate wrapper credit."
+    },
+    {
+      "address": "0072bd50",
+      "hex": "578bf985ff740b56b9310000008bf2f3a55e5fc3",
+      "meaning": "Raw49-DWORD record copy; unknown source bytes are not implicitly zeroed."
+    },
+    {
+      "address": "0072c360",
+      "hex": "558beca0002198008b4d10a8018b450c7419c1e0050bc18b4d08505152b970d09700e8e9fdffff5dc20c00c1e0050bc18b4d08505152b970d09700e890feffff5dc20c00",
+      "meaning": "Callback identity context only; gate1 chooses packed-event destination. Not implemented/enabled."
+    },
+    {
+      "address": "006dc193",
+      "hex": "b9080000008d75d0bfe8ec8a00f3a566a5b970d09700a4e8f11f05008b7df88bcfe837efffff84c075085f5e8be55dc20400e8e48c10006a016a008bf0ff1588f1800050ff15c0f380008b0e506af256ff514850ff15c4f380008bcfe80cf1ffff8bcfe8b5f1ffff8bcfe8bef2ffff84c075085f5e8be55dc204008bcfe8cbf2ffff8bcfe8c4f4ffff8bcfe83dfcffff8bcfe886fdffff84c0750a32",
+      "meaning": "Actual setup call sequence: ECX0097D070 initializer precedes graphics, sound/3D, archives/directories/input."
+    },
+    {
+      "address": "0072de00",
+      "hex": "6aff68d2ca800064a100000000506489250000000083ec08568bf1578974240c8d8ea0010000e845f500008a44240b33ff897c24188886dc01000089bee001000089bee401000089bee80100008a4c240b6a18c644241c01888ef0010000e8ac730b0089008940048986f401000089bef80100008a54240f6a18c6442420028896fc010000e885730b00890089400483c40889860002000089be0402000068a0c572006870d373006a038d86080200006a3c50c644242c03e8d2800b008d8ebc020000c644241804e8a3f400008d8ef8020000c644241805e893f400008d8e3c030000c644241806e8f38701008d8ed0040000c644241807e863faffff8d54240b8d8ef404000052c644241c08e8de8fffff8d8e004e0000c644241809e8be6fffff8d8eb44f0000e8037bffff8d8ed04f0000e8f87affff8d8eec4f0000e8ed7affff8a44240b8d8e1c500000578801e8eb70cdff8a54240b8d8e2c50000057c644241c0a8811e8d470cdffc64424180bc70500219800070000008d86e44e0000b9320000006689786466893883c0024975f389beb04f000089beac4f0000e89ca901008b4c24108bc65f5e64890d0000000083c414c3",
+      "meaning": "Full owner constructor context only: vector construction and separate gate7 write; not credited."
+    },
+    {
+      "address": "0072e460",
+      "hex": "53566a018bf1e8750000008b4e0c33db3bcb74098b016a01ff10895e0c8b4e103bcb74098b116a01ff12895e108bcee88c4dffff389e1850000074208d8618040000578b3db0f1800050ffd78d8e3004000051ffd7889e185000005fc70500219800070000008b8ee04e00003bcb740d8b116a01ff520c899ee04e00005e5bc3",
+      "meaning": "Full owner shutdown context only: reset/devices/interfaces first, locks then gate7; not credited."
+    },
+    {
+      "address": "00722b78",
+      "hex": "890d00219800",
+      "meaning": "Other gate writer: runtime value computed from application byte170; enclosing interface call requires further recovery."
+    },
+    {
+      "address": "00722bb9",
+      "hex": "c7050021980007000000",
+      "meaning": "Runtime failure reset gate7."
+    },
+    {
+      "address": "0072330e",
+      "hex": "c7050021980012000000",
+      "meaning": "Runtime gate12 hex writer; not a proven normal-startup value."
+    },
+    {
+      "address": "00723c26",
+      "hex": "c7050021980012000000",
+      "meaning": "Runtime gate12 hex writer; owner/caller investigation remains."
+    },
+    {
+      "address": "00723f7f",
+      "hex": "c7050021980002000000",
+      "meaning": "Runtime gate2 writer."
+    },
+    {
+      "address": "007240b0",
+      "hex": "c7050021980007000000",
+      "meaning": "Runtime gate7 writer."
+    },
+    {
+      "address": "0072df71",
+      "hex": "c7050021980007000000",
+      "meaning": "Full owner constructor gate7."
+    },
+    {
+      "address": "0072e1cb",
+      "hex": "c7050021980007000000",
+      "meaning": "Recovered initializer gate7."
+    },
+    {
+      "address": "0072e4bc",
+      "hex": "c7050021980007000000",
+      "meaning": "Full shutdown gate7."
+    },
+    {
+      "address": "0072e5fa",
+      "hex": "c7050021980007000000",
+      "meaning": "Device reset gate7."
+    },
+    {
+      "address": "0080f1b8",
+      "hex": "b4034300",
+      "meaning": "InitializeCriticalSection IAT pointer, called twice by recovered initializer."
+    },
+    {
+      "address": "0080f1b0",
+      "hex": "8e034300",
+      "meaning": "DeleteCriticalSection IAT pointer, full owner shutdown context only."
+    },
+    {
+      "address": "0072ddd0",
+      "hex": "b970d09700e926000000",
+      "meaning": "Original static constructor wrapper selects0097D070 then tail-jumps to0072DE00; context only."
+    },
+    {
+      "address": "00688081",
+      "hex": "ff150090a500",
+      "meaning": "Video initialization protection-state indirect call1, preceding descriptor install."
+    },
+    {
+      "address": "006880d7",
+      "hex": "ff150090a500",
+      "meaning": "Video initialization protection-state indirect call2, preceding descriptor install."
+    },
+    {
+      "address": "006dcb55",
+      "hex": "e866f4ffff",
+      "meaning": "Main launch invokes setup006DBFC0."
+    },
+    {
+      "address": "006dcc52",
+      "hex": "e8c93bfeff",
+      "meaning": "Main launch invokes controller006C0820 after successful setup."
+    }
+  ],
+  "vtables": [],
+  "direct_calls": [
+    {
+      "site": "0072e25b",
+      "target": "00725a40"
+    },
+    {
+      "site": "0072e2e6",
+      "target": "007e520f"
+    },
+    {
+      "site": "0072e2ff",
+      "target": "0072bd50"
+    },
+    {
+      "site": "0072e31e",
+      "target": "0072b980"
+    },
+    {
+      "site": "0072e331",
+      "target": "0072b820"
+    },
+    {
+      "site": "0072e340",
+      "target": "0072b810"
+    },
+    {
+      "site": "0072e349",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "0072e3c5",
+      "target": "0072b820"
+    },
+    {
+      "site": "0072e3ee",
+      "target": "0072b980"
+    },
+    {
+      "site": "0072e3f9",
+      "target": "0072bae0"
+    },
+    {
+      "site": "0072e415",
+      "target": "0072b820"
+    },
+    {
+      "site": "0072e426",
+      "target": "0072bc10"
+    },
+    {
+      "site": "0072e434",
+      "target": "0072bae0"
+    },
+    {
+      "site": "00725a43",
+      "target": "00725a50"
+    },
+    {
+      "site": "0072c382",
+      "target": "0072c170"
+    },
+    {
+      "site": "0072c39b",
+      "target": "0072c230"
+    },
+    {
+      "site": "006dc1aa",
+      "target": "0072e1a0"
+    },
+    {
+      "site": "006dc1b4",
+      "target": "006db0f0"
+    },
+    {
+      "site": "006dc1c5",
+      "target": "007e4eae"
+    },
+    {
+      "site": "006dc1ef",
+      "target": "006db300"
+    },
+    {
+      "site": "006dc1f6",
+      "target": "006db3b0"
+    },
+    {
+      "site": "006dc1fd",
+      "target": "006db4c0"
+    },
+    {
+      "site": "006dc210",
+      "target": "006db4e0"
+    },
+    {
+      "site": "006dc217",
+      "target": "006db6e0"
+    },
+    {
+      "site": "006dc21e",
+      "target": "006dbe60"
+    },
+    {
+      "site": "006dc225",
+      "target": "006dbfb0"
+    },
+    {
+      "site": "0072de26",
+      "target": "0073d370"
+    },
+    {
+      "site": "0072de5e",
+      "target": "007e520f"
+    },
+    {
+      "site": "0072de85",
+      "target": "007e520f"
+    },
+    {
+      "site": "0072deb8",
+      "target": "007e5f8f"
+    },
+    {
+      "site": "0072dec8",
+      "target": "0073d370"
+    },
+    {
+      "site": "0072ded8",
+      "target": "0073d370"
+    },
+    {
+      "site": "0072dee8",
+      "target": "007466e0"
+    },
+    {
+      "site": "0072def8",
+      "target": "0072d960"
+    },
+    {
+      "site": "0072df0d",
+      "target": "00726ef0"
+    },
+    {
+      "site": "0072df1d",
+      "target": "00724ee0"
+    },
+    {
+      "site": "0072df28",
+      "target": "00725a30"
+    },
+    {
+      "site": "0072df33",
+      "target": "00725a30"
+    },
+    {
+      "site": "0072df3e",
+      "target": "00725a30"
+    },
+    {
+      "site": "0072df50",
+      "target": "00405040"
+    },
+    {
+      "site": "0072df67",
+      "target": "00405040"
+    },
+    {
+      "site": "0072df9f",
+      "target": "00748940"
+    },
+    {
+      "site": "0072e466",
+      "target": "0072e4e0"
+    },
+    {
+      "site": "0072e48f",
+      "target": "00723220"
+    },
+    {
+      "site": "006dcb55",
+      "target": "006dbfc0"
+    },
+    {
+      "site": "006dcc52",
+      "target": "006c0820"
+    }
+  ],
+  "resource_anchors": [],
+  "zero_initialized_storage": [
+    {
+      "address": "00982100",
+      "size": 4,
+      "meaning": "Shared gate starts in PE zero-filled storage; explicit constructor and startup writes follow."
+    }
+  ]
+}

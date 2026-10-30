@@ -1,0 +1,614 @@
+{
+  "scope": "Startup integration target and required module9 vertex-animation load. Protected-import lookup resolves real Win32 API targets; original binary self-integrity VM remains unported. Probe is separate from controller/menu delivery.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "00473ec0",
+        "hex": "6aff68fbb97f0064a100000000506489250000000083ec14535556576a0068309483008bf9e85a1037008bd883fbff895c241c750b50e855103700e9710300008d6f108b450485c074678b4d082bc8c1f902894c241874598bc885c974088b45082bc1c1f8028b57148b7482fc85f674108bcee8e8f7ffff56e882dd360083c4048b4d088d51fc8d42043bc1740e2bd08b3089340283c0043bc175f48b45088bcd5083c0fc50e8650d0000834508fceb928d4424206a045053e8c00f37006a24e88a12370083c4048944241833f63bc68974242c74098bc8e863f7ffffeb0233c06a145053c7442438ffffffff8944241ce8880f370085c00f8e870200008b4c24106a0483c1145153e8700f370085c00f8e6f0200008b5424106a0483c2185253e8580f370085c00f8e570200008b4424108b4818c1e10251e8111237008b54241483c40489421c8b4424108b481885c97e218b401c6a048d0cb05153e81c0f370085c00f8e290200008b442410463b70187cdf8b40148d14850400000052e8cb1137008b4c241483c40433ff8941208b4424108b481485c97c7f8b5018c1e20252e8a81137008b4c241483c40433f68b51208904ba8b4424108b481885c97e518b401c6a108b04b0c1e00550e8d00e37008b4c241883c4088b51208b0cba8904b18b4424108b501c8b0cb28b5020c1e1058b04ba518b0cb05153e87e0e370085c00f8e8b0100008b442410463b70187caf8b4814473bf97e818b45088b550c2bd08bf0c1fa0283fa010f83b90000008b550485d2740c8bc82bcac1f90283f9017705b90100000085d2750433c0eb052bc2c1f80203c185c0894424187d0233c0c1e00250e8e51037008b5d0483c4043bde894424148bf874138bd38bcfe83d0e000083c30483c7043bde75ed8d5424108bcfe8280e00008b5d083bf374162bfe83c7048d0c378bd6e8120e000083c6043bf375ef8b4d0451e842db36008b7424188b54241c83c4048bcd8d049689450ce81a0b00008b5c241c8d4c8604894d08897504e9d5fdffff8bd02bd6c1fa0283fa01734b8d4e045150568bcde83e0d00008b45088d5424108bc8522bceba01000000c1f9022bd18bcd5250e84f0d00008b4d088bc63bf1740d8b542410891083c0043bc175f383450804e97efdffff505083c0fc8bcd50e8f30c00008b4d088d41fc3bf0740f8b50fc83e80483e9043bc6891175f18d4e048bc63bf1740d8b542410891083c0043bc175f383450804e939fdffff53e8050d37008b4c24103bceeb0c53e8f70c37008b4c241085c974108bf1e8b8f4ffff56e852da360083c4048b4c24245f5e5d32c05b64890d0000000083c420c3",
+        "meaning": "Vertex-animation table load: ignored header, valid-open clears old data, positive reads, inclusive frames, aligned32-byte records and partial-prefix cleanup."
+      },
+      {
+        "address": "00473700",
+        "hex": "8bc133c989481489481889481c894820c3",
+        "meaning": "Vertex-animation record constructor zeroes four ownership/count fields."
+      },
+      {
+        "address": "00473720",
+        "hex": "53568bf18b461c50e893e536008b462083c40485c074458b461433db85c07c3c578b461833ff85c07e1a8b4e208b14998b04ba50e8e31937008b461883c404473bf87ce68b4e208b149952e850e536008b461483c404433bd87ec65f8b462050e83be5360083c4045e5bc3",
+        "meaning": "Vertex-animation record cleanup context; native owned vectors/aligned blocks replace raw allocation."
+      },
+      {
+        "address": "0048da60",
+        "hex": "56bed8ba89008b0e85c974058b01ff500483c60481fe24bb89007cea5ec3",
+        "meaning": "Ascending fresh module startup dispatch, skip null entries."
+      },
+      {
+        "address": "007dcd20",
+        "hex": "568bf18b8634080000c786e0070000ffffffff85c00f84be00000055578b96140800008b8e3408000083c208498996140800008bc2898e34080000740c3b86100800000f85800000008b86180800008d4804898e180800008b1052e8404f00008b863408000083c40485c08dae0c080000753a33c033c989450033d233ff894d04895508897d0c8dae1c08000089861c0800008b862c08000050894d04895508897d0ce8f84e000083c404eb1c8b86180800008b08894d008bf98d9100100000895504897d0889450c8b863408000085c00f8546ffffff5f5d5ec3",
+        "meaning": "Items module startup context: cold empty-deque branch resets current to-1; dirty branch remains unsupported."
+      },
+      {
+        "address": "00474a00",
+        "hex": "f6050021980002740cc7410c00000000e9abf4ffffc3",
+        "meaning": "Vertex module startup gate2, word0C clear and loader tail call; absent census."
+      },
+      {
+        "address": "006dbfb0",
+        "hex": "e86bf6ffffe8a61adbffb001c3909090",
+        "meaning": "Input/localization helper then module startup, normal return1."
+      },
+      {
+        "address": "00473d20",
+        "hex": "68249483006a09b964b38900e82f000000c3",
+        "meaning": "Static Vertex module registration kind9 and name pointer."
+      },
+      {
+        "address": "007d7680",
+        "hex": "68f03786006a03b920b09800e89f530000c3",
+        "meaning": "Static Items module registration kind3 and name pointer."
+      },
+      {
+        "address": "0099690a",
+        "hex": "528d150890a5003902740583c208ebf78b42045ac3",
+        "meaning": "Wrapper continuation resolver: search return-address key, return matching IAT slot pointer."
+      },
+      {
+        "address": "009977cf",
+        "hex": "5a598b45ace831f1ffff8be55dff20",
+        "meaning": "Wrapper restores stack and tail-jumps through selected original IAT slot."
+      },
+      {
+        "address": "00a59000",
+        "hex": "e0679900",
+        "meaning": "Original dispatcher pointer009967E0; implementation is not replaced by a success callback."
+      },
+      {
+        "address": "00a59030",
+        "hex": "87806800e4f38000",
+        "meaning": "Video prefix IsWindow: return-address key and real IAT slot."
+      },
+      {
+        "address": "0080f3e4",
+        "hex": "26114300",
+        "meaning": "Video prefix IsWindow: IAT name RVA."
+      },
+      {
+        "address": "00831128",
+        "hex": "497357696e646f7700",
+        "meaning": "Video prefix IsWindow: imported name IsWindow."
+      },
+      {
+        "address": "00a59038",
+        "hex": "dd806800e8f38000",
+        "meaning": "Video prefix GetFocus: return-address key and real IAT slot."
+      },
+      {
+        "address": "0080f3e8",
+        "hex": "30114300",
+        "meaning": "Video prefix GetFocus: IAT name RVA."
+      },
+      {
+        "address": "00831132",
+        "hex": "476574466f63757300",
+        "meaning": "Video prefix GetFocus: imported name GetFocus."
+      },
+      {
+        "address": "00a590f0",
+        "hex": "cdb86d00e8f38000",
+        "meaning": "Archive prelude GetFocus: return-address key and real IAT slot."
+      },
+      {
+        "address": "0080f3e8",
+        "hex": "30114300",
+        "meaning": "Archive prelude GetFocus: IAT name RVA."
+      },
+      {
+        "address": "00831132",
+        "hex": "476574466f63757300",
+        "meaning": "Archive prelude GetFocus: imported name GetFocus."
+      },
+      {
+        "address": "00a590f8",
+        "hex": "31bf6d00d0f38000",
+        "meaning": "Directory postlude IsZoomed: return-address key and real IAT slot."
+      },
+      {
+        "address": "0080f3d0",
+        "hex": "ee104300",
+        "meaning": "Directory postlude IsZoomed: IAT name RVA."
+      },
+      {
+        "address": "008310f0",
+        "hex": "49735a6f6f6d656400",
+        "meaning": "Directory postlude IsZoomed: imported name IsZoomed."
+      },
+      {
+        "address": "00405af0",
+        "hex": "c3",
+        "meaning": "Actual empty module initialization RET, no placeholder."
+      },
+      {
+        "address": "004106c0",
+        "hex": "c3",
+        "meaning": "Actual empty module initialization RET, no placeholder."
+      },
+      {
+        "address": "0043dc70",
+        "hex": "c3",
+        "meaning": "Actual empty module initialization RET, no placeholder."
+      },
+      {
+        "address": "00476f80",
+        "hex": "c3",
+        "meaning": "Actual empty module initialization RET, no placeholder."
+      },
+      {
+        "address": "00475730",
+        "hex": "c3",
+        "meaning": "Actual empty module initialization RET, no placeholder."
+      },
+      {
+        "address": "007dca8d",
+        "hex": "89960c08000089961008000089961408000089961808000089961c08000089962008000089962408000089962808000089962c080000899630080000899634080000",
+        "meaning": "Items constructor zeroes deque pointers/count including+834; cold module startup is not a fabricated empty queue."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "0080f4d4",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module0 startup+04."
+      },
+      {
+        "address": "008101f4",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module1 startup+04."
+      },
+      {
+        "address": "0080f644",
+        "targets": [
+          "004106c0"
+        ],
+        "meaning": "Final module2 startup+04."
+      },
+      {
+        "address": "0081720c",
+        "targets": [
+          "007dcd20"
+        ],
+        "meaning": "Final module3 startup+04."
+      },
+      {
+        "address": "0080f754",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module4 startup+04."
+      },
+      {
+        "address": "0080ffcc",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module5 startup+04."
+      },
+      {
+        "address": "0080f7bc",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module6 startup+04."
+      },
+      {
+        "address": "0080f90c",
+        "targets": [
+          "0043dc70"
+        ],
+        "meaning": "Final module7 startup+04."
+      },
+      {
+        "address": "0081039c",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module8 startup+04."
+      },
+      {
+        "address": "00810064",
+        "targets": [
+          "00474a00"
+        ],
+        "meaning": "Final module9 startup+04."
+      },
+      {
+        "address": "0081041c",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module10 startup+04."
+      },
+      {
+        "address": "0080fc9c",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module11 startup+04."
+      },
+      {
+        "address": "008100ec",
+        "targets": [
+          "00476f80"
+        ],
+        "meaning": "Final module12 startup+04."
+      },
+      {
+        "address": "008100ac",
+        "targets": [
+          "00475730"
+        ],
+        "meaning": "Final module13 startup+04."
+      },
+      {
+        "address": "0080fa1c",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module14 startup+04."
+      },
+      {
+        "address": "0080fdd4",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module15 startup+04."
+      },
+      {
+        "address": "00810014",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module16 startup+04."
+      },
+      {
+        "address": "0080f9a4",
+        "targets": [
+          "00405af0"
+        ],
+        "meaning": "Final module17 startup+04."
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "00473ee5",
+        "target": "007e4f44"
+      },
+      {
+        "site": "00473ef6",
+        "target": "007e4f50"
+      },
+      {
+        "site": "00473f33",
+        "target": "00473720"
+      },
+      {
+        "site": "00473f39",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00473f66",
+        "target": "00474cd0"
+      },
+      {
+        "site": "00473f79",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "00473f80",
+        "target": "007e520f"
+      },
+      {
+        "site": "00473f98",
+        "target": "00473700"
+      },
+      {
+        "site": "00473fb1",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "00473fc9",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "00473fe1",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "00473ff9",
+        "target": "007e520f"
+      },
+      {
+        "site": "0047401d",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "0047403f",
+        "target": "007e520f"
+      },
+      {
+        "site": "00474062",
+        "target": "007e520f"
+      },
+      {
+        "site": "0047408d",
+        "target": "007e4f62"
+      },
+      {
+        "site": "004740bb",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "00474125",
+        "target": "007e520f"
+      },
+      {
+        "site": "0047413e",
+        "target": "00474f80"
+      },
+      {
+        "site": "00474153",
+        "target": "00474f80"
+      },
+      {
+        "site": "00474169",
+        "target": "00474f80"
+      },
+      {
+        "site": "00474179",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00474191",
+        "target": "00474cb0"
+      },
+      {
+        "site": "004741bd",
+        "target": "00474f00"
+      },
+      {
+        "site": "004741dc",
+        "target": "00474f30"
+      },
+      {
+        "site": "00474208",
+        "target": "00474f00"
+      },
+      {
+        "site": "00474246",
+        "target": "007e4f50"
+      },
+      {
+        "site": "00474254",
+        "target": "007e4f50"
+      },
+      {
+        "site": "00474263",
+        "target": "00473720"
+      },
+      {
+        "site": "00474269",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00473728",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00473754",
+        "target": "007e513c"
+      },
+      {
+        "site": "0047376b",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00473780",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "007dcd7b",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "007dcdc3",
+        "target": "007e1cc0"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10015770",
+        "hex": "56578b7c241083ff457c0a5fb8070000",
+        "meaning": "I3D state+18 delegated entry/calling convention"
+      },
+      {
+        "address": "100700a0",
+        "hex": "f605ac1d0d1020750532c0c20c008b54",
+        "meaning": "IGraph gamma+12C delegated entry/calling convention"
+      },
+      {
+        "address": "1007a9b0",
+        "hex": "a0602c0d1084c056570f84a60000008b",
+        "meaning": "ISnd volume+14 delegated entry/calling convention"
+      },
+      {
+        "address": "10071b70",
+        "hex": "8b4424048a4020c20400909090909090",
+        "meaning": "IShow opened+08 delegated entry/calling convention"
+      },
+      {
+        "address": "100724d0",
+        "hex": "568b7424088a462084c057750a5fb809",
+        "meaning": "IShow volume+3C delegated entry/calling convention"
+      },
+      {
+        "address": "10068f90",
+        "hex": "a1f4160d10c3",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "10068fa0",
+        "hex": "a1fc160d10c3",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "10068fb0",
+        "hex": "a1f8160d10c3",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "1007aa65",
+        "hex": "5f33c05ec20800",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "100700cb",
+        "hex": "b0015ec20c00",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "10071b70",
+        "hex": "8b4424048a4020c2040090",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "100724dd",
+        "hex": "5fb8090000805ec20800",
+        "meaning": "Singleton getter or delegated return/stack-pop ABI."
+      },
+      {
+        "address": "1006c2d0",
+        "hex": "81ec740c00005355565733ed55ff1590b20910685c840a10",
+        "meaning": "IGraph initialize delegated entry for bounded probe."
+      },
+      {
+        "address": "1006da20",
+        "hex": "a095210d10c204009090909090909090b8181d0d10c20400",
+        "meaning": "IGraph initialized query delegated entry for bounded probe."
+      },
+      {
+        "address": "1006da40",
+        "hex": "a1b8210d105333db3bc3740b8b0850ff11891db8210d1056",
+        "meaning": "IGraph close delegated entry for bounded probe."
+      },
+      {
+        "address": "1006a240",
+        "hex": "a1ec190d10c204009090909090909090a194180d10c20400",
+        "meaning": "IGraph window delegated entry for bounded probe."
+      },
+      {
+        "address": "1006a470",
+        "hex": "83ec1c53558b2d08b20910565733db906a035353538d4424",
+        "meaning": "IGraph pump delegated entry for bounded probe."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009b658",
+        "targets": [
+          "10015770"
+        ],
+        "meaning": "I3D state+18"
+      },
+      {
+        "address": "1009d96c",
+        "targets": [
+          "100700a0"
+        ],
+        "meaning": "IGraph gamma+12C"
+      },
+      {
+        "address": "1009de04",
+        "targets": [
+          "1007a9b0"
+        ],
+        "meaning": "ISnd volume+14"
+      },
+      {
+        "address": "1009d9c8",
+        "targets": [
+          "10071b70"
+        ],
+        "meaning": "IShow opened+08"
+      },
+      {
+        "address": "1009d9fc",
+        "targets": [
+          "100724d0"
+        ],
+        "meaning": "IShow volume+3C"
+      },
+      {
+        "address": "1009d840",
+        "targets": [
+          "1006c2d0"
+        ],
+        "meaning": "IGraph+00 actual startup probe method."
+      },
+      {
+        "address": "1009d84c",
+        "targets": [
+          "1006da20"
+        ],
+        "meaning": "IGraph+0c actual startup probe method."
+      },
+      {
+        "address": "1009d850",
+        "targets": [
+          "1006da40"
+        ],
+        "meaning": "IGraph+10 actual startup probe method."
+      },
+      {
+        "address": "1009d854",
+        "targets": [
+          "1006a470"
+        ],
+        "meaning": "IGraph+14 actual startup probe method."
+      },
+      {
+        "address": "1009d888",
+        "targets": [
+          "1006a240"
+        ],
+        "meaning": "IGraph+48 actual startup probe method."
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "native_asset_audit": {
+    "archive": "others.DTA",
+    "member": "TABLES\\Vertanim.def",
+    "bytes": 1591588,
+    "sha256": "15f2a3ba1a3c19452c88a47f7ddbd9d795102570e7f8e044a86475be5c405bfe",
+    "entries": 5,
+    "vertex_bytes": 1591424
+  }
+}
