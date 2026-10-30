@@ -1891,13 +1891,17 @@
       "program": "client",
       "entry": "006dc3a0",
       "status": "partial",
-      "coverage": "Final archive-only cleanup loop: ascending slot release and null after callback, matching its position after original driver closes.",
-      "limitations": "Only archive cleanup is reconstructed here. Earlier application/cache/driver teardown and CoUninitialize remain outside this owner; full caller must preserve their order. Native RAII is an additional safety lifetime and cannot stand in for the full original function.",
+      "coverage": "Final archive-only cleanup loop: ascending slot release and null after callback, matching its position after original driver closes. Also reconstructs window position save before cache/driver cleanup.",
+      "limitations": "Window-position save and archive cleanup are bounded slices only. Earlier application/cache/driver teardown and CoUninitialize remain outside this owner; full caller must preserve their order. Native RAII is an additional safety lifetime and cannot stand in for the full original function.",
       "evidence": [
         "analysis/startup-archives-map.json",
         "analysis/startup-archives.md",
         "recovered/io/startup_archives.h",
-        "recovered/host/startup_archives.h"
+        "recovered/host/startup_archives.h",
+        "analysis/window-position-map.json",
+        "analysis/window-position.md",
+        "recovered/frontend/window_position.h",
+        "recovered/host/window_position.h"
       ]
     },
     {
@@ -2067,6 +2071,19 @@
         "analysis/resource-directories.md",
         "recovered/io/resource_directories.h",
         "recovered/host/resource_directories.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006dbfc0",
+      "status": "partial",
+      "coverage": "Window-position read, move and focus region after input setup.",
+      "limitations": "All surrounding initialization and protection-state operations remain open. Explicit initial bytes model short reads; native operating-system and original rw_data adapters are source-only and i386 compile/link audited.",
+      "evidence": [
+        "analysis/window-position-map.json",
+        "analysis/window-position.md",
+        "recovered/frontend/window_position.h",
+        "recovered/host/window_position.h"
       ]
     }
   ]

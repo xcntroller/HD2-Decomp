@@ -1,5 +1,22 @@
 # Session handoff - 2026-10-30
 
+## Resume here: window position persistence recovered; startup remains open
+
+Source-only window.cfg restoration and save are reconstructed in
+frontend/window_position.h and host/window_position.h. Startup reads two four-byte
+words, closes, moves and focuses with fresh graphics/window queries; teardown
+writes GetWindowRect left/top before cache and driver cleanup. Signed negative
+open handles skip each block; zero is valid. Read/write/Win32 results ignored.
+Caller supplies initial bytes for short reads and failed rect output; preceding
+protection state is still excluded. See analysis/window-position.md.
+
+Temporary native ASan/UBSan audit covers short reads, ordering, signed values,
+open failures and save; strict i386 adapter compile/link only, no execution.
+Existing native tests, 158 Python tests, host build and both-hash evidence pass.
+No live changes or desktop test. Next: protection-state and application/state
+services, loaded-resource caches and graphics input before controller integration.
+Do not treat this bounded slice as a completed launch wrapper.
+
 ## Resume here: resource-directory setup/lists recovered; full startup remains open
 
 Source checkpoint follows `227a3c1`. User permits sensible tested commits.

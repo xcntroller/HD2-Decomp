@@ -97,6 +97,11 @@ The existing host preview is useful for validation, but it is not this milestone
   graphics registration uses checked original +110 with recursion off. Full
   loaded-resource caches and the setup wrapper's protection postlude remain open.
   See [directory scope](analysis/resource-directories.md).
+- [x] Recover startup window-position restoration and teardown persistence.
+  **Source-only, audited.** Both four-byte transfers, ignored errors, window
+  calls and their surrounding lifecycle order are reconstructed; caller-supplied
+  initial bytes preserve the short-read boundary. Full wrappers and protection
+  state remain open. See [window position evidence](analysis/window-position.md).
 - [ ] Build the independent executable in that path, then desktop-test normal
   playback, skipping, missing-movie behavior, menu entry and teardown. Commit
   the interactive slice only after the user confirms it works.

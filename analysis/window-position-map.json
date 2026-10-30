@@ -1,0 +1,66 @@
+{
+  "scope": "Window position read, move, focus and write portions of startup and teardown; wrappers and protection remain incomplete.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006dc2a4",
+        "hex": "6a00680c348400e8948c10008bf085f67c528d55f46a045256e87c8c10008d45086a045056e8708c100056e87c8c1000e8d58b10008b4d088b55f46a156a006a00518b08526a0050ff514850ff15c8f38000e8b38b10008b1050ff524850ff15ccf38000",
+        "meaning": "Startup read, move and focus"
+      },
+      {
+        "address": "006dc3c8",
+        "hex": "6800000100680c348400e8738b10008bf033ff3bf77c37e8ca8a10008b108d4c24105150ff524850ff15bcf380008d4424106a045056e82f8b10008d4c24146a045156e8228b100056e83a8b1000",
+        "meaning": "Shutdown write before cache and driver teardown"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": [
+      {
+        "site": "006dc2a6",
+        "address": "0084340c",
+        "text": "window.cfg"
+      },
+      {
+        "site": "006dc3cd",
+        "address": "0084340c",
+        "text": "window.cfg"
+      }
+    ]
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10068f90",
+        "hex": "a1f4160d10c3",
+        "meaning": "GetIGraph singleton"
+      },
+      {
+        "address": "1006a240",
+        "hex": "a1ec190d10c20400",
+        "meaning": "Window accessor"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d888",
+        "targets": [
+          "1006a240"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}
