@@ -56,8 +56,9 @@ The existing host preview is useful for validation, but it is not this milestone
   original 92-record default layouts are now also source-recovered and audited.
   Manager construction, borrowed graphics attachment and retained joystick
   lifetime are now also source-recovered and audited. Concrete device backends/
-  enumeration, graphics input setup, profile persistence and character services
-  remain open. See [producer scope](analysis/binding-producer.md).
+  enumeration, archive setup, profile persistence and character services remain
+  open. Graphics input-setup order, installed-language resolution and actual text
+  preloading/parsing are now also source-recovered and audited. See [producer scope](analysis/binding-producer.md).
   See [frame/input evidence](analysis/frame-input.md).
 - [x] Recover binding-to-buffer evaluation, binding replacement and both compiled
   default layouts with original mode/dirty application. **Source-only, audited.**
@@ -71,6 +72,12 @@ The existing host preview is useful for validation, but it is not this milestone
   reach controller/front-end Escape with held-key suppression. Concrete device
   backend/enumeration and original graphics input setup remain before live use.
   See [manager evidence](analysis/input-manager.md).
+- [x] Recover graphics input-setup order, installed-language/wide-input selection
+  and startup text enumeration/loading/parsing/cache. **Source-only, audited.**
+  Concrete Win32/CRT and original rw_data forwarding compile/link for i386;
+  native parser matches installed English text. Device/list providers, archive
+  setup, renderer consumers and full application/state startup remain open.
+  See [startup localization evidence](analysis/startup-localization.md).
 - [ ] Build the independent executable in that path, then desktop-test normal
   playback, skipping, missing-movie behavior, menu entry and teardown. Commit
   the interactive slice only after the user confirms it works.
@@ -162,8 +169,9 @@ profiles and other real screens, rather than expanding this section indefinitely
   Escape routing is sanitizer/i386-audited. Original binding installation, mode/
   dirty application and both default layouts are now also source-recovered.
   Manager ownership/attachment is also source-recovered. Concrete device
-  forwarding/enumeration, graphics input setup, profile persistence, text targets,
-  focus entry and navigation callers remain open. See [preprocessing evidence](analysis/keyboard-preprocessing.md).
+  forwarding/enumeration, archive setup, profile persistence, text targets, focus
+  entry and navigation callers remain open. Graphics setup/localization source
+  now includes installed-language selection and real text-cache parsing. See [preprocessing evidence](analysis/keyboard-preprocessing.md).
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
 - [ ] Supply the options widget backends and connect original settings observers.
@@ -171,15 +179,15 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current session checkpoint: `5871f3c` commits original installation, mode/dirty
-application and both 92-record defaults following producer checkpoint `143f518`.
-The subsequent manager owner recovers attachment, retained joystick lifetime,
-clear/detach differences and teardown. Sanitizer/i386 audits exercise the complete
-owner/defaults/producer/controller/front-end Escape route and allocation-failure
-cleanup. This remains source-only. Next: original graphics input setup, concrete
-device forwarding/enumeration and remaining application services before live
-controller wiring. Profile persistence and focus/navigation callers remain open.
-See [manager scope](analysis/input-manager.md).
+Current session checkpoint: `46359bd` commits manager attachment/ownership after
+`5871f3c` installation/defaults. Subsequent source recovers graphics input setup,
+registry language/wide-input selection and actual startup text cache loading/
+parsing. All 2,162 TEXTY and 428 TEXTY_DD records match an independent reference;
+concrete Win32/CRT/rw_data adapters compile/link for i386. No live menu changes.
+Next: concrete device/list and archive initialization, remaining application/
+state startup services, then controller integration. Profile persistence,
+renderer/text consumers and focus/navigation callers remain open.
+See [localization scope](analysis/startup-localization.md).
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,

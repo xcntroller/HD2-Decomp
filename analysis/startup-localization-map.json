@@ -1,0 +1,534 @@
+{
+  "scope": "Source-only original graphics input setup, registry language/wide-input selection, executable-root text enumeration and DTA-backed text loading/parsing/cache. Concrete Win32/CRT/rw_data forwarding compiled/linked, not desktop-executed.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006db620",
+        "hex": "6aff6848c0800064a100000000506489250000000051e8739810008b086a0050ff9190000000b948ea8a00e8a0b9feff8b0d3cea8a0085c9750433c0eb0aa140ea8a002bc1c1f8025051e83f98100050b948ea8a00e846b6feff8d542400b9fce88a0052e827b1fdff8b00c744240c0000000085c0740583c008eb05b8807986008b0d1ce98a0050e8e359fdff8b44240085c074148b104a89108b0885c9750950e8fa65100083c4048b4c240464890d0000000083c410c3",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006b67b0",
+        "hex": "6aff68d7a7800064a100000000506489250000000081ec9800000053558bd933ed896c2408895c240c8b432cc7442418800000003bc574093968040f850e0200005657b92000000033c08d7c2428f3ab8d442418506a0155684c2c84006802000080ff1518f0800085c00f85aa0000008b4424188d4c24208d5424285152555568402c840050ff1504f0800083c9ff85c075448d7c2428f2aef7d1498be98d4d0951e8b8e9120083c40485c0744e8d7424288bcdc700010000008bd18d7808c1e902896804f3a58bca83e103f3a4c6442808008bf0eb27bf382c840033c0f2aef7d1498be98d450950e871e9120083c40485c07407be382c8400ebb633f68b4b2c85c97405e826e8d4ff8b44241889732c50ff1500f08000eb68bf382c840083c9ff33c0f2aef7d1498bf1897424248d4e0951e827e9120083c404894424103bc589ac24b000000074115668382c84008bc8e899e7d4ff8bf0eb0233f68b432cc78424b0000000ffffffff3bc574108b08498908750950e894b3120083c40489732c68440284008bcbe812feffff5f5e84c00f85af00000068302c84008bcbe8fcfdffff84c00f859b0000008d5424088bcb52e85892ddff8b00c78424a80000000100000085c0740583c008eb05b880798600508d442418681c2c840050e86de7d4ff83c40c8b00c68424a80000000285c08d48087505b980798600e8af6e03008ad88b44241485c074148b104a89108b0885c9750950e8f4b2120083c4048b44240885c074148b104a89108b0885c9750950e8d8b2120083c40484db8b5c240c750433c0eb05b8010000008843308b4b2c8b8424b00000005d5b85c989087402ff018b8c249800000064890d0000000081c4a4000000c20400",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006b1090",
+        "hex": "6aff684ba1800064a100000000506489250000000081ec240100008b84243401000050e8187e0300508d4c240868f02b840051e83840d5ff83c4108b442400c784242c0100000000000085c08d48087505b980798600578d542410e810c803008bf883ffff897c240c0f845301000055568d54242c682c97830052e8e077130083c40885c00f841a0100008d44242c68ec2a840050e8c677130083c40885c00f84000100008d4c242c68e42b840051e8ac77130083c40885c00f84e60000008b8424400100008d54242c52508d4c241868d82b840051e8953fd5ff8bf083c4108b0685c07402ff008b44240c85c074148b104a89108b0885c9750950e82f0b130083c4048b4c24108b0685c98944240c741a8b118bc14a89118b0885c9750950e80b0b130083c4048b44240c83380174668b400483c00950e84240130083c40485c074338b4c240c8d78088b51048d71088bcac700010000008be9895004c1e902f3a58bcd83e103f3a48b7c2414c6440208008bf0eb0233f68b44240c8b104a89108b0885c9750950e8a20a130083c4048bc68944240c83c008b958128c0050e8bb3a03008d5424188bcfe8d0c6030083f8ff0f85b8feffff8bcfe8d0c603005e5d8b4424045f85c074148b104a89108b0885c9750950e8540a130083c4048b8c242401000064890d0000000081c430010000c20400",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006b6750",
+        "hex": "518b018d54240052ff108b0085c0740583c008eb05b8807986008b4c2408535150e87a21130083c40885c08b4424040f94c385c074148b104a89108b0885c9750950e829b5120083c4048ac35b59c20400",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "0048fbc0",
+        "hex": "6aff6888c47f0064a100000000506489250000000051c7442400000000008b018d54240052ff108b00c744240c0000000085c0740583c008eb05b880798600568b7424185068d897830056e8f054f7ff8b44241083c40c85c074148b104a89108b0885c9750950e89420350083c4048b4c24088bc65e64890d0000000083c410c20400",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006ed860",
+        "hex": "68f496830051e8c7930f0083c40885c0750332c0c350e8f2910f0083c404b001c3",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006e8ed0",
+        "hex": "a0c0a38c0084c075276804010000bac0a38c0033c9e8464a00006a5c68c0a38c00e8dac70f0083c40885c07403c60000b8c0a38c00c3",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006e4cf0",
+        "hex": "6aff68f0c3800064a100000000506489250000000083ec0c538b5c24205556576a00538bf9c744241800000000e8220210008be883fdff896c24180f84110100006a026a0055e8fd0110008bf085f60f8efd00000056e8c404100083c404894424106a006a0055e8dc01100085c00f85de0000008b442410565055e8ce0110003bf00f85ca0000008b4c24108a013cff0f858c010000807901fe0f8582010000538d4c241868803e840051e86003d2ff83c40c8be88b450033f68974242483380174598b400483c00950e85004100083c4043bc674308b4d008d78088b51048d71088bcac700010000008bd9895004c1e902f3a58bcb8b5c242c83e103f3a4c6441008008bf08b45008b08498908750950e8bace0f0083c4048975008b4d006a0083c108ba643e8400e8b28000008b442414c7442424ffffffff85c074148b104a89108b0885c9750950e881ce0f0083c404538d54243068443e840052e8ae02d2ff83c40c8be88b4500c74424240100000083380174598b400483c00950e89c03100083c40485c0742e8b4d008d78088b51048d71088bcac700010000008bd9895004c1e902f3a58bcb83e103f3a4c6440208008bf0eb0233f68b45008b08498908750950e806ce0f0083c4048975008b4d006a0083c108ba383e8400e8fe7f00008b44242c85c074148b104a89108b0885c9750950e8d5cd0f0083c4048b44241885c075076a00e8530010008b44241085c0740950e8b5cd0f0083c40432c0eb383cef7512807901bb750c807902bf750683c6fd83c10356518bcfe8ef03000085ed750655e8150010008b44241050e87bcd0f0083c404b0018b4c241c5f5e5d5b64890d0000000083c418c20400",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006e5060",
+        "hex": "64a1000000006aff6810c48000506489250000000083ec0c53578b7c24248bd983ffff75155f32c05b8b4c240c64890d0000000083c418c20c00578bcbe86effffff84c074155f32c05b8b4c240c64890d0000000083c418c20c00555633f6897424108b4c24308a442434518d4c241489742428897c24188844241ce89f00d2ff8b43088d542410526a01508bcbc744243001000000e805030000897424348b73048d6e0485f6750433d2eb158b4b08b8abaaaa2a2bcef7e9d1fa8bcac1e91f03d18b4424344a3bc27d133b7d007c0e8b4c24344183c50c894c2434ebc785f674688b4b08b8abaaaa2a2bcef7e9d1fa8bc2c1e81f03d08bf2744f8d2c76c1e5024e83ed0c85f674378b4b048b4429f48d3c2985c07402ff008b0785c074108b08498908750950e834cb0f0083c4048b57f489178b47f88947048a4ffc884f0839742434740585f675b74e8b43048d14768d34908b44241085c07402ff008b0685c074108b08498908750950e8efca0f0083c4048b4c2410890e8b5424148956048a4424188846088b4424105e5d85c074148b104a89108b0885c9750950e8bdca0f0083c4048b4c24145fb0015b64890d0000000083c418c20c00",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006e5240",
+        "hex": "5153558b6c24105657894c24108bfd83c9ff33c0f2aef7d151e8b1ff0f008bf083c4048bd68bc52bd58a08880c024084c975f66a2255e8b50810006a22558bd8e84b04100083c4108bf885db745685ff74523bfb744e8d442418c7442418ffffffff5068402d830056e83e0910002bfb438be88d4fff515356e8e215100083c41883fdffc64437ff00741585ed74118b5424188b4c24106a005652e880fdffff85f6740956e8d6c90f0083c4045f5e5d5b59c20400",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006e5300",
+        "hex": "3bca538bc173118a1880fb0a740a80fb0d7405403bc272ef2bc15bc3",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006e5320",
+        "hex": "518b44240c538b5c240c5556578d1403894c241089542418eb048b5424183bda73758a033c0a74043c0d750d433bda72f15f5e5d5b59c208003bda735a8bcbe89cffffff8bf085f68974241c74498d4e0151e898fe0f008bce8be88bd18bf38bfd83c404c1e902f3a58bca5583e103f3a48b4c24148bf2c6042e00e8a0feffff85ed740955e816c90f0083c4048b44241803de3bd872835f5e5d5b59c20800",
+        "meaning": "Original exported entry/control-flow bytes; see source/evidence scope for reconstruction"
+      },
+      {
+        "address": "006e4ef2",
+        "hex": "85c075076a00e853001000",
+        "meaning": "Failed load closes only handle zero"
+      },
+      {
+        "address": "006e4f12",
+        "hex": "3cef7512807901bb750c807902bf750683c6fd83c10356518bcfe8ef03000085ed750655e8150010008b44241050e87bcd0f0083c404b0018b",
+        "meaning": "Skip UTF8 BOM, parse raw bytes, close only handle zero and return success"
+      },
+      {
+        "address": "006b69fc",
+        "hex": "8843308b4b2c8b8424b00000005d5b85c989087402ff01",
+        "meaning": "Store wide-input flag then return freshly retained cached language"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [
+      {
+        "site": "006db636",
+        "target": "007e4eae"
+      },
+      {
+        "site": "006db64b",
+        "target": "006c6ff0"
+      },
+      {
+        "site": "006db66a",
+        "target": "007e4eae"
+      },
+      {
+        "site": "006db675",
+        "target": "006c6cc0"
+      },
+      {
+        "site": "006db684",
+        "target": "006b67b0"
+      },
+      {
+        "site": "006db6a8",
+        "target": "006b1090"
+      },
+      {
+        "site": "006db6c1",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006b6852",
+        "target": "007e520f"
+      },
+      {
+        "site": "006b6899",
+        "target": "007e520f"
+      },
+      {
+        "site": "006b68b5",
+        "target": "004050e0"
+      },
+      {
+        "site": "006b68e3",
+        "target": "007e520f"
+      },
+      {
+        "site": "006b6902",
+        "target": "004050a0"
+      },
+      {
+        "site": "006b6927",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006b6939",
+        "target": "006b6750"
+      },
+      {
+        "site": "006b694f",
+        "target": "006b6750"
+      },
+      {
+        "site": "006b6963",
+        "target": "0048fbc0"
+      },
+      {
+        "site": "006b698e",
+        "target": "00405100"
+      },
+      {
+        "site": "006b69ac",
+        "target": "006ed860"
+      },
+      {
+        "site": "006b69c7",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006b69e3",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006b10b3",
+        "target": "006e8ed0"
+      },
+      {
+        "site": "006b10c3",
+        "target": "00405100"
+      },
+      {
+        "site": "006b10eb",
+        "target": "006ed900"
+      },
+      {
+        "site": "006b110b",
+        "target": "007e88f0"
+      },
+      {
+        "site": "006b1125",
+        "target": "007e88f0"
+      },
+      {
+        "site": "006b113f",
+        "target": "007e88f0"
+      },
+      {
+        "site": "006b1166",
+        "target": "00405100"
+      },
+      {
+        "site": "006b118c",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006b11b0",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006b11c8",
+        "target": "007e520f"
+      },
+      {
+        "site": "006b1219",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006b1230",
+        "target": "006e4cf0"
+      },
+      {
+        "site": "006b123b",
+        "target": "006ed910"
+      },
+      {
+        "site": "006b124b",
+        "target": "006ed920"
+      },
+      {
+        "site": "006b1267",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006b6771",
+        "target": "007e88f0"
+      },
+      {
+        "site": "006b6792",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0048fc0b",
+        "target": "00405100"
+      },
+      {
+        "site": "0048fc27",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006ed866",
+        "target": "007e6c32"
+      },
+      {
+        "site": "006ed876",
+        "target": "007e6a6d"
+      },
+      {
+        "site": "006e8ee5",
+        "target": "006ed930"
+      },
+      {
+        "site": "006e8ef1",
+        "target": "007e56d0"
+      },
+      {
+        "site": "006e4d1d",
+        "target": "007e4f44"
+      },
+      {
+        "site": "006e4d36",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006e4d46",
+        "target": "007e520f"
+      },
+      {
+        "site": "006e4d57",
+        "target": "007e4f38"
+      },
+      {
+        "site": "006e4d6b",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "006e4d9b",
+        "target": "00405100"
+      },
+      {
+        "site": "006e4dba",
+        "target": "007e520f"
+      },
+      {
+        "site": "006e4e01",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006e4e19",
+        "target": "006eced0"
+      },
+      {
+        "site": "006e4e3a",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006e4e4d",
+        "target": "00405100"
+      },
+      {
+        "site": "006e4e6e",
+        "target": "007e520f"
+      },
+      {
+        "site": "006e4eb5",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006e4ecd",
+        "target": "006eced0"
+      },
+      {
+        "site": "006e4ee6",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006e4ef8",
+        "target": "007e4f50"
+      },
+      {
+        "site": "006e4f06",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006e4f2c",
+        "target": "006e5320"
+      },
+      {
+        "site": "006e4f36",
+        "target": "007e4f50"
+      },
+      {
+        "site": "006e4f40",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006e509d",
+        "target": "006e5010"
+      },
+      {
+        "site": "006e50dc",
+        "target": "00405180"
+      },
+      {
+        "site": "006e50f6",
+        "target": "006e5400"
+      },
+      {
+        "site": "006e5187",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006e51cc",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006e51fe",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006e5259",
+        "target": "007e520f"
+      },
+      {
+        "site": "006e5276",
+        "target": "007e5b30"
+      },
+      {
+        "site": "006e5280",
+        "target": "007e56d0"
+      },
+      {
+        "site": "006e52a9",
+        "target": "007e5bec"
+      },
+      {
+        "site": "006e52b9",
+        "target": "007e68a0"
+      },
+      {
+        "site": "006e52db",
+        "target": "006e5060"
+      },
+      {
+        "site": "006e52e5",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006e535f",
+        "target": "006e5300"
+      },
+      {
+        "site": "006e5372",
+        "target": "007e520f"
+      },
+      {
+        "site": "006e539b",
+        "target": "006e5240"
+      },
+      {
+        "site": "006e53a5",
+        "target": "007e1cc0"
+      }
+    ],
+    "resource_anchors": [
+      {
+        "site": "006b6808",
+        "address": "00842c4c",
+        "text": "SOFTWARE\\Illusion Softworks\\Hidden & Dangerous 2"
+      },
+      {
+        "site": "006b6830",
+        "address": "00842c40",
+        "text": "language"
+      },
+      {
+        "site": "006b68fb",
+        "address": "00842c38",
+        "text": "english"
+      },
+      {
+        "site": "006b6932",
+        "address": "00840244",
+        "text": "Japan"
+      },
+      {
+        "site": "006b6948",
+        "address": "00842c30",
+        "text": "Russian"
+      },
+      {
+        "site": "006b6988",
+        "address": "00842c1c",
+        "text": "%s\\FontConfig.hxml"
+      },
+      {
+        "site": "006b10bd",
+        "address": "00842bf0",
+        "text": "%s\\text\\%s\\*.txt"
+      },
+      {
+        "site": "006b1105",
+        "address": "0083972c",
+        "text": "."
+      },
+      {
+        "site": "006b111f",
+        "address": "00842aec",
+        "text": ".."
+      },
+      {
+        "site": "006b1139",
+        "address": "00842be4",
+        "text": "dialogs.txt"
+      },
+      {
+        "site": "006b1160",
+        "address": "00842bd8",
+        "text": "text\\%s\\%s"
+      },
+      {
+        "site": "0048fc05",
+        "address": "008397d8",
+        "text": "Text\\%s\\"
+      },
+      {
+        "site": "006ed860",
+        "address": "008396f4",
+        "text": "r"
+      },
+      {
+        "site": "006e4d95",
+        "address": "00843e80",
+        "text": "Trying add file <%s>; Unicode format detected, not supporting now."
+      },
+      {
+        "site": "006e4e47",
+        "address": "00843e44",
+        "text": "Trying add file <%s>; FAILED"
+      },
+      {
+        "site": "006e52a3",
+        "address": "00832d40",
+        "text": "%d"
+      }
+    ]
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [],
+    "vtables": [
+      {
+        "address": "1009d8d0",
+        "targets": [
+          "1006f040"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "sources": [
+    "recovered/frontend/input_setup.h",
+    "recovered/frontend/startup_language.h",
+    "recovered/frontend/localized_text.h",
+    "recovered/host/startup_localization.h"
+  ],
+  "delegated_rw_data": {
+    "path": "Hidden and Dangerous 2/rw_data.dll",
+    "sha256": "95a65ee003e2d7ab6047ed47d9adad1db330bd5482e33cfb18127d15af5879be",
+    "exports": [
+      "_dtaOpen@8",
+      "_dtaSeek@12",
+      "_dtaRead@12",
+      "_dtaClose@4"
+    ],
+    "verification": "Names checked against original client imports and installed DLL exports; this library is excluded from frozen client/LS3DF accounting."
+  },
+  "limitations": [
+    "No new live renderer/setup path; device initialization/list provider, archive registration, original application/state services and remaining startup orchestration still precede controller integration.",
+    "Native strings/map/vector replace original refcount/allocator/class ABI; normal application self-language-query path and default CRT C-locale byte comparison only.",
+    "Unterminated registry/module paths, recursive empty installed language and signed numeric overflow throw; tiny BOM probes are bounded rather than original out-of-range reads.",
+    "Original load close-only-zero condition is preserved; original logger replaced by native debug-string diagnostic transport. Native enumeration exception cleanup additionally closes the search."
+  ]
+}

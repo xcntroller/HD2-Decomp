@@ -1,6 +1,61 @@
 # Session handoff - 2026-10-30
 
-## Resume here: native input-manager lifetime and attachment recovered
+## Resume here: graphics input setup and actual startup localization recovered
+
+New source checkpoint follows committed `46359bd` manager lifetime. User permits
+sensible tested commits. No new live behavior, renderer change or desktop test.
+IMPORTANT correction: 006DB620's post-attachment services are LANGUAGE/TEXT,
+not profile/control loading. See [startup localization scope](analysis/startup-localization.md).
+
+New source: frontend/input_setup.h, startup_language.h, localized_text.h and
+host/startup_localization.h. Setup preserves keyboard-init(flags0), manager clear,
+joystick-view snapshot BEFORE second graphics query, attach ignoring results,
+language resolution and text preload. Registry language cache uses HKLM exact
+key/value with english fallback. Cache installs before close; nonempty cache
+skips flag recomputation. Japan/Russian or actual font-config existence selects
+wide input flag 008AE92C; Text directory's trailing slash produces the original
+doubled separator for FontConfig.hxml. Normal self-query/default C-locale case
+folding only. Empty recursive language/unterminated buffers fail explicitly.
+
+Text path fully reconstructed through native cache: enumerate executable-root
+text/language/*.txt, skip dot/dotdot/dialogs.txt case-insensitively, read relative
+DTA paths, ignore file failures, preserve first duplicate ID. Parser uses CR/LF
+lines, first/LAST quote, signed decimal prefix, raw bytes, no multiline/escape
+processing. Reject ID -1. File gates/UTF16LE rejection and two diagnostics,
+UTF8 BOM skip without decoding, and CLOSE ONLY HANDLE ZERO on normal return
+are preserved. Native tiny-file/overflow guards and exception search cleanup
+are documented. Do not assume original handle semantics or silently fix them.
+
+Concrete Win32 registry/module, CRT file probe/find and original rw_data exports
+compile/link for i386 (advapi32), but aren't desktop-executed. Borrowed rw_data
+module/archive context remains delegated; original logger is not reconstructed,
+native diagnostics use OutputDebugStringA. No successful production stubs.
+
+Temporary sanitizer/native/i386 audit passes all 65,536 byte pairs, 10,000 record
+variants, registry cache/fallback/wide rules, path/cache behavior, BOM/tiny-file/
+seek/read/size/error/close cases, filters/order/duplicates, and actual manager
+setup with changed second graphics pointer and ignored init failure. Independent
+C-string/sscanf reference matches 2,162 TEXTY.txt records, 428 TEXTY_DD.txt,
+zero license.txt. Concrete platform executable was compiled/linked ONLY, never
+run. Existing native checks, all 158 tooling tests, host build (up to date),
+evidence/accounting/diff checks pass. Temporary audit artifacts removed afterward.
+
+NEXT: concrete device/list provider and original joystick factory caller at
+006DC661 -> 007F8F30 -> IJoy.dll _CreateJoyBase@20 (assembly located, body not
+recovered). Determine rw_data's actual search/archive initialization rather than
+inventing mount steps. Remaining application Gamedata/HumanStore/profile services,
+state owners and full startup still precede controller integration. Profile
+persistence, renderer/text consumers and focus/navigation callers remain open.
+One bounded source-only input-setup/localization checklist entry is closed.
+
+Map: both hashes, 15 anchors, one graphics slot, 80 calls, 16 resource references;
+rw_data import/export names independently checked and its hash recorded, outside
+frozen census. Twelve new partial client entries: 146 total (141 client/five
+engine), zero complete, frozen 18,783. Read-only exports in ignored
+input-setup-application-services and startup-localization-* directories. No
+original binary/project edits, agent-side Proton launch or push.
+
+## Earlier checkpoint: native input-manager lifetime and attachment recovered
 
 The new source checkpoint follows committed `5871f3c` installation/defaults.
 User authorizes sensible tested commits. No new live behavior or desktop test.

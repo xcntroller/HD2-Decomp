@@ -11,14 +11,16 @@ Menu delivery checklist: [plan.md](plan.md). It tracks the entire base-game
 menu separately from the original-function counts below.
 
 Movie/menu keyboard device input and focus return are desktop-confirmed. The
-next [keyboard preprocessing and text-input slice](analysis/keyboard-preprocessing.md)
+[keyboard preprocessing and text-input slice](analysis/keyboard-preprocessing.md)
 is recovered in source and audited. The original
 [binding-to-buffer producer](analysis/binding-producer.md) now covers keyboard,
 mouse and joystick in source. [Binding installation and both original default
 layouts](analysis/binding-installation.md) and
 [input-manager ownership/graphics attachment](analysis/input-manager.md) are
-also recovered and audited. Concrete device forwarding/enumeration, original input
-setup, profile persistence and text targets still precede integration.
+also recovered and audited. [Original input setup and startup localization](analysis/startup-localization.md)
+now include registry language selection and real text loading/parsing. Concrete
+device/list and archive setup, application startup, profile persistence and text
+rendering consumers still precede integration.
 
 The shared control-state foundation entry is complete: initialization, base
 messages, observers, event ownership and eligibility are recovered and audited.
@@ -172,11 +174,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **134 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **146 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 129 |
+| Base game client | 17,294 | 0 | 141 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -3,22 +3,22 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest startup slice: [original frame pacing and keyboard production](analysis/frame-input.md).
-Frame clock 006DC950 replaces host sleeps and the separate mouse timer and is
-desktop-confirmed. Keyboard polling, modifiers and fixed-table translation now
-run through the original keyboard device alongside engine mouse and are
-desktop-confirmed, including focus return. Subsequent
-[client preprocessing and text FIFO](analysis/keyboard-preprocessing.md) are
-source-recovered and sanitizer/i386-audited. The subsequent
-[binding producer](analysis/binding-producer.md) reconstructs keyboard, mouse
-and joystick output buffers and configured key snapshots. Original binding
-installation, mode/dirty application and both 92-record default layouts are
-now also [source-recovered and audited](analysis/binding-installation.md).
-The [manager owner/graphics attachment](analysis/input-manager.md) is also
-source-recovered and audited. Concrete device forwarding/enumeration, original
-input setup, profile persistence, text targets and navigation callers remain open. Checkpoint `4e0d923` commits pacing/keyboard and preprocessing;
-`8eef91d` contains
-the preceding confirmed opening playback and audited controller.
+Latest startup source: [graphics input setup and localization](analysis/startup-localization.md).
+It recovers installed-language/wide-input selection, executable-root text
+preloading, actual line parsing and first-wins text caching. Native audits match
+2,162 TEXTY records and 428 TEXTY_DD records; concrete Win32/CRT/rw_data forwarding
+compiles and links for i386. This is source-only, with no live renderer change.
+
+The preceding [manager owner](analysis/input-manager.md),
+[binding/default configuration](analysis/binding-installation.md),
+[binding producer](analysis/binding-producer.md) and
+[key preprocessing/text FIFO](analysis/keyboard-preprocessing.md) are also
+source-recovered and audited. [Live pacing and keyboard device input](analysis/frame-input.md)
+are desktop-confirmed, including focus return. Concrete device/list/archive
+setup, remaining application/state services, profile persistence, rendering/text
+consumers and navigation callers remain open before full controller integration.
+`46359bd` commits manager lifetime; earlier `4e0d923` commits live pacing/keyboard
+and source preprocessing, and `8eef91d` opening playback/controller source.
 
 An early-stage effort to understand Hidden & Dangerous 2 and its LS3D engine.
 The reference installation is the Steam release with Sabre Squadron, running

@@ -55,9 +55,13 @@ controller-to-front-end Escape routing. [Original binding installation](input/bi
 [both compiled default layouts](input/binding_defaults.h) are now also recovered
 and audited. The [input-manager owner](input/input_manager.h) now composes
 these with borrowed graphics and retained joystick lifetime; its reset/teardown
-paths are sanitizer/i386-audited. Concrete device forwarding/enumeration,
-original input setup, profile persistence and text targets remain open. See
-[evidence](../analysis/input-manager.md).
+paths are sanitizer/i386-audited. [Input setup](frontend/input_setup.h),
+[language resolution](frontend/startup_language.h) and
+[original text loading/parsing](frontend/localized_text.h) now have concrete
+[Win32/CRT/rw_data forwarding](host/startup_localization.h), compile/link checked
+for i386. This is source-only; device/list/archive setup, application services,
+profile persistence and renderer/text consumers remain open. See
+[evidence](../analysis/startup-localization.md).
 With `--menu-confirm --opening-movies`, the host now runs the recovered normal
 Logo1/Logo2/Logo3/Intro sequence through the original engine IShow/Bink interface
 before constructing the compiled menu. The user desktop-confirmed this path.

@@ -88,10 +88,11 @@ artifacts are removed after verification; no permanent tests or agent-side Proto
 launch are added. Existing native checks and all 158 tooling tests pass; the
 live host build is up to date. Evidence/accounting and diff checks also pass.
 
-Next: original graphics input setup `006DB620` and its preference/application
-services (006B67B0 string resolution and 006B1090 consumer), concrete device
-interface forwarding and joystick enumeration, then
-state owners and remaining application startup prerequisites for controller wiring.
+Follow-up: [graphics input setup and startup localization](startup-localization.md)
+are now recovered in source. 006B67B0 resolves the installed language and
+006B1090 preloads localized text, rather than profile/control settings. Concrete
+device/list/archive setup, state owners and remaining application startup
+prerequisites still precede controller wiring.
 The existing live keyboard/mouse bridge remains separately desktop-confirmed.
 No repeat desktop test is needed for this source-only owner.
 

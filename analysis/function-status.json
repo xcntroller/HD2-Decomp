@@ -1693,6 +1693,186 @@
         "recovered/input/input_manager.h",
         "recovered/input/binding_producer.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "006db620",
+      "status": "partial",
+      "coverage": "Resolve graphics/init keyboard flags zero, clear bindings, snapshot joystick view before second graphics query, attach ignoring results, resolve installed language and preload original localized text.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b67b0",
+      "status": "partial",
+      "coverage": "Cache installed language from HKLM registry or english fallback; install cache before close, self-query Japan/Russian or font-config existence to set wide-input flag; cached nonempty result skips recalculation.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b6750",
+      "status": "partial",
+      "coverage": "Normal self-language-query and default C-locale case-insensitive equality, preserving cached/getter ordering.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048fbc0",
+      "status": "partial",
+      "coverage": "Normal self-language-query and original Text-backslash-language-backslash directory formatting, including trailing separator.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ed860",
+      "status": "partial",
+      "coverage": "Probe configured font file with fopen mode r, close successful file and return presence via concrete CRT backend.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e8ed0",
+      "status": "partial",
+      "coverage": "Cache executable filename, truncate at last backslash only, retry when result remains empty; concrete GetModuleFileNameA backend.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b1090",
+      "status": "partial",
+      "coverage": "Enumerate executable-root text/language/*.txt, skip dot/dotdot/dialogs.txt case-insensitively, load relative DTA paths in enumeration order ignoring per-file failures, close successful search.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e4cf0",
+      "status": "partial",
+      "coverage": "Original open/positive signed size/seek/full read gates, UTF16LE rejection and two diagnostics, UTF8 BOM skipping without transcoding, parser call and close-only-handle-zero normal cleanup.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e5060",
+      "status": "partial",
+      "coverage": "Signed-ID native text cache insertion, reject -1 and duplicate IDs, first text wins and caller byte flag preserved.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e5240",
+      "status": "partial",
+      "coverage": "Per-line first/last-quote text extraction and signed decimal prefix conversion; no escape decoding, inline-comment quote special case or multiline concatenation.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e5300",
+      "status": "partial",
+      "coverage": "Bounded scan to CR/LF or supplied end, used inside recovered text parser without consuming line terminators.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e5320",
+      "status": "partial",
+      "coverage": "Skip CR/LF runs, dispatch each bounded line to actual recovered text-record parsing and advance by raw line length, including embedded NUL handling.",
+      "limitations": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; device setup/list provider, archive initialization and full live startup remain open. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate.",
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h"
+      ]
     }
   ]
 }
