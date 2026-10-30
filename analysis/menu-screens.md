@@ -26,7 +26,9 @@ These are metadata; no original pseudocode or localized caption text is included
 
 Slot zero is a separately constructed runtime confirmation object from
 `0066C1D0`; it shares the `confirm` model with slot four, but its identity and
-definitions differ. Slot-zero modal replies are not enabled in the host.
+definitions differ. Its four-mode request/reply/key protocol and queued stack
+routes are now recovered and native-audited; the slot-zero engine product remains
+unbound in the host. See [runtime confirmation](menu-runtime-confirmation.md).
 
 Slots five and seven are distinct despite identical names/models: the original
 construction loop sends them to `006391E0` and `00614140`, respectively.
@@ -49,9 +51,69 @@ activate with focus zero), modal push (retain current visibility, push, activate
 with focus `10200000`), back/pop and resume. Registry ownership outlives stack
 entries. The host binds only slots one/four. Unsupported bindings are rejected
 before changing a live screen. Targeted delivery for the two live screens is integrated and desktop-confirmed;
-original observer/data lists,
-full factory, application state transitions and resource/cache lifetimes remain
-unfinished. Native vector storage is not the original segmented-deque ABI.
+screen-specific observer/data callbacks, live generalized factory integration,
+application state transitions and resource/cache lifetimes remain unfinished.
+Native vector storage is not the original segmented-deque ABI.
+
+## Shared construction and ownership recovered, 2026-10-30
+
+`frontend/screen_construction.h` now reconstructs the shared 00627060 loop and
+00668470 binding method. The loop loads each model before calling its builder,
+skips failed loads, runs all eleven typed builder routes and positions the
+confirmation model at (0.5, -0.375, -0.5). Identifier checks are independent and
+reread the definition after callbacks; the two identically named mission screens
+remain distinct. Builder bodies are still application-service dependencies.
+
+The screen +8C method attempts every child, using the screen model as both
+search and layout root, ignoring individual factory results and rereading child
+storage/count. Only afterward does it retain the model name and assign the
+screen identifier. The outer loop then gates on +8C success, runs the actual
+mutable initialization list through +70, and appends the screen. Definition
+storage is destroyed before directly routing initial 02000001 argument one.
+Native products must retain their own metadata, model and child ownership;
+factory/resource backends remain responsible for concrete construction and
+exception cleanup. Observer contexts still borrow application services and must
+outlive their registered screen products. Unlike the original failed-binding path, a rejected native
+product is reclaimed by RAII, and null allocation throws instead of dereferencing
+null. These are deliberate native failure policies.
+
+`OwnedScreens` provides stable product/registration addresses, copies names and
+model keys, and compacts successful insertions without rewriting definition IDs.
+The same `ScreenStack` now accepts either this owner or the existing fixed host
+registry; it stores the actual registration index rather than subtracting a
+pointer from the global table. Stack entries and its previous-screen pointer
+borrow registry metadata, so the stack must be destroyed before its registry.
+Products remain responsible for their own backend/child resources; this owner
+does not reconstruct the original class/vector/destructor ABI.
+
+`DefinedScreenEvents` now copies its ID/model key and already-copied child IDs,
+so message routing survives factory-definition teardown. Its new mutable-record
+entry point preserves initialization query outputs; the existing const entry
+point deliberately retains its copy semantics. Definitions can carry typed
+screen initialization records, and the live main/confirmation message binding
+path installs them after all child endpoints exist. Both current lists are
+empty: no original application callback is silently installed or guessed.
+
+Temporary ASan/UBSan audit and strict Windows i386 compilation pass for the
+actual screen runtime, event/observer code, owning registry and stack. Coverage
+includes all builders, a builder changing an identifier before a later check,
+definition/child-list growth, failed loading/binding, rejected-product cleanup,
+partial construction after exceptions, actual mutable query records, retained
+payloads and callbacks after definition destruction, stable metadata after
+registry growth, regular/modal/pop/clear paths and reverse owner teardown.
+The strict i386 host build, existing native suite, nine frontend and seventeen
+launcher checks also pass. No new permanent tests or agent-side Proton launch.
+
+The [construction map](menu-screen-construction-map.json) validates ten byte
+anchors, nine screen vtable slots and sixteen direct calls. Two census entries
+gain PARTIAL coverage (00627060 and 00668470): 98 partial (94 client/four engine),
+zero complete, frozen 18,783. Generic ownership glue earns no extra credit.
+
+This is a source construction/ownership slice, not a completed screen checklist
+entry. The host still uses its existing two-screen construction path, not the
+generalized factory. Slot-zero protocol is recovered in the following slice;
+its concrete engine/input binding, backend/builder integration, screen-specific
+callbacks and remaining application routing are still open.
 
 Next implementation dependency: recover original observer/data callbacks and
 nested group construction, then choose a flow whose data/controller boundary

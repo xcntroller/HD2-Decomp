@@ -40,6 +40,9 @@ inline void bind_screen_messages(MenuScreenEvents& screen,
             return control->receive_event(event, upstream);
         });
     }
+    // 00627060 runs screen +70 only after +8c has bound every child. Typed
+    // definition records can now install root observers/tagged events here.
+    screen.initialize(definition.initialization);
 }
 
 }

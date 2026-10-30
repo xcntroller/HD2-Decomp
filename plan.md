@@ -30,7 +30,7 @@ Keep an explicit list of delegated calls so the eventual replacement is tractabl
 | Escape opens confirmation; Escape cancels it | Desktop-tested | Application interceptors and other screen-specific back rules |
 | Previous/next focus traversal | Source reconstructed | Find original callers/key bindings and initial-focus policy before wiring |
 | Original button sound and sound-driver lifecycle | Desktop-tested | Original preferences/resource cache and additional menu sounds |
-| Shared control initialization and state messages | State/events and attached text/caption/style desktop-confirmed | Full factory, dynamic callbacks, paragraph layout and broader widget eligibility |
+| Shared control initialization and state messages | Native base contract complete; live text/buttons desktop-confirmed; derived widgets audited | Screen-specific callbacks, widget visuals and original ABI tracked separately |
 | Shared factory and nested containers | Leaf factory, engine bridge and recursive group diagnostic desktop-confirmed; mixed leaves native-audited | Actual options definitions, nested screen availability, other widget kinds and original ABI |
 | Options sliders, selectors, toggles and settings observers | State/message/input and observer routes reconstructed, native-audited | Engine visual/internal-part construction, actual preference services and live options integration |
 | Other main-menu actions/screens | Not functional yet | Inventory, reconstruct and enable one flow at a time |
@@ -56,13 +56,15 @@ profiles and other real screens, rather than expanding this section indefinitely
 - [x] Recover focused-button activation and queued Escape/back for the two live screens.
 - [x] Restore original button.wav decoding, sound frame and accepted-click playback.
 - [x] Check ordinary-button keyboard sound against original code.
-- [ ] Reconstruct shared control state, initialization/event messages and eligibility.
-  Shared base messages, observer registration/removal, local events and original
-  hidden-OK initialization are integrated and desktop-confirmed. Derived
-  text/button dispatch is connected to native attached text records, caption/style
-  initializers and the bounded renderer; this integration is desktop-confirmed.
-  General widget backends and remaining event/data contracts are incomplete;
-  original class ABI reconstruction is tracked separately.
+- [x] Reconstruct shared control state, initialization/event messages and eligibility.
+  Native base contract complete: all selectors, mutable initialization records,
+  guarded derived setters, visibility/notification ordering, typed observers,
+  retained local/queued events, fresh child layout and byte-level eligibility.
+  Live text/buttons are desktop-confirmed; slider/selector/toggle inheritance is
+  sanitizer/i386-audited. Eligibility matches the isolated original instructions
+  for all 16,777,216 byte combinations. See [evidence](analysis/menu-foundation-state.md).
+  Widget visuals, settings services and screen factories retain their own open
+  entries below. Original class ABI remains separately tracked.
 - [x] Replace hardcoded Exit/confirmation adapters with reusable controls and definitions.
   **Desktop-confirmed.** Both screens now
   use one `DefinedScreen` routing class and `DefinedControls` construction/ownership
@@ -72,8 +74,15 @@ profiles and other real screens, rather than expanding this section indefinitely
   Registered stack, regular/modal transition distinction, pop/back/resume and
   visibility/focus lifecycle integrated and desktop-confirmed for the two live
   screens. Targeted screen/child delivery and native observer plumbing are
-  integrated, audited and desktop-confirmed. Original factory, observer/data callback
-  lists and additional screens remain.
+  integrated, audited and desktop-confirmed. Shared factory loop and screen +8c
+  binding now reconstructed with typed builder hooks, mutable root initialization,
+  retained metadata and an owning registry accepted by the shared stack; native
+  sanitizer/i386 audits pass. The host still uses its two-screen construction.
+  Slot-zero definition/request/reply/key protocol, construction ordering and
+  02000096/97 routing are now native-audited; actual engine slot-zero product/input
+  binding is absent. Concrete builder/backend integration, application callbacks
+  and remaining routing stay open. See [screen notes](analysis/menu-screens.md)
+  and [modal evidence](analysis/menu-runtime-confirmation.md).
 - [x] Integrate bounded recursive kind-five construction, ownership and input routing.
   Implemented with existing leaf backends; mixed-tree sanitizer/i386 audits pass.
   Updated five-frame engine diagnostic desktop-confirmed (372 frames). Actual
@@ -89,7 +98,13 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Latest desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
+Current session checkpoint: shared-state entry complete; screen construction and
+slot-zero protocol recovered and native-audited. User confirmed the preceding
+screen metadata/stack changes (380 frames, clean teardown). Next work is concrete
+screen-product ownership and engine-backed slot-zero integration, followed by
+remaining application callbacks. The broad screen entry above remains open.
+
+Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,
 independently of host input availability. Nonzero targets route to any bound
 screen, including the menu under a dialog. Root base messages, child lookup,

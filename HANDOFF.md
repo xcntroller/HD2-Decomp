@@ -1,10 +1,144 @@
 # Session handoff - 2026-10-30
 
-## Resume here: options widget source and observers audited; visual backends next
+## Resume here: slot-zero modal protocol audited; engine product integration next
+
+User desktop-confirmed the preceding screen construction/metadata slice; log
+shows 380 frames and clean 3D/sound/graphics teardown. User subsequently requested
+this session checkpoint be committed. Earlier no-commit notes below are historical.
+Current checkpoint includes shared-state closure, screen construction/ownership
+and the native-audited slot-zero protocol; slot-zero engine binding is unfinished.
+
+New `frontend/runtime_confirmation.h` reconstructs slot-zero definition/state,
+raw/localized opening, key and activation observer paths. Four modes: no buttons,
+Yes/No, OK, and Yes/No with style 25. Visibility records precede caption, then
+request state, then queued 02000096. Replies are full event codes (target/arg
+zero), not callback pointers. Escape queues removal before the negative reply;
+button ordinals 2/4 use affirmative, 3 negative, other senders still close.
+Inactive/mode-zero consumes every key; unknown mode words are preserved.
+Force-close stores inactive before queueing removal and preserves reply words;
+normal button/Escape completion clears them. Typed observer contexts borrow
+this stable protocol object; backend services and queue outlive it.
+
+New slot-zero construction helper in `screen_construction.h` preserves load,
+position, temporary definition, singleton installation BEFORE +8c, insertion
+only on success, and definition cleanup. Root +70 is not called. Binding failure
+leaves the installed product owned/unregistered. Concrete engine/model/product
+services remain supplied contracts. Native allocation failure throws.
+
+Real queue now handles 02000096/97 through shared ScreenStack. Push saves previous
+and activates slot zero with focus zero; dismiss checks CURRENT ID FAMILY zero,
+hides/removes/clears previous without reactivating underneath. The host still
+binds only main/slot-four confirmation; slot-zero visuals/input remain disabled.
+No new desktop interaction or original application callback was enabled.
+
+Temporary integrated native ASan/UBSan audit and strict i386 compilation pass,
+including actual screen/text/event/observer/queue code with fake visual/services,
+all modes/edge cases, deferred replies and caption lifetime, ordering, constructor
+success/failures and ID-family gating. Strict i386 host rebuild, existing native
+suite, 9 frontend and 17 launcher checks pass. No permanent test or agent-side
+Proton run. Temporary audits removed after checks.
+
+See [modal notes](analysis/menu-runtime-confirmation.md) and
+[map](analysis/menu-runtime-confirmation-map.json): 26 anchors, 5 slots, 44 calls,
+4 resource names. Six new PARTIAL entries; key 006691b0 and observer 006693a0
+are absent from the frozen inventory and gain no credit. Total **104 partial
+(100 client/four engine), zero complete, frozen 18,783**.
+
+New `DefineRuntimeConfirmationFunctions.java` checks vtable/forwarding/callback
+bytes before transient definitions. All eight seeded exports succeeded under
+read-only/no-analysis and live in `analysis/work/menu-runtime-confirmation-defined`.
+Do not trust the first unseeded export's zero status: it stopped at missing
+006691b0. No research project edits were saved.
+
+Screen foundation checklist remains OPEN. Next: connect generalized products,
+model/child ownership and slot-zero input to actual engine bindings, then recover
+remaining application callback/routing services. Avoid claiming the eleven typed
+builder hooks implement their actual application bodies. Existing desktop launch
+command remains valid; normal Exit/No/Escape behavior is expected to be unchanged.
+This checkpoint is recorded in the session commit (`git log -1`). Do not
+recommit these same slices or push.
+
+Next-session order:
+1. Build a concrete owning screen product around the recovered construction
+   helpers, retaining model/children/definition data for their required lifetimes.
+2. Connect slot-zero model, text/button endpoints and key routing, then audit
+   protocol/queue integration before requesting a desktop test of the new dialog.
+3. Recover remaining application callback routes; keep the broad screen checklist
+   open until its concrete integration works. Widget visuals/settings remain open.
+
+### Previous slice: shared screen construction/ownership, desktop-confirmed
+
+User requested another foundation checklist entry and explicitly **no commit**.
+Current work advances **Recover screen creation, binding, lifetime, push/pop and
+general event dispatch**; leave it unchecked. New `screen_construction.h` recovers
+00627060's shared factory loop and 00668470's screen binding, including all eleven
+typed builder routes, fresh callback-sensitive traversal/ID checks, confirmation
+position, child binding before metadata, +8c/+70 ordering, successful insertion,
+definition destruction before direct initial selection. Concrete model/resource
+services, screen products and application builder bodies remain backend contracts.
+No original application address is called from native source.
+
+New `OwnedScreens` owns stable screen products and copied registration strings;
+successful insertion order defines indices and does not rewrite IDs. ScreenStack
+now supports this owner as well as the fixed host registry, storing each index
+explicitly. Registry entries/previous pointers outlive the stack. Native ownership
+is not original class/vector/SEH ABI; failed binding reclaims the native product
+rather than leaking it. See [screen notes](analysis/menu-screens.md) and the new
+[fingerprinted map](analysis/menu-screen-construction-map.json).
+
+Live `DefinedScreenEvents` now owns ID/model metadata instead of borrowing the
+factory definition. It accepts mutable initialization lists; const initialization
+still copies. Screen definitions have typed root initialization lists, installed
+by the host after all child endpoints are bound. Current lists are empty and the
+host still uses its existing two-screen construction, not the general factory.
+No additional action or original application observer has been enabled.
+
+Temporary integrated ASan/UBSan audit and Windows i386 audit compilation pass;
+all builder routes, list growth, changed identifiers, load/bind failures,
+exception cleanup, retained callback/payload lifetime, metadata after definition
+teardown and registry growth, plus owned-registry stack operations are covered.
+Strict i386 host build, existing native suite and 9 frontend/17 launcher checks
+pass. Temporary audit files removed after checks. No permanent test or agent-side
+Proton run. New map: 10 anchors, 9 slots, 16 calls. Two new PARTIAL entries,
+00627060/00668470; total **98 partial (94 client/four engine), zero complete,
+frozen 18,783**. All current and previous state-foundation changes are uncommitted.
+
+For desktop sanity, use the existing command and check Exit -> No, Escape/back,
+keyboard confirmation and Exit -> Yes, then normal teardown:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --probe-groups --frames 0`
+Do not run Proton from the agent or commit without the user's requested testing.
+Next within this screen entry: slot-zero modal subclass/protocol and remaining
+application routing/callback services, then integrate generalized construction
+with real products. Widget visual backends remain another separate open entry.
+
+### Previous slice: shared control-state foundation completed
+
+The plan entry **Reconstruct shared control state, initialization/event messages
+and eligibility** is now checked off. This is completion of the common native
+contract, not the entire foundation or an original-ABI function completion.
+See [closure evidence](analysis/menu-foundation-state.md) and the fingerprinted
+[map](analysis/menu-foundation-state-map.json). All base selectors, guarded
+virtual setters, frame/text/observer ordering, observer precedence, retained
+local/queued events, mutable initialization and fresh child layout passed a
+temporary ASan/UBSan audit; actual widget/container derived-state composition
+and strict Windows i386 compilation passed too. Eligibility matched the isolated
+23 original instructions for all 16,777,216 byte combinations. No Proton/game
+launch, permanent test or new visible behavior. Live text/button paths retain
+prior desktop confirmation; no repeat desktop test needed for this audit/comment
+and documentation slice. Temporary audit files removed after checks. The current
+audit/evidence/documentation changes are uncommitted.
+
+Widget visuals, real preference services, general screen factories and keyboard/
+capture/timing work retain separate open checklist entries. Next substantive
+implementation remains widget internal-part construction, detailed below.
+Original-function counts remain 96 partial, zero complete, frozen 18,783.
+
+### Previous options-widget checkpoint
 
 Recursive construction/input slice is user desktop-confirmed and committed as
 **354ae55** (372 frames, five-control recursive probe passed, clean teardown).
-Current options-widget source slice is **uncommitted and native-audited only**.
+The options-widget source slice is committed as **76e41da**, with native audit
+coverage; engine widget visuals are not desktop-validated.
 It adds no live menu action; no repeat desktop test is needed for these source
 additions. This top section supersedes the historical checkpoints below.
 

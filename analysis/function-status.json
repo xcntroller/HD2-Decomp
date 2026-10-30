@@ -269,7 +269,8 @@
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_events.cpp",
         "recovered/frontend/control_runtime.h",
-        "recovered/host/menu_button_visuals.h"
+        "recovered/host/menu_button_visuals.h",
+        "analysis/menu-foundation-state-map.json"
       ]
     },
     {
@@ -282,7 +283,8 @@
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_events.cpp",
         "recovered/frontend/control_runtime.h",
-        "recovered/host/menu_button_visuals.h"
+        "recovered/host/menu_button_visuals.h",
+        "analysis/menu-foundation-state-map.json"
       ]
     },
     {
@@ -295,7 +297,8 @@
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_state.h",
         "recovered/frontend/control_runtime.h",
-        "recovered/host/menu_button_visuals.h"
+        "recovered/host/menu_button_visuals.h",
+        "analysis/menu-foundation-state-map.json"
       ]
     },
     {
@@ -308,7 +311,8 @@
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_state.h",
         "recovered/frontend/control_runtime.h",
-        "recovered/host/menu_button_visuals.h"
+        "recovered/host/menu_button_visuals.h",
+        "analysis/menu-foundation-state-map.json"
       ]
     },
     {
@@ -379,7 +383,8 @@
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_state.h",
-        "recovered/host/menu_button_visuals.h"
+        "recovered/host/menu_button_visuals.h",
+        "analysis/menu-foundation-state-map.json"
       ]
     },
     {
@@ -727,20 +732,22 @@
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_events.h",
         "recovered/frontend/control_events.cpp",
-        "recovered/frontend/menu_event_queue.cpp"
+        "recovered/frontend/menu_event_queue.cpp",
+        "analysis/menu-foundation-state-map.json"
       ]
     },
     {
       "program": "client",
       "entry": "0065cd40",
       "status": "partial",
-      "coverage": "Tagged event registration plus portable base-control message sequencing: masked state/property/observer events, conditional emit and fresh per-child propagation with live vector bounds.",
-      "limitations": "Tagged and shared untagged base messages are integrated through ControlStateRuntime, show/hide helpers, typed observer registration/removal and emitter-owned local delivery. Original object/SEH/refcount ABI, real UI child objects and attached text rendering/storage remain incomplete. No complete function claimed.",
+      "coverage": "Tagged event registration plus portable base-control message sequencing: masked state/property/observer events, conditional emit and fresh per-child propagation with live vector bounds. Complete native base-contract audit covers all selectors, guard/order, mutable initialization, layout growth and derived widget policies; see foundation closure evidence.",
+      "limitations": "Original object/SEH/refcount ABI remains replaced by native state, typed callbacks and shared ownership. Live text/button integration is desktop-confirmed; derived options-widget state composition is native-audited with fake visual/input services. Widget visuals and real settings services remain unfinished. No complete original function claimed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_events.h",
         "recovered/frontend/control_events.cpp",
-        "recovered/frontend/control_state.h"
+        "recovered/frontend/control_state.h",
+        "analysis/menu-foundation-state-map.json"
       ]
     },
     {
@@ -885,8 +892,8 @@
       "program": "client",
       "entry": "0066c950",
       "status": "partial",
-      "coverage": "Deferred storage/release/discard and Exit replies; registered ScreenStack replaces depth counter. Regular select hides then pushes without changing +f8. Modal push retains old visibility, saves +f8 and activates with 10200000. Pop clears +f8, generic back preserves it; both resume current screen. Targeted events select any bound registered screen using target high six bits, preserving deferred/reply priority and ignoring screen return.",
-      "limitations": "Native borrowed registry/vector replaces global segmented deque/class ABI. Only main/confirmation bound. Full factory, original observer/data lists, slot-zero/application transitions and remaining cases excluded. Native unavailable-target validation rejects unsafe bindings. Bounded targeted-tree integration desktop-confirmed.",
+      "coverage": "Deferred storage/release/discard and Exit replies; registered ScreenStack replaces depth counter. Regular select hides then pushes without changing +f8. Modal push retains old visibility, saves +f8 and activates with 10200000. Pop clears +f8, generic back preserves it; both resume current screen. Targeted events select any bound registered screen using target high six bits, preserving deferred/reply priority and ignoring screen return. Slot-zero 02000096 saves previous/pushes with focus zero; 02000097 tests current identifier family, hides/removes/clears previous without reactivating underneath.",
+      "limitations": "Native registry/vector replaces original global segmented deque/class ABI. Host binds only main/confirmation; slot-zero routing is integrated and native-audited with fake screen services, but concrete slot-zero engine/product binding, remaining application transitions/capture and other routing cases remain unfinished. Unsupported bindings fail before live state changes.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/menu_event_queue.h",
@@ -896,7 +903,8 @@
         "recovered/frontend/screen_stack.h",
         "recovered/frontend/screen_registry.h",
         "recovered/frontend/defined_screen_events.h",
-        "recovered/host/menu_screen_events.h"
+        "recovered/host/menu_screen_events.h",
+        "analysis/menu-runtime-confirmation-map.json"
       ]
     },
     {
@@ -1193,6 +1201,104 @@
       "evidence": [
         "analysis/menu-options-widget-map.json",
         "recovered/frontend/options_observers.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00627060",
+      "status": "partial",
+      "coverage": "Portable registered-screen construction loop: fresh definition traversal, model-load skip, eleven typed builder routes, confirmation position, +8c binding gate, mutable +70 initialization, successful-product insertion, definition teardown then direct initial selection.",
+      "limitations": "Model/resource loading, original screen constructors, eleven screen-specific builders and application services remain supplied backend contracts. Native unique ownership replaces original vector/SEH/class ABI; rejected products are reclaimed rather than leaked, and null allocation throws. The generalized factory is native-audited with fake services; the host still constructs its two supported screens through its existing path.",
+      "evidence": [
+        "analysis/menu-screen-construction-map.json",
+        "recovered/frontend/screen_construction.h",
+        "recovered/frontend/defined_screen_events.h",
+        "recovered/frontend/owned_screens.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00668470",
+      "status": "partial",
+      "coverage": "Portable screen-definition binding: fresh child traversal, same model as search/layout roots, ignored child factory results, retained model name and identifier assignment after children. Live message runtime now owns copied metadata and supports actual mutable initialization records.",
+      "limitations": "Child and engine/model construction remain backend contracts; original intrusive string/object ABI is replaced by owned native metadata. Generic binding helper is native-audited; fixed live endpoints remain main/confirmation only, and real screen-specific callbacks/new heterogeneous screens are unfinished.",
+      "evidence": [
+        "analysis/menu-screen-construction-map.json",
+        "recovered/frontend/screen_construction.h",
+        "recovered/frontend/defined_screen_events.h",
+        "recovered/frontend/owned_screens.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00668790",
+      "status": "partial",
+      "coverage": "Append runtime confirmation caption/Yes/No/OK definitions with ordinal IDs, exact captions/styles, three typed activation observers and hidden OK before ordinary binding.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "evidence": [
+        "analysis/menu-runtime-confirmation-map.json",
+        "recovered/frontend/runtime_confirmation.h",
+        "recovered/frontend/screen_construction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006688a0",
+      "status": "partial",
+      "coverage": "Raw-text dialog configuration: inactive gate, four mode visibility patterns, retained caption/style, ordered request state and queued slot-zero push; unknown mode semantics retained.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "evidence": [
+        "analysis/menu-runtime-confirmation-map.json",
+        "recovered/frontend/runtime_confirmation.h",
+        "recovered/frontend/screen_construction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00668cd0",
+      "status": "partial",
+      "coverage": "Localized-caption counterpart preserves mode/style and queued visibility/configuration/open order with caller label word.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "evidence": [
+        "analysis/menu-runtime-confirmation-map.json",
+        "recovered/frontend/runtime_confirmation.h",
+        "recovered/frontend/screen_construction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00669090",
+      "status": "partial",
+      "coverage": "Force-close sets mode inactive before queued dismissal, without reply or clearing stored reply codes; inactive close still queues dismissal.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "evidence": [
+        "analysis/menu-runtime-confirmation-map.json",
+        "recovered/frontend/runtime_confirmation.h",
+        "recovered/frontend/screen_construction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006691a0",
+      "status": "partial",
+      "coverage": "Clear both dialog reply-code words while preserving mode, queue and visibility state.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "evidence": [
+        "analysis/menu-runtime-confirmation-map.json",
+        "recovered/frontend/runtime_confirmation.h",
+        "recovered/frontend/screen_construction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0066c1d0",
+      "status": "partial",
+      "coverage": "Portable slot-zero construction sequence: load/position model, temporary zero-ID definition, allocate/install singleton before binding, registry insertion on success, definition cleanup on both bind outcomes.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "evidence": [
+        "analysis/menu-runtime-confirmation-map.json",
+        "recovered/frontend/runtime_confirmation.h",
+        "recovered/frontend/screen_construction.h"
       ]
     }
   ]

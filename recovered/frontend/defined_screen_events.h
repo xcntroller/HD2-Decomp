@@ -9,6 +9,7 @@
 #include "frontend/screen_target.h"
 
 #include <functional>
+#include <string>
 
 namespace hd2::frontend {
 
@@ -21,7 +22,8 @@ public:
     using Child = std::function<bool(ControlEvent&, ControlEventDestination&)>;
     DefinedScreenEvents(const MenuScreenDefinition& definition, Backend& backend,
                         ControlEventDestination& queue)
-        : definition_(definition), backend_(backend), queue_(queue), children_(definition.controls.size()) {
+        : identifier_(definition.identifier), model_(definition.model ? definition.model : ""),
+          backend_(backend), queue_(queue), children_(definition.controls.size()) {
         for (const auto& child : definition.controls) ids_.push_back(child.identifier);
     }
     DefinedScreenEvents(const DefinedScreenEvents&) = delete;
@@ -45,8 +47,15 @@ public:
     // must be reconstructed before they can be installed as observers.
     void initialize(const std::vector<ControlEvent>& events) {
         auto records = events;
+        initialize_records(records);
+    }
+    // Factory +70 receives the actual mutable definition list. The owning
+    // factory keeps it alive through callbacks, then may discard definitions.
+    void initialize_records(std::vector<ControlEvent>& records) {
         initialize_control_events(*this, records);
     }
+    std::uint32_t identifier() const { return identifier_; }
+    const std::string& model_name() const { return model_; }
     bool dispatch_initialization_event(ControlEvent& event) { return dispatch(event); }
     void activate(std::uint32_t focus) { activate_screen(*this, focus); }
     void deactivate() { deactivate_screen(*this); }
@@ -92,7 +101,7 @@ private:
         int leave_focus(std::uint32_t target) { return screen.leave_focus(target); }
         int enter_focus(std::uint32_t target) { return screen.enter_focus(target); }
         int control_for_target(std::uint32_t target) const {
-            return find_screen_control(screen.definition_.identifier, screen.ids_, target);
+            return find_screen_control(screen.identifier_, screen.ids_, target);
         }
         void dispatch_child_event(int index, ControlEvent& event) {
             screen.dispatch_child_event(index, event, destination);
@@ -108,7 +117,10 @@ private:
         return child(event, destination);
     }
     friend class ControlStateRuntime<DefinedScreenEvents>;
-    const MenuScreenDefinition& definition_;
+    // Snapshot metadata: dispatch must not borrow the factory's definitions,
+    // which 00627060 destroys before selecting the initial screen.
+    std::uint32_t identifier_;
+    std::string model_;
     Backend& backend_;
     ControlEventDestination& queue_;
     std::vector<Child> children_;

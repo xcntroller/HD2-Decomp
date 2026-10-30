@@ -1,0 +1,150 @@
+{
+  "scope": "Native shared registered-screen construction and definition binding with owned metadata/registry support. Model loading, screen-specific builders and concrete new screen products remain backend services; live host still binds only main/confirmation.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "sources": [
+    "recovered/frontend/screen_construction.h",
+    "recovered/frontend/owned_screens.h",
+    "recovered/frontend/defined_screen_events.h",
+    "recovered/frontend/screen_stack.h",
+    "recovered/host/menu_screen_events.h"
+  ],
+  "instruction_anchors": [
+    {
+      "address": "00627094",
+      "hex": "8b4b0885c90f840c0400008b430c2bc1c1f8023bf80f83fc030000",
+      "meaning": "Reread definition pointer vector/count every iteration"
+    },
+    {
+      "address": "006270dd",
+      "hex": "e8be4e04008bf085f60f84b5030000",
+      "meaning": "Load model then skip definition when loading fails"
+    },
+    {
+      "address": "006270ec",
+      "hex": "8b43088b0cb88b514081e2000000fc81fa00000008750d8bc18b4c24185650e8a0a0ffff",
+      "meaning": "Profile builder matches masked ID 08000000"
+    },
+    {
+      "address": "00627110",
+      "hex": "8b43088b0cb88b514081e2000000fc81fa0000001075238b068d4c24305156c74424380000003fc744243c0000c0bec7442440000000bfff5008",
+      "meaning": "Independent fresh identifier check positions confirmation model"
+    },
+    {
+      "address": "0062714a",
+      "hex": "8b43088b14b88b4a4081e1000000fc81f900000014750b8b4c24185652e8742001008b43088b0cb88b514081e2000000fc81fa0000001875138bc18b4c241856508b89d0010000e8ca5dffff8b43088b14b88b4a4081e1000000fc81f90000001c750b8b4c24185652e888cffeff8b43088b0cb88b514081e2000000fc81fa00000020750d8bc18b4c24185650e8a4cd00008b43088b0cb88b514081e2000000fc81fa00000024750d8bc18b4c24185650e8901200008b43088b0cb88b514081e2000000fc81fa00000028750d8bc18b4c24185650e89c0501008b43088b0cb88b514081e2000000fc81fa0000002c750d8bc18b4c24185650e8481301008b43088b0cb88b514081e2000000fc81fa00000030750d8bc18b4c24185650e8748100008b43088b0cb88b514081e2000000fc81fa00000034750d8bc18b4c24185650e8f0ad00008b43088b0cb88b514081e2000000fc81fa00000038750d8bc18b4c24185650e83cfd0000",
+      "meaning": "Ten independent masked builder checks, with fresh definition lookup after callbacks"
+    },
+    {
+      "address": "006272e5",
+      "hex": "8b4b088944241c8b10c744246cffffffff8b0cb9518bc8ff928c00000084c00f84970100008b43088b4c241c8b04b88b1183c00450ff5270",
+      "meaning": "Gate on screen +8c before passing actual initialization list to +70"
+    },
+    {
+      "address": "006274ab",
+      "hex": "85db74088b036a018bcbff1033c0c744244c010000028944245c89442448b801000000894424508d4c24488944246c518bcee86e540400",
+      "meaning": "Destroy definitions before direct initial 02000001 argument-one dispatch"
+    },
+    {
+      "address": "0066847b",
+      "hex": "8b4f2885c9741f8b472c2bc1c1f8023bf073138b14b18b43745250508bcbe8b24cffff46ebda",
+      "meaning": "Screen +8c rereads child bounds; passes model twice to control factory; ignores result"
+    },
+    {
+      "address": "006684a1",
+      "hex": "8b773c85f6740c8b064085f6890674034089068b437c85c074108b08498908750950e8f897170083c40485f689737c74108b06488906750956e8e197170083c4048b47405f8943605eb0015b",
+      "meaning": "Retain model key then assign identifier after child construction"
+    },
+    {
+      "address": "00668220",
+      "hex": "e9db4cffff",
+      "meaning": "Screen initialization +70 tail-jumps to mutable base initialization loop"
+    }
+  ],
+  "vtables": [
+    {
+      "address": "008155ac",
+      "targets": [
+        "006684f0",
+        "00668220",
+        "0064dc30",
+        "0065cd30",
+        "00661900",
+        "00668230",
+        "00668400",
+        "00668210",
+        "00668470"
+      ]
+    }
+  ],
+  "direct_calls": [
+    {
+      "site": "0062710b",
+      "target": "006211b0"
+    },
+    {
+      "site": "00627167",
+      "target": "006391e0"
+    },
+    {
+      "site": "00627191",
+      "target": "0061cf60"
+    },
+    {
+      "site": "006271b3",
+      "target": "00614140"
+    },
+    {
+      "site": "006271d7",
+      "target": "00633f80"
+    },
+    {
+      "site": "006271fb",
+      "target": "00628490"
+    },
+    {
+      "site": "0062721f",
+      "target": "006377c0"
+    },
+    {
+      "site": "00627243",
+      "target": "00638590"
+    },
+    {
+      "site": "00627267",
+      "target": "0062f3e0"
+    },
+    {
+      "site": "0062728b",
+      "target": "00632080"
+    },
+    {
+      "site": "006272af",
+      "target": "00636ff0"
+    },
+    {
+      "site": "006270dd",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "00627087",
+      "target": "00623dd0"
+    },
+    {
+      "site": "006272dc",
+      "target": "00668120"
+    },
+    {
+      "site": "006274dd",
+      "target": "0066c950"
+    },
+    {
+      "site": "00668499",
+      "target": "0065d150"
+    }
+  ],
+  "resource_anchors": []
+}

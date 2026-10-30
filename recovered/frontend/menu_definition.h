@@ -30,6 +30,7 @@ struct MenuScreenDefinition {
     std::uint32_t identifier;
     const char* model;
     std::vector<MenuControlDefinition> controls;
+    std::vector<ControlEvent> initialization{};
 };
 
 inline MenuControlDefinition text_definition(std::uint32_t id, const char* frame,

@@ -1,0 +1,133 @@
+{
+  "scope": "Completed portable shared control state, initialization/event messages and eligibility contract. Widget visuals, screen factories, preference services and original class ABI remain separately tracked.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "sources": [
+    "recovered/frontend/control_state.h",
+    "recovered/frontend/control_events.cpp",
+    "recovered/frontend/control_runtime.h",
+    "recovered/frontend/control_initialization.h",
+    "recovered/frontend/options_widget_base.h"
+  ],
+  "instruction_anchors": [
+    {
+      "address": "0064d9f0",
+      "hex": "8a41668a5165538a596423c233d284db0f94c223c25bc3",
+      "meaning": "Complete self-contained eligibility predicate; compare its low-byte return"
+    },
+    {
+      "address": "0064dd3c",
+      "hex": "b2015f894850885065884864885066894858c7405cffffffff",
+      "meaning": "Constructor initializes visibility/focusability to one, disabled/word58 to zero and word5c to ffffffff"
+    },
+    {
+      "address": "0065cd59",
+      "hex": "8b420483ec18a900f00f04568bf174238b4620",
+      "meaning": "Tagged registration takes precedence over ordinary selectors"
+    },
+    {
+      "address": "0065cd8c",
+      "hex": "25ff0f0003533da1000001570f87b90000000f84990000002d0100000183f80b7721ff2485d0ce6500",
+      "meaning": "Ordinary selector mask, range and indirect jump"
+    },
+    {
+      "address": "0065cdb5",
+      "hex": "c6466600eb14c6466601eb0e8b4a08894e5ceb068b465c894208",
+      "meaning": "Focusable stores and word5c mutable query/set"
+    },
+    {
+      "address": "0065cde5",
+      "hex": "8b168bceff5214ebe18b068bceff5010ebd8",
+      "meaning": "Virtual hide and show dispatch"
+    },
+    {
+      "address": "0065cdf7",
+      "hex": "8a466484c075d18b166a018bceff527cebc68a466433db3ac374bd8b06538bceff507cebb3",
+      "meaning": "Disable/enable guards call the derived virtual setter only on a state transition"
+    },
+    {
+      "address": "0065ce1c",
+      "hex": "8b4a08894e58ebab8b4658eba3",
+      "meaning": "word58 mutable query/set"
+    },
+    {
+      "address": "0065ce3d",
+      "hex": "8b5208f7c20000000474876a00528bcee8fe000000",
+      "meaning": "Conditional signal requires argument bit 04000000 and emits zero argument"
+    },
+    {
+      "address": "0065ce57",
+      "hex": "3d2c0000020f856dffffff33db33ff8b4e083bcb0f845effffff8b460c2bc1c1f8023bf80f834effffff",
+      "meaning": "Layout code and fresh child storage/count lookup"
+    },
+    {
+      "address": "0065ce81",
+      "hex": "895c2420895c240cc74424102c000002895c24148bc1895c242c",
+      "meaning": "Layout initializes payload, target, code and argument; spare words are not initialized"
+    },
+    {
+      "address": "0065ce9b",
+      "hex": "8b0cb88d44240c508b11ff5274",
+      "meaning": "Layout child receives copied-dispatch virtual +74"
+    },
+    {
+      "address": "0065cecc",
+      "hex": "47eb97",
+      "meaning": "Layout loops back to fresh child-vector lookup"
+    },
+    {
+      "address": "0065ced0",
+      "hex": "f7cd650009ce6500eecd6500e5cd6500b5cd6500bbcd650029ce650033ce6500c1cd6500c9cd65001cce650024ce6500",
+      "meaning": "All twelve base selector jump-table targets, in code order 01000001..0100000c"
+    },
+    {
+      "address": "0065cf0a",
+      "hex": "8b4424148b700485f6742c8b4808b8abaaaa2a2bcef7e9c1fa028bc2c1e81f03d03bfa7312",
+      "meaning": "Initialization rereads list storage and derives the 24-byte record count"
+    },
+    {
+      "address": "0065cf2f",
+      "hex": "8b55008d0433508bcdff526c4783c318ebc9",
+      "meaning": "Initialization passes actual mutable record to +6c, ignores return and rereads list"
+    },
+    {
+      "address": "0065ca03",
+      "hex": "8b4210896c241085c0740a8b79303b442f080f94c38b420885c074098b79303b042f0f94c38b420c85c0740a8b51303b442a040f94c3",
+      "meaning": "Each nonzero callback/tag/context filter overwrites BL rather than combining comparisons"
+    },
+    {
+      "address": "00661cc0",
+      "hex": "8a4424048841648b496c85c97403884171c20400",
+      "meaning": "Disabled setter writes control byte +64 then mirrors to attached text +71 only if present"
+    },
+    {
+      "address": "0065c760",
+      "hex": "568bf16a018b4650c6466501508b08ff51308b4650508b10ff52246a006800d000048bcee8c70700005ec3",
+      "meaning": "Show stores visible one, enables frame, updates frame, emits 0400d000"
+    },
+    {
+      "address": "0065c790",
+      "hex": "568bf16a008b4650c6466500508b08ff51308b4650508b10ff5224",
+      "meaning": "Button hide callback clears control visibility and hides/updates its bound frame"
+    }
+  ],
+  "vtables": [],
+  "direct_calls": [
+    {
+      "site": "0065ce2c",
+      "target": "0065cac0"
+    },
+    {
+      "site": "0065ce36",
+      "target": "0065c9a0"
+    },
+    {
+      "site": "0065ce4d",
+      "target": "0065cf50"
+    }
+  ],
+  "resource_anchors": []
+}

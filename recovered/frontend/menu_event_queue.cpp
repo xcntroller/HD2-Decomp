@@ -90,6 +90,12 @@ void MenuEventQueue::route(ControlEvent event) {
     case 0x02000005:
         screens_.pop(true);
         break;
+    case 0x02000096:
+        screens_.push_runtime_confirmation();
+        break;
+    case 0x02000097:
+        screens_.dismiss_runtime_confirmation();
+        break;
     case 0x02000004:
         actions_.quit();
         break;

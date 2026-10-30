@@ -2,6 +2,7 @@
 #define HD2_FRONTEND_SCREEN_REGISTRY_H
 
 #include <array>
+#include <cstddef>
 #include <cstdint>
 
 namespace hd2::frontend {
@@ -32,6 +33,16 @@ inline constexpr std::array<ScreenRegistration, 15> menu_screen_registry{{
     {"MP Connect console", "confirm", 0x34000000},
     {"ADD SERVER", "password", 0x38000000}
 }};
+
+// Default registry view for the bounded host. The same stack can instead use
+// OwnedScreens, whose successful construction order defines runtime indices.
+struct MenuScreenRegistry {
+    std::size_t size() const { return menu_screen_registry.size(); }
+    const ScreenRegistration& registration(std::size_t index) const {
+        return menu_screen_registry.at(index);
+    }
+};
+inline const MenuScreenRegistry default_menu_screen_registry{};
 
 }
 

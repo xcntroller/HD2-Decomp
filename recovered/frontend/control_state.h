@@ -101,8 +101,9 @@ bool dispatch_control_state_event(Control& control, ControlEvent& event) {
         break;
     case 0x0200002c:
         // Original rereads the child vector and size after each callback.
-        // Each child receives a NEW zeroed event, not the parent's payload,
-        // target or argument, nor the previous child's mutated event.
+        // Each child receives fresh target/code/argument/payload, not the
+        // parent's record or the previous child's mutations. Native spare
+        // words are zeroed; the original leaves those words unspecified.
         for (std::size_t i = 0; i < control.child_count(); ++i) {
             ControlEvent child_event{0, 0x0200002c, 0, 0, 0, {}};
             control.dispatch_child(i, child_event); // Child virtual +74.

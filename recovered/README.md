@@ -105,6 +105,10 @@ transitions, Exit activation and driver/graphics cleanup. The user also confirme
 the normal/actived visual switching; it does not add the original focus sound/events,
 dispatcher or quit-confirmation screen. Artwork-only mode remains unchanged.
 See the [session handoff](../HANDOFF.md) for the next step.
+The shared state foundation is complete. Screen construction/ownership and the
+slot-zero modal protocol have native sanitizer/i386 coverage; the live host still
+binds only main/Exit confirmation. Next: concrete screen-product ownership and
+engine-backed slot-zero integration. See [the menu plan](../plan.md).
 Neither the original executable nor the user's game prefix is patched.
 See [the preview test command](../RESEARCH.md#original-menu-model-preview).
 

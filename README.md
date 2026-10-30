@@ -10,6 +10,18 @@ two binaries; the expansion is outside its scope.
 Menu delivery checklist: [plan.md](plan.md). It tracks the entire base-game
 menu separately from the original-function counts below.
 
+The shared control-state foundation entry is complete: initialization, base
+messages, observers, event ownership and eligibility are recovered and audited.
+See [validation and scope](analysis/menu-foundation-state.md). Widget visuals,
+settings services and the other foundation entries are still in progress.
+
+Shared screen construction/binding and stable native
+screen ownership are recovered, with an integrated sanitizer audit. The live host retains its
+two supported screens; application callbacks and factory integration remain open.
+See [screen construction notes](analysis/menu-screens.md). The separate slot-zero
+modal protocol is also recovered and native-audited; its engine product remains
+unbound. [Modal evidence](analysis/menu-runtime-confirmation.md).
+
 ## Where we are
 
 **We've got past the first major obstacle: accessing the game's code.**
@@ -150,11 +162,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **96 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **104 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 92 |
+| Base game client | 17,294 | 0 | 100 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
