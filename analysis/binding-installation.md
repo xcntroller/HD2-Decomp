@@ -97,8 +97,10 @@ artifacts are removed after final checks; no permanent unit tests were added.
 Existing native checks and all 158 tooling tests pass, the live host build is
 up to date, and evidence/accounting/diff formatting checks pass.
 
-Next: original input-manager creation/device ownership and attachment to graphics,
-then live controller integration alongside the remaining startup prerequisites.
+Follow-up: [manager lifetime and attachment](input-manager.md) are now recovered
+in source and audited with the defaults/producer. Concrete device forwarding/
+enumeration and original input setup still precede live controller integration
+alongside the remaining startup prerequisites.
 Static references identify global construction/destruction wrappers `006D5D50` /
 `006D5D70` to `006C6A20` / `006C6AB0`; graphics initialization calls `006C6FF0`
 then `006C6CC0` at `006DB64B` / `006DB675`. These bodies are not reconstructed here.

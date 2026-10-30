@@ -32,11 +32,14 @@ struct JoystickInputState {
 static_assert(sizeof(JoystickInputState) == 0x44);
 static_assert(offsetof(JoystickInputState, buttons) == 0x34);
 struct JoystickInput {
+    void* device = nullptr; // Retained by the original input-manager lifetime path.
     JoystickInputState current, secondary;
 };
+static_assert(sizeof(void*) != 4 || (sizeof(JoystickInput) == 0x8c &&
+              offsetof(JoystickInput, current) == 4 && offsetof(JoystickInput, secondary) == 0x48));
 
-// Caller must supply the recovered configuration before use. In particular,
-// scan order, per-source binding counts and axis limits are not host defaults.
+// Caller must supply the recovered configuration before use. InputManager
+// supplies lifecycle limits; scan order and counts come from binding setup.
 // first/second contain float bits as DWORDs, matching controller input views.
 struct BindingInputState {
     std::vector<JoystickInput> joysticks;

@@ -1,0 +1,187 @@
+{
+  "scope": "Source-only original input-manager static construction, graphics attachment, retained joystick lifetime, reset/detach and native installer/producer composition.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006c6a77",
+        "hex": "ba0000a0418988dc0000008988e00000008988e40000008990a80000008990ac0000008990b0000000890859c3",
+        "meaning": "Constructor gives all three axes float 20 and stores null graphics"
+      },
+      {
+        "address": "006c6b60",
+        "hex": "5153558bd956578b83c00000008bb3bc0000008dbbb80000003bc08944241074228bc88bd683c00c83c60c8b29892a8b6904896a048b4908894a088b4c24103bc175de8b57088bcf5256e8a1220000",
+        "meaning": "Detach clears binding length before output lengths and joystick callbacks"
+      },
+      {
+        "address": "006c6bd5",
+        "hex": "8b46088bce5057e8cf10d7ff897e088b8be0",
+        "meaning": "Detach clears first output length"
+      },
+      {
+        "address": "006c6c07",
+        "hex": "8b47088bcf5056e89d10d7ff897708",
+        "meaning": "Detach clears second output length"
+      },
+      {
+        "address": "006c6c48",
+        "hex": "8b530881ee8c0000008b0c1685c974058b01ff50084f75e8",
+        "meaning": "Reverse retained joystick release with null check at virtual +08"
+      },
+      {
+        "address": "006c6c86",
+        "hex": "5f5e89530c5d5b59c3",
+        "meaning": "Clear joystick vector length after release callbacks"
+      },
+      {
+        "address": "006c6c90",
+        "hex": "db442404b001d999a8000000db442408d999ac000000db44240cd999b0000000c20c009090909090909090",
+        "meaning": "Axis setter signed integer-to-float conversions and AL success"
+      },
+      {
+        "address": "006c6cd1",
+        "hex": "85d2578974240c750e5f5e32c05b81c49c000000c20c00",
+        "meaning": "Null graphics rejects attachment before state changes"
+      },
+      {
+        "address": "006c6ce8",
+        "hex": "8b9c24b400000085db8bc374128b8c24b000000048833c810074d785c075ee",
+        "meaning": "Reverse validation of every supplied joystick before mutation"
+      },
+      {
+        "address": "006c6d07",
+        "hex": "b91000000033c08d7e20c744241000000000f3abb9100000008d7e60f3ab8d86a000000085dbc700000000008916",
+        "meaning": "Clear 64 scan bytes, 64 count bytes and only four mouse count bytes; borrow graphics"
+      },
+      {
+        "address": "006c6d3f",
+        "hex": "8b542414b92300000033c08d7c2420f3ab8b8c24b40000008b0c91894c24208b01ff5004",
+        "meaning": "Zero new 140-byte joystick record and retain device at +04 before append"
+      },
+      {
+        "address": "006c6fb2",
+        "hex": "6a0183c8ff689001000068900100008bce8986e80000008986ec000000e8bcfcffffc686b400000000",
+        "meaning": "Initialize 64-bit key gate to all ones, set limits 400/400/1, clear b4 flag"
+      },
+      {
+        "address": "006c6ff0",
+        "hex": "8bd156578bb2c00000008b8abc0000008bc63bc6742253558bf88bd983c00c83c10c8b2f3bc6892b8b6f04896b048b7f08897b0875e25d5b898ac00000008bb2d00000008b8acc0000008bc63bc6740e8b3883c004893983c1043bc675f2898ad00000008bb2e0000000",
+        "meaning": "Clear binding/output lengths, scan map/counts and only four mouse count bytes"
+      },
+      {
+        "address": "006c7086",
+        "hex": "b9100000008d7a60f3ab81c2a00000005f5e8902c3",
+        "meaning": "Remaining count clear and return without publishing a graphics map"
+      },
+      {
+        "address": "006c9210",
+        "hex": "578bf985ff740b56b9230000008bf2f3a55e5fc39090909090",
+        "meaning": "Joystick relocation is raw 35-DWORD copy, without extra references"
+      },
+      {
+        "address": "006d5d50",
+        "hex": "b948ea8a00e9c60cffff",
+        "meaning": "Global manager constructor wrapper"
+      },
+      {
+        "address": "006d5d70",
+        "hex": "b948ea8a00e9360dffff",
+        "meaning": "Global manager destructor wrapper"
+      },
+      {
+        "address": "006db63d",
+        "hex": "6a0050ff9190000000b948ea8a00e8a0b9feff8b0d3cea8a0085c9750433c0eb0aa140ea8a002bc1c1f8025051e83f98100050b948ea8a00e846b6feff8d542400b9fc",
+        "meaning": "Original keyboard initialization precedes manager clear and attachment"
+      },
+      {
+        "address": "006c6ab0",
+        "hex": "6aff6855b2800064a100000000506489250000000051568bf15789742408c744241403000000e8850000008b86dc00000050e8d9b1110033ff89bedc00000089bee000000089bee40000008b8ecc00000051e8b9b1110089becc00000089bed000000089bed40000008b96bc00000052e89bb1110089bebc00000089bec000000089bec40000008b460850e880b111008b4c241c83c410897e08897e0c897e105f5e64890d0000000083c410c3",
+        "meaning": "Destructor calls detach, then frees second, first, bindings and joystick vector storage"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [
+      {
+        "site": "006c6fcf",
+        "target": "006c6c90"
+      },
+      {
+        "site": "006db64b",
+        "target": "006c6ff0"
+      },
+      {
+        "site": "006db675",
+        "target": "006c6cc0"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [],
+    "vtables": [
+      {
+        "address": "1009d854",
+        "targets": [
+          "1006a470"
+        ]
+      },
+      {
+        "address": "1009d8d0",
+        "targets": [
+          "1006f040",
+          "1006f150",
+          "1006f160",
+          "1006f190",
+          "1006f320",
+          "1006f470",
+          "1006f2d0",
+          "1006f300",
+          "1006f490",
+          "1006f4b0",
+          "1006f500",
+          "1006f550",
+          "1006f570",
+          "1006f590",
+          "1006f5b0",
+          "1006f660",
+          "1006f6a0",
+          "10057630",
+          "1006f700",
+          "1006f710",
+          "1006f840",
+          "1006f850",
+          "1006f8a0",
+          "1006fa10",
+          "1006fa20",
+          "1006fa30",
+          "1006fa40",
+          "1006fb10",
+          "1006fb20",
+          "1006fb30"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "sources": [
+    "recovered/input/input_manager.h",
+    "recovered/input/binding_producer.h"
+  ],
+  "limitations": [
+    "Normal original global zero-initialized context only; native vectors/allocator/class ABI replace original raw state and allocator tag bytes.",
+    "Graphics, keyboard and mouse are borrowed/delegated. Joystick enumeration and concrete original interface backends remain outside this source checkpoint.",
+    "Reference callbacks must not throw or structurally mutate ownership storage. Negative counts, missing arrays/null service devices and missing graphics throw instead of malformed raw dereferences.",
+    "Native allocation failure balances the just-retained reference; original attachment does not guard this allocation failure. Existing appended prefix remains owned."
+  ]
+}

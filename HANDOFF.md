@@ -1,6 +1,54 @@
 # Session handoff - 2026-10-30
 
-## Resume here: binding installation, configuration and both defaults recovered
+## Resume here: native input-manager lifetime and attachment recovered
+
+The new source checkpoint follows committed `5871f3c` installation/defaults.
+User authorizes sensible tested commits. No new live behavior or desktop test.
+`input/input_manager.h` recovers 006C6A20/6AB0/6B60/6CC0/6C90/6FF0 as a native
+owner composing directly with recovered defaults, installer and producer.
+`JoystickInput` now stores its retained device; i386 assertions verify record
+size 8C and snapshot offsets 04/48. See [manager evidence](analysis/input-manager.md).
+
+Ownership: graphics borrowed, keyboard/mouse creation/close outside manager;
+only joystick refs retained at +04 and released at +08. Validate all devices
+before mutation; retain forward and append zero snapshots; duplicate occurrences
+own refs. Reattach appends and preserves bindings/old refs, replaces borrowed
+graphics, sets key gate all ones, limits 400/400/1 and b4 flag zero. Constructor
+uses 20/20/20 in normal zero-static context. Binding clear and attachment clear
+ONLY four mouse-count bytes, preserving +A4/+A5. Binding clear does not release
+devices or publish the scan map. Detach clears outputs before reverse release,
+then clears joystick length, preserving tables/counts/gates/graphics/limits.
+Destructor frees second, first, binding, joystick allocations in that order.
+
+Temporary sanitizer/native and strict i386 audits pass through original defaults,
+owner/snapshot/producer, controller views and frontend Escape/back with held-key
+suppression. Audit covers validation, duplicates, reattach, getter/poll ordering,
+callback-visible empty outputs, repeated detach, fifth-count preservation and
+no implicit map publication. Separate forced first/second append allocation
+failures verify balanced refs; tracked frees verify allocation-release order.
+Existing native checks, all 158 tooling tests, host build (up to date), byte map,
+frozen accounting and diff checks pass. Temporary audits removed after checking.
+Native allocation failure balances the just-retained ref unlike original; native
+malformed-call guards and vector/object ABI differences are documented. Reference
+callbacks must not throw or structurally mutate ownership storage. No successful
+no-op backend bodies force the controller live.
+
+NEXT: source-only setup boundary 006DB620 is exported in ignored
+input-manager-startup-boundary. It calls graphics +90(flags0), clears/attaches
+manager to global joystick list, then resolves a string via 006B67B0 and passes
+it to 006B1090. These last services need real recovery; do not replace them with
+empty-string/success stubs. Concrete graphics/joystick backend and enumeration,
+application Gamedata/HumanStore/profile services, state owners and full startup
+still precede controller integration. Profile persistence and focus/navigation
+callers stay open. One bounded source-only manager checklist entry is closed.
+
+Evidence: both hashes, 19 anchors, 31 graphics slots, three calls. Six new partial
+client functions: total 134 (129 client/five engine), zero complete, frozen
+18,783. Read-only exports in ignored input-manager-lifetime, input-manager-release
+and input-manager-startup-boundary. No original binaries/project changes,
+agent-side Proton launch or push.
+
+## Earlier checkpoint: binding installation, configuration and both defaults recovered
 
 Current source slice follows committed `143f518` producer work and `4e0d923`
 confirmed pacing/keyboard/preprocessing. User authorizes sensible tested commits.

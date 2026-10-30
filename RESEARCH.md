@@ -14,8 +14,9 @@ source-recovered and sanitizer/i386-audited. The subsequent
 and joystick output buffers and configured key snapshots. Original binding
 installation, mode/dirty application and both 92-record default layouts are
 now also [source-recovered and audited](analysis/binding-installation.md).
-Manager/device ownership, profile persistence, text targets and navigation
-callers remain open. Checkpoint `4e0d923` commits pacing/keyboard and preprocessing;
+The [manager owner/graphics attachment](analysis/input-manager.md) is also
+source-recovered and audited. Concrete device forwarding/enumeration, original
+input setup, profile persistence, text targets and navigation callers remain open. Checkpoint `4e0d923` commits pacing/keyboard and preprocessing;
 `8eef91d` contains
 the preceding confirmed opening playback and audited controller.
 

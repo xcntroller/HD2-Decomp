@@ -1615,6 +1615,84 @@
         "recovered/input/binding_configuration.h",
         "recovered/input/binding_defaults.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "006c6a20",
+      "status": "partial",
+      "coverage": "Construct normal global manager native storage with null borrowed graphics, empty owning vectors and original axis limits 20/20/20; preserve zero-static context for other fields.",
+      "limitations": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/joystick backend and enumeration, original keyboard/mouse device setup and full startup integration remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend.",
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c6ab0",
+      "status": "partial",
+      "coverage": "Detach joystick references, then release second/first/binding/joystick vector allocations in original order using native ownership.",
+      "limitations": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/joystick backend and enumeration, original keyboard/mouse device setup and full startup integration remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend.",
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c6b60",
+      "status": "partial",
+      "coverage": "Clear binding/output lengths before reverse null-guarded joystick release, then clear joystick length while preserving graphics, tables/counts, limits and gates.",
+      "limitations": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/joystick backend and enumeration, original keyboard/mouse device setup and full startup integration remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend.",
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c6cc0",
+      "status": "partial",
+      "coverage": "Validate borrowed graphics and every supplied joystick before mutation; clear source tables/first four mouse counts, retain and append zero-snapshot joystick records, set key gate all ones, limits 400/400/1 and flag zero.",
+      "limitations": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/joystick backend and enumeration, original keyboard/mouse device setup and full startup integration remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend.",
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c6c90",
+      "status": "partial",
+      "coverage": "Convert all three signed limits to float and return success without normalization/default checks.",
+      "limitations": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/joystick backend and enumeration, original keyboard/mouse device setup and full startup integration remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend.",
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c6ff0",
+      "status": "partial",
+      "coverage": "Clear binding/output lengths preserving capacity and devices; clear 64-byte scan/count tables and only first four mouse-count bytes; preserve gates/limits/graphics and avoid engine map publication.",
+      "limitations": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/joystick backend and enumeration, original keyboard/mouse device setup and full startup integration remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend.",
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h"
+      ]
     }
   ]
 }

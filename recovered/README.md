@@ -53,9 +53,11 @@ key snapshots are now source-recovered and sanitizer/i386-audited, including
 controller-to-front-end Escape routing. [Original binding installation](input/binding_installation.h),
 [mode/dirty configuration](input/binding_configuration.h) and
 [both compiled default layouts](input/binding_defaults.h) are now also recovered
-and audited. Manager/device ownership, profile persistence and text targets
-remain open. See
-[evidence](../analysis/binding-installation.md).
+and audited. The [input-manager owner](input/input_manager.h) now composes
+these with borrowed graphics and retained joystick lifetime; its reset/teardown
+paths are sanitizer/i386-audited. Concrete device forwarding/enumeration,
+original input setup, profile persistence and text targets remain open. See
+[evidence](../analysis/input-manager.md).
 With `--menu-confirm --opening-movies`, the host now runs the recovered normal
 Logo1/Logo2/Logo3/Intro sequence through the original engine IShow/Bink interface
 before constructing the compiled menu. The user desktop-confirmed this path.

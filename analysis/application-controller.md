@@ -31,7 +31,10 @@ initialize(nullptr), and this branch ignores the initializer's result.
 The input getter returns a pointer to the vector's beginning and its count,
 not an individual key or character. It does not pop a record. The dispatcher
 queries the second buffer even if the first query fails. This requires an
-actual reconstructed input-buffer producer before live integration.
+actual reconstructed input-buffer producer before live integration. The
+[producer/defaults](binding-installation.md) and [manager owner](input-manager.md)
+are now source-recovered and audited together; concrete input backends and
+original setup are still required for the live path.
 
 The fixed update subtracts 100 once, even if several ticks accumulated. Pause
 consumes that tick without delivering it. The early below-threshold return
@@ -65,6 +68,6 @@ Temporary audits are removed after validation. No permanent test or new live
 interaction is added. Do not require a repeat desktop test for this source slice.
 
 Next integration dependency: concrete movie/menu application-state owners and
-the original startup prerequisites/input producer. Recover those bodies before
+the original startup prerequisites/concrete input services. Recover those bodies before
 replacing the confirmed host composition with this controller. Full WinMain,
 setup orchestration, movie subtitles/music and original settings remain open.
