@@ -12,6 +12,7 @@ from typing import TextIO
 from validate_engine_model import ENGINE_SHA256, PEImage
 from stage_menu_resources import stage_menu_resources
 from stage_menu_text import stage_menu_text
+from stage_opening_movies import stage_opening_movies
 
 
 @dataclass
@@ -28,7 +29,10 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
                    probe_confirm_picking: bool = False,
                    use_confirm_picking: bool = False,
                    use_engine_mouse: bool = False, probe_groups: bool = False,
-                   probe_runtime_confirmation: bool = False) -> Launch:
+                   probe_runtime_confirmation: bool = False,
+                   opening_movies: bool = False) -> Launch:
+    if opening_movies and not menu_confirm:
+        raise ValueError("Opening movies require --menu-confirm")
     if probe_runtime_confirmation and (not menu_confirm or probe_confirm_picking or
                                        use_confirm_picking or use_engine_mouse):
         raise ValueError("Runtime confirmation probe requires --menu-confirm without picking or engine mouse")
@@ -75,6 +79,8 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
                         include_runtime_confirm=probe_runtime_confirmation)
     elif menu_ui:
         stage_menu_text(game, run, include_control_text=True)
+    if opening_movies:
+        stage_opening_movies(game, run)
     env = dict(environment)
     env.update({
         "STEAM_COMPAT_CLIENT_INSTALL_PATH": str(steam),
@@ -89,6 +95,8 @@ def prepare_launch(game: Path, executable: Path, proton: Path, steam: Path,
     })
     engine_windows = "Z:" + str(engine).replace("/", "\\")
     command = [str(proton), "run", str(executable), engine_windows, "--frames", str(frames)]
+    if opening_movies:
+        command.append("--opening-movies")
     if menu_confirm:
         command.append("--menu-confirm")
         if probe_confirm_picking:
@@ -181,6 +189,9 @@ def main() -> None:
                         help="Exercise nested original-engine dummy groups; requires --menu-confirm")
     parser.add_argument("--probe-runtime-confirmation", action="store_true",
                         help="F9 opens the recovered slot-zero Yes/No dialog; requires --menu-confirm alone")
+    parser.add_argument("--opening-movies", action="store_true",
+                        help="Play the recovered normal opening sequence before --menu-confirm; "
+                             "Escape skips one movie; subtitles/music coordination are unfinished")
     args = parser.parse_args()
     try:
         launch = prepare_launch(args.game_dir, args.executable, args.proton, args.steam_root,
@@ -190,8 +201,11 @@ def main() -> None:
                                 probe_confirm_picking=args.probe_confirm_picking,
                                 use_confirm_picking=args.use_confirm_picking,
                                 use_engine_mouse=args.use_engine_mouse, probe_groups=args.probe_groups,
-                                probe_runtime_confirmation=args.probe_runtime_confirmation)
-        print("Experimental original-art Exit confirmation; other controls remain disabled."
+                                probe_runtime_confirmation=args.probe_runtime_confirmation,
+                                opening_movies=args.opening_movies)
+        print("Original opening videos into the compiled menu; subtitles/music services unfinished."
+              if args.opening_movies else
+              "Experimental original-art Exit confirmation; other controls remain disabled."
               if args.menu_confirm else
               "Static original-font menu slice: only Exit closes this host; "
               "other screens, profile/save data and movies are not implemented."

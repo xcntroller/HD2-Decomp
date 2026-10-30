@@ -1,5 +1,129 @@
 # Session handoff - 2026-10-30
 
+## Resume here: controller source audited; opening playback desktop-confirmed
+
+The user confirms the opening-movies path works as intended. Their runtime log
+records all four IShow opens (status zero/opened one), menu entry and clean
+3D/sound/graphics teardown after 1,259 frames. That live slice is confirmed;
+the new controller slice below is source-only and needs no repeat desktop test.
+The user requested the current tested/audited checkpoint be committed locally.
+
+`frontend/application_controller.h` now reconstructs 006C0820 startup/reinitialize
+gates and prerequisite order, normal 006C0CA0 selection, null-descriptor 006C0EF0
+owning replacement, shared 006C20F0 frame/input/update/post-update order and
+normal video completion, 006C3100's single accumulated 100 ms tick, 006C3190
+render gating, 006C31D0 input forwarding, 006C72B0 non-consuming buffer views,
+and both flag-gated finalizers. Current-state pointers/status are reread across
+callbacks. Installation precedes initialization; its null-descriptor result is
+ignored. Frame phase resets after the finalizer callback. Suspended updates
+still consume a fixed tick and do not add a render gate.
+
+This controller is NOT wired into the host. Application prerequisite/profile/
+command-line, mouse, delay and frame-service bodies, actual input-buffer
+production and concrete movie/menu state owners are required contracts. Other
+descriptor/game/credits and retained/restart/exit movie routes explicitly fail.
+Native ownership clears the original dangling released pointer before allocation;
+empty/allocation failures throw. Full 006C0920 global/device cleanup is absent.
+Do not supply successful no-op backends merely to enable controller integration.
+
+Temporary ASan/UBSan and full Windows i386 audit compilation pass. Audits cover
+all startup paths, four-video transition ordering, installation-before-init,
+ignored false initialization result, shutdown/input/update callback reentry,
+both input queries, render gates, suspended/large/wrapping time, delay expiry
+and finalizer masks. All 158 existing tooling checks, frozen accounting and
+`git diff --check` pass. `application-controller-map.json` validates 13 byte anchors,
+26 state vtable slots and 14 calls against the original client fingerprint.
+Ten new PARTIAL entries: total 114 (110 client/four engine), zero complete,
+frozen denominator 18,783. Temporary audits removed after final checks.
+Read `analysis/application-controller.md` for exact scope and the next backend
+dependencies. The launch checklist entry remains open until integrated.
+
+Read-only/no-analysis controller helper exports are in ignored
+`analysis/work/launch-controller-helpers` and `launch-controller-finalizers`;
+existing startup/controller exports remain usable. No agent-side Proton launch,
+original asset/binary changes, baseline database edits or push.
+
+## Confirmed checkpoint: opening movies into compiled menu
+
+The user prioritizes original startup → movies → compiled menu toward a
+decompiled game, with minimal disposable host glue. New `--opening-movies`
+requires `--menu-confirm` and runs Logo1/Logo2/Logo3/Intro before constructing
+the existing compiled menu. The user has now confirmed this live slice.
+
+Correction to the preceding research: 004336C0/00899728 is a separate music/audio
+service, not the video factory. Original 00688040 gets IShow through IGraph +38
+→ engine 10069E80 → 10070D30, vtable 1009D9C0. It imports BINKW32 BinkOpen and
+BinkSetSoundSystem/BinkOpenDirectSound. `host/engine_video.h` verifies its slots
+and owns close/release. `frontend/opening_playback.h` recovers ordinary video
+completion, status 2→13, Escape-only skip, sizing and sequence transitions.
+The host transports Win32 keys, filters repeats, initializes sound first and
+constructs the menu after playback. DLL codec/render/audio remain delegated.
+Original startup/controller, subtitles, music coordination, language/preferences
+and graphics keyboard polling remain open. The broad startup item is unchecked.
+
+Desktop command:
+`python3 -B tools/run_engine_window.py --menu-confirm --use-confirm-picking --use-engine-mouse --opening-movies --frames 0`
+Check natural playback/sound, Escape skips one movie, Space leaves ordinary
+logos playing, menu entry and Exit/No/Escape/Yes. A separate close during a
+movie checks early cleanup. The first error and runtime host log are useful.
+
+Strict i386 host build, existing native suite and 158 Python checks pass.
+Temporary ASan/UBSan/i386 playback audit checks state ordering, aspect equality,
+failure/paused/completion/skip and cleanup. Temporary staging fixtures check
+repeat copies and modified/symlink destination rejection. Staging-only real
+preparation copied four Bink files (about 87 MiB) into ignored run/GameMovie;
+no agent-side Proton/game launch. `opening-video-map.json` validates both hashes,
+17 anchors, 56 engine slots, eight client slots, six calls, four movie names.
+At that checkpoint counts were 104 partial/zero complete. Temporary audits removed.
+
+Guarded `DefineOpeningVideoFunctions.java` seeds verified indirect targets only
+in read-only/no-analysis sessions. Exports live in ignored
+`analysis/work/opening-engine-video-defined`, `opening-engine-video-draw`,
+`opening-client-video-defined`, `opening-client-video-body` and earlier movie
+directories. Unseeded exports stopped at missing functions; the seeded exports
+succeeded. Never run two Ghidra sessions on the same project concurrently:
+the attempted client export hit the project lock and was rerun successfully.
+No original binaries/assets or saved research project were modified.
+
+After desktop confirmation, continue subtitles/music dependencies and original
+controller/lifecycle recovery at the menu boundary. Do not call this full
+WinMain/startup recovery. See `analysis/opening-video.md` and `plan.md`.
+
+## Resume here: shared screen entry closed; source-only common services uncommitted
+
+User desktop-confirmed factory/dialog work (732 frames, clean teardown) and
+requested commit. It is committed as **6782cf0**. New source-only slice closes
+the shared native screen creation/binding/lifetime/stack/dispatch contract.
+See `analysis/menu-screen-foundation.md` for the exact completion boundary.
+The plan entry is checked with unused service branches explicitly source-only.
+
+`frontend/common_event_services.h` and the real queue now recover all remaining
+0066c950 common cases: resource release before saved-index erase, model/argument
+gated focus notifications, LIFO clear/state 3/2, direct reset before state 10,
+unique/nonzero registrations, capture-owner release/acquire and inverse
+application/input mode order. Resource release callback can mutate the vector;
+original rechecks current size but erases its saved index. The original
+006dcad0 receives inverse mode in CL; cached decomp omitted this argument.
+Capture events use typed retained adapters, not reinterpreted word_0c pointers.
+Application/resource/input/picker service bodies remain supplied contracts;
+unconnected host services throw, and current live flows emit none of these new
+events. This slice enables no new desktop interaction and needs no repeat
+desktop test. Source/backend/ABI limitations are documented in the closure note.
+
+Temporary actual-queue ASan/UBSan audit and strict i386 audit compile pass,
+including resource/capture callback reentry, retained owner lifetime, mode
+changes during callbacks, direct versus pending ordering and saved receiver
+after picker-induced stack mutation. Host build, native suite and 158 Python
+checks pass. New map validates 23 anchors/11 calls. Counts unchanged at 104
+partial, zero complete. Audit artifacts removed. New source/doc changes remain
+uncommitted; no agent-side Proton launch or push.
+
+Next substantive work: an entire keyboard preprocessing/navigation-caller slice,
+or options internal visuals/settings services. The shared screen entry should
+not be reopened merely to absorb per-screen builders, application service
+bodies, original ABI, resource-cache or device/capture/timing work; these have
+their own existing plan entries. Desktop commands for existing flows still work.
+
 ## Committed checkpoint: live shared factory and application-back router
 
 User confirms the slot-zero diagnostic and keyboard fix now work. New slice:

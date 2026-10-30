@@ -15,12 +15,12 @@ messages, observers, event ownership and eligibility are recovered and audited.
 See [validation and scope](analysis/menu-foundation-state.md). Widget visuals,
 settings services and the other foundation entries are still in progress.
 
-Shared screen construction/binding and stable native
-screen ownership are recovered, with an integrated sanitizer audit. The live host retains its
-two supported screens; application callbacks and factory integration remain open.
-See [screen construction notes](analysis/menu-screens.md). The separate slot-zero
-modal protocol is also recovered and native-audited; its engine product remains
-unbound. [Modal evidence](analysis/menu-runtime-confirmation.md).
+The shared native screen construction, ownership, stack and dispatch entry is
+also complete. Main/Exit and the opt-in slot-zero dialog use the recovered
+factory paths and are desktop-confirmed. Unused common-service branches have
+native sanitizer/i386 coverage; concrete application/resource/input backend
+bodies and individual screen flows remain open. See [scope and closure evidence](analysis/menu-screen-foundation.md)
+and [modal evidence](analysis/menu-runtime-confirmation.md).
 
 ## Where we are
 
@@ -162,11 +162,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **104 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **114 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 100 |
+| Base game client | 17,294 | 0 | 110 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
@@ -236,8 +236,20 @@ the first successful desktop-terminal window test.
 The [menu preview instructions](RESEARCH.md#original-menu-model-preview) cover
 the artwork/cursor test. The [static text and Exit test](RESEARCH.md#static-text-and-exit-slice)
 documents the successful bounded interactive milestone and its layout limitation.
-None of these modes plays the logos; the movie
-files remain untouched.
+An opt-in `--opening-movies` addition to `--menu-confirm` now runs the normal
+opening sequence through the engine's original IShow/Bink interface before
+constructing the compiled menu. The user desktop-confirmed this path; the log
+records all four movie opens and clean teardown. Movie copies live in the isolated runtime directory;
+original files remain untouched. Full startup/controller recovery, subtitles,
+music coordination and original settings remain open;
+see [the launch plan](plan.md#0-rebuild-the-original-launch-path-to-the-menu--current-delivery-priority)
+and [video evidence](analysis/opening-video.md).
+
+Shared application-controller startup gates, frame/input/render order, tick
+handling and normal state replacement are now recovered as source and audited
+under sanitizers and Windows i386. They still require original application
+services and concrete state owners before live integration; see
+[controller evidence](analysis/application-controller.md).
 
 ### Longer term
 

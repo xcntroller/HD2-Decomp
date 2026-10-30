@@ -40,6 +40,21 @@ make -C recovered engine-window
 Set `WINDOWS_CXX` to an i386 MinGW-compatible compiler path when needed; see
 [the technical build/launch instructions](../RESEARCH.md#graphics-only-host).
 Normal `make test` remains native and does not require a Windows compiler.
+With `--menu-confirm --opening-movies`, the host now runs the recovered normal
+Logo1/Logo2/Logo3/Intro sequence through the original engine IShow/Bink interface
+before constructing the compiled menu. The user desktop-confirmed this path.
+[Playback source](frontend/opening_playback.h) reconstructs normal
+completion, Escape skip and aspect fitting; [the engine boundary](host/engine_video.h)
+owns video release. Subtitles, music coordination, original preferences and full
+application startup remain unfinished. See [scope and validation instructions](../analysis/opening-video.md).
+
+[Application controller source](frontend/application_controller.h) additionally
+recovers startup/reinitialize gates, input-buffer queries, frame/update/render
+order, the single accumulated 100 ms tick, finalizers and normal video-state
+replacement. It is source-only and sanitizer/i386-audited. The original
+application service bodies, input producer and concrete movie/menu state owners
+are required before live integration. See [scope and limitations](../analysis/application-controller.md).
+
 The launcher fingerprints the original DLL and uses its own ignored Proton
 prefix/working directory. Launch inside the agent environment fails before host
 entry; launch from the user's desktop terminal displayed the test surface.
@@ -108,8 +123,10 @@ See the [session handoff](../HANDOFF.md) for the next step.
 The shared state foundation is complete. Main/Exit and the opt-in slot-zero
 dialog use owning products; their interactions are desktop-confirmed. Both
 construction paths now use the recovered factory helpers, with temporary
-definitions and indexed bindings; startup is desktop-confirmed. Screen-specific
-callback bodies and remaining common event services stay open. See
+definitions and indexed bindings; startup is desktop-confirmed. The shared native
+screen/dispatch contract is complete, including source-audited common services.
+Concrete application/resource/input backends and screen-specific callback bodies
+stay open. See [closure evidence](../analysis/menu-screen-foundation.md) and
 [the menu plan](../plan.md).
 Neither the original executable nor the user's game prefix is patched.
 See [the preview test command](../RESEARCH.md#original-menu-model-preview).

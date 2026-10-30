@@ -18,6 +18,7 @@
 #include "host/pointer_dispatch_probe.h"
 #include "host/engine_mouse.h"
 #include "host/engine_sound.h"
+#include "host/engine_video.h"
 #include "frontend/pointer_motion.h"
 #include "frontend/screen_focus.h"
 #include "frontend/screen_input.h"
@@ -397,10 +398,43 @@ int finish(Graphics* graphics, int result) {
     return result;
 }
 
+void run_opening_movies(Graphics* graphics, HMODULE module, std::uint32_t frame_limit,
+                        std::uint32_t& frames) {
+    hd2::host::EngineVideo video(reinterpret_cast<hd2::host::EngineFrame*>(graphics), module);
+    hd2::frontend::OpeningPlayback playback(video, graphics->methods->width(graphics),
+                                           graphics->methods->height(graphics), 1.0f);
+    while (running && !playback.finished()) {
+        MSG message{};
+        while (PeekMessageW(&message, nullptr, 0, 0, PM_REMOVE)) {
+            if (message.message == WM_QUIT) {
+                running = false;
+                break;
+            }
+            // Existing host message transport supplies the original Escape
+            // scan word; held-key repeats must not skip successive movies.
+            if (message.message == WM_KEYDOWN && message.wParam == VK_ESCAPE &&
+                    (message.lParam & (LPARAM{1} << 30)) == 0) playback.key(1);
+            TranslateMessage(&message);
+            DispatchMessageW(&message);
+        }
+        if (!running) break;
+        playback.update();
+        if (playback.finished()) break;
+        video.draw();
+        ++frames;
+        if (frame_limit && frames == frame_limit) {
+            running = false;
+            break;
+        }
+        Sleep(1); // BinkWait in the original draw method supplies movie timing.
+    }
+    if (playback.finished()) std::puts("Opening sequence completed; entering compiled menu");
+}
+
 int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bool menu_model,
                bool menu_ui, bool confirmation_preview, bool confirmation_enabled,
                bool confirmation_pick_probe, bool confirmation_pick_active, bool use_engine_mouse,
-               bool group_probe, bool runtime_probe) {
+               bool group_probe, bool runtime_probe, bool opening_movies) {
     const auto settings = hd2::host::windowed_settings(
         static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr))));
     const auto* methods = graphics->methods;
@@ -415,7 +449,8 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
         std::fputs("Engine initialization returned without a valid initialized window\n", stderr);
         return finish(graphics, 1);
     }
-    if (!SetWindowTextW(window, confirmation_preview ?
+    if (!SetWindowTextW(window, opening_movies ?
+            L"HD2 reconstruction - opening videos / menu" : confirmation_preview ?
             L"HD2 reconstruction - confirmation artwork diagnostic" : menu_ui ?
             L"HD2 reconstruction - static menu text / Exit only" : menu_model ?
             L"HD2 reconstruction - original menu model (not interactive)" :
@@ -438,7 +473,10 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
     try {
         // Declaration order keeps audio alive through all scene/frame teardown.
         std::unique_ptr<hd2::host::EngineSound> sound;
-        if (use_engine_mouse) sound = std::make_unique<hd2::host::EngineSound>(module, window);
+        if (use_engine_mouse || opening_movies)
+            sound = std::make_unique<hd2::host::EngineSound>(module, window);
+        if (opening_movies) run_opening_movies(graphics, module, frame_limit, frames);
+        if (running) {
         std::unique_ptr<hd2::host::MenuScene> menu;
         if (menu_model) {
             menu = std::make_unique<hd2::host::MenuScene>(
@@ -952,8 +990,9 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
             }
             Sleep(16);
         }
+        }
     } catch (const std::exception& error) {
-        std::fprintf(stderr, "Menu preview failed: %s\n", error.what());
+        std::fprintf(stderr, "Menu/startup failed: %s\n", error.what());
         result = 1;
     }
     custom_cursor_active = false;
@@ -992,7 +1031,7 @@ int wmain(int argc, wchar_t** argv) {
     if (argc < 2) {
         std::fputs("Usage: engine_window.exe ABSOLUTE_ENGINE_DLL [--frames COUNT] "
                    "[--menu-model | --menu-ui | --confirm-model | --menu-confirm] "
-                   "[--probe-confirm-picking] [--use-confirm-picking] [--use-engine-mouse] [--probe-groups] [--probe-runtime-confirmation]\n"
+                   "[--probe-confirm-picking] [--use-confirm-picking] [--use-engine-mouse] [--probe-groups] [--probe-runtime-confirmation] [--opening-movies]\n"
                    "Use the fingerprint-checking Python launcher. Default: 180 frames; "
                    "0 waits for Escape/Close.\n", stderr);
         return 2;
@@ -1007,6 +1046,7 @@ int wmain(int argc, wchar_t** argv) {
     bool use_engine_mouse = false;
     bool group_probe = false;
     bool runtime_probe = false;
+    bool opening_movies = false;
     bool frames_seen = false;
     try {
         for (int i = 2; i < argc; ++i) {
@@ -1034,6 +1074,8 @@ int wmain(int argc, wchar_t** argv) {
                 group_probe = true;
             } else if (std::wstring_view(argv[i]) == L"--probe-runtime-confirmation" && !runtime_probe) {
                 runtime_probe = true;
+            } else if (std::wstring_view(argv[i]) == L"--opening-movies" && !opening_movies) {
+                opening_movies = true;
             } else if (std::wstring_view(argv[i]) == L"--frames" &&
                        !frames_seen && i + 1 < argc) {
                 frame_limit = hd2::host::parse_frame_limit(argv[++i]);
@@ -1041,6 +1083,9 @@ int wmain(int argc, wchar_t** argv) {
             } else {
                 throw std::invalid_argument("Unknown, duplicate, or incomplete host option");
             }
+        }
+        if (opening_movies && !confirmation_enabled) {
+            throw std::invalid_argument("Opening movies require --menu-confirm");
         }
         if (use_engine_mouse && (!confirmation_enabled || !confirmation_pick_active)) {
             throw std::invalid_argument("Engine mouse requires --menu-confirm --use-confirm-picking");
@@ -1081,7 +1126,8 @@ int wmain(int argc, wchar_t** argv) {
         } else {
             result = run_window(graphics, module, frame_limit, menu_model, menu_ui,
                                 confirmation_preview, confirmation_enabled, confirmation_pick_probe,
-                                confirmation_pick_active, use_engine_mouse, group_probe, runtime_probe);
+                                confirmation_pick_active, use_engine_mouse, group_probe, runtime_probe,
+                                opening_movies);
         }
     }
     if (!FreeLibrary(module)) {

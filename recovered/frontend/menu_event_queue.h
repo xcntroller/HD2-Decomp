@@ -4,6 +4,7 @@
 #include "frontend/control_events.h"
 #include "frontend/screen_stack.h"
 #include "frontend/application_events.h"
+#include "frontend/common_event_services.h"
 
 #include <deque>
 #include <utility>
@@ -24,6 +25,14 @@ public:
     virtual void profile_back_cleanup();
     virtual void select_application_state(std::uint32_t state);
     virtual void resume_last_save();
+    virtual void reset_resources();
+    virtual void release_resource(std::uint32_t token);
+    virtual void set_application_input_enabled(bool enabled);
+    virtual void set_input_motion_only(bool enabled);
+    virtual std::uintptr_t screen_model(std::uint32_t index);
+    virtual std::uint32_t pick_screen_model(std::uintptr_t model);
+    virtual void focus_screen(std::uint32_t index, std::uint32_t target);
+    virtual void leave_screen(std::uint32_t index, std::uint32_t target);
 };
 
 class MenuEventQueue : public ControlEventDestination {
@@ -38,15 +47,19 @@ public:
     void dispatch_immediate(ControlEvent event) { route(std::move(event)); }
     void cancel_confirmation();
     const ScreenStack<MenuEventActions>& screens() const { return screens_; }
+    CommonFrontendState& common_state() { return common_; }
+    const CommonFrontendState& common_state() const { return common_; }
 
 private:
     void route(ControlEvent event);
     void route_application(ControlEvent& event);
+    bool route_common_service(ControlEvent& event);
 
     MenuEventActions& actions_;
     std::deque<ControlEvent> pending_;
     std::deque<ControlEvent> deferred_;
     ScreenStack<MenuEventActions> screens_;
+    CommonFrontendState common_;
 };
 
 }

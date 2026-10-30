@@ -1,0 +1,174 @@
+{
+  "scope": "Source-only shared application controller and normal video-to-front-end lifetime; original application services and live state owners remain unavailable.",
+  "runtime_verified": false,
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "006c2118",
+      "hex": "c7472801000000",
+      "meaning": "Set controller phase one before delay and status checks"
+    },
+    {
+      "address": "006c2123",
+      "hex": "2bc685c08947247f12",
+      "meaning": "Wrapping delay subtraction followed by signed positive comparison"
+    },
+    {
+      "address": "006c213e",
+      "hex": "8b4f148b01ff5020",
+      "meaning": "Initial status query precedes nullable-state check"
+    },
+    {
+      "address": "006c2167",
+      "hex": "8b4f148b01ff502083f80674118b4f148b11ff522083f805",
+      "meaning": "Fresh state pointer for status six and status five tests"
+    },
+    {
+      "address": "006c2195",
+      "hex": "e8361000008b4f14568b01ff50148b4f148b11ff5230",
+      "meaning": "Input dispatch then fresh-state update and post-update"
+    },
+    {
+      "address": "006c21ab",
+      "hex": "8b4f148b01ff502085c00f84560100008b4f148b11ff5220",
+      "meaning": "Fresh repeated status calls before transition switch"
+    },
+    {
+      "address": "006c0f20",
+      "hex": "8b4d143bcb74128b01ff50088b4d143bcb74068b116a01ff12",
+      "meaning": "Null descriptor shutdown followed by fresh-state deleting destructor"
+    },
+    {
+      "address": "006c0ff8",
+      "hex": "894d148b1153897c242cff5204b001",
+      "meaning": "Install new front end before initialize with null; return one"
+    },
+    {
+      "address": "006c3107",
+      "hex": "8b561803d08bc289561883f8647d06",
+      "meaning": "Wrapping accumulated time and signed comparison against one hundred"
+    },
+    {
+      "address": "006c311f",
+      "hex": "83c09c894618c7462802000000",
+      "meaning": "Subtract one tick and mark phase two"
+    },
+    {
+      "address": "006c316e",
+      "hex": "8a461284c0750a8b4e146a648b11ff5210",
+      "meaning": "Suspension gates delivery after consuming tick"
+    },
+    {
+      "address": "006c31ea",
+      "hex": "85c07d0232db",
+      "meaning": "Failed first input view is remembered without skipping second query"
+    },
+    {
+      "address": "006c3201",
+      "hex": "85c07c1684db74128b4424088b4e14508b4424108b1150ff520c",
+      "meaning": "Both view results gate input through a freshly loaded current state"
+    }
+  ],
+  "vtables": [
+    {
+      "address": "00815bc8",
+      "targets": [
+        "006c0dc0",
+        "00688040",
+        "0066ed30",
+        "0066ed50",
+        "0067ec60",
+        "0066ed80",
+        "0066eda0",
+        "006c0db0",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40"
+      ]
+    },
+    {
+      "address": "00815e30",
+      "targets": [
+        "006c1660",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "006c1650",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40"
+      ]
+    }
+  ],
+  "direct_calls": [
+    {
+      "site": "006c0893",
+      "target": "006b65d0"
+    },
+    {
+      "site": "006c08a5",
+      "target": "006b6620"
+    },
+    {
+      "site": "006c08ac",
+      "target": "006c0ca0"
+    },
+    {
+      "site": "006c0cbb",
+      "target": "006c0af0"
+    },
+    {
+      "site": "006c2195",
+      "target": "006c31d0"
+    },
+    {
+      "site": "006c2315",
+      "target": "006c20c0"
+    },
+    {
+      "site": "006c2c10",
+      "target": "006c20c0"
+    },
+    {
+      "site": "006c2c7e",
+      "target": "006c20c0"
+    },
+    {
+      "site": "006c313a",
+      "target": "006c30c0"
+    },
+    {
+      "site": "006c3183",
+      "target": "006c30c0"
+    },
+    {
+      "site": "006c20db",
+      "target": "0072b1c0"
+    },
+    {
+      "site": "006c31e5",
+      "target": "006c72b0"
+    },
+    {
+      "site": "006c31fc",
+      "target": "006c72b0"
+    },
+    {
+      "site": "006c30dd",
+      "target": "0072a0b0"
+    }
+  ],
+  "resource_anchors": [],
+  "source": "recovered/frontend/application_controller.h"
+}

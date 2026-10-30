@@ -15,6 +15,26 @@ void MenuEventActions::select_application_state(std::uint32_t) {
 void MenuEventActions::resume_last_save() {
     throw std::logic_error("Resume/save service is not reconstructed");
 }
+void MenuEventActions::reset_resources() { throw std::logic_error("Resource reset service is not reconstructed"); }
+void MenuEventActions::release_resource(std::uint32_t) {
+    throw std::logic_error("Frame resource release service is not connected");
+}
+void MenuEventActions::set_application_input_enabled(bool) {
+    throw std::logic_error("Application input mode service is not connected");
+}
+void MenuEventActions::set_input_motion_only(bool) { throw std::logic_error("Input mode backend is not connected"); }
+std::uintptr_t MenuEventActions::screen_model(std::uint32_t) {
+    throw std::logic_error("Screen model notification service is not connected");
+}
+std::uint32_t MenuEventActions::pick_screen_model(std::uintptr_t) {
+    throw std::logic_error("Notification picker service is not connected");
+}
+void MenuEventActions::focus_screen(std::uint32_t, std::uint32_t) {
+    throw std::logic_error("Notification focus service is not connected");
+}
+void MenuEventActions::leave_screen(std::uint32_t, std::uint32_t) {
+    throw std::logic_error("Notification leave service is not connected");
+}
 
 void MenuEventQueue::dispatch_local(ControlEvent&) {
     throw std::logic_error("Local control event dispatch is not implemented");
@@ -101,8 +121,30 @@ void MenuEventQueue::route(ControlEvent event) {
         actions_.quit();
         break;
     default:
-        route_application(event);
+        if (!route_common_service(event)) route_application(event);
     }
+}
+
+bool MenuEventQueue::route_common_service(ControlEvent& event) {
+    struct Services {
+        MenuEventActions& actions;
+        MenuEventQueue& queue;
+        ScreenStack<MenuEventActions>& stack;
+        bool has_current_screen() const { return stack.current() != nullptr; }
+        std::uint32_t current_screen() const { return stack.current_index(); }
+        std::uintptr_t current_model() { return actions.screen_model(current_screen()); }
+        std::uint32_t pick_model(std::uintptr_t model) { return actions.pick_screen_model(model); }
+        void focus_screen(std::uint32_t index, std::uint32_t target) { actions.focus_screen(index, target); }
+        void leave_screen(std::uint32_t index, std::uint32_t target) { actions.leave_screen(index, target); }
+        void clear_screens() { stack.clear(); }
+        void select_application_state(std::uint32_t state) { actions.select_application_state(state); }
+        void reset_resources() { actions.reset_resources(); }
+        void release_resource(std::uint32_t token) { actions.release_resource(token); }
+        void set_application_input_enabled(bool enabled) { actions.set_application_input_enabled(enabled); }
+        void set_input_motion_only(bool enabled) { actions.set_input_motion_only(enabled); }
+        void dispatch_immediate(ControlEvent value) { queue.dispatch_immediate(std::move(value)); }
+    } services{actions_, *this, screens_};
+    return dispatch_common_frontend_service(common_, services, event);
 }
 
 void MenuEventQueue::route_application(ControlEvent& event) {

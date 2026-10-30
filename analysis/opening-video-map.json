@@ -1,0 +1,252 @@
+{
+  "scope": "Desktop-confirmed normal opening Bink playback into the compiled menu; original full startup/controller remains unfinished.",
+  "runtime_verified": true,
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10069e96",
+        "hex": "688c000000",
+        "meaning": "Allocate 0x8c-byte engine IShow object"
+      },
+      {
+        "address": "10069ece",
+        "hex": "c20400",
+        "meaning": "Graphics +38 movie factory pops self"
+      },
+      {
+        "address": "10071639",
+        "hex": "8bb42494020000",
+        "meaning": "IShow Open loads self from first stack argument"
+      },
+      {
+        "address": "10071647",
+        "hex": "8b8c24a00200008b9c249c020000",
+        "meaning": "Open reads flags and filename from third and second stack arguments"
+      },
+      {
+        "address": "100717ce",
+        "hex": "ff1568b20910",
+        "meaning": "BINKW32 BinkSetSoundSystem import call"
+      },
+      {
+        "address": "100717d7",
+        "hex": "ff154cb20910",
+        "meaning": "BINKW32 BinkOpen import call"
+      },
+      {
+        "address": "10071a65",
+        "hex": "c20c00",
+        "meaning": "Open pops self filename flags"
+      },
+      {
+        "address": "10072529",
+        "hex": "c20800",
+        "meaning": "SetVolume pops self and float"
+      },
+      {
+        "address": "10072649",
+        "hex": "c20800",
+        "meaning": "Decode/update pops self and byte flag"
+      },
+      {
+        "address": "10072626",
+        "hex": "8b461c8b480c3b4808750d8b1656ff52185e33c05bc2080050",
+        "meaning": "Bink last frame invokes stop; otherwise advances frame"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d9c0",
+        "targets": [
+          "10070fc0",
+          "10070fd0",
+          "10071b70",
+          "10071630",
+          "10071b80",
+          "10071c50",
+          "10071d10",
+          "10071da0",
+          "10072040",
+          "100720a0",
+          "100720e0",
+          "10072160",
+          "100722a0",
+          "10072260",
+          "10072400",
+          "100724d0",
+          "100732f0",
+          "100725a0",
+          "100725b0",
+          "100725d0",
+          "10072650"
+        ]
+      },
+      {
+        "address": "1009d840",
+        "targets": [
+          "1006c2d0",
+          "1006da30",
+          "1006c2c0",
+          "1006da20",
+          "1006da40",
+          "1006a470",
+          "1006de50",
+          "1006de70",
+          "1006de90",
+          "1006deb0",
+          "1006dea0",
+          "1006bb80",
+          "1006dec0",
+          "1006e210",
+          "10069e80",
+          "10069f70",
+          "10069ee0",
+          "1006a1f0",
+          "1006a240",
+          "1006a250",
+          "1006a260",
+          "1006a2f0",
+          "1006a330",
+          "1006a340",
+          "1006a3d0",
+          "1006a6c0",
+          "1006b380",
+          "1006b3b0",
+          "1006b3e0",
+          "1006abc0",
+          "1006b220",
+          "1006c270",
+          "1006c2b0",
+          "1006b360",
+          "1006b5a0"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "0066ed64",
+        "hex": "837e04027507c746040d000000",
+        "meaning": "Input wrapper promotes video status 2 to controller status 13"
+      },
+      {
+        "address": "0066ed8d",
+        "hex": "837e04027507c746040d000000",
+        "meaning": "Update wrapper promotes video status 2 to controller status 13"
+      },
+      {
+        "address": "00688bc1",
+        "hex": "83f801740c8a4e1f84c9743883f8397533",
+        "meaning": "Escape accepted; Space gated by special +1f latch"
+      },
+      {
+        "address": "00688b13",
+        "hex": "db45e4db45e0d9c1d8f1db450cda7508ded9",
+        "meaning": "Compare viewport and movie aspect using x87"
+      },
+      {
+        "address": "00688b2e",
+        "hex": "8b4508c745e80500000083c0f68945088945f0db4508d8f1d8ca",
+        "meaning": "Width-limited branch subtracts ten and sets x to five"
+      },
+      {
+        "address": "00688b61",
+        "hex": "8b4d0cc745ec050000008d41f689450c8945f4db450cd8f2d8c9",
+        "meaning": "Height-limited branch subtracts ten and sets y to five"
+      },
+      {
+        "address": "006c25b1",
+        "hex": "6a006a008bcfe834e9ffff",
+        "meaning": "Intro completion invokes null-descriptor frontend construction"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "00815bc8",
+        "targets": [
+          "006c0dc0",
+          "00688040",
+          "0066ed30",
+          "0066ed50",
+          "0067ec60",
+          "0066ed80",
+          "0066eda0",
+          "006c0db0"
+        ]
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "0066ed5f",
+        "target": "00688bb0"
+      },
+      {
+        "site": "0066ed88",
+        "target": "00688c10"
+      },
+      {
+        "site": "006c2571",
+        "target": "0066eae0"
+      },
+      {
+        "site": "006c258c",
+        "target": "0066eae0"
+      },
+      {
+        "site": "006c25a7",
+        "target": "0066eae0"
+      },
+      {
+        "site": "006c25b7",
+        "target": "006c0ef0"
+      }
+    ],
+    "resource_anchors": [
+      {
+        "site": "006c0d75",
+        "address": "00842ed8",
+        "text": "Logo1.bik"
+      },
+      {
+        "site": "006c256c",
+        "address": "00842ef0",
+        "text": "Logo2.bik"
+      },
+      {
+        "site": "006c2587",
+        "address": "00842ee4",
+        "text": "Logo3.bik"
+      },
+      {
+        "site": "006c25a2",
+        "address": "008424e4",
+        "text": "Intro.bik"
+      }
+    ]
+  },
+  "sources": [
+    "recovered/frontend/opening_video.h",
+    "recovered/frontend/opening_playback.h",
+    "recovered/host/engine_video.h"
+  ],
+  "limitations": [
+    "Original subtitles, localization, music manager 004336c0 and user preferences remain unreconstructed.",
+    "Host Win32 message transport supplies Escape; original graphics keyboard polling is not enabled.",
+    "Original WinMain, setup orchestration and complete controller remain unfinished; entering the existing compiled menu is host composition.",
+    "Original DLL video codec, textures, DirectSound and renderer bodies remain delegated."
+  ],
+  "runtime_verification_scope": "User confirms intended behavior. Host log records Logo1/Logo2/Logo3/Intro open status zero and opened one, menu entry and clean 3D/audio/graphics teardown after 1259 submitted frames. New source-only application controller is not part of this desktop result."
+}

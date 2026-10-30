@@ -1,0 +1,178 @@
+{
+  "scope": "Remaining 0066c950 native common-event contract. Engine/resource/application/input bodies remain supplied services; native capture adapters and opaque identity tokens replace original pointer ABI.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "sources": [
+    "recovered/frontend/common_event_services.h",
+    "recovered/frontend/menu_event_queue.cpp",
+    "recovered/frontend/control_events.h"
+  ],
+  "instruction_anchors": [
+    {
+      "address": "0066cc62",
+      "hex": "8b450c8b14b13bc2",
+      "meaning": "Resource identity lookup includes zero"
+    },
+    {
+      "address": "0066cc85",
+      "hex": "8b0c29e8d3f71600",
+      "meaning": "Release found frame before saved-index erase"
+    },
+    {
+      "address": "0066cc95",
+      "hex": "8bcfe85436dbff483bf0",
+      "meaning": "Recheck resource vector size after callback"
+    },
+    {
+      "address": "0066cb30",
+      "hex": "3971740f84360b0000",
+      "meaning": "Notification requires a current screen model"
+    },
+    {
+      "address": "0066cb39",
+      "hex": "8b4508a900000004",
+      "meaning": "Gate notification argument control tag"
+    },
+    {
+      "address": "0066cbad",
+      "hex": "8b7a74",
+      "meaning": "Save model before acquiring callback receiver"
+    },
+    {
+      "address": "0066cbd6",
+      "hex": "578b32508b2ee8dfdbffff508bceff5540",
+      "meaning": "Save receiver before picker and forward returned target"
+    },
+    {
+      "address": "0066cc31",
+      "hex": "568b088b11ff5234",
+      "meaning": "Forward zero to screen leave callback"
+    },
+    {
+      "address": "0066d1be",
+      "hex": "c7430403000000",
+      "meaning": "Clear event seven selects state three"
+    },
+    {
+      "address": "0066d32f",
+      "hex": "c7430402000000",
+      "meaning": "Clear event eight selects state two"
+    },
+    {
+      "address": "0066d360",
+      "hex": "c78424a400000068000002",
+      "meaning": "Event nine builds direct resource-reset request"
+    },
+    {
+      "address": "0066d3ab",
+      "hex": "c743040a000000",
+      "meaning": "Select state ten after direct reset returns"
+    },
+    {
+      "address": "0066d3d4",
+      "hex": "3975087406c6432d01eb04c6432d00",
+      "meaning": "Normalize motion-only argument"
+    },
+    {
+      "address": "0066d3e3",
+      "hex": "8a4b2d84c90f94c1e8e0f60600",
+      "meaning": "Invert motion-only for application service"
+    },
+    {
+      "address": "0066d3f0",
+      "hex": "8a532d8b8bf400000052e861d4ffff",
+      "meaning": "Reread mode for input service"
+    },
+    {
+      "address": "0066d404",
+      "hex": "8b4b103bce740e8b0156ff506485c0",
+      "meaning": "Previous-owner release gates acquisition"
+    },
+    {
+      "address": "0066d419",
+      "hex": "8b4d0c56894b108b11ff5268",
+      "meaning": "Install owner before acquire callback"
+    },
+    {
+      "address": "0066d437",
+      "hex": "8b4b108b450c3bc8",
+      "meaning": "Reread owner after release before identity match"
+    },
+    {
+      "address": "0066d445",
+      "hex": "b101897310c6432d00e87df60600",
+      "meaning": "Matched release clears owner and enables application input"
+    },
+    {
+      "address": "0066d467",
+      "hex": "8b7d0c3bfe0f84fd010000",
+      "meaning": "Ignore null notification registration"
+    },
+    {
+      "address": "0066d48e",
+      "hex": "3b3cb2740346ebe8",
+      "meaning": "Reject duplicate registration identity"
+    },
+    {
+      "address": "0066d4b6",
+      "hex": "8b7d0c3bfe0f84ae010000",
+      "meaning": "Ignore null notification removal"
+    },
+    {
+      "address": "006dcad0",
+      "hex": "880d70348400c3",
+      "meaning": "Application input flag setter stores CL"
+    }
+  ],
+  "vtables": [],
+  "direct_calls": [
+    {
+      "site": "0066cc88",
+      "target": "007dc460"
+    },
+    {
+      "site": "0066ccad",
+      "target": "0066e2e0"
+    },
+    {
+      "site": "0066cbdc",
+      "target": "0066a7c0"
+    },
+    {
+      "site": "0066d387",
+      "target": "0066c950"
+    },
+    {
+      "site": "0066d3eb",
+      "target": "006dcad0"
+    },
+    {
+      "site": "0066d3fa",
+      "target": "0066a860"
+    },
+    {
+      "site": "0066d44e",
+      "target": "006dcad0"
+    },
+    {
+      "site": "0066d45d",
+      "target": "0066a860"
+    },
+    {
+      "site": "0066d4ac",
+      "target": "00663810"
+    },
+    {
+      "site": "0066d50f",
+      "target": "00653930"
+    },
+    {
+      "site": "0066d660",
+      "target": "006b6530"
+    }
+  ],
+  "resource_anchors": []
+}

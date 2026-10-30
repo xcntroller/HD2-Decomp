@@ -16,6 +16,19 @@ to their loader and engine consumers.
 The normal intro-to-front-end transition, menu-state dispatch, and original
 main-menu/control definitions have now also been located.
 
+The current launch-path work integrates normal opening-video playback through
+the verified LS3DF IShow/Bink boundary before constructing the compiled menu.
+It is desktop-confirmed, with all four opens and clean teardown logged. Its
+[evidence, limitations and test command](analysis/opening-video.md) track the
+remaining startup/controller, subtitle, music and settings dependencies.
+
+The subsequent [shared application controller reconstruction](analysis/application-controller.md)
+is source-only: startup/reinitialize gates, input views, frame/update/render
+order, accumulated tick and normal video-to-front-end ownership are recovered
+and sanitizer/i386-audited. The original prerequisite/service bodies and live
+movie/menu state owners remain open. This adds ten partial client entries;
+total 114 partial (110 client/four engine), zero complete, denominator 18,783.
+
 **This is not a playable source reconstruction.** We have not run the unpacked
 copies, verified these findings under a debugger, or established that every
 remaining startup/protection mechanism is understood.
@@ -2948,3 +2961,24 @@ No new menu button is enabled. New evidence map has 17 anchors/six calls;
 sanitizer/native/i386 audit, strict host build, native suite and 158 Python
 checks pass. Desktop startup/interaction confirmation is pending. Census stays
 104 partial, zero complete: 00626b20 is absent from the frozen inventory.
+
+## 2026-10-30: tested factory commit and shared screen-contract closure
+
+User confirmed the factory/dialog slice works and requested commit; checkpoint
+is `6782cf0`, with the latest log recording 732 frames and clean teardown.
+The remaining common 0066c950 branches now have native source contracts and
+actual-queue sanitizer/i386 validation: resource-release/list semantics,
+model notifications, clear/reset/state transitions, registration identities,
+capture-owner replacement and inverse application/input mode calls.
+Instruction checks found two decompiler omissions: resource removal calls
+007dc460 on the found frame before erasure, and 006dcad0 receives inverse mode
+in CL. The new map guards 23 anchors and 11 calls. Application/resource/input
+bodies remain explicit backend dependencies rather than successful placeholders.
+
+The shared screen creation/binding/lifetime/stack/dispatch plan entry is closed
+at the native-contract boundary. New unused common-service branches are
+source-only and enable no new desktop interaction; their implementations and
+device/resource integration remain tracked in other existing entries. Full
+scope, deviations and verification are in `analysis/menu-screen-foundation.md`.
+The source-only changes are uncommitted. Host/native/158 Python checks pass;
+function counts remain unchanged. No permanent tests or agent-side Proton run.

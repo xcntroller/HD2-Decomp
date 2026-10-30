@@ -20,6 +20,8 @@ struct ControlObserverRequest {
     ObserverCallback callback;
 };
 
+class FrontendCaptureOwner;
+
 struct ControlEvent {
     std::uint32_t target;
     std::uint32_t code;
@@ -29,6 +31,9 @@ struct ControlEvent {
     std::shared_ptr<void> payload;
     std::shared_ptr<ControlObserverRequest> observer{};
     std::shared_ptr<const std::string> text{};
+    // Typed native replacement for common bf/c0 event +0c object pointers.
+    // Never reinterpret a serialized/original 32-bit word as a host pointer.
+    std::shared_ptr<FrontendCaptureOwner> capture_owner{};
 };
 
 // 0064dc30, control +74: retain/copy the event, call +6c on the copy,

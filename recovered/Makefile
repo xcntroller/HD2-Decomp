@@ -64,6 +64,8 @@ $(BUILD_DIR)/engine_window.exe: frontend/container_input.h frontend/defined_cont
 $(BUILD_DIR)/engine_window.exe: host/menu_screen_product.h frontend/runtime_confirmation.h
 $(BUILD_DIR)/engine_window.exe: host/menu_screen_factory.h frontend/screen_construction.h frontend/owned_screens.h
 $(BUILD_DIR)/engine_window.exe: frontend/application_events.h
+$(BUILD_DIR)/engine_window.exe: frontend/common_event_services.h
+$(BUILD_DIR)/engine_window.exe: host/engine_video.h frontend/opening_playback.h frontend/opening_video.h
 
 test: all
 	"$(BUILD_DIR)/chunk_reader_tests"

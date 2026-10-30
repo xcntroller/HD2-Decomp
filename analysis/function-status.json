@@ -892,8 +892,8 @@
       "program": "client",
       "entry": "0066c950",
       "status": "partial",
-      "coverage": "Deferred storage/release/discard and Exit replies; registered ScreenStack replaces depth counter. Regular select hides then pushes without changing +f8. Modal push retains old visibility, saves +f8 and activates with 10200000. Pop clears +f8, generic back preserves it; both resume current screen. Targeted events select any bound registered screen using target high six bits, preserving deferred/reply priority and ignoring screen return. Slot-zero 02000096 saves previous/pushes with focus zero; 02000097 tests current identifier family, hides/removes/clears previous without reactivating underneath.",
-      "limitations": "Native registry/vector replaces original global segmented deque/class ABI. Main/confirmation and opt-in slot-zero engine products are desktop-confirmed; live factory startup is desktop-confirmed. Remaining application transitions/capture and other common routing cases remain unfinished. Unsupported bindings fail before live state changes.",
+      "coverage": "Deferred storage/release/discard and Exit replies; registered ScreenStack replaces depth counter. Regular select hides then pushes without changing +f8. Modal push retains old visibility, saves +f8 and activates with 10200000. Pop clears +f8, generic back preserves it; both resume current screen. Targeted events select any bound registered screen using target high six bits, preserving deferred/reply priority and ignoring screen return. Slot-zero 02000096 saves previous/pushes with focus zero; 02000097 tests current identifier family, hides/removes/clears previous without reactivating underneath. Remaining common branches: LIFO clear/state 3/2, direct resource reset then state 10, resource release before saved-index erase with fresh size check, registration list, current-model notifications with saved receiver before repick, capture acquire/release and inverse application/input mode ordering.",
+      "limitations": "Native registry/vector, opaque resource tokens and typed retained capture adapters replace original segmented deque/class/pointer ABI. Existing main/confirmation and opt-in slot-zero products and shared factories are desktop-confirmed. New common service routes are sanitizer/i386-audited; resource release/reset, application state, input mode and notification-picker backends remain explicit supplied contracts covered by other checklist entries. Invalid native capture acquisition throws rather than dereferencing null. Unknown events retain host diagnostics rather than original silent ignore.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/menu_event_queue.h",
@@ -906,7 +906,9 @@
         "recovered/host/menu_screen_events.h",
         "analysis/menu-runtime-confirmation-map.json",
         "recovered/frontend/application_events.h",
-        "analysis/menu-application-routing-map.json"
+        "analysis/menu-application-routing-map.json",
+        "analysis/menu-common-services-map.json",
+        "recovered/frontend/common_event_services.h"
       ]
     },
     {
@@ -1303,6 +1305,126 @@
         "analysis/menu-runtime-confirmation-map.json",
         "recovered/frontend/runtime_confirmation.h",
         "recovered/frontend/screen_construction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c0820",
+      "status": "partial",
+      "coverage": "Startup/reinitialize gates, accumulated-time reset, original mouse/prerequisite order and two-rand seed; preserve ignored initial-state and initializer results.",
+      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c0ca0",
+      "status": "partial",
+      "coverage": "Alternate-start check, empty normal-start owner, installation before beginning Logo1 with sequence one.",
+      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c0ef0",
+      "status": "partial",
+      "coverage": "Null-descriptor branch shutdown and fresh-owner release, construction/installation before initialize(nullptr); ignore initializer result.",
+      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c31d0",
+      "status": "partial",
+      "coverage": "Query both input buffer views even when the first fails; forward both begin pointers through freshly resolved current state only when both counts are nonnegative.",
+      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c20f0",
+      "status": "partial",
+      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement.",
+      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c3100",
+      "status": "partial",
+      "coverage": "Wrapping accumulated-time update, signed threshold, one subtraction of 100 per call, fixed-update eligibility/suspend gate and finalizer order.",
+      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c3190",
+      "status": "partial",
+      "coverage": "Fresh status queries for 1/6/5 before rendering current state; no additional controller-suspended render gate.",
+      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c20c0",
+      "status": "partial",
+      "coverage": "Application flags bit two and low-three-bits gate for original frame-service arguments, then phase reset and supplied continuation result.",
+      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c30c0",
+      "status": "partial",
+      "coverage": "Application flags bit one and low-three-bits gate for distinct fixed-frame service arguments, then phase reset and supplied continuation result.",
+      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c72b0",
+      "status": "partial",
+      "coverage": "Expose selected input buffer begin pointer and count without consumption; low mode bit selects second buffer and empty queries preserve output.",
+      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h"
       ]
     }
   ]

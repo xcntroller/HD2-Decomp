@@ -18,10 +18,48 @@ replace engine bodies in bounded slices. Replacing the whole LS3DF.dll is a
 separate milestone; loading the original DLL does not count as reconstructing it.
 Keep an explicit list of delegated calls so the eventual replacement is tractable.
 
+## 0. Rebuild the original launch path to the menu — current delivery priority
+
+The next visible milestone is a rebuilt client executable that starts with the
+original opening movies and enters our compiled menu through the recovered
+controller transition. Work in original call order; retain only the narrow
+boundary to LS3DF and the movie library while those bodies are still delegated.
+The existing host preview is useful for validation, but it is not this milestone.
+
+- [x] Trace the normal startup state chain and its video completion codes.
+  Static evidence connects 006C0820 → 006C0CA0 (Logo1) and video status 13 in
+  006C20F0 to Logo2, Logo3, Intro and 006C0EF0(0,0). The normal transition
+  table is recovered in `recovered/frontend/opening_video.h` and drives the
+  opt-in playback path; the user desktop-confirmed it.
+- [ ] Recover the movie object creation, playback interface, file search, frame
+  update, skip/input, sound and cleanup enough to run the original four movies.
+  **Core playback integrated and desktop-confirmed.** Original graphics
+  +38 creates LS3DF's IShow object; the DLL imports Bink. Normal video sequence,
+  sizing, Escape skip, completion and release now feed the compiled menu under
+  `--opening-movies`. Subtitle/music coordination and original preferences/input
+  remain open. See [video evidence and test command](analysis/opening-video.md).
+- [ ] Recover the controller's startup/update and video-to-front-end lifetime
+  path, using the compiled menu screen factory on the null-descriptor transition.
+  **Shared controller source recovered and sanitizer/i386-audited.** Startup
+  gates, prerequisite ordering, input views, frame/update/render ordering,
+  accumulated tick and owning normal video-to-front-end replacement are in
+  `recovered/frontend/application_controller.h`. Original application services,
+  input producer and concrete state owners are required before live integration;
+  no no-op service bodies are used to enable it. See [controller scope](analysis/application-controller.md).
+- [ ] Build the independent executable in that path, then desktop-test normal
+  playback, skipping, missing-movie behavior, menu entry and teardown. Commit
+  the interactive slice only after the user confirms it works.
+
+Keep the startup path distinct from host preview switches. For each remaining
+original-client call, either recover its behavior in readable source or record
+the specific delegated DLL/interface method and why it is needed.
+
 ## Current position
 
 | Area | Status | Remaining work |
 | --- | --- | --- |
+| Opening videos into compiled menu | Desktop-confirmed; four opens and clean teardown logged | Subtitles/music, original startup/controller and settings/input services |
+| Shared application controller | Source-only; sanitizer/native/i386 audited | Concrete movie/menu state owners, original application services and live integration |
 | Independent i386 host, original engine window and teardown | Desktop-tested | Recover original application lifecycle beyond host scaffolding |
 | Original main-menu artwork, cursor, bitmap text and hover pairs | Desktop-tested, bounded | Dynamic captions, localization and fidelity across settings |
 | Exit and Yes/No confirmation | Shared controls/text, stack and targeted tree integration desktop-confirmed | Full factory, original observer/data callbacks and remaining flows |
@@ -43,7 +81,7 @@ is the no-op 0067EA80. Preserve this behavior. A separate options-volume callbac
 also invokes the sound helper, so this finding is not a claim about every widget.
 This conclusion is from original binary analysis, not a new original-game run.
 
-## 1. Finish the shared menu foundation — current priority
+## 1. Finish the shared menu foundation — alongside launch dependencies
 
 The foundation is sufficient when our readable native controls and services can
 deliver the real menu flows with the recovered behavior. Matching every original
@@ -70,23 +108,18 @@ profiles and other real screens, rather than expanding this section indefinitely
   use one `DefinedScreen` routing class and `DefinedControls` construction/ownership
   path. Original 17/four child slots, button definitions and supported event
   bindings are centralized; the two specialized adapters are removed.
-- [ ] Recover screen creation, binding, lifetime, push/pop and general event dispatch.
-  Stack/lifecycle, targeted screen/child messages, observers and native ownership
-  are desktop-confirmed. Slot-zero engine model/text/buttons, request/reply,
-  Escape and keyboard activation are now desktop-confirmed too.
-  The live host now runs the recovered registered-screen factory for main and
-  confirmation, with separate allocate/bind/root-initialize/register stages,
-  temporary-definition teardown and direct initial selection. Slot zero runs
-  its separate recovered install-before-bind helper without root initialization.
-  Indexed runtime bindings replace the three special-case host bindings.
-  This factory startup change is desktop-confirmed (732 frames, clean teardown).
-  Application routing now preserves five callback-service priorities, current-ID
-  back rules for families 2/14/10/4 and generic back, with explicit credits/resume
-  service boundaries. Sanitizer/native/i386 audits pass. Callback/builder bodies
-  for unavailable screens, original resource-cache loading and remaining common
-  event services are unfinished. See [screen notes](analysis/menu-screens.md),
-  [application routing](analysis/menu-application-routing-map.json) and
-  [modal evidence](analysis/menu-runtime-confirmation.md).
+- [x] Recover screen creation, binding, lifetime, push/pop and general event dispatch.
+  **Shared native contract complete; unused service branches are source-only.**
+  Actual main/confirmation factories, stable product ownership, temporary
+  definition teardown, targeted messages, stack/lifecycle, slot-zero engine
+  dialog/input and keyboard activation are desktop-confirmed. General dispatch
+  includes callback priorities/back rules and all remaining common service
+  branches: resource/list updates, clear/state transitions, model notifications,
+  capture-owner handoff and inverse application/input mode ordering.
+  Temporary sanitizer/native/i386 audits exercise the actual queue with fake
+  services. Concrete application/resource/input backend bodies remain explicit
+  dependencies in the open entries below and per-screen flows. Original class
+  ABI is separate work. See [closure evidence](analysis/menu-screen-foundation.md).
 - [x] Integrate bounded recursive kind-five construction, ownership and input routing.
   Implemented with existing leaf backends; mixed-tree sanitizer/i386 audits pass.
   Updated five-frame engine diagnostic desktop-confirmed (372 frames). Actual
@@ -102,11 +135,14 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current session checkpoint: live slot-zero model/input and keyboard fix are
-user desktop-confirmed. Shared factory construction and application-back routing
-are integrated, audited and desktop-confirmed (732 frames, clean teardown).
-The broad screen entry stays open for remaining common event services; actual
-screen-specific callback/builder bodies remain dependencies of their real flows.
+Current session checkpoint: screen creation/stack/dispatch entry is complete
+for the shared native contract. Live factories and dialogs are desktop-confirmed
+and committed as `6782cf0`; the additional common service routes are source-only,
+queue/sanitizer/i386-audited and uncommitted. No new desktop interaction is enabled.
+After the launch-path milestone: keyboard preprocessing/navigation callers or
+options visual/settings backends, keeping device timing/capture and resource
+cache integration in their own open entries. Concrete screen callbacks and
+builders progress with actual flows.
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,
