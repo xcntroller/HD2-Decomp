@@ -15,6 +15,12 @@ struct LocalizedTextEntry {
 };
 using LocalizedTextCache = std::map<std::int32_t, LocalizedTextEntry>;
 
+// 006E4FB0, shared by startup data and profile/menu consumers.
+inline std::string lookup_localized_text(const LocalizedTextCache& cache, std::int32_t id) {
+    const auto found = cache.find(id);
+    return found == cache.end() ? "__undefined index <" + std::to_string(id) + "> in all_txt __" : found->second.text;
+}
+
 // 006e5060: signed ID ordering, reject -1 and duplicates; first text wins.
 inline bool add_localized_text(LocalizedTextCache& cache, std::int32_t id,
                                 std::string text, std::uint8_t flag) {

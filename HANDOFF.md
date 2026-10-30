@@ -1,6 +1,105 @@
 # Session handoff - 2026-10-30
 
-## Resume here: HumanStore startup loading recovered
+## Resume here: GameData and profile loading recovered as one larger batch
+
+User asks for larger iterations: continue through as much coherent work as
+possible before stopping; update Markdown once after validating the batch.
+Priority remains the original launch path, not unrelated menu foundation work.
+This source-only batch follows `975e1c9`; no live preview changes or desktop test.
+
+New frontend/game_data.h covers both formats/all seven kinds and mission queries.
+Application_data.h now composes actual 006B65D0: application+04 GameData load,
+SAME owner's +E8=1, application+10 HumanStore load; both run even on first failure.
+HumanStore now queries profile path lazily AFTER record finalization. Its prior
+explicit-directory API remains. Shared cache lookup moved to localized_text.h,
+without extra function credit. See analysis/startup-data.md and fingerprinted map.
+
+GameData format +EC defaults2 (verified constructor006B4AE4), +E8 defaults0.
+Numbered GameData\\Gamedata%02d.gdt appends roots, stops first missing and returns
+whether roots exist, including earlier loads. Metadata3 chooses chunked iff word
+matches format; other/absent metadata chooses old flat reader. Root1 required;
+invalid root stays open so next open fails WITHOUT backend call. Native frees
+the original unused leaked allocation. Chunked kind tags10/20/30/50/60 become
+kinds5/6/7/3/2. Related4 records are separate from mission children. Unknown
+GameData fields are left/skipped, unlike HumanStore. Old/new kind6 flag ordering
+differs; all raw16-byte lists/items preserve order. Kind7 readers really consume
+nothing. Guards reject short fixed fields/headers, unterminated strings and
+count overflow; native ABI/undefined-byte/SEH differences stay explicit.
+
+Profile_directories.h + host/profile_directories.h recover scan006AEF50,
+metadata006AF730, exact wide mapping006AE530 and path006B7100. Scan clears map,
+enumerates unsorted directories, skips only . / .., first exact duplicate wins
+but every accepted directory calls callback. ANSI uses physical names and empty
+map. Wide uses first root1EDC/child1EDD metadata string (empty accepted), physical
+fallback on absence/invalid data. Missing wide mapping resolves EMPTY, not guessed
+display name. Preserve PlayersProfiles\\<resolved>\\ including double separator.
+Normal scan restores executable cwd even on failed search. Win32/CRT adapter
+consumes only filename/attribute10 and uses actual ExecutableDirectory cache.
+
+Profile_payload.h + profile_load.h cover binary006AFB00, reset006AF420, movies
+006A6B10/6D10/6E80, legacy fallback006AF490 and actual finalizer006B03B0.
+Reset only clears original fields; other words/slot strings persist. All known
+payload tags supported, including repeated old name fields and ignored numeric
+short-read/partial overwrite effects. Ten profile movie records A0..A9; Intro
+enabled by default; flag chunk1EC8 loads BACKWARDS. These differ from four opening
+clips. Finalization runs BEFORE profile root leave/close, with nested save opens.
+
+Legacy profile.pr: raw nonempty CR/LF lines, first case-sensitive substring key,
+first '=' value; numeric %s then decimal strtol, whole token, signed32 saturation.
+Strings retain whitespace; later missing numeric/text keys reuse scratch.
+Native guards first failed LASTGAME (original undefined scratch), invalid '='
+pointers and old buffer overflow. Signed difficulty>4 becomes3. Old line loader
+closes ONLY signed nonnegative handles; high-bit successful handles stay open.
+
+Quick-save validator006C47C0 requires lowercase "quick" substring, root>4E8B,
+first child0BB6 and SIGNED mission<count; negatives can pass original validation.
+Output mission is assigned even on bad markers, permitting promotion006B0520.
+Promotion requires positive index below count and valid previous mission; CAM_/
+LOW_/CAR_ prefix generates prior save, CRT fopen("r") checks physical existence,
+localized2051 formats caption with category/mission/empty third string. Failed
+slot validation clears ID/name; failed last-save promotion clears name/caption.
+Missing app context returnsfalse unchanged. Actual lookup reads recovered GameData.
+
+Audits: independent raw decoding matches ALL stored fields of real Gamedata00.gdt
+(304 records:1 root/8 campaigns/24 missions/159 related/30 texts/58 lists/24 kind7;
+502 raw16-byte entries). Synthetic all-kind old/new trees match. Combined native
+ASan/UBSan audit covers real GameData+65HumanStore preparation, flag/failure/late
+path order, directories, all profile payload fields, legacy/signed/handle quirks,
+movie flags, saves/promotion/captions, and parent handle lifetime. Strict i386
+actual DTA/portrait/Win32/profile composition links ONLY; never executed. Native
+checks,158Python tests and unchanged host target pass. Temporary audits/extracted
+fixtures removed after checks. No permanent tests or original-code execution.
+
+Evidence: both hashes,74 anchors,578 calls,22client slots/two engine texture
+slots; six negative mutations rejected. DefineGameDataFunctions.java verifies
+three original slots before TRANSIENT missing-function definitions; read-only
+project discards changes. 006BD4F0 has source/evidence but is ABSENT from frozen
+census, so no credit. 36 new partial client entries:221 total(216client/5engine),
+zero complete, denominator18783. No constructors/vector/no-op/delegated extra
+credit. Run tools/validate_engine_host.py --map analysis/startup-data-map.json.
+
+NEXT: Options.bin load/defaults/apply, THEN outer profile selection006AF1D0 and
+startup profile reset006B6620. Their bodies must be real before controller wiring.
+Read-only research already in profile-preparation, profile-movie-state,
+profile-directory-map, profile-selection-dependencies, profile-save-validation,
+profile-data-tree-queries. Options loader006B2D80: root25A0 word141, then binding
+chunk25A6 and settings25A5. Input reader006A8900: version22B8/42, entries22B9,
+raw1C-byte records forced dirty. Reuse existing BindingConfiguration/defaults
+(006A8740 and006A8BE0 already source-recovered; no duplicate credit).
+Settings reader006B3750 and default006B31C0/006B3420 exported; default helper
+leaves word+14 uninitialized, so do not guess it. 006B2D40 then applies driver
+state2B, graphics gamma+12C, sound volumes+84/+7C, 0072EA20 and input tuning/global
+flag via006B32F0, in original order. Application/state ownership, protection
+through00A59000, loaded-cache consumers and controller integration remain open.
+No successful no-op settings/selection/protection service. Original launch stays
+open and preview does not yet call the new data/profile components.
+
+GameData read-only exports: game-data-startup/variants/fields/auxiliary/remaining.
+game-data-records is partial; game-data-final empty after undefined entry export.
+Use verified DefineGameDataFunctions.java before exporting006BD4F0/006BAB00.
+Original binaries/saved Ghidra project untouched; no game/DLL/Windows run or push.
+
+## Earlier checkpoint: HumanStore startup loading recovered
 
 Current user priority: **complete the original launch path rebuild**. Continue
 this chain. Source follows `6273f26`; no live changes or desktop test in this

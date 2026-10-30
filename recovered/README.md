@@ -22,9 +22,19 @@ recover startup soldier records, older stat/name formats, localization defaults,
 encoding finalizers and profile `usernames.sav` overrides. Its
 [portrait adapter](host/human_store.h) forwards checked original texture calls.
 All 65 installed records match an independent decode; sanitizer and strict
-i386 compile/link audits pass. Source-only: actual profile-path resolution,
-GameData loading and full application/controller wiring remain open.
+i386 compile/link audits pass. Source-only; the follow-up below connects actual
+profile resolution and GameData, while full application/controller wiring stays open.
 See [evidence and limits](../analysis/human-store.md).
+
+The larger [application data/profile slice](../analysis/startup-data.md) now adds
+[both GameData formats/all record kinds](frontend/game_data.h), actual
+[GameData/+E8/HumanStore preparation](frontend/application_data.h),
+[profile directory scan/mapping](frontend/profile_directories.h),
+[binary payload/movie flags](frontend/profile_payload.h) and
+[legacy fallback/save finalization](frontend/profile_load.h). All 304 installed
+GameData records match an independent decode, and actual i386 file/graphics/
+Win32 profile composition links. Options/settings application, outer profile
+selection and complete original startup remain open; no live changes.
 
 The second component is the
 [model resource key helper](scene/model_resource_key.cpp), with its

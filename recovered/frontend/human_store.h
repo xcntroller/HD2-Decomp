@@ -113,12 +113,6 @@ inline void parse_human_combined_name(HumanRecord& record, std::string text) {
     derive_human_names(record);
 }
 
-// 006E4FB0: actual cache lookup, including original missing-index diagnostic.
-inline std::string human_default_text(const LocalizedTextCache& cache, std::int32_t id) {
-    const auto found = cache.find(id);
-    return found == cache.end() ? "__undefined index <" + std::to_string(id) + "> in all_txt __" : found->second.text;
-}
-
 // Original store/reset/creation/parser/overlay 0069F930, 006A18E0/1B40/1D80,
 // 006A00A0/0F30. Graphics and its original DLL must outlive this owner.
 // profile_directory must come from the application's actual current-profile
@@ -138,13 +132,19 @@ public:
     void reset(const LocalizedTextCache& text) {
         clear();
         for (std::size_t i = 0; i < default_names_.size(); ++i) {
-            default_names_[i].first = human_default_text(text, 0x27a6 + static_cast<std::int32_t>(i));
-            default_names_[i].second = human_default_text(text, 0x2792 + static_cast<std::int32_t>(i));
+            default_names_[i].first = lookup_localized_text(text, 0x27a6 + static_cast<std::int32_t>(i));
+            default_names_[i].second = lookup_localized_text(text, 0x2792 + static_cast<std::int32_t>(i));
         }
     }
     template<class Files>
     bool load(Files& files, const std::string& filename, const LocalizedTextCache& text,
               const std::string& profile_directory, bool wide) {
+        return load_with_profile_directory(files, filename, text,
+                                            [&] { return profile_directory; }, wide);
+    }
+    template<class Files, class ProfileDirectory>
+    bool load_with_profile_directory(Files& files, const std::string& filename,
+              const LocalizedTextCache& text, ProfileDirectory&& profile_directory, bool wide) {
         io::ChunkFile<Files> file(files);
         if (!file.open(filename.c_str())) return false; // No reset on missing main file.
         enter(file); // Original accepts any root tag here.
@@ -158,7 +158,8 @@ public:
             parse_record(files, file, *records_.back(), wide);
             file.leave();
         }
-        apply_user_names(files, profile_directory, wide); // Optional overlay result ignored.
+        // Original queries the current profile here, after record finalizers.
+        apply_user_names(files, profile_directory(), wide); // Optional result ignored.
         file.close();
         return true;
     }

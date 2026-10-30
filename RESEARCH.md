@@ -3,7 +3,21 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest source: [original HumanStore startup loading](analysis/human-store.md).
+Latest source: [original application data and profiles](analysis/startup-data.md).
+Follows `975e1c9`, in a larger batch per user preference. GameData's two formats,
+seven kinds and mission queries; actual GameData/+E8/HumanStore preparation;
+profile directory scan/map/path; binary and legacy profile loading; movie flags;
+quick-save validation and prior-mission save promotion now have source. All 304
+installed GameData records/502 list entries match independent raw decoding;
+combined startup/profile sanitizer and strict i386 audits pass. 36 new partial
+client entries: 221 total (216 client/five engine), zero complete. Reader006BD4F0
+is absent from frozen census and receives no credit. Run `python3 -B
+tools/validate_engine_host.py --map analysis/startup-data-map.json`.
+Next: original Options.bin/default bindings/settings loading and application,
+then outer profile selection006AF1D0/startup reset006B6620 and remaining original
+application/state/protection dependencies before live controller wiring.
+
+Prior source: [original HumanStore startup loading](analysis/human-store.md).
 Follows `6273f26`. Record creation/reset/destruction, every known field format,
 derived names/eye textures, legacy encoding and profile-name overlays now have
 readable source. Portrait loading/releases forward checked original LS3DF

@@ -108,10 +108,12 @@ The parser ignores this result. Concrete checked RVAs are GetIGraph 68F90,
 texture load 69F70 and texture release 73760, all in the original LS3DF module.
 These implementations remain delegated and were not agent-executed.
 
-The caller must provide the actual current-profile directory from 006B7100,
-including its trailing separator. That resolver includes wide-profile mapping
-006AE530 and is still unrecovered; this slice does not substitute a guessed
-profile or claim profile selection is finished. Append `usernames.sav`.
+The caller supplies the actual current-profile directory from 006B7100,
+including its trailing separator. Follow-up [application data/profile work](startup-data.md)
+now recovers this resolver and wide-profile mapping006AE530. Application
+preparation supplies it lazily after record finalization; the explicit-directory
+API remains available. Outer profile selection is still unfinished; no guessed
+profile is substituted. Append `usernames.sav`.
 Missing file is successful optional absence. A present file requires root029A;
 each child's tag is a zero-based record index, with a nested 23B4 string.
 Invalid index/tag returns false, retaining earlier overrides. For each valid
@@ -152,7 +154,8 @@ equivalence. Eighteen new partial client ledger entries bring totals to 185
 DLL or current-profile-resolver function credit.
 
 Run `python3 -B tools/validate_engine_host.py --map analysis/human-store-map.json`.
-Next on this same launch chain: actual GameData loading, current-profile path
-and profile scan/selection, then remaining application/state services,
-protection-state effects and controller integration. The independent original
-launch milestone remains open; there are no successful placeholder services.
+Follow-up [application data/profile work](startup-data.md) now covers GameData,
+profile path/scan and binary/legacy profile data. Next are settings application,
+outer profile selection and remaining application/state/protection dependencies
+before controller integration. The independent original launch milestone remains
+open; there are no successful placeholder services.

@@ -126,6 +126,7 @@ complete, frozen denominator 18,783. No duplicate credit for portable/native
 versions, and no new credit for delegated DLL calls.
 
 Follow-up: [HumanStore record loading](human-store.md) now uses this object,
-including profile-name overlays and portrait ownership. Next: actual GameData
-loading, current-profile resolution/selection and remaining application/state
-prerequisites. Protection-state effects and full executable startup remain open.
+including profile-name overlays and portrait ownership. The subsequent
+[application data/profile slice](startup-data.md) recovers GameData, current-
+profile directories and binary/legacy profile data on this lifecycle. Settings
+application, outer profile selection, protection and full startup remain open.

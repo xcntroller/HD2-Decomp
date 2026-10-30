@@ -119,12 +119,28 @@ The existing host preview is useful for validation, but it is not this milestone
   ownership/loading. **Source-only, audited.** All 65 installed records match an
   independent decode; older formats, overrides and failure paths pass sanitizer
   audits. Actual DTA/graphics adapters compile/link for i386. Current-profile
-  directory resolution, GameData and full application integration remain open.
+  directory resolution and GameData are recovered in the follow-up below; full
+  application integration remains open.
   See [HumanStore evidence](analysis/human-store.md).
-- [ ] Recover the actual GameData loader and current-profile path/scan/selection
-  used by application preparation before opening movies. Preserve loader order,
-  loaded state and failure behavior; then finish remaining original application/
-  state services and protection-state dependencies before controller wiring.
+- [x] Recover the actual GameData loader, both file formats, all seven record
+  kinds and mission queries. **Source-only, audited.** All stored fields of 304
+  installed records and 502 list entries match an independent decode; synthetic
+  old/new files produce identical state. Actual 006B65D0 now composes GameData,
+  +E8 and HumanStore in original order, including failure and late profile lookup.
+  See [application data evidence](analysis/startup-data.md).
+- [x] Recover current-profile directory resolution, directory scan and displayed-
+  name metadata/map. **Source-only, audited.** Exact wide mapping, duplicate/case
+  rules, callbacks and real Win32/CRT boundary are reconstructed. No guessed
+  profile name. See [profile directory scope](analysis/startup-data.md).
+- [x] Recover binary/legacy profile loading, reset, movie flags and saved-game
+  finalization. **Source-only, audited.** Includes actual profile.pr fallback,
+  quick-save header checks, previous-mission save promotion and localized caption.
+  Native safety/ABI differences remain explicit; full i386 data/profile composition
+  links only. See [profile loading scope](analysis/startup-data.md).
+- [ ] Recover Options.bin/default binding/settings loading and actual graphics,
+  sound and input application, then outer profile selection006AF1D0 and startup
+  reset006B6620. Finish remaining original application/state and protection-state
+  dependencies before controller wiring; no successful placeholder services.
 - [ ] Build the independent executable in that path, then desktop-test normal
   playback, skipping, missing-movie behavior, menu entry and teardown. Commit
   the interactive slice only after the user confirms it works.
@@ -226,17 +242,17 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current checkpoint follows `6273f26` original DTA chunk-file lifecycle. HumanStore
-startup load/reset, every recognized record format, default/derived names,
-encoding finalizers, profile-name overlays and original portrait forwarding now
-have source. All 65 installed records match an independent decode; sanitizer
+Current checkpoint follows `975e1c9` HumanStore. GameData's 304 installed records,
+both formats/all kinds, actual combined application data preparation, profile
+directory scan/mapping, binary and legacy profile loading, movie flags and
+saved-game validation/promotion now have source. Independent decode, sanitizer
 and strict i386 composition audits pass. No live change.
-Next: actual GameData loading and current-profile path/scan/selection in the
-same application preparation chain, then remaining application/state services
-and controller integration. Startup protection-state effects, loaded-resource cache
+Next: actual Options.bin/default binding/settings load and application, then
+outer profile selection/startup reset and remaining application/state services
+before controller integration. Startup protection-state effects, loaded-resource cache
 consumers, live device lifecycle, renderer/text consumers and navigation remain
 open. Do not guess protection code or add dormant joystick enumeration.
-See [HumanStore scope](analysis/human-store.md).
+See [application data/profile scope](analysis/startup-data.md).
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,

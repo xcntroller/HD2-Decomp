@@ -10,12 +10,12 @@ two binaries; the expansion is outside its scope.
 Menu delivery checklist: [plan.md](plan.md). It tracks the entire base-game
 menu separately from the original-function counts below.
 
-The [original HumanStore startup loader](analysis/human-store.md) now recovers
-soldier records, names, stats, profile name overrides and portrait ownership.
-All 65 installed records match an independent decode; native sanitizer and
-i386 composition audits pass. GameData and profile selection are the next
-dependencies on the original launch path. This is source-only; live startup
-integration remains open.
+The [original application data/profile path](analysis/startup-data.md) now loads
+GameData, HumanStore and binary/legacy profile data, including saved-game checks.
+All 304 GameData and 65 soldier records match independent decodes; sanitizer and
+i386 composition audits pass. Options/settings application and outer profile
+selection are next. This remains source-only; full original startup integration
+is open.
 
 Movie/menu keyboard device input and focus return are desktop-confirmed. The
 [keyboard preprocessing and text-input slice](analysis/keyboard-preprocessing.md)
@@ -194,11 +194,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **185 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **221 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 180 |
+| Base game client | 17,294 | 0 | 216 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
