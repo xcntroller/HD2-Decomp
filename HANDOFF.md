@@ -1,6 +1,53 @@
 # Session handoff - 2026-10-30
 
-## Resume here: device confirmed; client preprocessing and text FIFO source recovered
+## Resume here: binding input producer source recovered and audited
+
+The user authorizes sensible tested commits. `4e0d923` commits the confirmed
+pacing/keyboard device integration and source-only preprocessing/text FIFO.
+This subsequent source checkpoint recovers client 006C7870 in
+`input/binding_producer.h`: reverse joystick current/secondary snapshots,
+optional graphics/mouse/keyboard polling, getters, normalized mouse motion,
+persistent source gates and reverse keyboard/mouse/joystick binding evaluation.
+`input/keyboard.h` also recovers 1006F4B0 configured map installation and
+1006F500 packed snapshot. Actual original bindings/defaults are NOT guessed.
+See [producer evidence](analysis/binding-producer.md).
+
+All kinds are represented: keyboard; five mouse buttons and three axes;
+eight joystick axes, button bits and four POVs. Preserve ignored poll results,
+byte-wrapping shared-source counters, reverse evaluation and original stale
+output branches. Analog joystick uses CURRENT snapshot in both output buffers;
+buttons/POV use separate snapshots. Native POV/buffer bounds throw rather than
+original out-of-bounds access. Exact x87 environment/signaling NaNs are outside
+scope. State vectors replace original allocator/class ABI.
+
+No new live behavior. Existing device keyboard path remains desktop-confirmed.
+The producer is source-only pending original manager creation/device ownership,
+binding installation/defaults and concrete snapshot services. Original main loop
+006DCEE4 passes polling flag zero after external mouse/joystick polling. Do not
+add duplicate polls or no-op service bodies to force controller integration.
+
+Next coherent dependency: 006C7480 binding replacement/installation (maintains
+scan slots, key/mouse counts, +B4 map updates and joystick mode); then the real
+startup binding/default installer and device ownership. Its assembly was read,
+not reconstructed. Original application startup 006B65D0 still needs real
+Gamedata/HumanStore/profile services. Text targets and focus/navigation callers
+also remain open. Keep following original startup order toward controller wiring.
+
+Temporary ASan/UBSan and strict Windows i386 audits pass: all packed positions/
+state bytes, map guards/aliasing, poll/getter order, 256 count values, source
+sharing, mouse/joystick axes/buttons, POVs and original stale cases. POV matches
+original x87 status-word branches over 100,000 angles, boundaries/adjacent floats,
+infinities and NaN. Actual producer -> controller views -> frontend Escape/back
+works, holding suppresses repetition and release/repress rearms it. Existing
+native suite, all 158 tooling checks, strict host build and evidence/accounting
+pass. Temporary audit files are removed after verification.
+Map: both fingerprints, 41 anchors, two engine slots, three calls. New partials
+006C7870 and 1006F4B0: total 118 (113 client/five engine), zero complete, frozen
+denominator 18,783. 1006F500 is absent from frozen inventory, no new credit.
+Read-only exports: ignored startup-input-prerequisites and engine-keyboard-snapshot.
+No original project/binary changes, agent-side Proton launch or push.
+
+## Earlier checkpoint: device confirmed; client preprocessing and text FIFO source recovered
 
 The user desktop-confirms keyboard interaction and focus loss/return. The
 pacing/keyboard slice remains uncommitted; last commit 8eef91d. Current request

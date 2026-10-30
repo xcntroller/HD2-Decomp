@@ -115,9 +115,11 @@ No agent-side Proton run. Read-only exports live in ignored
 `startup-input-prerequisites`.
 
 Follow-up: [client keyboard preprocessing and text FIFO](keyboard-preprocessing.md)
-are source-recovered and audited. Concrete input-manager production and character
-services are still needed before integration.
+are source-recovered and audited. The [binding producer](binding-producer.md)
+now also reconstructs 006C7870 and the configured packed key snapshot. Actual
+binding installation/defaults, device ownership and character services remain
+needed before integration.
 `006C7870` is broader binding/axis/joystick processing, not a simple scan queue;
-its raw decompilation needs assembly review. Startup `006B65D0` also requires
+its assembly-reviewed keyboard, mouse and joystick paths are now in source. Startup `006B65D0` also requires
 game-data definitions (`006BB540`) and HumanStore loading (`006A18E0`), followed
 by profile setup in `006B6620`. None is replaced by a successful no-op.

@@ -1451,6 +1451,30 @@
         "analysis/keyboard-preprocessing.md",
         "recovered/frontend/keyboard_preprocessing.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "006c7870",
+      "status": "partial",
+      "coverage": "Reverse device snapshots and optional poll order; packed key/mouse snapshots, saturation and persistent gate updates; reverse keyboard/mouse/joystick bindings into held/gated float-word buffers including shared binding counts, axis filtering, POV masks and original stale-output cases.",
+      "limitations": "Source-only native vectors/typed records replace original object/vector ABI. Actual binding installation/defaults and concrete graphics/joystick services remain required. Malformed native buffers/POV indices throw; x87 environment and signaling NaNs not reproduced. Sanitizer/i386-audited with controller-to-front-end Escape path.",
+      "evidence": [
+        "analysis/binding-producer-map.json",
+        "analysis/binding-producer.md",
+        "recovered/input/binding_producer.h"
+      ]
+    },
+    {
+      "program": "engine",
+      "entry": "1006f4b0",
+      "status": "partial",
+      "coverage": "Validate nonnull scan pointer and unsigned count at most 64, preserve prior map on error 80000007, otherwise zero 64 scan bytes and install configured prefix including zero-length and overlapping-source behavior.",
+      "limitations": "Native array is explicit caller-owned state rather than original engine global/object ABI; actual original binding installation caller and live packed-snapshot integration remain open. Sanitizer/i386-audited.",
+      "evidence": [
+        "analysis/binding-producer-map.json",
+        "analysis/binding-producer.md",
+        "recovered/input/keyboard.h"
+      ]
     }
   ]
 }

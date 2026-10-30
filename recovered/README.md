@@ -48,8 +48,11 @@ now run through a [keyboard device owner](host/engine_keyboard.h) alongside
 engine mouse; keyboard behavior and focus return are desktop-confirmed.
 [Client preprocessing](frontend/keyboard_preprocessing.h) and the separate
 [text FIFO](input/text_queue.h) are source-only and sanitizer/i386-audited.
-Concrete input production and text-target services remain open. See
-[evidence](../analysis/keyboard-preprocessing.md).
+[Binding-to-buffer production](input/binding_producer.h) and configured packed
+key snapshots are now source-recovered and sanitizer/i386-audited, including
+controller-to-front-end Escape routing. Original binding installation/defaults,
+device ownership and text-target services remain open. See
+[evidence](../analysis/binding-producer.md).
 With `--menu-confirm --opening-movies`, the host now runs the recovered normal
 Logo1/Logo2/Logo3/Intro sequence through the original engine IShow/Bink interface
 before constructing the compiled menu. The user desktop-confirmed this path.

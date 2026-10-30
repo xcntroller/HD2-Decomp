@@ -51,7 +51,9 @@ The existing host preview is useful for validation, but it is not this milestone
   modifiers and fixed-table translation now use a concrete keyboard device
   alongside `--use-engine-mouse`; desktop keyboard and focus return are confirmed.
   Client preprocessing/text FIFO are now source-recovered and audited; concrete
-  input-manager production and character services remain open.
+  binding-to-buffer producer is also source-recovered and audited for keyboard,
+  mouse and joystick. Actual binding installation/defaults, device ownership
+  and character services remain open. See [producer scope](analysis/binding-producer.md).
   See [frame/input evidence](analysis/frame-input.md).
 - [ ] Build the independent executable in that path, then desktop-test normal
   playback, skipping, missing-movie behavior, menu entry and teardown. Commit
@@ -139,8 +141,10 @@ profiles and other real screens, rather than expanding this section indefinitely
   alongside engine mouse and desktop-confirmed, including focus return.
   Client preprocessing, ANSI/UTF16 character dispatch, modifier fallback and
   the separate text FIFO are source-recovered and sanitizer/i386-audited.
-  Concrete input buffers/text targets, focus entry and navigation callers remain
-  open. See [preprocessing evidence](analysis/keyboard-preprocessing.md).
+  Binding-to-buffer production is now source-recovered for keyboard/mouse/
+  joystick, including configured packed key snapshots; controller-to-front-end
+  Escape routing is sanitizer/i386-audited. Actual binding installation/defaults,
+  text targets, focus entry and navigation callers remain open. See [preprocessing evidence](analysis/keyboard-preprocessing.md).
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
 - [ ] Supply the options widget backends and connect original settings observers.
@@ -148,12 +152,12 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current session checkpoint: pacing and keyboard device integration are now
-desktop-confirmed, including focus return. Client preprocessing and the separate
-text FIFO are source-recovered and sanitizer/i386-audited, with no new live
-interaction. Concrete input-buffer production and character services precede
-controller wiring; focus/navigation callers remain open. Last commit is
-`8eef91d`; these follow-up slices remain uncommitted.
+Current session checkpoint: `4e0d923` commits desktop-confirmed pacing/keyboard
+and audited preprocessing/text FIFO. The subsequent original input producer and
+configured keyboard snapshots are source-recovered and sanitizer/i386-audited.
+They do not change live interaction. Original binding installation/defaults and
+device ownership precede controller wiring; character targets and focus/navigation
+callers remain open. See [producer evidence](analysis/binding-producer.md).
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,

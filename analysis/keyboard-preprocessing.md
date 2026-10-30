@@ -47,8 +47,10 @@ branch is reconstructed, not the complete pump or keyboard-message mode.
 
 ## Scope and validation
 
-Concrete application input-buffer production, character targets, ACP conversion
-and diagnostic services remain required before live integration. No successful
+The subsequent [input producer](binding-producer.md) supplies source-recovered
+binding-to-buffer evaluation. Actual binding installation/defaults, device
+ownership, character targets, ACP conversion and diagnostic services remain
+required before live integration. No successful
 stand-ins are provided. The normal menu has no new text-input flow. Focus entry
 and navigation callers remain an open part of the checklist.
 

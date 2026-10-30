@@ -14,6 +14,7 @@ public class DefineEngineKeyboardFunctions extends GhidraScript {
                           {0xa0, 0x1006f320L}, {0xa4, 0x1006f470L},
                           {0xa8, 0x1006f2d0L}, {0xac, 0x1006f300L},
                           {0xb0, 0x1006f490L}, {0xbc, 0x1006f550L},
+                          {0xb4, 0x1006f4b0L}, {0xb8, 0x1006f500L},
                           {0xc0, 0x1006f570L},
                           {0x90, 0x1006f040L}, {0x94, 0x1006f150L},
                           {0x98, 0x1006f160L}, {0xc4, 0x1006f590L},

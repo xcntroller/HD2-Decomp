@@ -9,8 +9,12 @@ desktop-confirmed. Keyboard polling, modifiers and fixed-table translation now
 run through the original keyboard device alongside engine mouse and are
 desktop-confirmed, including focus return. Subsequent
 [client preprocessing and text FIFO](analysis/keyboard-preprocessing.md) are
-source-recovered and sanitizer/i386-audited. Concrete input production, text
-targets and navigation callers remain open. Checkpoint `8eef91d` contains
+source-recovered and sanitizer/i386-audited. The subsequent
+[binding producer](analysis/binding-producer.md) reconstructs keyboard, mouse
+and joystick output buffers and configured key snapshots. Original binding
+installation/defaults, device ownership, text targets and navigation callers
+remain open. Checkpoint `4e0d923` commits pacing/keyboard and preprocessing;
+`8eef91d` contains
 the preceding confirmed opening playback and audited controller.
 
 An early-stage effort to understand Hidden & Dangerous 2 and its LS3D engine.

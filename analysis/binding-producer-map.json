@@ -1,0 +1,267 @@
+{
+  "scope": "Source-only original input binding producer and configured keyboard bitmask; no new live menu path or configuration defaults.",
+  "runtime_verified": false,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006c78b5",
+        "hex": "84db740d8b4d086a018b0c0e8b11ff52588b450803c68b0883c004508b11ff52508b450803c68b0883c048508b11ff5254",
+        "meaning": "Reverse joystick iteration, optional poll(1), current then secondary snapshots"
+      },
+      {
+        "address": "006c78e9",
+        "hex": "84db74218b4500508b08ff51148b4500508b10ff92e80000008b4500508b08ff919c000000",
+        "meaning": "Optional graphics pump, mouse poll, keyboard poll"
+      },
+      {
+        "address": "006c790e",
+        "hex": "8b4500508b10ff92b80000008944242c8b45008bda508b08895c2434ff91040100008bf08b450050897424248b10ff92ec000000894424788b4500db4424788b0850d95c2414ff91f0000000894424788b4500db4424788b1050d95c247cff92f4000000",
+        "meaning": "Packed 64-bit keyboard, buttons and signed x/y/z getter order"
+      },
+      {
+        "address": "006c7976",
+        "hex": "8d85a0000000db44241c8b088d7c2434894c2424b910000000668b50048b85f000000023c6668954",
+        "meaning": "Copy six mouse binding-count bytes and start mouse gate update"
+      },
+      {
+        "address": "006c79a0",
+        "hex": "f7d08b95e800000033c6d94424108d75608985f00000008b44242cf3a5d9c0d9e1d985a8000000ded98b8dec00000023d023cb8995e8000000898dec0000008bca8b95ec000000f7d1f7d2898de800000033c88bc28995ec00000033c3898de80000008985ec000000",
+        "meaning": "Copy 64 key binding counts and update persistent key gate"
+      },
+      {
+        "address": "006c7a09",
+        "hex": "dfe0f6c4057a17d81d1cf58000d985a8000000dfe025004100007402d9e0d8b5a8000000d95c2410",
+        "meaning": "Saturate/divide X, storing single precision"
+      },
+      {
+        "address": "006c7acb",
+        "hex": "8b8dbc0000004e33c08d3c76c1e702897c241c668b440f048d140f480f84d5070000480f84b3050000480f8584080000",
+        "meaning": "Reverse binding iteration, 12-byte records, kind dispatch"
+      },
+      {
+        "address": "006c7afb",
+        "hex": "8b95cc000000c704b2000000008b85dc000000c704b000000000",
+        "meaning": "Joystick starts by clearing both output words"
+      },
+      {
+        "address": "006c7b41",
+        "hex": "8b4407083bd00f8632080000",
+        "meaning": "Unsigned joystick index bounds check"
+      },
+      {
+        "address": "006c7b53",
+        "hex": "81f9ff0000007e6681f9000200007d6aba01000000d3e2",
+        "meaning": "Joystick button selectors 100..1ff use x86 masked bit shift"
+      },
+      {
+        "address": "006c7b79",
+        "hex": "85548838740d8b8dcc000000c704b10000803f",
+        "meaning": "Current joystick buttons select first output"
+      },
+      {
+        "address": "006c7ba5",
+        "hex": "8554887c0f84d00700008b8ddc000000c704b10000803fe9be070000",
+        "meaning": "Secondary joystick buttons select second output"
+      },
+      {
+        "address": "006c7bcd",
+        "hex": "8b5d088d3cc5000000002bf88bd1c1fa048d3cbf83e20f8d3cbb807c173400",
+        "meaning": "POV index uses selector bits four through seven and availability byte"
+      },
+      {
+        "address": "006c7ca1",
+        "hex": "f6c10f740d8b8dcc000000c704b10000803f",
+        "meaning": "Current POV direction mask sets first output"
+      },
+      {
+        "address": "006c7d8e",
+        "hex": "8a530683e20f84d00f84e30500008b85dc000000c704b00000803f",
+        "meaning": "Secondary POV direction mask sets second output"
+      },
+      {
+        "address": "006c7dae",
+        "hex": "8b1b4b0f84e80100004b0f84fd00000083f9070f87c9020000ff248d94836c00",
+        "meaning": "Analog direction selects positive, negative or raw switch"
+      },
+      {
+        "address": "006c7ee0",
+        "hex": "d81d1cf58000dfe0f6c4050f8a9f010000d9018b95cc000000d9e0d91cb2e98d010000",
+        "meaning": "Negative joystick axis filter using x87 comparison flags"
+      },
+      {
+        "address": "006c8043",
+        "hex": "d901d81d1cf58000dfe02500410000753c8b95cc0000008b018904b2eb2f",
+        "meaning": "Positive joystick axis filter"
+      },
+      {
+        "address": "006c8090",
+        "hex": "8b95cc0000008b85dc0000008b0cb2890cb0e9d8020000",
+        "meaning": "Analog joystick first word copied into second word"
+      },
+      {
+        "address": "006c80a7",
+        "hex": "8b95cc000000c704b2000000008b85bc00000003f833c0668b4706",
+        "meaning": "Mouse kind clears first output before interpreting selector"
+      },
+      {
+        "address": "006c80cf",
+        "hex": "4983f9070f87a602000033d28a91fc836c00ff2495f4836c00",
+        "meaning": "Mouse codes one two four eight validated by first jump table"
+      },
+      {
+        "address": "006c80e8",
+        "hex": "4883f80f774333c98a881c846c00ff248d04846c00",
+        "meaning": "Second mouse selector table chooses button index"
+      },
+      {
+        "address": "006c8172",
+        "hex": "8a5c0c248d4c0c24fecb80fb0188190f83dc010000f7d023c28b95dc0000008985f0000000c704b20000803fe9dc01000081f9000100",
+        "meaning": "Mouse count decrements modulo byte, clears gate at zero and emits second output"
+      },
+      {
+        "address": "006c81a3",
+        "hex": "81f9000100000f84c900000081f900020000745981f9000300000f85bc010000",
+        "meaning": "Mouse axis selectors 100 200 300; unknown selector preserves second output"
+      },
+      {
+        "address": "006c8261",
+        "hex": "8b8dcc0000008b95dc0000008b04b18904b2e907010000",
+        "meaning": "Analog mouse first word copied into second word"
+      },
+      {
+        "address": "006c82c2",
+        "hex": "8a52068a452033c93ad0894c241c741283f9407d098a442921413ad075f2894c241c",
+        "meaning": "First matching scan lookup, missing scan yields shift count 64"
+      },
+      {
+        "address": "006c8304",
+        "hex": "8b9dcc0000007409c704b30000803feb07c704b300000000",
+        "meaning": "Keyboard held bit produces first float word"
+      },
+      {
+        "address": "006c8336",
+        "hex": "8b4c241cfe4c0c34807c0c34018d4c0c34731a8b8dec000000f7d0f7d223c323d18985e80000008995ec000000",
+        "meaning": "Keyboard count decrements, clears gate at zero"
+      },
+      {
+        "address": "006c8363",
+        "hex": "8b95dc000000c704b20000803feb0d8b85dc000000c704b000000000",
+        "meaning": "Second output one or zero per gated digital source"
+      },
+      {
+        "address": "006c837f",
+        "hex": "85f60f8544f7ffff",
+        "meaning": "Reverse iteration to binding zero"
+      },
+      {
+        "address": "006c83f4",
+        "hex": "e8806c007f836c000000010001010100fd806c0005816c0010816c001b816c0026816c0031816c0000010502050505030505050505050504",
+        "meaning": "Original two-stage mouse selector tables"
+      },
+      {
+        "address": "00815ef4",
+        "hex": "14ae47407b1496403d0a9740713d4a40",
+        "meaning": "Exact POV thresholds 3.12 4.69 4.72 3.16"
+      },
+      {
+        "address": "0080fa98",
+        "hex": "0000c03f",
+        "meaning": "Exact lower POV threshold 1.5"
+      },
+      {
+        "address": "0080fc14",
+        "hex": "cdcccc3f",
+        "meaning": "Exact lower POV threshold 1.6"
+      },
+      {
+        "address": "0080f550",
+        "hex": "cdcccc3d",
+        "meaning": "Exact lower POV threshold 0.1"
+      },
+      {
+        "address": "006dcedd",
+        "hex": "6a00b948ea8a00e887a9feff",
+        "meaning": "Main loop calls manager at 008aea48 with polling flag zero"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [
+      {
+        "site": "006c82eb",
+        "target": "007e6f40"
+      },
+      {
+        "site": "006dcee4",
+        "target": "006c7870"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "1006f4b5",
+        "hex": "85f674348b54241083fa40772b5733c0b910000000bf681d0d10f3ab",
+        "meaning": "Map installation validates pointer/count before clearing 64 bytes"
+      },
+      {
+        "address": "1006f4d1",
+        "hex": "8bca8bc1c1e902bf681d0d10f3a58bc883e103f3a45f",
+        "meaning": "Copy configured scan bytes including non-DWORD tail"
+      },
+      {
+        "address": "1006f4ed",
+        "hex": "b8070000805ec2",
+        "meaning": "Invalid input returns 80000007"
+      },
+      {
+        "address": "1006f510",
+        "hex": "8a86681d0d1084c0761f0fb6c08a8888170d1084c97912",
+        "meaning": "Packed snapshot ignores zero scans and requires state high bit"
+      },
+      {
+        "address": "1006f527",
+        "hex": "b80100000033d28bcee8bbf901000bf80bea4683fe407cd18bc75f5e8bd55dc20400",
+        "meaning": "Set map-position bit and return complete 64-bit mask"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d8f4",
+        "targets": [
+          "1006f4b0",
+          "1006f500"
+        ]
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "1006f530",
+        "target": "1008eef0"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "sources": [
+    "recovered/input/binding_producer.h",
+    "recovered/input/keyboard.h",
+    "recovered/frontend/application_controller.h",
+    "recovered/frontend/keyboard_preprocessing.h"
+  ],
+  "limitations": [
+    "Original binding installation/defaults, input-manager device ownership and concrete graphics/joystick service bodies remain separate prerequisites before controller integration.",
+    "Native vectors and typed state replace original manager object layout and raw vectors; structural mutation during borrowed joystick callbacks is unsupported.",
+    "Malformed POV indices outside four slots and undersized output vectors throw instead of original out-of-bounds access.",
+    "Exact x87 floating point environment, exception flags and signaling-NaN handling are not reproduced by native arithmetic."
+  ]
+}

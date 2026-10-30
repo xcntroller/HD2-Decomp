@@ -44,6 +44,28 @@ struct KeyboardCharacter {
     std::uint8_t scan, normal, shifted;
 };
 
+// IGraph +b4 / 1006f4b0: install at most 64 scan bytes, zeroing unused slots.
+// Null input is rejected even when count is zero; errors leave the map intact.
+inline std::uint32_t configure_keyboard_snapshot(std::array<std::uint8_t, 64>& map,
+                                                const std::uint8_t* scans,
+                                                std::uint32_t count) {
+    if (!scans || count > map.size()) return 0x80000007u;
+    map.fill(0);
+    for (std::uint32_t index = 0; index < count; ++index) map[index] = scans[index];
+    return 0;
+}
+
+// IGraph +b8 / 1006f500. Map position determines the packed bit, not the scan
+// number. A zero scan is disabled, even if current[0] has its high bit set.
+inline std::uint64_t keyboard_snapshot(const KeyboardState& state,
+                                       const std::array<std::uint8_t, 64>& map) {
+    std::uint64_t result = 0;
+    for (std::size_t index = 0; index < map.size(); ++index)
+        if (map[index] && (state.current[map[index]] & 0x80u))
+            result |= std::uint64_t{1} << index;
+    return result;
+}
+
 // 1006f660: first matching scan byte wins; only modifier bit zero selects
 // the shifted column. Caps Lock, Ctrl and Alt do not change this lookup.
 template<std::size_t Size>
