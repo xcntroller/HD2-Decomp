@@ -44,7 +44,7 @@ The existing host preview is useful for validation, but it is not this milestone
   gates, prerequisite ordering, input views, frame/update/render ordering,
   accumulated tick and owning normal video-to-front-end replacement are in
   `recovered/frontend/application_controller.h`. Original application services,
-  input producer and concrete state owners are required before live integration;
+  concrete input services and state owners are required before live integration;
   no no-op service bodies are used to enable it. See [controller scope](analysis/application-controller.md).
   Follow-up: original frame clock now drives movie/menu loops and their shared
   mouse delta; desktop timing is confirmed. Engine keyboard poll/scan/character,
@@ -52,9 +52,17 @@ The existing host preview is useful for validation, but it is not this milestone
   alongside `--use-engine-mouse`; desktop keyboard and focus return are confirmed.
   Client preprocessing/text FIFO are now source-recovered and audited; concrete
   binding-to-buffer producer is also source-recovered and audited for keyboard,
-  mouse and joystick. Actual binding installation/defaults, device ownership
-  and character services remain open. See [producer scope](analysis/binding-producer.md).
+  mouse and joystick. Binding replacement, mode/dirty application and both
+  original 92-record default layouts are now also source-recovered and audited.
+  Manager/device ownership, profile persistence and character services remain
+  open. See [producer scope](analysis/binding-producer.md).
   See [frame/input evidence](analysis/frame-input.md).
+- [x] Recover binding-to-buffer evaluation, binding replacement and both compiled
+  default layouts with original mode/dirty application. **Source-only, audited.**
+  Includes keyboard/mouse/joystick evaluation and all 92 records per layout.
+  Original manager/device ownership, profile persistence and live controller
+  integration remain prerequisites in the open startup entries.
+  See [installation/default evidence](analysis/binding-installation.md).
 - [ ] Build the independent executable in that path, then desktop-test normal
   playback, skipping, missing-movie behavior, menu entry and teardown. Commit
   the interactive slice only after the user confirms it works.
@@ -143,8 +151,10 @@ profiles and other real screens, rather than expanding this section indefinitely
   the separate text FIFO are source-recovered and sanitizer/i386-audited.
   Binding-to-buffer production is now source-recovered for keyboard/mouse/
   joystick, including configured packed key snapshots; controller-to-front-end
-  Escape routing is sanitizer/i386-audited. Actual binding installation/defaults,
-  text targets, focus entry and navigation callers remain open. See [preprocessing evidence](analysis/keyboard-preprocessing.md).
+  Escape routing is sanitizer/i386-audited. Original binding installation, mode/
+  dirty application and both default layouts are now also source-recovered.
+  Manager/device ownership, profile persistence, text targets, focus entry and
+  navigation callers remain open. See [preprocessing evidence](analysis/keyboard-preprocessing.md).
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
 - [ ] Supply the options widget backends and connect original settings observers.
@@ -152,12 +162,14 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current session checkpoint: `4e0d923` commits desktop-confirmed pacing/keyboard
-and audited preprocessing/text FIFO. The subsequent original input producer and
-configured keyboard snapshots are source-recovered and sanitizer/i386-audited.
-They do not change live interaction. Original binding installation/defaults and
-device ownership precede controller wiring; character targets and focus/navigation
-callers remain open. See [producer evidence](analysis/binding-producer.md).
+Current session checkpoint: `143f518` commits original binding-buffer production
+following the confirmed pacing/keyboard/preprocessing checkpoint `4e0d923`.
+The subsequent source-only slice recovers shared binding installation, mode/dirty
+application and both original 92-record default layouts. Sanitizer/i386 audits
+exercise the entire defaults-to-controller-to-frontend Escape route. No new live
+interaction. Original manager/device ownership and remaining startup services
+precede live controller wiring; profile persistence and focus/navigation callers
+remain open. See [installation evidence](analysis/binding-installation.md).
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,

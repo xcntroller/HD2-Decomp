@@ -1,6 +1,52 @@
 # Session handoff - 2026-10-30
 
-## Resume here: binding input producer source recovered and audited
+## Resume here: binding installation, configuration and both defaults recovered
+
+Current source slice follows committed `143f518` producer work and `4e0d923`
+confirmed pacing/keyboard/preprocessing. User authorizes sensible tested commits.
+No live interaction changes and no new desktop test is required for this slice.
+
+New headers: `input/binding_installation.h` (006C7480/006C7440),
+`binding_configuration.h` (006A8600/8630/8690/86C0/8740), and
+`binding_defaults.h` (006A8BE0/8C00/006AA090). Both real compiled layouts have
+92 records each; selector one chooses alternate, all others primary. Source
+preserves reverse mode/dirty application, ignored failure/dirty clearing,
+byte-wrapping counts, map callback order and nontransactional install failure.
+Old outputs/gates survive binding changes. Default reset clears settings only,
+not the input manager or mode. Mode 2 freshly yields 63 output words, mode 3 64.
+See [full scope](analysis/binding-installation.md).
+
+All 184 compiled native records match an independent bounded assembly decoder
+and exported literal assignments, including register-clobber checks. Temporary
+ASan/UBSan audit and strict Windows i386 compilation pass. Actual original
+defaults -> native installer/map/snapshot/producer -> controller views -> frontend
+Escape/back path works, with held-key suppression. Failure, reentry, mode and
+count-boundary cases are audited. Existing native/tooling/build/evidence/accounting
+checks pass (all 158 tooling tests; host build up to date). Temporary audit
+artifacts removed after verification.
+Original record padding and upper EAX result bytes are not recreated. Replacement/
+active setting storage must survive callbacks and growth; no successful no-op
+production services enable the controller.
+
+One source-only checklist entry closes binding evaluation/installation/defaults.
+The broader launch/controller and shared keyboard/navigation entries stay open.
+NEXT: original manager construction/device ownership and graphics attachment:
+006D5D50 -> 006C6A20, 006D5D70 -> 006C6AB0; graphics init calls 006C6FF0 at
+006DB64B and 006C6CC0 at 006DB675. These references were inspected in assembly;
+these bodies are NOT recovered yet. Profile chunk/version persistence 006A8900,
+application Gamedata/HumanStore/profile prerequisites, text targets, and focus/
+navigation callers remain open. Keep following startup order toward actual
+controller integration; avoid disposable successful service stubs.
+
+Evidence map: both hashes, 21 anchors (including complete default constructors),
+two engine slots and 191 calls. Ten new partial CLIENT entries: 128 total
+(123 client/five engine), zero complete, frozen denominator 18,783. Read-only
+exports in ignored input-binding-installation, input-profile-binding-installer,
+input-binding-configuration, input-binding-context, input-binding-default-helpers
+and input-binding-layout-choice. No original binaries/project changes, agent-side
+Proton launch or push.
+
+## Earlier checkpoint: binding input producer source recovered and audited
 
 The user authorizes sensible tested commits. `4e0d923` commits the confirmed
 pacing/keyboard device integration and source-only preprocessing/text FIFO.

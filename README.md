@@ -14,8 +14,10 @@ Movie/menu keyboard device input and focus return are desktop-confirmed. The
 next [keyboard preprocessing and text-input slice](analysis/keyboard-preprocessing.md)
 is recovered in source and audited. The original
 [binding-to-buffer producer](analysis/binding-producer.md) now covers keyboard,
-mouse and joystick in source; actual binding installation/defaults and text
-targets are still required before integration.
+mouse and joystick in source. [Binding installation and both original default
+layouts](analysis/binding-installation.md) are now recovered and audited too;
+manager/device ownership, profile persistence and text targets still precede
+integration.
 
 The shared control-state foundation entry is complete: initialization, base
 messages, observers, event ownership and eligibility are recovered and audited.
@@ -169,11 +171,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **118 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **128 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 113 |
+| Base game client | 17,294 | 0 | 123 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -117,7 +117,8 @@ No agent-side Proton run. Read-only exports live in ignored
 Follow-up: [client keyboard preprocessing and text FIFO](keyboard-preprocessing.md)
 are source-recovered and audited. The [binding producer](binding-producer.md)
 now also reconstructs 006C7870 and the configured packed key snapshot. Actual
-binding installation/defaults, device ownership and character services remain
+binding installation/defaults are now [recovered in source](binding-installation.md).
+Manager/device ownership, profile persistence and character services remain
 needed before integration.
 `006C7870` is broader binding/axis/joystick processing, not a simple scan queue;
 its assembly-reviewed keyboard, mouse and joystick paths are now in source. Startup `006B65D0` also requires

@@ -1475,6 +1475,146 @@
         "analysis/binding-producer.md",
         "recovered/input/keyboard.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "006c7480",
+      "status": "partial",
+      "coverage": "Grow binding/output vectors, remove old keyboard/mouse counts, reuse/register scan slots, preserve nontransactional failure, configure joystick flags, copy or clear record after callbacks while preserving old outputs and gates.",
+      "limitations": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device ownership, profile persistence and full startup integration remain open; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return.",
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c7440",
+      "status": "partial",
+      "coverage": "Pack five arguments into twelve-byte input binding with 16-bit kind/selector truncation and forward installer AL result.",
+      "limitations": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device ownership, profile persistence and full startup integration remain open; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return.",
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8600",
+      "status": "partial",
+      "coverage": "Install one configuration record with forced device zero, ignore installer failure and clear dirty after callback.",
+      "limitations": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device ownership, profile persistence and full startup integration remain open; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return.",
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8630",
+      "status": "partial",
+      "coverage": "Apply exact matching mode records in reverse order, irrespective of dirty state, rereading vector storage between callbacks.",
+      "limitations": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device ownership, profile persistence and full startup integration remain open; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return.",
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8690",
+      "status": "partial",
+      "coverage": "Accept only modes two/three; apply matching records before storing current mode.",
+      "limitations": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device ownership, profile persistence and full startup integration remain open; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return.",
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a86c0",
+      "status": "partial",
+      "coverage": "Entry mode-two/three gate and reverse dirty application; reread current mode per record and treat other record-mode tags as shared.",
+      "limitations": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device ownership, profile persistence and full startup integration remain open; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return.",
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8740",
+      "status": "partial",
+      "coverage": "Reset settings vector end while preserving installed manager bindings and current mode.",
+      "limitations": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device ownership, profile persistence and full startup integration remain open; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return.",
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8be0",
+      "status": "partial",
+      "coverage": "Choose alternate defaults only for selector one, primary for all other selectors.",
+      "limitations": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device ownership, profile persistence and full startup integration remain open; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return.",
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8c00",
+      "status": "partial",
+      "coverage": "Reconstruct all 92 ordered primary default records, clear settings only, append original meaningful fields/dirty values and run current-mode dirty application.",
+      "limitations": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device ownership, profile persistence and full startup integration remain open; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return.",
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006aa090",
+      "status": "partial",
+      "coverage": "Reconstruct all 92 ordered alternate default records, clear settings only, append original meaningful fields/dirty values and run current-mode dirty application.",
+      "limitations": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device ownership, profile persistence and full startup integration remain open; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return.",
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h"
+      ]
     }
   ]
 }

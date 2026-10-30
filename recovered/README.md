@@ -50,9 +50,12 @@ engine mouse; keyboard behavior and focus return are desktop-confirmed.
 [text FIFO](input/text_queue.h) are source-only and sanitizer/i386-audited.
 [Binding-to-buffer production](input/binding_producer.h) and configured packed
 key snapshots are now source-recovered and sanitizer/i386-audited, including
-controller-to-front-end Escape routing. Original binding installation/defaults,
-device ownership and text-target services remain open. See
-[evidence](../analysis/binding-producer.md).
+controller-to-front-end Escape routing. [Original binding installation](input/binding_installation.h),
+[mode/dirty configuration](input/binding_configuration.h) and
+[both compiled default layouts](input/binding_defaults.h) are now also recovered
+and audited. Manager/device ownership, profile persistence and text targets
+remain open. See
+[evidence](../analysis/binding-installation.md).
 With `--menu-confirm --opening-movies`, the host now runs the recovered normal
 Logo1/Logo2/Logo3/Intro sequence through the original engine IShow/Bink interface
 before constructing the compiled menu. The user desktop-confirmed this path.

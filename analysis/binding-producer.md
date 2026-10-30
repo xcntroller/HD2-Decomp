@@ -90,11 +90,10 @@ checks, all 158 tooling checks and the strict Windows host build also pass.
 Temporary audit files are removed after verification; no permanent tests or
 agent-side Proton launch were added.
 
-Actual manager creation/device ownership, binding installation and original
-preferences/defaults remain required before live integration. `006C7480`
-maintains per-source counts and the configured scan map while replacing a
-binding; its +B4 calls are verified in assembly, but its body is not reconstructed
-in this slice. Native vectors replace original allocator/vector/class ABI.
+Follow-up: [binding installation and both original default layouts](binding-installation.md)
+are now source-recovered and audited, including 006C7480 and mode/dirty
+application. Actual manager creation/device ownership, profile persistence and
+remaining startup services still precede live integration. Native vectors replace original allocator/vector/class ABI.
 Callbacks must not invalidate borrowed joystick output storage. Undersized native
 output vectors throw rather than reproducing original memory corruption. Native
 float arithmetic does not recreate x87 exception state or signaling-NaN behavior.

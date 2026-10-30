@@ -12,8 +12,10 @@ desktop-confirmed, including focus return. Subsequent
 source-recovered and sanitizer/i386-audited. The subsequent
 [binding producer](analysis/binding-producer.md) reconstructs keyboard, mouse
 and joystick output buffers and configured key snapshots. Original binding
-installation/defaults, device ownership, text targets and navigation callers
-remain open. Checkpoint `4e0d923` commits pacing/keyboard and preprocessing;
+installation, mode/dirty application and both 92-record default layouts are
+now also [source-recovered and audited](analysis/binding-installation.md).
+Manager/device ownership, profile persistence, text targets and navigation
+callers remain open. Checkpoint `4e0d923` commits pacing/keyboard and preprocessing;
 `8eef91d` contains
 the preceding confirmed opening playback and audited controller.
 
