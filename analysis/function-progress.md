@@ -32,7 +32,7 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are297 partial entries (292 client/five engine), zero
+The current totals are304 partial entries (299 client/five engine), zero
 complete. The [ledger](function-status.json) records each supported subset and
 its exclusions; the generated [README bar](../README.md) is the current count.
 Historical research notes retain their checkpoint totals. Integrated desktop

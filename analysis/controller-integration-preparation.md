@@ -249,7 +249,9 @@ Ordinary00688040 initializes both IShow and a separate audio voice:
 
 Cleanup00688460 clears/presents three times, marks a recognized movie available
 through006B1290, restores primary fade or queued selection, closes/releases IShow,
-closes/releases voice, destroys subtitle/sample records, releases text/font uses.
+closes/releases voice, destroys subtitle/sample records, removes dynamic text
+style IDs and destroys text. [Playback research](playback-completion-preparation.md)
+corrects the earlier font-reference interpretation of006438D0→00641CC0.
 Three logos are not in the profile movie list, but Intro is. With a selected
 profile, even already-enabled Intro causes006B1290→006B09A0 persistence; its
 filename match does not test whether the old flag changed.

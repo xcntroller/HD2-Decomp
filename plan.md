@@ -1,6 +1,6 @@
 # Entire menu reconstruction plan
 
-Updated: 2026-10-30. [Handoff](HANDOFF.md) records the latest work and next steps;
+Updated: 2026-10-31. [Handoff](HANDOFF.md) records the latest work and next steps;
 [research](RESEARCH.md) and linked analysis documents hold technical detail.
 
 ## Goal and completion criteria
@@ -29,7 +29,8 @@ requires them; recovery of a helper alone does not complete a delivery item.
   [Bounded startup checkpoint](analysis/startup-integration.md) desktop-confirmed 2026-10-30.
 - [x] Integrate original video/menu states and controller update/render transitions.
   [Bounded controller delivery](analysis/controller-integration.md) desktop-confirmed 2026-10-30.
-- [ ] Complete opening playback, skips, music/subtitles and movie-to-menu cleanup.
+- [x] Complete opening playback, skips, music/subtitles and movie-to-menu cleanup.
+  [Ordinary playback delivery](analysis/playback-completion.md) desktop-confirmed 2026-10-31.
 - [ ] Preserve failure handling, partial-startup cleanup and normal shutdown.
 - [ ] Build the independent launch target; desktop-confirm playback, skips, missing
   movies, menu entry and teardown, then commit after user confirmation.
@@ -38,15 +39,15 @@ Baseline: the four-movie sequence and host preview are desktop-confirmed.
 [Opening evidence](analysis/opening-video.md). Recovered source components remain
 separate from delivery; their completed work is preserved in the recovery index.
 
-Next: finish opening subtitle/audio ownership and remaining playback/cleanup
-branches, then verify skips and missing movies. [Current delivery boundary](analysis/controller-integration.md).
+Next: preserve failure handling, partial-startup cleanup and normal shutdown.
+[Current launch boundary](analysis/playback-completion.md).
 Full registry/setup bootstrap and binary integrity VM remain outside the checkpoint.
 
 ## Current position
 
 | Area | Verified | Remaining |
 | --- | --- | --- |
-| Original controller launch | Four movies → Main/Exit, shared owners/input, status4 Exit desktop-confirmed | Subtitle/audio completion and full failure matrix |
+| Original controller launch | Four movies/subtitles → Main/Exit, shared owners/input and status4 Exit confirmed | Full failure/shutdown matrix |
 | Menu visuals | Original artwork, cursor, text and button hover | Dynamic labels, localization, fidelity |
 | Exit/confirmation | Pointer, Enter/Space, Escape and modal cancellation | Other actions/dialogs |
 | Shared controls/screens | State, messages, factory, stack and nested diagnostic | Screen callbacks, dynamic lists, original ABI |

@@ -7,6 +7,8 @@
 #include "host/application_menu.h"
 #include "host/engine_video.h"
 #include "host/engine_sound.h"
+#include "host/opening_audio.h"
+#include "host/opening_text.h"
 #include "host/frame_clock.h"
 #include <objbase.h>
 #include <io.h>
@@ -102,12 +104,17 @@ private:
 class OpeningBackend {
 public:
     OpeningBackend(host::StartupSession& startup, HMODULE module, host::BorrowedGraphicsInput& keyboard)
-        : startup_(startup), keyboard_(keyboard), video_(startup.graphics(), module), module_(module) {}
+        : startup_(startup), keyboard_(keyboard), video_(startup.graphics(), module),
+          audio_(module), module_(module), subtitles_(*this) {}
+    ~OpeningBackend() { release_resources(); }
     void begin_movie(const char* filename) {
+        if (resources_live_) throw std::logic_error("Opening resources already owned");
+        resources_live_ = true;
         // Underlying Win32 payloads decoded from00A59000; binary integrity VM
         // and original-address checks are outside the native reconstruction.
         IsWindow(reinterpret_cast<HWND>(static_cast<std::uintptr_t>(0x97a5e32)));
         GetFocus();
+        audio_.create_voice(); //00688040: separate voice BEFORE IShow, even without cues.
         video_.open(filename, 0x400);
         float target; const std::uint32_t bits = 0x3c343958; std::memcpy(&target, &bits, 4);
         startup_.fade_movie_music(target, 2000);
@@ -117,8 +124,22 @@ public:
             const auto height = host::scene_method<Dimension>(startup_.graphics(), module_, 0x1c, 0x6de70)(startup_.graphics());
             const auto dimensions = video_.dimensions();
             video_.rectangle(frontend::opening_video_rectangle(width, height, dimensions.width, dimensions.height));
+            frontend::LocalizedTextCache local_text;
+            const auto loaded = startup_.load_movie_subtitles(filename, local_text);
+            const auto enabled = startup_.subtitles_enabled();
+            subtitles_.parse(local_text, enabled);
+            if (!subtitles_.text().empty()) {
+                if (startup_.wide_characters()) throw std::logic_error("Wide opening subtitle renderer is not reconstructed");
+                text_ = std::make_unique<host::OpeningText>(
+                    reinterpret_cast<host::Graphics*>(startup_.graphics()), module_, startup_.opening_text_styles());
+                for (const auto& cue : subtitles_.text()) text_->validate(cue.text);
+            }
+            std::printf("Opening subtitles: movie=%s loaded=%u enabled=%u text=%zu audio=%zu\n",
+                filename, static_cast<unsigned>(loaded), static_cast<unsigned>(enabled),
+                subtitles_.text().size(), subtitles_.audio().size());
             video_.volume(startup_.movie_volume());
             video_.play();
+            time_marker(); // Original QPC clock sample after successful Play.
         }
         GetTickCount();
     }
@@ -126,20 +147,67 @@ public:
         for (int i = 0; i != 3; ++i) video_.clear_present();
         // Ensure engine resources close even if actual profile persistence throws.
         try { startup_.remember_movie(filename); startup_.fade_movie_music(1, 2000); }
-        catch (...) { video_.close(false); throw; }
-        video_.close(false);
+        catch (...) { release_resources(); throw; }
+        release_resources();
+        std::puts("Opening resources released: movie/voice/text records/samples/styles/text owner");
     }
     std::uint32_t next_scan() { return keyboard_.next_scan(); }
     void update_sound(std::uint32_t milliseconds) { startup_.update_sound(milliseconds); }
     std::int32_t movie_status() const { return video_.playback_status(); }
     void stop_movie() { video_.stop(); }
     void clear_present() const { video_.clear_present(); }
-    void draw_movie() const { video_.draw(false); }
+    void update_subtitles() { subtitles_.update(); }
+    void draw_movie() const { video_.draw_with_text(has_text(), [&] { text_->draw(); }); }
+
+    // Boundary consumed by the portable00689970/00688C10 reconstruction.
+    using Sample = host::OpeningAudio::Sample;
+    Sample create_sample() const { return audio_.create_sample(); }
+    std::int32_t load_sample(const Sample& sample, const char* filename, std::uint32_t flags) const {
+        return audio_.load_sample(sample, filename, flags);
+    }
+    bool has_voice() const { return audio_.has_voice(); }
+    bool has_text() const { return text_ != nullptr; }
+    void read_movie_time(std::uint32_t& time) {
+        video_.elapsed_time(time);
+        last_movie_time_ = time;
+    }
+    void clear_text() {
+        text_->clear();
+        std::printf("Opening subtitle cleared: time=%u\n", last_movie_time_);
+    }
+    void set_text(frontend::SharedText text, std::uint8_t style, std::int32_t index) {
+        std::printf("Opening subtitle active: time=%u characters=%zu style=%u\n",
+            last_movie_time_, text->size(), static_cast<unsigned>(style));
+        text_->set(std::move(text), style, index);
+    }
+    void set_driver_volume() { startup_.set_subtitle_driver_volume(); }
+    void bind_sample(const Sample& sample, std::uint32_t flags) { audio_.bind_sample(sample, flags); }
+    void voice_volume(float volume) { audio_.voice_volume(volume); }
+    void play_voice(std::uint32_t flags, std::uint32_t offset) { audio_.play_voice(flags, offset); }
+    void time_marker() const {
+        LARGE_INTEGER frequency{}, counter{};
+        QueryPerformanceFrequency(&frequency);
+        QueryPerformanceCounter(&counter);
+    }
 private:
+    void release_resources() noexcept {
+        if (!resources_live_) return;
+        video_.close(false);
+        audio_.close_voice();
+        subtitles_.clear_records(); // Reverse strings, then sample refs AFTER voice closes.
+        startup_.opening_text_styles().clear_movie_styles();
+        text_.reset();
+        resources_live_ = false;
+    }
     host::StartupSession& startup_;
     host::BorrowedGraphicsInput& keyboard_;
     host::EngineVideo video_;
+    host::OpeningAudio audio_;
     HMODULE module_;
+    std::unique_ptr<host::OpeningText> text_;
+    frontend::OpeningSubtitles<OpeningBackend> subtitles_;
+    std::uint32_t last_movie_time_ = 0;
+    bool resources_live_ = false;
 };
 
 class LaunchServices {

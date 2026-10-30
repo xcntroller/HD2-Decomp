@@ -77,7 +77,7 @@ $(BUILD_DIR)/engine_window.exe: host/menu_screen_product.h frontend/runtime_conf
 $(BUILD_DIR)/engine_window.exe: host/menu_screen_factory.h frontend/screen_construction.h frontend/owned_screens.h
 $(BUILD_DIR)/engine_window.exe: frontend/application_events.h
 $(BUILD_DIR)/engine_window.exe: frontend/common_event_services.h
-$(BUILD_DIR)/engine_window.exe: host/engine_video.h frontend/opening_playback.h frontend/opening_video.h
+$(BUILD_DIR)/engine_window.exe: host/engine_video.h frontend/opening_playback.h frontend/opening_video.h frontend/opening_render.h
 $(BUILD_DIR)/engine_window.exe: host/frame_clock.h frontend/frame_clock.h
 $(BUILD_DIR)/engine_window.exe: host/engine_keyboard.h input/keyboard.h
 $(BUILD_DIR)/engine_window.exe: host/graphics_interface.h host/menu_input_session.h frontend/localized_text.h

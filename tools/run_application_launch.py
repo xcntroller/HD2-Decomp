@@ -1,16 +1,57 @@
 """Stage the rebuilt application controller, original opening movies and bounded Main/Exit menu."""
 
 import argparse
+from contextlib import contextmanager
 import os
 from pathlib import Path
 import shlex
 import sys
+import tempfile
 
 from run_startup_probe import stage_startup
 from run_engine_window import prepare_launch, run_launch, frame_count
 from stage_menu_resources import stage_menu_resources
 from stage_menu_text import stage_menu_text
-from stage_opening_movies import stage_opening_movies
+from stage_opening_movies import OPENING_MOVIES, stage_opening_movies
+from stage_menu_text import _check_path
+
+
+@contextmanager
+def omitted_staged_movies(run: Path, names: list[str]):
+    """Hide only validated staged copies for a run and restore even on failure."""
+    if len(set(names)) != len(names) or any(name not in OPENING_MOVIES for name in names):
+        raise ValueError("Missing-movie check requires distinct original opening filenames")
+    _check_path(run)
+    _check_path(run / ".hd2-launch-workspace", file=True)
+    if not (run / ".hd2-launch-workspace").is_file():
+        raise ValueError("Missing-movie check requires a rebuilt launch workspace")
+    folder = run / "GameMovie"
+    _check_path(folder)
+    for name in names:
+        _check_path(folder / name, file=True)
+        if not (folder / name).is_file():
+            raise ValueError(f"Staged movie is already missing: {name}")
+    if not names:
+        yield
+        return
+    backup = Path(tempfile.mkdtemp(prefix=".omitted-movies-", dir=run.parent))
+    moved = []
+    try:
+        for name in names:
+            (folder / name).rename(backup / name)
+            moved.append(name)
+        yield
+    finally:
+        collisions = []
+        for name in reversed(moved):
+            target = folder / name
+            if target.exists() or target.is_symlink():
+                collisions.append(name)
+            else:
+                (backup / name).rename(target)
+        if collisions:
+            raise ValueError(f"Movie path reappeared; preserved backups in {backup}: {collisions}")
+        backup.rmdir()
 
 
 def main() -> None:
@@ -25,7 +66,11 @@ def main() -> None:
     parser.add_argument("--proton", type=Path, default=steam / "steamapps/common/Proton - Experimental/proton")
     parser.add_argument("--frames", type=frame_count, default=0)
     parser.add_argument("--stage-only", action="store_true", help="Prepare resources and command without executing Windows code")
+    parser.add_argument("--omit-movie", action="append", choices=OPENING_MOVIES, default=[],
+                        help="Temporarily hide this staged movie during a desktop run; repeatable")
     args = parser.parse_args()
+    if args.stage_only and args.omit_movie:
+        parser.error("--omit-movie applies during a desktop run and cannot be combined with --stage-only")
     try:
         executable = stage_startup(args.game_dir, args.executable, args.work_dir, application_launch=True)
         run = executable.parent
@@ -38,7 +83,11 @@ def main() -> None:
         print("Controller launch command: " + shlex.join(launch.command))
         print("Runtime log: " + str(run / "host-runtime.log"))
         if not args.stage_only:
-            raise SystemExit(run_launch(launch, sys.stdout))
+            if args.omit_movie:
+                print("Missing-movie check: " + ", ".join(args.omit_movie))
+            with omitted_staged_movies(run, args.omit_movie):
+                result = run_launch(launch, sys.stdout)
+            raise SystemExit(result)
     except (OSError, ValueError) as error:
         parser.exit(1, f"Controller launch staging failed: {error}\n")
 

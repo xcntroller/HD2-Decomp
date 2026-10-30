@@ -250,13 +250,16 @@
       "program": "client",
       "entry": "00641e30",
       "status": "partial",
-      "coverage": "Bounded styles 10, 11, 12, 13 and 40: original font index, normalized height, color and alignment.",
+      "coverage": "Bounded styles 10, 11, 12, 13 and 40: original font index, normalized height, color and alignment. Ordinary opening styles0/8 now have explicit native storage; style8 supplies white centered/top SMALL text at .035f.",
       "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/text_object.h",
         "recovered/frontend/text_control_runtime.h",
-        "recovered/host/menu_text_object.h"
+        "recovered/host/menu_text_object.h",
+        "analysis/playback-completion-map.json",
+        "analysis/playback-completion.md",
+        "recovered/frontend/opening_subtitles.h"
       ]
     },
     {
@@ -3889,11 +3892,13 @@
       "entry": "0066ed30",
       "status": "partial",
       "coverage": "Video shutdown wrapper closes its owned ordinary movie backend, then clears the filename descriptor exactly once.",
-      "limitations": "Full underlying subtitle/audio shutdown00688460 is not reconstructed by this wrapper. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "limitations": "Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Ordinary underlying shutdown00688460 is now connected; special video shutdown is excluded.",
       "evidence": [
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
-        "recovered/frontend/application_states.h"
+        "recovered/frontend/application_states.h",
+        "analysis/playback-completion-map.json",
+        "analysis/playback-completion.md"
       ]
     },
     {
@@ -4014,6 +4019,90 @@
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
         "recovered/host/application_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00688040",
+      "status": "partial",
+      "coverage": "Ordinary voice-before-IShow initialization, actual open/aspect/preferences/fade, separate subtitle loading and conditional real text owner, volume/play and clock calls.",
+      "limitations": "Original credits/outro/alternate descriptor and retained-state branches are unsupported. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "evidence": [
+        "analysis/playback-completion-map.json",
+        "analysis/playback-completion.md",
+        "recovered/host/application_launch.cpp"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006890f0",
+      "status": "partial",
+      "coverage": "Actual executable/language/stem path, loose existence probe, separate numbered/quoted DTA cache and ordinary cue parser; startup caption cache is preserved.",
+      "limitations": "Native cache/path ownership replaces original COW/mutable string ABI; credits parser is outside this path. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "evidence": [
+        "analysis/playback-completion-map.json",
+        "analysis/playback-completion.md",
+        "recovered/host/startup_session.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00689970",
+      "status": "partial",
+      "coverage": "Consume signed-ID-ordered values; subtitle byte3A gates text independently of uppercaseS audio. Retained timing/text and real samples, original two-path loads, ignored failed load result and local-cache clear.",
+      "limitations": "Native RAII removes original malformed-record leaks; numeric overflow throws rather than reproducing undefined CRT behavior. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "evidence": [
+        "analysis/playback-completion-map.json",
+        "analysis/playback-completion.md",
+        "recovered/frontend/opening_subtitles.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00688630",
+      "status": "partial",
+      "coverage": "Actual native text/atlas owner with recovered seven-float lower-screen box, depth, inset and supported style8 glyph submission; all installed English opening strings preflighted.",
+      "limitations": "Full original text/font-manager layout, all font registrations and wide/paragraph rendering are not reconstructed. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "evidence": [
+        "analysis/playback-completion-map.json",
+        "analysis/playback-completion.md",
+        "recovered/host/opening_text.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00688c10",
+      "status": "partial",
+      "coverage": "Ordinary sound-first status completion, retained actual IShow elapsed time, strict wrapping text expiry/activation and overlap ordering; one sequential audio cue per update with actual volume/bind/play calls.",
+      "limitations": "Credits scrolling, special outro/descriptor waits/fades and original unused QPC arithmetic/global scratch representation are excluded. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "evidence": [
+        "analysis/playback-completion-map.json",
+        "analysis/playback-completion.md",
+        "recovered/frontend/application_states.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00688f50",
+      "status": "partial",
+      "coverage": "Save IGraph state0, clear, movie scene, text state1/scene, restore saved state, outer-controller presentation; native exception cleanup restores after a throwing text pass.",
+      "limitations": "Native glyph consumer and existing verified device-state bridge replace full original text renderer/cache ABI. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "evidence": [
+        "analysis/playback-completion-map.json",
+        "analysis/playback-completion.md",
+        "recovered/frontend/opening_render.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00688460",
+      "status": "partial",
+      "coverage": "Ordinary three clear/presents, recognized profile persistence and fade restoration, IShow/voice release, reverse strings/samples,14 style-handle removal/reset and text release before descriptor deletion.",
+      "limitations": "Native supported style0/8 catalog is a bounded subset; special saved music and complete original global style/font/resource cache remain outside scope. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "evidence": [
+        "analysis/playback-completion-map.json",
+        "analysis/playback-completion.md",
+        "recovered/host/application_launch.cpp"
       ]
     }
   ]

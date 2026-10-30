@@ -1,0 +1,586 @@
+{
+  "scope": "Implemented ordinary opening subtitles/audio, strict timing, actual voice/sample/time ABI, English800x600 glyph rendering and movie-to-menu cleanup under the original controller. Compiled/native-audited and user desktop-confirmed on2026-10-31 for normal opening/subtitles/skips/menu and the requested staged missing-movie run. Full special video/global cache/ABI coverage is excluded.",
+  "runtime_verified": true,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006890f0",
+        "hex": "6aff68f886800064a10000000050648925000000",
+        "meaning": "Executable-directory/language/movie-stem subtitle path and loose CRT existence guard."
+      },
+      {
+        "address": "00689970",
+        "hex": "6aff68f887800064a10000000050648925000000",
+        "meaning": "Ordinary subtitle parser after localized numbered/quoted record loader."
+      },
+      {
+        "address": "00688630",
+        "hex": "6aff682c86800064a10000000050648925000000",
+        "meaning": "Actual text owner constructor and lower-screen box."
+      },
+      {
+        "address": "006443c0",
+        "hex": "6aff68f844800064a10000000050648925000000",
+        "meaning": "Shared string/style wrapper forwards to existing set(index0)."
+      },
+      {
+        "address": "00644960",
+        "hex": "53558be956578b5d388b7d348bf33bf374328b06",
+        "meaning": "Clear actual text records on expiry."
+      },
+      {
+        "address": "006438d0",
+        "hex": "51b9e8e28a00e8e5e3ffffc3",
+        "meaning": "ECX style ID forwarded to global style catalog00641CC0; not font release."
+      },
+      {
+        "address": "00688610",
+        "hex": "8b410885c0740e8b08498908750750e89c961500",
+        "meaning": "Subtitle text record destructor releases COW string."
+      },
+      {
+        "address": "00644b80",
+        "hex": "8bc1568b742408578d7808b907000000f3a5b101",
+        "meaning": "Seven-float text rectangle and dirty/enabled flags."
+      },
+      {
+        "address": "00647ee0",
+        "hex": "83ec3c53558be956578a457084c00f84c3050000",
+        "meaning": "Actual client text rendering, separate from movie pass."
+      },
+      {
+        "address": "006468d0",
+        "hex": "83ec08568bf1e865000000894424048b442410db",
+        "meaning": "Vertical align1 returns zero offset;2 center;3 bottom."
+      },
+      {
+        "address": "006469c0",
+        "hex": "53568b74240c5733d28b794885ff74318b414c2b",
+        "meaning": "Line baseline accumulation from glyph heights/leading."
+      },
+      {
+        "address": "00646a10",
+        "hex": "515355568b7424148be9578b4e048b45088b1189",
+        "meaning": "Horizontal alignment selects left/center/right/justify."
+      },
+      {
+        "address": "00643790",
+        "hex": "8b5424088bc18b4c240489088b4c240c8950048b",
+        "meaning": "Style struct layout:13 DWORDs with two packed flags."
+      },
+      {
+        "address": "006e5060",
+        "hex": "64a1000000006aff6810c4800050648925000000",
+        "meaning": "Numbered text storage rejects duplicate IDs and sorts signed IDs."
+      },
+      {
+        "address": "006e4cf0",
+        "hex": "6aff68f0c3800064a10000000050648925000000",
+        "meaning": "Shared original file loader including BOM/handle behavior."
+      },
+      {
+        "address": "006e5320",
+        "hex": "518b44240c538b5c240c5556578d1403894c2410",
+        "meaning": "CR/LF bounded record parser."
+      },
+      {
+        "address": "006b6740",
+        "hex": "8b412083c038c3",
+        "meaning": "Settings getter returns profile owner+38; subtitles owner+72 is settings byte3A."
+      },
+      {
+        "address": "00688c10",
+        "hex": "83ec10535556578bf1e8a2aadaff8b6c24248b10",
+        "meaning": "Video update begins with actual sound runtime."
+      },
+      {
+        "address": "00688f50",
+        "hex": "56578bf1e855bf15008b086a0050ff51788bf8e8",
+        "meaning": "Video draw followed by separate state1 text pass and restore."
+      },
+      {
+        "address": "00688460",
+        "hex": "5156578bf1bf03000000e83fca15008b086a0368",
+        "meaning": "Movie cleanup begins with three clear/present operations."
+      },
+      {
+        "address": "0066ed30",
+        "hex": "568bf1e8289701008b4e7085c974068b016a01ff",
+        "meaning": "Shutdown then descriptor deletion; distinct from state destructor."
+      },
+      {
+        "address": "006c0ca0",
+        "hex": "64a1000000006aff6820ac800050648925000000",
+        "meaning": "Cold constructor initializes active text=-1, audio cursor0 and movie time0."
+      },
+      {
+        "address": "006899a1",
+        "hex": "a11ce98a00c644244001895c2424895c241c8a40725688442413",
+        "meaning": "Capture profile byte72 before ordinary record parsing."
+      },
+      {
+        "address": "00689292",
+        "hex": "8d4d08518d4f28e852ba0500eb168b7c24108d4d08518d4f28e840ba0500eb048b7c2410",
+        "meaning": "Pass separate video+28 local text cache as ECX, not startup global cache."
+      },
+      {
+        "address": "00688c7f",
+        "hex": "8b46208d4e6c51508b10ff5238",
+        "meaning": "IShow+38 writes movie-time+6C even after stopped/unopened completion."
+      },
+      {
+        "address": "00688de0",
+        "hex": "8b4e488b14818b4e6c8b42048d04808d0480c1e0023bc1731d",
+        "meaning": "Unsigned strict end*100 < current time expiry, wrapping multiplication."
+      },
+      {
+        "address": "00688e35",
+        "hex": "8bc18b566c8b0cb88b018d04808d0480c1e0023bc2736a8b49048d04898d0c80c1e1023bca765a",
+        "meaning": "Strict start*100 < time < end*100 activation; no break after successful selection."
+      },
+      {
+        "address": "00688e9c",
+        "hex": "33d28b0cb88a56786a0083c10852518b4e38e80db5fbff897e6847e962",
+        "meaning": "Use raw string record with style byte78 and index0, retain last matching cue."
+      },
+      {
+        "address": "00688ec4",
+        "hex": "8b4e643bc873728b56588b048a8b008d04808d0c808b466cc1e1023bc1765a",
+        "meaning": "Audio cursor due comparison; only one sequential cue per update."
+      },
+      {
+        "address": "00688eea",
+        "hex": "b9fce88a008b1fe84ad80200d94008d80d74f5800051d91c2457ff53148b4e648b7e588b46246a008b0c8f8b108b49045150ff52048b4624680000803f508b10ff52208b46246a006a00508b08ff510cff46645f5e",
+        "meaning": "Set actual global sound volume, bind sample, voice volume1, play(0,0), increment cursor."
+      },
+      {
+        "address": "006885d3",
+        "hex": "bf34e58a005d8b0fe8f0b2fbffc707ffffffff83c70481ff6ce58a007ce88b4e3885c9740e8b116a01ff520cc7463800000000",
+        "meaning": "Fourteen dynamic style IDs removed/reset-1 before text owner destruction."
+      },
+      {
+        "address": "00688648",
+        "hex": "db44242cdd05f05881005355d8c956689c0000008be9c7442428c5ac433fd9542410d9c9d8e1d95c2418ddd8db442440dd05e8588100d8c9d95c2414dc0de0588100d95c241cd9442418d8642410d95c2420d9442414d864241cd95c2424",
+        "meaning": "x87 rectangle: X=.125W..875W, Y=.82H..98H, Z bits3F43ACC5."
+      },
+      {
+        "address": "008158e0",
+        "hex": "3d0ad7a3703dea3f5c8fc2f5285cef3f000000000000c03f",
+        "meaning": "Three binary64 rectangle constants .82/.98/.125."
+      },
+      {
+        "address": "0080f574",
+        "hex": "0ad7233c",
+        "meaning": "Float32 .01 profile sound scale."
+      },
+      {
+        "address": "0080fa0c",
+        "hex": "cdcc8c3f",
+        "meaning": "Float32 1.1 movie-only multiplier."
+      },
+      {
+        "address": "0064212c",
+        "hex": "c744241003000000c7442414ffffffffc7442418295c0f3d895c241cc7442420000080bfc7442424000080bf895c2428895c242c895c24308d5424108bce52896c2438897c243cc644244001c644244101895c2444e80afcffff",
+        "meaning": "Complete style8 definition between preceding and current registration calls: font3, white, .035f, center2/top1, two byte flags1 and DWORD flags0."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "00810458",
+        "targets": [
+          "00643e80",
+          "00647ee0",
+          "00643f30",
+          "0048ecd0"
+        ],
+        "meaning": "Original client text vtable; native reconstruction must not call original client."
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "006887a3",
+        "target": "00644b80"
+      },
+      {
+        "site": "006438d6",
+        "target": "00641cc0"
+      },
+      {
+        "site": "00688c19",
+        "target": "004336c0"
+      },
+      {
+        "site": "00688cf8",
+        "target": "00644960"
+      },
+      {
+        "site": "00688e0a",
+        "target": "00644960"
+      },
+      {
+        "site": "00688eae",
+        "target": "006443c0"
+      },
+      {
+        "site": "00688ef1",
+        "target": "006b6740"
+      },
+      {
+        "site": "00689299",
+        "target": "006e4cf0"
+      },
+      {
+        "site": "006892ab",
+        "target": "006e4cf0"
+      },
+      {
+        "site": "006892c2",
+        "target": "00689970"
+      },
+      {
+        "site": "00689e1a",
+        "target": "006e4c80"
+      },
+      {
+        "site": "0068936f",
+        "target": "00644960"
+      },
+      {
+        "site": "00689942",
+        "target": "006e4c80"
+      },
+      {
+        "site": "006884b0",
+        "target": "006b1290"
+      },
+      {
+        "site": "006884c4",
+        "target": "004336c0"
+      },
+      {
+        "site": "006884df",
+        "target": "004336c0"
+      },
+      {
+        "site": "006885db",
+        "target": "006438d0"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "1007ab20",
+        "hex": "6aff683b99091064a10000000050648925000000",
+        "meaning": "Real ISnd driver+28 factory allocates voice."
+      },
+      {
+        "address": "1007aa80",
+        "hex": "6aff681b99091064a10000000050648925000000",
+        "meaning": "Real ISnd driver+20 factory allocates sample."
+      },
+      {
+        "address": "1007bee0",
+        "hex": "8bc133c989480889480cb90000803fc70070de0910c7400401000000894814894818c3",
+        "meaning": "Voice constructor table1009DE70 and own volume/frequency1."
+      },
+      {
+        "address": "1007bfb0",
+        "hex": "8b4c24048b41044889410479135168e0980a10e848d1feff83c40833c0c2040085c075098b016a01ff503c33c0c2",
+        "meaning": "Voice release: self stack, RET4."
+      },
+      {
+        "address": "1007bfe0",
+        "hex": "53568b74240c8b065756ff50148b460885c08d7e",
+        "meaning": "Voice bind: self/sample/flags on stack; original sample pointer recovered from EBX."
+      },
+      {
+        "address": "1007c059",
+        "hex": "895e0cff43048b4424185f8946105e33c05bc20c00",
+        "meaning": "Bind retains sample and stores flags; RET12."
+      },
+      {
+        "address": "1007c070",
+        "hex": "568b7424088b065756ff50148b460833ff3bc774098b0850ff5108897e088b460c3bc774088b1050ff12897e0c897e105f33c05ec20400",
+        "meaning": "Voice close stops/releases buffer and sample; RET4."
+      },
+      {
+        "address": "1007c0e0",
+        "hex": "83ec10538b5c24188b4308555633f63bc6570f844f050000",
+        "meaning": "Voice play uses self/flags/offset on stack."
+      },
+      {
+        "address": "1007c9c0",
+        "hex": "8b442404f64010025675788b700885f674718b4c",
+        "meaning": "Voice volume setter self/float on stack."
+      },
+      {
+        "address": "1007ccf0",
+        "hex": "6aff689b99091064a1000000005064892500000000515355568be933f657896c241089750c33c0c7450000df0910c745",
+        "meaning": "Sample constructor installs table1009DF00."
+      },
+      {
+        "address": "10072400",
+        "hex": "83ec08568b7424108a462084c0750cb8090000805e83c408c208008b4e1c85c974278b81c00200000faf410c69c0e803000033d2f7b1bc0200008b4c24145e890133c083c408c20800",
+        "meaning": "IShow+38 elapsed milliseconds; unopened returns error without writing output; Bink frame/rate branch uses integer arithmetic."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009de70",
+        "targets": [
+          "1007bfb0",
+          "1007bfe0",
+          "1007c070",
+          "1007c0e0",
+          "1007c0b0",
+          "1007c660",
+          "1007c750",
+          "1007c7a0",
+          "1007c9c0",
+          "1007caa0",
+          "1007ca50",
+          "1007cb10",
+          "1007cba0",
+          "1007cc40",
+          "1007a790",
+          "1007bf10"
+        ],
+        "meaning": "Complete original voice table, independent from sample/movie tables."
+      },
+      {
+        "address": "1009df00",
+        "targets": [
+          "1007cef0",
+          "1007cf30",
+          "1007d240",
+          "1007d280"
+        ],
+        "meaning": "Sample release/load/close table prefix."
+      },
+      {
+        "address": "1009d9f8",
+        "targets": [
+          "10072400"
+        ],
+        "meaning": "Actual IShow+38 elapsed-time query, not +34 byte-position."
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "asset_observations": [
+    {
+      "path": "Hidden and Dangerous 2/Text/EnglishUS/subtitles/Intro.txt",
+      "sha256": "41581538d85ffd0944b8be32c93324064cef5ae7ca09f4d220e6b4856960fdf7",
+      "bytes": 194,
+      "text_cues": 4,
+      "audio_cues": 0,
+      "times_100ms": [
+        [
+          1610,
+          1630
+        ],
+        [
+          1810,
+          1825
+        ],
+        [
+          1835,
+          1855
+        ],
+        [
+          1865,
+          1875
+        ]
+      ]
+    },
+    {
+      "path": "Hidden and Dangerous 2/Text/english/subtitles/Intro.txt",
+      "sha256": "41581538d85ffd0944b8be32c93324064cef5ae7ca09f4d220e6b4856960fdf7",
+      "bytes": 194,
+      "text_cues": 4,
+      "audio_cues": 0,
+      "times_100ms": [
+        [
+          1610,
+          1630
+        ],
+        [
+          1810,
+          1825
+        ],
+        [
+          1835,
+          1855
+        ],
+        [
+          1865,
+          1875
+        ]
+      ]
+    },
+    {
+      "path": "Hidden and Dangerous 2/Text/french/subtitles/Intro.txt",
+      "sha256": "ff56553b09aba497125c474e3a0edfcbc2c783c53b99da66f7a4e99ff189bf3f",
+      "bytes": 217,
+      "text_cues": 4,
+      "audio_cues": 0,
+      "times_100ms": [
+        [
+          1610,
+          1630
+        ],
+        [
+          1810,
+          1825
+        ],
+        [
+          1835,
+          1855
+        ],
+        [
+          1865,
+          1875
+        ]
+      ]
+    },
+    {
+      "path": "Hidden and Dangerous 2/Text/german/Subtitles/Intro.txt",
+      "sha256": "c7e90b2fc5c94a992dfee6e7dc41afe0ae007a1844df004ef38bf435f9b1be8a",
+      "bytes": 189,
+      "text_cues": 4,
+      "audio_cues": 0,
+      "times_100ms": [
+        [
+          1610,
+          1630
+        ],
+        [
+          1810,
+          1825
+        ],
+        [
+          1835,
+          1855
+        ],
+        [
+          1865,
+          1875
+        ]
+      ]
+    },
+    {
+      "path": "Hidden and Dangerous 2/Text/italian/Subtitles/Intro.txt",
+      "sha256": "ba2d4fcab83b1782d1d789b6228e91c1102b418ed81af1282fe2f78d29ff7344",
+      "bytes": 197,
+      "text_cues": 4,
+      "audio_cues": 0,
+      "times_100ms": [
+        [
+          1610,
+          1630
+        ],
+        [
+          1810,
+          1825
+        ],
+        [
+          1835,
+          1855
+        ],
+        [
+          1865,
+          1875
+        ]
+      ]
+    },
+    {
+      "path": "Hidden and Dangerous 2/Text/spanish/Subtitles/Intro.txt",
+      "sha256": "9c3ed9045a262cc3f879be3fe88ff6c5a02225522b4792206a02663605d6b261",
+      "bytes": 215,
+      "text_cues": 4,
+      "audio_cues": 0,
+      "times_100ms": [
+        [
+          1610,
+          1630
+        ],
+        [
+          1810,
+          1825
+        ],
+        [
+          1835,
+          1855
+        ],
+        [
+          1865,
+          1875
+        ]
+      ]
+    }
+  ],
+  "evidence_notes": "See playback-completion.md for implementation, audits and desktop-pending scope; preparation retains original contracts. Voice/sample calling conventions follow stack/RET evidence. Style removal is separate from font ownership; native supported style0/8 subset is not full global cache recovery. Census-backed implemented client bodies receive partial credit only; no delegated engine, absent helper or native glue credit.",
+  "sources": [
+    "recovered/frontend/opening_subtitles.h",
+    "recovered/frontend/opening_render.h",
+    "recovered/frontend/application_states.h",
+    "recovered/host/opening_audio.h",
+    "recovered/host/opening_text_geometry.h",
+    "recovered/host/opening_text.h",
+    "recovered/host/engine_video.h",
+    "recovered/host/application_launch.cpp",
+    "recovered/host/startup_session.h",
+    "tools/run_application_launch.py"
+  ],
+  "staged_executable_sha256": "0a2cfd32d3c4fa27c7e8c49fce5f89914b7e5d8714a02c3a5586ec0ce49333d0",
+  "desktop_verification": {
+    "date": "2026-10-31",
+    "performed_by": "user",
+    "scope": "Ordinary opening playback, visible Intro captions, skips/Space/focus/menu/Exit and requested omitted Logo1/Intro run. Not whole-function or unused-branch equivalence.",
+    "confirmation": "User reported both requested desktop runs work.",
+    "retained_log": "analysis/work/startup-runtime/run/host-runtime.log",
+    "retained_run": "Normal four-movie run; four actual caption activations/submissions/clears.",
+    "frames": 11306,
+    "teardown_result": 0,
+    "caption_activation_ms": [
+      161040,
+      181040,
+      183520,
+      186520
+    ],
+    "caption_clear_ms": [
+      163040,
+      182520,
+      185520,
+      187520
+    ],
+    "omitted_movies_user_confirmed": [
+      "Logo1.bik",
+      "Intro.bik"
+    ],
+    "staged_movies_restored": true,
+    "native_audit_only": [
+      "Separate subtitle-audio cues (none in installed English Intro)",
+      "Text disabled preference and malformed/overflow/exception fixtures"
+    ],
+    "outside_scope": [
+      "Generic paragraphs/locales",
+      "Special video states",
+      "Full original global cache/ABI lifecycle",
+      "Full failure/partial-startup/shutdown matrix"
+    ]
+  }
+}

@@ -1,5 +1,11 @@
 # Opening video to menu: normal playback integration
 
+Current path: [controller/state delivery](controller-integration.md) supersedes
+the preview composition described below. It is committed as `c0e7346` and user
+desktop-confirmed. The [playback extension](playback-completion.md) now implements subtitle/audio
+ownership, timing, glyph rendering and cleanup; user desktop-confirmed on2026-10-31.
+The defaults/unwired-service statements below describe the earlier preview.
+
 Base client SHA-256: `8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307`.
 Engine SHA-256: `12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee`.
 Addresses below are original preferred-base VAs. The normal playback path is

@@ -37,8 +37,11 @@ loading. The bounded startup checkpoint is desktop-confirmed (2026-10-30);
 the [original controller/state launch](analysis/controller-integration.md) is also
 implemented and desktop-confirmed. One shared device lifetime drives four movies
 into compiled Main/Exit with63/63 input words and status4 Exit teardown. Run
-`python3 -B tools/run_application_launch.py`. Opening subtitles/audio and the full
-failure/shutdown matrix remain open; English800x600/Main/Exit is the UI boundary.
+`python3 -B tools/run_application_launch.py`. The full failure/shutdown matrix remains open; English800x600/Main/Exit is the UI boundary.
+The [opening playback extension](analysis/playback-completion.md) now implements
+actual subtitle/audio owners, timing, glyph rendering and ordered cleanup.
+Native/i386 checks pass; the user desktop-confirmed captions, skips, menu entry
+and the requested missing-movie run on2026-10-31.
 
 Movie/menu keyboard device input and focus return are desktop-confirmed. The
 [keyboard preprocessing and text-input slice](analysis/keyboard-preprocessing.md)
@@ -218,11 +221,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **297 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **304 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 292 |
+| Base game client | 17,294 | 0 | 299 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

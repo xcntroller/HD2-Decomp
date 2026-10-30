@@ -83,7 +83,10 @@ Build `make application-launch` with the same i386 compiler for the
 `--stage-only` to prepare without Windows execution. One shared startup/device
 owner now drives four movies into compiled Main/Exit. The user desktop-confirmed
 input, transitions and status4 Exit teardown. English800x600/Main/Exit remains
-the UI boundary; subtitle/audio completion and the full failure matrix are next.
+the UI boundary. The [playback extension](../analysis/playback-completion.md) adds
+actual subtitle/audio ownership, timing, text and cleanup; ordinary playback,
+captions and the requested missing-movie run are user desktop-confirmed. Use repeatable `--omit-movie Intro.bik` for a staged missing-movie run;
+selected staged files restore after the run. Full failure/shutdown coverage is next.
 
 The second component is the
 [model resource key helper](scene/model_resource_key.cpp), with its

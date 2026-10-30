@@ -42,7 +42,7 @@ private:
 // Ordinary single-movie part of0066EAE0/ED30/ED50/ED80. The controller, not this
 // owner, advances the four-movie sequence and replaces it with the frontend.
 // Backend owns concrete engine resources and cleans partially initialized data.
-// Special credits/outros and subtitles retain their separate delivery boundary.
+// Special credits/outros retain their separate delivery boundary.
 template<class Backend>
 class OpeningApplicationState final : public ApplicationState {
 public:
@@ -77,6 +77,7 @@ public:
         backend_->update_sound(milliseconds); // Actual00688C10 prefix.
         const auto playback = backend_->movie_status();
         if (playback == -1 || playback == 1) complete();
+        backend_->update_subtitles(); //00688C10 continues after ordinary completion.
         promote_completion();
     }
     void render() override { backend_->draw_movie(); }

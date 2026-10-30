@@ -3,6 +3,7 @@
 
 #include "host/menu_scene.h"
 #include "frontend/opening_playback.h"
+#include "frontend/opening_render.h"
 
 namespace hd2::host {
 
@@ -34,6 +35,7 @@ public:
         stop_ = scene_method<Result>(video_, module_, 0x18, 0x71d10);
         play_ = scene_method<Result>(video_, module_, 0x14, 0x71c50);
         status_ = scene_method<Result>(video_, module_, 0x2c, 0x72160);
+        time_ = scene_method<GetTime>(video_, module_, 0x38, 0x72400);
         opened_ = scene_method<Opened>(video_, module_, 8, 0x71b70);
         dimensions_ = scene_method<GetRectangle>(video_, module_, 0x28, 0x720e0);
         rectangle_ = scene_method<SetRectangle>(video_, module_, 0x20, 0x72040);
@@ -57,6 +59,8 @@ public:
     void play() { play_(video_); }
     void stop() { if (video_ && stop_) stop_(video_); }
     std::int32_t playback_status() const { return status_(video_); }
+    // Original00688C10 ignores HRESULT. Unopened/error must preserve output.
+    void elapsed_time(std::uint32_t& milliseconds) const { time_(video_, &milliseconds); }
     void clear_present() const {
         clear_(graphics_, 0, 1.0f, 3);
         present_(graphics_);
@@ -68,18 +72,25 @@ public:
         release_(video_);
         video_ = nullptr;
     }
-    void draw(bool present = true) const {
-        // 00688f50 preserves IGraph state zero across video rendering.
-        const auto saved = get_state_(graphics_, 0);
-        clear_(graphics_, 0, 1.0f, 3);
-        begin_(graphics_);
-        draw_(video_, 0);
-        end_(graphics_);
-        set_state_(graphics_, 0, saved);
-        if (present) present_(graphics_); // Controller loop owns normal frame presentation.
+    template<class TextPass>
+    void draw_with_text(bool has_text, TextPass&& text_pass, bool present = false) const {
+        RenderServices renderer{*this};
+        frontend::render_opening_frame(renderer, has_text, std::forward<TextPass>(text_pass), present);
     }
+    void draw(bool present = true) const { draw_with_text(false, [] {}, present); }
 
 private:
+    struct RenderServices {
+        const EngineVideo& owner;
+        std::uint32_t graphics_state() const { return owner.get_state_(owner.graphics_, 0); }
+        void graphics_state(std::uint32_t value) const { owner.set_state_(owner.graphics_, 0, value); }
+        void clear() const { owner.clear_(owner.graphics_, 0, 1.0f, 3); }
+        bool has_movie() const { return owner.video_ != nullptr; }
+        void begin() const { owner.begin_(owner.graphics_); }
+        void end() const { owner.end_(owner.graphics_); }
+        void draw_movie() const { owner.draw_(owner.video_, 0); }
+        void present() const { owner.present_(owner.graphics_); }
+    };
     using Result = std::int32_t (WINAPI *)(EngineFrame*);
     using Unary = void (WINAPI *)(EngineFrame*);
     using Factory = EngineFrame* (WINAPI *)(EngineFrame*);
@@ -89,6 +100,7 @@ private:
     using Open = std::int32_t (WINAPI *)(EngineFrame*, const char*, std::uint32_t);
     using Opened = std::uint8_t (WINAPI *)(EngineFrame*);
     using GetRectangle = std::int32_t (WINAPI *)(EngineFrame*, frontend::VideoRectangle*);
+    using GetTime = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t*);
     using SetRectangle = std::int32_t (WINAPI *)(EngineFrame*, const frontend::VideoRectangle*);
     using Volume = std::int32_t (WINAPI *)(EngineFrame*, float);
     using Draw = std::int32_t (WINAPI *)(EngineFrame*, std::uint8_t);
@@ -103,6 +115,7 @@ private:
     Result release_{}, close_{}, play_{}, stop_{}, status_{};
     Opened opened_{};
     GetRectangle dimensions_{};
+    GetTime time_{};
     SetRectangle rectangle_{};
     Volume volume_{};
     Draw draw_{};

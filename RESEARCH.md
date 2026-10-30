@@ -3516,3 +3516,100 @@ skip/music/cleanup branches, then the desktop skip/missing-movie matrix.
 Main/Exit, English800x600 and cold standalone control remain explicit limits;
 full eager builders/setup/VM, global caches and failure/shutdown matrix are open.
 No commit made for this delivery; last commit remains47e768d.
+
+## 2026-10-30 — committed controller and prepared playback completion
+
+Committed the accepted controller delivery as `c0e7346`, then researched
+milestone0 item3 without runtime edits or function credit. [Prepared contracts](analysis/playback-completion-preparation.md)
+identify the ordinary subtitle owner/parser, actual voice/sample ABI, time query,
+style8 text layout and complete movie-to-menu cleanup sequence.
+
+Confirmed006890F0 passes a separate movie+28 numbered-text cache to006E4CF0;
+reuse existing localization parser/storage, not raw legacy lines or the startup
+cache.00689970 snapshots profile+72 = settings byte3A. Timing uses IShow+38
+milliseconds, strict wrapping32-bit start/end comparisons, overlap-last-wins
+text and only one due audio per update. Unopened time query leaves output alone;
+ordinary completion still executes the cue tail. Audio sets actual global volume,
+binds/references samples and plays the separate voice; do not use scene sounds.
+
+00688630 gives the lower .125W..875W/.82H..98H box; style8 is centered/top,
+white SMALL font/.035f. Native ASan/UBSan audit of existing parser/font/defaults
+matches independent actual English Intro/SMALL.tbl decoding: four cues at
+1610–1630/1810–1825/1835–1855/1865–1875 in100ms units, widths342/219/259/61.
+All six installed Intro variants have four text/no audio cues with those times;
+no logo subtitles exist in those folders. Audio fixture coverage is still required.
+
+Corrected an earlier cleanup interpretation:006438D0→00641CC0 removes text-style
+IDs, not font references. The14 globals come from credits style setup, are PE
+zero-initialized, and cleanup calls removal then writes-1 before destroying text.
+Do not infer a nonexistent initial all--1 array or silently claim full global
+style/resource-cache ownership from freeing a font texture.
+
+20 new read-only/noanalysis function exports succeeded across playback-owners,
+playback-engine, playback-text, playback-render and playback-layout work folders.
+Initial requests stopped at absent10072400/00647EE0 definitions; prior IShow
+export and a guarded transient text vtable definition supplied those boundaries.
+Changes to the research program were discarded. The new map validates both
+hashes,47 instruction anchors,4 client/21 engine slots and17 calls; four mutations
+reject. Actual asset hashes/cues and independent native/Python metrics agree.
+Temporary audits removed; no Windows code run, permanent tests or new ledger
+credit. Item3 stays open pending implementation and actual desktop acceptance.
+
+## 2026-10-31 — ordinary playback extension implemented; desktop pending
+
+Implemented the prepared third-checkbox batch inside the existing movie state,
+without another loop or successful replacement services. [Delivery contract](analysis/playback-completion.md)
+records the concrete scope, commands, audits and exclusions. The movie-local
+numbered-text cache now feeds an owning parser; settings byte3A gates text while
+real sample/voice calls remain independent. Engine time errors retain the prior
+value; stopped/missing video still executes the cue tail. Strict wrapping timing,
+overlap-last-wins and one audio cue per update are preserved. Original music/
+preferences/Intro persistence remain composed with the same shared owners.
+
+Added actual style8 lower-box glyph submission through the existing verified
+texture/primitive/device-state boundary, with distinct movie/text scenes and
+saved IGraph state restoration. Full original generic paragraph/font/style ABI
+is explicitly outside scope. The actual ordinary cleanup now releases movie,
+voice, reverse strings/samples,14 style handles and text before the descriptor.
+Native style0/8 storage preserves zero-initialized handles then removal/reset-1;
+it does not claim the full global registry or call style removal a font release.
+
+Temporary native ASan/UBSan audits pass for actual loader/parser/model, malformed/
+empty/BOM/duplicates, text-off/audio independence, both sample paths/failures,
+exact boundaries/overlaps/wrap/jumps, query failure, one cue per tick, reverse
+release/partial acquisition, Escape/Space and completion tail. Portable render
+composition passes two-scene/state/presentation and throwing-text cleanup audits.
+Independent actual Intro/SMALL.tbl decoding matches times, glyph counts, centers,
+baseline513 and widths342/219/259/61. Real-adapter strict i386 three-target builds
+and compile/link-only Windows audit pass; no Windows code run by agent.
+
+Added repeatable launcher --omit-movie for genuine missing staged movie tests,
+after hash-validated staging and before launch. Copies restore after errors;
+unexpected replacement files and backups are preserved. Temporary audits verify
+exceptions/partial rename, unsafe names/links/collisions and unchanged original
+fixtures. Existing native suite,158 Python tests, static/mutation/frozen ledger
+checks pass. Temporary audits removed; no permanent tests added.
+
+Seven census-backed client additions00688040/006890F0/00689970/00688630/00688C10/
+00688F50/00688460 receive partial credit only; existing style/wrapper coverage is
+extended without duplicates.304 partial (299client/fiveengine), zero complete,
+frozen18,783. Delegated calls/absent helpers/native glue gain none. Staged build
+SHA2560a2cfd32d3c4fa27c7e8c49fce5f89914b7e5d8714a02c3a5586ec0ce49333d0.
+Desktop confirmation requested for captions/skip/focus/menu/Exit and omitted
+Logo1/Intro progression. Item3 stays open; no new desktop acceptance or commit.
+
+## 2026-10-31 — playback desktop acceptance
+
+User confirmed both requested runs: normal launch/captions/skip/Space/focus/menu/
+Exit and the staged omitted Logo1/Intro test. The retained normal log records all
+four successful opens, Intro text4/audio0, four style8 glyph submissions,
+activations161040/181040/183520/186520ms and clears163040/182520/185520/187520ms.
+It reaches menu/status4 Exit, cold reset and teardown result=0 after11,306 frames.
+All staged movies are restored and no omission backup directories remain.
+Only the user ran Windows code. Separate S audio cues remain native-audited,
+as the installed English Intro contains none; no unused-branch equivalence claim.
+
+Milestone0 item3 is checked within the ordinary launch delivery boundary.
+Ledger remains304 partial, zero complete, frozen18,783. Next is item4 failure/
+partial-startup/normal shutdown; the five outcomes remain stable. Interactive
+acceptance received; no new commit requested or made for this sweep.

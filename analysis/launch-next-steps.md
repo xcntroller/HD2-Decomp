@@ -2,9 +2,14 @@
 
 Current starting point: [controller/state delivery](controller-integration.md) is
 implemented and user desktop-confirmed; milestone0 items1 and2 are complete.
-Next finish reached opening subtitle/audio ownership and remaining playback/skip/
-cleanup branches, then ordinary/skipped/missing-movie desktop verification.
-[Preparation](controller-integration-preparation.md) retains original contracts.
+The [opening playback extension](playback-completion.md) now implements the
+reached subtitle/audio owners, rendering and cleanup. User desktop acceptance
+on2026-10-31 completes item3. Next is failure/partial-startup/normal shutdown;
+keep full failure coverage distinct from the accepted ordinary launch.
+[Playback preparation](playback-completion-preparation.md) now supplies the
+concrete parser, time/audio ABI, text layout, cleanup and acceptance sequence.
+Earlier [controller preparation](controller-integration-preparation.md) retains
+the preceding state/frame contracts.
 The sections below preserve earlier dependency research; use the current delivery
 contract to distinguish integrated owners from remaining services.
 

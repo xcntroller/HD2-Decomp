@@ -6,6 +6,7 @@
 #include "frontend/control_frame.h"
 #include "frontend/application_controller.h"
 #include "frontend/profile_save.h"
+#include "frontend/opening_subtitles.h"
 #include "frontend/input_setup.h"
 #include "frontend/sound_manager_data.h"
 #include "frontend/startup_modules.h"
@@ -124,6 +125,17 @@ public:
     const frontend::LocalizedTextCache& text() const { return text_; }
     bool wide_characters() const { return language_.state().wide_characters; }
     std::string language() { return language_.get(); }
+    bool subtitles_enabled() { return data_.profile().options.settings.bytes[0x3a] != 0; }
+    bool load_movie_subtitles(const char* filename, frontend::LocalizedTextCache& text) {
+        const auto path = frontend::opening_subtitle_path(directory_.get(), language(), filename);
+        if (!platform_.probe_text_file(path)) return false;
+        return frontend::load_localized_text_file(text, text_files_, path);
+    }
+    frontend::OpeningTextStyles& opening_text_styles() { return opening_text_styles_; }
+    void set_subtitle_driver_volume() {
+        settings_backend_.sound_driver_volume(static_cast<float>(
+            static_cast<long double>(data_.profile().options.settings.real(8)) * 0.01f));
+    }
     void initialize_mouse(std::uint32_t flags) {
         using Initialize = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t);
         const auto result = scene_method<Initialize>(graphics(), engine_, 0xdc, 0x6f710)(graphics(), flags);
@@ -224,6 +236,7 @@ private:
     StartupLocalizationPlatform platform_;
     frontend::ExecutableDirectory<StartupLocalizationPlatform> directory_;
     frontend::ApplicationLanguage<StartupLocalizationPlatform> language_;
+    frontend::OpeningTextStyles opening_text_styles_;
     HumanPortraits portraits_;
     frontend::ApplicationStartupData<HumanPortraits> data_;
     StartupArchiveBackend archive_backend_;
