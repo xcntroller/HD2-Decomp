@@ -1,6 +1,76 @@
 # Session handoff - 2026-10-30
 
-## Resume here: recursive control factory and container input, desktop-confirmed
+## Resume here: options widget source and observers audited; visual backends next
+
+Recursive construction/input slice is user desktop-confirmed and committed as
+**354ae55** (372 frames, five-control recursive probe passed, clean teardown).
+Current options-widget source slice is **uncommitted and native-audited only**.
+It adds no live menu action; no repeat desktop test is needed for these source
+additions. This top section supersedes the historical checkpoints below.
+
+New source files: `options_widget_base.h`, `slider_control.h`,
+`selector_control.h`, `toggle_control.h` and `options_observers.h` under
+`recovered/frontend`. They compose actual native state/text/observer helpers
+with supplied visual/internal-part/input backends. They do NOT construct engine
+widgets or implement real settings storage/apply services. MenuControlKind now
+names original kinds 8/10/24; live constructors still explicitly reject them.
+
+Slider 00665010 behavior includes signed/unsigned range limits and wrap, silent
+position/step, direct thumb float queries, floor(+0.5) quantization, different
+immediate/queued linked-update paths and zero-argument change notifications.
+Focus/press/drag, ceil(abs(wheel)/120), parent/range enable gates and strict-<0
+repeat timing (300/50) are reconstructed. Track world-bounds conversion and input
+locking remain backend work. Selector 0064F550 includes owned items, query
+payloads, wrap, removal's stale caption/index<=0 disable and programmatic change
+while disabled. Toggle 006546F0 has notifying/silent fallthrough, rereads after
+observers, state/half selection and target-nibble focus. Direct toggle activation
+has no disabled gate; parent input eligibility is responsible. Original invalid
+enabled-empty selector and nonfinite float conversion become native exceptions.
+
+Typed observer helpers reconstruct 0061FCA0 (preset: seven silent values, seven
+availability changes, then apply), 006202A0 (five float settings, query before
+ID match, music threshold and sound-only click preview), 00620440 (three byte
+settings; mouse-only apply) and 00620720 (voice byte and queued slider enable).
+They call supplied native services; preference implementations, graphics feature
+calculation, persistence and engine apply helpers are still open.
+
+`tools/DefineOptionsWidgetFunctions.java` fingerprint/vtable/registration-checks
+the indirect targets before defining them. Use with `-readOnly -noanalysis` and
+ExportFunctions.java in the existing research project. Cached exports are under
+`analysis/work/menu-options-widgets`, `menu-options-widget-helpers` and
+`menu-options-observers`. Some early helper exports stopped at missing callback
+metadata; the subsequent verified definition script successfully exported all
+four observer functions. Do not repeat the failed command or infer missing code.
+
+New `analysis/menu-options-widget-map.json`: 48 byte anchors, 29 vtable slots,
+34 direct calls. Twenty-two new PARTIAL census entries; eleven additional
+reconstructed method starts are absent from the frozen inventory and not counted.
+Total **96 partial (92 client/four engine), zero complete, frozen 18,783**.
+Native ownership/ABI composition receives no separate function credit. The
+[options notes](analysis/menu-options.md) detail exact rules and remaining scope.
+
+Temporary native ASan/UBSan and i386 audit checks all three runtimes, actual
+state/text/tagged-event/observer code, retained string/query lifetimes, original
+edge cases, focus/disable propagation, wheel/repeat and connected settings graph.
+Graphics preset delivery changes seven toggles silently and causes no feedback;
+apply follows all fourteen queued messages. Native visual/input services are
+fake backends; actual engine visuals/settings files were not touched. No new
+unit tests or agent-side Proton runs. Remove temporary audit files after checks.
+
+Next substantial slice: recover actual widget internal-part/model construction
+00664B90 (slider), 0064F1C0 (selector), 006541E0 (toggle), and their internal
+arrow/thumb/half control classes. Pseudocode for these constructors loses stack
+arguments; verify instructions before binding visual names, lookup flags and
+parent/layout roots. Then connect real preference services (006B6740 and apply/
+graphics-feature helpers), complete options definitions and nested availability,
+and entry/apply/back contracts before enabling options. Existing desktop command
+with --probe-groups stays valid, but current source additions do not change it.
+
+Foundation scope is now explicit in plan.md: deliver readable native shared
+behavior alongside real screens; complete original client class ABI is not a
+precondition. Keep large slices, no untested live commits and no pushes.
+
+## Previous checkpoint: recursive control factory and container input, desktop-confirmed
 
 Previous group bridge is user desktop-confirmed and committed as **85ba432**
 (425 frames, successful probe, clean teardown). Current recursive construction

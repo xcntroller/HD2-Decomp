@@ -7,7 +7,9 @@
 
 namespace hd2::frontend {
 
-enum class MenuControlKind : std::uint32_t { container = 5, text = 0x13, button = 0x14 };
+enum class MenuControlKind : std::uint32_t {
+    container = 5, slider = 8, selector = 0x10, text = 0x13, button = 0x14, toggle = 0x24
+};
 // Host semantic roles identify the three implemented actions without relying
 // on array positions. These role names are not original client fields.
 enum class MenuControlRole { none, exit, yes, no, ok };

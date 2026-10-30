@@ -1,0 +1,742 @@
+{
+  "scope": "Source-only native state/message/input subsets for options widget kinds 8,10,24 and four original settings observers. Engine internal-part construction, real preference services and live options integration remain unfinished.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "sources": [
+    "recovered/frontend/options_widget_base.h",
+    "recovered/frontend/toggle_control.h",
+    "recovered/frontend/selector_control.h",
+    "recovered/frontend/slider_control.h",
+    "recovered/frontend/options_observers.h",
+    "tools/DefineOptionsWidgetFunctions.java"
+  ],
+  "instruction_anchors": [
+    {
+      "address": "006546f0",
+      "hex": "558bec83e4f083ec1856578b7d088bf1",
+      "meaning": "Verified entry of 006546f0"
+    },
+    {
+      "address": "006549a0",
+      "hex": "51568bf18a467884c07407e860000000",
+      "meaning": "Verified entry of 006549a0"
+    },
+    {
+      "address": "006549e0",
+      "hex": "568bf18a467884c075188b4e706a01e8",
+      "meaning": "Verified entry of 006549e0"
+    },
+    {
+      "address": "00654a10",
+      "hex": "568bf18a467884c074188b4e706a00e8",
+      "meaning": "Verified entry of 00654a10"
+    },
+    {
+      "address": "006541a0",
+      "hex": "538b5c2408568bf13a5e64742053e80d",
+      "meaning": "Verified entry of 006541a0"
+    },
+    {
+      "address": "00654840",
+      "hex": "568bf18a466484c075518b4e6c85c974",
+      "meaning": "Verified entry of 00654840"
+    },
+    {
+      "address": "006548b0",
+      "hex": "568bf1578b4e6c85c97405e840f5feff",
+      "meaning": "Verified entry of 006548b0"
+    },
+    {
+      "address": "00654930",
+      "hex": "56578bf98b477c85c0745a8b74240c3b",
+      "meaning": "Verified entry of 00654930"
+    },
+    {
+      "address": "00654910",
+      "hex": "e88b000000b801000000c20400909090",
+      "meaning": "Verified entry of 00654910"
+    },
+    {
+      "address": "00654920",
+      "hex": "e87b000000b801000000c20400909090",
+      "meaning": "Verified entry of 00654920"
+    },
+    {
+      "address": "0064f550",
+      "hex": "6aff68f84c800064a100000000506489",
+      "meaning": "Verified entry of 0064f550"
+    },
+    {
+      "address": "0064fa50",
+      "hex": "8a442404568bf18b4e6c884664884171",
+      "meaning": "Verified entry of 0064fa50"
+    },
+    {
+      "address": "0064fa00",
+      "hex": "b801000000c204009090909090909090",
+      "meaning": "Verified entry of 0064fa00"
+    },
+    {
+      "address": "0064f960",
+      "hex": "568bf1576a008b4e6ce80244ffff8b7c",
+      "meaning": "Verified entry of 0064f960"
+    },
+    {
+      "address": "0064f9b0",
+      "hex": "568bf18b4e6ce84544ffff8b8e900000",
+      "meaning": "Verified entry of 0064f9b0"
+    },
+    {
+      "address": "0064f900",
+      "hex": "53568bf1578b7c24108b068b9e900000",
+      "meaning": "Verified entry of 0064f900"
+    },
+    {
+      "address": "0064fa10",
+      "hex": "568bf18a466484c0752a8b8e90000000",
+      "meaning": "Verified entry of 0064fa10"
+    },
+    {
+      "address": "00665010",
+      "hex": "64a1000000006aff6853668000506489",
+      "meaning": "Verified entry of 00665010"
+    },
+    {
+      "address": "00665760",
+      "hex": "8b4424045684c08bf175188b4e4c85c9",
+      "meaning": "Verified entry of 00665760"
+    },
+    {
+      "address": "006657c0",
+      "hex": "64a1000000006aff6888668000506489",
+      "meaning": "Verified entry of 006657c0"
+    },
+    {
+      "address": "006658c0",
+      "hex": "64a1000000006aff68b0668000508b44",
+      "meaning": "Verified entry of 006658c0"
+    },
+    {
+      "address": "00665430",
+      "hex": "568bf1578b8e8c0000008b06518bceff",
+      "meaning": "Verified entry of 00665430"
+    },
+    {
+      "address": "006654b0",
+      "hex": "568bf18b8e8c0000008b06518bceff50",
+      "meaning": "Verified entry of 006654b0"
+    },
+    {
+      "address": "00665500",
+      "hex": "53568bf1578b7c24108b1e57ff13508b",
+      "meaning": "Verified entry of 00665500"
+    },
+    {
+      "address": "006656d0",
+      "hex": "568bf18a466484c075368b8e8c000000",
+      "meaning": "Verified entry of 006656d0"
+    },
+    {
+      "address": "00665720",
+      "hex": "568bf18a466484c0752a8b8e8c000000",
+      "meaning": "Verified entry of 00665720"
+    },
+    {
+      "address": "006659c0",
+      "hex": "568bf18a467084c0744b5733c9e80e4d",
+      "meaning": "Verified entry of 006659c0"
+    },
+    {
+      "address": "006653a0",
+      "hex": "64a1000000006aff6868668000506489",
+      "meaning": "Verified entry of 006653a0"
+    },
+    {
+      "address": "00665570",
+      "hex": "558bec83e4f081ec38010000568bf157",
+      "meaning": "Verified entry of 00665570"
+    },
+    {
+      "address": "0061fca0",
+      "hex": "64a1000000006aff68a7158000508b44",
+      "meaning": "Verified entry of 0061fca0"
+    },
+    {
+      "address": "006202a0",
+      "hex": "64a1000000006aff68c8158000506489",
+      "meaning": "Verified entry of 006202a0"
+    },
+    {
+      "address": "00620440",
+      "hex": "8b44240885c0746c8b506033c08a4109",
+      "meaning": "Verified entry of 00620440"
+    },
+    {
+      "address": "00620720",
+      "hex": "6aff684016800064a100000000506489",
+      "meaning": "Verified entry of 00620720"
+    },
+    {
+      "address": "006547a0",
+      "hex": "8a57088a46783ad074078bcee8ef0100008a46788a4f083ac8742c84c08bce740fe84a0200",
+      "meaning": "Toggle notifying set falls through and rereads incoming/current bytes after notification"
+    },
+    {
+      "address": "0064f6e9",
+      "hex": "8b8e8c000000483bc87e1a8b430485c0750433dbeb088b5b082bd8c1fb024b899e8c0000008b868c00000085c00f8faf0100008b166a018bceff527c",
+      "meaning": "Selector removal clamps index then disables when selected index is <=0; no caption refresh"
+    },
+    {
+      "address": "0064f72a",
+      "hex": "8b868c0000008947088b8e8c000000894f08",
+      "meaning": "Selector current-index query falls through to string query"
+    },
+    {
+      "address": "006650b5",
+      "hex": "8b8e800000008b8684000000493bc10f8da10200008b96900000008b8e8000000003c23bc18986840000007e06898e84000000",
+      "meaning": "Slider signed increment may clamp to count, not count minus one"
+    },
+    {
+      "address": "00665346",
+      "hex": "8b7f088b86800000003bf877188bce89be84000000e860040000eb09",
+      "meaning": "Silent programmatic slider set accepts position equal to range"
+    },
+    {
+      "address": "0066531f",
+      "hex": "8b7f0885ff764589be90000000eb3d",
+      "meaning": "Slider step rejects only zero"
+    },
+    {
+      "address": "0064f8e4",
+      "hex": "b0f5640081f664002af764003cf7640002f8640033f764004ff66400",
+      "meaning": "Selector event jump table"
+    },
+    {
+      "address": "00665384",
+      "hex": "8e5266003c5366001453660071506600b550660009516600",
+      "meaning": "Slider event jump table"
+    },
+    {
+      "address": "0080fa04",
+      "hex": "0000c842",
+      "meaning": "Slider percentage range is 100.0f"
+    },
+    {
+      "address": "0080f530",
+      "hex": "000000000000e03f",
+      "meaning": "Slider quantization adds 0.5 before floor"
+    },
+    {
+      "address": "00863db0",
+      "hex": "3f170000",
+      "meaning": "Floor helper control word requests downward x87 rounding"
+    },
+    {
+      "address": "0061de6c",
+      "hex": "68a0fc6100",
+      "meaning": "Original options observer registration pointer"
+    },
+    {
+      "address": "0061ddf6",
+      "hex": "68a0026200",
+      "meaning": "Original options observer registration pointer"
+    },
+    {
+      "address": "0061f2cf",
+      "hex": "6840046200",
+      "meaning": "Original options observer registration pointer"
+    },
+    {
+      "address": "0061f48f",
+      "hex": "6820076200",
+      "meaning": "Original options observer registration pointer"
+    }
+  ],
+  "vtables": [
+    {
+      "address": "0081422c",
+      "targets": [
+        "006659c0"
+      ]
+    },
+    {
+      "address": "00814230",
+      "targets": [
+        "0064da30"
+      ]
+    },
+    {
+      "address": "0081423c",
+      "targets": [
+        "00664b90"
+      ]
+    },
+    {
+      "address": "00814240",
+      "targets": [
+        "00665430"
+      ]
+    },
+    {
+      "address": "00814244",
+      "targets": [
+        "006654b0"
+      ]
+    },
+    {
+      "address": "00814250",
+      "targets": [
+        "00665500"
+      ]
+    },
+    {
+      "address": "00814258",
+      "targets": [
+        "006656d0"
+      ]
+    },
+    {
+      "address": "0081425c",
+      "targets": [
+        "006658c0"
+      ]
+    },
+    {
+      "address": "00814260",
+      "targets": [
+        "00665720"
+      ]
+    },
+    {
+      "address": "0081427c",
+      "targets": [
+        "00665010"
+      ]
+    },
+    {
+      "address": "0081428c",
+      "targets": [
+        "00665760"
+      ]
+    },
+    {
+      "address": "008153b8",
+      "targets": [
+        "0064da30"
+      ]
+    },
+    {
+      "address": "008153c4",
+      "targets": [
+        "0064f1c0"
+      ]
+    },
+    {
+      "address": "008153c8",
+      "targets": [
+        "0064f960"
+      ]
+    },
+    {
+      "address": "008153cc",
+      "targets": [
+        "0064f9b0"
+      ]
+    },
+    {
+      "address": "008153d0",
+      "targets": [
+        "0064fa00"
+      ]
+    },
+    {
+      "address": "008153d8",
+      "targets": [
+        "0064f900"
+      ]
+    },
+    {
+      "address": "008153e0",
+      "targets": [
+        "0064fa10"
+      ]
+    },
+    {
+      "address": "00815404",
+      "targets": [
+        "0064f550"
+      ]
+    },
+    {
+      "address": "00815414",
+      "targets": [
+        "0064fa50"
+      ]
+    },
+    {
+      "address": "00815198",
+      "targets": [
+        "0064da30"
+      ]
+    },
+    {
+      "address": "008151a4",
+      "targets": [
+        "006541e0"
+      ]
+    },
+    {
+      "address": "008151a8",
+      "targets": [
+        "00654840"
+      ]
+    },
+    {
+      "address": "008151ac",
+      "targets": [
+        "006548b0"
+      ]
+    },
+    {
+      "address": "008151b0",
+      "targets": [
+        "00654920"
+      ]
+    },
+    {
+      "address": "008151b8",
+      "targets": [
+        "00654930"
+      ]
+    },
+    {
+      "address": "008151d4",
+      "targets": [
+        "00654910"
+      ]
+    },
+    {
+      "address": "008151e4",
+      "targets": [
+        "006546f0"
+      ]
+    },
+    {
+      "address": "008151f4",
+      "targets": [
+        "006541a0"
+      ]
+    }
+  ],
+  "direct_calls": [
+    {
+      "site": "0066503b",
+      "target": "0065cd40"
+    },
+    {
+      "site": "00665097",
+      "target": "006657c0"
+    },
+    {
+      "site": "0066509e",
+      "target": "006653a0"
+    },
+    {
+      "site": "006650ab",
+      "target": "0065cf50"
+    },
+    {
+      "site": "006650ea",
+      "target": "006657c0"
+    },
+    {
+      "site": "006650f1",
+      "target": "006653a0"
+    },
+    {
+      "site": "006650ff",
+      "target": "0065cf50"
+    },
+    {
+      "site": "00665260",
+      "target": "0065cf50"
+    },
+    {
+      "site": "006652e5",
+      "target": "006657c0"
+    },
+    {
+      "site": "0066530d",
+      "target": "006657c0"
+    },
+    {
+      "site": "0066533f",
+      "target": "0065cd40"
+    },
+    {
+      "site": "0066535b",
+      "target": "006657c0"
+    },
+    {
+      "site": "0066570b",
+      "target": "00665570"
+    },
+    {
+      "site": "006657ad",
+      "target": "006657c0"
+    },
+    {
+      "site": "006659f1",
+      "target": "00665570"
+    },
+    {
+      "site": "0064f579",
+      "target": "00661940"
+    },
+    {
+      "site": "0064f805",
+      "target": "00661940"
+    },
+    {
+      "site": "0064f8c6",
+      "target": "0065cf50"
+    },
+    {
+      "site": "006547ac",
+      "target": "006549a0"
+    },
+    {
+      "site": "006547c1",
+      "target": "00654a10"
+    },
+    {
+      "site": "006547d0",
+      "target": "006549e0"
+    },
+    {
+      "site": "006547e2",
+      "target": "00661940"
+    },
+    {
+      "site": "0065488b",
+      "target": "0065cf50"
+    },
+    {
+      "site": "006548fa",
+      "target": "0065cf50"
+    },
+    {
+      "site": "00654910",
+      "target": "006549a0"
+    },
+    {
+      "site": "00654920",
+      "target": "006549a0"
+    },
+    {
+      "site": "006541ae",
+      "target": "00661cc0"
+    },
+    {
+      "site": "006549ab",
+      "target": "00654a10"
+    },
+    {
+      "site": "006549b2",
+      "target": "006549e0"
+    },
+    {
+      "site": "006549d0",
+      "target": "0065cf50"
+    },
+    {
+      "site": "0066568b",
+      "target": "006657c0"
+    },
+    {
+      "site": "00665692",
+      "target": "006653a0"
+    },
+    {
+      "site": "006656a0",
+      "target": "0065cf50"
+    },
+    {
+      "site": "00620348",
+      "target": "0066b110"
+    }
+  ],
+  "resource_anchors": [],
+  "functions": [
+    {
+      "entry": "006546f0",
+      "source": "recovered/frontend/toggle_control.h",
+      "coverage": "Toggle message query, notifying versus silent value change with post-observer fallthrough, negative-z layout order and text/base fallback."
+    },
+    {
+      "entry": "006549a0",
+      "source": "recovered/frontend/toggle_control.h",
+      "coverage": "Toggle value through on/off helper, then emit 04010000 with current stored byte; no disabled gate."
+    },
+    {
+      "entry": "006549e0",
+      "source": "recovered/frontend/toggle_control.h",
+      "coverage": "Select yes/no halves before storing canonical one, only if old state is zero."
+    },
+    {
+      "entry": "00654a10",
+      "source": "recovered/frontend/toggle_control.h",
+      "coverage": "Select no/yes halves before storing canonical zero, only if old state is nonzero."
+    },
+    {
+      "entry": "006541a0",
+      "source": "recovered/frontend/toggle_control.h",
+      "coverage": "Changed-byte guard, base disabled/text mirror then optional internal-part disable propagation."
+    },
+    {
+      "entry": "00654840",
+      "source": "recovered/frontend/toggle_control.h",
+      "coverage": "Disabled gate, optional text focus, low-nibble half entry, full target store and focus notification."
+    },
+    {
+      "entry": "006548b0",
+      "source": "recovered/frontend/toggle_control.h",
+      "coverage": "Optional text blur, saved-target half leave, target clear and unfocus notification."
+    },
+    {
+      "entry": "00654930",
+      "source": "recovered/frontend/toggle_control.h",
+      "coverage": "Move between yes/no halves only while a nonzero full target is already focused; ignore child results."
+    },
+    {
+      "entry": "00654910",
+      "source": "recovered/frontend/toggle_control.h",
+      "coverage": "Click calls notifying toggle directly and returns one, without ordinary button click prefix."
+    },
+    {
+      "entry": "00654920",
+      "source": "recovered/frontend/toggle_control.h",
+      "coverage": "Activation calls notifying toggle directly and returns one."
+    },
+    {
+      "entry": "0064f550",
+      "source": "recovered/frontend/selector_control.h",
+      "coverage": "Native item ownership, localized/payload insertion, removal/clamping, retained-string queries, programmatic selection, wrapped previous/next, clear and exact notification/text fallback behavior."
+    },
+    {
+      "entry": "0064fa50",
+      "source": "recovered/frontend/selector_control.h",
+      "coverage": "Unconditional disabled-byte/text stores and both internal arrow disable calls."
+    },
+    {
+      "entry": "0064fa00",
+      "source": "recovered/frontend/selector_control.h",
+      "coverage": "Selector activation returns one without selection change or notification."
+    },
+    {
+      "entry": "0064f960",
+      "source": "recovered/frontend/selector_control.h",
+      "coverage": "Text focus before target lookup/store, optional internal-part focus forwarding, invalid part returns one."
+    },
+    {
+      "entry": "0064f9b0",
+      "source": "recovered/frontend/selector_control.h",
+      "coverage": "Text blur before child focus leave, retain focused index on veto, clear only after successful valid leave."
+    },
+    {
+      "entry": "0064f900",
+      "source": "recovered/frontend/selector_control.h",
+      "coverage": "Compare old focus with fresh target lookup, forward movement to same valid part or virtual leave/enter on change."
+    },
+    {
+      "entry": "0064fa10",
+      "source": "recovered/frontend/selector_control.h",
+      "coverage": "Disabled press returns one; otherwise forward to valid focused arrow or return zero."
+    },
+    {
+      "entry": "00665010",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Range/scale, signed arrow stepping with original asymmetric limits, direct thumb query, rounded thumb updates, silent programmatic position/step and linked/notification ordering."
+    },
+    {
+      "entry": "00665760",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Refuse enable under disabled parent or zero range; store disabled byte, propagate to arrows/optional thumb and refresh."
+    },
+    {
+      "entry": "006657c0",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Skip disabled refresh; update thumb by copied percentage event or clamp individual arrow eligibility at endpoints."
+    },
+    {
+      "entry": "006658c0",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Unsigned wheel magnitude including INT_MIN, ceil magnitude/120 iterations, fresh copied decrement/increment events and original direction."
+    },
+    {
+      "entry": "00665430",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Offer old internal focus leave, map veto to seven, assign target lookup and forward entry or zero."
+    },
+    {
+      "entry": "006654b0",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Forward valid focused leave, preserve veto and clear index only on success."
+    },
+    {
+      "entry": "00665500",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Validate picked internal part, repeat lookup for same-focus movement and preserve virtual leave/enter order and veto result."
+    },
+    {
+      "entry": "006656d0",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Disabled press handled, valid focused-part forwarding, otherwise start repeat with timer 300 and take one track step."
+    },
+    {
+      "entry": "00665720",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Disabled drag handled, focused-part drag forwarding or zero for invalid focus."
+    },
+    {
+      "entry": "006659c0",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Repeat held-state gate, wrapping timer subtraction, strict-negative threshold and reset to 50 after a track step."
+    },
+    {
+      "entry": "006653a0",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Resolve linked control through supplied backend and send a copied immediate 0200002b value event."
+    },
+    {
+      "entry": "00665570",
+      "source": "recovered/frontend/slider_control.h",
+      "coverage": "Given backend track percentage, floor/half-up quantization and unsigned upper clamp, advance one position toward pointer, refresh, synchronize and notify."
+    },
+    {
+      "entry": "0061fca0",
+      "source": "recovered/frontend/options_observers.h",
+      "coverage": "Graphics preset queues seven silent value updates and seven enable/disable events before apply; direct feature changes use sender ordinal, unknown ordinals are consumed."
+    },
+    {
+      "entry": "006202a0",
+      "source": "recovered/frontend/options_observers.h",
+      "coverage": "Direct sender query before ID routing to five typed float settings/apply calls, music floor threshold and sound-volume-only click preview."
+    },
+    {
+      "entry": "00620440",
+      "source": "recovered/frontend/options_observers.h",
+      "coverage": "Sender ID routes low-byte invert mouse/subtitles/parental-lock updates; only mouse requests immediate apply."
+    },
+    {
+      "entry": "00620720",
+      "source": "recovered/frontend/options_observers.h",
+      "coverage": "Store low-byte voice setting, queue voice-volume enabled/disabled from full-word zero test, no sender validation."
+    }
+  ],
+  "validation": "Temporary native ASan/UBSan and i386 audit instantiates all three runtimes with actual state/text/event helpers and typed observer graph. Checks boundary/fallthrough, retained query strings, disabled/input behavior, slider signed arithmetic, ceil wheel steps, repeat timing, direct versus queued synchronization, and all observer routes including fourteen-message preset updates with no notification feedback. Source-only; no live widget/engine/settings integration.",
+  "limits": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled."
+}

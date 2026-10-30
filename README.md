@@ -135,6 +135,11 @@ sanitizers. Leaf visual lookup is scoped to its bound frame. The updated engine
 diagnostic constructs a three-level tree of five groups from definitions and
 checks duplicate names in separate branches; desktop validation passed (372 frames, clean teardown).
 
+The current source-only slice reconstructs options slider/selector/toggle state,
+message and input behavior, plus four settings-observer routes. Connected native
+audits pass under sanitizers and compile for i386. Engine widget visuals and real
+preference services are still required before the options screen can be enabled.
+
 ## Progress
 
 Completed steps mean we've reached a useful milestone, not that we understand
@@ -145,11 +150,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **74 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **96 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 70 |
+| Base game client | 17,294 | 0 | 92 |
 | Original LS3DF.dll | 1,489 | 0 | 4 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -952,6 +952,248 @@
         "recovered/scene/model_first_table.cpp",
         "recovered/tests/model_first_table_tests.cpp"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "006546f0",
+      "status": "partial",
+      "coverage": "Toggle message query, notifying versus silent value change with post-observer fallthrough, negative-z layout order and text/base fallback.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/toggle_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006549a0",
+      "status": "partial",
+      "coverage": "Toggle value through on/off helper, then emit 04010000 with current stored byte; no disabled gate.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/toggle_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006549e0",
+      "status": "partial",
+      "coverage": "Select yes/no halves before storing canonical one, only if old state is zero.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/toggle_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00654a10",
+      "status": "partial",
+      "coverage": "Select no/yes halves before storing canonical zero, only if old state is nonzero.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/toggle_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006541a0",
+      "status": "partial",
+      "coverage": "Changed-byte guard, base disabled/text mirror then optional internal-part disable propagation.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/toggle_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00654840",
+      "status": "partial",
+      "coverage": "Disabled gate, optional text focus, low-nibble half entry, full target store and focus notification.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/toggle_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006548b0",
+      "status": "partial",
+      "coverage": "Optional text blur, saved-target half leave, target clear and unfocus notification.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/toggle_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00654930",
+      "status": "partial",
+      "coverage": "Move between yes/no halves only while a nonzero full target is already focused; ignore child results.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/toggle_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064f550",
+      "status": "partial",
+      "coverage": "Native item ownership, localized/payload insertion, removal/clamping, retained-string queries, programmatic selection, wrapped previous/next, clear and exact notification/text fallback behavior.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/selector_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064f960",
+      "status": "partial",
+      "coverage": "Text focus before target lookup/store, optional internal-part focus forwarding, invalid part returns one.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/selector_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064f9b0",
+      "status": "partial",
+      "coverage": "Text blur before child focus leave, retain focused index on veto, clear only after successful valid leave.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/selector_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064fa10",
+      "status": "partial",
+      "coverage": "Disabled press returns one; otherwise forward to valid focused arrow or return zero.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/selector_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006657c0",
+      "status": "partial",
+      "coverage": "Skip disabled refresh; update thumb by copied percentage event or clamp individual arrow eligibility at endpoints.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/slider_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00665430",
+      "status": "partial",
+      "coverage": "Offer old internal focus leave, map veto to seven, assign target lookup and forward entry or zero.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/slider_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006654b0",
+      "status": "partial",
+      "coverage": "Forward valid focused leave, preserve veto and clear index only on success.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/slider_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00665500",
+      "status": "partial",
+      "coverage": "Validate picked internal part, repeat lookup for same-focus movement and preserve virtual leave/enter order and veto result.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/slider_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006656d0",
+      "status": "partial",
+      "coverage": "Disabled press handled, valid focused-part forwarding, otherwise start repeat with timer 300 and take one track step.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/slider_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00665720",
+      "status": "partial",
+      "coverage": "Disabled drag handled, focused-part drag forwarding or zero for invalid focus.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/slider_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006659c0",
+      "status": "partial",
+      "coverage": "Repeat held-state gate, wrapping timer subtraction, strict-negative threshold and reset to 50 after a track step.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/slider_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006653a0",
+      "status": "partial",
+      "coverage": "Resolve linked control through supplied backend and send a copied immediate 0200002b value event.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/slider_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00665570",
+      "status": "partial",
+      "coverage": "Given backend track percentage, floor/half-up quantization and unsigned upper clamp, advance one position toward pointer, refresh, synchronize and notify.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/slider_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00620720",
+      "status": "partial",
+      "coverage": "Store low-byte voice setting, queue voice-volume enabled/disabled from full-word zero test, no sender validation.",
+      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "evidence": [
+        "analysis/menu-options-widget-map.json",
+        "recovered/frontend/options_observers.h"
+      ]
     }
   ]
 }

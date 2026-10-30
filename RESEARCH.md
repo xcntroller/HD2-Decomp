@@ -2745,3 +2745,56 @@ Credits dependency check confirms application state twelve creates a retained
 movie/controller around 0066EAE0/00688040, including a special `credits` path,
 scroll setup, timing and music changes. Cached exports show it is not a static
 registered screen. Options remains the construction priority.
+
+## Options widget state/input and settings observers — 2026-10-30
+
+Recursive controls are desktop-confirmed and committed as 354ae55 (372 frames,
+successful factory probe and clean teardown). The new source-only slice adds
+native slider, selector and toggle runtimes over supplied visual/input backends,
+plus four reconstructed settings-observer routes. Original internal control/
+frame constructors, real preference services and live screen integration remain
+unfinished. See [options notes](analysis/menu-options.md) and the fingerprinted
+[widget map](analysis/menu-options-widget-map.json).
+
+00665010 retains asymmetric slider bounds: signed arrow comparisons use count
+minus one, increment can clamp to count, and silent programmatic set accepts
+count. Step rejects zero only. Thumb queries use mutable direct +6C; refresh
+uses copied +74. Arrow/track updates resolve and immediately copy to a linked
+control; thumb changes queue a targeted value before notifying. Percentage is
+queried by settings observers, while change tag 04010000 carries zero. Wheel
+rounds magnitude up per 120; repeat subtracts wrapping timer and triggers only
+below zero, with 300/50 delays. Quantization uses the verified floor helper's
+downward x87 control word and +0.5; invalid native numeric conversion throws.
+World-bound/axis geometry and input locks remain supplied backend operations.
+
+0064F550 selector strings use native shared ownership. Current-index query
+falls through to payload query, invalid queries preserve payload, append selects
+the first item and enables, removal clamps selected index without refreshing
+caption and disables at index<=0. Programmatic selection notifies even while
+disabled. 006546F0 toggle's notifying setter falls through after callbacks,
+rechecking desired/current bytes before an optional silent toggle; this preserves
+reentrant and noncanonical-byte behavior. Toggle activation/click calls the
+notifying helper directly and adds no disabled check or ordinary click prefix.
+
+0061FCA0, 006202A0, 00620440 and 00620720 now have typed native routing helpers.
+Graphics presets queue seven silent values then seven enable/disable records
+before apply. Volume routing queries before matching IDs; only sound volume
+plays a click preview, and music below one is zeroed. Mouse/subtitles/parental
+updates preserve low bytes; voice stores a byte but tests the full word for its
+volume-slider availability message. Storage, feature calculation and apply
+functions remain service contracts, not rebuilt preference implementations.
+
+Read-only Ghidra metadata seeding verifies widget slots and original observer
+registration pushes before defining missing starts. All required exports were
+obtained without changing the research project. New widget map: 48 anchors,
+29 slots, 34 calls. Twenty-two PARTIAL entries are present in the frozen census;
+eleven other reconstructed starts are absent and earn no credit. Total 96
+partial (92 client/four engine), zero complete, frozen 18,783.
+
+Temporary ASan/UBSan native audit and i386 compilation instantiate all runtimes
+and actual shared state/text/event/observer helpers with fake visual/input and
+settings services. Checks include scalar boundaries, retained strings, notifying
+versus silent/reentrant paths, focus/disable, linked-message order, wheel/repeat
+and connected graphics-preset delivery with no feedback. No new desktop path,
+unit tests, real preference writes or agent-side Proton launch. These native
+audits do not establish visual/engine fidelity of the unfinished widgets.

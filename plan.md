@@ -32,6 +32,7 @@ Keep an explicit list of delegated calls so the eventual replacement is tractabl
 | Original button sound and sound-driver lifecycle | Desktop-tested | Original preferences/resource cache and additional menu sounds |
 | Shared control initialization and state messages | State/events and attached text/caption/style desktop-confirmed | Full factory, dynamic callbacks, paragraph layout and broader widget eligibility |
 | Shared factory and nested containers | Leaf factory, engine bridge and recursive group diagnostic desktop-confirmed; mixed leaves native-audited | Actual options definitions, nested screen availability, other widget kinds and original ABI |
+| Options sliders, selectors, toggles and settings observers | State/message/input and observer routes reconstructed, native-audited | Engine visual/internal-part construction, actual preference services and live options integration |
 | Other main-menu actions/screens | Not functional yet | Inventory, reconstruct and enable one flow at a time |
 
 Keyboard sound check: ordinary Exit/Yes/No keyboard activation is silent in the
@@ -44,6 +45,12 @@ This conclusion is from original binary analysis, not a new original-game run.
 
 ## 1. Finish the shared menu foundation — current priority
 
+The foundation is sufficient when our readable native controls and services can
+deliver the real menu flows with the recovered behavior. Matching every original
+client class layout is tracked separately and is not a prerequisite for native
+menu delivery. The remaining shared work should be completed alongside options,
+profiles and other real screens, rather than expanding this section indefinitely.
+
 - [x] Bootstrap original graphics/3D engine, scene, models, font assets and cursor.
 - [x] Recover bounded button events, focus/hover, picking and pointer sequencing.
 - [x] Recover focused-button activation and queued Escape/back for the two live screens.
@@ -53,7 +60,9 @@ This conclusion is from original binary analysis, not a new original-game run.
   Shared base messages, observer registration/removal, local events and original
   hidden-OK initialization are integrated and desktop-confirmed. Derived
   text/button dispatch is connected to native attached text records, caption/style
-  initializers and the bounded renderer; this integration is desktop-confirmed. General factory/widgets and original ABI remain incomplete.
+  initializers and the bounded renderer; this integration is desktop-confirmed.
+  General widget backends and remaining event/data contracts are incomplete;
+  original class ABI reconstruction is tracked separately.
 - [x] Replace hardcoded Exit/confirmation adapters with reusable controls and definitions.
   **Desktop-confirmed.** Both screens now
   use one `DefinedScreen` routing class and `DefinedControls` construction/ownership
@@ -75,6 +84,10 @@ This conclusion is from original binary analysis, not a new original-game run.
 - [ ] Recover keyboard preprocessing, character input, focus entry and navigation callers.
 - [ ] Resolve exact queue/update ordering, timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings and resource-cache contracts instead of host defaults.
+- [ ] Supply the options widget backends and connect original settings observers.
+  Slider/selector/toggle native state, messages, focus/input and four observer
+  routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
+  real preference services and live integration remain open.
 
 Latest desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,
@@ -105,9 +118,15 @@ nested input are implemented and audited. The engine diagnostic now constructs
 five controls over three levels from definitions and is desktop-confirmed (372 frames);
 mixed nested text/button controls are native-audit verified only.
 
-Next priority: options widgets (kinds 8/10/24), actual definitions and original
-settings/data callbacks, then nested screen availability and full entry/apply/
-back behavior. Do not enable a screen solely because its model loads.
+Current source-only slice reconstructs slider/selector/toggle state, messages,
+focus and input plus graphics/float/toggle/voice observer routes. Native audits
+exercise the connected graph, including silent preset updates without feedback.
+No new desktop behavior is enabled and no repeat desktop test is needed for
+these source-only additions.
+
+Next priority: engine visual/internal-part construction for these widgets, real
+preference services, actual options definitions and screen availability, then
+full entry/apply/back behavior. Do not enable a screen solely because its model loads.
 
 Prefer complete plan items or cohesive dependency groups per iteration, as
 requested by the user. Avoid returning for desktop checks after individual
