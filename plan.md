@@ -84,6 +84,13 @@ The existing host preview is useful for validation, but it is not this milestone
   no discovered caller; do not insert it into the normal empty-list startup.
   IJoy internals and lifecycle reachability remain explicit limits. See
   [joystick evidence](analysis/joystick-devices.md).
+- [x] Recover archive creation order, language fallback, key exchange and archive
+  ownership, and establish original lookup precedence. **Source-only, audited.**
+  Concrete rw_data forwarding shares the engine/text context. All 2,048 file
+  availability patterns pass sanitizer audits; compiled keys match installed
+  assets. The preceding protection-state operation and subsequent resource
+  directory/cache setup remain open before full startup integration. See
+  [archive scope](analysis/startup-archives.md).
 - [ ] Build the independent executable in that path, then desktop-test normal
   playback, skipping, missing-movie behavior, menu entry and teardown. Commit
   the interactive slice only after the user confirms it works.
@@ -185,17 +192,19 @@ profiles and other real screens, rather than expanding this section indefinitely
   routes are reconstructed and sanitizer/i386-audited. Engine internal controls,
   real preference services and live integration remain open.
 
-Current checkpoint follows `7becea0` input setup/localization and `46359bd`
-manager ownership. Joystick list creation/close and reverse external polling now
-have native source, plus concrete checked i386 IJoy forwarding. Sanitizer audits
-verify independent list/manager refs, failure cleanup, duplicates and polling
-order. No live menu changes. Static searches find no direct/literal reference
-to the creation/close helpers; their lifecycle callers remain unresolved.
-Next: original archive initialization and remaining application/state startup
-services, plus concrete graphics input services, then controller integration.
-Do not add joystick enumeration as a prerequisite for the original empty-list
-path. Profile persistence, renderer/text consumers and focus/navigation callers
-remain open. See [joystick scope](analysis/joystick-devices.md).
+Current checkpoint follows `7f35909` joystick ownership and `7becea0`
+input setup/localization. Archive registration now has readable source for
+creation/fallback order, the exact set/get/set key handshake, shared random-state
+arithmetic and forward cleanup, plus concrete checked i386 rw_data forwarding.
+Sanitizer audits cover 2,048 availability patterns; all compiled keys match
+independent original instruction decoding and installed base archive checks.
+No live menu changes. The original protection prelude is explicitly excluded.
+Next: resource-directory/cache setup (006DBE60 / 006ED760 / 006ED6B0 / 006ED570),
+the protection-state and remaining application/state startup dependencies, and
+concrete graphics input services before controller integration. Joystick factory
+callers remain unresolved; do not invent enumeration for the empty-list path.
+Profile persistence, renderer/text consumers and focus/navigation remain open.
+See [archive scope](analysis/startup-archives.md).
 
 Earlier desktop-confirmed slice: targeted screen event trees, retained-copy delivery and
 native screen observer bindings. All 17/four child slots accept messages,

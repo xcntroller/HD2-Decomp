@@ -1873,6 +1873,45 @@
         "recovered/frontend/localized_text.h",
         "recovered/host/startup_localization.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "006db6e0",
+      "status": "partial",
+      "coverage": "Archive creation region: fixed 16-slot keys/names, conditional English fallback, ordered registration, masked set/get/set key handshake and missing-slot diagnostics. Initial random-mask and language-name helpers also recovered.",
+      "limitations": "Protection-state prelude at 006db8c7 and complete wrapper orchestration excluded. Shared original rw_data registration/index/search/codec behavior is delegated through checked i386 calls. Native ownership/string ABI, repeat-create guards and diagnostic sink differ; source-only, exhaustive sanitizer and i386-audited.",
+      "evidence": [
+        "analysis/startup-archives-map.json",
+        "analysis/startup-archives.md",
+        "recovered/io/startup_archives.h",
+        "recovered/host/startup_archives.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006dc3a0",
+      "status": "partial",
+      "coverage": "Final archive-only cleanup loop: ascending slot release and null after callback, matching its position after original driver closes.",
+      "limitations": "Only archive cleanup is reconstructed here. Earlier application/cache/driver teardown and CoUninitialize remain outside this owner; full caller must preserve their order. Native RAII is an additional safety lifetime and cannot stand in for the full original function.",
+      "evidence": [
+        "analysis/startup-archives-map.json",
+        "analysis/startup-archives.md",
+        "recovered/io/startup_archives.h",
+        "recovered/host/startup_archives.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007e5f33",
+      "status": "partial",
+      "coverage": "Exact unsigned CRT random-state recurrence and 15-bit result extraction using caller-supplied shared state.",
+      "limitations": "Original per-thread TLS state lookup, initial seed and complete stream ownership are not reconstructed. Source helper must share the actual caller state; it does not invent a private startup seed. Known sequence and archive random consumption audited.",
+      "evidence": [
+        "analysis/startup-archives-map.json",
+        "analysis/startup-archives.md",
+        "recovered/io/startup_archives.h",
+        "recovered/host/startup_archives.h"
+      ]
     }
   ]
 }

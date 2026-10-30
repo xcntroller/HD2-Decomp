@@ -1,0 +1,480 @@
+{
+  "scope": "Source-only original archive region after the unresolved protection prelude, conditional language fallback, exact masked key protocol, forward archive cleanup and client random arithmetic. Lookup precedence established statically and delegated to rw_data. Resource-directory registration/full startup remain open.",
+  "runtime_verified": false,
+  "excluded_protection_call": "006db8c7 -> [00a59000], plus associated state reads/writes; not replaced by a no-op",
+  "lookup_policy": "dtaOpen checks low byte of flags and DLL override byte 100478dc. Both zero: loose first; otherwise archives first. Fallback only on -1. Archive lookup scans creation order. Original DLL implements the actual registry/codecs.",
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006db6fe",
+        "hex": "b8a0a0a0a053898550ffffff898558ffffff898560ffffff898568ffffff898570ffffff898574ffffff898578ffffff89857cffffff89458056b852b2ac1057c7854cffffffa4a0a0a0c78554ffffffa3a0a0a0c7855cffffffa2a0a0a0c78564ffffffa1a0a0a0c7856cfffffff1a0a0a0c745847052805d894588c7458c5952805d894590c74594f0a35476c7459898dabc22c7459ca5d038b4c745a0fa2765f2c745a40651e84fc745a8ca65298dc745ac2de7b40ac745b0981276cfc745b42a9085eac745b823abf765c745bca0d038b0c745c0fa2065e2c745c4a1d138b0c745c8fa2065f2",
+        "meaning": "All 32 stack key words in exact slot order"
+      },
+      {
+        "address": "006db7e6",
+        "hex": "e848a7100025ffff0000998bf08bfa0fa4f710c1e610e832a7100025ffff0000990bc60bd78bf88bf20fa4fe10c1e710e818a7100025ffff0000b9fce88a00990bf88d45cc0bf250897dd08975d4",
+        "meaning": "Three client rand calls and 48-bit initial mask"
+      },
+      {
+        "address": "006db8b8",
+        "hex": "5053518b5dd8538b45f0508b45dc50ff150090a50089065b5803d8592bcb094dec595b58",
+        "meaning": "Unresolved protection call excluded from native archive region"
+      },
+      {
+        "address": "006db8dc",
+        "hex": "8b45e833f63bc68935f8e98a008935fce98a00893500ea8a00893504ea8a00893508ea8a00740583c008eb05b88079860050e8439610003bc6a30cea8a00751168c8338400e830961000a310ea8a00eb06893510ea8a0068bc338400e81996100068b0338400a314ea8a00e80a96100068a0338400a318ea8a00e8fb9510006894338400a31cea8a00e8ec9510006888338400a320ea8a00e8dd9510006838898300a324ea8a00e8ce951000687c338400a328ea8a00e8bf9510006870338400a32cea8a00e8b09510006864338400a330ea8a00e8a1951000a334ea8a00",
+        "meaning": "Clear five reserved slots, language/fallback creation then nine fixed archives"
+      },
+      {
+        "address": "006db9c2",
+        "hex": "8b45ec8b0c85f8e98a0085c90f8596030000",
+        "meaning": "Ascending slot loop, missing slots branch to diagnostics"
+      },
+      {
+        "address": "006dbcc2",
+        "hex": "8b45f085c0740583c008eb05b880798600508d55dc68fc2c830052e81e94d2ff83c40c8b45dcc645fc0c85c0740583c008eb05b880798600508d45d8683833840050e8f793d2ff8b0083c40c85c0740583c008eb05b88079860050e8569110008b4dd883c40485c9",
+        "meaning": "Missing archive formatting and dbgPrintf"
+      },
+      {
+        "address": "006dbd6a",
+        "hex": "e8c4a110008b4dd425ffff00000fa4f91099c1e7100bc70bd18bd88b45ec8bca8bd08bbcc550ffffff8bb4c54cffffff894dd433f98b0c95f8e98a0033f357568b01895dd0ff500c8b4dec8b0c8df8e98a008b018945f0ff501033d78b7dd433c633d733c3528b55ec508b45f08b0c95f8e98a00ff500c8b45ec4083f8108945ec0f82cefbffff",
+        "meaning": "Mask shift16, one rand, set/get/set handshake and fixed 16-slot loop"
+      },
+      {
+        "address": "006dc5b0",
+        "hex": "33f68b8ef8e98a003bcf740b8b11ff520889bef8e98a0083c60483fe4072e35f5e83c418",
+        "meaning": "Forward archive release and null only after callback"
+      },
+      {
+        "address": "007e5f33",
+        "hex": "e8795100008b481469c9fd43030081c1c39e26008948148bc1c1e81025ff7f0000c3",
+        "meaning": "Shared per-thread CRT random-state recurrence; TLS lookup remains separate"
+      },
+      {
+        "address": "007e4f56",
+        "hex": "ff258cf48000",
+        "meaning": "Imported dtaCreate thunk"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [
+      {
+        "site": "006db7e6",
+        "target": "007e5f33"
+      },
+      {
+        "site": "006db7fc",
+        "target": "007e5f33"
+      },
+      {
+        "site": "006db816",
+        "target": "007e5f33"
+      },
+      {
+        "site": "006db834",
+        "target": "006b67b0"
+      },
+      {
+        "site": "006db85a",
+        "target": "00405100"
+      },
+      {
+        "site": "006db879",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006db90e",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006db921",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006db938",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006db947",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006db956",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006db965",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006db974",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006db983",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006db992",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006db9a1",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006db9b0",
+        "target": "007e4f56"
+      },
+      {
+        "site": "006dba04",
+        "target": "007e520f"
+      },
+      {
+        "site": "006dba73",
+        "target": "007e520f"
+      },
+      {
+        "site": "006dba8e",
+        "target": "004050a0"
+      },
+      {
+        "site": "006dbaaf",
+        "target": "007e520f"
+      },
+      {
+        "site": "006dbad8",
+        "target": "007e520f"
+      },
+      {
+        "site": "006dbb02",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006dbb31",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006dbb5c",
+        "target": "007e520f"
+      },
+      {
+        "site": "006dbb7b",
+        "target": "004050a0"
+      },
+      {
+        "site": "006dbb9f",
+        "target": "007e520f"
+      },
+      {
+        "site": "006dbbbe",
+        "target": "004050a0"
+      },
+      {
+        "site": "006dbbe2",
+        "target": "007e520f"
+      },
+      {
+        "site": "006dbc01",
+        "target": "004050a0"
+      },
+      {
+        "site": "006dbc22",
+        "target": "007e520f"
+      },
+      {
+        "site": "006dbc3d",
+        "target": "004050a0"
+      },
+      {
+        "site": "006dbc5e",
+        "target": "007e520f"
+      },
+      {
+        "site": "006dbc79",
+        "target": "004050a0"
+      },
+      {
+        "site": "006dbc8f",
+        "target": "004050e0"
+      },
+      {
+        "site": "006dbcbd",
+        "target": "00405180"
+      },
+      {
+        "site": "006dbcdd",
+        "target": "00405100"
+      },
+      {
+        "site": "006dbd04",
+        "target": "00405100"
+      },
+      {
+        "site": "006dbd1d",
+        "target": "007e4e78"
+      },
+      {
+        "site": "006dbd2c",
+        "target": "004050e0"
+      },
+      {
+        "site": "006dbd3c",
+        "target": "004050e0"
+      },
+      {
+        "site": "006dbd60",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006dbd6a",
+        "target": "007e5f33"
+      },
+      {
+        "site": "006dbe04",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006dc217",
+        "target": "006db6e0"
+      },
+      {
+        "site": "006dc21e",
+        "target": "006dbe60"
+      },
+      {
+        "site": "006dc225",
+        "target": "006dbfb0"
+      }
+    ],
+    "resource_anchors": [
+      {
+        "site": "006db854",
+        "address": "008433d8",
+        "text": "Lang%s.dta"
+      },
+      {
+        "site": "006db91c",
+        "address": "008433c8",
+        "text": "LangEnglish.dta"
+      },
+      {
+        "site": "006db933",
+        "address": "008433bc",
+        "text": "Patch.dta"
+      },
+      {
+        "site": "006db93d",
+        "address": "008433b0",
+        "text": "Models.dta"
+      },
+      {
+        "site": "006db94c",
+        "address": "008433a0",
+        "text": "Missions.dta"
+      },
+      {
+        "site": "006db95b",
+        "address": "00843394",
+        "text": "Maps.dta"
+      },
+      {
+        "site": "006db96a",
+        "address": "00843388",
+        "text": "Sounds.dta"
+      },
+      {
+        "site": "006db979",
+        "address": "00838938",
+        "text": "Scripts.dta"
+      },
+      {
+        "site": "006db988",
+        "address": "0084337c",
+        "text": "Others.dta"
+      },
+      {
+        "site": "006db997",
+        "address": "00843370",
+        "text": "Maps_C.dta"
+      },
+      {
+        "site": "006db9a6",
+        "address": "00843364",
+        "text": "Maps_U.dta"
+      },
+      {
+        "site": "006dbb74",
+        "address": "008433c8",
+        "text": "LangEnglish.dta"
+      },
+      {
+        "site": "006dbbb7",
+        "address": "008433bc",
+        "text": "Patch.dta"
+      },
+      {
+        "site": "006dbbfa",
+        "address": "008433b0",
+        "text": "Models.dta"
+      },
+      {
+        "site": "006dbc36",
+        "address": "008433a0",
+        "text": "Missions.dta"
+      },
+      {
+        "site": "006dbc72",
+        "address": "00843394",
+        "text": "Maps.dta"
+      },
+      {
+        "site": "006dbc99",
+        "address": "00843388",
+        "text": "Sounds.dta"
+      },
+      {
+        "site": "006dbca0",
+        "address": "00838938",
+        "text": "Scripts.dta"
+      },
+      {
+        "site": "006dbca7",
+        "address": "0084337c",
+        "text": "Others.dta"
+      },
+      {
+        "site": "006dbcae",
+        "address": "00843370",
+        "text": "Maps_C.dta"
+      },
+      {
+        "site": "006dbcb5",
+        "address": "00843364",
+        "text": "Maps_U.dta"
+      },
+      {
+        "site": "006dbcfe",
+        "address": "00843338",
+        "text": "# ERROR DATAFILE : datafile '%s' missing"
+      }
+    ]
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10068f90",
+        "hex": "a1f4160d10c390909090",
+        "meaning": "Engine GetIGraph entry, unchanged prerequisite"
+      },
+      {
+        "address": "1006ff80",
+        "hex": "8b44240c8b54240850b9f41e0d10e8cdfdffffc20c00",
+        "meaning": "Engine graphics +110 resource directory append wrapper, not yet recovered into this slice"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d950",
+        "targets": [
+          "1006ff80"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "rw_data": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/rw_data.dll",
+      "sha256": "95a65ee003e2d7ab6047ed47d9adad1db330bd5482e33cfb18127d15af5879be",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10001424",
+        "hex": "e9401e0000",
+        "meaning": "dtaCreate exported jump"
+      },
+      {
+        "address": "10001073",
+        "hex": "e9eb260000",
+        "meaning": "Archive +0c key setter thunk"
+      },
+      {
+        "address": "10001384",
+        "hex": "e9fb290000",
+        "meaning": "Archive +10 reply getter thunk"
+      },
+      {
+        "address": "10001181",
+        "hex": "e987350000",
+        "meaning": "Archive +08 release thunk"
+      },
+      {
+        "address": "10003793",
+        "hex": "8b45888945848b4d848b55848b41100b421485c0754b8b4d888b55083351088b450c33410c8b4d888951108941148b55888b42083345088b4a0c334d0c8b5588894208894a0c8bf468683704",
+        "meaning": "First key call combines incoming key with internal seed"
+      },
+      {
+        "address": "100037f4",
+        "hex": "8b45888b4d083348088b550c33500c894d0889550c8b4588c7400800000000c7400c00000000",
+        "meaning": "Second key call unmasks true archive key"
+      },
+      {
+        "address": "10003d84",
+        "hex": "558bec51c745fccccccccc894dfc8b4dfc8b41108b51148be55dc3",
+        "meaning": "Reply getter returns full EDX:EAX pair"
+      },
+      {
+        "address": "1000470d",
+        "hex": "558bec83ec1456b8cccccccc8945ec8945f08945f48945f88945fc894df08bf46868370410ff1544c204103bf4e841070100b95c370410e803cdffff8b45f08b481883e9018b55f0894a188b45f08b4818894dfc8b55f0837a180173338b45f08945f48b4df4894df8837df800741a8b",
+        "meaning": "Release ref and delete at zero; global bookkeeping delegated"
+      },
+      {
+        "address": "10004bbd",
+        "hex": "0fb6450c85c0750b0fb60ddc78041085c974268b550852e83fc5ffff83c4048945fc837dfcff750f8b450850e8d1c8ffff83c4048945fceb248b4d0851e8c0c8ffff83c4048945fc837dfcff750f8b550852e804c5ffff83c4048945fc",
+        "meaning": "Low-byte open flags and override select loose/archive precedence"
+      },
+      {
+        "address": "1000ff10",
+        "hex": "558bec51c745fccccccccc894dfc8b4508508b4dfce84e11ffff508b4dfce8f015ffff83c4043bece8434f00008be55dc2",
+        "meaning": "Archive ordering list appends at end"
+      },
+      {
+        "address": "10011230",
+        "hex": "558bec51c745fccccccccc894dfc8b45fc8b40088be55dc3",
+        "meaning": "End iterator uses vector +08"
+      },
+      {
+        "address": "10009e97",
+        "hex": "558bec83ec08c745f8ccccccccc745fccccccccc668b4510668945fec745f800000000eb098b4df883c101894df88b55f83b550c73308b45080345f80fb6080fb755fe03d1668955fe8b45080345f80fb608f7d181e1ff0000000fb755fe33d1668955feebbf668b45fe8be55dc3",
+        "meaning": "ISD1 header checksum used in independent installed-key audit"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1003301c",
+        "targets": [
+          "100012f8",
+          "100012cb",
+          "10001181",
+          "10001073",
+          "10001384"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}

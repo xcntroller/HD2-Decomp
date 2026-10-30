@@ -66,6 +66,13 @@ callers remain unresolved; no new enumeration step is added to startup. This is
 source-only; graphics input services/archive setup, application services,
 profile persistence and renderer/text consumers remain open. See
 [evidence](../analysis/startup-localization.md).
+[Archive registration and key exchange](io/startup_archives.h) now use a
+[concrete rw_data adapter](host/startup_archives.h) sharing that text/engine
+context. Fallback, creation order, masked key protocol and forward cleanup are
+sanitizer-audited across 2,048 availability patterns and compile/link with the
+actual text loader for i386. Full-wrapper protection and resource-directory
+registration remain open; no live resource path changes. See
+[scope and key validation](../analysis/startup-archives.md).
 With `--menu-confirm --opening-movies`, the host now runs the recovered normal
 Logo1/Logo2/Logo3/Intro sequence through the original engine IShow/Bink interface
 before constructing the compiled menu. The user desktop-confirmed this path.

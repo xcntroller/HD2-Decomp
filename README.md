@@ -25,6 +25,12 @@ and concrete IJoy forwarding](analysis/joystick-devices.md) are now recovered an
 audited; its creation helper has no discovered caller, so normal empty-list
 startup does not gain an invented enumeration step.
 
+[Archive registration and key exchange](analysis/startup-archives.md) now have
+readable source and checked DLL calls. Creation/fallback order, cleanup and
+2,048 combinations of available files pass audits; keys match installed assets.
+The preceding protection operation and resource-directory setup remain open,
+so this does not yet enable the complete original startup path.
+
 The shared control-state foundation entry is complete: initialization, base
 messages, observers, event ownership and eligibility are recovered and audited.
 See [validation and scope](analysis/menu-foundation-state.md). Widget visuals,
@@ -177,11 +183,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **146 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **149 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 141 |
+| Base game client | 17,294 | 0 | 144 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

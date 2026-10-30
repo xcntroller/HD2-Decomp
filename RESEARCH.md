@@ -3,7 +3,18 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest source: [joystick-list ownership and delegated IJoy boundary](analysis/joystick-devices.md).
+Latest source: [archive registration and masked key exchange](analysis/startup-archives.md).
+The archive region of 006DB6E0, cleanup phase of 006DC3A0 and CRT random arithmetic
+now have readable source and checked i386 rw_data calls. Exhaustive sanitizer
+audits cover all 2,048 availability patterns; independent assembly decoding
+matches all keys, which validate installed base archives. Original dtaOpen
+precedence is delegated: zero low-byte flags/override tries loose first; archive
+search follows creation order. The preceding protection-state call at 006DB8C7
+is EXCLUDED, not replaced by success; directory/cache setup remains open.
+Run `python3 -B tools/validate_startup_archives.py` for three hashes and ABI bytes.
+No live change. Counts: 149 partial (144 client/five engine), none complete.
+
+Prior source: [joystick-list ownership and delegated IJoy boundary](analysis/joystick-devices.md).
 Factory-list refs release forward, manager refs release reverse, external frame
 polling runs reverse before producer(false). Sanitizer composition and strict
 i386 compile/link pass. Factory helpers have no discovered direct/literal

@@ -1,6 +1,77 @@
 # Session handoff - 2026-10-30
 
-## Resume here: joystick list and concrete IJoy boundary recovered
+## Resume here: archive registration/key exchange recovered; full wrapper still open
+
+Source checkpoint follows `7f35909`. User permits sensible tested commits.
+No live host changes or desktop test required. New io/startup_archives.h and
+host/startup_archives.h recover the archive region of 006DB6E0, final archive
+cleanup in 006DC3A0 and 007E5F33 random arithmetic. See
+[archive scope](analysis/startup-archives.md) and checked bounded plan entry.
+
+Creation: three client rand calls BEFORE language/name formatting; opaque
+protection call 006DB8C7->[00A59000] and state effects occur BEFORE archive region.
+That operation is EXCLUDED, not implemented by a success stub. Separate native
+begin-mask/name/create/configure operations do not claim a full wrapper.
+Random state is caller-borrowed shared CRT state; no private seed/TLS ownership.
+
+Sixteen slots: 0..4 null reserved; 5 Lang<language>.dta; 6 LangEnglish.dta ONLY
+if 5 creation fails; 7 Patch, 8 Models, 9 Missions, 10 Maps, 11 Sounds, 12 Scripts,
+13 Others, 14 Maps_C, 15 Maps_U. Calls register directly through original
+_dtaCreate@4. Do not invent dtaAddDir/mount calls or include expansion archives.
+All keys source-verified against original immediate writes. For every present
+slot: mask=(mask<<16)|(rand&ffff), +0C(key^mask), full64 +10 reply, +0C(reply^key).
+Do not shortcut handshake or test setter return (original ignores it).
+Missing diagnostics include empty reserved slots and intentionally unused
+English fallback. Actual DLL first call mixes internal seed, second recovers
+compiled key/index; degenerate zero reply is preserved, not normalized.
+
+Shared rw_data lookup: dtaOpen LOW BYTE flags and DLL override 100478DC both
+zero => loose first, archive fallback on -1; otherwise archives first. Archives
+scan registration order from zero. Language then Patch precede base assets.
+Use the SAME module for archives, engine imports and DtaTextFiles. Concrete
+adapter checks factory RVA1424, thiscall release+08->1181, set+0C->1073 and
+reply+10->1384 (EDX:EAX). Module lifetime borrowed; indexes/codecs/registry
+remain delegated. Diagnostic transport is native OutputDebugStringA, not dbgPrintf.
+
+Archive cleanup releases forward, nulls slot AFTER callback. Original phase
+runs AFTER 3D/sound/graphics close, before CoUninitialize; native owner handles
+only archive refs. Caller must preserve surrounding teardown. Native RAII and
+repeat-create guard are explicit differences, with partial-success cleanup.
+
+Audits: all 2,048 availability patterns, fallback/order, random consumption,
+false setters, independent two-word mask reference, zero reply, visible slots,
+partial create exceptions and repeat-close pass ASan/UBSan. Strict i386 owner,
+adapter and actual localized-text-loader composition compiles/links ONLY, never
+executed. All 32 immediate key words independently decoded. Keys validate
+53,612 ISD0 index/member records in seven base archives; LangEnglish/Patch
+ISD1 header/bounds/checksums match (4,560/1,059 entries). Maps_C absent.
+Existing native suite, 158 Python tests, host build and evidence checks pass.
+Temporary audit sources/executables removed afterward; no permanent tests added.
+
+NEXT: original directory/cache registration, then remaining protection/application/
+state services and concrete graphics input services before controller wiring.
+006DBFC0 calls archive setup, then 006DBE60, then 006DBFB0->006DB620 localization.
+Directory root calls: Maps/Maps_C/Maps_U category0, Models1, Sounds2, Models3/4/5.
+Read-only client exports in ignored resource-search-directories include
+006ED570/006ED6B0/006ED760 and full cleanup 006DC3A0. Recursion lowercases
+composite directory names, filters directory attribute10 and . / ..; root case
+is preserved. IMPORTANT: same method 006D7590 uses DIFFERENT owners for category1
+(008AEC90) vs5 (008AEBA0); do not collapse their storage based on decompiler.
+Other owners/methods: category2 008AEC54/006D8550, 3 008AEC18/006D9640,
+4 008AEBDC/006D6B80. Category0 graphics +110->1006FF80->1006FD60. Their native
+cache/list implementations remain unrecovered; no caller or service stubs added.
+
+Evidence: python3 -B tools/validate_startup_archives.py verifies three hashes,
+24 anchors, six slots, 47 calls, 22 resources; eight negative mutations rejected.
+rw_data research imported into NEW /tmp/hd2-rw-data-startup-20261030/RWDataStartup
+project (workspace path with '&' is rejected by Ghidra). Subsequent exports were
+read-only; original saved projects/binaries untouched. Ignored exports:
+rw-data-startup-exports, rw-data-search-exports, rw-data-lookup-exports.
+Three new partial client entries: 149 total (144 client/five engine), zero
+complete, frozen 18,783. rw_data stays outside census. No agent game execution,
+original binary edits or push.
+
+## Earlier checkpoint: joystick list and concrete IJoy boundary recovered
 
 Checkpoint follows `7becea0` input setup/localization. User permits sensible
 tested commits. Source-only slice; no live host changes or desktop test needed.
