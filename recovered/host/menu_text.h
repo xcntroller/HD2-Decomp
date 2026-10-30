@@ -4,6 +4,7 @@
 #include "host/menu_cursor.h"
 #include "host/menu_text_geometry.h"
 #include "host/menu_text_object.h"
+#include "frontend/localized_text.h"
 
 #include <set>
 
@@ -126,11 +127,13 @@ template<class Graphics>
 class MenuText {
 public:
     MenuText(Graphics* graphics, HMODULE module, const MenuScene& scene,
-             bool confirmation_enabled = false, bool runtime_confirmation_enabled = false)
+             bool confirmation_enabled = false, bool runtime_confirmation_enabled = false,
+             const frontend::LocalizedTextCache* localized = nullptr)
         : graphics_(graphics), big_(nullptr, nullptr), small_(nullptr, nullptr),
           big_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\BIG.tbl"))),
           small_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\SMALL.tbl"))),
-          labels_(decode_menu_labels(read_menu_text_file("MenuText\\labels.bin"))) {
+          labels_(localized ? std::map<std::uint32_t, std::string>{} :
+                  decode_menu_labels(read_menu_text_file("MenuText\\labels.bin"))) {
         std::set<std::uint32_t> required;
         const auto require_captions = [&](const frontend::MenuScreenDefinition& definition) {
             for (const auto& control : definition.controls) for (const auto& event : control.initialization) {
@@ -140,6 +143,8 @@ public:
         require_captions(frontend::main_menu_definition());
         if (confirmation_enabled) require_captions(frontend::confirmation_definition());
         if (runtime_confirmation_enabled) required.insert(2013);
+        if (localized) for (const auto id : required)
+            labels_.emplace(id, frontend::lookup_localized_text(*localized, static_cast<std::int32_t>(id)));
         if (labels_.size() != required.size()) throw std::runtime_error("Incorrect staged control caption count");
         for (const auto id : required) if (labels_.find(id) == labels_.end()) {
             throw std::runtime_error("Missing original control caption");

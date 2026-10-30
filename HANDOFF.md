@@ -2,20 +2,30 @@
 
 ## Just completed
 
-- User desktop-confirmed the bounded startup integration executable: startup
-  completed and teardown result=0. First milestone0 checkbox is complete.
-  [Scope, run guide and validation](analysis/startup-integration.md).
-- Actual log: gate7, text2590, five vertex tables, prepare=1, profile/options
-  applied. Zero bindings/joysticks in this profile; live controller input is next.
-- Strict i386 build, native sanitizer/staging audits, existing native checks,
-  158 Python tests and evidence maps pass. No Windows code run by agent.
-- Ledger:284 partial (279 client/five engine), zero complete; frozen18,783.
-  Full registry/setup bootstrap and binary integrity VM remain outside this probe.
+- Original controller/state launch is implemented and user desktop-confirmed;
+  milestone0 items1 and2 are checked. [Delivery contract](analysis/controller-integration.md)
+  records scope, commands, original addresses and validation.
+- One shared device lifetime now drives four opening movies → compiled Main/Exit.
+  Binding mode2 restores63/63 input words. Actual music/profile persistence,
+  borrowed input, render-before-update and cold control hooks are connected.
+- Desktop log: four successful movie opens, menu interactions/confirmation,
+  status4 Exit, control reset and teardown result=0 after1,692 frames.
+- Strict i386 builds, native checks,158 Python tests, temporary sanitizer/profile/
+  staging audits and fingerprinted evidence checks pass. No Windows code run by
+  agent. Temporary audits removed; no permanent tests added.
+- Ledger:297 partial (292client/fiveengine), zero complete; frozen18,783.
+  Controller delivery and its preparation are being committed after desktop
+  acceptance; the preceding startup checkpoint is47e768d.
 
 ## Next
 
-Research concrete video/menu owners and recovered controller composition for the
-second milestone0 checkbox. Reuse confirmed contracts and existing ignored
-Ghidra exports; do not add isolated sound helpers without a required launch call.
-Keep the five delivery outcomes stable and preserve original files.
-[Recovery index and priorities](analysis/launch-next-steps.md).
+Deliver milestone0 item3: opening subtitles/audio, remaining music/skip/cleanup
+branches and ordinary/skipped/missing-movie verification. Start with the reached
+owners in [preparation](analysis/controller-integration-preparation.md), using the
+new controller executable rather than a second preview loop.
+
+Keep Main/Exit, English800x600 and cold standalone control explicit. Special
+videos, eager fourteen-screen builders, global cache lifetime, full setup/VM and
+failure/shutdown matrix remain open. Preserve the five delivery outcomes; do not
+expand the checklist with helper slices. Interactive commits need desktop
+confirmation (received for this delivery); commit only when requested.

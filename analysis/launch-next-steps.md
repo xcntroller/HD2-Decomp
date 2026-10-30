@@ -1,5 +1,13 @@
 # Next-session launch priorities
 
+Current starting point: [controller/state delivery](controller-integration.md) is
+implemented and user desktop-confirmed; milestone0 items1 and2 are complete.
+Next finish reached opening subtitle/audio ownership and remaining playback/skip/
+cleanup branches, then ordinary/skipped/missing-movie desktop verification.
+[Preparation](controller-integration-preparation.md) retains original contracts.
+The sections below preserve earlier dependency research; use the current delivery
+contract to distinguish integrated owners from remaining services.
+
 Planning review, 2026-10-30, after commit050b112. No source behavior changed or
 new binary behavior established by this review. Ledger:278 partial, zero complete.
 
@@ -19,11 +27,11 @@ and controller composition next. Ledger now284 partial.
 
 ## Assessment
 
-The main remaining problem is composition and ownership. Input/bindings,
-localization, archives/directories, data/profiles/settings, catalog and sound
-runtime have audited source. The desktop-confirmed movie/menu preview still
-uses a separate host composition. The recovered controller cannot yet replace it
-with real owners for every required service.
+The bounded launch now composes input/bindings, localization, archives/directories,
+data/profiles/settings, catalog and music runtime under the recovered controller.
+Its ordinary Main/Exit path is desktop-confirmed. Remaining launch work concerns
+playback subtitle/audio owners and cleanup/failure completeness; the old preview
+is retained as a diagnostic, not the current delivery path.
 
 Do not treat older analysis documents' remaining-work lists as current inventories.
 For example, controller prerequisites006B65D0/006B6620 now have recovered data/
@@ -39,14 +47,14 @@ Update the relevant contracts as work advances; keep delivery outcomes in plan.m
 
 | Area | Existing recovery and contracts | Still required for launch |
 | --- | --- | --- |
-| Controller/opening | [Controller](application-controller.md), [opening playback](opening-video.md); host four-movie preview desktop-confirmed | Concrete state owners and original startup/controller composition |
-| Input | [Bindings/defaults](binding-installation.md), [manager](input-manager.md), [joysticks](joystick-devices.md), [DLL forwarding](graphics-input-services.md) | Live setup, ownership and controller connection; no invented enumeration |
-| Text/window | [Localization/cache](startup-localization.md), [window persistence](window-position.md) | Original startup and rendering consumers |
+| Controller/opening | [Integrated state/controller launch](controller-integration.md), four movies/Main/Exit desktop-confirmed | Subtitle/audio completion, skip/missing-movie and failure matrix |
+| Input | [Bindings/defaults](binding-installation.md), [manager](input-manager.md), [joysticks](joystick-devices.md), [DLL forwarding](graphics-input-services.md); shared launch input connected | Broader character/capture targets and device/failure matrix; no invented enumeration |
+| Text/window | [Localization/cache](startup-localization.md), [window persistence](window-position.md); launch captions connected | Subtitle rendering and broader localization/resolution fidelity |
 | Resources | [Archives](startup-archives.md), [directories](resource-directories.md), [chunk files](chunk-file.md) | Protection boundary, full ownership/order and reached cache consumers |
 | Data/profiles | [HumanStore](human-store.md), [GameData/profiles](startup-data.md) | Full application lifetime and live composition |
 | Configuration/settings | [Options/profile selection](startup-settings.md), [game.cfg/data owners](startup-owners.md) | Shared gate/control lifetime and remaining application owners |
 | Launch gate/data | [Control startup](control-startup.md): explicit gate7 initializer, record defaults and real locks | Full control/interface creation, lifecycle and protection; gate can change later |
-| Sound/music | [Catalog/primary selection](sound-catalog.md), [movie coordination](sound-movie-channels.md), [registered data/update/reset](sound-runtime.md); position/entry queries recovered | Gate lifecycle, actual live owners and playback/cache/restore/spatial branches proven necessary |
+| Sound/music | [Catalog/primary selection](sound-catalog.md), [movie coordination](sound-movie-channels.md), [registered data/update/reset](sound-runtime.md); reached launch music/runtime connected | Subtitle audio and playback/cache/restore/spatial branches proven necessary |
 
 Sound playback00433FA0, restore00435240 and spatial00432BE0 are not yet recovered.
 The small query helpers do not establish completion of those bodies. Establish

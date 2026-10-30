@@ -97,6 +97,8 @@ public:
         return scene_method<SetState>(driver_, module_, 0x18, 0x15770)(driver_, state, value);
     }
 
+    EngineFrame* frame() const { return driver_; }
+
 private:
     using Close = std::int32_t (WINAPI *)(EngineFrame*);
     HMODULE module_;
@@ -110,7 +112,21 @@ public:
     explicit MenuScene(HMODULE module, bool confirmation_preview = false,
                        bool confirmation_enabled = false, bool bind_cursor_model = false,
                        bool runtime_confirmation_enabled = false)
-        : driver_(module), scene_(driver_.create(13)), camera_(driver_.create(3)),
+        : MenuScene(std::make_unique<MenuDriver>(module), nullptr, module,
+                    confirmation_preview, confirmation_enabled, bind_cursor_model,
+                    runtime_confirmation_enabled) {}
+
+    MenuScene(MenuDriver& driver, HMODULE module, bool confirmation_enabled,
+              bool bind_cursor_model)
+        : MenuScene(nullptr, &driver, module, false, confirmation_enabled,
+                    bind_cursor_model, false) {}
+
+private:
+    MenuScene(std::unique_ptr<MenuDriver> owned, MenuDriver* borrowed, HMODULE module,
+              bool confirmation_preview, bool confirmation_enabled,
+              bool bind_cursor_model, bool runtime_confirmation_enabled)
+        : owned_driver_(std::move(owned)), driver_(borrowed ? *borrowed : *owned_driver_),
+          scene_(driver_.create(13)), camera_(driver_.create(3)),
           light_(driver_.create(2)), model_(driver_.create(9)) {
         using Pair = void (WINAPI *)(EngineFrame*, EngineFrame*);
         using Vector = void (WINAPI *)(EngineFrame*, const float*);
@@ -278,6 +294,7 @@ public:
         std::fflush(stdout);
     }
 
+public:
     std::int32_t render() const {
         return render_(scene_.get(), 0);
     }
@@ -589,7 +606,8 @@ private:
     }
 
     using Render = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t);
-    MenuDriver driver_;
+    std::unique_ptr<MenuDriver> owned_driver_;
+    MenuDriver& driver_;
     MenuDriver::Owner scene_;
     MenuDriver::Owner camera_;
     MenuDriver::Owner light_;

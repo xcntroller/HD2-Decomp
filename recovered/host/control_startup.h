@@ -6,14 +6,19 @@
 
 namespace hd2::host {
 
-// Native storage for the two actual Win32 locks. This is NOT the remaining
-// original control owner/device/interface shutdown. It only owns these locks;
+// Native storage for two startup locks and the peer-owner Win32 lock.
+// The remaining original control owner/device/interface shutdown is separate;
 // callers must destroy dependent services before this storage. No DLL runs here.
 class ControlStartupServices {
 public:
-    ControlStartupServices() = default;
+    // Peer-owner+ B4 lock is constructed with the cold owner007466E0, before
+    // the two startup locks. Native storage does not reproduce its object ABI.
+    ControlStartupServices() {
+        InitializeCriticalSection(&locks_[2]);
+        initialized_[2] = true;
+    }
     ~ControlStartupServices() {
-        for (unsigned i = 0; i != 2; ++i)
+        for (unsigned i = 0; i != 3; ++i)
             if (initialized_[i]) DeleteCriticalSection(&locks_[i]);
     }
     ControlStartupServices(const ControlStartupServices&) = delete;
@@ -24,11 +29,16 @@ public:
         InitializeCriticalSection(&locks_[index]);
         initialized_[index] = true;
     }
+    void enter_control_lock(unsigned index) {
+        if (index >= 3 || !initialized_[index]) throw std::logic_error("Control lock is not initialized");
+        EnterCriticalSection(&locks_[index]);
+    }
+    void leave_control_lock(unsigned index) noexcept { LeaveCriticalSection(&locks_[index]); }
 private:
     static_assert(sizeof(void*) == 4 && sizeof(CRITICAL_SECTION) == 24,
                   "Original control lock ABI requires i386");
-    CRITICAL_SECTION locks_[2]{};
-    bool initialized_[2]{};
+    CRITICAL_SECTION locks_[3]{};
+    bool initialized_[3]{};
 };
 
 }

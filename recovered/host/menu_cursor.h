@@ -62,9 +62,13 @@ public:
         if (!point) {
             return false;
         }
+        return draw_at(*point);
+    }
+
+    bool draw_at(CursorPoint point) const {
         const auto width = graphics_->methods->width(graphics_);
         const auto height = graphics_->methods->height(graphics_);
-        const auto vertices = cursor_quad(*point, width, height);
+        const auto vertices = cursor_quad(point, width, height);
         const CursorViewport viewport{0, 0, static_cast<std::uint32_t>(width),
                                        static_cast<std::uint32_t>(height), 0, 1};
         graphics_->methods->begin_scene(graphics_);

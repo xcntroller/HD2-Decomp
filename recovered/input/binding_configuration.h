@@ -17,7 +17,7 @@ struct BindingSetting {
 static_assert(sizeof(BindingSetting) == 0x1c && offsetof(BindingSetting, dirty) == 0x18);
 struct BindingConfiguration {
     std::vector<BindingSetting> settings;
-    std::uint32_t mode = 0;
+    std::uint32_t mode = 2; // Constructor006A81C0/+10, before profile/default loading.
 };
 
 // 006a8600 ignores installer failure, forces device index zero and then clears

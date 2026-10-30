@@ -26,14 +26,19 @@ selection, queued changes, fades and completion cleanup.
 The [sound runtime follow-up](analysis/sound-runtime.md) adds the full voice,
 movie and listener update, resource reset/start/stop, sector metadata and
 registered manager data, plus playback-position and bounded catalog-entry queries.
-This remains source-only; playback/cache producers,
-shared gate/control ownership and application/controller integration are open.
+The bounded controller launch below connects the reached catalog/music runtime
+and cold control ownership. Playback/cache producers, restore and spatial
+branches remain source-only or open as documented in the sound contracts.
 The [launch gate initializer](analysis/control-startup.md) now has source and
 real Win32 lock services; full control lifecycle and protection remain open.
 The [startup integration executable](analysis/startup-integration.md) now composes
 the real archive/input/text/data/profile/settings adapters and required module
 loading. The bounded startup checkpoint is desktop-confirmed (2026-10-30);
-original video/menu controller integration is next.
+the [original controller/state launch](analysis/controller-integration.md) is also
+implemented and desktop-confirmed. One shared device lifetime drives four movies
+into compiled Main/Exit with63/63 input words and status4 Exit teardown. Run
+`python3 -B tools/run_application_launch.py`. Opening subtitles/audio and the full
+failure/shutdown matrix remain open; English800x600/Main/Exit is the UI boundary.
 
 Movie/menu keyboard device input and focus return are desktop-confirmed. The
 [keyboard preprocessing and text-input slice](analysis/keyboard-preprocessing.md)
@@ -45,7 +50,8 @@ layouts](analysis/binding-installation.md) and
 also recovered and audited. [Original input setup and startup localization](analysis/startup-localization.md)
 now include registry language selection and real text loading/parsing. Concrete
 graphics input forwarding and archive setup are also source-recovered; live
-startup/lifecycle, profile persistence and text rendering consumers remain open.
+the bounded launch below now connects their startup, profile and text consumers;
+full application lifetime and broader text/localization fidelity remain open.
 [Joystick list ownership
 and concrete IJoy forwarding](analysis/joystick-devices.md) are now recovered and
 audited; its creation helper has no discovered caller, so normal empty-list
@@ -212,11 +218,11 @@ every detail of that area.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **284 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **297 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 279 |
+| Base game client | 17,294 | 0 | 292 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

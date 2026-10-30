@@ -61,14 +61,14 @@ public:
         clear_(graphics_, 0, 1.0f, 3);
         present_(graphics_);
     }
-    void close() noexcept {
+    void close(bool clear_buffers = true) noexcept {
         if (!video_) return;
-        for (int i = 0; i < 3; ++i) clear_present();
+        if (clear_buffers) for (int i = 0; i < 3; ++i) clear_present();
         if (close_) close_(video_);
         release_(video_);
         video_ = nullptr;
     }
-    void draw() const {
+    void draw(bool present = true) const {
         // 00688f50 preserves IGraph state zero across video rendering.
         const auto saved = get_state_(graphics_, 0);
         clear_(graphics_, 0, 1.0f, 3);
@@ -76,7 +76,7 @@ public:
         draw_(video_, 0);
         end_(graphics_);
         set_state_(graphics_, 0, saved);
-        present_(graphics_);
+        if (present) present_(graphics_); // Controller loop owns normal frame presentation.
     }
 
 private:

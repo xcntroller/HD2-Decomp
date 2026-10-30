@@ -55,6 +55,15 @@ public:
     void delay(std::uint32_t value) { delay_ = value; }
     std::uint32_t delay() const { return delay_; }
 
+    // Native state lifetime for the normal006C0920 path. State-owned resources
+    // are real; original global loaded-cache trees/class ABI remain separate.
+    // Directory registration lists are NOT those loaded-cache objects.
+    void shutdown() {
+        if (active_) required().shutdown();
+        if (!reinitialize_) active_.reset();
+        if (services_.application_flags() & 2u) services_.close_mouse();
+    }
+
     // 006c0820 normal/reinitialize startup. Original deliberately ignores the
     // initial-state helper's result, including alternate-start success.
     bool start(bool reinitialize) {
@@ -129,7 +138,11 @@ public:
         const auto status = required().status();
         if (status == 13) {
             video_completion();
-        } else if (status == 2 || status == 3 || status == 4 ||
+        } else if (status == 4) {
+            shutdown();
+            services_.reset_control(); // Actual0072E4E0(1), supported cold branch.
+            return finish_frame(false);
+        } else if (status == 2 || status == 3 ||
                    (status >= 7 && status <= 17)) {
             throw std::logic_error("Unrecovered application state transition");
         }

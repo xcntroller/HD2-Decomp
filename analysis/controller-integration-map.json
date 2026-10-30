@@ -1,0 +1,836 @@
+{
+  "scope": "Implemented bounded controller/state launch: original binding mode2, owning single-movie/frontend states, shared devices, frame ordering, native profile writer, cold control maintenance/reset and actual Main/Exit runtime. Subtitles/special videos/eager fourteen-screen builders/global loaded-cache ABI remain outside this slice; user desktop-confirmed ordinary four-movie/Main/Exit path on 2026-10-30; broader playback/failure coverage remains open.",
+  "runtime_verified": true,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006a81c0",
+        "hex": "518bc18a4c2403880833c989480489480889480cc740100200000059c3",
+        "meaning": "Binding configuration constructor clears vector and sets mode2; restored in native owner."
+      },
+      {
+        "address": "006b4bc4",
+        "hex": "c644242413e8f235ffff",
+        "meaning": "Application profile construction reaches actual binding constructor006A81C0."
+      },
+      {
+        "address": "006c2133",
+        "hex": "8b0d1ce98a00e86211ffff",
+        "meaning": "Delay expiry loads actual profile008AE91C before sound-volume application."
+      },
+      {
+        "address": "0067ea00",
+        "hex": "8b4104c3",
+        "meaning": "Current state status getter."
+      },
+      {
+        "address": "0067ea10",
+        "hex": "8b442404894104c20400",
+        "meaning": "Current state status setter."
+      },
+      {
+        "address": "0067ea20",
+        "hex": "8b4108c3",
+        "meaning": "Pending state getter."
+      },
+      {
+        "address": "0067ea30",
+        "hex": "8b442404894108c20400",
+        "meaning": "Pending state setter."
+      },
+      {
+        "address": "0067ea40",
+        "hex": "8b410883f802740a894104c7410802000000c3",
+        "meaning": "Commit pending state only when not2, restore pending2."
+      },
+      {
+        "address": "0067ec60",
+        "hex": "c20400",
+        "meaning": "Actual video fixed-update empty RET4."
+      },
+      {
+        "address": "0066be90",
+        "hex": "8b01ff604c",
+        "meaning": "Frontend fixed-update tail-dispatch to virtual4C."
+      },
+      {
+        "address": "0067eaa0",
+        "hex": "c20400",
+        "meaning": "Actual frontend virtual4C empty RET4."
+      },
+      {
+        "address": "0067eab0",
+        "hex": "32c0c3",
+        "meaning": "Frontend render virtual50 actual false return."
+      },
+      {
+        "address": "006c0db0",
+        "hex": "b80a000000c3",
+        "meaning": "Video type10."
+      },
+      {
+        "address": "006c1650",
+        "hex": "b802000000c3",
+        "meaning": "Frontend type2."
+      },
+      {
+        "address": "00843470",
+        "hex": "01",
+        "meaning": "Default main-loop keyboard-poll/screenshot-scan flag1."
+      },
+      {
+        "address": "00842ed0",
+        "hex": "202d636d642000",
+        "meaning": "Actual alternate command substring: space -cmd space."
+      },
+      {
+        "address": "00842ecc",
+        "hex": "202d6300",
+        "meaning": "Actual shorter alternate command substring: space -c."
+      },
+      {
+        "address": "0080fa0c",
+        "hex": "cdcc8c3f",
+        "meaning": "Actual video volume multiplier float32 1.1."
+      },
+      {
+        "address": "0080f574",
+        "hex": "0ad7233c",
+        "meaning": "Actual settings percent multiplier float32 0.01."
+      },
+      {
+        "address": "00a59010",
+        "hex": "a5636200b4f18000",
+        "meaning": "Frontend derived initialization wrapper return006263A5 resolves GetTickCount."
+      },
+      {
+        "address": "00a59040",
+        "hex": "35846800b4f18000",
+        "meaning": "Video initializer final wrapper return00688435 resolves GetTickCount."
+      },
+      {
+        "address": "00a59048",
+        "hex": "068b6800e4f38000",
+        "meaning": "Video resize wrapper return00688B06 resolves IsWindow."
+      },
+      {
+        "address": "0080f1b4",
+        "hex": "a6034300",
+        "meaning": "GetTickCount IAT import-name RVA."
+      },
+      {
+        "address": "0066ed30",
+        "hex": "568bf1e8289701008b4e7085c974068b016a01ff10c74670",
+        "meaning": "Video shutdown closes body then deletes descriptor."
+      },
+      {
+        "address": "0066ed50",
+        "hex": "8b442408568bf18b4c240850518bcee84c9e0100837e0402",
+        "meaning": "Video input wrapper promotes base status2 to13."
+      },
+      {
+        "address": "0066ed80",
+        "hex": "8b44240456508bf1e8839e0100837e04027507c746040d00",
+        "meaning": "Video update wrapper promotes base status2 to13."
+      },
+      {
+        "address": "0066eae0",
+        "hex": "518b44240c53566a1c894c240c89417ce81a67170033db83",
+        "meaning": "Sequence index and descriptor lifetime; AL is not an open-success result."
+      },
+      {
+        "address": "0067ead0",
+        "hex": "6aff68e67b800064a100000000506489250000000083ec0c",
+        "meaning": "Shared frontend constructor resource containers/status4/global owner."
+      },
+      {
+        "address": "0066ad10",
+        "hex": "558bec83e4f083ec188b4508568bf183f8fe57b90b000000",
+        "meaning": "Frontend common initialization; normal null descriptor mode10."
+      },
+      {
+        "address": "0066bea0",
+        "hex": "83ec10538b5c2418568bf157538b06ff5048837e200b750e8b0d0021980083e10780f907750de8f577dcff8b10538bc8ff52108b06538bceff5048e8e077dcff8b10538bc8ff52108a461484c07403015e188bcee877080000a1e0e48a0085c0",
+        "meaning": "Actual repeated derived+48 and sound-manager+10 update calls; preserve both, not only a decompiler claim."
+      },
+      {
+        "address": "0066de00",
+        "hex": "83ec2053568bf1578b06ff505084c00f85d80100008b4630",
+        "meaning": "Frontend scene/modal rendering and cursor tail."
+      },
+      {
+        "address": "0066b140",
+        "hex": "51538bd956578b03ff503ca1e0e48a0033f63bc674478b0d",
+        "meaning": "Frontend shutdown distinct from destruction."
+      },
+      {
+        "address": "0066c6c0",
+        "hex": "515356578bf1bffcffffff8b861c01000085c074458b8e20",
+        "meaning": "Reverse resource-frame cache cleanup."
+      },
+      {
+        "address": "006269b0",
+        "hex": "6aff682a22800064a100000000506489250000000083ec28",
+        "meaning": "Derived update date/time change event, not network error polling."
+      },
+      {
+        "address": "006ed960",
+        "hex": "83ec3053558be98a0d38b38c00b0015684c8578ada884424",
+        "meaning": "Actual cached local date/time formatting."
+      },
+      {
+        "address": "0072c3b0",
+        "hex": "6aff68b3c9800064a100000000506489250000000081ec94",
+        "meaning": "Control frame queue lifetime and selected-phase empty-list test."
+      },
+      {
+        "address": "0072ce70",
+        "hex": "a00021980083ec1ca80153568bd97405e8cbfeffff8b7424",
+        "meaning": "Control per-frame maintenance, not globally bypassed by gate7."
+      },
+      {
+        "address": "0072cd50",
+        "hex": "5153568bf1578d86180400005089442410ff15a8f1800033",
+        "meaning": "Cold records active flag guards."
+      },
+      {
+        "address": "0072c5d0",
+        "hex": "515355568bf1578b7c24188b9e585000008b8e5450000003df8bc3899e585000003bc10f8c000400002bc103c933db3bc18986585000007e06899e585000008b150021980083e20780fa07743783be4450000002752e8b8e4850000003cf8bc1",
+        "meaning": "Real signed/wrapping50ms accumulator, single subtraction, excess reset and maintenance dispatch."
+      },
+      {
+        "address": "0072ca10",
+        "hex": "a010c9970083ec0853bb01000000568bf184c375230ac368",
+        "meaning": "Connection maintenance timer and gate-dependent network branches."
+      },
+      {
+        "address": "0073ea70",
+        "hex": "568bf1e8e89e000089068b442408894604c7460800000000",
+        "meaning": "Timer constructor initializes disabled word0."
+      },
+      {
+        "address": "0073ea90",
+        "hex": "568bf18b460885c0741be8c19e00008b4e048b1603ca3bc8",
+        "meaning": "Disabled timer returnsfalse; no synthetic timeout success."
+      },
+      {
+        "address": "006b1290",
+        "hex": "568bf18b0685c074278b480485c974208b44240c8b4c2408",
+        "meaning": "Recognized movie flag update and conditional real persistence."
+      },
+      {
+        "address": "006b09a0",
+        "hex": "6aff682da1800064a100000000506489250000000081ec40",
+        "meaning": "Profile writer, actual path/mapping/chunks."
+      },
+      {
+        "address": "006a6d80",
+        "hex": "83ec0853568b742414578bd9803e0074438b46046a016a00",
+        "meaning": "Ten profile movie flag bytes in reverse order."
+      },
+      {
+        "address": "006c0de0",
+        "hex": "6aff6838ac800064a100000000506489250000000051568b",
+        "meaning": "Video destructor does not repeat shutdown."
+      },
+      {
+        "address": "006c1680",
+        "hex": "6aff68eead800064a100000000506489250000000083ec08",
+        "meaning": "Frontend destructor separate from shutdown."
+      },
+      {
+        "address": "006c0790",
+        "hex": "6aff68d8ab800064a100000000506489250000000051568b",
+        "meaning": "Controller destructor deletes active owner and lock."
+      },
+      {
+        "address": "00698500",
+        "hex": "a1e4e78a00c3",
+        "meaning": "Actual sound-world source returns mission global008AE7E4."
+      },
+      {
+        "address": "0066a6e0",
+        "hex": "a148e48a005685c08bf175526a54e81cab17008bc883c404",
+        "meaning": "Shared pointer-input acquisition/refcount."
+      },
+      {
+        "address": "0066a780",
+        "hex": "568bf18b460448894604752d8b462085c0740c8b0850ff11",
+        "meaning": "Shared pointer-input release/refcount."
+      },
+      {
+        "address": "008303a8",
+        "hex": "4765745469636b436f756e7400",
+        "meaning": "Actual import name for the three newly resolved wrapper contexts."
+      },
+      {
+        "address": "006ed940",
+        "hex": "8b4108568b72083bc65e740332c0c38b49048b42043bc80f94c0c3",
+        "meaning": "Cached date/time comparison checks only tm_hour+08 and tm_min+04; do not invent a full date comparison."
+      },
+      {
+        "address": "00748940",
+        "hex": "6810319800ff15c4f180006808319800ff15c8f18000c3",
+        "meaning": "Actual control QPC frequency/origin initialization."
+      },
+      {
+        "address": "00748960",
+        "hex": "83ec088d44240050ff15c8f180008b1508319800a10c3198008b4c24002bca8b5424041bd0894c24008954240483c408df6c24f8df2d10319800def9d80d08f78000e959d40900",
+        "meaning": "Actual control relative QPC delta/frequency*1000 and __ftol low-word return."
+      },
+      {
+        "address": "0074671d",
+        "hex": "8d8eb400000051ff15b8f180008b4c2410889ea4000000899ed8000000",
+        "meaning": "Peer-owner critical section initialization and worker-active byte zero, native third lock."
+      },
+      {
+        "address": "00732360",
+        "hex": "81eca8000000568b35d4f0800057b92700000033c08d7c2414f3ab8d442414c74424149c00000050ffd685c075178d4c",
+        "meaning": "Firewall-reset context: real GetVersionEx; unchanged cold flag skips COM mutation."
+      },
+      {
+        "address": "00746890",
+        "hex": "515355568bf18d9eb400000053ff15a8f180008b4e0485c9743e8b46088bd02b",
+        "meaning": "Empty peer-owner cleanup takes its real critical section."
+      },
+      {
+        "address": "00746840",
+        "hex": "568bf18a86a400000084c074358b86b000000068e803000050c686a40000",
+        "meaning": "Inactive peer worker skips join/handle cleanup."
+      },
+      {
+        "address": "0073d370",
+        "hex": "568bf1e808ffffff33c0c7067863810089463089462c894634c74638010000008bc65ec3",
+        "meaning": "Actual empty bitstream constructor fields, not packet producer recovery."
+      },
+      {
+        "address": "0072e4e0",
+        "hex": "8a44240483ec1484c0558be9750ec68570500000015d83c414c20400",
+        "meaning": "Cold control reset context only; no new credit beyond frozen body."
+      },
+      {
+        "address": "008440b0",
+        "hex": "25642e2025732e2025642020253032643a2530326400",
+        "meaning": "Actual menu date format with numeric month table, including double space."
+      },
+      {
+        "address": "0067ea80",
+        "hex": "b001c20800",
+        "meaning": "Frontend preprocessing+44 actual true/RET8 body."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "00815bc8",
+        "targets": [
+          "006c0dc0",
+          "00688040",
+          "0066ed30",
+          "0066ed50",
+          "0067ec60",
+          "0066ed80",
+          "0066eda0",
+          "006c0db0",
+          "0067ea00",
+          "0067ea10",
+          "0067ea20",
+          "0067ea30",
+          "0067ea40"
+        ],
+        "meaning": "Full normal startup video state table."
+      },
+      {
+        "address": "00815e30",
+        "targets": [
+          "006c1660",
+          "0066ad10",
+          "0066b140",
+          "0066b3e0",
+          "0066be90",
+          "0066bea0",
+          "0066de00",
+          "006c1650",
+          "0067ea00",
+          "0067ea10",
+          "0067ea20",
+          "0067ea30",
+          "0067ea40",
+          "00626b20",
+          "00627060",
+          "00626950",
+          "00626340",
+          "0067ea80",
+          "006269b0",
+          "0067eaa0",
+          "0067eab0",
+          "0067eac0"
+        ],
+        "meaning": "Frontend state table including derived hooks; not all hook bodies are implemented."
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "0066ed33",
+        "target": "00688460"
+      },
+      {
+        "site": "0066ebd2",
+        "target": "00688040"
+      },
+      {
+        "site": "0066aeec",
+        "target": "0066c5b0"
+      },
+      {
+        "site": "0066aef4",
+        "target": "0066a6e0"
+      },
+      {
+        "site": "0066b036",
+        "target": "004336c0"
+      },
+      {
+        "site": "0066b047",
+        "target": "004336c0"
+      },
+      {
+        "site": "0066b059",
+        "target": "004336c0"
+      },
+      {
+        "site": "0066b06a",
+        "target": "004336c0"
+      },
+      {
+        "site": "0066bec6",
+        "target": "004336c0"
+      },
+      {
+        "site": "0066bedb",
+        "target": "004336c0"
+      },
+      {
+        "site": "0066bef4",
+        "target": "0066c770"
+      },
+      {
+        "site": "0066bf09",
+        "target": "0066b990"
+      },
+      {
+        "site": "0066df10",
+        "target": "0066a870"
+      },
+      {
+        "site": "0066dfd6",
+        "target": "0066a870"
+      },
+      {
+        "site": "0066dff3",
+        "target": "0066a870"
+      },
+      {
+        "site": "0066b203",
+        "target": "0066c6c0"
+      },
+      {
+        "site": "0066b238",
+        "target": "0066a780"
+      },
+      {
+        "site": "006269d5",
+        "target": "006ed960"
+      },
+      {
+        "site": "0072c467",
+        "target": "00698500"
+      },
+      {
+        "site": "0072ce80",
+        "target": "0072cd50"
+      },
+      {
+        "site": "0072ce8e",
+        "target": "0072c5d0"
+      },
+      {
+        "site": "0072c657",
+        "target": "0072ca10"
+      },
+      {
+        "site": "0072ca36",
+        "target": "0073ea70"
+      },
+      {
+        "site": "0072ca53",
+        "target": "0073ea90"
+      },
+      {
+        "site": "006b12b0",
+        "target": "006a6d10"
+      },
+      {
+        "site": "006b12bb",
+        "target": "006b09a0"
+      },
+      {
+        "site": "006b1015",
+        "target": "006a6d80"
+      },
+      {
+        "site": "006b4bc9",
+        "target": "006a81c0"
+      },
+      {
+        "site": "006dcb64",
+        "target": "006c0790"
+      },
+      {
+        "site": "006dcc52",
+        "target": "006c0820"
+      },
+      {
+        "site": "006dce27",
+        "target": "006dc950"
+      },
+      {
+        "site": "006dcee4",
+        "target": "006c7870"
+      },
+      {
+        "site": "006dcfa6",
+        "target": "006c3190"
+      },
+      {
+        "site": "006dcfb3",
+        "target": "0072c3b0"
+      },
+      {
+        "site": "006dcfc9",
+        "target": "006c3100"
+      },
+      {
+        "site": "006dcfe1",
+        "target": "0072c3b0"
+      },
+      {
+        "site": "006dd008",
+        "target": "006c20f0"
+      },
+      {
+        "site": "006dd01e",
+        "target": "0072ce70"
+      },
+      {
+        "site": "006dd119",
+        "target": "00698500"
+      },
+      {
+        "site": "006dd126",
+        "target": "00698500"
+      },
+      {
+        "site": "006dd21f",
+        "target": "00698500"
+      },
+      {
+        "site": "006dd2ce",
+        "target": "006c0790"
+      },
+      {
+        "site": "006c0cbb",
+        "target": "006c0af0"
+      },
+      {
+        "site": "006c0d81",
+        "target": "0066eae0"
+      },
+      {
+        "site": "006c0f5f",
+        "target": "0067ead0"
+      },
+      {
+        "site": "006c128b",
+        "target": "0067ead0"
+      },
+      {
+        "site": "006c1325",
+        "target": "0067ead0"
+      },
+      {
+        "site": "006c1391",
+        "target": "0067ead0"
+      },
+      {
+        "site": "006c13c1",
+        "target": "0067ead0"
+      },
+      {
+        "site": "006c2139",
+        "target": "006b32a0"
+      },
+      {
+        "site": "006c2362",
+        "target": "0067ead0"
+      },
+      {
+        "site": "006c23d6",
+        "target": "0067ead0"
+      },
+      {
+        "site": "006c24e0",
+        "target": "0066eae0"
+      },
+      {
+        "site": "006c2556",
+        "target": "0066eae0"
+      },
+      {
+        "site": "006c2571",
+        "target": "0066eae0"
+      },
+      {
+        "site": "006c258c",
+        "target": "0066eae0"
+      },
+      {
+        "site": "006c25a7",
+        "target": "0066eae0"
+      },
+      {
+        "site": "006c27d9",
+        "target": "0067ead0"
+      },
+      {
+        "site": "006c28f9",
+        "target": "00698500"
+      },
+      {
+        "site": "006c2944",
+        "target": "0067ead0"
+      },
+      {
+        "site": "00626437",
+        "target": "0061a760"
+      },
+      {
+        "site": "00626479",
+        "target": "006ed960"
+      },
+      {
+        "site": "006884b0",
+        "target": "006b1290"
+      },
+      {
+        "site": "006884c4",
+        "target": "004336c0"
+      },
+      {
+        "site": "006884df",
+        "target": "004336c0"
+      }
+    ],
+    "resource_anchors": [],
+    "zero_initialized_storage": [
+      {
+        "address": "0097cc00",
+        "size": 4,
+        "meaning": "Cold firewall-modified state; standalone launch does not enable a network/firewall producer."
+      }
+    ]
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "1007ab20",
+        "hex": "6aff683b99091064a1000000005064892500000000516a1ce8df28010083c404",
+        "meaning": "Actual0x1C voice factory prologue and allocation."
+      },
+      {
+        "address": "1007ab50",
+        "hex": "8bc8e889130000",
+        "meaning": "Voice constructor call1007BEE0."
+      },
+      {
+        "address": "1007ab65",
+        "hex": "c20400",
+        "meaning": "Voice factory callee pops4: stack self only."
+      },
+      {
+        "address": "1007bee0",
+        "hex": "8bc133c989480889480cb90000803fc70070de0910c7400401000000894814894818c3",
+        "meaning": "Actual voice constructor installs1009DE70 and reference/count/volume fields."
+      },
+      {
+        "address": "1007bfb0",
+        "hex": "8b4c24048b410448894104791351",
+        "meaning": "Voice reference-counted release entry; stack self."
+      },
+      {
+        "address": "1007c06b",
+        "hex": "c20c00",
+        "meaning": "Voice bind-sample callee pops12: self/sample/flags."
+      },
+      {
+        "address": "1007c070",
+        "hex": "568b7424088b065756ff50148b460833ff",
+        "meaning": "Voice close entry."
+      },
+      {
+        "address": "1007c0a4",
+        "hex": "c20400",
+        "meaning": "Voice close callee pops4."
+      },
+      {
+        "address": "1007c0e0",
+        "hex": "83ec10538b5c24188b4308555633f63bc657",
+        "meaning": "Voice play entry, forwarded separately from sample lifecycle."
+      },
+      {
+        "address": "1007c9c0",
+        "hex": "8b442404f64010025675788b700885f67471",
+        "meaning": "Voice volume entry used by timed subtitle audio."
+      },
+      {
+        "address": "1006f320",
+        "hex": "f6053c170d100253565774258b152c210d10a18c1a0d105f33c95e890d8c1a0d",
+        "meaning": "Keyboard scan flags2 consume latch; flags0 normal scan is not popped."
+      },
+      {
+        "address": "100152c0",
+        "hex": "8b0d94e30b108b44240803c8890d94e30b10c20800",
+        "meaning": "Actual wrapping driver time accumulation and callee pops8."
+      },
+      {
+        "address": "1006c2c0",
+        "hex": "8b442408a3441d0d1033c0c208009090",
+        "meaning": "Actual graphics flags setter used by cold control reset."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009de18",
+        "targets": [
+          "1007ab20"
+        ],
+        "meaning": "ISnd driver+28 voice factory1007AB20, distinct from sample factory+20."
+      },
+      {
+        "address": "1009de70",
+        "targets": [
+          "1007bfb0",
+          "1007bfe0",
+          "1007c070",
+          "1007c0e0",
+          "1007c0b0",
+          "1007c660",
+          "1007c750",
+          "1007c7a0",
+          "1007c9c0"
+        ],
+        "meaning": "Voice release/bind/close/play and volume slots."
+      },
+      {
+        "address": "1009d848",
+        "targets": [
+          "1006c2c0"
+        ],
+        "meaning": "Checked actual borrowed IGraph slot08; original owns device."
+      },
+      {
+        "address": "1009d8dc",
+        "targets": [
+          "1006f190"
+        ],
+        "meaning": "Checked actual borrowed IGraph slot9C; original owns device."
+      },
+      {
+        "address": "1009d8e0",
+        "targets": [
+          "1006f320"
+        ],
+        "meaning": "Checked actual borrowed IGraph slotA0; original owns device."
+      },
+      {
+        "address": "1009d8e8",
+        "targets": [
+          "1006f2d0"
+        ],
+        "meaning": "Checked actual borrowed IGraph slotA8; original owns device."
+      },
+      {
+        "address": "1009d8f0",
+        "targets": [
+          "1006f490"
+        ],
+        "meaning": "Checked actual borrowed IGraph slotB0; original owns device."
+      },
+      {
+        "address": "1009d8fc",
+        "targets": [
+          "1006f550"
+        ],
+        "meaning": "Checked actual borrowed IGraph slotBC; original owns device."
+      },
+      {
+        "address": "1009d900",
+        "targets": [
+          "1006f570"
+        ],
+        "meaning": "Checked actual borrowed IGraph slotC0; original owns device."
+      },
+      {
+        "address": "1009d904",
+        "targets": [
+          "1006f590"
+        ],
+        "meaning": "Checked actual borrowed IGraph slotC4; original owns device."
+      },
+      {
+        "address": "1009b64c",
+        "targets": [
+          "100152c0"
+        ],
+        "meaning": "Actual driver frame clock tick, self+milliseconds on stack."
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "evidence_notes": "See controller-integration.md for delivered scope and controller-integration-preparation.md for original contracts. Existing controller/input/startup maps preserve prior evidence. Binary integrity VM is unported; native APIs use decoded payloads. Census-backed implemented subsets receive partial credit only; absent helpers, delegated DLL calls and glue receive none.",
+  "sources": [
+    "recovered/frontend/application_states.h",
+    "recovered/frontend/application_frame.h",
+    "recovered/frontend/control_frame.h",
+    "recovered/frontend/profile_save.h",
+    "recovered/host/application_launch.cpp",
+    "recovered/host/application_menu.h",
+    "recovered/host/startup_session.h",
+    "recovered/host/borrowed_input.h"
+  ],
+  "desktop_verification": {
+    "date": "2026-10-30",
+    "performed_by": "user",
+    "scope": "Ordinary Logo1/Logo2/Logo3/Intro to compiled Main/Exit; pointer, keyboard, focus return, confirmation and status4 teardown. Not full equivalence for all static anchors.",
+    "log": "analysis/work/startup-runtime/run/host-runtime.log",
+    "frames": 1692,
+    "teardown_result": 0,
+    "executable_sha256": "6970f498ed9fe192fe614a9713d48c0ca88a55c3e4d7e376de7c35dbfe0e11ae",
+    "not_verified": [
+      "Desktop missing-movie matrix",
+      "Subtitle/audio fidelity",
+      "Full failure/partial-startup cleanup",
+      "Special video states and eager full frontend initialization"
+    ]
+  }
+}

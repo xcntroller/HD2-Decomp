@@ -32,17 +32,13 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-Currently thirty-eight unique entries are partial and none complete: four chunk-reader
-entries, the client object loader, two button callbacks, ten screen focus/click/press/release/drag/wheel methods,
-three control-event dispatch functions, two menu event and queue functions,
-twelve cursor/picking/wheel, button-transition, pointer-motion and mouse-state subsets, the engine frame-kind query, the engine
-model-file loader's header/first-table framing subset, and two first-table
-record readers. The key
-processing and result-classification reconstructions are **two fragments of the
-same `006cd940` function**, never two functions. Unknown-kind fallback,
-archive/open/write behavior, the larger object loader and the model-file loader
-beyond these supported reads, resource requests, renderer state and sequence
-playback remain excluded.
+The current totals are297 partial entries (292 client/five engine), zero
+complete. The [ledger](function-status.json) records each supported subset and
+its exclusions; the generated [README bar](../README.md) is the current count.
+Historical research notes retain their checkpoint totals. Integrated desktop
+launch is tracked separately in [plan.md](../plan.md) and does not turn partial
+source recovery into complete-function credit. Fragments of the same original
+entry still count only once, and delegated engine calls receive no new credit.
 
 ## Tracked schemas (version 1)
 

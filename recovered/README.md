@@ -77,6 +77,14 @@ includes the real [vertex-animation loader](frontend/vertex_animations.h).
 The user desktop-confirmed this bounded checkpoint on 2026-10-30. Original controller/
 menu states and the full setup wrapper are not replaced by this diagnostic.
 
+Build `make application-launch` with the same i386 compiler for the
+[controller/state delivery](../analysis/controller-integration.md). Run
+`python3 -B tools/run_application_launch.py` from the repository root; add
+`--stage-only` to prepare without Windows execution. One shared startup/device
+owner now drives four movies into compiled Main/Exit. The user desktop-confirmed
+input, transitions and status4 Exit teardown. English800x600/Main/Exit remains
+the UI boundary; subtitle/audio completion and the full failure matrix are next.
+
 The second component is the
 [model resource key helper](scene/model_resource_key.cpp), with its
 [public interface](scene/model_resource_key.h). This is a small string

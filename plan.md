@@ -27,7 +27,8 @@ requires them; recovery of a helper alone does not complete a delivery item.
 
 - [x] Integrate original startup owners, resources, settings, input and localization.
   [Bounded startup checkpoint](analysis/startup-integration.md) desktop-confirmed 2026-10-30.
-- [ ] Integrate original video/menu states and controller update/render transitions.
+- [x] Integrate original video/menu states and controller update/render transitions.
+  [Bounded controller delivery](analysis/controller-integration.md) desktop-confirmed 2026-10-30.
 - [ ] Complete opening playback, skips, music/subtitles and movie-to-menu cleanup.
 - [ ] Preserve failure handling, partial-startup cleanup and normal shutdown.
 - [ ] Build the independent launch target; desktop-confirm playback, skips, missing
@@ -37,15 +38,15 @@ Baseline: the four-movie sequence and host preview are desktop-confirmed.
 [Opening evidence](analysis/opening-video.md). Recovered source components remain
 separate from delivery; their completed work is preserved in the recovery index.
 
-Next: connect concrete video/menu state owners to the recovered controller.
-[Priorities and starting points](analysis/launch-next-steps.md). Full registry/setup
-bootstrap and binary-specific integrity VM remain outside the bounded checkpoint.
+Next: finish opening subtitle/audio ownership and remaining playback/cleanup
+branches, then verify skips and missing movies. [Current delivery boundary](analysis/controller-integration.md).
+Full registry/setup bootstrap and binary integrity VM remain outside the checkpoint.
 
 ## Current position
 
 | Area | Verified | Remaining |
 | --- | --- | --- |
-| Movie/menu preview | Four movies, timing, keyboard/focus return, teardown | Original startup/controller integration |
+| Original controller launch | Four movies → Main/Exit, shared owners/input, status4 Exit desktop-confirmed | Subtitle/audio completion and full failure matrix |
 | Menu visuals | Original artwork, cursor, text and button hover | Dynamic labels, localization, fidelity |
 | Exit/confirmation | Pointer, Enter/Space, Escape and modal cancellation | Other actions/dialogs |
 | Shared controls/screens | State, messages, factory, stack and nested diagnostic | Screen callbacks, dynamic lists, original ABI |

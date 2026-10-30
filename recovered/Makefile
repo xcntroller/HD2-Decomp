@@ -9,6 +9,12 @@ WINDOWS_CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror -static -mun
 .PHONY: all test engine-window
 
 .PHONY: startup-probe
+.PHONY: application-launch
+application-launch: $(BUILD_DIR)/application_launch.exe
+
+$(BUILD_DIR)/application_launch.exe: host/application_launch.cpp host/bitmap_font.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp $(wildcard host/*.h frontend/*.h input/*.h io/*.h) | $(BUILD_DIR)
+	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/application_launch.cpp host/bitmap_font.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp -lwinmm -lole32 -ladvapi32 -o "$@"
+
 startup-probe: $(BUILD_DIR)/startup_probe.exe
 
 $(BUILD_DIR)/startup_probe.exe: host/startup_probe.cpp $(wildcard host/*.h frontend/*.h input/*.h io/*.h) | $(BUILD_DIR)
@@ -74,6 +80,7 @@ $(BUILD_DIR)/engine_window.exe: frontend/common_event_services.h
 $(BUILD_DIR)/engine_window.exe: host/engine_video.h frontend/opening_playback.h frontend/opening_video.h
 $(BUILD_DIR)/engine_window.exe: host/frame_clock.h frontend/frame_clock.h
 $(BUILD_DIR)/engine_window.exe: host/engine_keyboard.h input/keyboard.h
+$(BUILD_DIR)/engine_window.exe: host/graphics_interface.h host/menu_input_session.h frontend/localized_text.h
 
 test: all
 	"$(BUILD_DIR)/chunk_reader_tests"

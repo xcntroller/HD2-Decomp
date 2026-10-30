@@ -3414,3 +3414,105 @@ bootstrap, integrity VM and original controller/menu are not claimed complete.
 No new function credit:284 partial, zero complete. Agent did not run Windows code.
 User authorized committing the verified checkpoint, then researching the next
 video/menu/controller checkbox.
+
+## 2026-10-30 — controller integration implementation preparation
+
+Committed the accepted startup checkpoint as47e768d, then completed static
+research for concrete video/menu owners and shared controller integration.
+[Preparation](analysis/controller-integration-preparation.md) is the next starting
+point; the five delivery outcomes remain stable and item2 stays open.
+
+Confirmed a real native constructor omission:006B4BC9 calls006A81C0, whose
+006A81D4 store sets binding mode2. Native BindingConfiguration defaults0, so
+the correct dirty/default gate leaves output vectors empty and controller006C31D0
+never delivers state input. Temporary ASan/UBSan composition reproduces zero
+buffers and verifies original mode2 yields63/63 words including Escape binding46.
+Fix that constructor boundary next; do not fabricate buffer entries or bypass
+controller input. This turn changes no runtime code.
+
+Recovered full state table/known cold constructors, distinct shutdown/destructor
+contracts, real profile-volume delay owner, alternate command substrings and
+original render-before-update loop. The initialized keyboard cannot be reopened
+through the preview's owning EngineKeyboard. MenuScene needs a borrowed driver
+to preserve the startup session's single device lifetime. Both video and menu
+state services must use actual shared profile/gate/sound owners.
+
+Menu0066BEA0 really calls derived date update and sound update twice.006269B0
+uses cached date formatter006ED960, with hour/minute comparison006ED940, not a
+network-error poll. Original eager fourteen-screen builders and multiplayer map
+data initialization remain distinct from the existing bounded Main/Exit menu.
+Cold control frame hooks have real empty-queue/record/disabled-timer predicates
+and accumulator effects; gate7 is not a whole-service no-op license.
+
+ISnd+28→1007AB20 creates a separate subtitle-audio voice with table1009DE70;
+it is not a saved volume. Video volume includes actual float1.1. Resolved new
+wrapper contexts to real GetTickCount (6263A5/688435) and IsWindow(688B06), keeping
+the original integrity VM explicitly unported. Normal Intro cleanup can reach
+profile writer006B09A0, now exported with exact chunk/string/reverse-flag contract.
+Controller currently throws when input/update requests status4; preview Quit's
+host Boolean must not stand in for the original state Exit/cleanup path.
+
+27 new read-only/noanalysis Ghidra exports all report decompiled=true; saved
+projects unchanged. Static map checks both original fingerprints and the
+documented state/voice/call boundaries; no new function ledger credit. Research
+and temporary native audits execute no game/DLL/Proton code. Interactive behavior
+and original files remain unchanged; implementation/desktop testing are next.
+
+Research validation:64 anchors,35 client/10 engine vtable slots and65 calls pass;
+four altered evidence maps reject. Temporary binding/controller audit passes
+ASan/UBSan and strict i386 compile/link; fixtures/logs removed without Windows
+execution. Added documentation links, whitespace and frozen ledger check pass.
+
+## 2026-10-30 — controller/state delivery and desktop acceptance
+
+Implemented the prepared second-checkbox batch in application_launch.exe and
+its safe staging launcher. One shared graphics/sound/3D owner and StartupSession
+now drive owning ordinary movie and frontend states through ApplicationController.
+Binding constructor006A81C0 restores original mode2; live buffers contain63/63
+words. Actual borrowed engine keyboard/mouse input, original render-before-update
+006DCAE0 ordering, repeated date/sound updates, loaded captions, music selection,
+profile writer006B09A0/006B1290/006A6D80 and cold control hooks are connected.
+Status4 Exit now performs state shutdown/release, mouse close and cold control
+reset instead of throwing or toggling the preview's running Boolean.
+
+Cold control uses real queue/record/peer-owner locks, signed/wrapping50ms
+accumulation, one subtraction/excess reset and actual QPC clock conversion.
+Disabled timers, empty streams and inactive peers are checked predicates;
+unsupported active objects reject before mutation. Six further read-only/noanalysis
+Ghidra exports all decompiled successfully:00732360,00746890,00746840,0073D370,
+00724450 and00724350. Global loaded-cache trees are distinct from registration
+lists; directory clearing is not substituted for their unrecovered lifecycle.
+
+User desktop-confirmed the requested run. The actual retained log records four
+successful movie opens, state type10 sequences1–4, menu type2, scene/text/cursor
+submission, pointer/keyboard interactions, confirmation No/cancellation and Yes,
+status4 shutdown, cold control reset and teardown result=0 after1,692 frames.
+Tested/staged executable SHA-256:
+6970f498ed9fe192fe614a9713d48c0ca88a55c3e4d7e376de7c35dbfe0e11ae.
+The user also confirmed hover and focus return. Only the user ran Windows code;
+agent staging used --stage-only and original game files were preserved.
+
+Strict i386 compile/link passed for application-launch, startup-probe and
+engine-window. Temporary native ASan/UBSan audits covered callbacks/state
+replacement, failed open/Escape progression, status4 ownership, cold control
+predicates/locks/timing and real profile writer composition. Independent decoding
+verified emitted profile chunks, strings/NULs, words, physical-directory mapping
+and reversed flags. Temporary staging audits checked preservation and unsafe
+path/hash rejection. Fixtures were removed; no permanent tests added. Existing
+native checks and158 Python tests pass. The final evidence map verifies both
+hashes,76 instruction anchors,35 client/19 engine slots and65 calls; four altered
+maps reject. Frozen ledger/README and whitespace checks pass.
+
+Thirteen census-backed implemented client subsets receive partial credit only:
+006A81C0,0067EA10,0066ED30,006B09A0,006B1290,006A6D80,0072C3B0,0072CE70,
+0072CD50,0072C5D0,006269B0,006DCAE0 and0066AD10. Total297 partial
+(292client/fiveengine), zero complete, frozen18,783. Absent helpers/RETs,
+delegated engine calls, native glue and the larger exported flow outside
+0072E4E0's tiny frozen body add no credit.
+
+Milestone0 item2 is complete within the [delivery contract](analysis/controller-integration.md).
+Item3 remains: reached subtitle/audio owners and remaining opening playback,
+skip/music/cleanup branches, then the desktop skip/missing-movie matrix.
+Main/Exit, English800x600 and cold standalone control remain explicit limits;
+full eager builders/setup/VM, global caches and failure/shutdown matrix are open.
+No commit made for this delivery; last commit remains47e768d.

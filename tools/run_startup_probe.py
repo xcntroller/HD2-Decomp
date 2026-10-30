@@ -25,7 +25,7 @@ def digest(path: Path) -> bytes:
         return hashlib.file_digest(stream, "sha256").digest()
 
 
-def stage_startup(game: Path, executable: Path, work: Path) -> Path:
+def stage_startup(game: Path, executable: Path, work: Path, *, application_launch: bool = False) -> Path:
     # This program never launches the original client. Original archive bytes
     # are COPIED; writable config/profile files are copied once, never replaced.
     if work.is_symlink():
@@ -37,8 +37,9 @@ def stage_startup(game: Path, executable: Path, work: Path) -> Path:
         raise ValueError("Startup requires the rebuilt executable outside the original installation")
     data = executable.read_bytes()
     PEImage(data)
-    if b"Recovered startup integration probe" not in data:
-        raise ValueError("Executable is not the rebuilt startup probe")
+    signature = b"Recovered application controller launch" if application_launch else b"Recovered startup integration probe"
+    if signature not in data:
+        raise ValueError("Executable does not match the requested rebuilt startup target")
     for name, expected in (("LS3DF.dll", ENGINE_SHA256), ("rw_data.dll", RW_DATA_SHA256), ("IJoy.dll", JOY_SHA256)):
         if digest(game / name).hex() != expected:
             raise ValueError(f"Unsupported startup dependency: {name}")
@@ -84,8 +85,8 @@ def stage_startup(game: Path, executable: Path, work: Path) -> Path:
             if not mutable and (source.stat().st_size != target.stat().st_size or
                     digest(source) != digest(target)):
                 raise ValueError(f"Existing staged startup resource differs: {target}")
-    output = run / "startup_probe.exe"
-    marker = run / ".hd2-startup-workspace"
+    output = run / ("application_launch.exe" if application_launch else "startup_probe.exe")
+    marker = run / (".hd2-launch-workspace" if application_launch else ".hd2-startup-workspace")
     for target in (output, marker):
         if target.exists() or target.is_symlink():
             checked_file(target)
@@ -112,7 +113,7 @@ def stage_startup(game: Path, executable: Path, work: Path) -> Path:
                 if temporary is not None:
                     temporary.unlink(missing_ok=True)
     output.write_bytes(data)
-    marker.write_text("hd2-rebuilt-startup-v1\n", encoding="ascii")
+    marker.write_text("hd2-rebuilt-launch-v1\n" if application_launch else "hd2-rebuilt-startup-v1\n", encoding="ascii")
     return output
 
 

@@ -43,6 +43,7 @@ public:
     void dispatch_local(ControlEvent& event) override;
     void enqueue(const ControlEvent& event) override;
     void pump();
+    void close() { screens_.clear(); pending_.clear(); deferred_.clear(); }
     // Factory's final 02000001 is direct; it must precede later queued work.
     void dispatch_immediate(ControlEvent event) { route(std::move(event)); }
     void cancel_confirmation();

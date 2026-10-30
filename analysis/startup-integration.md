@@ -8,7 +8,10 @@ native-audited. The user desktop-confirmed this bounded startup checkpoint on
 
 This target stops after application data/profile/settings/input preparation. It
 does not replace the existing preview or claim the original controller/menu
-launch. That transition belongs to the next delivery item.
+launch. The separate [controller/state executable](controller-integration.md) now delivers
+that transition and is also user desktop-confirmed. Its binding-constructor mode2
+correction produces63/63 live input words; the historical zero-buffer checkpoint
+below describes the earlier startup-only run.
 
 ## Build and desktop check
 

@@ -1,9 +1,11 @@
 # Shared application controller reconstruction
 
-The original opening playback is user desktop-confirmed. The log records four
-successful IShow opens, movie-to-menu entry, working Exit confirmation and clean
-3D/sound/graphics teardown after 1,259 submitted frames. The new controller
-source below is independently audited and **not connected to that live path**.
+Current delivery: [controller/state integration](controller-integration.md) now
+connects the actual startup, input, video/menu owners and normal status4 Exit.
+The user desktop-confirmed four movies → compiled Main/Exit and clean teardown
+on 2026-10-30 (1,692 frames). Full playback/subtitles and failure coverage remain
+separate. The source contracts below describe the original recovery boundary;
+the linked delivery document supersedes their historical unwired-service notes.
 
 [`application_controller.h`](../recovered/frontend/application_controller.h)
 recovers shared controller behavior from the fingerprinted base client:

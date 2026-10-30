@@ -3,6 +3,9 @@
 
 #include "frontend/application_startup_data.h"
 #include "frontend/control_startup.h"
+#include "frontend/control_frame.h"
+#include "frontend/application_controller.h"
+#include "frontend/profile_save.h"
 #include "frontend/input_setup.h"
 #include "frontend/sound_manager_data.h"
 #include "frontend/startup_modules.h"
@@ -14,6 +17,8 @@
 #include "host/profile_directories.h"
 #include "host/resource_directories.h"
 #include "host/settings_services.h"
+#include "host/sound_services.h"
+#include "host/graphics_settings.h"
 #include "host/startup_archives.h"
 #include "host/startup_localization.h"
 #include "input/input_manager.h"
@@ -35,7 +40,14 @@ public:
           joysticks_backend_(engine, joy), joysticks_(joysticks_backend_),
           input_backend_(engine, joysticks_backend_), input_(input_backend_),
           input_setup_(engine, joysticks_), settings_backend_(engine),
-          profile_platform_(directory_), sound_data_(registry_), modules_(registry_) {}
+          sound_backend_(engine, world_), sound_catalog_(sound_backend_),
+          profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
+          control_frame_(control_data_, gate_, *this) {
+        // Actual00748940/00748960 clock basis, separate from frame pacing.
+        if (!QueryPerformanceFrequency(&control_frequency_) || control_frequency_.QuadPart <= 0 ||
+                !QueryPerformanceCounter(&control_origin_))
+            throw std::runtime_error("Control performance clock initialization failed");
+    }
 
     void before_devices() {
         if (phase_ != Phase::constructed) throw std::logic_error("Startup initialization repeated");
@@ -44,7 +56,7 @@ public:
     }
     // Called only after real graphics, sound and I3D initialization. The caller
     // retains device ownership; close_consumers must run before device close.
-    bool after_devices() {
+    void setup_devices() {
         if (phase_ != Phase::control_ready) throw std::logic_error("Startup device order mismatch");
         phase_ = Phase::loading;
         auto random = [&] { return settings_backend_.sound_random_word(); };
@@ -60,24 +72,43 @@ public:
         directory_window_ = IsZoomed(window); // Original006DBF2B wrapper target.
         frontend::setup_graphics_input(input_, input_setup_, language_, text_, platform_, text_files_, directory_);
         modules_.initialize(gate_, files_); // Original006DBFB0 includes this phase.
+        phase_ = Phase::resources_ready;
+    }
+    bool prepare_application() {
+        if (phase_ != Phase::resources_ready) throw std::logic_error("Application preparation repeated/out of order");
         const auto wide = language_.state().wide_characters;
         const auto prepared = data_.prepare_application(files_, text_, wide);
         std::printf("Startup: gate=%u text=%zu game-roots=%zu vertex-tables=%zu prepare=%u\n",
             static_cast<unsigned>(gate_), text_.size(), data_.game().roots().size(),
             modules_.vertices.entries().size(), static_cast<unsigned>(prepared));
-        if (!prepared) return false; // Original controller does not select profile on failure.
+        if (prepared) phase_ = Phase::data_ready;
+        return prepared;
+    }
+    void reset_profile() {
+        if (phase_ != Phase::data_ready) throw std::logic_error("Profile preparation repeated/out of order");
+        const auto wide = language_.state().wide_characters;
         frontend::SettingsSound<SettingsServices> sound(sound_data_.settings, gate_, settings_backend_);
         frontend::SettingsControl<SettingsServices> control(control_data_.wrapper0c, settings_backend_);
         data_.reset_profile(wide, profile_words_, files_, profile_platform_, wide, input_.state(),
             input_, settings_backend_, sound, control, input_flag_, text_);
-        input_.produce(false);
         std::printf("Startup: profile/options applied; bindings=%zu joysticks=%zu input-words=%zu/%zu\n",
             input_.state().bindings.size(), input_.state().joysticks.size(),
             input_.state().first.size(), input_.state().second.size());
         phase_ = Phase::ready;
+    }
+    // Keep the accepted diagnostic as a composition of the same ordered phases.
+    bool after_devices() {
+        setup_devices();
+        if (!prepare_application()) return false;
+        reset_profile();
+        input_.produce(false);
         return true;
     }
     void close_consumers() {
+        if (phase_ == Phase::closed) return;
+        close_sound();
+        close_mouse();
+        close_keyboard();
         input_.detach();
         joysticks_.close();
         data_.close();
@@ -85,9 +116,108 @@ public:
         phase_ = Phase::closed;
     }
     void close_archives() { archives_.close(); }
+    EngineFrame* graphics() const { return static_cast<EngineFrame*>(input_setup_.graphics()); }
+    std::uint32_t application_flags() const { return gate_; }
+    bool application_input_enabled() const { return application_input_enabled_; }
+    void application_input_enabled(bool value) { application_input_enabled_ = value; } // 006DCAD0
+    std::uint32_t random_word() { return settings_backend_.sound_random_word(); }
+    const frontend::LocalizedTextCache& text() const { return text_; }
+    bool wide_characters() const { return language_.state().wide_characters; }
+    std::string language() { return language_.get(); }
+    void initialize_mouse(std::uint32_t flags) {
+        using Initialize = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t);
+        const auto result = scene_method<Initialize>(graphics(), engine_, 0xdc, 0x6f710)(graphics(), flags);
+        if (result < 0) throw std::runtime_error("Controller mouse initialization failed");
+    }
+    void close_mouse() {
+        using Enabled = std::uint8_t (WINAPI *)(EngineFrame*);
+        using Close = std::int32_t (WINAPI *)(EngineFrame*);
+        if (scene_method<Enabled>(graphics(), engine_, 0xe0, 0x6f840)(graphics()))
+            scene_method<Close>(graphics(), engine_, 0xe4, 0x6f850)(graphics());
+    }
+    void close_keyboard() {
+        using Enabled = std::uint8_t (WINAPI *)(EngineFrame*);
+        using Close = void (WINAPI *)(EngineFrame*);
+        if (scene_method<Enabled>(graphics(), engine_, 0x94, 0x6f150)(graphics()))
+            scene_method<Close>(graphics(), engine_, 0x98, 0x6f160)(graphics());
+    }
+    void sample_frame_input() {
+        input_backend_.poll_mouse(graphics());
+        joysticks_.poll();
+        input_.produce(false);
+    }
+    std::int32_t query_input(const std::uint32_t*& output, std::uint8_t mode) const {
+        return frontend::query_controller_input(input_.state().first, input_.state().second, output, mode);
+    }
+    std::uint32_t mouse_buttons() const { return input_backend_.mouse_buttons(graphics()); }
+    std::int32_t mouse_wheel() const { return input_backend_.mouse_z(graphics()); }
+    std::int32_t mouse_x() const { return input_backend_.mouse_x(graphics()); }
+    std::int32_t mouse_y() const { return input_backend_.mouse_y(graphics()); }
+    void delay_elapsed() {
+        frontend::SettingsSound<SettingsServices> sound(sound_data_.settings, gate_, settings_backend_);
+        sound.driver_volume(static_cast<float>(static_cast<long double>(data_.profile().options.settings.real(8)) * 0.01f));
+    }
+    float movie_volume() {
+        return static_cast<float>(static_cast<long double>(data_.profile().options.settings.real(8)) *
+                                  0.01f * 1.1f);
+    }
+    bool sound_available() const { return settings_backend_.sound_driver_initialized(); }
+    void fade_movie_music(float target, std::int32_t milliseconds) {
+        frontend::schedule_sound_movie_fade(sound_data_.fade, sound_data_.settings.movie_scale, target, milliseconds);
+    }
+    void begin_menu_music() {
+        const auto selected = sound_data_.selection.requested;
+        if (selected == -1)
+            frontend::select_primary_sound_movie(sound_catalog_, files_, sound_data_.settings,
+                sound_data_.fade, sound_data_.selection, gate_, 0, 0, sound_backend_);
+        else if (selected == 37)
+            frontend::queue_primary_sound_movie(sound_data_.settings, sound_data_.fade,
+                sound_data_.secondary, sound_data_.selection, 0, 2000, 0);
+    }
+    void update_sound(std::uint32_t milliseconds) {
+        frontend::advance_sound_runtime(sound_data_.runtime, sound_catalog_, files_,
+            sound_data_.settings, sound_data_.fade, sound_data_.secondary, sound_data_.selection,
+            gate_, sound_clock_, static_cast<std::int32_t>(milliseconds), sound_backend_);
+    }
+    void remember_movie(const char* filename) {
+        frontend::remember_profile_movie(data_.profile(), filename, 1, files_, wide_characters());
+    }
+    void close_sound() {
+        frontend::reset_sound_runtime(sound_data_.runtime, sound_catalog_, files_,
+            sound_data_.settings, sound_data_.fade, sound_data_.secondary, sound_data_.selection,
+            gate_, frontend::SoundApplicationMode{nullptr, 0}, 1, 0, sound_backend_);
+        frontend::clear_sound_sectors(sound_data_.runtime, sound_backend_);
+        sound_catalog_.clear();
+    }
+    void control_phase(std::uint32_t milliseconds, bool fixed) { control_frame_.phase(milliseconds, fixed); }
+    void control_maintenance(std::uint32_t milliseconds) { control_frame_.maintain(milliseconds); }
+    void reset_control() { control_frame_.reset(); }
+    void enter_control_lock(unsigned index) { lock_services_.enter_control_lock(index); }
+    void leave_control_lock(unsigned index) noexcept { lock_services_.leave_control_lock(index); }
+    std::uint32_t control_milliseconds() const {
+        LARGE_INTEGER counter{};
+        if (!QueryPerformanceCounter(&counter)) throw std::runtime_error("Control performance clock read failed");
+        const auto bits = static_cast<std::uint64_t>(counter.QuadPart) - static_cast<std::uint64_t>(control_origin_.QuadPart);
+        std::int64_t ticks; std::memcpy(&ticks, &bits, sizeof(ticks));
+        return frontend::settings_truncated_word(static_cast<long double>(ticks) / control_frequency_.QuadPart * 1000.0f);
+    }
+    void restore_graphics_flags(std::uint32_t flags) {
+        using Set = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t);
+        scene_method<Set>(graphics(), engine_, 8, 0x6c2c0)(graphics(), flags);
+    }
+    void restore_cold_firewall(bool modified) {
+        // 00732360(0,0): same cold static flag means no COM/firewall mutation.
+        if (modified) throw std::logic_error("Live firewall ownership is not reconstructed");
+        OSVERSIONINFOA version{};
+        version.dwOSVersionInfoSize = sizeof(version);
+        if (!GetVersionExA(&version)) {
+            version.dwOSVersionInfoSize = 0x94;
+            GetVersionExA(&version);
+        }
+    }
 private:
     HMODULE engine() const { return engine_; }
-    enum class Phase { constructed, control_ready, loading, ready, closed };
+    enum class Phase { constructed, control_ready, loading, resources_ready, data_ready, ready, closed };
     HMODULE engine_;
     ChunkFiles files_;
     DtaTextFiles text_files_;
@@ -107,6 +237,10 @@ private:
     input::InputManager<GraphicsInputServices<JoystickBackend>> input_;
     GraphicsInputSetup<input::JoystickDevices<JoystickBackend>> input_setup_;
     SettingsServices settings_backend_;
+    frontend::SoundWorldView* world_ = nullptr; // Actual mission owner absent before mission entry.
+    SoundServices sound_backend_;
+    frontend::SoundCatalog<SoundServices> sound_catalog_;
+    std::uint32_t sound_clock_ = 0;
     ProfileDirectoryPlatform<frontend::ExecutableDirectory<StartupLocalizationPlatform>> profile_platform_;
     frontend::ClientModuleRegistry registry_{};
     frontend::SoundManagerData sound_data_;
@@ -116,10 +250,13 @@ private:
     frontend::ProfileSelectionWords profile_words_;
     frontend::LocalizedTextCache text_;
     std::uint32_t gate_ = 0;
+    frontend::ColdControlFrame<StartupSession> control_frame_;
     std::uint8_t input_flag_ = 0;
+    bool application_input_enabled_ = true; // Original00843470 initial byte1.
     Phase phase_ = Phase::constructed;
     HWND archive_focus_ = nullptr;
     BOOL directory_window_ = FALSE;
+    LARGE_INTEGER control_frequency_{}, control_origin_{};
 };
 
 }

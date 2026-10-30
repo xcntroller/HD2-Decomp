@@ -1328,11 +1328,13 @@
       "entry": "006c0820",
       "status": "partial",
       "coverage": "Startup/reinitialize gates, accumulated-time reset, original mouse/prerequisite order and two-rand seed; preserve ignored initial-state and initializer results.",
-      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
-        "recovered/frontend/application_controller.h"
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -1340,11 +1342,13 @@
       "entry": "006c0ca0",
       "status": "partial",
       "coverage": "Alternate-start check, empty normal-start owner, installation before beginning Logo1 with sequence one.",
-      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
-        "recovered/frontend/application_controller.h"
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -1352,11 +1356,13 @@
       "entry": "006c0ef0",
       "status": "partial",
       "coverage": "Null-descriptor branch shutdown and fresh-owner release, construction/installation before initialize(nullptr); ignore initializer result.",
-      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
-        "recovered/frontend/application_controller.h"
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -1364,23 +1370,27 @@
       "entry": "006c31d0",
       "status": "partial",
       "coverage": "Query both input buffer views even when the first fails; forward both begin pointers through freshly resolved current state only when both counts are nonnegative.",
-      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
-        "recovered/frontend/application_controller.h"
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md"
       ]
     },
     {
       "program": "client",
       "entry": "006c20f0",
       "status": "partial",
-      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement.",
-      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement. Status4 now shuts down the state, releases it, closes mouse input and invokes cold control reset before returning false.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
-        "recovered/frontend/application_controller.h"
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -1388,11 +1398,13 @@
       "entry": "006c3100",
       "status": "partial",
       "coverage": "Wrapping accumulated-time update, signed threshold, one subtraction of 100 per call, fixed-update eligibility/suspend gate and finalizer order.",
-      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
-        "recovered/frontend/application_controller.h"
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -1400,11 +1412,13 @@
       "entry": "006c3190",
       "status": "partial",
       "coverage": "Fresh status queries for 1/6/5 before rendering current state; no additional controller-suspended render gate.",
-      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
-        "recovered/frontend/application_controller.h"
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -1412,11 +1426,13 @@
       "entry": "006c20c0",
       "status": "partial",
       "coverage": "Application flags bit two and low-three-bits gate for original frame-service arguments, then phase reset and supplied continuation result.",
-      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
-        "recovered/frontend/application_controller.h"
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -1424,11 +1440,13 @@
       "entry": "006c30c0",
       "status": "partial",
       "coverage": "Application flags bit one and low-three-bits gate for distinct fixed-frame service arguments, then phase reset and supplied continuation result.",
-      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
-        "recovered/frontend/application_controller.h"
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -1436,11 +1454,13 @@
       "entry": "006c72b0",
       "status": "partial",
       "coverage": "Expose selected input buffer begin pointer and count without consumption; low mode bit selects second buffer and empty queries preserve output.",
-      "limitations": "Source-only native controller/state ownership and vectors replace original class/virtual/SEH/allocator ABI. Original application prerequisites, command-line handling, input producer, frame-service bodies and concrete movie/menu state owners remain supplied contracts. Other descriptor/game/credits and retained/restart/exit video routes are unsupported. Native empty/allocation paths throw and released owners clear instead of retaining original dangling pointers. Sanitizer/native/i386 audited, not connected to the desktop-confirmed host launch path.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
-        "recovered/frontend/application_controller.h"
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -3757,12 +3777,13 @@
       "entry": "0072e1a0",
       "status": "partial",
       "coverage": "Actual launch data initialization: ordered field clears/defaults, gate7, two critical-section initializations, callback identity and32 appended partially initialized records, preserving existing prefix and ordinary capacity growth.",
-      "limitations": "Source-only native field view/vectors/validity masks replace original full owner, raw allocation/class/SEH ABI and undefined stack reads. Callback is a non-executable typed identity; its service/destinations, full constructor/device/interface/shutdown and protection remain unrecovered. Real Win32 lock/LS3DF settings composition links only, never run. Native guards and RAII differ on invalid/repeated initialization and failure. No live startup integration or desktop delivery.",
+      "limitations": "Native field view/vectors/validity masks replace original full owner, raw allocation/class/SEH ABI and undefined stack reads. Callback is a non-executable typed identity; its service/destinations, full constructor/device/interface/shutdown and protection remain unrecovered. Real Win32 lock/LS3DF composition is connected to the user desktop-confirmed bounded launch. Native guards and RAII differ on invalid/repeated initialization and failure. Full original control owner/network lifecycle remains open.",
       "evidence": [
         "analysis/control-startup-map.json",
         "analysis/control-startup.md",
         "recovered/frontend/control_startup.h",
-        "recovered/host/control_startup.h"
+        "recovered/host/control_startup.h",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -3770,12 +3791,13 @@
       "entry": "00725a50",
       "status": "partial",
       "coverage": "Reset exactly95 defined bytes of original196-byte control record; preserve unwritten101 bytes and retain their native known/unknown provenance, including partial byte stores and explicit2/-1/50 defaults.",
-      "limitations": "Source-only native field view/vectors/validity masks replace original full owner, raw allocation/class/SEH ABI and undefined stack reads. Callback is a non-executable typed identity; its service/destinations, full constructor/device/interface/shutdown and protection remain unrecovered. Real Win32 lock/LS3DF settings composition links only, never run. Native guards and RAII differ on invalid/repeated initialization and failure. No live startup integration or desktop delivery.",
+      "limitations": "Native field view/vectors/validity masks replace original full owner, raw allocation/class/SEH ABI and undefined stack reads. Callback is a non-executable typed identity; its service/destinations, full constructor/device/interface/shutdown and protection remain unrecovered. Real Win32 lock/LS3DF composition is connected to the user desktop-confirmed bounded launch. Native guards and RAII differ on invalid/repeated initialization and failure. Full original control owner/network lifecycle remains open.",
       "evidence": [
         "analysis/control-startup-map.json",
         "analysis/control-startup.md",
         "recovered/frontend/control_startup.h",
-        "recovered/host/control_startup.h"
+        "recovered/host/control_startup.h",
+        "analysis/controller-integration.md"
       ]
     },
     {
@@ -3783,7 +3805,7 @@
       "entry": "00473ec0",
       "status": "partial",
       "coverage": "Actual required startup Vertex anim table loader: missing-open retains entries and closes invalid handle; valid-open clears reverse, ignores header, reads20-byte names/counts and sizes, inclusive frame/group aligned32-byte blocks, commits only complete records and closes on exit.",
-      "limitations": "Bounded startup integration, not desktop-verified. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application/controller/state lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
+      "limitations": "Bounded startup integration desktop-confirmed by user on2026-10-30. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
       "evidence": [
         "analysis/startup-integration-map.json",
         "analysis/startup-integration.md",
@@ -3798,7 +3820,7 @@
       "entry": "00473700",
       "status": "partial",
       "coverage": "Initialize the vertex-animation count and ownership fields to zero; native name storage is read fully before use, with short positive reads rejected.",
-      "limitations": "Bounded startup integration, not desktop-verified. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application/controller/state lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
+      "limitations": "Bounded startup integration desktop-confirmed by user on2026-10-30. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
       "evidence": [
         "analysis/startup-integration-map.json",
         "analysis/startup-integration.md",
@@ -3813,7 +3835,7 @@
       "entry": "00473720",
       "status": "partial",
       "coverage": "Own/free vertex-animation sizes, rows and aligned frame/group allocations using native vectors/unique ownership; partial native construction also unwinds safely.",
-      "limitations": "Bounded startup integration, not desktop-verified. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application/controller/state lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
+      "limitations": "Bounded startup integration desktop-confirmed by user on2026-10-30. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
       "evidence": [
         "analysis/startup-integration-map.json",
         "analysis/startup-integration.md",
@@ -3828,7 +3850,7 @@
       "entry": "0048da60",
       "status": "partial",
       "coverage": "Ascending fresh registration iteration, skipping null slots and executing verified normal startup handlers: actual RET methods, cold Items reset and gate2 vertex-table load; unknown replacements/restarts rejected.",
-      "limitations": "Bounded startup integration, not desktop-verified. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application/controller/state lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
+      "limitations": "Bounded startup integration desktop-confirmed by user on2026-10-30. Native records/vectors/aligned ownership replace original class/refcount/allocation/SEH ABI; short positive reads and invalid dimensions throw rather than consume undefined memory. Module dispatch covers normal registered startup only; dirty Items restart and unknown/replaced modules throw. Original binary self-integrity VM and full application lifecycle are not reconstructed; actual underlying Win32 APIs are invoked directly by the probe. Engine/DTA methods remain delegated.",
       "evidence": [
         "analysis/startup-integration-map.json",
         "analysis/startup-integration.md",
@@ -3836,6 +3858,162 @@
         "recovered/frontend/startup_modules.h",
         "recovered/host/startup_session.h",
         "recovered/host/startup_probe.cpp"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a81c0",
+      "status": "partial",
+      "coverage": "Zero vector and original binding mode2 default; actual default installer and controller buffers now produce63/63 words.",
+      "limitations": "Unwritten original constructor byte/raw allocation layout is not reconstructed. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/input/binding_configuration.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067ea10",
+      "status": "partial",
+      "coverage": "State status setter now supplies the original status4 Exit route and ordinary owning state lifecycle.",
+      "limitations": "Native field and call replace original thiscall object layout. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/frontend/application_states.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0066ed30",
+      "status": "partial",
+      "coverage": "Video shutdown wrapper closes its owned ordinary movie backend, then clears the filename descriptor exactly once.",
+      "limitations": "Full underlying subtitle/audio shutdown00688460 is not reconstructed by this wrapper. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/frontend/application_states.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b09a0",
+      "status": "partial",
+      "coverage": "Actual profile path/mapping and chunk writer for name, difficulty, settings, slots, strings and reversed movie flags; open failure and ignored individual write results retained.",
+      "limitations": "Native strings and little-endian buffers replace original COW/raw payload ABI; invalid short movie tables throw. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/frontend/profile_save.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b1290",
+      "status": "partial",
+      "coverage": "Recognized movie and nonempty selected profile cause flag update and real persistence, including already-enabled movies.",
+      "limitations": "Native profile/movie ownership replaces original pointer and string ABI. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/frontend/profile_save.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a6d80",
+      "status": "partial",
+      "coverage": "Nested movie-flag chunks emit ten enabled bytes in reverse order using the real ChunkFile writer.",
+      "limitations": "Native vector guard rejects missing records rather than undefined original access. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/frontend/profile_save.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072c3b0",
+      "status": "partial",
+      "coverage": "Cold selected-phase empty-queue branch with actual Win32 lock and original fixed gate predicate.",
+      "limitations": "Populated queue decoding, dispatch, network messages and their ownership are unsupported. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/frontend/control_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072ce70",
+      "status": "partial",
+      "coverage": "Cold per-frame inactive-record validation and normal accumulator maintenance over the actual shared gate.",
+      "limitations": "Active peers/interfaces and non-standalone modes reject before unsupported changes. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/frontend/control_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072cd50",
+      "status": "partial",
+      "coverage": "Actual record lock and32 inactive-record guards on the cold standalone path.",
+      "limitations": "Active peer polling, deletion and packet processing are not implemented. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/frontend/control_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072c5d0",
+      "status": "partial",
+      "coverage": "Signed/wrapping50ms accumulator, single subtraction, excess reset, actual cold timer initialization and empty pending-stream path.",
+      "limitations": "Populated streams, active timer/network/interface branches remain unsupported. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/frontend/control_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006269b0",
+      "status": "partial",
+      "coverage": "Normal frontend derived date update compares cached hour/minute and enqueues the original formatted date event target04300000.",
+      "limitations": "Only reached standalone date behavior; other derived/screen/network routes remain outside the compiled two-screen menu. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/host/application_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006dcae0",
+      "status": "partial",
+      "coverage": "Normal frame composition samples actual input, ticks3D, renders before fixed/variable controller updates, maintains cold control and presents.",
+      "limitations": "Bounded native window/message loop; original full setup, alternate modes, setup.exe and binary VM branches are not reconstructed. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/frontend/application_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0066ad10",
+      "status": "partial",
+      "coverage": "Frontend state owns actual scene/camera/light, text, cursor, click sound, menu music and recovered compiled Main/Exit products; installed before initialization.",
+      "limitations": "Original eager fourteen-screen registration, multiplayer map initialization and broader resource owners are not recovered by this subset. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/host/application_menu.h"
       ]
     }
   ]
