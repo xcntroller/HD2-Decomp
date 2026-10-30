@@ -2,13 +2,11 @@
 #define HD2_FRONTEND_INPUT_SETUP_H
 
 #include "frontend/localized_text.h"
+#include "input/joystick_devices.h"
 
 namespace hd2::frontend {
 
-struct StartupJoystickView {
-    void* const* devices;
-    std::int32_t count;
-};
+using StartupJoystickView = input::JoystickDeviceView;
 
 // 006db620: original keyboard initialization, manager setup and localization
 // preload. Setup supplies GetIGraph/+90 and the actual global joystick view.

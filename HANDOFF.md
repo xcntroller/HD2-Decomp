@@ -1,6 +1,56 @@
 # Session handoff - 2026-10-30
 
-## Resume here: graphics input setup and actual startup localization recovered
+## Resume here: joystick list and concrete IJoy boundary recovered
+
+Checkpoint follows `7becea0` input setup/localization. User permits sensible
+tested commits. Source-only slice; no live host changes or desktop test needed.
+See [joystick scope](analysis/joystick-devices.md) and its new checked plan entry.
+
+New input/joystick_devices.h recovers 006DC640/006DC5E0: fresh GetIGraph/window,
+factory(out,instance,window,null,0), signed count snapshot, forward creation,
+raw-pointer append without retain. FALSE create result calls +30(1,2) and still
+appends a valid output. Actual IJoy failure nulls output, so the original client
+would dereference null; native guard throws, never silently skips the device.
+Close releases FORWARD with list length visible, clears length, releases base,
+then nulls base. Manager owns separate retained refs and releases REVERSE.
+Native destructor closes; original raw-vector exit destructor only frees storage.
+Repeat initialization requires close; append exceptions balance the new ref.
+
+List poll recovers active 006DCEB0 reverse +58(1) calls BEFORE producer(false).
+Do not double poll using producer(true). Existing graphics setup view aliases
+the actual list view. host/joystick_backend.h resolves checked GetIGraph and
+_CreateJoyBase@20; graphics stdcall(self), IJoy thiscall(ECX self), checked slots
+for count/create/base release/device refs/config/poll/current/secondary. Both
+modules borrowed; IJoy DirectInput internals explicitly delegated. Adapter is
+joystick services only, not complete graphics/keyboard/mouse manager services.
+
+IMPORTANT NEXT PRIORITY: original archive/search initialization and remaining
+application/state startup services, plus concrete graphics input services.
+Do not spend the next slice on deeper IJoy internals or invent an enumeration
+startup call. Complete section searches found NO direct E8 calls or literal
+pointers to either lifecycle helper; base global 008AECCC is only referenced
+inside them. List starts empty at 006D5D90; setup consumes it and frame polls it.
+This suggests dormant creation, though computed targets are not excluded.
+Lifecycle callers remain unresolved. Normal empty-list startup is valid.
+
+Temporary ASan/UBSan audit passes ownership, duplicates, zero/negative counts,
+factory/null/first/later-device failures, inverted config, allocation-failure
+balance, repeat/reinitialize, callback-visible length/base, forward list release,
+reverse polling and reverse manager release. Actual manager/producer composition
+verifies independent refs and snapshots without double polling. Strict i386
+fixture instantiates list and all concrete adapter calls and links ONLY, never
+executed. Existing native suite, 158 Python tests and host build pass. Fixtures
+removed after checking. Evidence rejects eight hash/byte/slot mutations.
+
+Run python3 -B tools/validate_joystick_devices.py: three hashes, 21 anchors,
+36 vtable slots, three calls. Read-only exports under ignored
+analysis/work/joystick-list-lifetime; guarded DefineJoystickListFunctions.java.
+NO new frozen function credit: client helpers absent from inventory; IJoy is
+outside the two-program census. Still 146 partial (141 client/five engine), zero
+complete, denominator 18,783. Original binaries and saved project untouched;
+no agent Proton/game execution or push.
+
+## Earlier checkpoint: graphics input setup and actual startup localization recovered
 
 New source checkpoint follows committed `46359bd` manager lifetime. User permits
 sensible tested commits. No new live behavior, renderer change or desktop test.

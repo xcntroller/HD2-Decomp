@@ -59,7 +59,11 @@ paths are sanitizer/i386-audited. [Input setup](frontend/input_setup.h),
 [language resolution](frontend/startup_language.h) and
 [original text loading/parsing](frontend/localized_text.h) now have concrete
 [Win32/CRT/rw_data forwarding](host/startup_localization.h), compile/link checked
-for i386. This is source-only; device/list/archive setup, application services,
+for i386. [Joystick-list ownership](input/joystick_devices.h) and
+[concrete IJoy forwarding](host/joystick_backend.h) now also compile/link and
+pass native sanitizer audits through the real input manager. Factory-helper
+callers remain unresolved; no new enumeration step is added to startup. This is
+source-only; graphics input services/archive setup, application services,
 profile persistence and renderer/text consumers remain open. See
 [evidence](../analysis/startup-localization.md).
 With `--menu-confirm --opening-movies`, the host now runs the recovered normal

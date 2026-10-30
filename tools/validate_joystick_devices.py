@@ -1,0 +1,44 @@
+"""Verify joystick-list evidence and its explicitly delegated IJoy dependency."""
+
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import struct
+
+from validate_engine_host import validate as validate_host
+from validate_engine_model import PEImage
+from validate_frontend import validate_image
+
+
+JOY_SHA256 = "f3e896afe35894609688e634a54929fd91f6a53ecfc8c43f30d83d8b96ec4ee7"
+
+
+def validate(document: dict, root: Path) -> dict:
+    counts = validate_host(document, root)
+    record = document["joystick"]
+    data = (root / record["binary"]["path"]).read_bytes()
+    if record["binary"]["sha256"] != JOY_SHA256 or hashlib.sha256(data).hexdigest() != JOY_SHA256:
+        raise ValueError("Unsupported delegated IJoy fingerprint")
+    counts["joystick"] = validate_image(PEImage(data), record)
+    return counts
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    root = Path(__file__).resolve().parents[1]
+    parser.add_argument("--map", type=Path, default=root / "analysis/joystick-devices-map.json")
+    parser.add_argument("--root", type=Path, default=root)
+    args = parser.parse_args()
+    try:
+        counts = validate(json.loads(args.map.read_text()), args.root)
+    except (ValueError, KeyError, OSError, struct.error) as error:
+        parser.exit(1, f"Joystick evidence validation failed: {error}\n")
+    print(f"Verified three fingerprints; {sum(c['instructions'] for c in counts.values())} "
+          f"instruction anchors, {sum(c['vtable_slots'] for c in counts.values())} vtable slots "
+          f"and {sum(c['calls'] for c in counts.values())} direct calls. "
+          "Source-only; IJoy is delegated and excluded from the frozen function census.")
+
+
+if __name__ == "__main__":
+    main()

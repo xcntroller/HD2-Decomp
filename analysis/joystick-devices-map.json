@@ -1,0 +1,212 @@
+{
+  "scope": "Source-only client joystick list creation, forward release and reverse frame polling. Delegated IJoy methods are ABI checked, not decompiled DirectInput internals. Lifecycle callers unresolved; no live change.",
+  "runtime_verified": false,
+  "function_accounting": "No new census credit: client 006dc5e0/006dc640 are absent from the frozen inventory; IJoy is outside its two-program scope.",
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006dc5e0",
+        "hex": "5633f68b0d3cea8a008b1540ea8a0085c974168bc22bc1c1f8023bf0730b8b0cb18b01ff500846ebda8bc23bc2740e8b3083c004893183c1043bc275f2890d40ea8a008b0dccec8a0085c95e740f8b11ff5208c705ccec8a0000000000c3",
+        "meaning": "Forward device releases, clear length, then base release and null"
+      },
+      {
+        "address": "006dc640",
+        "hex": "83ec105357e8648810008b086a006a0050ff51488b15e4ec8a00505268ccec8a00e8cac8110084c00f84120200008b0dccec8a008b01ff50188bd833ff85db895c2414897c240c0f8ef301000055568b0dccec8a006a008d442414578b1150ff522c84c0750d8b4c24106a026a018b11ff5230",
+        "meaning": "Fresh graphics/window then factory, one signed count, per-device create and inverted configure branch"
+      },
+      {
+        "address": "006dc86b",
+        "hex": "0540ea8a0004473bfb897c24140f8c11feffff5e5d5f5b83c410",
+        "meaning": "Append length update and fixed-count loop completion"
+      },
+      {
+        "address": "006dceb0",
+        "hex": "a13cea8a0085c074248b3540ea8a002bf0c1fe027417eb05a13cea8a008b4cb0fc4e6a018b11ff525885f675eb",
+        "meaning": "Reverse external joystick polls with flags one before manager producer poll false"
+      },
+      {
+        "address": "006dcedd",
+        "hex": "6a00b948ea8a00e887a9feff",
+        "meaning": "Manager producer receives false; avoid duplicate device polling"
+      },
+      {
+        "address": "007f8f30",
+        "hex": "ff2560f08000",
+        "meaning": "Imported IJoy factory thunk through 0080f060"
+      },
+      {
+        "address": "006d5d90",
+        "hex": "518a442403a238ea8a0033c0a33cea8a00a340ea8a00a344ea8a0059c3",
+        "meaning": "Static vector initialization to empty; allocator byte not reconstructed"
+      },
+      {
+        "address": "006d5dc0",
+        "hex": "a13cea8a0050e8f5be100033c083c404a33cea8a00a340ea8a00a344ea8a00c3",
+        "meaning": "Exit destructor frees raw list storage without releasing devices"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [
+      {
+        "site": "006dc645",
+        "target": "007e4eae"
+      },
+      {
+        "site": "006dc661",
+        "target": "007f8f30"
+      },
+      {
+        "site": "006dcee4",
+        "target": "006c7870"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10068f90",
+        "hex": "a1f4160d10c390909090",
+        "meaning": "GetIGraph export returns current graphics"
+      },
+      {
+        "address": "1006a240",
+        "hex": "a1ec190d10c20400",
+        "meaning": "Graphics window accessor stdcall self only"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d888",
+        "targets": [
+          "1006a240"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "joystick": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/IJoy.dll",
+      "sha256": "f3e896afe35894609688e634a54929fd91f6a53ecfc8c43f30d83d8b96ec4ee7",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10001040",
+        "hex": "51558b6c240c56578b7c2418c644240f0085ffc745000000000074628b74241c85f6745af6442424017407c60578fe0010016a2ce86659000083c40485c074158b5424208d4c240f515256578bc8e85d010000eb0233c085c089450074198a4c240f84c974095f5eb0015d59c214008b106a018bc8ff12c74500000000005f5e32c05d59c21400",
+        "meaning": "Factory initializes output null, requires instance/window and returns byte stdcall ret20"
+      },
+      {
+        "address": "100014c0",
+        "hex": "8b4124c3",
+        "meaning": "Signed joystick count field"
+      },
+      {
+        "address": "100018cb",
+        "hex": "8b4c24205733ff89398b46243bc7",
+        "meaning": "Create clears output before validation"
+      },
+      {
+        "address": "10001973",
+        "hex": "3bcf741c8a44242884c0740a8b542424b001890aeb1b3bcf74068b016a01ff108b4e2851e82e54000083c404897e2832c08b4c24145f5e5d5b64890d0000000083c410c20c00",
+        "meaning": "Device construction result and null-on-failure branch"
+      },
+      {
+        "address": "10001a60",
+        "hex": "8b500489118b40048bc88b10ff5204b001e92effffff",
+        "meaning": "Cached creation retains device and returns true"
+      },
+      {
+        "address": "10003870",
+        "hex": "578b7c240885ff7415568db130010000b911000000b001f3a55e5fc2040032c05fc2",
+        "meaning": "Current snapshot copies 17 DWORDs, byte result, ret4"
+      },
+      {
+        "address": "100038a0",
+        "hex": "538b5c240833c08bd13bd80f848e00000056578db230010000b9110000008bfbf3a58b8a780e00005f894b348bb26401000023f18973348b8a7c0e0000894b388bb26801000023f18973388b8a800e0000894b3c8bb26c01000023f189733c8b8a840e0000894b408bb27001000023f133c98973405e38840a880e0000740f38841160010000750688441930eb05c6441930014183f9047cddb0015bc2040032c05bc2040090909090909090",
+        "meaning": "Secondary snapshot copy and per-button/axis transformations, byte result, ret4"
+      },
+      {
+        "address": "10002bb4",
+        "hex": "5f5e32c05d83c430c2080090",
+        "meaning": "Configure returns byte and ret8"
+      },
+      {
+        "address": "10002c00",
+        "hex": "83ec5053558be95657c6442413018b4518508b08ff516433db85c00f8d13020000389db801000074116a018bcde80e0c000084c00f85fa010000f6442464010f84250200008a85cc",
+        "meaning": "Poll flags read at first argument"
+      },
+      {
+        "address": "10004070",
+        "hex": "568b71044e8971048b1564fe00104a891564fe00108b410483f801730a85c974068b016a01ff108bc65ec39090909090a164fe001040a364fe00108b",
+        "meaning": "Device release thiscall, final deletion at zero"
+      },
+      {
+        "address": "100040a0",
+        "hex": "a164fe001040a364fe00108b410440894104c3909090909090909090",
+        "meaning": "Device retain thiscall"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1000d130",
+        "targets": [
+          "10001130",
+          "100012f0",
+          "100012c0",
+          "10001550",
+          "10001620",
+          "100014d0",
+          "100014c0",
+          "10001880",
+          "100013c0",
+          "100017d0",
+          "10001890",
+          "100018b0"
+        ]
+      },
+      {
+        "address": "1000d164",
+        "targets": [
+          "100023a0",
+          "100040a0",
+          "10004070",
+          "100024b0",
+          "10002460",
+          "100025d0",
+          "100024d0",
+          "10002700",
+          "100026b0",
+          "10002820",
+          "10002720",
+          "10002be0",
+          "10002a00",
+          "10003a90",
+          "10003b20",
+          "10003bd0",
+          "100039d0",
+          "10003a20",
+          "10003950",
+          "10003990",
+          "10003870",
+          "100038a0",
+          "10002c00"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}

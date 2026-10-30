@@ -3,7 +3,15 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest startup source: [graphics input setup and localization](analysis/startup-localization.md).
+Latest source: [joystick-list ownership and delegated IJoy boundary](analysis/joystick-devices.md).
+Factory-list refs release forward, manager refs release reverse, external frame
+polling runs reverse before producer(false). Sanitizer composition and strict
+i386 compile/link pass. Factory helpers have no discovered direct/literal
+references; do not insert enumeration into normal empty-list startup. IJoy
+internals remain delegated and outside the frozen two-program census. Run
+`python3 -B tools/validate_joystick_devices.py` for all three hashes and ABI bytes.
+
+Prior startup source: [graphics input setup and localization](analysis/startup-localization.md).
 It recovers installed-language/wide-input selection, executable-root text
 preloading, actual line parsing and first-wins text caching. Native audits match
 2,162 TEXTY records and 428 TEXTY_DD records; concrete Win32/CRT/rw_data forwarding
@@ -14,8 +22,8 @@ The preceding [manager owner](analysis/input-manager.md),
 [binding producer](analysis/binding-producer.md) and
 [key preprocessing/text FIFO](analysis/keyboard-preprocessing.md) are also
 source-recovered and audited. [Live pacing and keyboard device input](analysis/frame-input.md)
-are desktop-confirmed, including focus return. Concrete device/list/archive
-setup, remaining application/state services, profile persistence, rendering/text
+are desktop-confirmed, including focus return. Concrete graphics input services,
+archive setup, remaining application/state services, profile persistence, rendering/text
 consumers and navigation callers remain open before full controller integration.
 `46359bd` commits manager lifetime; earlier `4e0d923` commits live pacing/keyboard
 and source preprocessing, and `8eef91d` opening playback/controller source.

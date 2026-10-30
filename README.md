@@ -19,8 +19,11 @@ layouts](analysis/binding-installation.md) and
 [input-manager ownership/graphics attachment](analysis/input-manager.md) are
 also recovered and audited. [Original input setup and startup localization](analysis/startup-localization.md)
 now include registry language selection and real text loading/parsing. Concrete
-device/list and archive setup, application startup, profile persistence and text
-rendering consumers still precede integration.
+graphics input services and archive setup, application startup, profile persistence
+and text rendering consumers still precede integration. [Joystick list ownership
+and concrete IJoy forwarding](analysis/joystick-devices.md) are now recovered and
+audited; its creation helper has no discovered caller, so normal empty-list
+startup does not gain an invented enumeration step.
 
 The shared control-state foundation entry is complete: initialization, base
 messages, observers, event ownership and eligibility are recovered and audited.

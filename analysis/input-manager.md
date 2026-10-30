@@ -5,6 +5,11 @@ This source-only checkpoint follows `5871f3c` (binding installation/defaults).
 owner and connects its real state to the recovered installer and producer
 contracts. It does not change the live host or enable the full controller.
 
+Follow-up: [factory-list ownership and concrete IJoy forwarding](joystick-devices.md)
+are now recovered and audited. The factory list releases forward, independently
+of this manager's reverse releases. Its creation helper has no discovered caller;
+do not add it as a prerequisite for normal empty-list setup.
+
 | Entry | Recovered behavior |
 | --- | --- |
 | 006C6A20 | Normal global construction: null graphics, empty vectors, axis limits 20/20/20 |
