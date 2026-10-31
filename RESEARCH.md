@@ -3,6 +3,12 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
+Latest work (2026-10-31): accepted Profiles committed as `977641f`.
+[Main labels/eligibility](analysis/main-menu-state.md) now implement00627520 and
+006B3AC0 against actual profile data; original style40 version and style10 title
+baseline restored. Main native audits pass; user desktop acceptance recorded2026-10-31. Metadata
+here is the stored caption, not a claim of gameplay-save compatibility/loading.
+
 Latest work (2026-10-31): [front-end profile management](analysis/profiles-flow.md)
 is integrated with real startup selection/settings, CRUD/edit/dialogs, new-profile
 difficulty and isolated persistence. User explicitly deferred gameplay saves.

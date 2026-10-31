@@ -1,25 +1,24 @@
 # Session handoff — 2026-10-31
 
-## Latest result — profile management accepted
+## Latest result — Main labels and eligibility accepted
 
-User: “Good, works as expected. Record, commit and continue.”
-Accepted application SHA256 `5e6882429e45bd8805e167ee72a8f243feb7d6ca6c8bbe576b028123cac5acf7`.
-[Profile scope/evidence/acceptance](analysis/profiles-flow.md#desktop-acceptance).
-English front-end selection/CRUD/edit/prompts/difficulty/persistence accepted
-after background/hover and cross-row double-click corrections. Gameplay saves
-remain deferred by explicit user scope decision. No individual case execution
-inferred from the user's general acceptance.
+User: “Looks good. Record, commit, continue.” Accepted Main application SHA256
+`d5656467e031f56e7fe77c32dfb280f12580206fd111f2881cc8a4570dc9d953`.
+[Main scope/evidence/acceptance](analysis/main-menu-state.md#desktop-acceptance).
+Version1.12.0, title baseline+6, actual profile/save captions, no-profile empty
+labels and Exit/CREATE PROFILE gating accepted. Profiles committed as977641f.
+No separate execution of each proposed desktop case inferred.
 
-Strict i386 builds, existing native suite/158 tooling tests and temporary native
-ASan/UBSan audits passed. Original binaries were not run by the agent. Ledger426
-partial, zero complete; frozen18,783 unchanged.23 family items remain open.
+Strict i386 targets, native suite/158 tooling tests and temporary ASan/UBSan
+audits pass. Ledger428 partial, zero complete; frozen18,783 unchanged.22 family
+items open. Agent ran no original client/DLL/Proton. No push authorized.
 
 ## Next work
 
-Next section3 checkbox: complete Main live profile, last-save, date/time/version
-labels and eligibility. User observations: title too high above line; date works;
-version absent; empty profile must say NO CURRENT PROFILE; absent save must say
-NO SAVED POSITION; without a profile only Exit and CREATE PROFILE enabled.
-Research entire metadata/formatter/eligibility boundary before implementation.
-Retain unavailable gameplay/network destinations as explicit handoff exclusions.
-Interactive Main changes require desktop confirmation before commit. No push.
+Next unchecked section3 checkbox: single-player setup through a documented
+game-controller handoff. Research complete boundary and actual dependencies
+before implementation; reuse decoded GameData/HumanStore/profile owners, not
+fabricated missions or successful receiver placeholders. Family entry/hero/team/
+equipment/briefing contracts are in analysis/menu-family-delivery.md. Actual
+gameplay-save loading remains deferred to later receiving-owner deliveries.
+Interactive changes need user desktop confirmation before committing.

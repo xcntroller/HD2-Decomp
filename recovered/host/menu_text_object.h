@@ -5,6 +5,7 @@
 #include "frontend/control_initialization.h"
 #include "frontend/text_control_runtime.h"
 #include "frontend/menu_definition.h"
+#include "frontend/main_menu_state.h"
 #include "host/menu_scene.h"
 #include "host/menu_text_geometry.h"
 
@@ -66,11 +67,10 @@ public:
     bool disabled() const { return properties_.disabled != 0; }
     frontend::SharedText localize(std::uint32_t id) { return localize_(id); }
     bool set_localized(std::uint32_t id, std::uint32_t style, std::int32_t index) {
-        if (style == 40) {
-            std::printf("Deferred original version formatter: frame=%s localization=%u\n", definition_.frame, id);
-            return false;
-        }
-        return text_.set_localized(id, style, index, localize_);
+        return text_.set_localized(id, style, index, localize_, [](const frontend::SharedText& format) {
+            if (!format) throw std::runtime_error("Missing original version format");
+            return std::make_shared<const std::string>(frontend::main_version_text(*format));
+        });
     }
     bool append_localized(std::uint32_t id, std::uint32_t style) {
         return text_.append_localized(id, style, localize_);

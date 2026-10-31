@@ -145,6 +145,7 @@ struct TextStyle {
 // Bounded 00641e30 style catalogue used by the live English menu. Remaining
 // styles and general wrapping/layout remain outside this reconstruction.
 inline const TextStyle* menu_text_style(std::uint8_t style) {
+    static const TextStyle save{2, .03f, 0xff000000, 1, 2}; //00641E30 entry7.
     static const TextStyle title{2, .05f, 0xff000000, 3, 3};
     static const TextStyle small{3, .02f, 0xff000000, 1, 2};
     static const TextStyle list{2, .04f, 0xff000000, 1, 1};
@@ -155,6 +156,7 @@ inline const TextStyle* menu_text_style(std::uint8_t style) {
     static const TextStyle compact_prompt{2, .03f, 0xff000000, 1, 2};
     static const TextStyle version{3, .02f, 0xff000000, 1, 3};
     switch (style) {
+    case 7: return &save;
     case 19: return &list;
     case 10: return &title;
     case 11: return &small;

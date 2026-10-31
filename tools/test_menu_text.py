@@ -48,7 +48,7 @@ class MenuTextTests(unittest.TestCase):
         labels = parse_menu_labels(data)
         self.assertEqual(tuple(labels), LABEL_IDS)
         raw = encode_menu_labels(labels)
-        self.assertEqual(raw[:8], b"H2MT" + struct.pack("<I", 13))
+        self.assertEqual(raw[:8], b"H2MT" + struct.pack("<I", len(LABEL_IDS)))
         offset = 8
         for expected in LABEL_IDS:
             label_id, length = struct.unpack_from("<II", raw, offset)
@@ -231,7 +231,7 @@ class MenuTextTests(unittest.TestCase):
         originals = {relative: (game / relative).read_bytes()
                      for relative in set(SOURCES.values())}
         labels = parse_menu_labels(originals[TEXT_SOURCE])
-        self.assertEqual(len(labels), 13)
+        self.assertEqual(len(labels), len(LABEL_IDS))
         self.assertEqual(labels[2101], "MAIN MENU")
         result = stage_menu_text(game, self.run)
         self.assertEqual(len(result["assets"]), 5)

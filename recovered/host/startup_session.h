@@ -172,6 +172,7 @@ public:
             files_,profile_platform_,wide_characters(),input_.state(),input_,settings_backend_,sound,control,
             input_flag_,&data_.game(),text_);
     }
+    const std::string& last_save_caption() {return data_.profile().payload.strings[2];}
     unsigned profile_difficulty() {return data_.profile().payload.words[0x34/4];}
     void profile_difficulty(unsigned value) {data_.profile().payload.words[0x34/4]=value;}
     bool save_managed_profile(){return frontend::save_profile_payload(data_.profile(),files_,wide_characters());}

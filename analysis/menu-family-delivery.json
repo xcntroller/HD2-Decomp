@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Credits/Cinematics/front-end Options/runtime dialog integration/profiles desktop accepted2026-10-31;23 delivery items open",
+  "status": "Credits/Cinematics/front-end Options/runtime dialog integration/profiles desktop accepted2026-10-31;Main labels accepted2026-10-31;22 delivery items open",
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
@@ -18,7 +18,7 @@
         {
           "key": "main.labels",
           "title": "Recover live profile/save/date/version labels and original eligibility",
-          "status": "open",
+          "status": "complete",
           "roles": [
             "main:1"
           ],
@@ -29,14 +29,21 @@
           ],
           "requires": [
             "selected_profile",
-            "save_metadata"
+            "stored_profile_save_caption"
           ],
           "depends_on": [
-            "saves.metadata"
+            "profiles.manage"
           ],
           "native_validation": "Audit show/update callbacks against actual current profile and save metadata; refresh after selection and absent save without fabricated values.",
           "desktop_validation": "Verify labels and eligibility on entry, profile change and absent/valid last-save cases; preserve pointer/keyboard Exit.",
-          "failure_acceptance": "Absent/malformed data follows original disable/error policy; unsupported destinations stay unavailable."
+          "failure_acceptance": "Absent/malformed data follows original disable/error policy; unsupported destinations stay unavailable.",
+          "implementation": "English Main labels/original eligibility desktop accepted2026-10-31; analysis/main-menu-state.md. Broader save metadata and real Resume receiver remain open.",
+          "desktop_acceptance": {
+            "date": "2026-10-31",
+            "confirmation": "Looks good. Record, commit, continue.",
+            "application_sha256": "d5656467e031f56e7fe77c32dfb280f12580206fd111f2881cc8a4570dc9d953",
+            "scope": "Main live labels and eligibility; no individual case execution inferred; real gameplay receiver excluded."
+          }
         },
         {
           "key": "main.traversal",

@@ -232,13 +232,29 @@ std::optional<MenuTextSubmission> menu_text_submission(
         const frontend::TextObject& object, Bounds bounds, bool button,
         bool available, bool hovered, const FontMetrics& big, const FontMetrics& small) {
     if (object.records().empty()) return std::nullopt;
+    //00627520 appends exactly three style7 records.00645270 makes one row
+    // per record;006468D0 centers the complete block, including empty rows.
+    if(object.records().size()==3 && object.records()[0].style==7 &&
+       object.records()[1].style==7 && object.records()[2].style==7) {
+        const auto area=menu_rectangle(bounds(),800,600,object.inset);
+        MenuTextSubmission result{false,{}};
+        const float top=area.top+std::max(0.f,(area.bottom-area.top-54.f)*.5f);
+        for(unsigned row=0;row<3;++row) {
+            const auto& record=object.records()[row];if(!record.text)continue;
+            const MenuRectangle line{area.left,top+row*18,area.right,top+(row+1)*18};
+            auto vertices=menu_label_vertices(*record.text,big,line,.03f,600,false,
+                object.disabled?0x60000000u:0xff000000u);
+            result.vertices.insert(result.vertices.end(),vertices.begin(),vertices.end());
+        }
+        return result;
+    }
     if (object.records().size() != 1) throw std::logic_error("Multiple text records require original paragraph layout");
     const auto& record = object.records().front();
     const bool selected=object.selection_active && object.selected_text()==record.text;
     if ((!record.text || record.text->empty()) && !(selected && object.caret_visible)) return std::nullopt;
     const auto* style = frontend::menu_text_style(record.style);
     if (!style || !(((style->horizontal == 1 || style->horizontal == 2) && style->vertical == 2) ||
-                    (style->horizontal == 3 && style->vertical == 3))) {
+                    ((style->horizontal == 1 || style->horizontal == 3) && style->vertical == 3))) {
         throw std::logic_error("Unsupported original text style layout");
     }
     std::uint32_t color = object.disabled || (button && !available) ? 0x60000000 : style->color;
@@ -252,6 +268,15 @@ std::optional<MenuTextSubmission> menu_text_submission(
     // paragraph renderer; the existing actual selection clock controls blinking.
     auto value=record.text?*record.text:std::string{};
     auto rectangle=menu_rectangle(bounds(),800,600,object.inset);
+    if(record.style==10) {
+        //00641E30 style+18=.01;00646940 excludes the first row's leading
+        //space from block height, but006469C0 adds it to the baseline.
+        const auto leading=static_cast<int>(600.0f*.01f+.5f);
+        rectangle.top+=leading;rectangle.bottom+=leading;
+    } else if(style->vertical==3) {
+        const int height=static_cast<int>(600.0*style->height+.5);
+        rectangle.top=rectangle.bottom-height; // Style40 left/bottom.
+    }
     const auto& metrics=style->font==3?small:big;
     if(style->horizontal==2) {
         int width=0;

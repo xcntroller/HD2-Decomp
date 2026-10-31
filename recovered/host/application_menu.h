@@ -69,10 +69,7 @@ class ApplicationMenu {
             profiles_menu_->dialog_request([this](unsigned mode,unsigned label,unsigned yes,unsigned no){request_dialog_localized(mode,label,yes,no);});
             profiles_menu_->changed([this]{
                 options_menu_->profile_changed();
-                frontend::ControlEvent event{0x04500000,0x01000014,12,0,0,{}};
-                event.text=std::make_shared<const std::string>(startup_.profile_name());
-                if(startup_.profile_name().empty()){event.code=0x01000015;event.word_0c=2002;}
-                events_->enqueue(event);
+                refresh_main();
             });
             MenuScreenFactory<Actions> factory(
                 *scene_, module_, [&](std::uint32_t id) { return text_->object_for(id); }, *events_,
@@ -118,10 +115,6 @@ class ApplicationMenu {
         if (startup_.sound_available())
             scene_->load_click_sound(module_);
         startup_.begin_menu_music();
-        frontend::ControlEvent profile_label{0x04500000,0x01000014,12,0,0,{}};
-        profile_label.text=std::make_shared<const std::string>(startup_.profile_name());
-        if(startup_.profile_name().empty()){profile_label.code=0x01000015;profile_label.word_0c=2002;}
-        events_->enqueue(profile_label);
         date_tick(true);
         std::puts(
             "Controller menu initialized: type=2; actual localized captions; Main/Exit owners installed");
@@ -279,6 +272,7 @@ class ApplicationMenu {
         }
         void activate_screen(const frontend::ScreenRegistration &screen, std::uint32_t focus) override {
             runtime(screen.identifier >> 26).activate(focus);
+            if(screen.identifier==0x04000000) owner_.refresh_main();
             if(screen.identifier==0x08000000) owner_.profiles_menu_->shown();
             if(screen.identifier==0x18000000) owner_.options_menu_->shown();
             owner_.confirming_ = screen.identifier == 0x10000000;
@@ -370,6 +364,9 @@ class ApplicationMenu {
         return (confirmation || identifier == 0)
                    ? focus.target_for_control(std::max(0, focus.interactive_control_for_target(picked)))
                    : focus.interactive_target(picked);
+    }
+    void refresh_main() {
+        frontend::refresh_main_menu(*events_,startup_.profile_name(),startup_.last_save_caption());
     }
     void date_tick(bool initial) {
         const auto now = std::time(nullptr);

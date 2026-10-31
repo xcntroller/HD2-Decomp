@@ -137,7 +137,7 @@ public:
         std::set<std::uint32_t> required;
         const auto require_captions = [&](const frontend::MenuScreenDefinition& definition) {
             for (const auto& control : definition.controls) for (const auto& event : control.initialization) {
-                if (event.code == 0x01000015 && event.argument != 40) required.insert(event.word_0c);
+                if (event.code == 0x01000015) required.insert(event.word_0c);
             }
         };
         require_captions(frontend::main_menu_definition());

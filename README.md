@@ -62,6 +62,12 @@ create/rename/delete, difficulty setup and isolated persistence. User desktop ac
 selection background, hover and same-profile double-click behavior. Gameplay saves remain
 with later controller/in-game deliveries.
 
+[Main live labels and eligibility](analysis/main-menu-state.md) are now integrated:
+original version, profile/save empty states, stored save captions, no-profile
+CREATE PROFILE/Exit gating and the original title offset. Native checks pass;
+this Main update is user desktop-accepted2026-10-31. Actual
+Resume/gameplay and other unavailable destinations retain their later gates.
+
 The [screen-and-route census](analysis/menu-route-census.md) now covers eight
 concrete frontend owners, conditional registries, shared dialogs, embedded pages
 and in-game/controller routes. Its thirty numbered declarations are candidates,
@@ -71,7 +77,7 @@ now record IDs, assets, captions/styles, initialization and return rules across
 preserves all 30 declarations and IDs: 28 populated owner-scoped roles and two
 reserved empty hero slots. Shared artwork/code, embedded content and campaign
 variants are classified separately. The [family delivery checklists](analysis/menu-family-delivery.md)
-define 29 delivery items across all nine families (23 remain open), including
+define 29 delivery items across all nine families (22 remain open), including
 independent UI audits and real game/network requirements. Inventory/planning is
 **source-only**; flow delivery and original-function credit are tracked separately.
 
@@ -108,11 +114,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **426 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **428 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 421 |
+| Base game client | 17,294 | 0 | 423 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

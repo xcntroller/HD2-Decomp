@@ -172,13 +172,14 @@
       "program": "client",
       "entry": "00644200",
       "status": "partial",
-      "coverage": "Ordinary localized indexed set; explicit style-40 version formatting callback boundary, without inventing global version values.",
-      "limitations": "Portable native storage/callbacks replace original class ABI, allocation, intrusive refcount and SEH. Only bounded menu text/rendering is integrated; complete localization, version formatting, paragraph layout and full style catalogue remain unresolved. Bounded integration desktop-confirmed.",
+      "coverage": "Localized indexed set including style40 original English version formatting from confirmed1/12/zero globals through the retained callback.",
+      "limitations": "Native strings/callbacks replace original ABI/CRT/SEH. English integer version format integrated/native-audited; Main desktop delivery accepted2026-10-31; general localization/layout remains incomplete.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/text_object.h",
         "recovered/frontend/text_control_runtime.h",
-        "recovered/host/menu_text_object.h"
+        "recovered/host/menu_text_object.h",
+        "analysis/main-menu-state.md"
       ]
     },
     {
@@ -5692,6 +5693,30 @@
         "analysis/profiles-flow.md",
         "analysis/profiles-flow-map.json",
         "recovered/host/profiles_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00627520",
+      "status": "partial",
+      "coverage": "Main shown/profile-change labels and original enable/disable states from actual profile data; distinct host receiver availability retained.",
+      "limitations": "Native ownership/typed queue replace original ABI and unrelated shown-callback resource/session side effects. English Main delivery desktop-accepted2026-10-31. Broader save metadata/preview entry points and gameplay receiver excluded.",
+      "evidence": [
+        "analysis/main-menu-state.md",
+        "recovered/frontend/main_menu_state.h",
+        "recovered/host/application_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b3ac0",
+      "status": "partial",
+      "coverage": "Parse actual stored profile save caption into three dollar-delimited fields with original missing-delimiter results and native overflow guard.",
+      "limitations": "Native ownership/typed queue replace original ABI and unrelated shown-callback resource/session side effects. English Main delivery desktop-accepted2026-10-31. Broader save metadata/preview entry points and gameplay receiver excluded.",
+      "evidence": [
+        "analysis/main-menu-state.md",
+        "recovered/frontend/main_menu_state.h",
+        "recovered/host/application_menu.h"
       ]
     }
   ]

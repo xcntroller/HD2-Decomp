@@ -124,8 +124,8 @@ Original object ABI is tracked separately from native menu delivery.
   [Desktop accepted2026-10-31](analysis/options-flow.md).
 - [x] Deliver profile management and persistence using isolated writable copies.
   [Desktop accepted2026-10-31](analysis/profiles-flow.md#desktop-acceptance). Gameplay saves follow later.
-- [ ] Finish Main's live profile, last-save, date/time and version labels and eligibility.
-  [Labels and data dependencies](analysis/menu-family-delivery.md#main-menu).
+- [x] Finish Main's live profile, last-save, date/time and version labels and eligibility.
+  [Desktop accepted2026-10-31](analysis/main-menu-state.md#desktop-acceptance).
 - [ ] Deliver single-player setup through a documented game-controller handoff.
 - [ ] Deliver multiplayer UI/service contracts; distinguish working local/network paths
   from unavailable legacy services.
@@ -140,7 +140,7 @@ validation → tracker update → commit. Never enable dead actions or count pla
 service responses as completed flows.
 
 The linked family checklists define concrete flow boundaries and validation levels;
-Credits, Cinematics, front-end Options and runtime dialog integration are accepted; 23 delivery items remain open. Native fixtures establish UI/payload/ownership
+Credits, Cinematics, front-end Options and runtime dialog integration are accepted; 22 delivery items remain open. Native fixtures establish UI/payload/ownership
 contracts, separately from actual desktop and real game/network handoff acceptance.
 
 ## 4. Finish fidelity and replace remaining scaffolding

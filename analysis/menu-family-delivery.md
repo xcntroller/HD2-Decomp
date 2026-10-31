@@ -43,9 +43,11 @@ Existing Main/Exit is accepted. Complete the nine-action hub without claiming ot
 
 Primary numbered roles: `main:1`.
 
-- [ ] **main.labels — Recover live profile/save/date/version labels and original eligibility.**
+- [x] **main.labels — Recover live profile/save/date/version labels and original eligibility.**
   Evidence: `00623DD0`, `00626340`, `00626B20`.
-  Requires: selected profile, save metadata. After: `saves.metadata`.
+  Requires: selected profile, stored profile save caption. After: `profiles.manage`.
+  [Main acceptance](main-menu-state.md#desktop-acceptance): desktop accepted2026-10-31.
+  Main caption parsing reuses the profile reader; broader save metadata gates remain open.
   Native: Audit show/update callbacks against actual current profile and save metadata; refresh after selection and absent save without fabricated values.
   Desktop: Verify labels and eligibility on entry, profile change and absent/valid last-save cases; preserve pointer/keyboard Exit.
   Failures/limits: Absent/malformed data follows original disable/error policy; unsupported destinations stay unavailable.
