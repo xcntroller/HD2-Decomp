@@ -193,5 +193,12 @@
       "entry": "0064bcc0",
       "role": "end predicate"
     }
-  ]
+  ],
+  "desktop_acceptance": {
+    "date": "2026-10-31",
+    "performed_by": "user",
+    "confirmation": "Yup, all works. Continue",
+    "application_sha256": "121ee7ead4ad8fd410b453b59f3f17af636c2a1e58772499a752e357dacc4236",
+    "scope": "Requested Credits desktop checklist; no case-specific log/frame claims"
+  }
 }

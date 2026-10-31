@@ -76,6 +76,11 @@ public:
         identifier_ = target;
     }
     std::uint32_t identifier() const { return identifier_; }
+    std::uint32_t user_data() const { return properties_.word_5c; }
+    void emit(std::uint32_t tag, frontend::ControlEventDestination& upstream) {
+        EventDestination destination{*this, &upstream};
+        frontend::dispatch_tagged_control_events(bindings_, this, tag, 0, destination);
+    }
 
     bool apply(bool hover) {
         if (!events_bound_) throw std::logic_error("Button events are not bound");

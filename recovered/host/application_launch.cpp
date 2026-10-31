@@ -116,10 +116,14 @@ private:
 
 class OpeningBackend {
 public:
-    OpeningBackend(host::StartupSession& startup, HMODULE module, host::BorrowedGraphicsInput& keyboard)
+    OpeningBackend(host::StartupSession& startup, HMODULE module, host::BorrowedGraphicsInput& keyboard, bool retained=false)
         : startup_(startup), keyboard_(keyboard), video_(startup.graphics(), module),
-          audio_(module), module_(module), subtitles_(*this) {}
-    ~OpeningBackend() { release_resources(); }
+          audio_(module), module_(module), subtitles_(*this), retained_(retained) {}
+    ~OpeningBackend() {
+        frontend::CleanupErrors errors;
+        if(saved_music_) errors.attempt([&]{restore_music();});
+        release_resources();
+    }
     void begin_movie(const char* filename) {
         if (resources_live_) throw std::logic_error("Opening resources already owned");
         resources_live_ = true;
@@ -130,7 +134,9 @@ public:
         audio_.create_voice(); //00688040: separate voice BEFORE IShow, even without cues.
         video_.open(filename, 0x400);
         float target; const std::uint32_t bits = 0x3c343958; std::memcpy(&target, &bits, 4);
-        startup_.fade_movie_music(target, 2000);
+        if(retained_&&std::strncmp(filename,"Outro2",6)==0){
+            saved_music_=startup_.credits_music_position();startup_.begin_credits_music(*saved_music_,true);
+        }else startup_.fade_movie_music(target, 2000);
         if (video_.opened()) {
             using Dimension = std::int32_t (WINAPI *)(host::EngineFrame*);
             const auto width = host::scene_method<Dimension>(startup_.graphics(), module_, 0x18, 0x6de50)(startup_.graphics());
@@ -159,9 +165,10 @@ public:
     void close_movie(const char* filename) {
         for (int i = 0; i != 3; ++i) video_.clear_present();
         // Ensure engine resources close even if actual profile persistence throws.
-        try { startup_.remember_movie(filename); startup_.fade_movie_music(1, 2000); }
-        catch (...) { release_resources(); throw; }
-        release_resources();
+        frontend::CleanupErrors errors;
+        errors.attempt([&]{startup_.remember_movie(filename);});
+        errors.attempt([&]{restore_music();});
+        release_resources();errors.rethrow();
         std::puts("Opening resources released: movie/voice/text records/samples/styles/text owner");
     }
     std::uint32_t next_scan() { return keyboard_.next_scan(); }
@@ -203,6 +210,10 @@ public:
         QueryPerformanceCounter(&counter);
     }
 private:
+    void restore_music(){
+        if(saved_music_){const auto saved=*saved_music_;saved_music_.reset();startup_.restore_credits_music(saved);}
+        else startup_.fade_movie_music(1,2000);
+    }
     void release_resources() noexcept {
         if (!resources_live_) return;
         video_.close(false);
@@ -221,6 +232,8 @@ private:
     frontend::OpeningSubtitles<OpeningBackend> subtitles_;
     std::uint32_t last_movie_time_ = 0;
     bool resources_live_ = false;
+    std::optional<host::StartupSession::CreditsMusic> saved_music_;
+    bool retained_=false;
 };
 
 //00688040 Credits branch: no IShow/voice; actual script, fonts and music.
@@ -295,6 +308,10 @@ public:
     std::unique_ptr<frontend::ApplicationState> create_video_state() {
         return std::make_unique<frontend::OpeningApplicationState<OpeningBackend>>(
             std::make_unique<OpeningBackend>(startup_, module_, keyboard_));
+    }
+    std::unique_ptr<frontend::ApplicationState> create_retained_video_state() {
+        return std::make_unique<frontend::OpeningApplicationState<OpeningBackend>>(
+            std::make_unique<OpeningBackend>(startup_,module_,keyboard_,true));
     }
     std::unique_ptr<frontend::ApplicationState> create_credits_state() {
         return std::make_unique<frontend::CreditsApplicationState<CreditsBackend>>(

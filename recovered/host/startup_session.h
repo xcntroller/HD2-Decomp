@@ -190,6 +190,7 @@ public:
     }
     bool wide_characters() const { return language_.state().wide_characters; }
     std::string language() { return language_.get(); }
+    const auto& profile_movies() { return data_.profile().payload.movies.records(); }
     bool subtitles_enabled() { return data_.profile().options.settings.bytes[0x3a] != 0; }
     bool load_movie_subtitles(const char* filename, frontend::LocalizedTextCache& text) {
         const auto path = frontend::opening_subtitle_path(directory_.get(), language(), filename);
@@ -248,8 +249,8 @@ public:
         return {sound_data_.selection.requested,
             frontend::primary_sound_movie_position(sound_data_.settings,sound_backend_)};
     }
-    void begin_credits_music(const CreditsMusic& saved) {
-        if(saved.request!=37)
+    void begin_credits_music(const CreditsMusic& saved,bool force=false) {
+        if(force||saved.request!=37)
             frontend::queue_primary_sound_movie(sound_data_.settings,sound_data_.fade,
                 sound_data_.secondary,sound_data_.selection,37,2000,0);
     }

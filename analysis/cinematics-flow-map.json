@@ -1,0 +1,528 @@
+{
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "00614140",
+      "hex": "558bec83e4f06aff682e0c800064a100",
+      "note": "Cinematics builder"
+    },
+    {
+      "address": "00615450",
+      "hex": "8b44240885c0750532c0c21000c74104",
+      "note": "PLAY status12"
+    },
+    {
+      "address": "00615470",
+      "hex": "64a1000000006aff68880d80008b5424",
+      "note": "selected filename and queue order"
+    },
+    {
+      "address": "00615660",
+      "hex": "6aff68b90d800064a100000000506489",
+      "note": "hide/stop and clear filename"
+    },
+    {
+      "address": "00615820",
+      "hex": "6aff68e00d800064a100000000506489",
+      "note": "show unlocked row IDs"
+    },
+    {
+      "address": "006a7020",
+      "hex": "56578b7c240c85ff7c488b710485f674",
+      "note": "profile movie metadata"
+    },
+    {
+      "address": "006550e0",
+      "hex": "8b44240c568bf18b4c240c578b7c240c",
+      "note": "persistent row visual binding"
+    },
+    {
+      "address": "006551d0",
+      "hex": "8b5424048b4204a900f00f04740b52e8",
+      "note": "row layout/text messages"
+    },
+    {
+      "address": "00653c50",
+      "hex": "568bf18a467884c0750a8b4e6c6a00e8",
+      "note": "row focus"
+    },
+    {
+      "address": "00653c80",
+      "hex": "568bf18a467884c075088b4e6ce86e01",
+      "note": "row leave"
+    },
+    {
+      "address": "00653cb0",
+      "hex": "568bf1568b4e4cc6467801e8102a0000",
+      "note": "row selection"
+    },
+    {
+      "address": "00653cf0",
+      "hex": "8b4424045683f8018bf175196a01c646",
+      "note": "explicit deselection"
+    },
+    {
+      "address": "00653d20",
+      "hex": "566a0068006000048bf1e8219200008b",
+      "note": "press activates selection"
+    },
+    {
+      "address": "00655820",
+      "hex": "558bec83e4f083ec0c8b45108b550c56",
+      "note": "list visual binding"
+    },
+    {
+      "address": "006558a0",
+      "hex": "518a81840000005384c0570f84940000",
+      "note": "active ID sorting"
+    },
+    {
+      "address": "00655950",
+      "hex": "558bec83e4f083ec288b818800000056",
+      "note": "row positioning"
+    },
+    {
+      "address": "00655f10",
+      "hex": "558bec83e4f06aff68af52800064a100",
+      "note": "list event dispatch"
+    },
+    {
+      "address": "00655cc0",
+      "hex": "64a1000000006aff6850528000506489",
+      "note": "wheel forwards actual slider"
+    },
+    {
+      "address": "006566d0",
+      "hex": "568bf1578b7c240c8b4e743bcf741885",
+      "note": "deselect previous child"
+    },
+    {
+      "address": "00667c90",
+      "hex": "558bec83e4f083ec34538bd956578b73",
+      "note": "video frame projection"
+    },
+    {
+      "address": "00667d50",
+      "hex": "83ec208d542410568bf1528b466c508b",
+      "note": "preview aspect fit"
+    },
+    {
+      "address": "00667e40",
+      "hex": "8b44240c8b542404568bf18b4c240c50",
+      "note": "video creates IShow"
+    },
+    {
+      "address": "00667ea0",
+      "hex": "64a1000000006aff6898688000506489",
+      "note": "preview stop/open/play"
+    },
+    {
+      "address": "00668000",
+      "hex": "51568bf18b466c508b08ff510884c00f",
+      "note": "muted loop rendering"
+    },
+    {
+      "address": "007dc3a0",
+      "hex": "5153568bf25785f68bd975095f5e32c0",
+      "note": "recursive polymorphic frame clone"
+    },
+    {
+      "address": "006c20f0",
+      "hex": "558bec6aff685bb0800064a100000000",
+      "note": "retained controller"
+    },
+    {
+      "address": "0066eae0",
+      "hex": "518b44240c53566a1c894c240c89417c",
+      "note": "sequence0 wrapper"
+    },
+    {
+      "address": "00688040",
+      "hex": "558bec83ec1453565733ff668b3d06b3",
+      "note": "ordinary and Outro2 music initialization"
+    },
+    {
+      "address": "00688460",
+      "hex": "5156578bf1bf03000000e83fca15008b",
+      "note": "movie persistence and music cleanup"
+    },
+    {
+      "address": "00645f20",
+      "hex": "6aff682747800064a100000000506489",
+      "note": "single-style whitespace wrapping"
+    },
+    {
+      "address": "007dc41e",
+      "hex": "8b0b8b16515756c744242000000000ff52408bd08d4c2418e865ffffff84c074ac8b44240c473bf87cd6",
+      "note": "Recursive clones remain allocated: loop has no child Release"
+    }
+  ],
+  "vtables": [
+    {
+      "address": "00814ed0",
+      "targets": [
+        "0065c830",
+        "0064d9c0",
+        "0064d9f0",
+        "00655310",
+        "0065c760",
+        "0065c790",
+        "00661c80",
+        "0064da20",
+        "0064da30",
+        "0064da40",
+        "0064da50",
+        "006550e0",
+        "00653c50",
+        "00653c80",
+        "00653cb0",
+        "00653cf0",
+        "0064dae0",
+        "0064db00",
+        "00653d20",
+        "0064db40",
+        "0064db60",
+        "0064db80",
+        "0064dba0",
+        "0064dbc0",
+        "0064dbe0",
+        "0064dc00",
+        "0064dc20",
+        "006551d0",
+        "0065cf00"
+      ]
+    },
+    {
+      "address": "00814540",
+      "targets": [
+        "0065c830",
+        "0064d9c0",
+        "0064d9f0",
+        "0064da10",
+        "0065c760",
+        "0065c790",
+        "00668000",
+        "0064da20",
+        "0064da30",
+        "0064da40",
+        "0064da50",
+        "00667e40",
+        "0064da60",
+        "0064da80",
+        "0064daa0",
+        "0064dac0",
+        "0064dae0",
+        "0064db00",
+        "0064db20",
+        "0064db40",
+        "0064db60",
+        "0064db80",
+        "0064dba0",
+        "0064dbc0",
+        "0064dbe0",
+        "0064dc00",
+        "0064dc20",
+        "00667ea0",
+        "0065cf00"
+      ]
+    }
+  ],
+  "direct_calls": [],
+  "resource_anchors": [
+    {
+      "site": "00667f2c",
+      "address": "0084062c",
+      "text": "GameMovie\\%s2"
+    }
+  ],
+  "functions": [
+    {
+      "entry": "00614140",
+      "role": "Cinematics builder"
+    },
+    {
+      "entry": "00615450",
+      "role": "PLAY status12"
+    },
+    {
+      "entry": "00615470",
+      "role": "selected filename and queue order"
+    },
+    {
+      "entry": "00615660",
+      "role": "hide/stop and clear filename"
+    },
+    {
+      "entry": "00615820",
+      "role": "show unlocked row IDs"
+    },
+    {
+      "entry": "006a7020",
+      "role": "profile movie metadata"
+    },
+    {
+      "entry": "006550e0",
+      "role": "persistent row visual binding"
+    },
+    {
+      "entry": "006551d0",
+      "role": "row layout/text messages"
+    },
+    {
+      "entry": "00653c50",
+      "role": "row focus"
+    },
+    {
+      "entry": "00653c80",
+      "role": "row leave"
+    },
+    {
+      "entry": "00653cb0",
+      "role": "row selection"
+    },
+    {
+      "entry": "00653cf0",
+      "role": "explicit deselection"
+    },
+    {
+      "entry": "00653d20",
+      "role": "press activates selection"
+    },
+    {
+      "entry": "00655820",
+      "role": "list visual binding"
+    },
+    {
+      "entry": "006558a0",
+      "role": "active ID sorting"
+    },
+    {
+      "entry": "00655950",
+      "role": "row positioning"
+    },
+    {
+      "entry": "00655f10",
+      "role": "list event dispatch"
+    },
+    {
+      "entry": "00655cc0",
+      "role": "wheel forwards actual slider"
+    },
+    {
+      "entry": "006566d0",
+      "role": "deselect previous child"
+    },
+    {
+      "entry": "00667c90",
+      "role": "video frame projection"
+    },
+    {
+      "entry": "00667d50",
+      "role": "preview aspect fit"
+    },
+    {
+      "entry": "00667e40",
+      "role": "video creates IShow"
+    },
+    {
+      "entry": "00667ea0",
+      "role": "preview stop/open/play"
+    },
+    {
+      "entry": "00668000",
+      "role": "muted loop rendering"
+    },
+    {
+      "entry": "007dc3a0",
+      "role": "recursive polymorphic frame clone"
+    },
+    {
+      "entry": "006c20f0",
+      "role": "retained controller"
+    },
+    {
+      "entry": "0066eae0",
+      "role": "sequence0 wrapper"
+    },
+    {
+      "entry": "00688040",
+      "role": "ordinary and Outro2 music initialization"
+    },
+    {
+      "entry": "00688460",
+      "role": "movie persistence and music cleanup"
+    },
+    {
+      "entry": "00645f20",
+      "role": "single-style whitespace wrapping"
+    }
+  ],
+  "model": {
+    "archive": "models.dta",
+    "member": "MODELS\\single mission 2.4ds",
+    "sha256": "06ef21ab261a351f890b94a57946405cfd214f3cec74e3ce45158ff8cfb48b5e",
+    "size": 12214,
+    "owner_slot": 7,
+    "screen_id": "1c000000"
+  },
+  "media": {
+    "assets": [
+      {
+        "name": "Intro.bik",
+        "sha256": "0cba67ee0b6db6fc22a2ff0e1298c00f3464bf09a81429d655b96894a21239c6",
+        "size": 87315384
+      },
+      {
+        "name": "IntroArctic.bik",
+        "sha256": "7519a1e39b2f3d3de4d8dfd365b0f366862d4e018e87b175d0ec98ffb8ffd11e",
+        "size": 40199896
+      },
+      {
+        "name": "IntroNorway.bik",
+        "sha256": "732d1c159f59b82748299f0278116e4e43e0153a27ca65ae3cbe458cfd429689",
+        "size": 19458200
+      },
+      {
+        "name": "IntroBurma.bik",
+        "sha256": "43c1040306ad0b9b08f6d53fa4f6c42a4de905d00d5b23271e040b5f4af483f1",
+        "size": 25584184
+      },
+      {
+        "name": "IntroAlps.bik",
+        "sha256": "40a5e1c3b83dab5da7b820c61466ce2088c1cdd8e114029f0c1bdcf3b0bc9507",
+        "size": 16651484
+      },
+      {
+        "name": "IntroNormandy.bik",
+        "sha256": "40e44036a2d62387b48293cf35e2919eef2aef29a6577a939f54388590b705d0",
+        "size": 15538472
+      },
+      {
+        "name": "Outro1.bik",
+        "sha256": "3e5ea35e5b05df22612bef865b2ec662256568b93438ce83be48a57b86d8d03a",
+        "size": 17843136
+      },
+      {
+        "name": "Outro2.bik",
+        "sha256": "f521e26929b9a60c33fb3da225b8dce857f1880589992b574df34a5352d572ba",
+        "size": 49310532
+      },
+      {
+        "name": "Intro.bik2",
+        "sha256": "d0d80eaf29cc4e048c6b9ba5031a66111312b88e4a3b7f90b46fc8f1ba247ea3",
+        "size": 142700
+      },
+      {
+        "name": "IntroArctic.bik2",
+        "sha256": "a0e3032d4d26295f0ad791f0c01ee006c6d7ae6cd6519cad20aabd971d3b5ccd",
+        "size": 79180
+      },
+      {
+        "name": "IntroNorway.bik2",
+        "sha256": "48aae7818fd5f2bc87df65a05c21827c530b48530e5b3d042a0cc449520f4316",
+        "size": 86580
+      },
+      {
+        "name": "IntroBurma.bik2",
+        "sha256": "7eda3dcca77e8386dd7f47d3bee41110f50e2fe011cdadce762afe8eee893a08",
+        "size": 161224
+      },
+      {
+        "name": "IntroAlps.bik2",
+        "sha256": "3c6b310b439d51882c2e6c79d4c700e2ae5c46f4c023717ab80555e12bec25d3",
+        "size": 220964
+      },
+      {
+        "name": "IntroNormandy.bik2",
+        "sha256": "b2bf980fccc696b0c2f0a3d6a28672716bdd8966a07292ae50ee2b7d95474c5b",
+        "size": 137668
+      },
+      {
+        "name": "Outro1.bik2",
+        "sha256": "7cc1c050782805483fb82c1abc2fd17ee0d0e2757d72b33cadae600633183256",
+        "size": 220768
+      },
+      {
+        "name": "Outro2.bik2",
+        "sha256": "a7d97df3f63320d204c318a4cbc57dc128ede14d51fd51fe85df12f2a53eb52c",
+        "size": 171776
+      }
+    ],
+    "missing": [],
+    "unused_catalog_entries": [
+      "IntroAfrica.bik",
+      "IntroCzech.avi"
+    ]
+  },
+  "desktop_acceptance": {
+    "date": "2026-10-31",
+    "performed_by": "user",
+    "confirmation": "Yup, works well. Record it, commit and continue",
+    "application_sha256": "c6b7c1157a32ca46a7721ada21aff5cdb4983bd15dc87e817fc718772d124f06",
+    "scope": "Requested corrected Cinematics preview/PLAY/return checklist; user-reported acceptance, no case-specific logs inferred."
+  },
+  "native_policy": "Failed preview Open remains closed; original fits undefined dimensions after negative status. Engine/codec/frame/material methods are delegated, not newly reconstructed.",
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "100725d0",
+        "hex": "53568b74240c8a462084c0750a5eb809",
+        "note": "IShow backdrop +4c"
+      },
+      {
+        "address": "1001d799",
+        "hex": "2197e00000008b870c01000089861001000089b70c01000089be08010000",
+        "note": "Link writes borrowed sibling/parent pointers without AddRef"
+      },
+      {
+        "address": "1001dae6",
+        "hex": "5f33c05e8be55dc20c00",
+        "note": "Link returns zero; no reference acquisition"
+      },
+      {
+        "address": "1001c370",
+        "hex": "568b74240866ff8ee4000000668b86e40000006685c07e070fbfc05ec204",
+        "note": "Release decrements frame reference count"
+      },
+      {
+        "address": "1001c3be",
+        "hex": "8bcee8fbd9ffff33c05ec2",
+        "note": "Zero references destroy the frame"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "clone_ownership_correction": {
+    "date": "2026-10-31",
+    "trigger": "User desktop startup failed binding Anim_00 visuals",
+    "cause": "Temporary recursive child owners released linked frames; LS3DF links are non-owning",
+    "implementation": "MenuFrameClone retains recursive owners and destroys descendants before parents",
+    "desktop_retest": "pending"
+  },
+  "preview_filename_correction": {
+    "date": "2026-10-31",
+    "original_function": "00667ea0",
+    "format_address": "0084062c",
+    "format": "GameMovie\\%s2",
+    "behavior": "Append literal2 for preview only; retained PLAY filename stays unsuffixed. Stage eight original .bik2 files.",
+    "desktop_retest": "pending",
+    "unused_catalog_entries": "User identifies Africa/Czech intros as unused development remnants; expected absences are ignored."
+  },
+  "desktop_report": {
+    "date": "2026-10-31",
+    "previous_staged_application_sha256": "0e04f2e4e20143f14988bab942b77950ba4a6ddd1b9322c4071ccf6990f15fdc",
+    "user_report": "The two missing files seem to just be remnants from development; Africa and Czech campaigns do not have intros. So that's safe to ignore. However, one strange quirk - in our cinematic menu, selecting a cinematic autoplays that cinematic in the small preview. Meaning we're currently playing the .bik file there, when we should be playing the .bik2. That needs to be fix, but otherwise it works.",
+    "scope": "User reports other behavior works; preview media selection is incorrect. Corrected preview desktop verification remains pending."
+  }
+}

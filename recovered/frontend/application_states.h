@@ -29,6 +29,7 @@ public:
     virtual std::uint32_t video_sequence() const {
         throw std::logic_error("Application state has no opening sequence");
     }
+    virtual std::string selected_video_filename() const { return {}; }
     std::uint32_t type() const { return type_; }
     std::uint32_t status() const { return status_; } // 0067EA00
     void status(std::uint32_t value) { status_ = value; } // 0067EA10
@@ -158,6 +159,7 @@ public:
         status(1);
         return true;
     }
+    std::string selected_video_filename() const override { return runtime_->selected_video_filename(); }
     void shutdown() override { runtime_->shutdown(); }
     void input(const std::uint32_t* first, const std::uint32_t* second) override {
         runtime_->input(first, second);

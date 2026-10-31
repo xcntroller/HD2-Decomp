@@ -1,13 +1,13 @@
 # Menu family delivery checklists
 
-This completes the inventory planning checkbox **source-only**. All 29 delivery
+This completes the inventory planning checkbox **source-only**. Credits and Cinematics are desktop accepted;27 delivery
 items below remain open. The [coverage catalog](menu-family-delivery.json) maps
 all 28 populated owner-scoped roles, twelve shared/auxiliary products, 71 routes,
 512 control sites, thirteen dynamic categories and 20 prompt-helper sites.
 [Identity rules](menu-definition-resolution.md) preserve all 30 declarations;
 reserved hero slots 2/3 are not delivery targets. Planning was source-only.
-The subsequent Credits implementation is now integrated/native-audited and
-awaits actual desktop confirmation; see [its contract](credits-flow.md).
+The subsequent Credits implementation is desktop accepted2026-10-31; see [its contract](credits-flow.md).
+[Cinematics is desktop accepted2026-10-31](cinematics-flow.md).
 
 ## Delivery and verification rules
 
@@ -30,7 +30,7 @@ commit until requested. Interactive changes need user desktop confirmation.
 
 `media.credits`: Main Credits → status12 retained type10/sequence0 → scrolling
 text/music → status13 restore/start of the saved owner. The complete flow is now
-integrated and native-audited; actual desktop confirmation remains pending.
+desktop accepted2026-10-31 after the user confirmed the requested checklist.
 [Credits contract, resource correction and validation](credits-flow.md).
 
 The earlier movie-file gate was incorrect:00688040 uses `credits.bik` as a selector
@@ -83,14 +83,15 @@ Retained-owner status 12/13 sequence 0 differs from ordinary four-movie startup;
 
 Primary numbered roles: `main:7`.
 
-- [ ] **media.credits — Deliver Main Credits through retained video and return.**
+- [x] **media.credits — Deliver Main Credits through retained video and return.**
   Evidence: `00626B20`, `006C20F0`, `0066EAE0`, `00688040`, `00688C10`.
   Requires: real Credits text/fonts, retained owner controller, menu music.
   Native: Actual script/font geometry and queue/controller lifecycle pass; restore precedes shutdown/delete/start. [Verification](credits-flow.md).
-  Desktop: Activate Credits from compiled Main, complete and Escape/other original permitted input, verify audio/input/focus restoration and close during playback. Real scrolling text/fonts are required; the integrated build awaits this desktop check.
+  Desktop: Activate Credits from compiled Main, complete and Escape/other original permitted input, verify audio/input/focus restoration and close during playback. Real scrolling text/fonts are required; the user confirmed the requested desktop checklist2026-10-31.
   Failures/limits: No Credits movie/voice is opened. Missing/empty script follows original empty-text completion; partial font/backend failures clean up the retained owner.
 
-- [ ] **media.cinematics — Deliver available-movie list, selected playback and return.**
+- [x] **media.cinematics — Deliver available-movie list, selected playback and return.**
+  [Desktop accepted2026-10-31](cinematics-flow.md).
   Evidence: `00614140`, `006C20F0`, `006B1290`.
   Requires: selected profile, isolated profile copy, movie list, video audio, retained owner controller.
   Native: Audit generated available rows, selected filename, scrolling/selection, unlock/persistence effects and retained source screen/selection.

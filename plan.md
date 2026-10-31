@@ -98,13 +98,13 @@ Original object ABI is tracked separately from native menu delivery.
 - [x] Resolve duplicate/placeholder definitions. **Source-only:** 28 populated roles, two reserved slots.
   [Identity/counting rules](analysis/menu-definition-resolution.md), [catalog](analysis/menu-definition-resolution.json).
 - [x] Split all families into delivery checklists and independent/running-game validation. **Source-only.**
-  [Nine families / 29 open delivery items](analysis/menu-family-delivery.md), [coverage](analysis/menu-family-delivery.json).
+  [Nine families / 29 delivery items](analysis/menu-family-delivery.md), [coverage](analysis/menu-family-delivery.json).
 
 | Family | Required flow | Current status |
 | --- | --- | --- |
-| [Main menu](analysis/menu-family-delivery.md#main-menu) | Nine actions, profile/save/date/version labels, eligibility | Exit only |
+| [Main menu](analysis/menu-family-delivery.md#main-menu) | Nine actions, profile/save/date/version labels, eligibility | Exit and Credits |
 | [Shared dialogs](analysis/menu-family-delivery.md#shared-dialogs) | Yes/No/OK, prompts, text/password, errors and cancellation | Quit Yes/No; slot-zero diagnostic |
-| [Credits/cinematics](analysis/menu-family-delivery.md#credits-and-cinematics) | Retained controller, list/playback and return | Credits integrated/native-audited; desktop confirmation pending |
+| [Credits/cinematics](analysis/menu-family-delivery.md#credits-and-cinematics) | Retained controller, list/playback and return | Credits and Cinematics accepted |
 | [Options](analysis/menu-family-delivery.md#options) | All pages/bindings, apply/Back/persistence and owner variants | Native widgets source-only; full flow open |
 | [Profiles](analysis/menu-family-delivery.md#profiles) | List/select/create/rename/delete and validation | Startup persistence recovered; menu flow open |
 | [Saves/loading](analysis/menu-family-delivery.md#saves-and-loading) | Actual metadata, errors and game/controller handoff | No extra save-screen registration inferred; real receivers required |
@@ -114,21 +114,31 @@ Original object ABI is tracked separately from native menu delivery.
 
 ## 3. Deliver complete flows in dependency order
 
-- [ ] After launch, deliver credits or another low-dependency screen through entry/action/back.
-  [Credits implementation and pending desktop gate](analysis/credits-flow.md).
-- [ ] Deliver options, including binding editors and original settings semantics.
+- [x] Deliver Credits through entry, scrolling and return to the retained Main menu.
+  [Desktop accepted2026-10-31](analysis/credits-flow.md).
+- [x] Deliver Cinematics: available-movie list, selected playback and return/Back.
+  [Desktop accepted2026-10-31](analysis/cinematics-flow.md).
+- [ ] Integrate shared runtime dialogs, preserving named Yes/No/OK and reply semantics.
+  [Runtime dialog boundary](analysis/menu-family-delivery.md#shared-dialogs).
+- [ ] Deliver Options, including binding editors and original settings semantics.
 - [ ] Deliver profiles/saves using isolated writable copies for persistence validation.
+- [ ] Finish Main's live profile, last-save, date/time and version labels and eligibility.
+  [Labels and data dependencies](analysis/menu-family-delivery.md#main-menu).
 - [ ] Deliver single-player setup through a documented game-controller handoff.
 - [ ] Deliver multiplayer UI/service contracts; distinguish working local/network paths
   from unavailable legacy services.
 - [ ] Deliver in-game menu variants and transitions back to the front end.
+- [ ] Validate shared dialog callers, reply/context lifetimes and cancellation in every flow.
+  [Caller acceptance](analysis/menu-family-delivery.md#shared-dialogs).
+- [ ] Finish all nine Main actions and verify complete menu traversal and returns.
+  [Main traversal boundary](analysis/menu-family-delivery.md#main-menu).
 
 For each flow: evidence → readable source → build/audit → integrate → user desktop
 validation → tracker update → commit. Never enable dead actions or count placeholder
 service responses as completed flows.
 
 The linked family checklists define concrete flow boundaries and validation levels;
-all 29 new delivery items are open. Native fixtures establish UI/payload/ownership
+Credits and Cinematics are accepted; 27 delivery items remain open. Native fixtures establish UI/payload/ownership
 contracts, separately from actual desktop and real game/network handoff acceptance.
 
 ## 4. Finish fidelity and replace remaining scaffolding

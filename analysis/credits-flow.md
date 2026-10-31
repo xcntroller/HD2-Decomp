@@ -1,8 +1,8 @@
-# Credits flow — integrated; desktop acceptance pending
+# Credits flow — desktop accepted
 
 2026-10-31. Plan section3 first checkbox / `media.credits`. The complete compiled
-Main → Credits → retained Main flow is implemented and native-audited. Its delivery
-checkbox remains open until actual desktop confirmation. Keep uncommitted.
+Main → Credits → retained Main flow is implemented and desktop accepted. The user confirmed “Yup, all works. Continue” in response to the desktop checklist.
+Its delivery checkbox is accepted. Keep uncommitted.
 
 ## Original contract and resource correction
 
@@ -97,7 +97,7 @@ with a legacy extended TGA tail, fingerprint-guarded and copied unchanged;
 CE SMALL is256x256. Preflight rejects modified/linked targets and invalid inputs;
 atomic no-overwrite publication preserves other files. No movie substitution.
 
-## Verification and desktop gate
+## Verification and desktop acceptance
 
 - Strict i386 compile/link: application-launch, engine-window, startup-probe.
 - Existing native suite and all158 tooling tests pass.
@@ -106,12 +106,13 @@ atomic no-overwrite publication preserves other files. No movie substitution.
  simulated run, automatic completion at406,624ms using16ms ticks. It checks exact
  tags, raw CE bytes, empty lines, column centering, baseline increments, speed,
  fades, low-word scroll and3000ms dwell. These counts are a native simulation,
- **not a desktop observation**.
+ **not a desktop observation**; user acceptance is recorded separately.
 - Actual queue routing/controller/state audit verifies status12 entry, ignored
  Space, Escape, automatic completion, repeated entry, same-pointer restoration,
  no menu shutdown on return, retained cleanup on close, and failed acquisition.
  Real two-channel music queue metadata retains the original seek word/duration.
- Engine rendering/audio/OS behavior still requires desktop acceptance.
+ Engine rendering/audio/OS behavior was subsequently user desktop-confirmed;
+  this native audit alone did not establish it.
 - Stager audit exercises original assets/identical reuse and rejects modified
  target, symlink, unsupported CE BIG and malformed metrics without target writes.
 - Original fingerprint/map, frozen function ledger and whitespace checks pass.
@@ -134,5 +135,9 @@ Run `python3 -B tools/run_application_launch.py` for the desktop check:
 4. Close the window during Credits; verify clean teardown. Repeat with sound/music
    disabled and ordinary subtitles disabled; Credits text must still appear.
 
-Until that actual test is reported, both the family delivery and plan section3
-checkbox stay unchecked. No commit is authorized.
+Desktop acceptance recorded2026-10-31: the user replied “Yup, all works. Continue”
+to the requested checklist for staged build121ee7ead4ad8fd410b453b59f3f17af636c2a1e58772499a752e357dacc4236.
+This is user-reported desktop acceptance; no individual case logs or frame counts
+are inferred. The family delivery and first section3 checkbox are checked.
+No commit is authorized. Historical native-only verification below/above retains
+its original scope; it is not an agent desktop run.

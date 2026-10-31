@@ -15,6 +15,7 @@ from stage_menu_text import stage_menu_text
 from stage_opening_movies import OPENING_MOVIES, stage_opening_movies
 from stage_menu_text import _check_path
 from stage_credits_resources import stage_credits_resources
+from stage_cinematics_movies import stage_cinematics_movies
 
 
 @contextmanager
@@ -155,10 +156,13 @@ def main() -> None:
         executable = stage_startup(args.game_dir, args.executable, args.work_dir, application_launch=True)
         run = executable.parent
         stage_menu_resources(args.game_dir, run, include_confirm=True,
-                             include_cursor_model=True, include_click_sound=True)
+                             include_cursor_model=True, include_click_sound=True,include_cinematics=True)
         stage_menu_text(args.game_dir, run, include_confirm=True, include_control_text=True)
         stage_opening_movies(args.game_dir, run)
         stage_credits_resources(args.game_dir, run)
+        movie_resources=stage_cinematics_movies(args.game_dir, run)
+        if movie_resources["missing"]:
+            print("Cinematics media absent from loose install: " + ", ".join(movie_resources["missing"]))
         launch = prepare_launch(args.game_dir, executable, args.proton, args.steam_root,
                                 args.work_dir, args.frames, dict(os.environ))
         print("Controller launch command: " + shlex.join(launch.command))

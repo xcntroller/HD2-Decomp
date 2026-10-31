@@ -22,7 +22,7 @@ public:
                    frontend::TextObject::Localizer localize)
         : scene_(scene), module_(module), definition_(definition), confirmation_(confirmation),
           localize_(std::move(localize)) {
-        text_.inset = definition.kind == frontend::MenuControlKind::button ? 10 : 1;
+        text_.inset = (definition.kind == frontend::MenuControlKind::button || definition.kind == frontend::MenuControlKind::movie_row) ? 10 : 1;
         properties_.focusable = 0; // Original static-text control constructor.
     }
     MenuTextObject(const MenuTextObject&) = delete;
@@ -40,6 +40,8 @@ public:
         owner_ = &properties;
         available_ = available;
     }
+    void highlighted(bool value) { highlighted_ = value; }
+    bool highlighted() const { return highlighted_; }
     bool visible() const { return (owner_ ? owner_->visible : properties_.visible) != 0; }
     bool available() const { return available_; }
     bool eligible() const { return properties_.eligible(); }
@@ -108,8 +110,9 @@ public:
 private:
     const MenuScene& scene_;
     HMODULE module_;
-    const frontend::MenuControlDefinition& definition_;
+    const frontend::MenuControlDefinition definition_;
     bool confirmation_;
+    bool highlighted_ = false;
     frontend::TextObject::Localizer localize_;
     frontend::TextObject text_;
     frontend::ControlProperties properties_;

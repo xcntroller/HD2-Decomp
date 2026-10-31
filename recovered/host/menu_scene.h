@@ -323,6 +323,21 @@ public:
         }
     }
 
+    //00627060: an additional real registered model under the same scene sector.
+    MenuDriver::Owner load_screen_model(HMODULE module,const char* key) {
+        auto model=driver_.create(9);
+        if(open_model(model.get(),module,key)!=0) throw std::runtime_error("Cannot load registered menu model");
+        EngineFrame* sector=nullptr;
+        std::memcpy(&sector,reinterpret_cast<const char*>(scene_.get())+0x1f8,sizeof(sector));
+        using Link=std::int32_t (WINAPI *)(EngineFrame*,EngineFrame*,std::uint32_t);
+        if(!sector || scene_method<Link>(model.get(),module,0x38,0x1d680)(model.get(),sector,0)<0)
+            throw std::runtime_error("Cannot link registered menu model");
+        update_screen_frame(module,model.get());set_screen_visible(module,model.get(),false);
+        return model;
+    }
+    std::uint32_t pick_model(HMODULE module,float x,float y,float width,float height,EngineFrame* root) const {
+        return pick_menu_screen(module,x,y,width,height,false,root);
+    }
     std::uint32_t pick_main_menu(HMODULE module, float x, float y,
                                  float width, float height) const {
         return pick_menu_screen(module, x, y, width, height, false);
@@ -334,8 +349,8 @@ public:
     }
 
     std::uint32_t pick_menu_screen(HMODULE module, float x, float y,
-                                   float width, float height, bool confirmation) const {
-        EngineFrame* root = confirmation ? confirmation_.get() : model_.get();
+                                   float width, float height, bool confirmation, EngineFrame* explicit_root = nullptr) const {
+        EngineFrame* root = explicit_root ? explicit_root : confirmation ? confirmation_.get() : model_.get();
         if (root == nullptr) throw std::logic_error("Menu picking model is not initialized");
         using Pick = EngineFrame* (WINAPI *)(EngineFrame*, const float*, const float*,
                                              EngineFrame*, void*, std::uint32_t,

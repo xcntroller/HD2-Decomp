@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "source-only planning complete; all29 delivery items open; subsequent Credits implementation integrated/native-audited, desktop confirmation pending",
+  "status": "planning complete; Credits desktop accepted;28 delivery items open",
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
@@ -143,7 +143,7 @@
         {
           "key": "media.credits",
           "title": "Deliver Main Credits through retained video and return",
-          "status": "open",
+          "status": "complete",
           "roles": [],
           "evidence": [
             "00626b20",
@@ -162,15 +162,21 @@
           "desktop_validation": "Activate Credits from compiled Main by pointer/keyboard; verify scrolling headings/CE glyphs/columns/fades and music, ignored Space, Escape and natural completion return to the same owner/focus; close during Credits and check disabled audio/subtitle preferences.",
           "failure_acceptance": "Credits opens no movie or voice. Empty/missing script follows original empty-text3000ms completion; partial text/font/backend failure releases acquired resources and retained owner without reporting successful playback.",
           "implementation": {
-            "status": "integrated and native-audited; desktop acceptance pending",
+            "status": "desktop accepted2026-10-31",
             "contract": "analysis/credits-flow.md",
-            "delivery_checkbox": "open"
+            "delivery_checkbox": "checked"
+          },
+          "desktop_acceptance": {
+            "performed_by": "user",
+            "confirmation": "Yup, all works. Continue",
+            "application_sha256": "121ee7ead4ad8fd410b453b59f3f17af636c2a1e58772499a752e357dacc4236",
+            "scope": "Requested Credits desktop checklist; no individual case logs inferred"
           }
         },
         {
           "key": "media.cinematics",
           "title": "Deliver available-movie list, selected playback and return",
-          "status": "open",
+          "status": "desktop accepted2026-10-31",
           "roles": [
             "main:7"
           ],
@@ -189,7 +195,23 @@
           "depends_on": [],
           "native_validation": "Audit generated available rows, selected filename, scrolling/selection, unlock/persistence effects and retained source screen/selection.",
           "desktop_validation": "Enter from Main, select/play permitted movies, skip/finish and return to the same owner/list; Back returns Main.",
-          "failure_acceptance": "Empty/unavailable list, absent movie, decode/open failure and profile-save failure retain real behavior; no hardcoded successful list."
+          "failure_acceptance": "Empty/unavailable list, absent movie, decode/open failure and profile-save failure retain real behavior; no hardcoded successful list.",
+          "implementation": {
+            "date": "2026-10-31",
+            "status": "desktop accepted2026-10-31",
+            "contract": "analysis/cinematics-flow.md",
+            "evidence": "analysis/cinematics-flow-map.json",
+            "scope": "Real profile flags, ten original row identities, available list, muted IShow preview, selected ordinary playback, retained return and Back; no desktop claim.",
+            "desktop_report": "User reports flow otherwise works; corrected .bik2 preview awaits desktop confirmation.",
+            "delivery_checkbox": "checked"
+          },
+          "desktop_acceptance": {
+            "date": "2026-10-31",
+            "performed_by": "user",
+            "confirmation": "Yup, works well. Record it, commit and continue",
+            "application_sha256": "c6b7c1157a32ca46a7721ada21aff5cdb4983bd15dc87e817fc718772d124f06",
+            "scope": "Requested corrected Cinematics preview/PLAY/return checklist; user-reported acceptance, no case-specific logs inferred."
+          }
         }
       ]
     },
@@ -6459,7 +6481,7 @@
       "Recover retained-owner allocation/shutdown/restore and special input/music/subtitle behavior from006c20f0/00688040 and the actual native state classes.",
       "Extend the compiled Main action/factory and staging only for the complete selected flow; opening-only sequence/status support is insufficient."
     ],
-    "alternative": "Original resource gate is resolved. Finish actual desktop confirmation of integrated Credits before selecting the next delivery item."
+    "alternative": "Credits desktop accepted. The next plan checkbox is the complete front-end Options flow."
   },
   "environment_requirements": {
     "persistence": "All profile/settings/save operations and failures use isolated writable copies; no original/user data overwrite.",
@@ -6481,7 +6503,7 @@
       "text": "credits.bik",
       "evidence": "006c20f0 status12 default; menu-contracts-map.json/retained-video source"
     },
-    "current_host": "Main/Exit accepted; Main Credits entry/status12/type10/sequence0/scrolling text/music/retained return is now integrated and native-audited, pending desktop acceptance. Full Options remains disabled.",
+    "current_host": "Main/Exit, openings and Credits desktop accepted. Full Options remains disabled.",
     "existing_acceptance": "Main/Exit and normal opening checkpoint remain accepted. Runtime slot-zero diagnostic and native widgets are not full application family delivery.",
     "save_boundary": "Recovered Profile.sav serializer and startup profile loading do not implement gameplay saves or controller/game loading receivers."
   },
@@ -6541,7 +6563,7 @@
     "original_route_source": "analysis/menu-route-census.json",
     "contract_source": "analysis/menu-contracts.json",
     "no_original_execution": true,
-    "next_checkbox": "plan.md section3 first complete flow; Credits integrated, actual desktop confirmation pending",
+    "next_checkbox": "plan.md section3: complete front-end Options, binding editors and settings semantics",
     "implementation_reads_snapshot": "Historical source fingerprints captured for the completed family-planning milestone before Credits implementation; current implementation/verification is in credits-flow.md."
   }
 }

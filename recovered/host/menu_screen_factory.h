@@ -20,17 +20,26 @@ public:
     using Products = frontend::OwnedScreens<MenuScreenProduct>;
     MenuScreenFactory(const MenuScene& scene, HMODULE module,
                       std::function<MenuTextObject*(std::uint32_t)> text_lookup,
-                      frontend::MenuEventQueue& queue, Products& products, Bindings& bindings, MenuWidgetContext* widgets = nullptr, bool credits = false)
+                      frontend::MenuEventQueue& queue, Products& products, Bindings& bindings, MenuWidgetContext* widgets = nullptr, bool credits = false,
+                      EngineFrame* cinematic_model=nullptr,
+                      std::function<frontend::MenuScreenDefinition()> build_cinematics={},
+                      std::function<void(const frontend::MenuScreenDefinition&)> attach_cinematics={},
+                      std::function<std::unique_ptr<MenuControl>(const frontend::MenuControlDefinition&,EngineFrame*,MenuTextObject&)> extra={})
         : scene_(scene), module_(module), text_lookup_(std::move(text_lookup)),
-          queue_(queue), products_(products), bindings_(bindings), widgets_(widgets),
+          queue_(queue), products_(products), bindings_(bindings), widgets_(widgets),build_cinematics_(std::move(build_cinematics)),attach_cinematics_(std::move(attach_cinematics)),extra_(std::move(extra)),
           main_{scene.main_model_frame(), false, credits ?
                 std::vector<frontend::MenuControlRole>{frontend::MenuControlRole::exit,frontend::MenuControlRole::credits} :
                 std::vector<frontend::MenuControlRole>{frontend::MenuControlRole::exit}},
           confirmation_{scene.confirmation_model_frame(), true,
-                        {frontend::MenuControlRole::yes, frontend::MenuControlRole::no}} {}
+                        {frontend::MenuControlRole::yes, frontend::MenuControlRole::no}},
+          cinematics_{cinematic_model,false,{frontend::MenuControlRole::play,frontend::MenuControlRole::back,frontend::MenuControlRole::movie_list}} {
+        if(cinematic_model && build_cinematics_ && attach_cinematics_)
+            main_.available.push_back(frontend::MenuControlRole::cinematics);
+    }
 
     void create_definitions() {
         definitions_ = {frontend::main_menu_definition(), frontend::confirmation_definition()};
+        if(cinematics_.root) definitions_.push_back({"cinematics",0x1c000000,"single mission 2",{}});
     }
     std::size_t definition_count() const { return definitions_.size(); }
     frontend::MenuScreenDefinition& definition(std::size_t index) { return definitions_.at(index); }
@@ -42,11 +51,12 @@ public:
     };
     Model* load_model(const frontend::MenuScreenDefinition& definition) {
         Model* model = definition.identifier == 0x04000000 ? &main_ :
-                       definition.identifier == 0x10000000 ? &confirmation_ : nullptr;
+                       definition.identifier == 0x10000000 ? &confirmation_ : definition.identifier == 0x1c000000 ? &cinematics_ : nullptr;
         if (!model) throw std::logic_error("Screen needs a recovered engine/model backend");
         return model->root ? model : nullptr;
     }
-    void augment_screen(frontend::ScreenBuilder, frontend::MenuScreenDefinition&, Model*) {
+    void augment_screen(frontend::ScreenBuilder builder, frontend::MenuScreenDefinition& definition, Model*) {
+        if(builder==frontend::ScreenBuilder::cinematics && build_cinematics_ && attach_cinematics_){definition=build_cinematics_();attach_cinematics_(definition);return;}
         throw std::logic_error("Screen-specific application builder is not reconstructed");
     }
     void position_model(Model* model, float x, float y, float z) {
@@ -54,7 +64,7 @@ public:
     }
     std::unique_ptr<MenuScreenProduct> allocate_screen(Model* model) {
         return std::make_unique<MenuScreenProduct>(scene_, module_, model->confirmation,
-            model->available, text_lookup_, queue_, model->root, widgets_);
+            model->available, text_lookup_, queue_, model->root, widgets_, extra_);
     }
     void append_screen(std::unique_ptr<MenuScreenProduct> screen) {
         const auto& definition = screen->definition();
@@ -77,8 +87,12 @@ private:
     Products& products_;
     Bindings& bindings_;
     MenuWidgetContext* widgets_;
+    std::function<frontend::MenuScreenDefinition()> build_cinematics_;
+    std::function<void(const frontend::MenuScreenDefinition&)> attach_cinematics_;
+    std::function<std::unique_ptr<MenuControl>(const frontend::MenuControlDefinition&,EngineFrame*,MenuTextObject&)> extra_;
     Model main_;
     Model confirmation_;
+    Model cinematics_;
     std::vector<frontend::MenuScreenDefinition> definitions_;
 };
 

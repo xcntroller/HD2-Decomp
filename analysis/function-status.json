@@ -1406,8 +1406,8 @@
       "program": "client",
       "entry": "006c20f0",
       "status": "partial",
-      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement. Status4 now shuts down the state, releases it, closes mouse input and invokes cold control reset before returning false. Main Credits status12 retains the frontend, installs type10/sequence0, restores its pointer before video shutdown/deletion on status13, then starts the same owner.",
-      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game, alternate console start, Cinematics filename selection and restart/exit video routes remain unsupported; native invalid/allocation paths throw. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
+      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement. Status4 now shuts down the state, releases it, closes mouse input and invokes cold control reset before returning false. Main Credits status12 retains the frontend, installs type10/sequence0, restores its pointer before video shutdown/deletion on status13, then starts the same owner. Cinematics extension: actual selected filename/type10 sequence0 return; retained ordinary playback and Outro2 music bookmark/forced request37 restoration as applicable.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game, alternate console start, Cinematics filename selection and restart/exit video routes remain unsupported; native invalid/allocation paths throw. Credits extension is integrated/native-audited and user desktop-confirmed2026-10-31; no individual case logs are inferred. See the Credits contract for its native ABI and scope limits. Cinematics extension is integrated/native-audited but desktop verification is pending.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
@@ -1415,7 +1415,9 @@
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
         "analysis/credits-flow-map.json",
-        "analysis/credits-flow.md"
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md"
       ]
     },
     {
@@ -4058,14 +4060,16 @@
       "program": "client",
       "entry": "00688040",
       "status": "partial",
-      "coverage": "Ordinary voice-before-IShow initialization, actual open/aspect/preferences/fade, separate subtitle loading and conditional real text owner, volume/play and clock calls. Credits selector branch bypasses IShow/voice, bookmarks actual music request/position, queues37 when needed and loads scrolling localized text/fonts.",
-      "limitations": "Original outro/alternate descriptors and Cinematics retained-video selection remain unsupported. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
+      "coverage": "Ordinary voice-before-IShow initialization, actual open/aspect/preferences/fade, separate subtitle loading and conditional real text owner, volume/play and clock calls. Credits selector branch bypasses IShow/voice, bookmarks actual music request/position, queues37 when needed and loads scrolling localized text/fonts. Cinematics extension: actual selected filename/type10 sequence0 return; retained ordinary playback and Outro2 music bookmark/forced request37 restoration as applicable.",
+      "limitations": "Original outro/alternate descriptors and Cinematics retained-video selection remain unsupported. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and user desktop-confirmed2026-10-31; no individual case logs are inferred. See the Credits contract for its native ABI and scope limits. Cinematics extension is integrated/native-audited but desktop verification is pending.",
       "evidence": [
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
         "recovered/host/application_launch.cpp",
         "analysis/credits-flow-map.json",
-        "analysis/credits-flow.md"
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md"
       ]
     },
     {
@@ -4073,7 +4077,7 @@
       "entry": "006890f0",
       "status": "partial",
       "coverage": "Actual executable/language/stem path, loose existence probe, separate numbered/quoted DTA cache and ordinary cue parser; startup caption cache is preserved. Credits uses the same real executable/language/stem path and separate cache, then the reconstructed Credits tag parser independently of ordinary subtitle preference.",
-      "limitations": "Native cache/path ownership replaces original COW/mutable string ABI; generic shared paragraph/locales remain outside this path. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
+      "limitations": "Native cache/path ownership replaces original COW/mutable string ABI; generic shared paragraph/locales remain outside this path. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and user desktop-confirmed2026-10-31; no individual case logs are inferred. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
@@ -4111,7 +4115,7 @@
       "entry": "00688c10",
       "status": "partial",
       "coverage": "Ordinary sound-first status completion, retained actual IShow elapsed time, strict wrapping text expiry/activation and overlap ordering; one sequential audio cue per update with actual volume/bind/play calls. Credits advances its float scroll offset after sound update and waits3000ms after render-driven row exhaustion before completion.",
-      "limitations": "Special outro/descriptor waits/fades and original unused QPC arithmetic/global scratch representation are excluded. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
+      "limitations": "Special outro/descriptor waits/fades and original unused QPC arithmetic/global scratch representation are excluded. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and user desktop-confirmed2026-10-31; no individual case logs are inferred. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
@@ -4125,7 +4129,7 @@
       "entry": "00688f50",
       "status": "partial",
       "coverage": "Save IGraph state0, clear, movie scene, text state1/scene, restore saved state, outer-controller presentation; native exception cleanup restores after a throwing text pass. Credits uses the no-IShow black/text scene path with actual four-atlas glyphs and two edge fades; outer application presents.",
-      "limitations": "Native glyph consumer and existing verified device-state bridge replace full original text renderer/cache ABI. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
+      "limitations": "Native glyph consumer and existing verified device-state bridge replace full original text renderer/cache ABI. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and user desktop-confirmed2026-10-31; no individual case logs are inferred. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
@@ -4138,14 +4142,16 @@
       "program": "client",
       "entry": "00688460",
       "status": "partial",
-      "coverage": "Ordinary three clear/presents, recognized profile persistence and fade restoration, IShow/voice release, reverse strings/samples,14 style-handle removal/reset and text release before descriptor deletion. Credits clears/presents three times, invokes the existing movie recorder, restores saved music request/seek (or fade fallback) and releases actual text/font resources.",
-      "limitations": "Native supported style0/8 catalog is a bounded subset; special saved music and complete original global style/font/resource cache remain outside scope. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
+      "coverage": "Ordinary three clear/presents, recognized profile persistence and fade restoration, IShow/voice release, reverse strings/samples,14 style-handle removal/reset and text release before descriptor deletion. Credits clears/presents three times, invokes the existing movie recorder, restores saved music request/seek (or fade fallback) and releases actual text/font resources. Cinematics extension: actual selected filename/type10 sequence0 return; retained ordinary playback and Outro2 music bookmark/forced request37 restoration as applicable.",
+      "limitations": "Native supported style0/8 catalog is a bounded subset; special saved music and complete original global style/font/resource cache remain outside scope. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and user desktop-confirmed2026-10-31; no individual case logs are inferred. See the Credits contract for its native ABI and scope limits. Cinematics extension is integrated/native-audited but desktop verification is pending.",
       "evidence": [
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
         "recovered/host/application_launch.cpp",
         "analysis/credits-flow-map.json",
-        "analysis/credits-flow.md"
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md"
       ]
     },
     {
@@ -4657,7 +4663,7 @@
       "entry": "006c0920",
       "status": "partial",
       "coverage": "Shutdown active state, clear actual five loaded caches in2/1/3/4/5 order, then delete state unless reinitialize and close mouse when enabled. Clear loaded references/tree/current scratch while preserving search-directory lists. Credits shutdown also releases the retained Main owner before clearing controller resources.",
-      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only. Credits extension is integrated/native-audited and user desktop-confirmed2026-10-31; no individual case logs are inferred. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/menu-caches-map.json",
         "analysis/menu-caches.md",
@@ -4995,7 +5001,7 @@
       "entry": "006887c0",
       "status": "partial",
       "coverage": "Native Credits rectangle/scroll initialization and the actual fourteen style records, consumed by four real ANSI/CE font atlases.",
-      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; actual desktop rendering/audio/return confirmation is pending. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
+      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; Credits is user desktop-confirmed2026-10-31 against the requested checklist. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
       "evidence": [
         "analysis/credits-flow-map.json",
         "analysis/credits-flow.md",
@@ -5007,7 +5013,7 @@
       "entry": "00689340",
       "status": "partial",
       "coverage": "Consume actual signed-ID localized cache with exact Credits tags, ANSI/CE style selection, three-column splitting and SPEED numeric-prefix override; clear the separate cache.",
-      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; actual desktop rendering/audio/return confirmation is pending. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
+      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; Credits is user desktop-confirmed2026-10-31 against the requested checklist. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
       "evidence": [
         "analysis/credits-flow-map.json",
         "analysis/credits-flow.md",
@@ -5019,7 +5025,7 @@
       "entry": "0064b940",
       "status": "partial",
       "coverage": "Store original scroll low-word value with defined signed-word conversion for the native Credits renderer.",
-      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; actual desktop rendering/audio/return confirmation is pending. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
+      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; Credits is user desktop-confirmed2026-10-31 against the requested checklist. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
       "evidence": [
         "analysis/credits-flow-map.json",
         "analysis/credits-flow.md",
@@ -5031,11 +5037,256 @@
       "entry": "0064bcc0",
       "status": "partial",
       "coverage": "Report empty/exhausted native Credits row vector from the renderer-advanced first-visible index.",
-      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; actual desktop rendering/audio/return confirmation is pending. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
+      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; Credits is user desktop-confirmed2026-10-31 against the requested checklist. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
       "evidence": [
         "analysis/credits-flow-map.json",
         "analysis/credits-flow.md",
         "recovered/host/credits_geometry.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00614140",
+      "status": "partial",
+      "coverage": "Cinematics native flow: Cinematics builder. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00615660",
+      "status": "partial",
+      "coverage": "Cinematics native flow: hide/stop and clear filename. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00615820",
+      "status": "partial",
+      "coverage": "Cinematics native flow: show unlocked row IDs. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a7020",
+      "status": "partial",
+      "coverage": "Cinematics native flow: profile movie metadata. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006550e0",
+      "status": "partial",
+      "coverage": "Cinematics native flow: persistent row visual binding. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00653c50",
+      "status": "partial",
+      "coverage": "Cinematics native flow: row focus. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00653c80",
+      "status": "partial",
+      "coverage": "Cinematics native flow: row leave. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00653cb0",
+      "status": "partial",
+      "coverage": "Cinematics native flow: row selection. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00655820",
+      "status": "partial",
+      "coverage": "Cinematics native flow: list visual binding. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006558a0",
+      "status": "partial",
+      "coverage": "Cinematics native flow: active ID sorting. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00655950",
+      "status": "partial",
+      "coverage": "Cinematics native flow: row positioning. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00655f10",
+      "status": "partial",
+      "coverage": "Cinematics native flow: list event dispatch. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006566d0",
+      "status": "partial",
+      "coverage": "Cinematics native flow: deselect previous child. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00667c90",
+      "status": "partial",
+      "coverage": "Cinematics native flow: video frame projection. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00667d50",
+      "status": "partial",
+      "coverage": "Cinematics native flow: preview aspect fit. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00667e40",
+      "status": "partial",
+      "coverage": "Cinematics native flow: video creates IShow. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/cinematics_menu.h",
+        "recovered/frontend/cinematics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dc3a0",
+      "status": "partial",
+      "coverage": "Cinematics native flow: recursive polymorphic frame clone. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion. Corrected recursive ownership after reported Anim_00 failure: linked descendants retain explicit tree owners and release before their parents; LS3DF links do not AddRef.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/frontend/menu_frame_clone.h",
+        "recovered/host/cinematics_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0066eae0",
+      "status": "partial",
+      "coverage": "Cinematics native flow: sequence0 wrapper. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/frontend/application_states.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00645f20",
+      "status": "partial",
+      "coverage": "Cinematics native flow: single-style whitespace wrapping. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "evidence": [
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "recovered/host/opening_text_geometry.h"
       ]
     }
   ]

@@ -129,7 +129,7 @@ public:
     MenuText(Graphics* graphics, HMODULE module, const MenuScene& scene,
              bool confirmation_enabled = false, bool runtime_confirmation_enabled = false,
              const frontend::LocalizedTextCache* localized = nullptr)
-        : graphics_(graphics), big_(nullptr, nullptr), small_(nullptr, nullptr),
+        : graphics_(graphics), localized_(localized), big_(nullptr, nullptr), small_(nullptr, nullptr),
           big_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\BIG.tbl"))),
           small_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\SMALL.tbl"))),
           labels_(localized ? std::map<std::uint32_t, std::string>{} :
@@ -181,6 +181,10 @@ public:
         create_objects(scene, module, definition, true);
     }
 
+    void attach_screen_definition(const MenuScene& scene,HMODULE module,
+                                  const frontend::MenuScreenDefinition& definition){
+        create_objects(scene,module,definition,false);
+    }
     bool over_exit(const std::optional<CursorPoint>& point) const {
         if (!point) return false;
         for (const auto& entry : frontend::main_menu_definition().controls) {
@@ -214,26 +218,35 @@ public:
                         exit_hover, confirmation ? confirm_hover : main_hover);
     }
 
+    void draw_screen(const frontend::MenuScreenDefinition& definition,int hover) const {
+        draw_definition(definition,false,hover);
+    }
     void draw_runtime_confirmation(const frontend::MenuScreenDefinition& definition, int hover) const {
         draw_definition(definition, false, hover);
     }
 
 private:
-    void draw_definition(const frontend::MenuScreenDefinition& definition,
-                         bool exit_hover, int confirm_hover) const {
-        std::vector<MenuTextSubmission> submissions;
-        for (std::size_t i = 0; i < definition.controls.size(); ++i) {
-            const auto& entry = definition.controls[i];
+    void collect_submissions(const frontend::MenuScreenDefinition& definition,
+            const std::vector<frontend::MenuControlDefinition>& controls,
+            bool exit_hover,int confirm_hover,std::vector<MenuTextSubmission>& submissions) const {
+        for (std::size_t i = 0; i < controls.size(); ++i) {
+            const auto& entry = controls[i];
             auto* attached = object_for(entry.identifier);
             const auto& object = attached->object();
             if (!attached->visible()) continue;
-            const bool button = entry.kind == frontend::MenuControlKind::button;
+            const bool button = entry.kind == frontend::MenuControlKind::button || entry.kind == frontend::MenuControlKind::movie_row;
             const bool hovered = confirm_hover >= 0 ? static_cast<int>(i) == confirm_hover && button
                                                     : entry.role == frontend::MenuControlRole::exit && exit_hover;
             auto submission = menu_text_submission(object, [&] { return attached->bounds(); },
-                button, attached->available(), hovered, big_metrics_, small_metrics_);
+                button, attached->available(), hovered || attached->highlighted(), big_metrics_, small_metrics_);
             if (submission) submissions.push_back(std::move(*submission));
+            if (!entry.children.empty()) collect_submissions(definition,entry.children,false,-1,submissions);
         }
+    }
+    void draw_definition(const frontend::MenuScreenDefinition& definition,
+                         bool exit_hover, int confirm_hover) const {
+        std::vector<MenuTextSubmission> submissions;
+        collect_submissions(definition,definition.controls,exit_hover,confirm_hover,submissions);
         TextOverlayState state(device_);
         const CursorViewport viewport{0, 0, 800, 600, 0, 1};
         const auto* old = graphics_->methods->viewport(graphics_);
@@ -262,7 +275,11 @@ private:
                         const frontend::MenuScreenDefinition& definition, bool confirmation) {
         for (const auto& entry : definition.controls) {
             auto object = std::make_unique<MenuTextObject>(scene, module, entry, confirmation,
-                [&](std::uint32_t id) { return std::make_shared<const std::string>(labels_.at(id)); });
+                [&](std::uint32_t id) { return std::make_shared<const std::string>(localized_ ? frontend::lookup_localized_text(*localized_,static_cast<std::int32_t>(id)) : labels_.at(id)); });
+            if (!entry.children.empty()) {
+                frontend::MenuScreenDefinition nested{definition.label,definition.identifier,definition.model,entry.children};
+                create_objects(scene,module,nested,confirmation);
+            }
             if (!objects_.emplace(entry.identifier, std::move(object)).second) {
                 throw std::logic_error("Duplicate attached text identifier");
             }
@@ -280,6 +297,7 @@ private:
     }
 
     Graphics* graphics_;
+    const frontend::LocalizedTextCache* localized_;
     MenuDriver::Owner big_, small_;
     FontMetrics big_metrics_, small_metrics_;
     std::map<std::uint32_t, std::string> labels_;

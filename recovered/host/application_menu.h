@@ -7,6 +7,7 @@
 #include "host/menu_text.h"
 #include "host/startup_session.h"
 #include "host/borrowed_input.h"
+#include "host/cinematics_menu.h"
 #include "frontend/keyboard_preprocessing.h"
 #include "frontend/menu_content_settings.h"
 #include <ctime>
@@ -37,8 +38,16 @@ public:
             cursor_ = std::make_unique<MenuCursor<Graphics>>(graphics_, module_);
             events_.emplace(actions_, false);
             widgets_ = std::make_unique<MenuWidgetContext>(input_,*events_,*options_);
+            cinematics_=std::make_unique<CinematicsMenu>(startup_,*scene_,driver_,module_,graphics_,*events_);
+            cinematics_->bind(select_state_);
             MenuScreenFactory<Actions> factory(*scene_, module_,
-                [&](std::uint32_t id) { return text_->object_for(id); }, *events_, products_, actions_, widgets_.get(), true);
+                [&](std::uint32_t id) { return text_->object_for(id); }, *events_, products_, actions_, widgets_.get(), true,cinematics_->model(),
+                [this]{return cinematics_->definition();},
+                [this](const frontend::MenuScreenDefinition& definition){text_->attach_screen_definition(*scene_,module_,definition);},
+                [this](const frontend::MenuControlDefinition& definition,EngineFrame* frame,MenuTextObject& text)->std::unique_ptr<MenuControl>{
+                    if((definition.identifier&0xfc000000u)!=0x1c000000)return {};
+                    return cinematics_->make_control(definition,frame,text,*widgets_,[this](std::uint32_t id){return text_->object_for(id);});
+                });
             frontend::construct_registered_screens(factory);
             for (std::size_t i = 0; i != products_.size(); ++i) products_.screen(i).controls().bind_pick_targets();
         });
@@ -48,7 +57,7 @@ public:
         pointer_input_.emplace(input_, events_->common_state(),
             [this]() -> MenuFocus& { return current_product().focus(); },
             [this](MenuFocus& focus, const CursorPoint& point) {
-                return pick(focus.identifier() == 0x10000000, point);
+                return pick(focus.identifier(), point);
             }, moved, click);
         // 0066A4E0 centers a fresh shared cursor and reads IGraph+fc/+100.
         // OS departure never reseeds it.
@@ -63,6 +72,7 @@ public:
         date_tick(true);
         std::puts("Controller menu initialized: type=2; actual localized captions; Main/Exit owners installed");
     }
+    std::string selected_video_filename() const { return cinematics_?cinematics_->filename():std::string{}; }
     void shutdown() {
         if (!scene_) return;
         pointer_input_.reset(); keyboard_context_.reset();
@@ -74,7 +84,7 @@ public:
         events_.reset();
         actions_.clear();
         input_.clear(); point_.reset();
-        text_.reset(); cursor_.reset(); scene_.reset();
+        text_.reset(); cursor_.reset(); cinematics_.reset(); scene_.reset();
         SetCursor(LoadCursorW(nullptr, IDC_ARROW));
         std::puts("Controller menu shutdown: screen/input/text/scene owners released");
         errors.rethrow();
@@ -93,7 +103,9 @@ public:
         auto& main = products_.screen(0);
         const auto exit_target = main.controls().target_for_role(frontend::MenuControlRole::exit);
         const auto exit_focused = main.focus().control_for_target(exit_target) == main.focus().focused_control();
-        text_->draw(!confirming_ && exit_focused, false, 0,
+        if(current_product().definition().identifier==0x1c000000){
+            cinematics_->render_preview();text_->draw_screen(current_product().definition(),current_product().focus().focused_control());
+        }else text_->draw(!confirming_ && exit_focused, false, 0,
             confirming_ ? 0 : main.focus().focused_control());
         if (confirming_) {
             MenuScene::ModalPass modal(*scene_, module_);
@@ -116,6 +128,7 @@ private:
         if (!current) throw std::logic_error("Frontend callback removed the current screen");
         if (current->identifier == 0x04000000) return products_.screen(0);
         if (current->identifier == 0x10000000) return products_.screen(1);
+        if (current->identifier == 0x1c000000) return products_.screen(2);
         throw std::logic_error("Current screen has no compiled product");
     }
     struct FrameServices {
@@ -156,6 +169,7 @@ private:
             if (screen.identifier == 0x10000000) owner_.confirming_ = false;
         }
         bool dispatch_screen_event(std::uint32_t family, frontend::ControlEvent& event) override {
+            if(family==7 && owner_.cinematics_->video_event(event))return true;
             return runtime(family).dispatch(event);
         }
         void quit() override {
@@ -183,6 +197,9 @@ private:
         explicit KeyboardContext(ApplicationMenu& owner)
             : MenuKeyboardInput(owner.input_, owner.products_.screen(0).focus(), owner.products_.screen(1).focus(),
                                 *owner.events_, owner.confirming_), owner_(owner) {}
+        bool key_current_screen(std::uint32_t word){return owner_.current_product().focus().key(word);}
+        void end_current_drag(std::uint32_t target){frontend::screen_drag_end(owner_.current_product().focus(),target);}
+        std::uint32_t current_screen_identifier()const{return owner_.current_product().definition().identifier;}
         bool input_blocked() const { return owner_.events_->common_state().motion_only; }
         // Final table00815E30+44 →0067EA80 is an actual RET8 body.
         void preprocess_buffers(const std::uint32_t*, const std::uint32_t*) {}
@@ -199,9 +216,11 @@ private:
     private:
         ApplicationMenu& owner_;
     };
-    std::uint32_t pick(bool confirmation, const CursorPoint& point) {
-        auto& focus = products_.screen(confirmation ? 1 : 0).focus();
+    std::uint32_t pick(std::uint32_t identifier, const CursorPoint& point) {
+        const bool confirmation=identifier==0x10000000;
+        auto& focus = current_product().focus();
         const auto picked = confirmation ? scene_->pick_confirmation(module_, point.x, point.y, 800, 600)
+                                         : identifier==0x1c000000 ? scene_->pick_model(module_,point.x,point.y,800,600,cinematics_->model())
                                          : scene_->pick_main_menu(module_, point.x, point.y, 800, 600);
         return confirmation ? focus.target_for_control(std::max(0, focus.interactive_control_for_target(picked)))
                             : focus.interactive_target(picked);
@@ -232,6 +251,7 @@ private:
     std::function<void()> quit_;
     std::function<void(std::uint32_t)> select_state_;
     std::unique_ptr<MenuScene> scene_;
+    std::unique_ptr<CinematicsMenu> cinematics_;
     std::unique_ptr<MenuText<Graphics>> text_;
     std::unique_ptr<MenuCursor<Graphics>> cursor_;
     MenuInputSession input_;

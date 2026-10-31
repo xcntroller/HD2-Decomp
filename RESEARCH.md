@@ -4,17 +4,18 @@ For the plain-English overview and milestone tracker, see [the README](README.md
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
 Latest implementation (2026-10-31): [complete Main Credits flow](analysis/credits-flow.md)
-is integrated and native-audited, pending actual desktop confirmation. Original
+is integrated/native-audited and user desktop-confirmed2026-10-31. Original
 00688040 treats `credits.bik` as a text-branch selector and skips IShow/voice;
 the prior family plan's movie-file gate was incorrect. Real English script,
 ANSI/CE styles/columns, scrolling/edge fades, sound request37 and saved-position
 restoration are implemented. Status12 retains Main; sequence0/status13 restores
 its pointer before Credits shutdown/deletion, then starts the same owner.
 Native full-scroll ASan/UBSan, lifecycle/event/music audits, existing native/158
-tooling tests, strict Windows targets and stage-only preparation pass. No desktop
+tooling tests, strict Windows targets and stage-only preparation pass. No agent desktop
 or original game/DLL/Windows fixture/Proton execution is claimed. Four new frozen
 partial bodies; absent0064B950 and delegated engine calls earn no credit.
-The first section3 checkbox remains open until actual desktop acceptance.
+The user replied “Yup, all works. Continue” to the requested Credits checklist;
+the first section3 checkbox is accepted. Complete Options is next.
 No commit/push; the earlier staged inventory remains intact.
 
 Prior planning: [nine families /29 open delivery units](analysis/menu-family-delivery.md)
@@ -3815,3 +3816,96 @@ permanent tests, Windows execution or new desktop claim.308 partial/zero complet
 frozen18,783. All five bounded launch outcomes are checked; remaining full setup/
 ABI/unused caches/network/special-video/menu scope is explicit. Next is the shared
 menu foundation input/focus item, starting from existing keyboard recovery.
+
+
+## 2026-10-31 — Cinematics integrated; desktop verification pending
+
+Updated plan section3 to explicitly include Cinematics, shared runtime dialogs,
+Main profile/last-save/date/time/version labels and final shared-dialog caller
+validation. Implemented the next checkbox as the complete Cinematics flow after
+researching its model/list/profile/preview/selected-playback/return dependencies.
+[Contract and desktop checklist](analysis/cinematics-flow.md),
+[original byte/function/resource evidence](analysis/cinematics-flow-map.json).
+
+00614140 creates the real single mission2 model/dummy and ten recursive template
+clones;00615820 filters actual profile unlocks without renumbering rows. Selection
+00615470 enables PLAY then stops/opens a muted looping preview;00615450 requests
+status12.006C20F0 passes the actual filename and preserves the existing owner
+through sequence0 completion. Hide00615660 clears the filename without disabling
+PLAY; reentry's empty-filename Credits fallback is deliberately retained.
+00688040's ordinary Outro2 bookmark/forced music37 and00688460 restore/persistence
+are connected. Actual long English subtitles require style8 whitespace wrapping;
+all63 installed Intro/Outro cues were checked with original metrics,11 wrap.
+
+Strict i386 three-target builds, existing native suite, all158 tooling tests,
+ASan/UBSan portable flow/actual grid-body audits, actual asset/stager preservation
+checks, eight evidence maps and three rejected map mutations pass. Failed preview
+Open avoids the original undefined-dimension fit. The model has no selector
+frame; unsupported optional marker acquisition fails explicitly. Eight loose
+catalog files are staged; IntroAfrica.bik/IntroCzech.avi are absent, with no
+substitution or unlock. Original engine/codecs/frame/material methods remain
+delegated. Native fake interfaces do not establish desktop/audio acceptance.
+
+19 newly implemented frozen client bodies receive partial credit:392 partial
+(387client/fiveengine), zero complete, baseline18,783 unchanged. Absent callbacks
+and delegated engine methods receive no credit. Temporary audits removed; logs/
+hashes retained under analysis/work/cinematics-verification-20261031. No original
+game/DLL/Windows fixture/Proton execution, permanent tests, commit or push.
+Cinematics stays unchecked pending user desktop confirmation; then runtime dialogs.
+
+
+## 2026-10-31 — corrected Cinematics clone child lifetime after desktop failure
+
+User startup failed with Missing visual in menu button: Anim_00/result1, before
+Main. Static original-engine inspection contradicts the earlier clone audit's
+implicit assumption:1001D680 Link borrows child frames without AddRef;1001C370
+Release destroys at zero. Original007DC41E–007DC448 retains the recursively created
+child allocations. Our local child RAII owner was instead releasing them at loop
+end. The helper now returns recursive MenuFrameClone ownership; rows retain the
+whole hierarchy and release descendants before parents. No fabricated visuals or
+suppressed binding checks. [Corrected contract](analysis/cinematics-flow.md).
+
+A new temporary native ASan/UBSan fixture models weak links and checks40 live
+frames across ten rows, normal/active/nested lookup after return/vector moves,
+child-before-parent unlink/release,12 injected allocation/copy/link failures and
+count/depth/null guards. Strict i386 build, existing native suite,158 tooling
+tests, amended client/engine byte map and frozen ledger pass. The earlier audit's
+missing lifetime assertion is recorded explicitly. Failure log and corrected
+built/staged hashes: analysis/work/cinematics-clone-fix-20261031. Temporary audit
+removed. No original code/DLL/Proton execution or new desktop acceptance claim;
+retry remains pending, checkbox unchecked,392 partial/zero complete unchanged.
+No commit or push.
+
+
+## 2026-10-31 — corrected Cinematics preview suffix and staged original previews
+
+User reports Cinematics otherwise works after the clone fix, but the small
+preview plays full .bik instead of .bik2. Original00667EA0 pushes0084062C at
+00667F2C: the exact format is GameMovie\%s2. The literal2 was missed in the
+initial implementation. Preview opens now append2 without modifying the selected
+filename consumed by PLAY/profile persistence. All eight installed full movies
+have original .bik2 files; the stager now verifies/copies all16 media files.
+
+User identifies Africa/Czech intro catalog entries as development remnants, not
+missing campaign intros. Preserve original catalog identities/flags and ignore
+these expected absences in diagnostics. Unexpected missing full/preview media
+still receives original open/error behavior without substitution.
+
+Native ASan/UBSan actual video_event body audit checks ten catalog names, owned
+unsuffixed payload preservation, flags0, volume0, fit/play, unopened streams and
+target/tag guards. Stager audit verifies16 actual assets/eight previews, reuse,
+full/preview separation and modified/symlink/hardlink/bad-preview-header rejection.
+Strict i386 builds, existing native suite,158 tooling tests and original resource/
+ledger checks pass. No new function credit (392 partial/zero complete), no commit
+or push, no original code/DLL/Proton execution or new desktop claim. Corrected
+preview desktop verification pending. Temporary audits removed; evidence under
+analysis/work/cinematics-preview-fix-20261031.
+
+
+## 2026-10-31 — Cinematics desktop accepted
+
+User confirms “Yup, works well. Record it, commit and continue” after the corrected
+preview checklist. Recorded acceptance against c6b7c115…24f06; no new case-specific
+logs or desktop execution inferred. Cinematics/ media.cinematics checked;27 family
+delivery items remain open. No new function credit:392 partial, zero complete.
+User requests commit and next complete shared-runtime-dialog checkbox.

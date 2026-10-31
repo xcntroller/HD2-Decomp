@@ -14,11 +14,17 @@ records tested builds and distinguishes retained evidence from user confirmation
 
 The current build also includes the complete [Main Credits flow](analysis/credits-flow.md),
 with real scrolling text/CE fonts, music and return to the retained Main owner.
-It passes native sanitizer audits and builds; **desktop confirmation is pending**.
-Test pointer/keyboard entry, Space ignored, Escape return, natural completion
-(about6m47s), music/focus restoration and closing during Credits. Keep uncommitted.
+It passes native sanitizer audits/builds and is **user desktop-confirmed2026-10-31**
+against the requested checklist.
 
-The accepted UI boundary remains **English,800x600, Main/Exit**. Other menu actions,
+The [Cinematics flow](analysis/cinematics-flow.md) is now integrated and native-audited,
+with real profile availability, muted preview, selected playback and retained return.
+Cinematics is **user desktop-confirmed2026-10-31**, including the corrected
+`.bik2` preview and `.bik` full playback. The launcher stages both
+sets. Africa/Czech intro entries are unused development remnants and ignored as
+expected absences; original catalog flags remain intact.
+
+The accepted UI boundary is **English,800x600, Main/Exit/Credits/Cinematics**. Other menu actions,
 dynamic labels and broader settings/profile/save flows remain unfinished. Full
 original setup/protection, object ABI, unused global caches and live network/
 gameplay services are not claimed complete. Original engine calls stay delegated;
@@ -57,9 +63,9 @@ now record IDs, assets, captions/styles, initialization and return rules across
 preserves all 30 declarations and IDs: 28 populated owner-scoped roles and two
 reserved empty hero slots. Shared artwork/code, embedded content and campaign
 variants are classified separately. The [family delivery checklists](analysis/menu-family-delivery.md)
-now define 29 open items across all nine families, including independent UI audits
-and real game/network requirements. Inventory/planning is **source-only**; actual
-flow delivery is next. Interactive behavior and function counts are unchanged.
+define 29 delivery items across all nine families (27 remain open), including
+independent UI audits and real game/network requirements. Inventory/planning is
+**source-only**; flow delivery and original-function credit are tracked separately.
 
 ## Verification and evidence
 
@@ -88,11 +94,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **373 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **392 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 368 |
+| Base game client | 17,294 | 0 | 387 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -8,11 +8,11 @@
 namespace hd2::frontend {
 
 enum class MenuControlKind : std::uint32_t {
-    container = 5, slider = 8, selector = 0x10, text = 0x13, button = 0x14, toggle = 0x24
+    image = 4, container = 5, movie_row = 6, slider = 8, selector = 0x10, text = 0x13, button = 0x14, video = 0x22, movie_list = 0x23, toggle = 0x24
 };
 // Host semantic roles identify the three implemented actions without relying
 // on array positions. These role names are not original client fields.
-enum class MenuControlRole { none, exit, yes, no, ok, credits };
+enum class MenuControlRole { none, exit, yes, no, ok, credits, cinematics, play, back, movie_list };
 
 struct MenuControlDefinition {
     std::uint32_t identifier;
@@ -72,7 +72,7 @@ inline const MenuScreenDefinition& main_menu_definition() {
         button_definition(0x04c00000, "bmultiplayernet", "normal08", "actived08",
                           MenuControlRole::none, {caption_definition(13, 2116), {0, 0x0600109a, 0, 0, 0, {}}}),
         button_definition(0x04d00000, "bcinematics", "normal04", "actived04",
-                          MenuControlRole::none, {caption_definition(13, 2109), {0, 0x06001001, 7, 0, 0, {}}}),
+                          MenuControlRole::cinematics, {caption_definition(13, 2109), {0, 0x06001001, 7, 0, 0, {}}}),
         button_definition(0x04e00000, "boptions", "normal05", "actived05",
                           MenuControlRole::none, {caption_definition(13, 2110), {0, 0x06001071, 0, 0, 0, {}}}),
         button_definition(0x04f00000, "bcredits", "normal06", "actived06",

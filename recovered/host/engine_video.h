@@ -23,8 +23,8 @@ public:
     EngineVideo(const EngineVideo&) = delete;
     EngineVideo& operator=(const EngineVideo&) = delete;
 
-    void open(const char* filename, std::uint32_t flags) {
-        if (video_) throw std::logic_error("Opening movie already owned");
+    void create() {
+        if (video_) throw std::logic_error("Movie factory called twice");
         EngineFrame* created = factory_(graphics_);
         if (!created) throw std::runtime_error("Original video factory returned null");
         // Verify release before taking ownership; the fingerprinted factory
@@ -41,13 +41,17 @@ public:
         rectangle_ = scene_method<SetRectangle>(video_, module_, 0x20, 0x72040);
         volume_ = scene_method<Volume>(video_, module_, 0x3c, 0x724d0);
         draw_ = scene_method<Draw>(video_, module_, 0x50, 0x72650);
+    }
+    void open(const char* filename, std::uint32_t flags) {
+        if(!video_) create();
+        else if(opened()) throw std::logic_error("Movie stream must close before reopen");
         const auto open_video = scene_method<Open>(video_, module_, 0x0c, 0x71630);
         const std::string path = std::string("GameMovie\\") + filename;
         const auto status = open_video(video_, path.c_str(), flags);
         std::printf("Opening movie: %s status=%08x opened=%u\n", path.c_str(),
                     static_cast<unsigned>(status), static_cast<unsigned>(opened()));
     }
-    bool opened() const { return opened_(video_) != 0; }
+    bool opened() const { return video_ && opened_(video_) != 0; }
     frontend::VideoRectangle dimensions() const {
         frontend::VideoRectangle result{};
         if (dimensions_(video_, &result) < 0)
@@ -57,6 +61,12 @@ public:
     void rectangle(const frontend::VideoRectangle& rectangle) { rectangle_(video_, &rectangle); }
     void volume(float volume) { volume_(video_, volume); }
     void play() { play_(video_); }
+    void close_stream() { if(video_) {stop_(video_);close_(video_);} }
+    void draw_in_scene() const { if(video_) draw_(video_,0); }
+    void backdrop(std::uint32_t value) const {
+        using Set=std::int32_t (WINAPI *)(EngineFrame*,std::uint32_t);
+        scene_method<Set>(video_,module_,0x4c,0x725d0)(video_,value);
+    }
     void stop() { if (video_ && stop_) stop_(video_); }
     std::int32_t playback_status() const { return status_(video_); }
     // Original00688C10 ignores HRESULT. Unopened/error must preserve output.

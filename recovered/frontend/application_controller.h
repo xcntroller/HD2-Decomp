@@ -142,7 +142,7 @@ public:
         if (required().status() == 0) return finish_frame(true);
         const auto status = required().status();
         if (status == 12) {
-            enter_credits();
+            enter_retained_video();
         } else if (status == 13) {
             video_completion();
         } else if (status == 4) {
@@ -192,13 +192,14 @@ private:
         return required().status() == 1 || required().status() == 6 || required().status() == 5;
     }
     //006C20F0 status12: retain the frontend without shutdown or reconstruction.
-    void enter_credits() {
+    void enter_retained_video() {
         if (required().type()!=2 || retained_)
-            throw std::logic_error("Credits requires one retained frontend");
-        auto video=require_created(services_.create_credits_state());
+            throw std::logic_error("Retained video requires one frontend");
+        const auto filename=required().selected_video_filename();
+        auto video=require_created(filename.empty()?services_.create_credits_state():services_.create_retained_video_state());
         retained_=std::move(active_);
         active_=std::move(video);
-        required().begin_video("credits.bik",0);
+        required().begin_video(filename.empty()?"credits.bik":filename.c_str(),0);
         required().status(1);
     }
     void video_completion() {
