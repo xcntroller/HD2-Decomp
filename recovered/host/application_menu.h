@@ -35,8 +35,9 @@ public:
             text_ = std::make_unique<MenuText<Graphics>>(graphics_, module_, *scene_, true, false, &startup_.text());
             cursor_ = std::make_unique<MenuCursor<Graphics>>(graphics_, module_);
             events_.emplace(actions_, false);
+            widgets_ = std::make_unique<MenuWidgetContext>(input_,*events_,*options_);
             MenuScreenFactory<Actions> factory(*scene_, module_,
-                [&](std::uint32_t id) { return text_->object_for(id); }, *events_, products_, actions_);
+                [&](std::uint32_t id) { return text_->object_for(id); }, *events_, products_, actions_, widgets_.get());
             frontend::construct_registered_screens(factory);
             for (std::size_t i = 0; i != products_.size(); ++i) products_.screen(i).controls().bind_pick_targets();
         });
@@ -63,11 +64,12 @@ public:
     }
     void shutdown() {
         if (!scene_) return;
-        pointer_input_.reset(); keyboard_context_.reset(); options_.reset();
+        pointer_input_.reset(); keyboard_context_.reset();
         frontend::CleanupErrors errors;
         // A throwing deactivation must not strand products or their engine refs.
         errors.attempt([&] { if (events_) events_->close(); });
         products_.clear();
+        widgets_.reset(); options_.reset();
         events_.reset();
         actions_.clear();
         input_.clear(); point_.reset();
@@ -230,6 +232,7 @@ private:
     std::optional<frontend::MenuEventQueue> events_;
     std::optional<KeyboardContext> keyboard_context_;
     std::optional<frontend::OptionsSettings<StartupSession>> options_;
+    std::unique_ptr<MenuWidgetContext> widgets_;
     std::optional<MenuFrameInput<MenuFocus>> pointer_input_;
     frontend::FrontendUpdateState update_state_;
     std::optional<CursorPoint> point_;

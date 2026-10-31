@@ -37,6 +37,11 @@ remain source-only. The settings/resource cache integration is also
 [desktop-confirmed](analysis/menu-caches.md) for the bounded Main/Exit flow. [plan.md](plan.md) is the single menu delivery checklist;
 [HANDOFF.md](HANDOFF.md) records the latest result and next work.
 
+Slider/selector/toggle internals now have owned parts, concrete engine/input
+backends and selected-profile observer wiring through the real factories.
+This is [native-audited source-only work](analysis/menu-widget-construction.md);
+the complete Options entry/apply/back flow remains unfinished.
+
 ## Verification and evidence
 
 Original behavior and function addresses are recorded before implementation.
@@ -64,11 +69,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **346 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **369 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 341 |
+| Base game client | 17,294 | 0 | 364 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

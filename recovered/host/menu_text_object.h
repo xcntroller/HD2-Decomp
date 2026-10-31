@@ -44,6 +44,7 @@ public:
     bool available() const { return available_; }
     bool eligible() const { return properties_.eligible(); }
     bool disabled() const { return properties_.disabled != 0; }
+    frontend::SharedText localize(std::uint32_t id) { return localize_(id); }
     bool set_localized(std::uint32_t id, std::uint32_t style, std::int32_t index) {
         if (style == 40) {
             std::printf("Deferred original version formatter: frame=%s localization=%u\n", definition_.frame, id);

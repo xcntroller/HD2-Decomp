@@ -1,0 +1,1038 @@
+{
+  "scope": "Full native kind8/10/24 widget construction, owned arrow/thumb/toggle-half parts, concrete engine/input/text adapters and canonical settings observers. Widgets remain source-only pending the separate Options screen-flow delivery. Existing Main/Exit button semantics and canonical targets are preserved and native-audited. New widgets enable no desktop flow. Engine methods stay delegated.",
+  "runtime_verified": false,
+  "sources": [
+    "recovered/frontend/options_widget_parts.h",
+    "recovered/frontend/built_options_widget.h",
+    "recovered/frontend/control_input_bridge.h",
+    "recovered/host/menu_options_widget.h",
+    "recovered/host/menu_control.h",
+    "recovered/host/menu_control_tree.h",
+    "recovered/host/menu_screen_factory.h",
+    "recovered/host/menu_screen_product.h",
+    "recovered/frontend/defined_control_tree.h",
+    "recovered/frontend/defined_screen.h",
+    "recovered/host/application_menu.h"
+  ],
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "0064f1c0",
+        "hex": "64a1000000006aff68a04c8000508b4424186489250000000083ec18568bf18b4c2430578b7c24305051578bcee83e29010084c00f84d80100008b17535568200001006810b2830057ff52488be833db3beb0f84b60000006884000000e8ed5f19008bf883c4043bfb74268b46608b4e680c015650518bcfe883eaffffc707683f8100895f70895f74895f78885f7ceb0233ff8b4c243c897e708b075351558bcfff502c8b4660895c242489442410c74424141b600006895c24188b4e708d44241050895c24348b11ff52748b442424c7442430ffffffff3bc374148b104a89108b083bcb750950e8132a190083c4048b4e708b460c894c24408d4e048d542440526a0150e8a64600008b7c24388b0768200001006800b2830057ff50488be83beb0f84b60000006884000000e81d5f19008bf883c4043bfb74268b46608b4e680c025650518bcfe8b3e9ffffc707683f8100895f70895f74895f78885f7ceb0233ff8b44243c897e748b175350558bcfff522c8b4660895c242489442410c74424141c600006895c24188b4e748d44241050c7442434010000008b11ff52748b442424c7442430ffffffff3bc374148b104a89108b083bcb750950e83f29190083c4048b4e748b460c894c243c8d4e048d54243c526a0150e8d24500008b4e6c5d3bcb5b742b8b56508b46685250e8cc56ffff8b166a018bceff527c5fb0015e8b4c241864890d0000000083c424c20c008b4c24205f32c05e64890d0000000083c424c20c00",
+        "meaning": "Original 0064f1c0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "0064f3f0",
+        "hex": "568bf1e818000000f644240801740956e8bb28190083c4048bc65ec20400",
+        "meaning": "Original 0064f3f0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "0064f410",
+        "hex": "6aff68d94c800064a100000000506489250000000083ec085355568bf15789742410c706683f81008b4e6c33ed3bcd896c2420896e70896e74896e787408e82db30100896e6cc706d03d8100c7442420030000008d7e04bbfcffffff8b47043bc574458b4f082bc8c1f902894c241474378b560c8b4afc3bcd740a8b016a01ff90800000008b57088d42fc508d4804e8dc4600008b47088bcf5083c0fc50e8ad440000015f08ebb48b4e208b561c8d5e1851528bcbe896430000896e68896e50896e4c896e588b463050e8e1271900896e30896e34896e388b43088b730483c4043bf08944241074138d4e14e85f5cdbff8b44241083c6183bf075ed8b4b0451e8ab271900896b04896b08896b0c8b570452e8992719008b4c242083c408896f04896f08896f0c5f5e5d5b64890d0000000083c414c3",
+        "meaning": "Original 0064f410 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006541e0",
+        "hex": "64a1000000006aff689851800050648925000000008b44241883ec185355568b742434578bf98b4c243c5051568bcfe81cd9000084c00f84fc0200008b476c33db3bc30f84ef0200008b1656ff523c83f8070f85e00200008b47508b4f6850518b4f6ce83808ffff8b166801000100683404840056ff5248894424388b066801000100684004840056ff50488b0e680100010068700484005689442448ff51488b166801000100681c048400568944244cff52488944241c8b066801000100682804840056ff50488b0e680100010068600484005689442424ff51488b166801000100684c0484005689442420ff52488be88b4424383bc3896c24100f8436020000395c241c0f842c020000395c243c0f8422020000395c24180f8418020000395c24400f840e020000395c24140f84040200003beb0f84fc0100006880000000e8e90e19008bf083c404897424243bf3895c24300f84910000008b6f608b47688d4e0483cd0189442420e8f00100008d4e18c644243001e8030200008d4e2cc644243002e8160200008d4e40c644243003e8b90100008d4e04c706d03d8100895e54e8b80f00008b4c2420896e608b6c2410894e68897e4c895e50c6466501885e64c6466601895e58c7465cffffffffc70678408100895e78895e74895e70895e6cc6467d01885e7ceb0233f68b5424408b44243c8b4c2438555250518bcec7442440ffffffff897770e870f700008b57708b470c895424408d4f048d542440526a0150e866f5ffff6880000000e8fb0d19008bf083c404897424383bf3c7442430040000000f84960000008b6f608b47688d5424408d4e045283cd0289442440e8d90e00008d4e18c644243005e80c0100008d4e2cc644243006e81f0100008d4e40c644243007e8c20000008d4e04c706d03d8100895e54e8c10e00008b44243c896e608b6c2410894668897e4c895e50c6466501885e64c6466601895e58c7465cffffffffc70678408100895e78895e74895e70895e6cc6467d01885e7ceb0233f68b4c24148b5424188b44241c555152508bcec7442440ffffffff897774e879f600008b4f748b470c894c24208d4f048d542420526a0150e86ff4ffff8b4f706a01e8d5f900008b4f7453e8ccf90000b001eb0232c08b4c24285f5e5d5b64890d0000000083c424c20c00",
+        "meaning": "Original 006541e0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00657d50",
+        "hex": "568bf1e818000000f644240801740956e85b9f180083c4048bc65ec20400",
+        "meaning": "Original 00657d50 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00657d70",
+        "hex": "6aff687154800064a100000000506489250000000083ec085355568bf133db5789742414895e74895e78895e7cc706d03d8100c7442420020000008d7e04bdfcffffff8b47043bc374458b4f082bc8c1f902894c241074378b560c8b4afc3bcb740a8b016a01ff90800000008b57088d42fc508d4804e895bdffff8b47088bcf5083c0fc50e866bbffff016f08ebb48b46208b4e1c8d6e1850518bcde84fbaffff895e68895e50895e4c895e588b463050e89a9e1800895e30895e34895e388b45088b750483c4043bf0885c24208944241074138d4e14e814d3daff8b44241083c6183bf075ed8b4d0451e8609e1800895d04895d08895d0c8b570452e84e9e18008b4c242083c408895f04895f08895f0c5f5e5d5b64890d0000000083c414c3",
+        "meaning": "Original 00657d70 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00660150",
+        "hex": "568bf1e818000000f644240801740956e85b1b180083c4048bc65ec20400",
+        "meaning": "Original 00660150 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00660170",
+        "hex": "6aff68b960800064a100000000506489250000000083ec0c5355568bf15789742414c706583e81008b4e6c33db3bcb895c2424740a8b016a01ff500c895e6cc706d03d81008d7e04c744242403000000897c24108b47043bc374328b4f082bc8c1f902894c241874248b560c8b4afc3bcb740a8b016a01ff90800000008b4f0883e904518bcfe83537ffffebc78b4e208b461c8d7e18508bd1e8f266fbff8be88b470850558bcfe8045dfbff896f08895e68895e50895e4c895e588b463050e88c1a1800895e30895e34895e388b6f088b770483c4043bf5c644242401740f538bcee82969fbff83c6183bf575f18b570452e8591a18008b742414895f04895f08895f0c8b460450e8431a18008b4c242483c408895e04895e08895e0c5f5e5d5b64890d0000000083c418c3",
+        "meaning": "Original 00660170 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006602a0",
+        "hex": "568bf1e818000000f644240801740956e80b1a180083c4048bc65ec20400",
+        "meaning": "Original 006602a0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006602c0",
+        "hex": "6aff680161800064a100000000506489250000000083ec08535556578bf9897c2414c7079853810033db895f74895f708baf800000008b777c3bf5895c2420741e8b0e3bcb74118b01488901750aba09000000e8d84ddaff83c6043bf575e28b477c50e898191800895f7c899f80000000899f8400000083c404c707583e81008b4f6cc7442420010000003bcb740a8b016a01ff500c895f6cc707d03d81008d6f04c7442420040000008bcde8cf34ffff85c0742d8b470c8b48fc3bcb740a8b116a01ff92800000008b45088bcd83c0fc50e89935ffff8bcde8a234ffff85c075d38b4f208b471c8d7718508bd1e84d65fbff8b4e088944241051508bcee85d5bfbff8b44241083c72c894608895f3c895f24895f20895f2c8b4f088b570451528bcfc644242803e8c33500008b470450e8ca18180083c404895f04895f08895f0c8b46088b4e0450518bcec644242802e80a5bfbff8b560452e8a1181800895e04895e08895e0c8b450450e88f1818008b4c242083c408895d04895d085f895d0c5e5d5b64890d0000000083c414c3",
+        "meaning": "Original 006602c0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00663b00",
+        "hex": "8a442404568bf13a4664745084c0884664c7442408cdcccc3e7508c74424080000803f8b466c8b54240852508b08ff91a80000008a4664c7442408cdcccc3e84c07508c74424080000803f8b76708b4c240851568b06ff90a80000005ec20400",
+        "meaning": "Original 00663b00 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00663b60",
+        "hex": "8b4424048b54240c568bf18b4c240c57894e708b4c241889465089466c895674894e788b106a0150ff52308b466c8b4e608988ec0000008b466c508b10ff52248b46706a00508b08ff51308b56708b46608982ec0000008b4e708b466c8b91e000000005b000000084d2782c8b3881e2dffeffff89b9b00000008b780489b9b40000008b400881ca000000408981b80000008991e00000008b4670508b08ff51248b46746a00508b10ff52308b46748b4e608988ec0000008b4e748b466c8b91e000000005b000000084d2782c8b3881e2dffeffff89b9b00000008b780489b9b40000008b400881ca000000408981b80000008991e00000008b7674568b0eff51245fb0015ec21000",
+        "meaning": "Original 00663b60 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00663c70",
+        "hex": "568bf18a466484c0740633c05ec204008a467c84c0740633c05ec204008a467d6a0084c00f84820000008b466c508b08ff51308b466c508b10ff52248b46786a01508b08ff51308b56788b46608982ec0000008b4e788b466c8b91e000000005b000000084d2782e578b3889b9b00000008b780481e2dffeffff89b9b40000008b400881ca000000408981b80000008991e00000005f8b4678508b08ff5124c6467c01b8010000005ec204008b4670508b10ff52308b4670508b08ff51248b46746a01508b10ff52308b4674508b08ff5124c6467c01b8010000005ec20400",
+        "meaning": "Original 00663c70 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00663d50",
+        "hex": "568bf18a467c84c0750633c05ec204008a467d6a0184c074338b466c508b08ff51308b466c508b10ff52248b46786a00508b08ff51308b4678508b10ff5224c6467c00b8010000005ec204008b4670508b08ff51308b4670508b10ff52248b46746a00508b08ff51308b4674508b10ff5224c6467c00b8010000005ec20400",
+        "meaning": "Original 00663d50 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00663dd0",
+        "hex": "568bf18a467c84c0750633c05ec204008a467d6a0084c0742f8b4678508b08ff51308b4678508b10ff52248b46746a01508b08ff51308b7674568b16ff5224b8010000005ec204008b4674508b08ff51308b4674508b10ff52248b46786a01508b08ff51308b56788b46608982ec0000008b4e788b466c8b91e000000005b000000084d2782e578b3889b9b00000008b780481e2dffeffff89b9b40000008b400881ca000000408981b80000008991e00000005f8b7678568b0eff5124b8010000005ec20400",
+        "meaning": "Original 00663dd0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00663ee0",
+        "hex": "8a442404568bf133c984c00f94c133d28a567d3bd10f84d60000008a4e7c84c00f94c084c988467d0f848d00000084c06a01745d8b4678508b08ff51308b56788b46608982ec0000008b4e788b466c8b91e000000005b000000084d2782e578b3889b9b00000008b780481e2dffeffff89b9b40000008b400881ca000000408981b80000008991e00000005f8b4674eb0c8b4674508b10ff52308b46788b086a0050ff51308b4674508b10ff52248b7678568b06ff50245ec2040084c08b466c8b08740a6a0150ff51306a00eb086a0050ff51306a018b4670508b10ff52308b466c508b08ff51248b7670568b16ff52245ec20400",
+        "meaning": "Original 00663ee0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00663fe0",
+        "hex": "8b44240c568bf18b4c240c578b7c240c5051578bcee8a6d8ffff8b4e68e8de66000089466c8b1757ff523c83f8030f85220100008b07680100010068e4b1830057ff50488946708b0f680100010068d8b1830057ff51488946748b17680100010068ccb1830057ff52488b4e608946788b46706a018988ec0000008b4670508b10ff52308b4670508b08ff51248b4e748b467005b00000008b91e000000084d2782c8b3881e2dffeffff89b9b00000008b780489b9b40000008b400881ca000000408981b80000008991e00000008b46746a00508b08ff51308b56748b46608982ec0000008b4674508b08ff51248b4e788b467005b00000008b91e000000084d2782c8b3881e2dffeffff89b9b00000008b780489b9b40000008b400881ca000000408981b80000008991e00000008b46786a00508b08ff51308b56788b46608982ec0000008b7678568b0eff51245fb0015ec20c005f32c05ec20c00",
+        "meaning": "Original 00663fe0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00664140",
+        "hex": "568bf18a466484c075458b46746a01508b08ff51308b46706a00508b10ff52308b46786a00508b08ff51308b4678508b10ff52248b4674508b08ff51248b7670568b16ff5224b8010000005ec2040033c05ec20400",
+        "meaning": "Original 00664140 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006641a0",
+        "hex": "6a006800200104e8a48dffffb801000000c20400",
+        "meaning": "Original 006641a0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006641c0",
+        "hex": "568bf18a4664c6467c0084c0753c8b46706a01508b08ff51308b46746a00508b10ff52308b46786a00508b08ff51308b4670508b10ff52248b4674508b08ff51248b7678568b16ff5224b8010000005ec20400",
+        "meaning": "Original 006641c0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00664220",
+        "hex": "568bf18a4c24088b4670884e6484c98b100f94c15150ff52308b46746a00508b10ff52308b46788a566452508b08ff51308b4670508b08ff51248b4674508b10ff52248b7678568b06ff50245ec20400",
+        "meaning": "Original 00664220 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00664270",
+        "hex": "8a416484c0751a6a006800600004c6417c01c781800000002c010000e8bf8cffffb801000000c20400",
+        "meaning": "Original 00664270 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006642a0",
+        "hex": "c6417c00b801000000c20400",
+        "meaning": "Original 006642a0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006642b0",
+        "hex": "568bf18a467c84c074448b4e6c8b96800000008b41403bc27c346a00e8cf5d000084c0751188467cc786800000002c0100005ec204006a0068006000048bcec78680000000ffffffffe8528cffff5ec20400",
+        "meaning": "Original 006642b0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00664310",
+        "hex": "8a442404568bf184c08846648b46708b0874276a0050ff51308b46746a00508b10ff52308b4670508b08ff51248b7674568b16ff52245ec204006a0150ff51308b7670568b16ff52245ec20400",
+        "meaning": "Original 00664310 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00664360",
+        "hex": "558bec83e4f083ec088b4510568bf18b4d0c578b7d085051578bcee820d5ffff8b17680100010068e4b1830057ff52488946708b07680100010068d8b1830057ff50488946748b0f680100010068ecb1830057ff51488b4e68894678e81f63000085c089466c0f84ca0000008b4e7085c90f84bf0000008b467485c00f84b40000008b467885c00f84a9000000f681e0000000207505e83b0a18008b7e748b467005b00000008b8fe000000084c9782c8b1081e1dffeffff8997b00000008b50048997b40000008b400881c9000000408987b8000000898fe00000008b46746a00508b08ff51308b56708b46608982ec0000008b4e748b56608991ec0000008b4670508b08ff51248b4674508b10ff52248b46786a00508b08ff51308b4678508b10ff52248bcee8e4000000b0015f5e8be55dc20c005f32c05e8be55dc20c00",
+        "meaning": "Original 00664360 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006644a0",
+        "hex": "568bf18a466484c075368b46746a01508b08ff51308b46706a00508b10ff52308b4674508b08ff51248b4670508b10ff52246a0068003000048bcee8708affffb8010000005ec20400",
+        "meaning": "Original 006644a0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006644f0",
+        "hex": "568bf16a018b4670508b08ff51308b46746a00508b10ff52308b4670508b08ff51248b4674508b10ff52246a0068004000048bcee8278affffb8010000005ec20400",
+        "meaning": "Original 006644f0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00664540",
+        "hex": "568bf1e8c802000084c0740e6a0068008000048bcee8f689ffffb8010000005ec20400",
+        "meaning": "Original 00664540 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00664570",
+        "hex": "558bec83e4f083ec18568bf1578b7e708b87e0000000f6c40175068b0757ff5058d94720d86710d80d18f58000d95c2408d94714d867248b7e788b87e0000000d80d18f58000f6c401d95c240c75068b0f57ff5158d9442408d8471033c9d95e7cd94720d8642408d99e84000000d94714d864240cd99e80000000d944240cd84724bf0000803fd99e88000000d98684000000d81d24f58000dfe02500410000750889be84000000eb19d98684000000d81d1cf58000dfe0f6c4057a06898e84000000d98688000000d81db4548100ba000040bfdfe0f6c4057a08899688000000eb1bd98688000000d81d1cf58000dfe025004100007506898e88000000d9467cd81d24f58000dfe025004100007505897e7ceb13d9467cd81d1cf58000dfe0f6c4057a03894e7cd98680000000d81db4548100dfe0f6c4057a08899680000000eb1bd98680000000d81d1cf58000dfe025004100007506898e800000008b5670d9467c81c2b00000008b02894424108b4204d8642410894424148b4208894424188b520cd9542408d95e7cd98684000000d86424108954241cd954240cd99e84000000d98680000000d8642418d99680000000d98688000000d8642418d99688000000dee1d99690000000d944240cd8642408d9968c000000d9c9ded9dfe02500410000751f888e9800000068000048428bcec6869900000001e8800200005f5e8be55dc3888e9900000068000048428bcec6869800000001e8610200005f5e8be55dc3",
+        "meaning": "Original 00664570 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006647a0",
+        "hex": "8b5424048b4204a900f00f04740b52e88c85ffffb001c2040025ff0f00032d21000001741c48740b52e87285ffffb001c204008b819c00000089420cb001c204008b520c52e806020000b001c20400",
+        "meaning": "Original 006647a0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006647f0",
+        "hex": "8b542404568bf1528b4650508b08ff51088b7650568b06ff50245ec20400",
+        "meaning": "Original 006647f0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00664810",
+        "hex": "558bec83e4f083ec38568bf18d44241c578b4e6c50e8265900008b7e50f687e00000002075078bcfe8f905180083c7708b0f894c24108b5704895424148b4708894424188a86990000008b4f0c84c0894c241c0f8483000000d9442424d81d1cf58000dfe0f6c4447b728b7e708b4e6c8d54243081c7b000000052e890580000d94004d86708d9542414d89e80000000dfe0f6c4057a0a8b868000000089442414d9442414d89e88000000dfe02500410000750a8b8e88000000894c24148d5424108bce52e816ffffff8b4424148bce50e89a0000005f5e8be55dc38a869800000084c0747bd9442420d81d1cf58000dfe0f6c4447b6a8b7e708d4c2430518b4e6c81c7b0000000e803580000d900d827d9542410d85e7cdfe0f6c4057a078b567c89542410d9442410d89e84000000dfe02500410000750a8b8684000000894424108d4c2410518bcee891feffff8b5424108bce52e8150000005f5e8be55dc35f32c05e8be55dc3",
+        "meaning": "Original 00664810 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00664980",
+        "hex": "8a8199000000d9051cf5800084c07418ddd8d98188000000d8642404d8b190000000d80d04fa80008a819800000084c07415ddd8d9442404d8617cd8b18c000000d80d04fa8000d8919c000000dfe0f6c4447b0bd9999c000000b001c20400ddd832c0c20400",
+        "meaning": "Original 00664980 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "006649f0",
+        "hex": "558bec83e4f083ec18568bf157d9869c000000d85d08dfe0f6c4440f8b290100008b45088b7e5089869c000000f687e00000002075078bcfe809041800d9869c000000d81d1cf5800083c7708b0f894c24108b5704895424148b4708894424188b4f0cdfe0894c241cf6c4057a0ac7869c00000000000000d9869c000000d81d04fa8000dfe02500410000750ac7869c0000000000c8428a869900000084c07454d98690000000d88e9c000000d80d74f58000d8ae88000000d89680000000dfe0f6c4057a08ddd8d98680000000d89688000000dfe025004100007508ddd8d98688000000d95c24148d5424108bce52e80bfdffff8a869800000084c0744bd9868c000000d88e9c000000d80d74f58000d8467cd8567cdfe0f6c4057a05ddd8d9467cd89684000000dfe025004100007508ddd8d98684000000d95c24108d4424108bce50e8b6fcffff5f5e8be55dc20400",
+        "meaning": "Original 006649f0 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00664b90",
+        "hex": "64a1000000006aff68f9658000508b4424186489250000000083ec185355568bf18b4c2438578b7c24385051578bcee8dcccffff8b1768200001006810b2830057ff52488be833db3beb0f84170100006884000000e8250618008bf883c404897c24403bfb895c243074288b46608b4e680c015650518bcfe8b390feffc707683f8100895f70895f74895f78885f7c8bcfeb0233c98b54243c894e748b015383cfff5255897c243cff502c8b4660895c242489442410c744241423600005895c24188b4e748d54241052c7442434010000008b01ff50748b442424897c24303bc374148b104a89108b083bcb750950e83cd0170083c4048b46748d4e048d542440894424408b4108526a0150e8cfecfeff8b4674895c2424895c2410c74424147a000002895c24188944241c8d442410b980e48a0050c744243402000000e8bd0dfbff8b442424897c24303bc374148b104a89108b083bcb750950e8d0cf170083c4048b7c24388b0f68200001006800b2830057ff51488be83beb0f841b0100006884000000e8f40418008bf883c404897c24403bfbc74424300300000074288b46608b4e680c025650518bcfe87e8ffeffc707683f8100895f70895f74895f78885f7c8bcfeb0233c98b44243c894e788b115383cfff5055897c243cff522c8b4660895c242489442410c744241424600005895c24188b4e788d44241050c7442434040000008b11ff52748b442424897c24303bc374148b104a89108b083bcb750950e807cf170083c4048b4e788b460c894c24408d4e048d542440526a0150e89aebfeff8b4678895c2424895c2410c74424147a000002895c24188944241c8d442410b980e48a0050c744243405000000e8880cfbff8b442424897c24303bc374148b104a89108b083bcb750950e89bce170083c4048b7c24388b0f682000010068f8b1830057ff51488be83beb0f844801000068a0000000e8bf0318008bf883c404897c24383bfbc744243006000000745e8b46608b4e680c035650518bcfe8498efeff899f90000000899f8c000000899f94000000899f88000000899f84000000899f80000000895f7cc70788528100895f78895f74895f70889f99000000889f98000000899f9c0000008bcfeb0233c98b44243c894e7c8b115383cfff5055897c243cff522c8b4660895c242489442410c744241425800005895c24188b4e7c8d44241050c7442434070000008b11ff52748b4424243bc374148b104a89108b083bcb750950e8a0cd170083c404895c2424895c2410c744241421000001895c2418c744241c000000008b4e7c8d44241050c7442434080000008b11ff52748b442424897c24303bc374148b104a89108b083bcb750950e84fcd170083c4048b4e7c8b460c894c24388d4e048d542438526a0150e8e2e9feff895c2424895c2410c74424147a000002895c24188974241c8d442410b980e48a0050c744243409000000e8d30afbff8b442424c7442430ffffffff3bc374148b104a89108b083bcb750950e8e2cc170083c4048b166a018bceff527c8b4c24285f5e5db0015b64890d0000000083c424c20c00",
+        "meaning": "Original 00664b90 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "0066a120",
+        "hex": "d90564068400d871288b442404d9e0dc0d38018100d90560068400d87124c74008000080bfd918d95804c20400",
+        "meaning": "Original 0066a120 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "0066a150",
+        "hex": "d94118d871288b442404d9e0dc0d38018100d94114d87124c74008000080bfd918d95804c20400",
+        "meaning": "Original 0066a150 constructor/internal-part/geometry/input/cleanup contract; see menu-widget-construction.md"
+      },
+      {
+        "address": "00663ea0",
+        "hex": "568bf1578b7c240c8b466c6a0157508b08ff51388b46706a0157508b10ff52388b46746a0157508b08ff51388b76786a0157568b16ff52385f5ec20400",
+        "meaning": "Four-frame detach/reattach LinkTo(parent,1)"
+      },
+      {
+        "address": "00643d70",
+        "hex": "8a81810000005684c0740632c05ec204008b74240885f67c188b514885d2750433c0eb088b414c2bc2c1f802483bf07e0632c05ec2040089b18c000000b0015ec2",
+        "meaning": "Text hover selects rendered row0, gated by selection_active"
+      },
+      {
+        "address": "0064daa0",
+        "hex": "6a006800100004e8a4f40000b807000000c20400",
+        "meaning": "Base activation emits04001000 and returns7"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "00813f68",
+        "targets": [
+          "0065c830",
+          "0064d9c0",
+          "0064d9f0",
+          "0064da10",
+          "0065c760",
+          "0065c790",
+          "00661910",
+          "006642b0",
+          "0064da30",
+          "0064da40",
+          "0064da50",
+          "00663fe0",
+          "00664140",
+          "006641c0",
+          "0064daa0",
+          "0064dac0",
+          "0064dae0",
+          "006642a0",
+          "00664270",
+          "0064db40",
+          "0064db60",
+          "0064db80",
+          "0064dba0",
+          "006641a0",
+          "0064dbe0",
+          "0064dc00",
+          "0064dc20",
+          "0065cd40",
+          "0065cf00",
+          "0064dc30",
+          "0065cd30",
+          "00664220",
+          "0064f3f0"
+        ]
+      },
+      {
+        "address": "00815288",
+        "targets": [
+          "0065c830",
+          "0064d9c0",
+          "0064d9f0",
+          "0064da10",
+          "0065c760",
+          "0065c790",
+          "00661910",
+          "0064da20",
+          "0064da30",
+          "0064da40",
+          "0064da50",
+          "00664360",
+          "006644a0",
+          "006644f0",
+          "0064daa0",
+          "0064dac0",
+          "0064dae0",
+          "0064db00",
+          "0064db20",
+          "0064db40",
+          "00664540",
+          "0064db80",
+          "0064dba0",
+          "0064dbc0",
+          "0064dbe0",
+          "0064dc00",
+          "0064dc20",
+          "006647a0",
+          "0065cf00",
+          "0064dc30",
+          "0065cd30",
+          "00664310",
+          "0065e2e0"
+        ]
+      },
+      {
+        "address": "00814078",
+        "targets": [
+          "0065c830",
+          "0064d9c0",
+          "0064d9f0",
+          "0064da10",
+          "0065c760",
+          "0065c790",
+          "00661910",
+          "0064da20",
+          "0064da30",
+          "0064da40",
+          "0064da50",
+          "006618a0",
+          "00663c70",
+          "00663d50",
+          "0064daa0",
+          "0064dac0",
+          "0064dae0",
+          "0064db00",
+          "0064db20",
+          "0064db40",
+          "0064db60",
+          "0064db80",
+          "0064dba0",
+          "00663dd0",
+          "0064dbe0",
+          "0064dc00",
+          "0064dc20",
+          "0065cd40",
+          "0065cf00",
+          "0064dc30",
+          "0065cd30",
+          "00663b00",
+          "006545a0"
+        ]
+      },
+      {
+        "address": "0081422c",
+        "targets": [
+          "006659c0"
+        ]
+      },
+      {
+        "address": "0081423c",
+        "targets": [
+          "00664b90"
+        ]
+      },
+      {
+        "address": "00814248",
+        "targets": [
+          "0064daa0"
+        ]
+      },
+      {
+        "address": "0081426c",
+        "targets": [
+          "0064dbc0"
+        ]
+      },
+      {
+        "address": "00814288",
+        "targets": [
+          "0065cd30"
+        ]
+      },
+      {
+        "address": "0081428c",
+        "targets": [
+          "00665760"
+        ]
+      },
+      {
+        "address": "008153b4",
+        "targets": [
+          "0064da20"
+        ]
+      },
+      {
+        "address": "008153c4",
+        "targets": [
+          "0064f1c0"
+        ]
+      },
+      {
+        "address": "008153d0",
+        "targets": [
+          "0064fa00"
+        ]
+      },
+      {
+        "address": "008153f4",
+        "targets": [
+          "0064dbc0"
+        ]
+      },
+      {
+        "address": "00815410",
+        "targets": [
+          "0065cd30"
+        ]
+      },
+      {
+        "address": "00815414",
+        "targets": [
+          "0064fa50"
+        ]
+      },
+      {
+        "address": "00815194",
+        "targets": [
+          "0064da20"
+        ]
+      },
+      {
+        "address": "008151a4",
+        "targets": [
+          "006541e0"
+        ]
+      },
+      {
+        "address": "008151b0",
+        "targets": [
+          "00654920"
+        ]
+      },
+      {
+        "address": "008151d4",
+        "targets": [
+          "00654910"
+        ]
+      },
+      {
+        "address": "008151f0",
+        "targets": [
+          "0065cd30"
+        ]
+      },
+      {
+        "address": "008151f4",
+        "targets": [
+          "006541a0"
+        ]
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "0064f1ed",
+        "target": "00661b30"
+      },
+      {
+        "site": "0064f21d",
+        "target": "007e520f"
+      },
+      {
+        "site": "0064f238",
+        "target": "0064dcc0"
+      },
+      {
+        "site": "0064f2a8",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0064f2c5",
+        "target": "00653970"
+      },
+      {
+        "site": "0064f2ed",
+        "target": "007e520f"
+      },
+      {
+        "site": "0064f308",
+        "target": "0064dcc0"
+      },
+      {
+        "site": "0064f37c",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0064f399",
+        "target": "00653970"
+      },
+      {
+        "site": "0064f3af",
+        "target": "00644a80"
+      },
+      {
+        "site": "0064f3f3",
+        "target": "0064f410"
+      },
+      {
+        "site": "0064f400",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0064f44e",
+        "target": "0066a780"
+      },
+      {
+        "site": "0064f49f",
+        "target": "00653b80"
+      },
+      {
+        "site": "0064f4ae",
+        "target": "00653960"
+      },
+      {
+        "site": "0064f4c5",
+        "target": "00653860"
+      },
+      {
+        "site": "0064f4da",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0064f4fc",
+        "target": "00405160"
+      },
+      {
+        "site": "0064f510",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0064f522",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0065420f",
+        "target": "00661b30"
+      },
+      {
+        "site": "00654243",
+        "target": "00644a80"
+      },
+      {
+        "site": "00654321",
+        "target": "007e520f"
+      },
+      {
+        "site": "0065434b",
+        "target": "00654540"
+      },
+      {
+        "site": "00654358",
+        "target": "00654560"
+      },
+      {
+        "site": "00654365",
+        "target": "00654580"
+      },
+      {
+        "site": "00654372",
+        "target": "00654530"
+      },
+      {
+        "site": "00654383",
+        "target": "00655340"
+      },
+      {
+        "site": "006543eb",
+        "target": "00663b60"
+      },
+      {
+        "site": "00654405",
+        "target": "00653970"
+      },
+      {
+        "site": "0065440f",
+        "target": "007e520f"
+      },
+      {
+        "site": "00654442",
+        "target": "00655320"
+      },
+      {
+        "site": "0065444f",
+        "target": "00654560"
+      },
+      {
+        "site": "0065445c",
+        "target": "00654580"
+      },
+      {
+        "site": "00654469",
+        "target": "00654530"
+      },
+      {
+        "site": "0065447a",
+        "target": "00655340"
+      },
+      {
+        "site": "006544e2",
+        "target": "00663b60"
+      },
+      {
+        "site": "006544fc",
+        "target": "00653970"
+      },
+      {
+        "site": "00654506",
+        "target": "00663ee0"
+      },
+      {
+        "site": "0065450f",
+        "target": "00663ee0"
+      },
+      {
+        "site": "00657d53",
+        "target": "00657d70"
+      },
+      {
+        "site": "00657d60",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00657de6",
+        "target": "00653b80"
+      },
+      {
+        "site": "00657df5",
+        "target": "00653960"
+      },
+      {
+        "site": "00657e0c",
+        "target": "00653860"
+      },
+      {
+        "site": "00657e21",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00657e47",
+        "target": "00405160"
+      },
+      {
+        "site": "00657e5b",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00657e6d",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00660153",
+        "target": "00660170"
+      },
+      {
+        "site": "00660160",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006601f6",
+        "target": "00653930"
+      },
+      {
+        "site": "00660209",
+        "target": "00616900"
+      },
+      {
+        "site": "00660217",
+        "target": "00615f20"
+      },
+      {
+        "site": "0066022f",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00660252",
+        "target": "00616b80"
+      },
+      {
+        "site": "00660262",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00660278",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "006602a3",
+        "target": "006602c0"
+      },
+      {
+        "site": "006602b0",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00660313",
+        "target": "004050f0"
+      },
+      {
+        "site": "00660323",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0066036c",
+        "target": "00653840"
+      },
+      {
+        "site": "00660392",
+        "target": "00653930"
+      },
+      {
+        "site": "00660399",
+        "target": "00653840"
+      },
+      {
+        "site": "006603ae",
+        "target": "00616900"
+      },
+      {
+        "site": "006603be",
+        "target": "00615f20"
+      },
+      {
+        "site": "006603e8",
+        "target": "006639b0"
+      },
+      {
+        "site": "006603f1",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00660411",
+        "target": "00615f20"
+      },
+      {
+        "site": "0066041a",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0066042c",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00663ff5",
+        "target": "006618a0"
+      },
+      {
+        "site": "00663ffd",
+        "target": "0066a6e0"
+      },
+      {
+        "site": "006641a7",
+        "target": "0065cf50"
+      },
+      {
+        "site": "0066428c",
+        "target": "0065cf50"
+      },
+      {
+        "site": "006642cc",
+        "target": "0066a0a0"
+      },
+      {
+        "site": "006642f9",
+        "target": "0065cf50"
+      },
+      {
+        "site": "0066437b",
+        "target": "006618a0"
+      },
+      {
+        "site": "006643bc",
+        "target": "0066a6e0"
+      },
+      {
+        "site": "006643f6",
+        "target": "007e4e36"
+      },
+      {
+        "site": "00664487",
+        "target": "00664570"
+      },
+      {
+        "site": "006644db",
+        "target": "0065cf50"
+      },
+      {
+        "site": "00664524",
+        "target": "0065cf50"
+      },
+      {
+        "site": "00664543",
+        "target": "00664810"
+      },
+      {
+        "site": "00664555",
+        "target": "0065cf50"
+      },
+      {
+        "site": "0066476b",
+        "target": "006649f0"
+      },
+      {
+        "site": "0066478a",
+        "target": "006649f0"
+      },
+      {
+        "site": "006647af",
+        "target": "0065cd40"
+      },
+      {
+        "site": "006647c9",
+        "target": "0065cd40"
+      },
+      {
+        "site": "006647e5",
+        "target": "006649f0"
+      },
+      {
+        "site": "00664825",
+        "target": "0066a150"
+      },
+      {
+        "site": "00664838",
+        "target": "007e4e36"
+      },
+      {
+        "site": "0066488b",
+        "target": "0066a120"
+      },
+      {
+        "site": "006648d5",
+        "target": "006647f0"
+      },
+      {
+        "site": "006648e1",
+        "target": "00664980"
+      },
+      {
+        "site": "00664918",
+        "target": "0066a120"
+      },
+      {
+        "site": "0066495a",
+        "target": "006647f0"
+      },
+      {
+        "site": "00664966",
+        "target": "00664980"
+      },
+      {
+        "site": "00664a28",
+        "target": "007e4e36"
+      },
+      {
+        "site": "00664ae0",
+        "target": "006647f0"
+      },
+      {
+        "site": "00664b35",
+        "target": "006647f0"
+      },
+      {
+        "site": "00664bbf",
+        "target": "006618a0"
+      },
+      {
+        "site": "00664be5",
+        "target": "007e520f"
+      },
+      {
+        "site": "00664c08",
+        "target": "0064dcc0"
+      },
+      {
+        "site": "00664c7f",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00664c9c",
+        "target": "00653970"
+      },
+      {
+        "site": "00664cce",
+        "target": "00615a90"
+      },
+      {
+        "site": "00664ceb",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00664d16",
+        "target": "007e520f"
+      },
+      {
+        "site": "00664d3d",
+        "target": "0064dcc0"
+      },
+      {
+        "site": "00664db4",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00664dd1",
+        "target": "00653970"
+      },
+      {
+        "site": "00664e03",
+        "target": "00615a90"
+      },
+      {
+        "site": "00664e20",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00664e4b",
+        "target": "007e520f"
+      },
+      {
+        "site": "00664e72",
+        "target": "0064dcc0"
+      },
+      {
+        "site": "00664f1b",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00664f6c",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "00664f89",
+        "target": "00653970"
+      },
+      {
+        "site": "00664fb8",
+        "target": "00615a90"
+      },
+      {
+        "site": "00664fd9",
+        "target": "007e1cc0"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "1001e390",
+        "hex": "558bec83e4f083ec44538bd98b83e0000000a81056577528",
+        "meaning": "Delegated thiscall world matrix helper"
+      },
+      {
+        "address": "100571b0",
+        "hex": "558bec83e4f083ec28568b75088b8ed001000081c9000004",
+        "meaning": "Delegated stdcall visual world bounds helper"
+      },
+      {
+        "address": "100368f0",
+        "hex": "d94424088b442404d998ec010000c20800",
+        "meaning": "Visual alpha float32 store, ret8"
+      },
+      {
+        "address": "1001e7d0",
+        "hex": "558bec83e4f083ec28568b750883bef800000005570f857a",
+        "meaning": "Delegated frame world box refresh"
+      },
+      {
+        "address": "1001db80",
+        "hex": "8b4c24048b890c01000033c085c9740b8b89100100004085c975f5c20400",
+        "meaning": "Frame child count, not a type query"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009c7d0",
+        "targets": [
+          "1001c9f0"
+        ]
+      },
+      {
+        "address": "1009c7d4",
+        "targets": [
+          "1001c8d0"
+        ]
+      },
+      {
+        "address": "1009c7ec",
+        "targets": [
+          "1001e610"
+        ]
+      },
+      {
+        "address": "1009c7f8",
+        "targets": [
+          "1001cfe0"
+        ]
+      },
+      {
+        "address": "1009c800",
+        "targets": [
+          "1001d680"
+        ]
+      },
+      {
+        "address": "1009c804",
+        "targets": [
+          "1001db80"
+        ]
+      },
+      {
+        "address": "1009c810",
+        "targets": [
+          "1001ded0"
+        ]
+      },
+      {
+        "address": "1009c820",
+        "targets": [
+          "1001e7d0"
+        ]
+      },
+      {
+        "address": "1009c870",
+        "targets": [
+          "100368f0"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}

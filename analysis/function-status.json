@@ -394,8 +394,8 @@
       "program": "client",
       "entry": "0065d150",
       "status": "partial",
-      "coverage": "Frame lookup with 10021 precedes complete original kind-range dispatch (2..28), supplied constructor, visual gate, definition-data +78, initialization list +70 and insertion. Failed visual gate destroys/skips and reports true. Main/confirmation now construct all 21 text/button leaves through this sequence. Native recursive construction now owns successful kind-five children in compact insertion order, preserving definition IDs, search roots and independent layout roots.",
-      "limitations": "Native tree ownership, immutable definition storage and bounded scoped traversal replace original class/vector/refcount/SEH and FindFrame ABI. Only kind-five groups and supplied text/button leaves are implemented; actual options callbacks/widgets and nested screen input availability remain unfinished. Mixed-tree paths native-audited; updated engine diagnostic desktop-confirmed.",
+      "coverage": "Frame lookup with 10021 precedes complete original kind-range dispatch (2..28), supplied constructor, visual gate, definition-data +78, initialization list +70 and insertion. Failed visual gate destroys/skips and reports true. Main/confirmation now construct all 21 text/button leaves through this sequence. Native recursive construction now owns successful kind-five children in compact insertion order, preserving definition IDs, search roots and independent layout roots. Full native widget construction now composes owned internal parts, concrete engine/input/text services and current selected-profile preferences through the real control factory/context.",
+      "limitations": "Native storage/callback/object ABI remains distinct. The full kind8/10/24 construction/backend/observer composition passes native sanitizer and Windows i386 compile/link audits. Named Options widgets are source-only; complete page/navigation/apply/back/persistence and original general paragraph renderer remain separate delivery work. Delegated engine helpers are not reconstructed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/control_initialization.h",
@@ -404,7 +404,10 @@
         "recovered/frontend/defined_controls.h",
         "recovered/host/menu_control.h",
         "recovered/frontend/defined_control_tree.h",
-        "recovered/host/menu_control_tree.h"
+        "recovered/host/menu_control_tree.h",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
       ]
     },
     {
@@ -1233,11 +1236,14 @@
       "program": "client",
       "entry": "00620720",
       "status": "partial",
-      "coverage": "Store low-byte voice setting, queue voice-volume enabled/disabled from full-word zero test, no sender validation.",
-      "limitations": "Native storage and supplied backend operations replace original class/intrusive/vector/SEH ABI. Widget frame/internal-part creation and layout/color/track geometry/input locking are not reconstructed. Preference reads/writes/apply helpers and sound driver remain typed services, not recovered implementations. Native enabled-empty selector and invalid floating conversion throw instead of dereferencing/converting invalid original state. No additional menu action enabled. Native audit only; original visual and settings service integration is pending.",
+      "coverage": "Store low-byte voice setting, queue voice-volume enabled/disabled from full-word zero test, no sender validation. Full native widget construction now composes owned internal parts, concrete engine/input/text services and current selected-profile preferences through the real control factory/context.",
+      "limitations": "Native storage/callback/object ABI remains distinct. The full kind8/10/24 construction/backend/observer composition passes native sanitizer and Windows i386 compile/link audits. Named Options widgets are source-only; complete page/navigation/apply/back/persistence and original general paragraph renderer remain separate delivery work. Delegated engine helpers are not reconstructed.",
       "evidence": [
         "analysis/menu-options-widget-map.json",
-        "recovered/frontend/options_observers.h"
+        "recovered/frontend/options_observers.h",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
       ]
     },
     {
@@ -1951,7 +1957,7 @@
       "entry": "006dc3a0",
       "status": "partial",
       "coverage": "Window-position save and ascending archive-only release; bounded host now composes reached final cold control, four data owners and module shutdown, then real 3D/sound/graphics close before archives/COM. Final loaded caches now clear1/2/4/5 after window save and before3D/sound/graphics; controller separately clears all five before state deletion.",
-      "limitations": "Original additional application/debug/pool/edit-font remain excluded; unused cache producers remain outside bounded delivery; native direct engine resource owners replace reached consumers. Caller-supplied valid rectangle seed replaces original unwritten stack failure bytes. Native acquired-prefix/error aggregation differs from leaked original early returns. Prior bounded desktop acceptance recorded on2026-10-31; new cache ownership wiring awaits separate desktop confirmation.",
+      "limitations": "Original additional application/debug/pool/edit-font remain excluded; unused cache producers remain outside bounded delivery; native direct engine resource owners replace reached consumers. Caller-supplied valid rectangle seed replaces original unwritten stack failure bytes. Native acquired-prefix/error aggregation differs from leaked original early returns. Prior bounded desktop acceptance recorded on2026-10-31; bounded cache ownership wiring is separately user desktop-confirmed2026-10-31 (commit9a5e88a).",
       "evidence": [
         "analysis/startup-archives-map.json",
         "analysis/startup-archives.md",
@@ -4035,7 +4041,7 @@
       "entry": "0066ad10",
       "status": "partial",
       "coverage": "Frontend state owns actual scene/camera/light, text, cursor, click sound, menu music and recovered compiled Main/Exit products; installed before initialization.",
-      "limitations": "Original eager fourteen-screen registration, multiplayer map initialization and broader resource owners are not recovered by this subset. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, unused resource producers, setup and binary integrity VM remain outside delivery. Loaded model/sound caches and content-load settings are now integrated and native-audited; this new wiring awaits desktop confirmation. Engine bodies are delegated.",
+      "limitations": "Original eager fourteen-screen registration, multiplayer map initialization and broader resource owners are not recovered by this subset. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, unused resource producers, setup and binary integrity VM remain outside delivery. Loaded model/sound caches and content-load settings are now integrated and native-audited; this wiring is user desktop-confirmed2026-10-31 (commit9a5e88a). Engine bodies are delegated.",
       "evidence": [
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
@@ -4646,6 +4652,328 @@
         "recovered/frontend/application_controller.h",
         "recovered/io/loaded_resource_cache.h",
         "recovered/host/loaded_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00664b90",
+      "status": "partial",
+      "coverage": "Construct slider arrows with parent-ID low nibbles1/2, mapped queued press messages, original per-arrow listener registration, optional thumb ID3 with drag mapping/zero percentage, parent listener and initial disable.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064f1c0",
+      "status": "partial",
+      "coverage": "Construct selector arrow parts with exact wildcard lookup flags and previous/next press bindings; lay out attached text and disable before item initializers.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006541e0",
+      "status": "partial",
+      "coverage": "Require seven child frames; build two owned four-state halves with IDs1/2 and the shared noactived_empty frame, attach text and initialize yes selected/no unselected.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00663fe0",
+      "status": "partial",
+      "coverage": "Initialize three-child arrow visuals: wildcard normal/actived/inactived lookup, child pick IDs, guarded active/inactive position copy, visible normal and hidden alternates.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00664140",
+      "status": "partial",
+      "coverage": "Arrow focus enter gates on disabled state, swaps three visuals and updates inactive/active/normal in original order.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006641c0",
+      "status": "partial",
+      "coverage": "Arrow focus leave clears repeat and, when enabled, restores normal and updates normal/active/inactive.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00664220",
+      "status": "partial",
+      "coverage": "Arrow disable stores full low byte, selects normal/inactive visibility, hides active and updates all three visuals.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006642b0",
+      "status": "partial",
+      "coverage": "Repeat compares signed threshold to shared input idle+40; released buttons disarm/reset300, held buttons install FFFFFFFF and emit each eligible listener update.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00664360",
+      "status": "partial",
+      "coverage": "Initialize thumb normal/active/sliderbase frames, real shared input, world transform and guarded active alignment, IDs/visibility, world-box travel and midpoint.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006644a0",
+      "status": "partial",
+      "coverage": "Thumb focus enter conditionally switches active visuals/emits04003000; returns1 even disabled.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006644f0",
+      "status": "partial",
+      "coverage": "Thumb focus leave unconditionally restores normal visual and emits04004000.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00664540",
+      "status": "partial",
+      "coverage": "Thumb drag samples actual normalized input, updates position/percentage and emits04008000 only when the stored percentage changes.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00663b60",
+      "status": "partial",
+      "coverage": "Initialize four borrowed half frames: normal visible, full/active-full hidden and aligned; leave the fourth/shared active-empty frame untouched until used.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00663c70",
+      "status": "partial",
+      "coverage": "Toggle-half focus gates disabled/already-focused, selects active-full or aligned active-empty and stores focused byte.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00663d50",
+      "status": "partial",
+      "coverage": "Toggle-half leave gates unfocused, restores normal empty/full visibility and clears focused byte.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00663dd0",
+      "status": "partial",
+      "coverage": "Focused half click swaps active-empty/active-full visual without storing a value or emitting the parent toggle notification.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00663ee0",
+      "status": "partial",
+      "coverage": "Select a half through inverse empty byte; focused/nonfocused branches update exact two visuals, with shared active-empty ID/position repair.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00664570",
+      "status": "partial",
+      "coverage": "Compute travel from frame world boxes and normal local offset, clamp X0..1/Y-.75..0, preserve signed extents/axis comparison and initialize50percent.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00664810",
+      "status": "partial",
+      "coverage": "Thumb drag checks only enabled-axis motion, samples normalized cursor minus normal local offset, sequentially clamps, sets root position and computes changed percentage.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006649f0",
+      "status": "partial",
+      "coverage": "Programmatic thumb percentage compares prior value, stores/clamps0..100, maps along selected signed travel and updates root position.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00664980",
+      "status": "partial",
+      "coverage": "Calculate selected-axis percentage, compare/store float and return exact changed result; native zero-travel guard is explicit.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006647f0",
+      "status": "partial",
+      "coverage": "Set the internal thumb root position through frame+08 and update through+24.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00663ea0",
+      "status": "partial",
+      "coverage": "Detach/reattach all four half frames using LinkTo(parent,1) around the parent direction change.",
+      "limitations": "Native ownership/properties/shared strings/typed callbacks replace original object, intrusive container, allocator and SEH ABI. Model frames and attached text remain owned by their real surrounding services. Malformed/incomplete frames, nonfinite values and zero division receive explicit native guards. Concrete factories/engine bindings/settings composition are native ASan/UBSan-audited with stand-in engine services and compile/link for Windows i386; no original engine code executed. Options widgets remain source-only until separate screen navigation/apply/back delivery and desktop validation. Engine frame/visual helpers are delegated; no engine credit.",
+      "evidence": [
+        "analysis/menu-widget-construction-map.json",
+        "analysis/menu-widget-construction.md",
+        "recovered/frontend/options_widget_parts.h",
+        "recovered/frontend/built_options_widget.h",
+        "recovered/host/menu_options_widget.h"
       ]
     }
   ]

@@ -19,8 +19,8 @@ inline SliderWheelSteps slider_wheel_steps(std::int32_t delta) {
     return {(magnitude - 1u) / 120u + 1u, delta > 0 ? 0x01000023u : 0x01000024u};
 }
 
-// Kind eight range/value/message/input subset. The engine arrow/thumb factory,
-// track world bounds and input locking are explicit supplied backend operations.
+// Kind eight range/value/message/input subset. The complete part factory and concrete
+// track/input bindings are composed by built_options_widget.h / host backend.
 template<class Backend>
 class SliderControl : public OptionsWidgetBase<SliderControl<Backend>, Backend> {
     using Base = OptionsWidgetBase<SliderControl<Backend>, Backend>;

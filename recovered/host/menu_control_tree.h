@@ -7,8 +7,8 @@
 namespace hd2::host {
 
 // Frame search is scoped to each group's bound frame. Leaves share the same
-// text/button implementation as the live screens. Text storage is supplied by
-// its owner; this adapter does not load settings, fonts or other widget kinds.
+// text/button implementation as the live screens. Widgets use the real shared
+// context and owned parts; text/font storage is supplied by its owner.
 struct MenuControlTreeBackend {
     using Frame = EngineFrame*;
     using Leaf = MenuControl;
@@ -16,6 +16,8 @@ struct MenuControlTreeBackend {
     HMODULE module;
     bool confirmation = false;
     std::function<MenuTextObject*(std::uint32_t)> text_lookup{};
+
+    MenuWidgetContext* widgets = nullptr;
 
     Frame find_frame(Frame root, const char* name, std::uint32_t flags) {
         if (flags != 0x10021) throw std::logic_error("Unexpected recursive control lookup flags");
@@ -27,11 +29,11 @@ struct MenuControlTreeBackend {
     }
     void report_unknown_kind(std::uint32_t) { throw std::logic_error("Unknown recursive control kind"); }
     std::unique_ptr<Leaf> allocate_leaf(const frontend::MenuControlDefinition& definition, Frame frame, Frame) {
-        if (definition.kind != frontend::MenuControlKind::text && definition.kind != frontend::MenuControlKind::button)
+        if (definition.kind != frontend::MenuControlKind::text && definition.kind != frontend::MenuControlKind::button && definition.kind != frontend::MenuControlKind::slider && definition.kind != frontend::MenuControlKind::selector && definition.kind != frontend::MenuControlKind::toggle)
             throw std::logic_error("Recursive widget needs a native constructor backend");
         auto* text = text_lookup ? text_lookup(definition.identifier) : nullptr;
         if (!text) throw std::logic_error("Recursive leaf requires attached text storage");
-        return std::make_unique<Leaf>(scene, module, confirmation, definition, frame, *text, true);
+        return std::make_unique<Leaf>(scene, module, confirmation, definition, frame, *text, true, widgets);
     }
     void set_frame_identifier(Frame frame, std::uint32_t identifier) {
         std::memcpy(reinterpret_cast<unsigned char*>(frame) + 0xec, &identifier, sizeof(identifier));

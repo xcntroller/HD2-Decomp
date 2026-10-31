@@ -2,6 +2,7 @@
 #define HD2_FRONTEND_DEFINED_SCREEN_H
 
 #include "frontend/menu_definition.h"
+#include "frontend/control_input_bridge.h"
 #include "frontend/screen_target.h"
 #include "frontend/screen_key.h"
 #include "frontend/screen_focus.h"
@@ -15,7 +16,7 @@ namespace hd2::frontend {
 // Portable definition-backed context for the reconstructed screen helpers.
 // Controls/definition/destination outlive this screen. Storage is fixed after
 // construction and bound control addresses must remain stable. Original object
-// ABI/ownership and heterogeneous widgets are not reconstructed by this adapter.
+// ABI remains native; heterogeneous leaf construction is supplied by its owner.
 template<class Control>
 class DefinedScreen {
 public:
@@ -58,19 +59,19 @@ public:
     int leave_focus(std::uint32_t target) { return screen_focus_leave(*this, target); }
     bool key(std::uint32_t word) { return screen_key(*this, word); }
     bool key_control(int index, std::uint32_t key) { return bound(index).key(key); }
-    bool activate_control(int index, std::uint32_t) {
-        return !control_disabled(index) && bound(index).activate(events_);
+    int activate_control(int index, std::uint32_t) {
+        return control_disabled(index) ? 0 : bound(index).activate(events_);
     }
     int focused_control() const { return focused_; }
     void update_control(int index, std::uint32_t milliseconds) { bound(index).update(milliseconds); }
     void set_focused_control(int index) { focused_ = index; }
-    int leave_control(int index, std::uint32_t) { return bound(index).apply(false); }
-    int enter_control(int index, std::uint32_t) { return bound(index).apply(true); }
-    int move_control(int index, std::uint32_t) { return bound(index).pointer_move(); }
+    int leave_control(int index, std::uint32_t target) { return leave_menu_control(bound(index),target); }
+    int enter_control(int index, std::uint32_t target) { return enter_menu_control(bound(index),target); }
+    int move_control(int index, std::uint32_t target) { return move_menu_control(bound(index),target); }
     int click_control(int index, std::uint32_t) { return bound(index).click(events_); }
-    int wheel_control(int index, std::uint32_t, std::int32_t) { return bound(index).wheel_event(events_); }
-    int pointer_control(int index, ScreenPointerCallback callback, std::uint32_t) {
-        return bound(index).pointer_event(callback, events_);
+    int wheel_control(int index, std::uint32_t, std::int32_t delta) { return wheel_menu_control(bound(index),delta,events_); }
+    int pointer_control(int index, ScreenPointerCallback callback, std::uint32_t target) {
+        return pointer_menu_control(bound(index),callback,target,events_);
     }
 
     // Host picker/rectangle compatibility; original hierarchical target lookup
@@ -83,7 +84,11 @@ public:
         return control_eligible(index) ? index : -1;
     }
     std::uint32_t interactive_target(std::uint32_t target) const {
-        return target_for_control(interactive_control_for_target(target));
+        const auto index = interactive_control_for_target(target);
+        if constexpr (HasTargetedMenuInput<Control>::value) {
+            if (control_eligible(index) && bound(index).preserves_part_targets()) return target;
+        }
+        return target_for_control(index);
     }
 
 private:

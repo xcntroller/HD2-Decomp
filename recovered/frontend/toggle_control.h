@@ -6,7 +6,7 @@
 namespace hd2::frontend {
 
 // Kind 24 value/message/focus subset. The yes/no visual products and text
-// layout are supplied backends; original 006541e0 construction is still open.
+// layout are built by the006541E0 native composition in built_options_widget.h.
 template<class Backend>
 class ToggleControl : public OptionsWidgetBase<ToggleControl<Backend>, Backend> {
     using Base = OptionsWidgetBase<ToggleControl<Backend>, Backend>;

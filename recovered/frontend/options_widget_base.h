@@ -27,9 +27,9 @@ inline std::uint32_t widget_float_bits(float value) {
 }
 
 // Portable state/observer composition, not an additional original function.
-// Backend supplies frames, attached text and already-constructed internal parts.
-// Those objects and the queue outlive this runtime. No engine objects are built
-// here, and no original raw callback address is transported into native code.
+// The built_options_widget product owns the internal parts and concrete frame/
+// text/input bindings used here. Those objects and the queue outlive this runtime.
+// No original raw callback address is transported into native code.
 template<class Derived, class Backend>
 class OptionsWidgetBase {
 public:
@@ -37,10 +37,12 @@ public:
         : backend_(backend), queue_(queue), identifier_(identifier) {}
     OptionsWidgetBase(const OptionsWidgetBase&) = delete;
     OptionsWidgetBase& operator=(const OptionsWidgetBase&) = delete;
+    const ControlProperties& properties() const { return properties_; }
     bool eligible() const { return properties_.eligible(); }
     std::uint32_t identifier() const { return identifier_; }
     bool disabled() const { return properties_.disabled != 0; }
     std::uint8_t disabled_byte() const { return properties_.disabled; }
+    void emit_input(std::uint32_t tag, std::uint32_t argument) { emit(tag, argument); }
     bool key(std::uint32_t) const { return false; } // All three use 0064da30.
     bool receive_event(ControlEvent& event, ControlEventDestination& upstream) {
         EmittingControlDestination<Derived> destination{derived(), &upstream};

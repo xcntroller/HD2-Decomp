@@ -2,6 +2,8 @@
 #define HD2_FRONTEND_DEFINED_CONTROL_TREE_H
 
 #include "frontend/container_input.h"
+#include "frontend/control_input_bridge.h"
+#include <functional>
 #include "frontend/control_factory.h"
 #include "frontend/defined_container_events.h"
 #include "frontend/menu_definition.h"
@@ -28,8 +30,8 @@ public:
     struct Result { bool handled; Owner control; };
 
     static Result construct(Backend& backend, const MenuControlDefinition& definition,
-                            Frame search_root, Frame layout_root, ControlEventDestination& queue) {
-        Factory factory{backend, definition, search_root, layout_root, queue, {}, {}};
+                            Frame search_root, Frame layout_root, ControlEventDestination& queue, DefinedControlTree* parent = nullptr) {
+        Factory factory{backend, definition, search_root, layout_root, queue, {}, {}, {}, parent};
         const bool handled = construct_defined_control(factory);
         return {handled, std::move(factory.result)};
     }
@@ -58,13 +60,13 @@ public:
         else leaf_->update(milliseconds);
     }
     int enter_focus(std::uint32_t target) {
-        return group_ ? container_focus_enter(*this, target) : leaf_->apply(true);
+        return group_ ? container_focus_enter(*this, target) : enter_menu_control(*leaf_,target);
     }
     int leave_focus(std::uint32_t target) {
-        return group_ ? screen_focus_leave(*this, target) : leaf_->apply(false);
+        return group_ ? screen_focus_leave(*this, target) : leave_menu_control(*leaf_,target);
     }
     int pointer_focus(std::uint32_t target) {
-        return group_ ? container_pointer_focus(*this, target) : leaf_->pointer_move();
+        return group_ ? container_pointer_focus(*this, target) : move_menu_control(*leaf_,target);
     }
     int activate(std::uint32_t target) {
         return group_ ? container_activate(*this, target) : leaf_->activate(queue_);
@@ -74,13 +76,13 @@ public:
     }
     int click(std::uint32_t target) { return group_ ? screen_click(*this, target) : leaf_->click(queue_); }
     int wheel(std::uint32_t target, std::int32_t delta) {
-        return group_ ? screen_wheel(*this, target, delta) : leaf_->wheel_event(queue_);
+        return group_ ? screen_wheel(*this, target, delta) : wheel_menu_control(*leaf_,delta,queue_);
     }
     int pointer(ScreenPointerCallback callback, std::uint32_t target) {
         if (!group_) {
             if (callback == ScreenPointerCallback::focus) return pointer_focus(target);
             if (callback == ScreenPointerCallback::click) return click(target);
-            return leaf_->pointer_event(callback, queue_);
+            return pointer_menu_control(*leaf_,callback,target,queue_);
         }
         switch (callback) {
         case ScreenPointerCallback::focus: return pointer_focus(target);
@@ -131,7 +133,7 @@ public:
         if (kind != MenuControlKind::container) throw std::logic_error("Container definition kind changed");
     }
     bool create_child(Frame search_root, Frame layout_root, const MenuControlDefinition& definition) {
-        auto result = construct(backend_, definition, search_root, layout_root, queue_);
+        auto result = construct(backend_, definition, search_root, layout_root, queue_, this);
         if (result.control) {
             if (children_.size() >= static_cast<std::size_t>(std::numeric_limits<int>::max()))
                 throw std::length_error("Too many container controls");
@@ -151,13 +153,14 @@ public:
 
 private:
     DefinedControlTree(Backend& backend, const MenuControlDefinition& definition,
-                       Frame frame, Frame layout_root, ControlEventDestination& queue)
-        : backend_(backend), definition_(definition), frame_(frame), layout_root_(layout_root), queue_(queue) {
+                       Frame frame, Frame layout_root, ControlEventDestination& queue, DefinedControlTree* parent)
+        : backend_(backend), definition_(definition), frame_(frame), layout_root_(layout_root), queue_(queue), parent_(parent) {
         if (definition.kind == MenuControlKind::container)
             group_ = std::make_unique<DefinedContainerEvents<DefinedControlTree>>(identifier(), *this, queue_);
         else {
             leaf_ = backend_.allocate_leaf(definition, frame_, layout_root_);
             if (!leaf_) throw std::bad_alloc();
+            if constexpr (HasTargetedMenuInput<Leaf>::value) leaf_->set_parent_disabled_query([this] { return parent_ && parent_->disabled(); });
         }
     }
     bool initialize_visuals() {
@@ -178,12 +181,13 @@ private:
         Owner candidate;
         Owner result;
         Frame frame{};
+        DefinedControlTree* parent;
         bool find_frame(std::uint32_t flags) { frame = backend.find_frame(search_root, definition.frame, flags); return !!frame; }
         void report_missing_frame() { backend.report_missing_frame(definition); }
         void report_unknown_kind(std::uint32_t kind) { backend.report_unknown_kind(kind); }
         std::uint32_t control_kind() const { return static_cast<std::uint32_t>(definition.kind); }
         bool allocate_control(std::uint32_t) {
-            candidate.reset(new DefinedControlTree(backend, definition, frame, layout_root, queue));
+            candidate.reset(new DefinedControlTree(backend, definition, frame, layout_root, queue, parent));
             return true;
         }
         bool initialize_visuals() { return candidate->initialize_visuals(); }
@@ -202,6 +206,7 @@ private:
     std::vector<Owner> children_;
     std::unique_ptr<DefinedContainerEvents<DefinedControlTree>> group_;
     int focused_ = -1;
+    DefinedControlTree* parent_;
 };
 
 }

@@ -20,9 +20,9 @@ public:
     using Products = frontend::OwnedScreens<MenuScreenProduct>;
     MenuScreenFactory(const MenuScene& scene, HMODULE module,
                       std::function<MenuTextObject*(std::uint32_t)> text_lookup,
-                      frontend::MenuEventQueue& queue, Products& products, Bindings& bindings)
+                      frontend::MenuEventQueue& queue, Products& products, Bindings& bindings, MenuWidgetContext* widgets = nullptr)
         : scene_(scene), module_(module), text_lookup_(std::move(text_lookup)),
-          queue_(queue), products_(products), bindings_(bindings),
+          queue_(queue), products_(products), bindings_(bindings), widgets_(widgets),
           main_{scene.main_model_frame(), false, {frontend::MenuControlRole::exit}},
           confirmation_{scene.confirmation_model_frame(), true,
                         {frontend::MenuControlRole::yes, frontend::MenuControlRole::no}} {}
@@ -52,7 +52,7 @@ public:
     }
     std::unique_ptr<MenuScreenProduct> allocate_screen(Model* model) {
         return std::make_unique<MenuScreenProduct>(scene_, module_, model->confirmation,
-            model->available, text_lookup_, queue_, model->root);
+            model->available, text_lookup_, queue_, model->root, widgets_);
     }
     void append_screen(std::unique_ptr<MenuScreenProduct> screen) {
         const auto& definition = screen->definition();
@@ -74,6 +74,7 @@ private:
     frontend::MenuEventQueue& queue_;
     Products& products_;
     Bindings& bindings_;
+    MenuWidgetContext* widgets_;
     Model main_;
     Model confirmation_;
     std::vector<frontend::MenuScreenDefinition> definitions_;

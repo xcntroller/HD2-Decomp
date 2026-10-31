@@ -17,9 +17,9 @@ public:
     MenuScreenProduct(const MenuScene& scene, HMODULE module, bool confirmation,
                       std::vector<frontend::MenuControlRole> available,
                       std::function<MenuTextObject*(std::uint32_t)> text_lookup,
-                      frontend::ControlEventDestination& queue, EngineFrame* model_root = nullptr)
+                      frontend::ControlEventDestination& queue, EngineFrame* model_root = nullptr, MenuWidgetContext* widgets = nullptr)
         : scene_(scene), module_(module), confirmation_(confirmation), available_(std::move(available)),
-          text_lookup_(std::move(text_lookup)), queue_(queue), model_root_(model_root) {}
+          text_lookup_(std::move(text_lookup)), queue_(queue), model_root_(model_root), widgets_(widgets) {}
 
     MenuScreenProduct(const MenuScreenProduct&) = delete;
     MenuScreenProduct& operator=(const MenuScreenProduct&) = delete;
@@ -27,7 +27,7 @@ public:
     bool bind_definition(const frontend::MenuScreenDefinition& source) {
         if (definition_) throw std::logic_error("Screen definition bound twice");
         definition_.emplace(copy_definition(source, strings_));
-        controls_ = make_menu_controls(scene_, module_, *definition_, confirmation_, available_, text_lookup_, model_root_);
+        controls_ = make_menu_controls(scene_, module_, *definition_, confirmation_, available_, text_lookup_, model_root_, widgets_);
         focus_.emplace(*definition_, queue_);
         controls_->bind_screen(*focus_);
         frame_.emplace(scene_, module_, confirmation_, *focus_, model_root_);
@@ -71,6 +71,7 @@ private:
     std::function<MenuTextObject*(std::uint32_t)> text_lookup_;
     frontend::ControlEventDestination& queue_;
     EngineFrame* model_root_;
+    MenuWidgetContext* widgets_;
     std::deque<std::string> strings_;
     std::optional<frontend::MenuScreenDefinition> definition_;
     std::unique_ptr<MenuScreenControls> controls_;

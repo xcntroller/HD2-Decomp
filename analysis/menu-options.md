@@ -1,5 +1,10 @@
 # Options construction and dependencies
 
+Shared widget construction is now implemented and native-audited through actual
+factories, engine/input/text bindings and current-profile preference observers.
+[Complete widget contract](menu-widget-construction.md). It remains **source-only**;
+the page builders and complete Options flow below are not enabled.
+
 This is an evidence inventory, not a complete or runnable options definition.
 The client fingerprint is recorded in [the factory map](menu-control-factory-map.json).
 The five builders below are called in order by 0061CF60 after the options
@@ -25,18 +30,21 @@ Its data source and complete ownership contract remain unresolved.
 Entry handler 0061BEA0 handles 02000071 by reading graphics and settings,
 sending multiple targeted initializers, then queuing the screen transition. Its
 other branches also interact with settings and page teardown. It cannot be
-replaced faithfully with a simple screen push. Original widget constructors,
-input/focus for nested children, observers, settings synchronization and apply/
-back behavior all need further recovery before options can be enabled.
+replaced faithfully with a simple screen push. Shared widget constructors,
+internal-part input and canonical settings observers are now composed. Complete
+page definitions, entry synchronization, navigation and apply/back/persistence
+behavior still need delivery before Options can be enabled.
 
 ## Native widget and observer reconstruction
 
 The [widget evidence map](menu-options-widget-map.json) records source-only
 state/message/input implementations for kinds 8, 0x10 and 0x24, and the four
-original settings observers. Engine visual/internal-part constructors remain absent. The
+original settings observers. Engine visual/internal-part constructors now have a
+[concrete native implementation](menu-widget-construction.md). The
 [canonical profile settings backend](menu-caches.md) now supplies real preference
-storage and individual application helpers; unused widget routes remain source-only. The live factory continues to reject these
-widget kinds; adding names to the enum does not enable their screen controls.
+storage and individual application helpers; unused widget routes remain source-only.
+The actual factory constructs these kinds when supplied with real frames,
+attached text and the shared input/settings context. No Options screen is enabled.
 
 - Sliders preserve the range/position asymmetry: programmatic position accepts
   the range itself, while ordinary steps compare against range minus one. Wheel
@@ -61,8 +69,8 @@ targets. Sound volume additionally plays the click preview; music below one is
 zeroed. Toggle observer 00620440 routes invert mouse, subtitles and parental
 lock; only invert mouse calls an immediate apply helper. Voice observer 00620720
 stores the low byte but enables/disables its volume slider using the full
-argument's zero test. Typed native services stand in for preference storage,
-feature computation and engine application; those service bodies are not rebuilt.
+argument's zero test. Current-profile preference storage and individual engine
+application helpers come from [the canonical settings backend](menu-caches.md).
 
 A temporary ASan/UBSan audit instantiates the native runtimes with supplied
 visual/input backends and actual control/text/observer helpers. It checks value

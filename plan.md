@@ -42,8 +42,9 @@ Baseline: the four-movie sequence and host preview are desktop-confirmed.
 [Opening evidence](analysis/opening-video.md). Recovered source components remain
 separate from delivery; their completed work is preserved in the recovery index.
 
-Current: original settings/resource cache integration is desktop-confirmed.
-Next: options widget internals/observer wiring. [Cache contract](analysis/menu-caches.md).
+Current: settings/cache integration is desktop-confirmed; complete native options
+widget internals/settings wiring are **source-only**, audited through the actual
+factory/backend. [Widget contract](analysis/menu-widget-construction.md).
 [Completed input/focus contracts](analysis/menu-character-focus.md).
 Full registry/setup bootstrap and binary integrity VM remain outside the checkpoint.
 
@@ -55,7 +56,7 @@ Full registry/setup bootstrap and binary integrity VM remain outside the checkpo
 | Menu visuals | Original artwork, cursor, text and button hover | Dynamic labels, localization, fidelity |
 | Exit/confirmation | Pointer, Enter/Space, Escape and modal cancellation | Other actions/dialogs |
 | Shared controls/screens | State, messages, factory, stack and nested diagnostic | Screen callbacks, dynamic lists, original ABI |
-| Options widgets | Native state/input/observers audited | Engine visuals, actual screen integration |
+| Options widgets | Native parts, engine backend, factories and real settings wiring audited | Full Options flow and desktop validation |
 | Startup dependencies | Data/config/settings/input/archive source audited | Full ownership, protection, caches and live wiring |
 
 ## 1. Finish the shared menu foundation — alongside launch dependencies
@@ -82,8 +83,9 @@ Original object ABI is tracked separately from native menu delivery.
   Main/Exit desktop-confirmed2026-10-31; unused routes source-only. [Contract](analysis/menu-update.md).
 - [x] Integrate original settings/resource caches in place of host defaults.
   Main/Exit desktop-confirmed2026-10-31; unused adapters source-only. [Contract](analysis/menu-caches.md).
-- [ ] Build options widget internals and connect recovered observers/settings.
-  Native slider/selector/toggle routes are audited; no new screen is enabled.
+- [x] Build options widget internals and connect recovered observers/settings.
+  **Source-only** factory/engine/settings composition audited; full flow separate.
+  [Contract](analysis/menu-widget-construction.md).
 
 ## 2. Establish the complete screen and dependency inventory
 

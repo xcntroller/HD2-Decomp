@@ -3,7 +3,23 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest implementation (2026-10-31): [menu settings/loaded caches](analysis/menu-caches.md).
+Latest implementation (2026-10-31): [complete native options widget internals](analysis/menu-widget-construction.md).
+Kinds8/10/24 now compose original constructors, owned repeating arrow/thumb/
+four-state half parts, guarded engine frame services, actual shared input/text,
+flat/recursive factory and all current-profile observers. The seven-child toggle
+shares its active-empty visual; arrow repeat uses signed idle+40. Native ASan/
+UBSan concrete factory composition,10,000 positions, all four observers/seven
+feature widgets, i386 fixture, three strict targets, existing suite/158 Python
+tests and maps/mutations pass.23 eligible new partial bodies:369 total, zero
+complete, frozen18,783. Source-only checkbox complete; full Options flow remains
+separate. Main/Exit button semantics preserved. No new desktop claim or push.
+
+Prior implementation: [menu settings/loaded caches](analysis/menu-caches.md).
+User desktop-confirms and requests commit/continuation; committed as9a5e88a.
+The841-frame state-exit/result0 logs/window.cfg and matching build are preserved
+with a manifest in ignored menu-cache-acceptance-20261031.
+
+Earlier implementation (2026-10-31): [menu settings/loaded caches](analysis/menu-caches.md).
 Registered-directory cache search/hits, actual five-family factory/copy/reference
 policies, soft eviction, scratch getters and ordered cleanup replace normal menu
 direct model/sound opens. Content-load driver settings are restored across real

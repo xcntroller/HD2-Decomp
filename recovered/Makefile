@@ -82,6 +82,9 @@ $(BUILD_DIR)/engine_window.exe: host/frame_clock.h frontend/frame_clock.h
 $(BUILD_DIR)/engine_window.exe: host/engine_keyboard.h input/keyboard.h
 $(BUILD_DIR)/engine_window.exe: host/graphics_interface.h host/menu_input_session.h frontend/localized_text.h
 $(BUILD_DIR)/engine_window.exe: host/menu_pointer_session.h frontend/frontend_update.h
+$(BUILD_DIR)/engine_window.exe: host/menu_options_widget.h frontend/built_options_widget.h frontend/options_widget_parts.h
+$(BUILD_DIR)/engine_window.exe: frontend/control_input_bridge.h frontend/options_widget_base.h frontend/options_observers.h
+$(BUILD_DIR)/engine_window.exe: frontend/slider_control.h frontend/selector_control.h frontend/toggle_control.h
 
 test: all
 	"$(BUILD_DIR)/chunk_reader_tests"

@@ -9,8 +9,8 @@
 namespace hd2::frontend {
 
 // Kind 10, 0064f550 and its focus/press methods. Native shared strings replace
-// intrusive item storage. Frame/arrow construction 0064f1c0 remains a backend
-// integration task; this runtime requires its attached text and internal parts.
+// intrusive item storage. Frame/arrow construction0064F1C0 is composed by
+// built_options_widget.h with actual attached text and owned internal parts.
 template<class Backend>
 class SelectorControl : public OptionsWidgetBase<SelectorControl<Backend>, Backend> {
     using Base = OptionsWidgetBase<SelectorControl<Backend>, Backend>;
