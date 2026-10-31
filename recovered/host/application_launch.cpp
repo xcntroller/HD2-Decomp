@@ -9,6 +9,7 @@
 #include "host/engine_sound.h"
 #include "host/opening_audio.h"
 #include "host/opening_text.h"
+#include "host/credits_text.h"
 #include "host/frame_clock.h"
 #include "host/window_position.h"
 #include <optional>
@@ -222,6 +223,55 @@ private:
     bool resources_live_ = false;
 };
 
+//00688040 Credits branch: no IShow/voice; actual script, fonts and music.
+class CreditsBackend {
+public:
+    CreditsBackend(host::StartupSession& startup,HMODULE module,host::BorrowedGraphicsInput& keyboard)
+        : startup_(startup),module_(module),keyboard_(keyboard),video_(startup.graphics(),module) {}
+    ~CreditsBackend() { frontend::CleanupErrors errors;errors.attempt([&]{close();}); }
+    void begin() {
+        if(saved_)throw std::logic_error("Credits resources already owned");
+        saved_=startup_.credits_music_position();
+        startup_.begin_credits_music(*saved_);
+        frontend::LocalizedTextCache cache;
+        const auto loaded=startup_.load_movie_subtitles("credits.bik",cache);
+        auto* graphics=reinterpret_cast<host::Graphics*>(startup_.graphics());
+        const auto width=graphics->methods->width(graphics),height=graphics->methods->height(graphics);
+        const auto document=frontend::parse_credits(cache,width);
+        if(startup_.wide_characters())throw std::logic_error("Wide Credits fonts are not reconstructed");
+        text_=std::make_unique<host::CreditsText>(graphics,module_,document);
+        scroll_.emplace(width,height,document.speed);
+        started_=true;
+        std::printf("Credits initialized: loaded=%u sequence=0; retained menu\n",static_cast<unsigned>(loaded));
+    }
+    void close() {
+        if(!saved_)return;
+        const auto saved=*saved_;saved_.reset();
+        frontend::CleanupErrors errors;
+        errors.attempt([&]{for(int i=0;i<3;++i)video_.clear_present();});
+        errors.attempt([&]{if(started_)startup_.remember_movie("credits.bik");});
+        started_=false;
+        errors.attempt([&]{startup_.restore_credits_music(saved);});
+        text_.reset();scroll_.reset();
+        std::puts("Credits released: text/fonts; saved music requested; Main owner restored");
+        errors.rethrow();
+    }
+    std::uint32_t next_scan(){return keyboard_.next_scan();}
+    void clear_present(){video_.clear_present();}
+    void update_sound(std::uint32_t milliseconds){startup_.update_sound(milliseconds);}
+    bool advance(std::uint32_t milliseconds){return scroll_->update(milliseconds,text_->exhausted());}
+    void draw(){video_.draw_with_text(true,[&]{text_->draw(scroll_->word());});}
+private:
+    host::StartupSession& startup_;
+    HMODULE module_;
+    host::BorrowedGraphicsInput& keyboard_;
+    host::EngineVideo video_;
+    std::optional<host::StartupSession::CreditsMusic> saved_;
+    std::unique_ptr<host::CreditsText> text_;
+    std::optional<frontend::CreditsScroll> scroll_;
+    bool started_=false;
+};
+
 class LaunchServices {
 public:
     LaunchServices(host::StartupSession& startup, host::MenuDriver& driver, HMODULE module,
@@ -245,6 +295,10 @@ public:
     std::unique_ptr<frontend::ApplicationState> create_video_state() {
         return std::make_unique<frontend::OpeningApplicationState<OpeningBackend>>(
             std::make_unique<OpeningBackend>(startup_, module_, keyboard_));
+    }
+    std::unique_ptr<frontend::ApplicationState> create_credits_state() {
+        return std::make_unique<frontend::CreditsApplicationState<CreditsBackend>>(
+            std::make_unique<CreditsBackend>(startup_,module_,keyboard_));
     }
     std::unique_ptr<frontend::ApplicationState> create_frontend_state() {
         return std::make_unique<frontend::FrontendApplicationState<host::ApplicationMenu>>(

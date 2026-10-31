@@ -1406,14 +1406,16 @@
       "program": "client",
       "entry": "006c20f0",
       "status": "partial",
-      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement. Status4 now shuts down the state, releases it, closes mouse input and invokes cold control reset before returning false.",
-      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
+      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement. Status4 now shuts down the state, releases it, closes mouse input and invokes cold control reset before returning false. Main Credits status12 retains the frontend, installs type10/sequence0, restores its pointer before video shutdown/deletion on status13, then starts the same owner.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game, alternate console start, Cinematics filename selection and restart/exit video routes remain unsupported; native invalid/allocation paths throw. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
         "recovered/frontend/application_controller.h",
         "analysis/controller-integration-map.json",
-        "analysis/controller-integration.md"
+        "analysis/controller-integration.md",
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md"
       ]
     },
     {
@@ -4056,24 +4058,28 @@
       "program": "client",
       "entry": "00688040",
       "status": "partial",
-      "coverage": "Ordinary voice-before-IShow initialization, actual open/aspect/preferences/fade, separate subtitle loading and conditional real text owner, volume/play and clock calls.",
-      "limitations": "Original credits/outro/alternate descriptor and retained-state branches are unsupported. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "coverage": "Ordinary voice-before-IShow initialization, actual open/aspect/preferences/fade, separate subtitle loading and conditional real text owner, volume/play and clock calls. Credits selector branch bypasses IShow/voice, bookmarks actual music request/position, queues37 when needed and loads scrolling localized text/fonts.",
+      "limitations": "Original outro/alternate descriptors and Cinematics retained-video selection remain unsupported. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
-        "recovered/host/application_launch.cpp"
+        "recovered/host/application_launch.cpp",
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md"
       ]
     },
     {
       "program": "client",
       "entry": "006890f0",
       "status": "partial",
-      "coverage": "Actual executable/language/stem path, loose existence probe, separate numbered/quoted DTA cache and ordinary cue parser; startup caption cache is preserved.",
-      "limitations": "Native cache/path ownership replaces original COW/mutable string ABI; credits parser is outside this path. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "coverage": "Actual executable/language/stem path, loose existence probe, separate numbered/quoted DTA cache and ordinary cue parser; startup caption cache is preserved. Credits uses the same real executable/language/stem path and separate cache, then the reconstructed Credits tag parser independently of ordinary subtitle preference.",
+      "limitations": "Native cache/path ownership replaces original COW/mutable string ABI; generic shared paragraph/locales remain outside this path. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
-        "recovered/host/startup_session.h"
+        "recovered/host/startup_session.h",
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md"
       ]
     },
     {
@@ -4104,36 +4110,42 @@
       "program": "client",
       "entry": "00688c10",
       "status": "partial",
-      "coverage": "Ordinary sound-first status completion, retained actual IShow elapsed time, strict wrapping text expiry/activation and overlap ordering; one sequential audio cue per update with actual volume/bind/play calls.",
-      "limitations": "Credits scrolling, special outro/descriptor waits/fades and original unused QPC arithmetic/global scratch representation are excluded. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "coverage": "Ordinary sound-first status completion, retained actual IShow elapsed time, strict wrapping text expiry/activation and overlap ordering; one sequential audio cue per update with actual volume/bind/play calls. Credits advances its float scroll offset after sound update and waits3000ms after render-driven row exhaustion before completion.",
+      "limitations": "Special outro/descriptor waits/fades and original unused QPC arithmetic/global scratch representation are excluded. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
-        "recovered/frontend/application_states.h"
+        "recovered/frontend/application_states.h",
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md"
       ]
     },
     {
       "program": "client",
       "entry": "00688f50",
       "status": "partial",
-      "coverage": "Save IGraph state0, clear, movie scene, text state1/scene, restore saved state, outer-controller presentation; native exception cleanup restores after a throwing text pass.",
-      "limitations": "Native glyph consumer and existing verified device-state bridge replace full original text renderer/cache ABI. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "coverage": "Save IGraph state0, clear, movie scene, text state1/scene, restore saved state, outer-controller presentation; native exception cleanup restores after a throwing text pass. Credits uses the no-IShow black/text scene path with actual four-atlas glyphs and two edge fades; outer application presents.",
+      "limitations": "Native glyph consumer and existing verified device-state bridge replace full original text renderer/cache ABI. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
-        "recovered/frontend/opening_render.h"
+        "recovered/frontend/opening_render.h",
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md"
       ]
     },
     {
       "program": "client",
       "entry": "00688460",
       "status": "partial",
-      "coverage": "Ordinary three clear/presents, recognized profile persistence and fade restoration, IShow/voice release, reverse strings/samples,14 style-handle removal/reset and text release before descriptor deletion.",
-      "limitations": "Native supported style0/8 catalog is a bounded subset; special saved music and complete original global style/font/resource cache remain outside scope. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated.",
+      "coverage": "Ordinary three clear/presents, recognized profile persistence and fade restoration, IShow/voice release, reverse strings/samples,14 style-handle removal/reset and text release before descriptor deletion. Credits clears/presents three times, invokes the existing movie recorder, restores saved music request/seek (or fade fallback) and releases actual text/font resources.",
+      "limitations": "Native supported style0/8 catalog is a bounded subset; special saved music and complete original global style/font/resource cache remain outside scope. Integrated into bounded ordinary controller launch, compiled/i386 linked, native ASan/UBSan audited and user desktop-confirmed on2026-10-31. Separate subtitle-audio cues remain native-audited (none in installed English Intro). Native ownership/containers/strings replace original class/COW/vtable/allocator/SEH ABI. English800x600 single-line opening consumer only; generic paragraphs/locales, special videos, full global style/font/resource cache, setup/integrity VM and full failure/shutdown equivalence remain open. Actual engine methods are delegated. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
-        "recovered/host/application_launch.cpp"
+        "recovered/host/application_launch.cpp",
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md"
       ]
     },
     {
@@ -4644,14 +4656,16 @@
       "program": "client",
       "entry": "006c0920",
       "status": "partial",
-      "coverage": "Shutdown active state, clear actual five loaded caches in2/1/3/4/5 order, then delete state unless reinitialize and close mouse when enabled. Clear loaded references/tree/current scratch while preserving search-directory lists.",
-      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "coverage": "Shutdown active state, clear actual five loaded caches in2/1/3/4/5 order, then delete state unless reinitialize and close mouse when enabled. Clear loaded references/tree/current scratch while preserving search-directory lists. Credits shutdown also releases the retained Main owner before clearing controller resources.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only. Credits extension is integrated/native-audited and pending actual desktop confirmation; prior desktop acceptance applies to the ordinary launch only. See the Credits contract for its native ABI and scope limits.",
       "evidence": [
         "analysis/menu-caches-map.json",
         "analysis/menu-caches.md",
         "recovered/frontend/application_controller.h",
         "recovered/io/loaded_resource_cache.h",
-        "recovered/host/loaded_resources.h"
+        "recovered/host/loaded_resources.h",
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md"
       ]
     },
     {
@@ -4974,6 +4988,54 @@
         "recovered/frontend/options_widget_parts.h",
         "recovered/frontend/built_options_widget.h",
         "recovered/host/menu_options_widget.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006887c0",
+      "status": "partial",
+      "coverage": "Native Credits rectangle/scroll initialization and the actual fourteen style records, consumed by four real ANSI/CE font atlases.",
+      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; actual desktop rendering/audio/return confirmation is pending. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
+      "evidence": [
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md",
+        "recovered/host/credits_geometry.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00689340",
+      "status": "partial",
+      "coverage": "Consume actual signed-ID localized cache with exact Credits tags, ANSI/CE style selection, three-column splitting and SPEED numeric-prefix override; clear the separate cache.",
+      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; actual desktop rendering/audio/return confirmation is pending. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
+      "evidence": [
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md",
+        "recovered/frontend/credits_text.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064b940",
+      "status": "partial",
+      "coverage": "Store original scroll low-word value with defined signed-word conversion for the native Credits renderer.",
+      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; actual desktop rendering/audio/return confirmation is pending. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
+      "evidence": [
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md",
+        "recovered/frontend/credits_text.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064bcc0",
+      "status": "partial",
+      "coverage": "Report empty/exhausted native Credits row vector from the renderer-advanced first-visible index.",
+      "limitations": "Native typed ownership/style/row storage replaces original object, virtual, allocator and container ABI. Integrated English800x600 Credits passes temporary ASan/UBSan and i386 compile/link audits; actual desktop rendering/audio/return confirmation is pending. General shared text/styles, wide locales and other special states are outside this flow; actual engine calls remain delegated.",
+      "evidence": [
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md",
+        "recovered/host/credits_geometry.h"
       ]
     }
   ]

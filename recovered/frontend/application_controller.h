@@ -61,6 +61,8 @@ public:
     void shutdown() {
         CleanupErrors errors;
         errors.attempt([&] { if (active_) required().shutdown(); });
+        errors.attempt([&] { if (retained_) retained_->shutdown(); });
+        retained_.reset();
         errors.attempt([&] { services_.clear_controller_resources(); });
         if (!reinitialize_ || errors.failed()) active_.reset();
         errors.attempt([&] { if (services_.application_flags() & 2u) services_.close_mouse(); });
@@ -122,7 +124,7 @@ public:
     }
 
     // Shared prefix and normal video-completion branch of 006c20f0. Other
-    // descriptor/game/credits transitions remain explicit errors in this slice.
+    // descriptor/game transitions remain explicit errors.
     bool update(std::uint32_t milliseconds) {
         phase_ = 1;
         if (signed_word(delay_) > 0) {
@@ -139,7 +141,9 @@ public:
         required().after_update();
         if (required().status() == 0) return finish_frame(true);
         const auto status = required().status();
-        if (status == 13) {
+        if (status == 12) {
+            enter_credits();
+        } else if (status == 13) {
             video_completion();
         } else if (status == 4) {
             shutdown();
@@ -187,9 +191,28 @@ private:
         // Fresh pointer and status each time, matching the original virtual calls.
         return required().status() == 1 || required().status() == 6 || required().status() == 5;
     }
+    //006C20F0 status12: retain the frontend without shutdown or reconstruction.
+    void enter_credits() {
+        if (required().type()!=2 || retained_)
+            throw std::logic_error("Credits requires one retained frontend");
+        auto video=require_created(services_.create_credits_state());
+        retained_=std::move(active_);
+        active_=std::move(video);
+        required().begin_video("credits.bik",0);
+        required().status(1);
+    }
     void video_completion() {
         if (required().type() != 10) return;
         const auto sequence = required().video_sequence();
+        if (sequence==0) {
+            if (!retained_) throw std::logic_error("Video has no retained frontend");
+            auto video=std::move(active_);
+            active_=std::move(retained_); // Restore BEFORE video shutdown/deletion.
+            video->shutdown();
+            video.reset();
+            required().status(1); // Original retained owner virtual+24(1).
+            return;
+        }
         const auto next = normal_opening_completion(sequence);
         if (next.action == OpeningVideoAction::enter_frontend) {
             enter_frontend();
@@ -213,7 +236,7 @@ private:
         return keep_running;
     }
     Services& services_;
-    std::unique_ptr<State> active_;
+    std::unique_ptr<State> active_, retained_;
     std::uint32_t accumulated_time_ = 0, delay_ = 0, phase_ = 0, random_seed_ = 0;
     bool reinitialize_ = false, suspended_ = false;
 };

@@ -23,11 +23,12 @@ public:
         : startup_(startup), driver_(driver), module_(module), graphics_(graphics),
           window_(window), keyboard_(keyboard), actions_(*this) {}
     ~ApplicationMenu() { frontend::CleanupErrors errors; errors.attempt([&] { shutdown(); }); }
-    void initialize(std::function<void()> quit) {
+    void initialize(std::function<void()> quit, std::function<void(std::uint32_t)> select_state) {
         if (scene_) throw std::logic_error("Frontend initialized twice");
         if (!frontend::startup_case_equal(startup_.language(), "english"))
             throw std::logic_error("The current compiled menu font renderer supports English/800x600");
         quit_ = std::move(quit);
+        select_state_ = std::move(select_state);
         frontend::load_menu_content(driver_, 10, [&] {
             scene_ = std::make_unique<MenuScene>(driver_, module_, true, true, &startup_.loaded_resources());
             options_.emplace(startup_, [this] { scene_->request_click_sound(); });
@@ -37,7 +38,7 @@ public:
             events_.emplace(actions_, false);
             widgets_ = std::make_unique<MenuWidgetContext>(input_,*events_,*options_);
             MenuScreenFactory<Actions> factory(*scene_, module_,
-                [&](std::uint32_t id) { return text_->object_for(id); }, *events_, products_, actions_, widgets_.get());
+                [&](std::uint32_t id) { return text_->object_for(id); }, *events_, products_, actions_, widgets_.get(), true);
             frontend::construct_registered_screens(factory);
             for (std::size_t i = 0; i != products_.size(); ++i) products_.screen(i).controls().bind_pick_targets();
         });
@@ -92,7 +93,8 @@ public:
         auto& main = products_.screen(0);
         const auto exit_target = main.controls().target_for_role(frontend::MenuControlRole::exit);
         const auto exit_focused = main.focus().control_for_target(exit_target) == main.focus().focused_control();
-        text_->draw(!confirming_ && exit_focused);
+        text_->draw(!confirming_ && exit_focused, false, 0,
+            confirming_ ? 0 : main.focus().focused_control());
         if (confirming_) {
             MenuScene::ModalPass modal(*scene_, module_);
             if (scene_->render() < 0) throw std::runtime_error("Controller confirmation render failed");
@@ -160,6 +162,11 @@ private:
             owner_.quit_(); // State status4, not an outer-loop running Boolean.
             std::puts("Controller menu requested status=4");
         }
+        void select_application_state(std::uint32_t state) override {
+            if(state!=12) throw std::logic_error("Unavailable menu application transition");
+            owner_.select_state_(state);
+            std::puts("Controller menu requested status=12; retaining Main owner");
+        }
         void set_application_input_enabled(bool value) override { owner_.startup_.application_input_enabled(value); }
         void set_input_motion_only(bool value) override { owner_.input_.inhibit_click = value; }
         void clear() { screens_.fill(nullptr); }
@@ -223,6 +230,7 @@ private:
     HWND window_;
     BorrowedGraphicsInput& keyboard_;
     std::function<void()> quit_;
+    std::function<void(std::uint32_t)> select_state_;
     std::unique_ptr<MenuScene> scene_;
     std::unique_ptr<MenuText<Graphics>> text_;
     std::unique_ptr<MenuCursor<Graphics>> cursor_;

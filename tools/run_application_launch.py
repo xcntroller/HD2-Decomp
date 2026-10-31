@@ -14,6 +14,7 @@ from stage_menu_resources import stage_menu_resources
 from stage_menu_text import stage_menu_text
 from stage_opening_movies import OPENING_MOVIES, stage_opening_movies
 from stage_menu_text import _check_path
+from stage_credits_resources import stage_credits_resources
 
 
 @contextmanager
@@ -157,6 +158,7 @@ def main() -> None:
                              include_cursor_model=True, include_click_sound=True)
         stage_menu_text(args.game_dir, run, include_confirm=True, include_control_text=True)
         stage_opening_movies(args.game_dir, run)
+        stage_credits_resources(args.game_dir, run)
         launch = prepare_launch(args.game_dir, executable, args.proton, args.steam_root,
                                 args.work_dir, args.frames, dict(os.environ))
         print("Controller launch command: " + shlex.join(launch.command))

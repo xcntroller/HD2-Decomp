@@ -12,7 +12,7 @@ enum class MenuControlKind : std::uint32_t {
 };
 // Host semantic roles identify the three implemented actions without relying
 // on array positions. These role names are not original client fields.
-enum class MenuControlRole { none, exit, yes, no, ok };
+enum class MenuControlRole { none, exit, yes, no, ok, credits };
 
 struct MenuControlDefinition {
     std::uint32_t identifier;
@@ -76,7 +76,7 @@ inline const MenuScreenDefinition& main_menu_definition() {
         button_definition(0x04e00000, "boptions", "normal05", "actived05",
                           MenuControlRole::none, {caption_definition(13, 2110), {0, 0x06001071, 0, 0, 0, {}}}),
         button_definition(0x04f00000, "bcredits", "normal06", "actived06",
-                          MenuControlRole::none, {caption_definition(13, 2111), {0, 0x0600103a, 0, 0, 0, {}}}),
+                          MenuControlRole::credits, {caption_definition(13, 2111), {0, 0x0600103a, 0, 0, 0, {}}}),
         button_definition(0x05000000, "bexit", "normal07", "actived07",
                           MenuControlRole::exit, {caption_definition(13, 2112), {0, 0x06001003, 0x04000000, 0, 0, {}}}),
         text_definition(0x05100000, "text_h&dversion", {caption_definition(40, 2006)})

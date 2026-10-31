@@ -1,0 +1,197 @@
+{
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "00688040",
+      "hex": "558bec83ec1453565733ff668b3d06b3",
+      "note": "initialization entry"
+    },
+    {
+      "address": "006887c0",
+      "hex": "6aff686c86800064a100000000506489",
+      "note": "Credits layout initialization"
+    },
+    {
+      "address": "00689340",
+      "hex": "6aff688887800064a100000000506489",
+      "note": "Credits script parser"
+    },
+    {
+      "address": "0064b940",
+      "hex": "8b442404894178b001c20400",
+      "note": "set scroll"
+    },
+    {
+      "address": "0064bcc0",
+      "hex": "8b514885d2750e8b919c00000033c03bd01bc040c38b414c2bc28b919c000000c1f8023bd01bc040c3",
+      "note": "exhaustion predicate"
+    },
+    {
+      "address": "0064ba2c",
+      "hex": "0fbf560489542410db442410d80dc8098100d80d04fa8000e8b7a31900",
+      "note": "fade width/1024*100"
+    },
+    {
+      "address": "008412c0",
+      "hex": "02000000ffffffff8fc2753d00000000000080bf000080bf0000000000000000000000000200000001000000000000000000000003000000ffffffff0ad7233d00000000000080bf000080bf0000000000000000000000000200000001000000000000000000000003000000ffffffff5839b43c00000000000080bf000080bf0000000000000000000000000200000001000000000000000000000003000000ffffffff0ad7233d00000000000080bf000080bf0000000000000000000000000200000001000000000000000000000003000000ffffffffcdcccc3c00000000000080bf000080bf0000000000000000000000000200000001000000000000000000000005000000ffffffff8fc2753d00000000000080bf000080bf0000000000000000000000000200000001000000000000000000000006000000ffffffff0ad7233d00000000000080bf000080bf0000000000000000000000000200000001000000000000000000000006000000ffffffff5839b43c00000000000080bf000080bf0000000000000000000000000200000001000000000000000000000006000000ffffffff5839b43c000000000000803e000080bf0000000000000000000000000200000001000000010000001800000006000000ffffffff5839b43c000000000000003f000080bf0000000000000000000000000200000001000000010000001000000006000000ffffffff5839b43c000000000000403f000080bf0000000000000000000000000200000001000000010000001000000003000000ffffffff5839b43c000000000000803e000080bf0000000000000000000000000200000001000000010000001800000003000000ffffffff5839b43c000000000000003f000080bf0000000000000000000000000200000001000000010000001000000003000000ffffffff5839b43c000000000000403f000080bf00000000000000000000000002000000010000000100000010000000",
+      "note": "fourteen Credits styles; data"
+    },
+    {
+      "address": "008415d0",
+      "hex": "6372656469747300",
+      "note": "credits prefix; data"
+    },
+    {
+      "address": "00842efc",
+      "hex": "637265646974732e62696b00",
+      "note": "credits.bik selector; data"
+    },
+    {
+      "address": "00815908",
+      "hex": "7b14ae47e17a943f",
+      "note": ".02 double; data"
+    },
+    {
+      "address": "008158e8",
+      "hex": "5c8fc2f5285cef3f",
+      "note": ".98 double; data"
+    },
+    {
+      "address": "0080fa04",
+      "hex": "0000c842",
+      "note": "fade100 constant; data"
+    },
+    {
+      "address": "008109c8",
+      "hex": "0000803a",
+      "note": "1/1024 constant; data"
+    }
+  ],
+  "vtables": [
+    {
+      "address": "008158f8",
+      "targets": [
+        "006889c0",
+        "0064b950",
+        "0064b940",
+        "006889d0"
+      ]
+    }
+  ],
+  "direct_calls": [
+    {
+      "site": "006881c5",
+      "target": "006887c0"
+    },
+    {
+      "site": "006881dc",
+      "target": "006890f0"
+    },
+    {
+      "site": "006881ee",
+      "target": "006890f0"
+    },
+    {
+      "site": "006882fe",
+      "target": "006887c0"
+    },
+    {
+      "site": "00688315",
+      "target": "006890f0"
+    },
+    {
+      "site": "00688324",
+      "target": "006890f0"
+    },
+    {
+      "site": "00688344",
+      "target": "006890f0"
+    },
+    {
+      "site": "00688cc6",
+      "target": "0064bcc0"
+    }
+  ],
+  "resource_anchors": [],
+  "notes": [
+    "Original Credits selector skips IShow and voice creation in00688040. Full fourteen52-byte style table retained as data anchors. Source evidence addresses are validated against the frozen original fingerprint."
+  ],
+  "functions": [
+    {
+      "entry": "00626b20",
+      "role": "Credits event -> status12"
+    },
+    {
+      "entry": "006c20f0",
+      "role": "retain/restore frontend; type10 sequence0"
+    },
+    {
+      "entry": "00688040",
+      "role": "text-branch classification and music bookmark"
+    },
+    {
+      "entry": "006887c0",
+      "role": "rectangle, scroll, fourteen styles"
+    },
+    {
+      "entry": "00689340",
+      "role": "tag parsing and columns"
+    },
+    {
+      "entry": "00688bb0",
+      "role": "Escape; Space ignored"
+    },
+    {
+      "entry": "00688c10",
+      "role": "scroll and3000ms exhaustion dwell"
+    },
+    {
+      "entry": "00688f50",
+      "role": "black/text pass"
+    },
+    {
+      "entry": "00688460",
+      "role": "three clears, music restore, destruction"
+    },
+    {
+      "entry": "00645270",
+      "role": "record-to-row grouping"
+    },
+    {
+      "entry": "00645f20",
+      "role": "nonwrapping row height/width"
+    },
+    {
+      "entry": "006469c0",
+      "role": "cumulative baseline"
+    },
+    {
+      "entry": "00646a10",
+      "role": "ordinary centering"
+    },
+    {
+      "entry": "00646db0",
+      "role": "column centering"
+    },
+    {
+      "entry": "00646790",
+      "role": "overflow flag only; no inset adjustment"
+    },
+    {
+      "entry": "00648860",
+      "role": "single-byte atlas glyph vertices"
+    },
+    {
+      "entry": "0064b950",
+      "role": "visible-row cursor and edge fades"
+    },
+    {
+      "entry": "0064bcc0",
+      "role": "end predicate"
+    }
+  ]
+}

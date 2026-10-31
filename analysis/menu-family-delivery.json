@@ -1,0 +1,6547 @@
+{
+  "schema_version": 1,
+  "status": "source-only planning complete; all29 delivery items open; subsequent Credits implementation integrated/native-audited, desktop confirmation pending",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "families": [
+    {
+      "key": "main",
+      "title": "Main menu",
+      "numbered_roles": [
+        "main:1"
+      ],
+      "context": "Existing Main/Exit is accepted. Complete the nine-action hub without claiming other flows until their own delivery gates pass.",
+      "units": [
+        {
+          "key": "main.labels",
+          "title": "Recover live profile/save/date/version labels and original eligibility",
+          "status": "open",
+          "roles": [
+            "main:1"
+          ],
+          "evidence": [
+            "00623dd0",
+            "00626340",
+            "00626b20"
+          ],
+          "requires": [
+            "selected_profile",
+            "save_metadata"
+          ],
+          "depends_on": [
+            "saves.metadata"
+          ],
+          "native_validation": "Audit show/update callbacks against actual current profile and save metadata; refresh after selection and absent save without fabricated values.",
+          "desktop_validation": "Verify labels and eligibility on entry, profile change and absent/valid last-save cases; preserve pointer/keyboard Exit.",
+          "failure_acceptance": "Absent/malformed data follows original disable/error policy; unsupported destinations stay unavailable."
+        },
+        {
+          "key": "main.traversal",
+          "title": "Complete all nine Main actions and return-to-Main behavior",
+          "status": "open",
+          "roles": [
+            "main:1"
+          ],
+          "evidence": [
+            "00623dd0",
+            "00626b20",
+            "0066c950"
+          ],
+          "requires": [
+            "all_destination_flows"
+          ],
+          "depends_on": [
+            "main.labels",
+            "media.cinematics",
+            "options.full",
+            "profiles.manage",
+            "saves.resume",
+            "single.entry",
+            "multi.browser",
+            "media.credits",
+            "multi.standalone"
+          ],
+          "native_validation": "Audit the original event order and each exact target ID; maintain root Back/Exit modal semantics.",
+          "desktop_validation": "Traverse Resume, Profile, Single Player, LAN, Internet, Cinematics, Options, Credits and Exit, returning with original focus/visibility where applicable.",
+          "failure_acceptance": "An unavailable network/game destination is explicitly excluded from full acceptance; no successful empty service completes the hub."
+        }
+      ]
+    },
+    {
+      "key": "dialogs",
+      "title": "Shared dialogs",
+      "numbered_roles": [
+        "main:4"
+      ],
+      "context": "Named confirmations and eight owner-scoped slot-zero instances share artwork but retain different protocols. Password/address dialogs belong to their actual multiplayer flows.",
+      "units": [
+        {
+          "key": "dialogs.runtime",
+          "title": "Integrate genuine runtime requests and preserve named confirmation semantics",
+          "status": "open",
+          "roles": [
+            "main:4"
+          ],
+          "evidence": [
+            "0066c1d0",
+            "00668790",
+            "006688a0",
+            "00668cd0",
+            "00669090",
+            "006693a0"
+          ],
+          "requires": [
+            "engine_assets",
+            "real_request_context"
+          ],
+          "depends_on": [],
+          "native_validation": "Use actual queue/stack/text/control code to audit modes0/1/2/3 and unknown words, raw/localized payload lifetime, Escape/Yes/No/OK, reply order and force-close.",
+          "desktop_validation": "Verify compiled-client caller-to-dialog-to-reply with mouse/keyboard and underneath visibility/focus; retain accepted named Exit behavior. Diagnostic-only acceptance does not establish application caller integration.",
+          "failure_acceptance": "Load/bind failure, busy-open guard, inactive/unknown sender and owner destruction preserve original behavior and native cleanup policy."
+        },
+        {
+          "key": "dialogs.callers",
+          "title": "Validate every owner request/reply and context lifetime in its delivered flow",
+          "status": "open",
+          "roles": [],
+          "evidence": [
+            "0066d780",
+            "0066d7a0",
+            "0066d7c0"
+          ],
+          "requires": [
+            "delivered_requesting_flows"
+          ],
+          "depends_on": [
+            "dialogs.runtime",
+            "profiles.manage",
+            "options.full",
+            "multi.create",
+            "single.items",
+            "single.team",
+            "single.debrief",
+            "ingame.actions",
+            "ingame.player"
+          ],
+          "native_validation": "Cover all20 source helper sites, including raw text and mode0/force-close, with live/rejected reply sequencing and retained callback contexts.",
+          "desktop_validation": "Exercise requests from the actual delivered profiles/options/network/setup/in-game flows; record unavailable environments separately.",
+          "failure_acceptance": "No fixture-generated reply may stand in for a missing application operation; forced close and partial teardown must not use freed contexts."
+        }
+      ]
+    },
+    {
+      "key": "media",
+      "title": "Credits and cinematics",
+      "numbered_roles": [
+        "main:7"
+      ],
+      "context": "Retained-owner status12/13 sequence0 differs from ordinary four-movie startup; selected-profile movie availability/persistence is real data. Either complete flow may supply the shared retained-video controller; the Credits resource is not a prerequisite for Cinematics.",
+      "units": [
+        {
+          "key": "media.credits",
+          "title": "Deliver Main Credits through retained video and return",
+          "status": "open",
+          "roles": [],
+          "evidence": [
+            "00626b20",
+            "006c20f0",
+            "0066eae0",
+            "00688040",
+            "00688c10"
+          ],
+          "requires": [
+            "credits_text_and_fonts",
+            "retained_owner_controller",
+            "menu_music"
+          ],
+          "depends_on": [],
+          "native_validation": "Actual script/font geometry, raw CE tags/columns, render-driven exhaustion and3000ms dwell; queue/status12 retention and status13 restore-before-shutdown/delete/start; repeated entry, cleanup/failure and real sound queue seek metadata.",
+          "desktop_validation": "Activate Credits from compiled Main by pointer/keyboard; verify scrolling headings/CE glyphs/columns/fades and music, ignored Space, Escape and natural completion return to the same owner/focus; close during Credits and check disabled audio/subtitle preferences.",
+          "failure_acceptance": "Credits opens no movie or voice. Empty/missing script follows original empty-text3000ms completion; partial text/font/backend failure releases acquired resources and retained owner without reporting successful playback.",
+          "implementation": {
+            "status": "integrated and native-audited; desktop acceptance pending",
+            "contract": "analysis/credits-flow.md",
+            "delivery_checkbox": "open"
+          }
+        },
+        {
+          "key": "media.cinematics",
+          "title": "Deliver available-movie list, selected playback and return",
+          "status": "open",
+          "roles": [
+            "main:7"
+          ],
+          "evidence": [
+            "00614140",
+            "006c20f0",
+            "006b1290"
+          ],
+          "requires": [
+            "selected_profile",
+            "isolated_profile_copy",
+            "movie_list",
+            "video_audio",
+            "retained_owner_controller"
+          ],
+          "depends_on": [],
+          "native_validation": "Audit generated available rows, selected filename, scrolling/selection, unlock/persistence effects and retained source screen/selection.",
+          "desktop_validation": "Enter from Main, select/play permitted movies, skip/finish and return to the same owner/list; Back returns Main.",
+          "failure_acceptance": "Empty/unavailable list, absent movie, decode/open failure and profile-save failure retain real behavior; no hardcoded successful list."
+        }
+      ]
+    },
+    {
+      "key": "options",
+      "title": "Options",
+      "numbered_roles": [
+        "main:6",
+        "ingame:2"
+      ],
+      "context": "Complete widgets exist source-only; page construction, entry synchronization, binding editing and full persistence still require delivery. In-game family2 must not inherit family6-only observer matching accidentally.",
+      "units": [
+        {
+          "key": "options.full",
+          "title": "Deliver all front-end Options pages, binding editors and apply/Back",
+          "status": "open",
+          "roles": [
+            "main:6"
+          ],
+          "evidence": [
+            "0061bea0",
+            "0061cf60",
+            "0061dbc0",
+            "0061e140",
+            "0061e390",
+            "0061f1d0",
+            "0061f350",
+            "0061f5a0",
+            "00620950",
+            "00620960"
+          ],
+          "requires": [
+            "engine_assets",
+            "selected_profile",
+            "isolated_profile_copy",
+            "settings_input_persistence"
+          ],
+          "depends_on": [
+            "dialogs.runtime"
+          ],
+          "native_validation": "Compose actual factories/widgets/observers with all page definitions; audit aliases, visibility/focus, generated bindings, duplicate/cancel capture, key repeat/wheel, programmatic versus notifying writes and exact apply/queue order.",
+          "desktop_validation": "Enter from Main and exercise graphics, sound/music, Controls/mouse/bindings, game and network settings; verify conditional availability, previews, Back/apply, active-binding prompt and reopen/restart persistence on isolated copies.",
+          "failure_acceptance": "Failed resources/settings writes, missing frames and cancelled capture clean up correctly; no enabled page/button may end in an unsupported service."
+        },
+        {
+          "key": "options.ingame",
+          "title": "Deliver Options under retained in-game owner",
+          "status": "open",
+          "roles": [
+            "ingame:2"
+          ],
+          "evidence": [
+            "0067fb00",
+            "0061cf60",
+            "0061bea0",
+            "0067f550"
+          ],
+          "requires": [
+            "real_running_game",
+            "retained_game_owner",
+            "isolated_profile_copy",
+            "settings_input_persistence"
+          ],
+          "depends_on": [
+            "options.full",
+            "ingame.pause"
+          ],
+          "native_validation": "Audit family2 target composition and explicit observer context/ID binding, -1/-2 entry and settings-first Back dispatch using actual settings code.",
+          "desktop_validation": "Open Options from a real compiled running-game menu, change/reopen settings and return to the correct game/menu without stale input or audio.",
+          "failure_acceptance": "Game/session ownership cannot be replaced by a successful fixture owner in production; unavailable real game leaves full acceptance pending."
+        }
+      ]
+    },
+    {
+      "key": "profiles",
+      "title": "Profiles",
+      "numbered_roles": [
+        "main:2"
+      ],
+      "context": "Reuse real startup profile selection/load/save and directory adapters; menu CRUD, validation and list synchronization are additional behavior. All persistence trials use isolated writable copies.",
+      "units": [
+        {
+          "key": "profiles.select",
+          "title": "Deliver profile list selection, labels and Back",
+          "status": "open",
+          "roles": [
+            "main:2"
+          ],
+          "evidence": [
+            "006211b0",
+            "006210b0",
+            "006211e0",
+            "00622a90",
+            "006af1d0"
+          ],
+          "requires": [
+            "isolated_profile_copy",
+            "profile_directories"
+          ],
+          "depends_on": [
+            "dialogs.runtime"
+          ],
+          "native_validation": "Audit iterator-generated retained text, selected/current names, difficulty/description state, real selection/load/apply and cleanup ordering; include empty list and stale selection.",
+          "desktop_validation": "Enter Change Profile, navigate/select actual copied profiles, verify current profile/settings and Main labels after Back.",
+          "failure_acceptance": "Aliased input, missing directory, failed load and empty selection keep original outcomes; never fabricate a default successful profile."
+        },
+        {
+          "key": "profiles.manage",
+          "title": "Deliver create/rename/delete, validation and confirmation",
+          "status": "open",
+          "roles": [
+            "main:2"
+          ],
+          "evidence": [
+            "00621470",
+            "006211e0",
+            "00622a90"
+          ],
+          "requires": [
+            "isolated_profile_copy",
+            "profile_directories",
+            "edit_list_controls"
+          ],
+          "depends_on": [
+            "profiles.select"
+          ],
+          "native_validation": "Audit actual edit/list callbacks, duplicate/invalid names, case/physical mapping, delete confirmation and directory/file failures; preserve original prompt codes and focus restoration.",
+          "desktop_validation": "Create, select, rename, cancel and delete only copied profiles; reopen/restart and compare persisted files plus error dialogs.",
+          "failure_acceptance": "Original profiles remain untouched; partial filesystem failures must not report success or leave UI selection/context dangling."
+        }
+      ]
+    },
+    {
+      "key": "saves",
+      "title": "Saves and loading",
+      "numbered_roles": [],
+      "context": "No extra numbered save/load screen is inferred. Main Resume, mission-list last save and in-game/controller operations are explicit service boundaries. Profile.sav persistence is not a gameplay-save implementation.",
+      "units": [
+        {
+          "key": "saves.metadata",
+          "title": "Recover actual save metadata, labels and eligibility at existing entry points",
+          "status": "open",
+          "roles": [],
+          "evidence": [
+            "00626b20",
+            "006391e0",
+            "0067f550"
+          ],
+          "requires": [
+            "isolated_profile_copy",
+            "save_format_research"
+          ],
+          "depends_on": [],
+          "native_validation": "Research original save/path/query callbacks before implementation; audit valid/missing/malformed/incompatible metadata and preview ownership through real readers.",
+          "desktop_validation": "Validate displayed names/time/preview and enabled state with isolated actual saves at each proven UI entry; do not create a guessed save browser.",
+          "failure_acceptance": "Do not infer loadability from file existence or treat profile payload loading as a game-save result."
+        },
+        {
+          "key": "saves.resume",
+          "title": "Deliver last-save activation through a real controller handoff",
+          "status": "open",
+          "roles": [],
+          "evidence": [
+            "00626b20",
+            "00638d30",
+            "0068ce00",
+            "006c20f0"
+          ],
+          "requires": [
+            "isolated_profile_copy",
+            "real_game_loading_receiver"
+          ],
+          "depends_on": [
+            "saves.metadata"
+          ],
+          "native_validation": "Audit selected path, validation, progress/error propagation and exact controller request on success/failure; native receiver traces prove only the interface.",
+          "desktop_validation": "Activate Main/mission/debrief last-save paths with actual compatible saves and verify the real receiving controller/game or explicitly leave that gate pending.",
+          "failure_acceptance": "Missing/corrupt/version-mismatched save and cancellation must return through proven behavior; no synthetic successful load."
+        },
+        {
+          "key": "saves.ingame",
+          "title": "Deliver proven in-game save/load/restart operations and return",
+          "status": "open",
+          "roles": [],
+          "evidence": [
+            "0067f550",
+            "00680680",
+            "006c20f0"
+          ],
+          "requires": [
+            "isolated_profile_copy",
+            "real_running_game",
+            "real_game_loading_receiver"
+          ],
+          "depends_on": [
+            "saves.resume",
+            "ingame.pause"
+          ],
+          "native_validation": "Recover each original eligibility/operation/status branch before wiring; audit request payloads, progress mode0/force-close and error paths without inventing standalone UI.",
+          "desktop_validation": "Exercise permitted operations on an actual running compiled game with copied saves, including restart/cancel/failure and correct resumed owner.",
+          "failure_acceptance": "Native operation counters or fixture data never establish successful gameplay save/restore; production settings/profiles remain isolated."
+        }
+      ]
+    },
+    {
+      "key": "single",
+      "title": "Single player",
+      "numbered_roles": [
+        "main:3",
+        "main:5",
+        "hero:1",
+        "hero:4",
+        "team:1",
+        "team:2",
+        "items:1",
+        "items:2",
+        "debrief:1",
+        "debrief:2",
+        "campaign:1"
+      ],
+      "context": "Hero/team/equipment/debrief interfaces can be audited with actual decoded data and isolated profiles; real descriptor/briefing/game and post-mission transitions require their real receiving owners. Gameplay implementation is outside the menu milestone.",
+      "units": [
+        {
+          "key": "single.entry",
+          "title": "Deliver Campaign/Lone Wolf/Carnage selection and mission selection",
+          "status": "open",
+          "roles": [
+            "main:3",
+            "main:5"
+          ],
+          "evidence": [
+            "0063b590",
+            "0063b740",
+            "00638d30",
+            "006391e0",
+            "00639a70",
+            "0063a010"
+          ],
+          "requires": [
+            "game_data_human_store",
+            "isolated_profile_copy"
+          ],
+          "depends_on": [],
+          "native_validation": "Audit mode/mission eligibility, generated campaign/mission groups, selection/preview and exact descriptor payload; distinguish slot5 from Cinematics slot7.",
+          "desktop_validation": "Enter all proven modes from Main, select permitted missions, Back and reopen; verify activation with actual decoded data and downstream transition when available.",
+          "failure_acceptance": "Empty/locked campaigns, missing preview/data and invalid selection keep original gates; no fabricated available mission list."
+        },
+        {
+          "key": "single.hero",
+          "title": "Deliver hero stats and named confirmation",
+          "status": "open",
+          "roles": [
+            "hero:1",
+            "hero:4"
+          ],
+          "evidence": [
+            "006971b0",
+            "00697600",
+            "00697710",
+            "00697a50",
+            "00696dc0",
+            "00697510"
+          ],
+          "requires": [
+            "game_data_human_store",
+            "descriptor_data"
+          ],
+          "depends_on": [
+            "single.entry"
+          ],
+          "native_validation": "Audit specialization/stat updates, accept/Back confirmation and original HumanStore values/payloads; preserve empty slots 2/3 and slot4 ID.",
+          "desktop_validation": "Traverse actual hero entry, change permitted values, accept or cancel confirmation and verify next/previous descriptor state.",
+          "failure_acceptance": "No renumbering, empty-slot alias or silent default data; failed preparation stops progression."
+        },
+        {
+          "key": "single.team",
+          "title": "Deliver squad/team roster, selection modal and description",
+          "status": "open",
+          "roles": [
+            "team:1",
+            "team:2"
+          ],
+          "evidence": [
+            "00691280",
+            "00691cb0",
+            "00691840",
+            "00693590",
+            "00691020"
+          ],
+          "requires": [
+            "game_data_human_store",
+            "descriptor_data",
+            "description_assets"
+          ],
+          "depends_on": [
+            "single.hero",
+            "dialogs.runtime"
+          ],
+          "native_validation": "Audit real roster constraints, conditional slot2/auto-assign, photo callbacks, medals/description and selection/confirmation return.",
+          "desktop_validation": "Use real decoded roster data to select/reassign soldiers, open/cancel selection, inspect description and verify forward/Back descriptor behavior.",
+          "failure_acceptance": "Absent conditional slot, missing soldier/frame and invalid assignments retain gates; temporary visual fixtures do not prove campaign progression."
+        },
+        {
+          "key": "single.items",
+          "title": "Deliver equipment/inventory/store, selection and validation",
+          "status": "open",
+          "roles": [
+            "items:1",
+            "items:2"
+          ],
+          "evidence": [
+            "00675980",
+            "006739a0",
+            "00674560",
+            "006763b0",
+            "00676d10",
+            "006761a0",
+            "006755f0",
+            "00677d00",
+            "00675f30",
+            "00673dd0"
+          ],
+          "requires": [
+            "game_data_human_store",
+            "descriptor_data",
+            "inventory_services",
+            "description_assets"
+          ],
+          "depends_on": [
+            "single.team",
+            "dialogs.runtime"
+          ],
+          "native_validation": "Audit real item/category data, generated equipment slots, pick/drag/select/description, conditional modal, inventory validation, prompts and 020000c1/c6 preparation.",
+          "desktop_validation": "Equip/unequip permitted items, change soldier, inspect descriptions and exercise validation/confirmation then forward/Back with original data.",
+          "failure_acceptance": "Reject invalid/over-capacity/unavailable items and resource failures according to recovered code; no dummy inventory/progression success."
+        },
+        {
+          "key": "single.briefing",
+          "title": "Recover and validate descriptor-to-briefing/game handoff",
+          "status": "open",
+          "roles": [],
+          "evidence": [
+            "006c0ef0",
+            "006c20f0",
+            "0066c950"
+          ],
+          "requires": [
+            "real_briefing_receiver",
+            "real_game_entry_receiver"
+          ],
+          "depends_on": [
+            "single.items"
+          ],
+          "native_validation": "Research kind5 briefing owner/interface and kind7 receiving path before implementation; audit actual request data and cleanup/ownership at the boundary.",
+          "desktop_validation": "Verify actual receiving owner acknowledges entry and Back where original behavior allows; record absence as a blocked integration gate, not another guessed registry screen.",
+          "failure_acceptance": "Fixture receivers can validate payload/order only. Do not expand into speculative gameplay or claim a successful handoff without a real receiver."
+        },
+        {
+          "key": "single.debrief",
+          "title": "Deliver mission debrief, conditional diary and next/retry/return",
+          "status": "open",
+          "roles": [
+            "debrief:1",
+            "debrief:2"
+          ],
+          "evidence": [
+            "0068d2f0",
+            "0068ead0",
+            "0068f3d0",
+            "0068e0f0",
+            "0068d5c0",
+            "0068ce00"
+          ],
+          "requires": [
+            "real_mission_result_data",
+            "isolated_profile_copy",
+            "descriptor_data"
+          ],
+          "depends_on": [
+            "single.briefing",
+            "dialogs.runtime"
+          ],
+          "native_validation": "Audit actual results/soldier panels, diary gate, multipage text, prompts, save preparation and next/retry/Main-return requests; decoded captured result data tests UI independently.",
+          "desktop_validation": "Present real post-mission results, traverse diary/Back, continue/retry/return Main and verify persistence and receiving state.",
+          "failure_acceptance": "Captured-result UI acceptance is separate from live post-mission acceptance; absent/corrupt results and failed saves cannot advance silently."
+        },
+        {
+          "key": "single.campaign",
+          "title": "Deliver campaign debrief variants and sentinel failures",
+          "status": "open",
+          "roles": [
+            "campaign:1"
+          ],
+          "evidence": [
+            "0068bd10",
+            "0068bdd0",
+            "0068bde0",
+            "0068c0f0",
+            "0068bd70"
+          ],
+          "requires": [
+            "campaign_model_resolution",
+            "real_mission_result_data",
+            "descriptor_data"
+          ],
+          "depends_on": [
+            "single.debrief"
+          ],
+          "native_validation": "Audit all20 table rows:11 model variants of one role, non-null empty load attempt, four selectable null failures and four unselectable padding rows; no fabricated Back for RET dispatcher.",
+          "desktop_validation": "Resolve actual layered models, present reachable campaign-result variants and verify real controller continuation; guard-admitted rows need actual reachability evidence.",
+          "failure_acceptance": "Do not coerce empty to null, substitute a model or count variants as separate screens; unresolved resources leave visual acceptance pending."
+        }
+      ]
+    },
+    {
+      "key": "multi",
+      "title": "Multiplayer",
+      "numbered_roles": [
+        "main:8",
+        "main:9",
+        "main:10",
+        "main:11",
+        "main:12",
+        "main:13",
+        "main:14",
+        "connection:1",
+        "connection:2"
+      ],
+      "context": "UI contracts can use controlled server/session records for native audits. Functional LAN/create/join and any proven lobby/pre-game behavior need real local service/session endpoints; unavailable legacy Internet service remains explicitly unverified. Recover lobby ownership from existing owner/service routes before adding UI, rather than guessing another registry.",
+      "units": [
+        {
+          "key": "multi.browser",
+          "title": "Deliver LAN/Internet browser with real refresh/selection/Back",
+          "status": "open",
+          "roles": [
+            "main:8"
+          ],
+          "evidence": [
+            "006333c0",
+            "00633f80",
+            "006344b0"
+          ],
+          "requires": [
+            "real_local_network_service",
+            "server_list_controls"
+          ],
+          "depends_on": [],
+          "native_validation": "Audit actual server-row population, refresh/filter/selection eligibility, expiry and LAN/Internet preparation against controlled records; fixtures never stand in for a production discovery service.",
+          "desktop_validation": "Use controlled local endpoints for LAN discovery/refresh and Back; verify Internet results only if the actual service works, otherwise retain explicit unavailable status.",
+          "failure_acceptance": "Empty result, timeout, stale server and unavailable legacy service differ from success; no permanent canned server list."
+        },
+        {
+          "key": "multi.create",
+          "title": "Deliver create-server settings, map selection and connection preparation",
+          "status": "open",
+          "roles": [
+            "main:9"
+          ],
+          "evidence": [
+            "00628490",
+            "00628e00",
+            "006333c0"
+          ],
+          "requires": [
+            "game_data_human_store",
+            "real_local_network_service",
+            "isolated_profile_copy"
+          ],
+          "depends_on": [
+            "multi.browser",
+            "dialogs.runtime"
+          ],
+          "native_validation": "Audit original map/category rows, settings validation, preparation prompts/replies and connection requests with real map metadata.",
+          "desktop_validation": "Choose valid maps/settings, create a controlled local session, cancel or continue into the real connection owner.",
+          "failure_acceptance": "Invalid settings/map, bind failure, service error and prompt cancellation preserve original cleanup and return behavior."
+        },
+        {
+          "key": "multi.filters",
+          "title": "Deliver server filters and selected game information",
+          "status": "open",
+          "roles": [
+            "main:11",
+            "main:12"
+          ],
+          "evidence": [
+            "00638590",
+            "0062f3e0",
+            "00633f80",
+            "006333c0"
+          ],
+          "requires": [
+            "server_records",
+            "real_local_network_service"
+          ],
+          "depends_on": [
+            "multi.browser"
+          ],
+          "native_validation": "Audit filter state and resulting visibility, information binding lifetime and Join eligibility while server data changes.",
+          "desktop_validation": "Change/reopen filters, inspect a real selected server, return to browser and Join only when available.",
+          "failure_acceptance": "Disappearing/stale records cannot retain dangling callbacks or join a different server silently."
+        },
+        {
+          "key": "multi.addserver",
+          "title": "Deliver Add Server address/port editing and cancellation",
+          "status": "open",
+          "roles": [
+            "main:14"
+          ],
+          "evidence": [
+            "00636ff0",
+            "00637440",
+            "00626b20"
+          ],
+          "requires": [
+            "edit_controls",
+            "real_local_network_service"
+          ],
+          "depends_on": [
+            "multi.browser"
+          ],
+          "native_validation": "Audit two visible fields/defaults, hidden password-model binput, actual validation/add callback and discard-before-pop.",
+          "desktop_validation": "Add a controlled endpoint, test invalid input and cancel/Back, then verify the real browser update.",
+          "failure_acceptance": "Address/port rejection and network failure are real outcomes; do not reuse password callbacks or silently accept invalid input."
+        },
+        {
+          "key": "multi.join",
+          "title": "Deliver ordinary Join/password/connection console and lobby/game handoff",
+          "status": "open",
+          "roles": [
+            "main:10",
+            "main:13"
+          ],
+          "evidence": [
+            "006333c0",
+            "00637990",
+            "006377c0",
+            "00637970",
+            "00632080",
+            "006322c0",
+            "00632490"
+          ],
+          "requires": [
+            "real_local_network_service",
+            "real_network_game_receiver"
+          ],
+          "depends_on": [
+            "multi.create",
+            "multi.filters",
+            "multi.addserver"
+          ],
+          "native_validation": "Trace actual lobby/pre-game session ownership from original status9/session callers before coding; no standalone lobby registration is inferred. Audit selected server copy, password+82 predicate, modal10 entry/focus, cancellation/discard and console lifecycle; success requires the actual receiving session/game owner.",
+          "desktop_validation": "Join controlled protected/unprotected local sessions through real callbacks, test wrong password/cancel/disconnect and verify the real receiving owner.",
+          "failure_acceptance": "Wrong/stale password, timeout and connection rejection must clean up without a synthetic connected state."
+        },
+        {
+          "key": "multi.standalone",
+          "title": "Deliver standalone connection console/regular password and return",
+          "status": "open",
+          "roles": [
+            "connection:1",
+            "connection:2"
+          ],
+          "evidence": [
+            "0068a460",
+            "0068a710",
+            "0068a990",
+            "0068ad20",
+            "0068aed0",
+            "006c20f0"
+          ],
+          "requires": [
+            "real_local_network_service",
+            "real_network_game_receiver"
+          ],
+          "depends_on": [
+            "multi.join"
+          ],
+          "native_validation": "Audit controller status7/8 session modes, timer state5 regular slot2, edit callbacks, Exit Game action and actual status9 handoff; preserve distinction from ordinary modal10.",
+          "desktop_validation": "Enter both real controller connection modes; exercise password success/failure, Back/Exit and receiving state.",
+          "failure_acceptance": "No modal substitution, owner merge or fake session success; missing external service leaves functional gate pending."
+        }
+      ]
+    },
+    {
+      "key": "ingame",
+      "title": "In-game menu",
+      "numbered_roles": [
+        "ingame:1",
+        "ingame:3"
+      ],
+      "context": "A standalone native audit can inspect the retained-owner protocol and real UI builders using supplied data. Full pause/resume/session/save acceptance requires an actual running compiled game owner; no successful placeholder game.",
+      "units": [
+        {
+          "key": "ingame.pause",
+          "title": "Deliver retained pause-menu entry and ordinary resume",
+          "status": "open",
+          "roles": [
+            "ingame:1"
+          ],
+          "evidence": [
+            "0069e620",
+            "0067f350",
+            "0067fb00",
+            "00680680",
+            "0067f550",
+            "006c20f0"
+          ],
+          "requires": [
+            "real_running_game",
+            "retained_game_owner",
+            "ingame_model_resolution"
+          ],
+          "depends_on": [],
+          "native_validation": "Audit -1/-2 entries, mode guards, retained+5b8 ownership, conditional products, queue/input/audio/pause order and status15 restoration using actual code plus trace-only receiver fixtures.",
+          "desktop_validation": "Open from a real running compiled game, navigate allowed actions and Back/resume repeatedly; verify the same real game owner, input/audio and teardown.",
+          "failure_acceptance": "Fixtures prove protocol only; absent running-game integration or main_ingame resource cannot pass full delivery."
+        },
+        {
+          "key": "ingame.player",
+          "title": "Deliver player/equipment/soldiers, description and information panel",
+          "status": "open",
+          "roles": [
+            "ingame:3"
+          ],
+          "evidence": [
+            "00682980",
+            "006835e0",
+            "00684390",
+            "00684890",
+            "0067a770",
+            "006835a0",
+            "00496450",
+            "00496e40",
+            "0067f550"
+          ],
+          "requires": [
+            "real_running_game",
+            "real_session_player_data",
+            "ingame_model_resolution",
+            "inventory_services"
+          ],
+          "depends_on": [
+            "ingame.pause",
+            "single.items"
+          ],
+          "native_validation": "Audit both player models, conditional roster/store/description, session actions and info-panel first-Back dismissal; shared templates retain owner-scoped IDs.",
+          "desktop_validation": "Use actual permitted session modes to enter player UI, change allowed selections, show/hide info/description and return correctly for -1/-2 entries.",
+          "failure_acceptance": "No fixed fake roster/session, model substitution or hidden-panel pop; unavailable modes remain outside live acceptance."
+        },
+        {
+          "key": "ingame.actions",
+          "title": "Deliver original guarded game-action confirmations and maintenance returns",
+          "status": "open",
+          "roles": [],
+          "evidence": [
+            "0067f550",
+            "006827a0",
+            "006c20f0"
+          ],
+          "requires": [
+            "real_running_game",
+            "real_game_action_receivers"
+          ],
+          "depends_on": [
+            "ingame.pause",
+            "ingame.player",
+            "saves.ingame",
+            "options.ingame"
+          ],
+          "native_validation": "Recover each b5/b6/b7/b8/c5/c6 operation and eligibility from original code before wiring; audit prompts, status15/16 and underlying status words, progress/force-close and ordered unwrap.",
+          "desktop_validation": "Exercise permitted real game/session actions, cancel/confirm, maintenance and return-to-front-end; validate actual receiving owners and preserved copied persistence.",
+          "failure_acceptance": "Never infer an operation from its label alone or substitute an acknowledged no-op; game-action fixtures cannot establish full acceptance."
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "families": 9,
+    "delivery_units": 29,
+    "populated_numbered_roles": 28,
+    "reserved_excluded": [
+      "hero:2",
+      "hero:3"
+    ],
+    "shared_auxiliary_products": 12,
+    "routes": 71,
+    "control_source_sites": 512,
+    "dynamic_categories": 13,
+    "prompt_sites": 20,
+    "newly_delivered_flows": 0
+  },
+  "validation_levels": {
+    "native": "Temporary native ASan/UBSan audits use actual recovered UI/data/queue/ownership code. Supplied fixtures record boundary requests and never claim game/network/media success. No permanent new tests.",
+    "build": "Relevant existing native/tooling checks, evidence maps, strict i386 compile/link and frozen ledger; never execute Windows fixtures.",
+    "compiled_ui": "Integrate genuine model/text/input/settings/resource and callback owners in the compiled client; preserve accepted Main/Exit and failure cleanup.",
+    "desktop": "Only actual user desktop tests establish interactive acceptance; preserve build/log/fixture provenance and exact exclusions.",
+    "external": "Game/briefing/loading/result/session/network receivers must be real for full handoff acceptance. When unavailable, record independent UI verification and pending receiver separately."
+  },
+  "common_completion_gates": [
+    "Research each selected checkbox entire original dependency boundary before implementation; no new successful placeholder service.",
+    "Complete entry, real action and Back/cancel/return with exact queue/focus/visibility and owner lifetime.",
+    "Use original assets, labels/styles, original owner-scoped IDs and conditional gates; resolve required layered resources rather than substituting models.",
+    "Audit success and real failure/partial teardown; run relevant existing checks and temporary sanitizers when C++ changes.",
+    "Integrate in the compiled client and obtain user desktop confirmation for the claimed UI/environment before checking a delivery item.",
+    "Record source-only, UI-only and real handoff acceptance separately; only implemented frozen original bodies receive credit.",
+    "Commit only on explicit request after required desktop confirmation; current no-commit instruction remains active."
+  ],
+  "coverage": {
+    "role_primary_family": {
+      "main:1": "main",
+      "main:4": "dialogs",
+      "main:7": "media",
+      "main:6": "options",
+      "ingame:2": "options",
+      "main:2": "profiles",
+      "main:3": "single",
+      "main:5": "single",
+      "hero:1": "single",
+      "hero:4": "single",
+      "team:1": "single",
+      "team:2": "single",
+      "items:1": "single",
+      "items:2": "single",
+      "debrief:1": "single",
+      "debrief:2": "single",
+      "campaign:1": "single",
+      "main:8": "multi",
+      "main:9": "multi",
+      "main:10": "multi",
+      "main:11": "multi",
+      "main:12": "multi",
+      "main:13": "multi",
+      "main:14": "multi",
+      "connection:1": "multi",
+      "connection:2": "multi",
+      "ingame:1": "ingame",
+      "ingame:3": "ingame"
+    },
+    "shared_product_primary_family": {
+      "main:runtime": "dialogs",
+      "ingame:runtime": "dialogs",
+      "hero:runtime": "dialogs",
+      "campaign:runtime": "dialogs",
+      "debrief:runtime": "dialogs",
+      "team:runtime": "dialogs",
+      "items:runtime": "dialogs",
+      "connection:runtime": "dialogs",
+      "team:description": "single",
+      "items:description": "single",
+      "ingame:description": "ingame",
+      "ingame:info": "ingame"
+    },
+    "routes": [
+      {
+        "index": 0,
+        "from": "main:1",
+        "to": "main:2",
+        "units": [
+          "profiles.select"
+        ],
+        "families": [
+          "main",
+          "profiles"
+        ],
+        "evidence": [
+          "0062456c",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 1,
+        "from": "main:1",
+        "to": "main:3",
+        "units": [
+          "single.entry"
+        ],
+        "families": [
+          "main",
+          "single"
+        ],
+        "evidence": [
+          "00624660",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 2,
+        "from": "main:1",
+        "to": "main:7",
+        "units": [
+          "media.cinematics"
+        ],
+        "families": [
+          "main",
+          "media"
+        ],
+        "evidence": [
+          "0062493c",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 3,
+        "from": "main:1",
+        "to": "main:4",
+        "units": [
+          "main.traversal"
+        ],
+        "families": [
+          "dialogs",
+          "main"
+        ],
+        "evidence": [
+          "00624c1b",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 4,
+        "from": "main:1",
+        "to": "main:8",
+        "units": [
+          "multi.browser"
+        ],
+        "families": [
+          "main",
+          "multi"
+        ],
+        "evidence": [
+          "00623dd0",
+          "006333c0"
+        ]
+      },
+      {
+        "index": 5,
+        "from": "main:1",
+        "to": "main:6",
+        "units": [
+          "options.full"
+        ],
+        "families": [
+          "main",
+          "options"
+        ],
+        "evidence": [
+          "0061bea0"
+        ]
+      },
+      {
+        "index": 6,
+        "from": "main:3",
+        "to": "main:5",
+        "units": [
+          "single.entry"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "0063b740",
+          "00638d30"
+        ]
+      },
+      {
+        "index": 7,
+        "from": "main:3",
+        "to": "service:descriptor_next",
+        "units": [
+          "single.entry",
+          "single.briefing"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "0063b740",
+          "00638d30",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 8,
+        "from": "main:5",
+        "to": "service:descriptor_next",
+        "units": [
+          "single.entry",
+          "single.briefing"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00638d30"
+        ]
+      },
+      {
+        "index": 9,
+        "from": "main:8",
+        "to": "main:9",
+        "units": [
+          "multi.create"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "00633f80",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 10,
+        "from": "main:8",
+        "to": "main:11",
+        "units": [
+          "multi.filters"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "00633f80",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 11,
+        "from": "main:8",
+        "to": "main:12",
+        "units": [
+          "multi.filters"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "00633f80",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 12,
+        "from": "main:8",
+        "to": "main:14",
+        "units": [
+          "multi.addserver"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "00633f80",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 13,
+        "from": "main:8",
+        "to": "main:13",
+        "units": [
+          "multi.join"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "006333c0"
+        ]
+      },
+      {
+        "index": 14,
+        "from": "main:8",
+        "to": "main:10",
+        "units": [
+          "multi.join"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "006333c0",
+          "00637990"
+        ]
+      },
+      {
+        "index": 15,
+        "from": "main:12",
+        "to": "main:13",
+        "units": [
+          "multi.join"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "006333c0"
+        ]
+      },
+      {
+        "index": 16,
+        "from": "main:12",
+        "to": "main:10",
+        "units": [
+          "multi.join"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "006333c0",
+          "00637990"
+        ]
+      },
+      {
+        "index": 17,
+        "from": "main:9",
+        "to": "main:13",
+        "units": [
+          "multi.create",
+          "multi.join"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "00628490",
+          "006333c0"
+        ]
+      },
+      {
+        "index": 18,
+        "from": "main:13",
+        "to": "service:network_game",
+        "units": [
+          "multi.join"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "006333c0",
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 19,
+        "from": "main:13",
+        "to": "service:previous_screen",
+        "units": [
+          "multi.join"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "006322c0"
+        ]
+      },
+      {
+        "index": 20,
+        "from": "main:10",
+        "to": "service:previous_screen",
+        "units": [
+          "multi.join"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "00626b20"
+        ]
+      },
+      {
+        "index": 21,
+        "from": "main:14",
+        "to": "service:previous_screen",
+        "units": [
+          "multi.addserver"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "00626b20"
+        ]
+      },
+      {
+        "index": 22,
+        "from": "main:1",
+        "to": "service:last_save",
+        "units": [
+          "saves.resume"
+        ],
+        "families": [
+          "main",
+          "saves"
+        ],
+        "evidence": [
+          "00626b20"
+        ]
+      },
+      {
+        "index": 23,
+        "from": "main:1",
+        "to": "state:video",
+        "units": [
+          "media.credits"
+        ],
+        "families": [
+          "main",
+          "media"
+        ],
+        "evidence": [
+          "00626b20",
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 24,
+        "from": "main:7",
+        "to": "state:video",
+        "units": [
+          "media.cinematics"
+        ],
+        "families": [
+          "media"
+        ],
+        "evidence": [
+          "00614140",
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 25,
+        "from": "state:video",
+        "to": "service:retained_owner",
+        "units": [
+          "media.credits",
+          "media.cinematics"
+        ],
+        "families": [
+          "media"
+        ],
+        "evidence": [
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 26,
+        "from": "state:game",
+        "to": "ingame:1",
+        "units": [
+          "ingame.pause"
+        ],
+        "families": [
+          "ingame"
+        ],
+        "evidence": [
+          "006c20f0",
+          "0069e620"
+        ]
+      },
+      {
+        "index": 27,
+        "from": "state:game",
+        "to": "ingame:3",
+        "units": [
+          "ingame.pause",
+          "ingame.player"
+        ],
+        "families": [
+          "ingame"
+        ],
+        "evidence": [
+          "006c20f0",
+          "00699900",
+          "00728450",
+          "0069e620"
+        ]
+      },
+      {
+        "index": 28,
+        "from": "ingame:1",
+        "to": "ingame:2",
+        "units": [
+          "options.ingame"
+        ],
+        "families": [
+          "ingame",
+          "options"
+        ],
+        "evidence": [
+          "00680680",
+          "0061bea0"
+        ]
+      },
+      {
+        "index": 29,
+        "from": "ingame:1",
+        "to": "ingame:3",
+        "units": [
+          "ingame.player"
+        ],
+        "families": [
+          "ingame"
+        ],
+        "evidence": [
+          "00680680"
+        ]
+      },
+      {
+        "index": 30,
+        "from": "ingame:2",
+        "to": "service:previous_screen",
+        "units": [
+          "options.ingame"
+        ],
+        "families": [
+          "options"
+        ],
+        "evidence": [
+          "0067f550",
+          "0061bea0"
+        ]
+      },
+      {
+        "index": 31,
+        "from": "ingame:3",
+        "to": "service:previous_screen",
+        "units": [
+          "ingame.player"
+        ],
+        "families": [
+          "ingame"
+        ],
+        "evidence": [
+          "0067f550",
+          "0061bea0"
+        ]
+      },
+      {
+        "index": 32,
+        "from": "ingame:1",
+        "to": "state:game",
+        "units": [
+          "ingame.pause"
+        ],
+        "families": [
+          "ingame"
+        ],
+        "evidence": [
+          "0067f550",
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 33,
+        "from": "ingame:3",
+        "to": "state:game",
+        "units": [
+          "ingame.player"
+        ],
+        "families": [
+          "ingame"
+        ],
+        "evidence": [
+          "0067f550",
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 34,
+        "from": "ingame:1",
+        "to": "service:game_action",
+        "units": [
+          "ingame.actions"
+        ],
+        "families": [
+          "ingame"
+        ],
+        "evidence": [
+          "0067f550",
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 35,
+        "from": "ingame:1",
+        "to": "service:game_action",
+        "units": [
+          "ingame.actions",
+          "saves.ingame"
+        ],
+        "families": [
+          "ingame",
+          "saves"
+        ],
+        "evidence": [
+          "0067f550",
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 36,
+        "from": "ingame:3",
+        "to": "ingame:info",
+        "units": [
+          "ingame.player"
+        ],
+        "families": [
+          "ingame"
+        ],
+        "evidence": [
+          "00682980",
+          "0067f350",
+          "00496450"
+        ]
+      },
+      {
+        "index": 37,
+        "from": "ingame:info",
+        "to": "service:previous_screen",
+        "units": [
+          "ingame.player"
+        ],
+        "families": [
+          "ingame"
+        ],
+        "evidence": [
+          "0067f550",
+          "00496e40"
+        ]
+      },
+      {
+        "index": 38,
+        "from": "hero:1",
+        "to": "hero:4",
+        "units": [
+          "single.hero"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00696dc0"
+        ]
+      },
+      {
+        "index": 39,
+        "from": "hero:4",
+        "to": "hero:1",
+        "units": [
+          "single.hero"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00697510",
+          "00696dc0"
+        ]
+      },
+      {
+        "index": 40,
+        "from": "hero:1",
+        "to": "service:descriptor_next",
+        "units": [
+          "single.hero"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00696dc0",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 41,
+        "from": "team:1",
+        "to": "team:2",
+        "units": [
+          "single.team"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00693590",
+          "00691280"
+        ]
+      },
+      {
+        "index": 42,
+        "from": "team:2",
+        "to": "team:1",
+        "units": [
+          "single.team"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00691020"
+        ]
+      },
+      {
+        "index": 43,
+        "from": "team:1",
+        "to": "service:descriptor_next",
+        "units": [
+          "single.team"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00691020",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 44,
+        "from": "team:1",
+        "to": "team:runtime",
+        "units": [
+          "single.team",
+          "dialogs.callers"
+        ],
+        "families": [
+          "dialogs",
+          "single"
+        ],
+        "evidence": [
+          "00691020",
+          "0066d7a0"
+        ]
+      },
+      {
+        "index": 45,
+        "from": "items:1",
+        "to": "items:2",
+        "units": [
+          "single.items"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00673dd0"
+        ]
+      },
+      {
+        "index": 46,
+        "from": "items:2",
+        "to": "items:1",
+        "units": [
+          "single.items"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00673dd0"
+        ]
+      },
+      {
+        "index": 47,
+        "from": "items:1",
+        "to": "items:runtime",
+        "units": [
+          "single.items",
+          "dialogs.callers"
+        ],
+        "families": [
+          "dialogs",
+          "single"
+        ],
+        "evidence": [
+          "00673dd0",
+          "0066d7a0"
+        ]
+      },
+      {
+        "index": 48,
+        "from": "items:1",
+        "to": "service:equipment_progress",
+        "units": [
+          "single.items",
+          "single.briefing"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00673dd0"
+        ]
+      },
+      {
+        "index": 49,
+        "from": "debrief:1",
+        "to": "debrief:2",
+        "units": [
+          "single.debrief"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "0068ead0"
+        ]
+      },
+      {
+        "index": 50,
+        "from": "debrief:2",
+        "to": "debrief:1",
+        "units": [
+          "single.debrief"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "0068d5c0",
+          "0068ce00"
+        ]
+      },
+      {
+        "index": 51,
+        "from": "debrief:1",
+        "to": "debrief:runtime",
+        "units": [
+          "single.debrief",
+          "dialogs.callers"
+        ],
+        "families": [
+          "dialogs",
+          "single"
+        ],
+        "evidence": [
+          "0068ce00"
+        ]
+      },
+      {
+        "index": 52,
+        "from": "debrief:1",
+        "to": "service:descriptor_next",
+        "units": [
+          "single.debrief",
+          "saves.resume"
+        ],
+        "families": [
+          "saves",
+          "single"
+        ],
+        "evidence": [
+          "0068ce00"
+        ]
+      },
+      {
+        "index": 53,
+        "from": "debrief:1",
+        "to": "main:1",
+        "units": [
+          "single.debrief"
+        ],
+        "families": [
+          "main",
+          "single"
+        ],
+        "evidence": [
+          "0068ce00",
+          "0066c950",
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 54,
+        "from": "debrief:1",
+        "to": "service:descriptor_next",
+        "units": [
+          "single.debrief",
+          "saves.resume"
+        ],
+        "families": [
+          "saves",
+          "single"
+        ],
+        "evidence": [
+          "0068ce00"
+        ]
+      },
+      {
+        "index": 55,
+        "from": "service:descriptor_next",
+        "to": "service:descriptor_owner",
+        "units": [
+          "single.briefing"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "0066c950",
+          "006c20f0",
+          "006c0ef0"
+        ]
+      },
+      {
+        "index": 56,
+        "from": "service:descriptor_previous",
+        "to": "service:descriptor_owner",
+        "units": [
+          "single.briefing"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "0066c950",
+          "006c20f0",
+          "006c0ef0"
+        ]
+      },
+      {
+        "index": 57,
+        "from": "service:descriptor_owner",
+        "to": "hero:1",
+        "units": [
+          "single.hero"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "006c0ef0",
+          "006971b0"
+        ]
+      },
+      {
+        "index": 58,
+        "from": "service:descriptor_owner",
+        "to": "campaign:1",
+        "units": [
+          "single.campaign"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "006c0ef0",
+          "0068bde0"
+        ]
+      },
+      {
+        "index": 59,
+        "from": "service:descriptor_owner",
+        "to": "debrief:1",
+        "units": [
+          "single.debrief"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "006c0ef0",
+          "0068d2f0"
+        ]
+      },
+      {
+        "index": 60,
+        "from": "service:descriptor_owner",
+        "to": "team:1",
+        "units": [
+          "single.team"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "006c0ef0",
+          "00691280"
+        ]
+      },
+      {
+        "index": 61,
+        "from": "service:descriptor_owner",
+        "to": "items:1",
+        "units": [
+          "single.items"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "006c0ef0",
+          "00675980"
+        ]
+      },
+      {
+        "index": 62,
+        "from": "state:7",
+        "to": "connection:1",
+        "units": [
+          "multi.standalone"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 63,
+        "from": "state:8",
+        "to": "connection:1",
+        "units": [
+          "multi.standalone"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 64,
+        "from": "connection:1",
+        "to": "connection:2",
+        "units": [
+          "multi.standalone"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "0068aed0",
+          "0068ad20",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 65,
+        "from": "connection:1",
+        "to": "service:network_game",
+        "units": [
+          "multi.standalone"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "0068a710",
+          "006c20f0"
+        ]
+      },
+      {
+        "index": 66,
+        "from": "connection:1",
+        "to": "service:quit",
+        "units": [
+          "multi.standalone"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "0068a710",
+          "0066c950"
+        ]
+      },
+      {
+        "index": 67,
+        "from": "connection:2",
+        "to": "service:previous_screen",
+        "units": [
+          "multi.standalone"
+        ],
+        "families": [
+          "multi"
+        ],
+        "evidence": [
+          "0068a710"
+        ]
+      },
+      {
+        "index": 68,
+        "from": "team:1",
+        "to": "team:description",
+        "units": [
+          "single.team"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00691280"
+        ]
+      },
+      {
+        "index": 69,
+        "from": "items:1",
+        "to": "items:description",
+        "units": [
+          "single.items"
+        ],
+        "families": [
+          "single"
+        ],
+        "evidence": [
+          "00675980"
+        ]
+      },
+      {
+        "index": 70,
+        "from": "ingame:3",
+        "to": "ingame:description",
+        "units": [
+          "ingame.player"
+        ],
+        "families": [
+          "ingame"
+        ],
+        "evidence": [
+          "00682980"
+        ]
+      }
+    ],
+    "controls": [
+      {
+        "function": "00614140",
+        "site": "006143b6",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "0061446d",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "006144d4",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "0061453b",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "00614683",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "0061477d",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "00614832",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "00614acb",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "00614b24",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "00614c8e",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "00614cb3",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "00614cd8",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00614140",
+        "site": "00614d1e",
+        "families": [
+          "media"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d1f8",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d2ca",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d39c",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d46e",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d526",
+        "families": [
+          "options"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d5a8",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d6f9",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d7ff",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d8af",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d8fe",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d94d",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061cf60",
+        "site": "0061d9c0",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061dc98",
+        "families": [
+          "options"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061dd47",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061dd6c",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061dd91",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061dde0",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061de1a",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061de90",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061decf",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061df0e",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061df4d",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061dfa7",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061dfe6",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061e025",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061dbc0",
+        "site": "0061e073",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e140",
+        "site": "0061e150",
+        "families": [
+          "options"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0061e140",
+        "site": "0061e1ff",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e140",
+        "site": "0061e224",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e140",
+        "site": "0061e249",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e140",
+        "site": "0061e298",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e140",
+        "site": "0061e2bd",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e140",
+        "site": "0061e31b",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e140",
+        "site": "0061e355",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061e3fe",
+        "families": [
+          "options"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061e5fa",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061e63f",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061e6f1",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061e736",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061e829",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061e86e",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061e920",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061e965",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061ea55",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061ea9a",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061eb4c",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061eb91",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061ec7c",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061ecc1",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061eda7",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061ee29",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061ee88",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061eebe",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061eef6",
+        "families": [
+          "options"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061ef34",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061ef59",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061efe1",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061f140",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061e390",
+        "site": "0061f17f",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f1d0",
+        "site": "0061f1e0",
+        "families": [
+          "options"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0061f1d0",
+        "site": "0061f28f",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f1d0",
+        "site": "0061f2b4",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f1d0",
+        "site": "0061f2f3",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f350",
+        "site": "0061f360",
+        "families": [
+          "options"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0061f350",
+        "site": "0061f40f",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f350",
+        "site": "0061f42f",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f350",
+        "site": "0061f44f",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f350",
+        "site": "0061f474",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f350",
+        "site": "0061f4b3",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f350",
+        "site": "0061f4d8",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f350",
+        "site": "0061f512",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f350",
+        "site": "0061f570",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f5a0",
+        "site": "0061f71e",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f5a0",
+        "site": "0061fa7c",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0061f5a0",
+        "site": "0061fad5",
+        "families": [
+          "options"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00623f0e",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00623fc1",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00624074",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00624127",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006241da",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "0062428d",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00624340",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006243f3",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006244e7",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006245db",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006246cf",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006247c3",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006248b7",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006249ab",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00624a9f",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00624b93",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00624c8a",
+        "families": [
+          "main"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00624dd2",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00624fa7",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006250a8",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006251a5",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006252a2",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "0062539f",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "0062549c",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625599",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625629",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625668",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "0062569e",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006256c3",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006256e8",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006256f6",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "0062571b",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625729",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "0062574e",
+        "families": [
+          "profiles"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006257a1",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006257c6",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "0062587c",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "0062588a",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006258e1",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625938",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "0062598f",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "006259e6",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625a3d",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625a5d",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625a7d",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625a9d",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625af4",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625b19",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625b4f",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625b98",
+        "families": [
+          "dialogs"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625bbd",
+        "families": [
+          "dialogs"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625c02",
+        "families": [
+          "dialogs"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00623dd0",
+        "site": "00625c47",
+        "families": [
+          "dialogs"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "0062857f",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "0062869e",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "006287bb",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "006288be",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "006289cb",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "00628aa1",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "00628b3e",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "00628bab",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "00628bf8",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "00628c1d",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "00628c42",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "00628c67",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "00628c8c",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "00628d36",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628490",
+        "site": "00628d5b",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628e00",
+        "site": "00629223",
+        "families": [
+          "multi"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "00628e00",
+        "site": "006292b5",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628e00",
+        "site": "00629317",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628e00",
+        "site": "00629492",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00628e00",
+        "site": "006294cc",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006295c0",
+        "site": "0062964e",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006295c0",
+        "site": "0062968c",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006295c0",
+        "site": "006298bc",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006295c0",
+        "site": "00629900",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629a40",
+        "site": "00629aca",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629a40",
+        "site": "00629d45",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629a40",
+        "site": "00629d9b",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062a0b4",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062a1f4",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062a333",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062a3e0",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062a5c7",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062a602",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062a877",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062a8b2",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062aadb",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062ab16",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062acc6",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062af14",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062af4f",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062b17e",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062b1b9",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062b3e2",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062b41d",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062b649",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062b684",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062b8a9",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062b8fe",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062ba6d",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062bb87",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062bc4f",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062bd1a",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062bdc6",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062be74",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062bf22",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062bfd0",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00629ee0",
+        "site": "0062c070",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f464",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f495",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f4a3",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f4e2",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f527",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f55d",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f582",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f5a7",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f5cc",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f629",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0062f3e0",
+        "site": "0062f649",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00632080",
+        "site": "006320f2",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00632080",
+        "site": "00632100",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00632080",
+        "site": "00632120",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00632080",
+        "site": "00632140",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "00633fc5",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "00633fea",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "00634013",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "00634052",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "00634091",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "006340d0",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "0063410f",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "0063415b",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "0063419a",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "006341d9",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "0063421e",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "00634263",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "006342c9",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "0063430e",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "00634353",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "006343bc",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "006343e1",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "006343ef",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "006343fd",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "00634422",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00633f80",
+        "site": "00634461",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006344b0",
+        "site": "00634650",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006344b0",
+        "site": "00634707",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00636ff0",
+        "site": "0063708b",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00636ff0",
+        "site": "0063714d",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00636ff0",
+        "site": "00637275",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00636ff0",
+        "site": "0063735b",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00636ff0",
+        "site": "006373cb",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00636ff0",
+        "site": "0063740e",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006377c0",
+        "site": "006377ff",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006377c0",
+        "site": "00637824",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006377c0",
+        "site": "006378a0",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006377c0",
+        "site": "006378e5",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006377c0",
+        "site": "0063792a",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006377c0",
+        "site": "0063794a",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "006385be",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "006385f4",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "0063863e",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "00638663",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "00638688",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "006386ad",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "006386d2",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "006386f7",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "0063871c",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "0063876a",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "006387a0",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "006387c5",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "006387ea",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00638590",
+        "site": "0063880f",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006391e0",
+        "site": "006393ea",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006391e0",
+        "site": "006394c4",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006391e0",
+        "site": "0063953a",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006391e0",
+        "site": "00639603",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006391e0",
+        "site": "0063974c",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006391e0",
+        "site": "00639852",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006391e0",
+        "site": "0063991c",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006391e0",
+        "site": "0063999a",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006391e0",
+        "site": "006399bf",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006391e0",
+        "site": "00639a04",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00639a70",
+        "site": "00639adc",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00639a70",
+        "site": "00639d36",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00639a70",
+        "site": "00639d7c",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00639a70",
+        "site": "00639ed4",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00639a70",
+        "site": "00639f18",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0063a010",
+        "site": "0063a07f",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0063a010",
+        "site": "0063a2dc",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0063a010",
+        "site": "0063a320",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00668790",
+        "site": "006687a2",
+        "families": [
+          "dialogs"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00668790",
+        "site": "006687c7",
+        "families": [
+          "dialogs"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00668790",
+        "site": "00668806",
+        "families": [
+          "dialogs"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00668790",
+        "site": "00668845",
+        "families": [
+          "dialogs"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066ef7b",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f04d",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f097",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f3f7",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f43f",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f4ba",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f502",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f58a",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f5d2",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f6e2",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f72a",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f82f",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f877",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f97c",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066f9c4",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066fa82",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066faca",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066fb8a",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066fbd2",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066fcc6",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0066fd22",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "00670019",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "006700b9",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "00670101",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "00670202",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0067024a",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "00670310",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0067034a",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0067036f",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "00670391",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "006703d5",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "006704ca",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "006704ef",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "00670543",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "006705b3",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "006705ef",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "00670614",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "00670639",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "0067065e",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "00670683",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "006706a8",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "006706cd",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0066ef00",
+        "site": "006706f2",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "00675603",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "00675642",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "00675667",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "00675709",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "00675717",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "00675749",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "0067576e",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "00675793",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "006757e1",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "00675817",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "0067584d",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "00675872",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006755f0",
+        "site": "006758ac",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00675f30",
+        "site": "00675f66",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00675f30",
+        "site": "00675ff3",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00675f30",
+        "site": "0067606d",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00675f30",
+        "site": "006760b2",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006761a0",
+        "site": "00676298",
+        "families": [
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "006761a0",
+        "site": "006762ce",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006761a0",
+        "site": "00676304",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006761a0",
+        "site": "00676336",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006761a0",
+        "site": "00676379",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006763b0",
+        "site": "006765d9",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006763b0",
+        "site": "006766ab",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006763b0",
+        "site": "00676a60",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006763b0",
+        "site": "00676aaf",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067a770",
+        "site": "0067a7e7",
+        "families": [
+          "ingame"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0067a770",
+        "site": "0067a87e",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067a770",
+        "site": "0067a8d3",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067a770",
+        "site": "0067abbd",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067ad70",
+        "site": "0067af58",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067ad70",
+        "site": "0067af8f",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067ad70",
+        "site": "0067b36e",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067ad70",
+        "site": "0067b3bf",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067c270",
+        "site": "0067c2e7",
+        "families": [
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0067c270",
+        "site": "0067c37e",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067c270",
+        "site": "0067c3d3",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067c270",
+        "site": "0067c695",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067c860",
+        "site": "0067ca4a",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067c860",
+        "site": "0067ca81",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067c860",
+        "site": "0067ce53",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0067c860",
+        "site": "0067cea4",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "006806ec",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "00680748",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "00680834",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "0068086a",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "006808c4",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "00680927",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "0068095d",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "00680979",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "00680999",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "006809cf",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "00680a05",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "00680a3b",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "00680a71",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "00680aa7",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00680680",
+        "site": "00680add",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00682abe",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00682c72",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00682d8c",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00682eb6",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00682f53",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00682fd5",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "006830b9",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00683156",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00683263",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00683309",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "0068335e",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "0068336c",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "0068339f",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "006833c4",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "006833e9",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "0068340e",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00683433",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00683458",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "006834a9",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00682980",
+        "site": "00683575",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "00683899",
+        "families": [
+          "ingame"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "00683927",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "00683961",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "00683a33",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "00683a6a",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "00683cdb",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "00683d34",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "00683ed8",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "00683f0f",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "00684197",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "006841e6",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "006842de",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "006835e0",
+        "site": "0068430b",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00684af0",
+        "site": "00684be8",
+        "families": [
+          "ingame"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "00684af0",
+        "site": "00684c0f",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00684af0",
+        "site": "00684c45",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00684af0",
+        "site": "00684c77",
+        "families": [
+          "ingame"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068a990",
+        "site": "0068aad0",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068a990",
+        "site": "0068ab3b",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068a990",
+        "site": "0068abf0",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068a990",
+        "site": "0068ac96",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ad20",
+        "site": "0068ad5f",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ad20",
+        "site": "0068ad84",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ad20",
+        "site": "0068ade5",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ad20",
+        "site": "0068ae2a",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ad20",
+        "site": "0068ae6f",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ad20",
+        "site": "0068ae8f",
+        "families": [
+          "multi"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068c0f0",
+        "site": "0068c115",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068c0f0",
+        "site": "0068c17c",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068c0f0",
+        "site": "0068c1b2",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068d5c0",
+        "site": "0068d6fc",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068d5c0",
+        "site": "0068d7bb",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068d5c0",
+        "site": "0068d93a",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068d5c0",
+        "site": "0068da4d",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068d5c0",
+        "site": "0068db60",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068d5c0",
+        "site": "0068dc66",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e162",
+        "families": [
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e1ea",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e235",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e306",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e351",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e3cd",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e418",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e4ec",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e537",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e5a7",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e5f2",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e6ab",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e6f6",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e76c",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068e0f0",
+        "site": "0068e823",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068eaff",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068eb31",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068eb56",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068eb7b",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068eba0",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068ebb7",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068ec09",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068ec67",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068ecc3",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068ed2e",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "0068ead0",
+        "site": "0068ed64",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691840",
+        "site": "00691893",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691840",
+        "site": "006918ea",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691840",
+        "site": "0069192d",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691840",
+        "site": "00691972",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691cb0",
+        "site": "00691d1c",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691cb0",
+        "site": "00691d8b",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691cb0",
+        "site": "00691dca",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691e10",
+        "site": "00692166",
+        "families": [
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "00691e10",
+        "site": "006921f2",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691e10",
+        "site": "006924d7",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691e10",
+        "site": "00692528",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00691e10",
+        "site": "00692897",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00692950",
+        "site": "00692b32",
+        "families": [
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "00692950",
+        "site": "00692c13",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00692950",
+        "site": "00692c6b",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00692950",
+        "site": "00692e22",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00692950",
+        "site": "00692e7e",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693030",
+        "site": "00693128",
+        "families": [
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "00693030",
+        "site": "0069314f",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693030",
+        "site": "00693185",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693030",
+        "site": "006931b7",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693200",
+        "site": "0069320c",
+        "families": [
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "00693200",
+        "site": "0069323d",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693270",
+        "site": "00693402",
+        "families": [
+          "single"
+        ],
+        "classification": "embedded_dependency"
+      },
+      {
+        "function": "00693270",
+        "site": "0069343a",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693270",
+        "site": "0069346a",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693270",
+        "site": "0069349c",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693590",
+        "site": "006935a2",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693590",
+        "site": "006935e1",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693590",
+        "site": "00693620",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693590",
+        "site": "006936aa",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693590",
+        "site": "006936e0",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693590",
+        "site": "00693712",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00693590",
+        "site": "00693737",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697510",
+        "site": "0069754d",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697510",
+        "site": "00697572",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697510",
+        "site": "006975b7",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697600",
+        "site": "00697612",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697600",
+        "site": "00697637",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697600",
+        "site": "0069765c",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697600",
+        "site": "00697697",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697600",
+        "site": "006976cd",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697710",
+        "site": "00697a1e",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697a50",
+        "site": "00697c43",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697f60",
+        "site": "006980f3",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      },
+      {
+        "function": "00697f60",
+        "site": "00698138",
+        "families": [
+          "single"
+        ],
+        "classification": "control_dependency"
+      }
+    ],
+    "dynamic_content": [
+      {
+        "key": "options:binding_rows",
+        "builder": "0061f5a0",
+        "families": [
+          "options"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "cinematics:list",
+        "builder": "00614140",
+        "families": [
+          "media"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "create:map_list",
+        "builder": "00628e00",
+        "families": [
+          "multi"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "items:store_rows",
+        "builder": "0067c270",
+        "families": [
+          "single"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "player:store_rows",
+        "builder": "0067a770",
+        "families": [
+          "ingame"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "equipment:slots",
+        "builder": "0066ef00",
+        "families": [
+          "ingame",
+          "single"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "player:soldiers",
+        "builder": "006835e0",
+        "families": [
+          "ingame"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "debrief:soldiers",
+        "builder": "0068e0f0",
+        "families": [
+          "single"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "diary:pages",
+        "builder": "0068d5c0",
+        "families": [
+          "single"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "team:soldiers",
+        "builder": "00691e10",
+        "families": [
+          "single"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "team:medals",
+        "builder": "00692950",
+        "families": [
+          "single"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "hero:statistics",
+        "builder": "00697a50",
+        "families": [
+          "single"
+        ],
+        "condition": "Original data and conditional construction guards remain required."
+      },
+      {
+        "key": "aux:item_templates",
+        "builder": "0067c860",
+        "families": [
+          "single"
+        ],
+        "condition": "Auxiliary hook invocation/data is still a research dependency; not a prerequisite to unrelated flows."
+      }
+    ],
+    "shared_prompt_callers": [
+      {
+        "site": "0061ca99",
+        "function": "0061bea0",
+        "helper": "0066d7a0",
+        "units": [
+          "options.full",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00621c69",
+        "function": "00621470",
+        "helper": "0066d7a0",
+        "units": [
+          "profiles.manage",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00621c8d",
+        "function": "00621470",
+        "helper": "0066d7a0",
+        "units": [
+          "profiles.manage",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00622403",
+        "function": "00621470",
+        "helper": "0066d7a0",
+        "units": [
+          "profiles.manage",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00622425",
+        "function": "00621470",
+        "helper": "0066d7a0",
+        "units": [
+          "profiles.manage",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00622a69",
+        "function": "00621470",
+        "helper": "0066d7a0",
+        "units": [
+          "profiles.manage",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00633954",
+        "function": "006333c0",
+        "helper": "0066d7a0",
+        "units": [
+          "multi.create",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "006740bf",
+        "function": "00673dd0",
+        "helper": "0066d7a0",
+        "units": [
+          "single.items",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "006740ee",
+        "function": "00673dd0",
+        "helper": "0066d7a0",
+        "units": [
+          "single.items",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00674111",
+        "function": "00673dd0",
+        "helper": "0066d7a0",
+        "units": [
+          "single.items",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00678ca2",
+        "function": "00678ac0",
+        "helper": "0066d780",
+        "units": [
+          "single.items",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00678f53",
+        "function": "00678ce0",
+        "helper": "0066d7a0",
+        "units": [
+          "single.items",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "0067f681",
+        "function": "0067f550",
+        "helper": "0066d7a0",
+        "units": [
+          "ingame.actions",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "0067f953",
+        "function": "0067f550",
+        "helper": "0066d7a0",
+        "units": [
+          "ingame.actions",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00682823",
+        "function": "006827a0",
+        "helper": "0066d7a0",
+        "units": [
+          "ingame.actions",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "0068283c",
+        "function": "006827a0",
+        "helper": "0066d7c0",
+        "units": [
+          "ingame.actions",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "0068cf66",
+        "function": "0068ce00",
+        "helper": "0066d7a0",
+        "units": [
+          "single.debrief",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "0068cf77",
+        "function": "0068ce00",
+        "helper": "0066d7a0",
+        "units": [
+          "single.debrief",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "0068cf90",
+        "function": "0068ce00",
+        "helper": "0066d7a0",
+        "units": [
+          "single.debrief",
+          "dialogs.callers"
+        ]
+      },
+      {
+        "site": "00691260",
+        "function": "00691020",
+        "helper": "0066d7a0",
+        "units": [
+          "single.team",
+          "dialogs.callers"
+        ]
+      }
+    ]
+  },
+  "first_delivery": {
+    "unit": "media.credits",
+    "selected_scope": "Original Main Credits -> status12/type10/sequence0 scrolling text and bookmarked music -> status13 restore-before-shutdown/delete/start of the same Main owner.",
+    "research_before_code": [
+      "Resolved00688040 Credits selector skips IShow/voice entirely; real Text/english/subtitles/credits.txt and ANSI/CE fonts are installed. Prior loose-movie absence is not a dependency gate.",
+      "Recover retained-owner allocation/shutdown/restore and special input/music/subtitle behavior from006c20f0/00688040 and the actual native state classes.",
+      "Extend the compiled Main action/factory and staging only for the complete selected flow; opening-only sequence/status support is insufficient."
+    ],
+    "alternative": "Original resource gate is resolved. Finish actual desktop confirmation of integrated Credits before selecting the next delivery item."
+  },
+  "environment_requirements": {
+    "persistence": "All profile/settings/save operations and failures use isolated writable copies; no original/user data overwrite.",
+    "game": "Native trace-only retained-owner/descriptor fixtures are independent UI audits; full game/restore acceptance needs a real running compiled game/receiver. Gameplay implementation remains outside menu scope.",
+    "network": "Controlled local service endpoints establish LAN/create/join; legacy Internet behavior cannot be credited from canned or empty data.",
+    "assets": "Keep14 base-model misses and21 loose-localization misses explicit as layered-load dependencies. Credits requires its real text/fonts, not a movie file; see credits-flow.md."
+  },
+  "observations": {
+    "credits_loose_movie_lookup": {
+      "directory": "Hidden and Dangerous 2/Gamemovie",
+      "case_insensitive_filename": "credits.bik",
+      "matches": [],
+      "file_count": 83,
+      "sorted_filename_list_sha256": "667aa83ab4f8e1a1a2162787faa9979038f5f43c04b15a3bcd703ec05953d154",
+      "claim": "Historical loose-directory observation;00688040 proves this filename selects text and is never opened as a movie."
+    },
+    "original_credits_literal": {
+      "address": "00842efc",
+      "text": "credits.bik",
+      "evidence": "006c20f0 status12 default; menu-contracts-map.json/retained-video source"
+    },
+    "current_host": "Main/Exit accepted; Main Credits entry/status12/type10/sequence0/scrolling text/music/retained return is now integrated and native-audited, pending desktop acceptance. Full Options remains disabled.",
+    "existing_acceptance": "Main/Exit and normal opening checkpoint remain accepted. Runtime slot-zero diagnostic and native widgets are not full application family delivery.",
+    "save_boundary": "Recovered Profile.sav serializer and startup profile loading do not implement gameplay saves or controller/game loading receivers."
+  },
+  "provenance": {
+    "inputs": [
+      {
+        "path": "analysis/menu-definition-resolution.json",
+        "sha256": "4b50bc2a682c7131e9b98baa680af4b49c7f678330b37322f965b0cb1239e435"
+      },
+      {
+        "path": "analysis/menu-contracts.json",
+        "sha256": "84ae3e147f4aea58637d86bfabec2f681754087bd018746b507611db9ae885b0"
+      },
+      {
+        "path": "analysis/menu-route-census.json",
+        "sha256": "8d8f32cc38fe94fb6c3109a0277060ec5db74765ffb0b66383449cd9d62b3800"
+      },
+      {
+        "path": "analysis/menu-control-programs.json",
+        "sha256": "9c9173a69e3f0dbeb4c5b7ac953117e490f2d9af621bc3faab6a70d5a87c95ed"
+      }
+    ],
+    "implementation_reads": [
+      {
+        "path": "recovered/host/application_menu.h",
+        "sha256": "f36d1940464c56128c77ea13cb5fb5cb977a0c6bc0776c8e74be11efd92a6d3c"
+      },
+      {
+        "path": "recovered/host/menu_screen_factory.h",
+        "sha256": "d1584de95026cbcdffafa16878478194df751639b0a99762261abeb37b33b1a1"
+      },
+      {
+        "path": "recovered/frontend/application_controller.h",
+        "sha256": "64dac961df54d45096e283108899b2026359c965c458b54538e86e6619d802b7"
+      },
+      {
+        "path": "recovered/frontend/application_events.h",
+        "sha256": "afb4391888a53f7aa5a12a27c6a7dc54d4a2a87411b37e1902a0c19dc71e39dd"
+      },
+      {
+        "path": "recovered/frontend/menu_definition.h",
+        "sha256": "3f8f9782b218b6ed6a00c8adc1e401b24d7e670ffc6c03a18806de4aca22e521"
+      },
+      {
+        "path": "recovered/host/menu_control.h",
+        "sha256": "4692fb49c9a753688cb62caf4c406599f7a345c78da15e5c66d347008e60f019"
+      },
+      {
+        "path": "recovered/frontend/profile_save.h",
+        "sha256": "70feebc36558b05084f80b25c57454ffd23873e2471419416ff2f089c89dd727"
+      },
+      {
+        "path": "tools/stage_opening_movies.py",
+        "sha256": "4d77fea58f2ff4637977c3b8bfd1769960e73654c438879a6df1c347e56b3a61"
+      }
+    ],
+    "original_route_source": "analysis/menu-route-census.json",
+    "contract_source": "analysis/menu-contracts.json",
+    "no_original_execution": true,
+    "next_checkbox": "plan.md section3 first complete flow; Credits integrated, actual desktop confirmation pending",
+    "implementation_reads_snapshot": "Historical source fingerprints captured for the completed family-planning milestone before Credits implementation; current implementation/verification is in credits-flow.md."
+  }
+}

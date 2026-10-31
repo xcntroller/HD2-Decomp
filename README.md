@@ -12,7 +12,13 @@ Escape skips, confirmation/cancellation, focus return and bounded shutdown/failu
 handling are desktop-accepted. The [acceptance matrix](analysis/launch-acceptance.md)
 records tested builds and distinguishes retained evidence from user confirmations.
 
-The UI boundary remains **English,800x600, Main/Exit**. Other menu actions,
+The current build also includes the complete [Main Credits flow](analysis/credits-flow.md),
+with real scrolling text/CE fonts, music and return to the retained Main owner.
+It passes native sanitizer audits and builds; **desktop confirmation is pending**.
+Test pointer/keyboard entry, Space ignored, Escape return, natural completion
+(about6m47s), music/focus restoration and closing during Credits. Keep uncommitted.
+
+The accepted UI boundary remains **English,800x600, Main/Exit**. Other menu actions,
 dynamic labels and broader settings/profile/save flows remain unfinished. Full
 original setup/protection, object ABI, unused global caches and live network/
 gameplay services are not claimed complete. Original engine calls stay delegated;
@@ -42,6 +48,19 @@ backends and selected-profile observer wiring through the real factories.
 This is [native-audited source-only work](analysis/menu-widget-construction.md);
 the complete Options entry/apply/back flow remains unfinished.
 
+The [screen-and-route census](analysis/menu-route-census.md) now covers eight
+concrete frontend owners, conditional registries, shared dialogs, embedded pages
+and in-game/controller routes. Its thirty numbered declarations are candidates,
+not a count of distinct delivered screens. The [control/dependency contracts](analysis/menu-contracts.md)
+now record IDs, assets, captions/styles, initialization and return rules across
+512 control sites. [Identity/placeholder resolution](analysis/menu-definition-resolution.md)
+preserves all 30 declarations and IDs: 28 populated owner-scoped roles and two
+reserved empty hero slots. Shared artwork/code, embedded content and campaign
+variants are classified separately. The [family delivery checklists](analysis/menu-family-delivery.md)
+now define 29 open items across all nine families, including independent UI audits
+and real game/network requirements. Inventory/planning is **source-only**; actual
+flow delivery is next. Interactive behavior and function counts are unchanged.
+
 ## Verification and evidence
 
 Original behavior and function addresses are recorded before implementation.
@@ -69,11 +88,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **369 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **373 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 364 |
+| Base game client | 17,294 | 0 | 368 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
@@ -102,6 +121,9 @@ difficulty, playability, or time remaining.
 - [Research](RESEARCH.md): detailed findings, evidence and tool instructions.
 - [Launch acceptance](analysis/launch-acceptance.md): delivered boundary and provenance.
 - [Menu inventory](analysis/menu-screens.md): known screens and dependencies.
+- [Control contracts](analysis/menu-contracts.md): complete source-only dependency inventory.
+- [Definition identity](analysis/menu-definition-resolution.md): duplicates, reserved slots and counting rules.
+- [Family checklists](analysis/menu-family-delivery.md): concrete flows, prerequisites and acceptance boundaries.
 - [Readable source](recovered/) and [tools](tools/): reconstruction and analysis code.
 
 Commercial binaries/assets, generated exports and local analysis databases stay

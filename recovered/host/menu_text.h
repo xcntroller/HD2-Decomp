@@ -209,9 +209,9 @@ public:
         return 0;
     }
 
-    void draw(bool exit_hover, bool confirmation = false, int confirm_hover = 0) const {
+    void draw(bool exit_hover, bool confirmation = false, int confirm_hover = 0, int main_hover = -1) const {
         draw_definition(confirmation ? frontend::confirmation_definition() : frontend::main_menu_definition(),
-                        exit_hover, confirmation ? confirm_hover : -1);
+                        exit_hover, confirmation ? confirm_hover : main_hover);
     }
 
     void draw_runtime_confirmation(const frontend::MenuScreenDefinition& definition, int hover) const {

@@ -2,7 +2,9 @@
 #define HD2_FRONTEND_APPLICATION_STATES_H
 
 #include "frontend/opening_playback.h"
+#include "frontend/cleanup.h"
 #include <memory>
+#include <cstring>
 #include <string>
 
 namespace hd2::frontend {
@@ -101,6 +103,46 @@ private:
     bool live_ = false;
 };
 
+//0066EAE0/00688BB0/00688C10/0066ED50 special Credits state. The actual
+// text/music backend owns partial acquisition; sequence0 returns its saved owner.
+template<class Backend>
+class CreditsApplicationState final : public ApplicationState {
+public:
+    explicit CreditsApplicationState(std::unique_ptr<Backend> backend)
+        : ApplicationState(10), backend_(std::move(backend)) {
+        if (!backend_) throw std::invalid_argument("Credits state needs a backend");
+    }
+    bool initialize(const void*) override { throw std::logic_error("Credits needs its descriptor"); }
+    void begin_video(const char* filename,std::uint32_t sequence) override {
+        if (live_ || !filename || std::strcmp(filename,"credits.bik") || sequence)
+            throw std::logic_error("Invalid Credits descriptor/lifetime");
+        // Partial Credits acquisition can restore its music bookmark and release
+        // fonts safely. Unwind it before the controller clears shared caches.
+        live_=true;
+        try { backend_->begin(); }
+        catch(...) {
+            live_=false;
+            CleanupErrors errors(std::current_exception());
+            errors.attempt([&] { backend_->close(); });
+            errors.rethrow();
+        }
+        status(1);
+    }
+    void shutdown() override { if(live_) {live_=false;backend_->close();} }
+    void input(const std::uint32_t*,const std::uint32_t*) override {
+        if(backend_->next_scan()==1) {backend_->clear_present();status(13);}
+    }
+    void update(std::uint32_t milliseconds) override {
+        backend_->update_sound(milliseconds);
+        if(backend_->advance(milliseconds))status(13);
+    }
+    void render() override {backend_->draw();}
+    std::uint32_t video_sequence() const override {return 0;}
+private:
+    std::unique_ptr<Backend> backend_;
+    bool live_=false;
+};
+
 // Concrete runtime is constructed AFTER this state has been installed by the
 // controller. It owns the bounded compiled Main/Exit menu, not a second loop.
 template<class Runtime>
@@ -112,7 +154,7 @@ public:
     }
     bool initialize(const void* descriptor) override {
         if (descriptor) throw std::logic_error("Only normal null-descriptor menu entry is recovered");
-        runtime_->initialize([this] { status(4); });
+        runtime_->initialize([this] { status(4); }, [this](std::uint32_t value) { status(value); });
         status(1);
         return true;
     }

@@ -1,0 +1,4184 @@
+{
+  "scope": "Complete frontend-owner and screen-construction census. Data/table/predicate anchors are evidence only, not implemented function credit.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "00496450",
+      "hex": "558bec83e4f06aff682dc67f0064a1000000005064892500",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00496e40",
+      "hex": "538b5c2408568bf184db740fe81f000000c7864001000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0061bea0",
+      "hex": "64a1000000006aff68bd118000508b442410648925000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0061cf60",
+      "hex": "558bec83e4f06aff689312800064a1000000005064892500",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00626b20",
+      "hex": "64a1000000006aff68ae228000506489250000000081ec10",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00627060",
+      "hex": "558bec83e4f06aff68d322800064a1000000005064892500",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006322c0",
+      "hex": "64a1000000006aff6830348000508b442410648925000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00632490",
+      "hex": "558bec6aff686835800064a1000000005064892500000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006333c0",
+      "hex": "558bec6aff688236800064a1000000005064892500000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00637990",
+      "hex": "6aff68093b800064a100000000506489250000000083ec20",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00638d30",
+      "hex": "64a1000000006aff68d03c8000506489250000000083ec4c",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0063b590",
+      "hex": "64a1000000006aff6851408000506489250000000083ec20",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0063b740",
+      "hex": "64a1000000006aff6804418000506489250000000081ecd8",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00673dd0",
+      "hex": "64a1000000006aff6841738000508b442410648925000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00675980",
+      "hex": "64a1000000006aff6804758000506489250000000083ec24",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0067e840",
+      "hex": "6aff68837b800064a100000000506489250000000083ec0c",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0067f170",
+      "hex": "b80b000000c3",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0067f350",
+      "hex": "558bec83ec14535633f633c0668b351ab38c0066a11aac8c",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0067f550",
+      "hex": "64a1000000006aff68787d8000506489250000000083ec68",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0067fb00",
+      "hex": "6aff68df7d800064a100000000506489250000000083ec28",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006835a0",
+      "hex": "8b442408568bf18b4c240850518bcee86c4bfeff33c0c706",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0068a460",
+      "hex": "64a1000000006aff6839888000506489250000000083ec24",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0068a710",
+      "hex": "64a1000000006aff6873888000508b442410648925000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0068aed0",
+      "hex": "558bec6aff68c689800064a1000000005064892500000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0068bd10",
+      "hex": "8b0d00e98a00568bb1e800000085f6740583fe01752156e8",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0068bd70",
+      "hex": "c20400",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0068bdd0",
+      "hex": "e83bffffff8b00c3",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0068bde0",
+      "hex": "6aff684e8a800064a100000000506489250000000083ec38",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0068c2e0",
+      "hex": "8b0d24e98a0033c08b510485d20f94c0c3",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0068ce00",
+      "hex": "64a1000000006aff68908a8000508b442410648925000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0068d2f0",
+      "hex": "64a1000000006aff68c98a8000506489250000000083ec24",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00691020",
+      "hex": "64a1000000006aff68b08f8000506489250000000083ec40",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00691280",
+      "hex": "64a1000000006aff68f48f8000506489250000000083ec24",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00693590",
+      "hex": "53568b74240c578bf968102084006a148bcee8b91df8ff68",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00696dc0",
+      "hex": "64a1000000006aff686a958000508b442410648925000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006971b0",
+      "hex": "6aff68bf95800064a100000000506489250000000083ec28",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00699900",
+      "hex": "5156578bf133ff57897e30e8900100008b4e586affe81645",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "0069e620",
+      "hex": "6aff684898800064a1000000005064892500000000515356",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006c0ef0",
+      "hex": "6aff681ead800064a100000000506489250000000083ec10",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006c1650",
+      "hex": "b802000000c3",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006c1880",
+      "hex": "b803000000c3",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006c1b00",
+      "hex": "b804000000c3",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006c1d00",
+      "hex": "b805000000c3",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006c1e40",
+      "hex": "b80e000000c3",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006c1f80",
+      "hex": "b809000000c3",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006c20f0",
+      "hex": "558bec6aff685bb0800064a1000000005064892500000000",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "006c2ed0",
+      "hex": "b808000000c3",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00728450",
+      "hex": "558bec83e4f06aff682bc9800064a1000000005064892500",
+      "meaning": "Census owner/route/predicate function entry; behavior interpreted with read-only export and caller evidence"
+    },
+    {
+      "address": "00841668",
+      "hex": "c8188400000000ff01000000ba45000060450000ffffffffbc188400000000ff01000000ba45000056450000ffffffffb0188400000000ff01000000ba45000057450000ffffffffa4188400000000ff01000000ba45000058450000ffffffff98188400000000ff01000000ba45000059450000ffffffff8c188400000000ff01000000ba4500005a450000ffffffff80188400000000ff01000000ba4500005b450000ffffffff80798600000000ff01000000ffffffffffffffffffffffff00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000070188400000000ff01000000ba4500005c450000ffffffff64188400000000ff01000000ba4500005d450000ffffffff58188400000000ff01000000ba4500005e450000ffffffff48188400000000ff01000000ba4500005f450000ffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "meaning": "Campaign debrief model table, twenty 24-byte records; selector admits indices 0..7 and 10..17"
+    }
+  ],
+  "vtables": [
+    {
+      "address": "00815750",
+      "targets": [
+        "0067f180",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "0067f170",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40",
+        "0067f550",
+        "0067fb00",
+        "0067f460",
+        "0067f350",
+        "00680660",
+        "006805d0",
+        "00680620",
+        "006821f0",
+        "00682470",
+        "0066e000",
+        "00681be0"
+      ]
+    },
+    {
+      "address": "008157d8",
+      "targets": [
+        "0067f050",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "0067e9f0",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40",
+        "007e5a35",
+        "007e5a35",
+        "0067ea60",
+        "0067ea70",
+        "0067ea80",
+        "0067ea90",
+        "0067eaa0",
+        "0067eab0",
+        "0067eac0",
+        "0066e000",
+        "0067f000"
+      ]
+    },
+    {
+      "address": "00815850",
+      "targets": [
+        "0067ed60",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "0067e9f0",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40",
+        "007e5a35",
+        "007e5a35",
+        "0067ea60",
+        "0067ea70",
+        "0067ea80",
+        "0067ea90",
+        "0067eaa0",
+        "0067eab0",
+        "0067eac0",
+        "0066e000",
+        "0067ec90"
+      ]
+    },
+    {
+      "address": "00815c30",
+      "targets": [
+        "006c1f90",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "006c1f80",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40",
+        "00696dc0",
+        "006971b0",
+        "0067ea60",
+        "0067ea70",
+        "0067ea80",
+        "0067ea90",
+        "0067eaa0",
+        "0067eab0",
+        "0067eac0",
+        "0066e000"
+      ]
+    },
+    {
+      "address": "00815c90",
+      "targets": [
+        "006c1e50",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "006c1e40",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40",
+        "0068bd70",
+        "0068bde0",
+        "0068bd60",
+        "0068bd50",
+        "0068bd80",
+        "0067ea90",
+        "0067eaa0",
+        "0067eab0",
+        "0067eac0",
+        "0066e000"
+      ]
+    },
+    {
+      "address": "00815cf0",
+      "targets": [
+        "006c1d10",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "006c1d00",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40",
+        "0068ce00",
+        "0068d2f0",
+        "0068cdf0",
+        "0068ccf0",
+        "0067ea80",
+        "0067ea90",
+        "0067eaa0",
+        "0067eab0",
+        "0067eac0",
+        "0066e000"
+      ]
+    },
+    {
+      "address": "00815d50",
+      "targets": [
+        "006c1890",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "006c1880",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40",
+        "00691020",
+        "00691280",
+        "00693760",
+        "006908f0",
+        "0067ea80",
+        "0067ea90",
+        "0067eaa0",
+        "0067eab0",
+        "0067eac0",
+        "0066e000"
+      ]
+    },
+    {
+      "address": "00815db0",
+      "targets": [
+        "006c1b10",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "006c1b00",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40",
+        "00673dd0",
+        "00675980",
+        "00673880",
+        "006736d0",
+        "0067ea80",
+        "0067ea90",
+        "0067eaa0",
+        "0067eab0",
+        "0067eac0",
+        "0066e000",
+        "00672ed0"
+      ]
+    },
+    {
+      "address": "00815e30",
+      "targets": [
+        "006c1660",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "006c1650",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40",
+        "00626b20",
+        "00627060",
+        "00626950",
+        "00626340",
+        "0067ea80",
+        "006269b0",
+        "0067eaa0",
+        "0067eab0",
+        "0067eac0",
+        "0066e000",
+        "0067c860"
+      ]
+    },
+    {
+      "address": "00815e98",
+      "targets": [
+        "006c2ee0",
+        "0066ad10",
+        "0066b140",
+        "0066b3e0",
+        "0066be90",
+        "0066bea0",
+        "0066de00",
+        "006c2ed0",
+        "0067ea00",
+        "0067ea10",
+        "0067ea20",
+        "0067ea30",
+        "0067ea40",
+        "0068a710",
+        "0068a460",
+        "0068a430",
+        "0068a390",
+        "0067ea80",
+        "0068a440",
+        "0067eaa0",
+        "0068a450",
+        "0067eac0",
+        "0066e000"
+      ]
+    }
+  ],
+  "direct_calls": [
+    {
+      "site": "00623e61",
+      "target": "00625e80"
+    },
+    {
+      "site": "00624d2d",
+      "target": "00625e80"
+    },
+    {
+      "site": "00675a0d",
+      "target": "00625e80"
+    },
+    {
+      "site": "00675a72",
+      "target": "00625e80"
+    },
+    {
+      "site": "0067fb8b",
+      "target": "00625e80"
+    },
+    {
+      "site": "0067fbef",
+      "target": "00625e80"
+    },
+    {
+      "site": "0067fc70",
+      "target": "00625e80"
+    },
+    {
+      "site": "0067fcb9",
+      "target": "00625e80"
+    },
+    {
+      "site": "0068a4ed",
+      "target": "00625e80"
+    },
+    {
+      "site": "0068a552",
+      "target": "00625e80"
+    },
+    {
+      "site": "0068beb4",
+      "target": "00625e80"
+    },
+    {
+      "site": "0068d37d",
+      "target": "00625e80"
+    },
+    {
+      "site": "0068d3ed",
+      "target": "00625e80"
+    },
+    {
+      "site": "0069130d",
+      "target": "00625e80"
+    },
+    {
+      "site": "00691393",
+      "target": "00625e80"
+    },
+    {
+      "site": "0069723b",
+      "target": "00625e80"
+    },
+    {
+      "site": "0069729f",
+      "target": "00625e80"
+    },
+    {
+      "site": "006972f4",
+      "target": "00625e80"
+    },
+    {
+      "site": "00697349",
+      "target": "00625e80"
+    },
+    {
+      "site": "006272dc",
+      "target": "00668120"
+    },
+    {
+      "site": "0066c2f6",
+      "target": "00668120"
+    },
+    {
+      "site": "00675bad",
+      "target": "00668120"
+    },
+    {
+      "site": "00675cb1",
+      "target": "00668120"
+    },
+    {
+      "site": "0067fdd3",
+      "target": "00668120"
+    },
+    {
+      "site": "006835af",
+      "target": "00668120"
+    },
+    {
+      "site": "0068a637",
+      "target": "00668120"
+    },
+    {
+      "site": "0068bf6d",
+      "target": "00668120"
+    },
+    {
+      "site": "0068d4e1",
+      "target": "00668120"
+    },
+    {
+      "site": "0069147f",
+      "target": "00668120"
+    },
+    {
+      "site": "0069158f",
+      "target": "00668120"
+    },
+    {
+      "site": "00697437",
+      "target": "00668120"
+    },
+    {
+      "site": "0066888d",
+      "target": "00668470"
+    },
+    {
+      "site": "0061ca99",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00621c69",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00621c8d",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00622403",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00622425",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00622a69",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00633954",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "006740bf",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "006740ee",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00674111",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00678f53",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0067f681",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0067f953",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00682823",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0068cf66",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0068cf77",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0068cf90",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00691260",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0069e65e",
+      "target": "0067e840"
+    },
+    {
+      "site": "006143b6",
+      "target": "00615090"
+    },
+    {
+      "site": "0061446d",
+      "target": "00615090"
+    },
+    {
+      "site": "006144d4",
+      "target": "00615090"
+    },
+    {
+      "site": "0061453b",
+      "target": "00615090"
+    },
+    {
+      "site": "00614683",
+      "target": "00615090"
+    },
+    {
+      "site": "0061477d",
+      "target": "00615090"
+    },
+    {
+      "site": "00614832",
+      "target": "00615090"
+    },
+    {
+      "site": "00614acb",
+      "target": "00615090"
+    },
+    {
+      "site": "00614b24",
+      "target": "00615090"
+    },
+    {
+      "site": "0061d1f8",
+      "target": "00615090"
+    },
+    {
+      "site": "0061d2ca",
+      "target": "00615090"
+    },
+    {
+      "site": "0061d39c",
+      "target": "00615090"
+    },
+    {
+      "site": "0061d46e",
+      "target": "00615090"
+    },
+    {
+      "site": "0061d526",
+      "target": "00615090"
+    },
+    {
+      "site": "0061d5a8",
+      "target": "00615090"
+    },
+    {
+      "site": "0061d6f9",
+      "target": "00615090"
+    },
+    {
+      "site": "0061e3fe",
+      "target": "00615090"
+    },
+    {
+      "site": "0061e5fa",
+      "target": "00615090"
+    },
+    {
+      "site": "0061e63f",
+      "target": "00615090"
+    },
+    {
+      "site": "0061e6f1",
+      "target": "00615090"
+    },
+    {
+      "site": "0061e736",
+      "target": "00615090"
+    },
+    {
+      "site": "0061e829",
+      "target": "00615090"
+    },
+    {
+      "site": "0061e86e",
+      "target": "00615090"
+    },
+    {
+      "site": "0061e920",
+      "target": "00615090"
+    },
+    {
+      "site": "0061e965",
+      "target": "00615090"
+    },
+    {
+      "site": "0061ea55",
+      "target": "00615090"
+    },
+    {
+      "site": "0061ea9a",
+      "target": "00615090"
+    },
+    {
+      "site": "0061eb4c",
+      "target": "00615090"
+    },
+    {
+      "site": "0061eb91",
+      "target": "00615090"
+    },
+    {
+      "site": "0061ec7c",
+      "target": "00615090"
+    },
+    {
+      "site": "0061ecc1",
+      "target": "00615090"
+    },
+    {
+      "site": "0061f71e",
+      "target": "00615090"
+    },
+    {
+      "site": "0061fa7c",
+      "target": "00615090"
+    },
+    {
+      "site": "0061fad5",
+      "target": "00615090"
+    },
+    {
+      "site": "00623f0e",
+      "target": "00615090"
+    },
+    {
+      "site": "00623fc1",
+      "target": "00615090"
+    },
+    {
+      "site": "00624074",
+      "target": "00615090"
+    },
+    {
+      "site": "00624127",
+      "target": "00615090"
+    },
+    {
+      "site": "006241da",
+      "target": "00615090"
+    },
+    {
+      "site": "0062428d",
+      "target": "00615090"
+    },
+    {
+      "site": "00624340",
+      "target": "00615090"
+    },
+    {
+      "site": "006243f3",
+      "target": "00615090"
+    },
+    {
+      "site": "006244e7",
+      "target": "00615090"
+    },
+    {
+      "site": "006245db",
+      "target": "00615090"
+    },
+    {
+      "site": "006246cf",
+      "target": "00615090"
+    },
+    {
+      "site": "006247c3",
+      "target": "00615090"
+    },
+    {
+      "site": "006248b7",
+      "target": "00615090"
+    },
+    {
+      "site": "006249ab",
+      "target": "00615090"
+    },
+    {
+      "site": "00624a9f",
+      "target": "00615090"
+    },
+    {
+      "site": "00624b93",
+      "target": "00615090"
+    },
+    {
+      "site": "00624c8a",
+      "target": "00615090"
+    },
+    {
+      "site": "00624dd2",
+      "target": "00615090"
+    },
+    {
+      "site": "00624fa7",
+      "target": "00615090"
+    },
+    {
+      "site": "006250a8",
+      "target": "00615090"
+    },
+    {
+      "site": "006251a5",
+      "target": "00615090"
+    },
+    {
+      "site": "006252a2",
+      "target": "00615090"
+    },
+    {
+      "site": "0062539f",
+      "target": "00615090"
+    },
+    {
+      "site": "0062549c",
+      "target": "00615090"
+    },
+    {
+      "site": "00625599",
+      "target": "00615090"
+    },
+    {
+      "site": "0062857f",
+      "target": "00615090"
+    },
+    {
+      "site": "0062869e",
+      "target": "00615090"
+    },
+    {
+      "site": "006287bb",
+      "target": "00615090"
+    },
+    {
+      "site": "006288be",
+      "target": "00615090"
+    },
+    {
+      "site": "006289cb",
+      "target": "00615090"
+    },
+    {
+      "site": "00628aa1",
+      "target": "00615090"
+    },
+    {
+      "site": "00628b3e",
+      "target": "00615090"
+    },
+    {
+      "site": "00629223",
+      "target": "00615090"
+    },
+    {
+      "site": "006292b5",
+      "target": "00615090"
+    },
+    {
+      "site": "00629317",
+      "target": "00615090"
+    },
+    {
+      "site": "00629492",
+      "target": "00615090"
+    },
+    {
+      "site": "006294cc",
+      "target": "00615090"
+    },
+    {
+      "site": "0062964e",
+      "target": "00615090"
+    },
+    {
+      "site": "0062968c",
+      "target": "00615090"
+    },
+    {
+      "site": "006298bc",
+      "target": "00615090"
+    },
+    {
+      "site": "00629900",
+      "target": "00615090"
+    },
+    {
+      "site": "00629aca",
+      "target": "00615090"
+    },
+    {
+      "site": "00629d45",
+      "target": "00615090"
+    },
+    {
+      "site": "00629d9b",
+      "target": "00615090"
+    },
+    {
+      "site": "0062a0b4",
+      "target": "00615090"
+    },
+    {
+      "site": "0062a1f4",
+      "target": "00615090"
+    },
+    {
+      "site": "0062a333",
+      "target": "00615090"
+    },
+    {
+      "site": "0062a3e0",
+      "target": "00615090"
+    },
+    {
+      "site": "0062a5c7",
+      "target": "00615090"
+    },
+    {
+      "site": "0062a602",
+      "target": "00615090"
+    },
+    {
+      "site": "0062a877",
+      "target": "00615090"
+    },
+    {
+      "site": "0062a8b2",
+      "target": "00615090"
+    },
+    {
+      "site": "0062aadb",
+      "target": "00615090"
+    },
+    {
+      "site": "0062ab16",
+      "target": "00615090"
+    },
+    {
+      "site": "0062acc6",
+      "target": "00615090"
+    },
+    {
+      "site": "0062af14",
+      "target": "00615090"
+    },
+    {
+      "site": "0062af4f",
+      "target": "00615090"
+    },
+    {
+      "site": "0062b17e",
+      "target": "00615090"
+    },
+    {
+      "site": "0062b1b9",
+      "target": "00615090"
+    },
+    {
+      "site": "0062b3e2",
+      "target": "00615090"
+    },
+    {
+      "site": "0062b41d",
+      "target": "00615090"
+    },
+    {
+      "site": "0062b649",
+      "target": "00615090"
+    },
+    {
+      "site": "0062b684",
+      "target": "00615090"
+    },
+    {
+      "site": "0062b8a9",
+      "target": "00615090"
+    },
+    {
+      "site": "0062b8fe",
+      "target": "00615090"
+    },
+    {
+      "site": "00634650",
+      "target": "00615090"
+    },
+    {
+      "site": "00634707",
+      "target": "00615090"
+    },
+    {
+      "site": "0063708b",
+      "target": "00615090"
+    },
+    {
+      "site": "0063714d",
+      "target": "00615090"
+    },
+    {
+      "site": "00637275",
+      "target": "00615090"
+    },
+    {
+      "site": "006393ea",
+      "target": "00615090"
+    },
+    {
+      "site": "006394c4",
+      "target": "00615090"
+    },
+    {
+      "site": "0063953a",
+      "target": "00615090"
+    },
+    {
+      "site": "00639603",
+      "target": "00615090"
+    },
+    {
+      "site": "0063974c",
+      "target": "00615090"
+    },
+    {
+      "site": "00639852",
+      "target": "00615090"
+    },
+    {
+      "site": "0063991c",
+      "target": "00615090"
+    },
+    {
+      "site": "00639adc",
+      "target": "00615090"
+    },
+    {
+      "site": "00639d36",
+      "target": "00615090"
+    },
+    {
+      "site": "00639d7c",
+      "target": "00615090"
+    },
+    {
+      "site": "00639ed4",
+      "target": "00615090"
+    },
+    {
+      "site": "00639f18",
+      "target": "00615090"
+    },
+    {
+      "site": "0063a07f",
+      "target": "00615090"
+    },
+    {
+      "site": "0063a2dc",
+      "target": "00615090"
+    },
+    {
+      "site": "0063a320",
+      "target": "00615090"
+    },
+    {
+      "site": "0066ef7b",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f04d",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f097",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f3f7",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f43f",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f4ba",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f502",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f58a",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f5d2",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f6e2",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f72a",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f82f",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f877",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f97c",
+      "target": "00615090"
+    },
+    {
+      "site": "0066f9c4",
+      "target": "00615090"
+    },
+    {
+      "site": "0066fa82",
+      "target": "00615090"
+    },
+    {
+      "site": "0066faca",
+      "target": "00615090"
+    },
+    {
+      "site": "0066fb8a",
+      "target": "00615090"
+    },
+    {
+      "site": "0066fbd2",
+      "target": "00615090"
+    },
+    {
+      "site": "0066fcc6",
+      "target": "00615090"
+    },
+    {
+      "site": "0066fd22",
+      "target": "00615090"
+    },
+    {
+      "site": "00670019",
+      "target": "00615090"
+    },
+    {
+      "site": "006700b9",
+      "target": "00615090"
+    },
+    {
+      "site": "00670101",
+      "target": "00615090"
+    },
+    {
+      "site": "00670202",
+      "target": "00615090"
+    },
+    {
+      "site": "0067024a",
+      "target": "00615090"
+    },
+    {
+      "site": "006765d9",
+      "target": "00615090"
+    },
+    {
+      "site": "006766ab",
+      "target": "00615090"
+    },
+    {
+      "site": "00676a60",
+      "target": "00615090"
+    },
+    {
+      "site": "00676aaf",
+      "target": "00615090"
+    },
+    {
+      "site": "0067a7e7",
+      "target": "00615090"
+    },
+    {
+      "site": "0067a87e",
+      "target": "00615090"
+    },
+    {
+      "site": "0067a8d3",
+      "target": "00615090"
+    },
+    {
+      "site": "0067af58",
+      "target": "00615090"
+    },
+    {
+      "site": "0067af8f",
+      "target": "00615090"
+    },
+    {
+      "site": "0067b36e",
+      "target": "00615090"
+    },
+    {
+      "site": "0067b3bf",
+      "target": "00615090"
+    },
+    {
+      "site": "0067c2e7",
+      "target": "00615090"
+    },
+    {
+      "site": "0067c37e",
+      "target": "00615090"
+    },
+    {
+      "site": "0067c3d3",
+      "target": "00615090"
+    },
+    {
+      "site": "0067c695",
+      "target": "00615090"
+    },
+    {
+      "site": "0067ca4a",
+      "target": "00615090"
+    },
+    {
+      "site": "0067ca81",
+      "target": "00615090"
+    },
+    {
+      "site": "0067ce53",
+      "target": "00615090"
+    },
+    {
+      "site": "0067cea4",
+      "target": "00615090"
+    },
+    {
+      "site": "00682abe",
+      "target": "00615090"
+    },
+    {
+      "site": "00682c72",
+      "target": "00615090"
+    },
+    {
+      "site": "00682d8c",
+      "target": "00615090"
+    },
+    {
+      "site": "00682eb6",
+      "target": "00615090"
+    },
+    {
+      "site": "00682f53",
+      "target": "00615090"
+    },
+    {
+      "site": "00682fd5",
+      "target": "00615090"
+    },
+    {
+      "site": "006830b9",
+      "target": "00615090"
+    },
+    {
+      "site": "00683156",
+      "target": "00615090"
+    },
+    {
+      "site": "00683263",
+      "target": "00615090"
+    },
+    {
+      "site": "00683899",
+      "target": "00615090"
+    },
+    {
+      "site": "00683927",
+      "target": "00615090"
+    },
+    {
+      "site": "00683961",
+      "target": "00615090"
+    },
+    {
+      "site": "00683a33",
+      "target": "00615090"
+    },
+    {
+      "site": "00683a6a",
+      "target": "00615090"
+    },
+    {
+      "site": "00683cdb",
+      "target": "00615090"
+    },
+    {
+      "site": "00683d34",
+      "target": "00615090"
+    },
+    {
+      "site": "00683ed8",
+      "target": "00615090"
+    },
+    {
+      "site": "00683f0f",
+      "target": "00615090"
+    },
+    {
+      "site": "00684197",
+      "target": "00615090"
+    },
+    {
+      "site": "006841e6",
+      "target": "00615090"
+    },
+    {
+      "site": "0068aad0",
+      "target": "00615090"
+    },
+    {
+      "site": "0068ab3b",
+      "target": "00615090"
+    },
+    {
+      "site": "0068abf0",
+      "target": "00615090"
+    },
+    {
+      "site": "0068ac96",
+      "target": "00615090"
+    },
+    {
+      "site": "0068d6fc",
+      "target": "00615090"
+    },
+    {
+      "site": "0068d7bb",
+      "target": "00615090"
+    },
+    {
+      "site": "0068d93a",
+      "target": "00615090"
+    },
+    {
+      "site": "0068da4d",
+      "target": "00615090"
+    },
+    {
+      "site": "0068db60",
+      "target": "00615090"
+    },
+    {
+      "site": "0068dc66",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e162",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e1ea",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e235",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e306",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e351",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e3cd",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e418",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e4ec",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e537",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e5a7",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e5f2",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e6ab",
+      "target": "00615090"
+    },
+    {
+      "site": "0068e6f6",
+      "target": "00615090"
+    },
+    {
+      "site": "00692166",
+      "target": "00615090"
+    },
+    {
+      "site": "006921f2",
+      "target": "00615090"
+    },
+    {
+      "site": "006924d7",
+      "target": "00615090"
+    },
+    {
+      "site": "00692528",
+      "target": "00615090"
+    },
+    {
+      "site": "00692897",
+      "target": "00615090"
+    },
+    {
+      "site": "00692b32",
+      "target": "00615090"
+    },
+    {
+      "site": "00692c13",
+      "target": "00615090"
+    },
+    {
+      "site": "00692c6b",
+      "target": "00615090"
+    },
+    {
+      "site": "00692e22",
+      "target": "00615090"
+    },
+    {
+      "site": "00692e7e",
+      "target": "00615090"
+    },
+    {
+      "site": "00697c43",
+      "target": "00615090"
+    },
+    {
+      "site": "006980f3",
+      "target": "00615090"
+    },
+    {
+      "site": "00698138",
+      "target": "00615090"
+    },
+    {
+      "site": "00614c8e",
+      "target": "00615360"
+    },
+    {
+      "site": "00614cb3",
+      "target": "00615360"
+    },
+    {
+      "site": "00614cd8",
+      "target": "00615360"
+    },
+    {
+      "site": "00614d1e",
+      "target": "00615360"
+    },
+    {
+      "site": "0061d9c0",
+      "target": "00615360"
+    },
+    {
+      "site": "0061dc98",
+      "target": "00615360"
+    },
+    {
+      "site": "0061e150",
+      "target": "00615360"
+    },
+    {
+      "site": "0061eef6",
+      "target": "00615360"
+    },
+    {
+      "site": "0061f1e0",
+      "target": "00615360"
+    },
+    {
+      "site": "0061f360",
+      "target": "00615360"
+    },
+    {
+      "site": "00625629",
+      "target": "00615360"
+    },
+    {
+      "site": "00625668",
+      "target": "00615360"
+    },
+    {
+      "site": "0062569e",
+      "target": "00615360"
+    },
+    {
+      "site": "006256c3",
+      "target": "00615360"
+    },
+    {
+      "site": "006256e8",
+      "target": "00615360"
+    },
+    {
+      "site": "006256f6",
+      "target": "00615360"
+    },
+    {
+      "site": "0062571b",
+      "target": "00615360"
+    },
+    {
+      "site": "00625729",
+      "target": "00615360"
+    },
+    {
+      "site": "0062574e",
+      "target": "00615360"
+    },
+    {
+      "site": "006257a1",
+      "target": "00615360"
+    },
+    {
+      "site": "006257c6",
+      "target": "00615360"
+    },
+    {
+      "site": "0062587c",
+      "target": "00615360"
+    },
+    {
+      "site": "0062588a",
+      "target": "00615360"
+    },
+    {
+      "site": "006258e1",
+      "target": "00615360"
+    },
+    {
+      "site": "00625938",
+      "target": "00615360"
+    },
+    {
+      "site": "0062598f",
+      "target": "00615360"
+    },
+    {
+      "site": "006259e6",
+      "target": "00615360"
+    },
+    {
+      "site": "00625a3d",
+      "target": "00615360"
+    },
+    {
+      "site": "00625a5d",
+      "target": "00615360"
+    },
+    {
+      "site": "00625a7d",
+      "target": "00615360"
+    },
+    {
+      "site": "00625a9d",
+      "target": "00615360"
+    },
+    {
+      "site": "00625af4",
+      "target": "00615360"
+    },
+    {
+      "site": "00625b19",
+      "target": "00615360"
+    },
+    {
+      "site": "00625b4f",
+      "target": "00615360"
+    },
+    {
+      "site": "00625b98",
+      "target": "00615360"
+    },
+    {
+      "site": "00625bbd",
+      "target": "00615360"
+    },
+    {
+      "site": "00625c02",
+      "target": "00615360"
+    },
+    {
+      "site": "00625c47",
+      "target": "00615360"
+    },
+    {
+      "site": "00628bab",
+      "target": "00615360"
+    },
+    {
+      "site": "00628bf8",
+      "target": "00615360"
+    },
+    {
+      "site": "00628c1d",
+      "target": "00615360"
+    },
+    {
+      "site": "00628c42",
+      "target": "00615360"
+    },
+    {
+      "site": "00628c67",
+      "target": "00615360"
+    },
+    {
+      "site": "00628c8c",
+      "target": "00615360"
+    },
+    {
+      "site": "00628d36",
+      "target": "00615360"
+    },
+    {
+      "site": "00628d5b",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f464",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f495",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f4a3",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f4e2",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f527",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f55d",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f582",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f5a7",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f5cc",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f629",
+      "target": "00615360"
+    },
+    {
+      "site": "0062f649",
+      "target": "00615360"
+    },
+    {
+      "site": "006320f2",
+      "target": "00615360"
+    },
+    {
+      "site": "00632100",
+      "target": "00615360"
+    },
+    {
+      "site": "00632120",
+      "target": "00615360"
+    },
+    {
+      "site": "00632140",
+      "target": "00615360"
+    },
+    {
+      "site": "00633fc5",
+      "target": "00615360"
+    },
+    {
+      "site": "00633fea",
+      "target": "00615360"
+    },
+    {
+      "site": "00634013",
+      "target": "00615360"
+    },
+    {
+      "site": "00634052",
+      "target": "00615360"
+    },
+    {
+      "site": "00634091",
+      "target": "00615360"
+    },
+    {
+      "site": "006340d0",
+      "target": "00615360"
+    },
+    {
+      "site": "0063410f",
+      "target": "00615360"
+    },
+    {
+      "site": "0063415b",
+      "target": "00615360"
+    },
+    {
+      "site": "0063419a",
+      "target": "00615360"
+    },
+    {
+      "site": "006341d9",
+      "target": "00615360"
+    },
+    {
+      "site": "0063421e",
+      "target": "00615360"
+    },
+    {
+      "site": "00634263",
+      "target": "00615360"
+    },
+    {
+      "site": "006342c9",
+      "target": "00615360"
+    },
+    {
+      "site": "0063430e",
+      "target": "00615360"
+    },
+    {
+      "site": "00634353",
+      "target": "00615360"
+    },
+    {
+      "site": "006343bc",
+      "target": "00615360"
+    },
+    {
+      "site": "006343e1",
+      "target": "00615360"
+    },
+    {
+      "site": "006343ef",
+      "target": "00615360"
+    },
+    {
+      "site": "006343fd",
+      "target": "00615360"
+    },
+    {
+      "site": "00634422",
+      "target": "00615360"
+    },
+    {
+      "site": "00634461",
+      "target": "00615360"
+    },
+    {
+      "site": "0063735b",
+      "target": "00615360"
+    },
+    {
+      "site": "006373cb",
+      "target": "00615360"
+    },
+    {
+      "site": "0063740e",
+      "target": "00615360"
+    },
+    {
+      "site": "006377ff",
+      "target": "00615360"
+    },
+    {
+      "site": "00637824",
+      "target": "00615360"
+    },
+    {
+      "site": "006378a0",
+      "target": "00615360"
+    },
+    {
+      "site": "006378e5",
+      "target": "00615360"
+    },
+    {
+      "site": "0063792a",
+      "target": "00615360"
+    },
+    {
+      "site": "0063794a",
+      "target": "00615360"
+    },
+    {
+      "site": "006385be",
+      "target": "00615360"
+    },
+    {
+      "site": "006385f4",
+      "target": "00615360"
+    },
+    {
+      "site": "0063863e",
+      "target": "00615360"
+    },
+    {
+      "site": "00638663",
+      "target": "00615360"
+    },
+    {
+      "site": "00638688",
+      "target": "00615360"
+    },
+    {
+      "site": "006386ad",
+      "target": "00615360"
+    },
+    {
+      "site": "006386d2",
+      "target": "00615360"
+    },
+    {
+      "site": "006386f7",
+      "target": "00615360"
+    },
+    {
+      "site": "0063871c",
+      "target": "00615360"
+    },
+    {
+      "site": "0063876a",
+      "target": "00615360"
+    },
+    {
+      "site": "006387a0",
+      "target": "00615360"
+    },
+    {
+      "site": "006387c5",
+      "target": "00615360"
+    },
+    {
+      "site": "006387ea",
+      "target": "00615360"
+    },
+    {
+      "site": "0063880f",
+      "target": "00615360"
+    },
+    {
+      "site": "0063999a",
+      "target": "00615360"
+    },
+    {
+      "site": "006399bf",
+      "target": "00615360"
+    },
+    {
+      "site": "00639a04",
+      "target": "00615360"
+    },
+    {
+      "site": "006687a2",
+      "target": "00615360"
+    },
+    {
+      "site": "006687c7",
+      "target": "00615360"
+    },
+    {
+      "site": "00668806",
+      "target": "00615360"
+    },
+    {
+      "site": "00668845",
+      "target": "00615360"
+    },
+    {
+      "site": "00675603",
+      "target": "00615360"
+    },
+    {
+      "site": "00675642",
+      "target": "00615360"
+    },
+    {
+      "site": "00675667",
+      "target": "00615360"
+    },
+    {
+      "site": "00675709",
+      "target": "00615360"
+    },
+    {
+      "site": "00675717",
+      "target": "00615360"
+    },
+    {
+      "site": "00675749",
+      "target": "00615360"
+    },
+    {
+      "site": "0067576e",
+      "target": "00615360"
+    },
+    {
+      "site": "00675793",
+      "target": "00615360"
+    },
+    {
+      "site": "006757e1",
+      "target": "00615360"
+    },
+    {
+      "site": "00675817",
+      "target": "00615360"
+    },
+    {
+      "site": "0067584d",
+      "target": "00615360"
+    },
+    {
+      "site": "00675872",
+      "target": "00615360"
+    },
+    {
+      "site": "006758ac",
+      "target": "00615360"
+    },
+    {
+      "site": "00675f66",
+      "target": "00615360"
+    },
+    {
+      "site": "00675ff3",
+      "target": "00615360"
+    },
+    {
+      "site": "0067606d",
+      "target": "00615360"
+    },
+    {
+      "site": "006760b2",
+      "target": "00615360"
+    },
+    {
+      "site": "00676298",
+      "target": "00615360"
+    },
+    {
+      "site": "006806ec",
+      "target": "00615360"
+    },
+    {
+      "site": "00680748",
+      "target": "00615360"
+    },
+    {
+      "site": "00680834",
+      "target": "00615360"
+    },
+    {
+      "site": "0068086a",
+      "target": "00615360"
+    },
+    {
+      "site": "006808c4",
+      "target": "00615360"
+    },
+    {
+      "site": "00680927",
+      "target": "00615360"
+    },
+    {
+      "site": "0068095d",
+      "target": "00615360"
+    },
+    {
+      "site": "00680979",
+      "target": "00615360"
+    },
+    {
+      "site": "00680999",
+      "target": "00615360"
+    },
+    {
+      "site": "006809cf",
+      "target": "00615360"
+    },
+    {
+      "site": "00680a05",
+      "target": "00615360"
+    },
+    {
+      "site": "00680a3b",
+      "target": "00615360"
+    },
+    {
+      "site": "00680a71",
+      "target": "00615360"
+    },
+    {
+      "site": "00680aa7",
+      "target": "00615360"
+    },
+    {
+      "site": "00680add",
+      "target": "00615360"
+    },
+    {
+      "site": "00683309",
+      "target": "00615360"
+    },
+    {
+      "site": "0068335e",
+      "target": "00615360"
+    },
+    {
+      "site": "0068336c",
+      "target": "00615360"
+    },
+    {
+      "site": "0068339f",
+      "target": "00615360"
+    },
+    {
+      "site": "006833c4",
+      "target": "00615360"
+    },
+    {
+      "site": "006833e9",
+      "target": "00615360"
+    },
+    {
+      "site": "0068340e",
+      "target": "00615360"
+    },
+    {
+      "site": "00683433",
+      "target": "00615360"
+    },
+    {
+      "site": "00683458",
+      "target": "00615360"
+    },
+    {
+      "site": "006834a9",
+      "target": "00615360"
+    },
+    {
+      "site": "00683575",
+      "target": "00615360"
+    },
+    {
+      "site": "00684be8",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ad5f",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ad84",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ade5",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ae2a",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ae6f",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ae8f",
+      "target": "00615360"
+    },
+    {
+      "site": "0068c115",
+      "target": "00615360"
+    },
+    {
+      "site": "0068c17c",
+      "target": "00615360"
+    },
+    {
+      "site": "0068c1b2",
+      "target": "00615360"
+    },
+    {
+      "site": "0068eaff",
+      "target": "00615360"
+    },
+    {
+      "site": "0068eb31",
+      "target": "00615360"
+    },
+    {
+      "site": "0068eb56",
+      "target": "00615360"
+    },
+    {
+      "site": "0068eb7b",
+      "target": "00615360"
+    },
+    {
+      "site": "0068eba0",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ebb7",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ec09",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ec67",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ecc3",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ed2e",
+      "target": "00615360"
+    },
+    {
+      "site": "0068ed64",
+      "target": "00615360"
+    },
+    {
+      "site": "00691893",
+      "target": "00615360"
+    },
+    {
+      "site": "006918ea",
+      "target": "00615360"
+    },
+    {
+      "site": "0069192d",
+      "target": "00615360"
+    },
+    {
+      "site": "00691972",
+      "target": "00615360"
+    },
+    {
+      "site": "00691d1c",
+      "target": "00615360"
+    },
+    {
+      "site": "00691d8b",
+      "target": "00615360"
+    },
+    {
+      "site": "00691dca",
+      "target": "00615360"
+    },
+    {
+      "site": "00693128",
+      "target": "00615360"
+    },
+    {
+      "site": "0069320c",
+      "target": "00615360"
+    },
+    {
+      "site": "00693402",
+      "target": "00615360"
+    },
+    {
+      "site": "006935a2",
+      "target": "00615360"
+    },
+    {
+      "site": "006935e1",
+      "target": "00615360"
+    },
+    {
+      "site": "00693620",
+      "target": "00615360"
+    },
+    {
+      "site": "006936aa",
+      "target": "00615360"
+    },
+    {
+      "site": "006936e0",
+      "target": "00615360"
+    },
+    {
+      "site": "00693712",
+      "target": "00615360"
+    },
+    {
+      "site": "00693737",
+      "target": "00615360"
+    },
+    {
+      "site": "0069754d",
+      "target": "00615360"
+    },
+    {
+      "site": "00697572",
+      "target": "00615360"
+    },
+    {
+      "site": "006975b7",
+      "target": "00615360"
+    },
+    {
+      "site": "00697612",
+      "target": "00615360"
+    },
+    {
+      "site": "00697637",
+      "target": "00615360"
+    },
+    {
+      "site": "0069765c",
+      "target": "00615360"
+    },
+    {
+      "site": "00697697",
+      "target": "00615360"
+    },
+    {
+      "site": "006976cd",
+      "target": "00615360"
+    },
+    {
+      "site": "00697a1e",
+      "target": "00615360"
+    },
+    {
+      "site": "006270dd",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "0066c1fc",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "0066c648",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "00675ae2",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "00675c80",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "0067fd2c",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "006834d1",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "0068a5c2",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "0068bf1c",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "0068d45d",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "0069140a",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "0069155c",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "006973ba",
+      "target": "0066bfa0"
+    }
+  ],
+  "resource_anchors": [
+    {
+      "site": "0049659b",
+      "address": "0083a8e8",
+      "text": "ingame_info"
+    },
+    {
+      "site": "0049661a",
+      "address": "0083a8e8",
+      "text": "ingame_info"
+    },
+    {
+      "site": "0049669a",
+      "address": "0083a8e8",
+      "text": "ingame_info"
+    },
+    {
+      "site": "004966c8",
+      "address": "00832cac",
+      "text": "Cache : BADFILEVERSION '%s' (3ds filter)"
+    },
+    {
+      "site": "0049670d",
+      "address": "0083a8e8",
+      "text": "ingame_info"
+    },
+    {
+      "site": "0049673b",
+      "address": "00832c84",
+      "text": "Cache : BADFILETIME '%s' (3ds filter)"
+    },
+    {
+      "site": "004968be",
+      "address": "0083a8e8",
+      "text": "ingame_info"
+    },
+    {
+      "site": "00496906",
+      "address": "0083a8e8",
+      "text": "ingame_info"
+    },
+    {
+      "site": "00496955",
+      "address": "0083a8e8",
+      "text": "ingame_info"
+    },
+    {
+      "site": "00496981",
+      "address": "0083a8dc",
+      "text": "game_info"
+    },
+    {
+      "site": "00496b92",
+      "address": "0083a8d4",
+      "text": "header"
+    },
+    {
+      "site": "00496bab",
+      "address": "0083a8cc",
+      "text": "text"
+    },
+    {
+      "site": "0061cf86",
+      "address": "0083f0b0",
+      "text": "GROptions"
+    },
+    {
+      "site": "0061d001",
+      "address": "0083f0a0",
+      "text": "bvideo setup"
+    },
+    {
+      "site": "0061d012",
+      "address": "0083f090",
+      "text": "bsound setup"
+    },
+    {
+      "site": "0061d01f",
+      "address": "0083f084",
+      "text": "bcontrols"
+    },
+    {
+      "site": "0061d030",
+      "address": "0083f078",
+      "text": "bgame setup"
+    },
+    {
+      "site": "0061d045",
+      "address": "0083f064",
+      "text": "bmultiplayer setup"
+    },
+    {
+      "site": "0061d052",
+      "address": "0083f05c",
+      "text": "bback"
+    },
+    {
+      "site": "0061d063",
+      "address": "0083f048",
+      "text": "text_min norm max"
+    },
+    {
+      "site": "0061d078",
+      "address": "0083f034",
+      "text": "text_min norm max02"
+    },
+    {
+      "site": "0061d1f1",
+      "address": "0083ec00",
+      "text": "text_screen"
+    },
+    {
+      "site": "0061d2c3",
+      "address": "0083f028",
+      "text": "text_date00"
+    },
+    {
+      "site": "0061d395",
+      "address": "0083f01c",
+      "text": "text_date01"
+    },
+    {
+      "site": "0061d467",
+      "address": "0083f00c",
+      "text": "text_profile00"
+    },
+    {
+      "site": "0061d51f",
+      "address": "0083f0b0",
+      "text": "GROptions"
+    },
+    {
+      "site": "0061d59f",
+      "address": "0083f0a0",
+      "text": "bvideo setup"
+    },
+    {
+      "site": "0061d6f2",
+      "address": "0083f090",
+      "text": "bsound setup"
+    },
+    {
+      "site": "0061d7f8",
+      "address": "0083f084",
+      "text": "bcontrols"
+    },
+    {
+      "site": "0061d8a8",
+      "address": "0083f078",
+      "text": "bgame setup"
+    },
+    {
+      "site": "0061d8f7",
+      "address": "0083f064",
+      "text": "bmultiplayer setup"
+    },
+    {
+      "site": "0061d946",
+      "address": "0083f05c",
+      "text": "bback"
+    },
+    {
+      "site": "0061d9b7",
+      "address": "0083ebb0",
+      "text": "text_h&dversion"
+    },
+    {
+      "site": "0061dbc9",
+      "address": "0083f1ac",
+      "text": "nextdetail"
+    },
+    {
+      "site": "0061dbdc",
+      "address": "0083f1a4",
+      "text": "GD00"
+    },
+    {
+      "site": "0061dbe9",
+      "address": "0083f19c",
+      "text": "shadows"
+    },
+    {
+      "site": "0061dbf8",
+      "address": "0083f194",
+      "text": "GD01"
+    },
+    {
+      "site": "0061dc05",
+      "address": "0083f18c",
+      "text": "mirrors"
+    },
+    {
+      "site": "0061dc14",
+      "address": "0083f184",
+      "text": "GD02"
+    },
+    {
+      "site": "0061dc21",
+      "address": "0083f178",
+      "text": "morphing"
+    },
+    {
+      "site": "0061dc30",
+      "address": "0083f170",
+      "text": "GD03"
+    },
+    {
+      "site": "0061dc3d",
+      "address": "0083f15c",
+      "text": "dynamic lightning"
+    },
+    {
+      "site": "0061dc4c",
+      "address": "0083f154",
+      "text": "GD04"
+    },
+    {
+      "site": "0061dc59",
+      "address": "0083f148",
+      "text": "light glow"
+    },
+    {
+      "site": "0061dc68",
+      "address": "0083f140",
+      "text": "GD05"
+    },
+    {
+      "site": "0061dc75",
+      "address": "0083f130",
+      "text": "use high models"
+    },
+    {
+      "site": "0061dc84",
+      "address": "0083f128",
+      "text": "GD06"
+    },
+    {
+      "site": "0061dc91",
+      "address": "0083f118",
+      "text": "graphics setup"
+    },
+    {
+      "site": "0061dd40",
+      "address": "0083f104",
+      "text": "text_graphics setup"
+    },
+    {
+      "site": "0061dd65",
+      "address": "0083f0ec",
+      "text": "text_gama correction"
+    },
+    {
+      "site": "0061dd88",
+      "address": "0083f034",
+      "text": "text_min norm max02"
+    },
+    {
+      "site": "0061ddd9",
+      "address": "0083f0e0",
+      "text": "scrollbar03"
+    },
+    {
+      "site": "0061de13",
+      "address": "0083f0d0",
+      "text": "geometry detail"
+    },
+    {
+      "site": "0061de89",
+      "address": "0083f1a4",
+      "text": "GD00"
+    },
+    {
+      "site": "0061dec8",
+      "address": "0083f194",
+      "text": "GD01"
+    },
+    {
+      "site": "0061df07",
+      "address": "0083f184",
+      "text": "GD02"
+    },
+    {
+      "site": "0061df46",
+      "address": "0083f170",
+      "text": "GD03"
+    },
+    {
+      "site": "0061df9e",
+      "address": "0083f154",
+      "text": "GD04"
+    },
+    {
+      "site": "0061dfdf",
+      "address": "0083f140",
+      "text": "GD05"
+    },
+    {
+      "site": "0061e01e",
+      "address": "0083f128",
+      "text": "GD06"
+    },
+    {
+      "site": "0061e06c",
+      "address": "0083f0bc",
+      "text": "text_modifications"
+    },
+    {
+      "site": "0061e149",
+      "address": "0083f220",
+      "text": "sound setup"
+    },
+    {
+      "site": "0061e1f8",
+      "address": "0083f20c",
+      "text": "text_sound setup"
+    },
+    {
+      "site": "0061e21d",
+      "address": "0083f1f8",
+      "text": "text_sound volume"
+    },
+    {
+      "site": "0061e242",
+      "address": "0083f048",
+      "text": "text_min norm max"
+    },
+    {
+      "site": "0061e291",
+      "address": "0083f1e4",
+      "text": "text_music volume"
+    },
+    {
+      "site": "0061e2b6",
+      "address": "0083f1d0",
+      "text": "text_min norm max01"
+    },
+    {
+      "site": "0061e314",
+      "address": "0083f1c4",
+      "text": "scrollbar01"
+    },
+    {
+      "site": "0061e34e",
+      "address": "0083f1b8",
+      "text": "scrollbar02"
+    },
+    {
+      "site": "0061e3f7",
+      "address": "0083f384",
+      "text": "keysscreen"
+    },
+    {
+      "site": "0061e5f3",
+      "address": "0083f370",
+      "text": "text_controls setup"
+    },
+    {
+      "site": "0061e638",
+      "address": "0083f370",
+      "text": "text_controls setup"
+    },
+    {
+      "site": "0061e6ea",
+      "address": "0083f364",
+      "text": "bcontrols01"
+    },
+    {
+      "site": "0061e72f",
+      "address": "0083f364",
+      "text": "bcontrols01"
+    },
+    {
+      "site": "0061e822",
+      "address": "0083f350",
+      "text": "text_mouse setup"
+    },
+    {
+      "site": "0061e867",
+      "address": "0083f350",
+      "text": "text_mouse setup"
+    },
+    {
+      "site": "0061e919",
+      "address": "0083f340",
+      "text": "invert mouse"
+    },
+    {
+      "site": "0061e95e",
+      "address": "0083f340",
+      "text": "invert mouse"
+    },
+    {
+      "site": "0061ea4e",
+      "address": "0083f328",
+      "text": "text_mouse sensitivity"
+    },
+    {
+      "site": "0061ea93",
+      "address": "0083f328",
+      "text": "text_mouse sensitivity"
+    },
+    {
+      "site": "0061eb45",
+      "address": "0083f31c",
+      "text": "scrollbar"
+    },
+    {
+      "site": "0061eb8a",
+      "address": "0083f31c",
+      "text": "scrollbar"
+    },
+    {
+      "site": "0061ec75",
+      "address": "0083f300",
+      "text": "text_minimal normal maximal"
+    },
+    {
+      "site": "0061ecba",
+      "address": "0083f300",
+      "text": "text_minimal normal maximal"
+    },
+    {
+      "site": "0061ed9e",
+      "address": "0083f2ec",
+      "text": "text_joystick setup"
+    },
+    {
+      "site": "0061ee20",
+      "address": "0083f2e0",
+      "text": "bcalibrate"
+    },
+    {
+      "site": "0061ee81",
+      "address": "0083f2d0",
+      "text": "force feedback"
+    },
+    {
+      "site": "0061eeb7",
+      "address": "0083f2c4",
+      "text": "lock fire"
+    },
+    {
+      "site": "0061eeef",
+      "address": "0083f2b4",
+      "text": "keysscreen01"
+    },
+    {
+      "site": "0061ef2d",
+      "address": "0083f2a0",
+      "text": "text_last save01"
+    },
+    {
+      "site": "0061ef52",
+      "address": "0083f294",
+      "text": "controls"
+    },
+    {
+      "site": "0061efda",
+      "address": "0083ebe4",
+      "text": "scroll00"
+    },
+    {
+      "site": "0061f00d",
+      "address": "0083f28c",
+      "text": "hkinput"
+    },
+    {
+      "site": "0061f01c",
+      "address": "0083f284",
+      "text": "hktext"
+    },
+    {
+      "site": "0061f047",
+      "address": "0083f274",
+      "text": "GR_Movements"
+    },
+    {
+      "site": "0061f07c",
+      "address": "0083f268",
+      "text": "GR_Weapons"
+    },
+    {
+      "site": "0061f0ad",
+      "address": "0083f25c",
+      "text": "GR_Other"
+    },
+    {
+      "site": "0061f0de",
+      "address": "0083f24c",
+      "text": "GR_Selections"
+    },
+    {
+      "site": "0061f10f",
+      "address": "0083f240",
+      "text": "GR_Tactical"
+    },
+    {
+      "site": "0061f137",
+      "address": "0083f234",
+      "text": "bdefault*"
+    },
+    {
+      "site": "0061f178",
+      "address": "0083f22c",
+      "text": "bback01"
+    },
+    {
+      "site": "0061f1d9",
+      "address": "0083f3c0",
+      "text": "gameoptions"
+    },
+    {
+      "site": "0061f288",
+      "address": "0083f3ac",
+      "text": "text_game options"
+    },
+    {
+      "site": "0061f2ad",
+      "address": "0083f3a0",
+      "text": "subtitles"
+    },
+    {
+      "site": "0061f2ec",
+      "address": "0083f390",
+      "text": "parental lock"
+    },
+    {
+      "site": "0061f359",
+      "address": "0083f470",
+      "text": "network settings"
+    },
+    {
+      "site": "0061f408",
+      "address": "0083f458",
+      "text": "text_connection rate"
+    },
+    {
+      "site": "0061f428",
+      "address": "0083f44c",
+      "text": "connection"
+    },
+    {
+      "site": "0061f446",
+      "address": "0083f430",
+      "text": "text_voice-chat settings"
+    },
+    {
+      "site": "0061f46d",
+      "address": "0083f41c",
+      "text": "enable voice-chat"
+    },
+    {
+      "site": "0061f4ac",
+      "address": "0083f404",
+      "text": "text_voice-chat volume"
+    },
+    {
+      "site": "0061f4d1",
+      "address": "0083f3f8",
+      "text": "scrollbar04"
+    },
+    {
+      "site": "0061f50b",
+      "address": "0083f3e0",
+      "text": "text_min norm max020"
+    },
+    {
+      "site": "0061f569",
+      "address": "0083f3cc",
+      "text": "text_network setup"
+    },
+    {
+      "site": "00628e26",
+      "address": "0083f940",
+      "text": "MP_MAPS_PANEL"
+    },
+    {
+      "site": "00628ea7",
+      "address": "0083f92c",
+      "text": "gr_mp_deathmatch"
+    },
+    {
+      "site": "00628f17",
+      "address": "0083f91c",
+      "text": "gr_mp_zonegame"
+    },
+    {
+      "site": "00628f87",
+      "address": "0083f908",
+      "text": "gr_mp_hiddenmaps"
+    },
+    {
+      "site": "00628ff7",
+      "address": "0083f8f8",
+      "text": "gr_mp_coopmaps"
+    },
+    {
+      "site": "00629067",
+      "address": "0083f8e8",
+      "text": "gr_mp_sel_list"
+    },
+    {
+      "site": "006290d8",
+      "address": "0083f8e0",
+      "text": "bmap_A"
+    },
+    {
+      "site": "006290e9",
+      "address": "0083f8d8",
+      "text": "bmap_B"
+    },
+    {
+      "site": "006290f6",
+      "address": "0083ebe4",
+      "text": "scroll00"
+    },
+    {
+      "site": "0062910a",
+      "address": "0083aa00",
+      "text": "scroll13"
+    },
+    {
+      "site": "0062921c",
+      "address": "0083f940",
+      "text": "MP_MAPS_PANEL"
+    },
+    {
+      "site": "006292ae",
+      "address": "0083ebe4",
+      "text": "scroll00"
+    },
+    {
+      "site": "00629310",
+      "address": "0083ebe4",
+      "text": "scroll00"
+    },
+    {
+      "site": "0062948b",
+      "address": "0083aa00",
+      "text": "scroll13"
+    },
+    {
+      "site": "006294c5",
+      "address": "0083aa00",
+      "text": "scroll13"
+    },
+    {
+      "site": "0066ef74",
+      "address": "00840890",
+      "text": "P_Equipment"
+    },
+    {
+      "site": "0066f0c2",
+      "address": "0083ac9c",
+      "text": "X_SQUARE.BMP"
+    },
+    {
+      "site": "0066f3f0",
+      "address": "00840864",
+      "text": "drop"
+    },
+    {
+      "site": "0066f438",
+      "address": "00840864",
+      "text": "drop"
+    },
+    {
+      "site": "0066f4b3",
+      "address": "0083aa00",
+      "text": "scroll13"
+    },
+    {
+      "site": "0066f4fb",
+      "address": "0083aa00",
+      "text": "scroll13"
+    },
+    {
+      "site": "0066f583",
+      "address": "0083ac50",
+      "text": "hlcpct00"
+    },
+    {
+      "site": "0066f5cb",
+      "address": "0083ac50",
+      "text": "hlcpct00"
+    },
+    {
+      "site": "0066f6db",
+      "address": "00840858",
+      "text": "barrow up23"
+    },
+    {
+      "site": "0066f723",
+      "address": "00840858",
+      "text": "barrow up23"
+    },
+    {
+      "site": "0066f828",
+      "address": "00840848",
+      "text": "barrow down23"
+    },
+    {
+      "site": "0066f870",
+      "address": "00840848",
+      "text": "barrow down23"
+    },
+    {
+      "site": "0066f975",
+      "address": "00840838",
+      "text": "text_hlstrscap"
+    },
+    {
+      "site": "0066f9bd",
+      "address": "00840838",
+      "text": "text_hlstrscap"
+    },
+    {
+      "site": "0066fa7b",
+      "address": "0084082c",
+      "text": "slider12"
+    },
+    {
+      "site": "0066fac3",
+      "address": "0084082c",
+      "text": "slider12"
+    },
+    {
+      "site": "0066fb83",
+      "address": "00840820",
+      "text": "GB_Holsters"
+    },
+    {
+      "site": "0066fbcb",
+      "address": "00840820",
+      "text": "GB_Holsters"
+    },
+    {
+      "site": "0066fd53",
+      "address": "0083ac9c",
+      "text": "X_SQUARE.BMP"
+    },
+    {
+      "site": "00670012",
+      "address": "0083a9f4",
+      "text": "scroll14"
+    },
+    {
+      "site": "006700b2",
+      "address": "0083abe8",
+      "text": "hlcpct01"
+    },
+    {
+      "site": "006700fa",
+      "address": "0083abe8",
+      "text": "hlcpct01"
+    },
+    {
+      "site": "006701fb",
+      "address": "008407f4",
+      "text": "barrow up24"
+    },
+    {
+      "site": "00670243",
+      "address": "008407f4",
+      "text": "barrow up24"
+    },
+    {
+      "site": "00670307",
+      "address": "008407e4",
+      "text": "barrow down24"
+    },
+    {
+      "site": "00670343",
+      "address": "008407d4",
+      "text": "text_bkpckcap"
+    },
+    {
+      "site": "00670368",
+      "address": "008407c8",
+      "text": "slider13"
+    },
+    {
+      "site": "0067038a",
+      "address": "008407bc",
+      "text": "GR_BackPack"
+    },
+    {
+      "site": "006703e3",
+      "address": "0083ac9c",
+      "text": "X_SQUARE.BMP"
+    },
+    {
+      "site": "006704c1",
+      "address": "00840790",
+      "text": "text_cpcty"
+    },
+    {
+      "site": "006704e8",
+      "address": "0083ac34",
+      "text": "hlcpct02"
+    },
+    {
+      "site": "0067052d",
+      "address": "00840784",
+      "text": "overload"
+    },
+    {
+      "site": "0067053a",
+      "address": "00840784",
+      "text": "overload"
+    },
+    {
+      "site": "00670577",
+      "address": "0083ab70",
+      "text": "description"
+    },
+    {
+      "site": "0067058a",
+      "address": "00840890",
+      "text": "P_Equipment"
+    },
+    {
+      "site": "006705aa",
+      "address": "0083ab70",
+      "text": "description"
+    },
+    {
+      "site": "006705e6",
+      "address": "00840778",
+      "text": "text_back"
+    },
+    {
+      "site": "0067060d",
+      "address": "0084076c",
+      "text": "text_head"
+    },
+    {
+      "site": "00670632",
+      "address": "00840760",
+      "text": "text_drop"
+    },
+    {
+      "site": "00670657",
+      "address": "00840754",
+      "text": "text_hands"
+    },
+    {
+      "site": "0067067c",
+      "address": "00840744",
+      "text": "text_uniform"
+    },
+    {
+      "site": "006706a1",
+      "address": "00840734",
+      "text": "text_shoulder"
+    },
+    {
+      "site": "006706c6",
+      "address": "00840724",
+      "text": "text_holsters"
+    },
+    {
+      "site": "006706eb",
+      "address": "00840714",
+      "text": "text_backpack"
+    },
+    {
+      "site": "00675a01",
+      "address": "00840bb8",
+      "text": "items selection"
+    },
+    {
+      "site": "00675a06",
+      "address": "00840ba8",
+      "text": "Items selection"
+    },
+    {
+      "site": "00675a66",
+      "address": "00840b94",
+      "text": "selection screen"
+    },
+    {
+      "site": "00675a6b",
+      "address": "00840b80",
+      "text": "SELECTION SCREEN"
+    },
+    {
+      "site": "00675c74",
+      "address": "0083ab70",
+      "text": "description"
+    },
+    {
+      "site": "00675c79",
+      "address": "00840b74",
+      "text": "DESCRIPTION"
+    },
+    {
+      "site": "006761ab",
+      "address": "00840cb8",
+      "text": "Panel02"
+    },
+    {
+      "site": "00676370",
+      "address": "0083ab44",
+      "text": "text_soldier stats"
+    },
+    {
+      "site": "0067a7e0",
+      "address": "00840d2c",
+      "text": "P_visualstore"
+    },
+    {
+      "site": "0067a877",
+      "address": "00840d3c",
+      "text": "filter"
+    },
+    {
+      "site": "0067a8cc",
+      "address": "00840d3c",
+      "text": "filter"
+    },
+    {
+      "site": "0067abb6",
+      "address": "00840dc4",
+      "text": "bscroll"
+    },
+    {
+      "site": "0067ac4a",
+      "address": "00840db4",
+      "text": "GR_SmallWeapons"
+    },
+    {
+      "site": "0067ac70",
+      "address": "00840da0",
+      "text": "GR_MiddleWeapons"
+    },
+    {
+      "site": "0067ac93",
+      "address": "00840d90",
+      "text": "GR_HeavyWeapons"
+    },
+    {
+      "site": "0067acb6",
+      "address": "00840d80",
+      "text": "GR_Explosives"
+    },
+    {
+      "site": "0067acd9",
+      "address": "00840d74",
+      "text": "GR_Dresses"
+    },
+    {
+      "site": "0067acfc",
+      "address": "0083f25c",
+      "text": "GR_Other"
+    },
+    {
+      "site": "0067ad1a",
+      "address": "00840d68",
+      "text": "selitem08"
+    },
+    {
+      "site": "0067c2e0",
+      "address": "00840d2c",
+      "text": "P_visualstore"
+    },
+    {
+      "site": "0067c377",
+      "address": "00840d3c",
+      "text": "filter"
+    },
+    {
+      "site": "0067c3cc",
+      "address": "00840d3c",
+      "text": "filter"
+    },
+    {
+      "site": "0067c68e",
+      "address": "0083fa64",
+      "text": "scroll01"
+    },
+    {
+      "site": "0067c745",
+      "address": "00840db4",
+      "text": "GR_SmallWeapons"
+    },
+    {
+      "site": "0067c76b",
+      "address": "00840da0",
+      "text": "GR_MiddleWeapons"
+    },
+    {
+      "site": "0067c78e",
+      "address": "00840d90",
+      "text": "GR_HeavyWeapons"
+    },
+    {
+      "site": "0067c7b1",
+      "address": "00840d80",
+      "text": "GR_Explosives"
+    },
+    {
+      "site": "0067c7d4",
+      "address": "00840d74",
+      "text": "GR_Dresses"
+    },
+    {
+      "site": "0067c7f7",
+      "address": "0083f25c",
+      "text": "GR_Other"
+    },
+    {
+      "site": "0067c815",
+      "address": "00840dd8",
+      "text": "itemselector"
+    },
+    {
+      "site": "0067fb7f",
+      "address": "00841054",
+      "text": "main ingame"
+    },
+    {
+      "site": "0067fb84",
+      "address": "00841040",
+      "text": "MAIN_INGAME_MENU"
+    },
+    {
+      "site": "0067fbe3",
+      "address": "0083b4a0",
+      "text": "options"
+    },
+    {
+      "site": "0067fbe8",
+      "address": "0083f524",
+      "text": "OPTIONS"
+    },
+    {
+      "site": "0067fc64",
+      "address": "00841030",
+      "text": "player screen 2"
+    },
+    {
+      "site": "0067fc69",
+      "address": "00841020",
+      "text": "PLAYER SCREEN"
+    },
+    {
+      "site": "0067fcad",
+      "address": "00841010",
+      "text": "player screen"
+    },
+    {
+      "site": "0067fcb2",
+      "address": "00841020",
+      "text": "PLAYER SCREEN"
+    },
+    {
+      "site": "00682ab7",
+      "address": "00840b44",
+      "text": "soldier type"
+    },
+    {
+      "site": "00682c6b",
+      "address": "00841188",
+      "text": "bsave preset"
+    },
+    {
+      "site": "00682d85",
+      "address": "00841178",
+      "text": "brename preset"
+    },
+    {
+      "site": "00682eaf",
+      "address": "0083ebb0",
+      "text": "text_h&dversion"
+    },
+    {
+      "site": "00682f4c",
+      "address": "00841168",
+      "text": "text_equipment"
+    },
+    {
+      "site": "00682fce",
+      "address": "00841158",
+      "text": "text_warm up"
+    },
+    {
+      "site": "006830b2",
+      "address": "00841144",
+      "text": "text_etimated time"
+    },
+    {
+      "site": "0068314f",
+      "address": "0083ff70",
+      "text": "baccept"
+    },
+    {
+      "site": "0068325c",
+      "address": "0083f05c",
+      "text": "bback"
+    },
+    {
+      "site": "00683300",
+      "address": "0084113c",
+      "text": "console"
+    },
+    {
+      "site": "00683355",
+      "address": "00841134",
+      "text": "text03"
+    },
+    {
+      "site": "00683363",
+      "address": "0084111c",
+      "text": "text_playerarrangement"
+    },
+    {
+      "site": "00683396",
+      "address": "0083ebb0",
+      "text": "text_h&dversion"
+    },
+    {
+      "site": "006833bd",
+      "address": "00841168",
+      "text": "text_equipment"
+    },
+    {
+      "site": "006833e0",
+      "address": "00841110",
+      "text": "text_chat"
+    },
+    {
+      "site": "00683407",
+      "address": "008410f4",
+      "text": "text_selected soldier stats"
+    },
+    {
+      "site": "0068342c",
+      "address": "008410e8",
+      "text": "text_draft"
+    },
+    {
+      "site": "00683451",
+      "address": "008410dc",
+      "text": "bgame info"
+    },
+    {
+      "site": "006834a0",
+      "address": "008410c8",
+      "text": "text_player status"
+    },
+    {
+      "site": "006834c7",
+      "address": "0083ab70",
+      "text": "description"
+    },
+    {
+      "site": "006834cc",
+      "address": "00840b74",
+      "text": "DESCRIPTION"
+    },
+    {
+      "site": "00683527",
+      "address": "008410c0",
+      "text": "3Dview"
+    },
+    {
+      "site": "0068355d",
+      "address": "008410ac",
+      "text": "text_weapons info"
+    },
+    {
+      "site": "0068356c",
+      "address": "008410ac",
+      "text": "text_weapons info"
+    },
+    {
+      "site": "0068362c",
+      "address": "008411f8",
+      "text": "soldierspanel"
+    },
+    {
+      "site": "0068363b",
+      "address": "008411e8",
+      "text": "GB_Soldiers_a"
+    },
+    {
+      "site": "006836af",
+      "address": "008411d8",
+      "text": "GB_Soldiers_x"
+    },
+    {
+      "site": "00683721",
+      "address": "00840c04",
+      "text": "photo03"
+    },
+    {
+      "site": "00683732",
+      "address": "00840bc8",
+      "text": "selector"
+    },
+    {
+      "site": "0068373f",
+      "address": "008411cc",
+      "text": "selector2"
+    },
+    {
+      "site": "0068379a",
+      "address": "00840cf4",
+      "text": "table13"
+    },
+    {
+      "site": "006837b3",
+      "address": "00840cec",
+      "text": "table14"
+    },
+    {
+      "site": "006837cc",
+      "address": "00840ce4",
+      "text": "table15"
+    },
+    {
+      "site": "00683892",
+      "address": "008411f8",
+      "text": "soldierspanel"
+    },
+    {
+      "site": "00683920",
+      "address": "008411c0",
+      "text": "scroll11"
+    },
+    {
+      "site": "0068395a",
+      "address": "008411c0",
+      "text": "scroll11"
+    },
+    {
+      "site": "00683a2c",
+      "address": "008411e8",
+      "text": "GB_Soldiers_a"
+    },
+    {
+      "site": "00683a63",
+      "address": "008411e8",
+      "text": "GB_Soldiers_a"
+    },
+    {
+      "site": "00683c2d",
+      "address": "008411b0",
+      "text": "Soldier_a%02d"
+    },
+    {
+      "site": "00683ed1",
+      "address": "008411d8",
+      "text": "GB_Soldiers_x"
+    },
+    {
+      "site": "00683f08",
+      "address": "008411d8",
+      "text": "GB_Soldiers_x"
+    },
+    {
+      "site": "006840dc",
+      "address": "008411a0",
+      "text": "Soldier_x%02d"
+    },
+    {
+      "site": "006842d5",
+      "address": "00841198",
+      "text": "allies"
+    },
+    {
+      "site": "00684304",
+      "address": "00832d10",
+      "text": "axis"
+    },
+    {
+      "site": "00684afb",
+      "address": "00840cb8",
+      "text": "Panel02"
+    },
+    {
+      "site": "0068a4e1",
+      "address": "0083f570",
+      "text": "confirm"
+    },
+    {
+      "site": "0068a4e6",
+      "address": "0083f49c",
+      "text": "MP Connect console"
+    },
+    {
+      "site": "0068a546",
+      "address": "0083f4f4",
+      "text": "password"
+    },
+    {
+      "site": "0068a54b",
+      "address": "0083f4e8",
+      "text": "PASSWORD"
+    },
+    {
+      "site": "0068aac9",
+      "address": "0083a8cc",
+      "text": "text"
+    },
+    {
+      "site": "0068ab34",
+      "address": "0083f560",
+      "text": "byes*"
+    },
+    {
+      "site": "0068abe9",
+      "address": "0083f558",
+      "text": "bno*"
+    },
+    {
+      "site": "0068ac8f",
+      "address": "0083f554",
+      "text": "bok"
+    },
+    {
+      "site": "0068acc8",
+      "address": "0084165c",
+      "text": "Exit Game"
+    },
+    {
+      "site": "0068ad56",
+      "address": "0083a8cc",
+      "text": "text"
+    },
+    {
+      "site": "0068ad7d",
+      "address": "0083faa0",
+      "text": "binput"
+    },
+    {
+      "site": "0068adde",
+      "address": "0083f560",
+      "text": "byes*"
+    },
+    {
+      "site": "0068ae23",
+      "address": "0083f558",
+      "text": "bno*"
+    },
+    {
+      "site": "0068ae68",
+      "address": "0083ff38",
+      "text": "binput01"
+    },
+    {
+      "site": "0068ae88",
+      "address": "0083ff1c",
+      "text": "binput02"
+    },
+    {
+      "site": "0068bead",
+      "address": "008418d8",
+      "text": "Campaign_debrief"
+    },
+    {
+      "site": "0068d371",
+      "address": "0084190c",
+      "text": "debriefing"
+    },
+    {
+      "site": "0068d376",
+      "address": "0084190c",
+      "text": "debriefing"
+    },
+    {
+      "site": "0068d3e1",
+      "address": "00841904",
+      "text": "diary"
+    },
+    {
+      "site": "0068d3e6",
+      "address": "008418fc",
+      "text": "DIARY"
+    },
+    {
+      "site": "0068e15b",
+      "address": "00841c14",
+      "text": "panel_soldier00"
+    },
+    {
+      "site": "0068e1e3",
+      "address": "00841c08",
+      "text": "soldier00"
+    },
+    {
+      "site": "0068e22e",
+      "address": "00841c08",
+      "text": "soldier00"
+    },
+    {
+      "site": "0068e2ff",
+      "address": "00841bfc",
+      "text": "text_name00"
+    },
+    {
+      "site": "0068e34a",
+      "address": "00841bfc",
+      "text": "text_name00"
+    },
+    {
+      "site": "0068e3c6",
+      "address": "00841be8",
+      "text": "text_soldierstats00"
+    },
+    {
+      "site": "0068e411",
+      "address": "00841be8",
+      "text": "text_soldierstats00"
+    },
+    {
+      "site": "0068e4e5",
+      "address": "00841bd8",
+      "text": "text_new medal"
+    },
+    {
+      "site": "0068e530",
+      "address": "00841bd8",
+      "text": "text_new medal"
+    },
+    {
+      "site": "0068e5a0",
+      "address": "008410f4",
+      "text": "text_selected soldier stats"
+    },
+    {
+      "site": "0068e5eb",
+      "address": "008410f4",
+      "text": "text_selected soldier stats"
+    },
+    {
+      "site": "0068e6a4",
+      "address": "00841bc4",
+      "text": "text_decorations"
+    },
+    {
+      "site": "0068e6ef",
+      "address": "00841bc4",
+      "text": "text_decorations"
+    },
+    {
+      "site": "0068e763",
+      "address": "00841bb0",
+      "text": "text_new decoration"
+    },
+    {
+      "site": "0068e9aa",
+      "address": "008419e8",
+      "text": "medal%02d"
+    },
+    {
+      "site": "0068ea17",
+      "address": "0084064c",
+      "text": "new_medal"
+    },
+    {
+      "site": "0068ea8e",
+      "address": "00841950",
+      "text": "soldier_rank"
+    },
+    {
+      "site": "0068eaa1",
+      "address": "00841948",
+      "text": "death"
+    },
+    {
+      "site": "00691301",
+      "address": "00841e98",
+      "text": "team members selection"
+    },
+    {
+      "site": "00691306",
+      "address": "00841e98",
+      "text": "team members selection"
+    },
+    {
+      "site": "00691387",
+      "address": "00840b94",
+      "text": "selection screen"
+    },
+    {
+      "site": "0069138c",
+      "address": "00840b80",
+      "text": "SELECTION SCREEN"
+    },
+    {
+      "site": "00691550",
+      "address": "0083ab70",
+      "text": "description"
+    },
+    {
+      "site": "00691555",
+      "address": "00840b74",
+      "text": "DESCRIPTION"
+    },
+    {
+      "site": "00691e3c",
+      "address": "00840c04",
+      "text": "photo03"
+    },
+    {
+      "site": "00691e59",
+      "address": "00840bfc",
+      "text": "photo04"
+    },
+    {
+      "site": "00691e72",
+      "address": "00840bf4",
+      "text": "photo05"
+    },
+    {
+      "site": "00691e8b",
+      "address": "00840bec",
+      "text": "photo06"
+    },
+    {
+      "site": "00691ea4",
+      "address": "00840cdc",
+      "text": "photo07"
+    },
+    {
+      "site": "00691ecc",
+      "address": "00841f14",
+      "text": "table19"
+    },
+    {
+      "site": "00691eeb",
+      "address": "00841f0c",
+      "text": "table20"
+    },
+    {
+      "site": "00691f0a",
+      "address": "00841f04",
+      "text": "table21"
+    },
+    {
+      "site": "00691f29",
+      "address": "00841ef8",
+      "text": "member01"
+    },
+    {
+      "site": "00691f48",
+      "address": "00841eec",
+      "text": "member02"
+    },
+    {
+      "site": "00691f67",
+      "address": "00841ee0",
+      "text": "member03"
+    },
+    {
+      "site": "00691f86",
+      "address": "00841ed8",
+      "text": "panel01"
+    },
+    {
+      "site": "00691f97",
+      "address": "00840c04",
+      "text": "photo03"
+    },
+    {
+      "site": "00691fa4",
+      "address": "00840bfc",
+      "text": "photo04"
+    },
+    {
+      "site": "00691fb5",
+      "address": "0083ebe4",
+      "text": "scroll00"
+    },
+    {
+      "site": "00691fcd",
+      "address": "00841948",
+      "text": "death"
+    },
+    {
+      "site": "00691fe9",
+      "address": "00840bc8",
+      "text": "selector"
+    },
+    {
+      "site": "006920a9",
+      "address": "00840cd0",
+      "text": "GB_Soldiers"
+    },
+    {
+      "site": "0069215f",
+      "address": "00841ed0",
+      "text": "Panel01"
+    },
+    {
+      "site": "006921eb",
+      "address": "00840cd0",
+      "text": "GB_Soldiers"
+    },
+    {
+      "site": "006923d8",
+      "address": "0083b3b8",
+      "text": "Soldier%02d"
+    },
+    {
+      "site": "00692890",
+      "address": "0083ebe4",
+      "text": "scroll00"
+    },
+    {
+      "site": "00692abf",
+      "address": "00841f1c",
+      "text": "medals_panel"
+    },
+    {
+      "site": "00692b2b",
+      "address": "00841f1c",
+      "text": "medals_panel"
+    },
+    {
+      "site": "00692f9b",
+      "address": "008419e8",
+      "text": "medal%02d"
+    },
+    {
+      "site": "0069303b",
+      "address": "00840cb8",
+      "text": "Panel02"
+    },
+    {
+      "site": "00693205",
+      "address": "00841f34",
+      "text": "Panel03"
+    },
+    {
+      "site": "00693236",
+      "address": "00841f2c",
+      "text": "text_05"
+    },
+    {
+      "site": "00693348",
+      "address": "00841f3c",
+      "text": "P_SelectedSol"
+    },
+    {
+      "site": "006933fb",
+      "address": "00841f3c",
+      "text": "P_SelectedSol"
+    },
+    {
+      "site": "0069722f",
+      "address": "0084219c",
+      "text": "heros_screen"
+    },
+    {
+      "site": "00697234",
+      "address": "00842190",
+      "text": "HERO STATS"
+    },
+    {
+      "site": "00697293",
+      "address": "0083f570",
+      "text": "confirm"
+    },
+    {
+      "site": "00697298",
+      "address": "0083f568",
+      "text": "CONFIRM"
+    },
+    {
+      "site": "006972e8",
+      "address": "0083f570",
+      "text": "confirm"
+    },
+    {
+      "site": "006972ed",
+      "address": "0083f568",
+      "text": "CONFIRM"
+    },
+    {
+      "site": "0069733d",
+      "address": "0083f570",
+      "text": "confirm"
+    },
+    {
+      "site": "00697342",
+      "address": "0083f568",
+      "text": "CONFIRM"
+    }
+  ]
+}

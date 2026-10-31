@@ -243,6 +243,21 @@ public:
     void fade_movie_music(float target, std::int32_t milliseconds) {
         frontend::schedule_sound_movie_fade(sound_data_.fade, sound_data_.settings.movie_scale, target, milliseconds);
     }
+    struct CreditsMusic { std::int32_t request; std::uint32_t position; };
+    CreditsMusic credits_music_position() {
+        return {sound_data_.selection.requested,
+            frontend::primary_sound_movie_position(sound_data_.settings,sound_backend_)};
+    }
+    void begin_credits_music(const CreditsMusic& saved) {
+        if(saved.request!=37)
+            frontend::queue_primary_sound_movie(sound_data_.settings,sound_data_.fade,
+                sound_data_.secondary,sound_data_.selection,37,2000,0);
+    }
+    void restore_credits_music(const CreditsMusic& saved) {
+        if(saved.request==-1 || saved.position==0xffffffffu) fade_movie_music(1,2000);
+        else frontend::queue_primary_sound_movie(sound_data_.settings,sound_data_.fade,
+            sound_data_.secondary,sound_data_.selection,saved.request,2000,saved.position);
+    }
     void begin_menu_music() {
         const auto selected = sound_data_.selection.requested;
         if (selected == -1)

@@ -3,7 +3,64 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest implementation (2026-10-31): [complete native options widget internals](analysis/menu-widget-construction.md).
+Latest implementation (2026-10-31): [complete Main Credits flow](analysis/credits-flow.md)
+is integrated and native-audited, pending actual desktop confirmation. Original
+00688040 treats `credits.bik` as a text-branch selector and skips IShow/voice;
+the prior family plan's movie-file gate was incorrect. Real English script,
+ANSI/CE styles/columns, scrolling/edge fades, sound request37 and saved-position
+restoration are implemented. Status12 retains Main; sequence0/status13 restores
+its pointer before Credits shutdown/deletion, then starts the same owner.
+Native full-scroll ASan/UBSan, lifecycle/event/music audits, existing native/158
+tooling tests, strict Windows targets and stage-only preparation pass. No desktop
+or original game/DLL/Windows fixture/Proton execution is claimed. Four new frozen
+partial bodies; absent0064B950 and delegated engine calls earn no credit.
+The first section3 checkbox remains open until actual desktop acceptance.
+No commit/push; the earlier staged inventory remains intact.
+
+Prior planning: [nine families /29 open delivery units](analysis/menu-family-delivery.md)
+cover28 populated roles, twelve shared/auxiliary products,71 routes,512 control
+sites, thirteen dynamic categories and20 prompts. Planning remains source-only;
+independent native UI audits do not establish actual game/network handoffs.
+
+Prior inventory (2026-10-31): [definition identity/placeholder resolution](analysis/menu-definition-resolution.md).
+All 30 original declarations/IDs remain; 28 populated owner-scoped roles and two
+reserved empty hero registrations are classified. Six repeated root/auxiliary
+model groups, five numeric-ID collision groups, shared/embedded products and all
+20 campaign table rows are resolved without redirecting instances or conflating
+empty/null keys. Read-only progress selector 006B8F90 confirms data-dependent
+progress, not universal reachability of all guarded table rows. Forty functions/
+15,229 original instructions, complete catalog audit and 14 corruption rejections
+pass. Existing native suite/all 158 tooling tests, maps, frozen ledger and strict
+Windows target checks pass; application/staged hash unchanged. Source-only,
+no C++ or function credit, no desktop claim, no commit/push. The family checklists
+and validation requirements are now recorded above.
+
+Prior inventory (2026-10-31): [complete control/dependency contracts](analysis/menu-contracts.md).
+All thirty owner-scoped candidates/shared products now record IDs, assets,
+controls, captions/styles, initialization, lifecycle/service dependencies and
+return rules. 57 construction programs contain 512 control sites, 959 initializer
+helper calls, 18 inline records and the profile iterator callback template;
+all 20 shared prompt calls, 255 literal localization IDs/90 styles are recorded.
+Independent both-CODE-section closure, 43,065 original instructions,
+25,794 SSA nodes, 20 decoded models/76 materials/14 font hashes and ten corruption
+rejections pass. Fourteen base-model misses and 21 loose-localization misses retain
+their actual layered-resource dependency; they are not claims of installed
+absence. Existing native suite/158 tooling tests, related maps, frozen ledger
+and up-to-date Windows targets pass. Application/staged hash unchanged; no C++,
+body credit or desktop delivery. User's no-commit instruction remains active.
+Duplicate/placeholder resolution and family checklists are now recorded above.
+
+Prior inventory (2026-10-31): [complete frontend owner/route census](analysis/menu-route-census.md).
+Eight concrete owners/thirty numbered candidates, conditional player/diary/selection
+models, eight common runtime dialog instances, three description sites, engine
+information panel, embedded/dynamic products and controller routes are cataloged.
+Both CODE-section call scans match 487 saved references; all ten common frontend
+tables include two abstract bases. This closes only the source-only census
+checkbox. Per-control contracts are now recorded above; duplicate/placeholder
+resolution is now recorded above. No new body credit or desktop claim. Widget work was committed at
+the user's request as f67b655; no push.
+
+Prior implementation (2026-10-31): [complete native options widget internals](analysis/menu-widget-construction.md).
 Kinds8/10/24 now compose original constructors, owned repeating arrow/thumb/
 four-state half parts, guarded engine frame services, actual shared input/text,
 flat/recursive factory and all current-profile observers. The seven-child toggle

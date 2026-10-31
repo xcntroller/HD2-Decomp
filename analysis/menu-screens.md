@@ -2,10 +2,15 @@
 
 This inventories the fourteen definitions registered by `00623DD0` and the
 identifier-specific builders called by `00627060`. It is **not** the complete
-reachable-menu census: nested pages, in-game variants and application states
-remain open. [Machine-readable evidence](menu-screens.json) contains exact IDs,
+reachable-menu census: the [complete owner/route census](menu-route-census.md)
+now records nested products, in-game variants and application boundaries separately.
+[Machine-readable evidence](menu-screens.json) contains exact IDs,
 model strings, call sites, 53 static children and 100 initializer call sites.
 These are metadata; no original pseudocode or localized caption text is included.
+The [complete control/dependency contracts](menu-contracts.md) now extend these
+static records across all owners, dynamic construction, captions and return rules.
+The [identity resolution](menu-definition-resolution.md) preserves all fourteen
+ordinary slots, including both same-name mission/cinematics definitions.
 
 | Slot | Definition | Model key | Static children | Augmentation | Runtime |
 | --- | --- | --- | --- | --- | --- |

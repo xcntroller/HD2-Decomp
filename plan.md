@@ -91,27 +91,31 @@ Original object ABI is tracked separately from native menu delivery.
 
 - [x] Inventory 14 static registrations and 11 augmentation builders. **Source-only.**
   [Screen inventory](analysis/menu-screens.md), [metadata](analysis/menu-screens.json).
-- [ ] Enumerate remaining derived/dynamic/shared/in-game screens and reachable routes.
-- [ ] Record IDs, assets, controls, captions, initialization, dependencies and return paths.
-- [ ] Resolve duplicate/placeholder definitions before counting separate screens.
-- [ ] Split each family below into concrete delivery checklists; identify running-game
-  requirements and ways to validate their UI contracts independently.
+- [x] Enumerate remaining derived/dynamic/shared/in-game screens and routes. **Source-only.**
+  [Owner/route census](analysis/menu-route-census.md), [catalog](analysis/menu-route-census.json).
+- [x] Record IDs, assets, controls, captions, initialization, dependencies and returns. **Source-only.**
+  [Control/dependency contracts](analysis/menu-contracts.md), [catalog](analysis/menu-contracts.json).
+- [x] Resolve duplicate/placeholder definitions. **Source-only:** 28 populated roles, two reserved slots.
+  [Identity/counting rules](analysis/menu-definition-resolution.md), [catalog](analysis/menu-definition-resolution.json).
+- [x] Split all families into delivery checklists and independent/running-game validation. **Source-only.**
+  [Nine families / 29 open delivery items](analysis/menu-family-delivery.md), [coverage](analysis/menu-family-delivery.json).
 
 | Family | Required flow | Current status |
 | --- | --- | --- |
-| Main menu | Nine actions, profile/save/date/version labels, eligibility | Exit only |
-| Shared dialogs | Yes/No/OK, prompts, text/password, errors and cancellation | Quit Yes/No; slot-zero diagnostic |
-| Credits/cinematics | Controller, scrolling/list/playback and return | Entry routes identified |
-| Options | Nested pages, widgets, apply/cancel/persistence | Definitions/observers inventoried |
-| Profiles | List/select/create/rename/delete and validation | Builder/dependencies inventoried |
-| Saves/loading | Metadata, previews, selection, errors and handoff | Loading primitives recovered; UI open |
-| Single player | Campaign/lone-wolf/carnage, squad/equipment/briefing | Initial definition located |
-| Multiplayer | LAN/Internet browse, create/connect/lobby/errors | Static families/builders mapped |
-| In-game menu | Pause/options/save/load/quit and return variants | Not inventoried |
+| [Main menu](analysis/menu-family-delivery.md#main-menu) | Nine actions, profile/save/date/version labels, eligibility | Exit only |
+| [Shared dialogs](analysis/menu-family-delivery.md#shared-dialogs) | Yes/No/OK, prompts, text/password, errors and cancellation | Quit Yes/No; slot-zero diagnostic |
+| [Credits/cinematics](analysis/menu-family-delivery.md#credits-and-cinematics) | Retained controller, list/playback and return | Credits integrated/native-audited; desktop confirmation pending |
+| [Options](analysis/menu-family-delivery.md#options) | All pages/bindings, apply/Back/persistence and owner variants | Native widgets source-only; full flow open |
+| [Profiles](analysis/menu-family-delivery.md#profiles) | List/select/create/rename/delete and validation | Startup persistence recovered; menu flow open |
+| [Saves/loading](analysis/menu-family-delivery.md#saves-and-loading) | Actual metadata, errors and game/controller handoff | No extra save-screen registration inferred; real receivers required |
+| [Single player](analysis/menu-family-delivery.md#single-player) | Campaign/lone-wolf/carnage, hero/team/equipment/briefing/results | Resolved roles/dependencies; real handoffs remain open |
+| [Multiplayer](analysis/menu-family-delivery.md#multiplayer) | Browser/create/connect/lobby/errors and owner variants | Controlled local services required; legacy service availability explicit |
+| [In-game menu](analysis/menu-family-delivery.md#in-game-menu) | Pause/player/options/actions and retained-game return | Independent UI audits possible; real game required for full return |
 
 ## 3. Deliver complete flows in dependency order
 
 - [ ] After launch, deliver credits or another low-dependency screen through entry/action/back.
+  [Credits implementation and pending desktop gate](analysis/credits-flow.md).
 - [ ] Deliver options, including binding editors and original settings semantics.
 - [ ] Deliver profiles/saves using isolated writable copies for persistence validation.
 - [ ] Deliver single-player setup through a documented game-controller handoff.
@@ -122,6 +126,10 @@ Original object ABI is tracked separately from native menu delivery.
 For each flow: evidence → readable source → build/audit → integrate → user desktop
 validation → tracker update → commit. Never enable dead actions or count placeholder
 service responses as completed flows.
+
+The linked family checklists define concrete flow boundaries and validation levels;
+all 29 new delivery items are open. Native fixtures establish UI/payload/ownership
+contracts, separately from actual desktop and real game/network handoff acceptance.
 
 ## 4. Finish fidelity and replace remaining scaffolding
 

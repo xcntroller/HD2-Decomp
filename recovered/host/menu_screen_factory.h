@@ -20,10 +20,12 @@ public:
     using Products = frontend::OwnedScreens<MenuScreenProduct>;
     MenuScreenFactory(const MenuScene& scene, HMODULE module,
                       std::function<MenuTextObject*(std::uint32_t)> text_lookup,
-                      frontend::MenuEventQueue& queue, Products& products, Bindings& bindings, MenuWidgetContext* widgets = nullptr)
+                      frontend::MenuEventQueue& queue, Products& products, Bindings& bindings, MenuWidgetContext* widgets = nullptr, bool credits = false)
         : scene_(scene), module_(module), text_lookup_(std::move(text_lookup)),
           queue_(queue), products_(products), bindings_(bindings), widgets_(widgets),
-          main_{scene.main_model_frame(), false, {frontend::MenuControlRole::exit}},
+          main_{scene.main_model_frame(), false, credits ?
+                std::vector<frontend::MenuControlRole>{frontend::MenuControlRole::exit,frontend::MenuControlRole::credits} :
+                std::vector<frontend::MenuControlRole>{frontend::MenuControlRole::exit}},
           confirmation_{scene.confirmation_model_frame(), true,
                         {frontend::MenuControlRole::yes, frontend::MenuControlRole::no}} {}
 
