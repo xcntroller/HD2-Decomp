@@ -5,6 +5,7 @@
 #include "host/engine_sound.h"
 #include <objbase.h>
 #include <io.h>
+#include <optional>
 
 namespace {
 template<class Function>
@@ -96,36 +97,38 @@ int wmain(int argc, wchar_t** argv) {
         struct Com { ~Com() { CoUninitialize(); } } com_owner;
         std::puts("Recovered startup integration probe; not the original controller/menu launch");
         hd2::host::StartupSession session(engine.value, rw, joy.value);
-        session.before_devices();
-        Graphics graphics(engine.value);
+        std::optional<Graphics> graphics;
+        std::optional<hd2::host::EngineSound> sound;
+        std::optional<hd2::host::MenuDriver> driver;
+        hd2::frontend::CleanupErrors errors;
         int result = 1;
         try {
-            hd2::host::EngineSound sound(engine.value, graphics.window());
-            hd2::host::MenuDriver driver(engine.value);
-            try {
-                if (session.after_devices()) {
-                    SetWindowTextW(graphics.window(), L"HD2 startup integration completed - close to finish");
-                    std::puts("Startup integration completed; beginning bounded window pump");
-                    for (std::uint32_t i = 0; (!frames || i < frames) && IsWindow(graphics.window()); ++i) {
-                        graphics.pump();
-                        if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) break;
-                        Sleep(10);
-                    }
-                    result = 0;
-                } else std::fputs("Startup preparation failed; profile selection was not run\n", stderr);
-            } catch (...) { session.close_consumers(); throw; }
-            session.close_consumers(); // Portraits/input before3D/sound close.
-        } catch (...) {
-            graphics.close();
-            session.close_archives();
-            throw;
-        }
-        graphics.close();
-        session.close_archives(); // Original archives close after device phases.
+            session.before_devices();
+            graphics.emplace(engine.value);
+            sound.emplace(engine.value, graphics->window());
+            driver.emplace(engine.value);
+            if (session.after_devices()) {
+                SetWindowTextW(graphics->window(), L"HD2 startup integration completed - close to finish");
+                std::puts("Startup integration completed; beginning bounded window pump");
+                for (std::uint32_t i = 0; (!frames || i < frames) && IsWindow(graphics->window()); ++i) {
+                    graphics->pump();
+                    if (GetAsyncKeyState(VK_ESCAPE) & 0x8000) break;
+                    Sleep(10);
+                }
+                result = 0;
+            } else std::fputs("Startup preparation failed; profile selection was not run\n", stderr);
+        } catch (...) { errors = hd2::frontend::CleanupErrors(std::current_exception()); }
+        errors.attempt([&] { session.close_consumers(graphics.has_value()); });
+        driver.reset(); sound.reset(); graphics.reset();
+        errors.attempt([&] { session.close_archives(); });
+        errors.rethrow();
         std::printf("Startup probe teardown completed; result=%d\n", result);
         return result;
     } catch (const std::exception& error) {
         std::fprintf(stderr, "Startup probe failed: %s\n", error.what());
+        return 1;
+    } catch (...) {
+        std::fputs("Startup probe failed: unknown native exception\n", stderr);
         return 1;
     }
 }

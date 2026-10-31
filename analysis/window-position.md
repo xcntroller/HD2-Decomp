@@ -31,9 +31,12 @@ exception or additional I/O error policy is implied.
 The concrete adapter forwards to the borrowed original rw_data module, shared
 with archive and text services, and retrieves the original graphics singleton
 and checked +48 window accessor at each call. Module and archive lifetimes
-remain the caller's responsibility. No live integration or desktop test was
-performed. Full startup, protection, cache teardown and driver lifecycle remain
-open.
+remain the caller's responsibility. The [shutdown sweep](shutdown-delivery.md)
+now connects save before device closure. A successful real rectangle snapshot
+seeds the subsequent ignored rectangle failure; without a valid snapshot, saving
+is skipped. User desktop acceptance now records an eight-byte saved position
+(left47/top21); see the delivery evidence. Startup restore remains source-only,
+and full setup/protection/original cache lifecycle remain open.
 
 Validation: temporary ASan/UBSan native audit covers negative and zero handles,
 all short-read lengths, signed coordinate decoding, operation ordering, ignored

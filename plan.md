@@ -15,10 +15,11 @@ explicit.
 Checked delivery items mean integrated and desktop-tested unless marked
 **source-only**. Research and partial functions do not establish delivery.
 
-## 0. Rebuild the original launch path to the menu — current delivery priority
+## 0. Rebuild the original launch path to the menu — bounded checkpoint complete
 
-Deliver original opening movies → recovered controller transition → compiled
-menu. The existing host preview is desktop-confirmed but is not this milestone.
+Delivered ordinary opening movies → recovered controller transition → compiled
+Main/Exit. [Final acceptance matrix](analysis/launch-acceptance.md) records tested
+builds, evidence and exclusions. The older preview remains a separate diagnostic.
 
 Keep this delivery checklist stable. Record subsystem slices in the linked
 [recovery index](analysis/launch-next-steps.md#recovered-source-index), not as new
@@ -31,23 +32,25 @@ requires them; recovery of a helper alone does not complete a delivery item.
   [Bounded controller delivery](analysis/controller-integration.md) desktop-confirmed 2026-10-30.
 - [x] Complete opening playback, skips, music/subtitles and movie-to-menu cleanup.
   [Ordinary playback delivery](analysis/playback-completion.md) desktop-confirmed 2026-10-31.
-- [ ] Preserve failure handling, partial-startup cleanup and normal shutdown.
-- [ ] Build the independent launch target; desktop-confirm playback, skips, missing
+- [x] Preserve failure handling, partial-startup cleanup and normal shutdown.
+  [Bounded shutdown delivery](analysis/shutdown-delivery.md) desktop-accepted 2026-10-31.
+- [x] Build the independent launch target; desktop-confirm playback, skips, missing
   movies, menu entry and teardown, then commit after user confirmation.
+  [Consolidated acceptance](analysis/launch-acceptance.md), shutdown commit3f976d4.
 
 Baseline: the four-movie sequence and host preview are desktop-confirmed.
 [Opening evidence](analysis/opening-video.md). Recovered source components remain
 separate from delivery; their completed work is preserved in the recovery index.
 
-Next: preserve failure handling, partial-startup cleanup and normal shutdown.
-[Current launch boundary](analysis/playback-completion.md).
+Next: shared menu foundation input/focus callers and initial-focus policy.
+[Keyboard recovery](analysis/keyboard-preprocessing.md).
 Full registry/setup bootstrap and binary integrity VM remain outside the checkpoint.
 
 ## Current position
 
 | Area | Verified | Remaining |
 | --- | --- | --- |
-| Original controller launch | Four movies/subtitles → Main/Exit, shared owners/input and status4 Exit confirmed | Full failure/shutdown matrix |
+| Original controller launch | Four movies/subtitles → Main/Exit and bounded failure/shutdown accepted | Other menu flows; broader failures remain excluded |
 | Menu visuals | Original artwork, cursor, text and button hover | Dynamic labels, localization, fidelity |
 | Exit/confirmation | Pointer, Enter/Space, Escape and modal cancellation | Other actions/dialogs |
 | Shared controls/screens | State, messages, factory, stack and nested diagnostic | Screen callbacks, dynamic lists, original ABI |

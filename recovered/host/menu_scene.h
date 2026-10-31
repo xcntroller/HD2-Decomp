@@ -67,8 +67,12 @@ public:
         std::puts("3D driver initialized");
     }
 
-    ~MenuDriver() {
-        close_(driver_);
+    ~MenuDriver() { close(); }
+    void close() noexcept {
+        if (!close_) return;
+        const auto release = close_;
+        close_ = nullptr;
+        release(driver_);
         std::puts("3D driver closed");
     }
 

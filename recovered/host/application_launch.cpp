@@ -10,6 +10,8 @@
 #include "host/opening_audio.h"
 #include "host/opening_text.h"
 #include "host/frame_clock.h"
+#include "host/window_position.h"
+#include <optional>
 #include <objbase.h>
 #include <io.h>
 
@@ -48,7 +50,8 @@ public:
     ~WindowGraphics() { close(); }
     void close() {
         if (!live_) return;
-        graphics_->methods->close(graphics_); live_ = false;
+        live_ = false;
+        graphics_->methods->close(graphics_);
         std::puts("Controller graphics closed");
     }
     host::Graphics* graphics() const { return graphics_; }
@@ -80,9 +83,17 @@ public:
         if (!previous_) throw std::runtime_error("Cannot install launch window procedure");
         active_ = this;
     }
-    ~WindowHook() {
-        if (IsWindow(window_)) SetWindowLongPtrW(window_, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(previous_));
+    ~WindowHook() { frontend::CleanupErrors errors; errors.attempt([&] { restore(); }); }
+    void restore() {
+        if (!installed_) return;
+        installed_ = false;
         active_ = nullptr;
+        if (IsWindow(window_)) {
+            SetLastError(0);
+            if (!SetWindowLongPtrW(window_, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>(previous_)) && GetLastError())
+                throw std::runtime_error("Cannot restore launch window procedure");
+        }
+        std::puts("Shutdown: launch window hook restored");
     }
     bool closed() const { return closed_; }
     void menu_cursor(bool value) { menu_cursor_ = value; }
@@ -99,6 +110,7 @@ private:
     HWND window_;
     WNDPROC previous_ = nullptr;
     bool closed_ = false, menu_cursor_ = false;
+    bool installed_ = true;
 };
 
 class OpeningBackend {
@@ -264,58 +276,111 @@ private:
     host::BorrowedGraphicsInput& keyboard_;
 };
 
+// Declaration order is also the fallback lifetime: no engine consumer outlives
+// its service/device/module. Explicit cleanup below handles all acquired prefixes.
+struct LaunchOwners {
+    using Controller = frontend::ApplicationController<frontend::ApplicationState, LaunchServices>;
+    std::optional<host::StartupSession> startup;
+    std::optional<WindowGraphics> graphics;
+    std::optional<host::EngineSound> sound;
+    std::optional<host::MenuDriver> driver;
+    std::optional<host::BorrowedGraphicsInput> keyboard;
+    std::optional<LaunchServices> services;
+    std::optional<Controller> controller;
+    std::optional<WindowHook> hook;
+    HMODULE engine, rw_data;
+    bool completed = false;
+
+    LaunchOwners(HMODULE module, HMODULE rw) : engine(module), rw_data(rw) {}
+    void restore_window_hook() {
+        frontend::CleanupErrors errors;
+        errors.attempt([&] { if (hook) hook->restore(); });
+        hook.reset();
+        errors.rethrow();
+    }
+    void close_application() {
+        frontend::CleanupErrors errors;
+        errors.attempt([&] { if (controller) controller->shutdown(); });
+        controller.reset(); services.reset(); keyboard.reset();
+        errors.rethrow();
+    }
+    void close_consumers() { if (startup) startup->close_consumers(graphics.has_value()); }
+    void save_window() {
+        // Original early failures skip the normal tail. Only persist a completed
+        // run, and seed ignored rectangle failure with real known coordinates.
+        if (!completed || !graphics || !IsWindow(graphics->window())) return;
+        host::WindowPositionPlatform platform(engine);
+        frontend::WindowPosition known{};
+        if (!platform.capture_window_position(known)) {
+            std::puts("Shutdown: window.cfg skipped; no valid window coordinates");
+            return;
+        }
+        host::WindowPositionFiles files(rw_data);
+        const bool opened = frontend::save_window_position(files, platform, known);
+        std::printf("Shutdown: window.cfg %s\n", opened ? "write attempted" : "open failed; skipped");
+    }
+    void close_3d() { driver.reset(); }
+    void close_sound() { sound.reset(); }
+    void close_graphics() { graphics.reset(); }
+    void close_archives() {
+        if (!startup) return;
+        startup->close_archives();
+        startup.reset();
+        std::puts("Shutdown: archives released; startup owner destroyed");
+    }
+};
+
 int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit) {
-    host::StartupSession startup(module, rw, joy); // game.cfg before graphics.
-    startup.before_devices();
-    WindowGraphics graphics(module);
-    int result = 0;
+    LaunchOwners owners(module, rw);
+    frontend::CleanupErrors errors;
     try {
-        host::EngineSound sound(module, graphics.window());
-        host::MenuDriver driver(module);
-        try {
-            startup.setup_devices();
-            WindowHook hook(graphics.window());
-            SetWindowTextW(graphics.window(), L"HD2 recovered controller - opening / Main / Exit");
-            {
-                host::BorrowedGraphicsInput keyboard(startup.graphics(), module);
-                LaunchServices services(startup, driver, module, graphics.graphics(), graphics.window(), keyboard);
-                frontend::ApplicationController<frontend::ApplicationState, LaunchServices> controller(services);
-                if (!controller.start(false)) throw std::runtime_error("Controller application preparation failed");
-                host::FrameClockPlatform clock_platform;
-                frontend::FrameClock frame_clock(clock_platform);
-                std::uint32_t frames = 0, previous_type = 0, previous_sequence = 0;
-                const auto trace = [&] {
-                    if (!controller.active()) return;
-                    const auto type = controller.active()->type();
-                    const auto sequence = type == 10 ? controller.active()->video_sequence() : 0;
-                    if (type != previous_type || sequence != previous_sequence) {
-                        std::printf("Controller active: type=%u sequence=%u status=%u phase=%u\n", type, sequence,
-                                    controller.active()->status(), controller.phase());
-                        previous_type = type; previous_sequence = sequence;
-                    }
-                    hook.menu_cursor(type == 2);
-                };
-                trace();
-                while (!hook.closed() && IsWindow(graphics.window()) && (!limit || frames < limit)) {
-                    graphics.graphics()->methods->pump(graphics.graphics());
-                    if (hook.closed()) break;
-                    keyboard.poll_keyboard();
-                    // Default original scan mode0 does not pop this observation.
-                    // Screenshot export is deliberately not enabled in this menu target.
-                    const auto milliseconds = frame_clock.next(10, 100);
-                    if (!frontend::advance_application_frame(controller, services, milliseconds)) break;
-                    ++frames;
-                    trace();
-                }
-                controller.shutdown();
-                std::printf("Controller launch completed; frames=%u\n", frames);
+        auto& startup = owners.startup.emplace(module, rw, joy); // game.cfg before graphics.
+        startup.before_devices();
+        auto& graphics = owners.graphics.emplace(module);
+        owners.sound.emplace(module, graphics.window());
+        auto& driver = owners.driver.emplace(module);
+        startup.setup_devices();
+        auto& hook = owners.hook.emplace(graphics.window());
+        SetWindowTextW(graphics.window(), L"HD2 recovered controller - opening / Main / Exit");
+        auto& keyboard = owners.keyboard.emplace(startup.graphics(), module);
+        auto& services = owners.services.emplace(startup, driver, module, graphics.graphics(), graphics.window(), keyboard);
+        auto& controller = owners.controller.emplace(services);
+        if (!controller.start(false)) throw std::runtime_error("Controller application preparation failed");
+        host::FrameClockPlatform clock_platform;
+        frontend::FrameClock frame_clock(clock_platform);
+        std::uint32_t frames = 0, previous_type = 0, previous_sequence = 0;
+        const auto trace = [&] {
+            if (!controller.active()) return;
+            const auto type = controller.active()->type();
+            const auto sequence = type == 10 ? controller.active()->video_sequence() : 0;
+            if (type != previous_type || sequence != previous_sequence) {
+                std::printf("Controller active: type=%u sequence=%u status=%u phase=%u\n", type, sequence,
+                            controller.active()->status(), controller.phase());
+                previous_type = type; previous_sequence = sequence;
             }
-            startup.close_consumers();
-        } catch (...) { startup.close_consumers(); throw; }
-    } catch (...) { graphics.close(); startup.close_archives(); throw; }
-    graphics.close(); startup.close_archives();
-    std::printf("Controller launch teardown completed; result=%d\n", result);
-    return result;
+            hook.menu_cursor(type == 2);
+        };
+        trace();
+        while (!hook.closed() && IsWindow(graphics.window()) && (!limit || frames < limit)) {
+            graphics.graphics()->methods->pump(graphics.graphics());
+            if (hook.closed()) break;
+            keyboard.poll_keyboard();
+            // Default original scan mode0 does not pop this observation.
+            // Screenshot export is deliberately not enabled in this menu target.
+            const auto milliseconds = frame_clock.next(10, 100);
+            if (!frontend::advance_application_frame(controller, services, milliseconds)) break;
+            ++frames;
+            trace();
+        }
+        owners.completed = true;
+        std::printf("Controller launch completed; frames=%u reason=%s\n", frames,
+            hook.closed() || !IsWindow(graphics.window()) ? "window-close" :
+            limit && frames >= limit ? "frame-limit" : "state-exit");
+    } catch (...) { errors = frontend::CleanupErrors(std::current_exception()); }
+    frontend::close_launch_owners(owners, errors);
+    std::printf("Controller launch teardown completed; result=%u\n", errors.failed() ? 1u : 0u);
+    errors.rethrow();
+    return 0;
 }
 } // namespace
 
@@ -348,6 +413,9 @@ int wmain(int argc, wchar_t** argv) {
         return launch(engine.value, rw, joy.value, limit);
     } catch (const std::exception& error) {
         std::fprintf(stderr, "Controller launch failed: %s\n", error.what());
+        return 1;
+    } catch (...) {
+        std::fputs("Controller launch failed: unknown native exception\n", stderr);
         return 1;
     }
 }

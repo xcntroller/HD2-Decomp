@@ -2,6 +2,7 @@
 #define HD2_FRONTEND_CONTROL_FRAME_H
 
 #include "frontend/control_startup.h"
+#include "frontend/cleanup.h"
 #include <cstring>
 
 namespace hd2::frontend {
@@ -69,6 +70,25 @@ public:
         { Lock queues(backend_, 1); state_.queue_counts.fill(0); }
         state_.local_peer = 0;
     }
+    //0072E460 reached standalone branch.0072E1A0 sets all optional owners null;
+    // there are no interface/worker producers in this launch. Reject live ones.
+    // Final reset is distinct from status4 reset and precedes lock deletion.
+    void shutdown() {
+        if (closed_) return;
+        require_cold();
+        if (startup_.object4ee0)
+            throw std::logic_error("Control final resource owner is not reconstructed");
+        closed_ = true;
+        CleanupErrors errors;
+        errors.attempt([&] { reset(); });
+        if (startup_.locks5018) {
+            errors.attempt([&] { backend_.delete_control_critical_section(0); });
+            errors.attempt([&] { backend_.delete_control_critical_section(1); });
+            startup_.locks5018 = 0;
+        }
+        gate_ = 7;
+        errors.rethrow();
+    }
 private:
     struct Lock {
         Backend& backend;
@@ -109,6 +129,7 @@ private:
     std::uint32_t& gate_;
     Backend& backend_;
     ColdControlFrameState state_;
+    bool closed_ = false;
 };
 
 } // namespace hd2::frontend

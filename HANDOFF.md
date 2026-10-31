@@ -2,28 +2,25 @@
 
 ## Just completed
 
-- Milestone0 item3 is implemented and user desktop-confirmed; items1–3 are checked.
-  [Playback delivery](analysis/playback-completion.md) records scope, evidence and commands.
-- Actual movie-local subtitles, separate voice/sample owners, engine milliseconds,
-  strict cue timing, style8 glyph rendering and ordered cleanup share the current
-  controller/device lifetime. English800x600/Main/Exit remains the UI boundary.
-- User confirmed normal and omitted Logo1/Intro runs. Retained normal log: four
-  movie opens, all four caption activations/submissions/clears, menu/status4 Exit,
-  control reset and teardown result=0 after11,306 frames. Staged movies restored.
-- Native sanitizer/render/staging audits, independent asset/geometry comparisons,
-  strict i386 fixtures/three targets, native suite,158 Python tests and evidence/
-  ledger checks pass. Audits removed; agent ran no Windows code.
-- Ledger304 partial (299client/fiveengine), zero complete; frozen18,783. Separate
-  audio cues remain native-audited (installed English Intro contains none).
-  Playback implementation and research are being committed after desktop approval;
-  preceding controller commit is c0e7346.
+- Committed desktop-accepted failure/shutdown delivery as **3f976d4**.
+- Closed milestone0 item5 with the [final acceptance matrix](analysis/launch-acceptance.md).
+  All five launch outcomes are checked within English800x600/standalone/Main/Exit.
+  This consolidates accepted checkpoints; it does not claim a fresh full-matrix run.
+- Strict i386 targets are current; compiled/staged application SHA256 remains
+  3d2258a4ee3f95c2da0ed72caf03072a3c1e9ea4d2d95eb78ca01ae6b4e072ac.
+  Saved fatal-run evidence hashes and fixture restoration, original evidence maps,
+  frozen accounting and documentation checks pass. No new runtime changes/research.
+- Matrix distinguishes older playback/missing-movie acceptance from current
+  shutdown confirmation and directly retained fatal-run/window.cfg evidence.
+  Agent ran no Windows code. Ledger308 partial, zero complete; frozen18,783.
 
 ## Next
 
-Deliver item4: failure handling, partial-startup cleanup and normal shutdown.
-Start from actual current owner/error paths in application_launch/startup_session,
-with reached original callers; do not repeat confirmed playback research.
-Keep full setup/integrity VM, original object ABI, generic paragraphs/locales,
-special video states and complete global style/font/resource caches explicit.
-Do not expand the stable five-item checklist or claim all failure branches from
-one clean Exit. Commit only when requested; no pushes.
+Continue the first open shared-menu-foundation item: character targets,
+focus-entry/navigation callers and initial-focus policy. Start with
+[keyboard preprocessing](analysis/keyboard-preprocessing.md) and actual menu/input
+owners, recovering original caller behavior before implementation. Polling is
+confirmed; existing FIFO/preprocessing source alone does not deliver the item.
+Keep Main/Exit functional. Full setup/integrity VM, original ABI, unused global
+cache/pool/debug producers, live network/gameplay and broader menus remain open.
+Do not add launch prerequisites without new reached-call evidence. No pushes.

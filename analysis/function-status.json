@@ -1936,8 +1936,8 @@
       "program": "client",
       "entry": "006dc3a0",
       "status": "partial",
-      "coverage": "Final archive-only cleanup loop: ascending slot release and null after callback, matching its position after original driver closes. Also reconstructs window position save before cache/driver cleanup.",
-      "limitations": "Window-position save and archive cleanup are bounded slices only. Earlier application/cache/driver teardown and CoUninitialize remain outside this owner; full caller must preserve their order. Native RAII is an additional safety lifetime and cannot stand in for the full original function.",
+      "coverage": "Window-position save and ascending archive-only release; bounded host now composes reached final cold control, four data owners and module shutdown, then real 3D/sound/graphics close before archives/COM.",
+      "limitations": "Original additional application/debug/pool/edit-font and loaded-cache owners/producers remain excluded; native direct engine resource owners replace reached consumers. Caller-supplied valid rectangle seed replaces original unwritten stack failure bytes. Native acquired-prefix/error aggregation differs from leaked original early returns. Bounded desktop acceptance recorded on2026-10-31.",
       "evidence": [
         "analysis/startup-archives-map.json",
         "analysis/startup-archives.md",
@@ -1946,7 +1946,11 @@
         "analysis/window-position-map.json",
         "analysis/window-position.md",
         "recovered/frontend/window_position.h",
-        "recovered/host/window_position.h"
+        "recovered/host/window_position.h",
+        "analysis/shutdown-map.json",
+        "analysis/shutdown-delivery.md",
+        "recovered/frontend/cleanup.h",
+        "recovered/host/application_launch.cpp"
       ]
     },
     {
@@ -3780,7 +3784,7 @@
       "entry": "0072e1a0",
       "status": "partial",
       "coverage": "Actual launch data initialization: ordered field clears/defaults, gate7, two critical-section initializations, callback identity and32 appended partially initialized records, preserving existing prefix and ordinary capacity growth.",
-      "limitations": "Native field view/vectors/validity masks replace original full owner, raw allocation/class/SEH ABI and undefined stack reads. Callback is a non-executable typed identity; its service/destinations, full constructor/device/interface/shutdown and protection remain unrecovered. Real Win32 lock/LS3DF composition is connected to the user desktop-confirmed bounded launch. Native guards and RAII differ on invalid/repeated initialization and failure. Full original control owner/network lifecycle remains open.",
+      "limitations": "Native field view/vectors/validity masks replace original full owner, raw allocation/class/SEH ABI and undefined stack reads. Callback is a non-executable typed identity; its service/destinations, full constructor/device/interface lifecycle and protection remain unrecovered. Bounded cold final shutdown is now implemented/native-audited; bounded desktop acceptance is recorded on2026-10-31. Real Win32 lock/LS3DF composition is connected to the user desktop-confirmed bounded launch. Native guards and RAII differ on invalid/repeated initialization and failure. Full original control owner/network lifecycle remains open.",
       "evidence": [
         "analysis/control-startup-map.json",
         "analysis/control-startup.md",
@@ -4103,6 +4107,57 @@
         "analysis/playback-completion-map.json",
         "analysis/playback-completion.md",
         "recovered/host/application_launch.cpp"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072e460",
+      "status": "partial",
+      "coverage": "Final standalone control shutdown: run existing cold reset even after status4 reset, reject live optional owners, delete the two initialized startup critical sections in order, clear flag and restore gate7.",
+      "limitations": "Only initialized standalone gate7 owners are supported. Optional interfaces/+4EE0, live network/worker producers, original object ABI and full destructor remain excluded. Native once-only/exception cleanup differs from original. Integrated and sanitizer/i386-audited; bounded desktop acceptance recorded on2026-10-31.",
+      "evidence": [
+        "analysis/shutdown-map.json",
+        "analysis/shutdown-delivery.md",
+        "recovered/frontend/control_frame.h",
+        "recovered/host/control_startup.h",
+        "recovered/host/startup_session.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048da80",
+      "status": "partial",
+      "coverage": "Ascending fresh 19-slot shutdown traversal, skip null registrations, validate actual registered native module identity and dispatch reached slot+08 behavior.",
+      "limitations": "Native explicit module dispatch replaces original virtual ABI. Sixteen ordinary targets are verified RETs; Items supports constructor-established cold ownership and Vertex releases actual loaded entries. Unsupported replacements/dirty Items fail; bounded desktop acceptance recorded on2026-10-31.",
+      "evidence": [
+        "analysis/shutdown-map.json",
+        "analysis/shutdown-delivery.md",
+        "recovered/frontend/startup_modules.h",
+        "recovered/host/startup_session.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dce00",
+      "status": "partial",
+      "coverage": "Cold Items shutdown checks all500 constructor-zeroed object slots and empty request storage, runs reached auxiliary-list cleanup and preserves current value.",
+      "limitations": "Populated item objects/request vectors are rejected before mutation; their gameplay producers/destructors are unported. Native fields replace original layout. Cold source path integrated/sanitizer-audited; no dirty-owner equivalence claim. Bounded desktop acceptance is recorded on2026-10-31.",
+      "evidence": [
+        "analysis/shutdown-map.json",
+        "analysis/shutdown-delivery.md",
+        "recovered/frontend/startup_modules.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0078a980",
+      "status": "partial",
+      "coverage": "Reached gate2 cold auxiliary-list shutdown: verify both original zero heads/no native producers and clear the list counter.",
+      "limitations": "Only the PE-zeroed standalone list branch is supported; populated linked lists, engine resource release and original layouts are not reconstructed and are rejected. Integrated/sanitizer-audited; bounded desktop acceptance recorded on2026-10-31.",
+      "evidence": [
+        "analysis/shutdown-map.json",
+        "analysis/shutdown-delivery.md",
+        "recovered/frontend/startup_modules.h"
       ]
     }
   ]

@@ -8,6 +8,9 @@ remain unresolved. No successful substitute device/interface service is supplied
 Follow-up: [startup integration](startup-integration.md) now supplies a concrete
 test executable and resolves reached wrapper payloads to actual Win32 imports.
 Original binary self-integrity machinery and full control lifecycle remain open.
+The [shutdown sweep](shutdown-delivery.md) now implements the reached standalone
+final reset/lock teardown; user desktop acceptance and the retained fatal-run
+cleanup trace now confirm the bounded path.
 
 ## Confirmed launch dependencies
 
@@ -26,7 +29,7 @@ gate's PE zero-fill range. No engine implementation is credited.
 | 006C0820 | Recovered prepare006B65D0/reset006B6620 then initial state006C0CA0 | Full application ownership and concrete state |
 | 006C0CA0 →0066EAE0 →00688040 | Normal video state/descriptor creation leads to video initializer; existing exports preserve actual bodies | State lifetime, subtitles/music and protection prelude |
 | 00688040 | Indirect protection calls at00688081 and006880D7 precede descriptor installation; normal non-credits path includes sound-manager fade | Protection is also inside video initialization, not only archive setup |
-| 0072E460 | Full shutdown invoked from006DC3A0; device reset/interfaces first, lock deletion, then gate7 | Full teardown remains unrecovered; native lock RAII alone is not this shutdown |
+| 0072E460 | Full shutdown invoked from006DC3A0; device reset/interfaces first, lock deletion, then gate7 | Cold finalization is integrated/native-audited; live interfaces/full owner remain open |
 
 The protection calls are present in the static instruction path. This is not a
 claim that their effects can be discarded or that current pseudocode signatures

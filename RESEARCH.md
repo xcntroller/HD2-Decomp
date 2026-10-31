@@ -3613,3 +3613,96 @@ Milestone0 item3 is checked within the ordinary launch delivery boundary.
 Ledger remains304 partial, zero complete, frozen18,783. Next is item4 failure/
 partial-startup/normal shutdown; the five outcomes remain stable. Interactive
 acceptance received; no new commit requested or made for this sweep.
+
+## 2026-10-31 — playback committed; failure/shutdown sweep prepared
+
+Committed desktop-accepted playback as cc8b528. [Shutdown preparation](analysis/shutdown-preparation.md)
+now defines the next stable delivery item within the existing standalone launch.
+The original has distinct setup/start failure returns and a normal global tail;
+normal tail is final control → application owners → ascending module shutdown →
+auxiliary owners → window save → loaded caches →3D/sound/graphics →archives →COM.
+Original early returns do not uniformly unwind; native acquired-owner safety
+must remain an explicit difference. Sound failure stays a nonfatal fallback.
+
+Read-only research confirms16 ordinary module shutdown slots are empty RETs;
+Items and vertex animations do real cleanup. Extra setup pools/edit-font resources
+are actually allocated by the original; this checkpoint does not acquire them.
+Directory lists are separate from loaded caches. The prepared sweep covers real
+native ownership and rejects unsupported producers instead of declaring empty
+services successful. It also specifies a valid unknown-root GameData fixture for
+a staged fatal-loader run, rather than using nonfatal missing movies/options.
+
+Current-template sanitizer audit confirms skipped shutdown callbacks during
+implicit state destruction and safe repeated cold reset. Native suite,158 Python
+tests, both-hash evidence (46 anchors/18 client slots/six engine slots/20 calls),
+four negative mutations and frozen ledger pass.33 bodies exported; six absent
+indirect targets transiently defined with byte/vtable guards and discarded.
+Audits removed, no permanent tests/runtime changes/new desktop claims or new
+function credit.304 partial, zero complete; item4 remains open for implementation.
+
+## 2026-10-31 — failure/shutdown implementation; desktop pending
+
+Implemented the [prepared fourth-checkbox sweep](analysis/shutdown-delivery.md)
+inside the existing launch target. Acquired owners persist through error handling;
+ordered cleanup restores the hook, closes partial states, finishes final cold
+control/locks and ascending modules, saves valid window coordinates, then closes
+3D/sound/graphics/archives with first-error retention. Shared startup probe gains
+acquired-prefix cleanup too. Early original leak paths remain an explicit native
+safety difference. Silent sound/missing-movie fallbacks are preserved.
+
+Partial movie begin never persists an unstarted movie; failed close cannot repeat
+normal persistence/fade. Menu fallback deactivates borrowers before products and
+releases later owners even after a callback failure. Cold Items is checked from
+its proven constructor state; live objects/queues and replacement registrations
+are rejected. Full original pool/edit-font/debug/cache producers remain excluded.
+
+Added reversible --invalid-game-data desktop fixture and actual rejected-root
+telemetry, with restore-on-error and preservation of unexpected file changes.
+Native ASan/UBSan144-case acquisition/cleanup matrix plus real-template frontend
+initialize/update/render failures, movie/control/module/vertex/loader checks and
+17 Python staging cases pass. Strict i386 three-target builds, existing native
+suite,158 Python tests, evidence/four mutations and frozen accounting pass.
+No permanent tests, original game/DLL/Proton execution or new desktop claim.
+
+Four census-backed client bodies receive partial credit only; existing006DC3A0
+coverage extends without duplication.308 partial (303client/fiveengine), zero
+complete, frozen18,783. Item4 remains open for user desktop acceptance; no commit.
+
+## 2026-10-31 — shutdown desktop acceptance and retained-log inspection
+
+User reports the requested checks appear fine and asks for log verification.
+The final retained invalid-root run exactly matches the intended fatal path:
+rejected-root2, game-roots0/vertex5/prepare0, no profile/movie continuation,
+hook restore, final cold control/locks, consumer cleanup completed1, then
+3D/sound(initialized0)/graphics/archives, result1 and the original preparation
+error. Built/staged hashes match. window.cfg is8 bytes, left47/top21; staged
+GameData override and all omission/invalid-data backups are absent.
+
+[Delivery evidence](analysis/shutdown-delivery.md#desktop-acceptance--2026-10-31)
+preserves a snapshot/manifest and scope. Earlier normal Exit/window-close/frame-
+limit traces were overwritten; those outcomes rely on the user report. No agent
+Windows execution or fabricated per-run logs. Item4 is checked within the bounded
+launch scope; item5 final matrix/commit remains.308 partial, zero complete,
+frozen18,783. No commit requested or made in this acceptance turn.
+
+Follow-up: user explicitly confirms the other normal/window-close/frame-limit
+runs behaved as expected. Item4 acceptance is complete; retained versus reported
+evidence remains distinguished. Implementation remains uncommitted.
+
+## 2026-10-31 — shutdown committed; bounded launch milestone closed
+
+Committed accepted shutdown as3f976d4. The [final acceptance matrix](analysis/launch-acceptance.md)
+closes milestone0 item5 by consolidating the existing startup/controller/playback/
+shutdown confirmations with explicit tested hashes and provenance. Earlier
+playback/skips/missing-movie acceptance is not relabeled as a fresh final-binary
+run. Current shutdown runs are user-confirmed and the final fatal path/window
+file have preserved direct evidence. No new original-code research was required.
+
+Strict i386 targets are current; stage-only preparation retains application hash
+3d2258a4ee3f95c2da0ed72caf03072a3c1e9ea4d2d95eb78ca01ae6b4e072ac.
+Acceptance manifest hashes and restored fixtures, startup/playback/shutdown maps,
+frozen ledger and whitespace checks pass. No runtime change, new function credit,
+permanent tests, Windows execution or new desktop claim.308 partial/zero complete,
+frozen18,783. All five bounded launch outcomes are checked; remaining full setup/
+ABI/unused caches/network/special-video/menu scope is explicit. Next is the shared
+menu foundation input/focus item, starting from existing keyboard recovery.

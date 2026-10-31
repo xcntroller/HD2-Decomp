@@ -1,17 +1,22 @@
-# Next-session launch priorities
+# Next-session priorities
 
-Current starting point: [controller/state delivery](controller-integration.md) is
-implemented and user desktop-confirmed; milestone0 items1 and2 are complete.
-The [opening playback extension](playback-completion.md) now implements the
-reached subtitle/audio owners, rendering and cleanup. User desktop acceptance
-on2026-10-31 completes item3. Next is failure/partial-startup/normal shutdown;
-keep full failure coverage distinct from the accepted ordinary launch.
-[Playback preparation](playback-completion-preparation.md) now supplies the
-concrete parser, time/audio ABI, text layout, cleanup and acceptance sequence.
-Earlier [controller preparation](controller-integration-preparation.md) retains
-the preceding state/frame contracts.
-The sections below preserve earlier dependency research; use the current delivery
-contract to distinguish integrated owners from remaining services.
+The bounded original launch checkpoint is complete: milestone0 items1–5 are
+checked. [Final acceptance matrix](launch-acceptance.md) consolidates the accepted
+[startup](startup-integration.md), [controller](controller-integration.md),
+[playback](playback-completion.md) and [shutdown](shutdown-delivery.md) deliveries.
+Shutdown commit3f976d4 contains the latest accepted runtime changes. No fresh
+full-matrix run is implied; tested build identities and retained/user-reported
+evidence remain explicit.
+
+Next: finish the shared menu foundation's input/focus delivery item. Read
+[keyboard preprocessing](keyboard-preprocessing.md) and current screen/input
+owners, then establish original character-target, focus-entry/navigation and
+initial-focus callers before implementing the next coherent slice. Preserve
+Main/Exit and do not reopen the stable launch checklist for unused services.
+
+The sections below retain historical dependency research. They are a source/ABI
+index, not new prerequisites for the delivered checkpoint; the final matrix
+controls scope and exclusions.
 
 Planning review, 2026-10-30, after commit050b112. No source behavior changed or
 new binary behavior established by this review. Ledger:278 partial, zero complete.
@@ -35,7 +40,7 @@ and controller composition next. Ledger now284 partial.
 The bounded launch now composes input/bindings, localization, archives/directories,
 data/profiles/settings, catalog and music runtime under the recovered controller.
 Its ordinary Main/Exit path is desktop-confirmed. Remaining launch work concerns
-playback subtitle/audio owners and cleanup/failure completeness; the old preview
+cleanup/failure completeness; ordinary playback/subtitles are now accepted. The old preview
 is retained as a diagnostic, not the current delivery path.
 
 Do not treat older analysis documents' remaining-work lists as current inventories.
@@ -50,11 +55,11 @@ This replaces milestone0's growing list of implementation checkboxes. These are
 audited source components, not completion of the original integrated launch.
 Update the relevant contracts as work advances; keep delivery outcomes in plan.md.
 
-| Area | Existing recovery and contracts | Still required for launch |
+| Area | Existing recovery and contracts | Still open |
 | --- | --- | --- |
-| Controller/opening | [Integrated state/controller launch](controller-integration.md), four movies/Main/Exit desktop-confirmed | Subtitle/audio completion, skip/missing-movie and failure matrix |
+| Controller/opening | [Integrated launch](controller-integration.md), [ordinary playback](playback-completion.md), subtitles/skips/missing movies desktop-confirmed | [Bounded shutdown accepted](shutdown-delivery.md); final matrix/commit |
 | Input | [Bindings/defaults](binding-installation.md), [manager](input-manager.md), [joysticks](joystick-devices.md), [DLL forwarding](graphics-input-services.md); shared launch input connected | Broader character/capture targets and device/failure matrix; no invented enumeration |
-| Text/window | [Localization/cache](startup-localization.md), [window persistence](window-position.md); launch captions connected | Subtitle rendering and broader localization/resolution fidelity |
+| Text/window | [Localization/cache](startup-localization.md), [window persistence](window-position.md); launch/subtitle rendering connected | Startup restore; broader localization/resolution fidelity remains separate |
 | Resources | [Archives](startup-archives.md), [directories](resource-directories.md), [chunk files](chunk-file.md) | Protection boundary, full ownership/order and reached cache consumers |
 | Data/profiles | [HumanStore](human-store.md), [GameData/profiles](startup-data.md) | Full application lifetime and live composition |
 | Configuration/settings | [Options/profile selection](startup-settings.md), [game.cfg/data owners](startup-owners.md) | Shared gate/control lifetime and remaining application owners |

@@ -53,6 +53,7 @@ public:
     void before_devices() {
         if (phase_ != Phase::constructed) throw std::logic_error("Startup initialization repeated");
         frontend::initialize_control_startup(control_data_, gate_, lock_services_);
+        control_ready_ = true;
         phase_ = Phase::control_ready;
     }
     // Called only after real graphics, sound and I3D initialization. The caller
@@ -60,6 +61,7 @@ public:
     void setup_devices() {
         if (phase_ != Phase::control_ready) throw std::logic_error("Startup device order mismatch");
         phase_ = Phase::loading;
+        setup_started_ = true;
         auto random = [&] { return settings_backend_.sound_random_word(); };
         auto mask = io::begin_archive_key_mask(random);
         const auto selected_language = language_.get();
@@ -71,6 +73,7 @@ public:
         auto* graphics = static_cast<EngineFrame*>(input_setup_.graphics());
         const auto window = scene_method<Window>(graphics, engine(), 0x48, 0x6a240)(graphics);
         directory_window_ = IsZoomed(window); // Original006DBF2B wrapper target.
+        input_setup_started_ = true;
         frontend::setup_graphics_input(input_, input_setup_, language_, text_, platform_, text_files_, directory_);
         modules_.initialize(gate_, files_); // Original006DBFB0 includes this phase.
         phase_ = Phase::resources_ready;
@@ -79,6 +82,8 @@ public:
         if (phase_ != Phase::resources_ready) throw std::logic_error("Application preparation repeated/out of order");
         const auto wide = language_.state().wide_characters;
         const auto prepared = data_.prepare_application(files_, text_, wide);
+        if (const auto rejected = data_.game().rejected_root())
+            std::printf("Startup GameData: rejected-root=%u\n", static_cast<unsigned>(*rejected));
         std::printf("Startup: gate=%u text=%zu game-roots=%zu vertex-tables=%zu prepare=%u\n",
             static_cast<unsigned>(gate_), text_.size(), data_.game().roots().size(),
             modules_.vertices.entries().size(), static_cast<unsigned>(prepared));
@@ -105,16 +110,33 @@ public:
         input_.produce(false);
         return true;
     }
-    void close_consumers() {
+    void close_consumers(bool graphics_alive = true) {
         if (phase_ == Phase::closed) return;
-        close_sound();
-        close_mouse();
-        close_keyboard();
-        input_.detach();
-        joysticks_.close();
-        data_.close();
-        modules_.vertices.clear();
         phase_ = Phase::closed;
+        frontend::CleanupErrors errors;
+        //0072E460 final reset is required even after status4 reset. Failed
+        // pre-device acquisition instead abandons only acquired native locks.
+        errors.attempt([&] {
+            if (control_ready_ && graphics_alive) {
+                control_frame_.shutdown();
+                std::puts("Shutdown: final cold control reset and startup locks released");
+            }
+        });
+        // Also reclaim partial0072E1A0 initialization/unsupported native errors.
+        lock_services_.delete_control_critical_section(0);
+        lock_services_.delete_control_critical_section(1);
+        control_data_.locks5018 = 0;
+        control_data_.records.clear();
+        if (graphics_alive && setup_started_) errors.attempt([&] { close_sound(); });
+        if (graphics_alive && mouse_attempted_) errors.attempt([&] { close_mouse(); });
+        if (graphics_alive && input_setup_started_) errors.attempt([&] { close_keyboard(); });
+        errors.attempt([&] { input_.detach(); });
+        errors.attempt([&] { joysticks_.close(); });
+        errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
+        errors.attempt([&] { modules_.shutdown(gate_); }); //0048DA80, after data.
+        std::printf("Shutdown: input/sound/data/module cleanup completed=%u\n",
+                    errors.failed() ? 0u : 1u);
+        errors.rethrow();
     }
     void close_archives() { archives_.close(); }
     EngineFrame* graphics() const { return static_cast<EngineFrame*>(input_setup_.graphics()); }
@@ -137,6 +159,7 @@ public:
             static_cast<long double>(data_.profile().options.settings.real(8)) * 0.01f));
     }
     void initialize_mouse(std::uint32_t flags) {
+        mouse_attempted_ = true;
         using Initialize = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t);
         const auto result = scene_method<Initialize>(graphics(), engine_, 0xdc, 0x6f710)(graphics(), flags);
         if (result < 0) throw std::runtime_error("Controller mouse initialization failed");
@@ -195,17 +218,22 @@ public:
         frontend::remember_profile_movie(data_.profile(), filename, 1, files_, wide_characters());
     }
     void close_sound() {
-        frontend::reset_sound_runtime(sound_data_.runtime, sound_catalog_, files_,
+        frontend::CleanupErrors errors;
+        errors.attempt([&] { frontend::reset_sound_runtime(sound_data_.runtime, sound_catalog_, files_,
             sound_data_.settings, sound_data_.fade, sound_data_.secondary, sound_data_.selection,
-            gate_, frontend::SoundApplicationMode{nullptr, 0}, 1, 0, sound_backend_);
-        frontend::clear_sound_sectors(sound_data_.runtime, sound_backend_);
-        sound_catalog_.clear();
+            gate_, frontend::SoundApplicationMode{nullptr, 0}, 1, 0, sound_backend_); });
+        errors.attempt([&] { frontend::clear_sound_sectors(sound_data_.runtime, sound_backend_); });
+        errors.attempt([&] { sound_catalog_.clear(); });
+        errors.rethrow();
     }
     void control_phase(std::uint32_t milliseconds, bool fixed) { control_frame_.phase(milliseconds, fixed); }
     void control_maintenance(std::uint32_t milliseconds) { control_frame_.maintain(milliseconds); }
     void reset_control() { control_frame_.reset(); }
     void enter_control_lock(unsigned index) { lock_services_.enter_control_lock(index); }
     void leave_control_lock(unsigned index) noexcept { lock_services_.leave_control_lock(index); }
+    void delete_control_critical_section(unsigned index) noexcept {
+        lock_services_.delete_control_critical_section(index);
+    }
     std::uint32_t control_milliseconds() const {
         LARGE_INTEGER counter{};
         if (!QueryPerformanceCounter(&counter)) throw std::runtime_error("Control performance clock read failed");
@@ -266,6 +294,8 @@ private:
     frontend::ColdControlFrame<StartupSession> control_frame_;
     std::uint8_t input_flag_ = 0;
     bool application_input_enabled_ = true; // Original00843470 initial byte1.
+    bool control_ready_ = false, setup_started_ = false;
+    bool input_setup_started_ = false, mouse_attempted_ = false;
     Phase phase_ = Phase::constructed;
     HWND archive_focus_ = nullptr;
     BOOL directory_window_ = FALSE;

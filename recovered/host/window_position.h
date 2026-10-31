@@ -45,12 +45,17 @@ public:
     }
     void focus_window() const { SetFocus(window()); }
     void window_position(frontend::WindowPosition& position) const {
+        capture_window_position(position);
+    }
+    bool capture_window_position(frontend::WindowPosition& position) const {
         RECT rect{};
         // Preserve the caller's initial bytes if the Win32 call fails.
         if (GetWindowRect(window(), &rect)) {
             encode(position.left, static_cast<std::uint32_t>(rect.left));
             encode(position.top, static_cast<std::uint32_t>(rect.top));
+            return true;
         }
+        return false;
     }
 private:
     static void encode(frontend::WindowCoordinate& out, std::uint32_t value) {

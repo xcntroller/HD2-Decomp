@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <memory>
+#include <optional>
 #include <string>
 #include <vector>
 
@@ -34,6 +35,7 @@ class GameData {
 public:
     std::uint32_t format = 2, field_e8 = 0;
     const auto& roots() const { return roots_; }
+    std::optional<std::uint16_t> rejected_root() const { return rejected_root_; }
     // 006B9030 and read-only lookup006B8D20: count/flatten only kind2
     // campaigns and kind3 missions, preserving order among mixed children.
     std::int32_t mission_count(std::uint32_t root) const {
@@ -55,6 +57,7 @@ public:
     }
     template<class Files>
     bool load(Files& files) {
+        rejected_root_.reset(); // Native diagnostic only; no new loader policy.
         io::ChunkFile<Files> file(files); // Same object reused across numbered files.
         for (std::int32_t index = 0;;) {
             char path[256];
@@ -78,7 +81,7 @@ public:
                 roots_.push_back(std::move(root));
                 file.leave();
                 file.close();
-            }
+            } else rejected_root_ = tag;
             // Original leaves an invalid root/file open; next open rejects it
             // before calling the backend and returns whether old roots exist.
             if (index == std::numeric_limits<std::int32_t>::max()) throw std::length_error("GameData file index overflow");
@@ -250,6 +253,7 @@ private:
         }
     }
     std::vector<std::unique_ptr<GameDataNode>> roots_;
+    std::optional<std::uint16_t> rejected_root_;
 };
 
 }

@@ -1,0 +1,518 @@
+{
+  "scope": "Implemented bounded ordinary standalone launch failure/partial-startup/normal shutdown. Native sanitizer and i386 builds pass; user desktop acceptance recorded on2026-10-31. Complete original setup, live network/gameplay and global cache producers remain excluded.",
+  "runtime_verified": true,
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "00723220",
+        "hex": "568bf18b4e1485c9740e8b016a01ff5010c74614000000005ec3",
+        "meaning": "Control +14 release uses virtual+10(1), then null."
+      },
+      {
+        "address": "0048da80",
+        "hex": "56bed8ba89008b0e85c974058b01ff500883c60481fe24bb89007cea5ec3",
+        "meaning": "Ascending fresh 19-slot module shutdown dispatch through+08."
+      },
+      {
+        "address": "00783220",
+        "hex": "568b3574a4980085f674108bcee85e04000056e888ea050083c4048b3578a4980085f674108bcee84404000056e86eea050083c4048b357ca4980085f674108bcee8da01000056e854ea050083c4048b3580a4980085f674108bcee8c001000056e83aea050083c4048b3584a4980085f674108bcee8a601000056e820ea050083c4048b3588a4980085f674108bcee88c01000056e806ea050083c4048b358ca4980085f674108bcee87201000056e8ece9050083c4048b3590a4980085f674108bcee85801000056e8d2e9050083c4048b3594a4980085f674108bcee83e01000056e8b8e9050083c4048b3598a4980085f674108bcee8f405000056e89ee9050083c4048b359ca4980085f674108bcee88a07000056e884e9050083c4045ec3",
+        "meaning": "Eleven auxiliary pool owners destroyed in order; globals are not nulled."
+      },
+      {
+        "address": "006e85a0",
+        "hex": "a1aca38c005685c074228b35b0a38c002bf0c1fe0274158b44b0fc4e8b08e8edfdffffa1aca38c0085f675eba3b0a38c00a1b8a38c0085c05e74058b0850ff11c705b8a38c0000000000c3",
+        "meaning": "Auxiliary record-vector teardown then current edit-font Release/null."
+      },
+      {
+        "address": "006c08d0",
+        "hex": "a1002198005683e0078bf13c0774276a016a006a006a006a00e852c001008bc8e8bb9706006a0068e8030000b970d09700e8cabc06008bce5ee912000000",
+        "meaning": "Non-gate7 exit prelude then controller shutdown."
+      },
+      {
+        "address": "006c53d0",
+        "hex": "8b44240453558be956578b5d088b7c24183bfb8bf074562bf88b043785c0740766ff80e40000008b0685c074058b0850ff118b143789168b44370485c07402ff008b460485c074108b08498908750950e89bc8110083c4048b44370489460483c6088d0c373bcb75b08b4424148b5d088bfe3bf374128bcfe8f322d7ff83c7083bfb75f28b4424148975085f5e5d5bc20800",
+        "meaning": "Category2 loaded-vector erase, engine reference at+E4."
+      },
+      {
+        "address": "006c5250",
+        "hex": "8b44240453558be956578b5d088b7c24183bfb8bf074562bf88b043785c0740766ff80e40000008b0685c074058b0850ff118b143789168b44370485c07402ff008b460485c074108b08498908750950e81bca110083c4048b44370489460483c6088d0c373bcb75b08b4424148b5d088bfe3bf374128bcfe8d333d4ff83c7083bfb75f28b4424148975085f5e5d5bc20800",
+        "meaning": "Shared category1/5 loaded-vector erase, engine reference at+E4."
+      },
+      {
+        "address": "006c5560",
+        "hex": "8b44240453558be956578b5d088b7c24183bfb8bf074522bf88b043785c07403ff40048b0685c074058b0850ff118b143789168b44370485c07402ff008b460485c074108b08498908750950e80fc7110083c4048b44370489460483c6088d0c373bcb75b48b4424148b5d088bfe3bf374128bcfe807aed5ff83c7083bfb75f28b4424148975085f5e5d5bc20800",
+        "meaning": "Category3 loaded-vector erase, reference at+04."
+      },
+      {
+        "address": "006c50c0",
+        "hex": "8b44240453558be956578b5d088b7c24183bfb8bf074562bf88b043785c0740766ff80e40000008b0685c074058b0850ff118b143789168b44370485c07402ff008b460485c074108b08498908750950e8abcb110083c4048b44370489460483c6088d0c373bcb75b08b4424148b5d088bfe3bf374128bcfe80363dcff83c7083bfb75f28b4424148975085f5e5d5bc20800",
+        "meaning": "Category4 loaded-vector erase, engine reference at+E4."
+      },
+      {
+        "address": "007dce00",
+        "hex": "535556578bf1e875dbfaff8d7e10bbf40100008b0f85c974068b016a01ff1083c7044b75ee33ffbbfcffffff8b8e3c08000085c9745c8b86400800002bc1c1f8023bf8734d8bc185c0740b8b8e400800002bc8c1f9028b863c0800008b4c88fc890cb88b8e400800008d51fc8d42043bc1740e2bd08b28892c0283c0043bc175f48b8e4008000003cb47898e40080000eb9a5f5e5d5bc3",
+        "meaning": "Items shutdown: auxiliary lists, 500 object slots and shrinking request vector."
+      },
+      {
+        "address": "006e83b0",
+        "hex": "a1aca38c005685c05774768b35b0a38c002bf0c1fe0274698b54b0fc4e390a740785f675f35f5ec3e883000000a1aca38c008b3cb085ff74108bcfe85000000057e8ca980f0083c4048b0daca38c00c704b1000000008b15aca38c008d0cb28b15b0a38c008d41043bc2740e2bc88b3089340183c0043bc275f4832db0a38c00045f5ec3",
+        "meaning": "Auxiliary record removal/destruction."
+      },
+      {
+        "address": "00405b00",
+        "hex": "c3",
+        "meaning": "Verified empty shutdown RET shared by ordinary modules."
+      },
+      {
+        "address": "004106d0",
+        "hex": "c3",
+        "meaning": "Physics shutdown is an empty RET."
+      },
+      {
+        "address": "0043dc80",
+        "hex": "c3",
+        "meaning": "Versions shutdown is an empty RET."
+      },
+      {
+        "address": "00474a20",
+        "hex": "51a00021980056a802578bf1745f8b461485c074588b4e182bc8c1f902894c2408744a8bc885c974088b46182bc1c1f8028b56148b7c82fc85ff74108bcfe8bdecffff57e857d2360083c4048b4e188d51fc8d42043bc1740e2bd08b38893c0283c0043bc175f4834618fceba15f5e59c3",
+        "meaning": "Vertex shutdown: gate2 and reverse destruction."
+      },
+      {
+        "address": "00476f90",
+        "hex": "c3",
+        "meaning": "Temp Actors shutdown is an empty RET."
+      },
+      {
+        "address": "00475740",
+        "hex": "c3",
+        "meaning": "Actors shutdown is an empty RET."
+      },
+      {
+        "address": "0078a980",
+        "hex": "f6050021980002747ba148ad9800565733ff3bc7743a8b303bf7741d8b46083bc774088b0850ff11897e0856e80f730500a148ad980083c4048b700450e8fe72050083c4048bc63bf7a348ad980075c6a14cad98003bc774178b700450e8de72050083c4048bc63bf7a34cad980075e9893d48ad9800893d4cad9800893d54ad98005f5ec3",
+        "meaning": "Items auxiliary lists: gate2, release/free, clear heads/counter."
+      },
+      {
+        "address": "00782fc0",
+        "hex": "6aff6839d4800064a10000000050648925000000005168dc240000e82f22060083c4048944240085c0c744240c0000000074098bc8e8a6050000eb0233c05683ceff68dc24000089742414a374a49800e8fa21060083c4048944240485c0c74424100100000074098bc8e871050000eb0233c0681411000089742414a378a49800e8c921060083c4048944240485c0c744241002000000740b6a028bc8e85e030000eb0233c0681411000089742414a37ca49800e89621060083c4048944240485c0c744241003000000740b6a038bc8e82b030000eb0233c0681411000089742414a380a49800e86321060083c4048944240485c0c744241004000000740b6a048bc8e8f8020000eb0233c0681411000089742414a384a49800e83021060083c4048944240485c0c744241005000000740b6a058bc8e8c5020000eb0233c0681411000089742414a388a49800e8fd20060083c4048944240485c0c744241006000000740b6a068bc8e892020000eb0233c0681411000089742414a38ca49800e8ca20060083c4048944240485c0c744241007000000740b6a078bc8e85f020000eb0233c0681411000089742414a390a49800e89720060083c4048944240485c0c744241008000000740b6a088bc8e82c020000eb0233c068900a000089742414a394a49800e86420060083c4048944240485c0c74424100900000074098bc8e8db060000eb0233c06a3489742414a398a49800e83620060083c4048944240485c0c74424100a0000005e741b8bc8e86c080000a39ca498008b4c240464890d0000000083c410c38b4c240433c0a39ca4980064890d0000000083c410c3",
+        "meaning": "Setup allocates eleven actual auxiliary pool owners."
+      },
+      {
+        "address": "006e7780",
+        "hex": "518a442403a2a8a38c0033c0a3aca38c00a3b0a38c00a3b4a38c0059c3",
+        "meaning": "Static auxiliary vector initialization to empty."
+      },
+      {
+        "address": "006e8490",
+        "hex": "a17c3f840085c00f84900000005657e898c90f008b086a0350ff511c8bf8e889c90f008b106a006a0350ff5218e8ecc90f008b15b8a38c008b086a005250ff5144a1b8a38c0085c074438b0daca38c0085c974398b35b0a38c002bf1c1fe02742c8b44b1fc4e8b08e8c3f7ffff8b0daca38c008b04b1f6400401740d8b08e8ddf5ffff8b0daca38c0085f675d4e81ac90f008b08576a0350ff51185f5ec3",
+        "meaning": "Auxiliary font/debug draw branch context."
+      },
+      {
+        "address": "006e8590",
+        "hex": "b9b8a38c00e996ffffff",
+        "meaning": "Setup forwards current edit-font output to006E8530."
+      },
+      {
+        "address": "007d7680",
+        "hex": "68f03786006a03b920b09800e89f530000c3",
+        "meaning": "Static Items constructor entry."
+      },
+      {
+        "address": "006e8530",
+        "hex": "568bf1e876c90f008b08566a086a0068983f840050ff513c85c07d08c706000000005ec35733c0b900050000bfa88f8c005068803f8400f3abe8d6c90f008bf083feff5f7416680014000068a88f8c0056e8b8c90f0056e8c4c90f005ec3",
+        "meaning": "Real editfont.bmp load and tables/fnt_matrix.bin read; negative texture result clears output."
+      },
+      {
+        "address": "007dca30",
+        "hex": "8b442408568bf18b4c24085750518bcee80b0fcbff8a4424108a4c241033d2c786f4070000020000008996e80700008996ec0700008996f00700008886f80700008a4424108996fc070000899600080000899604080000888e0808000089960c08000089961008000089961408000089961808000089961c08000089962008000089962408000089962808000089962c08000089963008000089963408000088863808000089963c0800008996400800008996440800008d7e10b9f401000033c0c70608728100f3ab88560c88560d8896e40700008896e5070000891568b8980089156cb89800891570b898008b96400800008b8e3c0800008bc23bc2740e8b3883c004893983c1043bc275f2898e400800008bc65f5ec20800",
+        "meaning": "Items constructor initializes 500 object slots and request counts empty."
+      },
+      {
+        "address": "007835a0",
+        "hex": "515355565768f85500008bf1e85e1c060083c4048986d824000033d233c08d4e04bf030000008951fc89510489118b9ed824000083c10c8914188b9ed8240000895418048baed824000033db8d6c280883c01c4f895d00895d04895d08895d0c895d1075c13d783600007cb533c08d8e5c170000c744241003000000bf060000008951fc89510489118b9ed824000083c10c899418783600008b9ed82400008994187c3600008baed824000033db8dac288036000083c01c4f895d00895d04895d08895d0c895d1075b78b7c24104f897c241075a73d801f00007c988bc65f5e5d5b59c3",
+        "meaning": "Auxiliary pool constructor: two owners with real backing allocations."
+      },
+      {
+        "address": "007833c0",
+        "hex": "5355565768202200008bf1e83f1e060083c40489861011000033ff33c08d4e0cba030000008979f48979f889398b9e1011000083c110893c188b9e10110000897c181c8bae1011000033db8d6c280483c0204a895d00895d04895d08895d0c895d1075c13d202200007cb58bc65f5e5d5bc20400",
+        "meaning": "Auxiliary pool constructor: seven owners with real backing allocations."
+      },
+      {
+        "address": "007838a0",
+        "hex": "53555657689c1800008bf1e85f19060083c40489868c0a000033db33c08bceba0300000089198959088bbe8c0a000083c10c891c388bbe8c0a0000885c38088bae8c0a000033ff8d6c280883c01c4a897d00897d04897d08897d0c897d1075c43d9c1800007cb88bc65f5e5d5bc3",
+        "meaning": "Auxiliary pool constructor: one owner with real backing allocation."
+      },
+      {
+        "address": "00783a60",
+        "hex": "53565768f00000008bf1e8a017060083c40489463033c08bceba03000000c701000000008b7e3083c104c60438008b5e3003d833ff83c0144a893b897b04897b08897b0c897b1075d53df00000007cc98bc65f5e5bc3",
+        "meaning": "Auxiliary pool constructor: final owner with real backing allocation."
+      },
+      {
+        "address": "00783690",
+        "hex": "538bd955568b83d82400005750e81ee6050083c404c783d8240000000000008d7308bda6000000bf030000008b0685c074058b0850ff1183c60c4f75ef4d75e78db360170000bd10000000bb03000000bf060000008b0685c074058b1050ff1283c60c4f75ef4b75e74d75df5f5e5d5bc3",
+        "meaning": "Auxiliary large-pool backing free then engine reference release."
+      },
+      {
+        "address": "00783440",
+        "hex": "53568bf1578b861011000050e86fe8050083c404c786101100000000000083c604bb5b000000bf030000008b0685c074058b0850ff1183c6104f75ef4b75e75f5e5bc3",
+        "meaning": "Auxiliary middle-pool backing free then engine reference release."
+      },
+      {
+        "address": "00783910",
+        "hex": "53568bf1578b868c0a000050e89fe3050083c404c7868c0a00000000000083c608bb4b000000bf030000008b0685c074058b0850ff1183c60c4f75ef4b75e75f5e5bc3",
+        "meaning": "Auxiliary smaller-pool backing free then engine reference release."
+      },
+      {
+        "address": "00783ac0",
+        "hex": "53568bf1578b463050e8f2e1050083c404c7463000000000bb04000000bf030000008b0685c074058b0850ff1183c6044f75ef4b75e75f5e5bc3",
+        "meaning": "Auxiliary final-pool backing free then engine reference release."
+      },
+      {
+        "address": "0072e460",
+        "hex": "53566a018bf1e8750000008b4e0c33db3bcb74098b016a01ff10895e0c8b4e103bcb74098b116a01ff12895e108bcee88c4dffff389e1850000074208d8618040000578b3db0f1800050ffd78d8e3004000051ffd7889e185000005fc70500219800070000008b8ee04e00003bcb740d8b116a01ff520c899ee04e00005e5bc3",
+        "meaning": "Final control reset, optional owners, startup lock deletion, gate7 and +4EE0 release."
+      },
+      {
+        "address": "006dc3a0",
+        "hex": "83ec18b970d097005657e8b1200500b9fce88a00e8579cfdffe8c216dbffe85d6e0a00e8d8c100006800000100680c348400e8738b10008bf033ff3bf77c37e8ca8a10008b108d4c24105150ff524850ff15bcf380008d4424106a045056e82f8b10008d4c24146a045156e8228b100056e83a8b10008b0dacec8a00a1a8ec8a00508bd1e817e9d4ff8b15acec8a008bf05256b9a4ec8a00e863d7d2ffa198ec8a008935acec8a00508b088d44240c5150b994ec8a00e8158dfeffa1c8ec8a003bc774058b0850ff118b0d70ec8a00a16cec8a00508bd1893dc8ec8a00e81ee4d6ff8b1570ec8a008bf05256b968ec8a00e82abcd5ffa15cec8a00893570ec8a00508b088d44240c5150b958ec8a00e83c8efeffa18cec8a003bc774058b0850ff118b0df8eb8a00a1f4eb8a00508bd1893d8cec8a00e88586ffff8b15f8eb8a008bf05256b9f0eb8a00e861f3daff8d4424088935f8eb8a008b35e4eb8a0050b9e0eb8a00e8c68afeff8b08568d5424105152b9e0eb8a00e8c38afeffa114ec8a003bc774058b0850ff118b15bceb8a00a1b8eb8a005250b9b4eb8a00893d14ec8a00e8088dfeffa1a8eb8a00508b08518d4c241451b9a4eb8a00e8108cfeffa1d8eb8a003bc774058b1050ff12893dd8eb8a00e8c388100085c0740be8ba8810008b0850ff5104e82d89100085c0740be8248910008b1050ff5208e80d89100085c0740be8048910008b0850ff511033f68b8ef8e98a003bcf740b8b11ff520889bef8e98a0083c60483fe4072e35f5e83c418e927561000",
+        "meaning": "Full normal tail: five callbacks, window save, caches1/2/4/5, drivers, sixteen archives, COM."
+      },
+      {
+        "address": "006c0920",
+        "hex": "83ec0853578bf98b4f148b01ff50088b0d70ec8a008b156cec8a005152b968ec8a00e8894a0000a15cec8a00508b088d44240c5150b958ec8a00e891490000a18cec8a0033db3bc374058b0850ff118b15acec8a00a1a8ec8a005250b9a4ec8a00891d8cec8a00e8c4480000a198ec8a00508b08518d4c241051b994ec8a00e8cc470000a1c8ec8a003bc374058b1050ff12a134ec8a008b0d30ec8a00565051b92cec8a00891dc8ec8a00e8904b00008b3520ec8a008d54240c52b91cec8a00e88b4a00008b00568d4c24145051b91cec8a00e8884a0000a150ec8a003bc374058b1050ff12a1f8eb8a008b0df4eb8a005051b9f0eb8a00891d50ec8a00e89d4600008b35e4eb8a008d54241052b9e0eb8a00e8984500008b00568d4c24105051b9e0eb8a00e895450000a114ec8a003bc374058b1050ff12a1bceb8a008b0db8eb8a005051b9b4eb8a00891d14ec8a00e8da4700008b35a8eb8a008d54241052b9a4eb8a00e8d54600008b00568d4c24105051b9a4eb8a00e8d2460000a1d8eb8a005e3bc374058b1050ff12891dd8eb8a008a47113ac375108b4f143bcb74068b016a01ff10895f14a0002198005fa8025b740ee8d44312008b0850ff91e4000000b00183c408c3",
+        "meaning": "Controller state callback, caches2/1/3/4/5, optional active deletion, mouse close."
+      },
+      {
+        "address": "006dcb50",
+        "hex": "008d4de450e866f4ffff84c0752785ff74108bcfe8273cfeff57e85151100083c40483c8ff8b4df464890d000000005f",
+        "meaning": "Setup failure destroys controller and returns -1 without global tail/event close."
+      },
+      {
+        "address": "006dcc4d",
+        "hex": "008bcf6a00e8c93bfeff84c0751383c8ff8b4df464890d000000005f5e8be55d",
+        "meaning": "Controller-start failure returns -1 without normal global tail."
+      },
+      {
+        "address": "006dd280",
+        "hex": "008b08526afc50ff514850ff15b4f380008b4f1485c974348b11ff522083f801741a8b4f148b01ff502083f806740d8b4f148b11ff522083f8057510f605002198000174078bcfe80436feff8bcf",
+        "meaning": "Normal frame-loop exit: WndProc restore, runnable/gate test, controller shutdown/delete."
+      },
+      {
+        "address": "006dd3d7",
+        "hex": "c70538c38a00000000008b0dfcc0980085c9753f6a04e81d7e100083c4048945ec85c0c745fc0600000074098bc8e8c64e0600eb0233c0a3fcc098008b108bc8c745fcffffffffff128b0dfcc0980085c974208b01ff50048b0dfcc0980085c974078b116a01ff5208c705fcc09800000000008d4de4e84eefffffa110ed8a0050ff1580f180008b",
+        "meaning": "Normal main tail: debug/transient owners, global shutdown then event close."
+      },
+      {
+        "address": "006dc1aa",
+        "hex": "e8f11f05008b7df88bcfe837efffff84c075085f5e8be55dc20400e8e48c10006a016a008bf0ff1588f1800050ff15c0f380008b0e506af256ff514850ff15c4f380008bcfe80cf1ffff8bcfe8b5f1ffff8bcfe8bef2ffff84c075085f5e8be55dc204008bcfe8cbf2ffff8bcfe8c4f4ffff8bcfe83dfcffff8bcfe886fdffff84c0750a32c05f5e8be55d",
+        "meaning": "Setup: control initialize then graphics and 3D fatal gates; sound result not a gate."
+      },
+      {
+        "address": "006dc36e",
+        "hex": "4508595b58e818c20000e8436c0a006a00e896ae1000",
+        "meaning": "Successful setup reaches real edit-font and auxiliary-pool creation."
+      },
+      {
+        "address": "0072e1a0",
+        "hex": "81ecd40000005355568bf133db578b3db8f180008d8618040000899ee04e0000899e3c500000bd32000000c70500219800070000005089ae54500000899e58500000c6866050000001899e48040000899ee4040000ffd78d8e3004000051ffd7c6861850000001899e44500000889ef84d0000c7863c4d0000ffffffff",
+        "meaning": "Startup explicitly nulls optional shutdown owners including+4EE0; establishes locks and cold gate."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "0080f4d8",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module0 shutdown+08."
+      },
+      {
+        "address": "008101f8",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module1 shutdown+08."
+      },
+      {
+        "address": "0080f648",
+        "targets": [
+          "004106d0"
+        ],
+        "meaning": "Final module2 shutdown+08."
+      },
+      {
+        "address": "00817210",
+        "targets": [
+          "007dce00"
+        ],
+        "meaning": "Final module3 shutdown+08."
+      },
+      {
+        "address": "0080f758",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module4 shutdown+08."
+      },
+      {
+        "address": "0080ffd0",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module5 shutdown+08."
+      },
+      {
+        "address": "0080f7c0",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module6 shutdown+08."
+      },
+      {
+        "address": "0080f910",
+        "targets": [
+          "0043dc80"
+        ],
+        "meaning": "Final module7 shutdown+08."
+      },
+      {
+        "address": "008103a0",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module8 shutdown+08."
+      },
+      {
+        "address": "00810068",
+        "targets": [
+          "00474a20"
+        ],
+        "meaning": "Final module9 shutdown+08."
+      },
+      {
+        "address": "00810420",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module10 shutdown+08."
+      },
+      {
+        "address": "0080fca0",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module11 shutdown+08."
+      },
+      {
+        "address": "008100f0",
+        "targets": [
+          "00476f90"
+        ],
+        "meaning": "Final module12 shutdown+08."
+      },
+      {
+        "address": "008100b0",
+        "targets": [
+          "00475740"
+        ],
+        "meaning": "Final module13 shutdown+08."
+      },
+      {
+        "address": "0080fa20",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module14 shutdown+08."
+      },
+      {
+        "address": "0080fdd8",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module15 shutdown+08."
+      },
+      {
+        "address": "00810018",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module16 shutdown+08."
+      },
+      {
+        "address": "0080f9a8",
+        "targets": [
+          "00405b00"
+        ],
+        "meaning": "Final module17 shutdown+08."
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "007dce06",
+        "target": "0078a980"
+      },
+      {
+        "site": "0072e466",
+        "target": "0072e4e0"
+      },
+      {
+        "site": "0072e48f",
+        "target": "00723220"
+      },
+      {
+        "site": "006dc3aa",
+        "target": "0072e460"
+      },
+      {
+        "site": "006dc3b4",
+        "target": "006b6010"
+      },
+      {
+        "site": "006dc3b9",
+        "target": "0048da80"
+      },
+      {
+        "site": "006dc3be",
+        "target": "00783220"
+      },
+      {
+        "site": "006dc3c3",
+        "target": "006e85a0"
+      },
+      {
+        "site": "006dcb55",
+        "target": "006dbfc0"
+      },
+      {
+        "site": "006dcb64",
+        "target": "006c0790"
+      },
+      {
+        "site": "006dcc52",
+        "target": "006c0820"
+      },
+      {
+        "site": "006dd2c7",
+        "target": "006c08d0"
+      },
+      {
+        "site": "006dd2ce",
+        "target": "006c0790"
+      },
+      {
+        "site": "006dd44d",
+        "target": "006dc3a0"
+      },
+      {
+        "site": "006dc1b4",
+        "target": "006db0f0"
+      },
+      {
+        "site": "006dc1f6",
+        "target": "006db3b0"
+      },
+      {
+        "site": "006dc1fd",
+        "target": "006db4c0"
+      },
+      {
+        "site": "006dc225",
+        "target": "006dbfb0"
+      },
+      {
+        "site": "006dc373",
+        "target": "006e8590"
+      },
+      {
+        "site": "006dc378",
+        "target": "00782fc0"
+      }
+    ],
+    "resource_anchors": [],
+    "zero_initialized_storage": [
+      {
+        "address": "0098a474",
+        "size": 44,
+        "meaning": "Auxiliary pool globals begin zero-filled; setup later allocates them, so zero-fill does NOT prove normal shutdown is empty."
+      },
+      {
+        "address": "008ca3ac",
+        "size": 16,
+        "meaning": "Auxiliary vector/current storage starts zero-filled; setup writes current font."
+      },
+      {
+        "address": "0098ad48",
+        "size": 16,
+        "meaning": "Items auxiliary list heads/counter initially zero; no producers in current standalone host."
+      }
+    ]
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10015650",
+        "hex": "53568b74240c8b0656ff50088bcee82d970400a1",
+        "meaning": "Actual delegated engine device-close entry; not a reconstructed implementation."
+      },
+      {
+        "address": "1007a850",
+        "hex": "53568b74240c8b464833db3bc3577e3850689092",
+        "meaning": "Actual delegated engine device-close entry; not a reconstructed implementation."
+      },
+      {
+        "address": "1006da40",
+        "hex": "a1b8210d105333db3bc3740b8b0850ff11891db8",
+        "meaning": "Actual delegated engine device-close entry; not a reconstructed implementation."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009b640",
+        "targets": [
+          "100152f0",
+          "10015650"
+        ],
+        "meaning": "I3D initialize/close slots+00/+04."
+      },
+      {
+        "address": "1009ddf4",
+        "targets": [
+          "1007b560",
+          "1007a850",
+          "1007a840"
+        ],
+        "meaning": "ISnd initialize/close/initialized slots+04/+08/+0C."
+      },
+      {
+        "address": "1009d850",
+        "targets": [
+          "1006da40"
+        ],
+        "meaning": "IGraph close slot+10."
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": [],
+    "zero_initialized_storage": []
+  },
+  "desktop_acceptance": {
+    "date": "2026-10-31",
+    "user_report": "seems to be fine? Please check the logs to be sure",
+    "snapshot": "analysis/work/shutdown-acceptance-20261031",
+    "application_sha256": "3d2258a4ee3f95c2da0ed72caf03072a3c1e9ea4d2d95eb78ca01ae6b4e072ac",
+    "directly_verified": "Final fatal-root2 run: prepare0, ordered cleanup completed, result1; persisted window.cfg length8, left47/top21; override and omission backups absent.",
+    "limitations": "Normal Exit/window-close/frame-limit outcomes are explicitly user-confirmed; their earlier logs were overwritten. Final fatal-run/window-file evidence is retained. Unreached/unsupported error branches remain native-audited or excluded.",
+    "user_confirmation": "Yeah the other runs behaved as expected"
+  }
+}

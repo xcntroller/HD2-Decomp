@@ -60,13 +60,19 @@ public:
         // Mark ownership before acquisition so a failing native backend still
         // owns its partial resources. The backend destructor reclaims them.
         live_ = true;
-        backend_->begin_movie(filename_.c_str());
+        try { backend_->begin_movie(filename_.c_str()); }
+        catch (...) {
+            // Partial acquisition belongs to the backend's release destructor;
+            // it must not persist an unstarted movie or run the normal fade.
+            live_ = false;
+            throw;
+        }
         status(1); // 0066EAE0 ignores initializer result and returns AL0.
     }
     void shutdown() override {
         if (!live_) return;
-        backend_->close_movie(filename_.c_str());
         live_ = false;
+        backend_->close_movie(filename_.c_str());
         filename_.clear();
     }
     void input(const std::uint32_t*, const std::uint32_t*) override {

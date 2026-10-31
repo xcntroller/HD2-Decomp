@@ -21,6 +21,7 @@ public:
                     Graphics* graphics, HWND window, BorrowedGraphicsInput& keyboard)
         : startup_(startup), driver_(driver), module_(module), graphics_(graphics),
           window_(window), keyboard_(keyboard), actions_(*this) {}
+    ~ApplicationMenu() { frontend::CleanupErrors errors; errors.attempt([&] { shutdown(); }); }
     void initialize(std::function<void()> quit) {
         if (scene_) throw std::logic_error("Frontend initialized twice");
         if (!frontend::startup_case_equal(startup_.language(), "english"))
@@ -50,7 +51,9 @@ public:
     void shutdown() {
         if (!scene_) return;
         main_input_.reset(); confirm_input_.reset(); keyboard_context_.reset();
-        if (events_) events_->close(); // Stack borrowers before registered products.
+        frontend::CleanupErrors errors;
+        // A throwing deactivation must not strand products or their engine refs.
+        errors.attempt([&] { if (events_) events_->close(); });
         products_.clear();
         events_.reset();
         actions_.clear();
@@ -58,6 +61,7 @@ public:
         text_.reset(); cursor_.reset(); scene_.reset();
         SetCursor(LoadCursorW(nullptr, IDC_ARROW));
         std::puts("Controller menu shutdown: screen/input/text/scene owners released");
+        errors.rethrow();
     }
     void input(const std::uint32_t* first, const std::uint32_t* second) {
         frontend::preprocess_frontend_keyboard(*keyboard_context_, keyboard_, first, second);

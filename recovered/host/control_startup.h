@@ -19,7 +19,7 @@ public:
     }
     ~ControlStartupServices() {
         for (unsigned i = 0; i != 3; ++i)
-            if (initialized_[i]) DeleteCriticalSection(&locks_[i]);
+            delete_control_critical_section(i);
     }
     ControlStartupServices(const ControlStartupServices&) = delete;
     ControlStartupServices& operator=(const ControlStartupServices&) = delete;
@@ -34,6 +34,12 @@ public:
         EnterCriticalSection(&locks_[index]);
     }
     void leave_control_lock(unsigned index) noexcept { LeaveCriticalSection(&locks_[index]); }
+    void delete_control_critical_section(unsigned index) noexcept {
+        if (index < 3 && initialized_[index]) {
+            initialized_[index] = false;
+            DeleteCriticalSection(&locks_[index]);
+        }
+    }
 private:
     static_assert(sizeof(void*) == 4 && sizeof(CRITICAL_SECTION) == 24,
                   "Original control lock ABI requires i386");

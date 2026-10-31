@@ -2,6 +2,7 @@
 #define HD2_FRONTEND_APPLICATION_CONTROLLER_H
 
 #include "frontend/opening_video.h"
+#include "frontend/cleanup.h"
 #include <cstring>
 #include <memory>
 #include <limits>
@@ -59,9 +60,11 @@ public:
     // are real; original global loaded-cache trees/class ABI remain separate.
     // Directory registration lists are NOT those loaded-cache objects.
     void shutdown() {
-        if (active_) required().shutdown();
-        if (!reinitialize_) active_.reset();
-        if (services_.application_flags() & 2u) services_.close_mouse();
+        CleanupErrors errors;
+        errors.attempt([&] { if (active_) required().shutdown(); });
+        if (!reinitialize_ || errors.failed()) active_.reset();
+        errors.attempt([&] { if (services_.application_flags() & 2u) services_.close_mouse(); });
+        errors.rethrow();
     }
 
     // 006c0820 normal/reinitialize startup. Original deliberately ignores the

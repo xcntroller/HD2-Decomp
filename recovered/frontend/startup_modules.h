@@ -3,6 +3,7 @@
 
 #include "frontend/module_registration.h"
 #include "frontend/vertex_animations.h"
+#include "frontend/cleanup.h"
 #include <memory>
 
 namespace hd2::frontend {
@@ -40,13 +41,42 @@ public:
             // stand-ins for unrecovered module work. Evidence lists each table.
         }
     }
+    //0048DA80: ascending FRESH registrations, including null slot18. The sixteen
+    // other normal targets are verified RETs. No gameplay shutdown is invented.
+    void shutdown(const std::uint32_t& gate) {
+        CleanupErrors errors;
+        for (std::uint32_t kind = 0; kind != registry_.size(); ++kind) {
+            errors.attempt([&] {
+                if (!registry_[kind]) return;
+                if (kind >= 18 || registry_[kind] != (kind == 6 ? sound_ : modules_[kind].get()))
+                    throw std::logic_error("Unsupported replacement shutdown module");
+                if (shutdown_[kind]) return;
+                if (kind == 3) {
+                    //007DCA30 zeros500 slots; the standalone host has no item
+                    // or0078A980 list producer. Do not accept populated state.
+                    for (auto* object : items_objects)
+                        if (object) throw std::logic_error("Live Items shutdown is not reconstructed");
+                    if (items_pending || items_list_first || items_list_second)
+                        throw std::logic_error("Live Items queues are not reconstructed");
+                    if (gate & 2u) items_list_count = 0; //0078A980 cold side effect.
+                } else if (kind == 9 && (gate & 2u)) vertices.clear(); //00474A20.
+                shutdown_[kind] = true;
+            });
+        }
+        errors.rethrow();
+    }
     VertexAnimations vertices;
     std::int32_t items_current = 0;
     std::uint32_t items_pending = 0;
+    std::array<void*, 500> items_objects{};
+    void* items_list_first = nullptr;
+    void* items_list_second = nullptr;
+    std::uint32_t items_list_count = 0;
 private:
     ClientModuleRegistry& registry_;
     ClientModuleRegistration* sound_;
     std::array<std::unique_ptr<ClientModuleRegistration>, 18> modules_;
+    std::array<bool, 19> shutdown_{};
 };
 
 }

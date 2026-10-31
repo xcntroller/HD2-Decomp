@@ -37,19 +37,21 @@ public:
                     static_cast<unsigned>(flags));
         if (!owns_) std::puts("Original sound driver unavailable; continuing without audio");
     }
-    ~EngineSound() {
-        if (owns_) close();
-    }
+    ~EngineSound() { if (owns_) close(); }
     EngineSound(const EngineSound&) = delete;
     EngineSound& operator=(const EngineSound&) = delete;
 
     std::int32_t initialize(HWND window, std::uint32_t rate, std::uint32_t channels,
                             std::uint32_t bits, std::uint32_t flags) {
+        close_pending_ = true;
         status_ = initialize_(driver_, window, rate, channels, bits, flags);
         return status_;
     }
     bool initialized() const { return initialized_(driver_) != 0; }
-    void close() {
+    void close() noexcept {
+        if (!close_pending_) return;
+        close_pending_ = false;
+        owns_ = false;
         close_(driver_);
         std::printf("Original sound driver closed: initialized=%u\n",
                     static_cast<unsigned>(initialized()));
@@ -65,6 +67,7 @@ private:
     Close close_ = nullptr;
     Initialized initialized_ = nullptr;
     bool owns_ = false;
+    bool close_pending_ = false;
     std::int32_t status_ = 0;
 };
 
