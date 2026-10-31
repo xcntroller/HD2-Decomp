@@ -16,6 +16,8 @@ public:
         : scene_(scene), module_(module), confirmation_(confirmation), focus_(focus), model_root_(model_root) {}
     bool frame_visible() const { return model_root_ ? scene_.screen_visible(model_root_) : scene_.screen_visible(confirmation_); }
     int focused_control() const { return focus_.focused_control(); }
+    bool valid_control(int index) const { return focus_.valid_control(index); }
+    void update_control(int index, std::uint32_t milliseconds) { focus_.update_control(index, milliseconds); }
     int enter_focus(std::uint32_t target) { return frontend::screen_focus_enter(focus_, target); }
     int leave_focus(std::uint32_t target) { return frontend::screen_focus_leave(focus_, target); }
     void set_frame_visible(std::uint8_t visible) {
@@ -27,6 +29,7 @@ public:
         else scene_.update_screen_frame(module_, confirmation_);
     }
     void event_emitted(std::uint32_t tag, std::uint32_t argument) {
+        if (tag == 0x04014000) return; // Per-frame observer path, not lifecycle logging.
         std::printf("Original screen lifecycle: screen=%s tag=%08x argument=%08x\n",
                     confirmation_ ? "confirmation" : "main-menu", tag, argument);
     }

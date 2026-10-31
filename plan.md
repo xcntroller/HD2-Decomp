@@ -42,7 +42,8 @@ Baseline: the four-movie sequence and host preview are desktop-confirmed.
 [Opening evidence](analysis/opening-video.md). Recovered source components remain
 separate from delivery; their completed work is preserved in the recovery index.
 
-Next: exact menu queue/update timing, drag/capture and focus-loss integration.
+Next: original settings/resource cache integration. Queue/update, drag/capture
+and focus-loss behavior is [desktop-confirmed](analysis/menu-update.md).
 [Completed input/focus contracts](analysis/menu-character-focus.md).
 Full registry/setup bootstrap and binary integrity VM remain outside the checkpoint.
 
@@ -77,7 +78,8 @@ Original object ABI is tracked separately from native menu delivery.
 - [x] Complete character targets, focus-entry/navigation callers and initial-focus
   policy. Unused edit/list/binding routes are **source-only**; Main/Exit preserved.
   [Character/focus contracts](analysis/menu-character-focus.md).
-- [ ] Resolve exact queue/update timing, drag/capture and focus-loss behavior.
+- [x] Resolve exact queue/update timing, drag/capture and focus-loss behavior.
+  Main/Exit desktop-confirmed2026-10-31; unused routes source-only. [Contract](analysis/menu-update.md).
 - [ ] Integrate original settings/resource caches in place of host defaults.
 - [ ] Build options widget internals and connect recovered observers/settings.
   Native slider/selector/toggle routes are audited; no new screen is enabled.

@@ -18,6 +18,12 @@ public:
     bool shift_down() const { return scalar<std::uint8_t>(0xbc, 0x6f550) != 0; }
     bool control_down() const { return scalar<std::uint8_t>(0xc0, 0x6f570) != 0; }
     bool alt_down() const { return scalar<std::uint8_t>(0xc4, 0x6f590) != 0; }
+    void set_pointer_position(std::int32_t x, std::int32_t y) const {
+        using Function = void (WINAPI *)(EngineFrame*, std::int32_t, std::int32_t);
+        scene_method<Function>(graphics_, module_, 0xf8, 0x6fa40)(graphics_, x, y);
+    }
+    std::int32_t pointer_x() const { return scalar<std::int32_t>(0xfc, 0x6fb10); }
+    std::int32_t pointer_y() const { return scalar<std::int32_t>(0x100, 0x6fb20); }
     bool key_down(std::uint32_t scan) const {
         using Function = std::uint8_t (WINAPI *)(EngineFrame*, std::uint32_t);
         return scene_method<Function>(graphics_, module_, 0xb0, 0x6f490)(graphics_, scan) != 0;

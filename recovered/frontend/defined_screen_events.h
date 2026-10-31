@@ -7,6 +7,7 @@
 #include "frontend/screen_event.h"
 #include "frontend/screen_lifecycle.h"
 #include "frontend/screen_target.h"
+#include "frontend/frontend_update.h"
 
 #include <functional>
 #include <string>
@@ -59,6 +60,12 @@ public:
     bool dispatch_initialization_event(ControlEvent& event) { return dispatch(event); }
     void activate(std::uint32_t focus) { activate_screen(*this, focus); }
     void deactivate() { deactivate_screen(*this); }
+    // 00668750 emits first: observers may change focus before the validity
+    // test. Tick only the fresh focused child, without an eligibility gate.
+    void update(std::uint32_t milliseconds) {
+        emit(0x04014000, milliseconds);
+        update_focused_control(backend_, milliseconds);
+    }
     bool frame_visible() const { return backend_.frame_visible(); }
     int focused_control() const { return backend_.focused_control(); }
     int enter_focus(std::uint32_t target) { return backend_.enter_focus(target); }

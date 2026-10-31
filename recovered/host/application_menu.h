@@ -39,10 +39,19 @@ public:
         keyboard_context_.emplace(*this);
         const auto moved = [this](float x, float y) { scene_->update_input_cursor(x, y, 800, 600); };
         const auto click = [this] { scene_->request_click_sound(); };
-        main_input_.emplace(input_, products_.screen(0).focus(),
-            [this](const CursorPoint& point) { return pick(false, point); }, moved, click);
-        confirm_input_.emplace(input_, products_.screen(1).focus(),
-            [this](const CursorPoint& point) { return pick(true, point); }, moved, click);
+        pointer_input_.emplace(input_, events_->common_state(),
+            [this]() -> MenuFocus& { return current_product().focus(); },
+            [this](MenuFocus& focus, const CursorPoint& point) {
+                return pick(focus.identifier() == 0x10000000, point);
+            }, moved, click);
+        // 0066A4E0 centers a fresh shared cursor and reads IGraph+fc/+100.
+        // OS departure never reseeds it.
+        keyboard_.set_pointer_position(400, 300);
+        point_ = CursorPoint{static_cast<float>(keyboard_.pointer_x()), static_cast<float>(keyboard_.pointer_y())};
+        input_.pointer.cursor().initialize(point_->x, point_->y, 800, 600);
+        input_.previous_point = point_;
+        input_.armed = true;
+        moved(point_->x, point_->y);
         if (startup_.sound_available()) scene_->load_click_sound(module_);
         startup_.begin_menu_music();
         date_tick(true);
@@ -50,7 +59,7 @@ public:
     }
     void shutdown() {
         if (!scene_) return;
-        main_input_.reset(); confirm_input_.reset(); keyboard_context_.reset();
+        pointer_input_.reset(); keyboard_context_.reset();
         frontend::CleanupErrors errors;
         // A throwing deactivation must not strand products or their engine refs.
         errors.attempt([&] { if (events_) events_->close(); });
@@ -67,26 +76,10 @@ public:
         frontend::preprocess_frontend_keyboard(*keyboard_context_, keyboard_, first, second);
     }
     void update(std::uint32_t milliseconds) {
-        // Actual0066BEA0 normal mode10/gate7 executes BOTH pairs.
-        date_tick(false); startup_.update_sound(milliseconds);
-        date_tick(false); startup_.update_sound(milliseconds);
-        events_->pump();
-        if (exit_requested_) return;
-        const auto* current = events_->screens().current();
-        if (!current) { input_.clear(); return; }
-        const bool focused = GetAncestor(GetForegroundWindow(), GA_ROOT) == window_ && !IsIconic(window_);
-        if (!focused) { input_.clear(); point_.reset(); return; }
-        if (!point_) point_ = cursor_->position(window_);
-        else {
-            point_->x = std::clamp(point_->x + static_cast<float>(startup_.mouse_x()), 0.0f, 800.0f);
-            point_->y = std::clamp(point_->y + static_cast<float>(startup_.mouse_y()), 0.0f, 600.0f);
-        }
-        if (!point_) { input_.clear(); return; }
-        const auto target = pick(confirming_, *point_);
-        auto& active = confirming_ ? *confirm_input_ : *main_input_;
-        active.tick(*point_, target, startup_.mouse_buttons(), milliseconds, startup_.mouse_wheel());
-        events_->pump(); // Click messages follow the recovered existing native queue.
+        FrameServices services{*this};
+        frontend::update_frontend(update_state_, services, milliseconds);
     }
+
     void render() {
         if (confirming_) scene_->set_confirmation_visible(module_, false);
         if (scene_->render() < 0) throw std::runtime_error("Controller menu render failed");
@@ -110,6 +103,33 @@ public:
         }
     }
 private:
+    MenuScreenProduct& current_product() {
+        const auto* current = events_->screens().current();
+        if (!current) throw std::logic_error("Frontend callback removed the current screen");
+        if (current->identifier == 0x04000000) return products_.screen(0);
+        if (current->identifier == 0x10000000) return products_.screen(1);
+        throw std::logic_error("Current screen has no compiled product");
+    }
+    struct FrameServices {
+        ApplicationMenu& owner;
+        void update_menu(std::uint32_t) { owner.date_tick(false); }
+        void update_sound(std::uint32_t milliseconds) { owner.startup_.update_sound(milliseconds); }
+        void pump_events() { owner.events_->pump(); }
+        bool screens_available() const { return owner.events_->screens().current() != nullptr; }
+        void update_pointer(std::uint32_t milliseconds) {
+            owner.pointer_input_->tick_relative(static_cast<float>(owner.startup_.mouse_x()),
+                static_cast<float>(owner.startup_.mouse_y()), owner.startup_.mouse_buttons(),
+                milliseconds, owner.startup_.mouse_wheel());
+            owner.point_ = CursorPoint{owner.input_.pointer.cursor().x(), owner.input_.pointer.cursor().y()};
+        }
+        void update_capture(std::uint32_t milliseconds) { owner.events_->common_state().update_capture(milliseconds); }
+        void update_current_screen(std::uint32_t milliseconds) { owner.current_product().events().update(milliseconds); }
+        void update_overlay(std::uint32_t milliseconds) { owner.events_->common_state().update_overlay(milliseconds); }
+        std::size_t listener_count() const { return owner.events_->common_state().notification_tokens.size(); }
+        void update_listener(std::size_t index, std::uint32_t milliseconds) {
+            owner.events_->common_state().update_listener(index, milliseconds);
+        }
+    };
     class Actions final : public frontend::MenuEventActions {
     public:
         explicit Actions(ApplicationMenu& owner) : owner_(owner) {}
@@ -131,11 +151,11 @@ private:
             return runtime(family).dispatch(event);
         }
         void quit() override {
-            owner_.exit_requested_ = true;
             owner_.quit_(); // State status4, not an outer-loop running Boolean.
             std::puts("Controller menu requested status=4");
         }
         void set_application_input_enabled(bool value) override { owner_.startup_.application_input_enabled(value); }
+        void set_input_motion_only(bool value) override { owner_.input_.inhibit_click = value; }
         void clear() { screens_.fill(nullptr); }
     private:
         MenuScreenEvents& runtime(std::uint32_t family) const {
@@ -205,9 +225,10 @@ private:
     frontend::OwnedScreens<MenuScreenProduct> products_;
     std::optional<frontend::MenuEventQueue> events_;
     std::optional<KeyboardContext> keyboard_context_;
-    std::optional<MenuFrameInput<MenuFocus>> main_input_, confirm_input_;
+    std::optional<MenuFrameInput<MenuFocus>> pointer_input_;
+    frontend::FrontendUpdateState update_state_;
     std::optional<CursorPoint> point_;
-    bool confirming_ = false, exit_requested_ = false, rendered_ = false;
+    bool confirming_ = false, rendered_ = false;
     int cached_hour_ = 0, cached_minute_ = 0;
     std::string cached_date_;
 };

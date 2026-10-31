@@ -7,6 +7,7 @@
 #include "frontend/menu_definition.h"
 #include "frontend/screen_focus.h"
 #include "frontend/screen_input.h"
+#include "frontend/frontend_update.h"
 
 #include <limits>
 #include <memory>
@@ -52,6 +53,10 @@ public:
         return group_ ? group_->dispatch_control_event(event, destination) : leaf_->receive_event(event, destination);
     }
     bool key(std::uint32_t word) { return group_ ? container_key(*this, word) : leaf_->key(word); }
+    void update(std::uint32_t milliseconds) {
+        if (group_) update_focused_control(*this, milliseconds); // 00656af0.
+        else leaf_->update(milliseconds);
+    }
     int enter_focus(std::uint32_t target) {
         return group_ ? container_focus_enter(*this, target) : leaf_->apply(true);
     }
@@ -93,6 +98,7 @@ public:
     // Context for the original shared focus/pointer helpers. Resolve children
     // afresh at each callback; unique ownership keeps their addresses stable.
     int focused_control() const { return focused_; }
+    void update_control(int index, std::uint32_t milliseconds) { child_at(index).update(milliseconds); }
     void set_focused_control(int index) { focused_ = index; }
     bool valid_control(int index) const {
         return index >= 0 && static_cast<std::size_t>(index) < children_.size();

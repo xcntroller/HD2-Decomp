@@ -15,8 +15,12 @@ or call original client function addresses. The older engine-window preview and
 startup probe remain separate diagnostics. The original DLLs are delegated
 services, not reconstructed engine implementations.
 
-Current compiled and staged application SHA256:
+Accepted shutdown-checkpoint application SHA256:
 `3d2258a4ee3f95c2da0ed72caf03072a3c1e9ea4d2d95eb78ca01ae6b4e072ac`.
+
+The subsequently staged [menu timing/capture build](menu-update.md) has a different
+hash and is separately user desktop-confirmed2026-10-31. The identities and checks below describe
+this historical launch checkpoint.
 
 The strict i386 targets application-launch/startup-probe/engine-window are up to
 date against committed source. `python3 -B tools/run_application_launch.py
@@ -77,9 +81,8 @@ Other Main actions, dynamic labels and wider menu flows remain open in plan.md.
 
 ## Next milestone
 
-Continue the shared menu foundation's first open input/focus item: character
-targets, focus-entry/navigation callers and initial-focus policy. Start from
-[keyboard preprocessing](keyboard-preprocessing.md), current implemented-screen
-owners and original caller evidence. Existing scan polling and text FIFO source
-recovery do not establish that delivery. Keep current Main/Exit functional while
-recovering the next coherent slice; do not expand the closed launch checklist.
+Character/focus source recovery was committed as66a1687. The shared menu
+[queue/update/capture/focus-loss implementation](menu-update.md) is now built,
+audited, staged and separately user desktop-confirmed2026-10-31. Its acceptance is separate
+from this historical launch matrix. Keep the bounded launch checklist closed;
+follow plan.md and HANDOFF.md for the current checkpoint.

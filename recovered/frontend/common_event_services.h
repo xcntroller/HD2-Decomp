@@ -5,14 +5,22 @@
 
 #include <algorithm>
 #include <stdexcept>
+#include <unordered_map>
 
 namespace hd2::frontend {
 
-class FrontendCaptureOwner {
+class FrontendUpdateTarget {
+public:
+    virtual ~FrontendUpdateTarget() = default;
+    virtual void update(std::uint32_t milliseconds) = 0; // Original +1c.
+};
+
+class FrontendCaptureOwner : public FrontendUpdateTarget {
 public:
     virtual ~FrontendCaptureOwner() = default;
     virtual bool character(std::uint32_t value) = 0; // Original +24.
-    virtual bool release(std::uint32_t argument) = 0; // Original +64.
+    virtual std::uint32_t identifier() const = 0; // Original control +60.
+    virtual int release(std::uint32_t argument) = 0; // Original +64; preserve 0/1/7.
     virtual void acquire(std::uint32_t argument) = 0; // Original +68.
 };
 
@@ -25,6 +33,24 @@ struct CommonFrontendState {
     bool motion_only = false;
     std::vector<std::uint32_t> resource_tokens;
     std::vector<std::uint32_t> notification_tokens;
+    std::shared_ptr<FrontendUpdateTarget> overlay; // Front end +fc.
+    // Native bindings for +130 entries. Original pointer words are identities,
+    // never callable host addresses. Missing bindings fail at the reached call.
+    std::unordered_map<std::uint32_t, std::shared_ptr<FrontendUpdateTarget>> notification_targets;
+
+    void update_capture(std::uint32_t milliseconds) {
+        auto owner = capture_owner;
+        if (owner) owner->update(milliseconds);
+    }
+    void update_overlay(std::uint32_t milliseconds) {
+        auto owner = overlay;
+        if (owner) owner->update(milliseconds);
+    }
+    void update_listener(std::size_t index, std::uint32_t milliseconds) {
+        auto owner = notification_targets.at(notification_tokens.at(index));
+        if (!owner) throw std::logic_error("Notification target has no update binding");
+        owner->update(milliseconds);
+    }
 };
 
 // 0066b3e0's self+10 / virtual +24 dispatch. Retain the native owner for

@@ -1,0 +1,558 @@
+{
+  "scope": "Exact frontend frame/queue/capture contract, integrated into bounded application launch; bounded Main/Exit desktop-confirmed. Engine activation/restore and device polling remain delegated, with evidence only and no extra credit. Legacy diagnostic preview retains explicit host safeguards.",
+  "runtime_verified": true,
+  "sources": [
+    "recovered/frontend/frontend_update.h",
+    "recovered/frontend/common_event_services.h",
+    "recovered/frontend/defined_screen_events.h",
+    "recovered/frontend/defined_control_tree.h",
+    "recovered/host/menu_pointer_session.h",
+    "recovered/host/application_menu.h",
+    "recovered/host/borrowed_input.h"
+  ],
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "0066bea0",
+        "hex": "83ec10538b5c2418568bf157538b06ff5048837e200b750e8b0d0021980083e10780f907750de8f577dcff8b10538bc8ff52108b06538bceff5048e8e077dcff8b10538bc8ff52108a461484c07403015e188bcee877080000a1e0e48a0085c00f848e000000538bcee882faffff8b4e1085c974068b0153ff501c8b0dcce48a00a1c8e48a008b15d0e48a008b3dd4e48a00894c24106aff8d4c24108944241089542418897c241ce85373fcff8b4c2414538b098b11ff521c8b8efc00000085c974068b0153ff501c8b863001000085c074218bbe340100002bf8c1ff0274148b8e300100004f538b0cb98b11ff521c85ff75ec5f5e5b83c410c20400",
+        "meaning": "Entire frontend update: double menu/sound hooks, timer, one pre-pointer queue drain, capture/current/overlay and reverse live listener pass"
+      },
+      {
+        "address": "0066a860",
+        "hex": "8a442404884148c20400",
+        "meaning": "Input click-inhibition byte assignment; shared mode messages call this setter"
+      },
+      {
+        "address": "00668750",
+        "hex": "56578b7c240c8bf1576800400104e8ed47ffff8b4e6c8b06518bceff500484c0740f8b566c8b4608578b0c908b11ff521c5f5ec2",
+        "meaning": "Screen update emits04014000 then validates and ticks fresh focused child"
+      },
+      {
+        "address": "00656af0",
+        "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff621c5ec20400",
+        "meaning": "Group update validates and ticks fresh focused child without eligibility gate"
+      },
+      {
+        "address": "0064da20",
+        "hex": "c20400",
+        "meaning": "Text/button update is RET4"
+      },
+      {
+        "address": "006621e0",
+        "hex": "8a417c84c0740c8b496c85c97405e96d1dfeffc2040090909090909090909090",
+        "meaning": "Captured edit caret update gated by active and attached text"
+      },
+      {
+        "address": "0066b990",
+        "hex": "83ec20535556578bf9837f24ff740c5f5e5d32c05b83c420c204008b0dcce48a00a1c8e48a008b15d0e48a00894c24148d4c242089442410a1d4e48a006a01518d4c241889542420894424",
+        "meaning": "Pointer gate, picking before update, processed/previous-target gate and live motion-only read"
+      },
+      {
+        "address": "0066a4e0",
+        "hex": "558bec83e4f083ec1856578bf1e8bca917008b0850ff51188944240cdb44240cd95e24e8a6a917008b1050ff521c8944240c8b4508db44240c33ff68ffff0000897e34897e3cd95e28897e408b08687806840050ff517c3bc78946080f847c010000d90560068400d8",
+        "meaning": "Cursor initialization and sentinel tests"
+      },
+      {
+        "address": "0066a592",
+        "hex": "e817a91700d94628d80d18f580008b388944240ce855b81700d94624d80d18f5800050e846b81700508b44241450ff97f8000000e8e3a817008b0850ff91fc0000008944240cdb44240cd91d60068400e8c7a817008b1050ff92000100008944240cdb44240cd91d64068400",
+        "meaning": "Fresh cursor centers then reads graphics absolute position"
+      },
+      {
+        "address": "0066c770",
+        "hex": "64a1000000006aff68286d800050a1ace48a006489250000000083ec3c85c0538bd90f849c01000056a184e48a008b0d88e48a008b1590e48a008944241ca18ce48a00894c2420895424288b08894c242c8b5004895424308b4808894c24348b",
+        "meaning": "Queue event retained before removal and routing"
+      },
+      {
+        "address": "0066ba87",
+        "hex": "6a03e832e6ffff84c074618b4f103bcb741739716074128b1156ff526483f8010f85cc030000895f108b0dcce48a00a1c8e48a008b15d0e48a008b2dd4e48a00894c24146aff8d4c",
+        "meaning": "Pointer capture compares full release result with1 before clearing current owner and continuing press"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "00813cdc",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00813cc0+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00813d64",
+        "targets": [
+          "006621e0"
+        ],
+        "meaning": "00813d48+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00813dec",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00813dd0+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00813e74",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00813e58+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00813efc",
+        "targets": [
+          "006621e0"
+        ],
+        "meaning": "00813ee0+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00813f84",
+        "targets": [
+          "006642b0"
+        ],
+        "meaning": "00813f68+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081400c",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00813ff0+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814094",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814078+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081411c",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814100+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008141a4",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814188+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081422c",
+        "targets": [
+          "006659c0"
+        ],
+        "meaning": "00814210+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008142b4",
+        "targets": [
+          "006621e0"
+        ],
+        "meaning": "00814298+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081433c",
+        "targets": [
+          "006621e0"
+        ],
+        "meaning": "00814320+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008143c4",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "008143a8+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081444c",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "00814430+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008144d4",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "008144b8+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081455c",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814540+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008145e4",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "008145c8+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081466c",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814650+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008146f4",
+        "targets": [
+          "00652110"
+        ],
+        "meaning": "008146d8+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081477c",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814760+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814804",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "008147e8+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081488c",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "00814870+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814914",
+        "targets": [
+          "00651370"
+        ],
+        "meaning": "008148f8+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081499c",
+        "targets": [
+          "00667820"
+        ],
+        "meaning": "00814980+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814a24",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "00814a08+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814aac",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "00814a90+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814b34",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "00814b18+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814bbc",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814ba0+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814c44",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814c28+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814ccc",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814cb0+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814d54",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814d38+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814ddc",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "00814dc0+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814e64",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "00814e48+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814eec",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00814ed0+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814f74",
+        "targets": [
+          "0064efb0"
+        ],
+        "meaning": "00814f58+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00814ffc",
+        "targets": [
+          "0064e530"
+        ],
+        "meaning": "00814fe0+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00815084",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "00815068+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081510c",
+        "targets": [
+          "00656af0"
+        ],
+        "meaning": "008150f0+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00815194",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00815178+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081521c",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00815200+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008152a4",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00815288+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081532c",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00815310+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008153b4",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00815398+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081543c",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "00815420+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008154d4",
+        "targets": [
+          "0064da20"
+        ],
+        "meaning": "008154b8+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "0081555c",
+        "targets": [
+          "00668750"
+        ],
+        "meaning": "00815540+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008155f4",
+        "targets": [
+          "00668750"
+        ],
+        "meaning": "008155d8+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "008156d4",
+        "targets": [
+          "006697a0"
+        ],
+        "meaning": "008156b8+1c update route; derived widget bodies remain their own checklist work"
+      },
+      {
+        "address": "00815934",
+        "targets": [
+          "00669e00"
+        ],
+        "meaning": "00815918+1c update route; derived widget bodies remain their own checklist work"
+      }
+    ],
+    "direct_calls": [
+      {
+        "site": "0066bec6",
+        "target": "004336c0"
+      },
+      {
+        "site": "0066bedb",
+        "target": "004336c0"
+      },
+      {
+        "site": "0066bef4",
+        "target": "0066c770"
+      },
+      {
+        "site": "0066bf09",
+        "target": "0066b990"
+      },
+      {
+        "site": "0066bf48",
+        "target": "006332a0"
+      },
+      {
+        "site": "0066c82b",
+        "target": "004050f0"
+      },
+      {
+        "site": "0066c868",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0066c87d",
+        "target": "0066e9f0"
+      },
+      {
+        "site": "0066c8c6",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0066c8fd",
+        "target": "0066c950"
+      },
+      {
+        "site": "0066c91e",
+        "target": "007e1cc0"
+      },
+      {
+        "site": "0066875e",
+        "target": "0065cf50"
+      }
+    ],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "1006b820",
+        "hex": "538b5c240c83fb14558b6c241456570f87e00200000f84d10200008bc383e8020f84a402000083e804743383e80a0f8551010000a095210d1084c0750c5f5e5db8010000005bc21000a1f4160d108b0850ff51108b54241c52e8b1300200a091210d1084c0a090210d100f848700000084c00f840d010000a1f4160d108b0868a01a0d1050ff5150a16c210d1085c0c60590210d1000742e33f68d9b00000000",
+        "meaning": "Original WndProc message branches, activation state/minimization gates"
+      },
+      {
+        "address": "1006b8c0",
+        "hex": "8b04b558e00b108b0df8160d105056c704b558e00b10ffffffff8b1151ff52184683fe457cda8b3de81e0d1085ff0f844e010000a1e01e0d108b74b8fc8b2e4f8bcd56ff514051d91c2456ff553c85ff75e2e9270100008bd5c1ea1085d20f849a00000084c0757d33c08d9b000000008a88b0180d108888a01a0d104084c975eff605441d0d1020745483c9ff33c0bfb0180d10f2aef7d14981f9f6000000731b83c9ffbfb0180d10f2aea1b4790a108b0db8790a104f8907894f048b15ec190d1068b0180d1052ff1594b10910a1c8",
+        "meaning": "Restore: caption, inactive byte before device reset, 69 cache entries and reverse sound volume refresh"
+      },
+      {
+        "address": "1006b990",
+        "hex": "210d1085c0740750ff1538b00910c60590210d10018b5424208b44241452555350ff15f8b109105f5e5d5bc2100084c00f84950000006685ed74daa1f4160d108b0868a01a0d1050ff5150a16c210d1085c0c60590210d1000742b33f68d49008b04b558e00b108b0df8160d105056c704b558e00b10ffffffff8b1151ff52184683fe457cda8b3de81e0d1085ff7422a1e01e0d108b74b8fc8b2e4f8bcd56ff514051d91c2456ff553c85ff75e28b6c",
+        "meaning": "Deactivate/restore continuation and original DefWindowProc forwarding; no frontend capture reset"
+      },
+      {
+        "address": "1006a480",
+        "hex": "6a035353538d44242050ff150cb2091085c0752d381d90210d100f84e5010000381d91210d100f85d9010000f605441d0d10200f84cc010000ff1590b10910ebbf",
+        "meaning": "No-message pump WaitMessage only while inactive, ordinary mode and flags bit20"
+      },
+      {
+        "address": "1006fb10",
+        "hex": "a178210d10c20400",
+        "meaning": "Graphics pointer X getter"
+      },
+      {
+        "address": "1006fb20",
+        "hex": "a17c210d10c20400",
+        "meaning": "Graphics pointer Y getter"
+      },
+      {
+        "address": "1006fa40",
+        "hex": "a17c1a0d1083ec1085c0568b74241c578b7c2424893578210d10893d7c210d10",
+        "meaning": "Graphics pointer position setter entry"
+      },
+      {
+        "address": "1006ba40",
+        "hex": "241ca1c8210d1085c00f8456ffffff50ff1534b00910e94affffff6685ed0f85",
+        "meaning": "Restore tail resumes optional thread and exits through common WndProc path"
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009d854",
+        "targets": [
+          "1006a470"
+        ]
+      },
+      {
+        "address": "1009d938",
+        "targets": [
+          "1006fa40"
+        ]
+      },
+      {
+        "address": "1009d93c",
+        "targets": [
+          "1006fb10"
+        ]
+      },
+      {
+        "address": "1009d940",
+        "targets": [
+          "1006fb20"
+        ]
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "runtime_verification_scope": "User desktop-confirmed bounded Main/Exit clicks/dragging, focus loss/return and clean shutdown on2026-10-31; retained final log/build manifest in analysis/work/menu-update-acceptance-20261031. Unused capture/edit/overlay/listener paths remain native-audited only; original engine services remain delegated."
+}

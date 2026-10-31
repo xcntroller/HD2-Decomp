@@ -24,7 +24,7 @@ struct PointerDispatchState {
     std::int32_t gate = -1;         // Front-end +24.
     std::uint32_t previous_target = 0xffffffffu; // Front-end +0c.
     bool dragging = false;          // Front-end +2c.
-    bool motion_only = false;       // Front-end +2d; semantic name is provisional.
+    bool motion_only = false;       // Standalone probes; live host uses CommonFrontendState +2d.
 };
 
 struct PointerDispatchInput {
@@ -45,14 +45,14 @@ struct PointerDispatchInput {
 // Original segmented stack storage and frame ownership remain context adapters.
 template<class Context>
 int dispatch_menu_pointer(PointerDispatchState& state, Context& context,
-                          std::uint32_t delta) {
+                          std::uint32_t delta, const bool& motion_only) {
     if (state.gate != -1) return 0;
     const auto target = context.pick_target();
     const bool processed = context.update_input(delta, target);
     if (!processed && state.previous_target == target) return 1;
     state.previous_target = target;
 
-    if (state.motion_only) {
+    if (motion_only) {
         if (context.input().moved) {
             state.dragging = false;
             context.screen_event(ScreenPointerCallback::focus, target);
@@ -109,6 +109,11 @@ int dispatch_menu_pointer(PointerDispatchState& state, Context& context,
         context.focus_screen(screen, refreshed);
     }
     return 1;
+}
+
+template<class Context>
+int dispatch_menu_pointer(PointerDispatchState& state, Context& context, std::uint32_t delta) {
+    return dispatch_menu_pointer(state, context, delta, state.motion_only);
 }
 
 }

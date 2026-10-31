@@ -157,10 +157,15 @@ template<class Backend>
 class EditCharacterTarget final : public FrontendCaptureOwner,
                                   public std::enable_shared_from_this<EditCharacterTarget<Backend>> {
 public:
-    EditCharacterTarget(Backend& backend, ControlEventDestination& queue) : backend_(backend), queue_(queue) {}
+    EditCharacterTarget(std::uint32_t identifier, Backend& backend, ControlEventDestination& queue)
+        : identifier_(identifier), backend_(backend), queue_(queue) {}
     EditCharacterState state;
+    std::uint32_t identifier() const override { return identifier_; }
+    void update(std::uint32_t milliseconds) override {
+        if (state.active && backend_.has_text()) backend_.text().update_caret(milliseconds);
+    }
     bool character(std::uint32_t value) override { return dispatch_edit_character(state, backend_, value); }
-    bool release(std::uint32_t argument) override { return release_edit_characters(state, backend_, argument); }
+    int release(std::uint32_t argument) override { return release_edit_characters(state, backend_, argument); }
     void acquire(std::uint32_t) override { acquire_edit_characters(state, backend_); } // Result ignored by0066c950.
     // 00662790 / +38: queue ownership request without changing the active byte.
     bool request_activation() {
@@ -182,6 +187,7 @@ private:
         event.capture_owner = this->shared_from_this();
         queue_.enqueue(event);
     }
+    std::uint32_t identifier_;
     Backend& backend_;
     ControlEventDestination& queue_;
 };

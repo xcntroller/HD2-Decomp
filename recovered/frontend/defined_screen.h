@@ -62,6 +62,7 @@ public:
         return !control_disabled(index) && bound(index).activate(events_);
     }
     int focused_control() const { return focused_; }
+    void update_control(int index, std::uint32_t milliseconds) { bound(index).update(milliseconds); }
     void set_focused_control(int index) { focused_ = index; }
     int leave_control(int index, std::uint32_t) { return bound(index).apply(false); }
     int enter_control(int index, std::uint32_t) { return bound(index).apply(true); }

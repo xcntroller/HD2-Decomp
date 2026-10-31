@@ -48,6 +48,9 @@ public:
     bool eligible() const { return button_ ? button_->eligible() : text_.eligible(); }
     bool disabled() const { return button_ ? button_->disabled() : text_.disabled(); }
     bool key(std::uint32_t key) { return button().key(key); }
+    // Text table00813CC0 and button table00814760 +1c both point to the
+    // verified RET4 body0064DA20. No text refresh or fabricated tick service.
+    void update(std::uint32_t) {}
     int apply(bool hover) { return button().apply(hover); }
     int pointer_move() { return button().pointer_move(); }
     int pointer_event(frontend::ScreenPointerCallback callback, frontend::ControlEventDestination& events) {

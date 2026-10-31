@@ -788,14 +788,18 @@
       "program": "client",
       "entry": "0066b990",
       "status": "partial",
-      "coverage": "Portable sequencing reconstructs the front-end gate, pick-before-update call order, target-change gate, alternate-motion branch, mask-3 press/release, captured-control veto, double-before-single click, drag callback order/early return, and raw wheel conversion, focused dispatch and post-callback current-screen repicking. An observational adapter logs the routed screen slots. The opt-in engine-button adapter now routes main-menu Exit and confirmation press/release/drag/click through the reconstructed dispatcher and screen helpers; default interactive modes retain their existing paths.",
-      "limitations": "Device state polling is reconstructed in a bounded separate slice; captured-control objects, stack lookup and ABI remain adapters; accepted-click side effect now routes to an original unbuffered sound frame in engine-input mode. The shadow uses reconstructed clamping on host-derived motion, while live interaction retains its existing sampling. Wheel conversion/dispatch/repicking order is reconstructed; original segmented screen-stack storage remains a context adapter. The probe uses message snapshots and does not invoke live callbacks; its capture state is absent. Interactive target changes retain host focus routing to preserve established behavior.",
+      "coverage": "Original pointer dispatch now integrated into the application: gate before picking, previous-position pick before raw relative update, common live motion-only state, typed capture identifier/release with exact result1 and unconditional clear, double before single click, fresh screen resolution for every callback, drag order/early wheel skip and wheel repicking.",
+      "limitations": "Native typed ownership replaces original pointers/object ABI. Original engine picking, input polling and accepted-click sound remain delegated services. Normal application preserves press/drag/cursor across departure, screen changes and focus loss; legacy engine-window preview retains its explicit prior safeguards. Sanitizer/i386 verified; bounded application interaction is user desktop-confirmed2026-10-31. Unused capture/widget routes remain native-audited only.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/pointer_motion.h",
         "recovered/frontend/pointer_dispatch.h",
         "recovered/host/pointer_dispatch_probe.h",
-        "recovered/host/engine_window.cpp"
+        "recovered/host/engine_window.cpp",
+        "analysis/menu-update-map.json",
+        "recovered/frontend/frontend_update.h",
+        "recovered/host/menu_pointer_session.h",
+        "recovered/host/application_menu.h"
       ]
     },
     {
@@ -902,12 +906,16 @@
       "program": "client",
       "entry": "0066c770",
       "status": "partial",
-      "coverage": "FIFO front-end event pump processes queued events in order, including events appended during routing.",
-      "limitations": "Portable deque and shared ownership replace original queue storage and intrusive reference handling; only the bounded menu flow is supported and the host pumps immediately after activation.",
+      "coverage": "FIFO drain moves/removes each retained event before routing, includes callback-enqueued work in the same drain and tolerates reentrant queue clear/append. The normal application drains once before pointer/capture/screen updates; post-drain events wait for the next update.",
+      "limitations": "Native deque/shared ownership replace original segmented queue, intrusive reference handling and SEH. Legacy diagnostic preview retains its older pump policy. Exact application timing is native-audited and i386-linked; bounded application is user desktop-confirmed2026-10-31.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/menu_event_queue.h",
-        "recovered/frontend/menu_event_queue.cpp"
+        "recovered/frontend/menu_event_queue.cpp",
+        "analysis/menu-update-map.json",
+        "recovered/frontend/frontend_update.h",
+        "recovered/host/menu_pointer_session.h",
+        "recovered/host/application_menu.h"
       ]
     },
     {
@@ -915,7 +923,7 @@
       "entry": "0066c950",
       "status": "partial",
       "coverage": "Deferred storage/release/discard and Exit replies; registered ScreenStack replaces depth counter. Regular select hides then pushes without changing +f8. Modal push retains old visibility, saves +f8 and activates with 10200000. Pop clears +f8, generic back preserves it; both resume current screen. Targeted events select any bound registered screen using target high six bits, preserving deferred/reply priority and ignoring screen return. Slot-zero 02000096 saves previous/pushes with focus zero; 02000097 tests current identifier family, hides/removes/clears previous without reactivating underneath. Remaining common branches: LIFO clear/state 3/2, direct resource reset then state 10, resource release before saved-index erase with fresh size check, registration list, current-model notifications with saved receiver before repick, capture acquire/release and inverse application/input mode ordering.",
-      "limitations": "Native registry/vector, opaque resource tokens and typed retained capture adapters replace original segmented deque/class/pointer ABI. Existing main/confirmation and opt-in slot-zero products and shared factories are desktop-confirmed. New common service routes are sanitizer/i386-audited; resource release/reset, application state, input mode and notification-picker backends remain explicit supplied contracts covered by other checklist entries. Invalid native capture acquisition throws rather than dereferencing null. Unknown events retain host diagnostics rather than original silent ignore.",
+      "limitations": "Native registry/vector, opaque resource tokens and typed retained capture adapters replace original segmented deque/class/pointer ABI. Existing main/confirmation and opt-in slot-zero products and shared factories are desktop-confirmed. New common service routes are sanitizer/i386-audited; resource release/reset, application state and notification-picker backends remain explicit supplied contracts covered by other checklist entries. Input motion/click inhibition is now wired into the normal application, whose bounded timing is user desktop-confirmed2026-10-31. Invalid native capture acquisition throws rather than dereferencing null. Unknown events retain host diagnostics rather than original silent ignore.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/menu_event_queue.h",
@@ -930,7 +938,10 @@
         "recovered/frontend/application_events.h",
         "analysis/menu-application-routing-map.json",
         "analysis/menu-common-services-map.json",
-        "recovered/frontend/common_event_services.h"
+        "recovered/frontend/common_event_services.h",
+        "analysis/menu-update-map.json",
+        "recovered/host/application_menu.h",
+        "recovered/host/menu_pointer_session.h"
       ]
     },
     {
@@ -4473,6 +4484,31 @@
         "analysis/menu-character-focus.md",
         "analysis/menu-character-focus-map.json",
         "recovered/frontend/container_input.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0066a860",
+      "status": "partial",
+      "coverage": "Set the persistent input click-inhibition byte from the shared frontend mode protocol, with live keyboard/pointer motion-only gating and inverse application-input mode ordering.",
+      "limitations": "Native state/methods replace original object and virtual ABI. Sanitizer/i386 audited. Unused edit/list/container/widget paths remain source-only; bounded application timing is user desktop-confirmed2026-10-31.",
+      "evidence": [
+        "analysis/menu-update-map.json",
+        "recovered/host/application_menu.h",
+        "recovered/host/menu_pointer_session.h",
+        "recovered/frontend/common_event_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00656af0",
+      "status": "partial",
+      "coverage": "Validate the freshly focused child and forward its update with the original elapsed milliseconds; no visibility/eligibility filter or traversal of all children. Composed recursively in DefinedControlTree.",
+      "limitations": "Native state/methods replace original object and virtual ABI. Sanitizer/i386 audited. Unused edit/list/container/widget paths remain source-only; bounded application timing is user desktop-confirmed2026-10-31.",
+      "evidence": [
+        "analysis/menu-update-map.json",
+        "recovered/frontend/frontend_update.h",
+        "recovered/frontend/defined_control_tree.h"
       ]
     }
   ]

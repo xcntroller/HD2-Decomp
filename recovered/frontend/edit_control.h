@@ -24,9 +24,10 @@ public:
         if ((kind == EditControlKind::plain || kind == EditControlKind::visual) && backend.has_text()) state.record_index = 0;
     }
     EditCharacterState state;
+    std::uint32_t identifier() const override { return Base::identifier(); }
     bool character(std::uint32_t value) override { return dispatch_edit_character(state, bridge_, value); }
     void acquire(std::uint32_t) override { acquire_edit_characters(state, bridge_); }
-    bool release(std::uint32_t argument) override {
+    int release(std::uint32_t argument) override {
         if (!release_edit_characters(state, bridge_, argument)) return false;
         if (kind_ == EditControlKind::visual) clamp_number(); // 0065b2c0.
         return true;
@@ -44,7 +45,7 @@ public:
     }
     void set_disabled(std::uint8_t value) { set_text_control_disabled(*this, value); }
     // 006621e0: caret ticks only while edit capture and attached text exist.
-    void update(std::uint32_t milliseconds) {
+    void update(std::uint32_t milliseconds) override {
         if (state.active && Base::backend_.has_text()) Base::backend_.object().update_caret(milliseconds);
     }
     // 0064da60 / 0065acb0 / 0065b030 / 0065c370.

@@ -6,7 +6,7 @@ Squadron and engine replacement are outside the current menu milestone.
 
 ## Current build
 
-The bounded launch milestone is complete: four opening movies with music and
+The accepted bounded launch checkpoint covers: four opening movies with music and
 English subtitles lead into the compiled Main/Exit menu. Pointer/keyboard input,
 Escape skips, confirmation/cancellation, focus return and bounded shutdown/failure
 handling are desktop-accepted. The [acceptance matrix](analysis/launch-acceptance.md)
@@ -31,8 +31,9 @@ preserving staged config/profiles and leaving installed assets unchanged.
 Use `--stage-only` to prepare files without executing Windows code. The old
 engine-window preview and startup probe remain separate diagnostics.
 
-Next: character targets, focus entry/navigation and initial-focus policy in the
-shared menu foundation. [plan.md](plan.md) is the single menu delivery checklist;
+Original menu queue/update timing, drag/capture and focus-loss behavior are
+[desktop-confirmed](analysis/menu-update.md) for Main/Exit; unused widget routes
+remain source-only. Next: original settings/resource cache integration. [plan.md](plan.md) is the single menu delivery checklist;
 [HANDOFF.md](HANDOFF.md) records the latest result and next work.
 
 ## Verification and evidence
@@ -62,11 +63,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **334 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **336 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 329 |
+| Base game client | 17,294 | 0 | 331 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -81,6 +81,7 @@ $(BUILD_DIR)/engine_window.exe: host/engine_video.h frontend/opening_playback.h 
 $(BUILD_DIR)/engine_window.exe: host/frame_clock.h frontend/frame_clock.h
 $(BUILD_DIR)/engine_window.exe: host/engine_keyboard.h input/keyboard.h
 $(BUILD_DIR)/engine_window.exe: host/graphics_interface.h host/menu_input_session.h frontend/localized_text.h
+$(BUILD_DIR)/engine_window.exe: host/menu_pointer_session.h frontend/frontend_update.h
 
 test: all
 	"$(BUILD_DIR)/chunk_reader_tests"

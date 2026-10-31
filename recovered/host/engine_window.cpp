@@ -398,7 +398,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                                        *menu_events, confirming);
                 if (use_engine_mouse) {
                     buttons->bind_pick_targets();
-                    main_frame_input.emplace(input_session, *main_focus, [&](const hd2::host::CursorPoint& point) {
+                    main_frame_input.emplace(input_session, menu_events->common_state(), *main_focus, [&](const hd2::host::CursorPoint& point) {
                         return main_focus->interactive_target(menu->pick_main_menu(
                             module, point.x, point.y, static_cast<float>(methods->width(graphics)),
                             static_cast<float>(methods->height(graphics))));
@@ -407,7 +407,7 @@ int run_window(Graphics* graphics, HMODULE module, std::uint32_t frame_limit, bo
                                                   static_cast<float>(methods->height(graphics)));
                     }, [&] { menu->request_click_sound(); });
                     std::puts("Rebuilt engine input controls main-menu Exit and confirmation");
-                    frame_input.emplace(input_session, *confirmation_focus, [&](const hd2::host::CursorPoint& point) {
+                    frame_input.emplace(input_session, menu_events->common_state(), *confirmation_focus, [&](const hd2::host::CursorPoint& point) {
                         const auto picked = menu->pick_confirmation(
                             module, point.x, point.y,
                             static_cast<float>(methods->width(graphics)),
