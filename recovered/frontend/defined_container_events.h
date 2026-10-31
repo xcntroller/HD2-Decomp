@@ -23,6 +23,7 @@ public:
     DefinedContainerEvents& operator=(const DefinedContainerEvents&) = delete;
 
     bool eligible() const { return properties_.eligible(); }
+    bool visible() const { return properties_.visible != 0; }
     bool disabled() const { return properties_.disabled != 0; }
 
     void append_child(std::uint32_t identifier, Child child) {

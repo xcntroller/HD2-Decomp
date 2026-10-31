@@ -49,10 +49,13 @@ remain source-only. The settings/resource cache integration is also
 [desktop-confirmed](analysis/menu-caches.md) for the bounded Main/Exit flow. [plan.md](plan.md) is the single menu delivery checklist;
 [HANDOFF.md](HANDOFF.md) records the latest result and next work.
 
-Slider/selector/toggle internals now have owned parts, concrete engine/input
-backends and selected-profile observer wiring through the real factories.
-This is [native-audited source-only work](analysis/menu-widget-construction.md);
-the complete Options entry/apply/back flow remains unfinished.
+The [front-end Options flow](analysis/options-flow.md) is integrated with all
+pages, binding capture/lists, real settings, apply/Back and isolated persistence.
+Native suites and sanitizer audits pass. Front-end Options is **user desktop-accepted
+2026-10-31**, including the corrected binding layout. Shared runtime dialog
+integration is accepted through its genuine Options caller; other dialog callers
+and in-game Options remain open. Gamma is intentionally unavailable in the
+windowed launcher. Profiles/saves are the next delivery milestone.
 
 The [screen-and-route census](analysis/menu-route-census.md) now covers eight
 concrete frontend owners, conditional registries, shared dialogs, embedded pages
@@ -66,6 +69,11 @@ variants are classified separately. The [family delivery checklists](analysis/me
 define 29 delivery items across all nine families (27 remain open), including
 independent UI audits and real game/network requirements. Inventory/planning is
 **source-only**; flow delivery and original-function credit are tracked separately.
+
+The [shared runtime dialog receiver](analysis/runtime-dialog-integration.md) is
+now integrated and native-audited, including the genuine Options unassigned-command
+caller and category/row reply. Its delivery checkbox awaits desktop acceptance. No diagnostic
+prompt or unsupported Main action is enabled.
 
 ## Verification and evidence
 
@@ -94,11 +102,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **392 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **415 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 387 |
+| Base game client | 17,294 | 0 | 410 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

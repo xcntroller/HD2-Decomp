@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "planning complete; Credits desktop accepted;28 delivery items open",
+  "status": "Credits/Cinematics/front-end Options/runtime dialog integration desktop accepted2026-10-31;25 delivery items open",
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
@@ -81,7 +81,7 @@
         {
           "key": "dialogs.runtime",
           "title": "Integrate genuine runtime requests and preserve named confirmation semantics",
-          "status": "open",
+          "status": "complete",
           "roles": [
             "main:4"
           ],
@@ -100,7 +100,15 @@
           "depends_on": [],
           "native_validation": "Use actual queue/stack/text/control code to audit modes0/1/2/3 and unknown words, raw/localized payload lifetime, Escape/Yes/No/OK, reply order and force-close.",
           "desktop_validation": "Verify compiled-client caller-to-dialog-to-reply with mouse/keyboard and underneath visibility/focus; retain accepted named Exit behavior. Diagnostic-only acceptance does not establish application caller integration.",
-          "failure_acceptance": "Load/bind failure, busy-open guard, inactive/unknown sender and owner destruction preserve original behavior and native cleanup policy."
+          "failure_acceptance": "Load/bind failure, busy-open guard, inactive/unknown sender and owner destruction preserve original behavior and native cleanup policy.",
+          "implementation": "analysis/runtime-dialog-integration.md; analysis/options-flow.md",
+          "desktop_acceptance": {
+            "date": "2026-10-31",
+            "performed_by": "user",
+            "confirmation": "Options now works as intended. Record as completed (the shared runtime dialogs too if we have everything we need there), commit and continue.",
+            "application_sha256": "4244e2e8c5b4174ff90c164aac3b06775f4b571dd4da1d94f47c8db015fa3128",
+            "scope": "User acceptance of front-end Options, including its genuine shared-dialog producer/receiver; no individual test-case execution inferred. Other dialog callers and in-game Options remain separate."
+          }
         },
         {
           "key": "dialogs.callers",
@@ -222,12 +230,12 @@
         "main:6",
         "ingame:2"
       ],
-      "context": "Complete widgets exist source-only; page construction, entry synchronization, binding editing and full persistence still require delivery. In-game family2 must not inherit family6-only observer matching accidentally.",
+      "context": "Front-end Options desktop accepted2026-10-31; in-game family2 remains separate. See analysis/options-flow.md.",
       "units": [
         {
           "key": "options.full",
           "title": "Deliver all front-end Options pages, binding editors and apply/Back",
-          "status": "open",
+          "status": "complete",
           "roles": [
             "main:6"
           ],
@@ -254,7 +262,15 @@
           ],
           "native_validation": "Compose actual factories/widgets/observers with all page definitions; audit aliases, visibility/focus, generated bindings, duplicate/cancel capture, key repeat/wheel, programmatic versus notifying writes and exact apply/queue order.",
           "desktop_validation": "Enter from Main and exercise graphics, sound/music, Controls/mouse/bindings, game and network settings; verify conditional availability, previews, Back/apply, active-binding prompt and reopen/restart persistence on isolated copies.",
-          "failure_acceptance": "Failed resources/settings writes, missing frames and cancelled capture clean up correctly; no enabled page/button may end in an unsupported service."
+          "failure_acceptance": "Failed resources/settings writes, missing frames and cancelled capture clean up correctly; no enabled page/button may end in an unsupported service.",
+          "implementation": "analysis/options-flow.md",
+          "desktop_acceptance": {
+            "date": "2026-10-31",
+            "performed_by": "user",
+            "confirmation": "Options now works as intended. Record as completed (the shared runtime dialogs too if we have everything we need there), commit and continue.",
+            "application_sha256": "4244e2e8c5b4174ff90c164aac3b06775f4b571dd4da1d94f47c8db015fa3128",
+            "scope": "User acceptance of front-end Options, including its genuine shared-dialog producer/receiver; no individual test-case execution inferred. Other dialog callers and in-game Options remain separate."
+          }
         },
         {
           "key": "options.ingame",
@@ -6503,7 +6519,7 @@
       "text": "credits.bik",
       "evidence": "006c20f0 status12 default; menu-contracts-map.json/retained-video source"
     },
-    "current_host": "Main/Exit, openings and Credits desktop accepted. Full Options remains disabled.",
+    "current_host": "Main/Exit, openings, Credits and Cinematics desktop accepted. Shared runtime receiver integrated/native-verified; real caller/desktop gate awaits complete Options, which remains disabled.",
     "existing_acceptance": "Main/Exit and normal opening checkpoint remain accepted. Runtime slot-zero diagnostic and native widgets are not full application family delivery.",
     "save_boundary": "Recovered Profile.sav serializer and startup profile loading do not implement gameplay saves or controller/game loading receivers."
   },

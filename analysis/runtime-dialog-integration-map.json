@@ -1,0 +1,664 @@
+{
+  "scope": "Shared runtime dialog integrated in ApplicationMenu: real model/product, nullable request endpoints, protocol/key/pick/queue/lifecycle/render/English prompt layout. No currently delivered application request producer; caller-to-dialog desktop gate awaits Options or another original caller.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "sources": [
+    "recovered/frontend/runtime_confirmation.h",
+    "recovered/frontend/screen_construction.h",
+    "recovered/frontend/screen_stack.h",
+    "recovered/frontend/menu_event_queue.cpp",
+    "recovered/host/application_menu.h",
+    "recovered/host/menu_scene.h",
+    "recovered/host/menu_text_geometry.h",
+    "recovered/host/menu_screen_product.h"
+  ],
+  "instruction_anchors": [
+    {
+      "address": "006687a7",
+      "hex": "68d40700006a1868150000016a0050e855c7faff",
+      "meaning": "Slot-zero caption initializes localized label 2004 with style 24"
+    },
+    {
+      "address": "006687e2",
+      "hex": "68a093660056680010000468070000016a0053e8a658fbff",
+      "meaning": "Yes activation observer 006693a0 uses this dialog as context"
+    },
+    {
+      "address": "00668821",
+      "hex": "68a093660056680010000468070000016a0053e86758fbff",
+      "meaning": "No activation uses the same observer and context"
+    },
+    {
+      "address": "0066884a",
+      "hex": "68dd0700006a0d8bd868150000016a0053e8b0c6faff6a0068040000016a0053e811c6faff68a093660056680010000468070000016a0053e81958fbff",
+      "meaning": "OK label 2013, initial hide, then shared activation observer"
+    },
+    {
+      "address": "0066888a",
+      "hex": "8bce57e8defbffff5f5e5bc20400",
+      "meaning": "Subclass definition augmentation ends by calling ordinary screen binding"
+    },
+    {
+      "address": "006688b8",
+      "hex": "8b81840000005383cbff563bc3894c24080f85b7010000558b6c245033f6573bee0f85ba010000",
+      "meaning": "Raw-text opener returns unless mode is ffffffff; mode zero branch"
+    },
+    {
+      "address": "00668a1f",
+      "hex": "8b4424108b4c245c8b5424608974244089888800000089908c00000089a8840000008974242cc744243096000002897424348d44242cb980e48a0050c74424500f000000e828d0faff",
+      "meaning": "Store affirmative/negative/mode after caption submission, then queue 02000096"
+    },
+    {
+      "address": "00669056",
+      "hex": "8b44245889742428c744241400001000c744241815000001c744241c19000000894424208d4c2414c744244c0900000051",
+      "meaning": "Localized mode-three caption uses style 25 and caller label word"
+    },
+    {
+      "address": "006690ab",
+      "hex": "c78184000000ffffffff895c2420895c240cc744241097000002895c2414",
+      "meaning": "Force-close stores inactive before constructing removal 02000097"
+    },
+    {
+      "address": "006691a0",
+      "hex": "33c089818800000089818c000000c3",
+      "meaning": "Clear both reply words without changing mode"
+    },
+    {
+      "address": "006691cd",
+      "hex": "8b838400000033ff3bc70f848401000083ceff3bc60f84790100008b4424343c010f8583010000",
+      "meaning": "Keyboard consumes inactive/mode-zero; other modes test low byte Escape"
+    },
+    {
+      "address": "00669295",
+      "hex": "8b838c00000089b3840000003bc70f84b1000000",
+      "meaning": "Escape loads negative reply and sets inactive after queuing removal"
+    },
+    {
+      "address": "00669377",
+      "hex": "508bcbe8f1f2ffff",
+      "meaning": "Other active keys delegate to ordinary screen key handling"
+    },
+    {
+      "address": "006693bb",
+      "hex": "8b7c246833f68be93bfe75165f5e32c05d8b4c244864890d0000000083c454c2100083bd84000000ff0f84b1010000",
+      "meaning": "Button observer rejects null sender, consumes inactive request"
+    },
+    {
+      "address": "00669435",
+      "hex": "c78584000000ffffffff8b4760c1f81483e03f83e8020f84fb000000480f84bd000000480f85350100008b85880000003bc60f8427010000",
+      "meaning": "Button reply selection uses sender ID ordinal bits20..25 after marking inactive"
+    },
+    {
+      "address": "00669515",
+      "hex": "8b858c0000003bc67475",
+      "meaning": "Ordinal three selects negative reply code"
+    },
+    {
+      "address": "0066954c",
+      "hex": "8b85880000003bc6743e",
+      "meaning": "Ordinal two selects affirmative reply code"
+    },
+    {
+      "address": "00669594",
+      "hex": "8bcde805fcffff",
+      "meaning": "Observer clears reply words after reply submission"
+    },
+    {
+      "address": "0066c201",
+      "hex": "33ff894424183bc7751532c08b4c243464890d000000005f5e8be55dc208008b088d5424205250c74424280000003fc744242c0000c0bec7442430000000bfff5108",
+      "meaning": "Model failure returns false; success sets confirmation position"
+    },
+    {
+      "address": "0066c2fb",
+      "hex": "c78684000000ffffffff89be8800000089be8c000000c706d8558100eb02",
+      "meaning": "Runtime subclass mode/reply defaults and exact vtable"
+    },
+    {
+      "address": "0066c31b",
+      "hex": "8b5424148b4c2410518bce89b2000100008b06c7442440ffffffffff908c00000084c07523",
+      "meaning": "Store front-end singleton before +8c binding and branch on result"
+    },
+    {
+      "address": "0066c363",
+      "hex": "8b4424148d542418526a018b8800010000894c24208d88400100008b804801000050e8c6230000",
+      "meaning": "Successful binding appends installed singleton to screen registry"
+    },
+    {
+      "address": "0066d553",
+      "hex": "8b83440100008b118993f800000050b9b4e48a00e8a40d0000",
+      "meaning": "02000096 saves previous screen then stacks registry slot zero"
+    },
+    {
+      "address": "0066d5a3",
+      "hex": "8b4008568b088b11ff9284000000e9b9000000",
+      "meaning": "02000096 activates stacked screen with zero focus argument"
+    },
+    {
+      "address": "0066d5f8",
+      "hex": "8b50088b028b4860c1f91af6c13f7567",
+      "meaning": "02000097 tests screen ID family rather than registry index"
+    },
+    {
+      "address": "0066d63f",
+      "hex": "8b48088b098b11ff5214b9b4e48a00e8bd0f000089b3f8000000eb14",
+      "meaning": "02000097 hides, removes, clears previous; no underlying-screen activation"
+    },
+    {
+      "address": "0066d780",
+      "hex": "8b890001000085c97405e911b1ffffc21000",
+      "meaning": "Nullable raw request forwarding"
+    },
+    {
+      "address": "0066d7a0",
+      "hex": "8b890001000085c97405e921b5ffffc21000",
+      "meaning": "Nullable localized request forwarding"
+    },
+    {
+      "address": "0066d7c0",
+      "hex": "8b890001000085c97405e9c1b8ffffc3",
+      "meaning": "Nullable force-close forwarding"
+    },
+    {
+      "address": "0061ca85",
+      "hex": "8b4e0468c700000268c700000268302500006a02e8020d0500b001e9a203",
+      "meaning": "Options Back binding guard: mode2 label0x2530 (9520), both replies020000C7"
+    }
+  ],
+  "vtables": [
+    {
+      "address": "008155f8",
+      "targets": [
+        "006691b0"
+      ]
+    },
+    {
+      "address": "00815658",
+      "targets": [
+        "0066c3b0",
+        "00668400",
+        "00668210",
+        "00668790"
+      ]
+    }
+  ],
+  "direct_calls": [
+    {
+      "site": "006687a2",
+      "target": "00615360"
+    },
+    {
+      "site": "006687b6",
+      "target": "00614f10"
+    },
+    {
+      "site": "006687c7",
+      "target": "00615360"
+    },
+    {
+      "site": "006687dd",
+      "target": "00614f10"
+    },
+    {
+      "site": "006687f5",
+      "target": "0061e0a0"
+    },
+    {
+      "site": "00668806",
+      "target": "00615360"
+    },
+    {
+      "site": "0066881c",
+      "target": "00614f10"
+    },
+    {
+      "site": "00668834",
+      "target": "0061e0a0"
+    },
+    {
+      "site": "00668845",
+      "target": "00615360"
+    },
+    {
+      "site": "0066885b",
+      "target": "00614f10"
+    },
+    {
+      "site": "0066886a",
+      "target": "00614e80"
+    },
+    {
+      "site": "00668882",
+      "target": "0061e0a0"
+    },
+    {
+      "site": "0066888d",
+      "target": "00668470"
+    },
+    {
+      "site": "00668906",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668942",
+      "target": "00615a90"
+    },
+    {
+      "site": "0066897e",
+      "target": "00615a90"
+    },
+    {
+      "site": "006689fe",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668a63",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668adf",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668b26",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668b71",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668bca",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668c06",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668c46",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668d36",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668d72",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668dae",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668dfa",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668e5f",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668edb",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668f17",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668f62",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668fbb",
+      "target": "00615a90"
+    },
+    {
+      "site": "00668ff7",
+      "target": "00615a90"
+    },
+    {
+      "site": "00669037",
+      "target": "00615a90"
+    },
+    {
+      "site": "0066935c",
+      "target": "006691a0"
+    },
+    {
+      "site": "0066937a",
+      "target": "00668670"
+    },
+    {
+      "site": "0066940c",
+      "target": "00615a90"
+    },
+    {
+      "site": "00669541",
+      "target": "00615a90"
+    },
+    {
+      "site": "00669578",
+      "target": "00615a90"
+    },
+    {
+      "site": "00669596",
+      "target": "006691a0"
+    },
+    {
+      "site": "0066c1fc",
+      "target": "0066bfa0"
+    },
+    {
+      "site": "0066c2f6",
+      "target": "00668120"
+    },
+    {
+      "site": "0066c385",
+      "target": "0066e750"
+    },
+    {
+      "site": "0061ca99",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00621c69",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00621c8d",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00622403",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00622425",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00622a69",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00633954",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "006740bf",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "006740ee",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00674111",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00678ca2",
+      "target": "0066d780"
+    },
+    {
+      "site": "00678f53",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0067f681",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0067f953",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00682823",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0068283c",
+      "target": "0066d7c0"
+    },
+    {
+      "site": "0068cf66",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0068cf77",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "0068cf90",
+      "target": "0066d7a0"
+    },
+    {
+      "site": "00691260",
+      "target": "0066d7a0"
+    }
+  ],
+  "resource_anchors": [
+    {
+      "site": "00668799",
+      "address": "0083a8cc",
+      "text": "text"
+    },
+    {
+      "site": "006687c0",
+      "address": "0083f560",
+      "text": "byes*"
+    },
+    {
+      "site": "006687ff",
+      "address": "0083f558",
+      "text": "bno*"
+    },
+    {
+      "site": "0066883e",
+      "address": "0083f554",
+      "text": "bok"
+    }
+  ],
+  "original_callers": [
+    {
+      "site": "0061ca99",
+      "function": "0061bea0",
+      "helper": "0066d7a0",
+      "units": [
+        "options.full",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00621c69",
+      "function": "00621470",
+      "helper": "0066d7a0",
+      "units": [
+        "profiles.manage",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00621c8d",
+      "function": "00621470",
+      "helper": "0066d7a0",
+      "units": [
+        "profiles.manage",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00622403",
+      "function": "00621470",
+      "helper": "0066d7a0",
+      "units": [
+        "profiles.manage",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00622425",
+      "function": "00621470",
+      "helper": "0066d7a0",
+      "units": [
+        "profiles.manage",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00622a69",
+      "function": "00621470",
+      "helper": "0066d7a0",
+      "units": [
+        "profiles.manage",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00633954",
+      "function": "006333c0",
+      "helper": "0066d7a0",
+      "units": [
+        "multi.create",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "006740bf",
+      "function": "00673dd0",
+      "helper": "0066d7a0",
+      "units": [
+        "single.items",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "006740ee",
+      "function": "00673dd0",
+      "helper": "0066d7a0",
+      "units": [
+        "single.items",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00674111",
+      "function": "00673dd0",
+      "helper": "0066d7a0",
+      "units": [
+        "single.items",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00678ca2",
+      "function": "00678ac0",
+      "helper": "0066d780",
+      "units": [
+        "single.items",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00678f53",
+      "function": "00678ce0",
+      "helper": "0066d7a0",
+      "units": [
+        "single.items",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "0067f681",
+      "function": "0067f550",
+      "helper": "0066d7a0",
+      "units": [
+        "ingame.actions",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "0067f953",
+      "function": "0067f550",
+      "helper": "0066d7a0",
+      "units": [
+        "ingame.actions",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00682823",
+      "function": "006827a0",
+      "helper": "0066d7a0",
+      "units": [
+        "ingame.actions",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "0068283c",
+      "function": "006827a0",
+      "helper": "0066d7c0",
+      "units": [
+        "ingame.actions",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "0068cf66",
+      "function": "0068ce00",
+      "helper": "0066d7a0",
+      "units": [
+        "single.debrief",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "0068cf77",
+      "function": "0068ce00",
+      "helper": "0066d7a0",
+      "units": [
+        "single.debrief",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "0068cf90",
+      "function": "0068ce00",
+      "helper": "0066d7a0",
+      "units": [
+        "single.debrief",
+        "dialogs.callers"
+      ]
+    },
+    {
+      "site": "00691260",
+      "function": "00691020",
+      "helper": "0066d7a0",
+      "units": [
+        "single.team",
+        "dialogs.callers"
+      ]
+    }
+  ],
+  "caller_delivery_gate": {
+    "known_sites": 20,
+    "sites_in_currently_delivered_main_credits_cinematics_flows": 0,
+    "first_candidate": {
+      "caller": "0061bea0",
+      "site": "0061ca99",
+      "dependency": "Complete Options entry/binding edit/Back and C7 receiver",
+      "mode": 2,
+      "label": 9520,
+      "affirmative": "020000c7",
+      "negative": "020000c7"
+    },
+    "no_synthetic_trigger": true,
+    "desktop_acceptance": null
+  }
+}

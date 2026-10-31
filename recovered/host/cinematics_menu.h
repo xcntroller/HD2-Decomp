@@ -3,6 +3,7 @@
 #include "frontend/cinematics.h"
 #include "frontend/menu_frame_clone.h"
 #include "host/engine_video.h"
+#include "host/graphics_interface.h"
 #include "host/menu_control.h"
 #include "host/startup_session.h"
 #include <deque>
@@ -63,6 +64,7 @@ struct CinematicsCloneBackend {
 
 class CinematicsGrid final : public MenuControl {
   public:
+    using MenuControl::visible;
     CinematicsGrid(const MenuScene &scene, HMODULE module, const frontend::MenuControlDefinition &definition,
                    EngineFrame *frame, MenuTextObject &text, MenuWidgetContext &context,
                    std::function<MenuTextObject *(std::uint32_t)> lookup, std::array<float, 3> start)

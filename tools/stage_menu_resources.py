@@ -27,6 +27,7 @@ MODEL_OUTPUTS = {
     "Models/confirm.4ds": CONFIRM_MEMBER,
     "Models/kurzor_menu.4ds": CURSOR_MODEL_MEMBER,
     "Models/single mission 2.4ds": r"MODELS\single mission 2.4ds",
+    "Models/options.4ds": r"MODELS\options.4ds",
 }
 CURSOR_TEXTURE = "X_KURSOR.TGA"
 MANIFEST = "menu-resources.json"
@@ -120,7 +121,7 @@ def _owned_outputs(run: Path) -> set[str]:
 
 def stage_menu_resources(game: Path, run: Path, *, include_confirm: bool = False,
                          include_cursor_model: bool = False, include_click_sound: bool = False,
-                         include_cinematics: bool = False) -> dict:
+                         include_cinematics: bool = False, include_options: bool = False) -> dict:
     """Preflight and stage an isolated, deterministic baseline menu resource slice.
 
     Existing unrelated files (including runtime symlinks) are left untouched.
@@ -147,6 +148,8 @@ def stage_menu_resources(game: Path, run: Path, *, include_confirm: bool = False
         models.append("Models/kurzor_menu.4ds")
     if include_cinematics or "Models/single mission 2.4ds" in owned:
         models.append("Models/single mission 2.4ds")
+    if include_options or "Models/options.4ds" in owned:
+        models.append("Models/options.4ds")
     assets = []
     contents = {}
     archives = []

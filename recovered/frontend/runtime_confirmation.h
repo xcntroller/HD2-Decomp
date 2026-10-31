@@ -134,6 +134,21 @@ private:
     std::uint32_t negative_ = 0;
 };
 
+//0066D780/0066D7A0/0066D7C0: frontend +100 is nullable. Preserve the
+// no-op only for an absent dialog; a present service uses the actual protocol.
+template<class Dialog>
+void request_runtime_text(Dialog* dialog, std::uint32_t mode, std::shared_ptr<const std::string> text,
+                          std::uint32_t affirmative, std::uint32_t negative) {
+    if (dialog) dialog->open_text(mode, text, affirmative, negative);
+}
+template<class Dialog>
+void request_runtime_localized(Dialog* dialog, std::uint32_t mode, std::uint32_t label,
+                               std::uint32_t affirmative, std::uint32_t negative) {
+    if (dialog) dialog->open_localized(mode, label, affirmative, negative);
+}
+template<class Dialog>
+void close_runtime_dialog(Dialog* dialog) { if (dialog) dialog->close(); }
+
 }
 
 #endif

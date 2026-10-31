@@ -63,7 +63,8 @@ Named confirmations and eight owner-scoped slot-zero instances share artwork but
 
 Primary numbered roles: `main:4`.
 
-- [ ] **dialogs.runtime — Integrate genuine runtime requests and preserve named confirmation semantics.**
+- [x] **dialogs.runtime — Integrate genuine runtime requests and preserve named confirmation semantics.**
+  [Accepted through the delivered Options caller2026-10-31](runtime-dialog-integration.md).
   Evidence: `0066C1D0`, `00668790`, `006688A0`, `00668CD0`, `00669090`, `006693A0`.
   Requires: engine assets, real request context.
   Native: Use actual queue/stack/text/control code to audit modes 0/1/2/3 and unknown words, raw/localized payload lifetime, Escape/Yes/No/OK, reply order and force-close.
@@ -100,11 +101,13 @@ Primary numbered roles: `main:7`.
 
 ## Options
 
-Complete widgets exist source-only; page construction, entry synchronization, binding editing and full persistence still require delivery. In-game family 2 must not inherit family 6-only observer matching accidentally.
+Front-end Options pages, entry/apply/Back, binding capture/editors and persistence
+are user desktop-accepted2026-10-31 after construction, ABI, text and rotated-parent corrections. [Current result](options-flow.md). In-game family2
+remains separate and must not inherit family6-only observer matching accidentally.
 
 Primary numbered roles: `main:6`, `ingame:2`.
 
-- [ ] **options.full — Deliver all front-end Options pages, binding editors and apply/Back.**
+- [x] **options.full — Deliver all front-end Options pages, binding editors and apply/Back.**
   Evidence: `0061BEA0`, `0061CF60`, `0061DBC0`, `0061E140`, `0061E390`, `0061F1D0`, `0061F350`, `0061F5A0`, `00620950`, `00620960`.
   Requires: engine assets, selected profile, isolated profile copy, settings input persistence. After: `dialogs.runtime`.
   Native: Compose actual factories/widgets/observers with all page definitions; audit aliases, visibility/focus, generated bindings, duplicate/cancel capture, key repeat/wheel, programmatic versus notifying writes and exact apply/queue order.

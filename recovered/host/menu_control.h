@@ -33,6 +33,8 @@ class MenuControl {
             // 006618a0 writes control +60 to its bound frame's pick word.
             std::memcpy(reinterpret_cast<unsigned char *>(frame_) + 0xec, &definition_.identifier,
                         sizeof(definition_.identifier));
+            if(definition_.kind==frontend::MenuControlKind::text)
+                text_.initialize_static_frame();
         } else if (definition_.kind == frontend::MenuControlKind::slider ||
                    definition_.kind == frontend::MenuControlKind::selector ||
                    definition_.kind == frontend::MenuControlKind::toggle) {
@@ -77,6 +79,7 @@ class MenuControl {
     virtual bool eligible() const {
         return widget_ ? widget_->eligible() : button_ ? button_->eligible() : text_.eligible();
     }
+    virtual bool visible() const { return text_.visible(); }
     virtual bool disabled() const {
         return widget_ ? widget_->disabled() : button_ ? button_->disabled() : text_.disabled();
     }

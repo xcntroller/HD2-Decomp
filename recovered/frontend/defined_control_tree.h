@@ -40,6 +40,7 @@ public:
 
     std::uint32_t identifier() const { return definition_.identifier; }
     bool eligible() const { return group_ ? group_->eligible() : leaf_->eligible(); }
+    bool visible() const { return group_ ? group_->visible() : leaf_->visible(); }
     bool disabled() const { return group_ ? group_->disabled() : leaf_->disabled(); }
     std::size_t child_count() const { return children_.size(); }
     DefinedControlTree& child_at(std::size_t index) { return *children_.at(index); }

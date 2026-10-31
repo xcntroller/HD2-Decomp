@@ -30,6 +30,7 @@ public:
                 if (role != MenuControlRole::none && role == entry.role) available_[i] = true;
             }
             if (entry.kind == MenuControlKind::slider || entry.kind == MenuControlKind::selector || entry.kind == MenuControlKind::toggle) available_[i] = true;
+            if (entry.kind == MenuControlKind::container) available_[i] = true;
             Factory<Create> factory{*this, create, entry, i, {}};
             construct_defined_control(factory);
             if (controls_[i]) ++count;

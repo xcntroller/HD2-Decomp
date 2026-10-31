@@ -22,7 +22,12 @@ public:
                    frontend::TextObject::Localizer localize)
         : scene_(scene), module_(module), definition_(definition), confirmation_(confirmation),
           localize_(std::move(localize)) {
-        text_.inset = (definition.kind == frontend::MenuControlKind::button || definition.kind == frontend::MenuControlKind::movie_row) ? 10 : 1;
+        //00661B30 initializes attached widget text +90 to10. Retain the
+        // accepted static-label inset; explicit02000073 overrides still apply.
+        text_.inset = (definition.kind == frontend::MenuControlKind::button ||
+                       definition.kind == frontend::MenuControlKind::movie_row ||
+                       definition.kind == frontend::MenuControlKind::selector ||
+                       definition.kind == frontend::MenuControlKind::toggle) ? 10 : 1;
         properties_.focusable = 0; // Original static-text control constructor.
     }
     MenuTextObject(const MenuTextObject&) = delete;
@@ -42,7 +47,17 @@ public:
     }
     void highlighted(bool value) { highlighted_ = value; }
     bool highlighted() const { return highlighted_; }
-    bool visible() const { return (owner_ ? owner_->visible : properties_.visible) != 0; }
+    bool visible() const { return (!visibility_ || visibility_()) && (owner_ ? owner_->visible : properties_.visible) != 0; }
+    void visibility_query(std::function<bool()> query) { visibility_=std::move(query); }
+    void invalidate_bounds() { bounds_.reset(); }
+    //0065C680: the visual is a text-layout/picking plane, facing away
+    // from the menu camera. Its rectangle must not render behind the glyphs.
+    void initialize_static_frame() {
+        text_.inset=1;
+        set_frame_direction(0,0,-1);
+        update_frame();
+        invalidate_bounds();
+    }
     bool available() const { return available_; }
     bool eligible() const { return properties_.eligible(); }
     bool disabled() const { return properties_.disabled != 0; }
@@ -113,6 +128,7 @@ private:
     const frontend::MenuControlDefinition definition_;
     bool confirmation_;
     bool highlighted_ = false;
+    std::function<bool()> visibility_;
     frontend::TextObject::Localizer localize_;
     frontend::TextObject text_;
     frontend::ControlProperties properties_;

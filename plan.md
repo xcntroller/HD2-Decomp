@@ -103,9 +103,9 @@ Original object ABI is tracked separately from native menu delivery.
 | Family | Required flow | Current status |
 | --- | --- | --- |
 | [Main menu](analysis/menu-family-delivery.md#main-menu) | Nine actions, profile/save/date/version labels, eligibility | Exit and Credits |
-| [Shared dialogs](analysis/menu-family-delivery.md#shared-dialogs) | Yes/No/OK, prompts, text/password, errors and cancellation | Quit Yes/No; slot-zero diagnostic |
+| [Shared dialogs](analysis/menu-family-delivery.md#shared-dialogs) | Yes/No/OK, prompts, text/password, errors and cancellation | Quit Yes/No accepted; runtime integration accepted through Options; other callers open |
 | [Credits/cinematics](analysis/menu-family-delivery.md#credits-and-cinematics) | Retained controller, list/playback and return | Credits and Cinematics accepted |
-| [Options](analysis/menu-family-delivery.md#options) | All pages/bindings, apply/Back/persistence and owner variants | Native widgets source-only; full flow open |
+| [Options](analysis/menu-family-delivery.md#options) | All pages/bindings, apply/Back/persistence and owner variants | Front-end accepted; in-game owner open |
 | [Profiles](analysis/menu-family-delivery.md#profiles) | List/select/create/rename/delete and validation | Startup persistence recovered; menu flow open |
 | [Saves/loading](analysis/menu-family-delivery.md#saves-and-loading) | Actual metadata, errors and game/controller handoff | No extra save-screen registration inferred; real receivers required |
 | [Single player](analysis/menu-family-delivery.md#single-player) | Campaign/lone-wolf/carnage, hero/team/equipment/briefing/results | Resolved roles/dependencies; real handoffs remain open |
@@ -118,9 +118,10 @@ Original object ABI is tracked separately from native menu delivery.
   [Desktop accepted2026-10-31](analysis/credits-flow.md).
 - [x] Deliver Cinematics: available-movie list, selected playback and return/Back.
   [Desktop accepted2026-10-31](analysis/cinematics-flow.md).
-- [ ] Integrate shared runtime dialogs, preserving named Yes/No/OK and reply semantics.
-  [Runtime dialog boundary](analysis/menu-family-delivery.md#shared-dialogs).
-- [ ] Deliver Options, including binding editors and original settings semantics.
+- [x] Integrate shared runtime dialogs, preserving named Yes/No/OK and reply semantics.
+  [Accepted through Options2026-10-31](analysis/runtime-dialog-integration.md).
+- [x] Deliver Options, including binding editors and original settings semantics.
+  [Desktop accepted2026-10-31](analysis/options-flow.md).
 - [ ] Deliver profiles/saves using isolated writable copies for persistence validation.
 - [ ] Finish Main's live profile, last-save, date/time and version labels and eligibility.
   [Labels and data dependencies](analysis/menu-family-delivery.md#main-menu).
@@ -138,7 +139,7 @@ validation → tracker update → commit. Never enable dead actions or count pla
 service responses as completed flows.
 
 The linked family checklists define concrete flow boundaries and validation levels;
-Credits and Cinematics are accepted; 27 delivery items remain open. Native fixtures establish UI/payload/ownership
+Credits, Cinematics, front-end Options and runtime dialog integration are accepted; 25 delivery items remain open. Native fixtures establish UI/payload/ownership
 contracts, separately from actual desktop and real game/network handoff acceptance.
 
 ## 4. Finish fidelity and replace remaining scaffolding

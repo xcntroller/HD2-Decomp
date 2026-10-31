@@ -40,6 +40,7 @@ public:
         events().initialize_records(records);
     }
     const frontend::MenuScreenDefinition& definition() const { return definition_.value(); }
+    EngineFrame* model_frame() const { return model_root_; }
     MenuScreenControls& controls() { return *controls_; }
     MenuFocus& focus() { return focus_.value(); }
     MenuScreenEvents& events() { return events_.value(); }

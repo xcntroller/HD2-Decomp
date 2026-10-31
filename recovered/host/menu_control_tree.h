@@ -18,6 +18,7 @@ struct MenuControlTreeBackend {
     std::function<MenuTextObject*(std::uint32_t)> text_lookup{};
 
     MenuWidgetContext* widgets = nullptr;
+    std::function<std::unique_ptr<Leaf>(const frontend::MenuControlDefinition&,Frame)> extra{};
 
     Frame find_frame(Frame root, const char* name, std::uint32_t flags) {
         if (flags != 0x10021) throw std::logic_error("Unexpected recursive control lookup flags");
@@ -29,6 +30,7 @@ struct MenuControlTreeBackend {
     }
     void report_unknown_kind(std::uint32_t) { throw std::logic_error("Unknown recursive control kind"); }
     std::unique_ptr<Leaf> allocate_leaf(const frontend::MenuControlDefinition& definition, Frame frame, Frame) {
+        if (extra) if (auto leaf = extra(definition,frame)) return leaf;
         if (definition.kind != frontend::MenuControlKind::text && definition.kind != frontend::MenuControlKind::button && definition.kind != frontend::MenuControlKind::slider && definition.kind != frontend::MenuControlKind::selector && definition.kind != frontend::MenuControlKind::toggle)
             throw std::logic_error("Recursive widget needs a native constructor backend");
         auto* text = text_lookup ? text_lookup(definition.identifier) : nullptr;

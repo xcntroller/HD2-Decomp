@@ -3,7 +3,40 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest implementation (2026-10-31): [complete Main Credits flow](analysis/credits-flow.md)
+Latest acceptance (2026-10-31): user confirms Options works as intended; front-end
+Options and shared runtime integration are complete. Other dialog callers and
+in-game Options remain open. Profiles/saves are next. No per-case desktop claims
+inferred; see the acceptance record in analysis/options-flow.md.
+
+Prior follow-up (2026-10-31): the user's Controls screenshot and instrumented
+desktop log contradicted the earlier translated-parent fixture. Local row Y
+became world Z under rotated `keysscreen01`, leaving every caption at the same
+height. Binding groups now link with world-transform preservation (LS3DF1001D680,
+mode1); rotated-parent ASan/UBSan audit passes and rejects the old mode0 variant.
+Gamma's0061BEA0 check reads graphics initialization flags, not adapter capabilities:
+1006DA30 returns settings100D1D18; +2C bit2 is fullscreen. Actual flags00000080
+explain disabled gamma even on Custom. Strict builds/native suite/158 tooling
+tests pass; fixed build staged, desktop acceptance still pending. No commit.
+[Evidence and limitations](analysis/options-flow.md#follow-up--rotated-binding-parent-confirmed-by-desktop-log).
+
+Earlier work (2026-10-31): [front-end Options](analysis/options-flow.md) now
+composes all pages, generated binding capture/lists, existing real settings,
+apply/Back and Options.bin persistence. Shared mode2 dialog9520 now has its genuine
+Options caller and C7 category/row receiver. Native suites/158 tooling tests and
+temporary ASan/UBSan audits pass; original engine ABI checked separately by
+machine-code disassembly. User intermediate launches exposed the frame-search
+limit, key-name stack cleanup and missing centered style20; corrected, along
+with widget inset10. Latest staged build awaits desktop acceptance. No commit
+or push; preserve prior staged dialog work. Ledger415 partial/zero complete,
+18,783 frozen unchanged. Detailed evidence, failures and verification are linked
+above; latest handoff contains the build hash and next desktop checks. Follow-up user reports of heading/caption
+rectangles and broken binding scrolling exposed missing0065C680 back-facing text
+setup and00655950/00656700 local/world/update ordering; corrected and audited with
+translated parent frames. Crosshair's unconditional disable was corrected to the
+original active-mission condition; gamma's real capability gate is preserved.
+Latest corrections await desktop feedback. See the Options follow-up contract.
+
+Prior implementation (2026-10-31): [complete Main Credits flow](analysis/credits-flow.md)
 is integrated/native-audited and user desktop-confirmed2026-10-31. Original
 00688040 treats `credits.bik` as a text-branch selector and skips IShow/voice;
 the prior family plan's movie-file gate was incorrect. Real English script,
@@ -3909,3 +3942,46 @@ preview checklist. Recorded acceptance against c6b7c115…24f06; no new case-spe
 logs or desktop execution inferred. Cinematics/ media.cinematics checked;27 family
 delivery items remain open. No new function credit:392 partial, zero complete.
 User requests commit and next complete shared-runtime-dialog checkbox.
+
+
+## 2026-10-31 — Cinematics committed; shared runtime receiver integrated
+
+Recorded Cinematics user acceptance and committed it as e8bb7ab. Continued with
+the next checkbox after reviewing the complete protocol/construction/input/
+render/text/lifetime boundary and all20 recorded original prompt-helper sites.
+[Shared runtime integration](analysis/runtime-dialog-integration.md),
+[original evidence/caller gate](analysis/runtime-dialog-integration-map.json).
+
+ApplicationMenu now owns the actual slot-zero confirm model/product, protocol
+and stable service/observer context before constructing registered screens.
+Original nullable frontend helpers0066D780/0066D7A0/0066D7C0 expose raw/localized/
+force-close requests; keyboard/picking/queue/lifecycle and ordered cleanup use
+the real shared owners. Named Exit remains separate. Modal rendering preserves
+Main/named/Cinematics visibility instead of always showing Main on restore.
+Original styles24/25 wrap printable-English prompt paragraphs using real metrics;
+single-line glyph positions stay unchanged. No diagnostic key or fake menu
+action/producer/reply receiver was added.
+
+All20 original prompt sites belong to unfinished Options/profile/create/items/
+ingame/debrief/team flows; none is in delivered Main/Credits/Cinematics. Thus
+actual caller-to-dialog desktop acceptance remains blocked on a genuine caller.
+First candidate0061BEA0 at0061CA99 opens mode2, label0x2530=9520 (not9530),
+with both replies020000C7 after006A85B0 finds an unassigned command. Full Options
+and its actual binding-row/category return receiver are required. Existing
+protocol fragments or a standalone diagnostic cannot satisfy that delivery gate.
+Do not repeat common source slices; next implementation is complete Options as
+this checkbox's proven caller dependency, then desktop acceptance of both.
+
+Strict i386 application/preview/startup builds, existing native suite,158 Python
+tests, temporary ASan/UBSan actual request/protocol/queue/screen/text/observer
+audit and actual modal-body audit pass. Modes0/1/2/3/77/FFFFFFFF, busy/null/raw
+lifetime, Enter/mouse/Escape/force-close/reply order, named cancellation, font
+wrapping and eight background visibility combinations are covered. Byte map
+checks30 anchors/five slots/64 calls/four resources and rejects a mutation.
+Three present non-thunk frontend wrapper bodies receive partial credit:395
+partial (390client/fiveengine), zero complete;18,783 frozen unchanged. Engine
+calls/absent methods receive no new credit. No new desktop acceptance, permanent
+tests, original-code/DLL/Windows fixture/Proton execution or push. New shared
+runtime changes remain uncommitted; checkbox remains open and27 items open.
+Verification: analysis/work/runtime-dialog-verification-20261031; temporary
+audits removed.

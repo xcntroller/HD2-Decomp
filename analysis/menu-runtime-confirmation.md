@@ -118,3 +118,14 @@ and 0066C1D0. Key 006691B0 and observer 006693A0 are absent from the frozen
 inventory and earn no separate credit. Total **104 partial (100 client/four
 engine), zero complete, frozen 18,783**. The broader screen checklist entry
 remains open for concrete factory/product integration and application services.
+
+
+## Application integration — 2026-10-31
+
+The shared receiver is now wired into ApplicationMenu, including actual model/
+product, nullable frontend request wrappers, keys/picking, modal render/retained
+visibility, prompt wrapping and cleanup. [Integration/evidence and acceptance
+dependency](runtime-dialog-integration.md). This supersedes the earlier statement
+that only the separate diagnostic owns slot zero. The20 original prompt sites
+all belong to unfinished flows; none is in delivered Main/Credits/Cinematics.
+The checkbox remains open pending an actual caller, first full Options.

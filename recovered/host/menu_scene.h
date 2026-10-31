@@ -24,6 +24,21 @@ struct EngineFrame {
     const std::uintptr_t* methods;
 };
 
+// Polymorphic engine slots whose concrete target depends on the interface.
+// The module fingerprint is checked by the launcher; this guard also excludes
+// foreign/non-executable pointers before making a borrowed virtual call.
+template<class Function>
+Function checked_engine_method(EngineFrame* frame,HMODULE module,std::size_t slot) {
+    if(!frame || !frame->methods) throw std::runtime_error("Null engine interface");
+    const auto address=frame->methods[slot/4];
+    MEMORY_BASIC_INFORMATION region{};
+    if(!VirtualQuery(reinterpret_cast<const void*>(address),&region,sizeof(region)) ||
+       region.AllocationBase!=module || !(region.Protect &
+       (PAGE_EXECUTE|PAGE_EXECUTE_READ|PAGE_EXECUTE_READWRITE|PAGE_EXECUTE_WRITECOPY)))
+        throw std::runtime_error("Engine method is outside its executable module");
+    return reinterpret_cast<Function>(address);
+}
+
 template<class Function>
 Function scene_method(EngineFrame* frame, HMODULE module, std::size_t offset,
                       std::uintptr_t rva) {
@@ -128,9 +143,10 @@ public:
                     runtime_confirmation_enabled, nullptr) {}
 
     MenuScene(MenuDriver& driver, HMODULE module, bool confirmation_enabled,
-              bool bind_cursor_model, MenuResourceServices* resources = nullptr)
+              bool bind_cursor_model, MenuResourceServices* resources = nullptr,
+              bool runtime_confirmation_enabled = false)
         : MenuScene(nullptr, &driver, module, false, confirmation_enabled,
-                    bind_cursor_model, false, resources) {}
+                    bind_cursor_model, runtime_confirmation_enabled, resources) {}
 
 private:
     MenuScene(std::unique_ptr<MenuDriver> owned, MenuDriver* borrowed, HMODULE module,
@@ -418,6 +434,30 @@ public:
         const float position[]{x, y, z};
         scene_method<Position>(frame, module, 8, 0x1c9f0)(frame, position);
     }
+    std::array<float,3> frame_world_position(HMODULE module,EngineFrame* frame) const {
+        std::uint32_t flags=0;
+        std::memcpy(&flags,reinterpret_cast<const unsigned char*>(frame)+0xe0,4);
+        if(!(flags&0x20)) {
+            const auto address=GetProcAddress(module,"?UpdateWMatrixProc@I3D_frame@@AAEXXZ");
+            if(reinterpret_cast<std::uintptr_t>(address)!=reinterpret_cast<std::uintptr_t>(module)+0x1e390)
+                throw std::runtime_error("Unsupported Options world-matrix export");
+            using Update=void (__thiscall *)(EngineFrame*);
+            Update update=nullptr;std::memcpy(&update,&address,sizeof(update));update(frame);
+        }
+        std::array<float,3> result{};
+        std::memcpy(result.data(),reinterpret_cast<const unsigned char*>(frame)+0x70,12);
+        return result;
+    }
+    //00655950 writes LOCAL coordinates. I3D_frame::SetPos instead accepts
+    // world coordinates and transforms them through a linked parent.
+    void set_frame_local_position(EngineFrame* frame,const std::array<float,3>& position) const {
+        auto* bytes=reinterpret_cast<unsigned char*>(frame);
+        std::uint32_t flags=0;std::memcpy(&flags,bytes+0xe0,4);
+        if(flags&0x80) return;
+        std::memcpy(bytes+0xb0,position.data(),12);
+        flags=(flags&0xfffffedfu)|0x40000000u;
+        std::memcpy(bytes+0xe0,&flags,4);
+    }
 
     EngineFrame* label_visual(const char* name, const char* visual, HMODULE module,
                               bool confirmation = false, EngineFrame* search_root = nullptr) const {
@@ -494,17 +534,26 @@ public:
 
     class ModalPass {
     public:
-        ModalPass(const MenuScene& scene, HMODULE module, EngineFrame* overlay = nullptr)
+        ModalPass(const MenuScene& scene, HMODULE module, EngineFrame* overlay = nullptr,
+                  std::vector<EngineFrame*> backgrounds = {})
             : scene_(scene), state_(scene.driver_.render_state(5)),
               overlay_(overlay ? overlay : scene.confirmation_.get()),
               visibility_(scene_method<Visibility>(scene.model_.get(), module, 0x30, 0x1cfe0)),
               update_(scene_method<Update>(scene.model_.get(), module, 0x24, 0x1e610)) {
-            if (scene.driver_.set_render_state(5, 0) < 0) {
-                throw std::runtime_error("Cannot configure original modal render pass");
+            // Acquire native storage before changing any engine render state.
+            if (backgrounds.empty()) backgrounds.push_back(scene.model_.get());
+            saved_visibility_.reserve(backgrounds.size());
+            for (auto* root : backgrounds) {
+                if (root && root != overlay_)
+                    saved_visibility_.push_back({root, scene.screen_visible(root)});
             }
-            visibility_(scene.model_.get(), 0);
+            if (scene.driver_.set_render_state(5, 0) < 0)
+                throw std::runtime_error("Cannot configure original modal render pass");
+            for (const auto& saved : saved_visibility_) {
+                visibility_(saved.first, 0);
+                update_(saved.first);
+            }
             visibility_(overlay_, 1);
-            update_(scene.model_.get());
             update_(overlay_);
         }
         ~ModalPass() {
@@ -513,9 +562,11 @@ public:
             }
         }
         bool restore() {
-            visibility_(scene_.model_.get(), 1);
+            for (const auto& saved : saved_visibility_) {
+                visibility_(saved.first, saved.second);
+                update_(saved.first);
+            }
             visibility_(overlay_, 1);
-            update_(scene_.model_.get());
             update_(overlay_);
             restored_ = true;
             return scene_.driver_.set_render_state(5, state_) >= 0;
@@ -531,6 +582,7 @@ public:
         EngineFrame* overlay_;
         Visibility visibility_;
         Update update_;
+        std::vector<std::pair<EngineFrame*, bool>> saved_visibility_;
         bool restored_ = false;
     };
 
@@ -585,7 +637,9 @@ public:
 private:
     static void find_named(EngineFrame* frame, const char* name, HMODULE module,
                             std::uint32_t depth, std::uint32_t& nodes, EngineFrame*& found) {
-        if (frame == nullptr || depth > 16 || ++nodes > 256) {
+        // Options has more than256 frames before its generated binding rows.
+        // Retain finite traversal/depth bounds while admitting that real model.
+        if (frame == nullptr || depth > 32 || ++nodes > 8192) {
             throw std::runtime_error("Invalid original menu binding hierarchy");
         }
         const char* frame_name = engine_frame_name(frame);
@@ -601,7 +655,7 @@ private:
         using Count = std::uint32_t (WINAPI *)(EngineFrame*);
         using Child = EngineFrame* (WINAPI *)(EngineFrame*, std::uint32_t);
         const auto count = scene_method<Count>(frame, module, 0x3c, 0x1db80)(frame);
-        if (count > 256) {
+        if (count > 1024) {
             throw std::runtime_error("Invalid original menu binding child count");
         }
         const auto child = scene_method<Child>(frame, module, 0x40, 0x1dba0);

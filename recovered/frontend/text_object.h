@@ -148,6 +148,7 @@ inline const TextStyle* menu_text_style(std::uint8_t style) {
     static const TextStyle title{2, .05f, 0xff000000, 3, 3};
     static const TextStyle small{3, .02f, 0xff000000, 1, 2};
     static const TextStyle body{2, .04f, 0xff000000, 1, 2};
+    static const TextStyle selector{2, .04f, 0xa0000000, 2, 2}; //00641E30 entry20.
     // 00641e30 entries 24/25: big font, black, left/vertically centered;
     // heights 0x3d23d70a / 0x3cf5c28f. Paragraph wrapping stays separate.
     static const TextStyle compact_prompt{2, .03f, 0xff000000, 1, 2};
@@ -156,6 +157,7 @@ inline const TextStyle* menu_text_style(std::uint8_t style) {
     case 10: return &title;
     case 11: return &small;
     case 12: case 13: case 24: return &body;
+    case 20: return &selector;
     case 25: return &compact_prompt;
     case 40: return &version;
     default: return nullptr;

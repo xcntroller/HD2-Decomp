@@ -6,6 +6,8 @@
 #include "frontend/control_frame.h"
 #include "frontend/application_controller.h"
 #include "frontend/profile_save.h"
+#include "frontend/options_save.h"
+#include "input/binding_editor.h"
 #include "frontend/opening_subtitles.h"
 #include "frontend/input_setup.h"
 #include "frontend/sound_manager_data.h"
@@ -153,6 +155,78 @@ public:
     //006B6740: resolve the selected profile's real settings each call. No
     // menu-local defaults/copies or cache of a prior selected-profile pointer.
     frontend::ProfileSettings& profile_settings() { return data_.profile().options.settings; }
+    bool mission_active() const { return world_!=nullptr; } //00698500's actual mission-owner condition.
+    input::BindingConfiguration& profile_bindings() { return data_.profile().options.bindings; }
+    const std::string& profile_name() { return data_.profile().directories.current_name; }
+    bool save_options() {
+        const bool result=frontend::save_profile_options(data_.profile().options,
+            data_.profile().directories,files_,wide_characters());
+        std::printf("Options persistence: result=%u\n",static_cast<unsigned>(result));
+        return result;
+    }
+    void apply_bindings() { input::apply_dirty_bindings(profile_bindings(),input_.state(),input_); }
+    void reset_bindings(std::uint32_t layout) {
+        input::reset_binding_defaults(profile_bindings(),input_.state(),input_,layout);
+    }
+    bool gamma_available() const {
+        //0061BEA0 checks the initialization settings, NOT adapter capabilities.
+        //1006DA30 returns100D1D18; +2c is the fullscreen flag word. The
+        //windowed launcher deliberately leaves bit2 clear, regardless of preset.
+        using Info=const unsigned char* (WINAPI *)(EngineFrame*);
+        const auto* info=scene_method<Info>(graphics(),engine_,4,0x6da30)(graphics());
+        if(!info) throw std::runtime_error("Graphics adapter information is null");
+        std::uint32_t flags=0;
+        std::memcpy(&flags,info+0x2c,sizeof(flags));
+        std::printf("Options gamma: graphics flags=%08x fullscreen=%u enabled=%u\n",
+                    static_cast<unsigned>(flags),static_cast<unsigned>((flags&2)!=0),
+                    static_cast<unsigned>((flags&2)!=0));
+        return (flags&2)!=0;
+    }
+    std::optional<input::BindingCandidate> poll_options_binding() {
+        //006C84A0(mask9A,poll1): no joystick candidate is enabled by this mask.
+        input_.pump_graphics(); input_.poll_mouse(); input_.poll_keyboard();
+        using Query=std::uint32_t (WINAPI *)(EngineFrame*);
+        using Modifiers=std::uint32_t (WINAPI *)(EngineFrame*,std::uint8_t);
+        const auto modifiers=scene_method<Modifiers>(graphics(),engine_,0xc8,0x6f5b0)(graphics(),0);
+        const auto scan=checked_engine_method<Query>(graphics(),engine_,0xa0)(graphics());
+        return input::options_binding_candidate(modifiers,scan,input_.mouse_buttons(),
+                                                input_.mouse_x(),input_.mouse_y(),input_.mouse_z());
+    }
+    std::string binding_name(std::size_t index) {
+        //006AB590 English branch. Joystick labels are empty in the original.
+        const auto& binding=profile_bindings().settings.at(index);
+        const auto label=[&](std::uint32_t id) { return frontend::lookup_localized_text(text_,static_cast<std::int32_t>(id)); };
+        if(binding.device_kind==2) {
+            switch(binding.code) {
+            case 1:return label(0xb9a); case 2:return label(0xb9b); case 4:return label(0xb9c);
+            case 8:return label(0xb98); case 16:return label(0xb99);
+            case 0x100:case 0x200:return label(binding.code==0x100?0xb9d:0xb9e)+
+                    (binding.direction==1?" +":binding.direction==2?" -":"");
+            case 0x300:return label(0xb9f)+" "+(binding.direction==1?label(0xbac):binding.direction==2?label(0xbad):"");
+            default:return {};
+            }
+        }
+        if(binding.device_kind!=1) return {};
+        constexpr std::pair<std::uint16_t,std::uint16_t> named[]={
+            {0x1d,0xbab},{0x2a,0xba9},{0x36,0xba8},{0x37,0xba1},{0x38,0xba7},
+            {0x47,0xbb5},{0x48,0xbb6},{0x49,0xbb7},{0x4a,0xba2},{0x4b,0xbb2},
+            {0x4c,0xbb3},{0x4d,0xbb4},{0x4e,0xba3},{0x4f,0xbaf},{0x50,0xbb0},
+            {0x51,0xbb1},{0x52,0xbae},{0x53,0xba5},{0x9c,0xba4},{0x9d,0xbaa},
+            {0xb5,0xba0},{0xb8,0xba6}};
+        for(const auto& item:named) if(item.first==binding.code) return label(item.second);
+        //1006F6A0 RET8 takes only self/scan. The31 pushed before the
+        // original virtual call belongs to the FOLLOWING006C8D70 conversion.
+        using Name=const wchar_t* (WINAPI *)(EngineFrame*,std::uint32_t);
+        const auto* name=scene_method<Name>(graphics(),engine_,0xd0,0x6f6a0)(graphics(),binding.code&0xff);
+        if(!name) return {};
+        char bytes[32]{};
+        WideCharToMultiByte(CP_ACP,0,name,-1,bytes,31,nullptr,nullptr);
+        //006AB4F0 uppercases first, lowercases the remaining bytes (CRT locale).
+        CharUpperBuffA(bytes,1);
+        const auto length=std::strlen(bytes);
+        if(length>1) CharLowerBuffA(bytes+1,static_cast<DWORD>(length-1));
+        return bytes;
+    }
     void apply_graphics_options() {
         if (settings_backend_.driver()) {
             auto* driver = settings_backend_.driver();

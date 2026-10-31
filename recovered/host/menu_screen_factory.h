@@ -24,7 +24,9 @@ public:
                       EngineFrame* cinematic_model=nullptr,
                       std::function<frontend::MenuScreenDefinition()> build_cinematics={},
                       std::function<void(const frontend::MenuScreenDefinition&)> attach_cinematics={},
-                      std::function<std::unique_ptr<MenuControl>(const frontend::MenuControlDefinition&,EngineFrame*,MenuTextObject&)> extra={})
+                      std::function<std::unique_ptr<MenuControl>(const frontend::MenuControlDefinition&,EngineFrame*,MenuTextObject&)> extra={},
+                      EngineFrame* options_model=nullptr,
+                      std::function<frontend::MenuScreenDefinition()> build_options={})
         : scene_(scene), module_(module), text_lookup_(std::move(text_lookup)),
           queue_(queue), products_(products), bindings_(bindings), widgets_(widgets),build_cinematics_(std::move(build_cinematics)),attach_cinematics_(std::move(attach_cinematics)),extra_(std::move(extra)),
           main_{scene.main_model_frame(), false, credits ?
@@ -32,14 +34,18 @@ public:
                 std::vector<frontend::MenuControlRole>{frontend::MenuControlRole::exit}},
           confirmation_{scene.confirmation_model_frame(), true,
                         {frontend::MenuControlRole::yes, frontend::MenuControlRole::no}},
-          cinematics_{cinematic_model,false,{frontend::MenuControlRole::play,frontend::MenuControlRole::back,frontend::MenuControlRole::movie_list}} {
+          cinematics_{cinematic_model,false,{frontend::MenuControlRole::play,frontend::MenuControlRole::back,frontend::MenuControlRole::movie_list}},
+          options_{options_model,false,{}},build_options_(std::move(build_options)) {
         if(cinematic_model && build_cinematics_ && attach_cinematics_)
             main_.available.push_back(frontend::MenuControlRole::cinematics);
+        if(options_model && build_options_ && attach_cinematics_)
+            main_.available.push_back(frontend::MenuControlRole::options);
     }
 
     void create_definitions() {
         definitions_ = {frontend::main_menu_definition(), frontend::confirmation_definition()};
         if(cinematics_.root) definitions_.push_back({"cinematics",0x1c000000,"single mission 2",{}});
+        if(options_.root) definitions_.push_back({"options",0x18000000,"options",{}});
     }
     std::size_t definition_count() const { return definitions_.size(); }
     frontend::MenuScreenDefinition& definition(std::size_t index) { return definitions_.at(index); }
@@ -51,12 +57,13 @@ public:
     };
     Model* load_model(const frontend::MenuScreenDefinition& definition) {
         Model* model = definition.identifier == 0x04000000 ? &main_ :
-                       definition.identifier == 0x10000000 ? &confirmation_ : definition.identifier == 0x1c000000 ? &cinematics_ : nullptr;
+                       definition.identifier == 0x10000000 ? &confirmation_ : definition.identifier == 0x1c000000 ? &cinematics_ : definition.identifier == 0x18000000 ? &options_ : nullptr;
         if (!model) throw std::logic_error("Screen needs a recovered engine/model backend");
         return model->root ? model : nullptr;
     }
     void augment_screen(frontend::ScreenBuilder builder, frontend::MenuScreenDefinition& definition, Model*) {
         if(builder==frontend::ScreenBuilder::cinematics && build_cinematics_ && attach_cinematics_){definition=build_cinematics_();attach_cinematics_(definition);return;}
+        if(builder==frontend::ScreenBuilder::options && build_options_ && attach_cinematics_){definition=build_options_();attach_cinematics_(definition);return;}
         throw std::logic_error("Screen-specific application builder is not reconstructed");
     }
     void position_model(Model* model, float x, float y, float z) {
@@ -93,6 +100,8 @@ private:
     Model main_;
     Model confirmation_;
     Model cinematics_;
+    Model options_;
+    std::function<frontend::MenuScreenDefinition()> build_options_;
     std::vector<frontend::MenuScreenDefinition> definitions_;
 };
 

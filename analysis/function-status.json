@@ -1278,72 +1278,84 @@
       "program": "client",
       "entry": "00668790",
       "status": "partial",
-      "coverage": "Append runtime confirmation caption/Yes/No/OK definitions with ordinal IDs, exact captions/styles, three typed activation observers and hidden OK before ordinary binding.",
-      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "coverage": "Append runtime confirmation caption/Yes/No/OK definitions with ordinal IDs, exact captions/styles, three typed activation observers and hidden OK before ordinary binding. Shared runtime extension: actual ApplicationMenu slot-zero product/protocol/picking/keys/render/cleanup and bounded style24/25 wrapping are wired; see runtime-dialog integration contract for this body's scope.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit. Shared receiver/native integration is not caller-to-dialog desktop acceptance; original producer/receiver delivery is required.",
       "evidence": [
         "analysis/menu-runtime-confirmation-map.json",
         "recovered/frontend/runtime_confirmation.h",
-        "recovered/frontend/screen_construction.h"
+        "recovered/frontend/screen_construction.h",
+        "analysis/runtime-dialog-integration-map.json",
+        "analysis/runtime-dialog-integration.md"
       ]
     },
     {
       "program": "client",
       "entry": "006688a0",
       "status": "partial",
-      "coverage": "Raw-text dialog configuration: inactive gate, four mode visibility patterns, retained caption/style, ordered request state and queued slot-zero push; unknown mode semantics retained.",
-      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "coverage": "Raw-text dialog configuration: inactive gate, four mode visibility patterns, retained caption/style, ordered request state and queued slot-zero push; unknown mode semantics retained. Shared runtime extension: actual ApplicationMenu slot-zero product/protocol/picking/keys/render/cleanup and bounded style24/25 wrapping are wired; see runtime-dialog integration contract for this body's scope.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit. Shared receiver/native integration is not caller-to-dialog desktop acceptance; original producer/receiver delivery is required.",
       "evidence": [
         "analysis/menu-runtime-confirmation-map.json",
         "recovered/frontend/runtime_confirmation.h",
-        "recovered/frontend/screen_construction.h"
+        "recovered/frontend/screen_construction.h",
+        "analysis/runtime-dialog-integration-map.json",
+        "analysis/runtime-dialog-integration.md"
       ]
     },
     {
       "program": "client",
       "entry": "00668cd0",
       "status": "partial",
-      "coverage": "Localized-caption counterpart preserves mode/style and queued visibility/configuration/open order with caller label word.",
-      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "coverage": "Localized-caption counterpart preserves mode/style and queued visibility/configuration/open order with caller label word. Shared runtime extension: actual ApplicationMenu slot-zero product/protocol/picking/keys/render/cleanup and bounded style24/25 wrapping are wired; see runtime-dialog integration contract for this body's scope.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit. Shared receiver/native integration is not caller-to-dialog desktop acceptance; original producer/receiver delivery is required.",
       "evidence": [
         "analysis/menu-runtime-confirmation-map.json",
         "recovered/frontend/runtime_confirmation.h",
-        "recovered/frontend/screen_construction.h"
+        "recovered/frontend/screen_construction.h",
+        "analysis/runtime-dialog-integration-map.json",
+        "analysis/runtime-dialog-integration.md"
       ]
     },
     {
       "program": "client",
       "entry": "00669090",
       "status": "partial",
-      "coverage": "Force-close sets mode inactive before queued dismissal, without reply or clearing stored reply codes; inactive close still queues dismissal.",
-      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "coverage": "Force-close sets mode inactive before queued dismissal, without reply or clearing stored reply codes; inactive close still queues dismissal. Shared runtime extension: actual ApplicationMenu slot-zero product/protocol/picking/keys/render/cleanup and bounded style24/25 wrapping are wired; see runtime-dialog integration contract for this body's scope.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit. Shared receiver/native integration is not caller-to-dialog desktop acceptance; original producer/receiver delivery is required.",
       "evidence": [
         "analysis/menu-runtime-confirmation-map.json",
         "recovered/frontend/runtime_confirmation.h",
-        "recovered/frontend/screen_construction.h"
+        "recovered/frontend/screen_construction.h",
+        "analysis/runtime-dialog-integration-map.json",
+        "analysis/runtime-dialog-integration.md"
       ]
     },
     {
       "program": "client",
       "entry": "006691a0",
       "status": "partial",
-      "coverage": "Clear both dialog reply-code words while preserving mode, queue and visibility state.",
-      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "coverage": "Clear both dialog reply-code words while preserving mode, queue and visibility state. Shared runtime extension: actual ApplicationMenu slot-zero product/protocol/picking/keys/render/cleanup and bounded style24/25 wrapping are wired; see runtime-dialog integration contract for this body's scope.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit. Shared receiver/native integration is not caller-to-dialog desktop acceptance; original producer/receiver delivery is required.",
       "evidence": [
         "analysis/menu-runtime-confirmation-map.json",
         "recovered/frontend/runtime_confirmation.h",
-        "recovered/frontend/screen_construction.h"
+        "recovered/frontend/screen_construction.h",
+        "analysis/runtime-dialog-integration-map.json",
+        "analysis/runtime-dialog-integration.md"
       ]
     },
     {
       "program": "client",
       "entry": "0066c1d0",
       "status": "partial",
-      "coverage": "Portable slot-zero construction sequence: load/position model, temporary zero-ID definition, allocate/install singleton before binding, registry insertion on success, definition cleanup on both bind outcomes.",
-      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit.",
+      "coverage": "Portable slot-zero construction sequence: load/position model, temporary zero-ID definition, allocate/install singleton before binding, registry insertion on success, definition cleanup on both bind outcomes. Shared runtime extension: actual ApplicationMenu slot-zero product/protocol/picking/keys/render/cleanup and bounded style24/25 wrapping are wired; see runtime-dialog integration contract for this body's scope.",
+      "limitations": "Portable definitions/state, typed observers, native RAII and supplied model/product services replace original class/string/refcount/SEH ABI. Native sanitizer/i386 composition audit passes; slot zero is not engine-bound in the live host. Key 006691b0 and observer 006693a0 are recovered but absent from the frozen census and earn no separate credit. Shared receiver/native integration is not caller-to-dialog desktop acceptance; original producer/receiver delivery is required.",
       "evidence": [
         "analysis/menu-runtime-confirmation-map.json",
         "recovered/frontend/runtime_confirmation.h",
-        "recovered/frontend/screen_construction.h"
+        "recovered/frontend/screen_construction.h",
+        "analysis/runtime-dialog-integration-map.json",
+        "analysis/runtime-dialog-integration.md"
       ]
     },
     {
@@ -5281,12 +5293,273 @@
       "program": "client",
       "entry": "00645f20",
       "status": "partial",
-      "coverage": "Cinematics native flow: single-style whitespace wrapping. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
-      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "coverage": "Cinematics native flow: single-style whitespace wrapping. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion. Shared runtime extension: actual ApplicationMenu slot-zero product/protocol/picking/keys/render/cleanup and bounded style24/25 wrapping are wired; see runtime-dialog integration contract for this body's scope.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim. Shared receiver/native integration is not caller-to-dialog desktop acceptance; original producer/receiver delivery is required.",
       "evidence": [
         "analysis/cinematics-flow-map.json",
         "analysis/cinematics-flow.md",
-        "recovered/host/opening_text_geometry.h"
+        "recovered/host/opening_text_geometry.h",
+        "analysis/runtime-dialog-integration-map.json",
+        "analysis/runtime-dialog-integration.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0066d780",
+      "status": "partial",
+      "coverage": "Nullable frontend raw-text dialog request, retaining text and all mode/reply arguments before forwarding to the recovered protocol.",
+      "limitations": "Native nullable protocol pointers and ApplicationMenu ownership replace frontend+100/original calling ABI. Shared receiver is application-wired and natively audited; no producer exists in delivered Main/Credits/Cinematics flows, so genuine caller/desktop acceptance awaits full Options. No complete original ABI equivalence claimed.",
+      "evidence": [
+        "analysis/runtime-dialog-integration-map.json",
+        "analysis/runtime-dialog-integration.md",
+        "recovered/frontend/runtime_confirmation.h",
+        "recovered/host/application_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0066d7a0",
+      "status": "partial",
+      "coverage": "Nullable frontend localized dialog request, forwarding all mode/label/reply arguments to the recovered protocol.",
+      "limitations": "Native nullable protocol pointers and ApplicationMenu ownership replace frontend+100/original calling ABI. Shared receiver is application-wired and natively audited; no producer exists in delivered Main/Credits/Cinematics flows, so genuine caller/desktop acceptance awaits full Options. No complete original ABI equivalence claimed.",
+      "evidence": [
+        "analysis/runtime-dialog-integration-map.json",
+        "analysis/runtime-dialog-integration.md",
+        "recovered/frontend/runtime_confirmation.h",
+        "recovered/host/application_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0066d7c0",
+      "status": "partial",
+      "coverage": "Nullable frontend force-close request, forwarding only when the runtime dialog exists.",
+      "limitations": "Native nullable protocol pointers and ApplicationMenu ownership replace frontend+100/original calling ABI. Shared receiver is application-wired and natively audited; no producer exists in delivered Main/Credits/Cinematics flows, so genuine caller/desktop acceptance awaits full Options. No complete original ABI equivalence claimed.",
+      "evidence": [
+        "analysis/runtime-dialog-integration-map.json",
+        "analysis/runtime-dialog-integration.md",
+        "recovered/frontend/runtime_confirmation.h",
+        "recovered/host/application_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061bea0",
+      "status": "partial",
+      "coverage": "Entry/apply/Back dispatcher with real profile synchronization, unassigned dialog9520/C7 category-row restoration and original save/graphics/binding queue order.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/frontend/options_flow.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061cf60",
+      "status": "partial",
+      "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/options_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061dbc0",
+      "status": "partial",
+      "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons; preserves conditional active-mission disable instead of unconditional crosshair disable.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/options_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061e140",
+      "status": "partial",
+      "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/options_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061e390",
+      "status": "partial",
+      "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/options_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061f1d0",
+      "status": "partial",
+      "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons; preserves conditional active-mission disable instead of unconditional crosshair disable.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/options_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061f350",
+      "status": "partial",
+      "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/options_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061f5a0",
+      "status": "partial",
+      "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/options_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00620960",
+      "status": "partial",
+      "coverage": "Binding-category show/hide, selected-list scrollbar relinking and refresh messages using original identifiers.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/options_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006204d0",
+      "status": "partial",
+      "coverage": "Options show refresh resolves the actual profile name or localized2020 and queues the original style12 header caption.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/options_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8230",
+      "status": "partial",
+      "coverage": "Reserved-key filtering, assignment/dirty state, mode-overlap duplicate clearing with hidden/exempt preservation, first-unassigned scan and contiguous group ordinal.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/input/binding_editor.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a83c0",
+      "status": "partial",
+      "coverage": "Reserved-key filtering, assignment/dirty state, mode-overlap duplicate clearing with hidden/exempt preservation, first-unassigned scan and contiguous group ordinal.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/input/binding_editor.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8480",
+      "status": "partial",
+      "coverage": "Reserved-key filtering, assignment/dirty state, mode-overlap duplicate clearing with hidden/exempt preservation, first-unassigned scan and contiguous group ordinal.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/input/binding_editor.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a85b0",
+      "status": "partial",
+      "coverage": "Reserved-key filtering, assignment/dirty state, mode-overlap duplicate clearing with hidden/exempt preservation, first-unassigned scan and contiguous group ordinal.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/input/binding_editor.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8290",
+      "status": "partial",
+      "coverage": "Reserved-key filtering, assignment/dirty state, mode-overlap duplicate clearing with hidden/exempt preservation, first-unassigned scan and contiguous group ordinal.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/input/binding_editor.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b2950",
+      "status": "partial",
+      "coverage": "Real Options.bin serialization through ChunkFile: sequential version/bindings/settings chunks, original record fields/padding/dirty bytes and failed-open return.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/frontend/options_save.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a8770",
+      "status": "partial",
+      "coverage": "Real Options.bin serialization through ChunkFile: sequential version/bindings/settings chunks, original record fields/padding/dirty bytes and failed-open return.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/frontend/options_save.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b3530",
+      "status": "partial",
+      "coverage": "Real Options.bin serialization through ChunkFile: sequential version/bindings/settings chunks, original record fields/padding/dirty bytes and failed-open return.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/frontend/options_save.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064d800",
+      "status": "partial",
+      "coverage": "Binding-row construction composes editable child|1 and caption child|2 with actual model/normal-active visuals and typed capture owner; internal static caption receives original back-facing frame setup.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/options_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ab590",
+      "status": "partial",
+      "coverage": "English binding names: localized mouse/special-key labels and real engine scan-name conversion; unsupported device kinds return the original empty string.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "evidence": [
+        "analysis/options-flow.md",
+        "recovered/host/startup_session.h"
       ]
     }
   ]
