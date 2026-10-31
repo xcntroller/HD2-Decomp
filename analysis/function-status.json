@@ -438,10 +438,11 @@
       "entry": "00668580",
       "status": "partial",
       "coverage": "Scan lower control indices then wrap backward from the final child, skipping subordinate target IDs and stopping when candidate focus handling succeeds.",
-      "limitations": "Portable screen/control storage, eligibility and callbacks replace original ABI. Assumes valid candidate and -1/valid current focus. No original live key binding identified; not integrated into the host. Navigation/default-focus behavior remains unresolved.",
+      "limitations": "Portable native screen/control ABI. No shared Tab/arrow caller is present in the confirmed direct/literal reference evidence or the50-table UI key/character inventory; retain traversal as source-only. Actual list navigation and specialized child key paths are recovered separately. Regular/modal/slot-zero and explicit targeted-focus policy is now documented and audited.",
       "evidence": [
         "analysis/menu-ui-map.json",
-        "recovered/frontend/screen_navigation.h"
+        "recovered/frontend/screen_navigation.h",
+        "analysis/menu-character-focus.md"
       ]
     },
     {
@@ -449,10 +450,11 @@
       "entry": "006685f0",
       "status": "partial",
       "coverage": "Scan higher control indices then wrap forward from zero, rereading control count and skipping subordinate target IDs before candidate selection.",
-      "limitations": "Portable screen/control storage, eligibility and callbacks replace original ABI. Assumes valid candidate and -1/valid current focus. No original live key binding identified; not integrated into the host. Navigation/default-focus behavior remains unresolved.",
+      "limitations": "Portable native screen/control ABI. No shared Tab/arrow caller is present in the confirmed direct/literal reference evidence or the50-table UI key/character inventory; retain traversal as source-only. Actual list navigation and specialized child key paths are recovered separately. Regular/modal/slot-zero and explicit targeted-focus policy is now documented and audited.",
       "evidence": [
         "analysis/menu-ui-map.json",
-        "recovered/frontend/screen_navigation.h"
+        "recovered/frontend/screen_navigation.h",
+        "analysis/menu-character-focus.md"
       ]
     },
     {
@@ -460,10 +462,11 @@
       "entry": "006686f0",
       "status": "partial",
       "coverage": "Check candidate eligibility, ask valid old focus to leave with zero, treat leave veto as handled, then store candidate and enter with fifteen while ignoring enter result.",
-      "limitations": "Portable screen/control storage, eligibility and callbacks replace original ABI. Assumes valid candidate and -1/valid current focus. No original live key binding identified; not integrated into the host. Navigation/default-focus behavior remains unresolved.",
+      "limitations": "Portable native screen/control ABI. No shared Tab/arrow caller is present in the confirmed direct/literal reference evidence or the50-table UI key/character inventory; retain traversal as source-only. Actual list navigation and specialized child key paths are recovered separately. Regular/modal/slot-zero and explicit targeted-focus policy is now documented and audited.",
       "evidence": [
         "analysis/menu-ui-map.json",
-        "recovered/frontend/screen_navigation.h"
+        "recovered/frontend/screen_navigation.h",
+        "analysis/menu-character-focus.md"
       ]
     },
     {
@@ -4158,6 +4161,318 @@
         "analysis/shutdown-map.json",
         "analysis/shutdown-delivery.md",
         "recovered/frontend/startup_modules.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00643900",
+      "status": "partial",
+      "coverage": "Select a signed-short text record, refuse a valid selection when already active, store invalid indices while deselecting, and preserve exact dirty/tick transitions.",
+      "limitations": "Source-only native text/capture storage replaces original object ABI, raw buffers, intrusive references and SEH. Full edit-widget frame/caret rendering and screen-specific data construction remain separate services. Typed captured characters, edit focus/message callers, source caret state and native queue composition are audited. All-continuation backspace underread is rejected. No new desktop field or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00644000",
+      "status": "partial",
+      "coverage": "Replace text at the stored valid selected index independently of selection-active, retaining style and marking dirty only on success.",
+      "limitations": "Source-only native text/capture storage replaces original object ABI, raw buffers, intrusive references and SEH. Full edit-widget frame/caret rendering and screen-specific data construction remain separate services. Typed captured characters, edit focus/message callers, source caret state and native queue composition are audited. All-continuation backspace underread is rejected. No new desktop field or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00644080",
+      "status": "partial",
+      "coverage": "Retain the stored selected record string or return null for invalid index, independently of selection-active.",
+      "limitations": "Source-only native text/capture storage replaces original object ABI, raw buffers, intrusive references and SEH. Full edit-widget frame/caret rendering and screen-specific data construction remain separate services. Typed captured characters, edit focus/message callers, source caret state and native queue composition are audited. All-continuation backspace underread is rejected. No new desktop field or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064d5f0",
+      "status": "partial",
+      "coverage": "Encode one scalar with original surrogate rejection, strict scratch capacity, four-byte range through 1fffff and malformed two-byte FFFD fallback for larger values.",
+      "limitations": "Source-only native text/capture storage replaces original object ABI, raw buffers, intrusive references and SEH. Full edit-widget frame/caret rendering and screen-specific data construction remain separate services. Typed captured characters, edit focus/message callers, source caret state and native queue composition are audited. All-continuation backspace underread is rejected. No new desktop field or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_character_target.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00662380",
+      "status": "partial",
+      "coverage": "Empty/legacy/wide backspace with original suffix lead/count gates, text replacement, overlong acceptance and invalid-sequence failure.",
+      "limitations": "Source-only native text/capture storage replaces original object ABI, raw buffers, intrusive references and SEH. Full edit-widget frame/caret rendering and screen-specific data construction remain separate services. Typed captured characters, edit focus/message callers, source caret state and native queue composition are audited. All-continuation backspace underread is rejected. No new desktop field or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_character_target.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00662790",
+      "status": "partial",
+      "coverage": "Inactive edit activation enqueues typed target-zero bf capture request with zero argument, without changing active state; active request fails.",
+      "limitations": "Source-only native text/capture storage replaces original object ABI, raw buffers, intrusive references and SEH. Full edit-widget frame/caret rendering and screen-specific data construction remain separate services. Typed captured characters, edit focus/message callers, source caret state and native queue composition are audited. All-continuation backspace underread is rejected. No new desktop field or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_character_target.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00662880",
+      "status": "partial",
+      "coverage": "Active edit deactivation enqueues typed target-zero c0 capture release before emitting 04002000, leaving active until queue processing.",
+      "limitations": "Source-only native text/capture storage replaces original object ABI, raw buffers, intrusive references and SEH. Full edit-widget frame/caret rendering and screen-specific data construction remain separate services. Typed captured characters, edit focus/message callers, source caret state and native queue composition are audited. All-continuation backspace underread is rejected. No new desktop field or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_character_target.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00662980",
+      "status": "partial",
+      "coverage": "Release active edit capture by deselecting, emitting 0400b000 with supplied argument before clearing active, and preserving inactive false result.",
+      "limitations": "Source-only native text/capture storage replaces original object ABI, raw buffers, intrusive references and SEH. Full edit-widget frame/caret rendering and screen-specific data construction remain separate services. Typed captured characters, edit focus/message callers, source caret state and native queue composition are audited. All-continuation backspace underread is rejected. No new desktop field or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_character_target.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006629c0",
+      "status": "partial",
+      "coverage": "Acquire edit capture with early active latch; invalid configured index sets a null/style-zero record at index zero (append only when empty); select signed low word, retain cancellation backup and bound copy. Preserve selection failure latch and already-active seven.",
+      "limitations": "Source-only native text/capture storage replaces original object ABI, raw buffers, intrusive references and SEH. Full edit-widget frame/caret rendering and screen-specific data construction remain separate services. Typed captured characters, edit focus/message callers, source caret state and native queue composition are audited. All-continuation backspace underread is rejected. No new desktop field or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_character_target.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00643e00",
+      "status": "partial",
+      "coverage": "Clear hovered text record only when active selection is absent; retain selection-active refusal.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00643bf0",
+      "status": "partial",
+      "coverage": "Outside active selection, delegate ensure-row-visible for a hovered record other than minus one, reread hovered state, store selected index and return its low signed word.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00643c30",
+      "status": "partial",
+      "coverage": "Outside active selection, validate signed-short record index, ensure row visibility through backend, then store selected index and return low word; invalid selection returns minus one.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00643f60",
+      "status": "partial",
+      "coverage": "Clear caret-visible first; during active selection add wrapping DWORD milliseconds, expose signed ticks below500 and reset only above1000.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/text_object.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006553a0",
+      "status": "partial",
+      "coverage": "Non-wrapping list previous selection, starting at final child for focus minus one; validate/skip ineligible children; leave and enter with15; leave veto reports handled.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/child_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00655430",
+      "status": "partial",
+      "coverage": "Non-wrapping list next selection with fresh bounds/validity/eligibility; leave and enter with15; leave veto reports handled without transfer.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/child_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064e770",
+      "status": "partial",
+      "coverage": "Binding capture key handler: inactive false, active consumes every key, low-byte Escape deactivates the internal capture control with zero.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/child_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00657880",
+      "status": "partial",
+      "coverage": "Forward full key word to freshly resolved valid focused child without ordinary container eligibility check.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/child_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00658050",
+      "status": "partial",
+      "coverage": "Forward full key word to freshly resolved valid focused child without ordinary container eligibility check.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/child_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0065ac30",
+      "status": "partial",
+      "coverage": "Plain edit event override: programmatic focus directly requests BF capture; guarded layout/inset messages use attached text; other/tagged events use recovered base edit/text dispatch.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0065acd0",
+      "status": "partial",
+      "coverage": "Plain edit focus leave refuses active text selection; otherwise clear hover and emit focus-leave twice via derived then base sequencing, returning seven.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0065ad10",
+      "status": "partial",
+      "coverage": "Plain edit pointer toggle validates enabled/exact identifier, then routes current active state to actual derived activation or deactivation behavior.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0065b030",
+      "status": "partial",
+      "coverage": "Visual edit focus enter gates disabled state, shows active/hides normal, updates active then normal, emits focus-enter and returns one.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0065b110",
+      "status": "partial",
+      "coverage": "Visual edit pointer toggle validates enabled/exact identifier, then routes active state to capture activation or deactivation/clamp behavior.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0065c380",
+      "status": "partial",
+      "coverage": "Record edit focus leave requests hover clear regardless of selection refusal, then performs base edit leave notification with seven result.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/edit_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00637990",
+      "status": "partial",
+      "coverage": "Password input request stores menu mode7 through owner service, queues child28200000 localized caption style14/ID2002, modal slot10, then explicit child focus in original order.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/focus_requests.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00656c00",
+      "status": "partial",
+      "coverage": "Validate focused group child, reread current index after validity and forward deactivation argument to child +3c; invalid focus returns zero.",
+      "limitations": "Native shared foundation; unused editable/list/binding/Password routes are source-only. Original class/vector/refcount/SEH ABI is replaced. Widget frame construction, font row geometry, list scrolling/data services, locale parsing and application/network flow bodies remain explicit backend dependencies, not successful stand-ins. No new desktop screen, desktop verification or complete-function claim.",
+      "evidence": [
+        "analysis/menu-character-focus.md",
+        "analysis/menu-character-focus-map.json",
+        "recovered/frontend/container_input.h"
       ]
     }
   ]

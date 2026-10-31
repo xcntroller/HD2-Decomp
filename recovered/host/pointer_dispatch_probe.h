@@ -58,6 +58,11 @@ public:
     void clear_captured_control() {
         throw std::logic_error("Probe has no captured screen control");
     }
+    bool key(std::uint32_t) const {
+        throw std::logic_error("Observational pointer probe has no keyboard backend");
+    }
+    int enter_focus(std::uint32_t target) { return frontend::screen_focus_enter(*this, target); }
+    int leave_focus(std::uint32_t target) { return frontend::screen_focus_leave(*this, target); }
     int focused_control() const { return focused_; }
     void set_focused_control(int index) { focused_ = index; }
     bool valid_control(int index) const { return index == 1 || index == 2; }

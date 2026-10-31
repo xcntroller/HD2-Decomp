@@ -46,8 +46,7 @@ public:
         : session_(session), main_(main), confirmation_(confirmation), events_(events),
           confirming_(confirming) {}
     bool key_current_screen(std::uint32_t key) {
-        return confirming_ ? hd2::frontend::screen_key(confirmation_, key)
-                           : hd2::frontend::screen_key(main_, key);
+        return confirming_ ? confirmation_.key(key) : main_.key(key);
     }
     bool dragging() const { return session_.dispatch.dragging; }
     void end_current_drag(std::uint32_t target) {

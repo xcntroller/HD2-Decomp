@@ -42,8 +42,8 @@ Baseline: the four-movie sequence and host preview are desktop-confirmed.
 [Opening evidence](analysis/opening-video.md). Recovered source components remain
 separate from delivery; their completed work is preserved in the recovery index.
 
-Next: shared menu foundation input/focus callers and initial-focus policy.
-[Keyboard recovery](analysis/keyboard-preprocessing.md).
+Next: exact menu queue/update timing, drag/capture and focus-loss integration.
+[Completed input/focus contracts](analysis/menu-character-focus.md).
 Full registry/setup bootstrap and binary integrity VM remain outside the checkpoint.
 
 ## Current position
@@ -74,9 +74,9 @@ Original object ABI is tracked separately from native menu delivery.
   Unused service branches are **source-only**. [Screen contracts](analysis/menu-screen-foundation.md).
 - [x] Integrate recursive kind-five ownership/input; nested engine diagnostic confirmed.
 - [x] Integrate registered stack/lifecycle and all 21 leaf message endpoints.
-- [ ] Complete character targets, focus-entry/navigation callers and initial-focus
-  policy. Polling is confirmed; preprocessing/text FIFO are **source-only**.
-  [Keyboard](analysis/keyboard-preprocessing.md).
+- [x] Complete character targets, focus-entry/navigation callers and initial-focus
+  policy. Unused edit/list/binding routes are **source-only**; Main/Exit preserved.
+  [Character/focus contracts](analysis/menu-character-focus.md).
 - [ ] Resolve exact queue/update timing, drag/capture and focus-loss behavior.
 - [ ] Integrate original settings/resource caches in place of host defaults.
 - [ ] Build options widget internals and connect recovered observers/settings.

@@ -3,7 +3,19 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest source: [original application data and profiles](analysis/startup-data.md).
+Latest source (2026-10-31): [completed shared character/focus foundation](analysis/menu-character-focus.md).
+All50 shared-eligibility UI tables/12 key policies, editable field focus/messages,
+actual list/specialized navigation, programmatic focus producers and centralized
+initial-focus policy are recovered and native-audited. Corrected invalid-index
+acquisition: set null/style-zero record0, not a localized append. The checkbox
+is complete; unused edit/list/binding/spinner routes are source-only and full
+widget frame/data/rendering services remain in their separate plan items.
+No new desktop flow, staging or commit. Strict i386/sanitizer/native/tooling
+checks pass;334 partial, zero complete, frozen18,783. Next: queue/update timing,
+drag/capture and focus-loss integration. AGENTS.md now requires researching the
+entire checkbox before implementing it in one sweep, per the user's instruction.
+
+Prior source: [original application data and profiles](analysis/startup-data.md).
 Follows `975e1c9`, in a larger batch per user preference. GameData's two formats,
 seven kinds and mission queries; actual GameData/+E8/HumanStore preparation;
 profile directory scan/map/path; binary and legacy profile loading; movie flags;

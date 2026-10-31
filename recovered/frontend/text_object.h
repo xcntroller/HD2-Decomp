@@ -25,6 +25,68 @@ public:
     bool dirty = false;
     const std::vector<TextRecord>& records() const { return records_; }
 
+    // 00643900. Selection is separate from a valid stored record index:
+    // selecting an invalid signed-short index clears selection but stores it.
+    bool select_record(std::int16_t index) {
+        if (index >= 0 && static_cast<std::size_t>(index) < records_.size()) {
+            if (selection_active) return false;
+            selected_index_ = index;
+            selection_ticks = 0;
+            selection_active = true;
+        } else {
+            selected_index_ = index;
+            selection_active = false;
+        }
+        dirty = true;
+        return true;
+    }
+    // 00644080 / 00644000 use the stored index, not selection_active.
+    SharedText selected_text() const {
+        return valid_selected_index() ? records_[static_cast<std::size_t>(selected_index_)].text : SharedText{};
+    }
+    bool replace_selected_text(SharedText text) {
+        if (!valid_selected_index()) return false;
+        records_[static_cast<std::size_t>(selected_index_)].text = std::move(text);
+        dirty = true;
+        return true;
+    }
+    // 00643e00 / 00643bf0. Hover restoration delegates the actual row-geometry
+    // visibility adjustment (00643b20), then rereads the hovered index.
+    bool clear_hover_selection() {
+        if (selection_active) return false;
+        hovered_record = -1;
+        return true;
+    }
+    template<class EnsureVisible>
+    std::int16_t restore_hover_selection(EnsureVisible ensure_visible) {
+        if (selection_active) return -1;
+        if (hovered_record != -1) ensure_visible(static_cast<std::int16_t>(hovered_record));
+        selected_index_ = hovered_record;
+        return static_cast<std::int16_t>(hovered_record);
+    }
+    // 00643c30. Stored record focus changes only outside active selection.
+    template<class EnsureVisible>
+    std::int16_t select_visible_record(std::int16_t index, EnsureVisible ensure_visible) {
+        if (selection_active || index < 0 || static_cast<std::size_t>(index) >= records_.size()) return -1;
+        ensure_visible(index);
+        selected_index_ = index;
+        return index;
+    }
+    // 00643f60. Keep original wrapping DWORD time arithmetic and strict bounds.
+    void update_caret(std::uint32_t milliseconds) {
+        caret_visible = false;
+        if (!selection_active) return;
+        selection_ticks += milliseconds;
+        const auto signed_ticks = selection_ticks <= 0x7fffffffu ? static_cast<std::int64_t>(selection_ticks)
+            : static_cast<std::int64_t>(selection_ticks) - 0x100000000LL;
+        if (signed_ticks < 500) caret_visible = true;
+        if (signed_ticks > 1000) selection_ticks = 0;
+    }
+    std::int32_t hovered_record = -1;
+    bool caret_visible = false;
+    bool selection_active = false;
+    std::uint32_t selection_ticks = 0;
+
     // 006440f0: replace a valid signed index, otherwise append, never clear.
     bool set(SharedText text, std::uint32_t style, std::int32_t index) {
         TextRecord record{std::move(text), static_cast<std::uint8_t>(style)};
@@ -65,6 +127,10 @@ public:
     // 00644960: clear all records, not a refresh/relocalization operation.
     void clear() { records_.clear(); dirty = true; }
 private:
+    bool valid_selected_index() const {
+        return selected_index_ >= 0 && static_cast<std::size_t>(selected_index_) < records_.size();
+    }
+    std::int32_t selected_index_ = -1;
     std::vector<TextRecord> records_;
 };
 

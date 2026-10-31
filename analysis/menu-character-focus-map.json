@@ -1,0 +1,1473 @@
+{
+  "scope": "Completed native shared character/focus caller contract; unused editable/list/binding/spinner policies are source-only. No new screen flow or original ABI claim.",
+  "runtime_verified": false,
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "sources": [
+    "recovered/frontend/edit_character_target.h",
+    "recovered/frontend/text_object.h",
+    "recovered/frontend/common_event_services.h",
+    "recovered/frontend/screen_focus.h",
+    "recovered/frontend/container_input.h",
+    "recovered/frontend/edit_control.h",
+    "recovered/frontend/child_navigation.h",
+    "recovered/frontend/focus_requests.h",
+    "recovered/frontend/application_events.h"
+  ],
+  "instruction_anchors": [
+    {
+      "address": "00643900",
+      "hex": "560fbf74240885f67c548b413485c0750433d2eb158b51382bd0b867666666f7ead1fa8bc2c1e81f03d04a3bf27f2f8a818100000084c0751fb00189b188000000c78184000000000000008881810000008841725ec2040032c05ec20400b00189b188000000c6818100000000884172",
+      "meaning": "Signed-short selected-index handling and active-selection rejection"
+    },
+    {
+      "address": "00644000",
+      "hex": "56578bf98bb78800000085f67c5f8b473485c0750433d2eb158b4f382bc8b867666666f7e9d1fa8bc2c1e81f03d04a3bf27f3a8b5734538b5c24108d34b603f28b0385c07402ff008b0685c074108b08498908750950e865dc190083c4048b0bb001890e8847725b5f5ec204005f32c05ec20400",
+      "meaning": "Replace selected record preserving style and marking dirty"
+    },
+    {
+      "address": "00644080",
+      "hex": "51568bb18800000085f6c7442404000000007c428b413485c0750433d2eb158b51382bd0b867666666f7ead1fa8bc2c1e81f03d04a3bf27f1d8b41348d14b68b0c028b44240c85c9890874148b115e42891159c204008b44240cc700000000005e59c20400",
+      "meaning": "Retain selected record or return null independently of active-selection byte"
+    },
+    {
+      "address": "0064d5f0",
+      "hex": "8b125681fa00d80000721181faffdf00007709b8fdffffff5ec2040081fa800000007307be01000000eb3081fa00080000722381fa000001007307be03000000eb1981fa000020007307be04000000eb0abafdff0000be020000008b44240881e6ffff00003bf07c09b8fcffffff5ec20400",
+      "meaning": "Encoder surrogate rejection, size selection, malformed high-value fallback and strict capacity"
+    },
+    {
+      "address": "0064d673",
+      "hex": "8ac249243f0c808801c1ea068ac249243f0c808801c1ea068ac249243f0c808801c1ea068a86b83c81000ac28841ff8bc65ec20400",
+      "meaning": "Encoder byte stores, prefixes and no terminator"
+    },
+    {
+      "address": "00656b28",
+      "hex": "83ff0f75148b0657ff502084c0744e5fb8070000005ec20400",
+      "meaning": "Target fifteen routes virtual key and maps consumed to seven"
+    },
+    {
+      "address": "00656b41",
+      "hex": "538b1e57ff13508bceff530484c05b74338b16578bceff128b4e088b0c818b11ff520884c0741d8b06578bceff108b4e0889466c578b04818bc88b10ff52305f5e",
+      "meaning": "Three ordinary target lookups: validity, eligibility and stored focus"
+    },
+    {
+      "address": "0066239a",
+      "hex": "8b5574803a000f84ca000000",
+      "meaning": "Backspace empty buffer succeeds without text update"
+    },
+    {
+      "address": "006623b0",
+      "hex": "a02ce98a005ff7d14984c08bf1746e8bc648780d8a0c0280f980720580f9c072f02bf083fe017519803c028072495e32c05d8b4c240464890d0000000083c410c383fe02750d8a0c0280f9c072e080f9e0ebd983fe03750d8a0c0280f9e072ce80f9f0ebc783fe0475c48a0c0280f9f072bc80f9f873b7c6040200eb05c64432ff00",
+      "meaning": "Backspace byte/wide choice, continuation scan and lead/count gates"
+    },
+    {
+      "address": "006624ac",
+      "hex": "8a467c84c00f846c0200008b44242c85c00f8460020000",
+      "meaning": "Character delivery requires active and nonzero value"
+    },
+    {
+      "address": "006624de",
+      "hex": "6a0068006001048bcee864aaffff8b066a008bceff503c",
+      "meaning": "Carriage return emits commit then unconditionally deactivates"
+    },
+    {
+      "address": "0066250a",
+      "hex": "8bcee86ffeffff5fb0015e",
+      "meaning": "Backspace ignores helper failure and consumes character"
+    },
+    {
+      "address": "00662526",
+      "hex": "6a0068007001048bcee81caaffff8a467c84c00f84e40100008d4e70518b4e6ce8b51afeff8b166a008bceff523c",
+      "meaning": "Escape emits cancel, rereads active, restores backup and deactivates"
+    },
+    {
+      "address": "00662569",
+      "hex": "3d10ff000072103d19ff000077092de0fe00008944242c3d800000000f82a40000008a0d2ce98a0084c90f8496000000",
+      "meaning": "Fullwidth digits normalize before wide/byte branch"
+    },
+    {
+      "address": "00662599",
+      "hex": "556a068d5424348d4c241ce847b0feff8bd0",
+      "meaning": "Encode address parameters and six-byte scratch capacity"
+    },
+    {
+      "address": "006625af",
+      "hex": "8b6e7483c9ff8bfd33c0f2ae8b8684000000f7d14903ca3bc8734f8d442418525055c644142400",
+      "meaning": "Wide insertion requires length plus byte count strictly below capacity"
+    },
+    {
+      "address": "00662619",
+      "hex": "5d5fb0015e8b4c241464890d0000000083c420c20400",
+      "meaning": "Wide insertion consumes even when rejected"
+    },
+    {
+      "address": "0066262f",
+      "hex": "8b4e788844240b85c974260fbec05051e8ec34180083c40885c07415",
+      "meaning": "Byte exclusion filter gets sign-extended low byte"
+    },
+    {
+      "address": "00662660",
+      "hex": "8a467d84c0743b0fbe4c240b51e86f3f180083c40485c075298b7e7483c9fff2aef7d1497507807c240b2d74155fb0015e8b4c241464890d0000000083c420c20400",
+      "meaning": "Numeric restriction permits digit or initial minus"
+    },
+    {
+      "address": "006626a2",
+      "hex": "8a44240b84c074798b567483c9ff8bfa33c0f2ae8b8684000000f7d1493bc8734b",
+      "meaning": "Byte insertion null test and non-strict maximum length"
+    },
+    {
+      "address": "00662738",
+      "hex": "0a25660023276600de24660026256600692566000001040404020404040404040404040404040403",
+      "meaning": "Character switch table: backspace, tab, carriage return, Escape, ordinary"
+    },
+    {
+      "address": "006627a5",
+      "hex": "8a417c83ec185333db3ac3741433c0",
+      "meaning": "Acquisition request rejected if active"
+    },
+    {
+      "address": "006627c6",
+      "hex": "895c2418895c2404c7442408bf000002895c240c894c2410",
+      "meaning": "Queued bf request: target and argument zero, self in word0c"
+    },
+    {
+      "address": "0066289c",
+      "hex": "33db385e7c75155e33c05b8b4c241864890d0000000083c424c20400",
+      "meaning": "Deactivation request rejected if inactive"
+    },
+    {
+      "address": "006628b8",
+      "hex": "895c241c895c2408c744240cc0000002895c241089742414",
+      "meaning": "Queued c0 request: target and argument zero, self in word0c"
+    },
+    {
+      "address": "00662945",
+      "hex": "8b15ace48a00534268002000048bce8915ace48a00c7442430ffffffffe8e9a5ffff",
+      "meaning": "Publish release request before deactivation tag"
+    },
+    {
+      "address": "00662983",
+      "hex": "8a467c84c0750633c05ec204008b4e6c6affe8660ffeff84c074118b4424088bce506800b00004e8a1a5ffffc6467c00b8010000005ec20400",
+      "meaning": "Release deselects, emits while active, clears byte and reports success"
+    },
+    {
+      "address": "006629da",
+      "hex": "8a467c84c074185fb8070000005e8b4c240464890d0000000083c410c204008bbe800000008b4e6c85ffc6467c017c25",
+      "meaning": "Acquire returns seven if already active; stores active before selection"
+    },
+    {
+      "address": "00662a2a",
+      "hex": "4a3bfa7e42c7442408000000006a008d54240c6a0052c744242000000000e87319feff",
+      "meaning": "Invalid configured edit index sets a null string/style zero/index zero through006443c0; not localization or unconditional append"
+    },
+    {
+      "address": "00662a71",
+      "hex": "668b86800000008b4e6c50e87f0efeff84c00f84a6000000",
+      "meaning": "Configured index narrows to signed short for selection; failure leaves active"
+    },
+    {
+      "address": "00662ad8",
+      "hex": "8b8e840000008b7e744133c08bd1c1e902f3ab8bca83e103f3aa8b467085c0740583c008eb05b8807986008b8e840000008b5674515052e88c3d180083c40c",
+      "meaning": "Clear capacity plus one bytes; copy at most capacity bytes; return one"
+    },
+    {
+      "address": "00662b2f",
+      "hex": "8b4c240c5f33c05e64890d0000000083c410c20400",
+      "meaning": "Selection failure returns zero without clearing active"
+    },
+    {
+      "address": "0066819f",
+      "hex": "83c8ff894e68894660895e4c895e50c6466501885e64895e5889465cc6466601c744241c03000000895e7c8b542428c644241c04c70640558100889e8000000089466c895674",
+      "meaning": "Screen constructor installs table and initializes focus to minus one"
+    },
+    {
+      "address": "00668400",
+      "hex": "568bf18b4674f680e00000000175258b4424088b16508bceff52308b46746a01508b08ff51306a006800d000048bcee81c4bffff5ec204009090909090909090",
+      "meaning": "Screen activation respects visibility gate and forwards caller requested focus"
+    },
+    {
+      "address": "0066b4d1",
+      "hex": "8b4d1085c9740f8b1156ff522484c07405c644241701",
+      "meaning": "Fresh character target and latch without early return"
+    },
+    {
+      "address": "00813cb9",
+      "hex": "00c0e0f0",
+      "meaning": "One/two/three/four-byte encoder prefix bytes"
+    },
+    {
+      "address": "00643e00",
+      "hex": "8a818100000084c0740332c0c3c7818c000000ffffffffb001c3",
+      "meaning": "Original body supporting 00643e00 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "00643bf0",
+      "hex": "568bf18a868100000084c07406660dffff5ec38b868c00000083f8ff7408508bcee80affffff8b8e8c000000898e88000000668bc15ec3",
+      "meaning": "Original body supporting 00643bf0 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "00643c30",
+      "hex": "53568bf1578a868100000084c075478b5c24100fbffb85ff7c3c8b463485c0750433d2eb158b4e382bc8b867666666f7e9d1fa8bc2c1e81f03d04a3bfa7f17538bcee8a9feffff89be88000000668bc75f5e5bc204005f5e660dffff5bc20400",
+      "meaning": "Original body supporting 00643c30 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "00643f60",
+      "hex": "8a818100000033d23ac288918000000074318b442404568bb18400000003f08bc689b1840000003df40100005e7d07c68180000000013de80300007e06899184000000c20400",
+      "meaning": "Original body supporting 00643f60 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "006553a0",
+      "hex": "568bf1578b7e6c83ffff75138b460885c0750433ffeb088b7e0c2bf8c1ff024f781e8b06578bceff500484c0740f8b4e088b0cb98b11ff520884c075084f79e25f32c05ec38b4e6c8b06518bceff500484c074198b566c8b46086a0f8b0c908b11ff523485c075055fb0015ec38b4608897e6c6a0f8b0cb88b11ff52305fb0015ec3",
+      "meaning": "Original body supporting 006553a0 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "00655430",
+      "hex": "568bf1578b7e6c8b4e084785c974648b460c2bc1c1f8023bf873588b06578bceff500484c074e08b4e088b0cb98b11ff520884c074d18b4e6c8b06518bceff500484c074198b566c8b46086a0f8b0c908b11ff523485c075055fb0015ec38b4608897e6c6a0f8b0cb88b11ff52305fb0015ec35f32c05ec3",
+      "meaning": "Original body supporting 00655430 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "006554b0",
+      "hex": "64a1000000006aff6812528000506489250000000083ec3453568bf1578b4e6c8b06518bceff50048b7c245084c0743b8b46088b566c8b0c908b01ff500884c074298b46088b4e6c578b0c888b11ff522084c074165f5eb0015b8b4c243464890d0000000083c440c2040081e7ff0000008d8739ffffff83f80a0f87a9020000ff2485f05765008b466c8b8e980000003bc18bce0f85cf0000006a01e8af11000084c00f84800200008b465885c00f84b30000008b8e98000000c744243c0000000089442428c744242c2b000002894c2430a1ace48a00c74424480000000085c074318b0d9ce48a008b1598e48a003bca74218d41183bc2a39ce48a008d542428752ee81814fcffb980e48a00e83e0bfcffeb22b980e48a00e8320bfcffa19ce48a008d5424288bc883c018a39ce48a00e8ea13fcff8b15ace48a008b44243c42c7442448ffffffff85c08915ace48a0074148b104a89108b0885c9750950e8acc6180083c4048bcee882fdffff5f5e5b8b4c243464890d0000000083c440c204008b4e6c8b869c0000003bc88bce0f85fb0000006a02e8b410000084c00f84850100008b4e5885c90f84df0000008b869800000033d289542424894c2410c74424142b00000289442418a1ace48a00bb0100000085c0895c2448745c8b0d9ce48a008b3d98e48a003bcf744c8d4118894c240c3bc7a39ce48a00894c2450752385c9c644244802740a8d54241052e80c01fcffb980e48a00885c2448e82e0afcffeb3785c9c64424480374328d44241050e8e900fcffeb22b980e48a00e80d0afcffa19ce48a008d5424108bc883c018a39ce48a00e8c512fcff8b5424248b0dace48a00c7442448ffffffff4185d2890dace48a0074168b3a8bc24f893a8b0885c9750950e885c5180083c4048bcee8ebfcffff5f5e5b8b4c243464890d0000000083c440c204008bbe9c0000008b8e980000002bf933db85ff7e6c8b1668c80000008bceff522084c00f8484fdffff433bdf7ce7eb518bbe9c0000008b8e980000002bf933db85ff7e3d8b0668d00000008bceff502084c00f8455fdffff433bdf7ce7eb228b1668c80000008bceff522084c075f0eb108b0668d00000008bceff502084c075f08b4c24405f5e32c05b64890d0000000083c440c20400",
+      "meaning": "Original body supporting 006554b0 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0064e770",
+      "hex": "568bf18b4e788b01ff502884c075045ec204008a44240884c0740e3c01750a8b4e786a008b11ff523cb0015ec20400",
+      "meaning": "Original body supporting 0064e770 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0064efd0",
+      "hex": "8b49788b542404895424048b01ff6020",
+      "meaning": "Original body supporting 0064efd0 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "00657880",
+      "hex": "568bf18b4e6c8b06518bceff500484c074178b566c8b46085e8b0c908b442404894424048b11ff622032c05ec20400",
+      "meaning": "Original body supporting 00657880 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "00658050",
+      "hex": "568bf18b4e6c8b06518bceff500484c074178b566c8b46085e8b0c908b442404894424048b11ff622032c05ec20400",
+      "meaning": "Original body supporting 00658050 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "006502c0",
+      "hex": "8b44240425ff00000083c0f483f842772333d28a9008036500ff2495fc026500e8bbfbffffb001c20400e891fcffffb001c2040032c0c20400",
+      "meaning": "Original body supporting 006502c0 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "00656b90",
+      "hex": "568bf18b4e6c8b06518bceff500484c0741e8b566c8b46088b0c908b442408508b11ff523485c07410c7466cffffffffb8010000005ec2040033c05ec20400",
+      "meaning": "Original body supporting 00656b90 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "00656c30",
+      "hex": "53568bf1578b7c24108b1e57ff13508bceff530484c08b068bce57743f8b5e6cff103bd85774248b168bceff523485c0740e8b06578bceff50305f5e5bc204005f5eb8010000005bc204008b4e088b0c998b11ff52405f5e5bc20400ff50345f5e5bc20400",
+      "meaning": "Original body supporting 00656c30 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "006621e0",
+      "hex": "8a417c84c0740c8b496c85c97405e96d1dfeffc20400",
+      "meaning": "Original body supporting 006621e0 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065ac30",
+      "hex": "568b7424088b4604a900f00f04740c56e8bb750000b0015ec2040025ff0f00032d16000002744283e816742183e847740c56e899750000b0015ec204008b416c85c074098a56088890900000008b416c85c0741c8b51508b496852518bc8e8ed9dfeffb0015ec204006a00e8f07a0000b0015ec20400",
+      "meaning": "Original body supporting 0065ac30 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065ae90",
+      "hex": "51568b74240c578bf98b4604a900f00f04740e56e8577300005fb0015e59c2040025ff0f00033da00000010f87240100000f84f20000002d780000017463480f851c0100008a477d84c00f8448010000568bcfc746042f000002e8117300008b4614c74424100000000085c0740583c008eb05b8807986008d4c24105168402d830050e8d4ac18008b54241c83c40cc746047900000189560c5fb0015e59c204008a477dc746041400000184c07510568bcfe8b97200005fb0015e59c204008b460c53508d4c241068402d830051e89da1daff8bd883c40c8b0385c07402ff008b461485c074108b08498908750950e83c6d180083c4048b44240c8b1385c08956145b74148b104a89108b0885c9750950e81a6d180083c404568bcfe84f7200005fb0015e59c20400c68788000000018b460889878c0000008b760c3bc689b7900000007552c68788000000005fb0015e59c204002d2c000002742583e8477410568bcfe8077200005fb0015e59c204008b476c85c074098a4e088888900000008b4f6c85c974108b97940000008b47685250e8589afeff5fb0015e59c20400",
+      "meaning": "Original body supporting 0065ae90 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065acb0",
+      "hex": "8a416484c075146a006800300004e88d220000b801000000c2040033c0c20400",
+      "meaning": "Original body supporting 0065acb0 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065acd0",
+      "hex": "568bf18b4e6ce82591feff84c0741b6a0068004000048bcee8632200006a008bcee87a7a00005ec2040033c05ec20400",
+      "meaning": "Original body supporting 0065acd0 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065ad00",
+      "hex": "b807000000c20400",
+      "meaning": "Original body supporting 0065ad00 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065ad10",
+      "hex": "568bf1578a466484c0752b8b7c240c8b46603bf875208b06ff502884c08bce57740a8b16ff523c5f5ec204008b06ff50385f5ec204005f33c05ec20400",
+      "meaning": "Original body supporting 0065ad10 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065ad50",
+      "hex": "566a008bf1e8267b000083f80175198b4e6ce89990feff8b4e6ce8818efeffb8010000005ec2040033c05ec20400",
+      "meaning": "Original body supporting 0065ad50 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065b030",
+      "hex": "568bf18a466484c0754b8b86980000006a01508b08ff51308b86940000006a00508b10ff52308b8698000000508b08ff51248b8694000000508b10ff52246a0068003000048bcee8d41e0000b8010000005ec2040033c05ec20400",
+      "meaning": "Original body supporting 0065b030 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065b090",
+      "hex": "56576a008bf1e8d57600008bf885ff74428b86940000006a01508b08ff51308b86980000006a00508b10ff52308b8694000000508b08ff51248b8698000000508b10ff52246a0068004000048bcee86d1e00008bc75f5ec20400",
+      "meaning": "Original body supporting 0065b090 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065b0f0",
+      "hex": "8a416484c07505e99476000033c0c20400",
+      "meaning": "Original body supporting 0065b0f0 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065b110",
+      "hex": "568bf1578a466484c0752b8b7c240c8b46603bf875208b06ff502884c08bce57740a8b16ff523c5f5ec204008b06ff50385f5ec204005f33c05ec20400",
+      "meaning": "Original body supporting 0065b110 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065b150",
+      "hex": "64a1000000006aff6848588000506489250000000083ec205333db57538bf9e80c77000083f8010f852e0100008b4f6ce87b8cfeff8b4f6ce8638afeff389f880000000f84fa000000895c2424895c2410c74424142f000002895c24188d4424108bcf50895c2434e8437000008b442424895c24083bc3740583c008eb05b8807986008d4c2408565168402d830050e808aa18008b878c0000008b4c241883c40c3bc87c0a8b87900000003bc87e77508d54241468402d830052c74424280d000000c744242414000001e8e19edaff8bf083c40c8b063bc37402ff008b4424283bc374148b104a89108b083bcb750950e87b6a180083c4048b06894424288b4424103bc374148b104a89108b083bcb750950e8596a180083c4048d4c2414518bcfe88a6f00008b4424285e3bc374148b104a89108b083bcb750950e8306a180083c4045fb8010000005b8b4c242064890d0000000083c42cc204008b4c24285f33c05b64890d0000000083c42cc20400",
+      "meaning": "Original body supporting 0065b150 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065b2c0",
+      "hex": "64a1000000006aff6868588000508b4424106489250000000083ec1c57508bf9e89b76000083f8010f85230100008a87880000005333db3ac30f84fa000000895c2420895c240cc74424102f000002895c24148d4c240c895c242c518bcfe8dd6e00008b442420895c24343bc3740583c008eb05b8807986008d542434565268402d830050e8a2a818008b878c0000008b4c244483c40c3bc87c0a8b87900000003bc87e77508d44241068402d830050c74424240d000000c744242014000001e87b9ddaff8bf083c40c8b063bc37402ff008b4424243bc374148b104a89108b083bcb750950e81569180083c4048b44240c8b0e3bc3894c242474148b104a89108b083bcb750950e8f368180083c4048d5424108bcf52e8246e00008b4424245e3bc374148b104a89108b083bcb750950e8ca68180083c4045bb8010000005f8b4c241c64890d0000000083c428c204008b4c242033c05f64890d0000000083c428c20400",
+      "meaning": "Original body supporting 0065b2c0 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065c370",
+      "hex": "b801000000c20400",
+      "meaning": "Original body supporting 0065c370 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "0065c380",
+      "hex": "568bf18b4e6ce8757afeff6a008bcee8dc6300005ec20400",
+      "meaning": "Original body supporting 0065c380 shared input/focus policy; native ABI and backend limits documented separately"
+    },
+    {
+      "address": "006443dd",
+      "hex": "8b4c2424c744241c000000008b0185c07402ff008b318b4c242c8a4424285183ec088d5424188bcc89642430528974241c88442420e889ffffff8bcfe8d2fcffff",
+      "meaning": "006443c0 retains native string, takes explicit record index and style, then delegates006440f0"
+    },
+    {
+      "address": "006379ac",
+      "hex": "be00002028c781c801000007000000897c242489742410c744241415000001c74424180e000000c744241cd20700008d442410b980e48a0050897c2434",
+      "meaning": "Password mode7, child28200000, caption style14/ID2002 before modal selection"
+    },
+    {
+      "address": "00637a0a",
+      "hex": "897c2424897c2410c744241402000002c74424180a0000008d4c2410c74424300100000051b980e48a00e857e0fdff",
+      "meaning": "Password requests modal slot10 before explicit focus"
+    },
+    {
+      "address": "00637a55",
+      "hex": "33d28974241089542424c744241416000002897c2418",
+      "meaning": "Password queues explicit input focus after modal push"
+    },
+    {
+      "address": "0065711d",
+      "hex": "8b4560895c244c89442438c744243c16000002895c24408d542438b980e48a0052c644245c09e848e9fbff",
+      "meaning": "New list row queues its actual hierarchical identifier as focus target"
+    },
+    {
+      "address": "00621205",
+      "hex": "2d0a000002568bd90f84d501000083e80d74452dac0000000f853602000033f6c74424300000100889742444c744243416000002897424388d4c2430c74424680200000051b980e48a00e83c48ffff",
+      "meaning": "Profile handler subtract chain recognizes020000c3 and queues target08100000/code02000016"
+    },
+    {
+      "address": "00656c00",
+      "hex": "568bf18b4e6c8b06518bceff500484c0740f8b566c8b46085e8b0c908b11ff623c33c05ec20400",
+      "meaning": "Group deactivation validates focus, rereads it and tail-forwards argument to child +3c"
+    }
+  ],
+  "vtables": [
+    {
+      "address": "00813ce0",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00813d68",
+      "targets": [
+        "00662760",
+        "00662490"
+      ]
+    },
+    {
+      "address": "00813df0",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00813e78",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00813f00",
+      "targets": [
+        "00662760",
+        "00662490"
+      ]
+    },
+    {
+      "address": "00813f18",
+      "targets": [
+        "00662790",
+        "00662880"
+      ]
+    },
+    {
+      "address": "00813f44",
+      "targets": [
+        "00662980",
+        "006629c0"
+      ]
+    },
+    {
+      "address": "00813f88",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814010",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814098",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814120",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "008141a8",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814230",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "008142b8",
+      "targets": [
+        "00662760",
+        "00662490"
+      ]
+    },
+    {
+      "address": "00814340",
+      "targets": [
+        "00662760",
+        "00662490"
+      ]
+    },
+    {
+      "address": "008143c8",
+      "targets": [
+        "00658050",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814450",
+      "targets": [
+        "00656aa0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "008144d8",
+      "targets": [
+        "006554b0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814560",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "008145e8",
+      "targets": [
+        "00657880",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814670",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "008146f8",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814780",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814808",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814890",
+      "targets": [
+        "00656aa0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814918",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "008149a0",
+      "targets": [
+        "00667810",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814a28",
+      "targets": [
+        "006554b0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814ab0",
+      "targets": [
+        "00656aa0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814b38",
+      "targets": [
+        "00656aa0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814bc0",
+      "targets": [
+        "006502c0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814c48",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814cd0",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814d58",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814de0",
+      "targets": [
+        "00656aa0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814e68",
+      "targets": [
+        "00656aa0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814ef0",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00814f78",
+      "targets": [
+        "0064efd0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815000",
+      "targets": [
+        "0064e770",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815088",
+      "targets": [
+        "006554b0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815110",
+      "targets": [
+        "00656aa0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815198",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815220",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "008152a8",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815330",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "008153b8",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815440",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "008154d8",
+      "targets": [
+        "0064da30",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815560",
+      "targets": [
+        "00668670",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815570",
+      "targets": [
+        "00656b20"
+      ]
+    },
+    {
+      "address": "008155c4",
+      "targets": [
+        "00668400"
+      ]
+    },
+    {
+      "address": "008155f8",
+      "targets": [
+        "006691b0",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815608",
+      "targets": [
+        "00656b20"
+      ]
+    },
+    {
+      "address": "0081565c",
+      "targets": [
+        "00668400"
+      ]
+    },
+    {
+      "address": "008156d8",
+      "targets": [
+        "00668670",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "008156e8",
+      "targets": [
+        "00656b20"
+      ]
+    },
+    {
+      "address": "0081573c",
+      "targets": [
+        "00668400"
+      ]
+    },
+    {
+      "address": "00815938",
+      "targets": [
+        "00668670",
+        "0064da40"
+      ]
+    },
+    {
+      "address": "00815948",
+      "targets": [
+        "00656b20"
+      ]
+    },
+    {
+      "address": "0081599c",
+      "targets": [
+        "00668400"
+      ]
+    }
+  ],
+  "direct_calls": [
+    {
+      "site": "00643c11",
+      "target": "00643b20"
+    },
+    {
+      "site": "00643c72",
+      "target": "00643b20"
+    },
+    {
+      "site": "006502e0",
+      "target": "0064fea0"
+    },
+    {
+      "site": "006502ea",
+      "target": "0064ff80"
+    },
+    {
+      "site": "0065554c",
+      "target": "00656700"
+    },
+    {
+      "site": "006555b3",
+      "target": "006169d0"
+    },
+    {
+      "site": "006555bd",
+      "target": "00616100"
+    },
+    {
+      "site": "006555c9",
+      "target": "00616100"
+    },
+    {
+      "site": "006555e1",
+      "target": "006169d0"
+    },
+    {
+      "site": "0065560f",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "00655619",
+      "target": "006553a0"
+    },
+    {
+      "site": "00655647",
+      "target": "00656700"
+    },
+    {
+      "site": "006556bf",
+      "target": "006157d0"
+    },
+    {
+      "site": "006556cd",
+      "target": "00616100"
+    },
+    {
+      "site": "006556e2",
+      "target": "006157d0"
+    },
+    {
+      "site": "006556ee",
+      "target": "00616100"
+    },
+    {
+      "site": "00655706",
+      "target": "006169d0"
+    },
+    {
+      "site": "00655736",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "00655740",
+      "target": "00655430"
+    },
+    {
+      "site": "0065ac40",
+      "target": "00662200"
+    },
+    {
+      "site": "0065ac62",
+      "target": "00662200"
+    },
+    {
+      "site": "0065ac8e",
+      "target": "00644a80"
+    },
+    {
+      "site": "0065ac9b",
+      "target": "00662790"
+    },
+    {
+      "site": "0065acbe",
+      "target": "0065cf50"
+    },
+    {
+      "site": "0065acd6",
+      "target": "00643e00"
+    },
+    {
+      "site": "0065ace8",
+      "target": "0065cf50"
+    },
+    {
+      "site": "0065acf1",
+      "target": "00662770"
+    },
+    {
+      "site": "0065ad55",
+      "target": "00662880"
+    },
+    {
+      "site": "0065ad62",
+      "target": "00643e00"
+    },
+    {
+      "site": "0065ad6a",
+      "target": "00643bf0"
+    },
+    {
+      "site": "0065aea4",
+      "target": "00662200"
+    },
+    {
+      "site": "0065aeea",
+      "target": "00662200"
+    },
+    {
+      "site": "0065af13",
+      "target": "007e5bec"
+    },
+    {
+      "site": "0065af42",
+      "target": "00662200"
+    },
+    {
+      "site": "0065af5e",
+      "target": "00405100"
+    },
+    {
+      "site": "0065af7f",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "0065afa1",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "0065afac",
+      "target": "00662200"
+    },
+    {
+      "site": "0065aff4",
+      "target": "00662200"
+    },
+    {
+      "site": "0065b023",
+      "target": "00644a80"
+    },
+    {
+      "site": "0065b077",
+      "target": "0065cf50"
+    },
+    {
+      "site": "0065b096",
+      "target": "00662770"
+    },
+    {
+      "site": "0065b0de",
+      "target": "0065cf50"
+    },
+    {
+      "site": "0065b16f",
+      "target": "00662880"
+    },
+    {
+      "site": "0065b180",
+      "target": "00643e00"
+    },
+    {
+      "site": "0065b188",
+      "target": "00643bf0"
+    },
+    {
+      "site": "0065b1b8",
+      "target": "00662200"
+    },
+    {
+      "site": "0065b1df",
+      "target": "007e5bec"
+    },
+    {
+      "site": "0065b21a",
+      "target": "00405100"
+    },
+    {
+      "site": "0065b240",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "0065b262",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "0065b271",
+      "target": "00662200"
+    },
+    {
+      "site": "0065b28b",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "0065b2e0",
+      "target": "00662980"
+    },
+    {
+      "site": "0065b31e",
+      "target": "00662200"
+    },
+    {
+      "site": "0065b345",
+      "target": "007e5bec"
+    },
+    {
+      "site": "0065b380",
+      "target": "00405100"
+    },
+    {
+      "site": "0065b3a6",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "0065b3c8",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "0065b3d7",
+      "target": "00662200"
+    },
+    {
+      "site": "0065b3f1",
+      "target": "007e1cc0"
+    },
+    {
+      "site": "0065c386",
+      "target": "00643e00"
+    },
+    {
+      "site": "0065c38f",
+      "target": "00662770"
+    },
+    {
+      "site": "0066250c",
+      "target": "00662380"
+    },
+    {
+      "site": "00662546",
+      "target": "00644000"
+    },
+    {
+      "site": "006625a4",
+      "target": "0064d5f0"
+    },
+    {
+      "site": "006625f8",
+      "target": "00644000"
+    },
+    {
+      "site": "006626ed",
+      "target": "00644000"
+    },
+    {
+      "site": "00662995",
+      "target": "00643900"
+    },
+    {
+      "site": "006629aa",
+      "target": "0065cf50"
+    },
+    {
+      "site": "00662a48",
+      "target": "006443c0"
+    },
+    {
+      "site": "00662a7c",
+      "target": "00643900"
+    },
+    {
+      "site": "00662a91",
+      "target": "00644080"
+    }
+  ],
+  "resource_anchors": [],
+  "ui_virtual_routes": [
+    {
+      "table": "00813cc0",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00813d48",
+      "lookup": "0065c830",
+      "key": "00662760",
+      "character": "00662490",
+      "focus_enter": "0065b030"
+    },
+    {
+      "table": "00813dd0",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00813e58",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00813ee0",
+      "lookup": "0065c830",
+      "key": "00662760",
+      "character": "00662490",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00813f68",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00664140"
+    },
+    {
+      "table": "00813ff0",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00814078",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00663c70"
+    },
+    {
+      "table": "00814100",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00655000"
+    },
+    {
+      "table": "00814188",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00814210",
+      "lookup": "00664b50",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00665430"
+    },
+    {
+      "table": "00814298",
+      "lookup": "0065c830",
+      "key": "00662760",
+      "character": "00662490",
+      "focus_enter": "0065c370"
+    },
+    {
+      "table": "00814320",
+      "lookup": "0065c830",
+      "key": "00662760",
+      "character": "00662490",
+      "focus_enter": "0065acb0"
+    },
+    {
+      "table": "008143a8",
+      "lookup": "00658080",
+      "key": "00658050",
+      "character": "0064da40",
+      "focus_enter": "00658230"
+    },
+    {
+      "table": "00814430",
+      "lookup": "0065c830",
+      "key": "00656aa0",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "008144b8",
+      "lookup": "0065c830",
+      "key": "006554b0",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "00814540",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "008145c8",
+      "lookup": "006578b0",
+      "key": "00657880",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "00814650",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00652170"
+    },
+    {
+      "table": "008146d8",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00814760",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "008147e8",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00814870",
+      "lookup": "0065aaf0",
+      "key": "00656aa0",
+      "character": "0064da40",
+      "focus_enter": "0065a990"
+    },
+    {
+      "table": "008148f8",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00814980",
+      "lookup": "0065c830",
+      "key": "00667810",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "00814a08",
+      "lookup": "0065c830",
+      "key": "006554b0",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "00814a90",
+      "lookup": "00651ea0",
+      "key": "00656aa0",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "00814b18",
+      "lookup": "00653810",
+      "key": "00656aa0",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "00814ba0",
+      "lookup": "0064fe60",
+      "key": "006502c0",
+      "character": "0064da40",
+      "focus_enter": "006504f0"
+    },
+    {
+      "table": "00814c28",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00655000"
+    },
+    {
+      "table": "00814cb0",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00655250"
+    },
+    {
+      "table": "00814d38",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00814dc0",
+      "lookup": "00661400",
+      "key": "00656aa0",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "00814e48",
+      "lookup": "00659130",
+      "key": "00656aa0",
+      "character": "0064da40",
+      "focus_enter": "00659710"
+    },
+    {
+      "table": "00814ed0",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00653c50"
+    },
+    {
+      "table": "00814f58",
+      "lookup": "0065c830",
+      "key": "0064efd0",
+      "character": "0064da40",
+      "focus_enter": "0064ea20"
+    },
+    {
+      "table": "00814fe0",
+      "lookup": "0065c830",
+      "key": "0064e770",
+      "character": "0064da40",
+      "focus_enter": "0064ea20"
+    },
+    {
+      "table": "00815068",
+      "lookup": "0065c830",
+      "key": "006554b0",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "008150f0",
+      "lookup": "006610c0",
+      "key": "00656aa0",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "00815178",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00654840"
+    },
+    {
+      "table": "00815200",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00653d40"
+    },
+    {
+      "table": "00815288",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "006644a0"
+    },
+    {
+      "table": "00815310",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "00815398",
+      "lookup": "0064f180",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064f960"
+    },
+    {
+      "table": "00815420",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "0064da60"
+    },
+    {
+      "table": "008154b8",
+      "lookup": "0065c830",
+      "key": "0064da30",
+      "character": "0064da40",
+      "focus_enter": "00655250"
+    },
+    {
+      "table": "00815540",
+      "lookup": "0065c830",
+      "key": "00668670",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "008155d8",
+      "lookup": "0065c830",
+      "key": "006691b0",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "008156b8",
+      "lookup": "0065c830",
+      "key": "00668670",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    },
+    {
+      "table": "00815918",
+      "lookup": "0065c830",
+      "key": "00668670",
+      "character": "0064da40",
+      "focus_enter": "00656b20"
+    }
+  ],
+  "ui_virtual_route_interval": [
+    "00813c80",
+    "00815b00"
+  ],
+  "focus_event_sites": [
+    "006215a4 00621470 MOV dword ptr [ESP + 0x100],0x2000016",
+    "00621c58 00621470 PUSH 0x20000c3",
+    "00621c5d 00621470 PUSH 0x20000c3",
+    "00621c7c 00621470 PUSH 0x20000c3",
+    "00621c81 00621470 PUSH 0x20000c3",
+    "006223f0 00621470 PUSH 0x20000c3",
+    "006223f5 00621470 PUSH 0x20000c3",
+    "00622412 00621470 PUSH 0x20000c3",
+    "00622417 00621470 PUSH 0x20000c3",
+    "006227de 00621470 MOV dword ptr [ESP + 0x3b8],0x2000016",
+    "00637a5f 00637990 MOV dword ptr [ESP + 0x14],0x2000016",
+    "00657128 00656ed0 MOV dword ptr [ESP + 0x3c],0x2000016",
+    "006591c5 unclassified CMP EAX,0x2000016",
+    "0065ac50 0065ac30 SUB EAX,0x2000016",
+    "006622b2 00662200 SUB EAX,0x2000016",
+    "00668528 006684f0 CMP EAX,0x2000016",
+    "00682df8 00682980 PUSH 0x6001016",
+    "00687b3f 00687ae0 MOV dword ptr [ESP + 0x28],0x2000016",
+    "0068b938 0068aed0 MOV dword ptr [EBP + 0xfffffdfc],0x2000016"
+  ]
+}

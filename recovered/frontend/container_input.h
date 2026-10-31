@@ -36,6 +36,13 @@ int container_activate(Container& container, std::uint32_t target) {
     return container.activate_control(container.focused_control(), target);
 }
 
+// 00656c00 / +3c: forward to the freshly resolved focused child's +3c.
+template<class Container>
+int container_deactivate(Container& container, std::uint32_t target) {
+    if (!container.valid_control(container.focused_control())) return 0;
+    return container.deactivate_control(container.focused_control(), target);
+}
+
 // 00656c30: retain virtual leave/enter calls and repeat target lookup after
 // validity. The focused child receives movement when the target stays in it.
 template<class Container>

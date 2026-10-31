@@ -2,6 +2,7 @@
 #define HD2_FRONTEND_APPLICATION_EVENTS_H
 
 #include "frontend/control_events.h"
+#include "frontend/focus_requests.h"
 
 #include <array>
 #include <optional>
@@ -26,6 +27,12 @@ inline constexpr std::array<MenuApplicationHandler, 5> menu_application_handlers
 template<class Services>
 bool dispatch_menu_application_event(Services& services, ControlEvent& event) {
     for (const auto handler : menu_application_handlers) {
+        // 006211e0's C3 branch is unconditional: queue explicit Profile focus.
+        // Other Profile behavior still belongs to its application service.
+        if (handler == MenuApplicationHandler::profiles && (event.code & 0x03000fffu) == 0x020000c3) {
+            request_control_focus(services, 0x08100000);
+            return true;
+        }
         if (services.dispatch_handler(handler, event)) return true;
     }
     const auto family_is = [&](std::uint32_t family) {

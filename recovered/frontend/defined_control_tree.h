@@ -64,6 +64,9 @@ public:
     int activate(std::uint32_t target) {
         return group_ ? container_activate(*this, target) : leaf_->activate(queue_);
     }
+    int deactivate(std::uint32_t target) {
+        return group_ ? container_deactivate(*this, target) : leaf_->deactivate(queue_);
+    }
     int click(std::uint32_t target) { return group_ ? screen_click(*this, target) : leaf_->click(queue_); }
     int wheel(std::uint32_t target, std::int32_t delta) {
         return group_ ? screen_wheel(*this, target, delta) : leaf_->wheel_event(queue_);
@@ -108,6 +111,7 @@ public:
     int leave_control(int index, std::uint32_t target) { return child_at(index).leave_focus(target); }
     int move_control(int index, std::uint32_t target) { return child_at(index).pointer_focus(target); }
     int activate_control(int index, std::uint32_t target) { return child_at(index).activate(target); }
+    int deactivate_control(int index, std::uint32_t target) { return child_at(index).deactivate(target); }
     int click_control(int index, std::uint32_t target) { return child_at(index).click(target); }
     int wheel_control(int index, std::uint32_t target, std::int32_t delta) { return child_at(index).wheel(target, delta); }
     int pointer_control(int index, ScreenPointerCallback callback, std::uint32_t target) {

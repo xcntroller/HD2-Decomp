@@ -155,10 +155,8 @@ private:
         void preprocess_buffers(const std::uint32_t*, const std::uint32_t*) {}
         bool screens_available() const { return owner_.events_->screens().current() != nullptr; }
         bool wide_character_mode() const { return owner_.startup_.wide_characters(); }
-        bool character_current_target(std::uint32_t) const {
-            if (owner_.events_->common_state().capture_owner)
-                throw std::logic_error("Captured character-target backend is not implemented");
-            return false; // Actual absent +10 target for the implemented Main/Exit menu.
+        bool character_current_target(std::uint32_t value) const {
+            return frontend::character_current_target(owner_.events_->common_state(), value);
         }
         void trace_wide_character(std::uint16_t value) const {
             char message[64]; std::snprintf(message, sizeof(message), "KEY VALUE = %u\n", value);

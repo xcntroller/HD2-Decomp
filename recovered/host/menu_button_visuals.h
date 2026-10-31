@@ -122,6 +122,14 @@ public:
         return frontend::button_activate(adapter);
     }
 
+    int deactivate(frontend::ControlEventDestination& upstream) {
+        EventDestination destination{*this, &upstream};
+        if (!events_bound_) throw std::logic_error("Button events are not bound");
+        FocusAdapter adapter{*this, destination};
+        adapter.emit_event(0x04002000, 0); // 0064dac0, no disabled gate.
+        return 7;
+    }
+
     bool click(frontend::ControlEventDestination& upstream) {
         EventDestination destination{*this, &upstream};
         if (!events_bound_) throw std::logic_error("Button events are not bound");

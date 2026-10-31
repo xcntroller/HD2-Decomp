@@ -55,6 +55,7 @@ public:
     }
     int wheel_event(frontend::ControlEventDestination& events) { return button().wheel_event(events); }
     bool activate(frontend::ControlEventDestination& events) { return button().activate(events); }
+    int deactivate(frontend::ControlEventDestination& events) { return button().deactivate(events); }
     bool click(frontend::ControlEventDestination& events) { return button().click(events); }
     void bind_pick_target(std::uint32_t id) { button().bind_pick_target(id); }
 private:

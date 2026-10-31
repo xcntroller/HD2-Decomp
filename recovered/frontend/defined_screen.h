@@ -3,6 +3,8 @@
 
 #include "frontend/menu_definition.h"
 #include "frontend/screen_target.h"
+#include "frontend/screen_key.h"
+#include "frontend/screen_focus.h"
 #include "frontend/pointer_dispatch.h"
 
 #include <limits>
@@ -30,8 +32,7 @@ public:
     // Binding is explicit host availability policy. Unbound original children
     // retain their indices/IDs but cannot receive focus, keys or activation.
     void bind_control(int index, Control& control) {
-        if (!valid_control(index) || definition_.controls[static_cast<std::size_t>(index)].kind !=
-                MenuControlKind::button || controls_[static_cast<std::size_t>(index)] != nullptr) {
+        if (!valid_control(index) || controls_[static_cast<std::size_t>(index)] != nullptr) {
             throw std::logic_error("Invalid or duplicate screen control binding");
         }
         controls_[static_cast<std::size_t>(index)] = &control;
@@ -53,6 +54,9 @@ public:
                controls_[static_cast<std::size_t>(index)]->disabled();
     }
     std::uint32_t control_argument(int index) const { return ids_.at(static_cast<std::size_t>(index)); }
+    int enter_focus(std::uint32_t target) { return screen_focus_enter(*this, target); }
+    int leave_focus(std::uint32_t target) { return screen_focus_leave(*this, target); }
+    bool key(std::uint32_t word) { return screen_key(*this, word); }
     bool key_control(int index, std::uint32_t key) { return bound(index).key(key); }
     bool activate_control(int index, std::uint32_t) {
         return !control_disabled(index) && bound(index).activate(events_);

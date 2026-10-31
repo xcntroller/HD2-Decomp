@@ -11,6 +11,7 @@ namespace hd2::frontend {
 class FrontendCaptureOwner {
 public:
     virtual ~FrontendCaptureOwner() = default;
+    virtual bool character(std::uint32_t value) = 0; // Original +24.
     virtual bool release(std::uint32_t argument) = 0; // Original +64.
     virtual void acquire(std::uint32_t argument) = 0; // Original +68.
 };
@@ -25,6 +26,13 @@ struct CommonFrontendState {
     std::vector<std::uint32_t> resource_tokens;
     std::vector<std::uint32_t> notification_tokens;
 };
+
+// 0066b3e0's self+10 / virtual +24 dispatch. Retain the native owner for
+// callback lifetime, but resolve state again for each subsequent character.
+inline bool character_current_target(CommonFrontendState& state, std::uint32_t value) {
+    auto target = state.capture_owner;
+    return target && target->character(value);
+}
 
 // Remaining non-stack branches of 0066c950. Backend calls are explicit engine,
 // application and input services. Reacquire state after external callbacks;

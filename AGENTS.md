@@ -3,12 +3,14 @@
 When instructed to continue:
 
 1. Read `HANDOFF.md` and the current milestone in `plan.md`.
-2. Select the next meaningful subsystem from `plan.md` and finish one coherent,
-   testable slice in the iteration.
+2. Select the next unchecked checkbox from `plan.md`. Research its entire
+   completion boundary and dependencies before implementation, then implement
+   the complete checkbox in one sweep. Do not stop at a smaller source slice
+   unless blocked or the user explicitly requests that narrower scope.
 3. Read only the relevant research notes and source files.
 4. Investigate original behavior before implementing it.
 5. Preserve evidence for important behavioral claims, including original function addresses.
-6. Implement the smallest testable reconstruction.
+6. Implement the smallest testable reconstruction that completes that checkbox.
 7. Run the relevant builds, tests, and sanitizer audits.
 8. Update the research notes, plan, function ledger and handoff as applicable.
    Keep `HANDOFF.md` to the latest result and next work; link detailed contracts

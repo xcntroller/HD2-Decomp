@@ -48,11 +48,15 @@ branch is reconstructed, not the complete pump or keyboard-message mode.
 ## Scope and validation
 
 The subsequent [input producer](binding-producer.md) supplies source-recovered
-binding-to-buffer evaluation. Actual binding installation/defaults, device
-ownership, character targets, ACP conversion and diagnostic services remain
-required before live integration. No successful
-stand-ins are provided. The normal menu has no new text-input flow. Focus entry
-and navigation callers remain an open part of the checklist.
+binding-to-buffer evaluation. The later [captured editing/focus
+slice](menu-character-focus.md) supplies typed character owners and recovered
+edit methods. Startup now supplies binding/device ownership, ACP conversion and
+diagnostics for bounded Main/Exit; those screens install no character target.
+Widget frame/data integration remains in the widget and screen-flow items.
+The shared input/focus checklist contract is now complete, with unused derived
+routes explicitly source-only. Actual list/specialized navigation callers and
+initial-focus requests are recovered; no shared Tab/arrow binding is invented.
+Main/Exit install no character owner and enable no new text-input flow.
 
 Native source zero-extends the meaningful scan byte; the original initializes
 only the low byte of its local DWORD and forwards uninitialized upper bytes.
