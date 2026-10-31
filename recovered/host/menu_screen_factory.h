@@ -26,7 +26,8 @@ public:
                       std::function<void(const frontend::MenuScreenDefinition&)> attach_cinematics={},
                       std::function<std::unique_ptr<MenuControl>(const frontend::MenuControlDefinition&,EngineFrame*,MenuTextObject&)> extra={},
                       EngineFrame* options_model=nullptr,
-                      std::function<frontend::MenuScreenDefinition()> build_options={})
+                      std::function<frontend::MenuScreenDefinition()> build_options={},
+                      EngineFrame* profiles_model=nullptr, std::function<frontend::MenuScreenDefinition()> build_profiles={})
         : scene_(scene), module_(module), text_lookup_(std::move(text_lookup)),
           queue_(queue), products_(products), bindings_(bindings), widgets_(widgets),build_cinematics_(std::move(build_cinematics)),attach_cinematics_(std::move(attach_cinematics)),extra_(std::move(extra)),
           main_{scene.main_model_frame(), false, credits ?
@@ -35,7 +36,8 @@ public:
           confirmation_{scene.confirmation_model_frame(), true,
                         {frontend::MenuControlRole::yes, frontend::MenuControlRole::no}},
           cinematics_{cinematic_model,false,{frontend::MenuControlRole::play,frontend::MenuControlRole::back,frontend::MenuControlRole::movie_list}},
-          options_{options_model,false,{}},build_options_(std::move(build_options)) {
+          options_{options_model,false,{}},build_options_(std::move(build_options)),profiles_{profiles_model,false,{frontend::MenuControlRole::profiles}},build_profiles_(std::move(build_profiles)) {
+        if(profiles_model && build_profiles_ && attach_cinematics_)main_.available.push_back(frontend::MenuControlRole::profiles);
         if(cinematic_model && build_cinematics_ && attach_cinematics_)
             main_.available.push_back(frontend::MenuControlRole::cinematics);
         if(options_model && build_options_ && attach_cinematics_)
@@ -45,6 +47,7 @@ public:
     void create_definitions() {
         definitions_ = {frontend::main_menu_definition(), frontend::confirmation_definition()};
         if(cinematics_.root) definitions_.push_back({"cinematics",0x1c000000,"single mission 2",{}});
+        if(profiles_.root) definitions_.push_back({"profiles",0x08000000,"change_profile",{}});
         if(options_.root) definitions_.push_back({"options",0x18000000,"options",{}});
     }
     std::size_t definition_count() const { return definitions_.size(); }
@@ -56,12 +59,13 @@ public:
         std::vector<frontend::MenuControlRole> available;
     };
     Model* load_model(const frontend::MenuScreenDefinition& definition) {
-        Model* model = definition.identifier == 0x04000000 ? &main_ :
+        Model* model = definition.identifier == 0x08000000 ? &profiles_ : definition.identifier == 0x04000000 ? &main_ :
                        definition.identifier == 0x10000000 ? &confirmation_ : definition.identifier == 0x1c000000 ? &cinematics_ : definition.identifier == 0x18000000 ? &options_ : nullptr;
         if (!model) throw std::logic_error("Screen needs a recovered engine/model backend");
         return model->root ? model : nullptr;
     }
     void augment_screen(frontend::ScreenBuilder builder, frontend::MenuScreenDefinition& definition, Model*) {
+        if(builder==frontend::ScreenBuilder::profile && build_profiles_ && attach_cinematics_){definition=build_profiles_();attach_cinematics_(definition);return;}
         if(builder==frontend::ScreenBuilder::cinematics && build_cinematics_ && attach_cinematics_){definition=build_cinematics_();attach_cinematics_(definition);return;}
         if(builder==frontend::ScreenBuilder::options && build_options_ && attach_cinematics_){definition=build_options_();attach_cinematics_(definition);return;}
         throw std::logic_error("Screen-specific application builder is not reconstructed");
@@ -102,6 +106,8 @@ private:
     Model cinematics_;
     Model options_;
     std::function<frontend::MenuScreenDefinition()> build_options_;
+    Model profiles_;
+    std::function<frontend::MenuScreenDefinition()> build_profiles_;
     std::vector<frontend::MenuScreenDefinition> definitions_;
 };
 

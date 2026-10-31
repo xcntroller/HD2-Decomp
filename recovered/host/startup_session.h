@@ -19,6 +19,7 @@
 #include "host/human_store.h"
 #include "host/joystick_backend.h"
 #include "host/profile_directories.h"
+#include "host/profile_management.h"
 #include "host/resource_directories.h"
 #include "host/loaded_resources.h"
 #include "host/settings_services.h"
@@ -158,6 +159,37 @@ public:
     bool mission_active() const { return world_!=nullptr; } //00698500's actual mission-owner condition.
     input::BindingConfiguration& profile_bindings() { return data_.profile().options.bindings; }
     const std::string& profile_name() { return data_.profile().directories.current_name; }
+    std::vector<std::string> profile_names() {
+        std::vector<std::string> result;
+        data_.profile().directories.scan(profile_platform_,files_,wide_characters(),
+            [](const char* name,void* owner){static_cast<std::vector<std::string>*>(owner)->emplace_back(name);},&result);
+        return result;
+    }
+    void select_managed_profile(const std::string& name) {
+        frontend::SettingsSound<SettingsServices> sound(sound_data_.settings,gate_,settings_backend_);
+        frontend::SettingsControl<SettingsServices> control(control_data_.wrapper0c,settings_backend_);
+        frontend::select_and_remember_profile(data_.configuration(),data_.profile(),name.c_str(),profile_words_,
+            files_,profile_platform_,wide_characters(),input_.state(),input_,settings_backend_,sound,control,
+            input_flag_,&data_.game(),text_);
+    }
+    unsigned profile_difficulty() {return data_.profile().payload.words[0x34/4];}
+    void profile_difficulty(unsigned value) {data_.profile().payload.words[0x34/4]=value;}
+    bool save_managed_profile(){return frontend::save_profile_payload(data_.profile(),files_,wide_characters());}
+    int create_managed_profile(const std::string& name) {
+        if(wide_characters())throw std::runtime_error("Profile editing requires the delivered English mode");
+        return ProfileFilesystem(directory_.get()).create(name);
+    }
+    int rename_managed_profile(const std::string& from,const std::string& to) {
+        if(wide_characters())throw std::runtime_error("Profile editing requires the delivered English mode");
+        const int result=ProfileFilesystem(directory_.get()).rename(from,to);
+        if(result==1) {data_.profile().directories.current_name=to;save_managed_profile();
+                      data_.configuration().set_profile(files_,to);}
+        return result;
+    }
+    bool delete_managed_profile(const std::string& name) {
+        if(wide_characters())throw std::runtime_error("Profile editing requires the delivered English mode");
+        return ProfileFilesystem(directory_.get()).remove(name);
+    }
     bool save_options() {
         const bool result=frontend::save_profile_options(data_.profile().options,
             data_.profile().directories,files_,wide_characters());

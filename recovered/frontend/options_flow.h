@@ -10,6 +10,7 @@ namespace hd2::frontend {
 template <class Services> class OptionsFlow {
   public:
     explicit OptionsFlow(Services &services) : services_(services) {}
+    void profile_changed() { first_entry_=true; }
     bool dispatch(ControlEvent &event) {
         switch (event.code & 0x03000fffu) {
         case 0x0200000a:

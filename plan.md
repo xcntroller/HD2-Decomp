@@ -106,7 +106,7 @@ Original object ABI is tracked separately from native menu delivery.
 | [Shared dialogs](analysis/menu-family-delivery.md#shared-dialogs) | Yes/No/OK, prompts, text/password, errors and cancellation | Quit Yes/No accepted; runtime integration accepted through Options; other callers open |
 | [Credits/cinematics](analysis/menu-family-delivery.md#credits-and-cinematics) | Retained controller, list/playback and return | Credits and Cinematics accepted |
 | [Options](analysis/menu-family-delivery.md#options) | All pages/bindings, apply/Back/persistence and owner variants | Front-end accepted; in-game owner open |
-| [Profiles](analysis/menu-family-delivery.md#profiles) | List/select/create/rename/delete and validation | Startup persistence recovered; menu flow open |
+| [Profiles](analysis/menu-family-delivery.md#profiles) | List/select/create/rename/delete and validation | Startup persistence recovered; desktop accepted |
 | [Saves/loading](analysis/menu-family-delivery.md#saves-and-loading) | Actual metadata, errors and game/controller handoff | No extra save-screen registration inferred; real receivers required |
 | [Single player](analysis/menu-family-delivery.md#single-player) | Campaign/lone-wolf/carnage, hero/team/equipment/briefing/results | Resolved roles/dependencies; real handoffs remain open |
 | [Multiplayer](analysis/menu-family-delivery.md#multiplayer) | Browser/create/connect/lobby/errors and owner variants | Controlled local services required; legacy service availability explicit |
@@ -122,7 +122,8 @@ Original object ABI is tracked separately from native menu delivery.
   [Accepted through Options2026-10-31](analysis/runtime-dialog-integration.md).
 - [x] Deliver Options, including binding editors and original settings semantics.
   [Desktop accepted2026-10-31](analysis/options-flow.md).
-- [ ] Deliver profiles/saves using isolated writable copies for persistence validation.
+- [x] Deliver profile management and persistence using isolated writable copies.
+  [Desktop accepted2026-10-31](analysis/profiles-flow.md#desktop-acceptance). Gameplay saves follow later.
 - [ ] Finish Main's live profile, last-save, date/time and version labels and eligibility.
   [Labels and data dependencies](analysis/menu-family-delivery.md#main-menu).
 - [ ] Deliver single-player setup through a documented game-controller handoff.
@@ -139,7 +140,7 @@ validation → tracker update → commit. Never enable dead actions or count pla
 service responses as completed flows.
 
 The linked family checklists define concrete flow boundaries and validation levels;
-Credits, Cinematics, front-end Options and runtime dialog integration are accepted; 25 delivery items remain open. Native fixtures establish UI/payload/ownership
+Credits, Cinematics, front-end Options and runtime dialog integration are accepted; 23 delivery items remain open. Native fixtures establish UI/payload/ownership
 contracts, separately from actual desktop and real game/network handoff acceptance.
 
 ## 4. Finish fidelity and replace remaining scaffolding

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Credits/Cinematics/front-end Options/runtime dialog integration desktop accepted2026-10-31;25 delivery items open",
+  "status": "Credits/Cinematics/front-end Options/runtime dialog integration/profiles desktop accepted2026-10-31;23 delivery items open",
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
@@ -312,7 +312,7 @@
         {
           "key": "profiles.select",
           "title": "Deliver profile list selection, labels and Back",
-          "status": "open",
+          "status": "complete",
           "roles": [
             "main:2"
           ],
@@ -332,12 +332,18 @@
           ],
           "native_validation": "Audit iterator-generated retained text, selected/current names, difficulty/description state, real selection/load/apply and cleanup ordering; include empty list and stale selection.",
           "desktop_validation": "Enter Change Profile, navigate/select actual copied profiles, verify current profile/settings and Main labels after Back.",
-          "failure_acceptance": "Aliased input, missing directory, failed load and empty selection keep original outcomes; never fabricate a default successful profile."
+          "failure_acceptance": "Aliased input, missing directory, failed load and empty selection keep original outcomes; never fabricate a default successful profile.",
+          "desktop_acceptance": {
+            "date": "2026-10-31",
+            "confirmation": "Good, works as expected. Record, commit and continue.",
+            "application_sha256": "5e6882429e45bd8805e167ee72a8f243feb7d6ca6c8bbe576b028123cac5acf7",
+            "scope": "English front-end profiles/persistence; no individual case execution inferred."
+          }
         },
         {
           "key": "profiles.manage",
           "title": "Deliver create/rename/delete, validation and confirmation",
-          "status": "open",
+          "status": "complete",
           "roles": [
             "main:2"
           ],
@@ -356,9 +362,16 @@
           ],
           "native_validation": "Audit actual edit/list callbacks, duplicate/invalid names, case/physical mapping, delete confirmation and directory/file failures; preserve original prompt codes and focus restoration.",
           "desktop_validation": "Create, select, rename, cancel and delete only copied profiles; reopen/restart and compare persisted files plus error dialogs.",
-          "failure_acceptance": "Original profiles remain untouched; partial filesystem failures must not report success or leave UI selection/context dangling."
+          "failure_acceptance": "Original profiles remain untouched; partial filesystem failures must not report success or leave UI selection/context dangling.",
+          "desktop_acceptance": {
+            "date": "2026-10-31",
+            "confirmation": "Good, works as expected. Record, commit and continue.",
+            "application_sha256": "5e6882429e45bd8805e167ee72a8f243feb7d6ca6c8bbe576b028123cac5acf7",
+            "scope": "English front-end profiles/persistence; no individual case execution inferred."
+          }
         }
-      ]
+      ],
+      "implementation": "English front-end profiles desktop accepted2026-10-31; analysis/profiles-flow.md."
     },
     {
       "key": "saves",

@@ -127,14 +127,18 @@ Reuse real startup profile selection/load/save and directory adapters; menu CRUD
 
 Primary numbered roles: `main:2`.
 
-- [ ] **profiles.select — Deliver profile list selection, labels and Back.**
+[Integrated profile implementation](profiles-flow.md): native flow/filesystem/edit/
+staging audits pass. User accepted the corrected English profile flow2026-10-31;
+[acceptance](profiles-flow.md#desktop-acceptance).
+
+- [x] **profiles.select — Deliver profile list selection, labels and Back.**
   Evidence: `006211B0`, `006210B0`, `006211E0`, `00622A90`, `006AF1D0`.
   Requires: isolated profile copy, profile directories. After: `dialogs.runtime`.
   Native: Audit iterator-generated retained text, selected/current names, difficulty/description state, real selection/load/apply and cleanup ordering; include empty list and stale selection.
   Desktop: Enter Change Profile, navigate/select actual copied profiles, verify current profile/settings and Main labels after Back.
   Failures/limits: Aliased input, missing directory, failed load and empty selection keep original outcomes; never fabricate a default successful profile.
 
-- [ ] **profiles.manage — Deliver create/rename/delete, validation and confirmation.**
+- [x] **profiles.manage — Deliver create/rename/delete, validation and confirmation.**
   Evidence: `00621470`, `006211E0`, `00622A90`.
   Requires: isolated profile copy, profile directories, edit list controls. After: `profiles.select`.
   Native: Audit actual edit/list callbacks, duplicate/invalid names, case/physical mapping, delete confirmation and directory/file failures; preserve original prompt codes and focus restoration.

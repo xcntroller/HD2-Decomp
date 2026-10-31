@@ -174,6 +174,29 @@ struct MenuTextSubmission {
     std::vector<CursorVertex> vertices;
 };
 
+//00641E30 style19: BIG .04, left/top. Profile records form uniform
+//nonwrapping rows; retain only complete visible rows in the text viewport.
+inline std::vector<MenuTextSubmission> menu_profile_list_submissions(
+        const frontend::TextObject& object,const MenuRectangle& area,std::size_t offset,
+        int /*selected*/,int hovered,const FontMetrics& big) {
+    if(!std::isfinite(area.left)||!std::isfinite(area.top)||!std::isfinite(area.right)||
+       !std::isfinite(area.bottom)||area.right<=area.left||area.bottom<=area.top)
+        throw std::invalid_argument("Invalid profile-list viewport");
+    const auto rows=static_cast<std::size_t>(std::floor((area.bottom-area.top)/24.f));
+    std::vector<MenuTextSubmission> result;
+    for(std::size_t row=0;row<rows && offset<object.records().size() && row<object.records().size()-offset;++row) {
+        const auto index=offset+row;const auto& record=object.records()[index];
+        if(!record.text)continue;
+        const auto* style=frontend::menu_text_style(record.style);
+        if(!style||record.style!=19)throw std::logic_error("Unsupported profile-list record style");
+        const MenuRectangle rectangle{area.left,area.top+row*24,area.right,area.top+(row+1)*24};
+        const auto color=object.disabled?0x60000000u:
+            hovered==static_cast<int>(index)?0xffffffffu:style->color;
+        result.push_back({false,menu_label_vertices(*record.text,big,rectangle,.04f,600,false,color)});
+    }
+    return result;
+}
+
 //00641E30 styles27/28/29 use independent anchors .01/.50/.99 across
 // the SAME rectangle, small CE font at .019 and alphaA0. They are not a
 // three-line paragraph. Preserve the single-record path for ordinary labels.
@@ -219,7 +242,7 @@ std::optional<MenuTextSubmission> menu_text_submission(
         throw std::logic_error("Unsupported original text style layout");
     }
     std::uint32_t color = object.disabled || (button && !available) ? 0x60000000 : style->color;
-    if (hovered && available && !object.disabled) color = 0xffffffff;
+    if ((hovered && available && !object.disabled) || (button && object.word_94==0xffffffffu)) color = 0xffffffff;
     if(record.style==24 || record.style==25)
         return MenuTextSubmission{false, menu_prompt_vertices(*record.text,big,
             menu_rectangle(bounds(),800,600,object.inset),style->height,600,color)};

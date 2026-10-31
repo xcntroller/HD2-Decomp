@@ -581,6 +581,7 @@ class OptionsMenu {
                                                        *lookup(definition.identifier | 2));
         return std::make_unique<MenuControl>(scene_, module_, false, definition, frame, text, true, &context);
     }
+    void profile_changed() {flow_.profile_changed();}
     bool dispatch(frontend::ControlEvent &event) { return flow_.dispatch(event); }
     bool options_current() const {
         const auto *current = queue_.screens().current();

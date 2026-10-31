@@ -156,7 +156,7 @@ def main() -> None:
         executable = stage_startup(args.game_dir, args.executable, args.work_dir, application_launch=True)
         run = executable.parent
         stage_menu_resources(args.game_dir, run, include_confirm=True,
-                             include_cursor_model=True, include_click_sound=True,include_cinematics=True,include_options=True)
+                             include_cursor_model=True, include_click_sound=True,include_cinematics=True,include_options=True,include_profiles=True)
         stage_menu_text(args.game_dir, run, include_confirm=True, include_control_text=True)
         stage_opening_movies(args.game_dir, run)
         stage_credits_resources(args.game_dir, run)

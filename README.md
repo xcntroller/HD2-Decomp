@@ -24,8 +24,8 @@ Cinematics is **user desktop-confirmed2026-10-31**, including the corrected
 sets. Africa/Czech intro entries are unused development remnants and ignored as
 expected absences; original catalog flags remain intact.
 
-The accepted UI boundary is **English,800x600, Main/Exit/Credits/Cinematics**. Other menu actions,
-dynamic labels and broader settings/profile/save flows remain unfinished. Full
+The accepted UI boundary is **English,800x600, Main/Exit/Credits/Cinematics/Options/Profiles**. Other menu actions,
+dynamic labels and broader profile/save flows remain unfinished. Full
 original setup/protection, object ABI, unused global caches and live network/
 gameplay services are not claimed complete. Original engine calls stay delegated;
 source recovery alone is not desktop delivery.
@@ -55,7 +55,12 @@ Native suites and sanitizer audits pass. Front-end Options is **user desktop-acc
 2026-10-31**, including the corrected binding layout. Shared runtime dialog
 integration is accepted through its genuine Options caller; other dialog callers
 and in-game Options remain open. Gamma is intentionally unavailable in the
-windowed launcher. Profiles/saves are the next delivery milestone.
+windowed launcher.
+
+[Profile management](analysis/profiles-flow.md) is integrated with real selection,
+create/rename/delete, difficulty setup and isolated persistence. User desktop acceptance is recorded2026-10-31, including the corrected
+selection background, hover and same-profile double-click behavior. Gameplay saves remain
+with later controller/in-game deliveries.
 
 The [screen-and-route census](analysis/menu-route-census.md) now covers eight
 concrete frontend owners, conditional registries, shared dialogs, embedded pages
@@ -66,13 +71,14 @@ now record IDs, assets, captions/styles, initialization and return rules across
 preserves all 30 declarations and IDs: 28 populated owner-scoped roles and two
 reserved empty hero slots. Shared artwork/code, embedded content and campaign
 variants are classified separately. The [family delivery checklists](analysis/menu-family-delivery.md)
-define 29 delivery items across all nine families (27 remain open), including
+define 29 delivery items across all nine families (23 remain open), including
 independent UI audits and real game/network requirements. Inventory/planning is
 **source-only**; flow delivery and original-function credit are tracked separately.
 
 The [shared runtime dialog receiver](analysis/runtime-dialog-integration.md) is
 now integrated and native-audited, including the genuine Options unassigned-command
-caller and category/row reply. Its delivery checkbox awaits desktop acceptance. No diagnostic
+caller and category/row reply. This integration is desktop-accepted through Options;
+other callers remain open. No diagnostic
 prompt or unsupported Main action is enabled.
 
 ## Verification and evidence
@@ -102,11 +108,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **415 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **426 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 410 |
+| Base game client | 17,294 | 0 | 421 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

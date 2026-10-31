@@ -7,6 +7,7 @@
 #include "host/borrowed_input.h"
 #include "host/cinematics_menu.h"
 #include "host/options_menu.h"
+#include "host/profiles_menu.h"
 #include "host/graphics_interface.h"
 #include "host/menu_input_session.h"
 #include "host/menu_screen_factory.h"
@@ -64,6 +65,15 @@ class ApplicationMenu {
             cinematics_->bind(select_state_);
             options_menu_=std::make_unique<OptionsMenu>(startup_,*scene_,driver_,module_,*events_);
             options_menu_->dialog_request([this] { request_dialog_localized(2,9520,0x020000c7,0x020000c7); });
+            profiles_menu_=std::make_unique<ProfilesMenu>(startup_,*scene_,module_,*events_);
+            profiles_menu_->dialog_request([this](unsigned mode,unsigned label,unsigned yes,unsigned no){request_dialog_localized(mode,label,yes,no);});
+            profiles_menu_->changed([this]{
+                options_menu_->profile_changed();
+                frontend::ControlEvent event{0x04500000,0x01000014,12,0,0,{}};
+                event.text=std::make_shared<const std::string>(startup_.profile_name());
+                if(startup_.profile_name().empty()){event.code=0x01000015;event.word_0c=2002;}
+                events_->enqueue(event);
+            });
             MenuScreenFactory<Actions> factory(
                 *scene_, module_, [&](std::uint32_t id) { return text_->object_for(id); }, *events_,
                 products_, actions_, widgets_.get(), true, cinematics_->model(),
@@ -73,6 +83,8 @@ class ApplicationMenu {
                 },
                 [this](const frontend::MenuControlDefinition &definition, EngineFrame *frame,
                        MenuTextObject &text) -> std::unique_ptr<MenuControl> {
+                    if ((definition.identifier & 0xfc000000u) == 0x08000000)
+                        return profiles_menu_->make_control(definition,frame,text,*widgets_,[this](unsigned id){return text_->object_for(id);});
                     if ((definition.identifier & 0xfc000000u) == 0x18000000)
                         return options_menu_->make_control(definition,frame,text,*widgets_,
                             [this](std::uint32_t id) { return text_->object_for(id); });
@@ -81,7 +93,8 @@ class ApplicationMenu {
                     return cinematics_->make_control(
                         definition, frame, text, *widgets_,
                         [this](std::uint32_t id) { return text_->object_for(id); });
-                },options_menu_->model(),[this] { return options_menu_->definition(); });
+                },options_menu_->model(),[this] { return options_menu_->definition(); },
+                profiles_menu_->model(),[this]{return profiles_menu_->definition();});
             frontend::construct_registered_screens(factory);
             for (std::size_t i = 0; i != products_.size(); ++i)
                 products_.screen(i).controls().bind_pick_targets();
@@ -105,6 +118,10 @@ class ApplicationMenu {
         if (startup_.sound_available())
             scene_->load_click_sound(module_);
         startup_.begin_menu_music();
+        frontend::ControlEvent profile_label{0x04500000,0x01000014,12,0,0,{}};
+        profile_label.text=std::make_shared<const std::string>(startup_.profile_name());
+        if(startup_.profile_name().empty()){profile_label.code=0x01000015;profile_label.word_0c=2002;}
+        events_->enqueue(profile_label);
         date_tick(true);
         std::puts(
             "Controller menu initialized: type=2; actual localized captions; Main/Exit owners installed");
@@ -149,6 +166,7 @@ class ApplicationMenu {
         cursor_.reset();
         cinematics_.reset();
         options_menu_.reset();
+        profiles_menu_.reset();
         scene_.reset();
         SetCursor(LoadCursorW(nullptr, IDC_ARROW));
         std::puts("Controller menu shutdown: screen/input/text/scene owners released");
@@ -261,6 +279,7 @@ class ApplicationMenu {
         }
         void activate_screen(const frontend::ScreenRegistration &screen, std::uint32_t focus) override {
             runtime(screen.identifier >> 26).activate(focus);
+            if(screen.identifier==0x08000000) owner_.profiles_menu_->shown();
             if(screen.identifier==0x18000000) owner_.options_menu_->shown();
             owner_.confirming_ = screen.identifier == 0x10000000;
             std::puts(owner_.confirming_ ? "Controller confirmation opened" : "Controller main menu active");
@@ -270,12 +289,14 @@ class ApplicationMenu {
             if (screen.identifier == 0x10000000)
                 owner_.confirming_ = false;
         }
+        void profile_back_cleanup() override {owner_.profiles_menu_->back();}
         bool dispatch_screen_event(std::uint32_t family, frontend::ControlEvent &event) override {
             if (family == 7 && owner_.cinematics_->video_event(event))
                 return true;
             return runtime(family).dispatch(event);
         }
         bool dispatch_menu_handler(frontend::MenuApplicationHandler handler,frontend::ControlEvent& event) override {
+            if(handler==frontend::MenuApplicationHandler::profiles)return owner_.profiles_menu_->dispatch(event);
             return handler==frontend::MenuApplicationHandler::options && owner_.options_menu_->dispatch(event);
         }
         void quit() override {
@@ -393,6 +414,7 @@ class ApplicationMenu {
     std::unique_ptr<MenuScene> scene_;
     std::unique_ptr<CinematicsMenu> cinematics_;
     std::unique_ptr<OptionsMenu> options_menu_;
+    std::unique_ptr<ProfilesMenu> profiles_menu_;
     std::unique_ptr<MenuText<Graphics>> text_;
     std::unique_ptr<MenuCursor<Graphics>> cursor_;
     MenuInputSession input_;

@@ -14,6 +14,7 @@
 #include <cstdio>
 #include <cstring>
 #include <memory>
+#include <optional>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -447,6 +448,34 @@ public:
         std::array<float,3> result{};
         std::memcpy(result.data(),reinterpret_cast<const unsigned char*>(frame)+0x70,12);
         return result;
+    }
+    //0065BD20: the selector keeps its world transform when detached from the
+    // backwards-facing record plane. It shares the record endpoint's pick ID.
+    EngineFrame* bind_record_selector(HMODULE module, EngineFrame* records,
+                                       EngineFrame* layout_root, unsigned id) const {
+        auto* selector=find_control_frame(records,"select*",module);
+        if(!selector) return nullptr;
+        using Direction=void (WINAPI *)(EngineFrame*,const float*,const float*);
+        using Link=std::int32_t (WINAPI *)(EngineFrame*,EngineFrame*,unsigned);
+        const float direction[]{0,0,1};
+        scene_method<Direction>(selector,module,0x0c,0x1c8d0)(selector,direction,nullptr);
+        std::memcpy(reinterpret_cast<char*>(selector)+0xec,&id,4);
+        set_screen_enabled(module,selector,false);
+        if(scene_method<Link>(selector,module,0x38,0x1d680)(selector,layout_root,1)<0)
+            throw std::runtime_error("Cannot link profile record selector");
+        update_screen_frame(module,selector);
+        return selector;
+    }
+    //0065BE40/00643980: place the selector at the rendered row center, retaining Z.
+    void position_record_selector(HMODULE module,EngineFrame* selector,
+                                  const std::optional<std::array<float,2>>& center) const {
+        if(!selector) return;
+        if(center) {
+            const auto old=frame_world_position(module,selector);
+            position_menu_model(module,selector,(*center)[0],(*center)[1],old[2]);
+        }
+        set_screen_enabled(module,selector,center.has_value());
+        update_screen_frame(module,selector);
     }
     //00655950 writes LOCAL coordinates. I3D_frame::SetPos instead accepts
     // world coordinates and transforms them through a linked parent.

@@ -5347,7 +5347,7 @@
       "entry": "0061bea0",
       "status": "partial",
       "coverage": "Entry/apply/Back dispatcher with real profile synchronization, unassigned dialog9520/C7 category-row restoration and original save/graphics/binding queue order.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/frontend/options_flow.h"
@@ -5358,7 +5358,7 @@
       "entry": "0061cf60",
       "status": "partial",
       "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/options_menu.h"
@@ -5369,7 +5369,7 @@
       "entry": "0061dbc0",
       "status": "partial",
       "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons; preserves conditional active-mission disable instead of unconditional crosshair disable.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/options_menu.h"
@@ -5380,7 +5380,7 @@
       "entry": "0061e140",
       "status": "partial",
       "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/options_menu.h"
@@ -5391,7 +5391,7 @@
       "entry": "0061e390",
       "status": "partial",
       "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/options_menu.h"
@@ -5402,7 +5402,7 @@
       "entry": "0061f1d0",
       "status": "partial",
       "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons; preserves conditional active-mission disable instead of unconditional crosshair disable.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/options_menu.h"
@@ -5413,7 +5413,7 @@
       "entry": "0061f350",
       "status": "partial",
       "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/options_menu.h"
@@ -5424,7 +5424,7 @@
       "entry": "0061f5a0",
       "status": "partial",
       "coverage": "Front-end Options definitions and model augmentation: root/tabs/pages, captions/aliases/hidden legacy controls, generated binding rows with retained clone descendants, original groups and layout buttons.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/options_menu.h"
@@ -5435,7 +5435,7 @@
       "entry": "00620960",
       "status": "partial",
       "coverage": "Binding-category show/hide, selected-list scrollbar relinking and refresh messages using original identifiers.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/options_menu.h"
@@ -5446,7 +5446,7 @@
       "entry": "006204d0",
       "status": "partial",
       "coverage": "Options show refresh resolves the actual profile name or localized2020 and queues the original style12 header caption.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/options_menu.h"
@@ -5457,7 +5457,7 @@
       "entry": "006a8230",
       "status": "partial",
       "coverage": "Reserved-key filtering, assignment/dirty state, mode-overlap duplicate clearing with hidden/exempt preservation, first-unassigned scan and contiguous group ordinal.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/input/binding_editor.h"
@@ -5468,7 +5468,7 @@
       "entry": "006a83c0",
       "status": "partial",
       "coverage": "Reserved-key filtering, assignment/dirty state, mode-overlap duplicate clearing with hidden/exempt preservation, first-unassigned scan and contiguous group ordinal.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/input/binding_editor.h"
@@ -5479,7 +5479,7 @@
       "entry": "006a8480",
       "status": "partial",
       "coverage": "Reserved-key filtering, assignment/dirty state, mode-overlap duplicate clearing with hidden/exempt preservation, first-unassigned scan and contiguous group ordinal.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/input/binding_editor.h"
@@ -5490,7 +5490,7 @@
       "entry": "006a85b0",
       "status": "partial",
       "coverage": "Reserved-key filtering, assignment/dirty state, mode-overlap duplicate clearing with hidden/exempt preservation, first-unassigned scan and contiguous group ordinal.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/input/binding_editor.h"
@@ -5501,7 +5501,7 @@
       "entry": "006a8290",
       "status": "partial",
       "coverage": "Reserved-key filtering, assignment/dirty state, mode-overlap duplicate clearing with hidden/exempt preservation, first-unassigned scan and contiguous group ordinal.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/input/binding_editor.h"
@@ -5512,7 +5512,7 @@
       "entry": "006b2950",
       "status": "partial",
       "coverage": "Real Options.bin serialization through ChunkFile: sequential version/bindings/settings chunks, original record fields/padding/dirty bytes and failed-open return.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/frontend/options_save.h"
@@ -5523,7 +5523,7 @@
       "entry": "006a8770",
       "status": "partial",
       "coverage": "Real Options.bin serialization through ChunkFile: sequential version/bindings/settings chunks, original record fields/padding/dirty bytes and failed-open return.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/frontend/options_save.h"
@@ -5534,7 +5534,7 @@
       "entry": "006b3530",
       "status": "partial",
       "coverage": "Real Options.bin serialization through ChunkFile: sequential version/bindings/settings chunks, original record fields/padding/dirty bytes and failed-open return.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/frontend/options_save.h"
@@ -5545,7 +5545,7 @@
       "entry": "0064d800",
       "status": "partial",
       "coverage": "Binding-row construction composes editable child|1 and caption child|2 with actual model/normal-active visuals and typed capture owner; internal static caption receives original back-facing frame setup.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/options_menu.h"
@@ -5556,10 +5556,142 @@
       "entry": "006ab590",
       "status": "partial",
       "coverage": "English binding names: localized mouse/special-key labels and real engine scan-name conversion; unsupported device kinds return the original empty string.",
-      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; desktop acceptance pending after reported construction/ABI/style failures. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
+      "limitations": "Native ownership and typed calls replace original object/virtual/SEH ABI. Front-end family6 integration and native sanitizer audits; user desktop acceptance recorded2026-10-31 after construction/ABI/style/layout corrections. In-game owner, broader text/localization and original engine implementations remain outside this delivery.",
       "evidence": [
         "analysis/options-flow.md",
         "recovered/host/startup_session.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006211b0",
+      "status": "partial",
+      "coverage": "Rescan actual copied profile directories and populate the real profile list at entry and after mutations.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/host/profiles_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006210b0",
+      "status": "partial",
+      "coverage": "Retained profile-name strings appended through style19 list records and queued original append events.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/host/profiles_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00621470",
+      "status": "partial",
+      "coverage": "Profile create/rename editor modes, ANSI trailing-space trim, original prompts, new-profile difficulty gate and delete confirmation request.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/frontend/profile_management.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00622a90",
+      "status": "partial",
+      "coverage": "Select/remember the actual profile through the recovered startup owner and invalidate first-entry Options synchronization; Back repeats selection.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/host/startup_session.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00622e70",
+      "status": "partial",
+      "coverage": "Refresh current name, list selection, difficulty state and mutation eligibility from the real selected profile.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/frontend/profile_management.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00623780",
+      "status": "partial",
+      "coverage": "Profile entry restores list/editor/button eligibility, selected spelling and real current difficulty.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/frontend/profile_management.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00622af0",
+      "status": "partial",
+      "coverage": "Only new-profile difficulty mode accepts one of four choices; persist real profile payload and restore ordinary browsing controls.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/frontend/profile_management.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ae630",
+      "status": "partial",
+      "coverage": "English physical profile directory creation with duplicate versus general failure results, through actual Win32 filesystem calls.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/host/profile_management.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ae990",
+      "status": "partial",
+      "coverage": "English physical directory rename, exact existing/general error mapping, current-name/profile.sav update and remembered startup spelling.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/host/startup_session.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00657ab0",
+      "status": "partial",
+      "coverage": "Construct original profile-list text|8 and scrollbar|4 parts, real frame lookup/pick IDs and linked native slider/record storage.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/host/profiles_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006580b0",
+      "status": "partial",
+      "coverage": "Preserve low-bit internal part routing and original forwarded list messages separately from wrapper state and disabled/input handling.",
+      "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
+      "evidence": [
+        "analysis/profiles-flow.md",
+        "analysis/profiles-flow-map.json",
+        "recovered/host/profiles_menu.h"
       ]
     }
   ]

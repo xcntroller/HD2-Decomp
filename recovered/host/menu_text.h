@@ -237,9 +237,15 @@ private:
             const bool button = entry.kind == frontend::MenuControlKind::button || entry.kind == frontend::MenuControlKind::movie_row;
             const bool hovered = confirm_hover >= 0 ? static_cast<int>(i) == confirm_hover && button
                                                     : entry.role == frontend::MenuControlRole::exit && exit_hover;
+            if(attached->record_list) {
+                auto records=menu_profile_list_submissions(object,attached->rectangle(true),attached->record_offset,
+                    attached->selected_record,attached->hovered_record,big_metrics_);
+                for(auto& record:records)submissions.push_back(std::move(record));
+                continue;
+            }
             auto submission = menu_ruler_submission(object,[&] { return attached->bounds(); },small_metrics_);
             if (!submission) submission = menu_text_submission(object, [&] { return attached->bounds(); },
-                button, attached->available(), hovered || attached->highlighted(), big_metrics_, small_metrics_);
+                button, attached->available(), hovered || attached->highlighted() || (button && object.word_94==0xffffffffu), big_metrics_, small_metrics_);
             if (submission) submissions.push_back(std::move(*submission));
             if (!entry.children.empty()) collect_submissions(definition,entry.children,false,-1,submissions);
         }

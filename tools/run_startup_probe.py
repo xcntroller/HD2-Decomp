@@ -46,6 +46,18 @@ def stage_startup(game: Path, executable: Path, work: Path, *, application_launc
     run = work / "run"
     if run.is_symlink() or not run.resolve().is_relative_to(work):
         raise ValueError("Startup runtime path escapes the workspace")
+    profiles_marker = run / ".hd2-profiles-seeded"
+    if profiles_marker.exists() or profiles_marker.is_symlink():
+        checked_file(profiles_marker)
+        if profiles_marker.read_bytes() != b"hd2-isolated-profiles-v1\n":
+            raise ValueError("Unknown isolated-profile seed marker")
+    profiles_directory = run / "PlayersProfiles"
+    if profiles_directory.is_symlink() or (profiles_directory.exists() and not profiles_directory.is_dir()):
+        raise ValueError("Isolated profiles require an ordinary directory")
+    # Existing workspaces already contain their initial seed. Never reimport
+    # renamed/deleted profiles or missing files from the installed game.
+    legacy_marker = run / (".hd2-launch-workspace" if application_launch else ".hd2-startup-workspace")
+    profiles_seeded = profiles_marker.exists() or (profiles_directory.exists() and legacy_marker.is_file())
     sources = {p.name.casefold(): p for p in game.iterdir()}
     names = ("LangEnglish.dta", "Patch.dta", "Models.dta", "Missions.dta", "Maps.dta",
              "Sounds.dta", "Scripts.dta", "Others.dta", "Maps_C.dta", "Maps_U.dta")
@@ -56,7 +68,10 @@ def stage_startup(game: Path, executable: Path, work: Path, *, application_launc
     for source in game.iterdir():
         if source.name.casefold().startswith("lang") and source.suffix.casefold() == ".dta" and source.name.casefold() != "langenglish.dta":
             copies.append((source, run / source.name, False))
+    profile_directories = []
     for name in ("Text", "GameData", "Tables", "PlayersProfiles"):
+        if name == "PlayersProfiles" and profiles_seeded:
+            continue
         source = sources.get(name.casefold())
         if source:
             if source.is_symlink() or not source.is_dir():
@@ -64,6 +79,8 @@ def stage_startup(game: Path, executable: Path, work: Path, *, application_launc
             for child in source.rglob("*"):
                 if child.is_symlink():
                     raise ValueError(f"Linked startup data is not staged: {child}")
+                if name == "PlayersProfiles" and child.is_dir():
+                    profile_directories.append(run / name / child.relative_to(source))
                 if child.is_file():
                     copies.append((child, run / name / child.relative_to(source), name == "PlayersProfiles"))
     config = sources.get("game.cfg")
@@ -85,6 +102,14 @@ def stage_startup(game: Path, executable: Path, work: Path, *, application_launc
             if not mutable and (source.stat().st_size != target.stat().st_size or
                     digest(source) != digest(target)):
                 raise ValueError(f"Existing staged startup resource differs: {target}")
+    for target in profile_directories:
+        if not target.resolve().is_relative_to(run.resolve()):
+            raise ValueError("Profile directory escapes runtime")
+        parent = target
+        while parent != run.parent:
+            if parent.is_symlink() or (parent.exists() and not parent.is_dir()):
+                raise ValueError(f"Invalid profile destination directory: {parent}")
+            parent = parent.parent
     output = run / ("application_launch.exe" if application_launch else "startup_probe.exe")
     marker = run / (".hd2-launch-workspace" if application_launch else ".hd2-startup-workspace")
     for target in (output, marker):
@@ -97,6 +122,8 @@ def stage_startup(game: Path, executable: Path, work: Path, *, application_launc
     if shutil.disk_usage(ancestor).free < required:
         raise ValueError("Insufficient free space for isolated startup resource copies")
     run.mkdir(parents=True, exist_ok=True)
+    for target in profile_directories:
+        target.mkdir(parents=True, exist_ok=True)
     for source, target, _ in copies:
         if not target.exists():
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -114,6 +141,10 @@ def stage_startup(game: Path, executable: Path, work: Path, *, application_launc
                     temporary.unlink(missing_ok=True)
     output.write_bytes(data)
     marker.write_text("hd2-rebuilt-launch-v1\n" if application_launch else "hd2-rebuilt-startup-v1\n", encoding="ascii")
+    profiles_directory.mkdir(exist_ok=True)
+    if not profiles_marker.exists():
+        with profiles_marker.open("xb") as stream:
+            stream.write(b"hd2-isolated-profiles-v1\n")
     return output
 
 

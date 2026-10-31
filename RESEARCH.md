@@ -3,6 +3,14 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
+Latest work (2026-10-31): [front-end profile management](analysis/profiles-flow.md)
+is integrated with real startup selection/settings, CRUD/edit/dialogs, new-profile
+difficulty and isolated persistence. User explicitly deferred gameplay saves.
+Desktop feedback exposed missing selector-frame setup and unwanted date text;
+selection/background/hover/double-click corrections are desktop-accepted2026-10-31. See the linked
+contract/map for addresses, caller semantics, limitations and verification.
+Options/runtime integration is committed as `015f2c8`; profile acceptance is recorded in its contract.
+
 Latest acceptance (2026-10-31): user confirms Options works as intended; front-end
 Options and shared runtime integration are complete. Other dialog callers and
 in-game Options remain open. Profiles/saves are next. No per-case desktop claims

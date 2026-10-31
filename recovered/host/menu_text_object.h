@@ -58,6 +58,9 @@ public:
         update_frame();
         invalidate_bounds();
     }
+    bool record_list = false;
+    std::size_t record_offset = 0;
+    int selected_record = -1, hovered_record = -1;
     bool available() const { return available_; }
     bool eligible() const { return properties_.eligible(); }
     bool disabled() const { return properties_.disabled != 0; }
