@@ -10,6 +10,7 @@
 #include "frontend/input_setup.h"
 #include "frontend/sound_manager_data.h"
 #include "frontend/startup_modules.h"
+#include "frontend/options_settings.h"
 #include "host/chunk_files.h"
 #include "host/control_startup.h"
 #include "host/graphics_input_services.h"
@@ -17,6 +18,7 @@
 #include "host/joystick_backend.h"
 #include "host/profile_directories.h"
 #include "host/resource_directories.h"
+#include "host/loaded_resources.h"
 #include "host/settings_services.h"
 #include "host/sound_services.h"
 #include "host/graphics_settings.h"
@@ -37,7 +39,7 @@ public:
         : engine_(engine), files_(rw_data), text_files_(rw_data), directory_(platform_), language_(platform_),
           portraits_(engine), data_(portraits_, files_, directory_),
           archive_backend_(rw_data), archives_(archive_backend_),
-          graphics_directories_(engine), caches_(graphics_directories_),
+          graphics_directories_(engine), caches_(graphics_directories_), loaded_resources_(engine, caches_),
           joysticks_backend_(engine, joy), joysticks_(joysticks_backend_),
           input_backend_(engine, joysticks_backend_), input_(input_backend_),
           input_setup_(engine, joysticks_), settings_backend_(engine),
@@ -145,6 +147,47 @@ public:
     void application_input_enabled(bool value) { application_input_enabled_ = value; } // 006DCAD0
     std::uint32_t random_word() { return settings_backend_.sound_random_word(); }
     const frontend::LocalizedTextCache& text() const { return text_; }
+    LoadedResources& loaded_resources() { return loaded_resources_; }
+    void clear_controller_resources() { loaded_resources_.clear_controller(); }
+    void clear_final_resources() { loaded_resources_.clear_final(); }
+    //006B6740: resolve the selected profile's real settings each call. No
+    // menu-local defaults/copies or cache of a prior selected-profile pointer.
+    frontend::ProfileSettings& profile_settings() { return data_.profile().options.settings; }
+    void apply_graphics_options() {
+        if (settings_backend_.driver()) {
+            auto* driver = settings_backend_.driver();
+            settings_backend_.driver_state(driver, 0x2b, profile_settings().quality_byte(0));
+        }
+    }
+    void apply_option(frontend::OptionsFloatSetting setting) {
+        using Setting = frontend::OptionsFloatSetting;
+        switch (setting) {
+        case Setting::gamma:
+            settings_backend_.gamma(frontend::profile_gamma_ramp(profile_settings()), 0); break;
+        case Setting::sound_volume: {
+            frontend::SettingsSound<SettingsServices> sound(sound_data_.settings, gate_, settings_backend_);
+            sound.driver_volume(static_cast<float>(static_cast<long double>(profile_settings().real(8)) * 0.01f));
+            break;
+        }
+        case Setting::music_volume: {
+            frontend::SettingsSound<SettingsServices> sound(sound_data_.settings, gate_, settings_backend_);
+            sound.movie_volume(static_cast<float>(static_cast<long double>(profile_settings().real(12)) * 0.01f));
+            break;
+        }
+        case Setting::voice_volume: {
+            frontend::SettingsControl<SettingsServices> control(control_data_.wrapper0c, settings_backend_);
+            control.set_value(frontend::settings_truncated_word(static_cast<long double>(profile_settings().real(16)) * 0.01));
+            break;
+        }
+        case Setting::mouse_sensitivity: {
+            const auto bits = frontend::settings_truncated_word(static_cast<long double>(profile_settings().real(0)) * -9.0f + 1000.0f);
+            std::int32_t limit; std::memcpy(&limit, &bits, sizeof(limit));
+            input::set_binding_axis_limits(input_.state(), limit, limit, 0x78);
+            input_flag_ = profile_settings().bytes[0x39];
+            break;
+        }
+        }
+    }
     bool wide_characters() const { return language_.state().wide_characters; }
     std::string language() { return language_.get(); }
     bool subtitles_enabled() { return data_.profile().options.settings.bytes[0x3a] != 0; }
@@ -271,6 +314,7 @@ private:
     io::StartupArchives<StartupArchiveBackend> archives_;
     GraphicsResourceDirectories graphics_directories_;
     io::ResourceDirectoryCaches<GraphicsResourceDirectories> caches_;
+    LoadedResources loaded_resources_;
     ResourceDirectoryPlatform directory_platform_;
     JoystickBackend joysticks_backend_;
     input::JoystickDevices<JoystickBackend> joysticks_;

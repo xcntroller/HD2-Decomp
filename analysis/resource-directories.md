@@ -1,5 +1,9 @@
 # Original resource directory registration
 
+Follow-up: [loaded-resource caches and actual menu integration](menu-caches.md)
+now cover the separate loaded owners; the directory-only limitations below
+describe this earlier checkpoint.
+
 [`io/resource_directories.h`](../recovered/io/resource_directories.h) recovers
 the ordinary directory region of 006DBE60, recursive Win32 enumeration through
 006ED760/006ED6B0/006ED570 and directory-list insertion/removal for all five

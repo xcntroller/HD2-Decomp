@@ -33,8 +33,9 @@ back behavior all need further recovery before options can be enabled.
 
 The [widget evidence map](menu-options-widget-map.json) records source-only
 state/message/input implementations for kinds 8, 0x10 and 0x24, and the four
-original settings observers. Engine visual/internal-part constructors and real
-preference services are still absent. The live factory continues to reject these
+original settings observers. Engine visual/internal-part constructors remain absent. The
+[canonical profile settings backend](menu-caches.md) now supplies real preference
+storage and individual application helpers; unused widget routes remain source-only. The live factory continues to reject these
 widget kinds; adding names to the enum does not enable their screen controls.
 
 - Sliders preserve the range/position asymmetry: programmatic position accepts

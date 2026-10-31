@@ -111,6 +111,13 @@ private:
     Factory factory_ = nullptr;
 };
 
+class MenuResourceServices {
+public:
+    virtual ~MenuResourceServices() = default;
+    virtual int load_model(EngineFrame* destination, const std::string& key, std::uint32_t flags) = 0;
+    virtual int load_sound(EngineFrame* destination, const std::string& key, std::uint32_t flags) = 0;
+};
+
 class MenuScene {
 public:
     explicit MenuScene(HMODULE module, bool confirmation_preview = false,
@@ -118,18 +125,19 @@ public:
                        bool runtime_confirmation_enabled = false)
         : MenuScene(std::make_unique<MenuDriver>(module), nullptr, module,
                     confirmation_preview, confirmation_enabled, bind_cursor_model,
-                    runtime_confirmation_enabled) {}
+                    runtime_confirmation_enabled, nullptr) {}
 
     MenuScene(MenuDriver& driver, HMODULE module, bool confirmation_enabled,
-              bool bind_cursor_model)
+              bool bind_cursor_model, MenuResourceServices* resources = nullptr)
         : MenuScene(nullptr, &driver, module, false, confirmation_enabled,
-                    bind_cursor_model, false) {}
+                    bind_cursor_model, false, resources) {}
 
 private:
     MenuScene(std::unique_ptr<MenuDriver> owned, MenuDriver* borrowed, HMODULE module,
               bool confirmation_preview, bool confirmation_enabled,
-              bool bind_cursor_model, bool runtime_confirmation_enabled)
+              bool bind_cursor_model, bool runtime_confirmation_enabled, MenuResourceServices* resources)
         : owned_driver_(std::move(owned)), driver_(borrowed ? *borrowed : *owned_driver_),
+          resources_(resources),
           scene_(driver_.create(13)), camera_(driver_.create(3)),
           light_(driver_.create(2)), model_(driver_.create(9)) {
         using Pair = void (WINAPI *)(EngineFrame*, EngineFrame*);
@@ -139,8 +147,6 @@ private:
         using Integer = void (WINAPI *)(EngineFrame*, std::uint32_t);
         using Range = void (WINAPI *)(EngineFrame*, float, float);
         using Projection = void (WINAPI *)(EngineFrame*, std::uint8_t);
-        using Open = std::int32_t (WINAPI *)(EngineFrame*, const char*, std::uint32_t,
-                                           void*, void*);
         using Link = std::int32_t (WINAPI *)(EngineFrame*, EngineFrame*, std::uint32_t);
         const auto add = scene_method<Pair>(scene_.get(), module, 0x80, 0x469a0);
         const float position[] = {0.5f, -0.375f, -15.5f};
@@ -174,9 +180,8 @@ private:
         const char* model_path = confirmation_preview ? "Models\\confirm" : "Models\\main_menu";
         std::printf("Opening original model: %s.4ds\n", model_path);
         std::fflush(stdout);
-        const auto status = scene_method<Open>(model_.get(), module, 0x74, 0x340b0)(
-            model_.get(), model_path, 0, nullptr, nullptr);
-        if (status < 0) {
+        const auto status = open_model(model_.get(), module, confirmation_preview ? "confirm" : "main_menu");
+        if (status != 0) {
             char message[100];
             std::snprintf(message, sizeof(message), "Menu model open failed: 0x%08x",
                           static_cast<unsigned>(status));
@@ -203,8 +208,7 @@ private:
                     static_cast<unsigned>(nodes));
         if (confirmation_enabled) {
             confirmation_ = driver_.create(9);
-            if (scene_method<Open>(confirmation_.get(), module, 0x74, 0x340b0)(
-                    confirmation_.get(), "Models\\confirm", 0, nullptr, nullptr) < 0 ||
+            if (open_model(confirmation_.get(), module, "confirm") != 0 ||
                 scene_method<Link>(confirmation_.get(), module, 0x38, 0x1d680)(
                     confirmation_.get(), sector, 0) < 0) {
                 throw std::runtime_error("Cannot open or link original confirmation model");
@@ -218,8 +222,7 @@ private:
         }
         if (runtime_confirmation_enabled) {
             runtime_confirmation_ = driver_.create(9);
-            if (scene_method<Open>(runtime_confirmation_.get(), module, 0x74, 0x340b0)(
-                    runtime_confirmation_.get(), "Models\\confirm", 0, nullptr, nullptr) < 0 ||
+            if (open_model(runtime_confirmation_.get(), module, "confirm") != 0 ||
                 scene_method<Link>(runtime_confirmation_.get(), module, 0x38, 0x1d680)(
                     runtime_confirmation_.get(), sector, 0) < 0) {
                 throw std::runtime_error("Cannot open or link runtime confirmation model");
@@ -233,8 +236,7 @@ private:
         }
         if (bind_cursor_model) {
             cursor_model_ = driver_.create(9);
-            const auto open = scene_method<Open>(cursor_model_.get(), module, 0x74, 0x340b0);
-            if (open(cursor_model_.get(), "Models\\kurzor_menu", 0, nullptr, nullptr) < 0) {
+            if (open_model(cursor_model_.get(), module, "kurzor_menu") != 0) {
                 throw std::runtime_error("Cannot open original kurzor_menu model");
             }
             // Models override the visual/base name setter with a wrapper that
@@ -526,19 +528,30 @@ public:
         scene_method<Update>(frame, module, 0x24, 0x1e610)(frame);
     }
 
+    int open_model(EngineFrame* model, HMODULE module, const char* key) {
+        if (resources_) return resources_->load_model(model, key, 0);
+        using Open = std::int32_t (WINAPI *)(EngineFrame*, const char*, std::uint32_t, void*, void*);
+        const auto path = std::string("Models\\") + key;
+        return scene_method<Open>(model, module, 0x74, 0x340b0)(model, path.c_str(), 0, nullptr, nullptr);
+    }
+
     void load_click_sound(HMODULE module) {
         if (!click_sound_) throw std::logic_error("Click-sound frame is not bound");
         using OpenSound = std::int32_t (WINAPI *)(EngineFrame*, const char*, std::uint32_t);
-        const auto status = scene_method<OpenSound>(click_sound_.get(), module, 0x74, 0x545a0)(
-            click_sound_.get(), "Sounds\\button.wav", 0);
-        if (status < 0) throw std::runtime_error("Cannot load original button.wav sound buffer");
+        const auto status = resources_ ? resources_->load_sound(click_sound_.get(), "button.wav", 0) :
+            scene_method<OpenSound>(click_sound_.get(), module, 0x74, 0x545a0)(
+                click_sound_.get(), "Sounds\\button.wav", 0);
+        if (status < 0 && !resources_) throw std::runtime_error("Cannot load original button.wav sound buffer");
         // 100548d0's active query treats +13c as its buffer pointer. Borrow only.
         EngineFrame* buffer = nullptr;
         std::memcpy(&buffer, reinterpret_cast<const unsigned char*>(click_sound_.get()) + 0x13c,
                     sizeof(buffer));
-        if (buffer == nullptr) throw std::runtime_error("Click-sound loader returned no sound buffer");
-        click_sound_loaded_ = true;
-        std::puts("Original button.wav loaded: sound buffer bound for accepted pointer clicks");
+        if (buffer == nullptr && !resources_) throw std::runtime_error("Click-sound loader returned no sound buffer");
+        click_sound_loaded_ = buffer != nullptr;
+        //0066AD10 ignores the cache loader's status: unavailable audio remains
+        // nonfatal, without inventing a successful buffer or successful load.
+        std::printf("Original button.wav cache result=%08x buffered=%u\n",
+                    static_cast<unsigned>(status), static_cast<unsigned>(click_sound_loaded_));
     }
 
     EngineFrame* click_sound() const { return click_sound_.get(); }
@@ -612,6 +625,7 @@ private:
     using Render = std::int32_t (WINAPI *)(EngineFrame*, std::uint32_t);
     std::unique_ptr<MenuDriver> owned_driver_;
     MenuDriver& driver_;
+    MenuResourceServices* resources_;
     MenuDriver::Owner scene_;
     MenuDriver::Owner camera_;
     MenuDriver::Owner light_;

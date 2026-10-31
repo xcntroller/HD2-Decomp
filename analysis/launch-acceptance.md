@@ -18,8 +18,11 @@ services, not reconstructed engine implementations.
 Accepted shutdown-checkpoint application SHA256:
 `3d2258a4ee3f95c2da0ed72caf03072a3c1e9ea4d2d95eb78ca01ae6b4e072ac`.
 
-The subsequently staged [menu timing/capture build](menu-update.md) has a different
-hash and is separately user desktop-confirmed2026-10-31. The identities and checks below describe
+The [menu timing/capture build](menu-update.md) has a different
+hash and is separately user desktop-confirmed2026-10-31. The subsequently staged
+[settings/resource-cache build](menu-caches.md) is separately user desktop-confirmed
+2026-10-31, with archived841-frame state-exit/result0 logs.
+The identities and checks below describe
 this historical launch checkpoint.
 
 The strict i386 targets application-launch/startup-probe/engine-window are up to

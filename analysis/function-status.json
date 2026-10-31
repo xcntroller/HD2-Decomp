@@ -1950,8 +1950,8 @@
       "program": "client",
       "entry": "006dc3a0",
       "status": "partial",
-      "coverage": "Window-position save and ascending archive-only release; bounded host now composes reached final cold control, four data owners and module shutdown, then real 3D/sound/graphics close before archives/COM.",
-      "limitations": "Original additional application/debug/pool/edit-font and loaded-cache owners/producers remain excluded; native direct engine resource owners replace reached consumers. Caller-supplied valid rectangle seed replaces original unwritten stack failure bytes. Native acquired-prefix/error aggregation differs from leaked original early returns. Bounded desktop acceptance recorded on2026-10-31.",
+      "coverage": "Window-position save and ascending archive-only release; bounded host now composes reached final cold control, four data owners and module shutdown, then real 3D/sound/graphics close before archives/COM. Final loaded caches now clear1/2/4/5 after window save and before3D/sound/graphics; controller separately clears all five before state deletion.",
+      "limitations": "Original additional application/debug/pool/edit-font remain excluded; unused cache producers remain outside bounded delivery; native direct engine resource owners replace reached consumers. Caller-supplied valid rectangle seed replaces original unwritten stack failure bytes. Native acquired-prefix/error aggregation differs from leaked original early returns. Prior bounded desktop acceptance recorded on2026-10-31; new cache ownership wiring awaits separate desktop confirmation.",
       "evidence": [
         "analysis/startup-archives-map.json",
         "analysis/startup-archives.md",
@@ -1964,7 +1964,10 @@
         "analysis/shutdown-map.json",
         "analysis/shutdown-delivery.md",
         "recovered/frontend/cleanup.h",
-        "recovered/host/application_launch.cpp"
+        "recovered/host/application_launch.cpp",
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/host/loaded_resources.h"
       ]
     },
     {
@@ -4032,11 +4035,15 @@
       "entry": "0066ad10",
       "status": "partial",
       "coverage": "Frontend state owns actual scene/camera/light, text, cursor, click sound, menu music and recovered compiled Main/Exit products; installed before initialization.",
-      "limitations": "Original eager fourteen-screen registration, multiplayer map initialization and broader resource owners are not recovered by this subset. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated.",
+      "limitations": "Original eager fourteen-screen registration, multiplayer map initialization and broader resource owners are not recovered by this subset. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, unused resource producers, setup and binary integrity VM remain outside delivery. Loaded model/sound caches and content-load settings are now integrated and native-audited; this new wiring awaits desktop confirmation. Engine bodies are delegated.",
       "evidence": [
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
-        "recovered/host/application_menu.h"
+        "recovered/host/application_menu.h",
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/host/loaded_resources.h",
+        "recovered/host/application_launch.cpp"
       ]
     },
     {
@@ -4509,6 +4516,136 @@
         "analysis/menu-update-map.json",
         "recovered/frontend/frontend_update.h",
         "recovered/frontend/defined_control_tree.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004290a0",
+      "status": "partial",
+      "coverage": "Model load-into cache: remove last destination identity before key lookup, copy hit, registered-order search with flags10/optional4 and exact retry/terminal statuses, soft-capacity first-unreferenced eviction, clone/store prototype and preserve actual success status.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "evidence": [
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/io/loaded_resource_cache.h",
+        "recovered/host/loaded_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044a1c0",
+      "status": "partial",
+      "coverage": "Sound load-into cache shares exact destination/key/search/status/eviction rules and stores sound prototypes through the original filename/flags copy-open policy. Normal menu button.wav now uses this cache and preserves original nonfatal load status handling.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "evidence": [
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/io/loaded_resource_cache.h",
+        "recovered/host/loaded_resources.h",
+        "recovered/host/menu_scene.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004c76c0",
+      "status": "partial",
+      "coverage": "Shared-model getter: retained key hits; persistent scratch on misses/failures; registered-order loading, optional failure callback, soft eviction, next-scratch allocation before publishing retained cache/caller references and replacing scratch last.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "evidence": [
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/io/loaded_resource_cache.h",
+        "recovered/host/loaded_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d7ea0",
+      "status": "partial",
+      "coverage": "Sound getter with retained hit, actual sound scratch factory, registered-order open flags0/4, status/diagnostic/failure-callback rules, soft eviction, retained caller/cache publication and replacement scratch.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "evidence": [
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/io/loaded_resource_cache.h",
+        "recovered/host/loaded_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041fc10",
+      "status": "partial",
+      "coverage": "Animation getter through separate driver+70 factory/open+04 and DWORD+04 retain/release policy, preserving shared getter search/status/scratch/eviction/publication sequence.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "evidence": [
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/io/loaded_resource_cache.h",
+        "recovered/host/loaded_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d52d0",
+      "status": "partial",
+      "coverage": "Resolve the source sound file owner+140 and its +0c COW filename data+8; reopen destination using source flags+178 and ignore copy-open result as original.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "evidence": [
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/host/loaded_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b3380",
+      "status": "partial",
+      "coverage": "Store the low byte of one of seven features in the currently selected quality0/1/2/other block; do not switch to custom mode or call an apply helper.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "evidence": [
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/frontend/options_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b6740",
+      "status": "partial",
+      "coverage": "Return current selected profile settings rather than a menu-local default or stale pointer. Concrete observer backend resolves the same canonical settings for float/byte/quality writes and invokes recovered per-setting application services.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "evidence": [
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/frontend/options_settings.h",
+        "recovered/host/startup_session.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0066c5b0",
+      "status": "partial",
+      "coverage": "Save driver settings15/19/11 as nonzero Booleans, select0/0/(mode!=11) across actual model/text/control construction and initial selection, then restore normalized values in original order.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "evidence": [
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/frontend/menu_content_settings.h",
+        "recovered/host/application_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c0920",
+      "status": "partial",
+      "coverage": "Shutdown active state, clear actual five loaded caches in2/1/3/4/5 order, then delete state unless reinitialize and close mouse when enabled. Clear loaded references/tree/current scratch while preserving search-directory lists.",
+      "limitations": "Native containers/RAII replace original COW strings, RB-tree/vector/object layouts, intrusive temporary ownership and SEH. Allocation/exception guards avoid original invalid/null records. Engine factories/open/copy/enumeration remain delegated. Shared algorithms and concrete backend pass native ASan/UBSan and i386 compile/link audits; bounded Main/Exit cache integration is user desktop-confirmed2026-10-31. Unused options/cache families remain source-only.",
+      "evidence": [
+        "analysis/menu-caches-map.json",
+        "analysis/menu-caches.md",
+        "recovered/frontend/application_controller.h",
+        "recovered/io/loaded_resource_cache.h",
+        "recovered/host/loaded_resources.h"
       ]
     }
   ]

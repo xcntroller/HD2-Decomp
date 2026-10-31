@@ -8,6 +8,7 @@
 #include "host/startup_session.h"
 #include "host/borrowed_input.h"
 #include "frontend/keyboard_preprocessing.h"
+#include "frontend/menu_content_settings.h"
 #include <ctime>
 
 namespace hd2::host {
@@ -27,15 +28,18 @@ public:
         if (!frontend::startup_case_equal(startup_.language(), "english"))
             throw std::logic_error("The current compiled menu font renderer supports English/800x600");
         quit_ = std::move(quit);
-        scene_ = std::make_unique<MenuScene>(driver_, module_, true, true);
-        scene_->initialize_confirmation_text_frame(module_);
-        text_ = std::make_unique<MenuText<Graphics>>(graphics_, module_, *scene_, true, false, &startup_.text());
-        cursor_ = std::make_unique<MenuCursor<Graphics>>(graphics_, module_);
-        events_.emplace(actions_, false);
-        MenuScreenFactory<Actions> factory(*scene_, module_,
-            [&](std::uint32_t id) { return text_->object_for(id); }, *events_, products_, actions_);
-        frontend::construct_registered_screens(factory);
-        for (std::size_t i = 0; i != products_.size(); ++i) products_.screen(i).controls().bind_pick_targets();
+        frontend::load_menu_content(driver_, 10, [&] {
+            scene_ = std::make_unique<MenuScene>(driver_, module_, true, true, &startup_.loaded_resources());
+            options_.emplace(startup_, [this] { scene_->request_click_sound(); });
+            scene_->initialize_confirmation_text_frame(module_);
+            text_ = std::make_unique<MenuText<Graphics>>(graphics_, module_, *scene_, true, false, &startup_.text());
+            cursor_ = std::make_unique<MenuCursor<Graphics>>(graphics_, module_);
+            events_.emplace(actions_, false);
+            MenuScreenFactory<Actions> factory(*scene_, module_,
+                [&](std::uint32_t id) { return text_->object_for(id); }, *events_, products_, actions_);
+            frontend::construct_registered_screens(factory);
+            for (std::size_t i = 0; i != products_.size(); ++i) products_.screen(i).controls().bind_pick_targets();
+        });
         keyboard_context_.emplace(*this);
         const auto moved = [this](float x, float y) { scene_->update_input_cursor(x, y, 800, 600); };
         const auto click = [this] { scene_->request_click_sound(); };
@@ -59,7 +63,7 @@ public:
     }
     void shutdown() {
         if (!scene_) return;
-        pointer_input_.reset(); keyboard_context_.reset();
+        pointer_input_.reset(); keyboard_context_.reset(); options_.reset();
         frontend::CleanupErrors errors;
         // A throwing deactivation must not strand products or their engine refs.
         errors.attempt([&] { if (events_) events_->close(); });
@@ -225,6 +229,7 @@ private:
     frontend::OwnedScreens<MenuScreenProduct> products_;
     std::optional<frontend::MenuEventQueue> events_;
     std::optional<KeyboardContext> keyboard_context_;
+    std::optional<frontend::OptionsSettings<StartupSession>> options_;
     std::optional<MenuFrameInput<MenuFocus>> pointer_input_;
     frontend::FrontendUpdateState update_state_;
     std::optional<CursorPoint> point_;

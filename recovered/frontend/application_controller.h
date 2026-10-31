@@ -56,12 +56,12 @@ public:
     void delay(std::uint32_t value) { delay_ = value; }
     std::uint32_t delay() const { return delay_; }
 
-    // Native state lifetime for the normal006C0920 path. State-owned resources
-    // are real; original global loaded-cache trees/class ABI remain separate.
-    // Directory registration lists are NOT those loaded-cache objects.
+    //006C0920: state shutdown, actual loaded cache clear, optional state
+    // deletion, then mouse close. Search directories survive the cache clear.
     void shutdown() {
         CleanupErrors errors;
         errors.attempt([&] { if (active_) required().shutdown(); });
+        errors.attempt([&] { services_.clear_controller_resources(); });
         if (!reinitialize_ || errors.failed()) active_.reset();
         errors.attempt([&] { if (services_.application_flags() & 2u) services_.close_mouse(); });
         errors.rethrow();

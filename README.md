@@ -33,7 +33,8 @@ engine-window preview and startup probe remain separate diagnostics.
 
 Original menu queue/update timing, drag/capture and focus-loss behavior are
 [desktop-confirmed](analysis/menu-update.md) for Main/Exit; unused widget routes
-remain source-only. Next: original settings/resource cache integration. [plan.md](plan.md) is the single menu delivery checklist;
+remain source-only. The settings/resource cache integration is also
+[desktop-confirmed](analysis/menu-caches.md) for the bounded Main/Exit flow. [plan.md](plan.md) is the single menu delivery checklist;
 [HANDOFF.md](HANDOFF.md) records the latest result and next work.
 
 ## Verification and evidence
@@ -63,11 +64,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **336 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **346 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 331 |
+| Base game client | 17,294 | 0 | 341 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -3,7 +3,24 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Latest implementation (2026-10-31): [menu frame/capture/focus-loss contract](analysis/menu-update.md).
+Latest implementation (2026-10-31): [menu settings/loaded caches](analysis/menu-caches.md).
+Registered-directory cache search/hits, actual five-family factory/copy/reference
+policies, soft eviction, scratch getters and ordered cleanup replace normal menu
+direct model/sound opens. Content-load driver settings are restored across real
+screen/control construction; preference services resolve the actual selected
+profile and recovered individual apply helpers. User desktop-confirmed2026-10-31;
+unused options/cache families remain source-only. Two native sanitizer audits,
+10000 generated cache requests, i386 fixture, three targets/native suite/158
+Python tests pass. Ten new partial client bodies:346 total, zero complete,
+frozen18,783. Retained841-frame state-exit/result0 log and matching build are
+archived in menu-cache-acceptance-20261031. User requests commit and continuation.
+No agent Windows/original/DLL/Proton run or push.
+
+Prior implementation: [menu frame/capture/focus-loss contract](analysis/menu-update.md).
+User desktop-confirmed and committed asce2a372. Retained1006-frame state-exit0
+log/build manifest supports bounded acceptance; unused routes stay source-only.
+
+Earlier implementation (2026-10-31): [menu frame/capture/focus-loss contract](analysis/menu-update.md).
 Single pre-pointer queue drain, original relative-motion/pick timing, typed capture
 release/update, focused-child/overlay/reverse-listener phases and unmodified engine
 activation forwarding are integrated in the bounded application. Preview safeguards

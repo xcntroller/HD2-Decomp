@@ -252,6 +252,7 @@ public:
     }
     std::int32_t query_input(const std::uint32_t*& output, std::uint8_t mode) { return startup_.query_input(output, mode); }
     void close_mouse() { startup_.close_mouse(); }
+    void clear_controller_resources() { startup_.clear_controller_resources(); }
     void reset_control() { startup_.reset_control(); std::puts("Controller cold control reset completed"); }
     void finish_frame(std::uint32_t, std::uint32_t, std::uint32_t, std::uint32_t) {
         throw std::logic_error("Network frame finalizer is outside standalone launch mode");
@@ -319,7 +320,14 @@ struct LaunchOwners {
         const bool opened = frontend::save_window_position(files, platform, known);
         std::printf("Shutdown: window.cfg %s\n", opened ? "write attempted" : "open failed; skipped");
     }
-    void close_3d() { driver.reset(); }
+    void close_3d() {
+        frontend::CleanupErrors errors;
+        //006DC3A0 places final loaded caches after window persistence and
+        // before I3D/sound/graphics. Also reclaim partial acquisition on failure.
+        errors.attempt([&] { if (startup) startup->clear_final_resources(); });
+        driver.reset();
+        errors.rethrow();
+    }
     void close_sound() { sound.reset(); }
     void close_graphics() { graphics.reset(); }
     void close_archives() {
