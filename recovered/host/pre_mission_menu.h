@@ -27,6 +27,8 @@ struct PreMissionMenuContent {
     std::function<bool(frontend::ControlEvent &)> receive;
     std::function<void()> shown;
     std::shared_ptr<PreMissionDescription> description;
+    std::function<void(unsigned)> tick = {};
+    std::function<std::optional<MenuRectangle>()> text_mask = {};
 };
 
 class PreMissionMenu {
@@ -47,7 +49,6 @@ class PreMissionMenu {
         if (scene_ || (descriptor.kind != 6 && descriptor.kind != 7) ||
             startup_.pre_mission().descriptor() != &descriptor)
             throw std::logic_error("Setup menu descriptor/lifetime mismatch");
-        status_ = std::move(status);
         const char *model = descriptor.kind == 7                               ? "main_menu"
                             : descriptor.word10 == 0                           ? "heros_screen"
                             : descriptor.word10 == 1 || descriptor.word10 == 2 ? "team members selection"
@@ -55,6 +56,17 @@ class PreMissionMenu {
                                                                                : nullptr;
         if (!model)
             throw std::logic_error("Unsupported pre-mission screen subtype");
+        initialize_model(model,std::move(status));
+    }
+    // The type8 connection owner has its own scene, queue and screen registry.
+    // Reuse resource/input ownership without inserting overlapping slots into Main.
+    void initialize_connection(std::function<void(unsigned)> status) {
+        if (scene_) throw std::logic_error("Connection menu already initialized");
+        initialize_model("confirm",std::move(status));
+    }
+  private:
+    void initialize_model(const char* model,std::function<void(unsigned)> status) {
+        status_ = std::move(status);
         frontend::load_menu_content(driver_, 10, [&] {
             scene_ = std::make_unique<MenuScene>(driver_, module_, true, true, &startup_.loaded_resources(),
                                                  true, model);
@@ -110,6 +122,7 @@ class PreMissionMenu {
         if (startup_.sound_available())
             scene_->load_click_sound(module_);
     }
+  public:
     void shutdown() {
         if (!scene_)
             return;
@@ -167,7 +180,11 @@ class PreMissionMenu {
                 throw std::logic_error("Setup dialog has no retained screen");
             background = &product(previous->identifier);
         }
-        text_->draw_screen(background->definition(), background->focus().focused_control());
+        const auto mask=content_->text_mask?content_->text_mask():std::optional<MenuRectangle>{};
+        if (mask)
+            text_->draw_screen_masked(background->definition(), background->focus().focused_control(),*mask);
+        else
+            text_->draw_screen(background->definition(), background->focus().focused_control());
         if (modal) {
             std::vector<EngineFrame *> backgrounds;
             for (std::size_t i = 0; i < products_.size(); ++i)
@@ -179,8 +196,10 @@ class PreMissionMenu {
             if (!pass.restore())
                 throw std::runtime_error("Setup modal render state restore failed");
         }
-        if (content_->description && content_->description->visible())
-            text_->draw_screen(content_->description->definition(), -1);
+        if (content_->description && content_->description->visible()) {
+            if (mask) text_->draw_screen_masked(content_->description->definition(), -1,*mask);
+            else text_->draw_screen(content_->description->definition(), -1);
+        }
         if (GetAncestor(GetForegroundWindow(), GA_ROOT) == window_ && !IsIconic(window_)) {
             cursor_->draw_at({input_.pointer.cursor().x(), input_.pointer.cursor().y()});
             SetCursor(nullptr);
@@ -265,6 +284,7 @@ class PreMissionMenu {
         PreMissionMenuContent content{team, team->definition(), {}, {}, {}, [team] {team->shown(); }, {}};
         content.description = std::make_shared<PreMissionDescription>(menu.scene(), menu.module(), true);
         team->description(content.description);
+        content.text_mask=[team] { return team->drag_rectangle(); };
         content.control = [team, &menu](const frontend::MenuControlDefinition &definition, EngineFrame *frame,
                                         MenuTextObject &text) {
             return team->make_control(definition, frame, text, menu.widgets(),
@@ -340,7 +360,8 @@ class PreMissionMenu {
             *scene_, module_, confirmation,
             std::vector<frontend::MenuControlRole>{
                 frontend::MenuControlRole::single_player, frontend::MenuControlRole::yes,
-                frontend::MenuControlRole::no, frontend::MenuControlRole::ok},
+                frontend::MenuControlRole::no, frontend::MenuControlRole::ok,
+                frontend::MenuControlRole::multiplayer},
             [this](unsigned id) { return text_->object_for(id); }, *queue_, model, widgets_.get(),
             confirmation ? decltype(content_->control){} : content_->control);
         if (!screen->bind_definition(definition))
@@ -399,7 +420,8 @@ class PreMissionMenu {
         }
         bool dispatch_menu_handler(frontend::MenuApplicationHandler handler,
                                    frontend::ControlEvent &event) override {
-            if (handler != frontend::MenuApplicationHandler::mission)
+            if (handler != frontend::MenuApplicationHandler::mission &&
+                handler != frontend::MenuApplicationHandler::connection)
                 return false;
             if (menu_.unavailable_pending_ && (event.code & 0x03000fffu) == 0x020000c7) {
                 menu_.unavailable_pending_ = false;
@@ -463,7 +485,8 @@ class PreMissionMenu {
     };
     struct FrameServices {
         PreMissionMenu &menu;
-        void update_menu(unsigned) {
+        void update_menu(unsigned milliseconds) {
+            if (menu.content_->tick) menu.content_->tick(milliseconds);
             if (menu.content_->description)
                 menu.content_->description->update(menu.input_,
                                                    menu.current().definition().identifier == 0x04000000);

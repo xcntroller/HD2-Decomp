@@ -151,6 +151,8 @@ public:
             return finish_frame(false);
         } else if (status == 2 || status == 3) {
             transition_pre_mission(services_,status,0);
+        } else if (status == 7 || status == 8) {
+            transition_connection(services_,status,0);
         } else if (status >= 7 && status <= 17) {
             throw std::logic_error("Unrecovered application state transition");
         }
@@ -175,6 +177,14 @@ public:
     }
 
 private:
+    template<class Service>
+    auto transition_connection(Service& service,std::uint32_t status,int)
+        -> decltype(service.transition_connection(*this,status),void()) {
+        service.transition_connection(*this,status);
+    }
+    template<class Service> void transition_connection(Service&,std::uint32_t,long) {
+        throw std::logic_error("Application service has no connection request receiver");
+    }
     template<class Service>
     auto transition_pre_mission(Service &service,std::uint32_t status,int)
         -> decltype(service.transition_pre_mission(*this,status),void()) {

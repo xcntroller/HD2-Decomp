@@ -1,19 +1,25 @@
-# Entire menu reconstruction plan
+# Reconstruction plan
 
 Updated: 2026-11-01. [Handoff](HANDOFF.md) records the latest work and next steps;
 [research](RESEARCH.md) and linked analysis documents hold technical detail.
 
-## Goal and completion criteria
+## Scope and completion criteria
 
-Rebuild every reachable base-game menu screen/dialog in our readable compiled
-client, initially using original LS3DF.dll and local assets through Proton.
-Match rendering, navigation, controls, settings/profile/save data and service
-transitions. Validate game/network handoffs; gameplay and Sabre Squadron are
-outside scope. Engine replacement is a separate milestone; delegated calls stay
-explicit.
+Rebuild the base game in stages: first the front-end menus, then actual level
+loading and the game-dependent flows. Both initially use original LS3DF.dll and
+local assets through Proton; Sabre Squadron and engine replacement are separate.
 
-Checked delivery items mean integrated and desktop-tested unless marked
-**source-only**. Research and partial functions do not establish delivery.
+Checked delivery items mean integrated and desktop-tested unless explicitly
+marked **source-only**. Source-only work, request validation and controlled
+fixtures do not establish actual game entry, live networking or desktop delivery.
+
+# Phase 1 — Front-end menus
+
+Rebuild reachable front-end screens and dialogs in the readable compiled client,
+including navigation, settings, preparation data, service errors and a documented
+boundary for unavailable game receivers. Real world loading, gameplay-save
+receivers, post-mission results and in-game menus belong to Phase 2. A Phase 1
+checkbox does not require a running game unless its own text says otherwise.
 
 ## 0. Rebuild the original launch path to the menu — bounded checkpoint complete
 
@@ -107,10 +113,10 @@ Original object ABI is tracked separately from native menu delivery.
 | [Credits/cinematics](analysis/menu-family-delivery.md#credits-and-cinematics) | Retained controller, list/playback and return | Credits and Cinematics accepted |
 | [Options](analysis/menu-family-delivery.md#options) | All pages/bindings, apply/Back/persistence and owner variants | Front-end accepted; in-game owner open |
 | [Profiles](analysis/menu-family-delivery.md#profiles) | List/select/create/rename/delete and validation | Startup persistence recovered; desktop accepted |
-| [Saves/loading](analysis/menu-family-delivery.md#saves-and-loading) | Actual metadata, errors and game/controller handoff | No extra save-screen registration inferred; real receivers required |
-| [Single player](analysis/menu-family-delivery.md#single-player) | Campaign/lone-wolf/carnage, hero/team/equipment/briefing/results | Resolved roles/dependencies; real handoffs remain open |
-| [Multiplayer](analysis/menu-family-delivery.md#multiplayer) | Browser/create/connect/lobby/errors and owner variants | Controlled local services required; legacy service availability explicit |
-| [In-game menu](analysis/menu-family-delivery.md#in-game-menu) | Pause/player/options/actions and retained-game return | Independent UI audits possible; real game required for full return |
+| [Saves/loading](analysis/menu-family-delivery.md#saves-and-loading) | Front-end save metadata and request/error boundaries | Real load/resume receiver and in-game operations: Phase 2 |
+| [Single player](analysis/menu-family-delivery.md#single-player) | Campaign/lone-wolf/carnage, hero/team/equipment/briefing and owned request | Team checkpoint accepted; loadout screens completely untested; results: Phase 2 |
+| [Multiplayer](analysis/menu-family-delivery.md#multiplayer) | Browser/create/connect/errors and owner variants | UI source integrated; desktop and session services open; status9: Phase 2 |
+| [In-game menu](analysis/menu-family-delivery.md#in-game-menu) | Pause/player/options/actions and retained-game return | Phase 2; actual running game required for delivery |
 
 ## 3. Deliver complete flows in dependency order
 
@@ -126,25 +132,29 @@ Original object ABI is tracked separately from native menu delivery.
   [Desktop accepted2026-10-31](analysis/profiles-flow.md#desktop-acceptance). Gameplay saves follow later.
 - [x] Finish Main's live profile, last-save, date/time and version labels and eligibility.
   [Desktop accepted2026-10-31](analysis/main-menu-state.md#desktop-acceptance).
-- [ ] Deliver single-player setup through a documented game-controller handoff.
-  [Full pre-mission scope/research](analysis/singleplayer-pipeline.md); validate payload, report game entry unavailable.
-  Team-selection checkpoint accepted2026-11-01; loadouts implemented, completely
-  untested until accessible. Full flow open; multiplayer is next per user.
-- [ ] Deliver multiplayer UI/service contracts; distinguish working local/network paths
-  from unavailable legacy services.
-- [ ] Deliver in-game menu variants and transitions back to the front end.
-- [ ] Validate shared dialog callers, reply/context lifetimes and cancellation in every flow.
+- [x] Deliver the bounded team-selection checkpoint.
+  [User desktop acceptance](analysis/singleplayer-pipeline.md#desktop-acceptance--team-selection-checkpoint-2026-11-01).
+- [x] Implement equipment/loadout screens and data flow — **source-only**.
+  Screens are completely untested until accessible; this checks implementation only.
+- [x] Build and native-audit the owned mission/squad/equipment handoff request — **source-only**.
+  [Pipeline and limits](analysis/singleplayer-pipeline.md); the game receiver is Phase 2.
+- [x] Deliver reachable multiplayer front-end UI and explicit service boundaries.
+  [Desktop accepted2026-11-01](analysis/multiplayer-pipeline.md#desktop-acceptance--2026-11-01).
+  All UI requiring a ready server remains untested; server/services and validation are Phase 3.
+- [ ] Validate front-end shared dialog callers, reply/context lifetimes and cancellation.
   [Caller acceptance](analysis/menu-family-delivery.md#shared-dialogs).
-- [ ] Finish all nine Main actions and verify complete menu traversal and returns.
+- [ ] Finish supported Main actions, front-end traversal and explicit unavailable boundaries.
+  Single-player completion and verification are deferred to Phase 2.
   [Main traversal boundary](analysis/menu-family-delivery.md#main-menu).
 
 For each flow: evidence → readable source → build/audit → integrate → user desktop
 validation → tracker update → commit. Never enable dead actions or count placeholder
 service responses as completed flows.
 
-The linked family checklists define concrete flow boundaries and validation levels;
-Credits, Cinematics, front-end Options and runtime dialog integration are accepted; 22 delivery items remain open. Native fixtures establish UI/payload/ownership
-contracts, separately from actual desktop and real game/network handoff acceptance.
+The linked family checklists define flow boundaries and validation levels.
+Credits, Cinematics, front-end Options, profile management, Main labels and the
+bounded team checkpoint are accepted. Native fixtures establish only their
+explicit UI/payload/ownership contracts.
 
 ## 4. Finish fidelity and replace remaining scaffolding
 
@@ -152,7 +162,53 @@ contracts, separately from actual desktop and real game/network handoff acceptan
 - [ ] Verify held/repeat input, eligibility, focus, wheel/drag and modal cancellation.
 - [ ] Verify sound/music, preferences, failures and deterministic cleanup.
 - [ ] Audit host approximations and delegated engine/service calls against evidence.
-- [ ] Run full menu traversal; record unavailable environments/services explicitly.
+- [ ] Run Phase 1 menu traversal; record deferred flows and unavailable services.
+
+# Phase 2 — Load a level and deliver game-dependent flows
+
+This is a new, unstarted stage after the front-end work. Exact dependencies and
+order must be established from original behavior before implementation; the
+items below are boundaries, not a claim that world loading is understood.
+
+- [ ] Finish and desktop-verify the remaining single-player front-end flow.
+  Cover mode/mission/hero, loadouts, briefing, Back and unavailable-receiver behavior.
+- [ ] Recover the original single-player kind7 and multiplayer status9 transition
+  contracts, session preprocessing and the game owner (`00698510`).
+  [Single-player evidence](analysis/singleplayer-pipeline.md#briefing-and-game-entry),
+  [multiplayer evidence](analysis/multiplayer-pipeline.md#completion-boundary-and-blockers).
+- [ ] Reconstruct the required game/session owners, scene/camera and teardown,
+  including real failure and return paths.
+- [ ] Recover and implement level/mission asset loading through the actual archive
+  and resource dependencies; validate a real level reaches its first rendered frame.
+- [ ] Complete single-player mission/squad/equipment request consumption and
+  actual game entry; verify the level receives the selected preparation state.
+- [ ] Complete multiplayer status9 handoff for real controlled host/client
+  sessions, including connection cleanup and return on success or failure.
+- [ ] Implement gameplay-save load/resume and in-game save/restart receivers.
+  [Save contracts](analysis/menu-family-delivery.md#saves-and-loading).
+- [ ] Deliver mission and campaign debrief/result screens against real results,
+  including next/retry/return and profile persistence.
+  [Result contracts](analysis/menu-family-delivery.md#level-loading-and-post-game-follow-up).
+- [ ] Deliver in-game menu, Options/dialog variants and retained-game return.
+  [In-game contracts](analysis/menu-family-delivery.md#in-game-menu).
+- [ ] Verify complete level loading, game-dependent transitions and return to the
+  front end with real data and user desktop acceptance.
+
+# Phase 3 — Reconstruct multiplayer server and verify live networking
+
+The user reports the old server binary implementation appears broken. Reconstruct
+the server from original evidence; do not run the original server or assume it
+is a usable test endpoint. Detailed ordering follows research after Phase 2.
+
+- [ ] Recover and rebuild the server runtime and real ready-session lifecycle.
+- [ ] Implement real Host/Connect and required auxiliary discovery/query services.
+  Keep legacy Internet/GameSpy availability explicit; never substitute fake success.
+- [ ] Desktop-test every UI behavior that requires a ready server.
+  Currently **untested**: populated browser/discovery, server info/player/team/rule
+  displays, responding favorites/refresh, Join/password/connection consoles and
+  standalone connection screens. Verify against the rebuilt controlled server.
+- [ ] Verify host/client game handoff, failure/cancel cleanup and return paths.
+  Complete the Phase 2 status9 boundary against the reconstructed server.
 
 ## Evidence and validation rules
 

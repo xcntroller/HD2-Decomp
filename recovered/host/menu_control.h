@@ -48,7 +48,12 @@ class MenuControl {
                 return false;
             text_.attach_control(widget_->properties(), true);
         } else {
-            throw std::logic_error("Original widget kind needs a native constructor backend");
+            char message[192];
+            std::snprintf(message,sizeof(message),
+                "Original widget kind needs a native constructor backend: kind=%02x id=%08x frame=%s",
+                static_cast<unsigned>(definition_.kind),definition_.identifier,
+                definition_.frame?definition_.frame:"<unnamed>");
+            throw std::logic_error(message);
         }
         return true;
     }
@@ -167,6 +172,12 @@ class MenuControl {
             std::memcpy(reinterpret_cast<unsigned char*>(frame_)+0xec,&id,sizeof(id));
     }
     void on_row_activation(std::function<void()> callback) { row_activation_ = std::move(callback); }
+    void display_row_selection(bool selected) {
+        if (!row()) throw std::logic_error("Selection display requires a row control");
+        selected_ = selected;
+        text_.highlighted(selected);
+        button().apply(selected);
+    }
     void deselect_row() {
         selected_ = false;
         text_.highlighted(false);

@@ -4,6 +4,7 @@
 #include "host/pre_mission_controls.h"
 #include "host/pre_mission_description.h"
 #include "host/pre_mission_soldier_selection.h"
+#include "host/frame_name.h"
 #include "host/profiles_menu.h"
 #include <deque>
 #include <random>
@@ -163,6 +164,13 @@ class PreMissionTeamMenu {
     }
     void description(std::shared_ptr<PreMissionDescription> value) { description_ = std::move(value); }
     PreMissionSoldierSelection &selection() { return selection_; }
+    std::optional<MenuRectangle> drag_rectangle() const {
+        if (!drag_frame_) return std::nullopt;
+        const auto& cursor=context_->input.pointer.cursor();
+        const float x=cursor.x()-drag_pointer_[0],y=cursor.y()-drag_pointer_[1];
+        return MenuRectangle{drag_rectangle_.left+x,drag_rectangle_.top+y,
+                             drag_rectangle_.right+x,drag_rectangle_.bottom+y};
+    }
     bool receive(frontend::ControlEvent &event) {
         switch (event.code & 0x03000fffu) {
         case 0x0200000a:
@@ -197,8 +205,11 @@ class PreMissionTeamMenu {
         auto extra = [this, &context, lookup](const frontend::MenuControlDefinition &child, EngineFrame *f) {
             return make_control(child, f, *lookup(child.identifier), context, lookup);
         };
-        if (d.kind == K::image)
-            return std::make_unique<PreMissionImage>(scene_, module_, d, frame, text, context);
+        if (d.kind == K::image) {
+            const bool member=(d.identifier&0xfffff000u)==0x04101000u ||
+                              (d.identifier&0xfff00000u)==0x04800000u;
+            return std::make_unique<PreMissionImage>(scene_, module_, d, frame, text, context, !member);
+        }
         if (d.kind == K::meter)
             return std::make_unique<PreMissionMeter>(scene_, module_, d, frame, text, context.queue);
         if (d.kind == K::edit) {
@@ -237,19 +248,24 @@ class PreMissionTeamMenu {
     }
     static unsigned candidate_id(unsigned i) { return 0x04101000 + (i + 1) * 16; }
     static unsigned slot_image_id(unsigned slot) { return 0x04800000 + (slot * 3 + 3) * 0x1000; }
-    void raw(unsigned id, unsigned style, const std::string &value) {
+    void raw(unsigned id, unsigned style, const std::string &value, bool immediate=false) {
         frontend::ControlEvent e{id, 0x01000014, style, 0, 0, {}};
         e.text = std::make_shared<const std::string>(value);
-        queue_.enqueue(e);
+        if (immediate) queue_.dispatch_immediate(std::move(e));
+        else queue_.enqueue(e);
     }
-    void refresh() {
+    void refresh(bool immediate=false) {
+        const auto send=[this,immediate](frontend::ControlEvent event) {
+            if (immediate) queue_.dispatch_immediate(std::move(event));
+            else queue_.enqueue(event);
+        };
         auto &team = startup_.pre_mission().team();
         //00693C10/00694C40 edit the active list incrementally. Clearing it
         // sends02000085 and resets the scroll offset on every transfer.
         for (unsigned i = 0; i < names_.size(); ++i) {
             const bool included = !team.contains(i);
             if (included != candidate_in_list_[i]) {
-                queue_.enqueue({0x04101000, included ? 0x02000083u : 0x02000084u,
+                send({0x04101000, included ? 0x02000083u : 0x02000084u,
                                 candidate_id(i), 0, 0, {}});
                 candidate_in_list_[i] = included;
             }
@@ -259,19 +275,19 @@ class PreMissionTeamMenu {
             const auto *human = startup_.pre_mission_humans().record(slot.human);
             const unsigned base = 0x04800000 + (i * 3 + 1) * 0x1000;
             //00690DE0: style12 name and style2 rank from HumanStore+24.
-            raw(base, 12, human ? display_name(*human) : "");
+            raw(base, 12, human ? display_name(*human) : "",immediate);
             if (human) {
                 if (human->field24 >= 8)
                     throw std::runtime_error("Invalid HumanStore rank index");
                 // Use the full rank from the original pair, as in the user reference.
-                queue_.enqueue({base + 0x1000, 0x01000015, 2, 0x2792 + human->field24, 0, {}});
+                send({base + 0x1000, 0x01000015, 2, 0x2792 + human->field24, 0, {}});
             } else
-                raw(base + 0x1000, 11, "");
-            queue_.enqueue({base + 0x2000, 0x01000009, static_cast<unsigned>(slot.human), 0, 0, {}});
-            queue_.enqueue(PreMissionImage::texture_event(
+                raw(base + 0x1000, 11, "",immediate);
+            send({base + 0x2000, 0x01000009, static_cast<unsigned>(slot.human), 0, 0, {}});
+            send(PreMissionImage::texture_event(
                 base + 0x2000, human ? static_cast<EngineFrame *>(human->portrait) : nullptr));
         }
-        queue_.enqueue({0x04b00000, team.size() ? 0x01000002u : 0x01000001u, 0, 0, 0, {}});
+        send({0x04b00000, team.size() ? 0x01000002u : 0x01000001u, 0, 0, 0, {}});
         refresh_selected();
     }
     static const std::string &display_name(const frontend::HumanRecord &human) {
@@ -378,6 +394,8 @@ class PreMissionTeamMenu {
             auto *source = self.drag_from_squad_
                                ? self.slot_frames_.at((image.identifier() - 0x04803000) / 0x3000)
                                : self.frames_.at((image.identifier() - 0x04101010) / 16).get();
+            const char* name=engine_frame_name(source);
+            self.drag_rectangle_=menu_rectangle(self.scene_.label_bounds(name,name,self.module_,false,source),800,600);
             //006937F0 makes a shallow visual copy, leaving selector children
             //and control IDs behind. The original source is hidden until drop.
             self.drag_frame_ = self.clone_.create_like(source);
@@ -410,6 +428,7 @@ class PreMissionTeamMenu {
         const unsigned target =
             self.scene_.pick_model(self.module_, cursor.x(), cursor.y(), 800, 600, self.model_);
         auto &team = self.startup_.pre_mission().team();
+        bool reordered=false;
         //00693C10 uses normalized X=.5 for transfers between the two halves;
         // a squad control pick is needed only for swapping existing members.
         if (self.drag_from_squad_ && (target & 0x03f00000u) == 0x00800000u) {
@@ -418,12 +437,21 @@ class PreMissionTeamMenu {
                 ++source;
             const auto destination = (target - 0x04801000u) / 0x3000u;
             team.reorder(source, destination);
+            reordered=true;
         } else if ((!self.drag_from_squad_ && cursor.x() >= 400.f) ||
                    (self.drag_from_squad_ && cursor.x() <= 400.f)) {
             team.toggle(human, self.startup_.pre_mission_humans());
         }
-        self.scene_.set_screen_visible(self.module_, self.selector_, false);
-        self.refresh();
+        //The outline returns at the source position, including after a roster
+        //soldier enters the squad. Detach before refresh hides/removes that
+        //roster frame, preserving its authored world position.
+        const bool assigned=!self.drag_from_squad_ && team.contains(human);
+        if (assigned) self.clone_.link(self.selector_,self.model_,1);
+        const bool retained=assigned || (!reordered && team.contains(human)==self.drag_from_squad_);
+        self.scene_.set_screen_visible(self.module_, self.selector_, retained);
+        //Drop runs after0066BEA0's only queue drain. Commit the roster and
+        //squad visuals together before rendering this frame.
+        self.refresh(true);
         return true;
     }
     void move_drag() {
@@ -545,6 +573,7 @@ class PreMissionTeamMenu {
     EngineFrame *drag_source_ = nullptr;
     std::array<float, 3> drag_position_{};
     std::array<float, 2> drag_pointer_{};
+    MenuRectangle drag_rectangle_{};
     std::vector<frontend::MenuFrameClone<CinematicsCloneBackend>> frames_;
     std::array<EngineFrame *, 4> slot_frames_{};
     std::array<EngineFrame *, 24> medal_frames_{};

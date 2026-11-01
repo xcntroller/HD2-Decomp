@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Credits/Cinematics/front-end Options/runtime dialog integration/profiles desktop accepted2026-10-31;Main labels accepted2026-10-31;22 delivery items open",
+  "status": "Reachable multiplayer frontend and Team Selection follow-ups desktop accepted2026-11-01; server-dependent UI deferred untested to Phase3; 20 delivery items open",
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
@@ -43,11 +43,12 @@
             "confirmation": "Looks good. Record, commit, continue.",
             "application_sha256": "d5656467e031f56e7fe77c32dfb280f12580206fd111f2881cc8a4570dc9d953",
             "scope": "Main live labels and eligibility; no individual case execution inferred; real gameplay receiver excluded."
-          }
+          },
+          "delivery_phase": 1
         },
         {
           "key": "main.traversal",
-          "title": "Complete all nine Main actions and return-to-Main behavior",
+          "title": "Verify the nine Main actions and front-end returns",
           "status": "open",
           "roles": [
             "main:1"
@@ -58,22 +59,22 @@
             "0066c950"
           ],
           "requires": [
-            "all_destination_flows"
+            "delivered_phase_1_destinations",
+            "explicit_unavailable_boundaries"
           ],
           "depends_on": [
             "main.labels",
             "media.cinematics",
             "options.full",
             "profiles.manage",
-            "saves.resume",
-            "single.entry",
             "multi.browser",
-            "media.credits",
-            "multi.standalone"
+            "media.credits"
           ],
           "native_validation": "Audit the original event order and each exact target ID; maintain root Back/Exit modal semantics.",
-          "desktop_validation": "Traverse Resume, Profile, Single Player, LAN, Internet, Cinematics, Options, Credits and Exit, returning with original focus/visibility where applicable.",
-          "failure_acceptance": "An unavailable network/game destination is explicitly excluded from full acceptance; no successful empty service completes the hub."
+          "desktop_validation": "Exercise available Phase 1 routes and explicit unavailable boundaries, including focus/visibility on return. Single-player completion and desktop verification are Phase 2.",
+          "failure_acceptance": "Game-dependent and deferred single-player success are Phase 2; a successful empty service cannot represent an unavailable destination.",
+          "delivery_phase": 1,
+          "phase_scope": "Phase 1 covers front-end callers and explicit unavailable boundaries; actual running-game variants and receivers are Phase 2."
         }
       ]
     },
@@ -115,11 +116,12 @@
             "confirmation": "Options now works as intended. Record as completed (the shared runtime dialogs too if we have everything we need there), commit and continue.",
             "application_sha256": "4244e2e8c5b4174ff90c164aac3b06775f4b571dd4da1d94f47c8db015fa3128",
             "scope": "User acceptance of front-end Options, including its genuine shared-dialog producer/receiver; no individual test-case execution inferred. Other dialog callers and in-game Options remain separate."
-          }
+          },
+          "delivery_phase": 1
         },
         {
           "key": "dialogs.callers",
-          "title": "Validate every owner request/reply and context lifetime in its delivered flow",
+          "title": "Validate front-end request/reply and context lifetimes",
           "status": "open",
           "roles": [],
           "evidence": [
@@ -128,22 +130,19 @@
             "0066d7c0"
           ],
           "requires": [
-            "delivered_requesting_flows"
+            "delivered_phase_1_requesting_flows"
           ],
           "depends_on": [
             "dialogs.runtime",
             "profiles.manage",
             "options.full",
-            "multi.create",
-            "single.items",
-            "single.team",
-            "single.debrief",
-            "ingame.actions",
-            "ingame.player"
+            "multi.create"
           ],
-          "native_validation": "Cover all20 source helper sites, including raw text and mode0/force-close, with live/rejected reply sequencing and retained callback contexts.",
-          "desktop_validation": "Exercise requests from the actual delivered profiles/options/network/setup/in-game flows; record unavailable environments separately.",
-          "failure_acceptance": "No fixture-generated reply may stand in for a missing application operation; forced close and partial teardown must not use freed contexts."
+          "native_validation": "Cover Phase 1 source helper sites, including raw text and mode0/force-close, with live/rejected reply sequencing and retained callback contexts.",
+          "desktop_validation": "Exercise requests from actual delivered profiles/options/network flows; single-player, in-game and debrief callers are Phase 2.",
+          "failure_acceptance": "No fixture-generated reply may stand in for a missing application operation; forced close and partial teardown must not use freed contexts.",
+          "delivery_phase": 1,
+          "phase_scope": "Phase 1 covers front-end callers and explicit unavailable boundaries; actual running-game variants and receivers are Phase 2."
         }
       ]
     },
@@ -186,7 +185,8 @@
             "confirmation": "Yup, all works. Continue",
             "application_sha256": "121ee7ead4ad8fd410b453b59f3f17af636c2a1e58772499a752e357dacc4236",
             "scope": "Requested Credits desktop checklist; no individual case logs inferred"
-          }
+          },
+          "delivery_phase": 1
         },
         {
           "key": "media.cinematics",
@@ -226,7 +226,8 @@
             "confirmation": "Yup, works well. Record it, commit and continue",
             "application_sha256": "c6b7c1157a32ca46a7721ada21aff5cdb4983bd15dc87e817fc718772d124f06",
             "scope": "Requested corrected Cinematics preview/PLAY/return checklist; user-reported acceptance, no case-specific logs inferred."
-          }
+          },
+          "delivery_phase": 1
         }
       ]
     },
@@ -277,7 +278,8 @@
             "confirmation": "Options now works as intended. Record as completed (the shared runtime dialogs too if we have everything we need there), commit and continue.",
             "application_sha256": "4244e2e8c5b4174ff90c164aac3b06775f4b571dd4da1d94f47c8db015fa3128",
             "scope": "User acceptance of front-end Options, including its genuine shared-dialog producer/receiver; no individual test-case execution inferred. Other dialog callers and in-game Options remain separate."
-          }
+          },
+          "delivery_phase": 1
         },
         {
           "key": "options.ingame",
@@ -304,7 +306,8 @@
           ],
           "native_validation": "Audit family2 target composition and explicit observer context/ID binding, -1/-2 entry and settings-first Back dispatch using actual settings code.",
           "desktop_validation": "Open Options from a real compiled running-game menu, change/reopen settings and return to the correct game/menu without stale input or audio.",
-          "failure_acceptance": "Game/session ownership cannot be replaced by a successful fixture owner in production; unavailable real game leaves full acceptance pending."
+          "failure_acceptance": "Game/session ownership cannot be replaced by a successful fixture owner in production; unavailable real game leaves full acceptance pending.",
+          "delivery_phase": 2
         }
       ]
     },
@@ -345,7 +348,8 @@
             "confirmation": "Good, works as expected. Record, commit and continue.",
             "application_sha256": "5e6882429e45bd8805e167ee72a8f243feb7d6ca6c8bbe576b028123cac5acf7",
             "scope": "English front-end profiles/persistence; no individual case execution inferred."
-          }
+          },
+          "delivery_phase": 1
         },
         {
           "key": "profiles.manage",
@@ -375,7 +379,8 @@
             "confirmation": "Good, works as expected. Record, commit and continue.",
             "application_sha256": "5e6882429e45bd8805e167ee72a8f243feb7d6ca6c8bbe576b028123cac5acf7",
             "scope": "English front-end profiles/persistence; no individual case execution inferred."
-          }
+          },
+          "delivery_phase": 1
         }
       ],
       "implementation": "English front-end profiles desktop accepted2026-10-31; analysis/profiles-flow.md."
@@ -384,7 +389,7 @@
       "key": "saves",
       "title": "Saves and loading",
       "numbered_roles": [],
-      "context": "No extra numbered save/load screen is inferred. Main Resume, mission-list last save and in-game/controller operations are explicit service boundaries. Profile.sav persistence is not a gameplay-save implementation.",
+      "context": "Front-end save metadata and request/error boundaries are Phase 1. Real gameplay-save loading, resume and in-game save/restart are Phase 2; profile.sav is not gameplay-save implementation.",
       "units": [
         {
           "key": "saves.metadata",
@@ -402,8 +407,10 @@
           ],
           "depends_on": [],
           "native_validation": "Research original save/path/query callbacks before implementation; audit valid/missing/malformed/incompatible metadata and preview ownership through real readers.",
-          "desktop_validation": "Validate displayed names/time/preview and enabled state with isolated actual saves at each proven UI entry; do not create a guessed save browser.",
-          "failure_acceptance": "Do not infer loadability from file existence or treat profile payload loading as a game-save result."
+          "desktop_validation": "Validate displayed names/time/preview and enabled state with isolated actual saves at front-end entries; in-game entries are Phase 2. Do not create a guessed save browser.",
+          "failure_acceptance": "Do not infer loadability from file existence or treat profile payload loading as a game-save result.",
+          "delivery_phase": 1,
+          "phase_scope": "Phase 1 covers front-end callers and explicit unavailable boundaries; actual running-game variants and receivers are Phase 2."
         },
         {
           "key": "saves.resume",
@@ -425,7 +432,8 @@
           ],
           "native_validation": "Audit selected path, validation, progress/error propagation and exact controller request on success/failure; native receiver traces prove only the interface.",
           "desktop_validation": "Activate Main/mission/debrief last-save paths with actual compatible saves and verify the real receiving controller/game or explicitly leave that gate pending.",
-          "failure_acceptance": "Missing/corrupt/version-mismatched save and cancellation must return through proven behavior; no synthetic successful load."
+          "failure_acceptance": "Missing/corrupt/version-mismatched save and cancellation must return through proven behavior; no synthetic successful load.",
+          "delivery_phase": 2
         },
         {
           "key": "saves.ingame",
@@ -448,7 +456,8 @@
           ],
           "native_validation": "Recover each original eligibility/operation/status branch before wiring; audit request payloads, progress mode0/force-close and error paths without inventing standalone UI.",
           "desktop_validation": "Exercise permitted operations on an actual running compiled game with copied saves, including restart/cancel/failure and correct resumed owner.",
-          "failure_acceptance": "Native operation counters or fixture data never establish successful gameplay save/restore; production settings/profiles remain isolated."
+          "failure_acceptance": "Native operation counters or fixture data never establish successful gameplay save/restore; production settings/profiles remain isolated.",
+          "delivery_phase": 2
         }
       ]
     },
@@ -468,7 +477,7 @@
         "debrief:2",
         "campaign:1"
       ],
-      "context": "Hero/team/equipment/debrief interfaces can be audited with actual decoded data and isolated profiles; real descriptor/briefing/game and post-mission transitions require their real receiving owners. Gameplay implementation is outside the menu milestone. Team-selection checkpoint desktop accepted2026-11-01; loadout screens implemented but completely untested until accessible. Full flow remains open; user chose multiplayer next.",
+      "context": "Bounded team checkpoint is desktop accepted and equipment source is implemented. Remaining single-player front-end completion and desktop verification, actual game entry and post-mission results are Phase 2. Loadout screens are completely untested until accessible.",
       "units": [
         {
           "key": "single.entry",
@@ -493,7 +502,9 @@
           "depends_on": [],
           "native_validation": "Audit mode/mission eligibility, generated campaign/mission groups, selection/preview and exact descriptor payload; distinguish slot5 from Cinematics slot7.",
           "desktop_validation": "Enter all proven modes from Main, select permitted missions, Back and reopen; verify activation with actual decoded data and downstream transition when available.",
-          "failure_acceptance": "Empty/locked campaigns, missing preview/data and invalid selection keep original gates; no fabricated available mission list."
+          "failure_acceptance": "Empty/locked campaigns, missing preview/data and invalid selection keep original gates; no fabricated available mission list.",
+          "delivery_phase": 2,
+          "phase_scope": "Some source and the bounded team checkpoint exist; remaining completion and desktop verification are Phase 2. Loadout screens remain completely untested until accessible."
         },
         {
           "key": "single.hero",
@@ -520,7 +531,9 @@
           ],
           "native_validation": "Audit specialization/stat updates, accept/Back confirmation and original HumanStore values/payloads; preserve empty slots 2/3 and slot4 ID.",
           "desktop_validation": "Traverse actual hero entry, change permitted values, accept or cancel confirmation and verify next/previous descriptor state.",
-          "failure_acceptance": "No renumbering, empty-slot alias or silent default data; failed preparation stops progression."
+          "failure_acceptance": "No renumbering, empty-slot alias or silent default data; failed preparation stops progression.",
+          "delivery_phase": 2,
+          "phase_scope": "Some source and the bounded team checkpoint exist; remaining completion and desktop verification are Phase 2. Loadout screens remain completely untested until accessible."
         },
         {
           "key": "single.team",
@@ -555,7 +568,9 @@
             "confirmation": "Alright; all fixed, I see no more issues now. Record it, commit and continue.",
             "application_sha256": "6fe0fd2b46361e3955b1582f16dd00aa540f627d0c261c4cefa00177b0192c4e",
             "scope": "Observed team-selection checkpoint and reported fixes only; no invented individual-case execution, full single-player acceptance, or loadout testing."
-          }
+          },
+          "delivery_phase": 2,
+          "phase_scope": "Some source and the bounded team checkpoint exist; remaining completion and desktop verification are Phase 2. Loadout screens remain completely untested until accessible."
         },
         {
           "key": "single.items",
@@ -590,11 +605,13 @@
           "native_validation": "Audit real item/category data, generated equipment slots, pick/drag/select/description, conditional modal, inventory validation, prompts and 020000c1/c6 preparation.",
           "desktop_validation": "Equip/unequip permitted items, change soldier, inspect descriptions and exercise validation/confirmation then forward/Back with original data.",
           "failure_acceptance": "Reject invalid/over-capacity/unavailable items and resource failures according to recovered code; no dummy inventory/progression success.",
-          "implementation": "Implemented but completely untested as loadout screens until accessible, per user2026-11-01. Native data/ownership audits and builds do not establish screen tests or desktop acceptance."
+          "implementation": "Implemented but completely untested as loadout screens until accessible, per user2026-11-01. Native data/ownership audits and builds do not establish screen tests or desktop acceptance.",
+          "delivery_phase": 2,
+          "phase_scope": "Some source and the bounded team checkpoint exist; remaining completion and desktop verification are Phase 2. Loadout screens remain completely untested until accessible."
         },
         {
           "key": "single.briefing",
-          "title": "Recover and validate descriptor-to-briefing/game handoff",
+          "title": "Deliver front-end briefing and validated game request",
           "status": "open",
           "roles": [],
           "evidence": [
@@ -604,14 +621,16 @@
           ],
           "requires": [
             "real_briefing_receiver",
-            "real_game_entry_receiver"
+            "owned_game_request"
           ],
           "depends_on": [
             "single.items"
           ],
-          "native_validation": "Research kind5 briefing owner/interface and kind7 receiving path before implementation; audit actual request data and cleanup/ownership at the boundary.",
-          "desktop_validation": "Verify actual receiving owner acknowledges entry and Back where original behavior allows; record absence as a blocked integration gate, not another guessed registry screen.",
-          "failure_acceptance": "Fixture receivers can validate payload/order only. Do not expand into speculative gameplay or claim a successful handoff without a real receiver."
+          "native_validation": "Audit kind5 briefing ownership, kind7 request payload and cleanup at the front-end boundary; report the absent game receiver explicitly.",
+          "desktop_validation": "Verify accessible briefing playback, Back and the explicit unavailable game-entry boundary. Actual receiver and level acceptance belong to Phase 2.",
+          "failure_acceptance": "A validated request or fixture proves payload/order only; do not claim the game received or loaded it.",
+          "delivery_phase": 2,
+          "phase_scope": "Some source and the bounded team checkpoint exist; remaining completion and desktop verification are Phase 2. Loadout screens remain completely untested until accessible."
         },
         {
           "key": "single.debrief",
@@ -640,7 +659,8 @@
           ],
           "native_validation": "Audit actual results/soldier panels, diary gate, multipage text, prompts, save preparation and next/retry/Main-return requests; decoded captured result data tests UI independently.",
           "desktop_validation": "Present real post-mission results, traverse diary/Back, continue/retry/return Main and verify persistence and receiving state.",
-          "failure_acceptance": "Captured-result UI acceptance is separate from live post-mission acceptance; absent/corrupt results and failed saves cannot advance silently."
+          "failure_acceptance": "Captured-result UI acceptance is separate from live post-mission acceptance; absent/corrupt results and failed saves cannot advance silently.",
+          "delivery_phase": 2
         },
         {
           "key": "single.campaign",
@@ -666,7 +686,8 @@
           ],
           "native_validation": "Audit all20 table rows:11 model variants of one role, non-null empty load attempt, four selectable null failures and four unselectable padding rows; no fabricated Back for RET dispatcher.",
           "desktop_validation": "Resolve actual layered models, present reachable campaign-result variants and verify real controller continuation; guard-admitted rows need actual reachability evidence.",
-          "failure_acceptance": "Do not coerce empty to null, substitute a model or count variants as separate screens; unresolved resources leave visual acceptance pending."
+          "failure_acceptance": "Do not coerce empty to null, substitute a model or count variants as separate screens; unresolved resources leave visual acceptance pending.",
+          "delivery_phase": 2
         }
       ]
     },
@@ -684,12 +705,12 @@
         "connection:1",
         "connection:2"
       ],
-      "context": "UI contracts can use controlled server/session records for native audits. Functional LAN/create/join and any proven lobby/pre-game behavior need real local service/session endpoints; unavailable legacy Internet service remains explicitly unverified. Recover lobby ownership from existing owner/service routes before adding UI, rather than guessing another registry.",
+      "context": "Reachable multiplayer frontend desktop accepted2026-11-01. Server-dependent behavior is completely untested until a controlled rebuilt server exists; server/services and live UI validation are Phase3. Game/status9 reconstruction stays Phase2.",
       "units": [
         {
           "key": "multi.browser",
-          "title": "Deliver LAN/Internet browser with real refresh/selection/Back",
-          "status": "open",
+          "title": "Deliver reachable LAN/Internet browser and explicit unavailable boundaries",
+          "status": "complete",
           "roles": [
             "main:8"
           ],
@@ -699,18 +720,35 @@
             "006344b0"
           ],
           "requires": [
-            "real_local_network_service",
             "server_list_controls"
           ],
           "depends_on": [],
           "native_validation": "Audit actual server-row population, refresh/filter/selection eligibility, expiry and LAN/Internet preparation against controlled records; fixtures never stand in for a production discovery service.",
-          "desktop_validation": "Use controlled local endpoints for LAN discovery/refresh and Back; verify Internet results only if the actual service works, otherwise retain explicit unavailable status.",
-          "failure_acceptance": "Empty result, timeout, stale server and unavailable legacy service differ from success; no permanent canned server list."
+          "desktop_validation": "User accepted reachable frontend behavior and reported no remaining issues. Server-ready behavior in deferred_server_validation is untested and assigned to multi.liveui in Phase3.",
+          "failure_acceptance": "Empty result, timeout, stale server and unavailable legacy service differ from success; no permanent canned server list.",
+          "implementation": "analysis/multiplayer-pipeline.md; analysis/multiplayer-desktop-acceptance-20261101.json",
+          "delivery_phase": 1,
+          "deferred_server_validation": "Use controlled local endpoints for LAN discovery/refresh and Back; verify Internet results only if the actual service works, otherwise retain explicit unavailable status.",
+          "desktop_acceptance": {
+            "date": "2026-11-01",
+            "performed_by": "user",
+            "confirmation": "Good, I can find no more issues.",
+            "application_sha256": "f2295542f86575c6df66a35863ae31c9085deae85583c922c1e68d46bdabfe83",
+            "scope": "Reachable multiplayer frontend, explicit unavailable boundaries and all reported Team Selection follow-up fixes. Broad acceptance does not imply individual test-case execution.",
+            "untested": [
+              "All UI needing a ready server: populated discovery/browser, information/player/team/rule data, live refresh/favorites, Join/password and connection consoles, standalone connection routes.",
+              "Loadout/equipment screens remain completely untested until accessible."
+            ],
+            "deferred": "Phase3: reconstruct apparently broken old server implementation, real Host/Connect and auxiliary services, then live UI validation. Phase2 retains game/level-loading reconstruction.",
+            "original_execution_by_agent": false,
+            "commit_requested": true
+          },
+          "phase_scope": "Phase1 frontend UI only; available service failure boundaries are explicit. Real server/network success and information UI are Phase3."
         },
         {
           "key": "multi.create",
-          "title": "Deliver create-server settings, map selection and connection preparation",
-          "status": "open",
+          "title": "Deliver frontend Create settings and map selection",
+          "status": "complete",
           "roles": [
             "main:9"
           ],
@@ -721,7 +759,6 @@
           ],
           "requires": [
             "game_data_human_store",
-            "real_local_network_service",
             "isolated_profile_copy"
           ],
           "depends_on": [
@@ -729,13 +766,31 @@
             "dialogs.runtime"
           ],
           "native_validation": "Audit original map/category rows, settings validation, preparation prompts/replies and connection requests with real map metadata.",
-          "desktop_validation": "Choose valid maps/settings, create a controlled local session, cancel or continue into the real connection owner.",
-          "failure_acceptance": "Invalid settings/map, bind failure, service error and prompt cancellation preserve original cleanup and return behavior."
+          "desktop_validation": "User accepted reachable frontend behavior and reported no remaining issues. Server-ready behavior in deferred_server_validation is untested and assigned to multi.liveui in Phase3.",
+          "failure_acceptance": "Invalid settings/map, bind failure, service error and prompt cancellation preserve original cleanup and return behavior.",
+          "delivery_phase": 1,
+          "implementation": "analysis/multiplayer-pipeline.md; analysis/multiplayer-desktop-acceptance-20261101.json",
+          "deferred_server_validation": "Choose valid maps/settings, create a controlled local session, cancel or continue into the real connection owner.",
+          "desktop_acceptance": {
+            "date": "2026-11-01",
+            "performed_by": "user",
+            "confirmation": "Good, I can find no more issues.",
+            "application_sha256": "f2295542f86575c6df66a35863ae31c9085deae85583c922c1e68d46bdabfe83",
+            "scope": "Reachable multiplayer frontend, explicit unavailable boundaries and all reported Team Selection follow-up fixes. Broad acceptance does not imply individual test-case execution.",
+            "untested": [
+              "All UI needing a ready server: populated discovery/browser, information/player/team/rule data, live refresh/favorites, Join/password and connection consoles, standalone connection routes.",
+              "Loadout/equipment screens remain completely untested until accessible."
+            ],
+            "deferred": "Phase3: reconstruct apparently broken old server implementation, real Host/Connect and auxiliary services, then live UI validation. Phase2 retains game/level-loading reconstruction.",
+            "original_execution_by_agent": false,
+            "commit_requested": true
+          },
+          "phase_scope": "Phase1 frontend UI only; available service failure boundaries are explicit. Real server/network success and information UI are Phase3."
         },
         {
           "key": "multi.filters",
-          "title": "Deliver server filters and selected game information",
-          "status": "open",
+          "title": "Deliver frontend filter editing; defer live server information validation",
+          "status": "complete",
           "roles": [
             "main:11",
             "main:12"
@@ -746,21 +801,36 @@
             "00633f80",
             "006333c0"
           ],
-          "requires": [
-            "server_records",
-            "real_local_network_service"
-          ],
+          "requires": [],
           "depends_on": [
             "multi.browser"
           ],
           "native_validation": "Audit filter state and resulting visibility, information binding lifetime and Join eligibility while server data changes.",
-          "desktop_validation": "Change/reopen filters, inspect a real selected server, return to browser and Join only when available.",
-          "failure_acceptance": "Disappearing/stale records cannot retain dangling callbacks or join a different server silently."
+          "desktop_validation": "User accepted reachable frontend behavior and reported no remaining issues. Server-ready behavior in deferred_server_validation is untested and assigned to multi.liveui in Phase3.",
+          "failure_acceptance": "Disappearing/stale records cannot retain dangling callbacks or join a different server silently.",
+          "implementation": "analysis/multiplayer-pipeline.md; analysis/multiplayer-desktop-acceptance-20261101.json",
+          "delivery_phase": 1,
+          "deferred_server_validation": "Change/reopen filters, inspect a real selected server, return to browser and Join only when available.",
+          "desktop_acceptance": {
+            "date": "2026-11-01",
+            "performed_by": "user",
+            "confirmation": "Good, I can find no more issues.",
+            "application_sha256": "f2295542f86575c6df66a35863ae31c9085deae85583c922c1e68d46bdabfe83",
+            "scope": "Reachable multiplayer frontend, explicit unavailable boundaries and all reported Team Selection follow-up fixes. Broad acceptance does not imply individual test-case execution.",
+            "untested": [
+              "All UI needing a ready server: populated discovery/browser, information/player/team/rule data, live refresh/favorites, Join/password and connection consoles, standalone connection routes.",
+              "Loadout/equipment screens remain completely untested until accessible."
+            ],
+            "deferred": "Phase3: reconstruct apparently broken old server implementation, real Host/Connect and auxiliary services, then live UI validation. Phase2 retains game/level-loading reconstruction.",
+            "original_execution_by_agent": false,
+            "commit_requested": true
+          },
+          "phase_scope": "Phase1 frontend UI only; available service failure boundaries are explicit. Real server/network success and information UI are Phase3."
         },
         {
           "key": "multi.addserver",
           "title": "Deliver Add Server address/port editing and cancellation",
-          "status": "open",
+          "status": "complete",
           "roles": [
             "main:14"
           ],
@@ -770,19 +840,36 @@
             "00626b20"
           ],
           "requires": [
-            "edit_controls",
-            "real_local_network_service"
+            "edit_controls"
           ],
           "depends_on": [
             "multi.browser"
           ],
           "native_validation": "Audit two visible fields/defaults, hidden password-model binput, actual validation/add callback and discard-before-pop.",
-          "desktop_validation": "Add a controlled endpoint, test invalid input and cancel/Back, then verify the real browser update.",
-          "failure_acceptance": "Address/port rejection and network failure are real outcomes; do not reuse password callbacks or silently accept invalid input."
+          "desktop_validation": "User accepted reachable frontend behavior and reported no remaining issues. Server-ready behavior in deferred_server_validation is untested and assigned to multi.liveui in Phase3.",
+          "failure_acceptance": "Address/port rejection and network failure are real outcomes; do not reuse password callbacks or silently accept invalid input.",
+          "delivery_phase": 1,
+          "implementation": "analysis/multiplayer-pipeline.md; analysis/multiplayer-desktop-acceptance-20261101.json",
+          "deferred_server_validation": "Add a controlled endpoint, test invalid input and cancel/Back, then verify the real browser update.",
+          "desktop_acceptance": {
+            "date": "2026-11-01",
+            "performed_by": "user",
+            "confirmation": "Good, I can find no more issues.",
+            "application_sha256": "f2295542f86575c6df66a35863ae31c9085deae85583c922c1e68d46bdabfe83",
+            "scope": "Reachable multiplayer frontend, explicit unavailable boundaries and all reported Team Selection follow-up fixes. Broad acceptance does not imply individual test-case execution.",
+            "untested": [
+              "All UI needing a ready server: populated discovery/browser, information/player/team/rule data, live refresh/favorites, Join/password and connection consoles, standalone connection routes.",
+              "Loadout/equipment screens remain completely untested until accessible."
+            ],
+            "deferred": "Phase3: reconstruct apparently broken old server implementation, real Host/Connect and auxiliary services, then live UI validation. Phase2 retains game/level-loading reconstruction.",
+            "original_execution_by_agent": false,
+            "commit_requested": true
+          },
+          "phase_scope": "Phase1 frontend UI only; available service failure boundaries are explicit. Real server/network success and information UI are Phase3."
         },
         {
           "key": "multi.join",
-          "title": "Deliver ordinary Join/password/connection console and lobby/game handoff",
+          "title": "Deliver ordinary Join/password and connection console to the game boundary",
           "status": "open",
           "roles": [
             "main:10",
@@ -799,16 +886,19 @@
           ],
           "requires": [
             "real_local_network_service",
-            "real_network_game_receiver"
+            "explicit_game_entry_boundary"
           ],
           "depends_on": [
             "multi.create",
             "multi.filters",
             "multi.addserver"
           ],
-          "native_validation": "Trace actual lobby/pre-game session ownership from original status9/session callers before coding; no standalone lobby registration is inferred. Audit selected server copy, password+82 predicate, modal10 entry/focus, cancellation/discard and console lifecycle; success requires the actual receiving session/game owner.",
-          "desktop_validation": "Join controlled protected/unprotected local sessions through real callbacks, test wrong password/cancel/disconnect and verify the real receiving owner.",
-          "failure_acceptance": "Wrong/stale password, timeout and connection rejection must clean up without a synthetic connected state."
+          "native_validation": "Audit selected server copy, password+82 predicate, modal10 entry/focus, cancellation/discard and console lifecycle. Preserve the confirmed status9 boundary without inventing a separate lobby.",
+          "desktop_validation": "Exercise controlled protected/unprotected local session callbacks and wrong password/cancel/disconnect. Report the game boundary honestly; verify its receiver in Phase 2.",
+          "failure_acceptance": "Wrong/stale password, timeout and connection rejection must clean up without a synthetic connected state; a real connection does not establish game entry.",
+          "delivery_phase": 3,
+          "implementation": "Integrated ordinary type2 multiplayer UI source and distinct type8 connection owner; real DirectPlay LAN enumeration plus owned information/restore callbacks. Strict builds and native sanitizer audits pass. Session Connect/Host, auxiliary UDP/GameSpy and desktop/live endpoint validation remain unavailable/unaccepted. All delivery gates remain open. analysis/multiplayer-pipeline.md.",
+          "phase_scope": "Source/native integration exists. Actual UI behavior and live service path are untested until the Phase3 server reconstruction; no desktop acceptance is inferred."
         },
         {
           "key": "multi.standalone",
@@ -828,14 +918,44 @@
           ],
           "requires": [
             "real_local_network_service",
-            "real_network_game_receiver"
+            "explicit_game_entry_boundary"
           ],
           "depends_on": [
             "multi.join"
           ],
-          "native_validation": "Audit controller status7/8 session modes, timer state5 regular slot2, edit callbacks, Exit Game action and actual status9 handoff; preserve distinction from ordinary modal10.",
-          "desktop_validation": "Enter both real controller connection modes; exercise password success/failure, Back/Exit and receiving state.",
-          "failure_acceptance": "No modal substitution, owner merge or fake session success; missing external service leaves functional gate pending."
+          "native_validation": "Audit controller status7/8 session modes, timer state5 regular slot2, edit callbacks, Exit Game action and status9 request; preserve distinction from ordinary modal10.",
+          "desktop_validation": "Enter both real controller connection modes; exercise password success/failure and Back/Exit. Verify the receiving game state in Phase 2.",
+          "failure_acceptance": "No modal substitution, owner merge or fake session success; missing external service leaves functional gate pending.",
+          "delivery_phase": 3,
+          "implementation": "Integrated ordinary type2 multiplayer UI source and distinct type8 connection owner; real DirectPlay LAN enumeration plus owned information/restore callbacks. Strict builds and native sanitizer audits pass. Session Connect/Host, auxiliary UDP/GameSpy and desktop/live endpoint validation remain unavailable/unaccepted. All delivery gates remain open. analysis/multiplayer-pipeline.md.",
+          "phase_scope": "Source/native integration exists. Actual UI behavior and live service path are untested until the Phase3 server reconstruction; no desktop acceptance is inferred."
+        },
+        {
+          "key": "multi.liveui",
+          "title": "Verify all UI requiring a ready reconstructed server",
+          "status": "open",
+          "delivery_phase": 3,
+          "roles": [],
+          "evidence": [
+            "006333c0",
+            "0062f3e0",
+            "0068aed0"
+          ],
+          "requires": [
+            "rebuilt_ready_server",
+            "controlled_host_client_endpoints"
+          ],
+          "depends_on": [
+            "multi.browser",
+            "multi.create",
+            "multi.filters",
+            "multi.addserver",
+            "multi.join",
+            "multi.standalone"
+          ],
+          "native_validation": "Recheck callback ownership, request identity, expiry and teardown against actual reconstructed server services.",
+          "desktop_validation": "All ready-server UI remains untested: populated browser, server information/player/team/rules, live filters/refresh/favorites, password/Join, ordinary and standalone consoles. Execute against the rebuilt server.",
+          "failure_acceptance": "The user reports the old server implementation appears broken; neither canned records nor an original server executable may substitute for the rebuilt controlled endpoint."
         }
       ]
     },
@@ -871,7 +991,8 @@
           "depends_on": [],
           "native_validation": "Audit -1/-2 entries, mode guards, retained+5b8 ownership, conditional products, queue/input/audio/pause order and status15 restoration using actual code plus trace-only receiver fixtures.",
           "desktop_validation": "Open from a real running compiled game, navigate allowed actions and Back/resume repeatedly; verify the same real game owner, input/audio and teardown.",
-          "failure_acceptance": "Fixtures prove protocol only; absent running-game integration or main_ingame resource cannot pass full delivery."
+          "failure_acceptance": "Fixtures prove protocol only; absent running-game integration or main_ingame resource cannot pass full delivery.",
+          "delivery_phase": 2
         },
         {
           "key": "ingame.player",
@@ -903,7 +1024,8 @@
           ],
           "native_validation": "Audit both player models, conditional roster/store/description, session actions and info-panel first-Back dismissal; shared templates retain owner-scoped IDs.",
           "desktop_validation": "Use actual permitted session modes to enter player UI, change allowed selections, show/hide info/description and return correctly for -1/-2 entries.",
-          "failure_acceptance": "No fixed fake roster/session, model substitution or hidden-panel pop; unavailable modes remain outside live acceptance."
+          "failure_acceptance": "No fixed fake roster/session, model substitution or hidden-panel pop; unavailable modes remain outside live acceptance.",
+          "delivery_phase": 2
         },
         {
           "key": "ingame.actions",
@@ -927,14 +1049,15 @@
           ],
           "native_validation": "Recover each b5/b6/b7/b8/c5/c6 operation and eligibility from original code before wiring; audit prompts, status15/16 and underlying status words, progress/force-close and ordered unwrap.",
           "desktop_validation": "Exercise permitted real game/session actions, cancel/confirm, maintenance and return-to-front-end; validate actual receiving owners and preserved copied persistence.",
-          "failure_acceptance": "Never infer an operation from its label alone or substitute an acknowledged no-op; game-action fixtures cannot establish full acceptance."
+          "failure_acceptance": "Never infer an operation from its label alone or substitute an acknowledged no-op; game-action fixtures cannot establish full acceptance.",
+          "delivery_phase": 2
         }
       ]
     }
   ],
   "summary": {
     "families": 9,
-    "delivery_units": 29,
+    "delivery_units": 30,
     "populated_numbered_roles": 28,
     "reserved_excluded": [
       "hero:2",
@@ -6607,7 +6730,7 @@
     "original_route_source": "analysis/menu-route-census.json",
     "contract_source": "analysis/menu-contracts.json",
     "no_original_execution": true,
-    "next_checkbox": "plan.md section3: complete front-end Options, binding editors and settings semantics",
+    "next_checkbox": "plan.md Phase1 section3: validate frontend shared-dialog callers, reply/context lifetimes and cancellation",
     "implementation_reads_snapshot": "Historical source fingerprints captured for the completed family-planning milestone before Credits implementation; current implementation/verification is in credits-flow.md."
   }
 }

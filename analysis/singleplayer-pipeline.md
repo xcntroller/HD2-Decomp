@@ -7,6 +7,12 @@ The user explicitly requested the full pre-mission pipeline, including hero,
 team, equipment and briefing. Early research below records pre-implementation
 state; the latest checkpoint and desktop follow-up supersede it.
 
+The [2026-11-01 function audit](singleplayer-function-audit.md) credits90
+previously omitted partial bodies and extends four already-counted entries.
+The current plan separates front-end preparation/request acceptance from the
+later real game receiver, gameplay-save and post-mission stages. Equipment
+screens remain completely untested until accessible.
+
 Evidence: unpacked client SHA256
 `8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307`.
 Existing [family contracts](menu-family-delivery.md#single-player),
@@ -752,3 +758,82 @@ including loadout code with this explicit untested status, and then selected
 Keep the section3 single-player checkbox and equipment/further flow gates open.
 No gameplay/save receiver, fabricated unlock, or successful world-loading service
 was added to make an inaccessible screen appear delivered. No push authorized.
+
+## Portrait click and drag-outline follow-up — 2026-11-01
+
+After the accepted team checkpoint, user review clarified that member portraits
+must select silently. Candidate IDs04101010+n*10 and squad image IDs04803000+
+n*3000 now preserve their normal selection events but return7 from the native
+image click adapter, avoiding0066B990's accepted-result1 call to0066B110. Other
+image users retain their existing click policy.
+
+Original006937F0 invokes006948D0 to select its drag source, creates a shallow
+portrait copy and hides the source.00695A40 parents the selector to that source
+at local(0,0,-.1). The source's hidden hierarchy therefore hides the outline
+during dragging without copying it into the ghost.00693C10 restores the source
+on canceled drop. The native drop handler incorrectly hid the selector on every
+drop; it now retains it for canceled/rejected roster drops.
+
+The user additionally confirmed that a successful roster-to-squad drop leaves
+the outline at the soldier's former roster position. Before refresh removes the
+roster entry, the host reparents the selector to the team model with world
+transform preservation and keeps it visible. Canceled drops keep the original
+source parent. Successful squad reorder retains the existing hide policy.
+This user-observed position contract supplements the preserved static exports;
+no original executable or DLL was run. Actual rendering remains a desktop gate.
+
+Strict i386 application-launch/engine-window/startup-probe and existing native
+regressions pass. Temporary ASan/UBSan audit uses the exact production image
+click and drag-end bodies with native state/scene fixtures. It checks silent
+click activation,20 combinations of side/boundary, source side and squad capacity,
+plus squad reorder. Successful assignment preserves the selector by reparenting;
+canceled/full-squad drops retain its source, and transfer out clears it. Log:
+`analysis/work/team-drop-depth-20261101/outline-click-audit.log`. Temporary audit
+source/executable removed. No new frozen-function credit (559 partial unchanged),
+desktop acceptance, commit or push. Re-test click sound, hidden drag outline,
+canceled-drop restoration and the stationary outline after squad assignment.
+
+## Portrait text layering and drop refresh — 2026-11-01
+
+User review found moving portraits rendered beneath text and suspected a brief
+source-portrait reappearance on assignment. Original006937F0/00693B60 still
+govern shallow portrait copying and cursor translation; depth remains -1 as
+previously recovered. The engine scene pass precedes the host bitmap-text pass,
+so depth cannot occlude the later text submissions. Team content now supplies a
+drag-mask rectangle from the source visual's projected bounds plus cursor delta.
+The existing UV-preserving glyph exclusion masks background and description text
+under that rectangle. It clears with the transient owner. Source bounds are
+cached before drag, avoiding foreground-Z projection differences. Modal overlays
+continue drawing above their retained background.
+
+Source inspection found a concrete possible flash:0066BEA0's only queue drain
+precedes pointer processing; drag-end restored the source immediately and queued
+refresh membership/texture events for the next update. The resulting render
+could show the restored old source before list removal. Drag-end now uses a
+bounded immediate visual refresh: incremental roster membership and all four
+squad names/ranks, image identities and textures route before the next render.
+Other refresh callers keep their existing queued behavior; the global event
+drain order is unchanged. List insertion/removal still uses02000083/84 as in
+00693C10/00694C40, preserving the scroll policy and stationary source outline.
+This identifies and closes a native ordering gap; no original or reconstructed
+desktop flash reproduction is claimed.
+
+Strict i386 builds, existing native regressions and function-ledger check pass.
+Temporary ASan/UBSan runs production raw/refresh and drag-rectangle methods with
+native state fixtures: immediate/deferred included/empty squad cases route all
+four portrait bindings coherently;441 cursor positions produce the expected
+translated mask and exclude overlapping bitmap glyphs. Log:
+`analysis/work/team-drop-depth-20261101/layer-refresh-audit.log`. Temporary audit
+source/executable removed. No permanent tests, new function credit (559 partial
+unchanged), desktop acceptance, commit or push. Staged controller awaits user
+checks of text layering, canceled/successful drops and the retained outline.
+
+
+## Desktop acceptance — Team Selection follow-ups, 2026-11-01
+
+The user's “Good, I can find no more issues” accepts the later silent portrait,
+outline retention, drag text-layering and drop-refresh corrections alongside the
+multiplayer frontend checkpoint. The accepted executable and scope are recorded
+in [the shared acceptance record](multiplayer-desktop-acceptance-20261101.json).
+No individual desktop cases are inferred. The earlier accepted13863a7 checkpoint
+remains preserved. **Loadout screens are still completely untested until accessible.**

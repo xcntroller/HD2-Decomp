@@ -12,8 +12,8 @@ WINDOWS_CXXFLAGS ?= -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror -static -mun
 .PHONY: application-launch
 application-launch: $(BUILD_DIR)/application_launch.exe
 
-$(BUILD_DIR)/application_launch.exe: host/application_launch.cpp host/bitmap_font.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp $(wildcard host/*.h frontend/*.h input/*.h io/*.h) | $(BUILD_DIR)
-	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/application_launch.cpp host/bitmap_font.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp -lwinmm -lole32 -ladvapi32 -o "$@"
+$(BUILD_DIR)/application_launch.exe: host/application_launch.cpp host/bitmap_font.cpp host/multiplayer_discovery.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp $(wildcard host/*.h frontend/*.h input/*.h io/*.h) | $(BUILD_DIR)
+	"$(WINDOWS_CXX)" $(CPPFLAGS) $(WINDOWS_CXXFLAGS) host/application_launch.cpp host/bitmap_font.cpp host/multiplayer_discovery.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp -lwinmm -lole32 -ladvapi32 -o "$@"
 
 startup-probe: $(BUILD_DIR)/startup_probe.exe
 

@@ -214,7 +214,132 @@ inline std::vector<CursorVertex> menu_prompt_vertices(
 struct MenuTextSubmission {
     bool small;
     std::vector<CursorVertex> vertices;
+    bool symbols = false;
 };
+
+//00647EE0/00648860 retain the editor's viewport while rendering long text.
+//Clip complete glyph quads and interpolate UVs for partially visible glyphs.
+inline void clip_menu_rectangle(MenuTextSubmission& submission,const MenuRectangle& area) {
+    if (area.right<=area.left || area.bottom<=area.top ||
+        !std::isfinite(area.left) || !std::isfinite(area.top) ||
+        !std::isfinite(area.right) || !std::isfinite(area.bottom) || submission.vertices.size()%6)
+        throw std::invalid_argument("Invalid editable text viewport");
+    std::vector<CursorVertex> output;
+    for (std::size_t i=0;i<submission.vertices.size();i+=6) {
+        const auto* glyph=submission.vertices.data()+i;
+        const float left=glyph[0].x,right=glyph[2].x,top=glyph[1].y,bottom=glyph[0].y;
+        const float x0=std::max(left,area.left),x1=std::min(right,area.right);
+        const float y0=std::max(top,area.top),y1=std::min(bottom,area.bottom);
+        if (x0>=x1 || y0>=y1) continue;
+        const auto vertex=[&](float x,float y) {
+            auto result=glyph[0]; result.x=x; result.y=y;
+            result.u=glyph[0].u+(glyph[2].u-glyph[0].u)*(x-left)/(right-left);
+            result.v=glyph[1].v+(glyph[0].v-glyph[1].v)*(y-top)/(bottom-top);
+            return result;
+        };
+        const auto bl=vertex(x0,y1),tl=vertex(x0,y0),tr=vertex(x1,y0),br=vertex(x1,y1);
+        output.insert(output.end(),{bl,tl,tr,br,bl,tr});
+    }
+    submission.vertices=std::move(output);
+}
+
+// Bitmap text is drawn after the 3D scene. Exclude the dropdown's viewport
+// from underlying glyph quads so their labels cannot bleed through its panel.
+inline void exclude_menu_rectangle(MenuTextSubmission& submission,const MenuRectangle& mask) {
+    if (mask.right<=mask.left || mask.bottom<=mask.top ||
+        !std::isfinite(mask.left) || !std::isfinite(mask.top) ||
+        !std::isfinite(mask.right) || !std::isfinite(mask.bottom) || submission.vertices.size()%6)
+        throw std::invalid_argument("Invalid menu text occlusion rectangle");
+    std::vector<CursorVertex> output;
+    for (std::size_t i=0;i<submission.vertices.size();i+=6) {
+        const auto* glyph=submission.vertices.data()+i;
+        const float left=glyph[0].x,right=glyph[2].x,top=glyph[1].y,bottom=glyph[0].y;
+        if (right<=mask.left || left>=mask.right || bottom<=mask.top || top>=mask.bottom) {
+            output.insert(output.end(),glyph,glyph+6); continue;
+        }
+        if (right<=left || bottom<=top) continue;
+        const auto piece=[&](float x0,float y0,float x1,float y1) {
+            if (x0>=x1 || y0>=y1) return;
+            auto vertex=[&](float x,float y) {
+                auto result=glyph[0]; result.x=x; result.y=y;
+                result.u=glyph[0].u+(glyph[2].u-glyph[0].u)*(x-left)/(right-left);
+                result.v=glyph[1].v+(glyph[0].v-glyph[1].v)*(y-top)/(bottom-top);
+                return result;
+            };
+            const auto bl=vertex(x0,y1),tl=vertex(x0,y0),tr=vertex(x1,y0),br=vertex(x1,y1);
+            output.insert(output.end(),{bl,tl,tr,br,bl,tr});
+        };
+        const float middle_left=std::max(left,mask.left),middle_right=std::min(right,mask.right);
+        piece(left,top,std::min(right,mask.left),bottom);
+        piece(std::max(left,mask.right),top,right,bottom);
+        piece(middle_left,top,middle_right,std::min(bottom,mask.top));
+        piece(middle_left,std::max(top,mask.bottom),middle_right,bottom);
+    }
+    submission.vertices=std::move(output);
+}
+
+// Native representation of0062F3E0's dynamically registered information
+// styles. Anchors use the text plane;00645270 scales the width cap by
+// the text owner's render width (+04), not the smaller plane's extent.
+struct MenuTextCell {
+    std::string text;
+    unsigned font = 3;
+    float height = .019f, anchor = 0, width = 1;
+    bool right = false;
+    std::uint32_t color = 0xff000000;
+};
+using MenuTextRow = std::vector<MenuTextCell>;
+inline std::vector<MenuTextSubmission> menu_column_submissions(
+        const std::vector<MenuTextRow>& rows, const MenuRectangle& area,
+        std::size_t offset, float line_height, const FontMetrics& big,
+        const FontMetrics& small, const FontMetrics& symbols) {
+    if (!std::isfinite(line_height) || line_height <= 0 ||
+        !std::isfinite(area.left) || !std::isfinite(area.top) ||
+        !std::isfinite(area.right) || !std::isfinite(area.bottom) ||
+        area.right <= area.left || area.bottom <= area.top)
+        throw std::invalid_argument("Invalid column text viewport");
+    std::vector<MenuTextSubmission> result;
+    const float extent = area.right-area.left;
+    for (std::size_t i=offset; i<rows.size(); ++i) {
+        const float top=area.top+static_cast<float>(i-offset)*line_height;
+        if (top+line_height>area.bottom) break;
+        for (const auto& cell:rows[i]) {
+            if ((cell.font!=2 && cell.font!=3 && cell.font!=4) ||
+                !std::isfinite(cell.height) || cell.height<=0 || cell.height>1 ||
+                !std::isfinite(cell.anchor) || cell.anchor<0 || cell.anchor>1 ||
+                !std::isfinite(cell.width) || cell.width<0 || cell.width>1 || cell.text.size()>4096)
+                throw std::invalid_argument("Invalid authored text column");
+            const auto& metrics=cell.font==4?symbols:cell.font==3?small:big;
+            const int height=static_cast<int>(cell.height*600+.5f);
+            if (height<1) throw std::invalid_argument("Column glyph height rounds to zero");
+            const float anchor=area.left+extent*cell.anchor;
+            const float capacity=std::min(800.f*cell.width,
+                cell.right?anchor-area.left:area.right-anchor);
+            auto value=menu_glyph_bytes(cell.text);
+            int used=0; std::size_t end=0;
+            for (;end<value.size();++end) {
+                auto byte=static_cast<unsigned char>(value[end]);
+                if (byte<32 || byte==127) {byte=' '; value[end]=' ';}
+                const auto advance=glyph_advance(metrics[byte],height);
+                if (used+advance>capacity) break;
+                used+=advance;
+            }
+            value.resize(end);
+            const float left=cell.right?anchor-used:anchor;
+            auto vertices=menu_label_vertices(value,metrics,
+                {left,top,left+std::max(1,used),top+height},cell.height,600,false,cell.color);
+            // Preserve the viewport when a glyph is taller than the last row.
+            for (std::size_t v=0;v<vertices.size();v+=6) {
+                const float bottom=std::min(area.bottom,vertices[v].y);
+                const float fraction=std::clamp((bottom-vertices[v+1].y)/height,0.f,1.f);
+                const float uv=vertices[v+1].v+(vertices[v].v-vertices[v+1].v)*fraction;
+                for (const auto j:{0u,3u,4u}) {vertices[v+j].y=bottom; vertices[v+j].v=uv;}
+            }
+            result.push_back({cell.font==3,std::move(vertices),cell.font==4});
+        }
+    }
+    return result;
+}
 
 //00645F20/00646A10/00647270: SMALL top-aligned paragraphs used by mode
 //explanations and preparation descriptions. Records start new rows; wrapping
@@ -359,6 +484,49 @@ std::optional<MenuTextSubmission> menu_text_submission(
         bool available, bool hovered, const FontMetrics& big, const FontMetrics& small,
         std::size_t paragraph_offset=0) {
     if (object.records().empty()) return std::nullopt;
+    //00641E30 entries30..34: server row fields share a plane but have
+    // independent authored widths/anchors. Their values must never wrap into
+    // another server row or draw over a neighbouring column.
+    if (object.records().size()==5 && object.records()[0].style==30) {
+        static constexpr float widths[]{.22f,.13f,.14f,.07f,.10f};
+        static constexpr float anchors[]{.095f,.4f,.75f,.84f,.99f};
+        const auto area=menu_rectangle(bounds(),800,600,0);
+        const float extent=area.right-area.left;
+        MenuTextSubmission result{false,{}};
+        for (unsigned i=0;i<5;++i) {
+            const auto& record=object.records()[i];
+            if (record.style!=30+i) throw std::logic_error("Invalid server-row text styles");
+            if (!record.text) continue;
+            auto value=menu_glyph_bytes(*record.text);
+            const float width=800.f*widths[i]; //00645270: owner render width+04.
+            int used=0;
+            std::size_t end=0;
+            while (end<value.size()) {
+                const auto character=static_cast<unsigned char>(value[end]);
+                if (character<32) { value[end]=' '; }
+                const auto advance=glyph_advance(big[static_cast<unsigned char>(value[end])],24);
+                if (used+advance>width) break;
+                used+=advance; ++end;
+            }
+            value.resize(end);
+            const float anchor=area.left+extent*anchors[i];
+            const float left=i<2?anchor:anchor-used;
+            const MenuRectangle column{left,area.top,left+width,area.bottom};
+            auto vertices=menu_label_vertices(value,big,column,.04f,600,false,
+                object.disabled?0x60000000u:hovered?0xffffffffu:0xff000000u);
+            result.vertices.insert(result.vertices.end(),vertices.begin(),vertices.end());
+        }
+        return result;
+    }
+    if (object.records().size()==1 && object.records()[0].style==9) {
+        const auto& record=object.records()[0];
+        if (!record.text) return std::nullopt;
+        auto area=menu_rectangle(bounds(),800,600,object.inset);
+        area.left+=(area.right-area.left)*.15f;
+        area.bottom=area.top+15;
+        return MenuTextSubmission{true,menu_label_vertices(*record.text,small,area,.025f,600,false,
+            object.disabled?0x60000000u:0xff000000u)};
+    }
     if (std::all_of(object.records().begin(),object.records().end(),
             [](const auto& record){return record.style==1 || record.style==2 || record.style==3 || record.style==15;}))
         return MenuTextSubmission{true,menu_small_paragraph_vertices(object,small,
@@ -426,10 +594,21 @@ std::optional<MenuTextSubmission> menu_text_submission(
         if(width>rectangle.right-rectangle.left) rectangle.left=rectangle.right-width;
         if(object.caret_visible) value.push_back('_');
     }
-    return MenuTextSubmission{style->font == 3,
-        menu_label_vertices(value, metrics,
+    auto vertices=menu_label_vertices(value, metrics,
             rectangle, style->height, 600,
-            style->horizontal == 3, color)};
+            style->horizontal == 3, color);
+    if (selected && object.caret_visible && metrics[static_cast<unsigned char>('_')].aspect!=0 && vertices.size()>=6) {
+        //00648C90..00648CB4 use trunc(text_y - glyph_height * .1f).
+        //Unlike ordinary glyphs, the caret has this explicit baseline lift.
+        //0080F550 is the original IEEE float0.1, not a border-clamp rule.
+        const auto first=vertices.size()-6;
+        float bottom=vertices[first].y;
+        for (auto i=first;i<vertices.size();++i) bottom=std::max(bottom,vertices[i].y);
+        const int height=static_cast<int>(600.0*style->height+.5);
+        const float shift=bottom-static_cast<int>(static_cast<double>(bottom)-height*static_cast<double>(.1f));
+        for (auto i=first;i<vertices.size();++i) vertices[i].y-=shift;
+    }
+    return MenuTextSubmission{style->font==3,std::move(vertices)};
 }
 
 class ExitButton {

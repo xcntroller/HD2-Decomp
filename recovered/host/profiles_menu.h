@@ -2,6 +2,7 @@
 #define HD2_HOST_PROFILES_MENU_H
 #include "frontend/profile_management.h"
 #include "host/options_menu.h"
+#include <charconv>
 namespace hd2::host {
 
 // 0065AD80/0065AE90 visual editor, using the recovered BF/C0 character owner.
@@ -36,6 +37,7 @@ class ProfileEdit final : public MenuControl {
         pair_->bind_pick_target(definition_.identifier);
         pair_->initialize_events({});
         text_.object().inset = 10;
+        text_.editable_viewport = true;
         text_.visibility_query([this] { return properties_.visible != 0; });
         capture_ = std::make_shared<frontend::EditCharacterTarget<Capture>>(definition_.identifier,
                                                                             capture_backend_, context_.queue);
@@ -52,6 +54,16 @@ class ProfileEdit final : public MenuControl {
             switch (e.code & 0x03000fff) {
             case 0x0100006e:
                 capture_->state.capacity = e.argument;
+                return true;
+            case 0x0100006f:
+                capture_->state.numeric_only = e.argument != 0;
+                return true;
+            case 0x010000a0:
+                minimum_ = static_cast<std::int32_t>(e.argument);
+                maximum_ = static_cast<std::int32_t>(e.word_0c);
+                if (minimum_ > maximum_)
+                    throw std::runtime_error("Invalid numeric edit range");
+                bounded_ = true;
                 return true;
             case 0x0100009b:
                 capture_->state.excluded_characters = e.text;
@@ -78,16 +90,18 @@ class ProfileEdit final : public MenuControl {
     bool disabled() const override { return properties_.disabled != 0; }
     bool visible() const override { return properties_.visible != 0; }
     bool key(unsigned) override { return capture_->state.active != 0; }
-    void update(unsigned ms) override { capture_->update(ms); }
+    void additional_hover(std::function<bool()> query) { additional_hover_=std::move(query); }
+    void update(unsigned ms) override { capture_->update(ms); paint_hover(); }
     bool preserves_part_targets() const override { return true; }
     void bind_pick_target(unsigned target) override { pair_->bind_pick_target(target); }
-    int enter_focus(unsigned) override { return disabled() ? 0 : pair_->apply(true); }
+    int enter_focus(unsigned) override { return disabled() ? 0 : paint_hover(); }
     int leave_focus(unsigned) override {
-        if (capture_->state.active)
-            return 0;
-        return pair_->apply(false);
+        hovered_=false; pair_->apply(false);
+        //0065B090/00662770 allow pointer focus to leave independently of BF/C0
+        //keyboard capture. Returning zero here freezes every other hover.
+        return 1;
     }
-    int pointer_focus(unsigned) override { return pair_->pointer_move(); }
+    int pointer_focus(unsigned) override { paint_hover(); return pair_->pointer_move(); }
     int pointer_target(frontend::ScreenPointerCallback c, unsigned,
                        frontend::ControlEventDestination &d) override {
         return pair_->pointer_event(c, d);
@@ -116,7 +130,31 @@ class ProfileEdit final : public MenuControl {
     }
 
   private:
-    int stop() { return capture_->request_deactivation() ? 1 : 0; }
+    int paint_hover() {
+        const auto& cursor=context_.input.pointer.cursor();
+        const bool next=visible() && !disabled() &&
+            (text_.rectangle(false).contains({cursor.x(),cursor.y()}) || (additional_hover_ && additional_hover_()));
+        if (next==hovered_) return 1;
+        hovered_=next; return pair_->apply(next);
+    }
+    bool hovered_=false;
+    std::function<bool()> additional_hover_;
+    int stop() {
+        if (!capture_->request_deactivation()) return 0;
+        //0065B2C0 clamps only after successful capture release. Empty/invalid
+        // numeric text has the original sscanf destination's initial value0.
+        if (bounded_) {
+            const auto text = value();
+            std::int32_t number = 0;
+            const auto parsed = std::from_chars(text.data(), text.data() + text.size(), number);
+            if (parsed.ec == std::errc::result_out_of_range)
+                number = !text.empty() && text[0] == '-' ? minimum_ : maximum_;
+            const auto clamped = std::clamp(number, minimum_, maximum_);
+            if (clamped != number)
+                text_.object().set(std::make_shared<const std::string>(std::to_string(clamped)), 13, 0);
+        }
+        return 1;
+    }
     void emit(unsigned tag, unsigned value) {
         frontend::dispatch_tagged_control_events(bindings_, this, tag, value, context_.queue);
     }
@@ -131,6 +169,8 @@ class ProfileEdit final : public MenuControl {
     Capture capture_backend_;
     std::shared_ptr<frontend::EditCharacterTarget<Capture>> capture_;
     std::unique_ptr<ButtonVisualPair> pair_;
+    std::int32_t minimum_ = 0, maximum_ = 0;
+    bool bounded_ = false;
 };
 
 // 00657AB0's internal text|8 endpoint. Row storage remains actual TextObject

@@ -220,6 +220,28 @@ private:
     std::unique_ptr<Runtime> runtime_;
 };
 
+//0068A460's isolated type8 owner. The copied launch request belongs to Runtime;
+// ordinary Main's modal console/password remain type2 products.
+template<class Runtime>
+class ConnectionApplicationState final : public ApplicationState {
+public:
+    explicit ConnectionApplicationState(std::unique_ptr<Runtime> runtime)
+        : ApplicationState(8),runtime_(std::move(runtime)) {
+        if (!runtime_) throw std::invalid_argument("Connection owner needs its actual runtime");
+    }
+    bool initialize(const void* descriptor) override {
+        if (descriptor) throw std::logic_error("Connection launch request must be owned");
+        runtime_->initialize([this](std::uint32_t value) {status(value);});
+        status(1);return true;
+    }
+    void shutdown() override {runtime_->shutdown();}
+    void input(const std::uint32_t* first,const std::uint32_t* second) override {runtime_->input(first,second);}
+    void update(std::uint32_t ms) override {runtime_->update(ms);}
+    void render() override {runtime_->render();}
+private:
+    std::unique_ptr<Runtime> runtime_;
+};
+
 // Concrete runtime is constructed AFTER this state has been installed by the
 // controller. It owns the bounded compiled Main/Exit menu, not a second loop.
 template<class Runtime>

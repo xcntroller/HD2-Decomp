@@ -22,9 +22,11 @@ CONFIRM_LABEL_IDS = (2000, 2001, 2004)
 RUNTIME_CONFIRM_LABEL_IDS = (2013,)
 MANIFEST = "menu-text-resources.json"
 FORMAT = "hd2-menu-text-resources-v1"
-LIMITATION = "Original loose English static main-menu slice; ANSI Set2 for 800x600 only."
+LIMITATION = "Original loose English menu-font slice; ANSI Set2 and SYMBOLS for 800x600 only."
 TEXT_SOURCE = "Text/english/TEXTY.txt"
 SOURCES = {
+    "Maps/HD2_MENU_SYMBOLS.TGA": "Text/Fonts/SYMBOLS.tga",
+    "MenuText/SYMBOLS.tbl": "Text/Fonts/SYMBOLS.tbl",
     "Maps/HD2_MENU_BIG.TGA": "Text/Fonts/ANSI/Set2/BIG.tga",
     "Maps/HD2_MENU_SMALL.TGA": "Text/Fonts/ANSI/Set2/SMALL.tga",
     "MenuText/BIG.tbl": "Text/Fonts/ANSI/Set2/BIG.tbl",
@@ -137,8 +139,8 @@ def _validate_atlas(data: bytes) -> None:
     ident, cmap, kind, start, count, bits, x, y, width, height, depth, flags = \
         struct.unpack("<BBBHHBHHHHBB", data[:18])
     if (ident or cmap or kind != 2 or start or count or bits or x or y
-            or width != 256 or height != 256 or depth != 32 or flags != 8):
-        raise ValueError("Expected original Set2 256x256 32-bit TGA atlas")
+            or width not in (256, 512) or height != 256 or depth != 32 or flags != 8):
+        raise ValueError("Expected original menu 256/512x256 32-bit TGA atlas")
     end = 18 + width * height * 4
     # Original files include the standard 26-byte TGA 2.0 footer.
     if len(data) != end and not (
@@ -158,7 +160,7 @@ def _owned_outputs(run: Path) -> set[str]:
         if previous["format"] != FORMAT:
             raise ValueError("Unknown menu text manifest format")
         assets = previous["assets"]
-        if not isinstance(assets, list) or len(assets) != len(SOURCES):
+        if not isinstance(assets, list) or len(assets) not in (len(SOURCES), len(SOURCES) - 2):
             raise ValueError("Incomplete menu text manifest")
         owned = set()
         for asset in assets:
@@ -174,6 +176,9 @@ def _owned_outputs(run: Path) -> set[str]:
                         or hashlib.sha256(target.read_bytes()).hexdigest() != asset["sha256"]):
                     raise ValueError(f"Previously staged file was modified: {relative}")
             owned.add(relative)
+        legacy = set(SOURCES) - {"Maps/HD2_MENU_SYMBOLS.TGA", "MenuText/SYMBOLS.tbl"}
+        if owned != set(SOURCES) and owned != legacy:
+            raise ValueError("Incomplete menu text manifest")
         return owned | {MANIFEST}
     except (KeyError, TypeError, UnicodeError, json.JSONDecodeError) as error:
         raise ValueError("Invalid menu text manifest") from error

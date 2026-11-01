@@ -6,6 +6,7 @@
 #include "frontend/frame_clock.h"
 #include "host/application_menu.h"
 #include "host/pre_mission_menu.h"
+#include "host/multiplayer_connection_menu.h"
 #include "host/engine_video.h"
 #include "host/engine_sound.h"
 #include "host/opening_audio.h"
@@ -327,6 +328,21 @@ public:
     std::unique_ptr<frontend::ApplicationState> create_frontend_state() {
         return std::make_unique<frontend::FrontendApplicationState<host::ApplicationMenu>>(
             std::make_unique<host::ApplicationMenu>(startup_, driver_, module_, graphics_, window_, keyboard_));
+    }
+    template<class Controller> void transition_connection(Controller& controller,std::uint32_t status) {
+        const auto& pending=startup_.multiplayer_request();
+        const auto mode=status==7?frontend::MultiplayerLaunchRequest::Mode::host:
+                                  frontend::MultiplayerLaunchRequest::Mode::client;
+        if (!pending || pending->mode!=mode)
+            throw std::logic_error("Connection transition requires its matching owned launch request");
+        pending->validate();
+        auto next=std::make_unique<frontend::ConnectionApplicationState<host::MultiplayerConnectionMenu>>(
+            std::make_unique<host::MultiplayerConnectionMenu>(startup_,driver_,module_,graphics_,window_,keyboard_,*pending));
+        auto previous=controller.detach();
+        previous->shutdown();previous.reset();
+        controller.install(std::move(next));
+        if (!controller.active()->initialize(nullptr))
+            throw std::runtime_error("Connection state initialization failed");
     }
     std::unique_ptr<frontend::ApplicationState> create_briefing_state() {
         return std::make_unique<frontend::BriefingApplicationState<OpeningBackend>>(

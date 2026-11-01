@@ -368,14 +368,16 @@
       "program": "client",
       "entry": "00623dd0",
       "status": "partial",
-      "coverage": "Readable bounded definition data for main-menu and confirmation: exact child IDs/order/kinds/names, nine main button activation bindings, Yes/No ordered reply/pop bindings and hidden OK hide record. Shared definition-backed controls/screens consume the three supported actions. Original caption/style events for all main and confirmation slots now initialize attached records used by the renderer.",
-      "limitations": "Bounded data for two screens only; original allocation/registration, other screens, observer lists and dynamic data callbacks remain incomplete. Version formatter deferred; glyph bridge is host-owned. Bounded attached-text integration desktop-confirmed.",
+      "coverage": "Readable bounded definition data for main-menu and confirmation: exact child IDs/order/kinds/names, nine main button activation bindings, Yes/No ordered reply/pop bindings and hidden OK hide record. Shared definition-backed controls/screens consume the three supported actions. Original caption/style events for all main and confirmation slots now initialize attached records used by the renderer. Single-player extension: static mode screen3 controls, captions, hidden controls and side-image order.",
+      "limitations": "Bounded data for Main, confirmation and Single Player screen3 only; original allocation/registration, other screens, observer lists and dynamic data callbacks remain incomplete. Version formatter deferred; glyph bridge is host-owned. Bounded attached-text integration desktop-confirmed.",
       "evidence": [
         "analysis/menu-ui-map.json",
         "recovered/frontend/menu_definition.h",
         "recovered/frontend/defined_screen.h",
         "recovered/frontend/defined_controls.h",
-        "recovered/host/menu_button_visuals.h"
+        "recovered/host/menu_button_visuals.h",
+        "analysis/singleplayer-pipeline.md",
+        "recovered/frontend/single_player_definition.h"
       ]
     },
     {
@@ -1419,8 +1421,8 @@
       "program": "client",
       "entry": "006c20f0",
       "status": "partial",
-      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement. Status4 now shuts down the state, releases it, closes mouse input and invokes cold control reset before returning false. Main Credits status12 retains the frontend, installs type10/sequence0, restores its pointer before video shutdown/deletion on status13, then starts the same owner. Cinematics extension: actual selected filename/type10 sequence0 return; retained ordinary playback and Outro2 music bookmark/forced request37 restoration as applicable.",
-      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Other descriptor/game, alternate console start, Cinematics filename selection and restart/exit video routes remain unsupported; native invalid/allocation paths throw. Credits extension is integrated/native-audited and user desktop-confirmed2026-10-31; no individual case logs are inferred. See the Credits contract for its native ABI and scope limits. Cinematics extension is integrated/native-audited but desktop verification is pending.",
+      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement. Status4 now shuts down the state, releases it, closes mouse input and invokes cold control reset before returning false. Main Credits status12 retains the frontend, installs type10/sequence0, restores its pointer before video shutdown/deletion on status13, then starts the same owner. Cinematics extension: actual selected filename/type10 sequence0 return; retained ordinary playback and Outro2 music bookmark/forced request37 restoration as applicable. Single-player extension: statuses2/3 advance or reverse owned descriptor states through the preparation route. Status7/8 now construct a distinct type8 connection owner from a validated copied launch request, preserving host mode2/client mode1.",
+      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. User desktop-confirmed the bounded ordinary controller launch, not whole-function equivalence. English800x600/Main/Exit and cold standalone control only; full subtitle/audio, special states, network producers, global loaded-cache lifecycle, setup and binary integrity VM remain outside delivery. Engine bodies are delegated. Actual game receiver, alternate console start and unimplemented network/game state transitions remain unsupported; native invalid/allocation paths throw. Credits extension is integrated/native-audited and user desktop-confirmed2026-10-31; no individual case logs are inferred. See the Credits contract for its native ABI and scope limits. Cinematics extension is integrated/native-audited but desktop verification is pending. Multiplayer session transport and status9 game entry remain unavailable; no desktop connection acceptance.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
@@ -1430,7 +1432,11 @@
         "analysis/credits-flow-map.json",
         "analysis/credits-flow.md",
         "analysis/cinematics-flow-map.json",
-        "analysis/cinematics-flow.md"
+        "analysis/cinematics-flow.md",
+        "analysis/singleplayer-pipeline.md",
+        "recovered/host/multiplayer_connection_menu.h",
+        "recovered/host/application_launch.cpp",
+        "analysis/multiplayer-function-audit.md"
       ]
     },
     {
@@ -5165,13 +5171,15 @@
       "program": "client",
       "entry": "00655820",
       "status": "partial",
-      "coverage": "Cinematics native flow: list visual binding. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
-      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "coverage": "Cinematics native flow: list visual binding. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion. Single-player extension: derived preparation lists use their own page size, spacing and active-row display behavior.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. Other list/selector variants and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
       "evidence": [
         "analysis/cinematics-flow-map.json",
         "analysis/cinematics-flow.md",
         "recovered/host/cinematics_menu.h",
-        "recovered/frontend/cinematics.h"
+        "recovered/frontend/cinematics.h",
+        "analysis/singleplayer-pipeline.md",
+        "recovered/host/pre_mission_controls.h"
       ]
     },
     {
@@ -5204,13 +5212,15 @@
       "program": "client",
       "entry": "00655f10",
       "status": "partial",
-      "coverage": "Cinematics native flow: list event dispatch. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion.",
-      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. General list/selector and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
+      "coverage": "Cinematics native flow: list event dispatch. Actual ten-row profile catalog and available-list path, real model/template/frame owners, selected movie and retained controller integration; see linked contract for this body's bounded portion. Single-player extension: derived preparation lists use their own page size, spacing and active-row display behavior.",
+      "limitations": "Native classes/RAII/definition storage replace original object, allocator and virtual ABI. Other list/selector variants and rich/wide text behavior are excluded; engine methods/codecs stay delegated. Preview failed-open undefined dimensions are avoided. Strict i386 build and relevant native sanitizer audit pass; Cinematics desktop verification is pending. No full-body equivalence claim.",
       "evidence": [
         "analysis/cinematics-flow-map.json",
         "analysis/cinematics-flow.md",
         "recovered/host/cinematics_menu.h",
-        "recovered/frontend/cinematics.h"
+        "recovered/frontend/cinematics.h",
+        "analysis/singleplayer-pipeline.md",
+        "recovered/host/pre_mission_controls.h"
       ]
     },
     {
@@ -5717,6 +5727,1635 @@
         "analysis/main-menu-state.md",
         "recovered/frontend/main_menu_state.h",
         "recovered/host/application_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00724ef0",
+      "status": "partial",
+      "coverage": "Reconstruct server-record reset fields and preserved host/address/version/unknown fields in a fixed0x9c native record.",
+      "limitations": "Original indeterminate fresh bytes are zero-initialized. No desktop/browser integration or live service acceptance.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "recovered/frontend/multiplayer_server.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00725020",
+      "status": "partial",
+      "coverage": "Encode server chunk2000 with original length-prefixed names, scalar widths and98-before94 tail order.",
+      "limitations": "Native checked byte serialization replaces DTA I/O and SEH; unterminated native names rejected. No real server-list file writes.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "recovered/frontend/multiplayer_server.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00725290",
+      "status": "partial",
+      "coverage": "Read server-wrapper children, recognized chunk2000 and bounded optional fields, preserving reset defaults and original overlong-name truncation.",
+      "limitations": "Malformed bounds/unterminated names reject input; original unsafe overlong-string discard is replaced by a bounded consume. Fresh unknown bytes initialized; no DTA/SEH equivalence or desktop acceptance.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "recovered/frontend/multiplayer_server.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00619d30",
+      "status": "partial",
+      "coverage": "Encode global ServerList.bin root, ordinary/favorites groups, DWORD count hints and nested server-record wrappers.",
+      "limitations": "In-memory serializer only; actual open/write/close paths and original write-failure behavior are not reconstructed. No user file modified.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "recovered/frontend/multiplayer_server.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061a120",
+      "status": "partial",
+      "coverage": "Decode recognized ServerList.bin root/groups/counts/wrappers and original ordinary/favorites unknown-child stopping conditions.",
+      "limitations": "Transactional checked in-memory decode; opening/missing-file/list-clear behavior remains caller responsibility. Reserve hints ignored instead of untrusted allocation. Original DTA failure/SEH behavior excluded.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "recovered/frontend/multiplayer_server.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00635e40",
+      "status": "partial",
+      "coverage": "Reconstruct profile-mode-gated server visibility predicates including original capacity-based not-empty check, ping/style/dedicated/password/version filtering.",
+      "limitations": "Only the predicate is implemented; actual UI row enqueue, lifecycle, live record changes and desktop acceptance remain open.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "recovered/frontend/multiplayer_server.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00722180",
+      "status": "partial",
+      "coverage": "Decode browser-kind0 DirectPlay response data including legacy/version-rewind layouts, three-bit extended style, signed port and DEMO-substring edition handling.",
+      "limitations": "Other callback message kinds and kind1 game-info continuation excluded. Native checked byte parsing rejects malformed input and copies owned values. No network game/session receiver, live endpoint or desktop acceptance.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "recovered/frontend/multiplayer_discovery.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d000",
+      "status": "partial",
+      "coverage": "Read least-significant bits first across native byte/word boundaries with preserved32-bit output and rewind support for discovery records.",
+      "limitations": "Native byte storage and bounds rejection replace original unchecked aligned-word object ABI. No general game protocol integration or end-to-end original-function equivalence claimed.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "recovered/frontend/multiplayer_discovery.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067d280",
+      "status": "partial",
+      "coverage": "Preset default equipment identifiers and quantities.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067d660",
+      "status": "partial",
+      "coverage": "Version-dependent preset record decoding and carried equipment arrays.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067e350",
+      "status": "partial",
+      "coverage": "Mission policy version header, active slots, assignment triplets and required items decoding.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dc4e0",
+      "status": "partial",
+      "coverage": "Lazy item catalogue initialization and load gating.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dc500",
+      "status": "partial",
+      "coverage": "500-slot item catalogue loading and recognized/unknown class record traversal.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dfcf0",
+      "status": "partial",
+      "coverage": "Common serialized item resource names, properties and typed payload decoding.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007e04b0",
+      "status": "partial",
+      "coverage": "Serialized class-zero item derived-field decoding.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007e0620",
+      "status": "partial",
+      "coverage": "Serialized class-one item derived-field decoding.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007e0750",
+      "status": "partial",
+      "coverage": "Serialized class-two item derived-field decoding.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dfab0",
+      "status": "partial",
+      "coverage": "Common item and nested-payload size calculations used to locate derived fields.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007df950",
+      "status": "partial",
+      "coverage": "Equipment slot masks derived from real item class, kind and category.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_data.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067d930",
+      "status": "partial",
+      "coverage": "Version-three preset serialization and profile-owned preset write request.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067dbf0",
+      "status": "partial",
+      "coverage": "Four groups of six default user preset captions and category masks.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067e200",
+      "status": "partial",
+      "coverage": "Initialize mission policy slots using actual loaded game roots and mission counts.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067a0f0",
+      "status": "partial",
+      "coverage": "Assign policy equipment bundles to soldiers using shooting, weight and weapon preferences.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_auto_equipment.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006736d0",
+      "status": "partial",
+      "coverage": "Initialize subtype-three mission stock from descriptors and associated ammunition.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006743f0",
+      "status": "partial",
+      "coverage": "Check equipped and carried firearms for each active soldier.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00677620",
+      "status": "partial",
+      "coverage": "Apply preset equipment through the actual store, slot and capacity operations.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00677d00",
+      "status": "partial",
+      "coverage": "Capture fixed and carried equipment into original preset field order.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00678ac0",
+      "status": "partial",
+      "coverage": "Find the first missing required item and apply squad-size requirement clamping.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00679060",
+      "status": "partial",
+      "coverage": "Count required-item holdings and calculate surplus with retained restricted-holder state.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00679490",
+      "status": "partial",
+      "coverage": "Return surplus optional equipment while preserving required items and their containers.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_flow.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067bda0",
+      "status": "partial",
+      "coverage": "Return removed soldier equipment quantities to the store.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067bdd0",
+      "status": "partial",
+      "coverage": "Withdraw equipment from stock and return rejected, residual or swapped items.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a2330",
+      "status": "partial",
+      "coverage": "Compute absolute load-to-integer-capacity ratio for a live soldier.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a2340",
+      "status": "partial",
+      "coverage": "Assign a HumanStore identity and Might-derived carrying capacity to a live soldier.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a27c0",
+      "status": "partial",
+      "coverage": "Clear equipped slots, carried vectors and derived load bookkeeping.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a3080",
+      "status": "partial",
+      "coverage": "Transfer equipment to fixed and carried slots with item compatibility and capacity handling.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a3990",
+      "status": "partial",
+      "coverage": "Remove carried equipment and update quantity and derived load bookkeeping.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a3bc0",
+      "status": "partial",
+      "coverage": "Remove equipment by slot with fixed-slot and carried-item handling.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a5aa0",
+      "status": "partial",
+      "coverage": "Add quantities to the indexed equipment store.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a5b20",
+      "status": "partial",
+      "coverage": "Withdraw the accepted quantity from the indexed equipment store.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a5c30",
+      "status": "partial",
+      "coverage": "Query indexed equipment stock and return zero for unavailable entries.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00671200",
+      "status": "partial",
+      "coverage": "Check item-slot compatibility and occupancy before equipment transfer.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_inventory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00675900",
+      "status": "partial",
+      "coverage": "Select the secondary equipment store for campaign subtype-four preparation.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_flow.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006777a0",
+      "status": "partial",
+      "coverage": "Run stock-limited ammunition and utility supplementation passes.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_flow.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00694520",
+      "status": "partial",
+      "coverage": "Remove unavailable team members on entry and return their equipment to stock.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_flow.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006908b0",
+      "status": "partial",
+      "coverage": "Apply single-soldier eligibility for Lone Wolf and specific standalone missions.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_flow.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b6530",
+      "status": "partial",
+      "coverage": "Reset and reload the preparation tree and transient discovery state.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_flow.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b8420",
+      "status": "partial",
+      "coverage": "Find a mission node by its ordinal within a campaign, skipping non-mission children.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_route.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b8510",
+      "status": "partial",
+      "coverage": "Find a campaign node by its ordinal within a game-data root, skipping non-campaign children.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_route.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b8660",
+      "status": "partial",
+      "coverage": "Resolve a flattened mission ordinal into campaign-relative campaign and mission ordinals.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_route.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b8a20",
+      "status": "partial",
+      "coverage": "Seek the next campaign or mission descriptor container for a fresh route.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_route.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b8aa0",
+      "status": "partial",
+      "coverage": "Advance descriptor traversal past containers to the next preparation/movie/game marker.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_route.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b8b20",
+      "status": "partial",
+      "coverage": "Traverse backward across permitted descriptor and container boundaries.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_route.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b9190",
+      "status": "partial",
+      "coverage": "Select the current mission descriptor or synthetic standalone mission for the owned request.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_route.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b93c0",
+      "status": "partial",
+      "coverage": "Aggregate equipment descriptor records from selected and earlier campaign missions.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_route.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b9680",
+      "status": "partial",
+      "coverage": "Build standalone mission descriptor data, eligible movies and preparation/game markers.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_route.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064fea0",
+      "status": "partial",
+      "coverage": "Decrease a hero stat delta and refund the linked point counter.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064ff80",
+      "status": "partial",
+      "coverage": "Increase a hero stat delta with its 100-point cap and linked point budget.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00694c40",
+      "status": "partial",
+      "coverage": "Toggle ordered squad slots with candidate eligibility and replacement locks.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_squad.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006953e0",
+      "status": "partial",
+      "coverage": "Retain up to five best candidates under the original strict score comparisons.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_squad.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00695450",
+      "status": "partial",
+      "coverage": "Automatically fill squad roles from eligible HumanStore candidates.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_squad.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00695b30",
+      "status": "partial",
+      "coverage": "Reconcile selected slots with live soldiers, preserving existing equipment and roles.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/pre_mission_squad.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00691cb0",
+      "status": "partial",
+      "coverage": "Construct the authored team screen, candidate strip, slots and controls.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_team_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00690de0",
+      "status": "partial",
+      "coverage": "Bind team candidate name and rank to the original text styles and rows.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_team_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006937f0",
+      "status": "partial",
+      "coverage": "Begin portrait drag from a selected candidate or squad slot with a moving visual copy.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_team_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00693b60",
+      "status": "partial",
+      "coverage": "Update dragged portrait coordinates and foreground depth from pointer displacement.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_team_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00693c10",
+      "status": "partial",
+      "coverage": "Apply portrait drop transfer and squad-slot reorder using the original half-screen boundary.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_team_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00694ae0",
+      "status": "partial",
+      "coverage": "Select an eligible candidate and update the team selection display.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_team_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00696740",
+      "status": "partial",
+      "coverage": "Hide unawarded medals and place awarded compact/full medal variants.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_team_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00694640",
+      "status": "partial",
+      "coverage": "Toggle the selected soldier statistics and biography panels.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_team_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00691840",
+      "status": "partial",
+      "coverage": "Build the team four-photo selection screen and select an available soldier.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_soldier_selection.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00675f30",
+      "status": "partial",
+      "coverage": "Reuse the authored four-photo selection screen for equipment's single-soldier route.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_soldier_selection.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00697600",
+      "status": "partial",
+      "coverage": "Construct hero title, point counter, skill groups, accept and Back controls.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_hero_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00697710",
+      "status": "partial",
+      "coverage": "Construct the authored hero specialization controls and their group.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_hero_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00697a50",
+      "status": "partial",
+      "coverage": "Construct eighteen hero stat rows, base values and linked point counter.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_hero_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00697f60",
+      "status": "partial",
+      "coverage": "Position and register hero stat row controls on cloned frames.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_hero_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00674560",
+      "status": "partial",
+      "coverage": "Construct equipment screen control groups and their authored frame bindings.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_equipment_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006755f0",
+      "status": "partial",
+      "coverage": "Build the equipment preset and assign-to-all controls using actual preset data.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_equipment_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006761a0",
+      "status": "partial",
+      "coverage": "Build the authored equipment store panel and controls.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_equipment_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006763b0",
+      "status": "partial",
+      "coverage": "Bind equipment soldier portraits, frames and isolated image materials.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_equipment_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00676d10",
+      "status": "partial",
+      "coverage": "Construct equipment item and inventory control rows from actual data.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_equipment_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dfa10",
+      "status": "partial",
+      "coverage": "Group item kinds/classes into the equipment store categories.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_equipment_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00652740",
+      "status": "partial",
+      "coverage": "Bind visual store item and ammunition image/text row controls.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_item_row.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00658770",
+      "status": "partial",
+      "coverage": "Bind preparation combo-box header, down button and retained list box.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_choice.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064fa80",
+      "status": "partial",
+      "coverage": "Initialize hero stat controls with authored caption, value and repeat-arrow frames.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00650730",
+      "status": "partial",
+      "coverage": "Bind actual image-control material bitmap for portraits and item icons.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00662b50",
+      "status": "partial",
+      "coverage": "Update the authored meter scale from its current stat/capacity value.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00662dc0",
+      "status": "partial",
+      "coverage": "Handle meter value, range and axis control messages.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006695c0",
+      "status": "partial",
+      "coverage": "Bind the nonnumbered item/medal description model and text controls.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_description.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006697a0",
+      "status": "partial",
+      "coverage": "Show and position description overlay after pointer idle with no held button.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_description.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00669b90",
+      "status": "partial",
+      "coverage": "Derive localized medal title and description captions from medal index.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_description.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006391e0",
+      "status": "partial",
+      "coverage": "Build the mission selection screen using actual GameData and profile progress.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/single_player_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00639a70",
+      "status": "partial",
+      "coverage": "Construct campaign/mission group and selection rows from real mission data.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/single_player_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0063a010",
+      "status": "partial",
+      "coverage": "Bind mission selection content and preview data to actual rows.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/single_player_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00674a60",
+      "status": "partial",
+      "coverage": "Bind the selected soldier statistics and meter values in the equipment screen.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_equipment_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006782b0",
+      "status": "partial",
+      "coverage": "Populate required equipment text from actual mission policy and localized item names.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_equipment_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0067c860",
+      "status": "partial",
+      "coverage": "Build paged visual store rows and bind actual item and ammunition images.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/host/pre_mission_equipment_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a13b0",
+      "status": "partial",
+      "coverage": "Write selected-profile soldier names lazily using original username chunk tags.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "evidence": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "recovered/frontend/human_store.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061a860",
+      "status": "partial",
+      "coverage": "Decode multiplayer host/profile options, nested versioned settings, filters and sort fields transactionally with bounded chunks.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0061ac10",
+      "status": "partial",
+      "coverage": "Encode MPSetingsOrig.sav host/profile settings with the original nested tags and field order.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00616c50",
+      "status": "partial",
+      "coverage": "Initialize original multiplayer filter defaults independently of browser submission success.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006172f0",
+      "status": "partial",
+      "coverage": "Serialize the selected-map names within the original mode/preset rotation records.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00617610",
+      "status": "partial",
+      "coverage": "Read saved rotation names into bounded native mode/preset vectors without borrowed archive storage.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_settings.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00618a00",
+      "status": "partial",
+      "coverage": "Build the base multiplayer map catalogue and original rule defaults, skipping the cooperative subtree.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_maps.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006189c0",
+      "status": "partial",
+      "coverage": "Apply the original base-game directory allowlist to available multiplayer map records.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_maps.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006197b0",
+      "status": "partial",
+      "coverage": "Move a selected rotation entry by stable removal and insertion, preserving intervening order.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_maps.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00619760",
+      "status": "partial",
+      "coverage": "Remove a selected rotation entry with native bounds checks.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_maps.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00619960",
+      "status": "partial",
+      "coverage": "Append an owned map-name copy to the selected rotation with the UI row bound.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_maps.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0064ed00",
+      "status": "partial",
+      "coverage": "Compose the numeric edit and optional caption planes with independent owned controls and forwarded edit state.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006663f0",
+      "status": "partial",
+      "coverage": "Construct and populate the eleven browser row products with linked scrolling and preserved selected server identity.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00665a50",
+      "status": "partial",
+      "coverage": "Bind original server row text and password/dedicated/voice icon pairs with common pick targets.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006610d0",
+      "status": "partial",
+      "coverage": "Bind a labeled toggle to its authored inner text plane with the original shared control identity.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0062f960",
+      "status": "partial",
+      "coverage": "Bind reverse-order named player rows, latency/score columns, team scores, server metadata and transmitted rule values.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0062f3e0",
+      "status": "partial",
+      "coverage": "Construct information-screen controls and bind the original dynamically authored player/header/rule column styles.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006295c0",
+      "status": "partial",
+      "coverage": "Build the fifty selected-map row products and their linked scrolling for the active rotation.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00629a40",
+      "status": "partial",
+      "coverage": "Build available map list products for the base multiplayer modes from the confirmed directory catalogue.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00629ee0",
+      "status": "partial",
+      "coverage": "Build the base Create rule settings list with original row identities, labels, numeric limits and toggles.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0062cf60",
+      "status": "partial",
+      "coverage": "Capture the configured server/map rotation, validate selection and create an owned launch request through an explicit unavailable session boundary.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00634a60",
+      "status": "partial",
+      "coverage": "Populate the favorites browser from stored records and retain the ordinary/favorites persistence distinction.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0062e7a0",
+      "status": "partial",
+      "coverage": "Clone the normal map-row visual and independent caption for a cursor-following drag while preserving the source row.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006318d0",
+      "status": "partial",
+      "coverage": "Clear stale information and request a selected-server information query with owned callback identity and failure handling.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0062e920",
+      "status": "partial",
+      "coverage": "Move the map drag visual at original depth and reorder selected rows by stable insertion without resetting scroll.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0062ea90",
+      "status": "partial",
+      "coverage": "Classify the original available/selected drop rectangles and add, remove, reorder or cancel the dragged map.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0068aed0",
+      "status": "partial",
+      "coverage": "Model standalone connection timer phases, host/client submission boundaries, rejection labels, delayed regular password and game-entry request with actual unavailability distinct from success.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_connection.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0068a990",
+      "status": "partial",
+      "coverage": "Construct the isolated regular connection console and Exit Game action in a distinct type8 scene and registry.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_connection_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0068ad20",
+      "status": "partial",
+      "coverage": "Construct standalone regular password slot2 with edit Enter/Escape, nonempty Yes submission, No cancellation and hidden unused edits.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/host/multiplayer_connection_menu.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00725ec0",
+      "status": "partial",
+      "coverage": "Decode the signed player count and bounded owned player vector; negative counts consume no player records.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_discovery.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00725e60",
+      "status": "partial",
+      "coverage": "Decode each player statistics prefix, team word and bounded name without retaining packet pointers.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_discovery.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00749ae0",
+      "status": "partial",
+      "coverage": "Decode original 11-bit signed score and the 10/10/10/5-bit player statistic fields, preserving the positive1024 edge.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_discovery.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00725c40",
+      "status": "partial",
+      "coverage": "Decode transmitted multiplayer rules with signed16 fields and explicit absence of untransmitted field12.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_discovery.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00725fb0",
+      "status": "partial",
+      "coverage": "Decode information players, rules and two10-bit team score tails as an owned payload.",
+      "limitations": "Native ownership, bounded decoding and renderer/control adapters replace original object ABI. Strict Windows cross-compilation and temporary native sanitizer audits do not establish desktop fidelity, live networking or game entry. Session Connect/Host and the status9 game receiver remain unavailable.",
+      "evidence": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "recovered/frontend/multiplayer_discovery.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0062d880",
+      "status": "partial",
+      "coverage": "Refresh supported base-mode rule values and mode-dependent eligibility; retain stored disabled values and refresh respawn-time/inverse-damage dependencies.",
+      "limitations": "Bounded native host reconstruction, not original object/vtable or renderer ABI. Original engine/OS/CRT services remain delegated. Base English/menu path only; no full function-equivalence or live-server success claim. User accepted reachable frontend behavior2026-11-01; server-dependent UI remains untested.",
+      "evidence": [
+        "recovered/host/multiplayer_menu.h",
+        "analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm",
+        "analysis/multiplayer-function-audit.md",
+        "analysis/multiplayer-pipeline.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006363e0",
+      "status": "partial",
+      "coverage": "Format browser footer using filtered/total server counts, total player count and localized online-players suffix with original punctuation.",
+      "limitations": "Bounded native host reconstruction, not original object/vtable or renderer ABI. Original engine/OS/CRT services remain delegated. Base English/menu path only; no full function-equivalence or live-server success claim. User accepted reachable frontend behavior2026-11-01; server-dependent UI remains untested.",
+      "evidence": [
+        "recovered/host/multiplayer_menu.h",
+        "analysis/work/multiplayer-discovery-20261101/006363e0.c",
+        "analysis/multiplayer-function-audit.md",
+        "analysis/multiplayer-pipeline.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00637440",
+      "status": "partial",
+      "coverage": "Read manual IPv4/port, validate bounded numeric components, initialize unknown display names and merge/persist a manual browser record before closing the address dialog.",
+      "limitations": "Bounded native host reconstruction, not original object/vtable or renderer ABI. Original engine/OS/CRT services remain delegated. Base English/menu path only; no full function-equivalence or live-server success claim. User accepted reachable frontend behavior2026-11-01; server-dependent UI remains untested.",
+      "evidence": [
+        "recovered/host/multiplayer_menu.h",
+        "analysis/work/multiplayer-wire-20261101/00637440.c",
+        "analysis/multiplayer-function-audit.md",
+        "analysis/multiplayer-pipeline.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00654c60",
+      "status": "partial",
+      "coverage": "Bind the four authored sort-arrow planes, align their local positions to normaldown, assign pick identity and display the selected direction/hover pair.",
+      "limitations": "Bounded native host reconstruction, not original object/vtable or renderer ABI. Original engine/OS/CRT services remain delegated. Base English/menu path only; no full function-equivalence or live-server success claim. User accepted reachable frontend behavior2026-11-01; server-dependent UI remains untested.",
+      "evidence": [
+        "recovered/host/multiplayer_controls.h",
+        "analysis/work/multiplayer-review-widgets-20261101/00654c60.c",
+        "analysis/multiplayer-function-audit.md",
+        "analysis/multiplayer-pipeline.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00648c80",
+      "status": "partial",
+      "coverage": "Append the selected record underscore, reserve its advance during blink-off and render the distinct ten-percent font-height baseline lift with original float-constant promotion and truncation.",
+      "limitations": "Bounded native host reconstruction, not original object/vtable or renderer ABI. Original engine/OS/CRT services remain delegated. Base English/menu path only; no full function-equivalence or live-server success claim. User accepted reachable frontend behavior2026-11-01; server-dependent UI remains untested.",
+      "evidence": [
+        "recovered/host/menu_text_geometry.h",
+        "analysis/work/options-caret-20261031/00648c80.c",
+        "analysis/multiplayer-function-audit.md",
+        "analysis/multiplayer-pipeline.md"
       ]
     }
   ]

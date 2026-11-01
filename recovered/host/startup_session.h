@@ -12,6 +12,7 @@
 #include "frontend/input_setup.h"
 #include "frontend/sound_manager_data.h"
 #include "frontend/pre_mission_flow.h"
+#include "frontend/multiplayer_connection.h"
 #include "frontend/startup_modules.h"
 #include "frontend/options_settings.h"
 #include "host/chunk_files.h"
@@ -40,6 +41,7 @@ namespace hd2::host {
 class StartupSession {
 public:
     using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>>;
+    std::optional<frontend::MultiplayerLaunchRequest>& multiplayer_request() { return multiplayer_request_; }
     StartupSession(HMODULE engine, HMODULE rw_data, HMODULE joy)
         : engine_(engine), files_(rw_data), text_files_(rw_data), directory_(platform_), language_(platform_),
           portraits_(engine), data_(portraits_, files_, directory_),
@@ -140,6 +142,7 @@ public:
         errors.attempt([&] { input_.detach(); });
         errors.attempt([&] { joysticks_.close(); });
         pre_mission_.reset(); // Borrowed HumanStore/descriptor owners end before application data.
+        multiplayer_request_.reset();
         errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
         errors.attempt([&] { modules_.shutdown(gate_); }); //0048DA80, after data.
         std::printf("Shutdown: input/sound/data/module cleanup completed=%u\n",
@@ -466,6 +469,7 @@ private:
     enum class Phase { constructed, control_ready, loading, resources_ready, data_ready, ready, closed };
     HMODULE engine_;
     std::unique_ptr<PreMission> pre_mission_;
+    std::optional<frontend::MultiplayerLaunchRequest> multiplayer_request_;
     ChunkFiles files_;
     DtaTextFiles text_files_;
     StartupLocalizationPlatform platform_;

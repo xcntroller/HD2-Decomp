@@ -13,7 +13,8 @@ class PreMissionChoice final : public MenuControl {
         using namespace frontend;
         const auto id = definition.identifier;
         auto header = text_definition(id | 2, "header*");
-        header.normal = "text*";
+        //00658770 binds header* to the direct visual text control whose
+        //+2c initializer is0065ABA0 (vtable00814320). No nested text* plane.
         auto list = MenuControlDefinition{id | 0x1000, "listbox*", MenuControlKind::profile_list,
                                           nullptr,     nullptr,    MenuControlRole::none,
                                           {}};
@@ -50,6 +51,8 @@ class PreMissionChoice final : public MenuControl {
         auto *header = lookup_(id | 2);
         header->bind_frame(header_frame_);
         header->initialize_static_frame();
+        const unsigned header_id=id|2u;
+        std::memcpy(reinterpret_cast<char*>(header_frame_)+0xec,&header_id,4);
         header->visibility_query([this] { return visible(); });
         arrow_ = std::make_unique<ButtonVisualPair>(scene_, module_, "cbdown*", "normal*", "actived*", false,
                                                     nullptr, true, arrow);
@@ -129,6 +132,21 @@ class PreMissionChoice final : public MenuControl {
     }
     bool eligible() const override { return properties_.eligible(); }
     bool visible() const override { return properties_.visible != 0; }
+    bool expanded() const { return expanded_; }
+    void dismiss_on_press(float x,float y) {
+        if (!expanded_) return;
+        const CursorPoint point{x,y};
+        if (overlay_rectangle().contains(point) || lookup_(definition_.identifier|2u)->rectangle(false).contains(point)) return;
+        const auto arrow=menu_rectangle(scene_.label_bounds("cbdown*","normal*",module_,false,frame_),800,600);
+        if (arrow.contains(point) || scene_.pick_model(module_,x,y,800,600,list_frame_)) return;
+        show_list(false);
+    }
+    const frontend::MenuControlDefinition& overlay_definition() const { return definition_.children.at(1); }
+    MenuRectangle overlay_rectangle() const { return lookup_(definition_.identifier | 0x1008)->rectangle(false); }
+    unsigned pick_overlay(float x,float y) const {
+        const auto target=scene_.pick_model(module_,x,y,800,600,list_frame_);
+        return target?target:definition_.identifier|0x1008;
+    }
     bool disabled() const override { return properties_.disabled != 0; }
     bool preserves_part_targets() const override { return true; }
     void bind_pick_target(unsigned) override {}
@@ -156,7 +174,6 @@ class PreMissionChoice final : public MenuControl {
     int leave_focus(unsigned target) override {
         if (expanded_ && (target & 0x03f00000u) == (definition_.identifier & 0x03f00000u))
             return 1;
-        show_list(false);
         return arrow_->apply(false);
     }
     int pointer_focus(unsigned target) override {
@@ -178,6 +195,8 @@ class PreMissionChoice final : public MenuControl {
         return 1;
     }
     int click(frontend::ControlEventDestination &events) override {
+        //Header clicks toggle without0066B110's accepted-button sound.
+        if (focus_==(definition_.identifier|2u)) { activate(events); return 0; }
         return focus_ & 0x1000 ? list_->click(events) : activate(events);
     }
     int wheel_target(std::int32_t amount, frontend::ControlEventDestination &events) override {

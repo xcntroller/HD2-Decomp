@@ -52,6 +52,7 @@ public:
     bool visible() const { return (!visibility_ || visibility_()) && (owner_ ? owner_->visible : properties_.visible) != 0; }
     void visibility_query(std::function<bool()> query) { visibility_=std::move(query); }
     void invalidate_bounds() { bounds_.reset(); }
+    void projected_bounds(const std::array<float,8>& bounds) { bounds_=bounds; }
     //0065C680: the visual is a text-layout/picking plane, facing away
     // from the menu camera. Its rectangle must not render behind the glyphs.
     void initialize_static_frame() {
@@ -61,6 +62,9 @@ public:
         invalidate_bounds();
     }
     bool record_list = false;
+    bool editable_viewport = false;
+    std::optional<std::vector<MenuTextRow>> column_rows;
+    float column_line_height = 24;
     std::size_t record_offset = 0;
     int selected_record = -1, hovered_record = -1;
     bool available() const { return available_; }

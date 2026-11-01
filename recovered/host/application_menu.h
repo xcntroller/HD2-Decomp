@@ -9,6 +9,7 @@
 #include "host/options_menu.h"
 #include "host/profiles_menu.h"
 #include "host/single_player_menu.h"
+#include "host/multiplayer_menu.h"
 #include "host/graphics_interface.h"
 #include "host/menu_input_session.h"
 #include "host/menu_screen_factory.h"
@@ -76,6 +77,8 @@ class ApplicationMenu {
             single_player_->transitions([this]{select_state_(2);},[this](frontend::SharedText text) {
                 request_dialog_text(2,std::move(text),0,0);
             });
+            multiplayer_=std::make_unique<MultiplayerMenu>(startup_,*scene_,driver_,module_,*events_);
+            multiplayer_->errors([this](frontend::SharedText text){request_dialog_text(2,std::move(text),0,0);});
             MenuScreenFactory<Actions> factory(
                 *scene_, module_, [&](std::uint32_t id) { return text_->object_for(id); }, *events_,
                 products_, actions_, widgets_.get(), true, cinematics_->model(),
@@ -96,10 +99,12 @@ class ApplicationMenu {
                         definition, frame, text, *widgets_,
                         [this](std::uint32_t id) { return text_->object_for(id); });
                 },options_menu_->model(),[this] { return options_menu_->definition(); },
-                profiles_menu_->model(),[this]{return profiles_menu_->definition();},true);
+                profiles_menu_->model(),[this]{return profiles_menu_->definition();},true,true);
             frontend::construct_registered_screens(factory);
             add_single_player_screen(single_player_->modes_definition(),single_player_->mode_model());
             add_single_player_screen(single_player_->missions_definition(),single_player_->mission_model());
+            for (unsigned slot=8;slot<=14;++slot)
+                add_multiplayer_screen(multiplayer_->definition(slot),multiplayer_->model(slot));
             for (std::size_t i = 0; i != products_.size(); ++i)
                 products_.screen(i).controls().bind_pick_targets();
         });
@@ -147,6 +152,7 @@ class ApplicationMenu {
         pointer_input_.reset();
         keyboard_context_.reset();
         frontend::CleanupErrors errors;
+        if (multiplayer_) multiplayer_->cancel();
         // A throwing deactivation must not strand products or their engine refs.
         errors.attempt([&] {
             if (events_)
@@ -169,6 +175,7 @@ class ApplicationMenu {
         options_menu_.reset();
         profiles_menu_.reset();
         single_player_.reset();
+        multiplayer_.reset();
         scene_.reset();
         SetCursor(LoadCursorW(nullptr, IDC_ARROW));
         std::puts("Controller menu shutdown: screen/input/text/scene owners released");
@@ -184,8 +191,10 @@ class ApplicationMenu {
 
     void render() {
         const auto id = current_product().definition().identifier;
-        const bool modal = id == 0 || id == 0x10000000;
-        auto *overlay = id == 0 ? scene_->runtime_confirmation_frame() : scene_->confirmation_model_frame();
+        const bool network_modal=id==0x28000000 || id==0x34000000 || id==0x38000000;
+        const bool modal = id == 0 || id == 0x10000000 || network_modal;
+        auto *overlay = id == 0 ? scene_->runtime_confirmation_frame() :
+            network_modal?current_product().model_frame():scene_->confirmation_model_frame();
         if (modal)
             scene_->set_screen_visible(module_, overlay, false);
         if (scene_->render() < 0)
@@ -198,9 +207,26 @@ class ApplicationMenu {
             background = &product_for_identifier(previous->identifier);
         } else if (id == 0x10000000)
             background = &products_.screen(0);
+        else if (network_modal) {
+            const auto retained=multiplayer_->backdrop(id);
+            if (!retained) throw std::logic_error("Multiplayer dialog has no retained screen");
+            background=&product_for_identifier(*retained);
+        }
+        if (const auto retained=multiplayer_->backdrop(background->definition().identifier)) {
+            auto& base=product_for_identifier(*retained);
+            text_->draw_screen(base.definition(),base.focus().focused_control());
+        }
         if (background->definition().identifier == 0x1c000000)
             cinematics_->render_preview();
-        text_->draw_screen(background->definition(), id == 0x10000000 ? 0 : background->focus().focused_control());
+        auto* dropdown=id==0x24000000?multiplayer_->dropdown():nullptr;
+        if (dropdown)
+            text_->draw_screen_overlay(background->definition(),background->focus().focused_control(),
+                dropdown->overlay_definition(),dropdown->overlay_rectangle());
+        else if (id==0x24000000 && multiplayer_->drag_text())
+            text_->draw_screen_masked(background->definition(),background->focus().focused_control(),
+                multiplayer_->drag_text()->rectangle(false));
+        else
+            text_->draw_screen(background->definition(), id == 0x10000000 ? 0 : background->focus().focused_control());
         if (modal) {
             std::vector<EngineFrame*> backgrounds;
             backgrounds.reserve(products_.size());
@@ -213,6 +239,7 @@ class ApplicationMenu {
             if (!pass.restore())
                 throw std::runtime_error("Controller dialog render state restore failed");
         }
+        if (id==0x24000000) if (auto* drag=multiplayer_->drag_text()) text_->draw_transient(*drag);
         if (point_ && GetAncestor(GetForegroundWindow(), GA_ROOT) == window_ && !IsIconic(window_)) {
             cursor_->draw_at(*point_);
             SetCursor(nullptr);
@@ -224,6 +251,20 @@ class ApplicationMenu {
     }
 
   private:
+    void add_multiplayer_screen(frontend::MenuScreenDefinition definition,EngineFrame* model) {
+        scene_->update_screen_frame(module_,model);
+        text_->attach_screen_definition(*scene_,module_,definition);
+        auto screen=std::make_unique<MenuScreenProduct>(*scene_,module_,false,
+            std::vector<frontend::MenuControlRole>{frontend::MenuControlRole::multiplayer},
+            [this](unsigned id){return text_->object_for(id);},*events_,model,widgets_.get(),
+            [this](const frontend::MenuControlDefinition& d,EngineFrame* frame,MenuTextObject& text){
+                return multiplayer_->make_control(d,frame,text,*widgets_,[this](unsigned id){return text_->object_for(id);});
+            });
+        if (!screen->bind_definition(definition)) throw std::runtime_error("Multiplayer screen binding failed");
+        screen->initialize_records(definition.initialization);
+        actions_.bind_screen(definition.identifier>>26,screen->events());
+        products_.append({definition.label,definition.model,definition.identifier},std::move(screen));
+    }
     void add_single_player_screen(frontend::MenuScreenDefinition definition,EngineFrame *model) {
         scene_->update_screen_frame(module_,model);
         text_->attach_screen_definition(*scene_,module_,definition);
@@ -256,7 +297,7 @@ class ApplicationMenu {
     }
     struct FrameServices {
         ApplicationMenu &owner;
-        void update_menu(std::uint32_t) { owner.date_tick(false); }
+        void update_menu(std::uint32_t ms) { owner.date_tick(false); owner.multiplayer_->tick(ms); }
         void update_sound(std::uint32_t milliseconds) { owner.startup_.update_sound(milliseconds); }
         void pump_events() { owner.events_->pump(); }
         bool screens_available() const { return owner.events_->screens().current() != nullptr; }
@@ -298,6 +339,7 @@ class ApplicationMenu {
             if(screen.identifier==0x04000000) owner_.refresh_main();
             if(screen.identifier==0x08000000) owner_.profiles_menu_->shown();
             if(screen.identifier==0x18000000) owner_.options_menu_->shown();
+            if(screen.identifier>=0x20000000 && screen.identifier<=0x38000000) owner_.multiplayer_->shown(screen.identifier);
             owner_.confirming_ = screen.identifier == 0x10000000;
             std::puts(owner_.confirming_ ? "Controller confirmation opened" : "Controller main menu active");
         }
@@ -315,6 +357,8 @@ class ApplicationMenu {
         bool dispatch_menu_handler(frontend::MenuApplicationHandler handler,frontend::ControlEvent& event) override {
             if(handler==frontend::MenuApplicationHandler::profiles)return owner_.profiles_menu_->dispatch(event);
             if(handler==frontend::MenuApplicationHandler::mission)return owner_.single_player_->receive(event);
+            if(handler==frontend::MenuApplicationHandler::multiplayer || handler==frontend::MenuApplicationHandler::connection)
+                return owner_.multiplayer_->receive(event);
             return handler==frontend::MenuApplicationHandler::options && owner_.options_menu_->dispatch(event);
         }
         void quit() override {
@@ -378,6 +422,10 @@ class ApplicationMenu {
         ApplicationMenu &owner_;
     };
     std::uint32_t pick(std::uint32_t identifier, const CursorPoint &point) {
+        if (identifier==0x24000000)
+            if (auto* dropdown=multiplayer_->dropdown())
+                if (dropdown->overlay_rectangle().contains(point))
+                    return dropdown->pick_overlay(point.x,point.y);
         const bool confirmation = identifier == 0x10000000;
         auto &focus = current_product().focus();
         const auto picked =
@@ -437,6 +485,7 @@ class ApplicationMenu {
     std::unique_ptr<OptionsMenu> options_menu_;
     std::unique_ptr<ProfilesMenu> profiles_menu_;
     std::unique_ptr<SinglePlayerMenu> single_player_;
+    std::unique_ptr<MultiplayerMenu> multiplayer_;
     std::unique_ptr<MenuText<Graphics>> text_;
     std::unique_ptr<MenuCursor<Graphics>> cursor_;
     MenuInputSession input_;

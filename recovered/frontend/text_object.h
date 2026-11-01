@@ -151,6 +151,7 @@ inline const TextStyle* menu_text_style(std::uint8_t style) {
     static const TextStyle list{2, .04f, 0xff000000, 1, 1};
     static const TextStyle body{2, .04f, 0xff000000, 1, 2};
     static const TextStyle selector{2, .04f, 0xa0000000, 2, 2}; //00641E30 entry20.
+    static const TextStyle centered_edit{2, .04f, 0xff000000, 2, 2}; //Entry14.
     static const TextStyle hero_value{3, .019f, 0xa0000000, 2, 2}; //00641E30 entry22.
     static const TextStyle item_quantity{3, .019f, 0xff000000, 3, 3}; //00641E30 entry6.
     static const TextStyle stat_number{3, .02f, 0xff000000, 3, 2}; //00641E30 entry23.
@@ -170,6 +171,7 @@ inline const TextStyle* menu_text_style(std::uint8_t style) {
     case 10: return &title;
     case 11: return &small;
     case 12: case 13: case 24: return &body;
+    case 14: return &centered_edit;
     case 20: return &selector;
     case 22: return &hero_value;
     case 23: return &stat_number;

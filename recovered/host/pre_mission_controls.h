@@ -135,9 +135,11 @@ class PreMissionImage final : public MenuControl {
         return {target, 0x01000038, 0, 0, 0, std::make_shared<Texture>(Texture{value})};
     }
     PreMissionImage(const MenuScene &scene, HMODULE module, const frontend::MenuControlDefinition &definition,
-                    EngineFrame *frame, MenuTextObject &text, MenuWidgetContext &context)
+                    EngineFrame *frame, MenuTextObject &text, MenuWidgetContext &context,
+                    bool audible_click = true)
         : MenuControl(scene, module, false, definition, frame, text, true, &context), scene_(scene),
-          module_(module), id_(definition.identifier), frame_(frame), text_(text), context_(context) {}
+          module_(module), id_(definition.identifier), frame_(frame), text_(text), context_(context),
+          audible_click_(audible_click) {}
     bool initialize_visuals() override {
         MenuControl::initialize_visuals();
         text_.attach_control(properties_, true);
@@ -248,7 +250,8 @@ class PreMissionImage final : public MenuControl {
     }
     int click(frontend::ControlEventDestination &destination) override {
         emit(0x04012000);
-        return activate(destination);
+        const int result=activate(destination);
+        return audible_click_ ? result : 7;
     }
     int wheel_target(std::int32_t, frontend::ControlEventDestination &) override {
         emit(0x04011000);
@@ -335,6 +338,7 @@ class PreMissionImage final : public MenuControl {
     EngineFrame *frame_, *binding_node_ = nullptr, *bitmap_ = nullptr, *original_ = nullptr;
     MenuTextObject &text_;
     MenuWidgetContext &context_;
+    bool audible_click_;
     frontend::ControlProperties properties_;
     frontend::ControlEventBindings bindings_;
 };

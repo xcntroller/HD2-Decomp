@@ -65,6 +65,9 @@ int dispatch_menu_pointer(PointerDispatchState& state, Context& context,
         if (captured && *captured != target) {
             if (context.captured_control_event(target) != 1) return 1;
             context.clear_captured_control();
+            //Resolve focus again after releasing keyboard capture: release may
+            //change the screen before this press/click is routed.
+            context.screen_event(ScreenPointerCallback::focus, target);
         }
         context.screen_event(ScreenPointerCallback::press, target);
     } else if (context.input().released_mask3) {

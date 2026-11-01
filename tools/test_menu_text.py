@@ -111,7 +111,7 @@ class MenuTextTests(unittest.TestCase):
         self.run.mkdir()
         (self.run / "keep.txt").write_bytes(b"unrelated")
         result = stage_menu_text(self.game, self.run)
-        self.assertEqual(len(result["assets"]), 5)
+        self.assertEqual(len(result["assets"]), len(SOURCES))
         self.assertIn("800x600", result["limitation"])
         self.assertEqual(set(a["path"] for a in result["assets"]), set(SOURCES))
         for asset in result["assets"]:
@@ -234,7 +234,7 @@ class MenuTextTests(unittest.TestCase):
         self.assertEqual(len(labels), len(LABEL_IDS))
         self.assertEqual(labels[2101], "MAIN MENU")
         result = stage_menu_text(game, self.run)
-        self.assertEqual(len(result["assets"]), 5)
+        self.assertEqual(len(result["assets"]), len(SOURCES))
         staged = self.snapshot(self.run)
         self.assertEqual(stage_menu_text(game, self.run), result)
         self.assertEqual(self.snapshot(self.run), staged)

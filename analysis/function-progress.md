@@ -32,7 +32,7 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are304 partial entries (299 client/five engine), zero
+The current totals are564 partial entries (559 client/five engine), zero
 complete. The [ledger](function-status.json) records each supported subset and
 its exclusions; the generated [README bar](../README.md) is the current count.
 Historical research notes retain their checkpoint totals. Integrated desktop
@@ -142,3 +142,11 @@ Review the baseline/README diff and explain any revised estimate. The explicit
 freeze operation validates the ledger first, so a split, removed function or
 changed entry cannot silently strand credited progress. A baseline revision may
 change the percentage even when no reconstruction work has changed.
+
+## Multiplayer source checkpoint — 2026-11-01
+
+[Function audit](multiplayer-function-audit.md) adds33 partial frozen client entries
+and extends existing006C20F0. Current total559 partial (554client/five engine),
+zero complete /18,783 frozen. Native/strict-build verification is not desktop or
+live-network acceptance. No new credit for absent callbacks, engine delegates,
+unimplemented Connect/Host, auxiliary services or the Phase2 game receiver.

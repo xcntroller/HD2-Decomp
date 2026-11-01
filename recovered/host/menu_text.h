@@ -168,6 +168,8 @@ public:
         if (device_ == nullptr) throw std::runtime_error("Engine Direct3D device is null");
         big_ = load_atlas("HD2_MENU_BIG.TGA", module);
         small_ = load_atlas("HD2_MENU_SMALL.TGA", module);
+        symbols_metrics_ = decode_font_metrics(read_menu_text_file("MenuText\\SYMBOLS.tbl"));
+        symbols_ = load_atlas("HD2_MENU_SYMBOLS.TGA", module);
         if (seed_definitions) {
             create_objects(scene, module, frontend::main_menu_definition(), false);
             if (confirmation_enabled) create_objects(scene, module, frontend::confirmation_definition(), true);
@@ -225,6 +227,31 @@ public:
     void draw_screen(const frontend::MenuScreenDefinition& definition,int hover) const {
         draw_definition(definition,false,hover);
     }
+    void draw_screen_overlay(const frontend::MenuScreenDefinition& definition,int hover,
+            const frontend::MenuControlDefinition& overlay,const MenuRectangle& rectangle) const {
+        std::vector<MenuTextSubmission> base,front;
+        collect_submissions(definition,definition.controls,false,hover,base,overlay.identifier);
+        for (auto& submission:base) exclude_menu_rectangle(submission,rectangle);
+        draw_submissions(base);
+        collect_submissions(definition,{overlay},false,-1,front);
+        draw_submissions(front);
+    }
+    void draw_screen_masked(const frontend::MenuScreenDefinition& definition,int hover,
+            const MenuRectangle& mask) const {
+        std::vector<MenuTextSubmission> submissions;
+        collect_submissions(definition,definition.controls,false,hover,submissions);
+        for (auto& submission:submissions) exclude_menu_rectangle(submission,mask);
+        draw_submissions(submissions);
+    }
+    void draw_transient(MenuTextObject& attached) const {
+        if (!attached.visible()) return;
+        auto submission=menu_text_submission(attached.object(),[&]{return attached.bounds();},
+            false,true,false,big_metrics_,small_metrics_);
+        if (!submission) return;
+        std::vector<MenuTextSubmission> submissions;
+        submissions.push_back(std::move(*submission));
+        draw_submissions(submissions);
+    }
     void draw_runtime_confirmation(const frontend::MenuScreenDefinition& definition, int hover) const {
         draw_definition(definition, false, hover);
     }
@@ -232,15 +259,22 @@ public:
 private:
     void collect_submissions(const frontend::MenuScreenDefinition& definition,
             const std::vector<frontend::MenuControlDefinition>& controls,
-            bool exit_hover,int confirm_hover,std::vector<MenuTextSubmission>& submissions) const {
+            bool exit_hover,int confirm_hover,std::vector<MenuTextSubmission>& submissions,unsigned omitted=0) const {
         for (std::size_t i = 0; i < controls.size(); ++i) {
             const auto& entry = controls[i];
+            if (entry.identifier==omitted) continue;
             auto* attached = object_for(entry.identifier);
             const auto& object = attached->object();
             if (!attached->visible()) continue;
             const bool button = entry.kind == frontend::MenuControlKind::button || entry.kind == frontend::MenuControlKind::movie_row;
             const bool hovered = confirm_hover >= 0 ? static_cast<int>(i) == confirm_hover && button
                                                     : entry.role == frontend::MenuControlRole::exit && exit_hover;
+            if (attached->column_rows) {
+                auto records=menu_column_submissions(*attached->column_rows,attached->rectangle(true),
+                    attached->record_offset,attached->column_line_height,big_metrics_,small_metrics_,symbols_metrics_);
+                for (auto& record:records) submissions.push_back(std::move(record));
+                continue;
+            }
             if(attached->record_list) {
                 auto records=menu_profile_list_submissions(object,attached->rectangle(true),attached->record_offset,
                     attached->selected_record,attached->hovered_record,big_metrics_);
@@ -250,14 +284,20 @@ private:
             auto submission = menu_ruler_submission(object,[&] { return attached->bounds(); },small_metrics_);
             if (!submission) submission = menu_text_submission(object, [&] { return attached->bounds(); },
                 button, attached->available(), hovered || attached->highlighted() || (button && object.word_94==0xffffffffu), big_metrics_, small_metrics_, attached->record_offset);
-            if (submission) submissions.push_back(std::move(*submission));
-            if (!entry.children.empty()) collect_submissions(definition,entry.children,false,-1,submissions);
+            if (submission) {
+                if (attached->editable_viewport) clip_menu_rectangle(*submission,attached->rectangle(true));
+                submissions.push_back(std::move(*submission));
+            }
+            if (!entry.children.empty()) collect_submissions(definition,entry.children,false,-1,submissions,omitted);
         }
     }
     void draw_definition(const frontend::MenuScreenDefinition& definition,
                          bool exit_hover, int confirm_hover) const {
         std::vector<MenuTextSubmission> submissions;
         collect_submissions(definition,definition.controls,exit_hover,confirm_hover,submissions);
+        draw_submissions(submissions);
+    }
+    void draw_submissions(const std::vector<MenuTextSubmission>& submissions) const {
         TextOverlayState state(device_);
         const CursorViewport viewport{0, 0, 800, 600, 0, 1};
         const auto* old = graphics_->methods->viewport(graphics_);
@@ -267,7 +307,7 @@ private:
         auto status = graphics_->methods->set_viewport(graphics_, &viewport);
         for (const auto& submission : submissions) {
             if (status < 0) break;
-            if (graphics_->methods->bind_texture(graphics_, submission.small ? small_.get() : big_.get(), 0) == 0) {
+            if (graphics_->methods->bind_texture(graphics_, submission.symbols ? symbols_.get() : submission.small ? small_.get() : big_.get(), 0) == 0) {
                 status = E_FAIL;
             } else if (!submission.vertices.empty()) {
                 status = graphics_->methods->draw_primitive(graphics_, 3,
@@ -309,8 +349,8 @@ private:
 
     Graphics* graphics_;
     const frontend::LocalizedTextCache* localized_;
-    MenuDriver::Owner big_, small_;
-    FontMetrics big_metrics_, small_metrics_;
+    MenuDriver::Owner big_, small_, symbols_{nullptr,nullptr};
+    FontMetrics big_metrics_, small_metrics_, symbols_metrics_;
     std::map<std::uint32_t, std::string> labels_;
     std::map<std::uint32_t, std::unique_ptr<MenuTextObject>> objects_;
     IDirect3DDevice8* device_ = nullptr;

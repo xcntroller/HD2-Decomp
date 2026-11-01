@@ -1,8 +1,9 @@
 # Understanding Hidden & Dangerous 2
 
-Readable reconstruction of the base game's menu and launch path, initially using
-its original LS3DF.dll engine and local assets through Proton. Gameplay, Sabre
-Squadron and engine replacement are outside the current menu milestone.
+Readable reconstruction of the base game, initially using its original LS3DF.dll
+engine and local assets through Proton. The current milestone is the front-end
+menus; a later stage covers level loading and game-dependent flows. Sabre Squadron
+and engine replacement are separate.
 
 ## Current build
 
@@ -57,6 +58,16 @@ unavailable**; gameplay/save loading remain outside this menu checkpoint.
 [Acceptance and remaining limits](analysis/singleplayer-pipeline.md#desktop-acceptance--team-selection-checkpoint-2026-11-01).
 The user requested continuing with **multiplayer menus** while loadout testing is
 deferred. [Plan](plan.md) and [handoff](HANDOFF.md) record the next work.
+
+[Multiplayer front-end work](analysis/multiplayer-pipeline.md#desktop-acceptance--2026-11-01) is desktop accepted2026-11-01 for reachable
+browser, Create/maps/settings, filter editing, Add Server and unavailable-service
+boundaries. Information/password/console and the distinct type8 connection owner
+are source-integrated. Real DirectPlay LAN discovery is wired; native audits and
+strict i386 builds pass. All UI requiring
+a ready server, including server information, remains **untested**. The old server
+implementation appears broken per user testing; server reconstruction, Host/Connect,
+auxiliary services and live UI verification are planned for Phase 3. Actual status9
+game-entry reconstruction belongs to Phase 2, with live integration after the server.
 
 Original menu queue/update timing, drag/capture and focus-loss behavior are
 [desktop-confirmed](analysis/menu-update.md) for Main/Exit; unused widget routes
@@ -129,11 +140,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.00% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **428 unique functions partially reconstructed**.
+**0 complete / 18,783 identified functions** (frozen, estimated baseline); **564 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 423 |
+| Base game client | 17,294 | 0 | 559 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

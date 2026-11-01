@@ -27,7 +27,7 @@ public:
                       std::function<std::unique_ptr<MenuControl>(const frontend::MenuControlDefinition&,EngineFrame*,MenuTextObject&)> extra={},
                       EngineFrame* options_model=nullptr,
                       std::function<frontend::MenuScreenDefinition()> build_options={},
-                      EngineFrame* profiles_model=nullptr, std::function<frontend::MenuScreenDefinition()> build_profiles={}, bool single_player=false)
+                      EngineFrame* profiles_model=nullptr, std::function<frontend::MenuScreenDefinition()> build_profiles={}, bool single_player=false, bool multiplayer=false)
         : scene_(scene), module_(module), text_lookup_(std::move(text_lookup)),
           queue_(queue), products_(products), bindings_(bindings), widgets_(widgets),build_cinematics_(std::move(build_cinematics)),attach_cinematics_(std::move(attach_cinematics)),extra_(std::move(extra)),
           main_{scene.main_model_frame(), false, credits ?
@@ -38,6 +38,7 @@ public:
           cinematics_{cinematic_model,false,{frontend::MenuControlRole::play,frontend::MenuControlRole::back,frontend::MenuControlRole::movie_list}},
           options_{options_model,false,{}},build_options_(std::move(build_options)),profiles_{profiles_model,false,{frontend::MenuControlRole::profiles}},build_profiles_(std::move(build_profiles)) {
         if(single_player)main_.available.push_back(frontend::MenuControlRole::single_player);
+        if(multiplayer)main_.available.push_back(frontend::MenuControlRole::multiplayer);
         if(profiles_model && build_profiles_ && attach_cinematics_)main_.available.push_back(frontend::MenuControlRole::profiles);
         if(cinematic_model && build_cinematics_ && attach_cinematics_)
             main_.available.push_back(frontend::MenuControlRole::cinematics);

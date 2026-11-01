@@ -4047,3 +4047,48 @@ commit/continuation. [Acceptance scope](analysis/singleplayer-pipeline.md#deskto
 Loadout screens are implemented but completely untested until accessible; native
 audits/builds do not count as screen testing. Full single-player checklist remains
 open. User explicitly chose multiplayer menus next while loadout testing is deferred.
+
+2026-11-01 accepted team/preparation checkpoint committed as13863a7; no push.
+Continued the user-selected multiplayer family through a verified source-only
+server-record/discovery dependency checkpoint. [Contracts and evidence](analysis/multiplayer-pipeline.md).
+Original persistence/response formats, exact filters and a real DirectPlay LAN
+adapter compile; temporary ASan/UBSan production-code data and callback-lifecycle
+audits pass, along with strict i386 builds, native regressions and158 Python tests.
+No multiplayer UI/live endpoint/desktop acceptance. Full Join/Create/standalone
+delivery is blocked on actual status9 game receiver00698510; GameSpy availability
+and a reconstructed dedicated service remain separate dependencies. All22 family
+items open; eight inventoried bodies gain partial source credit,436 partial
+(431client/fiveengine), zero complete /18,783 frozen. OS methods/absent receivers
+receive no credit. New source uncommitted; accepted staged application preserved.
+
+2026-11-01 single-player function ledger audit: the integrated preparation/team
+work in13863a7 had not been credited. [Entry-by-entry source audit](analysis/singleplayer-function-audit.md)
+adds90 inventoried internal non-thunk bodies as partial and extends four existing
+entries without double counting. Current total526 partial (521client/five engine),
+zero complete /18,783 frozen; no engine delegate or absent game receiver credit.
+The user requested separate top-level front-end and level-loading stages in
+[plan.md](plan.md): real game entry, in-game save/load/menu and post-mission
+results move to Phase 2, while front-end multiplayer UI/service work continues.
+Only source-level loadout implementation is checked; screens remain completely
+untested until accessible. No new desktop acceptance or code change is claimed.
+Ledger fingerprint/README check, 27 ledger tests and whitespace validation pass.
+A temporary catalog audit confirms all29 existing units, roles and statuses are
+preserved, dependencies are acyclic and phase-local, and all90 audit entries
+match the partial ledger. No new permanent tests or Windows execution.
+
+
+2026-11-01 multiplayer front-end source integration: ordinary slots8–14 now
+compose the browser/Create/maps/settings/filters/info/Add Server/password/console
+with real OS LAN enumeration. A separate type8 connection owner and controller7/8
+factories use copied launch requests; no ordinary modal substitution. Original
+map drag rectangles/stable insertion, settings nesting, info/player bit fields,
+dynamic column styles and regular password retry are recorded in
+[the pipeline](analysis/multiplayer-pipeline.md). Session Connect/Host and their
+auxiliary dependencies remain unavailable; real status9 game entry is Phase2.
+Strict i386 builds, existing native regressions,158 Python tests and temporary
+ASan/UBSan data/callback/timer/geometry audits pass. No desktop/live endpoint or
+Windows execution claim. [Function audit](analysis/multiplayer-function-audit.md)
+adds33 partial client entries; total559 partial (554client/five engine), zero
+complete /18,783 frozen. All multiplayer delivery gates stay open. Source changes
+are uncommitted; user desktop review is required before an interactive commit.
+Loadout screens remain implemented but completely untested until accessible.
