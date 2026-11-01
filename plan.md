@@ -1,6 +1,6 @@
 # Entire menu reconstruction plan
 
-Updated: 2026-10-31. [Handoff](HANDOFF.md) records the latest work and next steps;
+Updated: 2026-11-01. [Handoff](HANDOFF.md) records the latest work and next steps;
 [research](RESEARCH.md) and linked analysis documents hold technical detail.
 
 ## Goal and completion criteria
@@ -127,6 +127,9 @@ Original object ABI is tracked separately from native menu delivery.
 - [x] Finish Main's live profile, last-save, date/time and version labels and eligibility.
   [Desktop accepted2026-10-31](analysis/main-menu-state.md#desktop-acceptance).
 - [ ] Deliver single-player setup through a documented game-controller handoff.
+  [Full pre-mission scope/research](analysis/singleplayer-pipeline.md); validate payload, report game entry unavailable.
+  Team-selection checkpoint accepted2026-11-01; loadouts implemented, completely
+  untested until accessible. Full flow open; multiplayer is next per user.
 - [ ] Deliver multiplayer UI/service contracts; distinguish working local/network paths
   from unavailable legacy services.
 - [ ] Deliver in-game menu variants and transitions back to the front end.

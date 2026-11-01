@@ -149,8 +149,9 @@ public:
             shutdown();
             services_.reset_control(); // Actual0072E4E0(1), supported cold branch.
             return finish_frame(false);
-        } else if (status == 2 || status == 3 ||
-                   (status >= 7 && status <= 17)) {
+        } else if (status == 2 || status == 3) {
+            transition_pre_mission(services_,status,0);
+        } else if (status >= 7 && status <= 17) {
             throw std::logic_error("Unrecovered application state transition");
         }
         return finish_frame(true);
@@ -174,6 +175,14 @@ public:
     }
 
 private:
+    template<class Service>
+    auto transition_pre_mission(Service &service,std::uint32_t status,int)
+        -> decltype(service.transition_pre_mission(*this,status),void()) {
+        service.transition_pre_mission(*this,status);
+    }
+    template<class Service> void transition_pre_mission(Service&,std::uint32_t,long) {
+        throw std::logic_error("Application service has no preparation descriptor receiver");
+    }
     static std::int32_t signed_word(std::uint32_t value) {
         std::int32_t result;
         std::memcpy(&result, &value, sizeof(result));

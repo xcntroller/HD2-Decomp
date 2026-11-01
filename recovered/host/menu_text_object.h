@@ -36,10 +36,11 @@ public:
     frontend::TextObject& object() { return text_; }
     const frontend::TextObject& object() const { return text_; }
     const frontend::MenuControlDefinition& definition() const { return definition_; }
-    void bind_frame(EngineFrame* frame) {
+    void bind_frame(EngineFrame* frame, const char* text_frame_name = nullptr) {
         if (!frame || (bound_frame_ && bound_frame_ != frame))
             throw std::logic_error("Attached text rebound to another frame");
         bound_frame_ = frame;
+        if (text_frame_name) bound_name_ = text_frame_name;
         bounds_.reset();
     }
     void attach_control(const frontend::ControlProperties& properties, bool available) {
@@ -77,13 +78,13 @@ public:
     }
     void layout_text_on_frame() { layout_text_on_normal(); }
     void layout_text_on_normal() {
-        bounds_ = scene_.label_bounds(definition_.frame,
-            definition_.normal ? definition_.normal : definition_.frame, module_, confirmation_, bound_frame_);
+        bounds_ = scene_.label_bounds(frame_name(),
+            definition_.normal ? definition_.normal : frame_name(), module_, confirmation_, bound_frame_);
         text_.dirty = true;
     }
     void set_frame_direction(float x, float y, float z) {
-        auto* frame = scene_.label_visual(definition_.frame,
-            definition_.normal ? definition_.normal : definition_.frame, module_, confirmation_, bound_frame_);
+        auto* frame = scene_.label_visual(frame_name(),
+            definition_.normal ? definition_.normal : frame_name(), module_, confirmation_, bound_frame_);
         using Direction = void (WINAPI *)(EngineFrame*, const float*, const float*);
         const float direction[]{x,y,z};
         scene_method<Direction>(frame, module_, 0x0c, 0x1c8d0)(frame, direction, nullptr);
@@ -112,12 +113,12 @@ public:
     bool has_text() const { return true; }
     void set_text_disabled(std::uint8_t value) { text_.disabled = value; }
     void set_frame_visible(std::uint8_t value) {
-        auto* frame = scene_.control_frame(definition_.frame, module_, confirmation_, bound_frame_);
+        auto* frame = scene_.control_frame(frame_name(), module_, confirmation_, bound_frame_);
         using Visibility = void (WINAPI *)(EngineFrame*, std::uint8_t);
         scene_method<Visibility>(frame, module_, 0x30, 0x1cfe0)(frame, value);
     }
     void update_frame() {
-        auto* frame = scene_.control_frame(definition_.frame, module_, confirmation_, bound_frame_);
+        auto* frame = scene_.control_frame(frame_name(), module_, confirmation_, bound_frame_);
         using Update = void (WINAPI *)(EngineFrame*);
         scene_method<Update>(frame, module_, 0x24, 0x1e610)(frame);
     }
@@ -126,6 +127,7 @@ public:
         throw std::logic_error("Static text has no reconstructed child controls");
     }
 private:
+    const char* frame_name() const { return bound_name_.empty() ? definition_.frame : bound_name_.c_str(); }
     const MenuScene& scene_;
     HMODULE module_;
     const frontend::MenuControlDefinition definition_;
@@ -139,6 +141,7 @@ private:
     const frontend::ControlProperties* owner_ = nullptr;
     bool available_ = true;
     EngineFrame* bound_frame_ = nullptr; // Borrowed leaf root; names may repeat in other groups.
+    std::string bound_name_; // Internal text plane can differ from the derived control's root name.
     std::optional<std::array<float,8>> bounds_;
 };
 

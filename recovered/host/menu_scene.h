@@ -145,14 +145,15 @@ public:
 
     MenuScene(MenuDriver& driver, HMODULE module, bool confirmation_enabled,
               bool bind_cursor_model, MenuResourceServices* resources = nullptr,
-              bool runtime_confirmation_enabled = false)
+              bool runtime_confirmation_enabled = false, const char* primary_model = "main_menu")
         : MenuScene(nullptr, &driver, module, false, confirmation_enabled,
-                    bind_cursor_model, runtime_confirmation_enabled, resources) {}
+                    bind_cursor_model, runtime_confirmation_enabled, resources, primary_model) {}
 
 private:
     MenuScene(std::unique_ptr<MenuDriver> owned, MenuDriver* borrowed, HMODULE module,
               bool confirmation_preview, bool confirmation_enabled,
-              bool bind_cursor_model, bool runtime_confirmation_enabled, MenuResourceServices* resources)
+              bool bind_cursor_model, bool runtime_confirmation_enabled, MenuResourceServices* resources,
+              const char* primary_model = "main_menu")
         : owned_driver_(std::move(owned)), driver_(borrowed ? *borrowed : *owned_driver_),
           resources_(resources),
           scene_(driver_.create(13)), camera_(driver_.create(3)),
@@ -194,10 +195,11 @@ private:
         add(scene_.get(), light_.get());
         scene_method<Pair>(sector, module, 0x74, 0x4ceb0)(sector, light_.get());
 
-        const char* model_path = confirmation_preview ? "Models\\confirm" : "Models\\main_menu";
-        std::printf("Opening original model: %s.4ds\n", model_path);
+        const char* model_key = confirmation_preview ? "confirm" : primary_model;
+        if (!model_key || !*model_key) throw std::invalid_argument("Menu requires its actual primary model");
+        std::printf("Opening original model: Models\\%s.4ds\n", model_key);
         std::fflush(stdout);
-        const auto status = open_model(model_.get(), module, confirmation_preview ? "confirm" : "main_menu");
+        const auto status = open_model(model_.get(), module, model_key);
         if (status != 0) {
             char message[100];
             std::snprintf(message, sizeof(message), "Menu model open failed: 0x%08x",
@@ -672,10 +674,7 @@ private:
             throw std::runtime_error("Invalid original menu binding hierarchy");
         }
         const char* frame_name = engine_frame_name(frame);
-        const auto length = std::strlen(name);
-        const bool suffix_pattern = length != 0 && name[length - 1] == '*';
-        if (frame_name != nullptr && (std::strcmp(frame_name, name) == 0 ||
-                (suffix_pattern && std::strncmp(frame_name, name, length - 1) == 0))) {
+        if (frame_name != nullptr && menu_frame_name_matches(frame_name, name)) {
             if (found != nullptr) {
                 throw std::runtime_error(std::string("Ambiguous original menu frame: ") + name);
             }

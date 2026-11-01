@@ -31,6 +31,8 @@ public:
             }
             if (entry.kind == MenuControlKind::slider || entry.kind == MenuControlKind::selector || entry.kind == MenuControlKind::toggle) available_[i] = true;
             if (entry.kind == MenuControlKind::container || entry.kind == MenuControlKind::profile_list || entry.kind == MenuControlKind::edit) available_[i] = true;
+            if (entry.kind == MenuControlKind::hero_stat || entry.kind == MenuControlKind::image ||
+                entry.kind == MenuControlKind::binding_list || entry.kind == MenuControlKind::movie_list || entry.kind == MenuControlKind::combo) available_[i] = true;
             Factory<Create> factory{*this, create, entry, i, {}};
             construct_defined_control(factory);
             if (controls_[i]) ++count;

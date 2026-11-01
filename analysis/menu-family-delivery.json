@@ -468,7 +468,7 @@
         "debrief:2",
         "campaign:1"
       ],
-      "context": "Hero/team/equipment/debrief interfaces can be audited with actual decoded data and isolated profiles; real descriptor/briefing/game and post-mission transitions require their real receiving owners. Gameplay implementation is outside the menu milestone.",
+      "context": "Hero/team/equipment/debrief interfaces can be audited with actual decoded data and isolated profiles; real descriptor/briefing/game and post-mission transitions require their real receiving owners. Gameplay implementation is outside the menu milestone. Team-selection checkpoint desktop accepted2026-11-01; loadout screens implemented but completely untested until accessible. Full flow remains open; user chose multiplayer next.",
       "units": [
         {
           "key": "single.entry",
@@ -548,7 +548,14 @@
           ],
           "native_validation": "Audit real roster constraints, conditional slot2/auto-assign, photo callbacks, medals/description and selection/confirmation return.",
           "desktop_validation": "Use real decoded roster data to select/reassign soldiers, open/cancel selection, inspect description and verify forward/Back descriptor behavior.",
-          "failure_acceptance": "Absent conditional slot, missing soldier/frame and invalid assignments retain gates; temporary visual fixtures do not prove campaign progression."
+          "failure_acceptance": "Absent conditional slot, missing soldier/frame and invalid assignments retain gates; temporary visual fixtures do not prove campaign progression.",
+          "implementation": "Integrated team selection; bounded observed checkpoint accepted. Broader family/descriptor variants are not inferred from this acceptance.",
+          "desktop_acceptance": {
+            "date": "2026-11-01",
+            "confirmation": "Alright; all fixed, I see no more issues now. Record it, commit and continue.",
+            "application_sha256": "6fe0fd2b46361e3955b1582f16dd00aa540f627d0c261c4cefa00177b0192c4e",
+            "scope": "Observed team-selection checkpoint and reported fixes only; no invented individual-case execution, full single-player acceptance, or loadout testing."
+          }
         },
         {
           "key": "single.items",
@@ -582,7 +589,8 @@
           ],
           "native_validation": "Audit real item/category data, generated equipment slots, pick/drag/select/description, conditional modal, inventory validation, prompts and 020000c1/c6 preparation.",
           "desktop_validation": "Equip/unequip permitted items, change soldier, inspect descriptions and exercise validation/confirmation then forward/Back with original data.",
-          "failure_acceptance": "Reject invalid/over-capacity/unavailable items and resource failures according to recovered code; no dummy inventory/progression success."
+          "failure_acceptance": "Reject invalid/over-capacity/unavailable items and resource failures according to recovered code; no dummy inventory/progression success.",
+          "implementation": "Implemented but completely untested as loadout screens until accessible, per user2026-11-01. Native data/ownership audits and builds do not establish screen tests or desktop acceptance."
         },
         {
           "key": "single.briefing",

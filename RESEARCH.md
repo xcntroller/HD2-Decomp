@@ -3,6 +3,25 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
+Current work (2026-11-01): [full Single Player pre-mission pipeline](analysis/singleplayer-pipeline.md)
+is integrated and awaiting desktop acceptance. Main acceptance committed as `446cc90`. The user requests
+all pre-mission screens and explicitly ends this checkbox at validated mission/
+squad/equipment handoff, with game entry reported unavailable. Descriptor routes,
+actual squad/catalogue dependencies and ordinary briefing ownership are wired.
+User screenshot exposed full-screen models receiving the confirmation-only
+translation; removed from entry/preparation screens, retained for confirmations.
+Next user launch exposed case-sensitive host lookup (`Panel01` vs`panel01`) and
+altered space/underscore anchors. Original engine1001DF00/10098740 confirms
+case folding; shared lookup and preparation anchor names/optional prototype
+guards corrected. Strict builds, existing native/158 Python tests, temporary
+ASan/UBSan name audit and137 authored anchor literals pass; fixed build staged.
+No desktop acceptance or new function credit. See latest linked follow-ups.
+User confirms binding issue fixed; next Team screenshot exposed a local anchor
+captured before the original world-preserving prototype reparent006920E8.
+Actual panel translation reproduces79.5/37.3 pixel offset. Corrected order,
+actual-coordinate native sanitizer audit and affected builds pass; build staged.
+Portrait desktop acceptance remains pending.
+
 Latest work (2026-10-31): accepted Profiles committed as `977641f`.
 [Main labels/eligibility](analysis/main-menu-state.md) now implement00627520 and
 006B3AC0 against actual profile data; original style40 version and style10 title
@@ -3999,3 +4018,32 @@ tests, original-code/DLL/Windows fixture/Proton execution or push. New shared
 runtime changes remain uncommitted; checkbox remains open and27 items open.
 Verification: analysis/work/runtime-dialog-verification-20261031; temporary
 audits removed.
+
+2026-11-01 pre-mission handoff checkpoint: complete route wired and staged;
+latest image-pick failure fixed, awaiting corrected-build desktop result.
+Real-data49-route ASan/UBSan audit passed; see
+[checkpoint and verification limits](analysis/singleplayer-pipeline.md#handoff-checkpoint--2026-11-01)
+and [current next steps](HANDOFF.md). Checkbox/ledger unchanged, no commit.
+
+2026-11-01 team-selection desktop follow-up: shared cursor persistence, first
+candidate selection, portrait drag copy/movement, name/full-rank presentation,
+smaller-squad acceptance, Jan's Latin-1/UTF-8 rendering, stale four-photo modal
+reactivation and incremental list refresh implemented. Original evidence and
+verification limits are recorded in the
+[team interaction follow-up](analysis/singleplayer-pipeline.md#desktop-follow-up--team-interactions-and-text-2026-11-01).
+Strict i386 builds, existing native/158 Python tests and temporary ASan/UBSan
+real-data/queue/list audits pass. No new desktop acceptance or function credit;
+no commit/push. Game entry remains explicitly unavailable.
+
+2026-11-01 remaining team fidelity corrections: restored00691CB0's name inset1,
+00693B60/0066A150's movement Z=-1, and00693C10's half-screen transfer boundary.
+[Evidence and verification](analysis/singleplayer-pipeline.md#desktop-follow-up--name-inset-drag-depth-and-drop-boundary-2026-11-01).
+Affected strict i386 builds, existing native/158 Python tests and temporary
+ASan/UBSan production-method audit pass; new desktop retest pending. No new
+function credit, commit or push. The earlier source-depth assumption is superseded.
+
+2026-11-01 user desktop-accepted the team-selection checkpoint and requested
+commit/continuation. [Acceptance scope](analysis/singleplayer-pipeline.md#desktop-acceptance--team-selection-checkpoint-2026-11-01).
+Loadout screens are implemented but completely untested until accessible; native
+audits/builds do not count as screen testing. Full single-player checklist remains
+open. User explicitly chose multiplayer menus next while loadout testing is deferred.

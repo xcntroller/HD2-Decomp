@@ -46,6 +46,17 @@ public:
     void close() { screens_.clear(); pending_.clear(); deferred_.clear(); }
     // Factory's final 02000001 is direct; it must precede later queued work.
     void dispatch_immediate(ControlEvent event) { route(std::move(event)); }
+    //0065C7C0's direct screen/control lookup, used for synchronous in/out
+    // messages such as the hero counter70/71. Queued/immediate application
+    // events deliberately own a copy; this endpoint retains caller mutations.
+    bool query_control(ControlEvent& event) {
+        if (!event.target || (event.code & 0x30000000u))
+            throw std::logic_error("Control query requires a direct targeted message");
+        const auto index = event.target >> 26;
+        if (!actions_.screen_available(index))
+            throw std::logic_error("Control query screen has no runtime binding");
+        return actions_.dispatch_screen_event(index, event);
+    }
     void cancel_confirmation();
     const ScreenStack<MenuEventActions>& screens() const { return screens_; }
     CommonFrontendState& common_state() { return common_; }

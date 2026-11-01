@@ -151,17 +151,28 @@ inline const TextStyle* menu_text_style(std::uint8_t style) {
     static const TextStyle list{2, .04f, 0xff000000, 1, 1};
     static const TextStyle body{2, .04f, 0xff000000, 1, 2};
     static const TextStyle selector{2, .04f, 0xa0000000, 2, 2}; //00641E30 entry20.
+    static const TextStyle hero_value{3, .019f, 0xa0000000, 2, 2}; //00641E30 entry22.
+    static const TextStyle item_quantity{3, .019f, 0xff000000, 3, 3}; //00641E30 entry6.
+    static const TextStyle stat_number{3, .02f, 0xff000000, 3, 2}; //00641E30 entry23.
+    static const TextStyle paragraph_left{3, .02f, 0xff000000, 1, 1}; //00641E30 entry2.
+    static const TextStyle paragraph_justified{3, .02f, 0xff000000, 4, 1}; //00641E30 entry3.
     // 00641e30 entries 24/25: big font, black, left/vertically centered;
     // heights 0x3d23d70a / 0x3cf5c28f. Paragraph wrapping stays separate.
     static const TextStyle compact_prompt{2, .03f, 0xff000000, 1, 2};
     static const TextStyle version{3, .02f, 0xff000000, 1, 3};
     switch (style) {
+    case 1: return &paragraph_justified;
+    case 2: case 15: return &paragraph_left;
+    case 3: return &paragraph_justified;
+    case 6: return &item_quantity;
     case 7: return &save;
     case 19: return &list;
     case 10: return &title;
     case 11: return &small;
     case 12: case 13: case 24: return &body;
     case 20: return &selector;
+    case 22: return &hero_value;
+    case 23: return &stat_number;
     case 25: return &compact_prompt;
     case 40: return &version;
     default: return nullptr;

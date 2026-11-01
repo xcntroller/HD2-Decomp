@@ -128,11 +128,11 @@ class MenuText {
 public:
     MenuText(Graphics* graphics, HMODULE module, const MenuScene& scene,
              bool confirmation_enabled = false, bool runtime_confirmation_enabled = false,
-             const frontend::LocalizedTextCache* localized = nullptr)
+             const frontend::LocalizedTextCache* localized = nullptr, bool seed_definitions = true)
         : graphics_(graphics), localized_(localized), big_(nullptr, nullptr), small_(nullptr, nullptr),
           big_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\BIG.tbl"))),
           small_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\SMALL.tbl"))),
-          labels_(localized ? std::map<std::uint32_t, std::string>{} :
+          labels_((localized || !seed_definitions) ? std::map<std::uint32_t, std::string>{} :
                   decode_menu_labels(read_menu_text_file("MenuText\\labels.bin"))) {
         std::set<std::uint32_t> required;
         const auto require_captions = [&](const frontend::MenuScreenDefinition& definition) {
@@ -140,8 +140,10 @@ public:
                 if (event.code == 0x01000015) required.insert(event.word_0c);
             }
         };
-        require_captions(frontend::main_menu_definition());
-        if (confirmation_enabled) require_captions(frontend::confirmation_definition());
+        if (seed_definitions) {
+            require_captions(frontend::main_menu_definition());
+            if (confirmation_enabled) require_captions(frontend::confirmation_definition());
+        }
         if (runtime_confirmation_enabled) required.insert(2013);
         if (localized) for (const auto id : required)
             labels_.emplace(id, frontend::lookup_localized_text(*localized, static_cast<std::int32_t>(id)));
@@ -166,8 +168,10 @@ public:
         if (device_ == nullptr) throw std::runtime_error("Engine Direct3D device is null");
         big_ = load_atlas("HD2_MENU_BIG.TGA", module);
         small_ = load_atlas("HD2_MENU_SMALL.TGA", module);
-        create_objects(scene, module, frontend::main_menu_definition(), false);
-        if (confirmation_enabled) create_objects(scene, module, frontend::confirmation_definition(), true);
+        if (seed_definitions) {
+            create_objects(scene, module, frontend::main_menu_definition(), false);
+            if (confirmation_enabled) create_objects(scene, module, frontend::confirmation_definition(), true);
+        }
         std::printf("Original attached text objects ready: %u; captions come from definition events\n",
                     static_cast<unsigned>(objects_.size()));
     }
@@ -245,7 +249,7 @@ private:
             }
             auto submission = menu_ruler_submission(object,[&] { return attached->bounds(); },small_metrics_);
             if (!submission) submission = menu_text_submission(object, [&] { return attached->bounds(); },
-                button, attached->available(), hovered || attached->highlighted() || (button && object.word_94==0xffffffffu), big_metrics_, small_metrics_);
+                button, attached->available(), hovered || attached->highlighted() || (button && object.word_94==0xffffffffu), big_metrics_, small_metrics_, attached->record_offset);
             if (submission) submissions.push_back(std::move(*submission));
             if (!entry.children.empty()) collect_submissions(definition,entry.children,false,-1,submissions);
         }

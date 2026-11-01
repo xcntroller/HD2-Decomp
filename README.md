@@ -43,6 +43,21 @@ preserving staged config/profiles and leaving installed assets unchanged.
 Use `--stage-only` to prepare files without executing Windows code. The old
 engine-window preview and startup probe remain separate diagnostics.
 
+Single Player is enabled. The team-selection checkpoint is **user desktop-accepted
+2026-11-01**, including the final name alignment, drag depth and drop-area fixes.
+The full single-player pipeline remains incomplete.
+
+**Loadout/equipment screens are implemented but completely untested as screens
+until we can access them.** Native data/ownership audits and successful builds
+are separate evidence; they do not establish screen rendering or interaction.
+Do not mark loadouts or the complete preparation flow desktop-tested.
+
+The final owned mission/squad/equipment request explicitly reports **game entry
+unavailable**; gameplay/save loading remain outside this menu checkpoint.
+[Acceptance and remaining limits](analysis/singleplayer-pipeline.md#desktop-acceptance--team-selection-checkpoint-2026-11-01).
+The user requested continuing with **multiplayer menus** while loadout testing is
+deferred. [Plan](plan.md) and [handoff](HANDOFF.md) record the next work.
+
 Original menu queue/update timing, drag/capture and focus-loss behavior are
 [desktop-confirmed](analysis/menu-update.md) for Main/Exit; unused widget routes
 remain source-only. The settings/resource cache integration is also

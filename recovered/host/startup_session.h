@@ -11,6 +11,7 @@
 #include "frontend/opening_subtitles.h"
 #include "frontend/input_setup.h"
 #include "frontend/sound_manager_data.h"
+#include "frontend/pre_mission_flow.h"
 #include "frontend/startup_modules.h"
 #include "frontend/options_settings.h"
 #include "host/chunk_files.h"
@@ -38,6 +39,7 @@ namespace hd2::host {
 // Original Win32 import targets are called directly; no protection success API.
 class StartupSession {
 public:
+    using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>>;
     StartupSession(HMODULE engine, HMODULE rw_data, HMODULE joy)
         : engine_(engine), files_(rw_data), text_files_(rw_data), directory_(platform_), language_(platform_),
           portraits_(engine), data_(portraits_, files_, directory_),
@@ -137,6 +139,7 @@ public:
         if (graphics_alive && input_setup_started_) errors.attempt([&] { close_keyboard(); });
         errors.attempt([&] { input_.detach(); });
         errors.attempt([&] { joysticks_.close(); });
+        pre_mission_.reset(); // Borrowed HumanStore/descriptor owners end before application data.
         errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
         errors.attempt([&] { modules_.shutdown(gate_); }); //0048DA80, after data.
         std::printf("Shutdown: input/sound/data/module cleanup completed=%u\n",
@@ -159,6 +162,41 @@ public:
     bool mission_active() const { return world_!=nullptr; } //00698500's actual mission-owner condition.
     input::BindingConfiguration& profile_bindings() { return data_.profile().options.bindings; }
     const std::string& profile_name() { return data_.profile().directories.current_name; }
+    PreMission& pre_mission() {
+        if (!pre_mission_) pre_mission_=std::make_unique<PreMission>(data_.humans());
+        return *pre_mission_;
+    }
+    bool prepare_pre_mission() {
+        if (profile_name().empty())
+            throw std::logic_error("Single-player preparation requires the selected profile");
+        auto& flow=pre_mission();
+        flow.cancel();
+        if (!reload_pre_mission_humans()) return false;
+        return flow.load(files_,pre_mission_profile_directory());
+    }
+    ChunkFiles& pre_mission_files() { return files_; }
+    frontend::HumanStore<HumanPortraits>& pre_mission_humans() { return data_.humans(); }
+    std::string pre_mission_profile_directory() {
+        return data_.profile().directories.current_directory(wide_characters());
+    }
+    bool reload_pre_mission_humans() {
+        return data_.humans().load(files_, "tables\\HumanStore.def", text_,
+                                  pre_mission_profile_directory(), wide_characters());
+    }
+    void save_pre_mission_names() {
+        if(!data_.humans().save_user_names(files_,pre_mission_profile_directory()))
+            throw std::runtime_error("Cannot save selected profile soldier names");
+    }
+    std::int32_t pre_mission_progress(std::uint32_t root, std::uint32_t mode) {
+        //006B13A0/006B13C0: mode0 queries the standalone unlock word;
+        //mode1/2/3 have distinct per-root campaign progress words.
+        if (root >= 2 || mode > 3)
+            return -1;
+        const auto value = data_.profile().payload.words[(0x74 + root * 16 + mode * 4) / 4];
+        std::int32_t result;
+        std::memcpy(&result, &value, sizeof(result));
+        return result;
+    }
     std::vector<std::string> profile_names() {
         std::vector<std::string> result;
         data_.profile().directories.scan(profile_platform_,files_,wide_characters(),
@@ -339,6 +377,8 @@ public:
     std::int32_t mouse_wheel() const { return input_backend_.mouse_z(graphics()); }
     std::int32_t mouse_x() const { return input_backend_.mouse_x(graphics()); }
     std::int32_t mouse_y() const { return input_backend_.mouse_y(graphics()); }
+    const std::array<float, 2> &menu_cursor() const { return menu_cursor_; }
+    void menu_cursor(float x, float y) { menu_cursor_ = {x, y}; }
     void delay_elapsed() {
         frontend::SettingsSound<SettingsServices> sound(sound_data_.settings, gate_, settings_backend_);
         sound.driver_volume(static_cast<float>(static_cast<long double>(data_.profile().options.settings.real(8)) * 0.01f));
@@ -425,6 +465,7 @@ private:
     HMODULE engine() const { return engine_; }
     enum class Phase { constructed, control_ready, loading, resources_ready, data_ready, ready, closed };
     HMODULE engine_;
+    std::unique_ptr<PreMission> pre_mission_;
     ChunkFiles files_;
     DtaTextFiles text_files_;
     StartupLocalizationPlatform platform_;
@@ -460,6 +501,7 @@ private:
     std::uint32_t gate_ = 0;
     frontend::ColdControlFrame<StartupSession> control_frame_;
     std::uint8_t input_flag_ = 0;
+    std::array<float, 2> menu_cursor_{{400, 300}}; //0066A4E0 centers only the first shared owner.
     bool application_input_enabled_ = true; // Original00843470 initial byte1.
     bool control_ready_ = false, setup_started_ = false;
     bool input_setup_started_ = false, mouse_attempted_ = false;

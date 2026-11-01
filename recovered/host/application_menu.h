@@ -8,6 +8,7 @@
 #include "host/cinematics_menu.h"
 #include "host/options_menu.h"
 #include "host/profiles_menu.h"
+#include "host/single_player_menu.h"
 #include "host/graphics_interface.h"
 #include "host/menu_input_session.h"
 #include "host/menu_screen_factory.h"
@@ -71,6 +72,10 @@ class ApplicationMenu {
                 options_menu_->profile_changed();
                 refresh_main();
             });
+            single_player_=std::make_unique<SinglePlayerMenu>(startup_,*scene_,driver_,module_,*events_);
+            single_player_->transitions([this]{select_state_(2);},[this](frontend::SharedText text) {
+                request_dialog_text(2,std::move(text),0,0);
+            });
             MenuScreenFactory<Actions> factory(
                 *scene_, module_, [&](std::uint32_t id) { return text_->object_for(id); }, *events_,
                 products_, actions_, widgets_.get(), true, cinematics_->model(),
@@ -91,8 +96,10 @@ class ApplicationMenu {
                         definition, frame, text, *widgets_,
                         [this](std::uint32_t id) { return text_->object_for(id); });
                 },options_menu_->model(),[this] { return options_menu_->definition(); },
-                profiles_menu_->model(),[this]{return profiles_menu_->definition();});
+                profiles_menu_->model(),[this]{return profiles_menu_->definition();},true);
             frontend::construct_registered_screens(factory);
+            add_single_player_screen(single_player_->modes_definition(),single_player_->mode_model());
+            add_single_player_screen(single_player_->missions_definition(),single_player_->mission_model());
             for (std::size_t i = 0; i != products_.size(); ++i)
                 products_.screen(i).controls().bind_pick_targets();
         });
@@ -103,11 +110,10 @@ class ApplicationMenu {
             input_, events_->common_state(), [this]() -> MenuFocus & { return current_product().focus(); },
             [this](MenuFocus &focus, const CursorPoint &point) { return pick(focus.identifier(), point); },
             moved, click);
-        // 0066A4E0 centers a fresh shared cursor and reads IGraph+fc/+100.
-        // OS departure never reseeds it.
-        keyboard_.set_pointer_position(400, 300);
-        point_ =
-            CursorPoint{static_cast<float>(keyboard_.pointer_x()), static_cast<float>(keyboard_.pointer_y())};
+        //0066A6E0 retains the shared cursor across frontend controller owners.
+        const auto &position = startup_.menu_cursor();
+        keyboard_.set_pointer_position(static_cast<int>(position[0]), static_cast<int>(position[1]));
+        point_ = CursorPoint{position[0], position[1]};
         input_.pointer.cursor().initialize(point_->x, point_->y, 800, 600);
         input_.previous_point = point_;
         input_.armed = true;
@@ -136,6 +142,8 @@ class ApplicationMenu {
     void shutdown() {
         if (!scene_)
             return;
+        if (input_.armed)
+            startup_.menu_cursor(input_.pointer.cursor().x(), input_.pointer.cursor().y());
         pointer_input_.reset();
         keyboard_context_.reset();
         frontend::CleanupErrors errors;
@@ -160,6 +168,7 @@ class ApplicationMenu {
         cinematics_.reset();
         options_menu_.reset();
         profiles_menu_.reset();
+        single_player_.reset();
         scene_.reset();
         SetCursor(LoadCursorW(nullptr, IDC_ARROW));
         std::puts("Controller menu shutdown: screen/input/text/scene owners released");
@@ -215,6 +224,20 @@ class ApplicationMenu {
     }
 
   private:
+    void add_single_player_screen(frontend::MenuScreenDefinition definition,EngineFrame *model) {
+        scene_->update_screen_frame(module_,model);
+        text_->attach_screen_definition(*scene_,module_,definition);
+        auto screen=std::make_unique<MenuScreenProduct>(*scene_,module_,false,
+            std::vector<frontend::MenuControlRole>{frontend::MenuControlRole::single_player},
+            [this](unsigned id){return text_->object_for(id);},*events_,model,widgets_.get(),
+            [this](const frontend::MenuControlDefinition &d,EngineFrame *frame,MenuTextObject &text) {
+                return single_player_->make_control(d,frame,text,*widgets_,[this](unsigned id){return text_->object_for(id);});
+            });
+        if(!screen->bind_definition(definition))throw std::runtime_error("Single-player entry screen binding failed");
+        screen->initialize_records(definition.initialization);
+        actions_.bind_screen(definition.identifier>>26,screen->events());
+        products_.append({definition.label,definition.model,definition.identifier},std::move(screen));
+    }
     MenuScreenProduct &current_product() {
         const auto *current = events_->screens().current();
         if (!current)
@@ -291,6 +314,7 @@ class ApplicationMenu {
         }
         bool dispatch_menu_handler(frontend::MenuApplicationHandler handler,frontend::ControlEvent& event) override {
             if(handler==frontend::MenuApplicationHandler::profiles)return owner_.profiles_menu_->dispatch(event);
+            if(handler==frontend::MenuApplicationHandler::mission)return owner_.single_player_->receive(event);
             return handler==frontend::MenuApplicationHandler::options && owner_.options_menu_->dispatch(event);
         }
         void quit() override {
@@ -298,10 +322,10 @@ class ApplicationMenu {
             std::puts("Controller menu requested status=4");
         }
         void select_application_state(std::uint32_t state) override {
-            if (state != 12)
+            if (state != 12 && state != 2)
                 throw std::logic_error("Unavailable menu application transition");
             owner_.select_state_(state);
-            std::puts("Controller menu requested status=12; retaining Main owner");
+            std::printf("Controller menu requested status=%u\n",state);
         }
         void set_application_input_enabled(bool value) override {
             owner_.startup_.application_input_enabled(value);
@@ -412,6 +436,7 @@ class ApplicationMenu {
     std::unique_ptr<CinematicsMenu> cinematics_;
     std::unique_ptr<OptionsMenu> options_menu_;
     std::unique_ptr<ProfilesMenu> profiles_menu_;
+    std::unique_ptr<SinglePlayerMenu> single_player_;
     std::unique_ptr<MenuText<Graphics>> text_;
     std::unique_ptr<MenuCursor<Graphics>> cursor_;
     MenuInputSession input_;

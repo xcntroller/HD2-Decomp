@@ -180,6 +180,12 @@ Hero/team/equipment/debrief interfaces can be audited with actual decoded data a
 
 Primary numbered roles: `main:3`, `main:5`, `hero:1`, `hero:4`, `team:1`, `team:2`, `items:1`, `items:2`, `debrief:1`, `debrief:2`, `campaign:1`.
 
+Team-selection checkpoint user desktop-accepted2026-11-01 against6fe0fd2b…192c4e.
+[Bounded acceptance](singleplayer-pipeline.md#desktop-acceptance--team-selection-checkpoint-2026-11-01).
+**Loadout screens are implemented but completely untested until we can access
+them.** Native audits do not count as screen tests. Full single-player delivery
+and the broader family gates remain open; multiplayer continues next per user.
+
 - [ ] **single.entry — Deliver Campaign/Lone Wolf/Carnage selection and mission selection.**
   Evidence: `0063B590`, `0063B740`, `00638D30`, `006391E0`, `00639A70`, `0063A010`.
   Requires: game data human store, isolated profile copy.

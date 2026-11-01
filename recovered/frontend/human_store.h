@@ -163,6 +163,28 @@ public:
         file.close();
         return true;
     }
+    //006A13B0, invoked by team deactivation00696C00. The writer opens
+    //lazily on the first nonempty user name and preserves original chunk tags.
+    template<class Files>
+    bool save_user_names(Files& files,const std::string& profile_directory) const {
+        io::ChunkFile<Files> file(files);
+        bool opened=false;
+        for(std::size_t i=0;i<records_.size();++i) {
+            const auto& value=records_[i];
+            if(!value || value->user_name.empty())continue;
+            if(i>std::numeric_limits<std::uint16_t>::max())throw std::length_error("HumanStore name index exceeds chunk tag");
+            if(!opened) {
+                if(!file.open((profile_directory+"usernames.sav").c_str(),1))return false;
+                if(!file.begin(0x029a))return false;
+                opened=true;
+            }
+            if(!file.begin(static_cast<std::uint16_t>(i)))return false;
+            file.write_chunk(0x23b4,value->user_name.c_str(),static_cast<std::uint32_t>(value->user_name.size()+1));
+            file.leave();
+        }
+        if(opened) {file.leave();file.close();}
+        return true;
+    }
     template<class Files>
     bool apply_user_names(Files& files, const std::string& profile_directory, bool wide) {
         io::ChunkFile<Files> file(files);

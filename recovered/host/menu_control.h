@@ -14,10 +14,10 @@ class MenuControl {
     using targeted_menu_input = void;
     MenuControl(const MenuScene &scene, HMODULE module, bool confirmation,
                 const frontend::MenuControlDefinition &definition, EngineFrame *frame, MenuTextObject &text,
-                bool available, MenuWidgetContext *widgets = nullptr)
+                bool available, MenuWidgetContext *widgets = nullptr, bool bind_text_frame = true)
         : scene_(scene), module_(module), confirmation_(confirmation), definition_(definition), frame_(frame),
           text_(text), available_(available), widgets_(widgets) {
-        text_.bind_frame(frame_);
+        if (bind_text_frame) text_.bind_frame(frame_);
     }
     virtual ~MenuControl() = default;
     virtual bool initialize_visuals() {
@@ -77,7 +77,7 @@ class MenuControl {
         return text_.dispatch_control_event(event, destination);
     }
     virtual bool eligible() const {
-        return widget_ ? widget_->eligible() : button_ ? button_->eligible() : text_.eligible();
+        return widget_ ? widget_->eligible() : button_ ? button_->eligible() : false;
     }
     virtual bool visible() const { return text_.visible(); }
     virtual bool disabled() const {
@@ -161,8 +161,10 @@ class MenuControl {
         if (widget_) {
             if (id != definition_.identifier)
                 throw std::logic_error("Widget ID changed after construction");
-        } else
-            button().bind_pick_target(id);
+        } else if(button_)
+            button_->bind_pick_target(id);
+        else
+            std::memcpy(reinterpret_cast<unsigned char*>(frame_)+0xec,&id,sizeof(id));
     }
     void on_row_activation(std::function<void()> callback) { row_activation_ = std::move(callback); }
     void deselect_row() {
@@ -188,7 +190,7 @@ class MenuControl {
     std::function<void()> row_activation_;
     ButtonVisualPair &button() const {
         if (!button_)
-            throw std::logic_error("Static text cannot receive a button callback");
+            throw std::logic_error(std::string("Static text cannot receive a button callback: ")+definition_.frame);
         return *button_;
     }
     const MenuScene &scene_;

@@ -3,6 +3,7 @@
 
 #include "frontend/opening_playback.h"
 #include "frontend/cleanup.h"
+#include "frontend/game_data.h"
 #include <memory>
 #include <cstring>
 #include <string>
@@ -142,6 +143,81 @@ public:
 private:
     std::unique_ptr<Backend> backend_;
     bool live_=false;
+};
+
+//00688040/00688BB0/00688C10's ordinary kind5 receiver. Its status2 belongs
+//to descriptor traversal; it never enters the opening/retained status13 path.
+//The descriptor is copied before initialization so controller replacement does
+//not leave filename/flag storage borrowed from a destroyed screen owner.
+template<class Backend>
+class BriefingApplicationState final : public ApplicationState {
+public:
+    explicit BriefingApplicationState(std::unique_ptr<Backend> backend)
+        : ApplicationState(7), backend_(std::move(backend)) {
+        if (!backend_) throw std::invalid_argument("Briefing needs its actual movie backend");
+    }
+    bool initialize(const void* descriptor) override {
+        if (live_ || !descriptor) throw std::logic_error("Briefing needs a kind5 descriptor");
+        const auto& node=*static_cast<const GameDataNode*>(descriptor);
+        if (node.kind!=5) throw std::logic_error("Briefing received a different descriptor kind");
+        filename_=node.text10;
+        subtitle_name_=node.text14;
+        movie_flag_=node.flag18;
+        live_=true;
+        try { backend_->begin_briefing(filename_.c_str(),subtitle_name_.c_str(),movie_flag_); }
+        catch (...) { live_=false; throw; }
+        status(1);
+        return true;
+    }
+    void shutdown() override {
+        if (!live_) return;
+        live_=false;
+        backend_->close_movie(filename_.c_str());
+    }
+    void input(const std::uint32_t*,const std::uint32_t*) override {
+        if (backend_->next_scan()==1) complete();
+    }
+    void update(std::uint32_t milliseconds) override {
+        backend_->update_sound(milliseconds);
+        const auto playback=backend_->movie_status();
+        if (playback==-1 || playback==1) complete();
+        backend_->update_subtitles();
+    }
+    void render() override { backend_->draw_movie(); }
+private:
+    void complete() { backend_->stop_movie();backend_->clear_present();status(2); }
+    std::unique_ptr<Backend> backend_;
+    std::string filename_,subtitle_name_;
+    std::uint8_t movie_flag_=0;
+    bool live_=false;
+};
+
+//006C0EF0's kind6 owners use the common menu lifecycle with their original
+//state type (hero9, team3, equipment4). Runtime owns the derived screen set and
+//borrows the shared preparation session across successive controller states.
+template<class Runtime>
+class PreMissionApplicationState final : public ApplicationState {
+public:
+    PreMissionApplicationState(std::uint32_t type,std::unique_ptr<Runtime> runtime)
+        : ApplicationState(type,4),runtime_(std::move(runtime)) {
+        if ((type!=9 && type!=3 && type!=4 && type!=2) || !runtime_)
+            throw std::invalid_argument("Invalid pre-mission application owner");
+    }
+    bool initialize(const void* descriptor) override {
+        if (!descriptor || (static_cast<const GameDataNode*>(descriptor)->kind!=6 &&
+                            !(type()==2 && static_cast<const GameDataNode*>(descriptor)->kind==7)))
+            throw std::logic_error("Setup owner needs its actual preparation descriptor");
+        runtime_->initialize(*static_cast<const GameDataNode*>(descriptor),
+            [this](std::uint32_t value){status(value);});
+        status(1);
+        return true;
+    }
+    void shutdown() override { runtime_->shutdown(); }
+    void input(const std::uint32_t* first,const std::uint32_t* second) override {runtime_->input(first,second);}
+    void update(std::uint32_t milliseconds) override {runtime_->update(milliseconds);}
+    void render() override {runtime_->render();}
+private:
+    std::unique_ptr<Runtime> runtime_;
 };
 
 // Concrete runtime is constructed AFTER this state has been installed by the

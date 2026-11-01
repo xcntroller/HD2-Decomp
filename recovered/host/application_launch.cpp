@@ -5,6 +5,7 @@
 #include "frontend/application_frame.h"
 #include "frontend/frame_clock.h"
 #include "host/application_menu.h"
+#include "host/pre_mission_menu.h"
 #include "host/engine_video.h"
 #include "host/engine_sound.h"
 #include "host/opening_audio.h"
@@ -124,6 +125,12 @@ public:
         if(saved_music_) errors.attempt([&]{restore_music();});
         release_resources();
     }
+    void begin_briefing(const char* filename, const char*, std::uint8_t flag) {
+        //00688040 uses descriptor+18 for the music target. Its subtitle loader
+        //006890F0 uses the actual movie filename, not descriptor+14.
+        briefing_music_=flag!=0;
+        begin_movie(filename);
+    }
     void begin_movie(const char* filename) {
         if (resources_live_) throw std::logic_error("Opening resources already owned");
         resources_live_ = true;
@@ -136,7 +143,7 @@ public:
         float target; const std::uint32_t bits = 0x3c343958; std::memcpy(&target, &bits, 4);
         if(retained_&&std::strncmp(filename,"Outro2",6)==0){
             saved_music_=startup_.credits_music_position();startup_.begin_credits_music(*saved_music_,true);
-        }else startup_.fade_movie_music(target, 2000);
+        }else startup_.fade_movie_music(briefing_music_ ? .05f : target, 2000);
         if (video_.opened()) {
             using Dimension = std::int32_t (WINAPI *)(host::EngineFrame*);
             const auto width = host::scene_method<Dimension>(startup_.graphics(), module_, 0x18, 0x6de50)(startup_.graphics());
@@ -233,7 +240,7 @@ private:
     std::uint32_t last_movie_time_ = 0;
     bool resources_live_ = false;
     std::optional<host::StartupSession::CreditsMusic> saved_music_;
-    bool retained_=false;
+    bool retained_=false, briefing_music_=false;
 };
 
 //00688040 Credits branch: no IShow/voice; actual script, fonts and music.
@@ -320,6 +327,41 @@ public:
     std::unique_ptr<frontend::ApplicationState> create_frontend_state() {
         return std::make_unique<frontend::FrontendApplicationState<host::ApplicationMenu>>(
             std::make_unique<host::ApplicationMenu>(startup_, driver_, module_, graphics_, window_, keyboard_));
+    }
+    std::unique_ptr<frontend::ApplicationState> create_briefing_state() {
+        return std::make_unique<frontend::BriefingApplicationState<OpeningBackend>>(
+            std::make_unique<OpeningBackend>(startup_,module_,keyboard_));
+    }
+    std::unique_ptr<frontend::ApplicationState> create_pre_mission_state(
+            std::uint32_t subtype,host::PreMissionMenu::Builder builder) {
+        const auto type=subtype==0?9u:subtype==1 || subtype==2?3u:subtype==3 || subtype==4?4u:0u;
+        if (!type) throw std::logic_error("Pre-mission factory received a different descriptor subtype");
+        return std::make_unique<frontend::PreMissionApplicationState<host::PreMissionMenu>>(type,
+            std::make_unique<host::PreMissionMenu>(startup_,driver_,module_,graphics_,window_,keyboard_,std::move(builder)));
+    }
+    template<class Controller> void transition_pre_mission(Controller &controller,std::uint32_t status) {
+        auto &flow=startup_.pre_mission();
+        const auto previous_type=controller.active()->type();
+        auto previous=controller.detach();
+        previous->shutdown();previous.reset();
+        if(status==3) {
+            if(!flow.back()) {controller.enter_frontend();return;}
+        } else if(previous_type==7) flow.complete_movie();
+        const auto *descriptor=flow.descriptor();
+        if(!descriptor) {controller.enter_frontend();return;}
+        std::unique_ptr<frontend::ApplicationState> next;
+        if(descriptor->kind==5) next=create_briefing_state();
+        else if(descriptor->kind==6) {
+            const auto subtype=descriptor->word10;
+            next=create_pre_mission_state(subtype,subtype==0?host::PreMissionMenu::hero_content:
+                subtype==1 || subtype==2?host::PreMissionMenu::team_content:host::PreMissionMenu::equipment_content);
+        } else if(descriptor->kind==7 && flow.game_request()) {
+            next=std::make_unique<frontend::PreMissionApplicationState<host::PreMissionMenu>>(2,
+                std::make_unique<host::PreMissionMenu>(startup_,driver_,module_,graphics_,window_,keyboard_,
+                    host::PreMissionMenu::unavailable_content));
+        } else throw std::logic_error("Preparation route reached an unavailable descriptor owner");
+        controller.install(std::move(next));
+        if(!controller.active()->initialize(descriptor))throw std::runtime_error("Preparation state initialization failed");
     }
     std::int32_t query_input(const std::uint32_t*& output, std::uint8_t mode) { return startup_.query_input(output, mode); }
     void close_mouse() { startup_.close_mouse(); }
@@ -437,7 +479,7 @@ int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit) {
                             controller.active()->status(), controller.phase());
                 previous_type = type; previous_sequence = sequence;
             }
-            hook.menu_cursor(type == 2);
+            hook.menu_cursor(type == 2 || type == 3 || type == 4 || type == 9);
         };
         trace();
         while (!hook.closed() && IsWindow(graphics.window()) && (!limit || frames < limit)) {
