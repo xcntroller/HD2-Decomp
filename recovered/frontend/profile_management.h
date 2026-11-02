@@ -71,7 +71,7 @@ template <class Services> class ProfileManagement {
         if (result < 0) {
             services_.prompt(2,
                              creating ? (result == -1 ? 0x251c : 0x251d) : (result == -1 ? 0x2526 : 0x2527),
-                             0x020000c3, 0);
+                             0x020000c3, 0x020000c3);
             return;
         }
         selected_ = value;

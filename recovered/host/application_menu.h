@@ -78,7 +78,11 @@ class ApplicationMenu {
                 request_dialog_text(2,std::move(text),0,0);
             });
             multiplayer_=std::make_unique<MultiplayerMenu>(startup_,*scene_,driver_,module_,*events_);
-            multiplayer_->errors([this](frontend::SharedText text){request_dialog_text(2,std::move(text),0,0);});
+            multiplayer_->errors([this](frontend::SharedText text) {
+                if (!dialog_ || dialog_->active()) return false;
+                request_dialog_text(2,std::move(text),0,0);
+                return true;
+            });
             MenuScreenFactory<Actions> factory(
                 *scene_, module_, [&](std::uint32_t id) { return text_->object_for(id); }, *events_,
                 products_, actions_, widgets_.get(), true, cinematics_->model(),

@@ -35,6 +35,7 @@ inline void append_runtime_confirmation_controls(MenuScreenDefinition& definitio
 template<class Services>
 class RuntimeConfirmation {
 public:
+    bool active() const { return mode_ != inactive; }
     static constexpr std::uint32_t inactive = 0xffffffffu;
     RuntimeConfirmation(Services& services, ControlEventDestination& queue)
         : services_(services), queue_(queue) {}

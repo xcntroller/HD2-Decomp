@@ -1,6 +1,6 @@
 # Reconstruction plan
 
-Updated: 2026-11-01. [Handoff](HANDOFF.md) records the latest work and next steps;
+Updated: 2026-11-02. [Handoff](HANDOFF.md) records the latest work and next steps;
 [research](RESEARCH.md) and linked analysis documents hold technical detail.
 
 ## Scope and completion criteria
@@ -109,7 +109,7 @@ Original object ABI is tracked separately from native menu delivery.
 | Family | Required flow | Current status |
 | --- | --- | --- |
 | [Main menu](analysis/menu-family-delivery.md#main-menu) | Nine actions, profile/save/date/version labels, eligibility | Exit and Credits |
-| [Shared dialogs](analysis/menu-family-delivery.md#shared-dialogs) | Yes/No/OK, prompts, text/password, errors and cancellation | Quit Yes/No accepted; runtime integration accepted through Options; other callers open |
+| [Shared dialogs](analysis/menu-family-delivery.md#shared-dialogs) | Yes/No/OK, prompts, text/password, errors and cancellation | Quit Yes/No accepted; runtime integration and Phase1 callers accepted; game/server-dependent callers deferred |
 | [Credits/cinematics](analysis/menu-family-delivery.md#credits-and-cinematics) | Retained controller, list/playback and return | Credits and Cinematics accepted |
 | [Options](analysis/menu-family-delivery.md#options) | All pages/bindings, apply/Back/persistence and owner variants | Front-end accepted; in-game owner open |
 | [Profiles](analysis/menu-family-delivery.md#profiles) | List/select/create/rename/delete and validation | Startup persistence recovered; desktop accepted |
@@ -141,8 +141,9 @@ Original object ABI is tracked separately from native menu delivery.
 - [x] Deliver reachable multiplayer front-end UI and explicit service boundaries.
   [Desktop accepted2026-11-01](analysis/multiplayer-pipeline.md#desktop-acceptance--2026-11-01).
   All UI requiring a ready server remains untested; server/services and validation are Phase 3.
-- [ ] Validate front-end shared dialog callers, reply/context lifetimes and cancellation.
+- [x] Validate front-end shared dialog callers, reply/context lifetimes and cancellation.
   [Caller acceptance](analysis/menu-family-delivery.md#shared-dialogs).
+  [Desktop accepted2026-11-02](analysis/dialog-callers-verification.md#desktop-acceptance--2026-11-02).
 - [ ] Finish supported Main actions, front-end traversal and explicit unavailable boundaries.
   Single-player completion and verification are deferred to Phase 2.
   [Main traversal boundary](analysis/menu-family-delivery.md#main-menu).
@@ -163,6 +164,12 @@ explicit UI/payload/ownership contracts.
 - [ ] Verify sound/music, preferences, failures and deterministic cleanup.
 - [ ] Audit host approximations and delegated engine/service calls against evidence.
 - [ ] Run Phase 1 menu traversal; record deferred flows and unavailable services.
+
+## 5. Final audit and test of all Phase 1 work, build binary, close this phase and do all prerequisite work for Phase 2
+- [ ] Verify with the user all routes and implementation of Phase 1 UI work.
+- [ ] Do a quick check against the original.
+- [ ] Build a standalone .exe with all current implementation.
+- [ ] PHASE2 START - Research Phase 2 Scope and create a complex plan in sections for delivery.
 
 # Phase 2 — Load a level and deliver game-dependent flows
 

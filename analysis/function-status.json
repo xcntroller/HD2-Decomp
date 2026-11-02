@@ -1302,7 +1302,9 @@
         "recovered/frontend/runtime_confirmation.h",
         "recovered/frontend/screen_construction.h",
         "analysis/runtime-dialog-integration-map.json",
-        "analysis/runtime-dialog-integration.md"
+        "analysis/runtime-dialog-integration.md",
+        "analysis/dialog-callers-research.md",
+        "analysis/dialog-callers-verification.md"
       ]
     },
     {
@@ -1316,7 +1318,9 @@
         "recovered/frontend/runtime_confirmation.h",
         "recovered/frontend/screen_construction.h",
         "analysis/runtime-dialog-integration-map.json",
-        "analysis/runtime-dialog-integration.md"
+        "analysis/runtime-dialog-integration.md",
+        "analysis/dialog-callers-research.md",
+        "analysis/dialog-callers-verification.md"
       ]
     },
     {
@@ -5601,12 +5605,14 @@
       "program": "client",
       "entry": "00621470",
       "status": "partial",
-      "coverage": "Profile create/rename editor modes, ANSI trailing-space trim, original prompts, new-profile difficulty gate and delete confirmation request.",
+      "coverage": "Profile create/rename editor modes, ANSI trailing-space trim, original prompts, new-profile difficulty gate and delete confirmation request. Original create/rename error prompts preserve C3 on both OK and Escape; composed caller/queue/focus audit verified, user desktop accepted2026-11-02 for the Phase1 caller milestone.",
       "limitations": "Native typed storage, ownership and English menu rendering replace original object/virtual/SEH ABI. Wide-language profile editing, gameplay saves and broader labels remain outside this delivery. English front-end profile delivery desktop-accepted2026-10-31; no individual acceptance-case execution inferred.",
       "evidence": [
         "analysis/profiles-flow.md",
         "analysis/profiles-flow-map.json",
-        "recovered/frontend/profile_management.h"
+        "recovered/frontend/profile_management.h",
+        "analysis/dialog-callers-research.md",
+        "analysis/dialog-callers-verification.md"
       ]
     },
     {

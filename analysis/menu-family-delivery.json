@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Reachable multiplayer frontend and Team Selection follow-ups desktop accepted2026-11-01; server-dependent UI deferred untested to Phase3; 20 delivery items open",
+  "status": "Frontend shared-dialog callers desktop accepted2026-11-02; reachable multiplayer frontend accepted2026-11-01; server-dependent UI deferred untested to Phase3; 19 delivery items open",
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
@@ -122,7 +122,7 @@
         {
           "key": "dialogs.callers",
           "title": "Validate front-end request/reply and context lifetimes",
-          "status": "open",
+          "status": "complete",
           "roles": [],
           "evidence": [
             "0066d780",
@@ -142,7 +142,16 @@
           "desktop_validation": "Exercise requests from actual delivered profiles/options/network flows; single-player, in-game and debrief callers are Phase 2.",
           "failure_acceptance": "No fixture-generated reply may stand in for a missing application operation; forced close and partial teardown must not use freed contexts.",
           "delivery_phase": 1,
-          "phase_scope": "Phase 1 covers front-end callers and explicit unavailable boundaries; actual running-game variants and receivers are Phase 2."
+          "phase_scope": "Six original Options/profile sites plus reachable native unavailable/error callers accepted for Phase1. Thirteen equipment/in-game/debrief/team sites stay Phase2; the Create firewall continuation stays Phase3. Profile Escape reply correction and composed caller audit are complete.",
+          "research": "analysis/dialog-callers-research.md; analysis/dialog-callers-research.json",
+          "implementation": "analysis/dialog-callers-verification.md; desktop accepted2026-11-02",
+          "desktop_acceptance": {
+            "date": "2026-11-02",
+            "performed_by": "user",
+            "confirmation": "Looks good, record it as completed and commit. Don't continue.",
+            "application_sha256": "aa5fa4d1ae3cadaa3cc350d24e8603845e1ad68b723ebfe34d86eea7f3e7d8d5",
+            "scope": "Phase1 frontend shared-dialog callers, reply/context lifetime and cancellation; broad user desktop acceptance does not establish individual test-case execution. Phase2/game/loadout and Phase3/server-dependent callers remain deferred."
+          }
         }
       ]
     },

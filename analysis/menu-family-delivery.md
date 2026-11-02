@@ -1,6 +1,6 @@
 # Menu family delivery checklists
 
-The inventory planning checkpoint is **source-only**. Current family acceptance is recorded below; 20 delivery
+The inventory planning checkpoint is **source-only**. Current family acceptance is recorded below; 19 delivery
 items remain open, including the explicitly deferred server-dependent Phase3 work. The [coverage catalog](menu-family-delivery.json) maps
 all 28 populated owner-scoped roles, twelve shared/auxiliary products, 71 routes,
 512 control sites, thirteen dynamic categories and 20 prompt-helper sites.
@@ -75,7 +75,9 @@ Primary numbered roles: `main:4`.
   Desktop: Verify compiled-client caller-to-dialog-to-reply with mouse/keyboard and underneath visibility/focus; retain accepted named Exit behavior. Diagnostic-only acceptance does not establish application caller integration.
   Failures/limits: Load/bind failure, busy-open guard, inactive/unknown sender and owner destruction preserve original behavior and native cleanup policy.
 
-- [ ] **dialogs.callers — Validate front-end request/reply and context lifetimes.**
+- [x] **dialogs.callers — Validate front-end request/reply and context lifetimes.**
+  [Research boundary and confirmed profile Escape reply difference](dialog-callers-research.md).
+  [Desktop accepted2026-11-02](dialog-callers-verification.md#desktop-acceptance--2026-11-02).
   Evidence: `0066D780`, `0066D7A0`, `0066D7C0`.
   Requires: delivered Phase 1 requesting flows. After: `dialogs.runtime`, `profiles.manage`, `options.full`, `multi.create`.
   Native: Cover Phase 1 source helper sites, including raw text and mode 0/force-close, with live/rejected reply sequencing and retained callback contexts.

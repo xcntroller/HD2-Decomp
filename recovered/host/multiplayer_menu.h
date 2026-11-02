@@ -33,7 +33,7 @@ class MultiplayerMenu {
     }
     ~MultiplayerMenu() { cancel(); }
     EngineFrame* model(unsigned slot) const { return models_.at(slot-8).get(); }
-    void errors(std::function<void(Text)> callback) { error_=std::move(callback); }
+    void errors(std::function<bool(Text)> callback) { error_=std::move(callback); }
     std::optional<unsigned> backdrop(unsigned id) const {
         const auto found=backdrops_.find(id);
         return found==backdrops_.end()?std::optional<unsigned>{}:found->second;
@@ -155,7 +155,9 @@ class MultiplayerMenu {
             }
         }
         if (!pending_error_.empty() && queue_.screens().current() && queue_.screens().current()->identifier!=0 && error_) {
-            auto message=std::move(pending_error_); pending_error_.clear(); error_(shared(std::move(message)));
+            //A request can already be active before queued slot0 activation.
+            //Retain the message if the actual dialog service rejects it as busy.
+            if (error_(shared(pending_error_))) pending_error_.clear();
         }
         if (console_) {
             console_elapsed_+=ms;
@@ -444,7 +446,7 @@ class MultiplayerMenu {
     std::optional<frontend::MultiplayerServer> selected_,joining_;
     std::optional<frontend::MultiplayerInformation> information_;
     std::map<unsigned,MenuTextObject*> information_text_;
-    std::function<void(Text)> error_;
+    std::function<bool(Text)> error_;
     bool internet_=false,favorites_=false,active_=false,dirty_=false,information_pending_=false;
     bool console_=false;
     bool browser_busy_=false;
