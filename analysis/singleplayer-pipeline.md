@@ -837,3 +837,15 @@ multiplayer frontend checkpoint. The accepted executable and scope are recorded
 in [the shared acceptance record](multiplayer-desktop-acceptance-20261101.json).
 No individual desktop cases are inferred. The earlier accepted13863a7 checkpoint
 remains preserved. **Loadout screens are still completely untested until accessible.**
+
+## Fidelity review follow-up — 2026-11-02
+
+User localization confirmation exposed three Character Select removal issues:
+rapid clicks on emptied slots could restore Remove without a selected human;
+reverse dragging still used a fixed400-pixel divider; removal did not select the
+first picker entry. [Focused corrections, original evidence and audit](team-removal.md)
+cover valid/live portrait selection, shared removal completion and first-entry
+visibility, dimension-aware drop policy and the small menu-only widescreen camera
+correction. Native verification passes; user desktop recheck is pending.
+Earlier bounded team acceptance is retained; no new acceptance or full loadout/
+game/server delivery is inferred. No new function credit, commit or push.

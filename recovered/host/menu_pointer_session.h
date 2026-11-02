@@ -2,6 +2,7 @@
 #define HD2_HOST_MENU_POINTER_SESSION_H
 
 #include "host/cursor_geometry.h"
+#include "host/menu_presentation.h"
 #include "frontend/pointer_update.h"
 #include "frontend/pointer_motion.h"
 #include "frontend/pointer_dispatch.h"
@@ -78,7 +79,7 @@ public:
               std::uint32_t buttons, std::uint32_t delta, std::int32_t wheel) {
         if (!session_.armed) {
             if (preview_safeguards_ && buttons != 0) return; // Reentry must observe all buttons up first.
-            session_.pointer.cursor().initialize(point.x, point.y, 800, 600);
+            session_.pointer.cursor().initialize(point.x, point.y, menu_width(), menu_height());
             update_frame_(point.x, point.y);
             session_.previous_point = point;
             session_.armed = true;

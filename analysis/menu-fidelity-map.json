@@ -1,0 +1,32 @@
+{
+  "scope": "Read-only original font-set, language-family and render-rectangle evidence for the expanded Phase 1 fidelity checkpoint. No desktop acceptance or new function credit.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {"address": "0063dcae", "hex": "50ff5218", "meaning": "0063DC50 queries the graphics render width through virtual +18"},
+    {"address": "0063dcb2", "hex": "3d000400007c07bf03000000", "meaning": "Width >=1024 selects original Set3"},
+    {"address": "0063dcc0", "hex": "33c93d200300000f9dc1418bf9", "meaning": "Width below1024 selects Set1 below800 and Set2 at800 or above"},
+    {"address": "0063dce0", "hex": "b854028400eb37", "meaning": "Czech match selects the CE family string"},
+    {"address": "0063dcfa", "hex": "b854028400eb1d", "meaning": "Polish match selects the same CE family string"},
+    {"address": "0063dd19", "hex": "b83c028400", "meaning": "Non-Japan fallback selects ANSI"},
+    {"address": "00644ac3", "hex": "0fbf46040fbf4e068a9690000000", "meaning": "00644A80 reads render width/height and the object's horizontal inset"},
+    {"address": "00644b19", "hex": "d80dd8048100d82524f58000", "meaning": "Rectangle Y conversion uses the original 4/3 multiplier and half-pixel offset"},
+    {"address": "00647f8e", "hex": "84c00f8421050000", "meaning": "00647EE0 skips glyph submission when viewport intersection is empty"},
+    {"address": "00647fbc", "hex": "5250ff517c", "meaning": "00647EE0 installs the intersected viewport via graphics virtual +7C"}
+  ],
+  "vtables": [],
+  "direct_calls": [
+    {"site": "0063dcd7", "target": "006b6750"},
+    {"site": "0063dcf1", "target": "006b6750"},
+    {"site": "00647f89", "target": "00647d00"}
+  ],
+  "resource_anchors": [
+    {"site": "0063dccd", "address": "00840258", "text": "Czech"},
+    {"site": "0063dce7", "address": "0084024c", "text": "Polish"},
+    {"site": "0063dd24", "address": "00840224", "text": "Text\\Fonts\\%s\\Set%d\\"},
+    {"site": "0063dd34", "address": "0084020c", "text": "Text\\Fonts\\Ce\\Set%d\\"}
+  ]
+}

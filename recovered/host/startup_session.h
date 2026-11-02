@@ -27,6 +27,7 @@
 #include "host/settings_services.h"
 #include "host/sound_services.h"
 #include "host/graphics_settings.h"
+#include "host/menu_presentation.h"
 #include "host/startup_archives.h"
 #include "host/startup_localization.h"
 #include "input/input_manager.h"
@@ -42,7 +43,7 @@ class StartupSession {
 public:
     using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>>;
     std::optional<frontend::MultiplayerLaunchRequest>& multiplayer_request() { return multiplayer_request_; }
-    StartupSession(HMODULE engine, HMODULE rw_data, HMODULE joy)
+    StartupSession(HMODULE engine, HMODULE rw_data, HMODULE joy,const std::string& selected_language={})
         : engine_(engine), files_(rw_data), text_files_(rw_data), directory_(platform_), language_(platform_),
           portraits_(engine), data_(portraits_, files_, directory_),
           archive_backend_(rw_data), archives_(archive_backend_),
@@ -53,6 +54,8 @@ public:
           sound_backend_(engine, world_), sound_catalog_(sound_backend_),
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
           control_frame_(control_data_, gate_, *this) {
+        if (!selected_language.empty()) language_.select(selected_language);
+        menu_cursor_={menu_width()*.5f,menu_height()*.5f};
         // Actual00748940/00748960 clock basis, separate from frame pacing.
         if (!QueryPerformanceFrequency(&control_frequency_) || control_frequency_.QuadPart <= 0 ||
                 !QueryPerformanceCounter(&control_origin_))
@@ -218,18 +221,18 @@ public:
     void profile_difficulty(unsigned value) {data_.profile().payload.words[0x34/4]=value;}
     bool save_managed_profile(){return frontend::save_profile_payload(data_.profile(),files_,wide_characters());}
     int create_managed_profile(const std::string& name) {
-        if(wide_characters())throw std::runtime_error("Profile editing requires the delivered English mode");
+        if(wide_characters())throw std::runtime_error("Profile editing requires a supported byte-font language");
         return ProfileFilesystem(directory_.get()).create(name);
     }
     int rename_managed_profile(const std::string& from,const std::string& to) {
-        if(wide_characters())throw std::runtime_error("Profile editing requires the delivered English mode");
+        if(wide_characters())throw std::runtime_error("Profile editing requires a supported byte-font language");
         const int result=ProfileFilesystem(directory_.get()).rename(from,to);
         if(result==1) {data_.profile().directories.current_name=to;save_managed_profile();
                       data_.configuration().set_profile(files_,to);}
         return result;
     }
     bool delete_managed_profile(const std::string& name) {
-        if(wide_characters())throw std::runtime_error("Profile editing requires the delivered English mode");
+        if(wide_characters())throw std::runtime_error("Profile editing requires a supported byte-font language");
         return ProfileFilesystem(directory_.get()).remove(name);
     }
     bool save_options() {

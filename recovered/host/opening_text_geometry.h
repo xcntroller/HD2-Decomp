@@ -26,8 +26,8 @@ inline OpeningTextRectangle opening_text_rectangle(int width, int height) {
     return result;
 }
 
-// 00641E30 style8 +00646820/00646A10/00648860/006404C0, bounded printable English
-//  consumer with single-style word wrapping for Cinematics subtitles.
+// 00641E30 style8 +00646820/00646A10/00648860/006404C0, bounded byte-font
+// consumer with single-style word wrapping for Cinematics subtitles.
 inline std::vector<CursorVertex> opening_subtitle_vertices(const frontend::TextObject &object,
                                                            const FontMetrics &metrics,
                                                            const OpeningTextRectangle &rectangle,
@@ -42,7 +42,7 @@ inline std::vector<CursorVertex> opening_subtitle_vertices(const frontend::TextO
         throw std::logic_error("Unsupported opening subtitle style ID");
     if (!record.text || record.text->empty())
         return {};
-    const auto &text = *record.text;
+    const auto text = menu_glyph_bytes(*record.text);
     if (text.size() > 4096 || surface_width <= 0 || surface_height <= 0)
         throw std::invalid_argument("Invalid opening subtitle geometry");
     const auto glyph_height = static_cast<int>(static_cast<long double>(surface_height) * style.height + .5f);
@@ -61,8 +61,8 @@ inline std::vector<CursorVertex> opening_subtitle_vertices(const frontend::TextO
         std::size_t space = std::string_view::npos, index = 0;
         for (; index < remaining.size(); ++index) {
             const auto character = static_cast<unsigned char>(remaining[index]);
-            if (character < 32 || character > 126)
-                throw std::logic_error("Movie subtitles require printable English ASCII");
+            if (character < 32)
+                throw std::logic_error("Movie subtitle contains an unhandled control character");
             const auto advance = glyph_advance(metrics[character], glyph_height);
             if (width + advance > available)
                 break;
@@ -76,13 +76,14 @@ inline std::vector<CursorVertex> opening_subtitle_vertices(const frontend::TextO
             lines.push_back({remaining, width});
             break;
         }
-        if (space == std::string_view::npos || space == 0)
-            throw std::logic_error("Movie subtitle contains a word wider than its rectangle");
-        lines.push_back({remaining.substr(0, space), space_width});
-        remaining.remove_prefix(space + 1);
+        if (space == std::string_view::npos || space == 0) {
+            const auto count=std::max<std::size_t>(1,index);
+            if (!index) width=glyph_advance(metrics[static_cast<unsigned char>(remaining.front())],glyph_height);
+            lines.push_back({remaining.substr(0,count),width});remaining.remove_prefix(count);
+        } else {
+            lines.push_back({remaining.substr(0, space), space_width});remaining.remove_prefix(space + 1);
+        }
     }
-    if (lines.size() * static_cast<std::size_t>(glyph_height) > rectangle.height)
-        throw std::logic_error("Movie subtitle exceeds its text rectangle");
     const float rhw = 1.0f / rectangle.depth;
     std::vector<CursorVertex> vertices;
     vertices.reserve(text.size() * 6);
@@ -108,7 +109,9 @@ inline std::vector<CursorVertex> opening_subtitle_vertices(const frontend::TextO
             x += advance;
         }
     }
-    return vertices;
+    MenuTextSubmission submission{true,std::move(vertices)};
+    clip_menu_rectangle(submission,{rectangle.left,rectangle.top,rectangle.right,rectangle.bottom});
+    return std::move(submission.vertices);
 }
 
 } // namespace hd2::host

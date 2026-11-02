@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-02",
+  "performed_by": "user",
+  "confirmation": "All fixed and works as expected. Record as complete, commit and continue.",
+  "application_sha256": "bb8cbe802887e64d25f7ea8f4c700f47faaa822730c1c0214e26239331340071",
+  "milestone": "Phase 1 section4 presentation fidelity",
+  "scope": [
+    "Delivered front-end layout, stacking, clipping, fonts/localization and resolution support",
+    "Previously confirmed localization with the expected unfinished Japanese translation excluded",
+    "Rapid squad-removal clicks preserve valid picker selection and Add caption",
+    "Dimension-aware squad drag removal",
+    "First picker entry selected and revealed after removal",
+    "Bounded menu-camera widescreen alignment"
+  ],
+  "limits": [
+    "Overall user confirmation does not infer individual execution of every proposed language, resolution or input case",
+    "Loadout screens remain source-only and completely untested until accessible",
+    "Game/save receivers remain Phase2; ready-server-dependent UI and services remain Phase3",
+    "No agent execution of Windows fixtures, original game/DLLs or Proton",
+    "No new frozen-function credit"
+  ],
+  "commit_authorized": true,
+  "push_authorized": false,
+  "next_checkbox": "Verify held/repeat input, eligibility, focus, wheel/drag and modal cancellation."
+}

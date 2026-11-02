@@ -168,26 +168,21 @@ class OptionsBindingRow final : public MenuControl {
             stop_capture();
         return true;
     }
-    int enter_focus(std::uint32_t target) override {
-        last_target_ = target;
+    int enter_focus(std::uint32_t) override {
         pair_->apply(true);
-        label_.highlighted(true);
         return 1;
     }
     int leave_focus(std::uint32_t) override {
         if (capture_->state.active)
             return 0;
         pair_->apply(false);
-        label_.highlighted(false);
         return 1;
     }
-    int pointer_focus(std::uint32_t target) override {
-        last_target_ = target;
+    int pointer_focus(std::uint32_t) override {
         return pair_->pointer_move();
     }
-    int pointer_target(frontend::ScreenPointerCallback callback, std::uint32_t target,
+    int pointer_target(frontend::ScreenPointerCallback callback, std::uint32_t,
                        frontend::ControlEventDestination &events) override {
-        last_target_ = target;
         return pair_->pointer_event(callback, events);
     }
     int activate(frontend::ControlEventDestination &) override {
@@ -200,8 +195,8 @@ class OptionsBindingRow final : public MenuControl {
     }
     int deactivate(frontend::ControlEventDestination &) override { return stop_capture(); }
     int click(frontend::ControlEventDestination &events) override {
-        if (last_target_ != (definition_.identifier | 1))
-            return 0;
+        //0064EB90 forwards row clicks to activation regardless of which child
+        //was picked. The caption|2 and value|1 both edit this row's value.
         return capture_->state.active ? stop_capture() : activate(events);
     }
     int wheel_target(std::int32_t, frontend::ControlEventDestination &) override { return 0; }
@@ -268,7 +263,6 @@ class OptionsBindingRow final : public MenuControl {
     std::shared_ptr<frontend::EditCharacterTarget<CaptureBackend>> capture_;
     std::unique_ptr<ButtonVisualPair> pair_;
     std::size_t binding_ = 0;
-    std::uint32_t last_target_ = 0;
     bool warm_ = false;
 };
 

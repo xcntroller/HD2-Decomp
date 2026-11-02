@@ -928,26 +928,26 @@ inline void MultiplayerMenu::toggle_map(unsigned id) {
 inline void MultiplayerMenu::move_drag() {
     if (!drag_frame_ || !context_) return;
     const auto& cursor=context_->input.pointer.cursor();
-    const auto delta=frontend::cursor_frame_position(cursor.x()-drag_pointer_[0],cursor.y()-drag_pointer_[1],800,600);
+    const auto delta=frontend::cursor_frame_position(cursor.x()-drag_pointer_[0],cursor.y()-drag_pointer_[1],menu_width(),menu_height());
     scene_.position_menu_model(module_,drag_frame_->get(),drag_position_[0]+delta[0],drag_position_[1]+delta[1],delta[2]);
     scene_.update_screen_frame(module_,drag_frame_->get());
     auto bounds=drag_bounds_;
     bounds[0]+=delta[0]; bounds[4]+=delta[0];
     bounds[1]+=delta[1]; bounds[5]+=delta[1];
     drag_text_->projected_bounds(bounds);
-    if (!drag_available_ && frontend::multiplayer_map_side(frontend::cursor_frame_position(cursor.x(),cursor.y(),800,600))==
+    if (!drag_available_ && frontend::multiplayer_map_side(frontend::cursor_frame_position(cursor.x(),cursor.y(),menu_width(),menu_height()))==
             frontend::MultiplayerMapSide::selected)
         reorder_drag(pick_maps());
 }
 
 inline unsigned MultiplayerMenu::pick_maps() {
     const auto& cursor=context_->input.pointer.cursor();
-    if (!drag_frame_) return scene_.pick_model(module_,cursor.x(),cursor.y(),800,600,model(9));
+    if (!drag_frame_) return scene_.pick_model(module_,cursor.x(),cursor.y(),menu_width(),menu_height(),model(9));
     // The original transient is linked outside the Create model's pick tree.
     // Exclude the native clone explicitly while querying that same tree.
     scene_.set_screen_visible(module_,drag_frame_->get(),false);
     try {
-        const auto target=scene_.pick_model(module_,cursor.x(),cursor.y(),800,600,model(9));
+        const auto target=scene_.pick_model(module_,cursor.x(),cursor.y(),menu_width(),menu_height(),model(9));
         scene_.set_screen_visible(module_,drag_frame_->get(),true); return target;
     } catch (...) { scene_.set_screen_visible(module_,drag_frame_->get(),true); throw; }
 }
@@ -996,7 +996,7 @@ inline void MultiplayerMenu::drag_map(unsigned id,unsigned tag) {
     if (tag==0x04008000) { move_drag(); return; }
     if (!drag_frame_) return;
     const auto& cursor=context_->input.pointer.cursor();
-    const auto side=frontend::multiplayer_map_side(frontend::cursor_frame_position(cursor.x(),cursor.y(),800,600));
+    const auto side=frontend::multiplayer_map_side(frontend::cursor_frame_position(cursor.x(),cursor.y(),menu_width(),menu_height()));
     drag_text_.reset(); drag_frame_.reset();
     if (!drag_available_ && side==frontend::MultiplayerMapSide::available && drag_index_<selected.size())
         selected.erase(selected.begin()+drag_index_);

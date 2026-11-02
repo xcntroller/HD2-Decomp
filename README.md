@@ -25,8 +25,10 @@ Cinematics is **user desktop-confirmed2026-10-31**, including the corrected
 sets. Africa/Czech intro entries are unused development remnants and ignored as
 expected absences; original catalog flags remain intact.
 
-The accepted UI boundary is **English,800x600, Main/Exit/Credits/Cinematics/Options/Profiles**. Other menu actions,
-dynamic labels and broader profile/save flows remain unfinished. Full
+[Main front-end traversal and the Options hover/caption-click corrections](analysis/main-traversal.md#desktop-acceptance--2026-11-02)
+are user-accepted2026-11-02. The new [resolution/language expansion](analysis/menu-fidelity.md)
+is **user desktop-accepted2026-11-02**, including team removal and widescreen. Gameplay/save
+receivers and the documented single-player/server deferrals remain open. Full
 original setup/protection, object ABI, unused global caches and live network/
 gameplay services are not claimed complete. Original engine calls stay delegated;
 source recovery alone is not desktop delivery.
@@ -43,6 +45,21 @@ The launcher stages isolated runtime files under `analysis/work/startup-runtime`
 preserving staged config/profiles and leaving installed assets unchanged.
 Use `--stage-only` to prepare files without executing Windows code. The old
 engine-window preview and startup probe remain separate diagnostics.
+
+Select window/render dimensions and an installed translation per launch:
+
+```sh
+python3 -B tools/run_application_launch.py --list-languages
+python3 -B tools/run_application_launch.py --width 1280 --height 720 --language Czech
+```
+
+Available translations are Czech, english, EnglishUS, french, german, italian
+and spanish. Localization is user-confirmed2026-11-02; the
+[team-selection/widescreen corrections](analysis/team-removal.md) are also accepted.
+Font sets follow the original width thresholds. Default size is
+800×600; omitting `--language` uses the original registry selection. An explicit
+language override does not change the registry. Japanese/wide-font dependencies
+are unavailable in this installation; see the linked fidelity contract.
 
 Single Player is enabled. The team-selection checkpoint is **user desktop-accepted
 2026-11-01**, including the final name alignment, drag depth and drop-area fixes.

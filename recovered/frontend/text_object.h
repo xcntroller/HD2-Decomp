@@ -142,7 +142,7 @@ struct TextStyle {
     std::uint32_t vertical;
 };
 
-// Bounded 00641e30 style catalogue used by the live English menu. Remaining
+// Bounded 00641e30 style catalogue used by the live byte-font menu. Remaining
 // styles and general wrapping/layout remain outside this reconstruction.
 inline const TextStyle* menu_text_style(std::uint8_t style) {
     static const TextStyle save{2, .03f, 0xff000000, 1, 2}; //00641E30 entry7.

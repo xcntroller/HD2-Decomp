@@ -4,6 +4,7 @@
 #include "host/bitmap_font.h"
 #include "frontend/text_object.h"
 #include "host/cursor_geometry.h"
+#include "host/menu_presentation.h"
 
 #include <algorithm>
 #include <cmath>
@@ -76,6 +77,9 @@ inline constexpr std::array<MenuLabelBinding, 13> menu_label_bindings{{
 //represent Latin-1 names (including Kratochvil's U+00ED) without transliteration.
 //Keep raw legacy bytes when the string is not UTF-8, as HumanStore does.
 inline std::string menu_glyph_bytes(std::string_view text) {
+    // Installed byte-font languages use raw original ANSI/CE indices. Do not
+    // accidentally reinterpret two adjacent legacy letters as UTF-8.
+    if (menu_presentation().configured) return std::string(text);
     std::string result;
     result.reserve(text.size());
     for (std::size_t i = 0; i < text.size();) {
@@ -190,17 +194,20 @@ inline std::vector<CursorVertex> menu_prompt_vertices(
                 width+=advance;
             }
             if(index==remaining.size()){lines.push_back(remaining);break;}
-            if(space==std::string_view::npos || space==0)
-                throw std::logic_error("Runtime dialog word exceeds its rectangle");
-            lines.push_back(remaining.substr(0,space));remaining.remove_prefix(space+1);
+            if(space==std::string_view::npos || space==0) {
+                // Keep an overwide translated token bounded even when it has
+                // no whitespace; clip a single glyph wider than the viewport.
+                const auto count=std::max<std::size_t>(1,index);
+                lines.push_back(remaining.substr(0,count));remaining.remove_prefix(count);
+            } else {
+                lines.push_back(remaining.substr(0,space));remaining.remove_prefix(space+1);
+            }
         }
         if(end==std::string_view::npos)break;
         begin=end+1;
         if(text[end]=='\r' && begin<text.size() && text[begin]=='\n')++begin;
     }while(begin<=text.size());
     const auto total=lines.size()*static_cast<std::size_t>(height);
-    if(total>rectangle.bottom-rectangle.top)
-        throw std::logic_error("Runtime dialog paragraph exceeds its rectangle");
     const float top=rectangle.top+std::max(0.0f,(rectangle.bottom-rectangle.top-total)*.5f);
     std::vector<CursorVertex> result;
     for(std::size_t i=0;i<lines.size();++i) {
@@ -310,10 +317,10 @@ inline std::vector<MenuTextSubmission> menu_column_submissions(
                 !std::isfinite(cell.width) || cell.width<0 || cell.width>1 || cell.text.size()>4096)
                 throw std::invalid_argument("Invalid authored text column");
             const auto& metrics=cell.font==4?symbols:cell.font==3?small:big;
-            const int height=static_cast<int>(cell.height*600+.5f);
+            const int height=static_cast<int>(cell.height*menu_height()+.5f);
             if (height<1) throw std::invalid_argument("Column glyph height rounds to zero");
             const float anchor=area.left+extent*cell.anchor;
-            const float capacity=std::min(800.f*cell.width,
+            const float capacity=std::min(static_cast<float>(menu_width())*cell.width,
                 cell.right?anchor-area.left:area.right-anchor);
             auto value=menu_glyph_bytes(cell.text);
             int used=0; std::size_t end=0;
@@ -327,15 +334,12 @@ inline std::vector<MenuTextSubmission> menu_column_submissions(
             value.resize(end);
             const float left=cell.right?anchor-used:anchor;
             auto vertices=menu_label_vertices(value,metrics,
-                {left,top,left+std::max(1,used),top+height},cell.height,600,false,cell.color);
-            // Preserve the viewport when a glyph is taller than the last row.
-            for (std::size_t v=0;v<vertices.size();v+=6) {
-                const float bottom=std::min(area.bottom,vertices[v].y);
-                const float fraction=std::clamp((bottom-vertices[v+1].y)/height,0.f,1.f);
-                const float uv=vertices[v+1].v+(vertices[v].v-vertices[v+1].v)*fraction;
-                for (const auto j:{0u,3u,4u}) {vertices[v+j].y=bottom; vertices[v+j].v=uv;}
-            }
-            result.push_back({cell.font==3,std::move(vertices),cell.font==4});
+                {left,top,left+std::max(1,used),top+height},cell.height,menu_height(),false,cell.color);
+            // Pixel rounding can cross a fractional viewport edge. Clip all
+            // four sides, including a glyph taller than the final row.
+            MenuTextSubmission submission{cell.font==3,std::move(vertices),cell.font==4};
+            clip_menu_rectangle(submission,area);
+            result.push_back(std::move(submission));
         }
     }
     return result;
@@ -351,7 +355,7 @@ inline std::vector<CursorVertex> menu_small_paragraph_vertices(
     struct Line {std::string text;bool justify;};
     std::vector<Line> lines;
     const float available=rectangle.right-rectangle.left;
-    constexpr int height=12; //00641E30 entries2/3,.02 of600.
+    const int height=menu_line_height(.02f); //00641E30 entries2/3.
     if (!std::isfinite(available) || available<=0) throw std::invalid_argument("Invalid menu paragraph width");
     std::size_t characters=0;
     std::vector<frontend::TextRecord> paragraphs;
@@ -382,10 +386,13 @@ inline std::vector<CursorVertex> menu_small_paragraph_vertices(
                     width+=glyph_advance(metrics[character],height);
                 }
                 if (index==rest.size()) {lines.push_back({std::string(rest),false});break;}
-                if (last_space==std::string_view::npos || !last_space)
-                    throw std::logic_error("Menu paragraph word exceeds its rectangle");
-                lines.push_back({std::string(rest.substr(0,last_space)),record.style==1 || record.style==3});
-                rest.remove_prefix(last_space+1);
+                if (last_space==std::string_view::npos || !last_space) {
+                    const auto count=std::max<std::size_t>(1,index);
+                    lines.push_back({std::string(rest.substr(0,count)),false});rest.remove_prefix(count);
+                } else {
+                    lines.push_back({std::string(rest.substr(0,last_space)),record.style==1 || record.style==3});
+                    rest.remove_prefix(last_space+1);
+                }
             }
             if (end==std::string::npos) break;
             begin=end+1;
@@ -410,7 +417,7 @@ inline std::vector<CursorVertex> menu_small_paragraph_vertices(
             const auto advance=glyph_advance(metrics[character],height);
             const char byte=static_cast<char>(character);
             auto glyph=menu_label_vertices(std::string_view(&byte,1),metrics,
-                {x,top,x+advance,top+height},.02f,600,false,color);
+                {x,top,x+advance,top+height},.02f,menu_height(),false,color);
             //00648860 clips at the text viewport, preserving glyph UVs for
             //the final partial row rather than drawing over the frame border.
             if (!glyph.empty() && glyph[0].y>rectangle.bottom) {
@@ -433,23 +440,25 @@ inline std::vector<MenuTextSubmission> menu_profile_list_submissions(
     if(!std::isfinite(area.left)||!std::isfinite(area.top)||!std::isfinite(area.right)||
        !std::isfinite(area.bottom)||area.right<=area.left||area.bottom<=area.top)
         throw std::invalid_argument("Invalid profile-list viewport");
-    const auto rows=static_cast<std::size_t>(std::floor((area.bottom-area.top)/24.f));
+    const auto rows=static_cast<std::size_t>(std::floor((area.bottom-area.top)/static_cast<float>(menu_line_height(.04f))));
     std::vector<MenuTextSubmission> result;
     for(std::size_t row=0;row<rows && offset<object.records().size() && row<object.records().size()-offset;++row) {
         const auto index=offset+row;const auto& record=object.records()[index];
         if(!record.text)continue;
         const auto* style=frontend::menu_text_style(record.style);
         if(!style||record.style!=19)throw std::logic_error("Unsupported profile-list record style");
-        const MenuRectangle rectangle{area.left,area.top+row*24,area.right,area.top+(row+1)*24};
+        const MenuRectangle rectangle{area.left,area.top+row*menu_line_height(.04f),area.right,area.top+(row+1)*menu_line_height(.04f)};
         const auto color=object.disabled?0x60000000u:
             hovered==static_cast<int>(index)?0xffffffffu:style->color;
-        result.push_back({false,menu_label_vertices(*record.text,big,rectangle,.04f,600,false,color)});
+        MenuTextSubmission submission{false,menu_label_vertices(*record.text,big,rectangle,.04f,menu_height(),false,color)};
+        clip_menu_rectangle(submission,rectangle);
+        result.push_back(std::move(submission));
     }
     return result;
 }
 
 //00641E30 styles27/28/29 use independent anchors .01/.50/.99 across
-// the SAME rectangle, small CE font at .019 and alphaA0. They are not a
+// the SAME rectangle, primary small font3 at .019 and alphaA0. They are not a
 // three-line paragraph. Preserve the single-record path for ordinary labels.
 template<class Bounds>
 std::optional<MenuTextSubmission> menu_ruler_submission(const frontend::TextObject& object,
@@ -457,24 +466,24 @@ std::optional<MenuTextSubmission> menu_ruler_submission(const frontend::TextObje
     if (object.records().size()!=3 || object.records()[0].style!=27 ||
         object.records()[1].style!=28 || object.records()[2].style!=29) return {};
     MenuTextSubmission result{true,{}};
-    const auto rectangle=menu_rectangle(bounds(),800,600,object.inset);
+    const auto rectangle=menu_rectangle(bounds(),menu_width(), menu_height(),object.inset);
     for (unsigned i=0;i<3;++i) {
         const auto& record=object.records()[i];
         if(!record.text) continue;
         int width=0;
-        for(unsigned char byte:menu_glyph_bytes(*record.text)) width+=glyph_advance(metrics[byte],11);
+        for(unsigned char byte:menu_glyph_bytes(*record.text)) width+=glyph_advance(metrics[byte],menu_line_height(.019f));
         auto position=rectangle;
         const float anchor=i==0?.01f:i==1?.5f:.99f;
         position.left=rectangle.left+(rectangle.right-rectangle.left)*anchor-
             (i==0?0:i==1?width*.5f:static_cast<float>(width));
-        auto vertices=menu_label_vertices(*record.text,metrics,position,.019f,600,false,
+        auto vertices=menu_label_vertices(*record.text,metrics,position,.019f,menu_height(),false,
                                           object.disabled?0x60000000u:0xa0000000u);
         result.vertices.insert(result.vertices.end(),vertices.begin(),vertices.end());
     }
     return result;
 }
 
-// Bounded glyph submission for one attached ASCII record. Bounds are lazy so
+// Bounded glyph submission for one attached byte-font record. Bounds are lazy so
 // empty dynamic labels/deferred version text do not request unused visuals.
 // General multi-style paragraph layout and word_94 color semantics remain unresolved;
 // current hover/unavailable colors preserve the desktop-tested host policy.
@@ -490,7 +499,7 @@ std::optional<MenuTextSubmission> menu_text_submission(
     if (object.records().size()==5 && object.records()[0].style==30) {
         static constexpr float widths[]{.22f,.13f,.14f,.07f,.10f};
         static constexpr float anchors[]{.095f,.4f,.75f,.84f,.99f};
-        const auto area=menu_rectangle(bounds(),800,600,0);
+        const auto area=menu_rectangle(bounds(),menu_width(), menu_height(),0);
         const float extent=area.right-area.left;
         MenuTextSubmission result{false,{}};
         for (unsigned i=0;i<5;++i) {
@@ -498,13 +507,13 @@ std::optional<MenuTextSubmission> menu_text_submission(
             if (record.style!=30+i) throw std::logic_error("Invalid server-row text styles");
             if (!record.text) continue;
             auto value=menu_glyph_bytes(*record.text);
-            const float width=800.f*widths[i]; //00645270: owner render width+04.
+            const float width=static_cast<float>(menu_width())*widths[i]; //00645270: owner render width+04.
             int used=0;
             std::size_t end=0;
             while (end<value.size()) {
                 const auto character=static_cast<unsigned char>(value[end]);
                 if (character<32) { value[end]=' '; }
-                const auto advance=glyph_advance(big[static_cast<unsigned char>(value[end])],24);
+                const auto advance=glyph_advance(big[static_cast<unsigned char>(value[end])],menu_line_height(.04f));
                 if (used+advance>width) break;
                 used+=advance; ++end;
             }
@@ -512,7 +521,7 @@ std::optional<MenuTextSubmission> menu_text_submission(
             const float anchor=area.left+extent*anchors[i];
             const float left=i<2?anchor:anchor-used;
             const MenuRectangle column{left,area.top,left+width,area.bottom};
-            auto vertices=menu_label_vertices(value,big,column,.04f,600,false,
+            auto vertices=menu_label_vertices(value,big,column,.04f,menu_height(),false,
                 object.disabled?0x60000000u:hovered?0xffffffffu:0xff000000u);
             result.vertices.insert(result.vertices.end(),vertices.begin(),vertices.end());
         }
@@ -521,27 +530,27 @@ std::optional<MenuTextSubmission> menu_text_submission(
     if (object.records().size()==1 && object.records()[0].style==9) {
         const auto& record=object.records()[0];
         if (!record.text) return std::nullopt;
-        auto area=menu_rectangle(bounds(),800,600,object.inset);
+        auto area=menu_rectangle(bounds(),menu_width(), menu_height(),object.inset);
         area.left+=(area.right-area.left)*.15f;
-        area.bottom=area.top+15;
-        return MenuTextSubmission{true,menu_label_vertices(*record.text,small,area,.025f,600,false,
+        area.bottom=area.top+menu_line_height(.025f);
+        return MenuTextSubmission{true,menu_label_vertices(*record.text,small,area,.025f,menu_height(),false,
             object.disabled?0x60000000u:0xff000000u)};
     }
     if (std::all_of(object.records().begin(),object.records().end(),
             [](const auto& record){return record.style==1 || record.style==2 || record.style==3 || record.style==15;}))
         return MenuTextSubmission{true,menu_small_paragraph_vertices(object,small,
-            menu_rectangle(bounds(),800,600,object.inset),paragraph_offset)};
+            menu_rectangle(bounds(),menu_width(), menu_height(),object.inset),paragraph_offset)};
     //00627520 appends exactly three style7 records.00645270 makes one row
     // per record;006468D0 centers the complete block, including empty rows.
     if(object.records().size()==3 && object.records()[0].style==7 &&
        object.records()[1].style==7 && object.records()[2].style==7) {
-        const auto area=menu_rectangle(bounds(),800,600,object.inset);
+        const auto area=menu_rectangle(bounds(),menu_width(), menu_height(),object.inset);
         MenuTextSubmission result{false,{}};
-        const float top=area.top+std::max(0.f,(area.bottom-area.top-54.f)*.5f);
+        const float top=area.top+std::max(0.f,(area.bottom-area.top-3.f*menu_line_height(.03f))*.5f);
         for(unsigned row=0;row<3;++row) {
             const auto& record=object.records()[row];if(!record.text)continue;
-            const MenuRectangle line{area.left,top+row*18,area.right,top+(row+1)*18};
-            auto vertices=menu_label_vertices(*record.text,big,line,.03f,600,false,
+            const MenuRectangle line{area.left,top+row*menu_line_height(.03f),area.right,top+(row+1)*menu_line_height(.03f)};
+            auto vertices=menu_label_vertices(*record.text,big,line,.03f,menu_height(),false,
                 object.disabled?0x60000000u:0xff000000u);
             result.vertices.insert(result.vertices.end(),vertices.begin(),vertices.end());
         }
@@ -560,42 +569,42 @@ std::optional<MenuTextSubmission> menu_text_submission(
     if ((hovered && available && !object.disabled) || (button && object.word_94==0xffffffffu)) color = 0xffffffff;
     if(record.style==24 || record.style==25)
         return MenuTextSubmission{false, menu_prompt_vertices(*record.text,big,
-            menu_rectangle(bounds(),800,600,object.inset),style->height,600,color)};
+            menu_rectangle(bounds(),menu_width(), menu_height(),object.inset),style->height,menu_height(),color)};
     //00647EE0/00648C80 draw the font's underscore after the selected record.
     //00646A10 reserves its width even during the off half of the blink cycle.
-    // This path is the single English binding-value record, not a general edit
+    // This path is the single binding-value record, not a general edit
     // paragraph renderer; the existing actual selection clock controls blinking.
     auto value=record.text?menu_glyph_bytes(*record.text):std::string{};
-    auto rectangle=menu_rectangle(bounds(),800,600,object.inset);
+    auto rectangle=menu_rectangle(bounds(),menu_width(), menu_height(),object.inset);
     if(record.style==10) {
         //00641E30 style+18=.01;00646940 excludes the first row's leading
         //space from block height, but006469C0 adds it to the baseline.
-        const auto leading=static_cast<int>(600.0f*.01f+.5f);
+        const auto leading=static_cast<int>(static_cast<float>(menu_height())*.01f+.5f);
         rectangle.top+=leading;rectangle.bottom+=leading;
     } else if(style->vertical==3) {
-        const int height=static_cast<int>(600.0*style->height+.5);
+        const int height=static_cast<int>(static_cast<double>(menu_height())*style->height+.5);
         rectangle.top=rectangle.bottom-height; // Style40 left/bottom.
     }
     const auto& metrics=style->font==3?small:big;
     if(style->horizontal==3 && style->vertical==2) {
-        const int height=static_cast<int>(600.0*style->height+.5);
+        const int height=static_cast<int>(static_cast<double>(menu_height())*style->height+.5);
         rectangle.bottom=rectangle.top+std::max(0.f,(rectangle.bottom-rectangle.top-height)*.5f)+height;
     }
     if(style->horizontal==2) {
         int width=0;
-        const int height=static_cast<int>(600.0*style->height+.5);
+        const int height=static_cast<int>(static_cast<double>(menu_height())*style->height+.5);
         for(unsigned char byte:value) width+=glyph_advance(metrics[byte],height);
         rectangle.left+=(rectangle.right-rectangle.left-width)*.5f;
     }
     if(selected) {
-        const int height=static_cast<int>(600.0*style->height+.5);
+        const int height=static_cast<int>(static_cast<double>(menu_height())*style->height+.5);
         int width=glyph_advance(metrics[static_cast<unsigned char>('_')],height);
         for(unsigned char byte:value) width+=glyph_advance(metrics[byte],height);
         if(width>rectangle.right-rectangle.left) rectangle.left=rectangle.right-width;
         if(object.caret_visible) value.push_back('_');
     }
     auto vertices=menu_label_vertices(value, metrics,
-            rectangle, style->height, 600,
+            rectangle, style->height, menu_height(),
             style->horizontal == 3, color);
     if (selected && object.caret_visible && metrics[static_cast<unsigned char>('_')].aspect!=0 && vertices.size()>=6) {
         //00648C90..00648CB4 use trunc(text_y - glyph_height * .1f).
@@ -604,7 +613,7 @@ std::optional<MenuTextSubmission> menu_text_submission(
         const auto first=vertices.size()-6;
         float bottom=vertices[first].y;
         for (auto i=first;i<vertices.size();++i) bottom=std::max(bottom,vertices[i].y);
-        const int height=static_cast<int>(600.0*style->height+.5);
+        const int height=static_cast<int>(static_cast<double>(menu_height())*style->height+.5);
         const float shift=bottom-static_cast<int>(static_cast<double>(bottom)-height*static_cast<double>(.1f));
         for (auto i=first;i<vertices.size();++i) vertices[i].y-=shift;
     }

@@ -4,6 +4,7 @@
 #include <windows.h>
 
 #include "host/frame_name.h"
+#include "host/menu_presentation.h"
 #include "frontend/pointer_pick.h"
 #include "frontend/cursor_frame.h"
 #include "frontend/menu_click_sound.h"
@@ -174,6 +175,13 @@ private:
         scene_method<Vector>(camera_.get(), module, 8, 0x1c9f0)(camera_.get(), position);
         scene_method<Range>(camera_.get(), module, 0x7c, 0x09ef0)(camera_.get(), 0.2f, 20);
         scene_method<Float>(camera_.get(), module, 0x74, 0x09e30)(camera_.get(), 1.57079637f);
+        // The engine initializes camera aspect from the physical render size.
+        // Menu artwork, text bounds and picking share the authored 1 x .75
+        // world plane; keep that projection when stretching a windowed menu.
+        //1000A010 stores aspect; the following projection/extent calls rebuild
+        // the orthographic matrix in10009B30 using that value.
+        if (menu_presentation().configured)
+            scene_method<Float>(camera_.get(), module, 0x8c, 0x0a010)(camera_.get(), 4.f / 3.f);
         scene_method<Projection>(camera_.get(), module, 0x88, 0x09ff0)(camera_.get(), 1);
         scene_method<Float>(camera_.get(), module, 0x84, 0x09fb0)(camera_.get(), 2);
         using Update = void (WINAPI *)(EngineFrame*);

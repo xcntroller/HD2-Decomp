@@ -98,7 +98,7 @@ public:
         return *bounds_;
     }
     MenuRectangle rectangle(bool inset) {
-        return menu_rectangle(bounds(), 800, 600, inset ? text_.inset : 0);
+        return menu_rectangle(bounds(), menu_width(), menu_height(), inset ? text_.inset : 0);
     }
     // Both static labels and buttons now initialize through the shared factory.
     void initialize_events(const std::vector<frontend::ControlEvent>& initialization) {

@@ -38,6 +38,18 @@ public:
     ApplicationLanguageState& state() { return state_; }
     const ApplicationLanguageState& state() const { return state_; }
 
+    // Native launch selection, without changing the user's installation registry.
+    // Retain006B67B0's wide-input policy for an explicitly selected language.
+    void select(const std::string& language) {
+        if (language.empty() || language.size()>64 || !std::all_of(language.begin(),language.end(),
+                [](unsigned char c){return (c>='a'&&c<='z') || (c>='A'&&c<='Z');}))
+            throw std::invalid_argument("Language must be an installed language directory name");
+        if (!state_.cached.empty()) throw std::logic_error("Application language already selected");
+        state_.cached=language;
+        state_.wide_characters=matches("Japan") || matches("Russian") ||
+            platform_.probe_text_file(text_directory()+"\\FontConfig.hxml");
+    }
+
     std::string get() {
         if (!state_.cached.empty()) return state_.cached;
         if (initializing_) throw std::logic_error("Recursive empty application language");

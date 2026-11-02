@@ -250,3 +250,73 @@ not proof of a successful profile write; selected-profile and filesystem
 persistence trials continue in the next profiles/saves milestone. Native
 serialization roundtrip/failure coverage remains as recorded above. In-game
 Options and every other shared-dialog caller stay open.
+
+## Traversal follow-up — hover and binding caption clicks, 2026-11-02
+
+During Main traversal the user reported four Options issues: checkbox captions
+should turn white on hover; binding command captions should stay their normal
+color; clicking a binding caption should activate its value editor; graphics
+quality selector text (Custom and presets) should turn white on hover. The user
+reported no other issues. This is feedback on the reviewed `aa5fa4d1…7d8d5`
+build, not acceptance of the corrections below.
+
+`ToggleControl`/`SelectorControl` already invoke the confirmed text-focus paths
+`00654840`/`0064F960` and their leave paths `006548B0`/`0064F9B0`. Their host
+adapter stored record-zero hover, but the renderer reads the attached text's
+separate highlight flag. `MenuWidgetVisuals::text_focus` now connects those
+states. Leaving clears highlighting; disabled text retains its dim color.
+Normal selector text retains original style20 alpha `A0`, then becomes opaque
+white while focused. No new hover rule was added to the renderer.
+
+`OptionsBindingRow` had explicitly whitened its static command caption on entry;
+that host-only flag has been removed. Original `0064D800` creates an editable
+value child `row|1` and a static `hktext*` caption `row|2`; row `0064EA20` forwards
+focus to both, while the caption uses base `0064DA60`, not text-record selection.
+The input child's existing active artwork is preserved; its glyphs and the
+command caption remain their normal color on hover.
+
+Original row click `0064EB90` tail-calls activation `0064EBA0` without a child
+target filter. The native `row|1`-only restriction is removed, along with its
+unused remembered target. Both caption and value clicks now reach the existing
+capture owner for `row|1`. Assignment, initial warm-up, Escape, focus refusal
+during capture and pointer suppression are unchanged. This corrects the host
+adapter; it adds no recovered function-body credit.
+
+[New bounded row evidence](options-hover-map.json) validates five instruction
+anchors and five vtable slots against the original client fingerprint. Existing
+widget/runtime and construction maps also pass. Bounded static disassembly is
+retained under `analysis/work/options-hover-20261102/{row-focus,row-click}.asm`.
+
+A temporary native ASan/UBSan audit extracts the actual modified text-focus and
+binding-row method bodies. It composes production toggle/selector runtimes,
+text records and glyph submission, EditCharacterTarget, MenuEventQueue and common
+BF/C0/C2 capture routing. It checks root/first/second-part hover, white glyph
+vertices and normal-color restoration, disabled/empty text, black binding
+caption/value glyphs, root/value/caption clicks, capture ownership, assignment
+warm-up, release, Escape and disabled activation. Engine frames, pointer/device
+polling and profile services are native fixtures; this is not a desktop test.
+Log: `analysis/work/options-hover-20261102/sanitizers.log`. Temporary audit
+generator/source/binary removed; no permanent tests added. All three strict
+i386 targets, existing native tests,158 Python tests and ledger validation pass.
+Credit remains564 partial, zero complete /18,783.
+
+Corrected built/staged executable SHA256:
+`e419f29892794b3cf1eaa57e38ceddfead4672d823584ea881e4da959c4023ec`.
+The previous accepted `90bc87b` executable is preserved at
+`analysis/work/options-hover-20261102/accepted-90bc87b-application_launch.exe`.
+Stage-only preparation preserves isolated profile/configuration edits; the agent
+executed no original game/DLL, Windows fixture or Proton. No commit/push requested.
+
+Pending desktop recheck: hover enabled checkbox captions and Custom/preset text,
+then move away; hover binding captions and values, click each to edit the same
+binding, assign/cancel with Escape, then Back/reopen Options. Check disabled
+settings remain dim. Keep Main traversal open until the user confirms these
+four corrections; the other reported routes need no repeated full traversal.
+
+### Follow-up desktop acceptance — 2026-11-02
+
+User: “All good. Record the checkbox complete and continue”. The four hover/
+caption-click corrections and the enclosing Main traversal are desktop-accepted
+against `e419f29892794b3cf1eaa57e38ceddfead4672d823584ea881e4da959c4023ec`.
+This supersedes the pending recheck above without inferring separate execution
+of every proposed test. No new function credit, commit or push is authorized.

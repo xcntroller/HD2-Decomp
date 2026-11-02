@@ -144,9 +144,10 @@ Original object ABI is tracked separately from native menu delivery.
 - [x] Validate front-end shared dialog callers, reply/context lifetimes and cancellation.
   [Caller acceptance](analysis/menu-family-delivery.md#shared-dialogs).
   [Desktop accepted2026-11-02](analysis/dialog-callers-verification.md#desktop-acceptance--2026-11-02).
-- [ ] Finish supported Main actions, front-end traversal and explicit unavailable boundaries.
+- [x] Finish supported Main actions, front-end traversal and explicit unavailable boundaries.
   Single-player completion and verification are deferred to Phase 2.
-  [Main traversal boundary](analysis/menu-family-delivery.md#main-menu).
+  [Desktop accepted2026-11-02](analysis/main-traversal.md#desktop-acceptance--2026-11-02),
+  including the four Options hover/caption-click corrections.
 
 For each flow: evidence → readable source → build/audit → integrate → user desktop
 validation → tracker update → commit. Never enable dead actions or count placeholder
@@ -159,17 +160,25 @@ explicit UI/payload/ownership contracts.
 
 ## 4. Finish fidelity and replace remaining scaffolding
 
-- [ ] Verify layout, stacking, clipping, fonts/localization and resolutions.
+- [x] Verify layout, stacking, clipping, fonts/localization and resolutions.
+  [Desktop accepted2026-11-02](analysis/menu-fidelity.md#desktop-acceptance--2026-11-02),
+  including localization, team removal and widescreen corrections.
 - [ ] Verify held/repeat input, eligibility, focus, wheel/drag and modal cancellation.
 - [ ] Verify sound/music, preferences, failures and deterministic cleanup.
 - [ ] Audit host approximations and delegated engine/service calls against evidence.
 - [ ] Run Phase 1 menu traversal; record deferred flows and unavailable services.
 
-## 5. Final audit and test of all Phase 1 work, build binary, close this phase and do all prerequisite work for Phase 2
-- [ ] Verify with the user all routes and implementation of Phase 1 UI work.
-- [ ] Do a quick check against the original.
-- [ ] Build a standalone .exe with all current implementation.
-- [ ] PHASE2 START - Research Phase 2 Scope and create a complex plan in sections for delivery.
+## 5. Close Phase 1 and prepare Phase 2
+
+Consolidate the completed flows and fidelity checks from sections 3–4 before
+closing Phase 1. Keep source-only work, untested screens and deferred game/server
+dependencies explicit in the final acceptance record.
+
+- [ ] Audit Phase 1 behavior against original evidence; record differences and deferrals.
+- [ ] Package the current implementation as a standalone Windows executable with
+  documented asset/DLL requirements and launch instructions.
+- [ ] Research Phase 2 dependencies and replace its outline with a detailed,
+  sectioned delivery plan, including evidence and verification gates.
 
 # Phase 2 — Load a level and deliver game-dependent flows
 

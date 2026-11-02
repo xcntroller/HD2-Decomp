@@ -1,0 +1,55 @@
+{
+  "scope": "Original binding-row focus and target-independent click evidence for the 2026-11-02 Options corrections. Widget focus contracts remain in menu-options-widget-map.json. Native rendering/capture adapters are corrections, with no new function credit or desktop acceptance.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "sources": [
+    "recovered/host/menu_options_widget.h",
+    "recovered/host/options_menu.h"
+  ],
+  "instruction_anchors": [
+    {
+      "address": "0064ea28",
+      "hex": "8b4e78578b01ff5030",
+      "meaning": "Row focus forwards to the editable value child at +78"
+    },
+    {
+      "address": "0064ea31",
+      "hex": "8b4e74578b11ff5230",
+      "meaning": "Row focus also calls the static caption child at +74; its base focus method emits a tag without whitening text"
+    },
+    {
+      "address": "0064eb90",
+      "hex": "8b01ff6038",
+      "meaning": "Row click tail-calls its activation method without filtering the picked child target"
+    },
+    {
+      "address": "0064ebbb",
+      "hex": "8b4e788b01ff502884c00f85c3000000",
+      "meaning": "Row activation checks the editable value child's active state"
+    },
+    {
+      "address": "0064ebcb",
+      "hex": "8b4e788b44242c508b11ff5238",
+      "meaning": "Inactive row activation forwards the argument to the editable child"
+    }
+  ],
+  "vtables": [
+    {
+      "address": "00815010",
+      "targets": ["0064ea20", "0064ea50", "0064eba0"]
+    },
+    {
+      "address": "0081503c",
+      "targets": ["0064eb90"]
+    },
+    {
+      "address": "00813cf0",
+      "targets": ["0064da60"]
+    }
+  ],
+  "direct_calls": [],
+  "resource_anchors": []
+}

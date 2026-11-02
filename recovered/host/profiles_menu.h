@@ -363,7 +363,7 @@ class ProfileRecords final : public MenuControl {
     std::size_t rows() {
         const auto r = text_.rectangle(true);
         return std::max<std::size_t>(
-            1, static_cast<std::size_t>(std::max(0.f, std::floor((r.bottom - r.top) / 24.f))));
+            1, static_cast<std::size_t>(std::max(0.f, std::floor((r.bottom - r.top) / static_cast<float>(menu_line_height(.04f))))));
     }
     std::size_t maximum() {
         return text_.object().records().size() > rows() ? text_.object().records().size() - rows() : 0;
@@ -388,8 +388,8 @@ class ProfileRecords final : public MenuControl {
             static_cast<std::size_t>(text_.selected_record) >= text_.record_offset &&
             static_cast<std::size_t>(text_.selected_record) - text_.record_offset < rows()) {
             const auto r = text_.rectangle(true);
-            const float y = r.top + (text_.selected_record - text_.record_offset) * 24.f + 12.f;
-            center = std::array<float, 2>{(r.left + r.right) / 1600.f, -y / 800.f};
+            const float y = r.top + (text_.selected_record - text_.record_offset) * menu_line_height(.04f) + menu_line_height(.04f)*.5f;
+            center = std::array<float, 2>{(r.left + r.right) / (2.f*menu_width()), -y * .75f / menu_height()};
         }
         scene_.position_record_selector(module_, selector_, center);
     }
@@ -400,7 +400,7 @@ class ProfileRecords final : public MenuControl {
             text_.hovered_record = -1;
             return;
         }
-        const int i = static_cast<int>(text_.record_offset + (p.y() - r.top) / 24.f);
+        const int i = static_cast<int>(text_.record_offset + (p.y() - r.top) / static_cast<float>(menu_line_height(.04f)));
         text_.hovered_record = valid(i) ? i : -1;
     }
     void emit(unsigned tag) {

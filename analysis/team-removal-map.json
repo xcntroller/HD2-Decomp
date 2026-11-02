@@ -1,0 +1,49 @@
+{
+  "scope": "2026-11-02 squad removal/selection and bounded widescreen camera correction. Original bodies are inspected read-only; the menu aspect override and first-picker-after-every-removal policy are native host delivery choices, with no new function credit.",
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {"address": "00694900", "hex": "8b475c8986b4010000", "meaning": "006948D0 reads the selected image's user-data human index"},
+      {"address": "00694909", "hex": "39aeb40100000f84b5010000", "meaning": "006948D0 declines the -1 selected sentinel before updating labels/outline"},
+      {"address": "0069491c", "hex": "39aeb40100000f84a2010000", "meaning": "Selection is checked again after00695E50 refresh"},
+      {"address": "0080f518", "hex": "0000003f", "meaning": "Original00693C10 transfer divider is normalized X=.5"}
+    ],
+    "vtables": [],
+    "direct_calls": [{"site": "00694917", "target": "00695e50"}],
+    "resource_anchors": []
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {"address": "1000988f", "hex": "ff5118", "meaning": "Camera constructor reads graphics render width"},
+      {"address": "100098a6", "hex": "ff521c", "meaning": "Camera constructor reads graphics render height"},
+      {"address": "100098bf", "hex": "d87c2410", "meaning": "Constructor divides saved width by height"},
+      {"address": "10009916", "hex": "d99b38010000", "meaning": "Camera stores physical render aspect at +138"},
+      {"address": "1000a03a", "hex": "8a813c010000d9993801000084c07505", "meaning": "Aspect setter stores +138; orthographic mode skips its immediate matrix rebuild"},
+      {"address": "10009b7b", "hex": "d98238010000d88a40010000d99aa4010000", "meaning": "Orthographic Y scale is aspect(+138) multiplied by extent(+140)"}
+    ],
+    "vtables": [
+      {"address": "1009bdf4", "targets": ["10009fb0", "10009ff0", "1000a010"]}
+    ],
+    "direct_calls": [
+      {"site": "10009ffe", "target": "10009b30"},
+      {"site": "10009fd9", "target": "10009b30"}
+    ],
+    "resource_anchors": []
+  },
+  "existing_exports": [
+    "analysis/work/single-pipeline-screen-callers-20261031/006948d0.c",
+    "analysis/work/single-pipeline-screen-callers-20261031/00693c10.c",
+    "analysis/work/single-pipeline-squad-policy-20261031/00694c40.c",
+    "analysis/work/single-pipeline-squad-policy-20261031/006953b0.c",
+    "analysis/work/single-pipeline-item-core-20261031/00694ae0.c"
+  ]
+}

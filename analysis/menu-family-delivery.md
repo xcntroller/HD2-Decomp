@@ -1,6 +1,6 @@
 # Menu family delivery checklists
 
-The inventory planning checkpoint is **source-only**. Current family acceptance is recorded below; 19 delivery
+The inventory planning checkpoint is **source-only**. Current family acceptance is recorded below; 18 delivery
 items remain open, including the explicitly deferred server-dependent Phase3 work. The [coverage catalog](menu-family-delivery.json) maps
 all 28 populated owner-scoped roles, twelve shared/auxiliary products, 71 routes,
 512 control sites, thirteen dynamic categories and 20 prompt-helper sites.
@@ -54,7 +54,10 @@ Primary numbered roles: `main:1`.
   Desktop: Verify labels and eligibility on entry, profile change and absent/valid last-save cases; preserve pointer/keyboard Exit.
   Failures/limits: Absent/malformed data follows original disable/error policy; unsupported destinations stay unavailable.
 
-- [ ] **main.traversal — Verify the nine Main actions and front-end returns.**
+- [x] **main.traversal — Verify the nine Main actions and front-end returns.**
+  [Desktop accepted2026-11-02](main-traversal.md#desktop-acceptance--2026-11-02),
+  including four Options hover/caption-click corrections. Deferred single-player,
+  game-save and ready-server boundaries remain unchanged.
   Evidence: `00623DD0`, `00626B20`, `0066C950`.
   Requires: delivered Phase 1 destinations and explicit unavailable boundaries. After: `main.labels`, `media.cinematics`, `options.full`, `profiles.manage`, `multi.browser`, `media.credits`.
   Native: Audit the original event order and each exact target ID; maintain root Back/Exit modal semantics.

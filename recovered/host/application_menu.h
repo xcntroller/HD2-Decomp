@@ -35,8 +35,6 @@ class ApplicationMenu {
     void initialize(std::function<void()> quit, std::function<void(std::uint32_t)> select_state) {
         if (scene_)
             throw std::logic_error("Frontend initialized twice");
-        if (!frontend::startup_case_equal(startup_.language(), "english"))
-            throw std::logic_error("The current compiled menu font renderer supports English/800x600");
         quit_ = std::move(quit);
         select_state_ = std::move(select_state);
         frontend::load_menu_content(driver_, 10, [&] {
@@ -113,7 +111,7 @@ class ApplicationMenu {
                 products_.screen(i).controls().bind_pick_targets();
         });
         keyboard_context_.emplace(*this);
-        const auto moved = [this](float x, float y) { scene_->update_input_cursor(x, y, 800, 600); };
+        const auto moved = [this](float x, float y) { scene_->update_input_cursor(x, y, menu_width(), menu_height()); };
         const auto click = [this] { scene_->request_click_sound(); };
         pointer_input_.emplace(
             input_, events_->common_state(), [this]() -> MenuFocus & { return current_product().focus(); },
@@ -123,7 +121,7 @@ class ApplicationMenu {
         const auto &position = startup_.menu_cursor();
         keyboard_.set_pointer_position(static_cast<int>(position[0]), static_cast<int>(position[1]));
         point_ = CursorPoint{position[0], position[1]};
-        input_.pointer.cursor().initialize(point_->x, point_->y, 800, 600);
+        input_.pointer.cursor().initialize(point_->x, point_->y, menu_width(), menu_height());
         input_.previous_point = point_;
         input_.armed = true;
         moved(point_->x, point_->y);
@@ -433,10 +431,10 @@ class ApplicationMenu {
         const bool confirmation = identifier == 0x10000000;
         auto &focus = current_product().focus();
         const auto picked =
-            identifier == 0 ? scene_->pick_model(module_, point.x, point.y, 800, 600,
+            identifier == 0 ? scene_->pick_model(module_, point.x, point.y, menu_width(), menu_height(),
                                                  scene_->runtime_confirmation_frame())
-            : confirmation  ? scene_->pick_confirmation(module_, point.x, point.y, 800, 600)
-                : scene_->pick_model(module_,point.x,point.y,800,600,current_product().model_frame());
+            : confirmation  ? scene_->pick_confirmation(module_, point.x, point.y, menu_width(), menu_height())
+                : scene_->pick_model(module_,point.x,point.y,menu_width(), menu_height(),current_product().model_frame());
         return (confirmation || identifier == 0)
                    ? focus.target_for_control(std::max(0, focus.interactive_control_for_target(picked)))
                    : focus.interactive_target(picked);

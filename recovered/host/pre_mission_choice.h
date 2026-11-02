@@ -137,14 +137,14 @@ class PreMissionChoice final : public MenuControl {
         if (!expanded_) return;
         const CursorPoint point{x,y};
         if (overlay_rectangle().contains(point) || lookup_(definition_.identifier|2u)->rectangle(false).contains(point)) return;
-        const auto arrow=menu_rectangle(scene_.label_bounds("cbdown*","normal*",module_,false,frame_),800,600);
-        if (arrow.contains(point) || scene_.pick_model(module_,x,y,800,600,list_frame_)) return;
+        const auto arrow=menu_rectangle(scene_.label_bounds("cbdown*","normal*",module_,false,frame_),menu_width(), menu_height());
+        if (arrow.contains(point) || scene_.pick_model(module_,x,y,menu_width(), menu_height(),list_frame_)) return;
         show_list(false);
     }
     const frontend::MenuControlDefinition& overlay_definition() const { return definition_.children.at(1); }
     MenuRectangle overlay_rectangle() const { return lookup_(definition_.identifier | 0x1008)->rectangle(false); }
     unsigned pick_overlay(float x,float y) const {
-        const auto target=scene_.pick_model(module_,x,y,800,600,list_frame_);
+        const auto target=scene_.pick_model(module_,x,y,menu_width(), menu_height(),list_frame_);
         return target?target:definition_.identifier|0x1008;
     }
     bool disabled() const override { return properties_.disabled != 0; }

@@ -3,6 +3,22 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
+Latest checkpoint (2026-11-02): [Main traversal](analysis/main-traversal.md#desktop-acceptance--2026-11-02)
+and the four Options corrections are user-accepted. The next fidelity checkbox
+now includes the user's requested resolution/language expansion. Original
+Set1/2/3 thresholds, ANSI/CE selection, dynamic render/input coordinates and
+translated clipping are integrated/native-audited and desktop-accepted2026-11-02.
+[Presentation contract, evidence, coverage and limits](analysis/menu-fidelity.md).
+Localization is now user-confirmed; the missing unfinished Japanese translation
+is expected per the user. [Team-removal and widescreen follow-up](analysis/team-removal.md)
+guards empty/stale portrait callbacks, selects the first picker after removal,
+uses a resolution-dependent drop divider and aligns the menu camera's aspect
+with the authored text/picking plane. Strict builds/native regressions,158 Python
+tests, temporary sanitizer and static original-engine/client audits pass;
+the user now confirms all fixes work and requests recording completion, commit
+and continuation. No new function credit; held/repeat input, eligibility,
+focus, wheel/drag and modal cancellation is the next checkbox. See HANDOFF.
+
 Current work (2026-11-01): [full Single Player pre-mission pipeline](analysis/singleplayer-pipeline.md)
 is integrated and awaiting desktop acceptance. Main acceptance committed as `446cc90`. The user requests
 all pre-mission screens and explicitly ends this checkbox at validated mission/

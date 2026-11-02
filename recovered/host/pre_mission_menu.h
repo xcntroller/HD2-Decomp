@@ -111,14 +111,14 @@ class PreMissionMenu {
         pointer_.emplace(
             input_, queue_->common_state(), [this]() -> MenuFocus & { return current().focus(); },
             [this](MenuFocus &, const CursorPoint &point) { return pick(point); },
-            [this](float x, float y) { scene_->update_input_cursor(x, y, 800, 600); },
+            [this](float x, float y) { scene_->update_input_cursor(x, y, menu_width(), menu_height()); },
             [this] { scene_->request_click_sound(); });
         const auto &position = startup_.menu_cursor();
         keyboard_.set_pointer_position(static_cast<int>(position[0]), static_cast<int>(position[1]));
-        input_.pointer.cursor().initialize(position[0], position[1], 800, 600);
+        input_.pointer.cursor().initialize(position[0], position[1], menu_width(), menu_height());
         input_.previous_point = CursorPoint{position[0], position[1]};
         input_.armed = true;
-        scene_->update_input_cursor(position[0], position[1], 800, 600);
+        scene_->update_input_cursor(position[0], position[1], menu_width(), menu_height());
         if (startup_.sound_available())
             scene_->load_click_sound(module_);
     }
@@ -387,7 +387,7 @@ class PreMissionMenu {
     }
     unsigned pick(const CursorPoint &point) {
         auto &screen = current();
-        const auto target = scene_->pick_model(module_, point.x, point.y, 800, 600, screen.model_frame());
+        const auto target = scene_->pick_model(module_, point.x, point.y, menu_width(), menu_height(), screen.model_frame());
         const auto id = screen.definition().identifier;
         return id == 0 || id == 0x10000000 ? screen.focus().target_for_control(std::max(
                                                  0, screen.focus().interactive_control_for_target(target)))

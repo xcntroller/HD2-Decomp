@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Frontend shared-dialog callers desktop accepted2026-11-02; reachable multiplayer frontend accepted2026-11-01; server-dependent UI deferred untested to Phase3; 19 delivery items open",
+  "status": "Main traversal and Options corrections desktop accepted2026-11-02; game/server-dependent gates deferred; 18 delivery items open",
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
@@ -49,7 +49,8 @@
         {
           "key": "main.traversal",
           "title": "Verify the nine Main actions and front-end returns",
-          "status": "open",
+          "status": "complete",
+          "implementation": "analysis/main-traversal.md; desktop accepted2026-11-02 including all four Options hover/caption-click corrections.",
           "roles": [
             "main:1"
           ],
@@ -74,7 +75,14 @@
           "desktop_validation": "Exercise available Phase 1 routes and explicit unavailable boundaries, including focus/visibility on return. Single-player completion and desktop verification are Phase 2.",
           "failure_acceptance": "Game-dependent and deferred single-player success are Phase 2; a successful empty service cannot represent an unavailable destination.",
           "delivery_phase": 1,
-          "phase_scope": "Phase 1 covers front-end callers and explicit unavailable boundaries; actual running-game variants and receivers are Phase 2."
+          "phase_scope": "Phase 1 covers front-end callers and explicit unavailable boundaries; actual running-game variants and receivers are Phase 2.",
+          "desktop_acceptance": {
+            "date": "2026-11-02",
+            "performed_by": "user",
+            "confirmation": "All good. Record the checkbox complete and continue",
+            "application_sha256": "e419f29892794b3cf1eaa57e38ceddfead4672d823584ea881e4da959c4023ec",
+            "scope": "Available frontend Main traversal and four Options corrections; no individual-case execution inferred. Deferred single-player/game/save/server gates unchanged."
+          }
         }
       ]
     },

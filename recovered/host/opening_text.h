@@ -15,10 +15,8 @@ class OpeningText {
 public:
     OpeningText(Graphics* graphics, HMODULE module, frontend::OpeningTextStyles& styles)
         : graphics_(graphics), styles_(styles), atlas_(nullptr, nullptr),
-          metrics_(decode_font_metrics(read_menu_text_file("MenuText\\SMALL.tbl"))),
+          metrics_(decode_font_metrics(read_menu_text_file(menu_font_metrics_path("SMALL").c_str()))),
           rectangle_(opening_text_rectangle(graphics->methods->width(graphics), graphics->methods->height(graphics))) {
-        if (graphics->methods->width(graphics) != 800 || graphics->methods->height(graphics) != 600)
-            throw std::logic_error("Opening subtitle rendering requires English800x600");
         object_.inset = 10;
         const auto base = reinterpret_cast<std::uintptr_t>(module);
         unsigned char anchor[]{0xa1, 0, 0, 0, 0};
@@ -29,7 +27,8 @@ public:
         std::memcpy(&device_, reinterpret_cast<const void*>(base + 0xd216c), sizeof(device_));
         if (!device_) throw std::runtime_error("Missing opening text device");
         EngineFrame* texture = nullptr;
-        const auto status = graphics_->methods->load_texture(graphics_, "HD2_MENU_SMALL.TGA", nullptr, 0x402, &texture);
+        const auto texture_name=menu_font_texture("SMALL");
+        const auto status = graphics_->methods->load_texture(graphics_, texture_name.c_str(), nullptr, 0x402, &texture);
         // Adopt any returned resource before checking the call status.
         if (texture) atlas_ = MenuDriver::Owner(texture,
             scene_method<MenuDriver::Release>(texture, module, 0, 0x73760));
@@ -55,7 +54,7 @@ public:
         const auto* previous = graphics_->methods->viewport(graphics_);
         if (!previous) throw std::runtime_error("Missing opening text viewport");
         const auto saved = *previous;
-        const CursorViewport full{0, 0, 800, 600, 0, 1};
+        const CursorViewport full{0, 0, static_cast<unsigned>(menu_width()),static_cast<unsigned>(menu_height()), 0, 1};
         try {
             check_overlay_status(graphics_->methods->set_viewport(graphics_, &full), "Set opening text viewport");
             if (!graphics_->methods->bind_texture(graphics_, atlas_.get(), 0))
@@ -75,7 +74,7 @@ public:
     }
 private:
     std::vector<CursorVertex> vertices(const frontend::TextObject& object) const {
-        return opening_subtitle_vertices(object, metrics_, rectangle_, styles_.get(8), 800, 600);
+        return opening_subtitle_vertices(object, metrics_, rectangle_, styles_.get(8), menu_width(), menu_height());
     }
     Graphics* graphics_;
     frontend::OpeningTextStyles& styles_;

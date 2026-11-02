@@ -68,8 +68,8 @@ class PreMissionDescription {
         if (show) {
             const auto &cursor = input.pointer.cursor();
             const auto position = scene_.frame_world_position(module_, background_);
-            scene_.position_menu_model(module_, background_, cursor.x() / 800.f + .15f,
-                                       -cursor.y() / 800.f + .015f, position[2]);
+            scene_.position_menu_model(module_, background_, cursor.x() / menu_width() + .15f,
+                                       -cursor.y() * .75f / menu_height() + .015f, position[2]);
             scene_.update_screen_frame(module_, background_);
             text_->invalidate_bounds();
             text_->layout_text_on_frame();

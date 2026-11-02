@@ -9,10 +9,10 @@ class CreditsText {
 public:
     CreditsText(Graphics* graphics,HMODULE module,const frontend::CreditsDocument& document)
         : graphics_(graphics),fonts_{{
-            decode_font_metrics(read_menu_text_file("MenuText\\BIG.tbl")),
-            decode_font_metrics(read_menu_text_file("MenuText\\SMALL.tbl")),
-            decode_font_metrics(read_menu_text_file("Text\\Fonts\\CE\\Set2\\BIG.tbl")),
-            decode_font_metrics(read_menu_text_file("Text\\Fonts\\CE\\Set2\\SMALL.tbl"))}},
+            decode_font_metrics(read_menu_text_file(menu_font_metrics_path("BIG").c_str())),
+            decode_font_metrics(read_menu_text_file(menu_font_metrics_path("SMALL").c_str())),
+            decode_font_metrics(read_menu_text_file(menu_font_metrics_path("BIG",true).c_str())),
+            decode_font_metrics(read_menu_text_file(menu_font_metrics_path("SMALL",true).c_str()))}},
           layout_(document,fonts_,graphics->methods->width(graphics),graphics->methods->height(graphics)) {
         const auto base=reinterpret_cast<std::uintptr_t>(module);
         unsigned char anchor[]{0xa1,0,0,0,0};const auto address=static_cast<std::uint32_t>(base+0xd216c);
@@ -21,10 +21,11 @@ public:
             throw std::runtime_error("Unsupported Credits device-state bridge");
         std::memcpy(&device_,reinterpret_cast<const void*>(base+0xd216c),sizeof(device_));
         if(!device_)throw std::runtime_error("Missing Credits device");
-        const std::array<const char*,4> names{{"HD2_MENU_BIG.TGA","HD2_MENU_SMALL.TGA","HD2_CREDITS_CE_BIG.TGA","HD2_CREDITS_CE_SMALL.TGA"}};
+        const std::array<std::string,4> names{{menu_font_texture("BIG"),menu_font_texture("SMALL"),
+            menu_font_texture("BIG",true),menu_font_texture("SMALL",true)}};
         for(std::size_t i=0;i<names.size();++i) {
             EngineFrame* texture=nullptr;
-            const auto status=graphics->methods->load_texture(graphics,names[i],nullptr,0x402,&texture);
+            const auto status=graphics->methods->load_texture(graphics,names[i].c_str(),nullptr,0x402,&texture);
             if(texture) atlases_[i]=MenuDriver::Owner(texture,scene_method<MenuDriver::Release>(texture,module,0,0x73760));
             check_overlay_status(status,"Load Credits atlas");
             if(!atlases_[i])throw std::runtime_error("Null Credits atlas");

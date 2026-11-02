@@ -26,8 +26,10 @@ static_assert(offsetof(GraphicsSettings32, color_bits) == 0x28);
 static_assert(offsetof(GraphicsSettings32, flags) == 0x2c);
 static_assert(offsetof(GraphicsSettings32, opaque_callback) == 0x34);
 
-inline GraphicsSettings32 windowed_settings(std::uint32_t instance) {
-    return {instance, 0, 50, 50, 800, 600, 0, 0, 800, 600, 32, 0, 0, 0x80, 0, 0};
+inline GraphicsSettings32 windowed_settings(std::uint32_t instance,int width=800,int height=600) {
+    if (width<=0 || height<=0 || width>16384 || height>16384)
+        throw std::invalid_argument("Invalid windowed render dimensions");
+    return {instance, 0, 50, 50, width, height, 0, 0, width, height, 32, 0, 0, 0x80, 0, 0};
 }
 
 inline std::uint32_t parse_frame_limit(std::wstring_view text) {

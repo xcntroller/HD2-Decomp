@@ -580,7 +580,7 @@ class PreMissionEquipmentMenu {
             return true;
         const auto &cursor = self.context_->input.pointer.cursor();
         const unsigned target =
-            self.scene_.pick_model(self.module_, cursor.x(), cursor.y(), 800, 600, self.model_);
+            self.scene_.pick_model(self.module_, cursor.x(), cursor.y(), menu_width(), menu_height(), self.model_);
         if ((self.drag_source_ & 0x03f00000) == 0x00400000 && (target & 0x03f00000) == 0x00100000) {
             const unsigned mask = self.inventory_mask(target);
             if (mask)

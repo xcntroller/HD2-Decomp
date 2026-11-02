@@ -97,8 +97,8 @@ public:
         return {field<float>(frame,0x10),field<float>(frame,0x14),field<float>(frame,0x20),field<float>(frame,0x24)};
     }
     void position(Frame frame,const std::array<float,3>& value) { using Set=void (WINAPI *)(Frame,const float*); scene_method<Set>(frame,module_,8,0x1c9f0)(frame,value.data()); }
-    std::array<float,3> pointer() const { const auto& cursor=context_.input.pointer.cursor(); return frontend::cursor_frame_position(cursor.x(),cursor.y(),800,600); }
-    std::array<float,3> motion() const { const auto& cursor=context_.input.pointer.cursor(); return frontend::cursor_frame_position(cursor.horizontal(),cursor.vertical(),800,600); }
+    std::array<float,3> pointer() const { const auto& cursor=context_.input.pointer.cursor(); return frontend::cursor_frame_position(cursor.x(),cursor.y(),menu_width(), menu_height()); }
+    std::array<float,3> motion() const { const auto& cursor=context_.input.pointer.cursor(); return frontend::cursor_frame_position(cursor.horizontal(),cursor.vertical(),menu_width(), menu_height()); }
     std::uint32_t idle() const { return context_.input.pointer.idle(); }
     bool held() const { return context_.input.pointer.buttons().currently_selected(0); }
     bool parent_disabled() const { return parent_disabled_ && parent_disabled_(); }
@@ -119,7 +119,15 @@ public:
     void set_localized(std::uint32_t id,std::uint32_t style,std::int32_t index) { text_.set_localized(id,style,index); }
     void append_localized(std::uint32_t id,std::uint32_t style) { text_.append_localized(id,style); }
     void layout_text_on_frame() { text_.layout_text_on_frame(); }
-    void text_focus(bool value) { auto& object=text_.object(); if (value) { if (!object.selection_active && !object.records().empty()) object.hovered_record=0; } else object.clear_hover_selection(); }
+    void text_focus(bool value) {
+        auto& object=text_.object();
+        if (value) {
+            if (!object.selection_active && !object.records().empty()) object.hovered_record=0;
+        } else object.clear_hover_selection();
+        //00654840/0064F960 focus record zero; the host renderer consumes this
+        // attached-text flag separately from the original record-focus state.
+        text_.highlighted(object.hovered_record==0);
+    }
     bool dispatch_immediate(frontend::ControlEvent& event) { context_.queue.dispatch_immediate(event); return true; }
     std::function<void()> subscribe(std::uint32_t token,std::function<void(std::uint32_t)> callback) { return context_.subscribe(token,std::move(callback)); }
 private:

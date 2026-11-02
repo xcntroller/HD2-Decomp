@@ -42,7 +42,8 @@ public:
         graphics_ = getter();
         verify();
         const auto settings = host::windowed_settings(
-            static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr))));
+            static_cast<std::uint32_t>(reinterpret_cast<std::uintptr_t>(GetModuleHandleW(nullptr))),
+            host::menu_width(),host::menu_height());
         const auto result = graphics_->methods->initialize(graphics_, &settings);
         if (result < 0 || !graphics_->methods->initialized(graphics_) || !IsWindow(window())) {
             graphics_->methods->close(graphics_);
@@ -467,16 +468,22 @@ struct LaunchOwners {
     }
 };
 
-int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit) {
+int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int width,int height,const std::string& language) {
+    host::MenuPresentationSession presentation(width,height);
     LaunchOwners owners(module, rw);
     frontend::CleanupErrors errors;
     try {
-        auto& startup = owners.startup.emplace(module, rw, joy); // game.cfg before graphics.
+        auto& startup = owners.startup.emplace(module, rw, joy,language); // game.cfg before graphics.
         startup.before_devices();
         auto& graphics = owners.graphics.emplace(module);
         owners.sound.emplace(module, graphics.window());
         auto& driver = owners.driver.emplace(module);
         startup.setup_devices();
+        presentation.language(startup.language(),startup.wide_characters());
+        if (!startup.text().count(2101))
+            throw std::runtime_error("Selected language has no installed Main menu translation: "+startup.language());
+        std::printf("Menu presentation: %dx%d language=%s font=%s/Set%u\n",host::menu_width(),host::menu_height(),
+            startup.language().c_str(),host::menu_presentation().font_family().c_str(),host::menu_presentation().font_set());
         auto& hook = owners.hook.emplace(graphics.window());
         SetWindowTextW(graphics.window(), L"HD2 recovered controller - opening / Main / Exit");
         auto& keyboard = owners.keyboard.emplace(startup.graphics(), module);
@@ -522,12 +529,36 @@ int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit) {
 } // namespace
 
 int wmain(int argc, wchar_t** argv) {
-    if (argc != 4 || std::wstring_view(argv[2]) != L"--frames") {
+    if (argc < 4 || std::wstring_view(argv[2]) != L"--frames" || argc%2!=0) {
         std::fputs("Use tools/run_application_launch.py for the isolated rebuilt launch.\n", stderr);
         return 2;
     }
     try {
         const auto limit = hd2::host::parse_frame_limit(argv[3]);
+        int width=800,height=600;
+        std::string language;
+        bool have_width=false,have_height=false,have_language=false;
+        for (int index=4;index<argc;index+=2) {
+            const std::wstring_view option(argv[index]);
+            if (option==L"--width" && !have_width) {
+                const auto value=host::parse_frame_limit(argv[index+1]);
+                if(value>16384)throw std::invalid_argument("Render width exceeds limit");
+                width=static_cast<int>(value);have_width=true;
+            } else if (option==L"--height" && !have_height) {
+                const auto value=host::parse_frame_limit(argv[index+1]);
+                if(value>16384)throw std::invalid_argument("Render height exceeds limit");
+                height=static_cast<int>(value);have_height=true;
+            } else if (option==L"--language" && !have_language) {
+                for (const auto character:std::wstring_view(argv[index+1])) {
+                    if (!((character>=L'A'&&character<=L'Z') || (character>=L'a'&&character<=L'z')))
+                        throw std::invalid_argument("Language must name an installed translation directory");
+                    language+=static_cast<char>(character);
+                }
+                if(language.empty()||language.size()>64)throw std::invalid_argument("Invalid language name");
+                have_language=true;
+            } else throw std::invalid_argument("Unknown or repeated launch option");
+        }
+        host::validate_menu_dimensions(width,height);
         wchar_t filename[32768];
         const auto length = GetModuleFileNameW(nullptr, filename, 32768);
         if (!length || length >= 32768) throw std::runtime_error("Launch executable path unavailable");
@@ -547,7 +578,7 @@ int wmain(int argc, wchar_t** argv) {
         Module joy((engine_path.substr(0, engine_path.find_last_of(L"\\/")) + L"\\IJoy.dll").c_str());
         if (FAILED(CoInitializeEx(nullptr, COINIT_MULTITHREADED))) throw std::runtime_error("Launch COM initialization failed");
         struct Com { ~Com() { CoUninitialize(); } } com;
-        return launch(engine.value, rw, joy.value, limit);
+        return launch(engine.value, rw, joy.value, limit,width,height,language);
     } catch (const std::exception& error) {
         std::fprintf(stderr, "Controller launch failed: %s\n", error.what());
         return 1;

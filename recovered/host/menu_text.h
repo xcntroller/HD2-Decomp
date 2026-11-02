@@ -130,8 +130,8 @@ public:
              bool confirmation_enabled = false, bool runtime_confirmation_enabled = false,
              const frontend::LocalizedTextCache* localized = nullptr, bool seed_definitions = true)
         : graphics_(graphics), localized_(localized), big_(nullptr, nullptr), small_(nullptr, nullptr),
-          big_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\BIG.tbl"))),
-          small_metrics_(decode_font_metrics(read_menu_text_file("MenuText\\SMALL.tbl"))),
+          big_metrics_(decode_font_metrics(read_menu_text_file(menu_font_metrics_path("BIG").c_str()))),
+          small_metrics_(decode_font_metrics(read_menu_text_file(menu_font_metrics_path("SMALL").c_str()))),
           labels_((localized || !seed_definitions) ? std::map<std::uint32_t, std::string>{} :
                   decode_menu_labels(read_menu_text_file("MenuText\\labels.bin"))) {
         std::set<std::uint32_t> required;
@@ -151,9 +151,9 @@ public:
         for (const auto id : required) if (labels_.find(id) == labels_.end()) {
             throw std::runtime_error("Missing original control caption");
         }
-        if (graphics_->methods->width(graphics_) != 800 ||
-                graphics_->methods->height(graphics_) != 600) {
-            throw std::runtime_error("The static Set2 menu-text slice requires 800x600");
+        if (graphics_->methods->width(graphics_) != menu_width() ||
+                graphics_->methods->height(graphics_) != menu_height()) {
+            throw std::runtime_error("Menu text dimensions do not match the active render surface");
         }
         const auto base = reinterpret_cast<std::uintptr_t>(module);
         // Borrow the device loaded by the verified IGraph::BeginScene instruction.
@@ -166,8 +166,8 @@ public:
         }
         std::memcpy(&device_, reinterpret_cast<const void*>(base + 0xd216c), sizeof(device_));
         if (device_ == nullptr) throw std::runtime_error("Engine Direct3D device is null");
-        big_ = load_atlas("HD2_MENU_BIG.TGA", module);
-        small_ = load_atlas("HD2_MENU_SMALL.TGA", module);
+        big_ = load_atlas(menu_font_texture("BIG").c_str(), module);
+        small_ = load_atlas(menu_font_texture("SMALL").c_str(), module);
         symbols_metrics_ = decode_font_metrics(read_menu_text_file("MenuText\\SYMBOLS.tbl"));
         symbols_ = load_atlas("HD2_MENU_SYMBOLS.TGA", module);
         if (seed_definitions) {
@@ -271,7 +271,7 @@ private:
                                                     : entry.role == frontend::MenuControlRole::exit && exit_hover;
             if (attached->column_rows) {
                 auto records=menu_column_submissions(*attached->column_rows,attached->rectangle(true),
-                    attached->record_offset,attached->column_line_height,big_metrics_,small_metrics_,symbols_metrics_);
+                    attached->record_offset,menu_design_height(attached->column_line_height),big_metrics_,small_metrics_,symbols_metrics_);
                 for (auto& record:records) submissions.push_back(std::move(record));
                 continue;
             }
@@ -285,7 +285,12 @@ private:
             if (!submission) submission = menu_text_submission(object, [&] { return attached->bounds(); },
                 button, attached->available(), hovered || attached->highlighted() || (button && object.word_94==0xffffffffu), big_metrics_, small_metrics_, attached->record_offset);
             if (submission) {
-                if (attached->editable_viewport) clip_menu_rectangle(*submission,attached->rectangle(true));
+                auto viewport=attached->rectangle(true);
+                //00648860 clips glyph UVs at the text viewport. Preserve the
+                // style10 first-row leading offset when bounding its baseline.
+                if (!object.records().empty() && object.records().front().style==10)
+                    viewport.bottom+=menu_line_height(.01f);
+                clip_menu_rectangle(*submission,viewport);
                 submissions.push_back(std::move(*submission));
             }
             if (!entry.children.empty()) collect_submissions(definition,entry.children,false,-1,submissions,omitted);
@@ -299,7 +304,7 @@ private:
     }
     void draw_submissions(const std::vector<MenuTextSubmission>& submissions) const {
         TextOverlayState state(device_);
-        const CursorViewport viewport{0, 0, 800, 600, 0, 1};
+        const CursorViewport viewport{0, 0, static_cast<unsigned>(menu_width()), static_cast<unsigned>(menu_height()), 0, 1};
         const auto* old = graphics_->methods->viewport(graphics_);
         if (old == nullptr) throw std::runtime_error("Engine viewport getter returned null");
         const auto old_viewport = *old;

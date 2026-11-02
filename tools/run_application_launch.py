@@ -16,6 +16,7 @@ from stage_opening_movies import OPENING_MOVIES, stage_opening_movies
 from stage_menu_text import _check_path
 from stage_credits_resources import stage_credits_resources
 from stage_cinematics_movies import stage_cinematics_movies
+from stage_menu_presentation import installed_menu_languages, stage_menu_presentation, validate_dimensions
 
 
 @contextmanager
@@ -144,6 +145,10 @@ def main() -> None:
     parser.add_argument("--steam-root", type=Path, default=steam)
     parser.add_argument("--proton", type=Path, default=steam / "steamapps/common/Proton - Experimental/proton")
     parser.add_argument("--frames", type=frame_count, default=0)
+    parser.add_argument("--width", type=int, default=800, help="Window/render width; selects the original font set")
+    parser.add_argument("--height", type=int, default=600, help="Window/render height")
+    parser.add_argument("--language", help="Installed byte-font language; installation registry is left unchanged")
+    parser.add_argument("--list-languages", action="store_true", help="List installed menu translations without staging or launching")
     parser.add_argument("--stage-only", action="store_true", help="Prepare resources and command without executing Windows code")
     parser.add_argument("--omit-movie", action="append", choices=OPENING_MOVIES, default=[],
                         help="Temporarily hide this staged movie during a desktop run; repeatable")
@@ -153,6 +158,17 @@ def main() -> None:
     if args.stage_only and (args.omit_movie or args.invalid_game_data):
         parser.error("Failure fixtures apply during a desktop run and cannot be combined with --stage-only")
     try:
+        languages=installed_menu_languages(args.game_dir)
+        if args.list_languages:
+            print("Installed menu languages: " + ", ".join(languages))
+            return
+        validate_dimensions(args.width,args.height)
+        selected = None
+        if args.language:
+            selected=next((name for name in languages if name.casefold()==args.language.casefold()),None)
+            if selected is None:
+                raise ValueError("Language lacks supported installed menu text/fonts: " + args.language +
+                                 "; available: " + ", ".join(languages))
         executable = stage_startup(args.game_dir, args.executable, args.work_dir, application_launch=True)
         run = executable.parent
         stage_menu_resources(args.game_dir, run, include_confirm=True,
@@ -160,11 +176,15 @@ def main() -> None:
         stage_menu_text(args.game_dir, run, include_confirm=True, include_control_text=True)
         stage_opening_movies(args.game_dir, run)
         stage_credits_resources(args.game_dir, run)
+        stage_menu_presentation(args.game_dir, run)
         movie_resources=stage_cinematics_movies(args.game_dir, run)
         if movie_resources["missing"]:
             print("Cinematics media absent from loose install: " + ", ".join(movie_resources["missing"]))
         launch = prepare_launch(args.game_dir, executable, args.proton, args.steam_root,
                                 args.work_dir, args.frames, dict(os.environ))
+        launch.command.extend(["--width", str(args.width), "--height", str(args.height)])
+        if selected is not None:
+            launch.command.extend(["--language", selected])
         print("Controller launch command: " + shlex.join(launch.command))
         print("Runtime log: " + str(run / "host-runtime.log"))
         if not args.stage_only:

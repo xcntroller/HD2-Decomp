@@ -319,7 +319,7 @@ class PreMissionTeamMenu {
         queue_.enqueue({0x04900000,
                         0x01000015,
                         12,
-                        startup_.pre_mission().team().contains(selected_) ? 0xa62u : 0xa61u,
+                        human && startup_.pre_mission().team().contains(selected_) ? 0xa62u : 0xa61u,
                         0,
                         {}});
         // 00696740 hides all medals, then places only awarded IDs. When
@@ -357,13 +357,39 @@ class PreMissionTeamMenu {
                 selected_ = static_cast<int>(i);
                 refresh_selected();
                 position_selector(frames_[i].get());
+                if (start==0)
+                    queue_.enqueue({0x04101000,0x020000aa,0,0,0,{}}); // First picker entry must be visible.
                 return;
             }
+    }
+    int image_human(const PreMissionImage& image) const {
+        const int human=frontend::widget_signed_word(image.user_data());
+        if (!startup_.pre_mission_humans().record(human)) return -1;
+        const auto& team=startup_.pre_mission().team();
+        if (image.identifier() >= 0x04800000) {
+            const auto slot=(image.identifier()-0x04803000u)/0x3000u;
+            //006948D0 declines the empty-slot sentinel. Also reject a click
+            // following a transfer before its queued image data is refreshed.
+            if (slot>=team.slots().size() || team.slots()[slot].human!=human) return -1;
+        } else if (team.contains(human)) return -1;
+        return human;
+    }
+    void toggle_selected() {
+        auto& team=startup_.pre_mission().team();
+        const bool removing=selected_>=0 && team.contains(selected_);
+        if (!team.toggle(selected_,startup_.pre_mission_humans())) return;
+        scene_.set_screen_visible(module_,selector_,false);
+        refresh();
+        // Use00694AE0's first-roster-candidate selection after every removal,
+        // as requested. Later callbacks on the old slot must not replace it.
+        if (removing) select_candidate(0);
     }
     static bool select(void *owner, void *, void *sender, unsigned, unsigned) {
         auto &self = *static_cast<PreMissionTeamMenu *>(owner);
         auto &image = *static_cast<PreMissionImage *>(sender);
-        self.selected_ = frontend::widget_signed_word(image.user_data());
+        const int human=self.image_human(image);
+        if (human<0) return false;
+        self.selected_ = human;
         self.refresh_selected();
         self.position_selector(image.identifier() < 0x04800000
                                    ? self.frames_.at((image.identifier() - 0x04101010) / 16).get()
@@ -372,19 +398,17 @@ class PreMissionTeamMenu {
     }
     static bool double_click(void *owner, void *, void *sender, unsigned, unsigned) {
         auto &self = *static_cast<PreMissionTeamMenu *>(owner);
-        const auto human = frontend::widget_signed_word(static_cast<PreMissionImage *>(sender)->user_data());
-        if (human != self.selected_)
+        const auto human = self.image_human(*static_cast<PreMissionImage *>(sender));
+        if (human < 0 || human != self.selected_)
             return true;
-        self.startup_.pre_mission().team().toggle(human, self.startup_.pre_mission_humans());
-        self.scene_.set_screen_visible(self.module_, self.selector_, false);
-        self.refresh();
+        self.toggle_selected();
         return true;
     }
     static bool drag(void *owner, void *, void *sender, unsigned tag, unsigned) {
         auto &self = *static_cast<PreMissionTeamMenu *>(owner);
         auto &image = *static_cast<PreMissionImage *>(sender);
         if (tag == 0x0400a000) {
-            const int human = frontend::widget_signed_word(image.user_data());
+            const int human = self.image_human(image);
             if (human < 0)
                 return false;
             //006937F0 selects the source before creating the moving portrait.
@@ -395,7 +419,7 @@ class PreMissionTeamMenu {
                                ? self.slot_frames_.at((image.identifier() - 0x04803000) / 0x3000)
                                : self.frames_.at((image.identifier() - 0x04101010) / 16).get();
             const char* name=engine_frame_name(source);
-            self.drag_rectangle_=menu_rectangle(self.scene_.label_bounds(name,name,self.module_,false,source),800,600);
+            self.drag_rectangle_=menu_rectangle(self.scene_.label_bounds(name,name,self.module_,false,source),menu_width(), menu_height());
             //006937F0 makes a shallow visual copy, leaving selector children
             //and control IDs behind. The original source is hidden until drop.
             self.drag_frame_ = self.clone_.create_like(source);
@@ -426,21 +450,23 @@ class PreMissionTeamMenu {
             return false;
         const auto &cursor = self.context_->input.pointer.cursor();
         const unsigned target =
-            self.scene_.pick_model(self.module_, cursor.x(), cursor.y(), 800, 600, self.model_);
+            self.scene_.pick_model(self.module_, cursor.x(), cursor.y(), menu_width(), menu_height(), self.model_);
         auto &team = self.startup_.pre_mission().team();
-        bool reordered=false;
+        bool reordered=false,removed=false;
+        const float midpoint=menu_width()*.5f;
         //00693C10 uses normalized X=.5 for transfers between the two halves;
         // a squad control pick is needed only for swapping existing members.
-        if (self.drag_from_squad_ && (target & 0x03f00000u) == 0x00800000u) {
+        if (self.drag_from_squad_ && cursor.x()>midpoint &&
+                (target & 0x03f00000u) == 0x00800000u) {
             std::size_t source = 0;
             while (source < team.size() && team.slots()[source].human != human)
                 ++source;
             const auto destination = (target - 0x04801000u) / 0x3000u;
-            team.reorder(source, destination);
-            reordered=true;
-        } else if ((!self.drag_from_squad_ && cursor.x() >= 400.f) ||
-                   (self.drag_from_squad_ && cursor.x() <= 400.f)) {
-            team.toggle(human, self.startup_.pre_mission_humans());
+            reordered=team.reorder(source, destination);
+        } else if ((!self.drag_from_squad_ && cursor.x() >= midpoint) ||
+                   (self.drag_from_squad_ && cursor.x() <= midpoint)) {
+            const bool changed=team.toggle(human, self.startup_.pre_mission_humans());
+            removed=changed && self.drag_from_squad_;
         }
         //The outline returns at the source position, including after a roster
         //soldier enters the squad. Detach before refresh hides/removes that
@@ -452,6 +478,7 @@ class PreMissionTeamMenu {
         //Drop runs after0066BEA0's only queue drain. Commit the roster and
         //squad visuals together before rendering this frame.
         self.refresh(true);
+        if (removed) self.select_candidate(0);
         return true;
     }
     void move_drag() {
@@ -461,7 +488,7 @@ class PreMissionTeamMenu {
         //00693B60 adds cursor displacement to X/Y, but REPLACES Z with
         //0066A150's -1. Keeping the source depth puts the drag behind borders.
         const auto displacement = frontend::cursor_frame_position(
-            cursor.x() - drag_pointer_[0], cursor.y() - drag_pointer_[1], 800, 600);
+            cursor.x() - drag_pointer_[0], cursor.y() - drag_pointer_[1], menu_width(), menu_height());
         scene_.position_menu_model(module_, drag_frame_.get(),
                                    drag_position_[0] + displacement[0],
                                    drag_position_[1] + displacement[1], displacement[2]);
@@ -494,9 +521,7 @@ class PreMissionTeamMenu {
         auto &self = *static_cast<PreMissionTeamMenu *>(owner);
         const auto id = static_cast<ButtonVisualPair *>(sender)->identifier();
         if (id == 0x04900000) {
-            self.startup_.pre_mission().team().toggle(self.selected_, self.startup_.pre_mission_humans());
-            self.scene_.set_screen_visible(self.module_, self.selector_, false);
-            self.refresh();
+            self.toggle_selected();
         } else if (id == 0x04a00000) {
             self.startup_.pre_mission().auto_assign([&self] { return self.random_(); });
             self.refresh();
