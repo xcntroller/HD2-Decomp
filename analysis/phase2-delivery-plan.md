@@ -3,8 +3,9 @@
 Planning milestone,2026-11-03. User direction supersedes the exhaustive pre-Phase2
 gate: **postpone the standalone completion pass and finish functions alongside
 Phase2 delivery.** There is no requirement to review all530 partials first.
-This is a researched delivery plan, not a claim that world loading or gameplay
-has been implemented. [Main checklist](../plan.md), [milestone index](phase2-delivery-plan.json).
+P2.0 is verified source-only; P2.1 construction/failure return is integrated
+and native-verified, user-accepted2026-11-03; see
+[owner integration](game-owner-integration.md). World loading/gameplay remain unimplemented. [Main checklist](../plan.md), [milestone index](phase2-delivery-plan.json).
 
 ## Working rules
 
@@ -42,9 +43,10 @@ otherwise it stays in the backlog. Do not restart a general530-function audit.
 
 The accepted client already owns real preparation data and a copied
 `PreMissionGameRequest`: mission resource/metadata, mode, squad and equipment.
-`pre_mission_handoff.h` validates it; `application_launch.cpp` still installs the
-explicit unavailable owner for kind7. `StartupSession::world_` is null. A menu
-screen or a successful request validation cannot substitute for a game owner.
+`pre_mission_handoff.h` validates it; kind7 now installs an actual unloaded
+game owner before its controlled incomplete-loader/error return. Startup borrows
+the real owner/scene while alive; audio listener remains null until an actual
+loaded camera is available. The user accepted this construction checkpoint2026-11-03, confirming its log.
 
 The existing [single-player](singleplayer-pipeline.md#briefing-and-game-entry)
 and [multiplayer](multiplayer-pipeline.md#completion-boundary-and-blockers)
@@ -94,6 +96,11 @@ precedes debrief acceptance. No calendar estimate follows from function counts.
 
 ## P2.0 — Establish the first receiving path
 
+**Complete source-only2026-11-03:** [receiver contract and initial implementation](game-owner-start.md).
+Tutorial baseline route, six wrappers, engine interfaces and lifetime/failure map
+verified. Production retains actual loose/Patch/archive resolution. P2.1 is started
+but remains open through concrete service implementation/integration.
+
 Research the complete boundary from the existing kind7 request through state
 activation to mission loading. Confirm caller/callee conventions, state codes,
 required globals, owner lifetimes, engine callbacks and actual failure returns.
@@ -116,6 +123,11 @@ real engine delegates and unresolved interfaces. Original addresses and inventor
 membership must be explicit. Research/discovery alone earns no function credit.
 
 ## P2.1 — Construct the actual owner and consume the request
+
+**Implemented/integrated and user-accepted2026-11-03:** concrete unloaded HUD/text/
+font/table/scene owners and kind7 receiver/failure return are native-verified. See
+[ownership and acceptance](game-owner-integration.md). No real loading or active
+world readiness is published; live activation/shutdown remains later work.
 
 Implement the game/session owner, subowner construction, global publication,
 engine scene/camera/callback setup and deterministic shutdown/partial-startup

@@ -1,24 +1,19 @@
 {
   "schema_version": 1,
   "date": "2026-11-03",
-  "status": "planned-implementation-not-started",
-  "active_milestone": "P2.0/P2.1",
+  "status": "P2.0-complete-P2.1-construction-user-accepted",
+  "active_milestone": "P2.2",
   "policy": "User postpones exhaustive pre-Phase2 pass; function completion follows delivery with one consolidated sweep. P2.0 research belongs inside the first implementation batch.",
   "source_contract": "analysis/phase2-delivery-plan.md",
   "boundary_evidence": "analysis/phase2-boundary-map.json",
-  "ledger_sha256": "84e978bb9b7df6ee2069e16f28e05d49b6d1cf869476099bc3f1319a0e4aecb7",
-  "ledger_unchanged": {
-    "complete": 34,
-    "partial": 530,
-    "denominator": 18783
-  },
+  "ledger_sha256": "68e52eee4943dff7177a176bd38315ad82bf63a522b1d00b3226715b80215d17",
   "first_visible_targets": [
     "P2.2",
     "P2.3"
   ],
   "first_mission": {
-    "selection": "P2.0 confirms earliest normally reachable descriptor/resource path.",
-    "candidate": "Tutorial from confirmed baseline GameData; exact resource/precedence not assumed.",
+    "selection": "Tutorial: actual baseline root0/mode1 team\u2192kind7 route verified natively; production uses actual selected descriptor and rw_data precedence.",
+    "candidate": "Tutorial confirmed as the first baseline route; ISD1/Patch overrides remain the runtime resolver responsibility.",
     "structural_regression_sample": "ALPS1 base archive research, not a forced first mission."
   },
   "live_multiplayer_validation_phase": 3,
@@ -27,7 +22,7 @@
     {
       "id": "P2.0",
       "title": "Verify first-mission receiver/loading contract",
-      "status": "not-started",
+      "status": "complete-source-only",
       "prerequisites": [],
       "original_function_seeds": [
         "006c0ef0",
@@ -44,12 +39,13 @@
         "0067ea00"
       ],
       "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
-      "acceptance": "Targeted boundary research inside the P2.1 implementation batch; no standalone audit-only stop."
+      "acceptance": "Targeted boundary research inside the P2.1 implementation batch; no standalone audit-only stop.",
+      "result": "analysis/game-owner-start.md"
     },
     {
       "id": "P2.1",
       "title": "Construct and integrate game/session owner",
-      "status": "not-started",
+      "status": "complete-unloaded-construction-user-accepted",
       "prerequisites": [
         "P2.0"
       ],
@@ -67,7 +63,8 @@
       ],
       "reference_addresses": [],
       "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
-      "acceptance": "Real owned request, subowners/scene/callbacks and deterministic partial-startup teardown; readiness still requires P2.2."
+      "acceptance": "Real owned request, subowners/scene/callbacks and deterministic partial-startup teardown; readiness still requires P2.2.",
+      "result": "analysis/game-owner-integration.md"
     },
     {
       "id": "P2.2",
@@ -914,5 +911,10 @@
     "Function lists are researched seeds, not a full game/AI/script/serialization inventory. Recover newly required bodies within their delivery milestones.",
     "Reference addresses absent as counted entries get no automatic function credit.",
     "Planning changes neither behavior nor function status and establishes no new runtime/desktop acceptance."
-  ]
+  ],
+  "ledger_current": {
+    "complete": 34,
+    "partial": 559,
+    "denominator": 18783
+  }
 }

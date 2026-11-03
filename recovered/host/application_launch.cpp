@@ -6,6 +6,8 @@
 #include "frontend/frame_clock.h"
 #include "host/application_menu.h"
 #include "host/pre_mission_menu.h"
+#include "host/game_owner.h"
+#include "game/receive_request.h"
 #include "host/multiplayer_connection_menu.h"
 #include "host/engine_video.h"
 #include "host/engine_sound.h"
@@ -402,9 +404,21 @@ public:
             next=create_pre_mission_state(subtype,subtype==0?host::PreMissionMenu::hero_content:
                 subtype==1 || subtype==2?host::PreMissionMenu::team_content:host::PreMissionMenu::equipment_content);
         } else if(descriptor->kind==7 && flow.game_request()) {
-            next=std::make_unique<frontend::PreMissionApplicationState<host::PreMissionMenu>>(2,
-                std::make_unique<host::PreMissionMenu>(startup_,driver_,module_,graphics_,window_,keyboard_,
-                    host::PreMissionMenu::unavailable_content));
+            const auto* mission=flow.route().mission();
+            if (!mission) throw std::logic_error("Game transition has no selected mission");
+            auto game=std::make_unique<host::GameApplicationState>(startup_,driver_,module_,*graphics_,
+                game::copy_mission_request(*flow.game_request(),*mission));
+            game::receive_request(controller,std::move(game),*descriptor,[&](const std::string& failure) {
+                if (startup_.mission_active() || startup_.game_views().scene())
+                    throw std::logic_error("Failed mission left a published game owner");
+                return std::make_unique<frontend::PreMissionApplicationState<host::PreMissionMenu>>(2,
+                    std::make_unique<host::PreMissionMenu>(startup_,driver_,module_,graphics_,window_,keyboard_,
+                        [failure](host::PreMissionMenu& menu) {
+                            menu.game_entry_failure(failure);
+                            return host::PreMissionMenu::unavailable_content(menu);
+                        }));
+            });
+            return;
         } else throw std::logic_error("Preparation route reached an unavailable descriptor owner");
         controller.install(std::move(next));
         if(!controller.active()->initialize(descriptor))throw std::runtime_error("Preparation state initialization failed");

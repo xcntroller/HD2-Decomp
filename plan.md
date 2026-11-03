@@ -204,7 +204,7 @@ for review of all530 partials. Completed source work and the ledger are preserve
 
 # Phase 2 — Load a real level and deliver game-dependent flows
 
-Phase1 closed; starting the first receiver/owner implementation batch. First targets: **one real world
+Phase1 closed and committed as4e530f7; receiver contract verified and unloaded owner construction user-accepted2026-11-03. First targets: **one real world
 frame, then a controllable player and mission loop**. The
 [detailed plan](analysis/phase2-delivery-plan.md) gives original function seeds,
 research gaps, dependencies, failure contracts and acceptance for every section;
@@ -219,19 +219,21 @@ cleanup and byte matching are selective follow-up, not a new exhaustive gate.
 
 ## 0. Confirm the first receiver and loading path — within the first implementation batch
 
-- [ ] Trace kind7/current mission →00698510/006989B0→006CA780; select a genuine
-  reachable mission, resolve required wrappers/interfaces and map ownership/failures.
-  [Checked starting boundary](analysis/phase2-boundary-map.json).
+- [x] Trace the receiver/loading boundary, select a reachable mission and resolve
+  wrappers, interfaces and ownership/failures — **source-only**.
+  [Tutorial contract and first owner source](analysis/game-owner-start.md).
 
 Continue directly into section1 when this boundary is ready; section0 is targeted
 preparation, not a standalone audit-only milestone.
 
 ## 1. Construct the game owner and consume the real request
 
-- [ ] Implement/integrate game/session subowners, scene/camera/callbacks and the
+- [x] Implement/integrate game/session subowners, scene/camera/callbacks and the
   owned mission/squad/equipment handoff, completing needed original functions.
-- [ ] Verify repeat construction, partial-startup failure, teardown and Main return;
+  [Unloaded construction accepted2026-11-03](analysis/game-owner-integration.md#desktop-acceptance--2026-11-03); loaded camera follows in section2.
+- [x] Verify repeat construction, partial-startup failure, teardown and Main return;
   publish real owner/world views and retain honest loading readiness.
+  Native failure/repeat checks pass; [user accepted checkpoint2026-11-03](analysis/game-owner-integration.md#desktop-acceptance--2026-11-03), confirming the constructor log.
 
 ## 2. Load an original mission to its first world frame
 

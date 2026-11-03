@@ -1,8 +1,8 @@
 # Understanding Hidden & Dangerous 2
 
 Readable reconstruction of the base game, initially using its original LS3DF.dll
-engine and local assets through Proton. The current milestone is the front-end
-menus; a later stage covers level loading and game-dependent flows. Sabre Squadron
+engine and local assets through Proton. Phase1 front-end delivery is closed;
+Phase2 covers level loading and game-dependent flows. Sabre Squadron
 and engine replacement are separate.
 
 ## Current build
@@ -74,12 +74,15 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and530 partial entries; source-only raw entries remain
+complete client functions and559 partial entries; source-only raw entries remain
 separate from desktop integration.
 
 Phase1 front-end delivery is closed by the user2026-11-03 within its recorded
-acceptance and deferred-flow boundaries. Phase2 receiver/owner implementation is
-next; untested loadouts and live game/server delivery remain explicitly open.
+acceptance and deferred-flow boundaries, committed as4e530f7. The
+[game-owner construction and failure-return path](analysis/game-owner-integration.md)
+are integrated, native-verified and user-accepted2026-11-03 for unloaded construction/error return. Actual
+world loading is not delivered yet; untested loadouts and live game/server delivery
+remain explicitly open.
 
 **The exhaustive pre-Phase2 completion pass is postponed by the user2026-11-03.**
 The [new Phase2 plan](analysis/phase2-delivery-plan.md) combines required function
@@ -200,11 +203,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **530 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **559 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 525 |
+| Base game client | 17,294 | 34 | 554 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

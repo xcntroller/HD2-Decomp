@@ -1,0 +1,232 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-03",
+  "phase1_closure_commit": "4e530f7",
+  "status": "P2.0-source-contract-complete-P2.1-source-components-started",
+  "source_only": true,
+  "desktop_integrated": false,
+  "complete_functions_added": 0,
+  "partial_entries_added": 12,
+  "ledger_sha256": "7514161088a9d0a97b15587050ec8f4376a19e76f86b7342f5f078ab2851081a",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "boundary_map": "analysis/phase2-boundary-map.json",
+  "functions": [
+    {
+      "entry": "00698510",
+      "body_bytes": 713,
+      "body_ranges": [
+        [
+          "00698510",
+          "006987d8"
+        ]
+      ],
+      "original_body_sha256": "c2c2f2adb2e76564d187c120367de79069f11c195f9d291fd2766062ecc75501",
+      "source": "recovered/game/session_owner.h",
+      "status": "partial-source-only",
+      "coverage": "Required-factory native construction, real selected-mission copy, scene setup order, two-set initialization, late publication and post-publication allocation unwind.",
+      "remaining": "HUD/text/backend implementations are required but absent; native ownership/throwing allocation differ from original raw ABI/SEH. Not installed in desktop controller; no actual activation or loaded world."
+    },
+    {
+      "entry": "00698830",
+      "body_bytes": 373,
+      "body_ranges": [
+        [
+          "00698830",
+          "006989a4"
+        ]
+      ],
+      "original_body_sha256": "08b017a6370d6794f1131bcc23d075c6103f957bf5623e3737cd63a31c2ab89b",
+      "source": "recovered/game/session_owner.h",
+      "status": "partial-source-only",
+      "coverage": "Unloaded-owner queue/subowner/scene/global/table/string release order and acquired-prefix cleanup.",
+      "remaining": "Only unloaded lifetime composition. Required HUD/text/queue backend absent; original live unload, other raw vectors/strings, SEH and deleting allocation ABI excluded."
+    },
+    {
+      "entry": "00699270",
+      "body_bytes": 32,
+      "body_ranges": [
+        [
+          "00699270",
+          "0069928f"
+        ]
+      ],
+      "original_body_sha256": "0544894aa19716356509901acef04ae7831bee35cf3f5a14daf089770d3d5d85",
+      "source": "recovered/host/game_scene.h",
+      "status": "partial-source-only",
+      "coverage": "Owned original-engine scene release; callback unregisters before client receiver lifetime ends.",
+      "remaining": "Compile/link only. Loaded-mission unload branch and original object ABI are not implemented; callback cancellation is a native lifetime guard."
+    },
+    {
+      "entry": "006c9260",
+      "body_bytes": 348,
+      "body_ranges": [
+        [
+          "006c9260",
+          "006c93bb"
+        ]
+      ],
+      "original_body_sha256": "582432525c7bbba92c8fa12044ba714c9d42595abc3c2a7a553e22503c5c0f19",
+      "source": "recovered/game/scene_callback.h",
+      "status": "partial-source-only",
+      "coverage": "All stage/status/flag dispatcher branches, six-DWORD viewport preservation and ordered mandatory render service calls; host stdcall three-argument bridge.",
+      "remaining": "Source-only typed dispatch. HUD/control/debug/network/fade/effects bodies remain required external services and are not implemented or credited here. No actual DLL/desktop execution."
+    },
+    {
+      "entry": "00490740",
+      "body_bytes": 156,
+      "body_ranges": [
+        [
+          "00490740",
+          "004907db"
+        ]
+      ],
+      "original_body_sha256": "76fb6857a5bdd29e221158e17af3102d3a480c3822ab83567d3cc84799d9db4a",
+      "source": "recovered/game/overlay_owner.h",
+      "status": "partial-source-only",
+      "coverage": "Empty500-by13 record/row ownership graph and explicitly initialized constructor values.",
+      "remaining": "Native typed layout/allocations, not original allocator tags, raw frame/string ABI, unwritten bytes or SEH. Later overlay consumers not implemented."
+    },
+    {
+      "entry": "004908b0",
+      "body_bytes": 113,
+      "body_ranges": [
+        [
+          "004908b0",
+          "00490920"
+        ]
+      ],
+      "original_body_sha256": "f3d89d5dd5668b535195907cb0155522d532ee1836b741b89352ec334d0c972b",
+      "source": "recovered/game/overlay_owner.h",
+      "status": "partial-source-only",
+      "coverage": "Reverse500-record destruction followed by vector storage release.",
+      "remaining": "Native owning references/vector representation, not original raw object/free/SEH ABI; production overlay consumers remain unavailable."
+    },
+    {
+      "entry": "00490800",
+      "body_bytes": 43,
+      "body_ranges": [
+        [
+          "00490800",
+          "0049082a"
+        ]
+      ],
+      "original_body_sha256": "55560d178674b98aa5b20b32431c6ef71e8733edc127e4907ea520010717bcfa",
+      "source": "recovered/game/overlay_owner.h",
+      "status": "partial-source-only",
+      "coverage": "Initialize four frame references and four shared strings per overlay row.",
+      "remaining": "Native unique/shared ownership, not original COW pointer/object ABI; original unwritten bytes are not reconstructed."
+    },
+    {
+      "entry": "00490830",
+      "body_bytes": 101,
+      "body_ranges": [
+        [
+          "00490830",
+          "00490894"
+        ]
+      ],
+      "original_body_sha256": "7174ad866217b8b9d6027a96083531e67db84e319677e185567289773423a8b1",
+      "source": "recovered/game/overlay_owner.h",
+      "status": "partial-source-only",
+      "coverage": "Release four frame references forward then four shared strings backward in each row.",
+      "remaining": "Native reference deleters, not the original frame/COW ABI or exception machinery; original delegated engine/CRT bodies earn no credit."
+    },
+    {
+      "entry": "00523ab0",
+      "body_bytes": 112,
+      "body_ranges": [
+        [
+          "00523ab0",
+          "00523b1f"
+        ]
+      ],
+      "original_body_sha256": "dac3f7db790134d8f95963e83b68ea66e279bd95b7ca00a9474ebeade7d03088",
+      "source": "recovered/game/mission_tables.h",
+      "status": "partial-source-only",
+      "coverage": "Initialize both dataset counts and pointer/vector fields to zero.",
+      "remaining": "Native pointer-width fields omit opaque allocator tag bytes/padding; not original thiscall/layout ABI. No parser/population or runtime backend."
+    },
+    {
+      "entry": "0051dd60",
+      "body_bytes": 179,
+      "body_ranges": [
+        [
+          "0051dd60",
+          "0051de12"
+        ]
+      ],
+      "original_body_sha256": "2f7df746913293ba5c396cfa098f8fb4f370f3a72e04a083062421393befb1ed",
+      "source": "recovered/game/mission_tables.h",
+      "status": "partial-source-only",
+      "coverage": "Destroy present record array, release all six raw data pointers, clear associated counts and preserve vector storage/capacity.",
+      "remaining": "Cookie/0x24-element destruction/allocation free remains an explicit required backend operation. Native layout, allocation and original exception behavior excluded; no fabricated backend."
+    },
+    {
+      "entry": "00523e10",
+      "body_bytes": 17,
+      "body_ranges": [
+        [
+          "00523e10",
+          "00523e20"
+        ]
+      ],
+      "original_body_sha256": "6baa654dcd65b93c43d87b6e1eb58fdbfef721bc87408224cc67221d43f0ddcd",
+      "source": "recovered/game/mission_tables.h",
+      "status": "partial-source-only",
+      "coverage": "Clear first dataset then second while preserving both vector allocations.",
+      "remaining": "Native typed owner interface rather than original ABI; concrete record-allocation backend absent and caller integration pending."
+    },
+    {
+      "entry": "00523b20",
+      "body_bytes": 133,
+      "body_ranges": [
+        [
+          "00523b20",
+          "00523ba4"
+        ]
+      ],
+      "original_body_sha256": "8ef600b5a47b6023b3a3186c9b8d0c071afbad1eacb09b534e92b4953a6c0152",
+      "source": "recovered/game/mission_tables.h",
+      "status": "partial-source-only",
+      "coverage": "Clear and free second dataset/vector before first, resetting each vector triple.",
+      "remaining": "Native typed layout/destruction with required real backend; raw ABI/SEH and production integration excluded."
+    }
+  ],
+  "absent_reference_entries": [
+    "004907e0",
+    "004908a0",
+    "00524610"
+  ],
+  "next_required_implementations": [
+    "0049a420",
+    "0049a750",
+    "0048ef40",
+    "0063db50",
+    "0063dbb0",
+    "00698f80",
+    "006989b0",
+    "00783350",
+    "00783bc0"
+  ],
+  "verification": {
+    "fixture_sha256": {
+      "hd2_phase2_owner_audit.cpp": "ebd8b09f22f8126cb428492bc59967c19a88a19704e304f955d667e0c06822e8",
+      "hd2_phase2_owner_audit": "4772692d916a4bcb1bd39968921112861edbf14cc7af3026dbfd3bf98be2b67d",
+      "hd2_phase2_scene_fixture.cpp": "42b7fdb6cddbf0876adf7a05243a7b01aabcbcf28e9cf14d1710ae5dd1b6296d",
+      "hd2_phase2_scene_fixture.exe": "eb3639c62542e83f7cd51dc557de753225be6684fb0ba5901c9f8c289c7eec2f"
+    },
+    "native_audit": "Actual GameData normal Tutorial route; deep mission copy;100 owner lifetimes;5 injected construction-stage failures; null factory;7 allocation failure prefixes including after publication; duplicate publication guard; reverse overlay references; populated dataset clear/capacity/free;1280 callback cases; ASan/UBSan clean. Fixture backend is ordering evidence only.",
+    "i386_fixture": "Strict compile/link and stdcall callback@12/RET12 instruction inspection only; never run.",
+    "regressions": "Native make test,158 Python tests, application-launch/engine-window/startup-probe builds and fingerprinted client/engine evidence maps passed.",
+    "work_directory": "analysis/work/phase2-owner-20261103"
+  },
+  "limitations": [
+    "Concrete HUD/text/table backend and rendering services are absent; first owner integration checkbox remains open.",
+    "No level loading/readiness/player/world frame or user desktop claim.",
+    "No packaging, staging, original/Windows execution or push. Postponed530-entry review queue remains unchanged."
+  ]
+}

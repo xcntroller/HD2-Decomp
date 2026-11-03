@@ -3,33 +3,57 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Current continuation (2026-11-03): user postpones the exhaustive pre-Phase2
-function pass and requests completion alongside delivery. The
-[new detailed roadmap](analysis/phase2-delivery-plan.md),
-[machine milestone index](analysis/phase2-delivery-plan.json),
-[updated policy](analysis/function-completion-plan.md) and retained queue supersede
-the old exhaustion gate. All559 queue rows/530 partials and34 completed bodies are
-preserved. No implementation or ledger-status change in this planning milestone.
-The first targets are real owner/request integration, one mission's first world
-frame and then controllable player/simulation; preparation, pause, saves and live
-results follow. Phase2's multiplayer receiver is source/integration scope; real
-ready-server/live status9 validation remains Phase3 to avoid a circular dependency.
-Targeted P2.0 receiver research belongs inside the first P2.1 implementation batch,
-not another audit-only stop. Later work selects only its delivery dependencies,
-integrates existing recoveries and uses one consolidated verification sweep.
+Current continuation (2026-11-03): [game-owner integration](analysis/game-owner-integration.md)
+now constructs the real native unloaded HUD/text/overlay/table owners and original
+engine scene through the ordinary kind7 controller receiver. Native HUD contains77
+actual shared-font text owners; five font atlases use accepted paths/decoder and
+shared real engine acquisition. Mission-text defaults/cleanup and concrete table
+cookie/owned-versus-borrowed payload frees are implemented. Owner/scene views clear
+before release; audio listener stays null until an actual loaded camera exists.
+The early menu unavailable prompt no longer swallows the receiver attempt. Type1
+is installed before initialization; missing006CA780 returns honest failure,
+releases resources and shows the Main-return error UI. Callback dispatcher is
+installed, with active-world services explicitly unavailable before activation.
 
-New [planning boundary evidence](analysis/phase2-boundary-map.json) verifies
-00698510's008159AC vtable, whose+04 targets006989B0, and activation→006CA780→
-preparation/Scene/Scene2 calls. Nine slots, three anchors and five direct calls are
-fingerprint-guarded. This resolves the previously unmapped activation link; full
-virtual prototypes, callbacks, wrappers and lifetime/loading semantics still need
-the first implementation batch's research. Some reference targets are absent as
-standalone frozen inventory entries and earn no automatic credit. Existing ALPS1
-format work is structural evidence only; choose an ordinary mission via actual
-descriptor/resource precedence, with Tutorial a candidate rather than hardcoded.
-Planning verification checks links/JSON/dependency order/inventory references,
-unchanged ledger/source and original boundary bytes. No runtime/desktop test,
-packaging, staging, commit or push is implied.
+Consolidated native/build/158 Python regressions pass. Temporary ASan/UBSan checks100
+owner lifetimes,77 shared-font references, five service failures,86 interrupted
+allocations, populated tables,100 failed receiver/dialog lifetimes, copied requests,
+world-view lifetimes,1,024 graphics flag/failure cases and13 original metrics tables.
+Engine/font endpoints remain lifetime fixtures; no original DLL/Windows/Proton or
+actual desktop execution. Strict i386 app/preview/startup builds pass.17 new partials,
+10 existing partials extended; ledger34 complete client/559 partial (554 client/five
+engine),18,783 frozen.0063DC50's decompiled tail exceeds its84-byte frozen entry,
+so it remains reference-only here. No new complete-function/engine/CRT credit.
+
+User accepted both bounded P2.1 checkboxes2026-11-03 and confirmed the expected
+constructor log. Native failure/repeat evidence remains distinct from that user
+confirmation. Actual world loading remains P2.2. Commit requested;
+no package, staging or push. Phase1 remains closed at4e530f7. The postponed530-entry
+review backlog is unchanged; do not restart it or repeat confirmed HUD research.
+
+Previous continuation (2026-11-03): Phase1 closed at the user's request and
+committed as4e530f7, including the verified input-owner batch and Phase2 roadmap.
+The [first receiver contract and owner source](analysis/game-owner-start.md)
+complete P2.0 source-only and start P2.1. Tutorial is confirmed through the actual
+baseline GameData/ordinary team→game route. The [expanded evidence map](analysis/phase2-boundary-map.json)
+checks six actual Win32 wrapper continuations, scene callback stdcall RET12,
+engine scene/viewport/release interfaces and late game-owner publication.
+Source now covers owned mission copying, unloaded lifetime composition,500×13
+overlay ownership, two-set table cleanup and all scene-callback dispatch branches.
+Concrete HUD/text/table backend, live shutdown/activation, controller installation
+and actual world/audio views remain open; no new desktop behavior or fake load
+success. Constructor does not create a separate camera.
+
+One consolidated ASan/UBSan/i386/build/regression sweep passes;158 Python tests,
+actual baseline route,100 lifetimes, five injected stage failures, seven allocation
+failure prefixes including late publication and1,280 callback cases. Native
+fixture endpoints establish orchestration only. Twelve new frozen entries are
+partial, no new full-body credit:34 complete client/542 partial (537 client/five
+engine),18,783 frozen. The postponed530-entry completion queue remains unchanged;
+new delivery partials do not restart it. No staging/package/original or Windows
+execution/push. New Phase2 source remains uncommitted. Next: finish actual HUD/text
+services and receiver integration; P2.1 checkboxes stay open. Detailed contracts,
+remaining callees and evidence are linked above rather than repeated in handoff.
 
 Previous continuation (2026-11-03): prior verified batches committed as0c3527d.
 The [input-owner batch](analysis/input-owner-batch.md) completes14 of17 candidates

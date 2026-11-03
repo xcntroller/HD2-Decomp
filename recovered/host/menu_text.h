@@ -4,6 +4,7 @@
 #include "host/menu_cursor.h"
 #include "host/menu_text_geometry.h"
 #include "host/menu_text_object.h"
+#include "host/font_atlas.h"
 #include "frontend/localized_text.h"
 
 #include <set>
@@ -345,13 +346,7 @@ private:
     }
 
     MenuDriver::Owner load_atlas(const char* name, HMODULE module) const {
-        EngineFrame* texture = nullptr;
-        const auto status = graphics_->methods->load_texture(graphics_, name, nullptr, 0x402,
-                                                             &texture);
-        check_overlay_status(status, "Load original menu font atlas");
-        if (texture == nullptr) throw std::runtime_error("Original menu font texture is null");
-        return MenuDriver::Owner(texture,
-            scene_method<MenuDriver::Release>(texture, module, 0, 0x73760));
+        return load_font_atlas(graphics_, module, name);
     }
 
     Graphics* graphics_;

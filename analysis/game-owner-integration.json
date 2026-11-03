@@ -1,0 +1,640 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-03",
+  "milestone": "P2.1",
+  "status": "unloaded-construction-error-return-user-accepted",
+  "desktop_verified": true,
+  "game_loading_available": false,
+  "complete_functions_added": 0,
+  "partial_functions_added": 17,
+  "existing_partials_extended": 10,
+  "ledger_sha256": "68e52eee4943dff7177a176bd38315ad82bf63a522b1d00b3226715b80215d17",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "functions": [
+    {
+      "entry": "00698510",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 713,
+      "body_ranges": [
+        [
+          "00698510",
+          "006987d8"
+        ]
+      ],
+      "original_body_sha256": "c2c2f2adb2e76564d187c120367de79069f11c195f9d291fd2766062ecc75501",
+      "coverage": "Concrete native HUD/text/table factories, real scene/callback/viewport setup, owned selected-mission request and late global publication now integrated at kind7.",
+      "limitations": "Unloaded constructor/error return user-accepted2026-11-03. Native object/allocator/SEH ABI differs; activation/real loading and live shutdown/simulation remain unavailable. No successful world/audio listener.",
+      "evidence": [
+        "recovered/game/session_owner.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "entry": "00698830",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 373,
+      "body_ranges": [
+        [
+          "00698830",
+          "006989a4"
+        ]
+      ],
+      "original_body_sha256": "08b017a6370d6794f1131bcc23d075c6103f957bf5623e3737cd63a31c2ab89b",
+      "coverage": "Actual native unloaded subowner/queue/scene/global/table cleanup and acquired-prefix failure unwind in the installed game state.",
+      "limitations": "Only unloaded ownership. Populated/live unload and other original raw vectors/strings/SEH/allocator ABI remain excluded. Native tests verify order/resources; unloaded construction user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/session_owner.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "entry": "00699270",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 32,
+      "body_ranges": [
+        [
+          "00699270",
+          "0069928f"
+        ]
+      ],
+      "original_body_sha256": "0544894aa19716356509901acef04ae7831bee35cf3f5a14daf089770d3d5d85",
+      "coverage": "Actual engine scene release and callback unregister through the integrated game state; borrowed owner/scene views cleared before release.",
+      "limitations": "Loaded-mission unload and original object ABI remain unimplemented. Agent compiled/linked only; user accepted unloaded construction2026-11-03; callback unregister is a native lifetime guard.",
+      "evidence": [
+        "recovered/host/game_scene.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "entry": "006c9260",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 348,
+      "body_ranges": [
+        [
+          "006c9260",
+          "006c93bb"
+        ]
+      ],
+      "original_body_sha256": "582432525c7bbba92c8fa12044ba714c9d42595abc3c2a7a553e22503c5c0f19",
+      "coverage": "Recovered full dispatcher now installed through the real scene callback bridge; actual viewport and disabled mission-text branch supplied.",
+      "limitations": "Active HUD/control/network/debug/effects/fade render calls explicitly reject before world activation; original live callees remain P2.2/P2.3 dependencies. Initial flags reflect PE zero-fill. No actual Windows/desktop callback execution claim.",
+      "evidence": [
+        "recovered/game/scene_callback.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "entry": "00523ab0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 112,
+      "body_ranges": [
+        [
+          "00523ab0",
+          "00523b1f"
+        ]
+      ],
+      "original_body_sha256": "dac3f7db790134d8f95963e83b68ea66e279bd95b7ca00a9474ebeade7d03088",
+      "coverage": "Both native dataset sets initialize to empty; concrete cookie/payload allocation backend integrated with real game owner.",
+      "limitations": "Native pointer-width fields omit original opaque tags/padding/thiscall ABI; parser/population remains unavailable; unloaded construction user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/mission_tables.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "entry": "0051dd60",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 179,
+      "body_ranges": [
+        [
+          "0051dd60",
+          "0051de12"
+        ]
+      ],
+      "original_body_sha256": "2f7df746913293ba5c396cfa098f8fb4f370f3a72e04a083062421393befb1ed",
+      "coverage": "Ordered array/count clear and vector-capacity preservation now use actual count-cookie reverse-record cleanup and owned/borrowed payload frees.",
+      "limitations": "Native pointer-width layout/allocator and original exception ABI differ. No table parser/population or whole-body equivalence claim; unloaded construction user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/mission_tables.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "entry": "00523e10",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 17,
+      "body_ranges": [
+        [
+          "00523e10",
+          "00523e20"
+        ]
+      ],
+      "original_body_sha256": "6baa654dcd65b93c43d87b6e1eb58fdbfef721bc87408224cc67221d43f0ddcd",
+      "coverage": "Concrete native game table backend clears first dataset then second with both vector allocations preserved.",
+      "limitations": "Native typed interface instead of original ABI. Integrated/native-audited with populated fixtures; no live mission population/desktop claim.",
+      "evidence": [
+        "recovered/game/mission_tables.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "entry": "00523b20",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 133,
+      "body_ranges": [
+        [
+          "00523b20",
+          "00523ba4"
+        ]
+      ],
+      "original_body_sha256": "8ef600b5a47b6023b3a3186c9b8d0c071afbad1eacb09b534e92b4953a6c0152",
+      "coverage": "Concrete native backend clears/frees second dataset/vector before first and resets both triples during integrated owner destruction.",
+      "limitations": "Native pointer-width allocation/layout/SEH differ; full raw ABI and real mission population remain excluded. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/mission_tables.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "entry": "006c0ef0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 1495,
+      "body_ranges": [
+        [
+          "006c0ef0",
+          "006c14c6"
+        ]
+      ],
+      "original_body_sha256": "4a649674a7bbf4e2a7b0471f0925dcd0e56f6330f941c8433c1c4f77a333af05",
+      "coverage": "Null-descriptor branch shutdown and fresh-owner release, construction/installation before initialize(nullptr); ignore initializer result. Kind7 now copies the actual mission/squad/equipment, installs type1 before initialization, constructs real native subowners/engine scene, and releases them before the controlled incomplete-loader error UI/Main return.",
+      "limitations": "Native ownership/storage/allocator/SEH ABI remains partial. Game construction/failure path is integrated and native-audited, pending user desktop confirmation; real006CA780 loading, live shutdown/gameplay/save/server/status9 receivers remain unavailable. Preserve other documented console/menu/video/network exclusions; engine/OS/CRT bodies stay delegated.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/game/receive_request.h",
+        "recovered/host/game_owner.h"
+      ]
+    },
+    {
+      "entry": "006c20f0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 3071,
+      "body_ranges": [
+        [
+          "006c20f0",
+          "006c2cee"
+        ]
+      ],
+      "original_body_sha256": "cf6e5b16f59becabcf9fa15c7250c244435699b7152f300e9a1282574e740774",
+      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement. Status4 now shuts down the state, releases it, closes mouse input and invokes cold control reset before returning false. Main Credits status12 retains the frontend, installs type10/sequence0, restores its pointer before video shutdown/deletion on status13, then starts the same owner. Cinematics extension: actual selected filename/type10 sequence0 return; retained ordinary playback and Outro2 music bookmark/forced request37 restoration as applicable. Single-player extension: statuses2/3 advance or reverse owned descriptor states through the preparation route. Status7/8 now construct a distinct type8 connection owner from a validated copied launch request, preserving host mode2/client mode1. Kind7 now copies the actual mission/squad/equipment, installs type1 before initialization, constructs real native subowners/engine scene, and releases them before the controlled incomplete-loader error UI/Main return.",
+      "limitations": "Native ownership/storage/allocator/SEH ABI remains partial. Game construction/failure path is integrated and native-audited, pending user desktop confirmation; real006CA780 loading, live shutdown/gameplay/save/server/status9 receivers remain unavailable. Preserve other documented console/menu/video/network exclusions; engine/OS/CRT bodies stay delegated.",
+      "evidence": [
+        "analysis/application-controller-map.json",
+        "analysis/application-controller.md",
+        "recovered/frontend/application_controller.h",
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "analysis/credits-flow-map.json",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow-map.json",
+        "analysis/cinematics-flow.md",
+        "analysis/singleplayer-pipeline.md",
+        "recovered/host/multiplayer_connection_menu.h",
+        "recovered/host/application_launch.cpp",
+        "analysis/multiplayer-function-audit.md",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/game/receive_request.h",
+        "recovered/host/game_owner.h"
+      ]
+    },
+    {
+      "entry": "0049a420",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 438,
+      "body_ranges": [
+        [
+          "0049a420",
+          "0049a5d5"
+        ]
+      ],
+      "original_body_sha256": "4a8d3c4803da4e2d72b61a482d167c2731ff8d8ed6c3d6f00cac969d30d25c64",
+      "coverage": "Native unloaded HUD construction graph with77 real shared-font text owners, track/colour/item/timer defaults and disabled HUD flags.",
+      "limitations": "Populated HUD artwork/layout/animation consumers and original raw object/padding/allocator/SEH ABI remain excluded. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "0049a750",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 490,
+      "body_ranges": [
+        [
+          "0049a750",
+          "0049a939"
+        ]
+      ],
+      "original_body_sha256": "5601bdc9ec59dd02ad06734484293037d3bdc3dea815aa5436166ffa5d31d6f9",
+      "coverage": "Unloaded HUD destroys its77 text/font owners in reverse constructor order.",
+      "limitations": "Only unloaded constructor-owned resources; populated HUD vectors/models/layout cleanup and raw ABI remain excluded. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "0049fef0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 761,
+      "body_ranges": [
+        [
+          "0049fef0",
+          "004a01e8"
+        ]
+      ],
+      "original_body_sha256": "3f93f3584d8948d0413a1bb55648df23d8dadddef0eb29639ae69d4d7db82cb6",
+      "coverage": "Construct complete nested68-text prefix graph and four empty track default states using correct this+30 receiver.",
+      "limitations": "Native constructor graph only; later populated vectors/animation/rendering and original vtables/SEH/layout omitted. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "00496cc0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 255,
+      "body_ranges": [
+        [
+          "00496cc0",
+          "00496dbe"
+        ]
+      ],
+      "original_body_sha256": "00ed4db3558cd6ef743b4f6f8ea4691bc95e90d6b69e49bddb3bfa57f5d92ca2",
+      "coverage": "Physical WORD dimensions, empty geometry/flags/records, index sentinels, inset10 and actual shared game font acquisition.",
+      "limitations": "Native typed fields and shared font ownership, not complete original text layout/allocator tag/vtable/SEH ABI. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "0048ecf0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 178,
+      "body_ranges": [
+        [
+          "0048ecf0",
+          "0048eda1"
+        ]
+      ],
+      "original_body_sha256": "85988d39de50410a861c6c1e1944890f6a216ae57bf57c0e85af8167e4c5c2c1",
+      "coverage": "Release shared font reference before clearing text records during unloaded native text destruction.",
+      "limitations": "Original populated line/glyph layout owners, raw COW/vector ABI and SEH remain excluded. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "0048ef40",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 121,
+      "body_ranges": [
+        [
+          "0048ef40",
+          "0048efb8"
+        ]
+      ],
+      "original_body_sha256": "bdb83d062fa0825188cad75856516d35a6df7133ec90cb630c2eb9ddb8f3dfe4",
+      "coverage": "Reset mission-text selection, release optional renderer, disable display and destroy entries in reverse while preserving vector capacity.",
+      "limitations": "Native owning types, not original callback/object/vector/allocator ABI. Populated text load/render integration remains later work. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "0048f400",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 27,
+      "body_ranges": [
+        [
+          "0048f400",
+          "0048f41a"
+        ]
+      ],
+      "original_body_sha256": "1bb56da6c9dc968f7ca46b00741a36328df31617c1613b569c54a2e8c96be9cf",
+      "coverage": "Set selected index to-1, ticks0, and clear an existing text renderer.",
+      "limitations": "Native text owner method instead of original object/thiscall ABI; actual initialized mission renderer is not delivered yet. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "0048efc0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 192,
+      "body_ranges": [
+        [
+          "0048efc0",
+          "0048f07f"
+        ]
+      ],
+      "original_body_sha256": "937829129912f87d20773cce6da4771f036b367efd42825a4b8b02bfb9ff7605",
+      "coverage": "Forward release of entry string records and native vector destruction through actual mission-text entry owner.",
+      "limitations": "Native shared-string/vector storage and destruction, not original COW/allocator/SEH ABI; other unwritten entry fields not inferred. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "00524840",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 38,
+      "body_ranges": [
+        [
+          "00524840",
+          "00524865"
+        ]
+      ],
+      "original_body_sha256": "00d4b26d4076fab713cefa87ba4225f584d598f800572e36da08a8f91e744562",
+      "coverage": "Conditionally free owned payload when0400 is clear, preserve borrowed payload, clear owned pointer and low six flag bits in concrete reverse-record destruction.",
+      "limitations": "Native pointer-width record and inline backend operation, not original thiscall/full raw-object ABI; original generic allocator remains delegated. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/table_storage.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "0049b7d0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 7,
+      "body_ranges": [
+        [
+          "0049b7d0",
+          "0049b7d6"
+        ]
+      ],
+      "original_body_sha256": "4953034ec3e563bcb438d92bac0d1203e0064c50081dc951cbd853833cb5a12b",
+      "coverage": "Query HUD enabled flag bit1 through actual native HUD instance.",
+      "limitations": "Native bool result/storage instead of original full DWORD EAX/raw object ABI; not an exact standalone body. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "0063db50",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 43,
+      "body_ranges": [
+        [
+          "0063db50",
+          "0063db7a"
+        ]
+      ],
+      "original_body_sha256": "52a5c2e6169442a5c5f42312b01022fba26ca56487c7e50f2c350669c8b00bb3",
+      "coverage": "Create one actual five-atlas game font allocation lazily and share its retained ownership among all77 native game text owners.",
+      "limitations": "Native weak/shared lifetime per game construction; original global singleton/refcount ABI and menu-wide native owner unification remain excluded. Actual atlas construction log user-confirmed2026-11-03. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/host/game_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "0063dbb0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 25,
+      "body_ranges": [
+        [
+          "0063dbb0",
+          "0063dbc8"
+        ]
+      ],
+      "original_body_sha256": "9b134497239cddc3d60d3072833555094dc56f4efd85002a90feb75c7dc8f7d4",
+      "coverage": "Release each native text font reference; last reference releases actual game font atlas owners and expires the weak factory reference.",
+      "limitations": "Native shared ownership/array cleanup differs from original explicit global manager/CRT ABI; wide/GDI font branches and exact singleton teardown unclaimed. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "006989b0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 1332,
+      "body_ranges": [
+        [
+          "006989b0",
+          "00698ee3"
+        ]
+      ],
+      "original_body_sha256": "3c3b6e2a34e6483400ae97a4df132830cc0f2ef4d2076e7fdb970c740436d78d",
+      "coverage": "Installed owner consumes the actual copied mission, scopes/restores graphics bit20 and returns honest failure while006CA780 is unavailable.",
+      "limitations": "No original successful loader/activation/actor/camera/status5 path or live state reset; explicit incomplete-loader outcome is not credited as those bodies. Native resource/exception handling differs; unloaded construction user-accepted2026-11-03. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/host/game_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "0049a5e0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 13,
+      "body_ranges": [
+        [
+          "0049a5e0",
+          "0049a5ec"
+        ]
+      ],
+      "original_body_sha256": "59fc594d3b97fa941a3ea953be833b7f7836432c60b32289c149a13365615da0",
+      "coverage": "Initialize32 required native records with first/second DWORD zero and byte flag zero.",
+      "limitations": "Inlined native record initialization, not original standalone thiscall ABI or surrounding unwritten bytes. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "004a0410",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 448,
+      "body_ranges": [
+        [
+          "004a0410",
+          "004a05cf"
+        ]
+      ],
+      "original_body_sha256": "c326a56d1f269a37dca5c1e13eba57052158ef2ceb51654124307707d4b7c595",
+      "coverage": "Construct both actual text/font owners at original composite offsets0/A8 across12 instances.",
+      "limitations": "Native graph representation; other composite layout fields, raw vtables/SEH and later populated consumers unclaimed. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "004a05d0",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 483,
+      "body_ranges": [
+        [
+          "004a05d0",
+          "004a07b2"
+        ]
+      ],
+      "original_body_sha256": "1811dee38271874d790f256a5f3377545d8d7ea71df17118236c511948b33f52",
+      "coverage": "Construct six text/font owners at0,C0+i*9C,344 in each of four required composites.",
+      "limitations": "Native graph representation; other initialized/unwritten composite fields and original vtable/object/SEH ABI remain partial. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "entry": "00494980",
+      "status": "partial-integrated-construction-user-accepted",
+      "body_bytes": 81,
+      "body_ranges": [
+        [
+          "00494980",
+          "004949d0"
+        ]
+      ],
+      "original_body_sha256": "7599fda754d30a599dd7b9747c45b7d2aa726889d3d61b4eb0c6436be0eef77f",
+      "coverage": "Initialize255 colour channels, period50, counters,0x3CB43958 value and enabled byte in the native HUD colour state.",
+      "limitations": "Original raw vector/allocator-tag/layout ABI and populated colour allocation/render/update consumers remain excluded. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    }
+  ],
+  "reference_only": [
+    "004a0270",
+    "00524600",
+    "0063dc50"
+  ],
+  "verification": {
+    "native_audit": "100 concrete native HUD/text/session lifetimes,77 shared-font owners,5 service failures,86 allocation-failure prefixes, owned/borrowed populated tables and cookie frees, borrowed views,100 failed receiver/dialog lifetimes and retained success ordering,1024 graphics flag/failure cases,13 original metric tables. Font/scene fixture endpoints are lifetime/order evidence only.",
+    "windows": "Strict app/preview/startup builds; stdcall RET12 callback and36-byte table record assertions. Never executed Windows/original DLLs.",
+    "regressions": "Existing native regressions and158 Python tests passed.",
+    "fixture_sha256": {
+      "hd2_game_owner_integration_audit.cpp": "47652bbfd268c550b97b1a628b9465cc1e3b0201f48689fa630634a8d16297ea",
+      "hd2_game_owner_integration_audit": "f457c78001b160b22a0fa05e8f160253dcb4c51b20cb48422c831ebbdc1c2f1d"
+    },
+    "work_directory": "analysis/work/game-owner-integration-20261103",
+    "application_exe_sha256": "585f1cb059f83559636064627f7d4ec5b7c354a2757aaa0872389c566728d66e"
+  },
+  "acceptance": "User accepted bounded unloaded construction/error-return2026-11-03, explicitly confirming the constructor log. Native audit establishes repeat/failure cases. No loaded world/camera/live shutdown acceptance."
+}

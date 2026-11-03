@@ -12,6 +12,7 @@
 #include "frontend/input_setup.h"
 #include "frontend/sound_manager_data.h"
 #include "frontend/pre_mission_flow.h"
+#include "game/world_views.h"
 #include "frontend/multiplayer_connection.h"
 #include "frontend/startup_modules.h"
 #include "frontend/options_settings.h"
@@ -51,7 +52,7 @@ public:
           joysticks_backend_(engine, joy), joysticks_(joysticks_backend_),
           input_backend_(engine, joysticks_backend_), input_(input_backend_),
           input_setup_(engine, joysticks_), settings_backend_(engine),
-          sound_backend_(engine, world_), sound_catalog_(sound_backend_),
+          sound_backend_(engine, game_views_.sound), sound_catalog_(sound_backend_),
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
           control_frame_(control_data_, gate_, *this) {
         if (!selected_language.empty()) language_.select(selected_language);
@@ -165,7 +166,8 @@ public:
     //006B6740: resolve the selected profile's real settings each call. No
     // menu-local defaults/copies or cache of a prior selected-profile pointer.
     frontend::ProfileSettings& profile_settings() { return data_.profile().options.settings; }
-    bool mission_active() const { return world_!=nullptr; } //00698500's actual mission-owner condition.
+    bool mission_active() const { return game_views_.owner()!=nullptr; } //00698500 actual owner, distinct from loaded camera.
+    game::WorldViews& game_views() { return game_views_; }
     input::BindingConfiguration& profile_bindings() { return data_.profile().options.bindings; }
     const std::string& profile_name() { return data_.profile().directories.current_name; }
     PreMission& pre_mission() {
@@ -493,7 +495,7 @@ private:
     input::InputManager<GraphicsInputServices<JoystickBackend>> input_;
     GraphicsInputSetup<input::JoystickDevices<JoystickBackend>> input_setup_;
     SettingsServices settings_backend_;
-    frontend::SoundWorldView* world_ = nullptr; // Actual mission owner absent before mission entry.
+    game::WorldViews game_views_; // Borrowed owner/scene; audio stays null until an actual loaded listener.
     SoundServices sound_backend_;
     frontend::SoundCatalog<SoundServices> sound_catalog_;
     std::uint32_t sound_clock_ = 0;

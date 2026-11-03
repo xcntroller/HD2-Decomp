@@ -1589,8 +1589,8 @@
       "program": "client",
       "entry": "006c0ef0",
       "status": "partial",
-      "coverage": "Null-descriptor branch shutdown and fresh-owner release, construction/installation before initialize(nullptr); ignore initializer result.",
-      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated. Other descriptor/game/credits, alternate console start and retained/restart/exit video routes remain unsupported; native invalid/allocation paths throw.",
+      "coverage": "Null-descriptor branch shutdown and fresh-owner release, construction/installation before initialize(nullptr); ignore initializer result. Kind7 now copies the actual mission/squad/equipment, installs type1 before initialization, constructs real native subowners/engine scene, and releases them before the controlled incomplete-loader error UI/Main return.",
+      "limitations": "Native ownership/storage/allocator/SEH ABI remains partial. Game construction/failure path is integrated and native-audited, pending user desktop confirmation; real006CA780 loading, live shutdown/gameplay/save/server/status9 receivers remain unavailable. Preserve other documented console/menu/video/network exclusions; engine/OS/CRT bodies stay delegated.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
@@ -1598,7 +1598,12 @@
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
         "analysis/function-completion-audit.md",
-        "analysis/phase1-traversal.md"
+        "analysis/phase1-traversal.md",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/game/receive_request.h",
+        "recovered/host/game_owner.h"
       ]
     },
     {
@@ -1621,8 +1626,8 @@
       "program": "client",
       "entry": "006c20f0",
       "status": "partial",
-      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement. Status4 now shuts down the state, releases it, closes mouse input and invokes cold control reset before returning false. Main Credits status12 retains the frontend, installs type10/sequence0, restores its pointer before video shutdown/deletion on status13, then starts the same owner. Cinematics extension: actual selected filename/type10 sequence0 return; retained ordinary playback and Outro2 music bookmark/forced request37 restoration as applicable. Single-player extension: statuses2/3 advance or reverse owned descriptor states through the preparation route. Status7/8 now construct a distinct type8 connection owner from a validated copied launch request, preserving host mode2/client mode1.",
-      "limitations": "Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated. Actual game receiver, alternate console start and unimplemented network/game state transitions remain unsupported; native invalid/allocation paths throw. Credits extension is integrated/native-audited and user desktop-confirmed2026-10-31; no individual case logs are inferred. See the Credits contract for its native ABI and scope limits. Cinematics extension is integrated/native-audited and user-accepted; no individual desktop case execution is inferred. Multiplayer session transport and status9 game entry remain unavailable; no desktop connection acceptance.",
+      "coverage": "Shared countdown/status/suspend gates, fresh-state input/update/post-update order and normal video sequence completion through frontend replacement. Status4 now shuts down the state, releases it, closes mouse input and invokes cold control reset before returning false. Main Credits status12 retains the frontend, installs type10/sequence0, restores its pointer before video shutdown/deletion on status13, then starts the same owner. Cinematics extension: actual selected filename/type10 sequence0 return; retained ordinary playback and Outro2 music bookmark/forced request37 restoration as applicable. Single-player extension: statuses2/3 advance or reverse owned descriptor states through the preparation route. Status7/8 now construct a distinct type8 connection owner from a validated copied launch request, preserving host mode2/client mode1. Kind7 now copies the actual mission/squad/equipment, installs type1 before initialization, constructs real native subowners/engine scene, and releases them before the controlled incomplete-loader error UI/Main return.",
+      "limitations": "Native ownership/storage/allocator/SEH ABI remains partial. Game construction/failure path is integrated and native-audited, pending user desktop confirmation; real006CA780 loading, live shutdown/gameplay/save/server/status9 receivers remain unavailable. Preserve other documented console/menu/video/network exclusions; engine/OS/CRT bodies stay delegated.",
       "evidence": [
         "analysis/application-controller-map.json",
         "analysis/application-controller.md",
@@ -1638,7 +1643,12 @@
         "recovered/host/application_launch.cpp",
         "analysis/multiplayer-function-audit.md",
         "analysis/function-completion-audit.md",
-        "analysis/phase1-traversal.md"
+        "analysis/phase1-traversal.md",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/game/receive_request.h",
+        "recovered/host/game_owner.h"
       ]
     },
     {
@@ -8155,6 +8165,423 @@
         "analysis/multiplayer-pipeline.md",
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00698510",
+      "status": "partial",
+      "coverage": "Concrete native HUD/text/table factories, real scene/callback/viewport setup, owned selected-mission request and late global publication now integrated at kind7.",
+      "limitations": "Unloaded constructor/error return user-accepted2026-11-03. Native object/allocator/SEH ABI differs; activation/real loading and live shutdown/simulation remain unavailable. No successful world/audio listener.",
+      "evidence": [
+        "recovered/game/session_owner.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00698830",
+      "status": "partial",
+      "coverage": "Actual native unloaded subowner/queue/scene/global/table cleanup and acquired-prefix failure unwind in the installed game state.",
+      "limitations": "Only unloaded ownership. Populated/live unload and other original raw vectors/strings/SEH/allocator ABI remain excluded. Native tests verify order/resources; unloaded construction user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/session_owner.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00699270",
+      "status": "partial",
+      "coverage": "Actual engine scene release and callback unregister through the integrated game state; borrowed owner/scene views cleared before release.",
+      "limitations": "Loaded-mission unload and original object ABI remain unimplemented. Agent compiled/linked only; user accepted unloaded construction2026-11-03; callback unregister is a native lifetime guard.",
+      "evidence": [
+        "recovered/host/game_scene.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c9260",
+      "status": "partial",
+      "coverage": "Recovered full dispatcher now installed through the real scene callback bridge; actual viewport and disabled mission-text branch supplied.",
+      "limitations": "Active HUD/control/network/debug/effects/fade render calls explicitly reject before world activation; original live callees remain P2.2/P2.3 dependencies. Initial flags reflect PE zero-fill. No actual Windows/desktop callback execution claim.",
+      "evidence": [
+        "recovered/game/scene_callback.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00490740",
+      "status": "partial",
+      "coverage": "Empty500-by13 record/row ownership graph and explicitly initialized constructor values.",
+      "limitations": "Native typed layout/allocations, not original allocator tags, raw frame/string ABI, unwritten bytes or SEH. Later overlay consumers not implemented.",
+      "evidence": [
+        "recovered/game/overlay_owner.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004908b0",
+      "status": "partial",
+      "coverage": "Reverse500-record destruction followed by vector storage release.",
+      "limitations": "Native owning references/vector representation, not original raw object/free/SEH ABI; production overlay consumers remain unavailable.",
+      "evidence": [
+        "recovered/game/overlay_owner.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00490800",
+      "status": "partial",
+      "coverage": "Initialize four frame references and four shared strings per overlay row.",
+      "limitations": "Native unique/shared ownership, not original COW pointer/object ABI; original unwritten bytes are not reconstructed.",
+      "evidence": [
+        "recovered/game/overlay_owner.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00490830",
+      "status": "partial",
+      "coverage": "Release four frame references forward then four shared strings backward in each row.",
+      "limitations": "Native reference deleters, not the original frame/COW ABI or exception machinery; original delegated engine/CRT bodies earn no credit.",
+      "evidence": [
+        "recovered/game/overlay_owner.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00523ab0",
+      "status": "partial",
+      "coverage": "Both native dataset sets initialize to empty; concrete cookie/payload allocation backend integrated with real game owner.",
+      "limitations": "Native pointer-width fields omit original opaque tags/padding/thiscall ABI; parser/population remains unavailable; unloaded construction user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/mission_tables.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051dd60",
+      "status": "partial",
+      "coverage": "Ordered array/count clear and vector-capacity preservation now use actual count-cookie reverse-record cleanup and owned/borrowed payload frees.",
+      "limitations": "Native pointer-width layout/allocator and original exception ABI differ. No table parser/population or whole-body equivalence claim; unloaded construction user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/mission_tables.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00523e10",
+      "status": "partial",
+      "coverage": "Concrete native game table backend clears first dataset then second with both vector allocations preserved.",
+      "limitations": "Native typed interface instead of original ABI. Integrated/native-audited with populated fixtures; no live mission population/desktop claim.",
+      "evidence": [
+        "recovered/game/mission_tables.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00523b20",
+      "status": "partial",
+      "coverage": "Concrete native backend clears/frees second dataset/vector before first and resets both triples during integrated owner destruction.",
+      "limitations": "Native pointer-width allocation/layout/SEH differ; full raw ABI and real mission population remain excluded. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/mission_tables.h",
+        "analysis/game-owner-start.md",
+        "analysis/game-owner-start.json",
+        "analysis/phase2-boundary-map.json",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json",
+        "recovered/host/game_owner.h",
+        "recovered/game/table_storage.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049a420",
+      "status": "partial",
+      "coverage": "Native unloaded HUD construction graph with77 real shared-font text owners, track/colour/item/timer defaults and disabled HUD flags.",
+      "limitations": "Populated HUD artwork/layout/animation consumers and original raw object/padding/allocator/SEH ABI remain excluded. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049a750",
+      "status": "partial",
+      "coverage": "Unloaded HUD destroys its77 text/font owners in reverse constructor order.",
+      "limitations": "Only unloaded constructor-owned resources; populated HUD vectors/models/layout cleanup and raw ABI remain excluded. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049fef0",
+      "status": "partial",
+      "coverage": "Construct complete nested68-text prefix graph and four empty track default states using correct this+30 receiver.",
+      "limitations": "Native constructor graph only; later populated vectors/animation/rendering and original vtables/SEH/layout omitted. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00496cc0",
+      "status": "partial",
+      "coverage": "Physical WORD dimensions, empty geometry/flags/records, index sentinels, inset10 and actual shared game font acquisition.",
+      "limitations": "Native typed fields and shared font ownership, not complete original text layout/allocator tag/vtable/SEH ABI. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048ecf0",
+      "status": "partial",
+      "coverage": "Release shared font reference before clearing text records during unloaded native text destruction.",
+      "limitations": "Original populated line/glyph layout owners, raw COW/vector ABI and SEH remain excluded. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048ef40",
+      "status": "partial",
+      "coverage": "Reset mission-text selection, release optional renderer, disable display and destroy entries in reverse while preserving vector capacity.",
+      "limitations": "Native owning types, not original callback/object/vector/allocator ABI. Populated text load/render integration remains later work. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048f400",
+      "status": "partial",
+      "coverage": "Set selected index to-1, ticks0, and clear an existing text renderer.",
+      "limitations": "Native text owner method instead of original object/thiscall ABI; actual initialized mission renderer is not delivered yet. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048efc0",
+      "status": "partial",
+      "coverage": "Forward release of entry string records and native vector destruction through actual mission-text entry owner.",
+      "limitations": "Native shared-string/vector storage and destruction, not original COW/allocator/SEH ABI; other unwritten entry fields not inferred. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00524840",
+      "status": "partial",
+      "coverage": "Conditionally free owned payload when0400 is clear, preserve borrowed payload, clear owned pointer and low six flag bits in concrete reverse-record destruction.",
+      "limitations": "Native pointer-width record and inline backend operation, not original thiscall/full raw-object ABI; original generic allocator remains delegated. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/table_storage.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049b7d0",
+      "status": "partial",
+      "coverage": "Query HUD enabled flag bit1 through actual native HUD instance.",
+      "limitations": "Native bool result/storage instead of original full DWORD EAX/raw object ABI; not an exact standalone body. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0063db50",
+      "status": "partial",
+      "coverage": "Create one actual five-atlas game font allocation lazily and share its retained ownership among all77 native game text owners.",
+      "limitations": "Native weak/shared lifetime per game construction; original global singleton/refcount ABI and menu-wide native owner unification remain excluded. Actual atlas construction log user-confirmed2026-11-03. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/host/game_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0063dbb0",
+      "status": "partial",
+      "coverage": "Release each native text font reference; last reference releases actual game font atlas owners and expires the weak factory reference.",
+      "limitations": "Native shared ownership/array cleanup differs from original explicit global manager/CRT ABI; wide/GDI font branches and exact singleton teardown unclaimed. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/text_state.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006989b0",
+      "status": "partial",
+      "coverage": "Installed owner consumes the actual copied mission, scopes/restores graphics bit20 and returns honest failure while006CA780 is unavailable.",
+      "limitations": "No original successful loader/activation/actor/camera/status5 path or live state reset; explicit incomplete-loader outcome is not credited as those bodies. Native resource/exception handling differs; unloaded construction user-accepted2026-11-03. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/host/game_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049a5e0",
+      "status": "partial",
+      "coverage": "Initialize32 required native records with first/second DWORD zero and byte flag zero.",
+      "limitations": "Inlined native record initialization, not original standalone thiscall ABI or surrounding unwritten bytes. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004a0410",
+      "status": "partial",
+      "coverage": "Construct both actual text/font owners at original composite offsets0/A8 across12 instances.",
+      "limitations": "Native graph representation; other composite layout fields, raw vtables/SEH and later populated consumers unclaimed. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004a05d0",
+      "status": "partial",
+      "coverage": "Construct six text/font owners at0,C0+i*9C,344 in each of four required composites.",
+      "limitations": "Native graph representation; other initialized/unwritten composite fields and original vtable/object/SEH ABI remain partial. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00494980",
+      "status": "partial",
+      "coverage": "Initialize255 colour channels, period50, counters,0x3CB43958 value and enabled byte in the native HUD colour state.",
+      "limitations": "Original raw vector/allocator-tag/layout ABI and populated colour allocation/render/update consumers remain excluded. Unloaded constructor/error return user-accepted2026-11-03.",
+      "evidence": [
+        "recovered/game/hud_owner.h",
+        "analysis/game-owner-integration.md",
+        "analysis/game-owner-integration.json",
+        "analysis/game-owner-integration-map.json"
       ]
     }
   ]

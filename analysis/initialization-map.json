@@ -167,7 +167,7 @@
     {"function": "006ca780", "string": "missions\\%s\\tree.klz", "site": "006ca9f6"}
   ],
   "unresolved": [
-    "The exact frontend/controller virtual-dispatch path into 006989b0 is not established; the two graph components must not be joined by an invented direct call.",
+    "Frontend/controller006C0EF0 kind7→00698510 vtable008159AC+04→006989B0 is now confirmed in phase2-boundary-map.json/game-owner-start.md; unloaded owner/controller integration is now native-verified in game-owner-integration.md, unloaded construction user-accepted2026-11-03; successful loading remains open.",
     "Vtable types, original function names, and many inferred calling conventions remain unknown.",
     "Opaque calls through 00a59000 and arithmetic around them occur in setup and loading paths; their meaning is unresolved.",
     "Successful decompilation is not proof of correct stack recovery. Several scene-loading exports contain implausible stack variables and unreachable-block warnings.",

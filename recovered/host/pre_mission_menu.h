@@ -213,9 +213,10 @@ class PreMissionMenu {
     MenuDriver &driver() { return driver_; }
     HMODULE module() const { return module_; }
     void status(unsigned value) { status_(value); }
+    void game_entry_failure(std::string detail) { game_entry_failure_ = std::move(detail); }
     void advance_setup() {
         auto &flow = startup_.pre_mission();
-        if (flow.screen() != frontend::PreMissionScreen::game_unavailable) {
+        if (flow.screen() != frontend::PreMissionScreen::game_unavailable || game_entry_failure_.empty()) {
             status(2);
             return;
         }
@@ -223,7 +224,7 @@ class PreMissionMenu {
         if (!request || request->game_entry_available)
             throw std::logic_error("Unavailable game boundary requires a validated owned request");
         std::printf("Pre-mission handoff validated: mission=%s root=%u mode=%u standalone=%u soldiers=%u; "
-                    "game entry unavailable\n",
+                    "receiver attempt failed\n",
                     request->mission_resource.c_str(), request->root, request->mode,
                     request->standalone ? 1u : 0u, static_cast<unsigned>(request->squad.size()));
         for (const auto &soldier : request->squad) {
@@ -236,11 +237,8 @@ class PreMissionMenu {
                         static_cast<unsigned>(soldier.backpack.size()), soldier.load, soldier.capacity);
         }
         unavailable_pending_ = true;
-        // This explicit endpoint is the user-approved reconstruction boundary,
-        // not an acknowledgment from original00698510/006989B0 world loading.
-        prompt(2,
-               std::make_shared<const std::string>(
-                   "Mission setup is complete. Starting the game is unavailable in this build."),
+        std::fprintf(stderr, "Game entry failure: %s\n", game_entry_failure_.c_str());
+        prompt(2, std::make_shared<const std::string>("The mission could not be loaded."),
                0x020000c7, 0x020000c7);
     }
     void confirm_back() {
@@ -550,6 +548,7 @@ class PreMissionMenu {
     std::unique_ptr<Keyboard> keyboard_context_;
     std::optional<MenuFrameInput<MenuFocus>> pointer_;
     frontend::FrontendUpdateState update_;
+    std::string game_entry_failure_;
     bool confirming_ = false, unavailable_pending_ = false;
 };
 

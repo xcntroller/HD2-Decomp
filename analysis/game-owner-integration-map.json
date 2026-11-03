@@ -1,0 +1,133 @@
+{
+  "scope": "P2.1 unloaded native constructor/backend/controller integration; unloaded construction user-accepted2026-11-03, no world/load success or new complete-function credit.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "0049a442",
+      "hex": "8d4e30e8a65a0000",
+      "meaning": "HUD constructor receiver: ECX=this+30 for0049FEF0."
+    },
+    {
+      "address": "0049a44c",
+      "hex": "8d8e902f0000895c2428e825a5ffff",
+      "meaning": "Colour-state receiver=this+2F90."
+    },
+    {
+      "address": "0049a472",
+      "hex": "8d6f308bcde8640100008b44241483c50c488944241475",
+      "meaning": "32 small records start at10928, stride0C."
+    },
+    {
+      "address": "0049a4fa",
+      "hex": "8dbe200b010068f0ec480068c06c49006a088d97a8000000689c00000052c644243c06897c2430e869ba3400c6",
+      "meaning": "Eight0x9C text owners at10BC8, shared constructor/destructor."
+    },
+    {
+      "address": "0049a5ae",
+      "hex": "8d8e5cb80600c64424280ce802c7ffff",
+      "meaning": "Final text owner at6B85C."
+    },
+    {
+      "address": "004a0270",
+      "hex": "8bc133c9baf0048100894804894818895014894830",
+      "meaning": "Inline track constructor null pointers; no standalone frozen membership."
+    },
+    {
+      "address": "004a02bf",
+      "hex": "c7808c000000ffffffffc7809000000001000000898884000000",
+      "meaning": "Track record defaults8C=-1,90=1."
+    },
+    {
+      "address": "006987e0",
+      "hex": "b801000000c3",
+      "meaning": "Game state type query returns1."
+    },
+    {
+      "address": "00524840",
+      "hex": "568bf1f6461504751b8b462085c0741450e86ad42b0083c404806614c0c74620000000005ec3",
+      "meaning": "Table payload free is suppressed by flag0400; owned payload clears low six bits and pointer."
+    },
+    {
+      "address": "0048f400",
+      "hex": "c7410cffffffffc74110000000008b490485c97405e946551b00c3",
+      "meaning": "Mission text selection reset:-1/ticks0; optional actual text clear."
+    },
+    {
+      "address": "0063db50",
+      "hex": "a1ccca8a0085c07515b9acca8a00890dccca8a00e8e7000000a1ccca8a008b480441894804a1ccca8a00c3",
+      "meaning": "Original shared font singleton acquire; native representation remains partial."
+    },
+    {
+      "address": "0063dbb0",
+      "hex": "8b410448894104750fe8620e0000c705ccca8a0000000000c3",
+      "meaning": "Release last font reference and clear singleton, native ownership analogue."
+    }
+  ],
+  "vtables": [],
+  "direct_calls": [
+    {
+      "site": "0049a445",
+      "target": "0049fef0"
+    },
+    {
+      "site": "0049a456",
+      "target": "00494980"
+    },
+    {
+      "site": "0049a477",
+      "target": "0049a5e0"
+    },
+    {
+      "site": "0049a5b9",
+      "target": "00496cc0"
+    }
+  ],
+  "resource_anchors": [],
+  "engine_interfaces": "analysis/phase2-boundary-map.json",
+  "zero_fill_flags": [
+    {
+      "address": "0086922c",
+      "section_va": "00832000",
+      "virtual_size": 1422696,
+      "raw_size": 221184,
+      "initial_value": 0
+    },
+    {
+      "address": "0086922d",
+      "section_va": "00832000",
+      "virtual_size": 1422696,
+      "raw_size": 221184,
+      "initial_value": 0
+    },
+    {
+      "address": "0098af98",
+      "section_va": "00832000",
+      "virtual_size": 1422696,
+      "raw_size": 221184,
+      "initial_value": 0
+    }
+  ],
+  "hud_text_graph": {
+    "total": 77,
+    "nested_receiver": "30",
+    "primary_text": "50",
+    "pair_count": 12,
+    "pair_stride": "148",
+    "pair_second_text": "a8",
+    "six_text_composites": 4,
+    "six_text_stride": "3e4",
+    "seven_text_arrays": 2,
+    "outer_text_array": "10bc8",
+    "outer_text_count": 8,
+    "final_text": "6b85c"
+  },
+  "limitations": [
+    "Native typed constructor graph and resources, not raw client object/allocator/SEH ABI. Populated HUD/layout/live renderer remain later consumers.",
+    "0063DC50 decompiler body exceeds84-byte frozen entry; out-of-frozen-body font loading receives no new function credit.",
+    "Agent never executed original client/DLLs/Proton/Windows code; user desktop acceptance required."
+  ]
+}

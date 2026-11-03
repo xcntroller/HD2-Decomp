@@ -1,5 +1,5 @@
 {
-  "scope": "Phase2 planning evidence only: game-owner vtable/activation-to-loader boundary. No new implementation, function credit or runtime acceptance.",
+  "scope": "P2.0 source-only receiver/loading contract; construction components started for P2.1. No desktop game entry, loader success or new complete-function claim.",
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
@@ -20,6 +20,121 @@
       "address": "00698cd1",
       "hex": "e8aa1a030085c00f848bfdffffe8",
       "meaning": "Activation mission-load call and result branch;0 loader success versus1 activation success must be preserved."
+    },
+    {
+      "address": "00698709",
+      "hex": "892de4e78a00",
+      "meaning": "Game global publication occurs after both scene setup and00523E10, before empty-string allocation."
+    },
+    {
+      "address": "006c93b4",
+      "hex": "33c08be55dc20c00",
+      "meaning": "Callback returns zero and stdcall-cleans THREE arguments (RET12)."
+    },
+    {
+      "address": "00523e10",
+      "hex": "568bf1e8489fffff8d4e3c5ee93f9fffff",
+      "meaning": "Clear first0x3C dataset then second; destructor reverses the sets."
+    },
+    {
+      "address": "00523b43",
+      "hex": "8d7e3c895c241c897c24108bcfc644241c01",
+      "meaning": "Destructor selects second0x3C dataset before0051DD60."
+    },
+    {
+      "address": "00783350",
+      "hex": "a0a4a4980084c07511c605a4a4980001e85b08000084c07501c3",
+      "meaning": "Animation gate sets0098A4A4 before00783BC0; failed first load does not clear the gate."
+    },
+    {
+      "address": "00a59068",
+      "hex": "ae8a6900b4f18000",
+      "meaning": "Return-address/IAT mapping: GetTickCount"
+    },
+    {
+      "address": "0080f1b4",
+      "hex": "a6034300",
+      "meaning": "Original import-name RVA: GetTickCount"
+    },
+    {
+      "address": "008303a8",
+      "hex": "4765745469636b436f756e7400",
+      "meaning": "Imported name: GetTickCount"
+    },
+    {
+      "address": "00a59070",
+      "hex": "098c6900ecf38000",
+      "meaning": "Return-address/IAT mapping: IsWindowVisible"
+    },
+    {
+      "address": "0080f3ec",
+      "hex": "3a114300",
+      "meaning": "Original import-name RVA: IsWindowVisible"
+    },
+    {
+      "address": "0083113c",
+      "hex": "497357696e646f7756697369626c6500",
+      "meaning": "Imported name: IsWindowVisible"
+    },
+    {
+      "address": "00a59078",
+      "hex": "5d8c6900e0f38000",
+      "meaning": "Return-address/IAT mapping: GetCapture"
+    },
+    {
+      "address": "0080f3e0",
+      "hex": "1a114300",
+      "meaning": "Original import-name RVA: GetCapture"
+    },
+    {
+      "address": "0083111c",
+      "hex": "4765744361707475726500",
+      "meaning": "Imported name: GetCapture"
+    },
+    {
+      "address": "00a590b0",
+      "hex": "13a96c00d8f38000",
+      "meaning": "Return-address/IAT mapping: GetParent"
+    },
+    {
+      "address": "0080f3d8",
+      "hex": "02114300",
+      "meaning": "Original import-name RVA: GetParent"
+    },
+    {
+      "address": "00831104",
+      "hex": "476574506172656e7400",
+      "meaning": "Imported name: GetParent"
+    },
+    {
+      "address": "00a590b8",
+      "hex": "c0aa6c00ecf38000",
+      "meaning": "Return-address/IAT mapping: IsWindowVisible"
+    },
+    {
+      "address": "0080f3ec",
+      "hex": "3a114300",
+      "meaning": "Original import-name RVA: IsWindowVisible"
+    },
+    {
+      "address": "0083113c",
+      "hex": "497357696e646f7756697369626c6500",
+      "meaning": "Imported name: IsWindowVisible"
+    },
+    {
+      "address": "00a590c0",
+      "hex": "29ab6c00f0f38000",
+      "meaning": "Return-address/IAT mapping: IsIconic"
+    },
+    {
+      "address": "0080f3f0",
+      "hex": "4c114300",
+      "meaning": "Original import-name RVA: IsIconic"
+    },
+    {
+      "address": "0083114e",
+      "hex": "497349636f6e696300",
+      "meaning": "Imported name: IsIconic"
     }
   ],
   "vtables": [
@@ -67,7 +182,234 @@
     "analysis/work/scene-loading/006ca780.json"
   ],
   "limitations": [
-    "Only vtable targets/call edges/result branches are guarded here; raw virtual prototypes, complete ownership, wrappers and loading dependencies remain Phase2.0 research.",
-    "Some virtual targets lack standalone frozen-inventory entries; they are reference addresses only, not new function credit."
-  ]
+    "Unloaded owner/subowners/scene now integrated and native-verified; unloaded construction user-accepted2026-11-03. Full activation/real loader/live shutdown remain unavailable.",
+    "Real original-engine scene/callback/viewport bridge compiled/linked in the application; agent never executed original DLLs or Windows code.",
+    "P2.2 owns animation tables, loading presentation, Scene callback/Scene2 objects, camera, post-load resources and failure unwind. No loading readiness or successful frame is reported.",
+    "Some inline array/virtual/helper targets are absent from frozen inventory; no body credit for them or original engine/CRT delegates."
+  ],
+  "resolved_wrappers": [
+    {
+      "return_address": "00698aae",
+      "record": "00a59068",
+      "iat_slot": "0080f1b4",
+      "name_va": "008303a8",
+      "api": "GetTickCount"
+    },
+    {
+      "return_address": "00698c09",
+      "record": "00a59070",
+      "iat_slot": "0080f3ec",
+      "name_va": "0083113c",
+      "api": "IsWindowVisible"
+    },
+    {
+      "return_address": "00698c5d",
+      "record": "00a59078",
+      "iat_slot": "0080f3e0",
+      "name_va": "0083111c",
+      "api": "GetCapture"
+    },
+    {
+      "return_address": "006ca913",
+      "record": "00a590b0",
+      "iat_slot": "0080f3d8",
+      "name_va": "00831104",
+      "api": "GetParent"
+    },
+    {
+      "return_address": "006caac0",
+      "record": "00a590b8",
+      "iat_slot": "0080f3ec",
+      "name_va": "0083113c",
+      "api": "IsWindowVisible"
+    },
+    {
+      "return_address": "006cab29",
+      "record": "00a590c0",
+      "iat_slot": "0080f3f0",
+      "name_va": "0083114e",
+      "api": "IsIconic"
+    }
+  ],
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "10046820",
+        "hex": "8b54240885d28b4c240475158b81200100008991240100",
+        "meaning": "Scene callback registration null path clears callback/flags; RET12."
+      },
+      {
+        "address": "10046841",
+        "hex": "8b44240c8981240100008b8120010000899120010000c20c00",
+        "meaning": "Non-null path stores callback at+120 and flags+124; returns old pointer."
+      },
+      {
+        "address": "10048440",
+        "hex": "83ec088b44240c8b5424188b4c2414568b74241489904c0200002bd6895424",
+        "meaning": "Scene viewport setter takes scene plus four signed coordinates."
+      },
+      {
+        "address": "100484bf",
+        "hex": "33c0ddd8ddd883c408c21400",
+        "meaning": "Viewport setter returns zero, cleans20 argument bytes."
+      }
+    ],
+    "vtables": [
+      {
+        "address": "1009b798",
+        "targets": [
+          "1001c370"
+        ],
+        "meaning": "Release"
+      },
+      {
+        "address": "1009b80c",
+        "targets": [
+          "10046820"
+        ],
+        "meaning": "Set callback"
+      },
+      {
+        "address": "1009b8e0",
+        "targets": [
+          "10048440"
+        ],
+        "meaning": "Set scene viewport"
+      }
+    ],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "first_mission": {
+    "resource": "Tutorial",
+    "scope": "Genuine normally reachable baseline root0/mode1 route; runtime uses its actual selected descriptor through existing rw_data, never a hardcoded mission.",
+    "gamedata": {
+      "archive": "others.DTA",
+      "member": "GAMEDATA\\Gamedata00.gdt",
+      "size": 22161,
+      "sha256": "f92ab7e8796148af7854438ffca4df34b55cca8e83336878d7f569cdcd3319b1"
+    },
+    "route": [
+      {
+        "kind": 6,
+        "subtype": 2
+      },
+      {
+        "kind": 7
+      }
+    ],
+    "scene2": {
+      "size": 3684095,
+      "sha256": "89d9e37a57ad956804fc45e4f9790078a8d3999b14d41a0fca6ba94977ed4773",
+      "root_id": "0x4c53",
+      "top_level_chunks": [
+        {
+          "offset": 6,
+          "id": "0x0001",
+          "size": 95
+        },
+        {
+          "offset": 101,
+          "id": "0x3200",
+          "size": 18
+        },
+        {
+          "offset": 119,
+          "id": "0xb004",
+          "size": 7
+        },
+        {
+          "offset": 126,
+          "id": "0xb600",
+          "size": 10
+        },
+        {
+          "offset": 136,
+          "id": "0xb650",
+          "size": 10
+        },
+        {
+          "offset": 146,
+          "id": "0xb840",
+          "size": 10
+        },
+        {
+          "offset": 156,
+          "id": "0xb880",
+          "size": 10
+        },
+        {
+          "offset": 166,
+          "id": "0xb700",
+          "size": 50
+        },
+        {
+          "offset": 216,
+          "id": "0x3010",
+          "size": 10
+        },
+        {
+          "offset": 226,
+          "id": "0x3011",
+          "size": 10
+        },
+        {
+          "offset": 236,
+          "id": "0x3211",
+          "size": 14
+        },
+        {
+          "offset": 250,
+          "id": "0x4000",
+          "size": 3679023
+        },
+        {
+          "offset": 3679273,
+          "id": "0xae20",
+          "size": 4754
+        },
+        {
+          "offset": 3684027,
+          "id": "0xb820",
+          "size": 62
+        },
+        {
+          "offset": 3684089,
+          "id": "0xb810",
+          "size": 6
+        }
+      ],
+      "object_containers": 1,
+      "object_records": 1890,
+      "nul_terminated_name_fields": 1890,
+      "record_field_counts": {
+        "0x0010": 1890,
+        "0x0020": 1125,
+        "0x0022": 1111,
+        "0x002c": 1113,
+        "0x002d": 1112,
+        "0x2012": 975,
+        "0x4011": 1103,
+        "0x4020": 1102,
+        "0x4033": 6,
+        "0x4036": 4,
+        "0x4040": 43,
+        "0x4050": 79,
+        "0x4090": 767,
+        "0x40a0": 766,
+        "0xb110": 1,
+        "0xb150": 2
+      },
+      "uninterpreted_record_kinds": {},
+      "scope": "Structural checks only; unknown payloads are opaque. Records are not soldiers or gameplay entities by definition."
+    },
+    "precedence": "Flags0/default: loose first, then registered language archive/fallback, Patch and base archives. Current LangEnglish/Patch use ISD1; static ISD0 extractor cannot prove override absence. Runtime selection must retain original rw_data resolver.",
+    "acceptance": "User reaches Campaign/root0/mode1 from an isolated fresh-profile copy, accepts team, attempts game; later P2.2 must render actual selected scene and return/re-enter. No progress bypass."
+  },
+  "latest_integration": "analysis/game-owner-integration.md"
 }
