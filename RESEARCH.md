@@ -3,6 +3,66 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
+Current continuation (2026-11-02): user requests removing resource staging
+redundancy and implementing fullscreen before Phase1 closes.
+[Original-path/fullscreen contract](analysis/resource-fullscreen.md) and
+[dual-image evidence](analysis/resource-fullscreen-map.json) record archive/Text
+paths, native launch mode/frame guards and verification. New portable assemblies
+contain no Models/Sounds/MenuText/Maps extracts or font aliases. Fullscreen uses
+original flags2,32bpp/default refresh; engine owns device/reset/cleanup. Strict
+builds, temporary native sanitizers/Windows fixture, packaging/staging audits,
+existing native suite,158 Python tests and frozen ledger pass. The user now
+accepts the revised package/fullscreen after resolving the reported launch issue;
+its cause was not supplied and no logging/runtime fix was implemented during
+that inquiry. [Acceptance](analysis/resource-fullscreen.md#desktop-acceptance--2026-11-02)
+records the script fullscreen log and overall package confirmation separately.
+No new original-body credit, permanent tests, commit or push.
+Revised artifacts: dist/HD2-Phase1-clean folder/ZIP,493 files; client745174a2…26573,
+ZIP a95a1396…be383e. Every actual payload hash/CRC and static import closure pass;
+all581 pre-recorded original/accepted/writable identities are unchanged.
+
+Previous continuation (2026-11-02): [portable Windows package](analysis/standalone-package.md)
+is built at dist/HD2-Phase1 and dist/HD2-Phase1.zip (554 files/about1.90GiB).
+Native entry supports direct zero-argument launch plus flags while retaining the
+existing developer CLI. Fresh package staging omits installed user state; all
+seven delegated engine/codec DLLs and required base resources are local to the
+folder. Parser sanitizers, temporary packaging/failure audit, full real ZIP/
+payload/import verification, strict i386 builds, native regressions and158 Python
+tests pass. Original572 files and existing staged eight writable files/client
+are hash-preserved. New built/package client3547347c…6070b differs from accepted
+staged e11fb644…384a8. **Portable build user-accepted2026-11-02** (“The build works
+fine, by the way”); packaging checkbox is complete. The linked package note
+explains loose DTA extracts and reconstruction-specific font/text helpers;
+the accepted artifacts remain unchanged. Phase2 dependency research/planning is
+next when instructed to continue. No engine/body credit, permanent tests, commit or push.
+
+Previous continuation (2026-11-02): [consolidated Phase1 traversal](analysis/phase1-traversal.md)
+closes section4 using cumulative named user desktop acceptances plus a current
+native shared-route sanitizer walk. No new desktop sweep or runtime change is
+claimed. [Coverage](analysis/phase1-traversal.json) classifies all71 original
+edges,30 declarations,12 auxiliary products,13 dynamic categories,30 family
+units and20 prompts. Thirteen scoped family units are accepted;17 remain open,
+including broader saves.metadata (stored Main caption is the accepted boundary).
+Loadouts and ready-server UI retain explicit untested status. Strict i386 fixture,
+current application targets, native regressions,158 Python tests, original maps
+and frozen ledger pass. Accepted build e11fb644…384a8 is unchanged. Next checkbox
+is standalone packaging; no new function credit, commit or push.
+
+Previous continuation (2026-11-02): the user accepts the
+[audio/preferences/cleanup checkpoint](analysis/audio-preferences-fidelity.md#desktop-acceptance--2026-11-02);
+its section4 checkbox is complete, following accepted input/presentation.
+[Credits resolution comparison](analysis/credits-resolution-check.md) confirms
+the original width-dependent offset explains the reported high-resolution wait
+(8.63s to first viewport intersection at1920×1080); timing is unchanged. Its
+native float-to-word precision limit is recorded separately from that delay.
+[Host-boundary audit](analysis/host-boundary-audit.md) classifies all71 host files
+and255 indexed guard/delegate sites into17 policy groups. Thirty-five original
+client/engine map-part checks, two temporary native sanitizer compositions,
+strict i386 fixtures, current application targets, existing regressions and
+ledger pass. This checkbox is complete **source-only**; no new desktop claim,
+runtime change or function credit. Accepted build stays e11fb644…384a8;
+next is consolidated Phase1 traversal/deferrals. No commit/push requested.
+
 Latest checkpoint (2026-11-02): [Main traversal](analysis/main-traversal.md#desktop-acceptance--2026-11-02)
 and the four Options corrections are user-accepted. The next fidelity checkbox
 now includes the user's requested resolution/language expansion. Original

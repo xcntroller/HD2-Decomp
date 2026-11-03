@@ -1,6 +1,7 @@
 #ifndef HD2_HOST_MULTIPLAYER_MENU_H
 #define HD2_HOST_MULTIPLAYER_MENU_H
 
+#include "frontend/cleanup.h"
 #include "frontend/multiplayer_maps.h"
 #include "host/multiplayer_controls.h"
 #include "host/multiplayer_discovery.h"
@@ -31,7 +32,12 @@ class MultiplayerMenu {
         if (catalogue) maps_=frontend::decode_multiplayer_maps(std::string_view(
             reinterpret_cast<const char*>(catalogue->data()),catalogue->size()));
     }
-    ~MultiplayerMenu() { cancel(); }
+    ~MultiplayerMenu() {
+        // Cancellation's UI queue may throw; discovery/owned members still
+        // need their ordinary destruction during an acquired-prefix unwind.
+        frontend::CleanupErrors errors;
+        errors.attempt([&] { cancel(); });
+    }
     EngineFrame* model(unsigned slot) const { return models_.at(slot-8).get(); }
     void errors(std::function<bool(Text)> callback) { error_=std::move(callback); }
     std::optional<unsigned> backdrop(unsigned id) const {
@@ -236,8 +242,12 @@ class MultiplayerMenu {
         try { self.clicked(id); } catch (const std::exception& error) { self.fail(error.what()); }
         return true;
     }
-    static bool join_row(void* owner,void*,void*,unsigned,unsigned) {
-        static_cast<MultiplayerMenu*>(owner)->join(); return true;
+    static bool join_row(void* owner,void*,void* sender,unsigned,unsigned) {
+        auto& self=*static_cast<MultiplayerMenu*>(owner);
+        const auto id=static_cast<ButtonVisualPair*>(sender)->identifier();
+        const auto row=self.rows_.find(id);
+        if (row!=self.rows_.end() && row->second->eligible()) self.join();
+        return true;
     }
     static bool changed_style(void* owner,void*,void*,unsigned,unsigned) {
         static_cast<MultiplayerMenu*>(owner)->style_changed(); return true;
@@ -549,7 +559,8 @@ inline void MultiplayerMenu::paint_browser() {
         const auto found=std::find_if(visible.begin(),visible.end(),[&](const auto& value) {
             return value.ipv4==selected_->ipv4 && value.port==selected_->port;
         });
-        if (found==visible.end()) selected_.reset();
+        if (found==visible.end() || found->ping>9998) selected_.reset();
+        else selected_=*found;
     }
     const auto filtered_count=visible.size();
     browser_->records(std::move(visible));
@@ -562,6 +573,7 @@ inline void MultiplayerMenu::paint_browser() {
 }
 
 inline void MultiplayerMenu::select(const frontend::MultiplayerServer& value) {
+    if (value.ping>9998) return;
     selected_=value;
     enabled(0x20e00000,true); enabled(0x21000000,true); enabled(0x21600000,internet_);
 }
@@ -635,7 +647,7 @@ inline void MultiplayerMenu::add_address() {
 }
 
 inline void MultiplayerMenu::join() {
-    if (!selected_) return;
+    if (!selected_ || selected_->ping>9998) return;
     cancel(); joining_=*selected_; join_password_.clear();
     if (joining_->password) {
         caption(0x28200000,0x7d2,14); open(10,true); frontend::request_control_focus(queue_,0x28200000);

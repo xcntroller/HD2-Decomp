@@ -1,0 +1,2026 @@
+{
+  "date": "2026-11-02",
+  "status": "consolidated bounded Phase1 traversal; cumulative accepted desktop evidence plus current native regression; no new desktop execution",
+  "application_sha256": "e11fb644abd669a04deae5b56bb095763ceec59401ad391ca76718cbcb9384a8",
+  "completion_policy": "Covers delivered front-end and explicit unavailable boundaries. Original full-game route census is exhaustively classified, not claimed traversed or delivered. Earlier user confirmations remain scoped to their named builds; no new final-build desktop sweep is inferred.",
+  "original_client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "inputs_sha256": {
+    "menu-route-census.json": "8d8f32cc38fe94fb6c3109a0277060ec5db74765ffb0b66383449cd9d62b3800",
+    "menu-definition-resolution.json": "4b50bc2a682c7131e9b98baa680af4b49c7f678330b37322f965b0cb1239e435",
+    "menu-family-delivery.json": "4fda3744222f7b48fcdee07bd46350fb186aa1d18defdacaef5e500d30df6e0b",
+    "dialog-callers-research.json": "ed51b5e36ff3ec18896ca381c8428921354a3a092ce5bb758cb988a0650da837"
+  },
+  "summary": {
+    "original_route_edges": 71,
+    "route_dispositions": {
+      "accepted_frontend_bounded": 13,
+      "singleplayer_partial_phase2": 15,
+      "server_dependent_untested_phase3": 13,
+      "game_and_session_deferred": 2,
+      "save_receiver_unavailable": 1,
+      "ingame_deferred_phase2": 13,
+      "loadouts_completely_untested": 6,
+      "results_deferred_phase2": 8
+    },
+    "numbered_candidates": 30,
+    "populated_roles": 28,
+    "reserved": 2,
+    "shared_auxiliary_products": 12,
+    "dynamic_categories": 13,
+    "delivery_units": 30,
+    "catalog_accepted_bounded_units": 13,
+    "catalog_open_units": 17,
+    "prompt_phase_counts": {
+      "1": 6,
+      "3": 1,
+      "2": 13
+    }
+  },
+  "routes": [
+    {
+      "census_index": 0,
+      "from": "main:1",
+      "to": "main:2",
+      "trigger": "bchange profile 06001001",
+      "evidence": [
+        "0062456c",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 1,
+      "from": "main:1",
+      "to": "main:3",
+      "trigger": "bsingleplayer 06001001",
+      "evidence": [
+        "00624660",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 2,
+      "from": "main:1",
+      "to": "main:7",
+      "trigger": "bcinematics 06001001",
+      "evidence": [
+        "0062493c",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 3,
+      "from": "main:1",
+      "to": "main:4",
+      "trigger": "Exit/back on initial main invokes common slot-four confirmation policy",
+      "evidence": [
+        "00624c1b",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 4,
+      "from": "main:1",
+      "to": "main:8",
+      "trigger": "LAN 02000099 / Internet 0200009a prepare service then select 8",
+      "evidence": [
+        "00623dd0",
+        "006333c0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 5,
+      "from": "main:1",
+      "to": "main:6",
+      "trigger": "Options 02000071 synchronizes settings then selects owner slot 6",
+      "evidence": [
+        "0061bea0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 6,
+      "from": "main:3",
+      "to": "main:5",
+      "trigger": "0063b740 activation -> 02000033 or 02000074 -> 00638d30 mission selector",
+      "evidence": [
+        "0063b740",
+        "00638d30"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 7,
+      "from": "main:3",
+      "to": "service:descriptor_next",
+      "trigger": "02000033 with no prior campaign -> 02000008 after HumanStore/setup",
+      "evidence": [
+        "0063b740",
+        "00638d30",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 8,
+      "from": "main:5",
+      "to": "service:descriptor_next",
+      "trigger": "0200001e prepares selected campaign/mission and sets status 2",
+      "evidence": [
+        "00638d30"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 9,
+      "from": "main:8",
+      "to": "main:9",
+      "trigger": "06001001 argument 9",
+      "evidence": [
+        "00633f80",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 10,
+      "from": "main:8",
+      "to": "main:11",
+      "trigger": "06001001 argument 11",
+      "evidence": [
+        "00633f80",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 11,
+      "from": "main:8",
+      "to": "main:12",
+      "trigger": "06001001 argument 12",
+      "evidence": [
+        "00633f80",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 12,
+      "from": "main:8",
+      "to": "main:14",
+      "trigger": "06001002 argument 14",
+      "evidence": [
+        "00633f80",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 13,
+      "from": "main:8",
+      "to": "main:13",
+      "trigger": "Join 0200002a copies server/session data then pushes modal 13",
+      "evidence": [
+        "006333c0"
+      ],
+      "condition": "Selected server exists and server+82 is zero (otherwise password first)",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 14,
+      "from": "main:8",
+      "to": "main:10",
+      "trigger": "Join 0200002a with server+82 nonzero calls 00637990 to clear edit, modal-push 10 and focus edit",
+      "evidence": [
+        "006333c0",
+        "00637990"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 15,
+      "from": "main:12",
+      "to": "main:13",
+      "trigger": "Join 0200002a copies server/session data then pushes modal 13",
+      "evidence": [
+        "006333c0"
+      ],
+      "condition": "Selected server exists and server+82 is zero (otherwise password first)",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 16,
+      "from": "main:12",
+      "to": "main:10",
+      "trigger": "Join 0200002a with server+82 nonzero calls 00637990 to clear edit, modal-push 10 and focus edit",
+      "evidence": [
+        "006333c0",
+        "00637990"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 17,
+      "from": "main:9",
+      "to": "main:13",
+      "trigger": "020000c9/ca/cb connection sequence -> modal 13",
+      "evidence": [
+        "00628490",
+        "006333c0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 18,
+      "from": "main:13",
+      "to": "service:network_game",
+      "trigger": "02000069 selects controller status 9",
+      "evidence": [
+        "006333c0",
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "game_and_session_deferred",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/host-boundary-audit.md"
+      ],
+      "scope": "Status9 game receiver is Phase2; real session/server dependencies and live verification Phase3. No successful receiver in production."
+    },
+    {
+      "census_index": 19,
+      "from": "main:13",
+      "to": "service:previous_screen",
+      "trigger": "Back cancels operation, pops, queues 02000028 and cleans connection",
+      "evidence": [
+        "006322c0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 20,
+      "from": "main:10",
+      "to": "service:previous_screen",
+      "trigger": "Back queues edit discard 10000200 argument 1 then 02000005",
+      "evidence": [
+        "00626b20"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 21,
+      "from": "main:14",
+      "to": "service:previous_screen",
+      "trigger": "Back queues edit discard 10000200 argument 1 then 02000005",
+      "evidence": [
+        "00626b20"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 22,
+      "from": "main:1",
+      "to": "service:last_save",
+      "trigger": "Resume 02000075 -> save validation/loading service",
+      "evidence": [
+        "00626b20"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "save_receiver_unavailable",
+      "contract_files": [
+        "analysis/main-menu-state.md",
+        "analysis/main-traversal.md"
+      ],
+      "scope": "Resume input is unbound; direct save request reports unavailable. Parsed stored profile caption is not broader saves.metadata or game-save compatibility/loading."
+    },
+    {
+      "census_index": 23,
+      "from": "main:1",
+      "to": "state:video",
+      "trigger": "Credits 0200003a -> application status 12; default credits.bik",
+      "evidence": [
+        "00626b20",
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 24,
+      "from": "main:7",
+      "to": "state:video",
+      "trigger": "Selected cinematics filename uses retained-owner video transition",
+      "evidence": [
+        "00614140",
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 25,
+      "from": "state:video",
+      "to": "service:retained_owner",
+      "trigger": "Video type 10, status 13, stage 0 shuts down video wrapper and restores retained owner status 1",
+      "evidence": [
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "contract_files": [
+        "analysis/main-traversal.md",
+        "analysis/profiles-flow.md",
+        "analysis/options-flow.md",
+        "analysis/credits-flow.md",
+        "analysis/cinematics-flow.md",
+        "analysis/multiplayer-pipeline.md"
+      ],
+      "scope": "Cumulative user-accepted reachable hub/settings/profile/media/browser boundaries only; no new per-case or full-build desktop run inferred."
+    },
+    {
+      "census_index": 26,
+      "from": "state:game",
+      "to": "ingame:1",
+      "trigger": "Status 14 wraps game with 0069e620(-1)",
+      "evidence": [
+        "006c20f0",
+        "0069e620"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 27,
+      "from": "state:game",
+      "to": "ingame:3",
+      "trigger": "Status 17 or selected session/status-9/network/warmup paths wrap with -2",
+      "evidence": [
+        "006c20f0",
+        "00699900",
+        "00728450",
+        "0069e620"
+      ],
+      "condition": "(00982100 & 7) != 7; underlying game/session required",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 28,
+      "from": "ingame:1",
+      "to": "ingame:2",
+      "trigger": "Options 02000071 with owner Options family 2",
+      "evidence": [
+        "00680680",
+        "0061bea0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 29,
+      "from": "ingame:1",
+      "to": "ingame:3",
+      "trigger": "Player button 06001001 argument 3",
+      "evidence": [
+        "00680680"
+      ],
+      "condition": "(00982100 & 7) != 7",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 30,
+      "from": "ingame:2",
+      "to": "service:previous_screen",
+      "trigger": "Back pops when self+f0 != -2; Options first goes through settings handler",
+      "evidence": [
+        "0067f550",
+        "0061bea0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 31,
+      "from": "ingame:3",
+      "to": "service:previous_screen",
+      "trigger": "Back pops when self+f0 != -2; Options first goes through settings handler",
+      "evidence": [
+        "0067f550",
+        "0061bea0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 32,
+      "from": "ingame:1",
+      "to": "state:game",
+      "trigger": "Back selects status 15 after original gameplay/network guards; controller unwraps self+5b8",
+      "evidence": [
+        "0067f550",
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 33,
+      "from": "ingame:3",
+      "to": "state:game",
+      "trigger": "0200006a/02000077 queue Back after session actions; -2 entry can resume wrapper directly",
+      "evidence": [
+        "0067f550",
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 34,
+      "from": "ingame:1",
+      "to": "service:game_action",
+      "trigger": "020000b5/b6/b7 set status 15 and underlying controller status 1/2/3",
+      "evidence": [
+        "0067f550",
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 35,
+      "from": "ingame:1",
+      "to": "service:game_action",
+      "trigger": "020000b8/c5/c6 select status 16; b8 also writes underlying game+1c = 2",
+      "evidence": [
+        "0067f550",
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 36,
+      "from": "ingame:3",
+      "to": "ingame:info",
+      "trigger": "Game-info callback, separate engine ingame_info root",
+      "evidence": [
+        "00682980",
+        "0067f350",
+        "00496450"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 37,
+      "from": "ingame:info",
+      "to": "service:previous_screen",
+      "trigger": "Back hides visible panel before other routing",
+      "evidence": [
+        "0067f550",
+        "00496e40"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    },
+    {
+      "census_index": 38,
+      "from": "hero:1",
+      "to": "hero:4",
+      "trigger": "Back queues modal slot 4 and its root-message sequence",
+      "evidence": [
+        "00696dc0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 39,
+      "from": "hero:4",
+      "to": "hero:1",
+      "trigger": "Yes/No builder both queue pop 06001005 with different root messages",
+      "evidence": [
+        "00697510",
+        "00696dc0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 40,
+      "from": "hero:1",
+      "to": "service:descriptor_next",
+      "trigger": "0200006a prepares HumanStore/stat values then queues 02000008",
+      "evidence": [
+        "00696dc0",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 41,
+      "from": "team:1",
+      "to": "team:2",
+      "trigger": "00693590 auto-assign button queues modal 06001002 argument 2; conditional slot existence retained",
+      "evidence": [
+        "00693590",
+        "00691280"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 42,
+      "from": "team:2",
+      "to": "team:1",
+      "trigger": "Back queues modal pop 02000005",
+      "evidence": [
+        "00691020"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 43,
+      "from": "team:1",
+      "to": "service:descriptor_next",
+      "trigger": "0200006a -> 02000008 after current selections",
+      "evidence": [
+        "00691020",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 44,
+      "from": "team:1",
+      "to": "team:runtime",
+      "trigger": "Back requests mode 1 prompt, Yes queues 02000007 (previous descriptor)",
+      "evidence": [
+        "00691020",
+        "0066d7a0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 45,
+      "from": "items:1",
+      "to": "items:2",
+      "trigger": "0200000b conditional selection popup",
+      "evidence": [
+        "00673dd0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "loadouts_completely_untested",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Source/data implementation only. Loadout screens are completely untested until accessible; native stock/request audits do not change that status."
+    },
+    {
+      "census_index": 46,
+      "from": "items:2",
+      "to": "items:1",
+      "trigger": "Back queues 06001005",
+      "evidence": [
+        "00673dd0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "loadouts_completely_untested",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Source/data implementation only. Loadout screens are completely untested until accessible; native stock/request audits do not change that status."
+    },
+    {
+      "census_index": 47,
+      "from": "items:1",
+      "to": "items:runtime",
+      "trigger": "Back -> previous-descriptor confirmation; equipment validation -> OK or Yes/No prompt",
+      "evidence": [
+        "00673dd0",
+        "0066d7a0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "loadouts_completely_untested",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Source/data implementation only. Loadout screens are completely untested until accessible; native stock/request audits do not change that status."
+    },
+    {
+      "census_index": 48,
+      "from": "items:1",
+      "to": "service:equipment_progress",
+      "trigger": "0200000b/6a -> 020000c1; after validation 020000c6 prepares inventory and queues progression or 02000007 under original branch",
+      "evidence": [
+        "00673dd0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "loadouts_completely_untested",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Source/data implementation only. Loadout screens are completely untested until accessible; native stock/request audits do not change that status."
+    },
+    {
+      "census_index": 49,
+      "from": "debrief:1",
+      "to": "debrief:2",
+      "trigger": "Diary button 06001001 argument 2",
+      "evidence": [
+        "0068ead0"
+      ],
+      "condition": "0068c2e0 true and diary constructed",
+      "traversal_disposition": "results_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-family-delivery.md",
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Mission/campaign results, diary and next/retry/return need real game/profile outcomes in Phase2."
+    },
+    {
+      "census_index": 50,
+      "from": "debrief:2",
+      "to": "debrief:1",
+      "trigger": "Diary exit 06001003 / Back 0200000a pops",
+      "evidence": [
+        "0068d5c0",
+        "0068ce00"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "results_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-family-delivery.md",
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Mission/campaign results, diary and next/retry/return need real game/profile outcomes in Phase2."
+    },
+    {
+      "census_index": 51,
+      "from": "debrief:1",
+      "to": "debrief:runtime",
+      "trigger": "Back requests mode 1 with 02000009 or 020000c8/9 replies by campaign progress",
+      "evidence": [
+        "0068ce00"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "results_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-family-delivery.md",
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Mission/campaign results, diary and next/retry/return need real game/profile outcomes in Phase2."
+    },
+    {
+      "census_index": 52,
+      "from": "debrief:1",
+      "to": "service:descriptor_next",
+      "trigger": "02000034 queues 02000008 argument 1 after campaign/save preparation",
+      "evidence": [
+        "0068ce00"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "results_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-family-delivery.md",
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Mission/campaign results, diary and next/retry/return need real game/profile outcomes in Phase2."
+    },
+    {
+      "census_index": 53,
+      "from": "debrief:1",
+      "to": "main:1",
+      "trigger": "020000c8 performs campaign/save preparation then queues 02000009 -> status 10",
+      "evidence": [
+        "0068ce00",
+        "0066c950",
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "results_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-family-delivery.md",
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Mission/campaign results, diary and next/retry/return need real game/profile outcomes in Phase2."
+    },
+    {
+      "census_index": 54,
+      "from": "debrief:1",
+      "to": "service:descriptor_next",
+      "trigger": "02000075/7c prepare prior/restart mission and set status 2 on success",
+      "evidence": [
+        "0068ce00"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "results_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-family-delivery.md",
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Mission/campaign results, diary and next/retry/return need real game/profile outcomes in Phase2."
+    },
+    {
+      "census_index": 55,
+      "from": "service:descriptor_next",
+      "to": "service:descriptor_owner",
+      "trigger": "Common 02000008 clears screens, status 2 advances descriptor, 006c0ef0 creates matching owner",
+      "evidence": [
+        "0066c950",
+        "006c20f0",
+        "006c0ef0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 56,
+      "from": "service:descriptor_previous",
+      "to": "service:descriptor_owner",
+      "trigger": "Common 02000007 clears screens, status 3 retreats descriptor, 006c0ef0 creates matching owner",
+      "evidence": [
+        "0066c950",
+        "006c20f0",
+        "006c0ef0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 57,
+      "from": "service:descriptor_owner",
+      "to": "hero:1",
+      "trigger": "006c0ef0 descriptor kind 6, subtype 0",
+      "evidence": [
+        "006c0ef0",
+        "006971b0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 58,
+      "from": "service:descriptor_owner",
+      "to": "campaign:1",
+      "trigger": "006c0ef0 descriptor kind 6, subtype 6",
+      "evidence": [
+        "006c0ef0",
+        "0068bde0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "results_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-family-delivery.md",
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Mission/campaign results, diary and next/retry/return need real game/profile outcomes in Phase2."
+    },
+    {
+      "census_index": 59,
+      "from": "service:descriptor_owner",
+      "to": "debrief:1",
+      "trigger": "006c0ef0 descriptor kind 6, subtype 5",
+      "evidence": [
+        "006c0ef0",
+        "0068d2f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "results_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-family-delivery.md",
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Mission/campaign results, diary and next/retry/return need real game/profile outcomes in Phase2."
+    },
+    {
+      "census_index": 60,
+      "from": "service:descriptor_owner",
+      "to": "team:1",
+      "trigger": "006c0ef0 descriptor kind 6, subtype 1 or 2",
+      "evidence": [
+        "006c0ef0",
+        "00691280"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 61,
+      "from": "service:descriptor_owner",
+      "to": "items:1",
+      "trigger": "006c0ef0 descriptor kind 6, subtype 3 or 4",
+      "evidence": [
+        "006c0ef0",
+        "00675980"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "loadouts_completely_untested",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Source/data implementation only. Loadout screens are completely untested until accessible; native stock/request audits do not change that status."
+    },
+    {
+      "census_index": 62,
+      "from": "state:7",
+      "to": "connection:1",
+      "trigger": "Controller builds standalone connection owner",
+      "evidence": [
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 63,
+      "from": "state:8",
+      "to": "connection:1",
+      "trigger": "Controller builds standalone connection owner",
+      "evidence": [
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 64,
+      "from": "connection:1",
+      "to": "connection:2",
+      "trigger": "0068aed0 timer state 5 clears edit, queues regular 02000001 argument 2, then edit focus",
+      "evidence": [
+        "0068aed0",
+        "0068ad20",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 65,
+      "from": "connection:1",
+      "to": "service:network_game",
+      "trigger": "02000069 selects controller status 9",
+      "evidence": [
+        "0068a710",
+        "006c20f0"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "game_and_session_deferred",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/host-boundary-audit.md"
+      ],
+      "scope": "Status9 game receiver is Phase2; real session/server dependencies and live verification Phase3. No successful receiver in production."
+    },
+    {
+      "census_index": 66,
+      "from": "connection:1",
+      "to": "service:quit",
+      "trigger": "Back queues 02000005 then 02000004",
+      "evidence": [
+        "0068a710",
+        "0066c950"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 67,
+      "from": "connection:2",
+      "to": "service:previous_screen",
+      "trigger": "Back traverses to the previous stack entry and queues edit discard before pop",
+      "evidence": [
+        "0068a710"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "contract_files": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-desktop-acceptance-20261101.json"
+      ],
+      "scope": "Ready-server-dependent information, Join/password/connection paths remain untested until Phase3; existing source/native tests are not desktop delivery."
+    },
+    {
+      "census_index": 68,
+      "from": "team:1",
+      "to": "team:description",
+      "trigger": "Selection/description callback into owner+fc overlay",
+      "evidence": [
+        "00691280"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/team-removal.md"
+      ],
+      "scope": "Integrated source and bounded team acceptance; full entry/hero/descriptor/conditional selection/briefing completion and verification remain Phase2."
+    },
+    {
+      "census_index": 69,
+      "from": "items:1",
+      "to": "items:description",
+      "trigger": "Selection/description callback into owner+fc overlay",
+      "evidence": [
+        "00675980"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "loadouts_completely_untested",
+      "contract_files": [
+        "analysis/singleplayer-pipeline.md"
+      ],
+      "scope": "Source/data implementation only. Loadout screens are completely untested until accessible; native stock/request audits do not change that status."
+    },
+    {
+      "census_index": 70,
+      "from": "ingame:3",
+      "to": "ingame:description",
+      "trigger": "Selection/description callback into owner+fc overlay",
+      "evidence": [
+        "00682980"
+      ],
+      "condition": "Original data/service predicates and successful construction apply",
+      "traversal_disposition": "ingame_deferred_phase2",
+      "contract_files": [
+        "analysis/menu-route-census.md",
+        "analysis/menu-family-delivery.md"
+      ],
+      "scope": "Requires actual compiled running game/session. No successful in-game menu/options/player/save/return owner is delivered."
+    }
+  ],
+  "numbered_roles": [
+    {
+      "key": "main:1",
+      "identifier": "04000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "scope": "Main3 acceptance is hub edge only; Main8/9 excludes ready-server data/session validation."
+    },
+    {
+      "key": "main:2",
+      "identifier": "08000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "scope": "Main3 acceptance is hub edge only; Main8/9 excludes ready-server data/session validation."
+    },
+    {
+      "key": "main:3",
+      "identifier": "0c000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "scope": "Main3 acceptance is hub edge only; Main8/9 excludes ready-server data/session validation."
+    },
+    {
+      "key": "main:4",
+      "identifier": "10000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "scope": "Main3 acceptance is hub edge only; Main8/9 excludes ready-server data/session validation."
+    },
+    {
+      "key": "main:5",
+      "identifier": "14000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "scope": "Team1 has bounded observed acceptance; conditional/full descriptor coverage stays open."
+    },
+    {
+      "key": "main:6",
+      "identifier": "18000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "scope": "Main3 acceptance is hub edge only; Main8/9 excludes ready-server data/session validation."
+    },
+    {
+      "key": "main:7",
+      "identifier": "1c000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "scope": "Main3 acceptance is hub edge only; Main8/9 excludes ready-server data/session validation."
+    },
+    {
+      "key": "main:8",
+      "identifier": "20000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "scope": "Main3 acceptance is hub edge only; Main8/9 excludes ready-server data/session validation."
+    },
+    {
+      "key": "main:9",
+      "identifier": "24000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "scope": "Main3 acceptance is hub edge only; Main8/9 excludes ready-server data/session validation."
+    },
+    {
+      "key": "main:10",
+      "identifier": "28000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "scope": ""
+    },
+    {
+      "key": "main:11",
+      "identifier": "2c000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "scope": "Main3 acceptance is hub edge only; Main8/9 excludes ready-server data/session validation."
+    },
+    {
+      "key": "main:12",
+      "identifier": "30000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "scope": ""
+    },
+    {
+      "key": "main:13",
+      "identifier": "34000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "scope": ""
+    },
+    {
+      "key": "main:14",
+      "identifier": "38000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "accepted_frontend_bounded",
+      "scope": "Main3 acceptance is hub edge only; Main8/9 excludes ready-server data/session validation."
+    },
+    {
+      "key": "ingame:1",
+      "identifier": "04000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "game_or_results_deferred_phase2",
+      "scope": ""
+    },
+    {
+      "key": "ingame:2",
+      "identifier": "08000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "game_or_results_deferred_phase2",
+      "scope": ""
+    },
+    {
+      "key": "ingame:3",
+      "identifier": "0c000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "game_or_results_deferred_phase2",
+      "scope": ""
+    },
+    {
+      "key": "hero:1",
+      "identifier": "04000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "scope": "Team1 has bounded observed acceptance; conditional/full descriptor coverage stays open."
+    },
+    {
+      "key": "hero:2",
+      "identifier": "08000000",
+      "original_classification": "reserved_empty_registration",
+      "traversal_disposition": "reserved_empty_registration",
+      "scope": "Preserved declaration, not a populated screen or delivery target."
+    },
+    {
+      "key": "hero:3",
+      "identifier": "0c000000",
+      "original_classification": "reserved_empty_registration",
+      "traversal_disposition": "reserved_empty_registration",
+      "scope": "Preserved declaration, not a populated screen or delivery target."
+    },
+    {
+      "key": "hero:4",
+      "identifier": "10000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "scope": "Team1 has bounded observed acceptance; conditional/full descriptor coverage stays open."
+    },
+    {
+      "key": "campaign:1",
+      "identifier": "04000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "game_or_results_deferred_phase2",
+      "scope": ""
+    },
+    {
+      "key": "debrief:1",
+      "identifier": "04000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "game_or_results_deferred_phase2",
+      "scope": ""
+    },
+    {
+      "key": "debrief:2",
+      "identifier": "08000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "game_or_results_deferred_phase2",
+      "scope": ""
+    },
+    {
+      "key": "team:1",
+      "identifier": "04000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "scope": "Team1 has bounded observed acceptance; conditional/full descriptor coverage stays open."
+    },
+    {
+      "key": "team:2",
+      "identifier": "08000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "singleplayer_partial_phase2",
+      "scope": "Team1 has bounded observed acceptance; conditional/full descriptor coverage stays open."
+    },
+    {
+      "key": "items:1",
+      "identifier": "04000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "loadouts_completely_untested",
+      "scope": ""
+    },
+    {
+      "key": "items:2",
+      "identifier": "08000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "loadouts_completely_untested",
+      "scope": ""
+    },
+    {
+      "key": "connection:1",
+      "identifier": "04000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "scope": ""
+    },
+    {
+      "key": "connection:2",
+      "identifier": "08000000",
+      "original_classification": "populated_numbered_role",
+      "traversal_disposition": "server_dependent_untested_phase3",
+      "scope": ""
+    }
+  ],
+  "shared_auxiliary_products": [
+    {
+      "key": "main:runtime",
+      "traversal_disposition": "accepted_frontend_bounded"
+    },
+    {
+      "key": "ingame:runtime",
+      "traversal_disposition": "game_or_results_deferred_phase2"
+    },
+    {
+      "key": "hero:runtime",
+      "traversal_disposition": "singleplayer_partial_phase2"
+    },
+    {
+      "key": "campaign:runtime",
+      "traversal_disposition": "game_or_results_deferred_phase2"
+    },
+    {
+      "key": "debrief:runtime",
+      "traversal_disposition": "game_or_results_deferred_phase2"
+    },
+    {
+      "key": "team:runtime",
+      "traversal_disposition": "singleplayer_partial_phase2"
+    },
+    {
+      "key": "items:runtime",
+      "traversal_disposition": "loadouts_completely_untested"
+    },
+    {
+      "key": "connection:runtime",
+      "traversal_disposition": "server_dependent_untested_phase3"
+    },
+    {
+      "key": "team:description",
+      "traversal_disposition": "singleplayer_partial_phase2"
+    },
+    {
+      "key": "items:description",
+      "traversal_disposition": "loadouts_completely_untested"
+    },
+    {
+      "key": "ingame:description",
+      "traversal_disposition": "game_or_results_deferred_phase2"
+    },
+    {
+      "key": "ingame:info",
+      "traversal_disposition": "game_or_results_deferred_phase2"
+    }
+  ],
+  "dynamic_categories": [
+    {
+      "key": "options:binding_rows",
+      "builder": "0061f5a0",
+      "traversal_disposition": "accepted_frontend_bounded"
+    },
+    {
+      "key": "cinematics:list",
+      "builder": "00614140",
+      "traversal_disposition": "accepted_frontend_bounded"
+    },
+    {
+      "key": "create:map_list",
+      "builder": "00628e00",
+      "traversal_disposition": "accepted_frontend_bounded"
+    },
+    {
+      "key": "items:store_rows",
+      "builder": "0067c270",
+      "traversal_disposition": "loadouts_completely_untested_with_ingame_receiver_deferred"
+    },
+    {
+      "key": "player:store_rows",
+      "builder": "0067a770",
+      "traversal_disposition": "game_or_results_deferred_phase2"
+    },
+    {
+      "key": "equipment:slots",
+      "builder": "0066ef00",
+      "traversal_disposition": "loadouts_completely_untested_with_ingame_receiver_deferred"
+    },
+    {
+      "key": "player:soldiers",
+      "builder": "006835e0",
+      "traversal_disposition": "game_or_results_deferred_phase2"
+    },
+    {
+      "key": "debrief:soldiers",
+      "builder": "0068e0f0",
+      "traversal_disposition": "game_or_results_deferred_phase2"
+    },
+    {
+      "key": "diary:pages",
+      "builder": "0068d5c0",
+      "traversal_disposition": "game_or_results_deferred_phase2"
+    },
+    {
+      "key": "team:soldiers",
+      "builder": "00691e10",
+      "traversal_disposition": "singleplayer_partial_phase2"
+    },
+    {
+      "key": "team:medals",
+      "builder": "00692950",
+      "traversal_disposition": "singleplayer_partial_phase2"
+    },
+    {
+      "key": "hero:statistics",
+      "builder": "00697a50",
+      "traversal_disposition": "singleplayer_partial_phase2"
+    },
+    {
+      "key": "aux:item_templates",
+      "builder": "0067c860",
+      "traversal_disposition": "auxiliary_invocation_context_unproven_not_a_live_flow"
+    }
+  ],
+  "delivery_units": [
+    {
+      "key": "main.labels",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": [
+        "main:1"
+      ]
+    },
+    {
+      "key": "main.traversal",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": [
+        "main:1"
+      ]
+    },
+    {
+      "key": "dialogs.runtime",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": [
+        "main:4"
+      ]
+    },
+    {
+      "key": "dialogs.callers",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": []
+    },
+    {
+      "key": "media.credits",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": []
+    },
+    {
+      "key": "media.cinematics",
+      "catalog_status": "desktop accepted2026-10-31",
+      "delivery_phase": 1,
+      "roles": [
+        "main:7"
+      ]
+    },
+    {
+      "key": "options.full",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": [
+        "main:6"
+      ]
+    },
+    {
+      "key": "options.ingame",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": [
+        "ingame:2"
+      ]
+    },
+    {
+      "key": "profiles.select",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": [
+        "main:2"
+      ]
+    },
+    {
+      "key": "profiles.manage",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": [
+        "main:2"
+      ]
+    },
+    {
+      "key": "saves.metadata",
+      "catalog_status": "open",
+      "delivery_phase": 1,
+      "roles": [],
+      "explicit_remaining_boundary": "Open: only stored Main caption/eligibility and explicit unavailable save boundary are accepted; actual metadata/preview/compatibility research is not complete. Do not mark unit complete or silently rephase it."
+    },
+    {
+      "key": "saves.resume",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": []
+    },
+    {
+      "key": "saves.ingame",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": []
+    },
+    {
+      "key": "single.entry",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": [
+        "main:3",
+        "main:5"
+      ]
+    },
+    {
+      "key": "single.hero",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": [
+        "hero:1",
+        "hero:4"
+      ]
+    },
+    {
+      "key": "single.team",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": [
+        "team:1",
+        "team:2"
+      ]
+    },
+    {
+      "key": "single.items",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": [
+        "items:1",
+        "items:2"
+      ]
+    },
+    {
+      "key": "single.briefing",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": []
+    },
+    {
+      "key": "single.debrief",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": [
+        "debrief:1",
+        "debrief:2"
+      ]
+    },
+    {
+      "key": "single.campaign",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": [
+        "campaign:1"
+      ]
+    },
+    {
+      "key": "multi.browser",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": [
+        "main:8"
+      ]
+    },
+    {
+      "key": "multi.create",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": [
+        "main:9"
+      ]
+    },
+    {
+      "key": "multi.filters",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": [
+        "main:11",
+        "main:12"
+      ]
+    },
+    {
+      "key": "multi.addserver",
+      "catalog_status": "complete",
+      "delivery_phase": 1,
+      "roles": [
+        "main:14"
+      ]
+    },
+    {
+      "key": "multi.join",
+      "catalog_status": "open",
+      "delivery_phase": 3,
+      "roles": [
+        "main:10",
+        "main:13"
+      ]
+    },
+    {
+      "key": "multi.standalone",
+      "catalog_status": "open",
+      "delivery_phase": 3,
+      "roles": [
+        "connection:1",
+        "connection:2"
+      ]
+    },
+    {
+      "key": "multi.liveui",
+      "catalog_status": "open",
+      "delivery_phase": 3,
+      "roles": []
+    },
+    {
+      "key": "ingame.pause",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": [
+        "ingame:1"
+      ]
+    },
+    {
+      "key": "ingame.player",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": [
+        "ingame:3"
+      ]
+    },
+    {
+      "key": "ingame.actions",
+      "catalog_status": "open",
+      "delivery_phase": 2,
+      "roles": []
+    }
+  ],
+  "shared_prompt_sites": [
+    {
+      "site": "0061ca99",
+      "function": "0061bea0",
+      "helper": "0066d7a0",
+      "delivery_phase": 1,
+      "traversal_disposition": "accepted_frontend_callers_bounded",
+      "contract": "analysis/dialog-callers-verification.md"
+    },
+    {
+      "site": "00621c69",
+      "function": "00621470",
+      "helper": "0066d7a0",
+      "delivery_phase": 1,
+      "traversal_disposition": "accepted_frontend_callers_bounded",
+      "contract": "analysis/dialog-callers-verification.md"
+    },
+    {
+      "site": "00621c8d",
+      "function": "00621470",
+      "helper": "0066d7a0",
+      "delivery_phase": 1,
+      "traversal_disposition": "accepted_frontend_callers_bounded",
+      "contract": "analysis/dialog-callers-verification.md"
+    },
+    {
+      "site": "00622403",
+      "function": "00621470",
+      "helper": "0066d7a0",
+      "delivery_phase": 1,
+      "traversal_disposition": "accepted_frontend_callers_bounded",
+      "contract": "analysis/dialog-callers-verification.md"
+    },
+    {
+      "site": "00622425",
+      "function": "00621470",
+      "helper": "0066d7a0",
+      "delivery_phase": 1,
+      "traversal_disposition": "accepted_frontend_callers_bounded",
+      "contract": "analysis/dialog-callers-verification.md"
+    },
+    {
+      "site": "00622a69",
+      "function": "00621470",
+      "helper": "0066d7a0",
+      "delivery_phase": 1,
+      "traversal_disposition": "accepted_frontend_callers_bounded",
+      "contract": "analysis/dialog-callers-verification.md"
+    },
+    {
+      "site": "00633954",
+      "function": "006333c0",
+      "helper": "0066d7a0",
+      "delivery_phase": 3,
+      "traversal_disposition": "deferred_phase3",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "006740bf",
+      "function": "00673dd0",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "006740ee",
+      "function": "00673dd0",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "00674111",
+      "function": "00673dd0",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "00678ca2",
+      "function": "00678ac0",
+      "helper": "0066d780",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "00678f53",
+      "function": "00678ce0",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "0067f681",
+      "function": "0067f550",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "0067f953",
+      "function": "0067f550",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "00682823",
+      "function": "006827a0",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "0068283c",
+      "function": "006827a0",
+      "helper": "0066d7c0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "0068cf66",
+      "function": "0068ce00",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "0068cf77",
+      "function": "0068ce00",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "0068cf90",
+      "function": "0068ce00",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    },
+    {
+      "site": "00691260",
+      "function": "00691020",
+      "helper": "0066d7a0",
+      "delivery_phase": 2,
+      "traversal_disposition": "deferred_phase2",
+      "contract": "analysis/dialog-callers-research.md"
+    }
+  ],
+  "desktop_acceptance_contracts": [
+    "analysis/launch-acceptance.md",
+    "analysis/main-traversal.md",
+    "analysis/profiles-flow.md",
+    "analysis/options-flow.md",
+    "analysis/credits-flow.md",
+    "analysis/cinematics-flow.md",
+    "analysis/multiplayer-desktop-acceptance-20261101.json",
+    "analysis/dialog-callers-verification.md",
+    "analysis/menu-fidelity-acceptance-20261102.json",
+    "analysis/input-fidelity.md",
+    "analysis/audio-preferences-fidelity.md"
+  ],
+  "native_only_contracts": [
+    "analysis/host-boundary-audit.md",
+    "analysis/credits-resolution-check.md"
+  ],
+  "ledger": {
+    "partial_client": 559,
+    "partial_engine": 5,
+    "complete": 0,
+    "frozen_total": 18783
+  }
+}

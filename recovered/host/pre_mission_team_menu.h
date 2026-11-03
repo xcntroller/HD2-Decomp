@@ -25,6 +25,7 @@ class PreMissionTeamMenu {
     }
     frontend::MenuScreenDefinition definition() {
         using namespace frontend;
+        dim_unused_slots();
         MenuScreenDefinition out{"TEAM", 0x04000000, "team members selection", {}};
         MenuControlDefinition panel = group(0x04100000, "Panel01");
         auto *parent = scene_.control_frame("Panel01", module_, false, model_);
@@ -225,6 +226,16 @@ class PreMissionTeamMenu {
     }
 
   private:
+    void dim_unused_slots() {
+        if (startup_.pre_mission().team().capacity()!=1) return;
+        //00691E10: the three unavailable photo/name backplates and borders
+        //are authored visuals, distinct from the four dynamic portrait images.
+        for (const auto* name:{"table19","table20","table21","member01","member02","member03"})
+            if (auto* frame=scene_.find_control_frame(model_,name,module_)) {
+                using Alpha=void (WINAPI *)(EngineFrame*,float);
+                scene_method<Alpha>(frame,module_,0xa8,0x368f0)(frame,.5f);
+            }
+    }
     static frontend::MenuControlDefinition
     group(unsigned id, const char *name,
           frontend::MenuControlKind kind = frontend::MenuControlKind::container) {
@@ -402,6 +413,10 @@ class PreMissionTeamMenu {
         if (human < 0 || human != self.selected_)
             return true;
         self.toggle_selected();
+        //006942D0 queues a fresh pick/focus after list mutation. A stationary
+        //cursor otherwise keeps dispatching to the removed portrait; target
+        //changes alone do not run0066B990's movement-only focus callback.
+        self.queue_.enqueue({0,0x010000a1,0x04005000,0,0,{}});
         return true;
     }
     static bool drag(void *owner, void *, void *sender, unsigned tag, unsigned) {

@@ -1,5 +1,9 @@
 # Credits flow — desktop accepted
 
+Follow-up2026-11-02: [larger-resolution entrance comparison](credits-resolution-check.md)
+confirms the original width-dependent offset explains the reported wait; no
+timing change. Original/native precision and verification limits are recorded there.
+
 2026-10-31. Plan section3 first checkbox / `media.credits`. The complete compiled
 Main → Credits → retained Main flow is implemented and desktop accepted. The user confirmed “Yup, all works. Continue” in response to the desktop checklist.
 Its delivery checkbox is accepted. Keep uncommitted.

@@ -1,6 +1,6 @@
 # Menu family delivery checklists
 
-The inventory planning checkpoint is **source-only**. Current family acceptance is recorded below; 18 delivery
+The inventory planning checkpoint is **source-only**. Current family acceptance is recorded below; 17 delivery
 items remain open, including the explicitly deferred server-dependent Phase3 work. The [coverage catalog](menu-family-delivery.json) maps
 all 28 populated owner-scoped roles, twelve shared/auxiliary products, 71 routes,
 512 control sites, thirteen dynamic categories and 20 prompt-helper sites.
@@ -8,6 +8,8 @@ all 28 populated owner-scoped roles, twelve shared/auxiliary products, 71 routes
 reserved hero slots 2/3 are not delivery targets. Planning was source-only.
 The subsequent Credits implementation is desktop accepted2026-10-31; see [its contract](credits-flow.md).
 [Cinematics is desktop accepted2026-10-31](cinematics-flow.md).
+[Consolidated Phase1 traversal and deferrals](phase1-traversal.md) account for all
+71 original route edges without upgrading the remaining family delivery gates.
 
 ## Delivery and verification rules
 
@@ -161,6 +163,9 @@ No extra numbered save/load screen is inferred. Front-end metadata and explicit 
 Primary numbered roles: none inferred.
 
 - [ ] **saves.metadata — Recover actual save metadata, labels and eligibility at existing entry points.**
+  Current bounded Phase1 acceptance covers Main's stored profile caption and the
+  explicit unavailable-save boundary. Actual save metadata/preview/compatibility
+  recovery remains open; profile persistence does not complete this unit.
   Evidence: `00626B20`, `006391E0`, `0067F550`.
   Requires: isolated profile copy, save format research.
   Native: Research original save/path/query callbacks before implementation; audit valid/missing/malformed/incompatible metadata and preview ownership through real readers.

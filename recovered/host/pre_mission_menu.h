@@ -385,9 +385,10 @@ class PreMissionMenu {
             throw std::logic_error("Setup screen stack is empty");
         return product(screen->identifier);
     }
-    unsigned pick(const CursorPoint &point) {
+    unsigned pick(const CursorPoint &point, EngineFrame *model = nullptr) {
         auto &screen = current();
-        const auto target = scene_->pick_model(module_, point.x, point.y, menu_width(), menu_height(), screen.model_frame());
+        const auto target = scene_->pick_model(module_, point.x, point.y, menu_width(), menu_height(),
+                                                model ? model : screen.model_frame());
         const auto id = screen.definition().identifier;
         return id == 0 || id == 0x10000000 ? screen.focus().target_for_control(std::max(
                                                  0, screen.focus().interactive_control_for_target(target)))
@@ -436,6 +437,19 @@ class PreMissionMenu {
             menu_.startup_.application_input_enabled(value);
         }
         void set_input_motion_only(bool value) override { menu_.input_.inhibit_click = value; }
+        std::uintptr_t screen_model(unsigned index) override {
+            return reinterpret_cast<std::uintptr_t>(menu_.product(index << 26).model_frame());
+        }
+        unsigned pick_screen_model(std::uintptr_t model) override {
+            const auto &cursor = menu_.input_.pointer.cursor();
+            return menu_.pick({cursor.x(), cursor.y()}, reinterpret_cast<EngineFrame *>(model));
+        }
+        void focus_screen(unsigned index, unsigned target) override {
+            frontend::screen_pointer_focus(menu_.product(index << 26).focus(), target);
+        }
+        void leave_screen(unsigned index, unsigned target) override {
+            frontend::screen_focus_leave(menu_.product(index << 26).focus(), target);
+        }
         void clear() { screens_.fill(nullptr); }
 
       private:

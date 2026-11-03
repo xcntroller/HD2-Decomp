@@ -1,0 +1,43 @@
+{
+  "scope": "Original Credits high-resolution entrance comparison only; static/native verification, no original execution.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "00688936",
+      "hex": "db4424788b4c247c83c164d80dc8098100d90548058100894c2478d8c9d80d14f58000d95f18da4c2478d9e0d957148b7f388b37e891d41500508bcfff5608",
+      "meaning": "x87 width/1024 factor, default rate50*.001, initial offset=-(width/1024*(height+100)), signed-word submission"
+    },
+    {
+      "address": "00688ca2",
+      "hex": "db442424d84e18d84614d95614",
+      "meaning": "x87 elapsed-ms times speed plus prior offset, store float32 while retaining extended accumulator for conversion"
+    },
+    {
+      "address": "00689926",
+      "hex": "db44245cd80dc8098100da4c2418d80d14f58000d95b18",
+      "meaning": "SPEED override: queried render width /1024 times parsed speed times float .001"
+    },
+    {
+      "address": "008109c8",
+      "hex": "0000803a",
+      "meaning": "Original float32 constant 0.0009765625"
+    },
+    {
+      "address": "00810548",
+      "hex": "00004842",
+      "meaning": "Original float32 constant 50.0"
+    },
+    {
+      "address": "0080f514",
+      "hex": "6f12833a",
+      "meaning": "Original float32 constant 0.0010000000474974513"
+    }
+  ],
+  "vtables": [],
+  "direct_calls": [],
+  "resource_anchors": []
+}

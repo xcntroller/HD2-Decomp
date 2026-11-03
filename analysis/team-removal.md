@@ -1,5 +1,9 @@
 # Team removal and widescreen follow-up — 2026-11-02
 
+Subsequent [team/browser follow-up](team-browser-selection.md) restores
+one-soldier slot dimming and queued picker focus after rapid double-clicks;
+those additional changes are user desktop-accepted2026-11-03.
+
 The user reports rapid clicks after squad removal restoring “Remove” with no
 selection, failed drag removal, and missing first-picker selection after removal.
 Their screenshot shows vertically displaced text/artwork in widescreen Spanish

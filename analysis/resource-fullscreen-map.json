@@ -1,0 +1,121 @@
+{
+  "scope": "Original physical resource paths and exclusive fullscreen launch; source/native verification only, user desktop check pending. Native mode/frame guards add no original function credit.",
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "1006c3e5",
+        "hex": "f605441d0d1002",
+        "meaning": "Init tests fullscreen flag2"
+      },
+      {
+        "address": "1006c402",
+        "hex": "81e77fffffff",
+        "meaning": "Fullscreen clears child-window flag80"
+      },
+      {
+        "address": "1006c425",
+        "hex": "83e7f7",
+        "meaning": "Fullscreen clears menu flag8"
+      },
+      {
+        "address": "1006da30",
+        "hex": "b8181d0d10c20400",
+        "meaning": "Settings getter returns initialization block100D1D18"
+      },
+      {
+        "address": "1006b389",
+        "hex": "a16c210d10",
+        "meaning": "Borrowed Direct3D device bridge reused by the frame guard"
+      },
+      {
+        "address": "1006b4ed",
+        "hex": "ff523c",
+        "meaning": "Present calls original Direct3D device Present"
+      },
+      {
+        "address": "1006b4f0",
+        "hex": "3d68087688",
+        "meaning": "Engine recognizes D3DERR_DEVICELOST"
+      },
+      {
+        "address": "1006b52f",
+        "hex": "ff510c",
+        "meaning": "Engine queries TestCooperativeLevel before reset"
+      },
+      {
+        "address": "1006b532",
+        "hex": "3d69087688",
+        "meaning": "Engine recognizes D3DERR_DEVICENOTRESET"
+      },
+      {
+        "address": "1006b546",
+        "hex": "b101e803090000",
+        "meaning": "Engine owns reset through1006BE50"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": []
+  },
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "006db190",
+        "hex": "a0fdec8a0084c0",
+        "meaning": "Client reads original fullscreen setting"
+      },
+      {
+        "address": "006db1cf",
+        "hex": "83c902",
+        "meaning": "Client enables fullscreen with flags OR2"
+      },
+      {
+        "address": "006db1ed",
+        "hex": "8855e0",
+        "meaning": "Client writes requested color depth at settings+28"
+      },
+      {
+        "address": "006db200",
+        "hex": "8845e1",
+        "meaning": "Client writes refresh rate at settings+29"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [
+      {
+        "site": "00640356",
+        "target": "007e4f44"
+      },
+      {
+        "site": "00640382",
+        "target": "007e4f3e"
+      },
+      {
+        "site": "00640388",
+        "target": "007e4f50"
+      }
+    ],
+    "resource_anchors": [
+      {
+        "site": "0063dd24",
+        "address": "00840224",
+        "text": "Text\\Fonts\\%s\\Set%d\\"
+      },
+      {
+        "site": "0063dd34",
+        "address": "0084020c",
+        "text": "Text\\Fonts\\Ce\\Set%d\\"
+      }
+    ]
+  }
+}

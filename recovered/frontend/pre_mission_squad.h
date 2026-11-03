@@ -70,6 +70,7 @@ struct PreMissionTeamSlot {
 class PreMissionTeam {
   public:
     explicit PreMissionTeam(bool single = false) : single_(single) {}
+    std::size_t capacity() const { return single_ ? 1u : slots_.size(); }
     const auto &slots() const { return slots_; }
     std::size_t size() const {
         std::size_t count = 0;
@@ -97,7 +98,7 @@ class PreMissionTeam {
             slots_.back() = {};
             return true;
         }
-        const auto limit = single_ ? 1u : 4u;
+        const auto limit = capacity();
         if (count < limit) {
             slots_[count] = {human, true};
             return true;
@@ -120,7 +121,7 @@ class PreMissionTeam {
             if (soldier.human < 0 || contains(soldier.human))
                 continue;
             const auto count = size();
-            if (count >= (single_ ? 1u : 4u))
+            if (count >= capacity())
                 break;
             slots_[count] = {soldier.human, replacement ? !soldier.active : true};
         }

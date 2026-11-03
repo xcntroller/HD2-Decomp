@@ -46,6 +46,23 @@ preserving staged config/profiles and leaving installed assets unchanged.
 Use `--stage-only` to prepare files without executing Windows code. The old
 engine-window preview and startup probe remain separate diagnostics.
 
+To build a portable Windows folder/ZIP with the current client and required local
+assets/DLLs, run `python3 -B tools/package_application.py --output dist/NEW-NAME`
+after compiling; existing outputs are refused. The current review artifacts are
+`dist/HD2-Phase1-clean/` and `dist/HD2-Phase1-clean.zip`.
+Extract the entire ZIP and double-click `HD2FrontEnd.exe`, then create/select a
+profile. The package starts with clean user state and needs no Python/source
+checkout at runtime. [Portable launch, dependencies and limits](docs/STANDALONE.md)
+also documents Proton use. The earlier portable build is
+[user-accepted2026-11-02](analysis/standalone-package.md#desktop-acceptance--2026-11-02);
+the linked package record preserves its identity and staging-layout history.
+
+The Phase1 follow-up removes development resource extracts/font aliases from
+new packages and loads original archive/Text paths. Launch with `--fullscreen`
+for exclusive fullscreen or `--windowed` for the default window. The revised
+package and fullscreen behavior are user desktop-accepted2026-11-02.
+[Current artifacts, evidence and review](analysis/resource-fullscreen.md).
+
 Select window/render dimensions and an installed translation per launch:
 
 ```sh

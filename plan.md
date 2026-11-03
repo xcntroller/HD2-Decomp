@@ -1,6 +1,6 @@
 # Reconstruction plan
 
-Updated: 2026-11-02. [Handoff](HANDOFF.md) records the latest work and next steps;
+Updated: 2026-11-03. [Handoff](HANDOFF.md) records the latest work and next steps;
 [research](RESEARCH.md) and linked analysis documents hold technical detail.
 
 ## Scope and completion criteria
@@ -58,12 +58,12 @@ Full registry/setup bootstrap and binary integrity VM remain outside the checkpo
 
 | Area | Verified | Remaining |
 | --- | --- | --- |
-| Original controller launch | Four movies/subtitles → Main/Exit and bounded failure/shutdown accepted | Other menu flows; broader failures remain excluded |
-| Menu visuals | Original artwork, cursor, text and button hover | Dynamic labels, localization, fidelity |
-| Exit/confirmation | Pointer, Enter/Space, Escape and modal cancellation | Other actions/dialogs |
-| Shared controls/screens | State, messages, factory, stack and nested diagnostic | Screen callbacks, dynamic lists, original ABI |
-| Options widgets | Native parts, engine backend, factories and real settings wiring audited | Full Options flow and desktop validation |
-| Startup dependencies | Data/config/settings/input/archive source audited | Full ownership, protection, caches and live wiring |
+| Original controller launch | Opening/subtitles → delivered front end and bounded failure/shutdown accepted | Full setup/protection and broader original failure equivalence excluded |
+| Menu visuals | Artwork, dynamic labels, localization, resolutions and fidelity accepted | Wide/GDI fonts and full original text ABI excluded |
+| Exit/confirmation | Named Exit and reachable runtime callers/cancellation accepted | Game/server-dependent callers deferred |
+| Shared controls/screens | Delivered routing, dynamic controls, stack, focus/capture and cleanup accepted | Original object ABI; deferred game/server screens |
+| Options widgets | Complete front-end Options/settings/bindings accepted | In-game owner Phase2 |
+| Startup dependencies | Integrated data/config/settings/input/archive/cache owners accepted | Full protection/setup and game/network owners |
 
 ## 1. Finish the shared menu foundation — alongside launch dependencies
 
@@ -104,18 +104,18 @@ Original object ABI is tracked separately from native menu delivery.
 - [x] Resolve duplicate/placeholder definitions. **Source-only:** 28 populated roles, two reserved slots.
   [Identity/counting rules](analysis/menu-definition-resolution.md), [catalog](analysis/menu-definition-resolution.json).
 - [x] Split all families into delivery checklists and independent/running-game validation. **Source-only.**
-  [Nine families / 29 delivery items](analysis/menu-family-delivery.md), [coverage](analysis/menu-family-delivery.json).
+  [Nine families / 30 delivery items](analysis/menu-family-delivery.md), [coverage](analysis/menu-family-delivery.json).
 
 | Family | Required flow | Current status |
 | --- | --- | --- |
-| [Main menu](analysis/menu-family-delivery.md#main-menu) | Nine actions, profile/save/date/version labels, eligibility | Exit and Credits |
+| [Main menu](analysis/menu-family-delivery.md#main-menu) | Nine actions, profile/save/date/version labels, eligibility | Labels/eight available actions and returns accepted; Resume unavailable |
 | [Shared dialogs](analysis/menu-family-delivery.md#shared-dialogs) | Yes/No/OK, prompts, text/password, errors and cancellation | Quit Yes/No accepted; runtime integration and Phase1 callers accepted; game/server-dependent callers deferred |
 | [Credits/cinematics](analysis/menu-family-delivery.md#credits-and-cinematics) | Retained controller, list/playback and return | Credits and Cinematics accepted |
 | [Options](analysis/menu-family-delivery.md#options) | All pages/bindings, apply/Back/persistence and owner variants | Front-end accepted; in-game owner open |
 | [Profiles](analysis/menu-family-delivery.md#profiles) | List/select/create/rename/delete and validation | Startup persistence recovered; desktop accepted |
-| [Saves/loading](analysis/menu-family-delivery.md#saves-and-loading) | Front-end save metadata and request/error boundaries | Real load/resume receiver and in-game operations: Phase 2 |
+| [Saves/loading](analysis/menu-family-delivery.md#saves-and-loading) | Front-end save metadata and request/error boundaries | Stored Main caption/unavailable boundary accepted; broader metadata open, receivers Phase2 |
 | [Single player](analysis/menu-family-delivery.md#single-player) | Campaign/lone-wolf/carnage, hero/team/equipment/briefing and owned request | Team checkpoint accepted; loadout screens completely untested; results: Phase 2 |
-| [Multiplayer](analysis/menu-family-delivery.md#multiplayer) | Browser/create/connect/errors and owner variants | UI source integrated; desktop and session services open; status9: Phase 2 |
+| [Multiplayer](analysis/menu-family-delivery.md#multiplayer) | Browser/create/connect/errors and owner variants | Reachable front end accepted; ready-server UI/services untested until Phase3; status9 receiver Phase2 |
 | [In-game menu](analysis/menu-family-delivery.md#in-game-menu) | Pause/player/options/actions and retained-game return | Phase 2; actual running game required for delivery |
 
 ## 3. Deliver complete flows in dependency order
@@ -163,20 +163,26 @@ explicit UI/payload/ownership contracts.
 - [x] Verify layout, stacking, clipping, fonts/localization and resolutions.
   [Desktop accepted2026-11-02](analysis/menu-fidelity.md#desktop-acceptance--2026-11-02),
   including localization, team removal and widescreen corrections.
-- [ ] Verify held/repeat input, eligibility, focus, wheel/drag and modal cancellation.
-- [ ] Verify sound/music, preferences, failures and deterministic cleanup.
-- [ ] Audit host approximations and delegated engine/service calls against evidence.
-- [ ] Run Phase 1 menu traversal; record deferred flows and unavailable services.
+- [x] Verify held/repeat input, eligibility, focus, wheel/drag and modal cancellation.
+  [Desktop accepted2026-11-02](analysis/input-fidelity.md#desktop-acceptance--2026-11-02).
+- [x] Verify sound/music, preferences, failures and deterministic cleanup.
+  [Desktop accepted2026-11-02](analysis/audio-preferences-fidelity.md#desktop-acceptance--2026-11-02).
+- [x] Audit host approximations and delegated engine/service calls against evidence.
+  **Source-only:** [71-file boundary audit](analysis/host-boundary-audit.md); policies and deferrals recorded.
+- [x] Run Phase 1 menu traversal; record deferred flows and unavailable services.
+  [Cumulative accepted traversal and current native walk](analysis/phase1-traversal.md); all71 original edges classified.
 
 ## 5. Close Phase 1 and prepare Phase 2
 
-Consolidate the completed flows and fidelity checks from sections 3–4 before
-closing Phase 1. Keep source-only work, untested screens and deferred game/server
-dependencies explicit in the final acceptance record.
-
-- [ ] Audit Phase 1 behavior against original evidence; record differences and deferrals.
-- [ ] Package the current implementation as a standalone Windows executable with
+- [x] Package the current implementation as a standalone Windows executable with
   documented asset/DLL requirements and launch instructions.
+  [Portable package accepted2026-11-02](analysis/standalone-package.md#desktop-acceptance--2026-11-02).
+- [x] Remove redundant resource staging and deliver fullscreen launch.
+  [Desktop accepted2026-11-02](analysis/resource-fullscreen.md#desktop-acceptance--2026-11-02).
+- [x] Fix team slot dimming, rapid picker double-clicks and unreachable-server selection.
+  [Desktop accepted2026-11-03](analysis/team-browser-selection.md#desktop-acceptance--2026-11-03).
+- [ ] Audit existing partial functions and complete a small bounded group.
+  [Completion and selective matching pass](analysis/function-completion-plan.md); required before Phase2 implementation.
 - [ ] Research Phase 2 dependencies and replace its outline with a detailed,
   sectioned delivery plan, including evidence and verification gates.
 
@@ -185,6 +191,13 @@ dependencies explicit in the final acceptance record.
 This is a new, unstarted stage after the front-end work. Exact dependencies and
 order must be established from original behavior before implementation; the
 items below are boundaries, not a claim that world loading is understood.
+
+Each subsystem milestone includes a function-completion pass: full original
+branches, state/ABI, ownership, side effects and failure paths. Prioritize
+assembly matching for parsers, save formats, numerical code and state/lifetime
+transitions. Keep unresolved native adaptations partial and carry their closure
+work explicitly; delegated engine calls earn no engine-body credit. Use the
+[completion gates](analysis/function-completion-plan.md) when detailing this phase.
 
 - [ ] Finish and desktop-verify the remaining single-player front-end flow.
   Cover mode/mission/hero, loadouts, briefing, Back and unavailable-receiver behavior.

@@ -32,6 +32,16 @@ inline GraphicsSettings32 windowed_settings(std::uint32_t instance,int width=800
     return {instance, 0, 50, 50, width, height, 0, 0, width, height, 32, 0, 0, 0x80, 0, 0};
 }
 
+inline GraphicsSettings32 fullscreen_settings(std::uint32_t instance,int width=800,int height=600) {
+    auto settings=windowed_settings(instance,width,height);
+    //006DB0F0 sets bit2;1006C2D0 clears the child-window/menu bits and
+    // creates the exclusive device using width/height,32bpp/default refresh.
+    settings.x=settings.y=0;
+    settings.child_width=settings.child_height=0;
+    settings.flags=2;
+    return settings;
+}
+
 inline std::uint32_t parse_frame_limit(std::wstring_view text) {
     if (text.empty()) {
         throw std::invalid_argument("Frame limit must contain decimal digits (0 means interactive)");

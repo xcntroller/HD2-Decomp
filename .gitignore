@@ -10,6 +10,7 @@
 /assets/
 /extracted/
 /captures/
+/dist/
 
 # Commercial binaries and archives, including copies outside the installation.
 *.exe

@@ -1,0 +1,3048 @@
+{
+  "date": "2026-11-02",
+  "status": "source-only boundary audit; no new desktop delivery or function credit",
+  "scope": "All recovered/host .h/.cpp files, production root include closure and separate diagnostic roots. Include reachability is not proof a method executes. Call-site index locates guards/delegates; it does not prove unlisted dynamic implementations.",
+  "accepted_application_sha256": "e11fb644abd669a04deae5b56bb095763ceec59401ad391ca76718cbcb9384a8",
+  "original_fingerprints": {
+    "client": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "engine": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee"
+  },
+  "groups": [
+    {
+      "id": "launch",
+      "area": "Native launch/device bootstrap, window policy and lifetime",
+      "sources": [
+        "recovered/host/application_launch.cpp",
+        "recovered/host/graphics_interface.h",
+        "recovered/host/graphics_settings.h",
+        "recovered/host/window_position.h",
+        "recovered/host/frame_clock.h"
+      ],
+      "original_client_addresses": [
+        "006DB3B0",
+        "006DC950",
+        "006DCAE0",
+        "006DC3A0"
+      ],
+      "contracts": [
+        "analysis/launch-acceptance.md",
+        "analysis/shutdown-delivery.md",
+        "analysis/controller-integration.md"
+      ],
+      "difference_or_boundary": "Host windowed adapter0/32-bit/flags80 and position50,50; per-launch dimensions; full setup/registry/protection VM excluded. COM/module/exception RAII differs from original ABI."
+    },
+    {
+      "id": "scene",
+      "area": "Engine scene/models/cursor and names",
+      "sources": [
+        "recovered/host/menu_scene.h",
+        "recovered/host/frame_name.h",
+        "recovered/host/menu_cursor.h",
+        "recovered/host/cursor_geometry.h"
+      ],
+      "original_client_addresses": [
+        "0066AD10",
+        "0066BFA0",
+        "0066A150",
+        "0066D9F0"
+      ],
+      "contracts": [
+        "analysis/menu-fidelity.md",
+        "analysis/menu-caches.md",
+        "analysis/cinematics-flow.md"
+      ],
+      "difference_or_boundary": "Original assets and frame factories; typed exact-target guards where proven, variable target guard otherwise. Camera aspect correction for widescreen is an accepted host presentation policy, not original widescreen support."
+    },
+    {
+      "id": "text",
+      "area": "Native bitmap text/picking/overlay bridge",
+      "sources": [
+        "recovered/host/menu_presentation.h",
+        "recovered/host/bitmap_font.h",
+        "recovered/host/bitmap_font.cpp",
+        "recovered/host/menu_text.h",
+        "recovered/host/menu_text_geometry.h",
+        "recovered/host/menu_text_object.h",
+        "recovered/host/opening_text.h",
+        "recovered/host/opening_text_geometry.h"
+      ],
+      "original_client_addresses": [
+        "0063DC50",
+        "00644A80",
+        "00641E30",
+        "00648860"
+      ],
+      "contracts": [
+        "analysis/menu-fidelity.md",
+        "analysis/playback-completion.md"
+      ],
+      "difference_or_boundary": "Real ANSI/CE atlases and metrics; bounded native wrapping/UV clipping, supported style subsets and D3D8 state bridge replace original paragraph/object ABI. Wide/GDI support unavailable."
+    },
+    {
+      "id": "credits",
+      "area": "Credits script rows and edge fades",
+      "sources": [
+        "recovered/host/credits_text.h",
+        "recovered/host/credits_geometry.h"
+      ],
+      "original_client_addresses": [
+        "006887C0",
+        "00689340",
+        "0064B950",
+        "00688C10"
+      ],
+      "contracts": [
+        "analysis/credits-flow.md",
+        "analysis/credits-resolution-check.md"
+      ],
+      "difference_or_boundary": "Four original atlas roles; original width-dependent entrance delay and signed16 scroll/baselines preserved. No Credits decoder/voice."
+    },
+    {
+      "id": "media",
+      "area": "Actual LS3DF IShow and ISnd owners",
+      "sources": [
+        "recovered/host/engine_video.h",
+        "recovered/host/engine_sound.h",
+        "recovered/host/opening_audio.h"
+      ],
+      "original_client_addresses": [
+        "00688040",
+        "00688460",
+        "00433550",
+        "00437210"
+      ],
+      "contracts": [
+        "analysis/playback-completion.md",
+        "analysis/audio-preferences-fidelity.md",
+        "analysis/sound-runtime.md"
+      ],
+      "difference_or_boundary": "Codec/device operations delegated; sound startup flags0402 are bounded host defaults; partial release relies on nonthrowing correct foreign ABI."
+    },
+    {
+      "id": "input",
+      "area": "Borrowed input, original device services and pointer composition",
+      "sources": [
+        "recovered/host/borrowed_input.h",
+        "recovered/host/engine_keyboard.h",
+        "recovered/host/engine_mouse.h",
+        "recovered/host/graphics_input_services.h",
+        "recovered/host/joystick_backend.h",
+        "recovered/host/menu_input_session.h",
+        "recovered/host/menu_pointer_session.h"
+      ],
+      "original_client_addresses": [
+        "006DB620",
+        "0066B3E0",
+        "0066BEA0",
+        "0066C770"
+      ],
+      "contracts": [
+        "analysis/input-fidelity.md",
+        "analysis/frame-input.md",
+        "analysis/graphics-input-services.md",
+        "analysis/keyboard-preprocessing.md"
+      ],
+      "difference_or_boundary": "Normal app borrows startup keyboard/mouse; engine polling and reacquisition delegated. Separate preview owners stay diagnostic. Normal joystick list proven empty, no successful synthetic enumeration."
+    },
+    {
+      "id": "startup",
+      "area": "Actual startup/data/config/settings and OS adapters",
+      "sources": [
+        "recovered/host/startup_session.h",
+        "recovered/host/startup_localization.h",
+        "recovered/host/profile_directories.h",
+        "recovered/host/resource_directories.h",
+        "recovered/host/human_store.h",
+        "recovered/host/control_startup.h"
+      ],
+      "original_client_addresses": [
+        "006DBFB0",
+        "006B6010",
+        "006B6740",
+        "0072E460"
+      ],
+      "contracts": [
+        "analysis/startup-integration.md",
+        "analysis/startup-localization.md",
+        "analysis/startup-data.md",
+        "analysis/control-startup.md",
+        "analysis/audio-preferences-fidelity.md"
+      ],
+      "difference_or_boundary": "Native locks/containers/CRT paths; optional control wrapper absent on normal cold path, not successful replacement. Actual scene/camera sound-world absent until real game owner; firewall modification rejects."
+    },
+    {
+      "id": "resources",
+      "area": "rw_data archive/chunk and loaded-resource adapters",
+      "sources": [
+        "recovered/host/startup_archives.h",
+        "recovered/host/chunk_files.h",
+        "recovered/host/loaded_resources.h"
+      ],
+      "original_client_addresses": [
+        "00405620",
+        "006DB8C7",
+        "006D7EA0",
+        "006D7490"
+      ],
+      "contracts": [
+        "analysis/startup-archives.md",
+        "analysis/menu-caches.md",
+        "analysis/startup-integration.md"
+      ],
+      "difference_or_boundary": "rw_data codecs/registry/file/search/write behavior remains original DLL; caches reconstruct client policy with native RAII. Missing click buffer tolerated, missing required models fail. Native diagnostics replace dbgPrintf."
+    },
+    {
+      "id": "sound-settings",
+      "area": "Borrowed sound/settings engine adapters",
+      "sources": [
+        "recovered/host/settings_services.h",
+        "recovered/host/sound_services.h"
+      ],
+      "original_client_addresses": [
+        "004368D0",
+        "00433510",
+        "004361F0",
+        "006B3340"
+      ],
+      "contracts": [
+        "analysis/sound-runtime.md",
+        "analysis/sound-movie-channels.md",
+        "analysis/startup-settings.md",
+        "analysis/audio-preferences-fidelity.md"
+      ],
+      "difference_or_boundary": "Exact-target and export checks; sound portal self-on-stack slot04 target not proven and only relevant to deferred live sound-world. Do not count engine implementations or optional control service as recovered."
+    },
+    {
+      "id": "menu-owner",
+      "area": "Compiled application owner and controls/screens",
+      "sources": [
+        "recovered/host/application_menu.h",
+        "recovered/host/menu_control.h",
+        "recovered/host/menu_button_visuals.h",
+        "recovered/host/menu_control_tree.h",
+        "recovered/host/menu_screen_factory.h",
+        "recovered/host/menu_screen_product.h",
+        "recovered/host/menu_screen_events.h"
+      ],
+      "original_client_addresses": [
+        "0066AD10",
+        "006C0920",
+        "00668400",
+        "00668440"
+      ],
+      "contracts": [
+        "analysis/menu-screen-foundation.md",
+        "analysis/menu-update.md",
+        "analysis/menu-foundation-state.md",
+        "analysis/main-traversal.md"
+      ],
+      "difference_or_boundary": "Native ownership/registration/observer pointers replace original object/vtable ABI; ordinary queue/focus lifecycle recovered. Runtime diagnostics are not original labels. Exception aggregation intentionally improves acquired-prefix safety."
+    },
+    {
+      "id": "widgets",
+      "area": "Actual widget visuals and native parts",
+      "sources": [
+        "recovered/host/menu_options_widget.h"
+      ],
+      "original_client_addresses": [
+        "00661B30",
+        "0064D9F0"
+      ],
+      "contracts": [
+        "analysis/menu-widget-construction.md",
+        "analysis/input-fidelity.md"
+      ],
+      "difference_or_boundary": "Adapters instantiate recovered factory/control/event logic and engine visuals; native type layout/refcount/allocator identity differs."
+    },
+    {
+      "id": "options",
+      "area": "Options pages and binding list composition",
+      "sources": [
+        "recovered/host/options_menu.h"
+      ],
+      "original_client_addresses": [
+        "0061BEA0",
+        "006202A0",
+        "006A86C0"
+      ],
+      "contracts": [
+        "analysis/options-flow.md",
+        "analysis/input-fidelity.md",
+        "analysis/audio-preferences-fidelity.md"
+      ],
+      "difference_or_boundary": "Front-end family6 accepted; in-game family2 deferred. Gamma requires fullscreen initialization flag, so disabled in windowed launch. Writer failures retain original ignored-return semantics."
+    },
+    {
+      "id": "profiles",
+      "area": "Real profile CRUD/edit/list and native filesystem",
+      "sources": [
+        "recovered/host/profiles_menu.h",
+        "recovered/host/profile_management.h"
+      ],
+      "original_client_addresses": [
+        "00621470",
+        "006AE630",
+        "006AE990",
+        "006AEC90"
+      ],
+      "contracts": [
+        "analysis/profiles-flow.md",
+        "analysis/dialog-callers-verification.md"
+      ],
+      "difference_or_boundary": "Isolated physical directory operations with component/reparse guards and no cwd changes; real profile/options persistence, not gameplay-save loading. Wide-mode editing unavailable."
+    },
+    {
+      "id": "cinematics",
+      "area": "Profile-filtered movie list and silent preview",
+      "sources": [
+        "recovered/host/cinematics_menu.h"
+      ],
+      "original_client_addresses": [
+        "00614140",
+        "00615470",
+        "00667EA0",
+        "006C20F0"
+      ],
+      "contracts": [
+        "analysis/cinematics-flow.md"
+      ],
+      "difference_or_boundary": "Actual catalog/unlocks/movies; unopened preview safe guard differs from original undefined dimension consumption. Missing Africa/Czech development remnants expected. Empty filename fallback to Credits preserved."
+    },
+    {
+      "id": "preparation",
+      "area": "Descriptor-driven preparation UI/data views",
+      "sources": [
+        "recovered/host/single_player_menu.h",
+        "recovered/host/pre_mission_menu.h",
+        "recovered/host/pre_mission_controls.h",
+        "recovered/host/pre_mission_choice.h",
+        "recovered/host/pre_mission_description.h",
+        "recovered/host/pre_mission_team_menu.h",
+        "recovered/host/pre_mission_soldier_selection.h",
+        "recovered/host/pre_mission_item_row.h",
+        "recovered/host/pre_mission_hero_menu.h",
+        "recovered/host/pre_mission_equipment_menu.h"
+      ],
+      "original_client_addresses": [
+        "00688040",
+        "006920E8",
+        "00693B60",
+        "00698510"
+      ],
+      "contracts": [
+        "analysis/singleplayer-pipeline.md",
+        "analysis/singleplayer-function-audit.md",
+        "analysis/team-removal.md"
+      ],
+      "difference_or_boundary": "Bounded team accepted; full loadout flow completely untested until accessible. Real item/human stock and validated owned handoff; game receiver and gameplay-save loading explicitly unavailable/Phase2. No world-entry success proxy."
+    },
+    {
+      "id": "network",
+      "area": "Real DirectPlay discovery and explicit session boundary",
+      "sources": [
+        "recovered/host/multiplayer_menu.h",
+        "recovered/host/multiplayer_controls.h",
+        "recovered/host/multiplayer_connection_menu.h",
+        "recovered/host/multiplayer_discovery.h",
+        "recovered/host/multiplayer_discovery.cpp"
+      ],
+      "original_client_addresses": [
+        "006333C0",
+        "00635AA0",
+        "00635640",
+        "0068AED0"
+      ],
+      "contracts": [
+        "analysis/multiplayer-pipeline.md",
+        "analysis/multiplayer-function-audit.md",
+        "analysis/dialog-callers-verification.md"
+      ],
+      "difference_or_boundary": "DirectPlay OS/COM enumerate/cancel/close used; owned callback data queued. GameSpy unavailable; join/host return explicit unavailable, never accepted, result0 unreachable as transport result on that production path. Ready-server-dependent UI/transport deferred to Phase3; status9 game entry Phase2."
+    },
+    {
+      "id": "diagnostics",
+      "area": "Separate preview/probe targets and diagnostic services",
+      "sources": [
+        "recovered/host/engine_window.cpp",
+        "recovered/host/startup_probe.cpp",
+        "recovered/host/menu_group_probe.h",
+        "recovered/host/pointer_dispatch_probe.h"
+      ],
+      "original_client_addresses": [
+        "0066AD10"
+      ],
+      "contracts": [
+        "analysis/launch-acceptance.md",
+        "analysis/startup-integration.md"
+      ],
+      "difference_or_boundary": "Independent preview/probe roots; not normal application services. Native diagnostic routing/default availability does not establish live menu delivery."
+    }
+  ],
+  "source_inventory": [
+    {
+      "source": "recovered/host/application_launch.cpp",
+      "group": "launch",
+      "sha256": "407c72a21338328538c64f5e1d39f4aede72983c08c9d1a11a025ef3a54c53bf",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/application_menu.h",
+      "group": "menu-owner",
+      "sha256": "f5ce262081f0d27314fb2c5a1d17d7146bff32b3c0e9000c502936a815500be5",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/bitmap_font.cpp",
+      "group": "text",
+      "sha256": "c95960727f25a0d17670082763398abb57be9ad8a093d5e121be7c830e9d54c2",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/bitmap_font.h",
+      "group": "text",
+      "sha256": "86d5aec0edef1c8be29391c9e2b72004bddf206c5b74780113b0e48bcf047e99",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/borrowed_input.h",
+      "group": "input",
+      "sha256": "fced9ed1c79e6e9b0ee5751545f153468ae80ca0dbb1ffc9c5df3d2c7cdbb136",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/chunk_files.h",
+      "group": "resources",
+      "sha256": "1297e4e8eadcd44f28e72eb6109237c016f77ffbd0c1afaab5e141fd6944359b",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "group": "cinematics",
+      "sha256": "ede750cd9b188f06bd7dcdfe6f346554a5809570bc11c0685c12a2ec906b7e31",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/control_startup.h",
+      "group": "startup",
+      "sha256": "2662bf025946e9b8ff95029a27bc200d212a4a869fa9b651cd3f1f9b73b7f243",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/credits_geometry.h",
+      "group": "credits",
+      "sha256": "a20792d707a26b9681ae03af023b1156b4537f5c8ab1c3e5e91372a19367c0a2",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/credits_text.h",
+      "group": "credits",
+      "sha256": "9d18521ebbee63221e6f3d9fba8be791d37b3257a697f4171c4e254aa072a309",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/cursor_geometry.h",
+      "group": "scene",
+      "sha256": "b540b471b94e895f40938f227ef59ba43b84f52beb3f8294defeacca4414287f",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/engine_keyboard.h",
+      "group": "input",
+      "sha256": "90fb015105aca4975663730a935642e9fbde21d338ef836524cf9d223a54cfb4",
+      "include_reachable_from": [
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/engine_mouse.h",
+      "group": "input",
+      "sha256": "6fe428e05d5e2a46db7fb3e0a4c21b5d623a4b49aabf6132dcfdfbb217c401ab",
+      "include_reachable_from": [
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/engine_sound.h",
+      "group": "media",
+      "sha256": "c5ecb6b79934c25e9c8c1ca6119e2cc0ba612bbe54a54276075d4970fe492fb6",
+      "include_reachable_from": [
+        "application",
+        "preview",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "group": "media",
+      "sha256": "842398f1dab8c9629385e02f4b0574a0e3c13477d4484313bdaacd8cb95c9da5",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/engine_window.cpp",
+      "group": "diagnostics",
+      "sha256": "5b37c600a3ce5bd1028790cdbf00dc4c52095bf23952740a04e07558ad871731",
+      "include_reachable_from": [
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/frame_clock.h",
+      "group": "launch",
+      "sha256": "2b42daa3bea5d0885111d4c6d555d26a084e6c26861784df80537498b5ef8df1",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/frame_name.h",
+      "group": "scene",
+      "sha256": "463dd0ae788bba4ff1be9f9afecad93fc87be74406e4809c19f5ae095edc8610",
+      "include_reachable_from": [
+        "application",
+        "preview",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/graphics_input_services.h",
+      "group": "input",
+      "sha256": "4188d00a7a8bee2be54c07f1d168ec17daaaef8fb73ea3a34a845d19b8279394",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/graphics_interface.h",
+      "group": "launch",
+      "sha256": "46df4659a382fa40960e2f2c9923328a5bf14372a29c06301c1adb9836c969b8",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/graphics_settings.h",
+      "group": "launch",
+      "sha256": "067d9381b180504cd812b21a1f2d417e712a80d6ee206a6fde1593dfdf25be12",
+      "include_reachable_from": [
+        "application",
+        "preview",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/human_store.h",
+      "group": "startup",
+      "sha256": "f70a43e93cbbc682da984c5b3fa7d1df48b9a101d8abe0a50ee14cb8c52ac4c8",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/joystick_backend.h",
+      "group": "input",
+      "sha256": "1d6d5b763ae89ec5cb668a9197ac072f0ef7787695ae606aadd49545ea1a6ef4",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/loaded_resources.h",
+      "group": "resources",
+      "sha256": "236ff63d057020793539f097240ee0b6149c82db16cef5fcc3661ba9988da9e2",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_button_visuals.h",
+      "group": "menu-owner",
+      "sha256": "f63b56d998764a7d5f0ffc5bfda3cd3933763c5c9992de9d18407f8de3ed00e8",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_control.h",
+      "group": "menu-owner",
+      "sha256": "3625d3a3cf38397b803469cfb9186875092b1a0c641f3aca7864ea0e13356c17",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_control_tree.h",
+      "group": "menu-owner",
+      "sha256": "8bd8409fecbf50f87e1d76e883db2e8d2ee5e25ea4bcd33e045cf4c109e3a4b4",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_cursor.h",
+      "group": "scene",
+      "sha256": "d2bda2162c36632aecd00f198f57e76d64991a99adbaa0c0e270b328f1795b4f",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_group_probe.h",
+      "group": "diagnostics",
+      "sha256": "30a3c741b02469361d4fe3305d16a9d823d0493de8d62c7e1a63a694bc67fd9c",
+      "include_reachable_from": [
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_input_session.h",
+      "group": "input",
+      "sha256": "ecd8aa863be830d77519e880fdac0e7991886f955c5060492a0de9e4b26a8285",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "group": "widgets",
+      "sha256": "992f57418dd192180af52e7fe27c2ca10e2a8e6cf8b7bb1aab9116dcc6a28cf6",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_pointer_session.h",
+      "group": "input",
+      "sha256": "c6abb4a25ccdcac16dcf6d212772b966297a3062478715ec3104bfcc4dae6bef",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_presentation.h",
+      "group": "text",
+      "sha256": "00a4013d7cc096cfd220ab994124db4f084a689e026adfd5647d866f26034dd8",
+      "include_reachable_from": [
+        "application",
+        "preview",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "group": "scene",
+      "sha256": "3ea90e6fa859a9b162ac8a0c921e7d42bb2ec744033466d31bd2fe7efd8139c9",
+      "include_reachable_from": [
+        "application",
+        "preview",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_screen_events.h",
+      "group": "menu-owner",
+      "sha256": "bd740558bba3abc48090dd97a3592fd11356d3ed03f367a23bfe4343d276066a",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_screen_factory.h",
+      "group": "menu-owner",
+      "sha256": "dab94cb08146f09709ccb8e18b73d559b89f820fbb8f4e208bb91d55b50c75bc",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_screen_product.h",
+      "group": "menu-owner",
+      "sha256": "2b1b01b9b180a3d1a1197b5e1e67663e9aeba669c91acd5fc7829f8aad1a83df",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "group": "text",
+      "sha256": "4710e98d41759fa341c3ab8c783b06e0f2a700d115d800d450f73e437c334f7a",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_text_geometry.h",
+      "group": "text",
+      "sha256": "3ed52a0d8f56b44161831fe5d7cc30c1d61ac14c48e0903c0c931f7e3857ab81",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/menu_text_object.h",
+      "group": "text",
+      "sha256": "745c70ba9f3bc6d65451929fc221a662cefd9e0b342156a0aa928be8cede24dc",
+      "include_reachable_from": [
+        "application",
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/multiplayer_connection_menu.h",
+      "group": "network",
+      "sha256": "25a9e0464db808885cbd8a4259fce3dd51f205e1f714d9acadfa0d5eae33a05a",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/multiplayer_controls.h",
+      "group": "network",
+      "sha256": "b7d6a68ed6d7bf0bb8043c91849f7a3899d771a8e70cda1c7c41a8b2ca44572e",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/multiplayer_discovery.cpp",
+      "group": "network",
+      "sha256": "af0b1acdb6fe8f8a0ede02b43b46797bf5ae6a79e50add13db246c5f5c6ec7d0",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/multiplayer_discovery.h",
+      "group": "network",
+      "sha256": "7d3b8a9cc742f8852c9fea77854bfb5fe8e05763acb61301c23bc22aa9e457f6",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/multiplayer_menu.h",
+      "group": "network",
+      "sha256": "9e4180d4fe0b348a5c6f16b6fb5d2f1e54a65a5197ac9c448ae6ffbe524af7e0",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "group": "media",
+      "sha256": "9ea732e4a0e639edd4fc1f2a4660fcf7a555365867cc7bd02a251457488dba12",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/opening_text.h",
+      "group": "text",
+      "sha256": "d17cfdabd01fe7bcbaeffebb69f907d95e3f13d530eef1b705a088a49eac338a",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/opening_text_geometry.h",
+      "group": "text",
+      "sha256": "8ff17155026280dfb9516a946aec40ad280ecf2af656dc210f4063943ed4f542",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/options_menu.h",
+      "group": "options",
+      "sha256": "2641c9ac9bae63db7cc967f0400bf6143af8c6a34507aea304389e7fd07fb663",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/pointer_dispatch_probe.h",
+      "group": "diagnostics",
+      "sha256": "d3184620e85d24c289eb1ea280c10c66d3f1d2a44f7fc1b6609e3343943726ec",
+      "include_reachable_from": [
+        "preview"
+      ]
+    },
+    {
+      "source": "recovered/host/pre_mission_choice.h",
+      "group": "preparation",
+      "sha256": "91ed938561ef680a61a25aa80d05808574d9fc3e8efec080680c23891841ebd7",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/pre_mission_controls.h",
+      "group": "preparation",
+      "sha256": "5122a1d408b2824e3b40e2a8883544cf495d6495ff3c66a758084ca959a3ab65",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/pre_mission_description.h",
+      "group": "preparation",
+      "sha256": "3fee7b37dbec10e70abb7d877ac731c736a0e4a2395f806202cda057db17d5f2",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/pre_mission_equipment_menu.h",
+      "group": "preparation",
+      "sha256": "c4d13b6ef6b127b3a2ede57ef9566703bdc1a26e2ca3fe513c986083ba1ea6f9",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/pre_mission_hero_menu.h",
+      "group": "preparation",
+      "sha256": "93329e18a28c3fb2b6ded1548805b4868f1c3ae85b29d45ca416a8566eaeb2fa",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/pre_mission_item_row.h",
+      "group": "preparation",
+      "sha256": "9321f3ad2454cff8aba108b209ac2ccd419211eb6b88b4b3894500fcf3650fd6",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/pre_mission_menu.h",
+      "group": "preparation",
+      "sha256": "e6b75f5d993e7f78e4b2c40b82fbe965f19db0f28caf8afbc4f5f446f8f75ae3",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/pre_mission_soldier_selection.h",
+      "group": "preparation",
+      "sha256": "cf8f1d5146ec85b56159828f12b9467685b8edbde6081aa1df5db89d54c94d77",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/pre_mission_team_menu.h",
+      "group": "preparation",
+      "sha256": "57aaae2529dd5a28e767a09255a71825722b57ff5513842cb57cfa040f556392",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/profile_directories.h",
+      "group": "startup",
+      "sha256": "610b5206b10d32d4ef51caf2ea20378f10dc71d81804e596448bdb0c0db2e6cf",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/profile_management.h",
+      "group": "profiles",
+      "sha256": "bc7b5c8dd5a8ac7040b311ea4a9b76bd89f7e717b5841a6598fa589f58979689",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/profiles_menu.h",
+      "group": "profiles",
+      "sha256": "64e29ef78189b55fa95b2e66fb3bd9886782789f37e38d631a6e528dfc20f74f",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/resource_directories.h",
+      "group": "startup",
+      "sha256": "9f69fc4b6b27c80c227d7736b67970732446b4836be8369bc62ee1eed0b8fb59",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "group": "sound-settings",
+      "sha256": "0042b6f605acf07169eee4b41e1a55b6ffc0176d2e36a2e41b8a6a6ec391141f",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/single_player_menu.h",
+      "group": "preparation",
+      "sha256": "41813c17199d9cf766020a743883c99a61c418d341076013d40f009071abc6c7",
+      "include_reachable_from": [
+        "application"
+      ]
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "group": "sound-settings",
+      "sha256": "878fa9e078ceebd10d23a01de34bff704df9ce14729f6ffdb5ec41be81204692",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/startup_archives.h",
+      "group": "resources",
+      "sha256": "b52e88124c7214135aecb305aec5b9f072d101ea4ad337ab1504d0bcae7d9087",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/startup_localization.h",
+      "group": "startup",
+      "sha256": "b19f6480821f376f26bfde7b6b982a9c7e422a795ceb8f12906edfe519ac3ad4",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/startup_probe.cpp",
+      "group": "diagnostics",
+      "sha256": "774e6387893c39126acfd2b1dc8c1bc28c9c86e14d9dfe93afd801b6cc3f0a3e",
+      "include_reachable_from": [
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "group": "startup",
+      "sha256": "8d6ed7c236a356d63af7d8ecb61642d2b7f1e8bcd93fe12f11399e3b6d447bd1",
+      "include_reachable_from": [
+        "application",
+        "probe"
+      ]
+    },
+    {
+      "source": "recovered/host/window_position.h",
+      "group": "launch",
+      "sha256": "f38d58f37c29024462be7e39828101c16b38b888db188321bb34641004a5c448",
+      "include_reachable_from": [
+        "application"
+      ]
+    }
+  ],
+  "boundary_site_index": [
+    {
+      "source": "recovered/host/application_launch.cpp",
+      "line": 37,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = GetProcAddress(module, \"GetIGraph\");"
+    },
+    {
+      "source": "recovered/host/application_launch.cpp",
+      "line": 73,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "host::scene_method<Unary>(frame, module_, entry.first, entry.second);"
+    },
+    {
+      "source": "recovered/host/application_launch.cpp",
+      "line": 151,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto width = host::scene_method<Dimension>(startup_.graphics(), module_, 0x18, 0x6de50)(startup_.graphics());"
+    },
+    {
+      "source": "recovered/host/application_launch.cpp",
+      "line": 152,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto height = host::scene_method<Dimension>(startup_.graphics(), module_, 0x1c, 0x6de70)(startup_.graphics());"
+    },
+    {
+      "source": "recovered/host/application_launch.cpp",
+      "line": 396,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "host::scene_method<Tick>(driver_.frame(), module_, 0x0c, 0x152c0)(driver_.frame(), milliseconds);"
+    },
+    {
+      "source": "recovered/host/borrowed_input.h",
+      "line": 23,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(graphics_, module_, 0xf8, 0x6fa40)(graphics_, x, y);"
+    },
+    {
+      "source": "recovered/host/borrowed_input.h",
+      "line": 29,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(graphics_, module_, 0xb0, 0x6f490)(graphics_, scan) != 0;"
+    },
+    {
+      "source": "recovered/host/borrowed_input.h",
+      "line": 38,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(graphics_, module_, slot, rva)(graphics_);"
+    },
+    {
+      "source": "recovered/host/chunk_files.h",
+      "line": 35,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = module ? GetProcAddress(module, name) : nullptr;"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 26,
+      "kinds": [
+        "typed_foreign_call_or_guard"
+      ],
+      "text": "return reinterpret_cast<Function>(address);"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 44,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return Owner(frame, scene_method<MenuDriver::Release>(frame, module, 0, 0x1c370));"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 52,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (scene_method<Link>(frame, module, 0x38, 0x1d680)(frame, parent, mode) < 0)"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 57,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Count>(frame, module, 0x3c, 0x1db80)(frame);"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 61,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Child>(frame, module, 0x40, 0x1dba0)(frame, index);"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 254,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Set>(frame, module_, 0x30, 0x1cfe0)(frame, value);"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 258,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Update>(frame, module_, 0x24, 0x1e610)(frame);"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 262,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Set>(frame, module_, 8, 0x1c9f0)(frame, value.data());"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 470,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Get>(startup_.graphics(), module_, 0x78, 0x6b220)(startup_.graphics(), 0);"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 474,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Set>(startup_.graphics(), module_, 0x74, 0x6abc0)(startup_.graphics(), 0, graph_state);"
+    },
+    {
+      "source": "recovered/host/cinematics_menu.h",
+      "line": 487,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Set>(frame, module_, 0x30, 0x1cfe0)(frame, visible);"
+    },
+    {
+      "source": "recovered/host/credits_text.h",
+      "line": 29,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if(texture) atlases_[i]=MenuDriver::Owner(texture,scene_method<MenuDriver::Release>(texture,module,0,0x73760));"
+    },
+    {
+      "source": "recovered/host/credits_text.h",
+      "line": 52,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "check_overlay_status(device_->SetTexture(0,nullptr),\"Unbind Credits atlas\");"
+    },
+    {
+      "source": "recovered/host/credits_text.h",
+      "line": 53,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "check_overlay_status(device_->SetTextureStageState(0,D3DTSS_COLOROP,D3DTOP_SELECTARG2),\"Set Credits fade color\");"
+    },
+    {
+      "source": "recovered/host/credits_text.h",
+      "line": 54,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "check_overlay_status(device_->SetTextureStageState(0,D3DTSS_ALPHAOP,D3DTOP_SELECTARG2),\"Set Credits fade alpha\");"
+    },
+    {
+      "source": "recovered/host/engine_keyboard.h",
+      "line": 18,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto initialize = scene_method<Initialize>(graphics, module, 0x90, 0x6f040);"
+    },
+    {
+      "source": "recovered/host/engine_keyboard.h",
+      "line": 19,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto enabled = scene_method<Enabled>(graphics, module, 0x94, 0x6f150);"
+    },
+    {
+      "source": "recovered/host/engine_keyboard.h",
+      "line": 20,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "close_ = scene_method<Close>(graphics, module, 0x98, 0x6f160);"
+    },
+    {
+      "source": "recovered/host/engine_keyboard.h",
+      "line": 21,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "pump_ = scene_method<Pump>(graphics, module, 0x14, 0x6a470);"
+    },
+    {
+      "source": "recovered/host/engine_mouse.h",
+      "line": 15,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto initialize = scene_method<Initialize>(graphics, module, 0xdc, 0x6f710);"
+    },
+    {
+      "source": "recovered/host/engine_mouse.h",
+      "line": 16,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "close_ = scene_method<Close>(graphics, module, 0xe4, 0x6f850);"
+    },
+    {
+      "source": "recovered/host/engine_mouse.h",
+      "line": 18,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto enabled = scene_method<Enabled>(graphics, module, 0xe0, 0x6f840);"
+    },
+    {
+      "source": "recovered/host/engine_sound.h",
+      "line": 14,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = GetProcAddress(module, \"ISndGetDriver\");"
+    },
+    {
+      "source": "recovered/host/engine_sound.h",
+      "line": 24,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "initialize_ = scene_method<Initialize>(driver_, module, 4, 0x7b560);"
+    },
+    {
+      "source": "recovered/host/engine_sound.h",
+      "line": 25,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "close_ = scene_method<Close>(driver_, module, 8, 0x7a850);"
+    },
+    {
+      "source": "recovered/host/engine_sound.h",
+      "line": 26,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "initialized_ = scene_method<Initialized>(driver_, module, 0x0c, 0x7a840);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 14,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "factory_ = scene_method<Factory>(graphics, module, 0x38, 0x69e80);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 15,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "clear_ = scene_method<Clear>(graphics, module, 0x64, 0x6a6c0);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 16,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "present_ = scene_method<Unary>(graphics, module, 0x70, 0x6b3e0);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 17,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "begin_ = scene_method<Unary>(graphics, module, 0x68, 0x6b380);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 18,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "end_ = scene_method<Unary>(graphics, module, 0x6c, 0x6b3b0);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 19,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "get_state_ = scene_method<GetState>(graphics, module, 0x78, 0x6b220);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 20,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "set_state_ = scene_method<SetState>(graphics, module, 0x74, 0x6abc0);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 32,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "release_ = scene_method<Result>(created, module_, 4, 0x70fd0);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 34,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "close_ = scene_method<Result>(video_, module_, 0x10, 0x71b80);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 35,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "stop_ = scene_method<Result>(video_, module_, 0x18, 0x71d10);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 36,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "play_ = scene_method<Result>(video_, module_, 0x14, 0x71c50);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 37,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "status_ = scene_method<Result>(video_, module_, 0x2c, 0x72160);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 38,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "time_ = scene_method<GetTime>(video_, module_, 0x38, 0x72400);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 39,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "opened_ = scene_method<Opened>(video_, module_, 8, 0x71b70);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 40,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "dimensions_ = scene_method<GetRectangle>(video_, module_, 0x28, 0x720e0);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 41,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "rectangle_ = scene_method<SetRectangle>(video_, module_, 0x20, 0x72040);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 42,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "volume_ = scene_method<Volume>(video_, module_, 0x3c, 0x724d0);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 43,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "draw_ = scene_method<Draw>(video_, module_, 0x50, 0x72650);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 48,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto open_video = scene_method<Open>(video_, module_, 0x0c, 0x71630);"
+    },
+    {
+      "source": "recovered/host/engine_video.h",
+      "line": 68,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Set>(video_,module_,0x4c,0x725d0)(video_,value);"
+    },
+    {
+      "source": "recovered/host/engine_window.cpp",
+      "line": 951,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "FARPROC entry = GetProcAddress(module, \"GetIGraph\");"
+    },
+    {
+      "source": "recovered/host/graphics_input_services.h",
+      "line": 40,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(frame, engine_, 0xb4, 0x6f4b0)(frame, scans, count);"
+    },
+    {
+      "source": "recovered/host/graphics_input_services.h",
+      "line": 45,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(frame, engine_, 0x14, 0x6a470)(frame);"
+    },
+    {
+      "source": "recovered/host/graphics_input_services.h",
+      "line": 52,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(frame, engine_, 0xb8, 0x6f500)(frame);"
+    },
+    {
+      "source": "recovered/host/graphics_input_services.h",
+      "line": 64,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(frame, engine_, slot, rva)(frame);"
+    },
+    {
+      "source": "recovered/host/graphics_input_services.h",
+      "line": 78,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = engine ? GetProcAddress(engine, \"GetIGraph\") : nullptr;"
+    },
+    {
+      "source": "recovered/host/graphics_input_services.h",
+      "line": 89,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(frame, engine_, 0x90, 0x6f040)(frame, flags);"
+    },
+    {
+      "source": "recovered/host/human_store.h",
+      "line": 15,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = engine ? GetProcAddress(engine, \"GetIGraph\") : nullptr;"
+    },
+    {
+      "source": "recovered/host/human_store.h",
+      "line": 26,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Load>(graphics, engine_, 0x3c, 0x69f70)(graphics, face, opacity, flags, output);"
+    },
+    {
+      "source": "recovered/host/human_store.h",
+      "line": 31,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Release>(texture, engine_, 0, 0x73760)(texture);"
+    },
+    {
+      "source": "recovered/host/joystick_backend.h",
+      "line": 75,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto address = module ? GetProcAddress(module, name) : nullptr;"
+    },
+    {
+      "source": "recovered/host/joystick_backend.h",
+      "line": 90,
+      "kinds": [
+        "typed_foreign_call_or_guard"
+      ],
+      "text": "return reinterpret_cast<Function>(methods[slot / 4]);"
+    },
+    {
+      "source": "recovered/host/loaded_resources.h",
+      "line": 19,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = GetProcAddress(module_, \"I3DGetDriver\");"
+    },
+    {
+      "source": "recovered/host/loaded_resources.h",
+      "line": 28,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "resource = scene_method<Create>(driver, module_, 0x70, 0x18d20)(driver);"
+    },
+    {
+      "source": "recovered/host/loaded_resources.h",
+      "line": 31,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "resource = scene_method<MenuDriver::Factory>(driver, module_, 0x54, 0x19e10)(driver, kind);"
+    },
+    {
+      "source": "recovered/host/loaded_resources.h",
+      "line": 47,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Open>(resource, module_, 0x74, 0x340b0)(resource, path.c_str(), flags, nullptr, nullptr);"
+    },
+    {
+      "source": "recovered/host/loaded_resources.h",
+      "line": 52,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Open>(resource, module_, slot, rva)(resource, path.c_str(), flags);"
+    },
+    {
+      "source": "recovered/host/loaded_resources.h",
+      "line": 66,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Open>(destination, module_, 0x74, 0x545a0)("
+    },
+    {
+      "source": "recovered/host/loaded_resources.h",
+      "line": 73,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Clone>(destination, module_, 0xd8, 0x34760)(destination, source);"
+    },
+    {
+      "source": "recovered/host/loaded_resources.h",
+      "line": 79,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Enumerate>(destination, module_, 0x44, 0x1de40)(destination, clear_pick_word, nullptr, 0xffff, nullptr);"
+    },
+    {
+      "source": "recovered/host/loaded_resources.h",
+      "line": 107,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<MenuDriver::Release>(resource, module_, 0, category_ == 3 ? 0x04c80 : 0x1c370);"
+    },
+    {
+      "source": "recovered/host/menu_button_visuals.h",
+      "line": 31,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "visibility_ = scene_method<Visibility>(normal_, module, 0x30, 0x1cfe0);"
+    },
+    {
+      "source": "recovered/host/menu_button_visuals.h",
+      "line": 32,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Visibility>(active_, module, 0x30, 0x1cfe0);"
+    },
+    {
+      "source": "recovered/host/menu_button_visuals.h",
+      "line": 33,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "update_ = scene_method<Update>(normal_, module, 0x24, 0x1e610);"
+    },
+    {
+      "source": "recovered/host/menu_button_visuals.h",
+      "line": 34,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Update>(active_, module, 0x24, 0x1e610);"
+    },
+    {
+      "source": "recovered/host/menu_button_visuals.h",
+      "line": 170,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Visibility>(frame_, module_, 0x30, 0x1cfe0)(frame_, value);"
+    },
+    {
+      "source": "recovered/host/menu_button_visuals.h",
+      "line": 172,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "void update_frame() { scene_method<Update>(frame_, module_, 0x24, 0x1e610)(frame_); }"
+    },
+    {
+      "source": "recovered/host/menu_control_tree.h",
+      "line": 45,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Visible>(frame, module, 0x30, 0x1cfe0)(frame, visible);"
+    },
+    {
+      "source": "recovered/host/menu_control_tree.h",
+      "line": 49,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Update>(frame, module, 0x24, 0x1e610)(frame);"
+    },
+    {
+      "source": "recovered/host/menu_cursor.h",
+      "line": 30,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto release = scene_method<MenuDriver::Release>(texture, module, 0, 0x73760);"
+    },
+    {
+      "source": "recovered/host/menu_group_probe.h",
+      "line": 27,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (scene_method<Count>(root, module, 0x3c, 0x1db80)(root) != 2 ||"
+    },
+    {
+      "source": "recovered/host/menu_group_probe.h",
+      "line": 28,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "(scene_method<Child>(root, module, 0x40, 0x1dba0)(root, 0) != child &&"
+    },
+    {
+      "source": "recovered/host/menu_group_probe.h",
+      "line": 29,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Child>(root, module, 0x40, 0x1dba0)(root, 1) != child)) {"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 67,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Find>(root,module_,0x48,0x1ded0)(root,pattern,flags);"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 69,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "unsigned children(Frame frame) { using Count=unsigned (WINAPI *)(Frame); return scene_method<Count>(frame,module_,0x3c,0x1db80)(frame); }"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 71,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "void visible(Frame frame,std::uint8_t value) { using Set=void (WINAPI *)(Frame,std::uint8_t); scene_method<Set>(frame,module_,0x30,0x1cfe0)(frame,value); }"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 72,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "void update(Frame frame) { using Update=void (WINAPI *)(Frame); scene_method<Update>(frame,module_,0x24,0x1e610)(frame); }"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 77,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "void alpha(Frame frame,float value) { using Set=void (WINAPI *)(Frame,float); scene_method<Set>(frame,module_,0xa8,0x368f0)(frame,value); }"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 80,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Set>(frame,module_,0x0c,0x1c8d0)(frame,value.data(),nullptr);"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 84,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (scene_method<Link>(frame,module_,0x38,0x1d680)(frame,parent,mode)<0) throw std::runtime_error(\"Widget frame reparent failed\");"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 89,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto address=GetProcAddress(module_,\"?UpdateWMatrixProc@I3D_frame@@AAEXXZ\");"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 96,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (!(field<std::uint32_t>(frame,0xe0)&0x100)) { using Update=void (WINAPI *)(Frame); scene_method<Update>(frame,module_,0x58,0x1e7d0)(frame); }"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 99,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "void position(Frame frame,const std::array<float,3>& value) { using Set=void (WINAPI *)(Frame,const float*); scene_method<Set>(frame,module_,8,0x1c9f0)(frame,value.data()); }"
+    },
+    {
+      "source": "recovered/host/menu_options_widget.h",
+      "line": 107,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto export_address=GetProcAddress(module_,\"?UpdateWBoundProc@I3D_visual@@AAGXXZ\");"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 41,
+      "kinds": [
+        "typed_foreign_call_or_guard"
+      ],
+      "text": "return reinterpret_cast<Function>(address);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 57,
+      "kinds": [
+        "typed_foreign_call_or_guard"
+      ],
+      "text": "return reinterpret_cast<Function>(frame->methods[offset / 4]);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 65,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = GetProcAddress(module, \"I3DGetDriver\");"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 76,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto initialize = scene_method<Initialize>(driver_, module, 0, 0x152f0);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 77,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "close_ = scene_method<Close>(driver_, module, 4, 0x15650);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 78,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "factory_ = scene_method<Factory>(driver_, module, 0x54, 0x19e10);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 107,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto release = scene_method<Release>(frame, module_, 0, 0x1c370);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 113,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<GetState>(driver_, module_, 0x1c, 0x15c20)(driver_, state);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 118,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<SetState>(driver_, module_, 0x18, 0x15770)(driver_, state, value);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 170,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto add = scene_method<Pair>(scene_.get(), module, 0x80, 0x469a0);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 173,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Direction>(camera_.get(), module, 0x1c, 0x1c400)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 175,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Vector>(camera_.get(), module, 8, 0x1c9f0)(camera_.get(), position);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 176,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Range>(camera_.get(), module, 0x7c, 0x09ef0)(camera_.get(), 0.2f, 20);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 177,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Float>(camera_.get(), module, 0x74, 0x09e30)(camera_.get(), 1.57079637f);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 184,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Float>(camera_.get(), module, 0x8c, 0x0a010)(camera_.get(), 4.f / 3.f);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 185,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Projection>(camera_.get(), module, 0x88, 0x09ff0)(camera_.get(), 1);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 186,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Float>(camera_.get(), module, 0x84, 0x09fb0)(camera_.get(), 2);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 188,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Update>(camera_.get(), module, 0x24, 0x1e610)(camera_.get());"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 189,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Pair>(scene_.get(), module, 0x90, 0x471a0)(scene_.get(), camera_.get());"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 199,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Integer>(light_.get(), module, 0x74, 0x217e0)(light_.get(), 4);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 201,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Vector>(light_.get(), module, 0x84, 0x21db0)(light_.get(), white);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 202,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Float>(light_.get(), module, 0x90, 0x22120)(light_.get(), 0.9f);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 204,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Pair>(sector, module, 0x74, 0x4ceb0)(sector, light_.get());"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 217,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto linked = scene_method<Link>(model_.get(), module, 0x38, 0x1d680)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 224,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Vector>(model_.get(), module, 8, 0x1c9f0)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 228,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Update>(model_.get(), module, 0x24, 0x1e610)(model_.get());"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 239,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Link>(confirmation_.get(), module, 0x38, 0x1d680)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 244,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Vector>(confirmation_.get(), module, 8, 0x1c9f0)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 246,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Update>(confirmation_.get(), module, 0x24, 0x1e610)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 253,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Link>(runtime_confirmation_.get(), module, 0x38, 0x1d680)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 258,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Vector>(runtime_confirmation_.get(), module, 8, 0x1c9f0)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 260,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Update>(runtime_confirmation_.get(), module, 0x24, 0x1e610)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 272,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (scene_method<Name>(cursor_model_.get(), module, 0x34, 0x346a0)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 276,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (scene_method<Link>(cursor_model_.get(), module, 0x38, 0x1d680)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 281,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Visible>(cursor_model_.get(), module, 0x30, 0x1cfe0)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 284,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto find = scene_method<Find>(scene_.get(), module, 0x7c, 0x46920);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 293,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "cursor_position_ = scene_method<CursorPosition>(cursor_frame_, module, 8, 0x1c9f0);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 294,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "cursor_update_ = scene_method<CursorUpdate>(cursor_frame_, module, 0x24, 0x1e610);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 305,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Integer>(sound, module, 0x7c, 0x549a0)(sound, 3);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 307,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (scene_method<Name>(sound, module, 0x34, 0x1d330)(sound, \"sound_click\") < 0) {"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 310,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "click_sound_enable_ = scene_method<SoundEnable>(sound, module, 0x30, 0x1bb10);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 313,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<SoundPlay>(sound, module, 0xac, 0x54f30);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 315,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Float>(sound, module, 0x8c, 0x54c40)(sound, 1.0f);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 316,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "click_sound_active_ = scene_method<SoundActive>(sound, module, 0x78, 0x548d0);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 318,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Pair>(sector, module, 0x7c, 0x4dcb0)(sector, sound);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 325,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "render_ = scene_method<Render>(scene_.get(), module, 0x78, 0x46860);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 360,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if(!sector || scene_method<Link>(model.get(),module,0x38,0x1d680)(model.get(),sector,0)<0)"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 385,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto pick = scene_method<Pick>(scene_.get(), module, 0x104, 0x110f0);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 431,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (scene_method<Link>(frame.get(), module, 0x38, 0x1d680)(frame.get(), parent, 0) < 0)"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 433,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (scene_method<Name>(frame.get(), module, 0x34, 0x1d330)(frame.get(), name) < 0)"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 435,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Position>(frame.get(), module, 8, 0x1c9f0)(frame.get(), position.data());"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 446,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Position>(frame, module, 8, 0x1c9f0)(frame, position);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 452,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto address=GetProcAddress(module,\"?UpdateWMatrixProc@I3D_frame@@AAEXXZ\");"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 471,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Direction>(selector,module,0x0c,0x1c8d0)(selector,direction,nullptr);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 474,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if(scene_method<Link>(selector,module,0x38,0x1d680)(selector,layout_root,1)<0)"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 524,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = GetProcAddress(module, \"?UpdateWBoundProc@I3D_visual@@AAGXXZ\");"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 563,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Visibility>(frame, module, 0x30, 0x1cfe0)(frame, visible ? 1 : 0);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 571,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Update>(frame, module, 0x24, 0x1e610)(frame);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 580,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "visibility_(scene_method<Visibility>(scene.model_.get(), module, 0x30, 0x1cfe0)),"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 581,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "update_(scene_method<Update>(scene.model_.get(), module, 0x24, 0x1e610)) {"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 633,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Direction>(frame, module, 0x0c, 0x1c8d0)(frame, direction, nullptr);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 634,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Update>(frame, module, 0x24, 0x1e610)(frame);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 641,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Open>(model, module, 0x74, 0x340b0)(model, path.c_str(), 0, nullptr, nullptr);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 648,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<OpenSound>(click_sound_.get(), module, 0x74, 0x545a0)("
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 693,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto count = scene_method<Count>(frame, module, 0x3c, 0x1db80)(frame);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 697,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto child = scene_method<Child>(frame, module, 0x40, 0x1dba0);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 710,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto count = scene_method<Count>(frame, module, 0x3c, 0x1db80)(frame);"
+    },
+    {
+      "source": "recovered/host/menu_scene.h",
+      "line": 714,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto child = scene_method<Child>(frame, module, 0x40, 0x1dba0);"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 30,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "check_overlay_status(device_->GetRenderState(state.kind, &state.saved),"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 34,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "check_overlay_status(device_->GetTextureStageState(state.stage, state.kind,"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 38,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "check_overlay_status(device_->GetPixelShader(&pixel_shader_), \"Get text pixel shader\");"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 39,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "check_overlay_status(device_->GetTexture(0, &texture_), \"Get text stage-zero texture\");"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 41,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "HRESULT status = device_->SetPixelShader(0);"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 43,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "if (SUCCEEDED(status)) status = device_->SetRenderState(state.kind, state.value);"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 47,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "status = device_->SetTextureStageState(state.stage, state.kind, state.value);"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 67,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "if (FAILED(device_->SetRenderState(state.kind, state.saved))) success = false;"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 70,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "if (FAILED(device_->SetTextureStageState(state.stage, state.kind, state.saved))) {"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 74,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "if (FAILED(device_->SetTexture(0, texture_))) success = false;"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 75,
+      "kinds": [
+        "direct3d8_delegate"
+      ],
+      "text": "if (FAILED(device_->SetPixelShader(pixel_shader_))) success = false;"
+    },
+    {
+      "source": "recovered/host/menu_text.h",
+      "line": 352,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<MenuDriver::Release>(texture, module, 0, 0x73760));"
+    },
+    {
+      "source": "recovered/host/menu_text_object.h",
+      "line": 94,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Direction>(frame, module_, 0x0c, 0x1c8d0)(frame, direction, nullptr);"
+    },
+    {
+      "source": "recovered/host/menu_text_object.h",
+      "line": 122,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Visibility>(frame, module_, 0x30, 0x1cfe0)(frame, value);"
+    },
+    {
+      "source": "recovered/host/menu_text_object.h",
+      "line": 127,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Update>(frame, module_, 0x24, 0x1e610)(frame);"
+    },
+    {
+      "source": "recovered/host/multiplayer_controls.h",
+      "line": 97,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto count=scene_method<Count>(plane_,module_,0x3c,0x1db80)(plane_);"
+    },
+    {
+      "source": "recovered/host/multiplayer_controls.h",
+      "line": 99,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto child=scene_method<Child>(plane_,module_,0x40,0x1dba0);"
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "line": 14,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = GetProcAddress(module, \"ISndGetDriver\");"
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "line": 20,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "sample_factory_ = scene_method<Factory>(driver_, module, 0x20, 0x7aa80);"
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "line": 21,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "voice_factory_ = scene_method<Factory>(driver_, module, 0x28, 0x7ab20);"
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "line": 30,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto release = scene_method<MenuDriver::Release>(created, module_, 0, 0x7bfb0);"
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "line": 32,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "close_ = scene_method<Unary>(created, module_, 8, 0x7c070);"
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "line": 33,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "bind_ = scene_method<Bind>(created, module_, 4, 0x7bfe0);"
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "line": 34,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "play_ = scene_method<Play>(created, module_, 0x0c, 0x7c0e0);"
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "line": 35,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "volume_ = scene_method<Volume>(created, module_, 0x20, 0x7c9c0);"
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "line": 47,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto release = scene_method<MenuDriver::Release>(created, module_, 0, 0x7cef0);"
+    },
+    {
+      "source": "recovered/host/opening_audio.h",
+      "line": 52,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Load>(sample.get(), module_, 4, 0x7cf30)(sample.get(), path, flags);"
+    },
+    {
+      "source": "recovered/host/opening_text.h",
+      "line": 34,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<MenuDriver::Release>(texture, module, 0, 0x73760));"
+    },
+    {
+      "source": "recovered/host/options_menu.h",
+      "line": 232,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<void(WINAPI *)(EngineFrame *, std::uint8_t)>(frame_, module_, 0x30, 0x1cfe0)(frame_,"
+    },
+    {
+      "source": "recovered/host/options_menu.h",
+      "line": 465,
+      "kinds": [
+        "variable_target_module_guard"
+      ],
+      "text": "checked_engine_method<Name>(frame, module_, 0x34)(frame, name);"
+    },
+    {
+      "source": "recovered/host/pre_mission_controls.h",
+      "line": 101,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = GetProcAddress(module_, \"?Make@S_quat@@QAGXABUS_matrix@@@Z\");"
+    },
+    {
+      "source": "recovered/host/pre_mission_controls.h",
+      "line": 193,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto status = scene_method<Load>(context_graphics(), module_, 0x3c, 0x69f70)("
+    },
+    {
+      "source": "recovered/host/pre_mission_controls.h",
+      "line": 197,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<MenuDriver::Release>(loaded, module_, 0, 0x73760)(loaded);"
+    },
+    {
+      "source": "recovered/host/pre_mission_controls.h",
+      "line": 273,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = GetProcAddress(module_, \"GetIGraph\");"
+    },
+    {
+      "source": "recovered/host/pre_mission_item_row.h",
+      "line": 17,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<MenuDriver::Release>(entry.second, module_, 0, 0x73760)(entry.second);"
+    },
+    {
+      "source": "recovered/host/pre_mission_item_row.h",
+      "line": 26,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto address = GetProcAddress(module_, \"GetIGraph\");"
+    },
+    {
+      "source": "recovered/host/pre_mission_item_row.h",
+      "line": 36,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto result = scene_method<Load>(graphics, module_, 0x3c, 0x69f70)(graphics, path.c_str(),"
+    },
+    {
+      "source": "recovered/host/resource_directories.h",
+      "line": 40,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = module ? GetProcAddress(module, \"GetIGraph\") : nullptr;"
+    },
+    {
+      "source": "recovered/host/resource_directories.h",
+      "line": 50,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Add>(graphics, module_, 0x110, 0x6ff80)(graphics, path, recurse);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 24,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(driver, engine_, 0x18, 0x15770)(driver, state, value);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 29,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(graphics, engine_, 0x12c, 0x700a0)(graphics, ramp.data(), flags);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 34,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(sound, engine_, 0x14, 0x7a9b0)(sound, volume);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 39,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(sound, engine_, 0x0c, 0x7a840)(sound) != 0;"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 44,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(frame, engine_, 8, 0x71b70)(frame) != 0;"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 49,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(frame, engine_, 0x3c, 0x724d0)(frame, volume);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 54,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(graphics, engine_, 0x38, 0x69e80)(graphics);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 63,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(frame, engine_, 0x2c, 0x72160)(frame);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 68,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(frame, engine_, 0x38, 0x72400)(frame, &position);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 73,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(frame, engine_, 0x30, 0x722a0)(frame, position);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 85,
+      "kinds": [
+        "typed_foreign_call_or_guard"
+      ],
+      "text": "reinterpret_cast<Function>(frame->methods[0])(frame);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 90,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(frame, engine_, 0x0c, 0x71630)(frame, path, flags);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 98,
+      "kinds": [
+        "typed_foreign_call_or_guard"
+      ],
+      "text": "return reinterpret_cast<Function>(frame->methods[0x20 / 4])(object, &block);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 104,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(frame, engine_, slot, rva)(frame);"
+    },
+    {
+      "source": "recovered/host/settings_services.h",
+      "line": 108,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = engine ? GetProcAddress(engine, name) : nullptr;"
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "line": 24,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = GetProcAddress(engine, \"?UpdateWMatrixProc@I3D_frame@@AAEXXZ\");"
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "line": 33,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(frame, engine_, 0x30, 0x1bb10)(frame, enabled);"
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "line": 38,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(frame, engine_, 0x78, 0x548d0)(frame, mode) != 0;"
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "line": 43,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(frame, engine_, 0x8c, 0x54c40)(frame, value);"
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "line": 49,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(frame, engine_, 0xac, 0x54f30)(frame, first, second);"
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "line": 54,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(frame, engine_, 0x24, 0x1e610)(frame);"
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "line": 59,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(frame, engine_, 0, 0x1c370)(frame);"
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "line": 73,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Function>(frame, engine_, 0xe0, 0x47a90)(frame, position.data());"
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "line": 102,
+      "kinds": [
+        "typed_foreign_call_or_guard"
+      ],
+      "text": "return reinterpret_cast<Function>(frame->methods[1])(frame) != 0;"
+    },
+    {
+      "source": "recovered/host/sound_services.h",
+      "line": 121,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Function>(frame, engine_, 0x44, 0x1de40)(frame, callback, &context, 0x10, nullptr);"
+    },
+    {
+      "source": "recovered/host/startup_archives.h",
+      "line": 17,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = module ? GetProcAddress(module, \"_dtaCreate@4\") : nullptr;"
+    },
+    {
+      "source": "recovered/host/startup_archives.h",
+      "line": 51,
+      "kinds": [
+        "typed_foreign_call_or_guard"
+      ],
+      "text": "return reinterpret_cast<Function>(methods[slot / 4]);"
+    },
+    {
+      "source": "recovered/host/startup_localization.h",
+      "line": 85,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto function = GetProcAddress(module, name);"
+    },
+    {
+      "source": "recovered/host/startup_localization.h",
+      "line": 87,
+      "kinds": [
+        "typed_foreign_call_or_guard"
+      ],
+      "text": "return reinterpret_cast<Function>(function);"
+    },
+    {
+      "source": "recovered/host/startup_probe.cpp",
+      "line": 13,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto entry = GetProcAddress(module, name);"
+    },
+    {
+      "source": "recovered/host/startup_probe.cpp",
+      "line": 37,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "close_ = hd2::host::scene_method<Close>(frame, module, 0x10, 0x6da40);"
+    },
+    {
+      "source": "recovered/host/startup_probe.cpp",
+      "line": 41,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto status = hd2::host::scene_method<Initialize>(frame, module, 0, 0x6c2d0)(frame, &settings);"
+    },
+    {
+      "source": "recovered/host/startup_probe.cpp",
+      "line": 44,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (!hd2::host::scene_method<Initialized>(frame, module, 0x0c, 0x6da20)(frame) || !IsWindow(window())) {"
+    },
+    {
+      "source": "recovered/host/startup_probe.cpp",
+      "line": 58,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return hd2::host::scene_method<Window>(frame, module, 0x48, 0x6a240)(frame);"
+    },
+    {
+      "source": "recovered/host/startup_probe.cpp",
+      "line": 62,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "hd2::host::scene_method<Pump>(frame, module, 0x14, 0x6a470)(frame);"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 86,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto window = scene_method<Window>(graphics, engine(), 0x48, 0x6a240)(graphics);"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 253,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto* info=scene_method<Info>(graphics(),engine_,4,0x6da30)(graphics());"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 267,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto modifiers=scene_method<Modifiers>(graphics(),engine_,0xc8,0x6f5b0)(graphics(),0);"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 268,
+      "kinds": [
+        "variable_target_module_guard"
+      ],
+      "text": "const auto scan=checked_engine_method<Query>(graphics(),engine_,0xa0)(graphics());"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 297,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto* name=scene_method<Name>(graphics(),engine_,0xd0,0x6f6a0)(graphics(),binding.code&0xff);"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 359,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "const auto result = scene_method<Initialize>(graphics(), engine_, 0xdc, 0x6f710)(graphics(), flags);"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 365,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (scene_method<Enabled>(graphics(), engine_, 0xe0, 0x6f840)(graphics()))"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 366,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Close>(graphics(), engine_, 0xe4, 0x6f850)(graphics());"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 371,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "if (scene_method<Enabled>(graphics(), engine_, 0x94, 0x6f150)(graphics()))"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 372,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Close>(graphics(), engine_, 0x98, 0x6f160)(graphics());"
+    },
+    {
+      "source": "recovered/host/startup_session.h",
+      "line": 458,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "scene_method<Set>(graphics(), engine_, 8, 0x6c2c0)(graphics(), flags);"
+    },
+    {
+      "source": "recovered/host/window_position.h",
+      "line": 23,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto p = module ? GetProcAddress(module, name) : nullptr;"
+    },
+    {
+      "source": "recovered/host/window_position.h",
+      "line": 38,
+      "kinds": [
+        "export_lookup"
+      ],
+      "text": "const auto p = engine ? GetProcAddress(engine, \"GetIGraph\") : nullptr;"
+    },
+    {
+      "source": "recovered/host/window_position.h",
+      "line": 67,
+      "kinds": [
+        "exact_target_guard"
+      ],
+      "text": "return scene_method<Window>(graphics, engine_, 0x48, 0x6a240)(graphics);"
+    }
+  ],
+  "deferred_delivery": [
+    "Loadout screens completely untested until accessible",
+    "Phase2 single-player completion/game/save receivers and real sound-world/camera",
+    "Phase3 ready-server UI and live transport/session services",
+    "Full setup/protection VM/original allocator/object ABI/wide-font support"
+  ],
+  "ledger": {
+    "partial_client": 559,
+    "partial_engine": 5,
+    "complete": 0,
+    "frozen_total": 18783
+  }
+}

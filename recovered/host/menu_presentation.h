@@ -63,8 +63,9 @@ inline std::string menu_font_metrics_path(const char* size,bool ce=false) {
 inline std::string menu_font_texture(const char* size,bool ce=false) {
     const auto& configuration=menu_presentation();
     if (!configuration.configured) return std::string(ce ? "HD2_CREDITS_CE_" : "HD2_MENU_")+size+".TGA";
-    return "HD2_FONT_"+(ce ? std::string("CE") : configuration.font_family())+
-           "_SET"+std::to_string(configuration.font_set())+"_"+size+".TGA";
+    auto path=menu_font_metrics_path(size,ce);
+    path.replace(path.size()-3,3,"tga");
+    return path;
 }
 
 } // namespace hd2::host

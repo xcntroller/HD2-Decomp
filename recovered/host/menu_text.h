@@ -168,8 +168,10 @@ public:
         if (device_ == nullptr) throw std::runtime_error("Engine Direct3D device is null");
         big_ = load_atlas(menu_font_texture("BIG").c_str(), module);
         small_ = load_atlas(menu_font_texture("SMALL").c_str(), module);
-        symbols_metrics_ = decode_font_metrics(read_menu_text_file("MenuText\\SYMBOLS.tbl"));
-        symbols_ = load_atlas("HD2_MENU_SYMBOLS.TGA", module);
+        symbols_metrics_ = decode_font_metrics(read_menu_text_file(menu_presentation().configured ?
+            "Text\\Fonts\\SYMBOLS.tbl" : "MenuText\\SYMBOLS.tbl"));
+        symbols_ = load_atlas(menu_presentation().configured ?
+            "Text\\Fonts\\SYMBOLS.tga" : "HD2_MENU_SYMBOLS.TGA", module);
         if (seed_definitions) {
             create_objects(scene, module, frontend::main_menu_definition(), false);
             if (confirmation_enabled) create_objects(scene, module, frontend::confirmation_definition(), true);

@@ -1,0 +1,92 @@
+{
+  "scope": "Team slot alpha and queued picker refresh; browser unreachable threshold is preserved in linked original exports. Native fixes, no new body credit or desktop verification.",
+  "client": {
+    "binary": {
+      "path": "analysis/work/hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "image_base": "00400000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "00691edb",
+        "hex": "680000003f",
+        "meaning": "Single-soldier alpha .5"
+      },
+      {
+        "address": "00691ee1",
+        "hex": "ff91a8000000",
+        "meaning": "Frame alpha virtual +A8"
+      },
+      {
+        "address": "00694368",
+        "hex": "c744242ca1000001",
+        "meaning": "Queue event010000A1 after toggle"
+      },
+      {
+        "address": "00694378",
+        "hex": "c744243000500004",
+        "meaning": "Queue focus refresh04005000"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [
+      {
+        "site": "00691ebb",
+        "target": "006908b0"
+      },
+      {
+        "site": "00694361",
+        "target": "00694c40"
+      }
+    ],
+    "resource_anchors": [
+      {
+        "site": "00691ecc",
+        "address": "00841f14",
+        "text": "table19"
+      },
+      {
+        "site": "00691eeb",
+        "address": "00841f0c",
+        "text": "table20"
+      },
+      {
+        "site": "00691f0a",
+        "address": "00841f04",
+        "text": "table21"
+      },
+      {
+        "site": "00691f29",
+        "address": "00841ef8",
+        "text": "member01"
+      },
+      {
+        "site": "00691f48",
+        "address": "00841eec",
+        "text": "member02"
+      },
+      {
+        "site": "00691f67",
+        "address": "00841ee0",
+        "text": "member03"
+      }
+    ]
+  },
+  "engine": {
+    "binary": {
+      "path": "Hidden and Dangerous 2/LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "image_base": "10000000"
+    },
+    "instruction_anchors": [
+      {
+        "address": "100368f0",
+        "hex": "d94424088b442404d998ec010000c20800",
+        "meaning": "Visual alpha setter +A8 stores float at frame+1EC; stdcall RET8"
+      }
+    ],
+    "vtables": [],
+    "direct_calls": [],
+    "resource_anchors": []
+  }
+}

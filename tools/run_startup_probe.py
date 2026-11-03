@@ -25,7 +25,8 @@ def digest(path: Path) -> bytes:
         return hashlib.file_digest(stream, "sha256").digest()
 
 
-def stage_startup(game: Path, executable: Path, work: Path, *, application_launch: bool = False) -> Path:
+def stage_startup(game: Path, executable: Path, work: Path, *, application_launch: bool = False,
+                  seed_user_state: bool = True) -> Path:
     # This program never launches the original client. Original archive bytes
     # are COPIED; writable config/profile files are copied once, never replaced.
     if work.is_symlink():
@@ -70,7 +71,7 @@ def stage_startup(game: Path, executable: Path, work: Path, *, application_launc
             copies.append((source, run / source.name, False))
     profile_directories = []
     for name in ("Text", "GameData", "Tables", "PlayersProfiles"):
-        if name == "PlayersProfiles" and profiles_seeded:
+        if name == "PlayersProfiles" and (profiles_seeded or not seed_user_state):
             continue
         source = sources.get(name.casefold())
         if source:
@@ -84,7 +85,7 @@ def stage_startup(game: Path, executable: Path, work: Path, *, application_launc
                 if child.is_file():
                     copies.append((child, run / name / child.relative_to(source), name == "PlayersProfiles"))
     config = sources.get("game.cfg")
-    if config:
+    if config and seed_user_state:
         copies.append((config, run / "game.cfg", True))
     # Validate every destination before copying. Runtime profiles/config survive
     # subsequent runs; immutable resources reject mismatches instead of overwrites.

@@ -10,11 +10,8 @@ import tempfile
 
 from run_startup_probe import stage_startup
 from run_engine_window import prepare_launch, run_launch, frame_count
-from stage_menu_resources import stage_menu_resources
-from stage_menu_text import stage_menu_text
 from stage_opening_movies import OPENING_MOVIES, stage_opening_movies
 from stage_menu_text import _check_path
-from stage_credits_resources import stage_credits_resources
 from stage_cinematics_movies import stage_cinematics_movies
 from stage_menu_presentation import installed_menu_languages, stage_menu_presentation, validate_dimensions
 
@@ -147,6 +144,9 @@ def main() -> None:
     parser.add_argument("--frames", type=frame_count, default=0)
     parser.add_argument("--width", type=int, default=800, help="Window/render width; selects the original font set")
     parser.add_argument("--height", type=int, default=600, help="Window/render height")
+    display = parser.add_mutually_exclusive_group()
+    display.add_argument("--fullscreen", action="store_true", help="Use the original engine's exclusive fullscreen mode")
+    display.add_argument("--windowed", action="store_true", help="Use a window (default)")
     parser.add_argument("--language", help="Installed byte-font language; installation registry is left unchanged")
     parser.add_argument("--list-languages", action="store_true", help="List installed menu translations without staging or launching")
     parser.add_argument("--stage-only", action="store_true", help="Prepare resources and command without executing Windows code")
@@ -171,18 +171,16 @@ def main() -> None:
                                  "; available: " + ", ".join(languages))
         executable = stage_startup(args.game_dir, args.executable, args.work_dir, application_launch=True)
         run = executable.parent
-        stage_menu_resources(args.game_dir, run, include_confirm=True,
-                             include_cursor_model=True, include_click_sound=True,include_cinematics=True,include_options=True,include_profiles=True)
-        stage_menu_text(args.game_dir, run, include_confirm=True, include_control_text=True)
         stage_opening_movies(args.game_dir, run)
-        stage_credits_resources(args.game_dir, run)
-        stage_menu_presentation(args.game_dir, run)
+        stage_menu_presentation(args.game_dir, run, aliases=False)
         movie_resources=stage_cinematics_movies(args.game_dir, run)
         if movie_resources["missing"]:
             print("Cinematics media absent from loose install: " + ", ".join(movie_resources["missing"]))
         launch = prepare_launch(args.game_dir, executable, args.proton, args.steam_root,
                                 args.work_dir, args.frames, dict(os.environ))
         launch.command.extend(["--width", str(args.width), "--height", str(args.height)])
+        if args.fullscreen or args.windowed:
+            launch.command.append("--fullscreen" if args.fullscreen else "--windowed")
         if selected is not None:
             launch.command.extend(["--language", selected])
         print("Controller launch command: " + shlex.join(launch.command))

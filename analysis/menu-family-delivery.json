@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "Main traversal and Options corrections desktop accepted2026-11-02; game/server-dependent gates deferred; 18 delivery items open",
+  "status": "Bounded Phase1 traversal consolidated2026-11-02; 13 scoped family units accepted,17 full delivery units remain open; game/save/server deferrals explicit",
   "binary": {
     "path": "analysis/work/hd2.unpacked.exe",
     "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",

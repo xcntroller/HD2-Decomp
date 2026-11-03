@@ -72,6 +72,9 @@ and does not write the installation registry. Dimensions are bounded to
 320×200 through16384×16384; native verification samples common sizes and exact
 font thresholds. This is per-launch windowed rendering; live resizing,
 fullscreen setup and a new language-selection screen are outside this change.
+The later [resource/fullscreen follow-up](resource-fullscreen.md) adds explicit
+fullscreen launch and removes normal-application font aliases; its separate
+desktop gate does not change this earlier windowed checkpoint's acceptance.
 
 Installed menu translations: **Czech, english, EnglishUS, french, german,
 italian, spanish**. Original ANSI/CE bytes pass directly to the corresponding

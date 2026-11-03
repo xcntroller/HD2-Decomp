@@ -154,7 +154,9 @@ class ApplicationMenu {
         pointer_input_.reset();
         keyboard_context_.reset();
         frontend::CleanupErrors errors;
-        if (multiplayer_) multiplayer_->cancel();
+        // Browser cancellation can enqueue control updates. A native allocation
+        // failure there must not strand the screen/input/scene owners below.
+        errors.attempt([&] { if (multiplayer_) multiplayer_->cancel(); });
         // A throwing deactivation must not strand products or their engine refs.
         errors.attempt([&] {
             if (events_)

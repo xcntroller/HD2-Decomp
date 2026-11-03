@@ -1,7 +1,8 @@
 """Stage original ANSI/CE font sets for the compiled multilingual menu.
 
-Original Text trees are copied by stage_startup. New atlas aliases are immutable
-and do not replace the accepted preview's English Set2 resources.
+Original Text trees are copied by stage_startup. With aliases=False, validate
+those original files without writing anything. Historical diagnostic atlas
+aliases remain available and never replace the accepted preview's resources.
 """
 import hashlib
 import os
@@ -56,7 +57,7 @@ def validate_font_atlas(data: bytes) -> None:
         raise ValueError("Font atlas metadata points outside the trailing metadata area")
 
 
-def stage_menu_presentation(game: Path, run: Path) -> dict:
+def stage_menu_presentation(game: Path, run: Path, *, aliases: bool = True) -> dict:
     game, run = Path(game).absolute(), Path(run).absolute()
     _check_path(game)
     _check_path(run)
@@ -72,15 +73,34 @@ def stage_menu_presentation(game: Path, run: Path) -> dict:
                 _validate_font(_read_source(game, source + ".tbl"))
                 data = _read_source(game, source + ".tga")
                 validate_font_atlas(data)
-                relative = f"Maps/HD2_FONT_{family}_SET{font_set}_{size}.TGA"
+                relative = (f"Maps/HD2_FONT_{family}_SET{font_set}_{size}.TGA"
+                            if aliases else source + ".tga")
                 outputs[relative] = (source + ".tga", data)
+    if not aliases:
+        source = "Text/Fonts/SYMBOLS"
+        _validate_font(_read_source(game, source + ".tbl"))
+        data = _read_source(game, source + ".tga")
+        validate_font_atlas(data)
+        outputs[source + ".tga"] = (source + ".tga", data)
     # Validate every output before writing; edits to staged immutable assets are
     # never overwritten. Atomic no-overwrite publication also handles races.
     for relative, (_, data) in outputs.items():
         target = run / relative
         _check_path(target, file=True)
+        if not aliases:
+            # Startup staging must already have supplied the original Text tree.
+            # Validate the metrics consumed alongside each original atlas too.
+            metrics = relative[:-4] + ".tbl"
+            _check_path(run / metrics, file=True)
+            if (not target.is_file() or not (run / metrics).is_file() or
+                    (run / metrics).read_bytes() != _read_source(game, metrics)):
+                raise ValueError(f"Missing or differing original font resource: {relative}")
         if target.exists() and target.read_bytes() != data:
             raise ValueError(f"Existing presentation resource differs: {target}")
+    if not aliases:
+        return {"languages": languages, "layout": "original Text/Fonts paths", "assets": [
+            {"path": relative, "source": source, "sha256": hashlib.sha256(data).hexdigest()}
+            for relative, (source, data) in outputs.items()]}
     for relative, (_, data) in outputs.items():
         target = run / relative
         target.parent.mkdir(parents=True, exist_ok=True)

@@ -145,6 +145,7 @@ class MultiplayerServerRow final : public MenuControl {
         return true;
     }
     void value(const frontend::MultiplayerServer& server) {
+        reachable_=server.ping<=9998;
         auto& object=text_.object(); object.clear();
         const auto raw=[&](std::string text,unsigned style) {
             object.append(std::make_shared<const std::string>(std::move(text)),style);
@@ -156,10 +157,16 @@ class MultiplayerServerRow final : public MenuControl {
         else object.append(text_.localize(2894),32);
         raw(std::to_string(server.ping),33);
         raw(std::to_string(server.players)+" / "+std::to_string(server.capacity),34);
-        object.disabled=server.ping>9998; //Unanswered records retain the original subdued text.
+        object.disabled=!reachable_; //Unanswered records retain the original subdued text.
+        if (!reachable_) display_row_selection(false);
         const bool flags[]{server.password!=0,server.dedicated!=0,server.flag88!=0};
         for (unsigned i=0;i<6;++i) scene_.set_screen_visible(module_,icons_[i],flags[i%3]);
         text_.invalidate_bounds();
+    }
+    bool eligible() const override { return reachable_ && MenuControl::eligible(); }
+    int activate(frontend::ControlEventDestination& events) override {
+        if (!eligible()) return 1;
+        return MenuControl::activate(events);
     }
   private:
     const MenuScene& scene_;
@@ -169,6 +176,7 @@ class MultiplayerServerRow final : public MenuControl {
     MenuTextObject& text_;
     CinematicsCloneBackend& clone_;
     std::array<EngineFrame*,6> icons_{};
+    bool reachable_=false;
 };
 
 //006663F0: exactly11 retained row products, backed by the owned result list.
@@ -217,12 +225,14 @@ class MultiplayerServerList final : public OptionsGroup {
         offset_=std::min(offset_,maximum());
         selected_index_.reset();
         if (previous) for (std::size_t i=0;i<values_.size();++i)
-            if (values_[i].ipv4==previous->ipv4 && values_[i].port==previous->port) { selected_index_=i; break; }
+            if (values_[i].ipv4==previous->ipv4 && values_[i].port==previous->port &&
+                    values_[i].ping<=9998) { selected_index_=i; break; }
         layout();
     }
     void choose(unsigned identifier) {
         const auto slot=(identifier>>12)&255u;
         if (!slot || slot>11 || offset_+slot-1>=values_.size()) return;
+        if (values_[offset_+slot-1].ping>9998) return;
         selected_index_=offset_+slot-1;
         for (const auto& row:definition_.children)
             if (row.identifier!=identifier) rows_(row.identifier)->deselect_row();
@@ -232,16 +242,20 @@ class MultiplayerServerList final : public OptionsGroup {
         if (tree_->key(word)) return true;
         if (values_.empty()) return false;
         auto index=static_cast<std::int64_t>(selected_index_.value_or(offset_));
+        int direction=1;
         switch (word&255u) {
         case 199: index=0; break;
-        case 207: index=values_.size()-1; break;
-        case 201: index-=10; break;
+        case 207: index=values_.size()-1; direction=-1; break;
+        case 201: index-=10; direction=-1; break;
         case 209: index+=10; break;
-        case 200: --index; break;
+        case 200: --index; direction=-1; break;
         case 208: ++index; break;
         default: return false;
         }
         index=std::clamp<std::int64_t>(index,0,values_.size()-1);
+        while (index>=0 && static_cast<std::size_t>(index)<values_.size() && values_[index].ping>9998)
+            index+=direction;
+        if (index<0 || static_cast<std::size_t>(index)>=values_.size()) return true;
         if (static_cast<std::size_t>(index)<offset_) offset_=index;
         else if (static_cast<std::size_t>(index)>=offset_+11) offset_=index-10;
         layout();

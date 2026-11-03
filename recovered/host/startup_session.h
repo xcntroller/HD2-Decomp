@@ -248,7 +248,7 @@ public:
     bool gamma_available() const {
         //0061BEA0 checks the initialization settings, NOT adapter capabilities.
         //1006DA30 returns100D1D18; +2c is the fullscreen flag word. The
-        //windowed launcher deliberately leaves bit2 clear, regardless of preset.
+        //launch mode controls bit2 independently of the quality preset.
         using Info=const unsigned char* (WINAPI *)(EngineFrame*);
         const auto* info=scene_method<Info>(graphics(),engine_,4,0x6da30)(graphics());
         if(!info) throw std::runtime_error("Graphics adapter information is null");
