@@ -70,15 +70,24 @@ all564 existing entries and completes five button queries source-only. Static
 matching reports0 exact bodies; behavior/ABI verification is recorded separately.
 No new package was generated.
 
-The user has expanded the pre-Phase2 pass to complete every currently feasible
-function. The [completion queue](analysis/function-completion-queue.md) remains
-open; Phase2 planning waits. The next
-[delta/scroll group](analysis/delta-scroll-completion.md) completes four more
-bodies source-only, including two exact instruction matches. No package generated.
-Subsequent work uses larger subsystem batches with one consolidated audit sweep.
-The [scalar/input batch](analysis/scalar-input-batch.md) reviews41 candidates,
-completes11 and records30 specific recovery tasks. The broader pass remains open;
-the current ledger has20 complete client functions and544 partial entries.
+The earlier function-completion work includes the
+[delta/scroll group](analysis/delta-scroll-completion.md),
+[scalar/input batch](analysis/scalar-input-batch.md) and
+[input-owner batch](analysis/input-owner-batch.md). The current ledger has34
+complete client functions and530 partial entries; source-only raw entries remain
+separate from desktop integration.
+
+Phase1 front-end delivery is closed by the user2026-11-03 within its recorded
+acceptance and deferred-flow boundaries. Phase2 receiver/owner implementation is
+next; untested loadouts and live game/server delivery remain explicitly open.
+
+**The exhaustive pre-Phase2 completion pass is postponed by the user2026-11-03.**
+The [new Phase2 plan](analysis/phase2-delivery-plan.md) combines required function
+completion with each integrated delivery batch. First targets are a real level's
+first world frame and then a controllable player/mission loop, followed by remaining
+preparation, pause/options, actual saves and results. Live multiplayer acceptance
+stays Phase3. The [retained backlog](analysis/function-completion-queue.md) no longer
+blocks Phase2; existing source and progress are preserved.
 
 Select window/render dimensions and an installed translation per launch:
 
@@ -189,13 +198,13 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 <!-- FUNCTION-PROGRESS:START -->
 ### Original-function reconstruction (base game only)
 
-`[------------------------------] 0.11% complete`
+`[------------------------------] 0.18% complete`
 
-**20 complete / 18,783 identified functions** (frozen, estimated baseline); **544 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **530 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 20 | 539 |
+| Base game client | 17,294 | 34 | 525 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

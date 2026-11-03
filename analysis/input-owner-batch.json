@@ -1,0 +1,627 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-03",
+  "scope": "17-candidate input-manager/configuration/installation/defaults batch;14 complete source-only ABI entries,3 specific remaining recovery tasks. Host integration remains separate.",
+  "previous_batch_commit": "0c3527d",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "ledger_sha256": "84e978bb9b7df6ee2069e16f28e05d49b6d1cf869476099bc3f1319a0e4aecb7",
+  "reviewed": 17,
+  "completed": 14,
+  "remaining": 3,
+  "source_only": true,
+  "desktop_integrated": false,
+  "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit.",
+  "functions": [
+    {
+      "entry": "006c7870",
+      "body_bytes": 2849,
+      "body_ranges": [
+        [
+          "006c7870",
+          "006c8390"
+        ]
+      ],
+      "original_body_sha256": "4245425a48600732b443674642714f1b0e9eef78c613935ad1567abd934ffe5b",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Raw manager/snapshot storage now exists. Port the producer to that entry with original FILD/FSTP, x87 clamp/divide/ordered comparisons, signaling NaNs, CW/status/TOP, POV paths and raw output/index access; current native producer still has float-environment and bounds-guard differences.",
+      "cached_exports": [
+        "analysis/work/startup-input-prerequisites/006c7870.json"
+      ],
+      "original_callees": [
+        "007e6f40"
+      ],
+      "evidence": [
+        "analysis/binding-producer-map.json",
+        "analysis/binding-producer.md",
+        "recovered/input/binding_producer.h",
+        "analysis/graphics-input-services-map.json",
+        "analysis/graphics-input-services.md",
+        "recovered/host/graphics_input_services.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ]
+    },
+    {
+      "entry": "006c7480",
+      "body_bytes": 807,
+      "body_ranges": [
+        [
+          "006c7480",
+          "006c77a6"
+        ]
+      ],
+      "original_body_sha256": "7971b6bf5c96edca4655559ea59610c0593f89186e92e205c4b88c285a4973b4",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original thiscall/AL/RET8 pointer/index installer: repeated raw appends and output growth branch, byte counters, map callbacks/reentrant old-kind reread, nontransactional failures, joystick configuration and null/unknown copies.",
+      "cached_exports": [
+        "analysis/work/input-binding-installation/006c7480.json"
+      ],
+      "original_callees": [
+        "006c8e60",
+        "0045ccc0"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client12InputManager7installEPKNS0_12InputBindingEi"
+    },
+    {
+      "entry": "006c7440",
+      "body_bytes": 60,
+      "body_ranges": [
+        [
+          "006c7440",
+          "006c747b"
+        ]
+      ],
+      "original_body_sha256": "461ade674cce93591640170fe8869bb94977049c2a4902f420279dee58c2da57",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original thiscall/AL/RET20 wrapper on caller ECX manager (not a global lookup), exact12-byte pack with WORD truncation and installer forward.",
+      "cached_exports": [
+        "analysis/work/input-binding-installation/006c7440.json"
+      ],
+      "original_callees": [
+        "006c7480"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client12InputManager3setEijjjj"
+    },
+    {
+      "entry": "006a8600",
+      "body_bytes": 42,
+      "body_ranges": [
+        [
+          "006a8600",
+          "006a8629"
+        ]
+      ],
+      "original_body_sha256": "43cc2c15a53f5b691bb6a10f676e3961a54b8e79b4c327ea7b66f81e979d08d1",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original thiscall/RET4 setting apply through relocated008AEA48 manager, forced device0, ignored installer result, dirty clear only after return.",
+      "cached_exports": [
+        "analysis/work/input-profile-binding-installer/006a8600.json"
+      ],
+      "original_callees": [
+        "006c7440"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client20BindingConfiguration13apply_settingEPNS1_7SettingE"
+    },
+    {
+      "entry": "006a8630",
+      "body_bytes": 92,
+      "body_ranges": [
+        [
+          "006a8630",
+          "006a868b"
+        ]
+      ],
+      "original_body_sha256": "41bd1cc19f5ff1be0bae1c4b02897ff3bca1b6b6a87dfeab7ab1c30dc2f95968",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original thiscall/RET4 reverse exact-mode application, initial count and freshly resolved settings base, independent of dirty state.",
+      "cached_exports": [
+        "analysis/work/input-binding-configuration/006a8630.json"
+      ],
+      "original_callees": [
+        "006a8600"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client20BindingConfiguration10apply_modeEj"
+    },
+    {
+      "entry": "006a8690",
+      "body_bytes": 34,
+      "body_ranges": [
+        [
+          "006a8690",
+          "006a86b1"
+        ]
+      ],
+      "original_body_sha256": "dd9764b460e6b4d6398107046ca685b6c1d620a8e8112a116c723d01961dbb67",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original thiscall/RET4 mode2/3 gate, original apply before selected-mode storage, invalid modes untouched.",
+      "cached_exports": [
+        "analysis/work/input-binding-context/006a8690.json"
+      ],
+      "original_callees": [
+        "006a8630"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client20BindingConfiguration11select_modeEj"
+    },
+    {
+      "entry": "006a86c0",
+      "body_bytes": 121,
+      "body_ranges": [
+        [
+          "006a86c0",
+          "006a8738"
+        ]
+      ],
+      "original_body_sha256": "d359dbf7c6c02ddc387ca8ae953178ff009eaff89f1460d63dbb1663717286c2",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original ECX/RET0 reverse dirty application, single entry mode gate, fresh record/current-mode lookup and shared non2/3 tags.",
+      "cached_exports": [
+        "analysis/work/input-binding-configuration/006a86c0.json"
+      ],
+      "original_callees": [
+        "006a8600"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client20BindingConfiguration11apply_dirtyEv"
+    },
+    {
+      "entry": "006a8be0",
+      "body_bytes": 29,
+      "body_ranges": [
+        [
+          "006a8be0",
+          "006a8bfc"
+        ]
+      ],
+      "original_body_sha256": "0c631f4c5a024068c9261aa86761f92fa87a7f1bc8da27af212f338b0b0a2831",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original thiscall/RET4 selector wrapper: selector1 alone uses alternate defaults, every other DWORD uses primary.",
+      "cached_exports": [
+        "analysis/work/input-binding-layout-choice/006a8be0.json",
+        "analysis/work/options-binding-edit-20261031/006a8be0.json"
+      ],
+      "original_callees": [
+        "006a8c00",
+        "006aa090"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client20BindingConfiguration15choose_defaultsEj"
+    },
+    {
+      "entry": "006a8c00",
+      "body_bytes": 5199,
+      "body_ranges": [
+        [
+          "006a8c00",
+          "006aa04e"
+        ]
+      ],
+      "original_body_sha256": "e54cb8e34a0b946c49b578ca6b5dd242ea695e9bc761c68ab89f55cd91ad5915",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original ECX/RET0 primary defaults: clear/end-only repeated appends of all92 ordered records, original pointer growth/failure effects, untouched/propagated opaque padding, then current-mode dirty application.",
+      "cached_exports": [
+        "analysis/work/input-binding-context/006a8c00.json"
+      ],
+      "original_callees": [
+        "006a8740",
+        "006aa050",
+        "006a86c0",
+        "006ac250"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client20BindingConfiguration16primary_defaultsEv"
+    },
+    {
+      "entry": "006aa090",
+      "body_bytes": 5205,
+      "body_ranges": [
+        [
+          "006aa090",
+          "006ab4e4"
+        ]
+      ],
+      "original_body_sha256": "6093e88463443b475255306e16768db04e4f657a58b7f73c8fb13d3c8501c078",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original ECX/RET0 alternate defaults: clear/end-only repeated appends of all92 ordered records, original pointer growth/failure effects, untouched/propagated opaque padding, then current-mode dirty application.",
+      "cached_exports": [
+        "analysis/work/input-binding-context/006aa090.json"
+      ],
+      "original_callees": [
+        "006a8740",
+        "006aa050",
+        "006a86c0",
+        "006ac250"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client20BindingConfiguration18alternate_defaultsEv"
+    },
+    {
+      "entry": "006c6a20",
+      "body_bytes": 132,
+      "body_ranges": [
+        [
+          "006c6a20",
+          "006c6aa3"
+        ]
+      ],
+      "original_body_sha256": "5b5053536c7def9a4be6fe6d4571069a8e8be6d44dce0db275112015bf4b4d97",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original ECX/EAX=this initialization: pointer-derived allocator bytes, empty raw pointer triples, null graphics and20/20/20; arbitrary-placement preservation of all other bytes.",
+      "cached_exports": [
+        "analysis/work/input-manager-lifetime/006c6a20.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client12InputManager10initializeEv"
+    },
+    {
+      "entry": "006c6ab0",
+      "body_bytes": 173,
+      "body_ranges": [
+        [
+          "006c6ab0",
+          "006c6b5c"
+        ]
+      ],
+      "original_body_sha256": "1548ec802f08d3419d24e8fe8a2fe063cb44a54f23909148755d4f7d869a8230",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Raw destroy now implements normal reverse detach and ordered frees, but original handler0080B255/MSVC exception registration and unwind state3 are not reconstructed. Recover those cleanup paths; native C++ global registration is not this ABI.",
+      "cached_exports": [
+        "analysis/work/input-manager-lifetime/006c6ab0.json"
+      ],
+      "original_callees": [
+        "006c6b60",
+        "007e1cc0"
+      ],
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client12InputManager7destroyEv"
+    },
+    {
+      "entry": "006c6b60",
+      "body_bytes": 303,
+      "body_ranges": [
+        [
+          "006c6b60",
+          "006c6c8e"
+        ]
+      ],
+      "original_body_sha256": "bb577f2323b1bf1a6bfaefc34c14e5ceb37656c5b4aae1ba298d8fc8ee41bc8d",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original ECX/RET0 raw detach: clear binding/output ends before reverse null-checked joystick+08 callbacks, initial count with fresh base lookups, joystick end reset after callbacks.",
+      "cached_exports": [
+        "analysis/work/input-manager-release/006c6b60.json"
+      ],
+      "original_callees": [
+        "006c8e50",
+        "00437cb0"
+      ],
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client12InputManager6detachEv"
+    },
+    {
+      "entry": "006c6cc0",
+      "body_bytes": 809,
+      "body_ranges": [
+        [
+          "006c6cc0",
+          "006c6fe8"
+        ]
+      ],
+      "original_body_sha256": "ea625bc308ece3d631d3a4a38b1694f2c6082c03a2adb3604de871e1da3f5bd9",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original thiscall/AL/RET12 attachment: reverse validation, forward retain/append, raw doubling/relocation and throwing-handler/null-allocation effects, preserved prior records, key gates/400/400/1/flag finalization.",
+      "cached_exports": [
+        "analysis/work/input-manager-lifetime/006c6cc0.json"
+      ],
+      "original_callees": [
+        "006c9190",
+        "006c8e40",
+        "006c6c90",
+        "007e1cc0",
+        "006c9210",
+        "006c91d0",
+        "007e520f"
+      ],
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client12InputManager6attachEPvPKS3_i"
+    },
+    {
+      "entry": "006c6ff0",
+      "body_bytes": 171,
+      "body_ranges": [
+        [
+          "006c6ff0",
+          "006c709a"
+        ]
+      ],
+      "original_body_sha256": "136632a2acce51866dd94085459bebfb8b715bd63018629055178e6205d18ece",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original raw end resets and64-byte scan/key count clears plus one mouse-count DWORD, preserving capacity, fifth/sixth counts, devices, graphics, gates, limits and flag.",
+      "cached_exports": [
+        "analysis/work/input-manager-lifetime/006c6ff0.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client12InputManager14clear_bindingsEv"
+    },
+    {
+      "entry": "006db620",
+      "body_bytes": 184,
+      "body_ranges": [
+        [
+          "006db620",
+          "006db6d7"
+        ]
+      ],
+      "original_body_sha256": "519720bdbe172510e6707e3415510f5ca7e999ea78a20fbcb4ac66a20b371387",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Raw clear/attach and device view are available. Recover actual GetIGraph/global startup boundary,006B67B0/006B1090 intrusive string return/release ownership and handler0080C048; native startup template/language string ownership remains partial.",
+      "cached_exports": [
+        "analysis/work/input-manager-startup-boundary/006db620.json"
+      ],
+      "original_callees": [
+        "006b1090",
+        "006c6cc0",
+        "007e1cc0",
+        "007e4eae",
+        "006c6ff0",
+        "006b67b0"
+      ],
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h",
+        "analysis/graphics-input-services-map.json",
+        "analysis/graphics-input-services.md",
+        "recovered/host/graphics_input_services.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ]
+    },
+    {
+      "entry": "006a81c0",
+      "body_bytes": 29,
+      "body_ranges": [
+        [
+          "006a81c0",
+          "006a81dc"
+        ]
+      ],
+      "original_body_sha256": "e36c63f7abb882ff08ac469cd16ab22bf230cc82747985f39e369f426db63201",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete original ECX/EAX=this initialization: byte0 from high byte of saved this, unchanged padding1..3, empty pointer triple and mode2.",
+      "cached_exports": [
+        "analysis/work/controller-remaining-20261030/006a81c0.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/input/binding_configuration.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "compiled_symbol": "__ZN3hd25input6client20BindingConfiguration10initializeEv"
+    }
+  ]
+}

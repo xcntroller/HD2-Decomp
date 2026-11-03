@@ -1,0 +1,918 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-03",
+  "status": "planned-implementation-not-started",
+  "active_milestone": "P2.0/P2.1",
+  "policy": "User postpones exhaustive pre-Phase2 pass; function completion follows delivery with one consolidated sweep. P2.0 research belongs inside the first implementation batch.",
+  "source_contract": "analysis/phase2-delivery-plan.md",
+  "boundary_evidence": "analysis/phase2-boundary-map.json",
+  "ledger_sha256": "84e978bb9b7df6ee2069e16f28e05d49b6d1cf869476099bc3f1319a0e4aecb7",
+  "ledger_unchanged": {
+    "complete": 34,
+    "partial": 530,
+    "denominator": 18783
+  },
+  "first_visible_targets": [
+    "P2.2",
+    "P2.3"
+  ],
+  "first_mission": {
+    "selection": "P2.0 confirms earliest normally reachable descriptor/resource path.",
+    "candidate": "Tutorial from confirmed baseline GameData; exact resource/precedence not assumed.",
+    "structural_regression_sample": "ALPS1 base archive research, not a forced first mission."
+  },
+  "live_multiplayer_validation_phase": 3,
+  "exhaustive_completion_pass": "postponed-not-complete-not-a-phase2-prerequisite",
+  "milestones": [
+    {
+      "id": "P2.0",
+      "title": "Verify first-mission receiver/loading contract",
+      "status": "not-started",
+      "prerequisites": [],
+      "original_function_seeds": [
+        "006c0ef0",
+        "006c20f0",
+        "006b9190",
+        "00698510",
+        "006989b0",
+        "006ca780",
+        "006c9260"
+      ],
+      "reference_addresses": [
+        "0069b870",
+        "006987e0",
+        "0067ea00"
+      ],
+      "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
+      "acceptance": "Targeted boundary research inside the P2.1 implementation batch; no standalone audit-only stop."
+    },
+    {
+      "id": "P2.1",
+      "title": "Construct and integrate game/session owner",
+      "status": "not-started",
+      "prerequisites": [
+        "P2.0"
+      ],
+      "original_function_seeds": [
+        "00698510",
+        "006989b0",
+        "0049a420",
+        "00490740",
+        "00523ab0",
+        "00698f80",
+        "006c9260",
+        "006c0ef0",
+        "006c20f0",
+        "006b9190"
+      ],
+      "reference_addresses": [],
+      "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
+      "acceptance": "Real owned request, subowners/scene/callbacks and deterministic partial-startup teardown; readiness still requires P2.2."
+    },
+    {
+      "id": "P2.2",
+      "title": "Load one original mission to its first world frame",
+      "status": "not-started",
+      "prerequisites": [
+        "P2.1"
+      ],
+      "original_function_seeds": [
+        "006ca780",
+        "006d3f20",
+        "006c9640",
+        "006c95d0",
+        "006d4180",
+        "006cbf30",
+        "006cc760",
+        "006cd940",
+        "006d45c0",
+        "006d4880",
+        "006d4280",
+        "006d4b50",
+        "006ee570",
+        "00445d90"
+      ],
+      "reference_addresses": [
+        "006cc580"
+      ],
+      "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
+      "acceptance": "Actual controller-owned scene/camera/world frame; native parser/resource failure checks and user Python desktop acceptance."
+    },
+    {
+      "id": "P2.3",
+      "title": "Deliver player and mission simulation",
+      "status": "not-started",
+      "prerequisites": [
+        "P2.2"
+      ],
+      "original_function_seeds": [
+        "0069a560",
+        "0069af10",
+        "0069b230",
+        "006c3100",
+        "006c3190",
+        "006c7870",
+        "006c72b0"
+      ],
+      "reference_addresses": [
+        "0069b870"
+      ],
+      "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
+      "acceptance": "Selected actor/equipment, controls, required world interactions and genuine objective/failure; a camera viewer alone is insufficient."
+    },
+    {
+      "id": "P2.4",
+      "title": "Finish preparation/loadout/briefing delivery",
+      "status": "not-started",
+      "prerequisites": [
+        "P2.3"
+      ],
+      "original_function_seeds": [
+        "006c0ef0",
+        "006b9190",
+        "006b9680"
+      ],
+      "reference_addresses": [],
+      "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
+      "acceptance": "Ordinary descriptor-driven preparation reaches real selected actors/equipment; legitimate progress-gated acceptance follows accessibility."
+    },
+    {
+      "id": "P2.5",
+      "title": "Retained pause/player/options and resume",
+      "status": "not-started",
+      "prerequisites": [
+        "P2.3"
+      ],
+      "original_function_seeds": [
+        "0069e620",
+        "0067f350",
+        "0067fb00",
+        "00680680",
+        "00682980",
+        "006835e0",
+        "00684390",
+        "00684890",
+        "0067a770",
+        "006827a0"
+      ],
+      "reference_addresses": [
+        "0067f550"
+      ],
+      "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
+      "acceptance": "Repeated pause/options/modal cancellation/resume preserves the same real owner/input/audio; save/network actions follow their receivers."
+    },
+    {
+      "id": "P2.6",
+      "title": "Gameplay serialization, restore/restart and Main resume",
+      "status": "not-started",
+      "prerequisites": [
+        "P2.3",
+        "P2.5"
+      ],
+      "original_function_seeds": [
+        "006c3340",
+        "006391e0",
+        "00680680",
+        "006c20f0"
+      ],
+      "reference_addresses": [
+        "00626b20",
+        "0067f550",
+        "0068ce00"
+      ],
+      "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
+      "acceptance": "Real isolated save/load state round trip, restart/resume and failure/compatibility handling; profile.sav alone never qualifies."
+    },
+    {
+      "id": "P2.7",
+      "title": "Live mission/campaign results and continuation",
+      "status": "not-started",
+      "prerequisites": [
+        "P2.3",
+        "P2.4",
+        "P2.6"
+      ],
+      "original_function_seeds": [
+        "0068ead0",
+        "0068f3d0",
+        "0068e0f0",
+        "0068d5c0",
+        "0068bd10",
+        "0068bdd0",
+        "0068bde0",
+        "0068c0f0"
+      ],
+      "reference_addresses": [
+        "0068d2f0",
+        "0068ce00",
+        "0068bd70"
+      ],
+      "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
+      "acceptance": "Genuine results/progression/persistence with next/retry/Main; captured-result fixtures remain separate from live result acceptance."
+    },
+    {
+      "id": "P2.8",
+      "title": "Shared multiplayer game-receiver boundary",
+      "status": "not-started",
+      "prerequisites": [
+        "P2.1",
+        "P2.3"
+      ],
+      "original_function_seeds": [
+        "006c20f0",
+        "00730a40",
+        "0072e890",
+        "00731610",
+        "00698510",
+        "006989b0"
+      ],
+      "reference_addresses": [
+        "0068a710"
+      ],
+      "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
+      "acceptance": "Source/integration contract only. Actual Connect/Host/ready-server/live status9 acceptance remains unchecked in Phase3."
+    },
+    {
+      "id": "P2.9",
+      "title": "Consolidated Phase2 desktop acceptance",
+      "status": "not-started",
+      "prerequisites": [
+        "P2.2",
+        "P2.3",
+        "P2.4",
+        "P2.5",
+        "P2.6",
+        "P2.7",
+        "P2.8"
+      ],
+      "original_function_seeds": [],
+      "reference_addresses": [],
+      "function_completion": "Research only this delivery call graph; complete bounded needed bodies and integrate existing recoveries; record broader remaining branches. No count quota or whole-backlog gate.",
+      "acceptance": "Two real mission/resource paths and delivered game-dependent flows; explicit Phase3 exclusion; no function-backlog exhaustion gate."
+    }
+  ],
+  "original_reference_index": [
+    {
+      "entry": "00445d90",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 734
+    },
+    {
+      "entry": "00490740",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.1"
+      ],
+      "body_bytes": 156
+    },
+    {
+      "entry": "0049a420",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.1"
+      ],
+      "body_bytes": 438
+    },
+    {
+      "entry": "00523ab0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.1"
+      ],
+      "body_bytes": 112
+    },
+    {
+      "entry": "00626b20",
+      "program": "client",
+      "inventory_membership": "reference-only-no-standalone-counted-entry",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.6"
+      ]
+    },
+    {
+      "entry": "006391e0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "partial",
+      "milestones": [
+        "P2.6"
+      ],
+      "body_bytes": 2180
+    },
+    {
+      "entry": "0067a770",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5"
+      ],
+      "body_bytes": 1528
+    },
+    {
+      "entry": "0067ea00",
+      "program": "client",
+      "inventory_membership": "reference-only-no-standalone-counted-entry",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.0"
+      ]
+    },
+    {
+      "entry": "0067f350",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5"
+      ],
+      "body_bytes": 272
+    },
+    {
+      "entry": "0067f550",
+      "program": "client",
+      "inventory_membership": "reference-only-no-standalone-counted-entry",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5",
+        "P2.6"
+      ]
+    },
+    {
+      "entry": "0067fb00",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5"
+      ],
+      "body_bytes": 996
+    },
+    {
+      "entry": "00680680",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5",
+        "P2.6"
+      ],
+      "body_bytes": 1152
+    },
+    {
+      "entry": "006827a0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5"
+      ],
+      "body_bytes": 181
+    },
+    {
+      "entry": "00682980",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5"
+      ],
+      "body_bytes": 3102
+    },
+    {
+      "entry": "006835e0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5"
+      ],
+      "body_bytes": 3493
+    },
+    {
+      "entry": "00684390",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5"
+      ],
+      "body_bytes": 1272
+    },
+    {
+      "entry": "00684890",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5"
+      ],
+      "body_bytes": 600
+    },
+    {
+      "entry": "0068a710",
+      "program": "client",
+      "inventory_membership": "reference-only-no-standalone-counted-entry",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.8"
+      ]
+    },
+    {
+      "entry": "0068bd10",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.7"
+      ],
+      "body_bytes": 62
+    },
+    {
+      "entry": "0068bd70",
+      "program": "client",
+      "inventory_membership": "reference-only-no-standalone-counted-entry",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.7"
+      ]
+    },
+    {
+      "entry": "0068bdd0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.7"
+      ],
+      "body_bytes": 8
+    },
+    {
+      "entry": "0068bde0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.7"
+      ],
+      "body_bytes": 774
+    },
+    {
+      "entry": "0068c0f0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.7"
+      ],
+      "body_bytes": 260
+    },
+    {
+      "entry": "0068ce00",
+      "program": "client",
+      "inventory_membership": "reference-only-no-standalone-counted-entry",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.6",
+        "P2.7"
+      ]
+    },
+    {
+      "entry": "0068d2f0",
+      "program": "client",
+      "inventory_membership": "reference-only-no-standalone-counted-entry",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.7"
+      ]
+    },
+    {
+      "entry": "0068d5c0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.7"
+      ],
+      "body_bytes": 2210
+    },
+    {
+      "entry": "0068e0f0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.7"
+      ],
+      "body_bytes": 2522
+    },
+    {
+      "entry": "0068ead0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.7"
+      ],
+      "body_bytes": 699
+    },
+    {
+      "entry": "0068f3d0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.7"
+      ],
+      "body_bytes": 557
+    },
+    {
+      "entry": "00698510",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.0",
+        "P2.1",
+        "P2.8"
+      ],
+      "body_bytes": 713
+    },
+    {
+      "entry": "006987e0",
+      "program": "client",
+      "inventory_membership": "reference-only-no-standalone-counted-entry",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.0"
+      ]
+    },
+    {
+      "entry": "006989b0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.0",
+        "P2.1",
+        "P2.8"
+      ],
+      "body_bytes": 1332
+    },
+    {
+      "entry": "00698f80",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.1"
+      ],
+      "body_bytes": 549
+    },
+    {
+      "entry": "0069a560",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.3"
+      ],
+      "body_bytes": 1244
+    },
+    {
+      "entry": "0069af10",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.3"
+      ],
+      "body_bytes": 787
+    },
+    {
+      "entry": "0069b230",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.3"
+      ],
+      "body_bytes": 1593
+    },
+    {
+      "entry": "0069b870",
+      "program": "client",
+      "inventory_membership": "reference-only-no-standalone-counted-entry",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.0",
+        "P2.3"
+      ]
+    },
+    {
+      "entry": "0069e620",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.5"
+      ],
+      "body_bytes": 173
+    },
+    {
+      "entry": "006b9190",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "partial",
+      "milestones": [
+        "P2.0",
+        "P2.1",
+        "P2.4"
+      ],
+      "body_bytes": 173
+    },
+    {
+      "entry": "006b9680",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "partial",
+      "milestones": [
+        "P2.4"
+      ],
+      "body_bytes": 1247
+    },
+    {
+      "entry": "006c0ef0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "partial",
+      "milestones": [
+        "P2.0",
+        "P2.1",
+        "P2.4"
+      ],
+      "body_bytes": 1495
+    },
+    {
+      "entry": "006c20f0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "partial",
+      "milestones": [
+        "P2.0",
+        "P2.1",
+        "P2.6",
+        "P2.8"
+      ],
+      "body_bytes": 3071
+    },
+    {
+      "entry": "006c3100",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "partial",
+      "milestones": [
+        "P2.3"
+      ],
+      "body_bytes": 140
+    },
+    {
+      "entry": "006c3190",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "partial",
+      "milestones": [
+        "P2.3"
+      ],
+      "body_bytes": 57
+    },
+    {
+      "entry": "006c3340",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.6"
+      ],
+      "body_bytes": 1455
+    },
+    {
+      "entry": "006c72b0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "partial",
+      "milestones": [
+        "P2.3"
+      ],
+      "body_bytes": 153
+    },
+    {
+      "entry": "006c7870",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "partial",
+      "milestones": [
+        "P2.3"
+      ],
+      "body_bytes": 2849
+    },
+    {
+      "entry": "006c9260",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.0",
+        "P2.1"
+      ],
+      "body_bytes": 348
+    },
+    {
+      "entry": "006c95d0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 107
+    },
+    {
+      "entry": "006c9640",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 3132
+    },
+    {
+      "entry": "006ca780",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.0",
+        "P2.2"
+      ],
+      "body_bytes": 1113
+    },
+    {
+      "entry": "006cbf30",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 1602
+    },
+    {
+      "entry": "006cc580",
+      "program": "client",
+      "inventory_membership": "reference-only-no-standalone-counted-entry",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ]
+    },
+    {
+      "entry": "006cc760",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 4515
+    },
+    {
+      "entry": "006cd940",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "partial",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 16528
+    },
+    {
+      "entry": "006d3f20",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 597
+    },
+    {
+      "entry": "006d4180",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 249
+    },
+    {
+      "entry": "006d4280",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 821
+    },
+    {
+      "entry": "006d45c0",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 691
+    },
+    {
+      "entry": "006d4880",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 691
+    },
+    {
+      "entry": "006d4b50",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 1
+    },
+    {
+      "entry": "006ee570",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.2"
+      ],
+      "body_bytes": 3341
+    },
+    {
+      "entry": "0072e890",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.8"
+      ],
+      "body_bytes": 174
+    },
+    {
+      "entry": "00730a40",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.8"
+      ],
+      "body_bytes": 233
+    },
+    {
+      "entry": "00731610",
+      "program": "client",
+      "inventory_membership": "internal-non-thunk",
+      "ledger_status": "uncredited",
+      "milestones": [
+        "P2.8"
+      ],
+      "body_bytes": 216
+    }
+  ],
+  "limitations": [
+    "Function lists are researched seeds, not a full game/AI/script/serialization inventory. Recover newly required bodies within their delivery milestones.",
+    "Reference addresses absent as counted entries get no automatic function credit.",
+    "Planning changes neither behavior nor function status and establishes no new runtime/desktop acceptance."
+  ]
+}

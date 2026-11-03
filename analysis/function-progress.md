@@ -32,8 +32,8 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are20 complete client functions and544 partial entries
-(539 client/five engine). The [first completion audit](function-completion-audit.md)
+The current totals are34 complete client functions and530 partial entries
+(525 client/five engine). The [first completion audit](function-completion-audit.md)
 reviews all564 preexisting entries, corrects stale integration notes and closes
 five original-ABI button queries. Its0 exact instruction matches are recorded
 separately from full-body reconstruction. The subsequent
@@ -41,8 +41,12 @@ separately from full-body reconstruction. The subsequent
 including two exact instruction matches. The
 [scalar/input batch](scalar-input-batch.md) reviews41 candidates and closes11
 more bodies with one consolidated sweep, including one further exact match.
-The expanded
-[completion queue](function-completion-queue.md) remains open before Phase2.
+The [input-owner batch](input-owner-batch.md) then closes14 of17 candidates through
+source-only raw ABI entries, separately from the accepted desktop host adapters;
+three specific producer/SEH/startup tasks remain. No new exact match is claimed.
+The standalone [completion queue](function-completion-queue.md) is postponed by
+the user2026-11-03. Required function completion now accompanies each
+[Phase2 delivery milestone](phase2-delivery-plan.md), with no queue-exhaustion gate.
 The [ledger](function-status.json) records each supported subset and
 its exclusions; the generated [README bar](../README.md) is the current count.
 Historical research notes retain their checkpoint totals. Integrated desktop

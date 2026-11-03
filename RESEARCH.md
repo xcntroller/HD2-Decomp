@@ -3,7 +3,57 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Current continuation (2026-11-03): [scalar/input batch](analysis/scalar-input-batch.md)
+Current continuation (2026-11-03): user postpones the exhaustive pre-Phase2
+function pass and requests completion alongside delivery. The
+[new detailed roadmap](analysis/phase2-delivery-plan.md),
+[machine milestone index](analysis/phase2-delivery-plan.json),
+[updated policy](analysis/function-completion-plan.md) and retained queue supersede
+the old exhaustion gate. All559 queue rows/530 partials and34 completed bodies are
+preserved. No implementation or ledger-status change in this planning milestone.
+The first targets are real owner/request integration, one mission's first world
+frame and then controllable player/simulation; preparation, pause, saves and live
+results follow. Phase2's multiplayer receiver is source/integration scope; real
+ready-server/live status9 validation remains Phase3 to avoid a circular dependency.
+Targeted P2.0 receiver research belongs inside the first P2.1 implementation batch,
+not another audit-only stop. Later work selects only its delivery dependencies,
+integrates existing recoveries and uses one consolidated verification sweep.
+
+New [planning boundary evidence](analysis/phase2-boundary-map.json) verifies
+00698510's008159AC vtable, whose+04 targets006989B0, and activation→006CA780→
+preparation/Scene/Scene2 calls. Nine slots, three anchors and five direct calls are
+fingerprint-guarded. This resolves the previously unmapped activation link; full
+virtual prototypes, callbacks, wrappers and lifetime/loading semantics still need
+the first implementation batch's research. Some reference targets are absent as
+standalone frozen inventory entries and earn no automatic credit. Existing ALPS1
+format work is structural evidence only; choose an ordinary mission via actual
+descriptor/resource precedence, with Tutorial a candidate rather than hardcoded.
+Planning verification checks links/JSON/dependency order/inventory references,
+unchanged ledger/source and original boundary bytes. No runtime/desktop test,
+packaging, staging, commit or push is implied.
+
+Previous continuation (2026-11-03): prior verified batches committed as0c3527d.
+The [input-owner batch](analysis/input-owner-batch.md) completes14 of17 candidates
+source-only, with [full dispositions](analysis/input-owner-batch.json) and
+[all original bytes/calls](analysis/input-owner-batch-map.json). New raw ABI entries
+cover manager/configuration initialization, reset/detach/attach, installer/wrapper,
+mode/dirty application and both92-record defaults. They are not wired into the
+accepted desktop host; its checked adapters remain separate. No interactive change.
+006C7440 uses caller ECX;006A8600 selects global008AEA48. Both constructor bodies
+preserve padding and return this. Allocator007E81D9/007EF932 can return null; raw
+end insertion preserves null begin/nonzero end/limit and outstanding retains,
+instead of converting that original path to a native exception. Heap internals,
+engine bodies and generic vector helpers earn no new credit.
+Consolidated ASan/UBSan, i386 fixture compile/link/code inspection, strict targets,
+existing native regressions and158 Python tests pass. Concrete null-path correction
+repeated only affected checks. Two constructor comparisons differ; no new exact
+match. Temporary fixtures removed; stage/config/profile artifacts preserved. No
+original/Windows execution, desktop claim, package or push. Latest source remains
+uncommitted. Ledger34 complete client,530 partial (525 client/five engine), frozen
+18,783. Producer006C7870, destructor SEH006C6AB0 and startup string/EH006DB620
+remain specific recovery work; combine with cursor numerical/owner entries next.
+The expanded pre-Phase2 pass remains open.
+
+Previous continuation (2026-11-03): [scalar/input batch](analysis/scalar-input-batch.md)
 completes the next source-only milestone with one consolidated verification sweep.
 All41 candidates are reviewed:11 complete,30 have specific recovery work in the
 [index](analysis/scalar-input-batch.json). Six editor/config bodies, three scalar

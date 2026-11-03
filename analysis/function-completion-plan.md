@@ -1,76 +1,67 @@
-# Function completion and selective matching — delivery plan
+# Function completion and selective matching — current delivery policy
 
-The user approves adding the completion/matching pass before Phase2. The initial
-[full-ledger audit and five-function group](function-completion-audit.md) is
-complete source-only2026-11-03, after desktop acceptance of the selection fixes.
-The gates below remain the policy for subsequent subsystem completion work.
+Updated2026-11-03 at the user's request. **The exhaustive pre-Phase2 pass is
+postponed.** Finish functions alongside the [Phase2 delivery plan](phase2-delivery-plan.md);
+reviewing all530 partials is no longer a prerequisite for planning or implementation.
+This supersedes the earlier instruction to exhaust every currently feasible body
+before Phase2. It preserves existing results and full-body counting criteria.
 
-The user expands this policy2026-11-03: complete all functions currently feasible
-before moving on. The five-function group is the first checkpoint, not the end
-of the pass. Exhaust the [dependency queue](function-completion-queue.md) before
-Phase2 planning/implementation. ABI/layout recovery is work to perform, not by
-itself a reason to defer a function to another phase. Keep verified milestones
-bounded and follow AGENTS.md's stop-after-one-milestone rule.
-The user subsequently requests larger subsystem batches with a single final
-audit sweep. Apply the queue's verification cadence: quick local compiles during
-implementation, consolidated sanitizers/builds/regressions and accounting at the
-end, and no repeated full sweep for each small function group.
+The initial audit/button, delta/scroll, scalar/input and input-owner milestones
+remain recorded. Ledger:34 complete client,530 partial (525 client/five engine),
+denominator18,783. Source-only raw entries are not automatically desktop-integrated.
+The [queue](function-completion-queue.json) remains a postponed backlog, not a
+blocked/exhausted/completed pass. Its earlier next batch is retained for reference.
 
-## Before Phase2 implementation
+## Per-delivery implementation boundary
 
-1. Review the existing564 partial entries against current integrated source and
-   linked original evidence. Correct stale coverage/limitations without treating
-   a working screen or stale wording as proof of whole-function reconstruction.
-2. Choose a small group of self-contained functions with understood dependencies
-   and explicit full-body boundaries from the frozen inventory. Record the
-   remaining branch, ABI, ownership and verification work for each candidate.
-3. Finish and verify that group end-to-end, aiming for the first complete entries
-   before world loading begins. Promote only after manual evidence review under
-   [existing counting rules](function-progress.md); no predetermined quota or
-   guessed date. Native safety/ABI differences must be resolved or remain explicit
-   partial exclusions rather than being removed solely to improve the counter.
-4. Establish a repeatable static matching workflow on that small group: confirm
-   original function boundaries/prototypes and investigate compiler/options,
-   calling convention, object layout and relevant runtime assumptions. Compile
-   candidate bodies and compare disassembly with relocations accounted for.
-   Record exact matches and justified differences separately from behavioral
-   verification. Do not require every function to match instructions immediately.
+1. Select the next dependency-ready Phase2 outcome from plan.md. Research its
+   original call graph and complete implementation boundary; reuse confirmed
+   evidence. Include actual required functions/owners in one coherent batch.
+2. Identify existing partials and source-complete bodies that the outcome needs.
+   Integrate those recoveries into the active owner when appropriate, reducing
+   duplicate implementations. Add other bodies only from proven dependencies.
+3. Complete bounded original bodies when feasible within that integration. For
+   broad shared functions, implement the required real branches and retain exact
+   remaining exclusions. A feature can advance with an honestly partial shared
+   controller/loader; no success placeholders or inflated full-body claims.
+4. Verify original behavior, files, state transitions, callbacks, ownership and
+   failures relevant to that delivery. Prioritize exact ABI at actual DLL/virtual,
+   serialized/shared-object boundaries. Internal layout-only cleanup and unused
+   padding work can be scheduled later when they do not affect the outcome.
+5. Run one consolidated affected build/sanitizer/regression/evidence sweep at the
+   end. Update delivery status, function ledger, research and handoff together.
+   Interactive acceptance remains the user's actual Python-launcher desktop test.
 
-Original-game/DLL/Proton execution remains prohibited for the agent. Use original
-static evidence, strict i386 builds, existing tests and temporary native sanitizer
-audits; no permanent new tests. User desktop verification remains separate.
-Assembly equality of an isolated body does not validate different callers,
-resource/configuration inputs or the complete application integration.
+New dependencies do not reopen a general ledger audit. Record unrelated work in
+the backlog without pretending it is externally blocked. User-priority postponement
+is sufficient to leave available cleanup for later; no invented technical blocker
+is required. Stop after one verified substantial milestone under AGENTS.md.
 
-## During Phase2 and subsequent subsystem delivery
+## Matching and full-body credit
 
-Each bounded subsystem milestone must include closing understood original
-functions, rather than indefinitely accumulating new partials. Verify complete
-control flow, flags and signedness, arithmetic/rounding, state changes, call
-ordering, object/virtual ABI, ownership and error/teardown behavior. Prioritize
-instruction matching for loaders/parsers, save serialization, numerical routines,
-state transitions and resource lifetimes.
+Use instruction matching selectively when it resolves ambiguous numerical, parser,
+save-format, state/lifetime or calling-convention behavior. Compiler byte equality
+is not a universal prerequisite for playable milestones. Existing exact-match
+results remain separately recorded; `complete` does not mean byte-identical.
 
-Track remaining UI/object ABI consolidation explicitly when native containers,
-RAII or host glue still replace original contracts. Full game/session/load/save
-owners close as their actual Phase2 receivers and dependencies are reconstructed;
-network-dependent bodies follow their Phase3 dependencies. Original engine bodies
-still delegated to LS3DF close only when those bodies are reconstructed in the
-separate engine-replacement work. Reconstructing a client caller does not credit
-its delegated callee, and native integration glue earns no original-function credit.
+Promote only implemented frozen-inventory bodies after reviewing their entire
+original branch, field/ABI, side-effect, ownership and failure boundary. Link exact
+entry/fingerprint, source and verification; no body exclusion may remain. Partial
+native adaptations remain partial. Source-only, integrated and desktop-accepted
+are distinct dimensions; neither successful tests nor a working screen alone
+certifies whole-function equivalence. Genuine delegated engine/OS/CRT calls earn
+no callee credit; absent inventory entries get no automatic credit.
 
-## Evidence gate
+Preserve original files/configs/profiles; no original game/DLL/server/Proton or
+Windows fixture execution by the agent. Use existing tests and temporary native
+audits, remove audit sources/binaries, and compile/link Windows fixtures only.
+No packaging or push; commits follow existing authorization/desktop rules.
 
-A completion proposal identifies the exact original entry and fingerprint,
-accounts for every branch and relevant state/data contract, links its compiled
-implementation and verification, and states why no full-body exclusion remains.
-For matching candidates, also record compiler/configuration and a relocation-
-aware comparison. Assembly matching is an additional verification method; the
-current ledger's `complete` status is not redefined as byte identity. Run the
-existing ledger validator/render workflow after justified status changes.
+## Current routing
 
-After the initial pass the ledger has5 complete client functions and559 partial
-(554 client/five engine), out of18,783 frozen entries at that checkpoint.
-The expanded pass requires completing every currently feasible body and recording
-concrete dependencies for the rest. It does not infer completion from native tests
-or desktop acceptance alone.
+P2.0 researches the actual mission receiver/loading chain. P2.1/P2.2 implement
+its owners/assets through a first world frame; P2.3 integrates player/simulation
+and needed input-function work. Subsequent milestones finish preparation, retained
+in-game flows, saves/results and multiplayer receiver contracts. Live transport
+and ready-server acceptance are Phase3, avoiding a circular Phase2 prerequisite.
+See the detailed plan for function seeds, outputs and acceptance at every step.

@@ -1755,7 +1755,7 @@
       "entry": "006c7870",
       "status": "partial",
       "coverage": "Reverse device snapshots and optional poll order; packed key/mouse snapshots, saturation and persistent gate updates; reverse keyboard/mouse/joystick bindings into held/gated float-word buffers including shared binding counts, axis filtering, POV masks and original stale-output cases.",
-      "limitations": "Recover manager raw vectors/record ABI and full x87 saturation/POV/gate behavior; current POV bounds exception and float-environment/signaling-NaN differences remain. Depends on manager owner and device snapshot contracts.",
+      "limitations": "Raw manager/snapshot storage now exists. Port the producer to that entry with original FILD/FSTP, x87 clamp/divide/ordered comparisons, signaling NaNs, CW/status/TOP, POV paths and raw output/index access; current native producer still has float-environment and bounds-guard differences.",
       "evidence": [
         "analysis/binding-producer-map.json",
         "analysis/binding-producer.md",
@@ -1766,7 +1766,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ]
     },
     {
@@ -1784,9 +1788,9 @@
     {
       "program": "client",
       "entry": "006c7480",
-      "status": "partial",
-      "coverage": "Grow binding/output vectors, remove old keyboard/mouse counts, reuse/register scan slots, preserve nontransactional failure, configure joystick flags, copy or clear record after callbacks while preserving old outputs and gates.",
-      "limitations": "Recover original manager binding/output vector growth/allocator/failure ABI, maps/counts and real callback publication with nontransactional replacement ordering. Current native vectors/at guards and typed callback owner differ.",
+      "status": "complete",
+      "coverage": "Complete original thiscall/AL/RET8 pointer/index installer: repeated raw appends and output growth branch, byte counters, map callbacks/reentrant old-kind reread, nontransactional failures, joystick configuration and null/unknown copies.",
+      "limitations": "",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1796,15 +1800,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006c7440",
-      "status": "partial",
-      "coverage": "Pack five arguments into twelve-byte input binding with 16-bit kind/selector truncation and forward installer AL result.",
-      "limitations": "Recover original global manager008AEA48 call ABI and006C7480 installer before closing this five-argument pack/forward wrapper; current function takes explicit state/services rather than original receiver/global.",
+      "status": "complete",
+      "coverage": "Complete original thiscall/AL/RET20 wrapper on caller ECX manager (not a global lookup), exact12-byte pack with WORD truncation and installer forward.",
+      "limitations": "",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1814,15 +1824,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006a8600",
-      "status": "partial",
-      "coverage": "Install one configuration record with forced device zero, ignore installer failure and clear dirty after callback.",
-      "limitations": "Depends on original global-manager006C7440 ABI; current explicit input/services template preserves setting/dirty policy but is not the original stack-record-to-global-manager body.",
+      "status": "complete",
+      "coverage": "Complete original thiscall/RET4 setting apply through relocated008AEA48 manager, forced device0, ignored installer result, dirty clear only after return.",
+      "limitations": "",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1832,15 +1848,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006a8630",
-      "status": "partial",
-      "coverage": "Apply exact matching mode records in reverse order, irrespective of dirty state, rereading vector storage between callbacks.",
-      "limitations": "Depends on006A8600 original record-application/global-manager ABI; configuration+04/+08 record layout is now checked, but borrowed callback re-resolution and native at failure differ.",
+      "status": "complete",
+      "coverage": "Complete original thiscall/RET4 reverse exact-mode application, initial count and freshly resolved settings base, independent of dirty state.",
+      "limitations": "",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1850,15 +1872,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006a8690",
-      "status": "partial",
-      "coverage": "Accept only modes two/three; apply matching records before storing current mode.",
-      "limitations": "Depends on complete006A8630 original helper ABI; current template passes explicit input/services before mode storage. Valid mode checks are recovered, not complete caller ABI.",
+      "status": "complete",
+      "coverage": "Complete original thiscall/RET4 mode2/3 gate, original apply before selected-mode storage, invalid modes untouched.",
+      "limitations": "",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1868,15 +1896,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006a86c0",
-      "status": "partial",
-      "coverage": "Entry mode-two/three gate and reverse dirty application; reread current mode per record and treat other record-mode tags as shared.",
-      "limitations": "Depends on006A8600 global installer and original callback/mutable vector lifetime; native indexed at exceptions differ after callback storage changes. Current-mode/dirty eligibility remains supported.",
+      "status": "complete",
+      "coverage": "Complete original ECX/RET0 reverse dirty application, single entry mode gate, fresh record/current-mode lookup and shared non2/3 tags.",
+      "limitations": "",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1886,8 +1920,14 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
@@ -1908,9 +1948,9 @@
     {
       "program": "client",
       "entry": "006a8be0",
-      "status": "partial",
-      "coverage": "Choose alternate defaults only for selector one, primary for all other selectors.",
-      "limitations": "Depends on original006A8C00/006AA090 defaults constructors and receiver/global call ABI; current selector branches to typed reset helper rather than complete original callees.",
+      "status": "complete",
+      "coverage": "Complete original thiscall/RET4 selector wrapper: selector1 alone uses alternate defaults, every other DWORD uses primary.",
+      "limitations": "",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1920,15 +1960,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006a8c00",
-      "status": "partial",
-      "coverage": "Reconstruct all 92 ordered primary default records, clear settings only, append original meaningful fields/dirty values and run current-mode dirty application.",
-      "limitations": "Recover all original repeated record append/growth helpers, raw record-padding provenance, allocator and SEH/error ordering for92 primary records; native vector push_back/default padding and failure cleanup remain different.",
+      "status": "complete",
+      "coverage": "Complete original ECX/RET0 primary defaults: clear/end-only repeated appends of all92 ordered records, original pointer growth/failure effects, untouched/propagated opaque padding, then current-mode dirty application.",
+      "limitations": "",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1938,15 +1984,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006aa090",
-      "status": "partial",
-      "coverage": "Reconstruct all 92 ordered alternate default records, clear settings only, append original meaningful fields/dirty values and run current-mode dirty application.",
-      "limitations": "Recover all original repeated record append/growth helpers, raw record-padding provenance, allocator and SEH/error ordering for92 alternate records; native vector push_back/default padding and failure cleanup remain different.",
+      "status": "complete",
+      "coverage": "Complete original ECX/RET0 alternate defaults: clear/end-only repeated appends of all92 ordered records, original pointer growth/failure effects, untouched/propagated opaque padding, then current-mode dirty application.",
+      "limitations": "",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1956,15 +2008,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006c6a20",
-      "status": "partial",
-      "coverage": "Construct normal global manager native storage with null borrowed graphics, empty owning vectors and original axis limits 20/20/20; preserve zero-static context for other fields.",
-      "limitations": "Recover original raw manager pointer triples, graphics/map/gate fields and constructor object/global provenance; native owning state has different layout. Axis setter006C6C90 is now complete but does not close parent construction.",
+      "status": "complete",
+      "coverage": "Complete original ECX/EAX=this initialization: pointer-derived allocator bytes, empty raw pointer triples, null graphics and20/20/20; arbitrary-placement preservation of all other bytes.",
+      "limitations": "",
       "evidence": [
         "analysis/input-manager-map.json",
         "analysis/input-manager.md",
@@ -1973,15 +2031,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006c6ab0",
       "status": "partial",
-      "coverage": "Detach joystick references, then release second/first/binding/joystick vector allocations in original order using native ownership.",
-      "limitations": "Recover original retained joystick records, reverse device release+08, four vector allocations/free order and raw manager destruction ABI; native vector/RAII owner cleanup is not original allocator/SEH lifetime.",
+      "coverage": "Raw original-layout normal teardown now clears output lengths, releases joystick references in reverse and frees second/first/bindings/joysticks in order; separate checked native owner retains its cleanup policy. Original MSVC exception registration/unwind remains partial.",
+      "limitations": "Raw destroy now implements normal reverse detach and ordered frees, but original handler0080B255/MSVC exception registration and unwind state3 are not reconstructed. Recover those cleanup paths; native C++ global registration is not this ABI.",
       "evidence": [
         "analysis/input-manager-map.json",
         "analysis/input-manager.md",
@@ -1990,15 +2054,19 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ]
     },
     {
       "program": "client",
       "entry": "006c6b60",
-      "status": "partial",
-      "coverage": "Clear binding/output lengths before reverse null-guarded joystick release, then clear joystick length while preserving graphics, tables/counts, limits and gates.",
-      "limitations": "Recover original raw binding/output pointer-triple end resets and joystick record/device-release ABI, including reentrant ownership; native vector clearing/release adapters remain different.",
+      "status": "complete",
+      "coverage": "Complete original ECX/RET0 raw detach: clear binding/output ends before reverse null-checked joystick+08 callbacks, initial count with fresh base lookups, joystick end reset after callbacks.",
+      "limitations": "",
       "evidence": [
         "analysis/input-manager-map.json",
         "analysis/input-manager.md",
@@ -2007,15 +2075,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006c6cc0",
-      "status": "partial",
-      "coverage": "Validate borrowed graphics and every supplied joystick before mutation; clear source tables/first four mouse counts, retain and append zero-snapshot joystick records, set key gate all ones, limits 400/400/1 and flag zero.",
-      "limitations": "Recover raw manager attachment layout, retained joystick+04 records, append allocation/error paths and borrowed array mutation contract; native validation/exception unwind differs. Limit setter alone now closes independently.",
+      "status": "complete",
+      "coverage": "Complete original thiscall/AL/RET12 attachment: reverse validation, forward retain/append, raw doubling/relocation and throwing-handler/null-allocation effects, preserved prior records, key gates/400/400/1/flag finalization.",
+      "limitations": "",
       "evidence": [
         "analysis/input-manager-map.json",
         "analysis/input-manager.md",
@@ -2024,8 +2098,14 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
@@ -2046,9 +2126,9 @@
     {
       "program": "client",
       "entry": "006c6ff0",
-      "status": "partial",
-      "coverage": "Clear binding/output lengths preserving capacity and devices; clear 64-byte scan/count tables and only first four mouse-count bytes; preserve gates/limits/graphics and avoid engine map publication.",
-      "limitations": "Recover original manager vector headers and scan/count tables, including one-DWORD-only mouse count clear and preserved gates/devices; current owner uses native vectors and shifted component storage.",
+      "status": "complete",
+      "coverage": "Complete original raw end resets and64-byte scan/key count clears plus one mouse-count DWORD, preserving capacity, fifth/sixth counts, devices, graphics, gates, limits and flag.",
+      "limitations": "",
       "evidence": [
         "analysis/input-manager-map.json",
         "analysis/input-manager.md",
@@ -2057,15 +2137,21 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",
       "entry": "006db620",
       "status": "partial",
       "coverage": "Resolve graphics/init keyboard flags zero, clear bindings, snapshot joystick view before second graphics query, attach ignoring results, resolve installed language and preload original localized text.",
-      "limitations": "Depends on raw input manager clear006C6FF0/attach006C6CC0, actual joystick-array view and original language/text owner ABI. Native normal startup is integrated but those owners/locale failure paths remain partial.",
+      "limitations": "Raw clear/attach and device view are available. Recover actual GetIGraph/global startup boundary,006B67B0/006B1090 intrusive string return/release ownership and handler0080C048; native startup template/language string ownership remains partial.",
       "evidence": [
         "analysis/startup-localization-map.json",
         "analysis/startup-localization.md",
@@ -2079,7 +2165,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ]
     },
     {
@@ -4426,9 +4516,9 @@
     {
       "program": "client",
       "entry": "006a81c0",
-      "status": "partial",
-      "coverage": "Native empty configuration vector and mode2 default integrated. Original header byte is now confirmed as saved-this high byte; that raw constructor/header/return contract is not implemented.",
-      "limitations": "Original PUSH ECX then MOV CL,[ESP+3] sets header from saved this>>24, returns EAX=this, zeroes three pointer words and mode2 while preserving header padding. Current native header0/constructor return/lifetime differ; recover raw construction ABI, not an unwritten-byte exception.",
+      "status": "complete",
+      "coverage": "Complete original ECX/EAX=this initialization: byte0 from high byte of saved this, unchanged padding1..3, empty pointer triple and mode2.",
+      "limitations": "",
       "evidence": [
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
@@ -4436,8 +4526,14 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
-      ]
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
+      ],
+      "end_to_end": true,
+      "verification": "Full17-body/frozen-extent review;32 original anchors/266 calls plus existing interface maps. Shared native ASan/UBSan fixture:40000 differential transactions, all256 counts, placement preservation, null/throw failure injection, reverse callbacks/references,12 x87 modes,48 defaults/mode cases,70 interrupted builds, opaque bytes and ordered frees. Strict i386 fixtures compile/link; all15 emitted raw methods have inspected ABI/code digests. Existing native regressions,158 Python tests and app/preview/startup targets pass. Source-only raw call graph, not integrated desktop delivery. Two constructor comparisons differ; no new exact match or engine/CRT/helper credit."
     },
     {
       "program": "client",

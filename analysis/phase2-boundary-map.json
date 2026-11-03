@@ -1,0 +1,73 @@
+{
+  "scope": "Phase2 planning evidence only: game-owner vtable/activation-to-loader boundary. No new implementation, function credit or runtime acceptance.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "0069859d",
+      "hex": "c74500ac5981",
+      "meaning": "Constructor installs game-owner vtable008159AC; signature/lifetime research remains."
+    },
+    {
+      "address": "00698a56",
+      "hex": "e8251d030085c00f857b02000089",
+      "meaning": "Activation mission-load call and result branch;0 loader success versus1 activation success must be preserved."
+    },
+    {
+      "address": "00698cd1",
+      "hex": "e8aa1a030085c00f848bfdffffe8",
+      "meaning": "Activation mission-load call and result branch;0 loader success versus1 activation success must be preserved."
+    }
+  ],
+  "vtables": [
+    {
+      "address": "008159ac",
+      "targets": [
+        "00698810",
+        "006989b0",
+        "00698f80",
+        "0069a560",
+        "0069af10",
+        "0069b230",
+        "0069b870",
+        "006987e0",
+        "0067ea00"
+      ]
+    }
+  ],
+  "direct_calls": [
+    {
+      "site": "00698a56",
+      "target": "006ca780"
+    },
+    {
+      "site": "00698cd1",
+      "target": "006ca780"
+    },
+    {
+      "site": "006ca7fa",
+      "target": "006d3f20"
+    },
+    {
+      "site": "006ca89d",
+      "target": "006d4180"
+    },
+    {
+      "site": "006ca8b1",
+      "target": "006cbf30"
+    }
+  ],
+  "resource_anchors": [],
+  "cached_exports": [
+    "analysis/work/single-pipeline-soldier-state-20261031/00698510.json",
+    "analysis/work/mission-entry/006989b0.json",
+    "analysis/work/scene-loading/006ca780.json"
+  ],
+  "limitations": [
+    "Only vtable targets/call edges/result branches are guarded here; raw virtual prototypes, complete ownership, wrappers and loading dependencies remain Phase2.0 research.",
+    "Some virtual targets lack standalone frozen-inventory entries; they are reference addresses only, not new function credit."
+  ]
+}

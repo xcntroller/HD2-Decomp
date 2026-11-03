@@ -1,32 +1,14 @@
 {
   "schema_version": 1,
   "date": "2026-11-03",
-  "scope": "All559 partial entries at expansion;15 closed,544 open. Completed41-candidate scalar/input batch closes11 and records30 specific further recovery tasks. Expanded pass remains open.",
-  "ledger_sha256": "5832cdb44ab2ab521693e2906d28305fdf8576024b59d12963a3c3ecfa9ad839",
+  "scope": "Standalone exhaustive pass postponed by user2026-11-03. Preserve559 rows:29 closed,530 open; Phase2 completes functions within delivery batches, with no queue-exhaustion gate.",
+  "ledger_sha256": "84e978bb9b7df6ee2069e16f28e05d49b6d1cf869476099bc3f1319a0e4aecb7",
   "queued_at_expansion": 559,
-  "closed_in_this_queue": 15,
-  "pending": 544,
-  "ledger_complete": 20,
-  "ledger_partial": 544,
-  "next_group": [
-    "006c7870",
-    "006c7480",
-    "006c7440",
-    "006a8600",
-    "006a8630",
-    "006a8690",
-    "006a86c0",
-    "006a8be0",
-    "006a8c00",
-    "006c6a20",
-    "006c6ab0",
-    "006c6b60",
-    "006c6cc0",
-    "006c6ff0",
-    "006db620",
-    "006a81c0",
-    "006aa090"
-  ],
+  "closed_in_this_queue": 29,
+  "pending": 530,
+  "ledger_complete": 34,
+  "ledger_partial": 530,
+  "next_group": [],
   "functions": [
     {
       "program": "client",
@@ -1801,7 +1783,7 @@
       "entry": "006c7870",
       "workstream": "input-bindings",
       "status": "open-specific-recovery-work",
-      "next_requirement": "Recover manager raw vectors/record ABI and full x87 saturation/POV/gate behavior; current POV bounds exception and float-environment/signaling-NaN differences remain. Depends on manager owner and device snapshot contracts.",
+      "next_requirement": "Raw manager/snapshot storage now exists. Port the producer to that entry with original FILD/FSTP, x87 clamp/divide/ordered comparisons, signaling NaNs, CW/status/TOP, POV paths and raw output/index access; current native producer still has float-environment and bounds-guard differences.",
       "evidence": [
         "analysis/binding-producer-map.json",
         "analysis/binding-producer.md",
@@ -1812,7 +1794,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/typed records replace original object/vector ABI. Binding installation/defaults and concrete graphics/joystick forwarding are source-recovered; bounded live controller integration is delivered; full original lifecycle/ABI equivalence remains excluded. Malformed native buffers/POV indices throw; x87 environment and signaling NaNs not reproduced. Sanitizer/i386-audited with controller-to-front-end Escape path."
     },
@@ -1833,8 +1819,8 @@
       "program": "client",
       "entry": "006c7480",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Recover original manager binding/output vector growth/allocator/failure ABI, maps/counts and real callback publication with nontransactional replacement ordering. Current native vectors/at guards and typed callback owner differ.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1844,7 +1830,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device object ownership and full lifecycle equivalence remain open; native profile persistence and bounded startup are integrated; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return."
     },
@@ -1852,8 +1842,8 @@
       "program": "client",
       "entry": "006c7440",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Recover original global manager008AEA48 call ABI and006C7480 installer before closing this five-argument pack/forward wrapper; current function takes explicit state/services rather than original receiver/global.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1863,7 +1853,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device object ownership and full lifecycle equivalence remain open; native profile persistence and bounded startup are integrated; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return."
     },
@@ -1871,8 +1865,8 @@
       "program": "client",
       "entry": "006a8600",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Depends on original global-manager006C7440 ABI; current explicit input/services template preserves setting/dirty policy but is not the original stack-record-to-global-manager body.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1882,7 +1876,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device object ownership and full lifecycle equivalence remain open; native profile persistence and bounded startup are integrated; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return."
     },
@@ -1890,8 +1888,8 @@
       "program": "client",
       "entry": "006a8630",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Depends on006A8600 original record-application/global-manager ABI; configuration+04/+08 record layout is now checked, but borrowed callback re-resolution and native at failure differ.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1901,7 +1899,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device object ownership and full lifecycle equivalence remain open; native profile persistence and bounded startup are integrated; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return."
     },
@@ -1909,8 +1911,8 @@
       "program": "client",
       "entry": "006a8690",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Depends on complete006A8630 original helper ABI; current template passes explicit input/services before mode storage. Valid mode checks are recovered, not complete caller ABI.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1920,7 +1922,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device object ownership and full lifecycle equivalence remain open; native profile persistence and bounded startup are integrated; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return."
     },
@@ -1928,8 +1934,8 @@
       "program": "client",
       "entry": "006a86c0",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Depends on006A8600 global installer and original callback/mutable vector lifetime; native indexed at exceptions differ after callback storage changes. Current-mode/dirty eligibility remains supported.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1939,7 +1945,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device object ownership and full lifecycle equivalence remain open; native profile persistence and bounded startup are integrated; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return."
     },
@@ -1962,8 +1972,8 @@
       "program": "client",
       "entry": "006a8be0",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Depends on original006A8C00/006AA090 defaults constructors and receiver/global call ABI; current selector branches to typed reset helper rather than complete original callees.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1973,7 +1983,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device object ownership and full lifecycle equivalence remain open; native profile persistence and bounded startup are integrated; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return."
     },
@@ -1981,8 +1995,8 @@
       "program": "client",
       "entry": "006a8c00",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Recover all original repeated record append/growth helpers, raw record-padding provenance, allocator and SEH/error ordering for92 primary records; native vector push_back/default padding and failure cleanup remain different.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -1992,7 +2006,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device object ownership and full lifecycle equivalence remain open; native profile persistence and bounded startup are integrated; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return."
     },
@@ -2000,8 +2018,8 @@
       "program": "client",
       "entry": "006aa090",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Recover all original repeated record append/growth helpers, raw record-padding provenance, allocator and SEH/error ordering for92 alternate records; native vector push_back/default padding and failure cleanup remain different.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/binding-installation-map.json",
         "analysis/binding-installation.md",
@@ -2011,7 +2029,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/POD records replace original class/vector/allocator ABI and padding. Original manager/device object ownership and full lifecycle equivalence remain open; native profile persistence and bounded startup are integrated; concrete map/joystick methods are required. Backend callbacks must preserve borrowed record storage. Sanitizer/i386-audited with actual defaults-to-controller-to-frontend Escape route; AL only for installer return."
     },
@@ -2019,8 +2041,8 @@
       "program": "client",
       "entry": "006c6a20",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Recover original raw manager pointer triples, graphics/map/gate fields and constructor object/global provenance; native owning state has different layout. Axis setter006C6C90 is now complete but does not close parent construction.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/input-manager-map.json",
         "analysis/input-manager.md",
@@ -2029,7 +2051,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/input backends and normal startup are integrated; original complete device ownership and specialized joystick lifecycle remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend."
     },
@@ -2038,7 +2064,7 @@
       "entry": "006c6ab0",
       "workstream": "input-bindings",
       "status": "open-specific-recovery-work",
-      "next_requirement": "Recover original retained joystick records, reverse device release+08, four vector allocations/free order and raw manager destruction ABI; native vector/RAII owner cleanup is not original allocator/SEH lifetime.",
+      "next_requirement": "Raw destroy now implements normal reverse detach and ordered frees, but original handler0080B255/MSVC exception registration and unwind state3 are not reconstructed. Recover those cleanup paths; native C++ global registration is not this ABI.",
       "evidence": [
         "analysis/input-manager-map.json",
         "analysis/input-manager.md",
@@ -2047,7 +2073,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/input backends and normal startup are integrated; original complete device ownership and specialized joystick lifecycle remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend."
     },
@@ -2055,8 +2085,8 @@
       "program": "client",
       "entry": "006c6b60",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Recover original raw binding/output pointer-triple end resets and joystick record/device-release ABI, including reentrant ownership; native vector clearing/release adapters remain different.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/input-manager-map.json",
         "analysis/input-manager.md",
@@ -2065,7 +2095,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/input backends and normal startup are integrated; original complete device ownership and specialized joystick lifecycle remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend."
     },
@@ -2073,8 +2107,8 @@
       "program": "client",
       "entry": "006c6cc0",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Recover raw manager attachment layout, retained joystick+04 records, append allocation/error paths and borrowed array mutation contract; native validation/exception unwind differs. Limit setter alone now closes independently.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/input-manager-map.json",
         "analysis/input-manager.md",
@@ -2083,7 +2117,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/input backends and normal startup are integrated; original complete device ownership and specialized joystick lifecycle remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend."
     },
@@ -2106,8 +2144,8 @@
       "program": "client",
       "entry": "006c6ff0",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Recover original manager vector headers and scan/count tables, including one-DWORD-only mouse count clear and preserved gates/devices; current owner uses native vectors and shifted component storage.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/input-manager-map.json",
         "analysis/input-manager.md",
@@ -2116,7 +2154,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native vectors/opaque handles replace original object/vector/allocator ABI. Concrete graphics/input backends and normal startup are integrated; original complete device ownership and specialized joystick lifecycle remain separate. Normal global zero-static context only; native validation/allocation unwind differs on malformed/failure paths. Reference callbacks must preserve ownership storage and not throw. Sanitizer/i386-audited through defaults/producer/controller/ frontend."
     },
@@ -2125,7 +2167,7 @@
       "entry": "006db620",
       "workstream": "input-bindings",
       "status": "open-specific-recovery-work",
-      "next_requirement": "Depends on raw input manager clear006C6FF0/attach006C6CC0, actual joystick-array view and original language/text owner ABI. Native normal startup is integrated but those owners/locale failure paths remain partial.",
+      "next_requirement": "Raw clear/attach and device view are available. Recover actual GetIGraph/global startup boundary,006B67B0/006B1090 intrusive string return/release ownership and handler0080C048; native startup template/language string ownership remains partial.",
       "evidence": [
         "analysis/startup-localization-map.json",
         "analysis/startup-localization.md",
@@ -2139,7 +2181,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Source-only native string/map/vector/object ownership differs from original refcount/allocator/class ABI. Concrete Win32/CRT/rw_data adapters compile/link; graphics input forwarding and archive initialization are source-recovered; full original device lifecycle remains open; bounded native startup and installed byte-font language selection are integrated. Normal self-language query/default C locale only; malformed input guards and exception cleanup documented. Sanitizer/i386-audited, including real installed English files; original diagnostic logger remains separate."
     },
@@ -4635,8 +4681,8 @@
       "program": "client",
       "entry": "006a81c0",
       "workstream": "input-bindings",
-      "status": "open-specific-recovery-work",
-      "next_requirement": "Original PUSH ECX then MOV CL,[ESP+3] sets header from saved this>>24, returns EAX=this, zeroes three pointer words and mode2 while preserving header padding. Current native header0/constructor return/lifetime differ; recover raw construction ABI, not an unwritten-byte exception.",
+      "status": "complete-source-only",
+      "next_requirement": "Verified full original ABI entry in client_input.h; desktop host integration remains separate.",
       "evidence": [
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
@@ -4644,7 +4690,11 @@
         "analysis/function-completion-audit.md",
         "analysis/phase1-traversal.md",
         "analysis/scalar-input-batch.md",
-        "analysis/scalar-input-batch.json"
+        "analysis/scalar-input-batch.json",
+        "analysis/input-owner-batch.md",
+        "analysis/input-owner-batch.json",
+        "analysis/input-owner-batch-map.json",
+        "recovered/input/client_input.h"
       ],
       "original_exclusion_at_expansion": "Unwritten original constructor byte/raw allocation layout is not reconstructed. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated."
     },
@@ -8535,29 +8585,11 @@
     }
   ],
   "next_batch": {
-    "scope": "Original input-manager/configuration construction, vector lifetime, binding installer/applicators/defaults ABI; recover complete dependency boundary before editing, then one sweep.",
-    "candidate_entries": [
-      "006c7870",
-      "006c7480",
-      "006c7440",
-      "006a8600",
-      "006a8630",
-      "006a8690",
-      "006a86c0",
-      "006a8be0",
-      "006a8c00",
-      "006c6a20",
-      "006c6ab0",
-      "006c6b60",
-      "006c6cc0",
-      "006c6ff0",
-      "006db620",
-      "006a81c0",
-      "006aa090"
-    ],
-    "verification": "One consolidated sanitizer/build/regression/evidence/ledger sweep.",
-    "readiness": "Specific original layout/allocation/SEH/global receiver work recorded in scalar-input-batch.json; source recovery remains open, not externally blocked.",
-    "candidate_count": 17
+    "status": "postponed",
+    "scope": "No standalone audit batch scheduled. Next work is P2.0/P2.1 in plan.md.",
+    "candidate_entries": [],
+    "candidate_count": 0,
+    "delivery_plan": "analysis/phase2-delivery-plan.json"
   },
   "completed_batches": [
     {
@@ -8566,6 +8598,33 @@
       "completed": 11,
       "remaining": 30,
       "evidence": "analysis/scalar-input-batch.json"
+    },
+    {
+      "scope": "Raw input manager and binding configuration",
+      "reviewed": 17,
+      "completed": 14,
+      "remaining": 3,
+      "evidence": "analysis/input-owner-batch.json"
     }
-  ]
+  ],
+  "workflow_status": "postponed-by-user",
+  "postponed_on": "2026-11-03",
+  "postponement_reason": "Prioritize playable reconstruction; complete and integrate original functions alongside subsystem delivery.",
+  "blocks_phase2": false,
+  "active_delivery_plan": "analysis/phase2-delivery-plan.json",
+  "postponed_next_batch": {
+    "scope": "Raw producer/x87 and cursor numerical/owner call graph, with remaining manager SEH/startup string ownership. Research complete dependency boundary before coding; expand dependencies together where required.",
+    "candidate_entries": [
+      "006c7870",
+      "006c6ab0",
+      "006db620",
+      "0066a120",
+      "0066a220",
+      "0066a7c0",
+      "0066b990"
+    ],
+    "candidate_count": 7,
+    "verification": "One consolidated sanitizer/build/regression/evidence/ledger sweep; repeat affected checks only after a concrete fix.",
+    "readiness": "Raw manager/configuration storage and installation now exist. Remaining x87 behavior, singleton/frame/screen owners, intrusive strings and SEH are specific recovery tasks, not external blockers or blanket phase deferrals."
+  }
 }

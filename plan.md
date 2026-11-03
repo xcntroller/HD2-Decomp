@@ -13,13 +13,18 @@ Checked delivery items mean integrated and desktop-tested unless explicitly
 marked **source-only**. Source-only work, request validation and controlled
 fixtures do not establish actual game entry, live networking or desktop delivery.
 
-# Phase 1 — Front-end menus
+# Phase 1 — Front-end menus — closed2026-11-03
 
 Rebuild reachable front-end screens and dialogs in the readable compiled client,
 including navigation, settings, preparation data, service errors and a documented
 boundary for unavailable game receivers. Real world loading, gameplay-save
 receivers, post-mission results and in-game menus belong to Phase 2. A Phase 1
 checkbox does not require a running game unless its own text says otherwise.
+
+Phase1 is closed at the user's request2026-11-03, within the accepted front-end
+scope and explicitly source-only items below. Remaining loadout/gameplay/save/result
+and ready-server acceptance follow Phase2/3; the standalone function pass is
+postponed. Closure does not promote those deferred or untested flows to delivered.
 
 ## 0. Rebuild the original launch path to the menu — bounded checkpoint complete
 
@@ -187,47 +192,105 @@ explicit UI/payload/ownership contracts.
   **Source-only:** [four complete bodies; two exact instruction matches](analysis/delta-scroll-completion.md).
 - [x] Complete the scalar-owner and input-foundation batch, then verify it in one sweep.
   **Source-only:** [41 reviewed;11 complete;30 further recovery tasks](analysis/scalar-input-batch.md).
-- [ ] Complete all remaining partial functions whose dependencies are available.
-  Exhaust the [completion queue](analysis/function-completion-queue.md); record specific dependencies for deferred bodies.
-- [ ] Research Phase 2 dependencies and replace its outline with a detailed,
+- [x] Complete the input-manager and binding-configuration batch in one sweep.
+  **Source-only:** [17 reviewed;14 complete;three further recovery tasks](analysis/input-owner-batch.md).
+- [x] Research Phase 2 dependencies and replace its outline with a detailed,
   sectioned delivery plan, including evidence and verification gates.
+  **Planning only:** [dependency-led delivery and function completion](analysis/phase2-delivery-plan.md).
 
-# Phase 2 — Load a level and deliver game-dependent flows
+The exhaustive function-completion step is **postponed by the user2026-11-03**;
+its retained checkbox is in the postponed backlog below. Phase2 does not wait
+for review of all530 partials. Completed source work and the ledger are preserved.
 
-This is a new, unstarted stage after the front-end work. Exact dependencies and
-order must be established from original behavior before implementation; the
-items below are boundaries, not a claim that world loading is understood.
+# Phase 2 — Load a real level and deliver game-dependent flows
 
-Each subsystem milestone includes a function-completion pass: full original
-branches, state/ABI, ownership, side effects and failure paths. Prioritize
-assembly matching for parsers, save formats, numerical code and state/lifetime
-transitions. Keep unresolved native adaptations partial and carry their closure
-work explicitly; delegated engine calls earn no engine-body credit. Use the
-[completion gates](analysis/function-completion-plan.md) when detailing this phase.
+Phase1 closed; starting the first receiver/owner implementation batch. First targets: **one real world
+frame, then a controllable player and mission loop**. The
+[detailed plan](analysis/phase2-delivery-plan.md) gives original function seeds,
+research gaps, dependencies, failure contracts and acceptance for every section;
+the [machine index](analysis/phase2-delivery-plan.json) records their ordering.
 
-- [ ] Finish and desktop-verify the remaining single-player front-end flow.
-  Cover mode/mission/hero, loadouts, briefing, Back and unavailable-receiver behavior.
-- [ ] Recover the original single-player kind7 and multiplayer status9 transition
-  contracts, session preprocessing and the game owner (`00698510`).
-  [Single-player evidence](analysis/singleplayer-pipeline.md#briefing-and-game-entry),
-  [multiplayer evidence](analysis/multiplayer-pipeline.md#completion-boundary-and-blockers).
-- [ ] Reconstruct the required game/session owners, scene/camera and teardown,
-  including real failure and return paths.
-- [ ] Recover and implement level/mission asset loading through the actual archive
-  and resource dependencies; validate a real level reaches its first rendered frame.
-- [ ] Complete single-player mission/squad/equipment request consumption and
-  actual game entry; verify the level receives the selected preparation state.
-- [ ] Complete multiplayer status9 handoff for real controlled host/client
-  sessions, including connection cleanup and return on success or failure.
-- [ ] Implement gameplay-save load/resume and in-game save/restart receivers.
-  [Save contracts](analysis/menu-family-delivery.md#saves-and-loading).
-- [ ] Deliver mission and campaign debrief/result screens against real results,
-  including next/retry/return and profile persistence.
-  [Result contracts](analysis/menu-family-delivery.md#level-loading-and-post-game-follow-up).
-- [ ] Deliver in-game menu, Options/dialog variants and retained-game return.
-  [In-game contracts](analysis/menu-family-delivery.md#in-game-menu).
-- [ ] Verify complete level loading, game-dependent transitions and return to the
-  front end with real data and user desktop acceptance.
+For each delivery batch: research its complete original boundary, finish required
+function work, integrate existing recoveries, then verify once. Complete bounded
+full bodies where feasible; keep wider controller/loader exclusions explicitly
+partial. Source-only work and desktop delivery remain distinct. General ABI
+cleanup and byte matching are selective follow-up, not a new exhaustive gate.
+[Function policy](analysis/function-completion-plan.md).
+
+## 0. Confirm the first receiver and loading path — within the first implementation batch
+
+- [ ] Trace kind7/current mission →00698510/006989B0→006CA780; select a genuine
+  reachable mission, resolve required wrappers/interfaces and map ownership/failures.
+  [Checked starting boundary](analysis/phase2-boundary-map.json).
+
+Continue directly into section1 when this boundary is ready; section0 is targeted
+preparation, not a standalone audit-only milestone.
+
+## 1. Construct the game owner and consume the real request
+
+- [ ] Implement/integrate game/session subowners, scene/camera/callbacks and the
+  owned mission/squad/equipment handoff, completing needed original functions.
+- [ ] Verify repeat construction, partial-startup failure, teardown and Main return;
+  publish real owner/world views and retain honest loading readiness.
+
+## 2. Load an original mission to its first world frame
+
+- [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
+  ordered cleanup; integrate existing readers and finish needed parser/loader bodies.
+- [ ] User-verify actual mission scene/camera rendering, failure return and repeat
+  loading through Python; unsupported required assets/data cannot report success.
+
+## 3. Activate player controls and mission simulation
+
+- [ ] Implement actor/equipment spawning, input, camera, required collision/physics,
+  interactions, sound and script/objective consumers from the actual game call graph.
+- [ ] Integrate needed completed input bodies and close relevant producer/lifetime
+  gaps; verify a controllable soldier and genuine objective/failure, not just a viewer.
+
+## 4. Finish preparation, loadouts and briefing against the running game
+
+- [ ] Complete required preparation-function gaps and integrate descriptor-driven
+  Campaign/Lone Wolf/Carnage/standalone requests with actual spawned squad/equipment.
+- [ ] User-verify loadouts, constraints/presets, briefing and repeated Back/cancel.
+  Loadouts remain COMPLETELY UNTESTED until accessible through genuine progress;
+  this acceptance does not block section2's already accessible mission path.
+
+## 5. Retain, pause and resume the game
+
+- [ ] Complete/integrate retained-game entry, pause/player/equipment panels,
+  in-game Options/dialogs and their required owner/input/audio cleanup functions.
+- [ ] User-verify repeated pause/resume and modal cancellation preserve the same
+  real game; wire save/network-dependent actions only with their actual receivers.
+
+## 6. Implement real gameplay save, restore, restart and resume
+
+- [ ] Recover/implement required metadata, serializer, reference restoration and
+  controller receivers, completing relevant format/ownership functions together.
+- [ ] User-verify isolated actual save/load state round trips, restart and Main
+  resume, including malformed/incompatible data and failed-write/cancel behavior.
+
+## 7. Deliver real mission and campaign results
+
+- [ ] Complete/integrate required result generation, debrief/diary/campaign variants,
+  descriptor progression and persistence functions using genuine game results.
+- [ ] User-verify next/retry/Main return and failure/persistence handling; preserve
+  confirmed variant/sentinel contracts and distinguish captured-result UI tests.
+
+## 8. Prepare the shared multiplayer game receiver
+
+- [ ] Complete/integrate required status9 preprocessing/shared-owner request and
+  cleanup contracts; preserve the separate status7/8 connection owner.
+- [ ] Verify the source/integration boundary with honest unavailable transport.
+  Real Connect/Host, ready-server and live status9 acceptance remain Phase3;
+  Phase2 does not require a Phase3 server to finish this source boundary.
+
+## 9. Verify the integrated Phase2 delivery
+
+- [ ] User-verify two real mission/resource paths and the complete delivered
+  preparation/gameplay/pause/save/results/return chain, with the Phase3 live exclusion.
+- [ ] Run one consolidated affected verification sweep; record completed functions,
+  exact remaining partial branches and desktop acceptance. Backlog exhaustion is
+  not an exit requirement; required unsupported delivery behaviors remain open.
 
 # Phase 3 — Reconstruct multiplayer server and verify live networking
 
@@ -243,7 +306,14 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
   displays, responding favorites/refresh, Join/password/connection consoles and
   standalone connection screens. Verify against the rebuilt controlled server.
 - [ ] Verify host/client game handoff, failure/cancel cleanup and return paths.
-  Complete the Phase 2 status9 boundary against the reconstructed server.
+  Complete live acceptance of the Phase2 section8 receiver against the rebuilt server.
+
+## Postponed standalone completion pass
+
+- [ ] Complete all remaining partial functions whose dependencies are available.
+  **Postponed by user2026-11-03; not an active-phase prerequisite.** Preserve the
+  [530-entry backlog](analysis/function-completion-queue.md); bring relevant subsets
+  into delivery batches. Resume a dedicated exhaustive pass only if reprioritized.
 
 ## Evidence and validation rules
 
