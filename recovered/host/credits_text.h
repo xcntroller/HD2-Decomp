@@ -33,7 +33,7 @@ public:
         std::printf("Credits text ready: records=%zu rows=%zu speed=%.9g; no IShow/voice\n",document.records.size(),layout_.rows().size(),static_cast<double>(document.speed));
     }
     bool exhausted() const { return layout_.exhausted(); }
-    void draw(std::int16_t scroll) {
+    void draw(std::int32_t scroll) {
         const auto submissions=layout_.draw(scroll);
         TextOverlayState overlay(device_);
         const auto* previous=graphics_->methods->viewport(graphics_);

@@ -1,0 +1,1203 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-03",
+  "scope": "All41 selected batch candidates;11 complete,30 with specific further recovery work. Not externally blocked, no phase blanket deferral.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "ledger_sha256": "5832cdb44ab2ab521693e2906d28305fdf8576024b59d12963a3c3ecfa9ad839",
+  "reviewed": 41,
+  "completed": 11,
+  "remaining": 30,
+  "functions": [
+    {
+      "entry": "00656ca0",
+      "body_bytes": 39,
+      "body_ranges": [
+        [
+          "00656ca0",
+          "00656cc6"
+        ]
+      ],
+      "original_body_sha256": "141a621324fed23e6fb899087d9edd963c5232a294912fb707a3533afd77c161",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original screen focus+6C, raw child-pointer vector+08, valid-index virtual+04 and child callback vtable+44/+48/+50/+54/+58/+60; current native tree callbacks do not supply that live raw object/reentrant lookup ABI.",
+      "cached_exports": [],
+      "original_callees": [],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "00656cd0",
+      "body_bytes": 64,
+      "body_ranges": [
+        [
+          "00656cd0",
+          "00656d0f"
+        ]
+      ],
+      "original_body_sha256": "17b25bb6bc92b147a9943578d7553eab11db59c4c365e6b40a10ecc827999b7d",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original screen focus+6C, raw child-pointer vector+08, valid-index virtual+04 and child callback vtable+44/+48/+50/+54/+58/+60; current native tree callbacks do not supply that live raw object/reentrant lookup ABI.",
+      "cached_exports": [],
+      "original_callees": [],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "00656d10",
+      "body_bytes": 39,
+      "body_ranges": [
+        [
+          "00656d10",
+          "00656d36"
+        ]
+      ],
+      "original_body_sha256": "6f06f816f734538bedca3d7d86c6bb52e05cb2ae371029a7940f8927060401d0",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original screen focus+6C, raw child-pointer vector+08, valid-index virtual+04 and child callback vtable+44/+48/+50/+54/+58/+60; current native tree callbacks do not supply that live raw object/reentrant lookup ABI.",
+      "cached_exports": [],
+      "original_callees": [],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "00656d40",
+      "body_bytes": 39,
+      "body_ranges": [
+        [
+          "00656d40",
+          "00656d66"
+        ]
+      ],
+      "original_body_sha256": "73a57c1c0b1fd9c5249f28fe7ddd488ba70e6eca868e52657ff894b7788b7927",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original screen focus+6C, raw child-pointer vector+08, valid-index virtual+04 and child callback vtable+44/+48/+50/+54/+58/+60; current native tree callbacks do not supply that live raw object/reentrant lookup ABI.",
+      "cached_exports": [],
+      "original_callees": [],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "00656d70",
+      "body_bytes": 39,
+      "body_ranges": [
+        [
+          "00656d70",
+          "00656d96"
+        ]
+      ],
+      "original_body_sha256": "bdf34dc3e84448922ffad0f427a2f1d3838de57a0b183fc9914610e4f13950e6",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original screen focus+6C, raw child-pointer vector+08, valid-index virtual+04 and child callback vtable+44/+48/+50/+54/+58/+60; current native tree callbacks do not supply that live raw object/reentrant lookup ABI.",
+      "cached_exports": [],
+      "original_callees": [],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "00656e00",
+      "body_bytes": 42,
+      "body_ranges": [
+        [
+          "00656e00",
+          "00656e29"
+        ]
+      ],
+      "original_body_sha256": "01eca831549693e8cf47d19aaec1242fb11d088e9d7af38c2703f4fc2f6d980b",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original screen focus+6C, raw child-pointer vector+08, valid-index virtual+04 and child callback vtable+44/+48/+50/+54/+58/+60; current native tree callbacks do not supply that live raw object/reentrant lookup ABI.",
+      "cached_exports": [],
+      "original_callees": [],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/screen_input.h",
+        "recovered/host/pointer_dispatch_probe.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "0066b990",
+      "body_bytes": 1269,
+      "body_ranges": [
+        [
+          "0066b990",
+          "0066be84"
+        ]
+      ],
+      "original_body_sha256": "3c99dce9923917d36af2d441cfc8c4d44b6a4b2d2c142aee9d598a83bf1588e1",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Requires raw frontend/input/screen/capture objects, segmented screen-stack ownership and full callback ABI; native pointer sequencing is integrated but delegates through retained typed adapters. Depends on0066A220/0066A7C0 and raw screen/capture owners.",
+      "cached_exports": [
+        "analysis/work/menu-input-route/0066b990.json"
+      ],
+      "original_callees": [
+        "00620e30",
+        "0066a7c0",
+        "0066b110",
+        "0066a020",
+        "007e5e00",
+        "00669ff0",
+        "0066a0c0",
+        "006332a0",
+        "0066a220",
+        "0066a030",
+        "0066a0f0",
+        "0066a0a0"
+      ],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_motion.h",
+        "recovered/frontend/pointer_dispatch.h",
+        "recovered/host/pointer_dispatch_probe.h",
+        "recovered/host/engine_window.cpp",
+        "analysis/menu-update-map.json",
+        "recovered/frontend/frontend_update.h",
+        "recovered/host/menu_pointer_session.h",
+        "recovered/host/application_menu.h",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "0066a120",
+      "body_bytes": 45,
+      "body_ranges": [
+        [
+          "0066a120",
+          "0066a14c"
+        ]
+      ],
+      "original_body_sha256": "a8f2234a1869bf940f176879b51005c14cbb58a8d58165de1cfc7cd4fe800cb4",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Requires original cursor globals00840660/64, input dimensions+24/+28 and exact x87 output stores with Z=-1; current host helper folds caller Z+.1 and guards dimensions. Recover separate coordinate body and global/input-owner view.",
+      "cached_exports": [
+        "analysis/work/menu-widget-input-20261031/0066a120.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_pick.h",
+        "recovered/host/menu_scene.h",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "0066a220",
+      "body_bytes": 655,
+      "body_ranges": [
+        [
+          "0066a220",
+          "0066a4ae"
+        ]
+      ],
+      "original_body_sha256": "73491eb2fec047cff4eaed26e99610c2d957b4c7be50086e85104a4d2c0cfd39",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Requires original singleton/frame owner, direct IGraph104/EC/F0/F4 polling order, shared cursor globals and x87 clipping/timing/frame effects; current PointerUpdate consumes supplied samples and native cursor fields. Close owner/polling/numerical ABI together.",
+      "cached_exports": [
+        "analysis/work/menu-input-route/0066a220.json"
+      ],
+      "original_callees": [
+        "0066a0c0",
+        "007e4eae",
+        "0066a0f0"
+      ],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_click.h",
+        "recovered/frontend/pointer_click_timing.h",
+        "recovered/frontend/pointer_update.h",
+        "recovered/frontend/pointer_cursor.h",
+        "recovered/frontend/cursor_frame.h",
+        "recovered/host/menu_scene.h",
+        "recovered/host/engine_window.cpp",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "0066a7c0",
+      "body_bytes": 134,
+      "body_ranges": [
+        [
+          "0066a7c0",
+          "0066a845"
+        ]
+      ],
+      "original_body_sha256": "1cfcdb5c590b203e8e819630da9e73006712472bee86c9b439fe948332733940",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Requires0066A120 ray/global owner contract, original engine picking/frame-ID calls and picked-target store at input+38; current host supplies guarded ray/services and owns target elsewhere.",
+      "cached_exports": [
+        "analysis/work/menu-input-route/0066a7c0.json"
+      ],
+      "original_callees": [
+        "0066a120"
+      ],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/pointer_pick.h",
+        "recovered/host/menu_scene.h",
+        "recovered/host/engine_window.cpp",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "0066c770",
+      "body_bytes": 468,
+      "body_ranges": [
+        [
+          "0066c770",
+          "0066c943"
+        ]
+      ],
+      "original_body_sha256": "4ec2f1aef7ee1d1718db48f5082e70575bc814ac8b0eba3712f8d05235910145",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover segmented queue globals008AE484..4AC, six-DWORD event ownership, intrusive payload release004050F0, block allocation/free007E1CC0/0066E9F0 and SEH unwind; native deque/shared ownership remains different.",
+      "cached_exports": [
+        "analysis/work/menu-frame-timing-20261031/0066c770.json",
+        "analysis/work/menu-screen-routing/0066c770.json"
+      ],
+      "original_callees": [
+        "0066e9f0",
+        "007e1cc0",
+        "004050f0",
+        "0066c950"
+      ],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/menu_event_queue.h",
+        "recovered/frontend/menu_event_queue.cpp",
+        "analysis/menu-update-map.json",
+        "recovered/frontend/frontend_update.h",
+        "recovered/host/menu_pointer_session.h",
+        "recovered/host/application_menu.h",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "0066c950",
+      "body_bytes": 3386,
+      "body_ranges": [
+        [
+          "0066c950",
+          "0066d689"
+        ]
+      ],
+      "original_body_sha256": "1c63adb2a803fb047421b322200478cf16d4b25aa5a88b0812c210abdf8bec52",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover raw screen registry/stack, resource/capture owner+10, intrusive event payload and segmented deferred storage before full dispatcher ABI/failure closure; native retained typed services and unsupported-event diagnostics remain different.",
+      "cached_exports": [
+        "analysis/work/menu-screen-routing/0066c950.json"
+      ],
+      "original_callees": [
+        "0066c950",
+        "00653930",
+        "00620e30",
+        "0066ea70",
+        "006dcad0",
+        "007dc460",
+        "004202f0",
+        "0066e2e0",
+        "007e51ce",
+        "0066e310",
+        "006332a0",
+        "0066e240",
+        "00615a90",
+        "007e1cc0",
+        "00663810",
+        "004336c0",
+        "0066ea80",
+        "00653840",
+        "0066e610",
+        "0066e210",
+        "006b6530",
+        "0066a7c0",
+        "0066e960",
+        "0066a860"
+      ],
+      "evidence": [
+        "analysis/menu-ui-map.json",
+        "recovered/frontend/menu_event_queue.h",
+        "recovered/frontend/menu_event_queue.cpp",
+        "recovered/host/engine_window.cpp",
+        "analysis/menu-screen-map.json",
+        "recovered/frontend/screen_stack.h",
+        "recovered/frontend/screen_registry.h",
+        "recovered/frontend/defined_screen_events.h",
+        "recovered/host/menu_screen_events.h",
+        "analysis/menu-runtime-confirmation-map.json",
+        "recovered/frontend/application_events.h",
+        "analysis/menu-application-routing-map.json",
+        "analysis/menu-common-services-map.json",
+        "recovered/frontend/common_event_services.h",
+        "analysis/menu-update-map.json",
+        "recovered/host/application_menu.h",
+        "recovered/host/menu_pointer_session.h",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006691a0",
+      "body_bytes": 15,
+      "body_ranges": [
+        [
+          "006691a0",
+          "006691ae"
+        ]
+      ],
+      "original_body_sha256": "f0c2ec2d75b5247c82fc83a6b9963cf154a4145235d1664fc2d36f552013ab44",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete thiscall/RET0 ordered reply DWORD clears+88/+8C only, preserving mode/queue/visibility and surrounding owner storage.",
+      "cached_exports": [],
+      "original_callees": [],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/frontend/runtime_confirmation.h"
+      ]
+    },
+    {
+      "entry": "0066b380",
+      "body_bytes": 88,
+      "body_ranges": [
+        [
+          "0066b380",
+          "0066b3d7"
+        ]
+      ],
+      "original_body_sha256": "7a854513d7f73b954ad27c0faff2d78bf41d388647b98e018dc3314946c11e4c",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover raw graphics+A8 and fastcall output/conversion bridge; original unterminated1023-read MultiByteToWideChar stack-overread path differs from intentional native length_error. Review that policy before whole-body credit.",
+      "cached_exports": [
+        "analysis/work/frontend-key-preprocessing/0066b380.json"
+      ],
+      "original_callees": [
+        "EXTERNAL:00000050",
+        "007e4eae"
+      ],
+      "evidence": [
+        "analysis/keyboard-preprocessing-map.json",
+        "analysis/keyboard-preprocessing.md",
+        "recovered/frontend/keyboard_preprocessing.h",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006c7870",
+      "body_bytes": 2849,
+      "body_ranges": [
+        [
+          "006c7870",
+          "006c8390"
+        ]
+      ],
+      "original_body_sha256": "4245425a48600732b443674642714f1b0e9eef78c613935ad1567abd934ffe5b",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover manager raw vectors/record ABI and full x87 saturation/POV/gate behavior; current POV bounds exception and float-environment/signaling-NaN differences remain. Depends on manager owner and device snapshot contracts.",
+      "cached_exports": [
+        "analysis/work/startup-input-prerequisites/006c7870.json"
+      ],
+      "original_callees": [
+        "007e6f40"
+      ],
+      "evidence": [
+        "analysis/binding-producer-map.json",
+        "analysis/binding-producer.md",
+        "recovered/input/binding_producer.h",
+        "analysis/graphics-input-services-map.json",
+        "analysis/graphics-input-services.md",
+        "recovered/host/graphics_input_services.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006c7480",
+      "body_bytes": 807,
+      "body_ranges": [
+        [
+          "006c7480",
+          "006c77a6"
+        ]
+      ],
+      "original_body_sha256": "7971b6bf5c96edca4655559ea59610c0593f89186e92e205c4b88c285a4973b4",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original manager binding/output vector growth/allocator/failure ABI, maps/counts and real callback publication with nontransactional replacement ordering. Current native vectors/at guards and typed callback owner differ.",
+      "cached_exports": [
+        "analysis/work/input-binding-installation/006c7480.json"
+      ],
+      "original_callees": [
+        "006c8e60",
+        "0045ccc0"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006c7440",
+      "body_bytes": 60,
+      "body_ranges": [
+        [
+          "006c7440",
+          "006c747b"
+        ]
+      ],
+      "original_body_sha256": "461ade674cce93591640170fe8869bb94977049c2a4902f420279dee58c2da57",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original global manager008AEA48 call ABI and006C7480 installer before closing this five-argument pack/forward wrapper; current function takes explicit state/services rather than original receiver/global.",
+      "cached_exports": [
+        "analysis/work/input-binding-installation/006c7440.json"
+      ],
+      "original_callees": [
+        "006c7480"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006a8600",
+      "body_bytes": 42,
+      "body_ranges": [
+        [
+          "006a8600",
+          "006a8629"
+        ]
+      ],
+      "original_body_sha256": "43cc2c15a53f5b691bb6a10f676e3961a54b8e79b4c327ea7b66f81e979d08d1",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Depends on original global-manager006C7440 ABI; current explicit input/services template preserves setting/dirty policy but is not the original stack-record-to-global-manager body.",
+      "cached_exports": [
+        "analysis/work/input-profile-binding-installer/006a8600.json"
+      ],
+      "original_callees": [
+        "006c7440"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006a8630",
+      "body_bytes": 92,
+      "body_ranges": [
+        [
+          "006a8630",
+          "006a868b"
+        ]
+      ],
+      "original_body_sha256": "41bd1cc19f5ff1be0bae1c4b02897ff3bca1b6b6a87dfeab7ab1c30dc2f95968",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Depends on006A8600 original record-application/global-manager ABI; configuration+04/+08 record layout is now checked, but borrowed callback re-resolution and native at failure differ.",
+      "cached_exports": [
+        "analysis/work/input-binding-configuration/006a8630.json"
+      ],
+      "original_callees": [
+        "006a8600"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006a8690",
+      "body_bytes": 34,
+      "body_ranges": [
+        [
+          "006a8690",
+          "006a86b1"
+        ]
+      ],
+      "original_body_sha256": "dd9764b460e6b4d6398107046ca685b6c1d620a8e8112a116c723d01961dbb67",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Depends on complete006A8630 original helper ABI; current template passes explicit input/services before mode storage. Valid mode checks are recovered, not complete caller ABI.",
+      "cached_exports": [
+        "analysis/work/input-binding-context/006a8690.json"
+      ],
+      "original_callees": [
+        "006a8630"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006a86c0",
+      "body_bytes": 121,
+      "body_ranges": [
+        [
+          "006a86c0",
+          "006a8738"
+        ]
+      ],
+      "original_body_sha256": "d359dbf7c6c02ddc387ca8ae953178ff009eaff89f1460d63dbb1663717286c2",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Depends on006A8600 global installer and original callback/mutable vector lifetime; native indexed at exceptions differ after callback storage changes. Current-mode/dirty eligibility remains supported.",
+      "cached_exports": [
+        "analysis/work/input-binding-configuration/006a86c0.json"
+      ],
+      "original_callees": [
+        "006a8600"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006a8740",
+      "body_bytes": 47,
+      "body_ranges": [
+        [
+          "006a8740",
+          "006a876e"
+        ]
+      ],
+      "original_body_sha256": "ff1841e49e9480263ec280c932fce916c68f66aebda7840ce60399f8605d5156",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete ECX/RET0 settings end=begin reset preserving allocation/header/mode/manager state; original copy loop proven statically unreachable, full47-byte boundary accounted.",
+      "cached_exports": [
+        "analysis/work/input-binding-default-helpers/006a8740.json",
+        "analysis/work/profile-selection-dependencies/006a8740.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_editor.h"
+      ]
+    },
+    {
+      "entry": "006a8be0",
+      "body_bytes": 29,
+      "body_ranges": [
+        [
+          "006a8be0",
+          "006a8bfc"
+        ]
+      ],
+      "original_body_sha256": "0c631f4c5a024068c9261aa86761f92fa87a7f1bc8da27af212f338b0b0a2831",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Depends on original006A8C00/006AA090 defaults constructors and receiver/global call ABI; current selector branches to typed reset helper rather than complete original callees.",
+      "cached_exports": [
+        "analysis/work/input-binding-layout-choice/006a8be0.json",
+        "analysis/work/options-binding-edit-20261031/006a8be0.json"
+      ],
+      "original_callees": [
+        "006a8c00",
+        "006aa090"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006a8c00",
+      "body_bytes": 5199,
+      "body_ranges": [
+        [
+          "006a8c00",
+          "006aa04e"
+        ]
+      ],
+      "original_body_sha256": "e54cb8e34a0b946c49b578ca6b5dd242ea695e9bc761c68ab89f55cd91ad5915",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover all original repeated record append/growth helpers, raw record-padding provenance, allocator and SEH/error ordering for92 primary records; native vector push_back/default padding and failure cleanup remain different.",
+      "cached_exports": [
+        "analysis/work/input-binding-context/006a8c00.json"
+      ],
+      "original_callees": [
+        "006a8740",
+        "006aa050",
+        "006a86c0",
+        "006ac250"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006aa090",
+      "body_bytes": 5205,
+      "body_ranges": [
+        [
+          "006aa090",
+          "006ab4e4"
+        ]
+      ],
+      "original_body_sha256": "6093e88463443b475255306e16768db04e4f657a58b7f73c8fb13d3c8501c078",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover all original repeated record append/growth helpers, raw record-padding provenance, allocator and SEH/error ordering for92 alternate records; native vector push_back/default padding and failure cleanup remain different.",
+      "cached_exports": [
+        "analysis/work/input-binding-context/006aa090.json"
+      ],
+      "original_callees": [
+        "006a8740",
+        "006aa050",
+        "006a86c0",
+        "006ac250"
+      ],
+      "evidence": [
+        "analysis/binding-installation-map.json",
+        "analysis/binding-installation.md",
+        "recovered/input/binding_installation.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_defaults.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006c6a20",
+      "body_bytes": 132,
+      "body_ranges": [
+        [
+          "006c6a20",
+          "006c6aa3"
+        ]
+      ],
+      "original_body_sha256": "5b5053536c7def9a4be6fe6d4571069a8e8be6d44dce0db275112015bf4b4d97",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original raw manager pointer triples, graphics/map/gate fields and constructor object/global provenance; native owning state has different layout. Axis setter006C6C90 is now complete but does not close parent construction.",
+      "cached_exports": [
+        "analysis/work/input-manager-lifetime/006c6a20.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006c6ab0",
+      "body_bytes": 173,
+      "body_ranges": [
+        [
+          "006c6ab0",
+          "006c6b5c"
+        ]
+      ],
+      "original_body_sha256": "1548ec802f08d3419d24e8fe8a2fe063cb44a54f23909148755d4f7d869a8230",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original retained joystick records, reverse device release+08, four vector allocations/free order and raw manager destruction ABI; native vector/RAII owner cleanup is not original allocator/SEH lifetime.",
+      "cached_exports": [
+        "analysis/work/input-manager-lifetime/006c6ab0.json"
+      ],
+      "original_callees": [
+        "006c6b60",
+        "007e1cc0"
+      ],
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006c6b60",
+      "body_bytes": 303,
+      "body_ranges": [
+        [
+          "006c6b60",
+          "006c6c8e"
+        ]
+      ],
+      "original_body_sha256": "bb577f2323b1bf1a6bfaefc34c14e5ceb37656c5b4aae1ba298d8fc8ee41bc8d",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original raw binding/output pointer-triple end resets and joystick record/device-release ABI, including reentrant ownership; native vector clearing/release adapters remain different.",
+      "cached_exports": [
+        "analysis/work/input-manager-release/006c6b60.json"
+      ],
+      "original_callees": [
+        "006c8e50",
+        "00437cb0"
+      ],
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006c6cc0",
+      "body_bytes": 809,
+      "body_ranges": [
+        [
+          "006c6cc0",
+          "006c6fe8"
+        ]
+      ],
+      "original_body_sha256": "ea625bc308ece3d631d3a4a38b1694f2c6082c03a2adb3604de871e1da3f5bd9",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover raw manager attachment layout, retained joystick+04 records, append allocation/error paths and borrowed array mutation contract; native validation/exception unwind differs. Limit setter alone now closes independently.",
+      "cached_exports": [
+        "analysis/work/input-manager-lifetime/006c6cc0.json"
+      ],
+      "original_callees": [
+        "006c9190",
+        "006c8e40",
+        "006c6c90",
+        "007e1cc0",
+        "006c9210",
+        "006c91d0",
+        "007e520f"
+      ],
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006c6c90",
+      "body_bytes": 35,
+      "body_ranges": [
+        [
+          "006c6c90",
+          "006c6cb2"
+        ]
+      ],
+      "original_body_sha256": "9adf4a77a9a7b547829a8bb024a1947012c2946f20ad942ccd761c05a4c8f9a2",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete thiscall/RET12 signed32-to-float x87 stores+A8/+AC/+B0, original control/rounding/precision flags and AL=true; live manager service calls actual body.",
+      "cached_exports": [
+        "analysis/work/input-manager-lifetime/006c6c90.json",
+        "analysis/work/input-manager-release/006c6c90.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/input/axis_limits.h",
+        "recovered/input/input_manager.h"
+      ]
+    },
+    {
+      "entry": "006c6ff0",
+      "body_bytes": 171,
+      "body_ranges": [
+        [
+          "006c6ff0",
+          "006c709a"
+        ]
+      ],
+      "original_body_sha256": "136632a2acce51866dd94085459bebfb8b715bd63018629055178e6205d18ece",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Recover original manager vector headers and scan/count tables, including one-DWORD-only mouse count clear and preserved gates/devices; current owner uses native vectors and shifted component storage.",
+      "cached_exports": [
+        "analysis/work/input-manager-lifetime/006c6ff0.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/input-manager-map.json",
+        "analysis/input-manager.md",
+        "recovered/input/input_manager.h",
+        "recovered/input/binding_producer.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006db620",
+      "body_bytes": 184,
+      "body_ranges": [
+        [
+          "006db620",
+          "006db6d7"
+        ]
+      ],
+      "original_body_sha256": "519720bdbe172510e6707e3415510f5ca7e999ea78a20fbcb4ac66a20b371387",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Depends on raw input manager clear006C6FF0/attach006C6CC0, actual joystick-array view and original language/text owner ABI. Native normal startup is integrated but those owners/locale failure paths remain partial.",
+      "cached_exports": [
+        "analysis/work/input-manager-startup-boundary/006db620.json"
+      ],
+      "original_callees": [
+        "006b1090",
+        "006c6cc0",
+        "007e1cc0",
+        "007e4eae",
+        "006c6ff0",
+        "006b67b0"
+      ],
+      "evidence": [
+        "analysis/startup-localization-map.json",
+        "analysis/startup-localization.md",
+        "recovered/frontend/input_setup.h",
+        "recovered/frontend/startup_language.h",
+        "recovered/frontend/localized_text.h",
+        "recovered/host/startup_localization.h",
+        "analysis/graphics-input-services-map.json",
+        "analysis/graphics-input-services.md",
+        "recovered/host/graphics_input_services.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "006e5300",
+      "body_bytes": 28,
+      "body_ranges": [
+        [
+          "006e5300",
+          "006e531b"
+        ]
+      ],
+      "original_body_sha256": "55574590c648d0cae6eb45d5293c7051ffc5409719072ff472932292c1e4d990",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete fastcall ECX/EDX bounded CR/LF/end scanner with DWORD count and NUL-as-data; integrated localized-text parser calls this body.",
+      "cached_exports": [
+        "analysis/work/startup-localization-record-parser/006e5300.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/frontend/line_scan.h",
+        "recovered/frontend/localized_text.h"
+      ]
+    },
+    {
+      "entry": "006a81c0",
+      "body_bytes": 29,
+      "body_ranges": [
+        [
+          "006a81c0",
+          "006a81dc"
+        ]
+      ],
+      "original_body_sha256": "e36c63f7abb882ff08ac469cd16ab22bf230cc82747985f39e369f426db63201",
+      "disposition": "open-specific-recovery-work",
+      "contract_or_remaining_work": "Original PUSH ECX then MOV CL,[ESP+3] sets header from saved this>>24, returns EAX=this, zeroes three pointer words and mode2 while preserving header padding. Current native header0/constructor return/lifetime differ; recover raw construction ABI, not an unwritten-byte exception.",
+      "cached_exports": [
+        "analysis/work/controller-remaining-20261030/006a81c0.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/controller-integration-map.json",
+        "analysis/controller-integration.md",
+        "recovered/input/binding_configuration.h",
+        "analysis/function-completion-audit.md",
+        "analysis/phase1-traversal.md",
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch.json"
+      ]
+    },
+    {
+      "entry": "0067ea10",
+      "body_bytes": 10,
+      "body_ranges": [
+        [
+          "0067ea10",
+          "0067ea19"
+        ]
+      ],
+      "original_body_sha256": "01caaa228fe4f4c7fe4269994a79702b290762107c5e6b67c17e8d8525fc7585",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete thiscall/RET4 state status DWORD store at original this+04; integrated ApplicationState field order; exact i386 body match.",
+      "cached_exports": [
+        "analysis/work/controller-integration-20261030/0067ea10.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/frontend/application_states.h"
+      ]
+    },
+    {
+      "entry": "0066a860",
+      "body_bytes": 10,
+      "body_ranges": [
+        [
+          "0066a860",
+          "0066a869"
+        ]
+      ],
+      "original_body_sha256": "da8ed066464dd5609d8fbaa318c37e2ea2eb026f8654af684649d721573ae083",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete thiscall/RET4 raw input-byte store at+48, preserving all256 byte values; actual session uses the original-prefix body.",
+      "cached_exports": [
+        "analysis/work/menu-frame-timing-20261031/0066a860.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/frontend/pointer_inhibition.h",
+        "recovered/host/menu_pointer_session.h"
+      ]
+    },
+    {
+      "entry": "006a8230",
+      "body_bytes": 40,
+      "body_ranges": [
+        [
+          "006a8230",
+          "006a8257"
+        ]
+      ],
+      "original_body_sha256": "822bfa93c31d77350de65c53455066a137f1a043d016682ac36ffebbf10de5a5",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete stdcall/RET4 low-byte reserved-scan predicate for original14-entry terminated list; AL Boolean result.",
+      "cached_exports": [
+        "analysis/work/options-binding-final-20261031/006a8230.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_editor.h"
+      ]
+    },
+    {
+      "entry": "006a83c0",
+      "body_bytes": 178,
+      "body_ranges": [
+        [
+          "006a83c0",
+          "006a8471"
+        ]
+      ],
+      "original_body_sha256": "08342e291580f380c7cef366709eca0ec8ef80367a1bea24cb4326632f124892",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete thiscall/RET16 binding edit: full DWORD gates before WORD truncation, direction/dirty update, original conflict call and AL Boolean return.",
+      "cached_exports": [
+        "analysis/work/options-binding-edit-20261031/006a83c0.json"
+      ],
+      "original_callees": [
+        "006a8480",
+        "006a8230"
+      ],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_editor.h"
+      ]
+    },
+    {
+      "entry": "006a8480",
+      "body_bytes": 298,
+      "body_ranges": [
+        [
+          "006a8480",
+          "006a85a9"
+        ]
+      ],
+      "original_body_sha256": "60b2542999cad67aabf5fd004efcfdabe0593b07dba6e6b76292d5092807bd39",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete thiscall/RET4 conflict traversal with hidden/P-caption exemptions, exact mode overlap and kind/code/dirty writes, preserved direction/padding, AL=0 and no eager empty-list selected read.",
+      "cached_exports": [
+        "analysis/work/options-binding-final-20261031/006a8480.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_editor.h"
+      ]
+    },
+    {
+      "entry": "006a85b0",
+      "body_bytes": 79,
+      "body_ranges": [
+        [
+          "006a85b0",
+          "006a85fe"
+        ]
+      ],
+      "original_body_sha256": "4754267c52313828e482c5dad175e891f3e2b8466f8c149e1c26b76c9f56fc66",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete ECX/RET0 first unassigned DWORD index or FFFFFFFF including hidden records; original configuration/record layouts.",
+      "cached_exports": [
+        "analysis/work/input-binding-default-helpers/006a85b0.json",
+        "analysis/work/options-binding-delivery-20261031/006a85b0.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_editor.h"
+      ]
+    },
+    {
+      "entry": "006a8290",
+      "body_bytes": 104,
+      "body_ranges": [
+        [
+          "006a8290",
+          "006a82f7"
+        ]
+      ],
+      "original_body_sha256": "7bc5dded4d53024e848fa33406bee09c788909db5f68edd258391c3880a81328",
+      "disposition": "complete-source-only",
+      "contract_or_remaining_work": "Complete thiscall/RET8 contiguous-group ordinal output: write-1 first, reject signed-negative/null/out-of-range index, preserve output alias ordering, valid one-based result.",
+      "cached_exports": [
+        "analysis/work/options-binding-delivery-20261031/006a8290.json"
+      ],
+      "original_callees": [],
+      "evidence": [
+        "analysis/scalar-input-batch.md",
+        "analysis/scalar-input-batch-map.json",
+        "recovered/frontend/original_abi.h",
+        "recovered/input/binding_configuration.h",
+        "recovered/input/binding_editor.h"
+      ]
+    }
+  ]
+}

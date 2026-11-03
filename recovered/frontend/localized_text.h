@@ -2,6 +2,7 @@
 #define HD2_FRONTEND_LOCALIZED_TEXT_H
 
 #include "frontend/startup_language.h"
+#include "frontend/line_scan.h"
 #include <limits>
 #include <map>
 #include <utility>
@@ -61,8 +62,7 @@ inline void parse_localized_text(LocalizedTextCache& cache, std::string_view byt
     while (begin < bytes.size()) {
         while (begin < bytes.size() && (bytes[begin] == '\r' || bytes[begin] == '\n')) ++begin;
         if (begin == bytes.size()) return;
-        const auto end = bytes.find_first_of("\r\n", begin);
-        const auto length = (end == std::string_view::npos ? bytes.size() : end) - begin;
+        const auto length = scan_localized_line(bytes.data()+begin,bytes.data()+bytes.size());
         if (!length) return;
         parse_localized_text_record(cache, bytes.substr(begin, length));
         begin += length;

@@ -1,0 +1,85 @@
+{
+  "scope": "Five complete button selection/transition bodies; static comparison is distinct from behavioral and ABI verification. No original execution.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "0066a050",
+      "hex": "8b44240485c0740b854424087412b001c208008b44240885c07405b001c2080032c0c20800",
+      "meaning": "Entire frozen function body, including each branch and return"
+    },
+    {
+      "address": "0066a080",
+      "hex": "8b412c8b5424045052e8c2ffffffc20400",
+      "meaning": "Entire frozen function body, including each branch and return"
+    },
+    {
+      "address": "0066a0a0",
+      "hex": "8b41308b5424045052e8a2ffffffc20400",
+      "meaning": "Entire frozen function body, including each branch and return"
+    },
+    {
+      "address": "0066a0c0",
+      "hex": "568b74240856e8d5ffffff84c0741056e8abffffff84c07506b0015ec2040032c05ec20400",
+      "meaning": "Entire frozen function body, including each branch and return"
+    },
+    {
+      "address": "0066a0f0",
+      "hex": "568b74240856e8a5ffffff84c0751056e87bffffff84c07406b0015ec2040032c05ec20400",
+      "meaning": "Entire frozen function body, including each branch and return"
+    }
+  ],
+  "vtables": [],
+  "direct_calls": [
+    {
+      "site": "0066a089",
+      "target": "0066a050"
+    },
+    {
+      "site": "0066a0a9",
+      "target": "0066a050"
+    },
+    {
+      "site": "0066a0c6",
+      "target": "0066a0a0"
+    },
+    {
+      "site": "0066a0d0",
+      "target": "0066a080"
+    },
+    {
+      "site": "0066a0f6",
+      "target": "0066a0a0"
+    },
+    {
+      "site": "0066a100",
+      "target": "0066a080"
+    }
+  ],
+  "resource_anchors": [],
+  "comparison_functions": [
+    {
+      "entry": "0066a050",
+      "candidate_symbol": "__ZN3hd28frontend24pointer_buttons_selectedEjj@8"
+    },
+    {
+      "entry": "0066a080",
+      "candidate_symbol": "__ZNK3hd28frontend14PointerButtons19previously_selectedEj"
+    },
+    {
+      "entry": "0066a0a0",
+      "candidate_symbol": "__ZNK3hd28frontend14PointerButtons18currently_selectedEj"
+    },
+    {
+      "entry": "0066a0c0",
+      "candidate_symbol": "__ZNK3hd28frontend14PointerButtons7pressedEj"
+    },
+    {
+      "entry": "0066a0f0",
+      "candidate_symbol": "__ZNK3hd28frontend14PointerButtons8releasedEj"
+    }
+  ]
+}

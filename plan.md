@@ -181,8 +181,14 @@ explicit UI/payload/ownership contracts.
   [Desktop accepted2026-11-02](analysis/resource-fullscreen.md#desktop-acceptance--2026-11-02).
 - [x] Fix team slot dimming, rapid picker double-clicks and unreachable-server selection.
   [Desktop accepted2026-11-03](analysis/team-browser-selection.md#desktop-acceptance--2026-11-03).
-- [ ] Audit existing partial functions and complete a small bounded group.
-  [Completion and selective matching pass](analysis/function-completion-plan.md); required before Phase2 implementation.
+- [x] Audit existing partial functions and complete a small bounded group.
+  **Source-only:** [564-entry audit; five complete button queries](analysis/function-completion-audit.md).
+- [x] Complete cursor delta queries and Credits scroll storage.
+  **Source-only:** [four complete bodies; two exact instruction matches](analysis/delta-scroll-completion.md).
+- [x] Complete the scalar-owner and input-foundation batch, then verify it in one sweep.
+  **Source-only:** [41 reviewed;11 complete;30 further recovery tasks](analysis/scalar-input-batch.md).
+- [ ] Complete all remaining partial functions whose dependencies are available.
+  Exhaust the [completion queue](analysis/function-completion-queue.md); record specific dependencies for deferred bodies.
 - [ ] Research Phase 2 dependencies and replace its outline with a detailed,
   sectioned delivery plan, including evidence and verification gates.
 

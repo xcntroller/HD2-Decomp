@@ -46,8 +46,7 @@ public:
         const auto& buttons = pointer_.buttons();
         input_ = {buttons.pressed(3), buttons.released(3), buttons.currently_selected(3),
                   update_.click.click, update_.click.double_click,
-                  frontend::pointer_moved(pointer_.cursor().horizontal(), pointer_.cursor().vertical()),
-                  frontend::pointer_wheel_moved(pointer_.cursor().wheel_delta())};
+                  pointer_.cursor().moved(), pointer_.cursor().wheel_moved()};
         return update_.processed;
     }
     const frontend::PointerDispatchInput& input() const { return input_; }

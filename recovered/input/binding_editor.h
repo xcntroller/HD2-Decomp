@@ -4,62 +4,77 @@
 #include <optional>
 
 namespace hd2::input {
-// 006A8230, literal NUL-terminated scan list008424F0.
-inline bool reserved_binding_scan(std::uint16_t scan) {
-    const auto byte = static_cast<std::uint8_t>(scan);
-    return (byte >= 0x3b && byte <= 0x44) || byte == 0x57 || byte == 0x58 || byte == 1 || byte == 0xc5;
+//006A8230: original stack DWORD is compared as a low byte; stdcall/AL/RET4.
+HD2_CLIENT_BODY inline bool HD2_CLIENT_STDCALL reserved_binding_scan(std::uint32_t scan) {
+    const auto byte=static_cast<std::uint8_t>(scan);
+    return (byte>=0x3b && byte<=0x44) || byte==0x57 || byte==0x58 || byte==1 || byte==0xc5;
 }
-// 006A8480: only overlapping modes conflict. Hidden commands never lose their
-// binding; the two original P commands (captions2848/2856) may share a key.
-inline void remove_binding_conflicts(BindingConfiguration &configuration, std::size_t index) {
-    const auto selected = configuration.settings.at(index);
-    for (std::size_t i = 0; i < configuration.settings.size(); ++i) {
-        auto &other = configuration.settings[i];
-        if (i == index || other.group == 0xffffffffu || other.device_kind != selected.device_kind ||
-            other.code != selected.code || other.direction != selected.direction)
-            continue;
-        if ((other.caption == 0xb28 && selected.caption == 0xb20) ||
-            (other.caption == 0xb20 && selected.caption == 0xb28))
-            continue;
-        const bool overlap = selected.mode == 1 ? other.mode >= 1 && other.mode <= 3
-                             : selected.mode == 2
-                                 ? other.mode == 1 || other.mode == 2
-                                 : selected.mode == 3 && (other.mode == 1 || other.mode == 3);
-        if (overlap) {
-            other.device_kind = 0;
-            other.code = 0;
-            other.dirty = 1;
-        }
+//006A8480: no eager selected-index read on an empty vector; AL is always zero.
+inline std::uint8_t HD2_CLIENT_THISCALL BindingConfiguration::remove_conflicts(std::uint32_t index) {
+    for(std::size_t i=0;settings.data()!=nullptr && i<settings.size();++i) {
+        auto& other=settings[i];
+        if(i==index || other.group==0xffffffffu) continue;
+        const auto& selected=settings[index];
+        if(other.code!=selected.code || other.device_kind!=selected.device_kind ||
+                other.direction!=selected.direction) continue;
+        if((other.caption==0xb28 && selected.caption==0xb20) ||
+                (other.caption==0xb20 && selected.caption==0xb28)) continue;
+        const bool overlap=selected.mode==1 ? other.mode>=1 && other.mode<=3
+            : selected.mode==2 ? other.mode==1 || other.mode==2
+            : selected.mode==3 && (other.mode==1 || other.mode==3);
+        if(overlap) { other.device_kind=0;other.code=0;other.dirty=1; }
     }
+    return 0;
 }
-// 006A83C0. Direction survives duplicate clearing; no implicit manager apply.
-inline bool edit_binding(BindingConfiguration &configuration, std::size_t index, std::uint16_t kind,
-                         std::uint16_t code, std::uint32_t direction) {
-    if (index >= configuration.settings.size() || (kind == 1 && reserved_binding_scan(code)) ||
-        (kind == 2 && (code == 0x100 || code == 0x200)))
+//006A83C0 checks full arguments BEFORE truncating record fields.
+inline bool HD2_CLIENT_THISCALL BindingConfiguration::edit(std::uint32_t index,std::uint32_t kind,
+                                                          std::uint32_t code,std::uint32_t direction) {
+    if((index&0x80000000u) || settings.data()==nullptr || index>=settings.size() ||
+            (kind==1 && reserved_binding_scan(code)) || (kind==2 && (code==0x100 || code==0x200)))
         return false;
-    auto &record = configuration.settings[index];
-    record.device_kind = kind;
-    record.code = code;
-    record.direction = direction;
-    record.dirty = 1;
-    remove_binding_conflicts(configuration, index);
+    auto& record=settings[index];
+    record.device_kind=static_cast<std::uint16_t>(kind);
+    record.code=static_cast<std::uint16_t>(code);
+    record.direction=direction;record.dirty=1;
+    remove_conflicts(index);
     return true;
 }
-// 006A85B0 includes hidden records, in vector order.
-inline std::optional<std::size_t> first_unassigned_binding(const BindingConfiguration &configuration) {
-    for (std::size_t i = 0; i < configuration.settings.size(); ++i)
-        if (!configuration.settings[i].device_kind && !configuration.settings[i].code)
-            return i;
-    return {};
+//006A85B0: includes hidden records, DWORD index or FFFFFFFF, ECX/RET0.
+inline std::uint32_t HD2_CLIENT_THISCALL BindingConfiguration::first_unassigned() const {
+    for(std::size_t i=0;settings.data()!=nullptr && i<settings.size();++i)
+        if(!settings[i].device_kind && !settings[i].code) return static_cast<std::uint32_t>(i);
+    return 0xffffffffu;
 }
-// 006A8290 returns a ONE-based index within the preceding contiguous group.
-inline std::size_t binding_group_ordinal(const BindingConfiguration &configuration, std::size_t index) {
-    const auto group = configuration.settings.at(index).group;
-    auto first = index;
-    while (first && configuration.settings[first - 1].group == group)
-        --first;
-    return index - first + 1;
+//006A8290: write -1 before checking index, then one-based contiguous ordinal.
+inline void HD2_CLIENT_THISCALL BindingConfiguration::group_ordinal(std::uint32_t index,std::int32_t* out) const {
+    *out=-1;
+    if((index&0x80000000u) || settings.data()==nullptr || index>=settings.size()) return;
+    const auto group=settings[index].group;
+    auto first=index;
+    while(first && settings[first-1].group==group) --first;
+    *out=static_cast<std::int32_t>(index-first+1);
+}
+// Native convenience adapters; optional/size_t/error policy is not original ABI.
+inline void remove_binding_conflicts(BindingConfiguration& c,std::size_t index) {
+    if(index>0xffffffffu || index>=c.settings.size()) {
+        if(c.settings.empty()) return;
+        throw std::out_of_range("Binding conflict index");
+    }
+    c.remove_conflicts(static_cast<std::uint32_t>(index));
+}
+inline bool edit_binding(BindingConfiguration& c,std::size_t index,std::uint32_t kind,
+                         std::uint32_t code,std::uint32_t direction) {
+    return index<=0xffffffffu && c.edit(static_cast<std::uint32_t>(index),kind,code,direction);
+}
+inline std::optional<std::size_t> first_unassigned_binding(const BindingConfiguration& c) {
+    const auto index=c.first_unassigned();
+    return index==0xffffffffu ? std::optional<std::size_t>{} : std::optional<std::size_t>{index};
+}
+inline std::size_t binding_group_ordinal(const BindingConfiguration& c,std::size_t index) {
+    std::int32_t result=-1;
+    if(index<=0xffffffffu) c.group_ordinal(static_cast<std::uint32_t>(index),&result);
+    if(result<0) throw std::out_of_range("Binding group index");
+    return static_cast<std::size_t>(result);
 }
 struct BindingCandidate {
     std::uint16_t kind, code;

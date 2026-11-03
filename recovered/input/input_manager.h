@@ -10,9 +10,7 @@ namespace hd2::input {
 // policy. The original constructor uses 20/20/20; attachment uses 400/400/1.
 inline bool set_binding_axis_limits(BindingInputState& state, std::int32_t x,
                                      std::int32_t y, std::int32_t z) {
-    state.mouse_axis_limits = {{static_cast<float>(x), static_cast<float>(y),
-                                static_cast<float>(z)}};
-    return true;
+    return state.mouse_axis_limits.set(x,y,z);
 }
 
 // Native owner for 006c6a20/6ab0, 006c6b60, 006c6cc0 and 006c6ff0. The normal

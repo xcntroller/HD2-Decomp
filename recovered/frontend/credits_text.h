@@ -74,17 +74,18 @@ inline CreditsDocument parse_credits(LocalizedTextCache& input, int width) {
     return result;
 }
 
-//00688C10/+14 float offset and0064B940 low signed word. Defined conversion
+//00688C10/+14 float offset and0064B950 low signed word. Defined conversion
 // preserves x86 low-word behavior; reject nonfinite/overflow instead of C++ UB.
 inline std::int16_t credits_short(std::int64_t value) {
     const auto bits=static_cast<std::uint16_t>(static_cast<std::uint64_t>(value));
     std::int16_t result; std::memcpy(&result,&bits,2); return result;
 }
-inline std::int16_t credits_scroll_word(float value) {
+inline std::int32_t credits_scroll_value(float value) {
     if (!std::isfinite(value) || value < -2147483648.0 || value >= 2147483648.0)
         throw std::out_of_range("Credits scroll exceeds original signed word conversion");
-    return credits_short(static_cast<std::int32_t>(value));
+    return static_cast<std::int32_t>(value);
 }
+inline std::int16_t credits_scroll_word(float value) { return credits_short(credits_scroll_value(value)); }
 class CreditsScroll {
 public:
     CreditsScroll(int width,int height,float speed)
@@ -95,6 +96,7 @@ public:
         return false;
     }
     std::int16_t word() const { return credits_scroll_word(offset_); }
+    std::int32_t value() const { return credits_scroll_value(offset_); }
 private:
     float offset_,speed_;
     std::uint32_t completion_=0;

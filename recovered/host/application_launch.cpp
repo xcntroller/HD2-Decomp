@@ -311,7 +311,7 @@ public:
     void clear_present(){video_.clear_present();}
     void update_sound(std::uint32_t milliseconds){startup_.update_sound(milliseconds);}
     bool advance(std::uint32_t milliseconds){return scroll_->update(milliseconds,text_->exhausted());}
-    void draw(){video_.draw_with_text(true,[&]{text_->draw(scroll_->word());});}
+    void draw(){video_.draw_with_text(true,[&]{text_->draw(scroll_->value());});}
 private:
     host::StartupSession& startup_;
     HMODULE module_;

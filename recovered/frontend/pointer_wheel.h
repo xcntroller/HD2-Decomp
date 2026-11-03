@@ -1,6 +1,7 @@
 #ifndef HD2_FRONTEND_POINTER_WHEEL_H
 #define HD2_FRONTEND_POINTER_WHEEL_H
 
+#include "frontend/pointer_motion.h"
 #include <cmath>
 #include <cstdint>
 #include <cstring>
@@ -8,7 +9,7 @@
 namespace hd2::frontend {
 
 // Client 0066a030; 0066a020 reads the stored float delta directly.
-inline bool pointer_wheel_moved(float delta) { return delta != 0.0f; }
+inline bool pointer_wheel_moved(float delta) { return detail::pointer_delta_nonzero(delta); }
 
 // 0066b990 calls 007e5e00 (truncate to signed int64), then passes its low DWORD.
 // Model the masked-invalid integer-indefinite result without an undefined C++

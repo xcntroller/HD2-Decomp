@@ -2,6 +2,7 @@
 #define HD2_INPUT_BINDING_CONFIGURATION_H
 
 #include "input/binding_installation.h"
+#include "frontend/original_abi.h"
 
 namespace hd2::input {
 
@@ -15,10 +16,25 @@ struct BindingSetting {
     std::array<std::uint8_t, 3> padding{};
 };
 static_assert(sizeof(BindingSetting) == 0x1c && offsetof(BindingSetting, dirty) == 0x18);
+static_assert(offsetof(BindingSetting,device_kind)==4 && offsetof(BindingSetting,code)==6 &&
+              offsetof(BindingSetting,group)==0x10 && offsetof(BindingSetting,caption)==0x14);
 struct BindingConfiguration {
+    std::uint32_t header = 0; // Original byte/opaque prefix, not constructor recovery.
     std::vector<BindingSetting> settings;
     std::uint32_t mode = 2; // Constructor006A81C0/+10, before profile/default loading.
+    HD2_CLIENT_BODY void HD2_CLIENT_THISCALL clear_settings() { settings.clear(); }
+    HD2_CLIENT_BODY std::uint32_t HD2_CLIENT_THISCALL first_unassigned() const;
+    HD2_CLIENT_BODY void HD2_CLIENT_THISCALL group_ordinal(std::uint32_t index,std::int32_t* out) const;
+    HD2_CLIENT_BODY bool HD2_CLIENT_THISCALL edit(std::uint32_t index,std::uint32_t kind,
+                                                std::uint32_t code,std::uint32_t direction);
+    HD2_CLIENT_BODY std::uint8_t HD2_CLIENT_THISCALL remove_conflicts(std::uint32_t index);
 };
+#if defined(__i386__) || defined(_M_IX86)
+// These nonallocating bodies use the original pointer-triple vector ABI.
+// Constructor/growth/destructor/manager ownership are separate partial bodies.
+static_assert(sizeof(std::vector<BindingSetting>)==12);
+static_assert(offsetof(BindingConfiguration,settings)==4 && offsetof(BindingConfiguration,mode)==0x10);
+#endif
 
 // 006a8600 ignores installer failure, forces device index zero and then clears
 // the record's dirty byte. Record storage must survive the backend callbacks.
@@ -70,7 +86,7 @@ void apply_dirty_bindings(BindingConfiguration& configuration, BindingInputState
 // 006a8740 resets the settings vector's end only. It neither clears installed
 // manager bindings nor resets mode; native POD records have no teardown callback.
 inline void clear_binding_settings(BindingConfiguration& configuration) {
-    configuration.settings.clear();
+    configuration.clear_settings();
 }
 
 }

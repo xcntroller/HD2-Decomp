@@ -1,0 +1,133 @@
+{
+  "scope": "Complete scalar-owner and binding-editor batch; all original bytes including statically unreachable006A8740 copy branch. No original execution.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "0067ea10",
+      "hex": "8b442404894104c20400",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "0066a860",
+      "hex": "8a442404884148c20400",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "006691a0",
+      "hex": "33c089818800000089818c000000c3",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "006e5300",
+      "hex": "3bca538bc173118a1880fb0a740a80fb0d7405403bc272ef2bc15bc3",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "006c6c90",
+      "hex": "db442404b001d999a8000000db442408d999ac000000db44240cd999b0000000c20c00",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "006a8230",
+      "hex": "a0f024840084c074158a542404b9f02484003ac2740d8a41014184c075f432c0c20400b001c20400",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "006a8290",
+      "hex": "538b5c240c568b74240c83feff57c703ffffffff7e4c8b790485ff74458b4908b8932449922bcff7e903d1c1fa048bc2c1e81f03d03bf273298d0cf5000000008bc62bce558d548f108bca8bf84883e91c85ff74088b398b2a3bfd74ee2bf05d89335f5e5bc20800",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "006a83c0",
+      "hex": "5356578b7c241085ff8bf17c3c8b5e0485db74358b4e08b8932449922bcbf7e903d1c1fa048bc2c1e81f03d03bfa73198b5424148b4c241883fa017514518bcee82bfeffff84c074255f5e32c05bc2100083fa02752081f90001000074eb81f90002000075105f5e32c05bc210008b4c24188b5424148d04fd00000000572bc7c1e00266895418048b560466894c02068b4e048b542420895401088b4e04c6440118018bcee8160000005f5eb0015bc21000",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "006a8480",
+      "hex": "5153558be95633c95733db8b7504894c241085f60f84060100008b7d08b8932449922bfef7ef03d7c1fa048bc2c1e81f03d03bca0f83e60000008b4424183bc80f84cd0000008b54331032c983faff0f84be0000008d14c5000000002bd08d0496668b543306663b50060f85a3000000668b5433048d7c3304663b50040f85900000008b5433083b50080f85830000008b54331481fa280b00007509817814200b0000746e817814280b0000750881fa200b0000745d8b400c83f80175148b54330c3bd0740a83fa02740583fa037502b10183f802750f8b54330c83fa0174043bd07502b10183f803750d8b74330c83fe0174083bf0740484c9741766c70700008b450466c744030600008b4d04c6440b18018b4c24104183c31ce9ebfeffff5f5e5d32c05b59c20400",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "006a85b0",
+      "hex": "535556578b790433db8d6f0685ff74378b7108b8932449922bf7f7ee03d6c1fa048bc2c1e81f03d03bda731b66837dfe00750766837d000074064383c51cebcc5f5e8bc35d5bc35f5e5d83c8ff5bc3",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "006a8740",
+      "hex": "53558be98b5d088b55048bc33bc3741956578bf08bfa83c01cb90700000083c21c3bc3f3a575eb5f5e8955085d5bc3",
+      "meaning": "Entire frozen original body"
+    },
+    {
+      "address": "008424f0",
+      "hex": "3b3c3d3e3f4041424344575801c500",
+      "meaning": "Reserved scan bytes and NUL terminator"
+    },
+    {
+      "address": "006a81c0",
+      "hex": "518bc18a4c2403880833c989480489480889480cc740100200000059c3",
+      "meaning": "Dependency finding only: saved-this high byte header, null vector and mode2; original EAX=this. No constructor completion credit."
+    }
+  ],
+  "vtables": [],
+  "direct_calls": [
+    {
+      "site": "006a8400",
+      "target": "006a8230"
+    },
+    {
+      "site": "006a8465",
+      "target": "006a8480"
+    }
+  ],
+  "resource_anchors": [],
+  "comparison_functions": [
+    {
+      "entry": "0067ea10",
+      "candidate_symbol": "__ZN3hd28frontend16ApplicationState6statusEj"
+    },
+    {
+      "entry": "0066a860",
+      "candidate_symbol": "__ZN3hd28frontend17PointerInhibition3setEh"
+    },
+    {
+      "entry": "006691a0",
+      "candidate_symbol": "__ZN3hd28frontend19RuntimeConfirmationI7RepliesE17clear_reply_codesEv"
+    },
+    {
+      "entry": "006e5300",
+      "candidate_symbol": "@_ZN3hd28frontend19scan_localized_lineEPKcS2_@8"
+    },
+    {
+      "entry": "006c6c90",
+      "candidate_symbol": "__ZN3hd25input17BindingAxisLimits3setEiii"
+    },
+    {
+      "entry": "006a8230",
+      "candidate_symbol": "__ZN3hd25input21reserved_binding_scanEj@4"
+    },
+    {
+      "entry": "006a8290",
+      "candidate_symbol": "__ZNK3hd25input20BindingConfiguration13group_ordinalEjPi"
+    },
+    {
+      "entry": "006a83c0",
+      "candidate_symbol": "__ZN3hd25input20BindingConfiguration4editEjjjj"
+    },
+    {
+      "entry": "006a8480",
+      "candidate_symbol": "__ZN3hd25input20BindingConfiguration16remove_conflictsEj"
+    },
+    {
+      "entry": "006a85b0",
+      "candidate_symbol": "__ZNK3hd25input20BindingConfiguration16first_unassignedEv"
+    },
+    {
+      "entry": "006a8740",
+      "candidate_symbol": "__ZN3hd25input20BindingConfiguration14clear_settingsEv"
+    }
+  ]
+}

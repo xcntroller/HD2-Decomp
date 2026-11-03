@@ -1,5 +1,7 @@
 #ifndef HD2_FRONTEND_RUNTIME_CONFIRMATION_H
 #define HD2_FRONTEND_RUNTIME_CONFIRMATION_H
+#include "frontend/original_abi.h"
+#include <array>
 
 #include "frontend/control_definition_ids.h"
 #include "frontend/menu_definition.h"
@@ -73,7 +75,7 @@ public:
         queue_.enqueue({0, 0x02000097, 0, 0, 0, {}});
     }
     // 006691a0 clears only reply words, without changing request/stack state.
-    void clear_reply_codes() { affirmative_ = 0; negative_ = 0; }
+    HD2_CLIENT_BODY void HD2_CLIENT_THISCALL clear_reply_codes() { affirmative_ = 0; negative_ = 0; }
 
     // 006691b0. Inactive and mode zero swallow ALL keys. Escape uses the low
     // byte only; other active keys pass the complete word to screen 00668670.
@@ -128,11 +130,14 @@ private:
     void enqueue_reply(std::uint32_t code) {
         if (code) queue_.enqueue({0, code, 0, 0, 0, {}});
     }
+    // Only the reply-clear body claims this original prefix, not constructor
+    // or screen ABI. Volatile keeps its two ordered DWORD writes distinct.
+    std::array<std::uint8_t,0x84> prefix_{};
+    std::uint32_t mode_ = inactive;
+    volatile std::uint32_t affirmative_ = 0;
+    volatile std::uint32_t negative_ = 0;
     Services& services_;
     ControlEventDestination& queue_;
-    std::uint32_t mode_ = inactive;
-    std::uint32_t affirmative_ = 0;
-    std::uint32_t negative_ = 0;
 };
 
 //0066D780/0066D7A0/0066D7C0: frontend +100 is nullable. Preserve the

@@ -4,6 +4,7 @@
 #include "host/cursor_geometry.h"
 #include "host/menu_presentation.h"
 #include "frontend/pointer_update.h"
+#include "frontend/pointer_inhibition.h"
 #include "frontend/pointer_motion.h"
 #include "frontend/pointer_dispatch.h"
 #include "frontend/common_event_services.h"
@@ -22,7 +23,7 @@ struct MenuInputSession {
     hd2::frontend::PointerDispatchState dispatch;
     hd2::frontend::PointerDispatchInput input;
     std::optional<hd2::host::CursorPoint> previous_point;
-    bool inhibit_click = false; // Input +48, set by0066A860.
+    hd2::frontend::PointerInhibition inhibit_click; //0066A860 original byte view.
     bool armed = false;
     bool awaiting_release = false;
     std::uint32_t active_screen = 0;
@@ -124,9 +125,7 @@ public:
         const auto& buttons = session_.pointer.buttons();
         session_.input = {buttons.pressed(3), buttons.released(3), buttons.currently_selected(3),
                   result.click.click, !preview_safeguards_ && result.click.double_click,
-                  hd2::frontend::pointer_moved(session_.pointer.cursor().horizontal(),
-                                             session_.pointer.cursor().vertical()),
-                  hd2::frontend::pointer_wheel_moved(session_.pointer.cursor().wheel_delta())};
+                  session_.pointer.cursor().moved(), session_.pointer.cursor().wheel_moved()};
         return result.processed;
     }
     const hd2::frontend::PointerDispatchInput& input() const { return session_.input; }

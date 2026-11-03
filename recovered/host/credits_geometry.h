@@ -1,6 +1,7 @@
 #ifndef HD2_HOST_CREDITS_GEOMETRY_H
 #define HD2_HOST_CREDITS_GEOMETRY_H
 #include "frontend/credits_text.h"
+#include "frontend/credits_scroll_state.h"
 #include "host/menu_text_geometry.h"
 
 namespace hd2::host {
@@ -44,7 +45,9 @@ public:
     std::size_t first_visible() const { return first_; }
     //0064B950: only rendering advances the exhaustion cursor. Rows with a
     // negative bottom are retired permanently; future rows stop at height+100.
-    std::vector<CreditsSubmission> draw(std::int16_t scroll) {
+    std::vector<CreditsSubmission> draw(std::int32_t value) {
+        scroll_.store(static_cast<std::uint32_t>(value));
+        const auto scroll=frontend::credits_short(scroll_.value());
         std::vector<CreditsSubmission> result;
         for(std::size_t i=first_;i<rows_.size();++i) {
             const auto& row=rows_[i];
@@ -82,6 +85,7 @@ public:
                  {v(0,height-band,0,0,0),v(width,height-band,0,1,0),v(width,height,0xff000000,0,1),v(0,height,0xff000000,1,1)}}};
     }
 private:
+    frontend::CreditsScrollState scroll_;
     std::array<FontMetrics,4> fonts_;
     std::vector<CreditsRow> rows_;
     int width_,height_;

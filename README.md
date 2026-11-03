@@ -63,6 +63,23 @@ for exclusive fullscreen or `--windowed` for the default window. The revised
 package and fullscreen behavior are user desktop-accepted2026-11-02.
 [Current artifacts, evidence and review](analysis/resource-fullscreen.md).
 
+The later [team/browser selection fixes](analysis/team-browser-selection.md)
+are user desktop-accepted2026-11-03. The
+[first function-completion pass](analysis/function-completion-audit.md) audits
+all564 existing entries and completes five button queries source-only. Static
+matching reports0 exact bodies; behavior/ABI verification is recorded separately.
+No new package was generated.
+
+The user has expanded the pre-Phase2 pass to complete every currently feasible
+function. The [completion queue](analysis/function-completion-queue.md) remains
+open; Phase2 planning waits. The next
+[delta/scroll group](analysis/delta-scroll-completion.md) completes four more
+bodies source-only, including two exact instruction matches. No package generated.
+Subsequent work uses larger subsystem batches with one consolidated audit sweep.
+The [scalar/input batch](analysis/scalar-input-batch.md) reviews41 candidates,
+completes11 and records30 specific recovery tasks. The broader pass remains open;
+the current ledger has20 complete client functions and544 partial entries.
+
 Select window/render dimensions and an installed translation per launch:
 
 ```sh
@@ -172,13 +189,13 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 <!-- FUNCTION-PROGRESS:START -->
 ### Original-function reconstruction (base game only)
 
-`[------------------------------] 0.00% complete`
+`[------------------------------] 0.11% complete`
 
-**0 complete / 18,783 identified functions** (frozen, estimated baseline); **564 unique functions partially reconstructed**.
+**20 complete / 18,783 identified functions** (frozen, estimated baseline); **544 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 0 | 559 |
+| Base game client | 17,294 | 20 | 539 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

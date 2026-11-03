@@ -1,78 +1,77 @@
-# Session handoff — 2026-11-02
+# Session handoff — 2026-11-03
 
 ## Latest result
 
-User requests resource-layout cleanup and fullscreen before Phase1 closes.
-The complete follow-up is implemented, built, statically/native verified and
-**user desktop-accepted**: “Nevermind, I got it working. Good, that's done.”
-[Contract, original addresses and review](analysis/resource-fullscreen.md),
-[dual-image evidence](analysis/resource-fullscreen-map.json),
-[portable instructions](docs/STANDALONE.md). Section5 follow-up is checked.
-Earlier standalone packaging was accepted (“The build works fine, by the way”);
-its separate artifact/acceptance is preserved in analysis/standalone-package.md.
+The scalar-owner/input-foundation batch is complete **source-only**, following the
+user's larger-batch/one-final-sweep policy. [Contract and verification](analysis/scalar-input-batch.md),
+[all41 candidate dispositions](analysis/scalar-input-batch.json),
+[original bytes/calls](analysis/scalar-input-batch-map.json).
+All41 candidates reviewed:11 complete bodies,30 specific remaining recovery tasks.
+Do not describe those30 as externally blocked or defer them solely for native ABI.
 
-## Current artifacts and implementation
+Closed: status0067EA10; raw inhibition0066A860; reply clear006691A0; line scan006E5300;
+x87 limits006C6C90; reserved scans006A8230; ordinal006A8290; edit006A83C0;
+conflicts006A8480; unassigned006A85B0; settings clear006A8740. Normal compiled
+callers use these bodies with original i386 field/call/return contracts. Binding
+edit checks full DWORD arguments before truncation; native old/new fixture proves
+the earlier error. ECX-only no-stack methods match the original receiver ABI.
+Constructor006A81C0 is NOT complete: its header byte is now confirmed as high byte
+of saved this (PUSH ECX, MOV CL,[ESP+3]), not an unwritten value. It also returns
+EAX=this; native header0/construction ABI still differs. The ledger is corrected.
 
-Fresh review folder: dist/HD2-Phase1-clean; ZIP: dist/HD2-Phase1-clean.zip,
-493 payload files,2,028,879,915 bytes. Entries HD2FrontEnd.exe, Launch.cmd and
-LaunchFullscreen.cmd. Client SHA256 745174a2fc7f3cf6d23253d49c2ffb76faa63a9fe6f0eba57f463a375e926573.
-ZIP SHA256 a95a1396230231c035a94be4dd892e74845780d28a54c65bc226f68700be383e.
-Seven original engine/codec DLLs and platform dependencies remain as documented.
-No Models/Sounds/MenuText/Maps extraction or renamed font atlas is packaged.
-Actual model/sound caches and archive setup already existed; normal fonts now
-use original Text/Fonts paths. Original Text stays loose as in this installation.
-Earlier diagnostic stagers/aliases remain available; old workspaces are not pruned.
-
-Native entry accepts --fullscreen / --windowed alongside existing flags/legacy
-CLI. Default800×600 windowed. Fullscreen requests original flags2,32bpp/default
-refresh, enables the existing gamma gate and avoids saving fullscreen window.cfg.
-Inactive/lost frames wait; DEVICENOTRESET calls original engine Present/reset
-before drawing resumes. Native frame/launch policy earns no original-body credit.
-No live Alt-Enter/in-menu selector or display-mode persistence was added.
+Ledger: **20 complete client,544 partial (539 client/five engine)**, denominator
+18,783 unchanged; no new entries/engine credit. Status0067EA10 matches exact
+instructions; ten other new bodies differ as documented. Earlier two exact matches
+remain separate. The comparison parser now consumes every raw byte on long
+instructions, verified against independent COFF sections for all11 candidates.
 
 ## Verification and preservation
 
-Strict i386 application/preview/startup builds, temporary actual native
-ASan/UBSan parser/settings/font/frame guard, Windows fixture compile/link,
-temporary Python font/package/ZIP/stage-only audits, existing native suite,
-158 Python tests,14 original instruction anchors/three calls/two path references,
-dependent presentation map, ledger and whitespace checks pass. Temporary audits
-removed; no permanent tests. Every real folder/ZIP payload hash/CRC and static
-DLL closure verified;13 original font pairs and clean profiles validated.
-All581 recorded original/accepted/writable identities are unchanged, including
-the previous accepted ZIP. Logs/source/artifact hashes:
-analysis/work/phase1-resource-fullscreen-20261102. No original DLL/game,
-Windows fixture or Proton execution; no commit/push requested/performed.
-
-The accepted dist/HD2-Phase1 client remains3547347c…6070b. Since that preservation
-audit the user ran the Python launcher: development-staged, compiled and clean-
-packaged clients now all match745174a2…26573. Its log records fullscreen2560×1440,
-Czech/CE Set3 and normal state-exit/teardown result0. That is script-run evidence;
-package acceptance comes from the user's statement. Initial package startup
-failure was user-resolved, cause unspecified; no logging/runtime fix was made.
-Do not rewrite accepted ZIPs or infer each suggested desktop case was run.
+One consolidated native ASan/UBSan fixture passes40000 editor/config transactions,
+131072 reserved scans,20000 line scans/parser integration,144000 x87 triples in12
+valid rounding/precision modes,raw field/queue/write/alias/capacity checks. Strict
+application/preview/startup i386 builds, Windows fixture compile/link, existing
+native regressions,158 Python tests, original map and ledger pass. Windows fixture
+needed only an explicit void cast for intentional vtable byte inspection; no app
+source fix required another full sweep. Temporary fixtures removed; logs and
+source/artifact/preservation hashes: analysis/work/scalar-input-batch-20261103.
+No original game/DLL/server/Proton/Windows fixture executed. No new desktop claim.
+No staging/packaging/commit/push requested or performed. Preserve the user's staged
+and unstaged edits, original assets, configs/profiles and existing dist artifacts.
+The user handles packaging; test actual desktop only through their Python launch.
 
 ## Next work
 
-The user's current request is a question about function matching and when
-existing partial functions will be completed, before moving on. Explain the
-strict full-body rules and native ABI/ownership exclusions; do not promote
-functions or adopt a new matching policy solely from this question.
-When instructed to continue, next checkbox is full Phase2 dependency research
-and replacement of the outline with a sectioned plan. Include any subsequently
-agreed function-closure/matching gates; no Phase2 implementation started here.
+The expanded pre-Phase2 completion checkbox remains **OPEN**: complete all currently
+feasible functions before moving on. [Policy/current queue](analysis/function-completion-queue.md),
+[machine queue](analysis/function-completion-queue.json).559 entries at expansion,
+15 since closed (the first five button functions predate that queue),544 open.
 
-Keep prior deferrals: broader saves.metadata open (only stored Main caption
-accepted), loadouts COMPLETELY UNTESTED until accessible, full Single Player/
-game/save/results Phase2, ready-server UI/services UNTESTED until Phase3.
-Original server must not run. Family catalog30 units/17 open. Frozen ledger
-564 partial (559 client/five engine), zero complete /18,783 unchanged.
-No subagents/permanent tests. Commit only when requested and interactive changes
-user-confirmed; no push.
+Next batch has17 related candidates: original input-manager/configuration raw
+construction/vector lifetime, binding installation/applicators/defaults, producer
+and startup. Their exact remaining work is in the41-entry batch index. Research
+its full dependency boundary before editing. Current typed vector layout is
+proven only for the nonallocating editor methods; do not infer allocator, SEH,
+header-padding, original-global manager008AEA48 or device lifetime closure.
+The original first header byte is pointer-derived; retain that confirmed finding.
+Screen callbacks still need focus+6C/raw children+08/virtual input ABI; queue/common
+routes need segmented storage/intrusive payload ownership. Do not repeat confirmed
+investigations. Never substitute successful placeholder services.
+
+Use quick affected-source compiles during implementation, then one consolidated
+sanitizer/build/regression/evidence sweep and one ledger/queue/documentation update.
+AGENTS.md requires stopping after one verified milestone, now a subsystem batch.
+Do not mark the overall pass exhausted while rows merely await body/dependency
+research. Phase2 planning/implementation waits. No subagents or permanent new tests.
+Commit only when requested; interactive changes need user desktop acceptance first.
+No push. Loadouts remain COMPLETELY UNTESTED until accessible; broader save metadata,
+actual game/save/results and ready-server UI retain their documented deferrals.
+Those screen deferrals are not blanket source-recovery blockers.
 
 Build: make -C recovered application-launch engine-window startup-probe
 WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
-Package: python3 -B tools/package_application.py --output dist/NEW-NAME;
-existing outputs refused. Checks: make -C recovered test;
-python3 -B -m unittest discover -s tools -p 'test_*.py';
+User launch: python3 -B tools/run_application_launch.py
+(optionally --fullscreen --width 2560 --height 1440 --language Czech).
+Agent staging only with --stage-only if needed; never run Proton. Checks:
+make -C recovered test; python3 -B -m unittest discover -s tools -p 'test_*.py';
 python3 -B tools/function_progress.py --check.

@@ -1,0 +1,53 @@
+{
+  "scope": "Cursor x87 query group and Credits DWORD setter; full original bodies. Static tool comparison covers getter/setter; FCOMP relocations reviewed separately.",
+  "binary": {
+    "path": "analysis/work/hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "image_base": "00400000"
+  },
+  "instruction_anchors": [
+    {
+      "address": "00669ff0",
+      "hex": "d94114d81d1cf58000dfe0f6c4447a13d94118d81d1cf58000dfe0f6c4447a0332c0c3b001c3",
+      "meaning": "Entire frozen function body"
+    },
+    {
+      "address": "0066a020",
+      "hex": "d9411cc3",
+      "meaning": "Entire frozen function body"
+    },
+    {
+      "address": "0066a030",
+      "hex": "d9411cd81d1cf58000dfe0f6c4447b03b001c332c0c3",
+      "meaning": "Entire frozen function body"
+    },
+    {
+      "address": "0064b940",
+      "hex": "8b442404894178b001c20400",
+      "meaning": "Entire frozen function body"
+    },
+    {
+      "address": "0080f51c",
+      "hex": "00000000",
+      "meaning": "Original FCOMP zero constant"
+    },
+    {
+      "address": "0064b9b3",
+      "hex": "662b4678",
+      "meaning": "Credits renderer consumes low WORD of stored DWORD+78"
+    }
+  ],
+  "vtables": [],
+  "direct_calls": [],
+  "resource_anchors": [],
+  "comparison_functions": [
+    {
+      "entry": "0066a020",
+      "candidate_symbol": "__ZNK3hd28frontend13PointerCursor11wheel_deltaEv"
+    },
+    {
+      "entry": "0064b940",
+      "candidate_symbol": "__ZN3hd28frontend18CreditsScrollState5storeEj"
+    }
+  ]
+}

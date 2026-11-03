@@ -1,5 +1,6 @@
 #ifndef HD2_INPUT_BINDING_PRODUCER_H
 #define HD2_INPUT_BINDING_PRODUCER_H
+#include "input/axis_limits.h"
 
 #include <array>
 #include <cmath>
@@ -45,7 +46,7 @@ struct BindingInputState {
     std::vector<JoystickInput> joysticks;
     std::array<std::uint8_t, 64> scans{}, key_binding_counts{};
     std::array<std::uint8_t, 6> mouse_binding_counts{};
-    std::array<float, 3> mouse_axis_limits{};
+    BindingAxisLimits mouse_axis_limits;
     std::vector<InputBinding> bindings;
     std::vector<std::uint32_t> first, second;
     std::uint64_t key_gate = 0;

@@ -4,6 +4,7 @@
 #include "frontend/opening_playback.h"
 #include "frontend/cleanup.h"
 #include "frontend/game_data.h"
+#include "frontend/original_abi.h"
 #include <memory>
 #include <cstring>
 #include <string>
@@ -15,7 +16,7 @@ namespace hd2::frontend {
 class ApplicationState {
 public:
     explicit ApplicationState(std::uint32_t type, std::uint32_t status = 0)
-        : type_(type), status_(status) {}
+        : status_(status), type_(type) {}
     virtual ~ApplicationState() = default;
     virtual bool initialize(const void*) = 0;
     virtual void shutdown() = 0;
@@ -33,14 +34,14 @@ public:
     virtual std::string selected_video_filename() const { return {}; }
     std::uint32_t type() const { return type_; }
     std::uint32_t status() const { return status_; } // 0067EA00
-    void status(std::uint32_t value) { status_ = value; } // 0067EA10
+    HD2_CLIENT_BODY void HD2_CLIENT_THISCALL status(std::uint32_t value) { status_ = value; } //0067EA10/+04 on i386.
     std::uint32_t pending() const { return pending_; } // 0067EA20
     void pending(std::uint32_t value) { pending_ = value; } // 0067EA30
     void after_update() { // 0067EA40
         if (pending_ != 2) { status_ = pending_; pending_ = 2; }
     }
 private:
-    std::uint32_t type_, status_, pending_ = 2;
+    std::uint32_t status_, pending_ = 2, type_;
 };
 
 // Ordinary single-movie part of0066EAE0/ED30/ED50/ED80. The controller, not this

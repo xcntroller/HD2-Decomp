@@ -3,7 +3,57 @@
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Current continuation (2026-11-02): user requests removing resource staging
+Current continuation (2026-11-03): [scalar/input batch](analysis/scalar-input-batch.md)
+completes the next source-only milestone with one consolidated verification sweep.
+All41 candidates are reviewed:11 complete,30 have specific recovery work in the
+[index](analysis/scalar-input-batch.json). Six editor/config bodies, three scalar
+owner mutations, line scanner and x87 axis limits now have original i386 ABI/fields.
+Full-width edit gates precede WORD truncation; ordinal output/alias semantics and
+raw byte/reply writes are restored. Native ApplicationState status now sits at+04
+on i386 and exactly matches0067EA10. The constructor006A81C0 header byte is confirmed
+as saved-this high byte, correcting the unwritten-byte claim; constructor ABI remains
+partial. COFF comparison parser now handles an unpadded final byte on long
+instructions, checked independently against all11 function sections.
+Batch ASan/UBSan, three strict targets, Windows fixture compile/link, existing
+native regressions,158 Python tests, original map and ledger pass. No staging,
+packaging, original/Windows execution, commit or new desktop claim. Ledger20
+complete client/544 partial (539 client/five engine), frozen18,783. Next is the
+related manager/configuration/installation/defaults dependency batch; the overall
+pre-Phase2 pass remains open.
+
+Previous continuation (2026-11-03): user expands completion work to every currently
+feasible partial before moving on. The [completion queue](analysis/function-completion-queue.md)
+accounts for all559 entries at expansion; four close in the
+[cursor/scroll milestone](analysis/delta-scroll-completion.md),555 remain pending
+full-body/dependency review. Layout/ABI work and absent live UI acceptance alone
+are not automatic blockers. Motion/wheel predicates now retain ordered x87
+exception/control-word behavior and original fields; wheel getter and full DWORD
+Credits setter are exact i386 instruction matches. Full stored scroll precedes
+the renderer's low-word read, correcting the earlier setter coverage claim.
+Sanitizers cover132,928 delta triples across12 valid x87 modes and262,144 stores;
+strict builds, native regressions,158 Python tests, original evidence and ledger
+pass. Ledger9 complete client,555 partial (550 client/five engine). The broader
+pass stays open. User requests larger batches: the next milestone combines scalar
+owner fields0067EA10/0066A860/006691A0 with input-foundation helpers and one final
+audit sweep, rather than repeating full checks for each leaf group.
+No Phase2 planning/implementation, staging, packaging, original execution or new
+desktop claim. Original/staged/dist resources remain preserved.
+
+Previous continuation (2026-11-03): [team/browser selection follow-up](analysis/team-browser-selection.md)
+is user desktop-accepted, including the corrected pre-mission notification bindings.
+No package or commit requested. The next [function-completion pass](analysis/function-completion-audit.md)
+is complete source-only: all564 existing ledger/evidence records reviewed across127
+limitation groups;285 stale integration exclusions corrected without dropping real
+original ABI/ownership/failure boundaries. Five input button queries0066A050/80/A0/C0/F0
+now have full original field/call ABI and complete-body verification. Temporary
+sanitizers cover16,777,216 low-byte triples,252,024 full-width cases and1000 composed
+clicks; strict builds, existing native suite and158 Python tests pass. Static O2/Os
+comparison reports0 exact/5 different bodies with reviewed code-generation differences;
+matching is distinct from behavioral completion. Ledger5 complete,559 partial
+(554 client/five engine), frozen18,783 unchanged. Next is detailed Phase2 dependency
+research/planning; no Phase2 implementation, original execution, packaging or new desktop claim.
+
+Previous continuation (2026-11-02): user requests removing resource staging
 redundancy and implementing fullscreen before Phase1 closes.
 [Original-path/fullscreen contract](analysis/resource-fullscreen.md) and
 [dual-image evidence](analysis/resource-fullscreen-map.json) record archive/Text

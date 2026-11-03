@@ -32,8 +32,18 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are564 partial entries (559 client/five engine), zero
-complete. The [ledger](function-status.json) records each supported subset and
+The current totals are20 complete client functions and544 partial entries
+(539 client/five engine). The [first completion audit](function-completion-audit.md)
+reviews all564 preexisting entries, corrects stale integration notes and closes
+five original-ABI button queries. Its0 exact instruction matches are recorded
+separately from full-body reconstruction. The subsequent
+[delta/scroll group](delta-scroll-completion.md) closes four more entries,
+including two exact instruction matches. The
+[scalar/input batch](scalar-input-batch.md) reviews41 candidates and closes11
+more bodies with one consolidated sweep, including one further exact match.
+The expanded
+[completion queue](function-completion-queue.md) remains open before Phase2.
+The [ledger](function-status.json) records each supported subset and
 its exclusions; the generated [README bar](../README.md) is the current count.
 Historical research notes retain their checkpoint totals. Integrated desktop
 launch is tracked separately in [plan.md](../plan.md) and does not turn partial

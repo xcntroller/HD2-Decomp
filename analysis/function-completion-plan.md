@@ -1,8 +1,20 @@
 # Function completion and selective matching — delivery plan
 
-The user approves adding the proposed completion/matching pass before Phase2.
-This is scheduled work, not a completed audit or a change in function credit.
-Character-selection regressions are the user's immediate implementation request.
+The user approves adding the completion/matching pass before Phase2. The initial
+[full-ledger audit and five-function group](function-completion-audit.md) is
+complete source-only2026-11-03, after desktop acceptance of the selection fixes.
+The gates below remain the policy for subsequent subsystem completion work.
+
+The user expands this policy2026-11-03: complete all functions currently feasible
+before moving on. The five-function group is the first checkpoint, not the end
+of the pass. Exhaust the [dependency queue](function-completion-queue.md) before
+Phase2 planning/implementation. ABI/layout recovery is work to perform, not by
+itself a reason to defer a function to another phase. Keep verified milestones
+bounded and follow AGENTS.md's stop-after-one-milestone rule.
+The user subsequently requests larger subsystem batches with a single final
+audit sweep. Apply the queue's verification cadence: quick local compiles during
+implementation, consolidated sanitizers/builds/regressions and accounting at the
+end, and no repeated full sweep for each small function group.
 
 ## Before Phase2 implementation
 
@@ -57,6 +69,8 @@ aware comparison. Assembly matching is an additional verification method; the
 current ledger's `complete` status is not redefined as byte identity. Run the
 existing ledger validator/render workflow after justified status changes.
 
-Current ledger remains564 partial (559 client/five engine), zero complete out of
-18,783 frozen entries. This plan does not promise completion of all partials
-before Phase2, or infer completion from native tests or desktop acceptance alone.
+After the initial pass the ledger has5 complete client functions and559 partial
+(554 client/five engine), out of18,783 frozen entries at that checkpoint.
+The expanded pass requires completing every currently feasible body and recording
+concrete dependencies for the rest. It does not infer completion from native tests
+or desktop acceptance alone.
