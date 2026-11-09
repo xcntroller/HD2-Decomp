@@ -3,8 +3,11 @@
 
 #include "frontend/localized_text.h"
 #include "frontend/text_object.h"
+#include "frontend/text_style_data.h"
 #include <array>
+#include <cstring>
 #include <limits>
+#include <memory>
 #include <stdexcept>
 
 namespace hd2::frontend {
@@ -38,29 +41,58 @@ struct OpeningSubtitle {
     SharedText text;
 };
 
-// Native owning subset of00641E30/006438D0/00641CC0. The reached ordinary movie
-// needs styles0/8. Other catalog entries/credits registration remain separate.
-// Retain the actual zero-initialized14 style handles, not fictitious font refs.
+// SAME process owner008AE2E8 for movies and HUD.00641E30 lazily registers90
+// builtins;00641D90 reuses the FIRST null hole,00641CC0 trims null tails but
+// retains slot0. Descriptor padding is preserved, not interpreted as fields.
 class OpeningTextStyles {
 public:
-    OpeningTextStyles() {
-        styles_.emplace(0, TextStyle{2, .03f, 0xff000000u, 1, 2});
-        styles_.emplace(8, TextStyle{3, .035f, 0xffffffffu, 2, 1});
-    }
     const TextStyle& get(std::uint8_t id) const {
-        const auto found = styles_.find(id);
-        if (found == styles_.end()) throw std::logic_error("Unsupported or removed opening text style");
-        return found->second;
+        initialize();
+        if(id>=styles_.size()||!styles_[id])throw std::logic_error("Missing process text style");
+        return styles_[id]->view;
     }
-    void clear_movie_styles() noexcept {
+    const TextStyleDescriptor* descriptor(std::int32_t id) const {
+        initialize();
+        return id>=0&&static_cast<std::size_t>(id)<styles_.size()&&styles_[id]?&styles_[id]->descriptor:nullptr;
+    }
+    std::int32_t add(const TextStyleDescriptor& descriptor) {
+        initialize();
+        return insert(descriptor);
+    }
+    bool remove(std::int32_t id) {
+        initialize();
+        if(id<0||static_cast<std::size_t>(id)>=styles_.size())return false;
+        styles_[id].reset();
+        while(styles_.size()>1&&!styles_.back())styles_.pop_back();
+        return true; //An already empty in-range hole still succeeds.
+    }
+    void clear_movie_styles() {
         for (auto& id : movie_styles_) {
-            if (id >= 0) styles_.erase(static_cast<std::uint32_t>(id));
+            remove(id);
             id = -1;
         }
     }
     const auto& movie_styles() const { return movie_styles_; }
+    std::size_t size() const {initialize();return styles_.size();}
 private:
-    std::map<std::uint32_t, TextStyle> styles_;
+    struct Entry {TextStyleDescriptor descriptor;TextStyle view;};
+    std::int32_t insert(const TextStyleDescriptor& descriptor) const {
+        float height;std::memcpy(&height,&descriptor[2],sizeof(height));
+        auto entry=std::make_unique<Entry>(Entry{descriptor,{descriptor[0],height,descriptor[1],descriptor[9],descriptor[10]}});
+        for(std::size_t n=0;n!=styles_.size();++n)if(!styles_[n]){styles_[n]=std::move(entry);return static_cast<std::int32_t>(n);}
+        if(styles_.size()>=0x7fffffffu)throw std::length_error("Process text style index overflow");
+        styles_.push_back(std::move(entry));return static_cast<std::int32_t>(styles_.size()-1);
+    }
+    void initialize() const {
+        if(initialized_)return;
+        //Prepare atomically so an allocation failure cannot publish a partial
+        //builtin catalogue. No successful null allocation handles are invented.
+        try {for(const auto& descriptor:builtin_text_styles)insert(descriptor);}
+        catch(...){styles_.clear();throw;}
+        initialized_=true;
+    }
+    mutable bool initialized_=false;
+    mutable std::vector<std::unique_ptr<Entry>> styles_;
     std::array<std::int32_t, 14> movie_styles_{};
 };
 

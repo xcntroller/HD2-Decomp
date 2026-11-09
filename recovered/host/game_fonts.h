@@ -35,6 +35,8 @@ public:
     }
     const FontMetrics& metrics(unsigned original_id) const { return metrics_.at(original_id - 2); }
     EngineFrame* atlas(unsigned original_id) const { return atlases_.at(original_id - 2).get(); }
+    bool contains(unsigned original_id)const{return original_id>=2&&original_id<=6;}
+    const GlyphMetrics& glyph(unsigned original_id,unsigned char character)const{return metrics(original_id)[character];}
 private:
     std::array<FontMetrics, 5> metrics_;
     std::array<MenuDriver::Owner, 5> atlases_{{{nullptr,nullptr},{nullptr,nullptr},{nullptr,nullptr},

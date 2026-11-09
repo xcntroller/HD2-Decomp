@@ -351,11 +351,11 @@ inline std::vector<MenuTextSubmission> menu_column_submissions(
 //on wrapped rows. The final row of a paragraph retains ordinary left spacing.
 inline std::vector<CursorVertex> menu_small_paragraph_vertices(
         const frontend::TextObject& object,const FontMetrics& metrics,
-        const MenuRectangle& rectangle,std::size_t first_line=0) {
+        const MenuRectangle& rectangle,std::size_t first_line=0,float normalized_height=.02f) {
     struct Line {std::string text;bool justify;};
     std::vector<Line> lines;
     const float available=rectangle.right-rectangle.left;
-    const int height=menu_line_height(.02f); //00641E30 entries2/3.
+    const int height=menu_line_height(normalized_height); //00641E30 entries2/3; loader84 uses.022.
     if (!std::isfinite(available) || available<=0) throw std::invalid_argument("Invalid menu paragraph width");
     std::size_t characters=0;
     std::vector<frontend::TextRecord> paragraphs;
@@ -417,7 +417,7 @@ inline std::vector<CursorVertex> menu_small_paragraph_vertices(
             const auto advance=glyph_advance(metrics[character],height);
             const char byte=static_cast<char>(character);
             auto glyph=menu_label_vertices(std::string_view(&byte,1),metrics,
-                {x,top,x+advance,top+height},.02f,menu_height(),false,color);
+                {x,top,x+advance,top+height},normalized_height,menu_height(),false,color);
             //00648860 clips at the text viewport, preserving glyph UVs for
             //the final partial row rather than drawing over the frame border.
             if (!glyph.empty() && glyph[0].y>rectangle.bottom) {

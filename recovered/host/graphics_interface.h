@@ -31,12 +31,13 @@ struct GraphicsVtable {
     Method begin_scene;
     Method end_scene;
     Method present;
-    Method reserved_74[2];
+    void (WINAPI *set_state)(Graphics*,std::uint32_t,std::uint32_t);
+    std::uint32_t (WINAPI *state)(Graphics*,std::uint32_t);
     std::int32_t (WINAPI *set_viewport)(Graphics*, const hd2::host::CursorViewport*);
     const hd2::host::CursorViewport* (WINAPI *viewport)(Graphics*);
-    Method reserved_84;
+    std::int32_t (WINAPI *set_world_transform)(Graphics*,const float*);
     std::int32_t (WINAPI *draw_primitive)(Graphics*, std::uint32_t, std::uint32_t,
-                                         const hd2::host::CursorVertex*, std::uint32_t);
+                                         const void*, std::uint32_t);
 };
 
 struct Graphics {
@@ -52,7 +53,10 @@ static_assert(offsetof(GraphicsVtable, load_texture) == 0x3c);
 static_assert(offsetof(GraphicsVtable, bind_texture) == 0x44);
 static_assert(offsetof(GraphicsVtable, set_viewport) == 0x7c);
 static_assert(offsetof(GraphicsVtable, viewport) == 0x80);
+static_assert(offsetof(GraphicsVtable, set_world_transform) == 0x84);
 static_assert(offsetof(GraphicsVtable, draw_primitive) == 0x88);
+static_assert(offsetof(GraphicsVtable, set_state) == 0x74);
+static_assert(offsetof(GraphicsVtable, state) == 0x78);
 
 
 } // namespace hd2::host

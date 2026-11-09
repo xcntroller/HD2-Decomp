@@ -24,6 +24,7 @@ public:
     std::uint32_t word_94 = 0;
     bool dirty = false;
     const std::vector<TextRecord>& records() const { return records_; }
+    std::int32_t selected_index() const { return selected_index_; }
 
     // 00643900. Selection is separate from a valid stored record index:
     // selecting an invalid signed-short index clears selection but stores it.
@@ -125,7 +126,7 @@ public:
         return true;
     }
     // 00644960: clear all records, not a refresh/relocalization operation.
-    void clear() { records_.clear(); dirty = true; }
+    void clear() noexcept { records_.clear(); dirty = true; }
 private:
     bool valid_selected_index() const {
         return selected_index_ >= 0 && static_cast<std::size_t>(selected_index_) < records_.size();
