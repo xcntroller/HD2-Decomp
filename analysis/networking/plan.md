@@ -20,7 +20,7 @@ Commercial images, decompilations and Ghidra databases remain local and ignored.
 
 ## N1 — server startup and ownership
 
-- [ ] Reconstruct launcher configuration read/write, launch specification and bounded server command tokenization — source only.
+- [x] Reconstruct launcher configuration, launch specification and bounded command tokens — source only. [Contract](configuration-source.md).
 - [ ] Reconstruct server settings ingestion and command-file execution.
 - [ ] Reconstruct startup/shutdown owners and actual network initialization.
 - [ ] Reconstruct admission, callbacks, timeout/disconnect and cleanup.

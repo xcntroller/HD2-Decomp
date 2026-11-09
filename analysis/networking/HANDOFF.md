@@ -7,12 +7,17 @@ DLL, Proton or Windows-fixture execution. Ghidra/build jobs sequential. No subag
 N0 complete as **static research**: [architecture](architecture.md),
 [client boundary](client-boundary.md), [providers](discovery-providers.md),
 [binary manifest](binary-manifest.json), separate server/launcher inventories and
-[evidence receipt](evidence.json). Initial ledger has no reconstructed functions.
+[evidence receipt](evidence.json). Ledger: nine launcher/three server partials, zero complete.
 No independent server, live query, session interoperability or desktop acceptance.
 
-Next full checkbox: [N1 configuration/command foundation](plan.md). Recover complete
-launcher defaults/read/write and exact process launch specification plus bounded
-server tokenization. Continue into actual server settings/startup where justified.
+Latest source checkpoint: [configuration/command foundation](configuration-source.md).
+Native strict build, Windows i386 objects/fixture link and native ASan/UBSan/LSan
+pass; original Default.cfg and65-record keyword oracle plus30000 mutation cases.
+Temporary audit sources/binaries hashed/removed. No runtime product is exposed.
+
+Next full checkbox: [server settings ingestion and command files](plan.md).
+Recover the complete cold-start dispatch/default/map/exec boundary before coding.
+New ignored exports: `server-settings` and `launcher-defaults`.
 Do not invent a ready world or successful networking calls.
 
 Original installation is the main worktree's `Hidden and Dangerous 2`, read only.

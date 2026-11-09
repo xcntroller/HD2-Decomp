@@ -348,6 +348,20 @@
       "metadata": "analysis/work/networking/server-owners/007a46d0.json",
       "metadata_sha256": "8ac2c2a9a63bb33caeef3fb4eb6d1d87fcc30ff16fc84e3a7ea744df48c5e8ce",
       "decompilation_sha256": "c3dbb2b059d156a79d0c2133931085b0029c88d8aa8f46cc42763fd96ac24601"
+    },
+    {
+      "entry": "00406030",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-defaults/00406030.json",
+      "metadata_sha256": "3d60f99f4f6ef210b27d74444d60ae2028c9fe895b88a22c025ee50b9d7fcc7c",
+      "decompilation_sha256": "93fc193dddd9ab2949191ca2e7b53ac602fca41e10339fedc9f828c51e6cd778"
+    },
+    {
+      "entry": "0040ccf0",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-defaults/0040ccf0.json",
+      "metadata_sha256": "230a783d03706c13fb5d92944f972200830cd2e1ed3d9c43dd3be610917a768d",
+      "decompilation_sha256": "06bf188cac0a72f1cef6f71367ff517cac61c2a3c9234edf2885f27278ac809e"
     }
   ]
 }

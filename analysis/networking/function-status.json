@@ -17,5 +17,176 @@
       "internal_non_thunk": 849
     }
   },
-  "functions": []
+  "functions": [
+    {
+      "program": "launcher",
+      "entry": "0040ccf0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/launcher_config.h",
+        "recovered/networking/launcher_config.cpp"
+      ],
+      "contract": "Loader rule/default values",
+      "exclusions": "No original object-layout ABI.",
+      "evidence": [
+        "analysis/work/networking/launcher-defaults/0040ccf0.json"
+      ]
+    },
+    {
+      "program": "launcher",
+      "entry": "00412720",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/launcher_config.h",
+        "recovered/networking/launcher_config.cpp"
+      ],
+      "contract": "Configuration read-reset and line traversal",
+      "exclusions": "Native diagnostics, no file/UI adapter; bounded malformed-input behavior.",
+      "evidence": [
+        "analysis/work/networking/launcher-contract/00412720.json"
+      ]
+    },
+    {
+      "program": "launcher",
+      "entry": "00411f50",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/launcher_config.h",
+        "recovered/networking/launcher_config.cpp"
+      ],
+      "contract": "All33 configuration keyword setters",
+      "exclusions": "No original MessageBox; invalid numeric/string data retains initialized state.",
+      "evidence": [
+        "analysis/work/networking/launcher-config/00411f50.json",
+        "analysis/work/networking/launcher-contract/00411f50.json"
+      ]
+    },
+    {
+      "program": "launcher",
+      "entry": "00410ef0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/launcher_config.h",
+        "recovered/networking/launcher_config.cpp"
+      ],
+      "contract": "Quoted/unquoted launcher string extraction",
+      "exclusions": "Rejects unterminated quote instead of original out-of-bounds behavior.",
+      "evidence": [
+        "analysis/work/networking/launcher-contract/00410ef0.json"
+      ]
+    },
+    {
+      "program": "launcher",
+      "entry": "00411600",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/launcher_config.h",
+        "recovered/networking/launcher_config.cpp"
+      ],
+      "contract": "All configuration fields, ordering and fixed command tail",
+      "exclusions": "Logical LF text only; original file open/flush and ostream ABI excluded.",
+      "evidence": [
+        "analysis/work/networking/launcher-config/00411600.json",
+        "analysis/work/networking/launcher-contract/00411600.json"
+      ]
+    },
+    {
+      "program": "launcher",
+      "entry": "004075c0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/launcher_config.h",
+        "recovered/networking/launcher_config.cpp"
+      ],
+      "contract": "Selected configuration path construction",
+      "exclusions": "No original std::string ABI or UI list lookup.",
+      "evidence": [
+        "analysis/work/networking/launcher-startup/004075c0.json"
+      ]
+    },
+    {
+      "program": "launcher",
+      "entry": "00407c90",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/launcher_config.h",
+        "recovered/networking/launcher_config.cpp"
+      ],
+      "contract": "Original/expansion executable path selection",
+      "exclusions": "No UI control query or original std::string ABI.",
+      "evidence": [
+        "analysis/work/networking/launcher-startup/00407c90.json"
+      ]
+    },
+    {
+      "program": "launcher",
+      "entry": "00407d50",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/launcher_config.h",
+        "recovered/networking/launcher_config.cpp"
+      ],
+      "contract": "Exact CreateProcess application/command/current-directory values",
+      "exclusions": "Does not invoke process creation or localized failure UI.",
+      "evidence": [
+        "analysis/work/networking/launcher-startup/00407d50.json"
+      ]
+    },
+    {
+      "program": "launcher",
+      "entry": "00408130",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/launcher_config.h",
+        "recovered/networking/launcher_config.cpp"
+      ],
+      "contract": "Session name/map presence and Internet port value checks",
+      "exclusions": "Actual map catalogue validation and localized UI excluded.",
+      "evidence": [
+        "analysis/work/networking/launcher-contract/00408130.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "007a47b0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/command_tokens.h",
+        "recovered/networking/command_tokens.cpp"
+      ],
+      "contract": "Bounded console tokenization and original keyword/numeric classifications",
+      "exclusions": "ASCII keyword folding; rejects overflow/unclosed quotes; original ABI excluded.",
+      "evidence": [
+        "analysis/work/networking/server-command/007a47b0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "007a4990",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/command_tokens.h",
+        "recovered/networking/command_tokens.cpp"
+      ],
+      "contract": "Separate space/tab/greater-than/hyphen separator advancement",
+      "exclusions": "Owned bounded index rather than original raw-pointer ABI.",
+      "evidence": [
+        "analysis/work/networking/server-command/007a4990.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "007065a0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/command_tokens.h",
+        "recovered/networking/command_tokens.cpp"
+      ],
+      "contract": "Literal -cmd branch and owned pending command",
+      "exclusions": "Alternate -exec/interactive startup and owner integration excluded.",
+      "evidence": [
+        "analysis/work/networking/server-startup/007065a0.json"
+      ]
+    }
+  ]
 }

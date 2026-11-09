@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "source only; no networking or desktop acceptance",
+  "checks": [
+    "native C++17 strict objects",
+    "Windows i386 strict objects and full temporary-fixture link; not executed",
+    "native ASan/UBSan/LSan original Default.cfg oracle and30000 mutations",
+    "all65 server keyword records matched section-mapped original bytes"
+  ],
+  "log_sha256": "4879bed8362482f1a8ac2eac2d79a0d55d92e3739f073a2d390d5c49b75062a4",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/config-audit.cpp",
+      "sha256": "b7a57669695f1d2de49cd92d335ad6b095c29239a0ed2eb6ecd407d299c03fe8"
+    },
+    {
+      "path": "analysis/work/networking/config-audit",
+      "sha256": "ade85d812a01f0f7114c8f0ad2348ac04f29515f112be33500d6e1e4cab7b476"
+    },
+    {
+      "path": "analysis/work/networking/config-audit.exe",
+      "sha256": "d639e24878fed3fcf6e0211d14de907b035e3d7d2aacdeddd2ec0e8d36067d12"
+    },
+    {
+      "path": "analysis/work/networking/actual.cfg",
+      "sha256": "6f280c6c0f6a0386d9631d28128aa4c4959c07d45569df0a75effcf8c8ea7742"
+    }
+  ]
+}
