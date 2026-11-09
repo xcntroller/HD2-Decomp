@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "source-only native DirectPlay server acquisition/cleanup subset; full N1 startup checkbox open",
+  "checks": [
+    "strict native portable objects and Windows i386 production objects",
+    "Windows i386 SDK fixture link with 72-byte application description and 20-byte caps assertions; not executed",
+    "same production transport source under native ASan/UBSan/LSan with injected COM objects",
+    "21 acquisition, provider metadata, HRESULT and COM-reference cases",
+    "4000 start/stop cycles; 100 replacement starts; live threaded destructor",
+    "callback result/exception propagation, callbacks during cleanup, joined threads, port/caps/GUID arguments and owned name lifetime"
+  ],
+  "limits": "Injected native interfaces verify call/ownership behavior only. Real Windows COM, bootstrap/profile/controller/game callbacks, discovery, ready state and interoperability remain unverified.",
+  "sources": [
+    {
+      "path": "recovered/networking/directplay_server.h",
+      "sha256": "b199ddd8e749b2b474d81ebf0711f2f66505fcc5d51fddbc3d183f250fd3201d"
+    },
+    {
+      "path": "recovered/networking/directplay_server.cpp",
+      "sha256": "c5dd7f7652f06fd034d81d847068e72d581417f71d30b2f62cf3b8ab261fb28b"
+    },
+    {
+      "path": "recovered/networking/Makefile",
+      "sha256": "d13a919c137b0872be1a1f7600c4c44ce6f17d34a7fc28eae9832fb1d1918051"
+    }
+  ],
+  "log_sha256": "b74fa6504f2b15e8089da6c17ce005d475e0ed991f0cc809b1ade3e15b62b40b",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/transport-audit/shims/windows.h",
+      "sha256": "2355f6e3c92f8f57fddf14826d39e1d48f8979617bbae63ea27ba4f578efeceb"
+    },
+    {
+      "path": "analysis/work/networking/transport-audit/shims/dplay8.h",
+      "sha256": "392522286e8c4180a8eaaa2a6ecd843556fe2d7f3fa9c20b2d58becb4924b377"
+    },
+    {
+      "path": "analysis/work/networking/transport-audit/audit.cpp",
+      "sha256": "f4a63fe54f198eb0dd8b45e565d10ebeed096869aa91d1c528004f2cb3e1fc67"
+    },
+    {
+      "path": "analysis/work/networking/transport-audit/native-audit",
+      "sha256": "1737f0b35ea14dbfec505ad197c5ab4730d3272629519f03ff78ef9fc2b88b74"
+    },
+    {
+      "path": "analysis/work/networking/transport-audit/windows-link.cpp",
+      "sha256": "75afe89fa92a322cfd01ca166cdcdecf5222b2a2184ede1d90fc56732b540462"
+    },
+    {
+      "path": "analysis/work/networking/transport-audit/windows-link.exe",
+      "sha256": "bfee716c2d9e4d4e5123cae4119897aed24b25fa6c938054b32f0a5b1062edae"
+    }
+  ]
+}

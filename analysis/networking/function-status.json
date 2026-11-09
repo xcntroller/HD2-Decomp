@@ -245,6 +245,34 @@
       "evidence": [
         "analysis/work/networking/server-settings/006ed2e0.json"
       ]
+    },
+    {
+      "program": "server",
+      "entry": "00779450",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/directplay_server.h",
+        "recovered/networking/directplay_server.cpp"
+      ],
+      "contract": "Native TCP/IP DirectPlay server acquisition, caps, port and Host submission",
+      "exclusions": "No surrounding bootstrap/profile/UI/voice/GameSpy/session owners; genuine handler and owned wide name required. Host success does not imply readiness or interoperability.",
+      "evidence": [
+        "analysis/work/networking/server-startup/00779450.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "007882b0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/directplay_server.h",
+        "recovered/networking/directplay_server.cpp"
+      ],
+      "contract": "Cancel, Close and Release server COM endpoint before callback state retirement",
+      "exclusions": "Server COM subset only; client, voice, socket, worker, serialization/player queues and containing owner cleanup remain absent.",
+      "evidence": [
+        "analysis/work/networking/server-startup-profile-20261109/007882b0.json"
+      ]
     }
   ]
 }

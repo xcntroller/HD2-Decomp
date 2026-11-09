@@ -4,10 +4,11 @@ CPPFLAGS := -I..
 CXXFLAGS := -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror
 BUILD_DIR := ../build/networking
 SOURCES := command_tokens.cpp launcher_config.cpp server_commands.cpp
+WINDOWS_SOURCES := $(SOURCES) directplay_server.cpp
 
 .PHONY: all windows clean
 all: $(SOURCES:%.cpp=$(BUILD_DIR)/%.o)
-windows: $(SOURCES:%.cpp=$(BUILD_DIR)/windows-%.o)
+windows: $(WINDOWS_SOURCES:%.cpp=$(BUILD_DIR)/windows-%.o)
 
 $(BUILD_DIR):
 	mkdir -p "$@"
@@ -16,4 +17,4 @@ $(BUILD_DIR)/%.o: %.cpp $(wildcard *.h) | $(BUILD_DIR)
 $(BUILD_DIR)/windows-%.o: %.cpp $(wildcard *.h) | $(BUILD_DIR)
 	"$(WINDOWS_CXX)" $(CPPFLAGS) $(CXXFLAGS) -c "$<" -o "$@"
 clean:
-	rm -f $(SOURCES:%.cpp=$(BUILD_DIR)/%.o) $(SOURCES:%.cpp=$(BUILD_DIR)/windows-%.o)
+	rm -f $(SOURCES:%.cpp=$(BUILD_DIR)/%.o) $(WINDOWS_SOURCES:%.cpp=$(BUILD_DIR)/windows-%.o)

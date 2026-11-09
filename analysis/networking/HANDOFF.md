@@ -7,22 +7,35 @@ DLL, Proton or Windows-fixture execution. Ghidra/build jobs sequential. No subag
 N0 complete as **static research**: [architecture](architecture.md),
 [client boundary](client-boundary.md), [providers](discovery-providers.md),
 [binary manifest](binary-manifest.json), separate server/launcher inventories and
-[evidence receipt](evidence.json). Ledger: nine launcher/seven server partials, zero complete.
+[evidence receipt](evidence.json). Ledger: nine launcher/nine server partials, zero complete.
 No independent server, live query, session interoperability or desktop acceptance.
 
-Latest source checkpoint: [cold server settings / command files](server-settings-source.md).
-All launcher-emitted settings, style rule reset, loaded-catalogue rotation append,
-owned rule/host/quit/admin requests and exact exec traversal are reconstructed.
-Controller/transport delivery remains required; no synthetic host/world success.
-Native strict objects, Windows i386 objects/fixture link and native ASan/UBSan/LSan
-pass: original Default.cfg +30 base catalogue entries,12000 C stdio differentials,
-25000 mutations and focused limit/failure/repeat checks. Temporary audits hashed/
-removed. [Receipt](server-settings-verification.json). No runtime product exposed.
+Latest source checkpoint: [DirectPlay server acquisition / cleanup](startup-network-source.md).
+Production source builds/links against Windows i386 SDK. Same .cpp passes native
+ASan/UBSan/LSan with injected COM:21 acquisition/metadata/HRESULT cases,4000 cycles,
+100 replacement starts and live threaded destructor. Temporary audits hashed/
+removed; [receipt](startup-network-verification.json). Original callback and actual
+bootstrap/profile/controller/voice/auxiliary/session owners remain dependencies.
+Caller supplies a genuine handler and owned wide name; Host submission is not
+readiness. Full N1 startup checkbox stays OPEN. No runtime product exposed.
+
+User-requested [networking README](../../networking/README.md) now reports both EXE
+function inventories, per-address partial bodies and source/runtime boundaries.
+Refresh/check with `python3 tools/networking/update_progress.py [--check]` after
+ledger updates. Prior [cold command checkpoint](server-settings-source.md) remains
+verified; do not repeat its audits without a new discrepancy.
 
 Next full checkbox: [startup/shutdown and actual network initialization](plan.md).
 Use the original bootstrap/profile/controller owners and DirectPlay acquisition/
 failure/cleanup; do not invent initial server defaults or successful receivers.
-Relevant durable ignored exports: server-startup, server-command, server-lifecycle,
+New exports: server-bootstrap-20261109, server-bootstrap-deps-20261109,
+server-transport-inputs-20261109, server-startup-profile-20261109. Bootstrap's TEV
+22Fh branch in original headless LS3DRF is explicitly true; not a protection blocker.
+Name helpers0077BC50/BD50 have insufficient conversion capacity and ignore errors;
+runtime prefix behavior remains unverified. Do not guess it or copy undefined data.
+Continue profile/load owner006FF900 and006F9550's HumanStore data dependency,
+module registry004A3AB0, then actual command/controller/session integration.
+Relevant prior exports: server-startup, server-command, server-lifecycle,
 server-owners, server-settings, server-settings-model. Client addresses
 must not be reused in server mappings; follow canonical thunk targets.
 Do not execute original programs/DLLs, Proton or Windows fixtures.
