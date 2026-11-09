@@ -19,6 +19,18 @@ public:
     FrameClockPlatform(const FrameClockPlatform&) = delete;
     FrameClockPlatform& operator=(const FrameClockPlatform&) = delete;
 
+    std::uint64_t performance_frequency() const {
+        LARGE_INTEGER frequency{};
+        if(!QueryPerformanceFrequency(&frequency)||frequency.QuadPart<=0)
+            throw std::runtime_error("Cannot read Human input performance frequency");
+        return static_cast<std::uint64_t>(frequency.QuadPart);
+    }
+    std::uint64_t performance_counter() const {
+        LARGE_INTEGER counter{};
+        if(!QueryPerformanceCounter(&counter))throw std::runtime_error("Cannot read Human input performance counter");
+        return static_cast<std::uint64_t>(counter.QuadPart);
+    }
+
     std::uint32_t microseconds() const {
         LARGE_INTEGER frequency{}, counter{};
         if (!QueryPerformanceFrequency(&frequency) || frequency.QuadPart <= 0 ||

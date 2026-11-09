@@ -1,0 +1,93 @@
+#ifndef HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
+#define HD2_GAME_HUMAN_LOADING_STATE_FACTORY_H
+
+#include "game/human_active_ai_state_loading.h"
+#include "game/human_guard_ai_state_loading.h"
+#include "game/human_area_ai_state_loading.h"
+#include "game/human_script_ai_state_loading.h"
+#include "game/human_passive_states_loading.h"
+#include "game/human_player_state_loading.h"
+#include "game/human_state_loading_owner.h"
+
+namespace hd2::game {
+
+//Concrete005A3F20 derived-source dispatch. All states share these exact owners;
+//B0 publishes directly to the SAME Human's typed borrower. Services implements
+//real equipment/Players/music/cleanup receivers; Contexts resolves actual VM state.
+//Camera/Presentation/Inline are the existing recovered owners.
+//This factory does not initialize a Human or advertise containing-world readiness.
+template<class Frames,class Human,class Inputs,class Random,class Contexts,
+         class Services,class Inline,class Camera,class Presentation>
+class HumanLoadingStateFactory {
+public:
+    using Base=HumanStateBaseLoading<Frames,Human,Inputs>;
+    using AI=HumanAIStateLoading<Frames,Human,Inputs>;
+    using Player=HumanPlayerStateLoading<Frames,Human,Inputs>;
+    using Active=HumanActiveAIStateLoading<Frames,Human,Inputs,Services>;
+    using Guard=HumanGuardAIStateLoading<Frames,Human,Inputs,Random,Contexts>;
+    using Script=HumanScriptAIStateLoading<Frames,Human,Inputs,Contexts>;
+    using Passive=HumanPassiveAIStateLoading<Frames,Human,Inputs>;
+    using Remote=HumanRemoteStateLoading<Frames,Human,Inputs>;
+    using Area=HumanAreaAIStateLoading<Frames,Human,Inputs,Contexts,Services>;
+    HumanLoadingStateFactory(Frames& frames,Inputs& inputs,MissionTableSet& second,MissionNavigation* navigation,
+            HumanInputCallbacks& callbacks,HumanAIAction1Pool& actions,Random& random,Contexts& contexts,
+            Services& services,Inline& control,Camera& camera,Presentation& presentation)
+        :frames_(frames),inputs_(inputs),second_(second),navigation_(navigation),callbacks_(callbacks),actions_(actions),
+         random_(random),contexts_(contexts),services_(services),control_(control),camera_(camera),presentation_(presentation){}
+    std::unique_ptr<Base> make_human_state(std::uint32_t kind) {
+        std::unique_ptr<Base> result;
+        switch(kind) {
+        case 1:{auto player=std::make_unique<Player>(frames_,inputs_,callbacks_);player->bind_sight_services(services_);result=std::move(player);break;}
+        case 3:result=std::make_unique<Active>(frames_,inputs_,second_,callbacks_,actions_,services_);break;
+        case 4:result=std::make_unique<Guard>(frames_,inputs_,second_,callbacks_,random_,contexts_);break;
+        case 5:result=std::make_unique<Script>(frames_,inputs_,second_,callbacks_,contexts_);break;
+        case 6:result=std::make_unique<Passive>(frames_,inputs_,second_,callbacks_);break;
+        case 7:result=std::make_unique<Remote>(frames_,inputs_,callbacks_);break;
+        case 8:result=std::make_unique<Area>(frames_,inputs_,second_,callbacks_,contexts_,services_);break;
+        default:throw std::runtime_error("No original Human B0 factory case");
+        }
+        if(kind==4||kind==8)result->bind_special_music_reference([this](bool enabled){services_.human_special_music_reference(enabled);});
+        return result;
+    }
+    void bind_human_state(Base& state,Human& human,const Base* previous) {
+        const auto mode=services_.mode_flags();
+        switch(state.words().template get<std::uint32_t>(0x48)) {
+        case 1:static_cast<Player&>(state).bind(human,previous,navigation_,mode,control_,camera_,presentation_);break;
+        case 3:static_cast<Active&>(state).bind(human,previous,navigation_,mode,control_);break;
+        case 4:static_cast<Guard&>(state).bind(human,previous,navigation_,mode,control_);break;
+        case 5:(void)static_cast<Script&>(state).bind(human,previous,navigation_,mode,control_);break; //Original ignores context-bool return.
+        case 6:static_cast<Passive&>(state).bind(human,previous,navigation_,mode,control_);break;
+        case 7:static_cast<Remote&>(state).bind(human,previous,navigation_,mode,control_);break;
+        case 8:static_cast<Area&>(state).bind(human,previous,navigation_,mode,control_);break;
+        default:throw std::runtime_error("Unrecovered Human B0 bind dispatch");
+        }
+    }
+    void close_human_state(Base& state) {
+        switch(state.words().template get<std::uint32_t>(0x48)) {
+        case 1:static_cast<Player&>(state).close(services_.mode_flags(),presentation_);break;
+        case 3:static_cast<Active&>(state).close_loading();break;
+        case 4:static_cast<Guard&>(state).close_loading();break;
+        case 5:static_cast<Script&>(state).close_loading();break;
+        case 6:static_cast<Passive&>(state).close_loading();break;
+        case 7:static_cast<Remote&>(state).close(services_.mode_flags());break;
+        case 8:static_cast<Area&>(state).close_loading();break;
+        default:throw std::runtime_error("Unrecovered Human B0 close dispatch");
+        }
+    }
+    void publish_human_state(Human& human,Base* state)noexcept{human.loading_state=state;}
+    void reset_active_ai_orders(Base& state){
+        if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Active AI reset requires state3");
+        static_cast<Active&>(state).reset_orders_loading();
+    }
+    void player_select_human(Human& human){services_.player_select_human(human);} //0045DA60.
+    bool human_remote_ai_enabled(){return services_.human_remote_ai_enabled();} //006B66B0.
+    void record_state_cleanup_failure(std::exception_ptr error)noexcept{services_.record_state_cleanup_failure(error);}
+    auto& services(){return services_;}auto& contexts(){return contexts_;} //SAME owners for derived sound dispatch.
+    auto& control(){return control_;}
+private:
+    Frames& frames_;Inputs& inputs_;MissionTableSet& second_;MissionNavigation* navigation_;
+    HumanInputCallbacks& callbacks_;HumanAIAction1Pool& actions_;Random& random_;Contexts& contexts_;
+    Services& services_;Inline& control_;Camera& camera_;Presentation& presentation_;
+};
+} //namespace hd2::game
+#endif
