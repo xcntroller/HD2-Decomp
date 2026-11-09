@@ -4,12 +4,14 @@
 #include "host/sound_services.h"
 #include "host/loaded_resources.h"
 #include "frontend/spatial_sound.h"
+#include "frontend/sound_portal_routing.h"
 
 namespace hd2::host {
 
 //Stateless engine/cache adapter. StartupSession supplies its SAME manager,
-//catalogue, gate and category2 cache; World supplies actual actor/module/portal
-//consumers. Construction creates no sound frame and publishes no readiness.
+//catalogue, gate and category2 cache; World supplies actual actor/module
+//consumers. Portal routing uses the same SoundServices scene/sector endpoints.
+//Construction creates no sound frame and publishes no readiness.
 template<class World>
 class GameSpatialSoundServices : public SoundServices {
 public:
@@ -46,7 +48,7 @@ public:
     bool sound_actor_flag18(void* actor) {return world_.sound_actor_flag18(actor);}
     long double sound_occlusion_distance(float& scale,const frontend::SoundPosition& first,const frontend::SoundPosition& second,
             void* first_sector,void* second_sector,float range) {
-        return world_.sound_occlusion_distance(scale,first,second,first_sector,second_sector,range);
+        return frontend::sound_portal_distance(scale,first,second,first_sector,second_sector,range,*this);
     }
     void deliver_spatial_sound(const std::array<void*,3>& registration,const frontend::HeardSpatialSound& heard) {
         static_assert(sizeof(frontend::HeardSpatialSound)==32,"Original spatial hearing callback requires i386 layout");

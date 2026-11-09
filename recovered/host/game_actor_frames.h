@@ -1,6 +1,8 @@
 #ifndef HD2_HOST_GAME_ACTOR_FRAMES_H
 #define HD2_HOST_GAME_ACTOR_FRAMES_H
 
+#include "game/mission_script_rotations.h"
+
 #include "host/game_car_frames.h"
 #include "game/human_face_mesh_pool.h"
 #include "game/mission_script_frame_snapshots.h"
@@ -13,6 +15,24 @@ class GameActorFrames : public GameCarFrames {
 public:
     using GameCarFrames::GameCarFrames;
     MenuDriver::Owner retain_actor_frame(Frame frame) {return retain(frame);}
+    void script_cutscene_viewport() { //00428B30, same actual graphics and world scene.
+        const auto width=graphics_.methods->width(&graphics_);const auto height=graphics_.methods->height(&graphics_);
+        const auto rectangle=game::mission_script_cutscene_viewport(width,height);
+        using Set=void(WINAPI*)(Frame,std::int32_t,std::int32_t,std::int32_t,std::int32_t);
+        scene_method<Set>(scene_.frame(),module_,0x148,0x48440)(scene_.frame(),rectangle[0],rectangle[1],rectangle[2],rectangle[3]);
+    }
+    void script_rotate_frame(Frame frame,std::uint32_t axis,float angle) { //00427200's actual engine matrix receivers.
+        Matrix rotation{};using Rotate=Matrix*(WINAPI*)(void*,float);
+        if(axis==1)exported<Rotate>("?RotateYMatrix@@YG?AUS_matrix@@M@Z",0x2c4d0)(rotation.data(),angle);
+        else if(axis==2)exported<Rotate>("?RotateZMatrix@@YG?AUS_matrix@@M@Z",0x2c530)(rotation.data(),angle);
+        else exported<Rotate>("?RotateXMatrix@@YG?AUS_matrix@@M@Z",0x2c470)(rotation.data(),angle);
+        const auto local=car_local_matrix(frame);using Multiply=Matrix*(WINAPI*)(void*,const void*);
+        exported<Multiply>("??XS_matrix@@QAGAAU0@ABU0@@Z",0x2d6b0)(rotation.data(),local.data());
+        put(frame,0x80,rotation);Vector scale{};using Scale=Vector*(WINAPI*)(const void*,void*);
+        exported<Scale>("?GetScale@S_matrix@@QBG?AUS_vector@@XZ",0x2db20)(rotation.data(),scale.data());
+        put(frame,0xd0,scale);put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xffffffd7u)|0x40000014u);
+        update_scene_object(frame);
+    }
     game::MissionScriptLightSnapshot script_light_snapshot(Frame light)const {
         return {field<std::array<float,4>>(light,0x1a0),field<std::uint32_t>(light,0x16c)};
     }

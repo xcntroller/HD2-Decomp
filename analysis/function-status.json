@@ -22235,15 +22235,17 @@
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions.",
-      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations. Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_context.h",
         "analysis/checkpoints/p2.2-script-compiler-context-20261109.json",
         "analysis/mission-script-receivers.md",
         "analysis/checkpoints/p2.2-script-receivers-20261109.json",
-        "recovered/game/mission_script_module_loading.h"
+        "recovered/game/mission_script_module_loading.h",
+        "analysis/sound-world-loading.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json"
       ]
     },
     {
@@ -22471,12 +22473,14 @@
       "program": "client",
       "entry": "00423670",
       "status": "partial",
-      "coverage": "Capture once, OR later masks and retain actual frame/parent/local pose/visibility/light snapshot for SetOn masks20/30.",
-      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "coverage": "Capture once, OR later masks and retain actual frame/parent/local pose/visibility/light snapshot for SetOn masks20/30. Rotation mask2 supported using the same capture-once retained pose/visibility/parent snapshot.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations. Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
       "evidence": [
         "analysis/mission-script-receivers.md",
         "analysis/checkpoints/p2.2-script-receivers-20261109.json",
-        "recovered/game/mission_script_frame_snapshots.h"
+        "recovered/game/mission_script_frame_snapshots.h",
+        "analysis/sound-world-loading.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json"
       ]
     },
     {
@@ -22669,6 +22673,188 @@
         "analysis/mission-script-receivers.md",
         "analysis/checkpoints/p2.2-script-receivers-20261109.json",
         "recovered/game/effects_fade.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00427200",
+      "status": "partial",
+      "coverage": "Step actual retained script rotation using signed elapsed, FLOAT angle/rate and strict target crossing; clamp applied angle and invoke verified engine matrix/local-scale/update receivers.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_script_rotations.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004274a0",
+      "status": "partial",
+      "coverage": "Reverse frame dedup replaces rotation parameters; otherwise retain actual frame, remember snapshot mask2 and publish owned rotation record.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_script_rotations.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00428cc0",
+      "status": "partial",
+      "coverage": "Retain actual frame and initialize rotation axis/remaining/rate through native signed integer degree conversion.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_script_rotations.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00428d00",
+      "status": "partial",
+      "coverage": "Release owned script rotation frame reference at reverse record retirement.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_script_rotations.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00432be0",
+      "status": "partial",
+      "coverage": "Actual directed direct/shared-neighbour portal lookup, original .125 double-closed attenuation, same/root/unreachable cases and distinct x87/FLOAT distance paths; host spatial hearing uses this receiver.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/frontend/sound_portal_routing.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048eb70",
+      "status": "partial",
+      "coverage": "Load mission Dialogs.bin and construct actual shared-font game text renderer; enable style8/26 only after valid input and factory success.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_subtitles_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048ee50",
+      "status": "partial",
+      "coverage": "Visibility/index transition and original signed-dimension/QWORD/full-viewport mission subtitle geometry against same TextState.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_subtitles_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048f080",
+      "status": "partial",
+      "coverage": "Auto-show and first-ID subtitle selection, first row duration minimum1000 and actual renderer record replacement/clear.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_subtitles_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048f180",
+      "status": "partial",
+      "coverage": "Speech subtitle selection without auto-show, case-sensitive NOSUB, unsigned sound duration*FLOAT1.2/ftol-low32 and signed1500 minimum.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_subtitles_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048f2d0",
+      "status": "partial",
+      "coverage": "Wrapping signed timer decrement, one next subtitle row without minimum/overshoot carry, and actual selection/renderer reset at end.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_subtitles_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048f390",
+      "status": "partial",
+      "coverage": "Gate enabled/visible/index/renderer/profile and preserve actual graphics state0 around shared-font text rendering.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_subtitles_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048f7d0",
+      "status": "partial",
+      "coverage": "Read actual localized Dialogs.bin root9C4/version9C5/record9C6, retain ordered partial records on failure and close all actual Files handles.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_subtitles_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048f420",
+      "status": "partial",
+      "coverage": "Consume first identity9C7 and then bounded NUL caption9C8, allocate ordered owned subtitle entry and byte-length*200 duration.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_subtitles_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00644b80",
+      "status": "partial",
+      "coverage": "Subtitle callsite seven-DWORD TextState geometry copy with native dirty/geometry flags.",
+      "limitations": "Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "evidence": [
+        "analysis/sound-world-loading.md",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "recovered/game/mission_subtitles_loading.h"
       ]
     }
   ]

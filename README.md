@@ -14,7 +14,7 @@ sound, proximity and the script compiler/context/module receivers. These are sou
 declines loading until the actual world and remaining consumers are connected.
 [Current boundary and remaining work](analysis/mission-world-loading.md) |
 [Source progress](analysis/loading-modules.md) |
-[Latest script receiver checks](analysis/checkpoints/p2.2-script-receivers-20261109.json).
+[Latest world presentation checks](analysis/checkpoints/p2.2-world-presentation-20261109.json).
 
 The accepted bounded launch checkpoint covers: four opening movies with music and
 English subtitles lead into the compiled Main/Exit menu. Pointer/keyboard input,
@@ -83,13 +83,14 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and1,651 partial entries (1,646 client/five engine).
+complete client functions and1,665 partial entries (1,660 client/five engine).
 The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) records
 the earlier accumulated source subsets. Later checkpoints include Human
 weapons/formation/Players, [prepared spawning](analysis/session-activation-loading.md),
 [camera and local dispatch](analysis/camera-local-dispatch-loading.md),
 [script compilation/context](analysis/mission-script-loading.md) and
-[script module/visibility receivers](analysis/mission-script-receivers.md).
+[script module/visibility/rotation receivers](analysis/mission-script-receivers.md) and
+[world sound/subtitle receivers](analysis/sound-world-loading.md).
 Source recovery remains separate from desktop integration.
 
 Phase1 front-end delivery is closed by the user2026-11-03 within its recorded
@@ -218,11 +219,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,651 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,665 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 1,646 |
+| Base game client | 17,294 | 34 | 1,660 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

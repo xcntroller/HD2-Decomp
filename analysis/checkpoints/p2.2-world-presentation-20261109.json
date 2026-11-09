@@ -1,0 +1,175 @@
+{
+  "date": "2026-11-09",
+  "scope": "Full P2.2 first implementation checkbox; combined source script rotation, portal routing and mission subtitle receiver checkpoint. Continue actual loading/world dependencies.",
+  "source_only": true,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "original_entries": [
+    "00427200",
+    "004274a0",
+    "00428cc0",
+    "00428d00",
+    "00432be0",
+    "0048eb70",
+    "0048ee50",
+    "0048f080",
+    "0048f180",
+    "0048f2d0",
+    "0048f390",
+    "0048f7d0",
+    "0048f420",
+    "00644b80",
+    "00416e10",
+    "00423670"
+  ],
+  "ledger_added_partial_client": 14,
+  "added": [
+    "00427200",
+    "004274a0",
+    "00428cc0",
+    "00428d00",
+    "00432be0",
+    "0048eb70",
+    "0048ee50",
+    "0048f080",
+    "0048f180",
+    "0048f2d0",
+    "0048f390",
+    "0048f7d0",
+    "0048f420",
+    "00644b80"
+  ],
+  "extended": [
+    "00416e10",
+    "00423670"
+  ],
+  "not_credited": [
+    "00428b30/00427b80 absent frozen inventory",
+    "004257b0 deferred save-restore queue producer researched, not implemented",
+    "0048edb0/ee10/ee30 generic vectors not recovered",
+    "0048fbc0 existing startup language path helper",
+    "006443c0 existing TextObject-set delegation",
+    "All merely exported bodies, required World/Human/FPV receivers and delegated engine methods"
+  ],
+  "verification": {
+    "native_sanitizers": {
+      "result": "PASS",
+      "tools": "ASan/UBSan/LSan; detect_leaks=1, halt_on_error=1",
+      "logs": [
+        "analysis/work/mission-world-20261103/script-rotations-native-run.log",
+        "analysis/work/mission-world-20261103/sound-portals-native-run.log",
+        "analysis/work/mission-world-20261103/mission-subtitles-native-run.log"
+      ],
+      "boundary": "Actual recovered compiler/context/ownership/text/hearing source; engine/Files/sector/glyph endpoints are explicit boundary doubles."
+    },
+    "actual_host_i386": {
+      "result": "PASS",
+      "flags": "-std=c++17 -Wall -Wextra -Wpedantic -Werror",
+      "logs": [
+        "analysis/work/mission-world-20261103/script-rotations-i386-build.log",
+        "analysis/work/mission-world-20261103/sound-portals-i386-build.log",
+        "analysis/work/mission-world-20261103/mission-subtitles-i386-build.log"
+      ],
+      "boundary": "Actual GameActorServices/ChunkFiles/script module, GameSpatialSoundServices and GameOwnerBackend/GameFonts/TextState; missing World/Runtime endpoints are declarations. Compile only."
+    },
+    "application_compile_link": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/world-presentation-app-build.log",
+      "sha256": "a69c11bcbbda4a6f9a068f1b3418606a04cabfa4dd6fa7956cb93e46edca59da",
+      "executed": false
+    },
+    "ledger_readme": {
+      "result": "PASS",
+      "tests": 27,
+      "log": "analysis/work/mission-world-20261103/world-presentation-tracker-tests.log",
+      "totals": {
+        "complete": 34,
+        "partial": 1665,
+        "partial_client": 1660,
+        "partial_engine": 5,
+        "frozen": 18783
+      }
+    },
+    "english_dialogs": {
+      "path": "analysis/work/startup-runtime/run/Text/english/dialogs.bin",
+      "bytes": 183120,
+      "records": 3250,
+      "sha256": "90cd8cd8416b38917c2630f983366467445621938b074fad25a8ba0fdcd8fff0",
+      "assets_modified": false
+    }
+  },
+  "temporary_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-rotations-audit.cpp",
+      "size": 5426,
+      "sha256": "5f3d81bb7d3d3f637b5a0b49b5b6d935fa27c804c0f08eca1c0cd8497afd58c8",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-rotations-audit",
+      "size": 4443320,
+      "sha256": "6a62ee2d4a56223596c192a73179f3c8252dd98e74984b0778d2476aec063d3b",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-rotations-host.cpp",
+      "size": 1177,
+      "sha256": "3b19545b9aa827991441ddff42cfa454a120a0c8545baa08d7e89c839ee2e54d",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-rotations-host.o",
+      "size": 1495818,
+      "sha256": "ef70f1120e73ec5a2d353054badba66f45f4d6f136804931b25b7d1a0c8fc5ae",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-sound-portals-audit.cpp",
+      "size": 4468,
+      "sha256": "c4df5b87b2edac69a9ac7582cbcf5a7ad55af0ad3dd275c169399e36afed64fc",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-sound-portals-audit",
+      "size": 1015648,
+      "sha256": "4efbd33c6e1c91467eb1746ca2c9f804fadeb91aae9d8e8295157b41418d82d3",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-sound-portals-host.cpp",
+      "size": 330,
+      "sha256": "501e23329059fe0431785ded85118949da503daf44b7431eb677f432c65d3486",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-sound-portals-host.o",
+      "size": 326623,
+      "sha256": "9c9b0df8c23f6237af5017ad64c9f1c0de205968296cb916c66c2f838e9a2c12",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-subtitles-audit.cpp",
+      "size": 5278,
+      "sha256": "e5c54bc086618cf253bd1bbf7c0e8e4910de8def360885ce1570d76ae4271d1e",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-subtitles-audit",
+      "size": 2335216,
+      "sha256": "8fd28d4eb1fdcbeb96c979f290692e295418a01eb2f412375d37e007eea62055",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-subtitles-host.cpp",
+      "size": 480,
+      "sha256": "e351c5de32f0123b5fe5c4585c39ba4688b7f652c267ca3e6bcf46773034309a",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-subtitles-host.o",
+      "size": 650621,
+      "sha256": "1bb44f628faefe15a25c7cec39f6fa50ddce95edeba2e69c9e2753f4c63b19cc",
+      "removed": true
+    }
+  ]
+}

@@ -1,5 +1,13 @@
 # Technical research guide
 
+2026-11-09 latest: [world sound/subtitle source](analysis/sound-world-loading.md) and
+[script rotations](analysis/mission-script-receivers.md#rotationframe-update-continuation--2026-11-09)
+now recover actual portal hearing routing, retained rotation/frame-update/viewport
+and game+60 subtitle loading/timing/render receivers. All3250 captured English
+Dialogs.bin records parse. Native ASan/UBSan/LSan, actual-host i386, app link and27
+tracker tests pass.14 new partials/two extended;34 complete/1,665 partial
+(1,660 client/five engine). Full P2.2 and actual world/desktop integration remain.
+
 2026-11-09 latest: [script module and visibility receivers](analysis/mission-script-receivers.md)
 now cover real packet/FIFO SetOn, retained frame/light restoration, actual model/
 Human visibility orchestration, animation BODYCOLB collision ownership, selected

@@ -17,8 +17,8 @@ struct MissionScriptLightSnapshot {std::array<float,4> colour{};std::uint32_t pa
 
 //00423670 and00423BF0: capture once, OR later masks, retain BOTH frame and
 //original parent.00427B80 performs a visibility pass before destroying these
-//records. Required SetOn masks20/30 are supported; transform/model-animation
-//mutators must add their actual restoration pass before using other masks.
+//records. SetOn masks20/30 and rotation mask2 are supported; other transform/
+//model-animation mutators must supply their actual restoration pass first.
 template<class Frames>class MissionScriptFrameSnapshots {
 public:
     using Frame=typename Frames::Frame;
@@ -36,7 +36,7 @@ public:
     const auto& records()const{return records_;}
     void remember(Frame frame,std::uint32_t mask) {
         if(!frame)throw std::logic_error("Script frame snapshot requires an actual frame");
-        if(mask&~0x30u)throw std::runtime_error("Script frame snapshot requires actual transform/animation restoration");
+        if(mask&~0x32u)throw std::runtime_error("Script frame snapshot requires actual position/animation restoration");
         for(std::size_t n=records_.size();n;)if(records_[--n]->frame->get()==frame){records_[n]->mask|=mask;return;}
         auto record=std::make_unique<Record>();record->frame.emplace(frames_.retain_actor_frame(frame));
         const auto parent=frames_.object_parent(frame);
@@ -46,11 +46,12 @@ public:
         if(frames_.frame_kind(frame)==4)record->light=frames_.script_light_snapshot(frame);
         record->mask=mask;records_.push_back(std::move(record));
     }
-    void clear() { //Required20/30 subset of00427B80 followed by actual00423BF0 for EVERY record.
+    void clear() { //Supported2/20/30 subset of00427B80, then00423BF0 for EVERY record.
         std::exception_ptr failure;
         const auto attempt=[&](auto&& action){try{action();}catch(...){if(!failure)failure=std::current_exception();}};
         for(std::size_t n=records_.size();n;) {
             auto& record=*records_[--n];if(record.mask&0x20u)attempt([&]{frames_.object_visible(record.frame->get(),record.visible);});
+            if(record.mask&2u)attempt([&]{frames_.object_rotation(record.frame->get(),record.rotation);});
         }
         while(!records_.empty()) {
             auto record=std::move(records_.back());records_.pop_back();attempt([&]{retire(*record);});

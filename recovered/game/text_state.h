@@ -65,6 +65,7 @@ template<class Text>
 class MissionText {
 public:
     struct Entry {
+        std::uint32_t cursor=0xffffffffu,id=0xffffffffu; //Native00/04; records0C.
         std::vector<std::pair<std::uint32_t, frontend::SharedText>> records;
         ~Entry() { for (auto& record : records) record.second.reset(); }
     };
@@ -90,6 +91,7 @@ public:
     std::unique_ptr<Text> renderer;
     std::int32_t index = -1, ticks = -1;
     frontend::SharedText mission_name;
+    frontend::SharedText current; //Native14, retained independently of renderer records.
     std::vector<std::unique_ptr<Entry>> entries;
 };
 

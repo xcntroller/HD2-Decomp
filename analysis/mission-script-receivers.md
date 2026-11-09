@@ -43,8 +43,8 @@ and light colour1A0/parameter16C. Supported masks20/30 restore visibility in the
 module finish prepass.00423BF0 always restores visibility again, relinks a
 retained parent with mode0, updates, restores light colour/parameter, updates,
 then releases the frame.00423B40/TeleportNearFrameBack6D retire one matching
-snapshot and swap/pop without the finish prepass. Transform/animation masks
-remain explicit rejects until their complete restoration consumers exist.
+snapshot and swap/pop without the finish prepass. Rotation mask2 is now supported by the continuation below. Position/animation
+masks remain explicit rejects until their complete restoration consumers exist.
 Failures still retire all owned references before propagating the first error.
 
 `mission_script_model_visibility.h` reconstructs0042B650's model branch using
@@ -104,3 +104,24 @@ See the [receipt](checkpoints/p2.2-script-receivers-20261109.json).
 Continue FULL P2.2 through actual remaining base/Human/Dog commands/predicates,
 asynchronous/deferred/transform owners and runtime Files selection, then the
 containing world and remaining SOUND/actor/physics/objective/frame consumers.
+
+## Rotation/frame-update continuation — 2026-11-09
+
+`mission_script_rotations.h` now supplies004274A0/00428CC0 retained records,
+reverse dedup replacement and one snapshot2 per frame.00427200 uses signed
+elapsed*FLOAT.001*abs(rate), retains FLOAT remaining angle, and retires only on
+STRICT zero crossing, applying the clamped actual angle. Equality stays active.
+Axis0/default isX,1Y,2Z. Actual RotateX/Y/ZMatrix *= frame local matrix, GetScale,
+flags and update use verified engine exports in GameActorFrames.00428D00 releases
+the retained frame. Module frame-update00428B30 is separate from script tick:
+reverse step/destroy/swap-pop, then actual IGraph/scene+148 cutscene rectangle.
+Snapshot rotation restoration precedes record release on finish. No new frozen
+credit for absent00428B30/00427B80. Actual script/Human/Dog/world remains partial.
+
+Native sanitizer checks cover compiler/context dispatch, retained EC/pool/
+snapshot/rotation lifetimes, signed angle/rate, overshoot/equality, zero speed,
+replacement, cleanup failure and unclamped viewport geometry. Strict actual-host
+i386 and app link pass. Deferred global queue008692C0 append is observed only in
+004257B0 save restore (0042607B); new mission load leaves the actual cold queue
+empty. Saved read-only references/ASM distinguish this from a missing required
+initial-load producer. [Combined receipt](checkpoints/p2.2-world-presentation-20261109.json).

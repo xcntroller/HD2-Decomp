@@ -213,3 +213,11 @@ Next: recover actual playback/cache population and restore (00433FA0/00435240),
 spatial routing where required, shared gate/control lifecycle and concrete
 application/camera/state/protection/cache owners, then compose original startup
 and controller. Do not expand menu flows before that launch path is rebuilt.
+
+## World-loading continuation — 2026-11-09
+
+[World sound/subtitle source](sound-world-loading.md) now implements00432BE0
+and uses it in the actual spatial adapter. It adds game+60 Dialogs.bin/timing/
+render receivers using the existing shared text/font owner. This supersedes the
+old portal-routing/subtitle source gap above; containing-world/Human/camera
+publication and actual mission desktop verification remain open.

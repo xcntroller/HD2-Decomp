@@ -635,3 +635,10 @@ animation collision ownership, variables and selected player predicates. Native
 sanitizers, actual-host i386, app link and27 tracker tests pass.19 new partials,
 five extended; no complete/desktop promotions. Actual remaining VM/Human/Dog,
 asynchronous/transform owners, runtime Files and full world remain in P2.2.
+
+2026-11-09: [world sound/subtitle receivers](sound-world-loading.md) and script
+rotation/frame-update now pass focused native sanitizers, actual-host i386 and
+app link. English Dialogs.bin3250 records parsed; portal routing preserves actual
+directed two-hop/.125 closed attenuation.14 new partials/two extended, no whole
+function/desktop promotions. Continue containing-world and required actor/physics
+loading dependencies; save-restore deferred queue is not an initial-load blocker.
