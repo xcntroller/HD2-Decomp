@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "verified fresh command-facing server settings; source-only N1 startup remains open",
+  "checks": [
+    "strict native C++17 production source with temporary ASan/UBSan/LSan fixture",
+    "strict Windows i386 complete fixture link; not executed",
+    "original PE admin marker and active/profile constants extracted independently from fingerprinted exports",
+    "all fresh command-facing fields, distinct active/profile rules and owned-instance separation",
+    "actual installed Default.cfg and 30 catalogue entries through production cold commands; pending host request only",
+    "frequency-zero retention and inactivity-zero assignment"
+  ],
+  "limits": "No containing application/profile/network initialization, game readiness, live transport or interoperability claim. Original unwritten stored query port gets explicit native zero guard.",
+  "source": {
+    "path": "recovered/networking/server_initial_settings.h",
+    "sha256": "34a3b3f5abba140f6ddd66dae3df9f8c84a2e1f3ff8947454fc1c4887bddb5cc"
+  },
+  "static_anchors": [
+    {
+      "address": "00883374",
+      "size": 4,
+      "sha256": "1666d9845b241586380fe85194c47f1d1868c4d7d30ba806ecc6d581df9eeadc",
+      "meaning": "Admin initializer control bytes and NUL"
+    },
+    {
+      "address": "006edcf0",
+      "size": 355,
+      "sha256": "9c970dcb10c2c86de62a18eb89038567e8f4e6815d3595699c6844998f8f2acb",
+      "meaning": "Configuration reset body"
+    },
+    {
+      "address": "0077c630",
+      "size": 77,
+      "sha256": "4f8b9979c243d04b976af6b7fd12866cac9d561347cea52bbfd4da9201b7595b",
+      "meaning": "Nested descriptor reset; no query-port store"
+    },
+    {
+      "address": "00787ea0",
+      "size": 106,
+      "sha256": "612e411c7be0e9c1f003932b09d49db8a9026ce1eecd5101373daf471df61b9c",
+      "meaning": "Network owner initial stores"
+    }
+  ],
+  "log_sha256": "af76a937e017134e4bb6f19494ecb76f1c0189659faaeef8f4b0a314b6f2a72f",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/initial-settings-audit/audit.cpp",
+      "sha256": "5a0435984bd5aeb1fe6c0170fa8c3a1a12367f7ada94e40216aba2715ef8272d"
+    },
+    {
+      "path": "analysis/work/networking/initial-settings-audit/original-values.h",
+      "sha256": "21def03ac181cd11f2562475e4f0dc2c5ebef0ad6a3dd80a284f5ddbccc1ff59"
+    },
+    {
+      "path": "analysis/work/networking/initial-settings-audit/native-audit",
+      "sha256": "263acde38dc775b4cdca2c24fa6cd81fa7497307d946e160dea8e2be4b9c9e8a"
+    },
+    {
+      "path": "analysis/work/networking/initial-settings-audit/windows-link.exe",
+      "sha256": "37115647ebf1aaa08a62c24efe78822291c41b3bf169d7844259b85f1a88aa49"
+    }
+  ]
+}

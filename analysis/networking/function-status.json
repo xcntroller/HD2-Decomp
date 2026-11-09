@@ -273,6 +273,32 @@
       "evidence": [
         "analysis/work/networking/server-startup-profile-20261109/007882b0.json"
       ]
+    },
+    {
+      "program": "server",
+      "entry": "006edcf0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/server_initial_settings.h"
+      ],
+      "contract": "Fresh command-facing server configuration, dedicated flag, admin initializer and active rules",
+      "exclusions": "Fresh configuration fields only; original owner ABI, nested descriptor, live reset/rotation retirement and profile/controller integration excluded. Stored query port uses explicit native zero guard.",
+      "evidence": [
+        "analysis/work/networking/server-bootstrap-data-20261109/006edcf0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "00787ea0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/server_initial_settings.h"
+      ],
+      "contract": "Fresh command-facing ping, frequency and inactivity limits",
+      "exclusions": "Three limit fields only; network critical sections, player slots, callbacks, worker/endpoint fields and containing owner initialization remain absent.",
+      "evidence": [
+        "analysis/work/networking/server-bootstrap-deps-20261109/00787ea0.json"
+      ]
     }
   ]
 }

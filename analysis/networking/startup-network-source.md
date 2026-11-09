@@ -111,3 +111,46 @@ acquired COM references; RPC_E_CHANGED_MODE acquires none. Provider bounds check
 exception-to-HRESULT conversion and defined owned-name input are deliberate native
 safety boundaries, not claims that the original performed those checks. No
 delegated Windows/engine API implementation receives executable-function credit.
+
+## Fresh command settings and profile dependency
+
+[initial_server_command_settings](../../recovered/networking/server_initial_settings.h)
+now supplies the fresh command-facing fields from configuration reset006EDCF0,
+nested descriptor reset0077C630 and network initialization00787EA0. This does not
+construct their containing owners. Server-specific confirmed values:
+
+| Field | Initial value / evidence |
+| --- | --- |
+| Dedicated |1 at006EDD35; client reset differs |
+| Host port |11001 at configuration+220; LAN transport still selects31567 |
+| Admin password |Three control bytes01/02/03 at00883374, assigned to+21C; no user credential was read |
+| Active rules |22 words copied to+228; warmup30, respawn10, spawn protection1 |
+| Maximum ping / frequency / inactivity |Network+5064=0,+5068=50,+506C=300000ms |
+| Stored query port |Configuration+1E8 is not written by reset; native zero is an explicit guard |
+
+The four profile rule blocks differ from the active reset block. Their constants
+at the tail of00644400 agree with the existing client rule helper, independently
+checked against this EXE's exports. There is no new implementation/ledger credit
+for that delegated helper.00644400 first tries `mpmaplist.txt`, then
+`GameData\\mpmaplist.txt`; if both opens fail it returns before writing those rule
+blocks. An unavailable catalogue cannot silently supply initialized profile rules.
+
+Actual ownership is lazy:007A23E0 first creates007A21A0, which calls006ED090 to
+allocate configuration+294 and load the catalogue00644400. Raw constructor
+006F71B0 owns GameData/config/profile/HumanStore and additional data consumers.
+006F9550 calls GameData006FF900 and HumanStore006E33E0 even when the first loader
+fails, returning their low-bit AND. These containing owners and the full catalogue
+descriptor tails remain required integration work. Existing client implementations
+are reuse candidates only after server-address contract comparison.
+
+Fresh settings pass a focused native ASan/UBSan/LSan audit through the actual cold
+command implementation with installed Default.cfg and30 catalogue entries. The
+oracle extracts active/profile constants from fingerprinted exports and the admin
+marker directly from the original PE. Tests distinguish active/preset rules,
+verify all fresh fields and owned instances, and confirm Default.cfg's `maxfreq 0`
+retains50 while `maxinactivity 0` writes zero. Strict Windows i386 fixture link
+passes without execution. [Receipt](initial-settings-verification.json).
+
+Exploratory exports stopped at absent entries006BB860 and007A4460. Those helpers
+and007A44A0 were inspected as static PE instructions only, with no new function
+credit. Earlier successfully exported C/JSON pairs from those jobs remain valid.

@@ -7,10 +7,18 @@ DLL, Proton or Windows-fixture execution. Ghidra/build jobs sequential. No subag
 N0 complete as **static research**: [architecture](architecture.md),
 [client boundary](client-boundary.md), [providers](discovery-providers.md),
 [binary manifest](binary-manifest.json), separate server/launcher inventories and
-[evidence receipt](evidence.json). Ledger: nine launcher/nine server partials, zero complete.
+[evidence receipt](evidence.json). Ledger: nine launcher/eleven server partials, zero complete.
 No independent server, live query, session interoperability or desktop acceptance.
 
-Latest source checkpoint: [DirectPlay server acquisition / cleanup](startup-network-source.md).
+Latest source: [fresh command settings](../../recovered/networking/server_initial_settings.h)
+from006EDCF0/00787EA0. Dedicated1, actual three-control-byte admin initializer,
+active22-rule block, host port11001, limits0/50/300000ms. Stored query port is
+unwritten by original reset; native0 is an explicit guard. Native ASan/UBSan/LSan
+and Windows i386 fixture link pass, including real Default.cfg/catalogue, distinct
+profile rules and maxfreq0 retaining50. [Receipt](initial-settings-verification.json).
+Actual containing bootstrap/profile owners still need integration.
+
+Prior checkpoint: [DirectPlay server acquisition / cleanup](startup-network-source.md).
 Production source builds/links against Windows i386 SDK. Same .cpp passes native
 ASan/UBSan/LSan with injected COM:21 acquisition/metadata/HRESULT cases,4000 cycles,
 100 replacement starts and live threaded destructor. Temporary audits hashed/
@@ -33,8 +41,15 @@ server-transport-inputs-20261109, server-startup-profile-20261109. Bootstrap's T
 22Fh branch in original headless LS3DRF is explicitly true; not a protection blocker.
 Name helpers0077BC50/BD50 have insufficient conversion capacity and ignore errors;
 runtime prefix behavior remains unverified. Do not guess it or copy undefined data.
-Continue profile/load owner006FF900 and006F9550's HumanStore data dependency,
-module registry004A3AB0, then actual command/controller/session integration.
+Continue lazy command support007A21A0 →006ED090 →00644400 catalogue/profile owner:
+both missing catalogue opens return before initializing profile rules. Actual
+application constructor006F71B0, profile/load006FF900 and006F9550's HumanStore
+dependency, module registry004A3AB0, then command/controller/session integration.
+New ignored exports also include server-profile-deps, server-settings-bootstrap,
+server-application-constructor, server-bootstrap-data, server-profile-initial-state,
+server-multiplayer-profile-bootstrap and server-profile-rule-defaults (all20261109).
+Exploratory absent006BB860/007A4460/007A44A0 helpers receive no new credit;
+successful C/JSON pairs before those requests remain valid.
 Relevant prior exports: server-startup, server-command, server-lifecycle,
 server-owners, server-settings, server-settings-model. Client addresses
 must not be reused in server mappings; follow canonical thunk targets.

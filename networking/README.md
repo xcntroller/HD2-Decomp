@@ -15,7 +15,7 @@ configuration parsing does not establish a working network session.
 
 | Executable | Inventoried functions | Complete | Partial | No completion claim | Complete % |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| HD2DS.exe | 13,957 | 0 | 9 | 13,948 | 0.00% |
+| HD2DS.exe | 13,957 | 0 | 11 | 13,946 | 0.00% |
 | ServerLauncher.exe | 849 | 0 | 9 | 840 | 0.00% |
 
 ### HD2DS.exe mapped bodies
@@ -24,8 +24,10 @@ configuration parsing does not establish a working network session.
 | --- | --- | --- |
 | `006ED040` | partial | [Style change copies22 selected profile rules and retains rotation](../recovered/networking/server_commands.cpp) |
 | `006ED2E0` | partial | [Loaded catalogue/style gate, reverse case-insensitive lookup and owned rotation append](../recovered/networking/server_commands.cpp) |
+| `006EDCF0` | partial | [Fresh command-facing server configuration, dedicated flag, admin initializer and active rules](../recovered/networking/server_initial_settings.h) |
 | `007065A0` | partial | [Literal -cmd branch and owned pending command](../recovered/networking/command_tokens.cpp) |
 | `00779450` | partial | [Native TCP/IP DirectPlay server acquisition, caps, port and Host submission](../recovered/networking/directplay_server.cpp) |
+| `00787EA0` | partial | [Fresh command-facing ping, frequency and inactivity limits](../recovered/networking/server_initial_settings.h) |
 | `007882B0` | partial | [Cancel, Close and Release server COM endpoint before callback state retirement](../recovered/networking/directplay_server.cpp) |
 | `007A23E0` | partial | [All launcher settings, idle-mode rules and distinct owned controller/admin requests](../recovered/networking/server_commands.cpp) |
 | `007A4080` | partial | [Read-only command files with original scanset/whitespace/EOF order and nested exec](../recovered/networking/server_commands.cpp) |
@@ -70,7 +72,8 @@ python3 tools/networking/update_progress.py --check
 
 Completed source checkpoints cover launcher configuration read/write and launch
 specification, bounded server command tokens, cold settings dispatch and command
-files. The native DirectPlay server transport now contains COM acquisition,
+files, plus verified fresh server configuration and limit values. The native
+DirectPlay server transport now contains COM acquisition,
 Host submission and ordered callback cleanup. It requires the
 actual caller's handler and an owned wide name. Real bootstrap/profile/controller
 owners and session lifecycle integration are still required.
