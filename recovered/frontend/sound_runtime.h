@@ -26,14 +26,20 @@ struct TrackedSound {
     float base_volume;
     float scale = 1;
 };
-// Fields consumed here from the original zero-filled 0x40-byte voice record.
-// Remaining playback fields belong to the still separate voice producer.
+//Original zero-filled0x40-byte voice. Typed borrowed links replace native DWORD
+//pointers; pooled stop/update and the spatial producer share this SAME record.
 struct SoundVoice {
     std::uint8_t active = 0; // +10
     void* sound = nullptr;  // +14, owned reference
     float target_volume = 0; // +24
     std::uint32_t flags = 0; // +34
     CatalogSoundVariant* cache = nullptr; // +38, borrowed catalog owner
+    SoundPosition position{}; // +00, actual world position
+    std::int32_t group = 0; // +18
+    float far_range = 0,near_range = 0; // +1c/+20
+    float extra = 0; // +28
+    void* source = nullptr; // +2c, borrowed actor
+    void* relative = nullptr; // +30, borrowed frame
 };
 struct SoundVoiceGroup {
     std::uint32_t limit = 3; // +a4
