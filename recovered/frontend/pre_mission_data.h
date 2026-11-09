@@ -110,6 +110,9 @@ struct PreMissionItem {
 
     // Original item virtual+10:007E0430/007E0530/007E0690.
     std::uint32_t kind() const { return item_class == 0 ? 23 : derived[1]; }
+    std::int32_t equipment_command() const { //Virtual+0C:007E0420/007E0520/007E0680.
+        return item_class==0?100:pre_mission_detail::Bytes::integer(derived[0]);
+    }
     // +18: only class1 has an associated ammunition item (007E0510).
     std::int32_t ammunition() const {
         return item_class == 1 ? pre_mission_detail::Bytes::integer(derived[3]) : -1;
