@@ -15,8 +15,9 @@ npm ci
 npm run dev
 ```
 
-Open the loopback URL Vite prints. `npm run dev` first regenerates the public
-snapshot from the current worktree. To regenerate it independently:
+Open `http://127.0.0.1:5173/HD2-Decomp/` (or the port Vite prints).
+`npm run dev` first regenerates the public snapshot from the current worktree.
+To regenerate it independently:
 
 ```sh
 npm run data
@@ -29,10 +30,13 @@ npm run build
 npm run preview
 ```
 
-`npm run build` regenerates data, runs strict TypeScript checking, builds Vite's
-static output, then audits **all** output files for disallowed file types and
-private paths. Source/commit URLs in the JSON must match the fixed GitHub
-repository and an immutable commit ID. Generated data, dependencies and `dist/`
+`npm run build` regenerates data, validates the exact public schema and claims
+against the current analyzer/inputs, runs strict TypeScript checking, builds
+Vite's static output, then audits **all** output files against the Vite asset
+manifest. Unsafe paths, symlinks, raw exports, logs and undeclared files fail
+the build. Validate an already generated snapshot with `npm run validate:data`.
+Source/commit URLs in the JSON must match the fixed GitHub repository and an
+immutable commit ID. Generated data, dependencies and `dist/`
 are ignored by Git. The npm lockfile fixes dependency versions. No database,
 authentication, runtime API, external font request or analytics is used.
 
@@ -59,8 +63,8 @@ authentication, runtime API, external font request or analytics is used.
   views; same-day receipt order is not asserted. Local commits have no public
   commit link until the published reference contains them.
 
-Navigation uses URL hashes and Vite uses relative asset paths. Deep links such as
-`#/functions?address=00416e10` work without server rewrite rules.
+Navigation uses URL hashes and Vite uses the explicit `/HD2-Decomp/` base path.
+Deep links such as `#/functions?address=00416e10` work without server rewrite rules.
 
 ## Data and publication boundary
 
@@ -118,23 +122,34 @@ scope with no replacement-progress census. No active/completed progress is claim
 for either area. Function-level call relationships are not available. The adapter
 preserves the analyzer's 15 stale-reference notices without changing those records.
 
-This is a snapshot of this isolated worktree, not a live feed from the independent
-reconstruction session. New data requires a deliberate source update and rebuild.
+Each build describes its analyzed Git revision. Once the Pages workflow is
+enabled on `master`, every master push rebuilds the snapshot from that exact
+revision. Uncommitted changes in another worktree are not a live data source.
 A missing or unsupported JSON file has a retry/error view. Absent collections and
 counts show empty or unknown states rather than fabricated progress.
 
-## Static hosting
+## GitHub Pages deployment
 
-Publish **only `website/dist/`**, never the repository or raw analyzer output.
-The output works at a domain root or a GitHub Pages project subpath. Hash routing
-needs no 404 fallback. A future Pages action can check out a public revision,
-install Node/Python, run `npm ci` and `npm run build` in `website/`, then upload
-that directory as the Pages artifact. No deployment workflow is activated here.
-See the [Vite static deployment guide](https://vite.dev/guide/static-deploy.html)
-and [React Flow documentation](https://reactflow.dev/learn).
+[Deployment setup, exact instructions and troubleshooting](DEPLOYMENT.md) covers
+`.github/workflows/pages.yml`. It builds on every push to `master` and supports
+manual dispatch on `master`. Only `website/dist/` is uploaded using the official
+Pages actions, with deployment permissions limited to a separate deploy job.
+No custom secrets or PAT are needed.
+
+An administrator must first select **Settings → Pages → GitHub Actions** and
+allow `master` in the `github-pages` environment. Integrating this workflow onto
+`master` with Pages enabled starts automatic deployment. Nothing is pushed,
+merged, deployed or changed in repository settings by a local build.
+
+Expected public URL: https://xcntroller.github.io/HD2-Decomp/
+
+Do not publish the repository or raw analyzer output. Vite's `.vite/manifest.json`
+is used for the local artifact audit; the official Pages uploader excludes hidden
+files. The published files are the built HTML/JS/CSS, licensed fonts, font notices
+and validated JSON. No source maps are produced. Hash routing requires no 404
+fallback. `npm run preview` serves the same `/HD2-Decomp/` prefix locally.
 
 Font licenses are distributed as `font-licenses.txt` in the static output.
-No publishing, push, merge or game execution is part of these commands.
 
 ## Verification of the first version
 

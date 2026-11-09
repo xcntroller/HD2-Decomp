@@ -1,9 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// Relative assets + hash navigation also work at /<repository>/ on GitHub Pages.
+// Hash routes stay under this prefix and need no server-side rewrite rules.
 export default defineConfig({
   plugins: [react()],
-  base: "./",
-  build: { sourcemap: false },
+  base: "/HD2-Decomp/",
+  build: { sourcemap: false, manifest: true },
 });

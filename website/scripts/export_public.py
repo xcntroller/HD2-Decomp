@@ -17,7 +17,9 @@ from progress_analyzer import analyze
 REPOSITORY = 'https://github.com/xcntroller/HD2-Decomp'
 ALLOWED_SUFFIXES = {'.md', '.json', '.py', '.h', '.cpp', '.c', '.java'}
 PRIVATE = re.compile(r'(?:analysis/(?:work|ghidra)/|(?<!\w)work/|\.tools/|extracted/|captures/|assets/)[^\s`\]\)<>"\']*')
-ABSOLUTE = re.compile(r'(?<![\w:])/(?:home|tmp|workspace|Users|opt|mnt|usr|var)/[^\s`\]\)<>"\']*|(?<!\w)[A-Za-z]:[\\/](?!/)[^\s`\]\)<>"\']*')
+# Prose only: preserve URLs, redact absolute paths regardless of runner location.
+# JSON pointers are handled separately by the snapshot validator.
+ABSOLUTE = re.compile(r'(?<![\w:/])/(?!/)(?:[\w.@+-]+/)+[^\s`\]\)<>"\']*|(?<!\w)[A-Za-z]:[\\/](?!/)[^\s`\]\)<>"\']*')
 
 
 def git(*args, required=True):
@@ -50,6 +52,8 @@ class Publication:
         requested = os.environ.get('HD2_PUBLIC_REF')
         upstream = git('rev-parse', '--symbolic-full-name', '@{upstream}', required=False)
         self.ref = git('rev-parse', '--verify', (requested or upstream) + '^{commit}', required=False) if requested or upstream else ''
+        if requested and not self.ref:
+            raise ValueError('HD2_PUBLIC_REF does not resolve to a commit')
         self.tracked = set(git('ls-files', '-z').split('\0'))
         self.published = {}
         if self.ref:
@@ -92,8 +96,9 @@ class Publication:
         return list({json.dumps(link, sort_keys=True): link for link in links if link}.values())
 
 
-def export():
-    raw = analyze(ROOT)
+def build_snapshot(raw=None):
+    """Return the safe projection in memory, also used by pre-build validation."""
+    raw = analyze(ROOT) if raw is None else raw
     pub = Publication()
     graph = raw['graph']
     nodes = []
@@ -174,13 +179,19 @@ def export():
                                           'target': None, 'evidence': pub.evidence(u['provenance'])} for u in graph['unknown_relationships']]},
               'diagnostics': dict(sorted(Counter(d['code'] for d in raw['diagnostics']).items())),
               'inputs': raw['inputs']}
-    encoded = json.dumps(output, sort_keys=True, separators=(',', ':'), ensure_ascii=True, allow_nan=False) + '\n'
-    if PRIVATE.search(encoded) or ABSOLUTE.search(encoded):
+    return output
+
+
+def export():
+    encoded = json.dumps(build_snapshot(), sort_keys=True, separators=(',', ':'), ensure_ascii=True, allow_nan=False) + '\n'
+    if PRIVATE.search(encoded):
         raise ValueError('Publication contains a private/local path')
     destination = SITE / 'public/data/progress.json'
+    if destination.resolve() != destination:
+        raise ValueError('Symlinked public snapshot output is not allowed')
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_text(encoded, encoding='utf-8')
-    print(f'Public snapshot: {len(functions)} credited entries, {len(nodes)} graph nodes; private artifact fields omitted.')
+    print('Public snapshot generated from the current analyzer and Git revision; private artifact fields omitted.')
 
 
 if __name__ == '__main__':

@@ -8,9 +8,10 @@
   },
   "scripts": {
     "data": "python3 -B scripts/export_public.py",
+    "validate:data": "python3 -B scripts/validate_snapshot.py",
     "dev": "npm run data && vite --host 127.0.0.1",
     "typecheck": "tsc --noEmit",
-    "build": "npm run data && npm run typecheck && vite build && python3 -B scripts/check_public.py dist",
+    "build": "npm run data && npm run validate:data && npm run typecheck && vite build && python3 -B scripts/check_public.py dist",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
