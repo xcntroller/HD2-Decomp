@@ -154,3 +154,76 @@ passes without execution. [Receipt](initial-settings-verification.json).
 Exploratory exports stopped at absent entries006BB860 and007A4460. Those helpers
 and007A44A0 were inspected as static PE instructions only, with no new function
 credit. Earlier successfully exported C/JSON pairs from those jobs remain valid.
+
+## Cold network resources and player-slot reset
+
+[DirectPlayServerOwner](../../recovered/networking/directplay_server_owner.cpp)
+now contains the real transport, both Win32 critical sections from00787EA0 and
+the initial32 slot records. Lock construction precedes slot allocation. Each
+slot follows0077D4B0's known stores in its0xC4-byte record:95 bytes are written,
+including the first name byte, nine counters, zero pointer/flag words, state
+words2/2, reservationFFFFFFFF and value50. The remaining101 bytes survive reset;
+fresh native storage defines those otherwise unwritten bytes as zero.
+
+The slot is an owned data image, not a wire packet or an ABI object containing
+usable native pointers. This representation does not implement a live player,
+serializer, worker or admission reservation. No such object is fabricated.
+
+00779450 first calls007882B0, which clears the original slot vector after closing
+the old endpoint. Consequently the initial32 records become an empty retained
+allocation before first Host, rather than32 admitted players. Owner::start now
+performs that ordered close/clear before invoking the actual transport. Final
+owner cleanup keeps both locks and records alive through Cancel/Close/Release,
+then retires slot storage and locks. The queue lock exists for its real later
+consumer; no successful empty queue processor is installed.
+
+The new owner/slot source passes native ASan/UBSan/LSan:10000 independently seeded
+slot images match the store mask extracted from the original body, including
+preserved bytes; initialization/allocation failures and snapshot exceptions
+unwind;200 owner lifetimes/400 endpoint starts retain locks through joined close
+callbacks. This audit injects the previously verified transport and lock services,
+so it tests the new ownership code without repeating the transport's unchanged
+COM audit. The Windows fixture links both real production components against the
+i386 SDK and asserts critical-section size24 and slot-image size196. It is not
+executed. Temporary sources/binaries are hashed and removed in the
+[receipt](network-owner-verification.json).
+
+00787EA0/007882B0 partial mappings expand;0077D4B0 and00788210 gain partial
+mappings. No complete-function promotions. Actual callback dispatch0077DCF0,
+auxiliary/voice/sockets, serialization and worker owners, and their containing
+application startup remain required to complete the selected N1 checkbox.
+
+## Lazy command catalogue and profile-rule acquisition
+
+The new three-argument ColdServerCommands constructor takes initial configuration,
+the command-file reader and a separate catalogue reader. It performs no I/O.
+First dispatch follows007A23E0 →007A21A0 →006ED090 →00644400 before keyword parsing:
+try `mpmaplist.txt`, then `GameData\\mpmaplist.txt` only after open failure; decode
+the actual base catalogue metadata; initialize the four verified22-word preset
+blocks; retain both for the owner's lifetime. Later commands never reload it.
+An empty/missing command file, initial-LF file or unprocessed no-newline tail does
+not dispatch and therefore does not trigger that acquisition. An `exec` command
+itself acquires the dependency before opening its target, as in the original.
+
+Command fopen and catalogue DTA resolution remain separate adapters. The existing
+LocalCommandFiles reads actual filesystem bytes; an integrated archive resolver
+is still required for a catalogue present only in DTA archives. The existing
+explicit-dependency constructor retains its established supplied-data contract.
+
+Original missing-catalogue construction leaves rule blocks unwritten. Native lazy
+loading instead enters an explicit failed state; it cannot run commands with
+invented presets or silently retry on a later command. Malformed markup and
+allocation failure also leave that state failed. A valid empty MAP_LIST supplies
+actual preset defaults, but cannot produce a host request without a selected map.
+The metadata decoder's existing bounded markup policy is retained. Full objective,
+equipment, allowed-preset and zone descriptor ownership remain outside this
+partial00644400 mapping; no successful gameplay descriptor is fabricated.
+
+Focused native ASan/UBSan/LSan verifies lazy timing, separate reader order, both
+fallback paths, malformed/missing/allocation failure, valid empty catalogues,
+nested exec, explicit-constructor compatibility and200 fresh installed-config
+lifetimes. Strict Windows i386 fixture link passes without execution. Temporary
+audit source/binaries are hashed and removed in the
+[receipt](lazy-catalogue-verification.json).007A23E0's existing partial expands;
+00644400 gains partial credit. The containing virtual owner/ABI helpers do not
+receive new credit merely because their logical dependency is acquired here.

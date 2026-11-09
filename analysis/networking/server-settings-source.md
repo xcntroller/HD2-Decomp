@@ -10,9 +10,9 @@ Active-session administration, Join, gameplay commands and actual controller/
 transport delivery remain separate receivers. Parsing `server` cannot report a
 started host. Initial settings and per-style profile rules must be supplied by
 the actual bootstrap/profile owner; no invented server defaults are introduced.
-Follow-up: the [startup work](startup-network-source.md) now recovers the fresh
-command-facing configuration/limit values. Actual per-style profile ownership,
-catalogue loading and controller delivery remain required.
+Follow-up: the [startup work](startup-network-source.md) now recovers fresh
+command-facing configuration/limits and actual lazy catalogue/preset loading.
+Full descriptor/profile ownership and controller delivery remain required.
 
 Evidence: original server fingerprint in [manifest](binary-manifest.json),
 `server-lifecycle/007a23e0.{c,json}`, `server-settings` and

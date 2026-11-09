@@ -53,6 +53,50 @@ ColdServerCommands::ColdServerCommands(ServerStartupSettings initial, ProfileRul
         throw std::invalid_argument("Invalid supplied server bootstrap settings");
 }
 
+ColdServerCommands::ColdServerCommands(ServerStartupSettings initial, CommandFiles& command_files,
+        CommandFiles& catalogue_files)
+    : ColdServerCommands(std::move(initial),ProfileRules{}, {},false,command_files) {
+    catalogue_state_ = CatalogueState::pending;
+    catalogue_files_ = &catalogue_files;
+}
+
+bool ColdServerCommands::ensure_catalogue() {
+    if (catalogue_state_ == CatalogueState::supplied || catalogue_state_ == CatalogueState::ready)
+        return true;
+    if (catalogue_state_ == CatalogueState::failed) {
+        diagnostic(CommandDiagnostic::Kind::unsupported,"catalogue initialization");
+        return false;
+    }
+    //007A21A0's owner is created once, including a failed catalogue load. Native
+    // guards its original unwritten rule blocks instead of accepting guessed
+    // defaults or retrying silently on the next command.
+    catalogue_state_ = CatalogueState::failed;
+    auto filename = std::string("mpmaplist.txt");
+    auto bytes = catalogue_files_->read_bytes(filename);
+    if (!bytes) {
+        filename = "GameData\\mpmaplist.txt";
+        bytes = catalogue_files_->read_bytes(filename);
+    }
+    if (!bytes) { diagnostic(CommandDiagnostic::Kind::missing_file,filename); return false; }
+    try {
+        auto catalogue = frontend::decode_multiplayer_maps(*bytes);
+        ProfileRules profiles;
+        //00644400 writes all four22-word blocks only after a catalogue opens.
+        // Constants match this EXE independently; no client object ABI is used.
+        for (unsigned style = 0; style < profiles.size(); ++style)
+            profiles[style] = frontend::MultiplayerRules::defaults(style).values;
+        catalogue_ = std::move(catalogue);
+        profile_rules_ = profiles;
+    } catch (const std::logic_error&) {
+        diagnostic(CommandDiagnostic::Kind::malformed,filename); return false;
+    } catch (const std::runtime_error&) {
+        diagnostic(CommandDiagnostic::Kind::malformed,filename); return false;
+    }
+    catalogue_loaded_ = true;
+    catalogue_state_ = CatalogueState::ready;
+    return true;
+}
+
 void ColdServerCommands::diagnostic(CommandDiagnostic::Kind kind, std::string subject) {
     diagnostics_.push_back({kind,std::move(subject)});
 }
@@ -84,6 +128,7 @@ bool ColdServerCommands::execute(std::string command) {
 bool ColdServerCommands::dispatch(CommandTokens& command) {
     using Kind = CommandToken::Kind;
     using Error = CommandDiagnostic::Kind;
+    if (!ensure_catalogue()) return false;
     const auto& words = server_keywords();
     while (true) {
         const auto key = command.next(words);

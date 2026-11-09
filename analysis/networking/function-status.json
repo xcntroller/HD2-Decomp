@@ -196,8 +196,8 @@
         "recovered/networking/server_commands.h",
         "recovered/networking/server_commands.cpp"
       ],
-      "contract": "All launcher settings, idle-mode rules and distinct owned controller/admin requests",
-      "exclusions": "Cold mode7 only; actual bootstrap defaults, network/controller receivers and active-session/game commands excluded.",
+      "contract": "Launcher settings, owned controller/admin requests and lazy first-dispatch catalogue acquisition",
+      "exclusions": "Cold mode7 only; no live controller/transport effects or original callback/UI/owner ABI. Lazy missing/malformed catalogue fails explicitly.",
       "evidence": [
         "analysis/work/networking/server-startup/007a23e0.json",
         "analysis/work/networking/server-lifecycle/007a23e0.json"
@@ -266,10 +266,12 @@
       "status": "partial",
       "sources": [
         "recovered/networking/directplay_server.h",
-        "recovered/networking/directplay_server.cpp"
+        "recovered/networking/directplay_server.cpp",
+        "recovered/networking/directplay_server_owner.h",
+        "recovered/networking/directplay_server_owner.cpp"
       ],
-      "contract": "Cancel, Close and Release server COM endpoint before callback state retirement",
-      "exclusions": "Server COM subset only; client, voice, socket, worker, serialization/player queues and containing owner cleanup remain absent.",
+      "contract": "Cancel, Close and Release server COM endpoint before cold slot retirement",
+      "exclusions": "Server COM and cold record subset; no live player workers, client, voice, socket, serialization queues or containing owner cleanup.",
       "evidence": [
         "analysis/work/networking/server-startup-profile-20261109/007882b0.json"
       ]
@@ -292,12 +294,56 @@
       "entry": "00787ea0",
       "status": "partial",
       "sources": [
-        "recovered/networking/server_initial_settings.h"
+        "recovered/networking/server_initial_settings.h",
+        "recovered/networking/server_player_slot.h",
+        "recovered/networking/directplay_server_owner.h",
+        "recovered/networking/directplay_server_owner.cpp"
       ],
-      "contract": "Fresh command-facing ping, frequency and inactivity limits",
-      "exclusions": "Three limit fields only; network critical sections, player slots, callbacks, worker/endpoint fields and containing owner initialization remain absent.",
+      "contract": "Fresh two critical sections, 32 cold slot records and command-facing network limits",
+      "exclusions": "Cold owner subset only; original ABI, auxiliary/callback/worker/endpoint preparation and containing application initialization remain absent.",
       "evidence": [
         "analysis/work/networking/server-bootstrap-deps-20261109/00787ea0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "0077d4b0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/server_player_slot.h"
+      ],
+      "contract": "All known player-slot reset stores with preservation of unwritten bytes",
+      "exclusions": "Owned data image only, not live player/pointer ABI or wire packet. Fresh unknown bytes receive native zero guard.",
+      "evidence": [
+        "analysis/work/networking/server-profile-deps-20261109/0077d4b0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "00788210",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/directplay_server_owner.h",
+        "recovered/networking/directplay_server_owner.cpp"
+      ],
+      "contract": "Cold server endpoint, record and critical-section lifetime retirement",
+      "exclusions": "Auxiliary, serialization and special endpoint owners remain absent; no complete containing network teardown.",
+      "evidence": [
+        "analysis/work/networking/server-bootstrap-deps-20261109/00788210.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "00644400",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/server_commands.h",
+        "recovered/networking/server_commands.cpp"
+      ],
+      "contract": "Actual catalogue path fallback, metadata loading and four verified profile-rule blocks",
+      "exclusions": "Metadata subset using existing bounded decoder; full objective/equipment/preset/zone descriptors, virtual owner ABI and archive backend integration excluded. Missing/malformed input fails explicitly.",
+      "evidence": [
+        "analysis/work/networking/server-multiplayer-profile-bootstrap-20261109/00644400.json"
       ]
     }
   ]

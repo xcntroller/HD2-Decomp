@@ -54,6 +54,11 @@ public:
     ColdServerCommands(ServerStartupSettings initial, ProfileRules profile_rules,
         std::vector<frontend::MultiplayerMap> catalogue, bool catalogue_loaded,
         CommandFiles& files);
+    // Original007A23E0's lazy007A21A0/006ED090 dependency: first dispatch loads
+    // the actual catalogue and its rule defaults. Command fopen and catalogue
+    // DTA/path resolution have separate byte-reader adapters. No reads in ctor.
+    ColdServerCommands(ServerStartupSettings initial, CommandFiles& command_files,
+        CommandFiles& catalogue_files);
 
     // Returns original syntactic command acceptance, not transport success.
     bool execute(std::string command);
@@ -71,11 +76,15 @@ private:
     std::vector<frontend::MultiplayerMap> catalogue_;
     bool catalogue_loaded_;
     CommandFiles& files_;
+    enum class CatalogueState { supplied, pending, ready, failed };
+    CatalogueState catalogue_state_ = CatalogueState::supplied;
+    CommandFiles* catalogue_files_ = nullptr;
     std::vector<std::string> active_files_;
     std::vector<ColdCommandEffect> effects_;
     std::vector<CommandDiagnostic> diagnostics_;
     std::vector<CommandQuery> queries_;
     bool dispatch(CommandTokens& command);
+    bool ensure_catalogue();
     bool append_map(const std::string& name);
     void diagnostic(CommandDiagnostic::Kind kind, std::string subject);
     void query(std::string key, std::string value);

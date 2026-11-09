@@ -4,7 +4,7 @@ CPPFLAGS := -I..
 CXXFLAGS := -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror
 BUILD_DIR := ../build/networking
 SOURCES := command_tokens.cpp launcher_config.cpp server_commands.cpp
-WINDOWS_SOURCES := $(SOURCES) directplay_server.cpp
+WINDOWS_SOURCES := $(SOURCES) directplay_server.cpp directplay_server_owner.cpp
 
 .PHONY: all windows clean
 all: $(SOURCES:%.cpp=$(BUILD_DIR)/%.o)

@@ -824,6 +824,20 @@
       "metadata": "analysis/work/networking/server-profile-rule-defaults-20261109/006431b0.json",
       "metadata_sha256": "8fbf2bf2c39df845520efee6f53fb0d9d8c85cbdf1a4e3327b8dd96c4b60b678",
       "decompilation_sha256": "eed85a5fd553f18eec19c642399589897eb409477451047bb83ec32962283b20"
+    },
+    {
+      "entry": "006ed1b0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-command-support-owner-20261109/006ed1b0.json",
+      "metadata_sha256": "6be427b244f324a2864bef061759bf245f3bcd1c7aefade6b2af08a55c48decd",
+      "decompilation_sha256": "c452c18297ca722f8cbae2ec5e879a02d70c349606f2c76d94a5c6b9c9ab613d"
+    },
+    {
+      "entry": "007a21a0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-command-support-owner-20261109/007a21a0.json",
+      "metadata_sha256": "e97c464253ac8cdc9a0cacd1a2458d15c584bc201805e3f5872c5569d3042fd3",
+      "decompilation_sha256": "bf5f7141c19aa116fb6dc9af5307a99b2bc7c58902b5743846f467e9b84f009c"
     }
   ]
 }

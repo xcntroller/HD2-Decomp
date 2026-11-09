@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "source-only cold network owner and slot reset; full N1 startup remains open",
+  "checks": [
+    "strict Windows i386 production objects",
+    "Windows i386 fixture link of real transport+owner; 24-byte critical section and 196-byte slot image; not executed",
+    "native ASan/UBSan/LSan new production owner and slot source with injected transport and lock services",
+    "10000 original-mask seeded slot images:95 written bytes and101 preserved bytes",
+    "first/second lock acquisition and slot allocation failures; snapshot allocation unwind",
+    "200 owner lifetimes,400 endpoint starts, replacement starts and live destruction; joined close callbacks can acquire the still-live player lock"
+  ],
+  "limits": "Native injected dependencies verify new owner/slot behavior only. Original Win32 SEH allocation failure, real COM callback scheduling, live player/worker/queue ownership, bootstrap and interoperability remain unverified. Unchanged transport audit is retained separately.",
+  "sources": [
+    {
+      "path": "recovered/networking/server_player_slot.h",
+      "sha256": "09632db343dc2bb3158d5b25dfd8a8c1f52bbdc618e14e4cea28376ccb962dba"
+    },
+    {
+      "path": "recovered/networking/directplay_server_owner.h",
+      "sha256": "d061c41bd8f81348b0c02ef4b96ba206068ffc42feb2a9cf2e5e4a82c390987c"
+    },
+    {
+      "path": "recovered/networking/directplay_server_owner.cpp",
+      "sha256": "78c544c337f35bad1b1df112f1924550c330368cb5941523f26cb4b7035533ba"
+    },
+    {
+      "path": "recovered/networking/Makefile",
+      "sha256": "82c3b6f87ef9e4f444ba7b596619964f2b2295e0f7b136afc5cf059a698f0694"
+    }
+  ],
+  "original_slot_evidence": "analysis/work/networking/server-profile-deps-20261109/0077d4b0.json",
+  "log_sha256": "1b0162b24d762c2ad03ffccecf1cb52d6709595c93df4b0771e27dbb974f9ef1",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/network-owner-audit/shims/windows.h",
+      "sha256": "fb4c181c0842f93524c3cde78f7ec93b802c9745bc68f391fcf7462a1959f3c8"
+    },
+    {
+      "path": "analysis/work/networking/network-owner-audit/shims/dplay8.h",
+      "sha256": "d991539ee133bd721d8e0caaa59b3065b760ac9ec05626357b152e0f11008b3c"
+    },
+    {
+      "path": "analysis/work/networking/network-owner-audit/original-slot.h",
+      "sha256": "a68768fadd747a6933a4db5947e413155d4e3deb99098706b309d33fee52415c"
+    },
+    {
+      "path": "analysis/work/networking/network-owner-audit/audit.cpp",
+      "sha256": "e55c556341aaed286a397ea6ca336ee2d2d746fae36c0accec78d932126982be"
+    },
+    {
+      "path": "analysis/work/networking/network-owner-audit/native-audit",
+      "sha256": "dd782cd1f8df56a438f42e99927133a93ba207477cd3d651639ed13ea37a1509"
+    },
+    {
+      "path": "analysis/work/networking/network-owner-audit/windows-link.cpp",
+      "sha256": "7629dbf0ce5a8e38c6cc4ee888f23d360c627c4fe67ffc58b63376b42efae1a9"
+    },
+    {
+      "path": "analysis/work/networking/network-owner-audit/windows-link.exe",
+      "sha256": "f8d6d2a838b930653bb8047012444e0ca9a1b5febace0473775985202d076e63"
+    }
+  ]
+}

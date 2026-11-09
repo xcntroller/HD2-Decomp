@@ -1,76 +1,67 @@
 # Networking handoff — 2026-11-09
 
 Work only in `feature/networking` at HD2-Decomp-networking. Main master/P2.2 and
-tooling worktrees remain untouched. No push, merge, publish, original executable,
-DLL, Proton or Windows-fixture execution. Ghidra/build jobs sequential. No subagents.
+other worktrees remain untouched. No push, merge, publish, original executable,
+DLL, Proton or Windows-fixture execution. Heavy jobs sequential; no subagents.
 
-N0 complete as **static research**: [architecture](architecture.md),
-[client boundary](client-boundary.md), [providers](discovery-providers.md),
-[binary manifest](binary-manifest.json), separate server/launcher inventories and
-[evidence receipt](evidence.json). Ledger: nine launcher/eleven server partials, zero complete.
-No independent server, live query, session interoperability or desktop acceptance.
+Ledger:14 server/9 launcher partials, zero complete. Separate inventories and
+[progress README](../../networking/README.md) do not alter the frozen client/LS3DF
+baseline. Refresh/check with `python3 tools/networking/update_progress.py [--check]`.
+No independent server, live discovery, session interoperability or desktop acceptance.
 
-Latest source: [fresh command settings](../../recovered/networking/server_initial_settings.h)
-from006EDCF0/00787EA0. Dedicated1, actual three-control-byte admin initializer,
-active22-rule block, host port11001, limits0/50/300000ms. Stored query port is
-unwritten by original reset; native0 is an explicit guard. Native ASan/UBSan/LSan
-and Windows i386 fixture link pass, including real Default.cfg/catalogue, distinct
-profile rules and maxfreq0 retaining50. [Receipt](initial-settings-verification.json).
-Actual containing bootstrap/profile owners still need integration.
+Latest source: [lazy command dependencies and cold network owner](startup-network-source.md).
+New three-argument ColdServerCommands takes separate command/catalogue byte
+readers and loads actual catalogue metadata/preset rules before first dispatch.
+Primary/fallback order, no-load file cases, missing/malformed/allocation failure,
+nested exec, supplied-constructor compatibility and200 actual config lifetimes
+pass native ASan/UBSan/LSan and Windows i386 fixture link. Missing catalogue fails
+explicitly instead of using the original unwritten rule blocks. Filesystem reads
+are real; DTA-only resolution and full descriptor ownership remain open.
+[Receipt](lazy-catalogue-verification.json). Temporary audit sources/binaries removed.
 
-Prior checkpoint: [DirectPlay server acquisition / cleanup](startup-network-source.md).
-Production source builds/links against Windows i386 SDK. Same .cpp passes native
-ASan/UBSan/LSan with injected COM:21 acquisition/metadata/HRESULT cases,4000 cycles,
-100 replacement starts and live threaded destructor. Temporary audits hashed/
-removed; [receipt](startup-network-verification.json). Original callback and actual
-bootstrap/profile/controller/voice/auxiliary/session owners remain dependencies.
-Caller supplies a genuine handler and owned wide name; Host submission is not
-readiness. Full N1 startup checkbox stays OPEN. No runtime product exposed.
+Both real critical sections and initial32 slot images are owned through endpoint
+cleanup. Before Host, original close/clear empties those slots while retaining
+capacity. Raw slots are data images, not usable native player/pointer objects.
+Native ASan/UBSan/LSan passes10000 original-mask seeds, lock/allocation failures,
+snapshot unwind and200 owner lifetimes/400 injected endpoint starts. Windows
+objects and real transport+owner fixture link pass; not executed. Temporary audits
+hashed/removed. [Receipt](network-owner-verification.json).
 
-User-requested [networking README](../../networking/README.md) now reports both EXE
-function inventories, per-address partial bodies and source/runtime boundaries.
-Refresh/check with `python3 tools/networking/update_progress.py [--check]` after
-ledger updates. Prior [cold command checkpoint](server-settings-source.md) remains
-verified; do not repeat its audits without a new discrepancy.
+Prior verified source: [DirectPlay acquisition/cleanup](startup-network-verification.json),
+[fresh server fields/limits](initial-settings-verification.json),
+[cold commands](server-settings-source.md), [launcher config](configuration-source.md).
+Keep their audits unless new evidence requires changes. Actual host submission
+is not readiness; the transport requires a genuine handler and owned wide name.
+Server reset is dedicated1; admin initializer is three control bytes01/02/03.
+Active rule defaults differ from profile presets. Limits0/50/300000ms mean
+Default.cfg's maxfreq0 retains50. Stored query port is unwritten by reset; native
+zero is an explicit guard, not an original default.
 
-Next full checkbox: [startup/shutdown and actual network initialization](plan.md).
-Use the original bootstrap/profile/controller owners and DirectPlay acquisition/
-failure/cleanup; do not invent initial server defaults or successful receivers.
-New exports: server-bootstrap-20261109, server-bootstrap-deps-20261109,
-server-transport-inputs-20261109, server-startup-profile-20261109. Bootstrap's TEV
-22Fh branch in original headless LS3DRF is explicitly true; not a protection blocker.
-Name helpers0077BC50/BD50 have insufficient conversion capacity and ignore errors;
-runtime prefix behavior remains unverified. Do not guess it or copy undefined data.
-Continue lazy command support007A21A0 →006ED090 →00644400 catalogue/profile owner:
-both missing catalogue opens return before initializing profile rules. Actual
-application constructor006F71B0, profile/load006FF900 and006F9550's HumanStore
-dependency, module registry004A3AB0, then command/controller/session integration.
-New ignored exports also include server-profile-deps, server-settings-bootstrap,
-server-application-constructor, server-bootstrap-data, server-profile-initial-state,
-server-multiplayer-profile-bootstrap and server-profile-rule-defaults (all20261109).
-Exploratory absent006BB860/007A4460/007A44A0 helpers receive no new credit;
-successful C/JSON pairs before those requests remain valid.
-Relevant prior exports: server-startup, server-command, server-lifecycle,
-server-owners, server-settings, server-settings-model. Client addresses
-must not be reused in server mappings; follow canonical thunk targets.
-Do not execute original programs/DLLs, Proton or Windows fixtures.
+Continue the full first open [N1 startup/shutdown checkbox](plan.md); it stays OPEN.
+Logical007A23E0 →007A21A0 →006ED090 →00644400 acquisition now runs on actual input;
+full original virtual owner/descriptor ABI is still excluded. Continue application
+constructor006F71B0,006F9550's GameData006FF900/HumanStore006E33E0,
+module registry004A3AB0, command/controller integration and post-Host serialization/
+workers/auxiliaries. Callback dispatch0077DCF0 remains required; no fake ready world.
 
-Original installation is the main worktree's `Hidden and Dangerous 2`, read only.
-New Ghidra projects are ignored `analysis/work/networking/ghidra-projects`.
-LauncherResearch/ServerResearch import original fingerprints; original input files
-were not copied into Git. Java25 and main worktree's Ghidra/toolchain are read-only
-tools. XDG config/cache and application settings stay under networking scratch.
-Ignored `run-ghidra.sh` supplies local paths; keep scripts flat in ignored `scripts`
-when combining root-tools and tools/networking scripts to avoid Java package
-resolution conflicts. Always read-only/noanalysis after initial import. Check logs
-and every used decompiled JSON/C pair; undefined exploratory requests are recorded
-in architecture and receive no implicit evidence/credit.
+[Startup contract](startup-network-source.md), [architecture](architecture.md),
+[manifest](binary-manifest.json) and [evidence hashes](evidence.json) retain details.
+TEV22Fh in LS3DRF explicitly returns true; not a protection blocker. Name helpers
+0077BC50/BD50 have insufficient conversion capacity and ignore failure; runtime
+prefix output is unverified. Do not copy undefined data or guess that behavior.
+Server query refuses until actual owner progress100. Connect payload is84 bytes;
+reservation/identity and full admission remain open beyond established prefixes.
 
-Important: launcher ordinals differ from server ordinals. Launcher domain0 is
-Internet,1 local; style0 objectives,1 occupation,2 deathmatch,3 cooperative. Its
-writer emits port only for Internet, quoted names/passwords/admin fields when
-present and fixed `dedicated 1` / `server` tail. Server `exec` takes the remaining
-filename including spaces, not one whitespace-delimited argument. Server GUID is
-008560E8; 00858EC0 is the TCP/IP provider GUID. Server enum callback refuses until
-actual owner progress100. Connect payload is84 bytes; admission prefix checks
-version, capacity and password, with additional reservation/identity work still open.
+Original installation: main worktree's `Hidden and Dangerous 2`, read only.
+Independent Ghidra projects/runtime directories are ignored under
+analysis/work/networking. run-ghidra.sh supplies Java25 and local XDG/settings;
+keep combined scripts flat in ignored scripts to avoid Java class-path conflicts.
+Always readOnly/noanalysis after import, check logs and every used JSON/C pair.
+Exploratory absent006BB860/007A4460/007A44A0 helpers receive no new credit; valid
+exports preceding those requests are retained. New20261109 directories cover
+server-bootstrap*, server-transport-inputs, server-startup-profile,
+server-profile-deps, server-settings-bootstrap, server-application-constructor,
+server-bootstrap-data, server-profile-initial-state, server-multiplayer-profile-bootstrap
+server-profile-rule-defaults and server-command-support-owner. Earlier server-startup/owners/settings/lifecycle
+exports remain relevant. Follow canonical thunk targets and separate server/client
+addresses. Original binaries, decompilations and Ghidra databases stay untracked.

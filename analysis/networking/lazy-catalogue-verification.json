@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "source-only lazy cold catalogue/profile-rule acquisition; full N1 startup open",
+  "checks": [
+    "strict native C++17 production sources under ASan/UBSan/LSan",
+    "strict Windows i386 complete fixture link; not executed",
+    "actual installed Default.cfg and mpmaplist metadata,200 fresh lifetimes",
+    "no reads during construction; no catalogue load for missing/empty/initial-LF/no-newline-tail command files",
+    "first dispatch before keyword parse; primary and fallback only on open failure; later commands reuse owner",
+    "sticky missing/malformed/allocation failure without invented profile values",
+    "valid empty catalogue cannot request host; nested exec preserves command/catalogue read order",
+    "existing supplied-dependency constructor semantics retained"
+  ],
+  "limits": "Command and catalogue byte adapters are separate. Native filesystem input is real; archive resolver and full gameplay descriptors remain unintegrated. Host effects are pending requests, not transport/readiness/session success.",
+  "sources": [
+    {
+      "path": "recovered/networking/server_commands.h",
+      "sha256": "da37e882e7b9b1729b87eeb76e7ad243b4c9c5b396f788e539d244c5067a89ea"
+    },
+    {
+      "path": "recovered/networking/server_commands.cpp",
+      "sha256": "8fd994f4cfb3bf29250b4df043365e177073bc6193dbf01f8a6a56448acedb40"
+    }
+  ],
+  "log_sha256": "c0a054741977b9bb9b8177a565e11282de14a3466ffe2dc0e6690fc2bd301630",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/lazy-catalogue-audit/audit.cpp",
+      "sha256": "d6f01feaee172cdd7427c8c26a0238c45138833c4b23005c96f4003b5ed81701"
+    },
+    {
+      "path": "analysis/work/networking/lazy-catalogue-audit/native-audit",
+      "sha256": "be75f6ad064cb1539826dc29e349b0881ed16a025a4a9c1d82f2954a6cad5589"
+    },
+    {
+      "path": "analysis/work/networking/lazy-catalogue-audit/windows-link.exe",
+      "sha256": "f2c299b193b4e1d3ad4cfa3999c700824e0ca545b3ecc1f4c08202f6f3758705"
+    }
+  ]
+}
