@@ -5,3 +5,7 @@ $(OUT): inspect.cpp $(wildcard ../../recovered/game/mission_script*.h)
 	$(CXX) $(CXXFLAGS) -I../../recovered inspect.cpp -o $(OUT)
 .PHONY: all
 all: $(OUT)
+
+.PHONY: gui
+gui: $(OUT)
+	python3 gui.py --inspector "$(OUT)"

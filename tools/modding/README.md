@@ -17,6 +17,54 @@ command/predicate mentions and references. Exit codes: 0 supported syntax
 accepted, 1 malformed/unsupported/unexpanded source, 2 CLI or file-open error.
 Input is read-only. Supply your own source; no commercial scripts are included.
 
+## Desktop GUI
+
+From the repository root:
+
+```
+make -C tools/modding gui
+```
+
+This builds the small inspector sequentially if needed, then launches the local
+Tk desktop application. Requires Python 3 with Tkinter and a graphical desktop;
+there are no pip dependencies, web servers or network requests. On systems where
+Tkinter is packaged separately, install the matching Python Tk package first.
+The default native binary lives in `/tmp` and is rebuilt after a reboot. With an
+already compiled binary you can also run:
+
+```
+python3 tools/modding/gui.py --inspector /path/to/hd2-inspect
+```
+
+Use **Open script…** (Ctrl+O) to inspect a local script. The tabs provide:
+
+- **Overview:** syntax status, diagnostic, construct counts, event indicators,
+  limitations and lexical command/predicate mentions.
+- **Source:** read-only preview of the same bounded byte snapshot used for analysis.
+- **References / Symbols / Instructions:** structured tables from the CLI report.
+- **Command reference:** searchable command/predicate catalog, available without
+  opening a script. Argument kinds are displayed by known type names.
+- **JSON:** the complete inspection report; **Export JSON…** saves it separately.
+
+**Inspect again** reads a fresh snapshot. Analysis runs in a background worker;
+old results and export availability clear before a new inspection. Failed syntax
+still provides a diagnostic and lexical mentions, with no partial parse products.
+Export refuses the selected source path, including symlink/hardlink aliases.
+
+Preview is limited to 65,535 bytes, displayed using a reversible Latin-1 byte
+mapping rather than guessed Windows encoding. Line breaks are normalized for
+viewing only, and non-whitespace control bytes are displayed as hex escapes.
+Original bytes are passed to the CLI unchanged. Files beyond its source limit
+remain rejected. The GUI is an inspection frontend, with no script editing,
+execution, include expansion or added semantics. JSON exports are reports, not
+bytecode or mission files.
+
+Native desktop smoke checks exercised real widgets, catalog filtering, file
+loading/reloading, read-only previews, export/source protection and failure
+states against the actual CLI. User desktop acceptance was received on
+2026-11-09 ("Works"), with authorization to commit and push feature/modding-tools.
+The user delegated branch work and will review changes when merging with master.
+
 ## Evidence and supported boundary
 
 The tool consumes the verified header-only lexer/parser and tables **read-only**;

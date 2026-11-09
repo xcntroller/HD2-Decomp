@@ -1,22 +1,33 @@
 # Modding-tools handoff — 2026-11-09
 
-First milestone is implemented as a source-only standalone native CLI. Build and
-usage, original addresses, JSON contract and limits: [README](README.md).
-Branch/worktree already existed clean at 89d3d2f, equal to latest local master;
-remote-tracking master was older. No remote fetch/push/merge was performed.
-Main HANDOFF.md, plan.md, function ledger and all recovered runtime files remain
-untouched. Work is entirely under tools/modding.
+Latest result: read-only Tk GUI implemented and user desktop-accepted ("Works").
+User authorized committing/pushing feature/modding-tools and delegated branch
+work, with review at merge with master. Keep changes isolated to this workstream;
+do not merge into master. Start with `make -C tools/modding gui` from repository
+root. [Usage and boundaries](README.md#desktop-gui).
 
-Verification: warning-free C++17 build; catalog cardinalities 275/33; 18 synthetic
-inputs cover declarations, dynamic/literal references, If, signal events,
-Whenever, comments, strings, empty input, unknown commands, duplicate declarations,
-unresolved labels, unclosed braces, unsupported Bool, arity, token/source bounds,
-NUL and includes. Same temporary Python harness passed native ASan/UBSan/LSan
-outside sandbox (sandbox ptrace prevented LeakSanitizer). System libasan linker
-path was broken; used existing verified sanitizer libraries from master worktree.
-Temporary harness, catalogs and binaries removed after verification. No original
-executable/DLL/Proton, game build, desktop test or runtime compatibility claim.
+GUI: background CLI analysis of an unchanged byte snapshot; overview, source,
+references, symbols, instructions, searchable 308-entry catalog and JSON tabs;
+export to separate JSON with source/alias protection. No extra script semantics,
+editing, runtime, networking, archive or include resolution was introduced.
 
-Next independent work is in PLAN.md: source spans/structured diagnostics, numeric
-event records and evidence-tagged references. Include resolution is intentionally
-unsupported until caller policy and faithful original preprocessing are explicit.
+Verification: warning-free backend build, Python compile check, actual desktop
+widgets exercised with synthetic source against real CLI. Passed open/reload,
+275+33 catalog/filtering, reference display, read-only source, JSON round-trip,
+source overwrite protection, stale-result/export clearing, missing file/binary,
+rejected syntax/includes, source-size/NUL bounds and Tk callback checks. Inspected
+Overview/Command reference screenshots; adjusted wrapping/footer and repeated
+that focused GUI check successfully. User subsequently confirmed it works.
+No new native implementation changed; existing CLI sanitizer evidence applies.
+Temporary audit fixtures are not tracked; no commercial source was used.
+
+CLI checkpoint53f6093; original branch base89d3d2f. CLI synthetic/native
+ASan/UBSan/LSan evidence and original addresses: [README](README.md). Main
+HANDOFF.md, plan.md, function ledger, recovered runtime and networking remain
+untouched. All changes under tools/modding. No original executable/DLL/Proton,
+merge or game build was performed. No P2.2/function-recovery credit applies.
+
+Next independent implementation candidates in PLAN.md: source spans/structured
+diagnostics, numeric event records and evidence-tagged references. Include
+resolution remains unsupported until caller policy and faithful preprocessing
+are explicit. Do not reinterpret unknown command semantics for GUI convenience.
