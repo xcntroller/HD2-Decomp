@@ -1,5 +1,12 @@
 # Mission module loading and activation — in progress
 
+2026-11-09 latest: [rotating Door loading/first update](door-loading.md) now
+binds type6 activation/retirement, actual local presentation packets, portal/
+sound/pose and distinct dynamic collision query. All25 captured Door records
+and actual source failure/repeat checks pass focused sanitizers; strict actual
+i386/world composition and app link pass. Remaining actors/session/Human/VM/
+presentation integration still keep P2.2 open; no first world frame claimed.
+
 2026-11-09 latest: [shared world scene/actor ownership](world-scene-ownership.md)
 composes actual Scene2/documents/tables/effects/tree/grid and Items/runtime/
 Physics, preserving the same frame-data registry and process module identities.

@@ -1,5 +1,11 @@
 # Derived actor activation — source work, 2026-11-05
 
+2026-11-09: [Door activation/first-update continuation](door-loading.md) now
+provides actual rotating type6 portal/descriptor, packet/sound, motion and
+separate dynamic query source. Human source is linked from
+[Human state/loading](human-state-loading.md). Remaining families below still
+need their real receivers; full P2.2 and containing-world delivery remain open.
+
 P2.2 remains open. The containing world is not constructed; actor activation is
 source-only. Continue the full plan.md checkbox. This batch used focused checks,
 not another broad audit of unchanged reconstruction.

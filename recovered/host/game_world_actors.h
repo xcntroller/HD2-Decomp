@@ -25,7 +25,7 @@ public:
     GameWorldActors(Scene& scene,Consumers& consumers,game::MissionNavigation& navigation,
                     const frontend::LocalizedTextCache& text,const frontend::PreMissionItemCatalogue& catalogue,
                     const std::string& suffix,ChunkFiles& files,FrameClockPlatform& clock,const std::uint32_t& game_word28)
-        :scene_(scene),consumers_(consumers),models_(scene.frames(),catalogue,suffix,game_word28),
+        :scene_(scene),consumers_(consumers),text_(text),models_(scene.frames(),catalogue,suffix,game_word28),
          items_(scene.frames(),models_,catalogue,files,clock,game_word28,consumers),
          runtime_(scene.frames(),*this,navigation,text,scene.buckets(),bodies_,items_),
          physics_(scene.frames(),*this,scene.buckets(),runtime_,scene.effects().frame_fades()){}
@@ -35,6 +35,25 @@ public:
     auto& physics(){require_open();return physics_;}auto& item_models(){require_open();return models_;}
     auto& rigid_bodies(){require_open();return bodies_;}
     std::uint32_t mode_flags()const{return consumers_.mode_flags();}
+    std::string actor_localized(std::uint32_t id){return frontend::lookup_localized_text(text_,static_cast<std::int32_t>(id));}
+    std::uint32_t session_mission_ordinal()const{return consumers_.session_mission_ordinal();}
+    auto& session_broadcast_packets(){return consumers_.session_broadcast_packets();}
+    void door_script_use(GameActorServices::Frame frame,std::uint32_t command){consumers_.door_script_use(frame,command);}
+    auto door_current_player_frame(){return consumers_.door_current_player_frame();}
+    std::int32_t emit_door_sound(const frontend::SpatialSoundRequest& request){return consumers_.emit_door_sound(request);}
+    void resume_door_sound(std::int32_t handle){consumers_.resume_door_sound(handle);}
+    void pause_door_sound(std::int32_t handle){consumers_.pause_door_sound(handle);}
+    auto door_sound_cursor(std::int32_t handle){return consumers_.door_sound_cursor(handle);}
+    void door_sound_cursor(std::int32_t handle,std::uint32_t cursor){consumers_.door_sound_cursor(handle,cursor);}
+    void update_door(game::DoorSceneActor<GameActorServices>& door,std::uint32_t elapsed) {
+        require_open();auto queries=scene_.door_queries();door.frame_update(elapsed,*this,scene_.buckets(),queries,scene_.exclusions());
+    }
+    void receive_actor_packet(typename Runtime::Instance& actor,game::SessionPacketStream& packet) {
+        require_open();
+        if(actor.base().type()==6)static_cast<game::DoorSceneActor<GameActorServices>&>(actor).receive_loading_packet(packet,*this);
+        else if(actor.base().type()==10)consumers_.spawn_packet_decoder().receive(static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor),&packet);
+        else throw std::runtime_error("Required Scene2 actor packet receiver is unavailable");
+    }
     void set_scene_actor_active(GameActorServices::Actor& actor,bool value){scene_.frames().set_scene_actor_active(actor,value);}
     void set_runtime_actor_active(GameActorServices::Actor& actor,bool value){runtime_.set_active(actor,value);}
     void remove_actor_presentation_references(typename Runtime::Instance& actor){consumers_.remove_actor_presentation_references(actor);}
@@ -50,7 +69,7 @@ public:
     }
 private:
     void require_open()const{if(closed_)throw std::logic_error("World actor owners are closed");}
-    Scene& scene_;Consumers& consumers_;typename Body::Registry bodies_;GameRuntimeItemServices models_;
+    Scene& scene_;Consumers& consumers_;const frontend::LocalizedTextCache& text_;typename Body::Registry bodies_;GameRuntimeItemServices models_;
     Items items_;Runtime runtime_;Physics physics_;bool closed_=false;
 };
 } //namespace hd2::host

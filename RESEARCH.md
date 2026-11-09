@@ -1,5 +1,14 @@
 # Technical research guide
 
+2026-11-09 latest: [Door loading/first update](analysis/door-loading.md) now
+recovers actual rotating activation/portal/descriptor lifetime, local packet
+producer/receiver, opening/blocked closing and distinct dynamic-only edge query.
+All25 captured Tutorial Door records (two initially open) pass native source
+checks; ASan/UBSan/LSan, strict actual i386/world composition, app link and27
+tracker tests pass. Eleven new partials:34 complete/1,685 partial (1,680 client/
+five engine),18,783 frozen. Four temporary artifacts hashed/removed. Sliding,
+campaign protection and49/4A query branches reject; no world/desktop delivery.
+
 2026-11-09 latest: [shared world ownership](analysis/world-scene-ownership.md)
 now composes actual scene/documents/tables/effects/tree/grid and Items/runtime/
 Physics around the same frame-data registry. [Physics1/3/4](analysis/item-transfer-physics-loading.md#physics134-and-shared-fade-continuation--2026-11-09)

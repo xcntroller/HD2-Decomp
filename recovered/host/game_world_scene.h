@@ -7,6 +7,7 @@
 #include "game/effects_shadow_models.h"
 #include "game/dynamic_collision_grid.h"
 #include "game/dynamic_collision_exclusions.h"
+#include "game/door_collision_queries.h"
 
 namespace hd2::host {
 
@@ -46,6 +47,7 @@ public:
     auto& collision_resources(){require_open();return collision_resources_;}auto& exclusions(){require_open();return exclusions_;}
     Tree& collision_tree(){require_open();if(!tree_)throw std::logic_error("World collision tree is not loaded");return *tree_;}
     Buckets& buckets(){require_open();if(!buckets_)throw std::logic_error("World dynamic collision grid is not loaded");return *buckets_;}
+    auto door_queries(){return game::DoorCollisionQueries<EngineFrame*,Descriptor,GameActorServices>(collision_tree(),buckets(),frames_);}
     void load_collision_tree(const std::string& resource) {
         require_open();
         if(tree_||buckets_)throw std::logic_error("Retire actual world collision owners before loading another tree");

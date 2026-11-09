@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-09",
+  "scope": "Full P2.2 first implementation checkbox; source ordinary rotating Door activation/first-update/retirement, local packets and actual dynamic-only collision query checkpoint. Continue required other actors and containing session/Human receivers.",
+  "source_only": true,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 11,
+  "added": [
+    "00600cc0",
+    "00601350",
+    "00600950",
+    "006007b0",
+    "005ff4b0",
+    "00601f40",
+    "005fffe0",
+    "005ff700",
+    "006007f0",
+    "006f78f0",
+    "006f3250"
+  ],
+  "not_credited": [
+    "00601f90 absent frozen inventory despite actual source receiver",
+    "Sliding005ffbd0 researched only; campaign protection guard and query49/4A not implemented",
+    "Generic quaternion/vector/copy helper bodies not independently reconstructed",
+    "Engine frame/quaternion/portal/audio delegates; merely exported bodies; source composition adapters"
+  ],
+  "input": {
+    "path": "analysis/work/startup-runtime/run/loading-inputs-90f74f210e9f4150a123e200e31f523a/missions_Tutorial_scene2.bin",
+    "bytes": 3684095,
+    "sha256": "89d9e37a57ad956804fc45e4f9790078a8d3999b14d41a0fca6ba94977ed4773",
+    "door_property_records": 25,
+    "initially_open": 2,
+    "boundary": "User-captured actual resolver file fingerprint; engine geometry is not executed in native fixture."
+  },
+  "verification": {
+    "native_sanitizers": {
+      "result": "PASS",
+      "tools": "ASan/UBSan/LSan detect_leaks=1 halt_on_error=1",
+      "log": "analysis/work/mission-world-20261103/door-native-run.log",
+      "coverage": "Actual source Door/common actor/grid/packet/FIFO/query lifetimes;25 captured properties,2 initial packets, opening/blocked closing, loop cursor, adjacent cells, inside/zero-length spheres,40/41 boxes, flags/layers/exclusion, partial insertion/retry/cleanup. Engine/frame/matrix/script/localization/audio/lock endpoints are doubles."
+    },
+    "actual_host_i386": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/door-i386-build.log",
+      "boundary": "Strict compile-only actual Frames/StartupSession/WorldScene/WorldActors/Door/query/packet instantiation; required consumer endpoints are declarations."
+    },
+    "application_build": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/door-app-build.log",
+      "boundary": "i386 compile/link only, no Windows execution."
+    },
+    "tracker_tests": {
+      "result": "PASS",
+      "count": 27,
+      "log": "analysis/work/mission-world-20261103/door-tracker-tests.log"
+    },
+    "tracker_check": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/door-tracker-check.log"
+    }
+  },
+  "temporary_artifacts": {
+    "removed": true,
+    "count": 4,
+    "records": [
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-door-audit.cpp",
+        "bytes": 17335,
+        "sha256": "a7552a58c03c0a6782daa353c5f90e07b8677d85eed0e1f9c1c11dab42c30e98"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-door-audit",
+        "bytes": 5369480,
+        "sha256": "50ab3be2e8e345b6f1f2893659ae49e4ef7d0cb054f21baf21a9e770c5fe6dc2"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-door-host.cpp",
+        "bytes": 3134,
+        "sha256": "94246bf05074105ae933a3fbbdeb35413922e4e1198b6752c67abacaa58f1d9f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-door-host.o",
+        "bytes": 1529807,
+        "sha256": "c5eb6ccfaaf7632675737cf0fe5d6fdf62cc5ad85e61e6bbe9913c129dfe2670"
+      }
+    ]
+  },
+  "remaining": "Actual containing session/Human/FPV/HUD/SOUND/VM/Car and required other derived actor activation, complete loader and first-frame/failure/repeat/user acceptance. GameApplicationState still declines loading; P2.2 unchecked."
+}

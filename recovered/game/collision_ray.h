@@ -172,6 +172,12 @@ public:
         const auto projection=-((static_cast<long double>(delta[0])*s.displacement[0]+static_cast<long double>(delta[1])*s.displacement[1])+static_cast<long double>(delta[2])*s.displacement[2]);
         const auto reach=projection<=0?static_cast<long double>(object.radius):static_cast<long double>(s.length)+object.radius;
         if(!(square(delta)<=reach*reach))return false;
+        return primitive(object,s);
+    }
+    //Shared actual primitive receivers.006F3250 has its own broad phase;
+    //callers must not silently substitute006F2C50's reach test above.
+    bool primitive(const Object& object,CollisionRayState& s) {
+        using namespace collision_ray_math;
         switch(object.flags&0xffu) {
         case 0x40: {
             if(!object.matrix||!object.inverse)throw std::runtime_error("Dynamic ray box has no transforms");

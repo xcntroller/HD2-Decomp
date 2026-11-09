@@ -22893,7 +22893,7 @@
       "program": "client",
       "entry": "0040bd70",
       "status": "partial",
-      "coverage": "Type4 common retained frame lifetime, actual inverse-world comparison flags and shared GEffects5000ms fade-out scheduling without collision registration.",
+      "coverage": "Type4 common retained frame lifetime, cached frame+3C comparison flags and shared GEffects5000ms fade-out scheduling without collision registration.",
       "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
       "evidence": [
         "recovered/game/physics_object.h",
@@ -22971,6 +22971,138 @@
         "recovered/game/mission_scene_documents.h",
         "analysis/world-scene-ownership.md",
         "analysis/checkpoints/p2.2-world-owners-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00600cc0",
+      "status": "partial",
+      "coverage": "Door common/two-pass activation, native portal/reparent/pose/handle/localized/initial-state policy and actual shared descriptor construction/publication.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00601350",
+      "status": "partial",
+      "coverage": "Door portal close, linked borrower reset, actual descriptor removal,224 snapshot restoration and common deactivation with source failure cleanup.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00600950",
+      "status": "partial",
+      "coverage": "Door handle short-name case-insensitive substring traversal: reverse child-before-subtree, current frame last, borrowed model-owned result.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006007b0",
+      "status": "partial",
+      "coverage": "Actual borrowed portal and attached-portal virtual00 closed-state callbacks with inverse enabled value.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ff4b0",
+      "status": "partial",
+      "coverage": "Reached Door linked/state/context notification and actual shared presentation packet producers, lock/force handling and initial-open/close fields. Offline campaign ordinal>12 protection guard excluded with explicit reject.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00601f40",
+      "status": "partial",
+      "coverage": "Actual module13/physical Scene2 identity headers followed by three-bit Door command and pending shared broadcast finish; normal existing FIFO performs later delivery.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/door_loading_packets.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fffe0",
+      "status": "partial",
+      "coverage": "Ordinary rotating Door first update: signed handle roll, native strict angle/timer crossings, current-player/visibility auto-close checks, obstruction rollback/wait and actual loop voice cursor pause/restart. Sliding Door branch excluded.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ff700",
+      "status": "partial",
+      "coverage": "Door axis-angle/saved quaternion composition with native FLOAT temporary boundaries, actual frame rotation/update, opening/X-axis bypass and actual descriptor exclusion/14 ordered edge probes/blocked quaternion restoration.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006007f0",
+      "status": "partial",
+      "coverage": "Door actual cached bounds/world inverse refresh, opening-axis1000/1002 mask policy, frame sphere centre and shared bucket move with live world-matrix pointer.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/geometry_scene_actors.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f78f0",
+      "status": "partial",
+      "coverage": "Required loaded-grid dynamic-only Door segment query boolean result, native state/flag setup and actual006F3250 traversal. Output normal/W/pointer ABI and missing-grid branch excluded.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/door_collision_queries.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f3250",
+      "status": "partial",
+      "coverage": "Actual Door dynamic grid range expansion/Z-X-bucket traversal, native line/sphere broad phase, shared40/41 slabs and42/44 inside/zero-length/strict best-parameter behavior. Known49/4A receivers and raw output ABI excluded.",
+      "limitations": "Source-only typed STL/RAII borrowers, bounded recursion/data and explicit runtime services replace original object/container/allocator/SEH/virtual ABI. No integrated world, original execution, mission desktop or whole-body equivalence claim. Actual host composition is compile-only; engine/archive/geometry/script/audio/player/lock endpoints in native checks are boundary doubles. Sliding, later-campaign protection and query primitives49/4A remain explicit unsupported paths; delegated bodies receive no credit.",
+      "evidence": [
+        "recovered/game/door_collision_queries.h",
+        "analysis/door-loading.md",
+        "analysis/checkpoints/p2.2-door-loading-20261109.json"
       ]
     }
   ]

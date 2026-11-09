@@ -127,6 +127,7 @@ public:
         actors_.activate([&](Instance& actor) {
             switch(actor.base().type()) {
             case 3:static_cast<game::HumanSceneActor<GameActorServices,Runtime>&>(actor).activate(authority);break;
+            case 6:static_cast<game::DoorSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
             case 8:static_cast<game::LadderSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
             case 10:static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor).activate(authority,activation);break;
             case 13:static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor).activate(authority,activation,collisions);break;
@@ -145,6 +146,7 @@ public:
     template<class Activation,class Collisions>void deactivate_scene_actor(Instance& actor,bool authority,Activation& activation,Collisions& collisions) {
         switch(actor.base().type()) {
         case 3:static_cast<game::HumanSceneActor<GameActorServices,Runtime>&>(actor).deactivate(authority);break;
+        case 6:static_cast<game::DoorSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
         case 8:static_cast<game::LadderSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
         case 10:static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor).deactivate(authority,activation);break;
         case 13:static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor).deactivate(authority,activation,collisions);break;

@@ -46,6 +46,7 @@ public:
     }
     Frame portal() const {return portal_;}
     std::uintptr_t attachment() const {return attachment_;}
+    void clear()noexcept{portal_=Frame{};attachment_=0;} //00600CC0 clears FC/100 on first local activation.
 private:
     Frame portal_{};
     std::uintptr_t attachment_=0;

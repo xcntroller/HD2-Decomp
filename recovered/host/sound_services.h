@@ -32,6 +32,14 @@ public:
         auto* frame = static_cast<EngineFrame*>(sound);
         scene_method<Function>(frame, engine_, 0x30, 0x1bb10)(frame, enabled);
     }
+    std::uint32_t sound_play_cursor(void* sound)const {
+        using Get=std::uint32_t(WINAPI*)(EngineFrame*);
+        return checked_engine_method<Get>(static_cast<EngineFrame*>(sound),engine_,0xa4)(static_cast<EngineFrame*>(sound));
+    }
+    void sound_play_cursor(void* sound,std::uint32_t cursor)const {
+        using Set=void(WINAPI*)(EngineFrame*,std::uint32_t);
+        checked_engine_method<Set>(static_cast<EngineFrame*>(sound),engine_,0x94)(static_cast<EngineFrame*>(sound),cursor);
+    }
     bool sound_active(void* sound, std::uint32_t mode) const {
         using Function = std::uint8_t (WINAPI *)(EngineFrame*, std::uint32_t);
         auto* frame = static_cast<EngineFrame*>(sound);

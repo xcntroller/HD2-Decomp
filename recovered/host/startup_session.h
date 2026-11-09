@@ -205,6 +205,24 @@ public:
     void stop_game_sound_voice(std::int32_t& handle) {
         frontend::stop_sound_voice(sound_data_.runtime,handle,sound_backend_); //00437340.
     }
+    void resume_game_sound_voice(std::int32_t handle) { //SOUND+78/004374A0→actual frame+30(1), used by Door00601F90.
+        set_game_sound_voice_enabled(handle,true);
+    }
+    void set_game_sound_voice_enabled(std::int32_t handle,bool enabled) {
+        auto* frame=frontend::sound_voice_frame(sound_data_.runtime,handle);
+        if(!frame)throw std::runtime_error("Door sound control requires its actual live voice frame");
+        sound_backend_.enable_sound(frame,std::uint32_t(enabled));
+    }
+    std::uint32_t game_sound_voice_cursor(std::int32_t handle) {
+        auto* frame=frontend::sound_voice_frame(sound_data_.runtime,handle);
+        if(!frame)throw std::runtime_error("Door sound cursor requires its actual live voice frame");
+        return sound_backend_.sound_play_cursor(frame);
+    }
+    void game_sound_voice_cursor(std::int32_t handle,std::uint32_t cursor) {
+        auto* frame=frontend::sound_voice_frame(sound_data_.runtime,handle);
+        if(!frame)throw std::runtime_error("Door sound cursor requires its actual live voice frame");
+        sound_backend_.sound_play_cursor(frame,cursor);
+    }
     template<class World>std::int32_t emit_game_sound(const frontend::SpatialSoundRequest& request,World& world) {
         GameSpatialSoundServices<World> backend(engine_,game_views_.sound,loaded_resources_,world);
         return frontend::emit_spatial_sound(sound_data_.runtime,sound_catalog_,&request,gate_,backend);

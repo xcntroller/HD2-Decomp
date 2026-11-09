@@ -2,6 +2,7 @@
 #define HD2_HOST_GAME_ACTOR_FRAMES_H
 
 #include "game/mission_script_rotations.h"
+#include "game/door_rotation_loading.h"
 
 #include "host/game_car_frames.h"
 #include "game/human_face_mesh_pool.h"
@@ -107,7 +108,7 @@ public:
         (void)car_world_matrix(frame);return reinterpret_cast<const Matrix*>(address(frame,0x40));
     }
     Vector actor_local_scale(Frame frame) const {return field<Vector>(frame,0xd0);}
-    bool physics_inverse_world_below_half(Frame frame) { //0040BD70: cached inverse frame10, element2C.
+    bool physics_inverse_world_below_half(Frame frame) { //0040BD70 copies frame10..3F, compares the final FLOAT at3C.
         if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
         return field<float>(frame,0x3c)<.5f;
     }
@@ -783,6 +784,26 @@ public:
         if(!(field<std::uint32_t>(frame,0xe0)&0x100))call<void>(frame,0x58);
         return field<Vector>(frame,0x30);
     }
+    std::string actor_short_name(Frame frame)const {
+        const auto* full=engine_frame_name(frame);if(!full)return {};
+        const auto offset=field<std::int16_t>(frame,0xe6);
+        if(offset<0||static_cast<std::size_t>(offset)>std::strlen(full))throw std::runtime_error("Invalid actor short-name offset");
+        return full+offset;
+    }
+    Frame door_presentation_sector()const{return field<Frame>(scene_.frame(),0x200);}
+    bool door_recently_visible(Frame frame)const{return field<std::uint32_t>(scene_.frame(),0x11c)-field<std::uint32_t>(frame,0x11c)<10u;}
+    std::array<float,4> door_axis_rotation(const Vector& axis,float angle) {
+        std::array<float,4> rotation{};using Make=void(WINAPI*)(void*,const void*,float);
+        exported<Make>("?Make@S_quat@@QAGXABUS_vector@@M@Z",0x2f070)(rotation.data(),axis.data(),angle);return rotation;
+    }
+    void door_roll_handle(Frame frame,float angle) {
+        Vector direction;
+        if(!(field<std::uint32_t>(frame,0xe0)&0x10u))direction=car_forward(frame);
+        else direction=game::door_handle_direction(field<Vector>(frame,0xa0));
+        call<void>(frame,0x1c,direction.data(),angle); //Actual roll FLOAT, not an up-vector pointer.
+    }
+    void door_portal_closed(Frame portal,bool closed){call<void>(portal,0,std::uint32_t(closed));}
+    void door_portal_attachment_closed(std::uintptr_t portal,bool closed){door_portal_closed(reinterpret_cast<Frame>(portal),closed);}
     Frame door_sector(const Vector& position) {return call<Frame>(scene_.frame(),0xe0,position.data());}
     std::uint32_t door_portal_count(Frame sector,unsigned side) const {return field<std::uint32_t>(sector,side?0x264:0x254);}
     Frame door_portal(Frame sector,unsigned side,std::uint32_t index) const {

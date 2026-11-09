@@ -8,44 +8,50 @@ Preserve assets/user changes; focused verification, no repeated broad audits.
 User reopened VSCode after memory shortage: keep heavy compiles sequential.
 
 GameApplicationState still declines loading. No live world, first world frame
-or new desktop acceptance. Ledger:34 complete/1,674 partial (1,669 client/five
+or new desktop acceptance. Ledger:34 complete/1,685 partial (1,680 client/five
 engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
 
-[Shared scene/actor ownership](analysis/world-scene-ownership.md) now composes
-actual Scene2/documents/tables/environment/effects/tree/grid and Items/runtime/
-Physics using ONE GameActorServices/frame-data/entry registry. Required Car
-factory receives those actual services, then binds callbacks before parsing.
-Collision tree is allocated in its final stable location before buckets borrow
-its dynamic grid. Runtime actors retire before borrowed Physics descriptors;
-ordinary actors before entries/model caches. Containing Human/state/script
-owners must finish/retire before this owner closes. Production consumers remain
-required; no default successful Car/item/sound/presentation service is added.
+[Door loading/first update](analysis/door-loading.md) now supplies ordinary
+rotating Door6 activation/portal/descriptor lifetime, local presentation packet
+producer/receiver, handle and Door motion, blocked-closing rollback/cursor and
+actual dynamic-only edge probes. All25 captured Tutorial Door records rotate;
+two start open and produce actual pending packets. Scene2 activation dispatch
+now includes6; GameWorldActors exposes actual Door update/packet consumers.
 
-File wrappers006CBF30/006D45C0/006D4880/006D4280 now retain the existing live
-archive document scope for embedded light maps, shared name map/version and
-session navigation datasets. Missing/short Scene2 returns3/1; other full root
-returns0 as original. Optional actor/sound absence is ignored. Missing check2
-clears tables before check.bin probe; legacy-present only opens/closes, no
-legacy decoder. Original assembly confirms this branch.
+Door query006F78F0/006F3250 is NOT the camera ray: dynamic-only, one-cell range
+expansion both ends, native Z/X/bucket order, different broad phase and inside/
+zero-length sphere handling. Known49/4A requires real receivers and rejects.
+Sliding Door and ordinal>12 campaign protection guard remain unsupported. The
+receiver00601F90 is absent from frozen inventory: implemented, no new credit.
 
-[Physics continuation](analysis/item-transfer-physics-loading.md#physics134-and-shared-fade-continuation--2026-11-09):
-types0..5 supported, type6 still rejects. Type1 scales geometry radius for its
-descriptor while retaining selected170; type3 uses native principal-axis/tie/
-precision rules; type4 has no collision registration and uses shared retained
-5000ms fade-out. Out-only GEffects200 queue/update/frame+A8 opacity recovered;
-opposite fade-in/cancellation excluded. Do not invent a safe type6 second
-registration: saved pointer overwrite conflicts with native descriptor230 cleanup.
+[Receipt](analysis/checkpoints/p2.2-door-loading-20261109.json):eleven new
+partials; native ASan/UBSan/LSan, strict actual-host i386 Door/World composition,
+app compile/link and27 tracker tests pass. Four temporary artifacts hashed/
+removed. Engine geometry/frames, script/localization/audio/lock endpoints are
+boundary doubles; host/world remains compile-only. No desktop promotion.
+All raw exports/ASM remain in WORK; do not repeat the confirmed Door research.
 
-Script/Players can borrow actual StartupSession process module registrations,
-leaving registry identity intact through repeated world lifetimes/startup/shutdown.
-[Receipt](analysis/checkpoints/p2.2-world-owners-20261109.json):nine new partials,
-three extended; focused native ASan/UBSan/LSan, strict actual-host i386 scene/
-Items/runtime/Physics composition, app compile/link and27 tracker tests pass.
-Twelve temporary source/bin/objects hashed/removed. Native archive/scene/parser/
-engine endpoints are doubles; actual host owner is compile-only. No world or
-new desktop delivery. Earlier committed presentation checkpoint:e1d6e28.
+Previous committed checkpoint c9c80fc:
+[shared scene/actor ownership](analysis/world-scene-ownership.md) composes actual
+Scene2/documents/tables/environment/effects/tree/grid and Items/runtime/Physics
+using ONE GameActorServices/frame-data/entry registry. Actual Car callback
+factory receives those services before binding. Tree reaches its final stable
+allocation before buckets borrow it. Runtime actors retire before Physics;
+ordinary actors before entries/models; containing Human/state/script owners
+must finish/retire first. Script/Players borrow process module registrations,
+preserving registry identity through repeat/startup/shutdown. Required consumer
+services remain real dependencies, never successful defaults.
+
+[Physics0..5](analysis/item-transfer-physics-loading.md) includes1/3/4 and actual
+retained5000ms fade-out. Type4 reads cached frame+3C FLOAT after bounds update;
+legacy helper name says inverse but byte receiver is correct. Type6 still
+rejects unresolved second registration; opposite fade-in/cancellation excluded.
+File wrappers keep SAME live archive document scope for embedded light maps,
+names/version and session tables. Missing check2 clears tables before probing
+check.bin; legacy-present only opens/closes (no legacy decoder). These owner
+compositions are uncalled by GameApplicationState.
 
 ## Next — same entire checkbox
 
@@ -54,10 +60,10 @@ Car/module/derived actor activation, then complete ordered loader/first-frame
 update/render/failure/repeat/user acceptance. Existing GameWorldScene and
 GameWorldActors are source composition only, uncalled by GameApplicationState.
 Use them rather than create another frame-data/bucket/item service. Next actual
-required derived families include Door00600CC0, Animation005B3BE0, SupplyBox,
-Pike, ExplosivePlace, FowlGenerator, StaticWeapon and Car; original activation
-exports already exist under WORK/actor-activation. Current GameSceneActors
-activation dispatch still supports3/8/10/13/33 only. Human activation needs its
+required derived families include Animation005B3BE0, SupplyBox005FAC80,
+Pike005B9670, ExplosivePlace0060C3B0, FowlGenerator005BA670, StaticWeapon and
+Car; original activation exports already exist under WORK/actor-activation.
+Current GameSceneActors activation dispatch supports3/6/8/10/13/33 only. Human activation needs its
 actual bound HumanLoadingActivation lifetime before type3 dispatch.
 
 Do not bring all P2.3 simulation/VM opcodes forward merely for P2.2. Research

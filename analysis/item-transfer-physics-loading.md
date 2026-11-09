@@ -136,7 +136,8 @@ spill to FLOAT while Y remains extended through the comparisons; midpoints
 spill to FLOAT. Invalid aggregate X bounds reject an originally unwritten centre.
 
 0040BD70/type4 preserves common root/update/retained-frame lifetime, reads the
-actual cached inverse-world component below.5 into170 and sets171false. It
+actual cached frame+3C FLOAT below.5 into170 and sets171false, after the same
+frame+58 bounds-cache update. It
 requests5000ms fade-out without hiding. It does **not** register a collision
 descriptor and rejects a missing shared fade owner before frame mutation.
 Type1/3/4 destructors simply reach common0040B7E0; no invented cancellation.
