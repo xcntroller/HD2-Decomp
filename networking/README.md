@@ -15,7 +15,7 @@ configuration parsing does not establish a working network session.
 
 | Executable | Inventoried functions | Complete | Partial | No completion claim | Complete % |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| HD2DS.exe | 13,957 | 0 | 18 | 13,939 | 0.00% |
+| HD2DS.exe | 13,957 | 0 | 20 | 13,937 | 0.00% |
 | ServerLauncher.exe | 849 | 0 | 9 | 840 | 0.00% |
 
 ### HD2DS.exe mapped bodies
@@ -30,6 +30,8 @@ configuration parsing does not establish a working network session.
 | `006ED040` | partial | [Style change copies22 selected profile rules and retains rotation](../recovered/networking/server_commands.cpp) |
 | `006ED2E0` | partial | [Loaded catalogue/style gate, reverse case-insensitive lookup and owned rotation append](../recovered/networking/server_commands.cpp) |
 | `006EDCF0` | partial | [Fresh command-facing server configuration, dedicated flag, admin initializer and active rules](../recovered/networking/server_initial_settings.h) |
+| `006F9550` | partial | [GameData then E8 store then mandatory HumanStore attempt and boolean AND](../recovered/networking/headless_startup_data.h) |
+| `006FF900` | partial | [Sequential real GameData loading, format gate, append and invalid-root/cache behavior](../recovered/frontend/game_data.h) |
 | `007065A0` | partial | [Literal -cmd branch and owned pending command](../recovered/networking/command_tokens.cpp) |
 | `00779450` | partial | [Native TCP/IP DirectPlay server acquisition, caps, port and Host submission](../recovered/networking/directplay_server.cpp) |
 | `0077D4B0` | partial | [All known player-slot reset stores with preservation of unwritten bytes](../recovered/networking/server_player_slot.h) |
@@ -90,6 +92,8 @@ First command dispatch can now load actual catalogue metadata and rule presets
 with the original path fallback. Full descriptor and application integration remain open.
 The [headless HumanStore loader](../analysis/networking/headless-startup-data-source.md)
 also reuses the verified shared record parser with the server's original portrait behavior.
+GameData loading and the required GameData-then-HumanStore preparation order are
+now verified against original data. Full application startup is still open.
 
 Follow the [networking plan](../analysis/networking/plan.md) and
 [latest handoff](../analysis/networking/HANDOFF.md). The

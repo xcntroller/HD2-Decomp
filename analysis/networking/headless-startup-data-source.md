@@ -1,7 +1,8 @@
-# Headless startup data — HumanStore
+# Headless startup data — HumanStore and GameData
 
 Source-only dependency of the open N1 startup/shutdown checkbox. This does not
-construct the application, load GameData, start a controller or establish a session.
+construct the application, start a controller or establish a session. The follow-up
+below now supplies GameData loading and the original preparation order as well.
 
 [HeadlessHumanStore](../../recovered/networking/headless_human_store.h) reuses the
 [record parser](../../recovered/frontend/human_store.h) after separate HD2DS-address
@@ -68,3 +69,57 @@ Only006E33E0/006E36E0/006E15A0/006E0C70 gain partial server mappings. The whitel
 for validated shared source allows this specific header for server mappings;
 the frozen client/LS3DF ledger and denominator remain unchanged. No whole-function,
 application-startup, desktop or interoperability completion is claimed.
+
+## GameData and mandatory preparation
+
+[prepare_headless_startup_data](../../recovered/networking/headless_startup_data.h)
+reconstructs006F9550: call GameData006FF900; set that data owner's+E8 word to one;
+attempt HumanStore regardless of the first boolean result; return the low-bit AND.
+The+E8 word belongs to startup data, not the game owner's network-query readiness
+field+28. This helper never sets progress100 or acknowledges a session.
+
+The [shared GameData reader](../../recovered/frontend/game_data.h) matches the
+server's format2 gate and all seven data kinds.006FF900 visits sequential
+`GameData\\Gamedata%02d.gdt`, stops at the first missing file, appends loaded roots
+and returns whether any real roots exist. An invalid root stays open; next open
+refuses before a backend call, then normal close runs. Existing roots may therefore
+make a later load return true even if its current root is invalid; that is the
+original cache behavior, with a native rejected-root diagnostic retained.
+
+| Server entries | Verified reader boundary |
+| --- | --- |
+|006FF330 /007033D0|Root flat words / format2 caption and child group |
+|006FF090 /00702E30|Campaign flat caption/text / format2 fields3D/3E and children |
+|006FED30 /007026E0|Mission flat fields / format2 fields33..37, children and related records |
+|006FEC10 /00702100|Related type4 flat words / fields29/2A/2B |
+|006FE4C0 /007014B0|Type5 strings and byte flag in both layouts |
+|006FE880 /00701AE0|Type6 raw entries/items and byte flag ordering |
+|006FD940 /006FD960|Type7 genuinely returns true without consuming payload |
+|006FFEA0 /00700330 /007006A0|Parent-specific legacy child and related routing |
+|00700DB0|Format2 tags10/20/30/50/60; skip unknown child tags |
+
+Data pointers/allocators/COW objects remain native owned representations rather
+than the original ABI. The existing bounded reader's short-header/string/numeric
+guards remain explicit. No movie, mission, AI or gameplay consumer is executed.
+The data owner's one-entry language vtable is adjacent to the mission data table;
+adjacency does not make those mission slots application-controller methods.
+
+The same native archive decoder extracted22161-byte Gamedata00.gdt from the
+authorized original others.DTA, SHA256
+`f92ab7e8796148af7854438ffca4df34b55cca8e83336878d7f569cdcd3319b1`.
+An independent raw-chunk tree oracle agrees on all304 nodes (kinds1..7:
+1/8/24/159/30/58/24), including their fields, ordered children and related lists.
+Native ASan/UBSan/LSan also passes legacy and format2 synthetic records, repeated
+append, sequential files, invalid-root/cache behavior, all missing-input boolean
+combinations, the+E8 store/order,200 truncations and50 complete preparations.
+Strict Windows i386 fixture link passes without execution. Temporary audit source,
+oracle code/header and binaries are hashed/removed in the
+[receipt](headless-prepare-verification.json).
+
+New valid exports: `server-gamedata-root`, `server-gamedata-type-contracts`,
+`server-gamedata-fields`, `server-gamedata-related`,
+`server-gamedata-related-readers` (all20261109). The `server-gamedata-types` job
+exported00700DB0 successfully, then stopped at the erroneous interior00700710
+request; actual legacy mission routing is007006A0. No missing-entry credit.
+Only006FF900 and006F9550 gain new partial mappings. Actual application/profile/
+engine/module construction and controller/transport/session integration remain open.

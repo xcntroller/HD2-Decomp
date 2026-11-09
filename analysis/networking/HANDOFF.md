@@ -4,12 +4,22 @@ Work only in `feature/networking` at HD2-Decomp-networking. Main master/P2.2 and
 other worktrees remain untouched. No push, merge, publish, original executable,
 DLL, Proton or Windows-fixture execution. Heavy jobs sequential; no subagents.
 
-Ledger:18 server/9 launcher partials, zero complete. Separate inventories and
+Ledger:20 server/9 launcher partials, zero complete. Separate inventories and
 [progress README](../../networking/README.md) do not alter the frozen client/LS3DF
 baseline. Refresh/check with `python3 tools/networking/update_progress.py [--check]`.
 No independent server, live discovery, session interoperability or desktop acceptance.
 
-Latest source: [headless HumanStore](headless-startup-data-source.md). Its shared
+Latest source: [GameData and preparation](headless-startup-data-source.md).
+006F9550 now loads actual GameData, sets its+E8 word, always attempts HumanStore
+after a false GameData boolean, then returns the low-bit AND. This is data
+preparation, not game/network readiness. Native ASan/UBSan/LSan matches all304
+original GameData nodes via independent raw-chunk oracle; all seven kinds,
+flat/format2 routing, sequential files, append/cache/invalid-root behavior,
+missing-input matrix,200 truncations and50 complete preparations pass.
+Strict Windows i386 fixture link passes, not executed. Audits hashed/removed.
+[Receipt](headless-prepare-verification.json). Actual containing owners remain open.
+
+Prior [headless HumanStore](headless-startup-data-source.md): shared
 parser now has a headless policy matching006E2730's verified RET-true helper and
 006E0DF0's pointer clear, with no graphics service. Default client policy retains
 actual portrait load/release. Native ASan/UBSan/LSan matches all65 original records
@@ -49,7 +59,7 @@ zero is an explicit guard, not an original default.
 Continue the full first open [N1 startup/shutdown checkbox](plan.md); it stays OPEN.
 Logical007A23E0 →007A21A0 →006ED090 →00644400 acquisition now runs on actual input;
 full original virtual owner/descriptor ABI is still excluded. Continue application
-constructor006F71B0,006F9550's GameData006FF900 and HumanStore containing owners,
+constructor006F71B0 and actual profile/configuration containing owners,
 module registry004A3AB0, command/controller integration and post-Host serialization/
 workers/auxiliaries. Callback dispatch0077DCF0 remains required; no fake ready world.
 
@@ -76,5 +86,8 @@ exports remain relevant. Follow canonical thunk targets and separate server/clie
 addresses. Original binaries, decompilations and Ghidra databases stay untracked.
 Headless data exports are server-headless-{data,store-contract,store-helpers,
 store-text,text-contract,utf8}-20261109; all used pairs are valid. GameData root
-research continues in server-gamedata-root-20261109. Original HumanStore.def is
-locally extracted via the existing native archive decoder under headless-store-inputs.
+contracts include server-gamedata-{root,types,type-contracts,fields,related,
+related-readers}-20261109. The types job stopped after valid00700DB0 at the
+erroneous interior00700710 request; actual legacy mission routing007006A0 is
+verified separately. HumanStore.def/Gamedata00.gdt were locally extracted with
+the existing native archive decoder under headless-store-inputs. No original DLL ran.

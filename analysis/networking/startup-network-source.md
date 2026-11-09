@@ -230,4 +230,5 @@ receive new credit merely because their logical dependency is acquired here.
 
 The [headless HumanStore follow-up](headless-startup-data-source.md) now provides
 the required HumanStore data loader with the server's verified portrait-free path.
-GameData and the containing application/engine/module owners remain dependencies.
+It also now provides verified GameData reuse and006F9550 preparation order. The
+containing application/engine/module owners remain dependencies.

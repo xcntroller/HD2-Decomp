@@ -1006,6 +1006,146 @@
       "metadata": "analysis/work/networking/server-headless-utf8-20261109/0067ffb0.json",
       "metadata_sha256": "0ebe098dc7f8105da07b4f57a8509c10d1a9ecb55d1c1473b126c7ab5dee8060",
       "decompilation_sha256": "5528084331170a488bbb437316ece2caf0bd9a7f94815f6aafb4c6c7c8a2a476"
+    },
+    {
+      "entry": "006ff090",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-root-20261109/006ff090.json",
+      "metadata_sha256": "96e4eb08e5cc55490cc723cce2ebc1750da7da5f6778d64dfa43d03f0de810e2",
+      "decompilation_sha256": "4d62a0b674c37b8b555036ac71a29b832171a560858d6184d619ba2539ac5bf9"
+    },
+    {
+      "entry": "006ff330",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-root-20261109/006ff330.json",
+      "metadata_sha256": "fe1d55095aeac957d459598ddb929a043580882fe24d4cf1eb18cb3327eee62c",
+      "decompilation_sha256": "ac8cc7079bb463c1f898977531e36abeb1b9f9f17d840ccf3c52dbad48a15df0"
+    },
+    {
+      "entry": "00700330",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-root-20261109/00700330.json",
+      "metadata_sha256": "24e3d1a91b007aa1921f6abef2ee5d44fe443662081236ed7ba2562fc9fc37ee",
+      "decompilation_sha256": "25c00a20f4b59eb7bbef013c311203e6f8e1b7a15b4a67f9c2c513a6e5a9ce2c"
+    },
+    {
+      "entry": "00702e30",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-root-20261109/00702e30.json",
+      "metadata_sha256": "8003f0d2e71261230e0db00e26412a65f4968b7e59c71dd0145acb94df58307a",
+      "decompilation_sha256": "0b5d668e9f7fb9383b8967d3a8b3113aa0732be2312d0a4fbd7f4a16c9c151e3"
+    },
+    {
+      "entry": "007033d0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-root-20261109/007033d0.json",
+      "metadata_sha256": "5814a276392ea81a60bcec020f0c1d9237c419b202ec6c8ff11be58ee009450d",
+      "decompilation_sha256": "2adb7c5024d7602cd2677811b342bfb8253dee799f572d10eb2c9b043bb57bb6"
+    },
+    {
+      "entry": "00700db0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-types-20261109/00700db0.json",
+      "metadata_sha256": "b08083827b45b08d517ef766caecb30f9fff3525df1719d64da0e067e117a23c",
+      "decompilation_sha256": "4285752bcb73cc3a4489b6233639b9ddb4de09b155035c4b6339a9b854022e0f"
+    },
+    {
+      "entry": "005b9590",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-type-contracts-20261109/005b9590.json",
+      "metadata_sha256": "fc670f19a3e8f45599db598ec70d76083707461d583e7080cd258c09564a57b8",
+      "decompilation_sha256": "a65d8b37ebb1cbe6f2fed562c6f21a418f7351e292457696c6427d7ff0931795"
+    },
+    {
+      "entry": "006fda60",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-type-contracts-20261109/006fda60.json",
+      "metadata_sha256": "a09ba6f687839d577059edcee888e81bca38325276462b15d18ab832fab5d3a7",
+      "decompilation_sha256": "2db39abdc6f513c76040db9b608f180122921665381847589290f8f31d1cc27a"
+    },
+    {
+      "entry": "006fe4c0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-type-contracts-20261109/006fe4c0.json",
+      "metadata_sha256": "5c7e222ec2cba9e6d6cab4eabd7c1930900e944038a33007e4fe4514a10198b6",
+      "decompilation_sha256": "43877ae87b44b19ddcfa4dbecbe65783987939c756ec478448c02eb310c2ef94"
+    },
+    {
+      "entry": "006fe880",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-type-contracts-20261109/006fe880.json",
+      "metadata_sha256": "e1cb1608e5250ac36ddf6c406c0b05a789a253d2cefeca6418ac83bdf04e51e9",
+      "decompilation_sha256": "02e9189ffe1a0f143e1841c71ece52ad17794dc4a5cc44d7d95aefebd5465b09"
+    },
+    {
+      "entry": "007006a0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-type-contracts-20261109/007006a0.json",
+      "metadata_sha256": "3e0b702294a324084716c361d9c598ffaf0097ebf7f39e00cf4ff554ea2509b7",
+      "decompilation_sha256": "dbd919eed5d5624bca057a64206b809d865f2e837ac830eec344bab7773d4f6c"
+    },
+    {
+      "entry": "006fd940",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-fields-20261109/006fd940.json",
+      "metadata_sha256": "1b32f78d05297b27ff94ec3d43978db4e9c2e8bea41f6cacd46a6728d66fb6c7",
+      "decompilation_sha256": "cf55421a336866fc2724d6b8846087b18c1ee01ca8e129d329c8c1deaf2b98a9"
+    },
+    {
+      "entry": "006fd960",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-fields-20261109/006fd960.json",
+      "metadata_sha256": "11d4ec710200dbea5d915d31f7ec8ca0a3516f4414bcc2e3f1d8d46b94463398",
+      "decompilation_sha256": "014741392ca38380d7adb1dfb00cd592a1408b51171578e1c717b5d59dfdf5b0"
+    },
+    {
+      "entry": "006fed30",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-fields-20261109/006fed30.json",
+      "metadata_sha256": "36037aa186e746c48468d009248a03f796fd85d70c851164a9d97ba883bdbbec",
+      "decompilation_sha256": "cb614f5839c5ecef7ab594cd3a1c9af1f273ae963fefb270c9261f427ec165b3"
+    },
+    {
+      "entry": "007014b0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-fields-20261109/007014b0.json",
+      "metadata_sha256": "a28cb6c8d476cf5a5024325fa2d1d5aaa7ef8be4eebb20612e985919bf8303d1",
+      "decompilation_sha256": "4bab7615ba337387125f34c2ba1b64facdfbf64033a060719db47205dc7dfc4e"
+    },
+    {
+      "entry": "00701ae0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-fields-20261109/00701ae0.json",
+      "metadata_sha256": "f5aab63ce0cf3ce493c6efe8cf297694cd3cbdf64227311f30796f401249e837",
+      "decompilation_sha256": "53987493bd15384a5871354cecbbce29e1cb2c4ba61de8757f0498900dff10c1"
+    },
+    {
+      "entry": "007026e0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-fields-20261109/007026e0.json",
+      "metadata_sha256": "deda5fd92424fc27f1843868408e1209afe28619050def8c69f5ad954e061c20",
+      "decompilation_sha256": "a65f2acb9d962f0cd084cce88146c218377b6b9c20c79bea9154d8f0c6243c80"
+    },
+    {
+      "entry": "006fc040",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-related-20261109/006fc040.json",
+      "metadata_sha256": "9bb51c09a981c0ebd1ad6beb9017ff4367ac78f94fcd351d7a2e162fefa2eb8e",
+      "decompilation_sha256": "c1bd880dc25027e727e6633e492af26f0217614d4a5493b9f640edd857557f7a"
+    },
+    {
+      "entry": "006fec10",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-related-readers-20261109/006fec10.json",
+      "metadata_sha256": "b13172c9e1ef9ae8577ede8eb28bada36c29430db450778a0140d41410a95d55",
+      "decompilation_sha256": "7453156f65643361d2aa67e0d4c775176b1df17ebdab25dfeafa000eb7e31c00"
+    },
+    {
+      "entry": "00702100",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-gamedata-related-readers-20261109/00702100.json",
+      "metadata_sha256": "feaa1681e87400546aa0e0db277b53eab91919e9aa126627fa8962dd0b815c3d",
+      "decompilation_sha256": "3720d8a09d0f29d1aace70ffaa09a9dc7ab7e4cfd88d428c00dfa81b0d5d23c6"
     }
   ]
 }

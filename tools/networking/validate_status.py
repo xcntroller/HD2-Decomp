@@ -6,9 +6,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DIRECTORY = ROOT / "analysis/networking"
-# The headless server reuses this body only after separate HD2DS-address contract
-# verification. Keep the shared-source allowance explicit; client ledger stays frozen.
-SHARED_SOURCES = {ROOT / "recovered/frontend/human_store.h"}
+# Headless server reuse requires separate HD2DS-address contract verification.
+# Keep shared sources explicit; the client ledger stays frozen.
+SHARED_SOURCES = {ROOT / "recovered/frontend/human_store.h", ROOT / "recovered/frontend/game_data.h"}
 
 
 def validate(local_evidence=False):

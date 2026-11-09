@@ -401,6 +401,33 @@
       "evidence": [
         "analysis/work/networking/server-headless-store-contract-20261109/006e0c70.json"
       ]
+    },
+    {
+      "program": "server",
+      "entry": "006ff900",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_startup_data.h",
+        "recovered/frontend/game_data.h"
+      ],
+      "contract": "Sequential real GameData loading, format gate, append and invalid-root/cache behavior",
+      "exclusions": "Native data objects/bounds policies, not original object/COW/allocator ABI. Genuine file/text/profile inputs and containing application construction required; no controller/world/network readiness.",
+      "evidence": [
+        "analysis/work/networking/server-profile-deps-20261109/006ff900.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006f9550",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_startup_data.h"
+      ],
+      "contract": "GameData then E8 store then mandatory HumanStore attempt and boolean AND",
+      "exclusions": "Native data objects/bounds policies, not original object/COW/allocator ABI. Genuine file/text/profile inputs and containing application construction required; no controller/world/network readiness.",
+      "evidence": [
+        "analysis/work/networking/server-startup-profile-20261109/006f9550.json"
+      ]
     }
   ]
 }

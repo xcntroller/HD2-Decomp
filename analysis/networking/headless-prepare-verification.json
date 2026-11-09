@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "source-only GameData reuse and mandatory preparation order; full N1 startup remains open",
+  "checks": [
+    "native ASan/UBSan/LSan actual GameData/HumanStore preparation",
+    "independent raw-chunk tree oracle over original22161-byte Gamedata00.gdt:304 nodes, all seven kinds and ordered fields/children/related data",
+    "synthetic legacy and format2 records, unknown-child skip, type7 actual no-read behavior",
+    "real sequential-file loading, repeated append, invalid-root/cache/close behavior",
+    "all missing-input boolean combinations; HumanStore attempted after GameData false; E8 store before HumanStore",
+    "200 truncations and50 complete preparations",
+    "strict Windows i386 complete fixture link; not executed"
+  ],
+  "limits": "Data loading is not world/network readiness. Actual application/profile/engine/module owners remain unintegrated. Existing native bounds/COW/allocator policies and frozen client ledger retained.",
+  "inputs": [
+    {
+      "path": "analysis/work/networking/headless-store-inputs/Gamedata00.gdt",
+      "size": 22161,
+      "sha256": "f92ab7e8796148af7854438ffca4df34b55cca8e83336878d7f569cdcd3319b1",
+      "provenance": "authorized original others.DTA; existing native decoder; no DLL execution"
+    },
+    {
+      "path": "analysis/work/networking/headless-store-inputs/HumanStore.def",
+      "size": 9170,
+      "sha256": "e070e9b0f8f1489ce0ff40316726916afed5bfe5cb58e2e4dcfe06ace073cb5f",
+      "provenance": "authorized original others.DTA; existing native decoder; no DLL execution"
+    }
+  ],
+  "sources": [
+    {
+      "path": "recovered/networking/headless_startup_data.h",
+      "sha256": "8d470bc712bb554145f079557a7c7263cc6379eca896bd192a13e9fb43180386"
+    },
+    {
+      "path": "recovered/frontend/game_data.h",
+      "sha256": "d4afaa34303c989a9f0d877e864c126d5e8f3082ac3c22756bde99bfa399453f"
+    }
+  ],
+  "log_sha256": "5b76e7cb4ca394e740b5c1c87aefb0eba2cd7fb0a993be618c81dc4a4c4bcc23",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/headless-prepare-audit/audit.cpp",
+      "sha256": "4eacd1a19fea99e19fbeef4c2ce9b6bf06dce4068bcbf5af65521906bd80570d"
+    },
+    {
+      "path": "analysis/work/networking/headless-prepare-audit/oracle.py",
+      "sha256": "f014ffc9775486036b82915e387e7a54db79092d8821b3641990e9d524c9c67c"
+    },
+    {
+      "path": "analysis/work/networking/headless-prepare-audit/original-tree.h",
+      "sha256": "726860d245952141a93fdcf6b0069d3f182b628fd3d8da175d81c60689632ffc"
+    },
+    {
+      "path": "analysis/work/networking/headless-prepare-audit/native-audit",
+      "sha256": "ad7a34dabc0428cacec3585c4349dbbf76651366b479f00d76164258a70a966a"
+    },
+    {
+      "path": "analysis/work/networking/headless-prepare-audit/windows-link.exe",
+      "sha256": "4c969d2a658ebf98e07a99c0da1266d32792ba271bc4b301e6c1a25479292770"
+    }
+  ]
+}
