@@ -2,13 +2,15 @@
 #define HD2_FRONTEND_APPLICATION_STARTUP_DATA_H
 
 #include "frontend/application_data.h"
+#include "frontend/game_configuration.h"
 #include "frontend/profile_selection.h"
 
 namespace hd2::frontend {
 
-// Owning composition of the four already recovered startup data components.
-// This is ONLY the application+04/+08/+20/+10 subset of 006B4A60/006B6010;
-// remaining application owners, services, protection and full lifecycle remain
+// Owning composition of recovered startup data components and HUD configuration.
+// This is the application+04/+08/+20/+10 and+24 configuration-data subset of006B4A60/006B6010;
+// Application+24 configuration DATA is also retained for actual HUD consumers;
+// remaining manager services/activation, protection and full lifecycle remain
 // unrecovered. It cannot stand in for the full original application object.
 // Files/graphics/directory must be available when construction begins; original
 // configuration loading happens before application resource/archive setup.
@@ -28,15 +30,18 @@ public:
         for (std::size_t at = 0x74 / 4; at <= 0x90 / 4; ++at)
             profile_->payload.words[at] = 0xffffffffu;
         humans_ = std::make_unique<HumanStore<Graphics>>(graphics);
+        game_configuration_ = std::make_unique<GameConfiguration>();
     }
     ~ApplicationStartupData() { close(); }
     void close() {
         // 006B6010 destroys these four owners in this order, not reverse member
         // declaration order. Other original application owners are outside scope.
         game_.reset(); configuration_.reset(); profile_.reset(); humans_.reset();
+        game_configuration_.reset(); //Actual+24 follows these owned components in006B6010.
     }
     ApplicationStartupData(const ApplicationStartupData&) = delete;
     ApplicationStartupData& operator=(const ApplicationStartupData&) = delete;
+    GameConfiguration& game_configuration(){return *game_configuration_;}
     GameData& game() { return *game_; }
     StartupConfiguration& configuration() { return *configuration_; }
     ProfileState& profile() { return *profile_; }
@@ -55,6 +60,7 @@ public:
                                 input, services, backend, sound, control, input_flag, game_.get(), text);
     }
 private:
+    std::unique_ptr<GameConfiguration> game_configuration_;
     std::unique_ptr<GameData> game_;
     std::unique_ptr<StartupConfiguration> configuration_;
     std::unique_ptr<ProfileState> profile_;

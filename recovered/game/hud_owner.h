@@ -6,6 +6,7 @@
 #include <memory>
 #include <stdexcept>
 #include <vector>
+#include "game/hud_message_state.h"
 
 namespace hd2::game {
 
@@ -70,19 +71,25 @@ public:
     HudOwner& operator=(const HudOwner&) = delete;
     bool enabled() const { return (flags & 1u) != 0; } //0049B7D0
     const std::vector<PositionedText>& text_owners() const { return texts_; }
+    //0049FEF0 final writes in original instruction order, inventory receiver+30.
+    inline static constexpr std::array<std::uint32_t,11> inventory_word_offsets{{
+        0x0c,0x08,0x04,0x14,0x1c,0xbc,0x2b74,0x18,0x2b78,0x2b7c,0xc4}};
+    std::uint32_t& inventory_word(std::uint32_t offset){
+        for(std::size_t n=0;n!=inventory_word_offsets.size();++n)if(inventory_word_offsets[n]==offset)return panel_words[n];
+        throw std::out_of_range("Unknown constructed HUD inventory word");
+    }
     std::uint32_t flags = 0; //+0C, final constructor write
     std::array<std::uint32_t, 11> panel_words{}; //0049FEF0's explicit null/zero fields
     std::array<std::uint32_t, 7> panel_geometry{}; //004A01F0
     std::array<HudTrackState, 4> tracks{};
-    std::array<float, 3> colours{{255.f,255.f,255.f}}; //00494980+00/+04/+08
-    std::uint32_t colour_count = 0, colour_period = 50;
-    std::uint32_t colour_d36c = 0, colour_d370 = 0x3cb43958, colour_d374 = 0, colour_d378 = 0;
-    std::uint8_t colour_d384 = 1;
+    HudMessageState& message_state(){return message_state_;}
+    const HudMessageState& message_state()const{return message_state_;}
     struct Item { std::uint32_t first = 0, second = 0; std::uint8_t enabled = 0; };
     std::array<Item, 32> items{}; //0049A5E0 at+10928 +i*0C
     struct Timer { std::uint32_t value = 0; float time = 0; };
     std::array<Timer, 18> timers{}; //+11140+i*10, first/last fields only
 private:
+    HudMessageState message_state_; //SAME constructed inline2F90, borrowed by its loading/render owner.
     std::vector<PositionedText> texts_;
 };
 
