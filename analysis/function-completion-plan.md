@@ -7,8 +7,9 @@ This supersedes the earlier instruction to exhaust every currently feasible body
 before Phase2. It preserves existing results and full-body counting criteria.
 
 The initial audit/button, delta/scroll, scalar/input and input-owner milestones
-remain recorded. Ledger:34 complete client,530 partial (525 client/five engine),
-denominator18,783. Source-only raw entries are not automatically desktop-integrated.
+remain recorded. Current ledger:34 complete client,1,440 partial (1,435 client/five
+engine), denominator18,783. The [P2.2 reconciliation](function-ledger-p2.2-reconciliation.md)
+adds implemented source subsets; source-only work is not automatically desktop-integrated.
 The [queue](function-completion-queue.json) remains a postponed backlog, not a
 blocked/exhausted/completed pass. Its earlier next batch is retained for reference.
 

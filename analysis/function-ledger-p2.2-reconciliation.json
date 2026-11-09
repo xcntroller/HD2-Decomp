@@ -1,0 +1,5153 @@
+{
+  "date": "2026-11-09",
+  "baseline": "f9674b3",
+  "source_head": "f72ca56",
+  "policy": "Explicit implemented source subsets only. All additions partial; no complete promotions. No engine callee credit, no absent/thunk credit, no denominator change. Existing complete rows unchanged.",
+  "added_partial_client": 881,
+  "extended_partial_client": 6,
+  "new_entries": [
+    "00401d40",
+    "00401ed0",
+    "00402040",
+    "00402120",
+    "00402880",
+    "00407390",
+    "004079f0",
+    "0040b5e0",
+    "0040b7e0",
+    "0040e320",
+    "0040e810",
+    "0040fb00",
+    "00410830",
+    "00410af0",
+    "00410b00",
+    "0041d110",
+    "0041d180",
+    "00428600",
+    "00428a70",
+    "00433fa0",
+    "00435b00",
+    "004374d0",
+    "00444140",
+    "00444490",
+    "00444880",
+    "004448a0",
+    "004454f0",
+    "00445af0",
+    "00445d90",
+    "0045d160",
+    "0045d1b0",
+    "0045d1d0",
+    "0045d1f0",
+    "0045d2e0",
+    "0045d3a0",
+    "0045d480",
+    "0045d4a0",
+    "0045d710",
+    "0045d7c0",
+    "0045da60",
+    "0045e2c0",
+    "0045e2f0",
+    "0045e3b0",
+    "0045e410",
+    "0045e540",
+    "0045eb30",
+    "004617f0",
+    "004619c0",
+    "004619f0",
+    "00461a20",
+    "00461a60",
+    "00461aa0",
+    "00461c70",
+    "00462300",
+    "00462650",
+    "004626e0",
+    "00462750",
+    "00464ef0",
+    "00465160",
+    "00465610",
+    "004656d0",
+    "00465a00",
+    "00465b40",
+    "00465e00",
+    "00465e50",
+    "0046c370",
+    "0046cb20",
+    "0046d600",
+    "0046eb20",
+    "0046ecf0",
+    "0046f350",
+    "0046f700",
+    "0046f9d0",
+    "0046fd50",
+    "0046fdf0",
+    "0046ffb0",
+    "00473790",
+    "00473960",
+    "00473e30",
+    "00474290",
+    "00474740",
+    "004759c0",
+    "00475c50",
+    "00475ec0",
+    "00475fb0",
+    "00476680",
+    "00476860",
+    "004770b0",
+    "00477190",
+    "004772f0",
+    "00477330",
+    "00477430",
+    "004774c0",
+    "00477590",
+    "00477660",
+    "004794d0",
+    "00479530",
+    "004795e0",
+    "00480740",
+    "00480d00",
+    "00480fa0",
+    "004813d0",
+    "00481440",
+    "00481810",
+    "00482980",
+    "00482a00",
+    "00482d70",
+    "00484260",
+    "004847a0",
+    "00484a70",
+    "00484ae0",
+    "004860b0",
+    "00486d30",
+    "004894e0",
+    "0048a3f0",
+    "0048cd70",
+    "0048d100",
+    "0048d1d0",
+    "0048db00",
+    "0048dbf0",
+    "00490930",
+    "004909d0",
+    "00490b50",
+    "00490c80",
+    "00491130",
+    "00491440",
+    "00491640",
+    "00491fd0",
+    "004920b0",
+    "00492130",
+    "004921f0",
+    "004922a0",
+    "00492500",
+    "00492610",
+    "00492930",
+    "00492a90",
+    "004932a0",
+    "004933c0",
+    "00493b10",
+    "00493b30",
+    "00493bc0",
+    "00493f80",
+    "00494140",
+    "00494170",
+    "004947e0",
+    "00494a40",
+    "00494a70",
+    "004950c0",
+    "00495150",
+    "004952c0",
+    "00495360",
+    "00495900",
+    "00495a00",
+    "00495f00",
+    "00495f40",
+    "004960f0",
+    "00496450",
+    "00496dc0",
+    "00496e00",
+    "00496e40",
+    "0049a940",
+    "0049b1b0",
+    "0049b280",
+    "0049b5e0",
+    "0049b610",
+    "0049b620",
+    "0049b730",
+    "0049b900",
+    "0049b980",
+    "0049b9b0",
+    "0049b9f0",
+    "0049dc60",
+    "0049de80",
+    "0049e260",
+    "0049ef70",
+    "0049f1c0",
+    "004a0ee0",
+    "004a41e0",
+    "004a49a0",
+    "004a4ae0",
+    "004a4f60",
+    "004a4fd0",
+    "004a5190",
+    "004a6fe0",
+    "004a72c0",
+    "004a7520",
+    "004a7680",
+    "004a7910",
+    "004a7a90",
+    "004a7eb0",
+    "004a7ed0",
+    "004a89e0",
+    "004a8a90",
+    "004a8c10",
+    "004a8cc0",
+    "004a8d50",
+    "004a8d70",
+    "004a9010",
+    "004a92f0",
+    "004a9320",
+    "004a9720",
+    "004a9740",
+    "004a9f00",
+    "004a9f10",
+    "004aa760",
+    "004aaab0",
+    "004aaac0",
+    "004aad00",
+    "004aad10",
+    "004aaf20",
+    "004ab0f0",
+    "004ab220",
+    "004ab230",
+    "004ab860",
+    "004abaf0",
+    "004ac190",
+    "004ac370",
+    "004ac440",
+    "004ac530",
+    "004ac990",
+    "004acb70",
+    "004acdc0",
+    "004ace20",
+    "004ad140",
+    "004ad250",
+    "004ad310",
+    "004ad4e0",
+    "004ad640",
+    "004ad880",
+    "004ad8d0",
+    "004ad8f0",
+    "004ad9b0",
+    "004ada20",
+    "004ada70",
+    "004adba0",
+    "004adc50",
+    "004adc90",
+    "004addd0",
+    "004ae0f0",
+    "004ae290",
+    "004ae2b0",
+    "004ae2e0",
+    "004ae790",
+    "004ae7c0",
+    "004aed00",
+    "004af2b0",
+    "004af2e0",
+    "004af450",
+    "004af480",
+    "004af4a0",
+    "004af600",
+    "004af630",
+    "004af8b0",
+    "004afbd0",
+    "004afc00",
+    "004afda0",
+    "004afe30",
+    "004afe50",
+    "004affc0",
+    "004afff0",
+    "004b0000",
+    "004b0180",
+    "004b01a0",
+    "004b0210",
+    "004b0750",
+    "004b0900",
+    "004b2fa0",
+    "004b30e0",
+    "004b3840",
+    "004b3890",
+    "004b3e70",
+    "004b4760",
+    "004b4980",
+    "004b4d40",
+    "004b4de0",
+    "004b5790",
+    "004b59c0",
+    "004b6180",
+    "004b7780",
+    "004b7830",
+    "004b9d50",
+    "004bf130",
+    "004bf2e0",
+    "004bf480",
+    "004bffe0",
+    "004c05f0",
+    "004c0880",
+    "004c19d0",
+    "004c1aa0",
+    "004c7db0",
+    "004c7e50",
+    "004c8140",
+    "004c8250",
+    "004c8270",
+    "004c84a0",
+    "004c8770",
+    "004c8820",
+    "004c8980",
+    "004c8ea0",
+    "004cd6e0",
+    "004ce8f0",
+    "004cff70",
+    "004d0110",
+    "004d0b60",
+    "004d0f20",
+    "004d4130",
+    "004d4230",
+    "004d4450",
+    "004d4620",
+    "004d4740",
+    "004d4a70",
+    "004d4b50",
+    "004d4ca0",
+    "004d4eb0",
+    "004d5140",
+    "004d57a0",
+    "004d5a50",
+    "004d5b10",
+    "004d62c0",
+    "004d6900",
+    "004d6bf0",
+    "004d7d80",
+    "004e0930",
+    "004e09d0",
+    "004e0ee0",
+    "004e19c0",
+    "004e2e30",
+    "004e6de0",
+    "004e7450",
+    "004e7f10",
+    "004e87c0",
+    "004e8d80",
+    "004ec980",
+    "004eccd0",
+    "004ecd60",
+    "004ecde0",
+    "004ecff0",
+    "004ed0c0",
+    "004ed270",
+    "004f9e70",
+    "004fa0e0",
+    "004fa140",
+    "004fa190",
+    "004fa2e0",
+    "004faea0",
+    "004fe6b0",
+    "00500fd0",
+    "0051c870",
+    "0051c910",
+    "0051cba0",
+    "0051ccd0",
+    "0051d160",
+    "0051d5a0",
+    "0051d5c0",
+    "0051d780",
+    "0051de80",
+    "0051e520",
+    "0051e6d0",
+    "00520530",
+    "00520830",
+    "00520860",
+    "005208e0",
+    "00520910",
+    "00523c00",
+    "00524620",
+    "00524750",
+    "00524b10",
+    "00524c60",
+    "00525110",
+    "0052a3b0",
+    "0052e5b0",
+    "0052e6f0",
+    "0052ef20",
+    "0052f750",
+    "005304b0",
+    "00530930",
+    "00530b30",
+    "00533e90",
+    "005377f0",
+    "005380c0",
+    "00538510",
+    "00538550",
+    "00538640",
+    "0053b970",
+    "0053b9a0",
+    "0053bc50",
+    "005421c0",
+    "005449b0",
+    "005478c0",
+    "00547ad0",
+    "00547af0",
+    "00547bf0",
+    "00547cf0",
+    "0054cad0",
+    "005518f0",
+    "00551b00",
+    "00551b50",
+    "00551ba0",
+    "00559a50",
+    "00559c20",
+    "0055d2e0",
+    "0055d630",
+    "0055d860",
+    "0055df90",
+    "0055e030",
+    "0055e130",
+    "0055e250",
+    "0055e2b0",
+    "0055f2c0",
+    "005607d0",
+    "00560810",
+    "00563a60",
+    "0056ee90",
+    "0056f0e0",
+    "0056f200",
+    "0056f630",
+    "00573900",
+    "00573c50",
+    "00574070",
+    "00574130",
+    "005741f0",
+    "00574280",
+    "00574310",
+    "00574480",
+    "00574d70",
+    "005750f0",
+    "00575820",
+    "00576ac0",
+    "00582030",
+    "00582740",
+    "005827b0",
+    "00582c50",
+    "00582ff0",
+    "005832f0",
+    "00583690",
+    "00584830",
+    "00587530",
+    "00587bf0",
+    "0058a510",
+    "0058a580",
+    "0058d810",
+    "0058d8e0",
+    "00590170",
+    "00591ed0",
+    "00591ee0",
+    "00592140",
+    "00592200",
+    "0059bf00",
+    "0059c270",
+    "0059e3e0",
+    "0059ea90",
+    "0059f2c0",
+    "005a0980",
+    "005a0a50",
+    "005a0ab0",
+    "005a2740",
+    "005a29c0",
+    "005a2a40",
+    "005a2ac0",
+    "005a2ad0",
+    "005a2b10",
+    "005a2b40",
+    "005a2d50",
+    "005a3e60",
+    "005a3f20",
+    "005a42f0",
+    "005a4310",
+    "005a4450",
+    "005a4840",
+    "005a4a10",
+    "005a4be0",
+    "005a4da0",
+    "005a4f60",
+    "005a4fc0",
+    "005a5020",
+    "005a5250",
+    "005a5430",
+    "005a67c0",
+    "005a6830",
+    "005a6a90",
+    "005a6aa0",
+    "005a6c50",
+    "005a6da0",
+    "005a6db0",
+    "005a6ff0",
+    "005a7fe0",
+    "005a80f0",
+    "005a83f0",
+    "005a84f0",
+    "005a85f0",
+    "005a86f0",
+    "005a8740",
+    "005a8790",
+    "005a87c0",
+    "005a8990",
+    "005a9760",
+    "005a97a0",
+    "005aa790",
+    "005aa7d0",
+    "005aa890",
+    "005ab330",
+    "005aba90",
+    "005abf60",
+    "005ac070",
+    "005ac2e0",
+    "005ac390",
+    "005ac3e0",
+    "005ac400",
+    "005ac960",
+    "005aca30",
+    "005adac0",
+    "005adc50",
+    "005adee0",
+    "005ae450",
+    "005ae640",
+    "005ae810",
+    "005af880",
+    "005afe00",
+    "005b0340",
+    "005b0390",
+    "005b0570",
+    "005b3710",
+    "005b3740",
+    "005b3930",
+    "005b4790",
+    "005b6740",
+    "005b67d0",
+    "005b6920",
+    "005b69b0",
+    "005b8d00",
+    "005ba4d0",
+    "005d4b00",
+    "005d4cf0",
+    "005de200",
+    "005e20a0",
+    "005e2130",
+    "005e2240",
+    "005e2260",
+    "005e23e0",
+    "005e2420",
+    "005e2b10",
+    "005ea3d0",
+    "005ea5d0",
+    "005ead20",
+    "005eb120",
+    "005f97d0",
+    "005f98e0",
+    "005fa6a0",
+    "005ff210",
+    "00600a50",
+    "00601ac0",
+    "00602b20",
+    "00602bc0",
+    "00602ec0",
+    "00605e50",
+    "0060c230",
+    "00610070",
+    "00610170",
+    "00610200",
+    "00610230",
+    "00610240",
+    "00610510",
+    "00610f80",
+    "00611020",
+    "006111f0",
+    "006112b0",
+    "006115b0",
+    "006118d0",
+    "00613450",
+    "006136f0",
+    "00613920",
+    "00613bd0",
+    "0061b440",
+    "006402a0",
+    "00641cc0",
+    "00641d90",
+    "006449d0",
+    "00644a80",
+    "00644ba0",
+    "00644c50",
+    "00644cf0",
+    "00644d60",
+    "00644e10",
+    "00644eb0",
+    "00644ef0",
+    "00645270",
+    "006456f0",
+    "006467b0",
+    "00646820",
+    "00646940",
+    "00646db0",
+    "006472e0",
+    "00647830",
+    "00647d00",
+    "00647e70",
+    "00648860",
+    "00648eb0",
+    "0069a2e0",
+    "0069e920",
+    "0069e970",
+    "006ad350",
+    "006b4da0",
+    "006b66d0",
+    "006c95b0",
+    "006c95c0",
+    "006c95d0",
+    "006c9640",
+    "006ca2c0",
+    "006ca2d0",
+    "006ca470",
+    "006ca670",
+    "006ca780",
+    "006cade0",
+    "006cbf30",
+    "006cc760",
+    "006d1b80",
+    "006d4180",
+    "006dfcb0",
+    "006dfe50",
+    "006dffd0",
+    "006e00b0",
+    "006e0380",
+    "006e0760",
+    "006e07c0",
+    "006e9ad0",
+    "006e9b20",
+    "006ee380",
+    "006ee570",
+    "006ef330",
+    "006ef3e0",
+    "006ef5e0",
+    "006ef7f0",
+    "006efa70",
+    "006efb10",
+    "006fda00",
+    "00702810",
+    "007041d0",
+    "00704d60",
+    "00706900",
+    "007101b0",
+    "007151d0",
+    "00715510",
+    "00718530",
+    "0071de10",
+    "0071de60",
+    "0071def0",
+    "0071df30",
+    "0071e2b0",
+    "0071e460",
+    "0071e490",
+    "0071e650",
+    "0071e7f0",
+    "0071e860",
+    "0071ecc0",
+    "0071ecf0",
+    "0071ee00",
+    "0071f9b0",
+    "0071fe70",
+    "00720a80",
+    "00720b80",
+    "00723000",
+    "0073cf50",
+    "0073d7e0",
+    "0073da50",
+    "0073dc60",
+    "0073dca0",
+    "0073dce0",
+    "0073dd40",
+    "0073ddc0",
+    "0073df70",
+    "0073e090",
+    "0073e2c0",
+    "0073e8d0",
+    "0073e920",
+    "0073e970",
+    "0073e9b0",
+    "0073ec50",
+    "0073ed00",
+    "0073ed80",
+    "0073f2b0",
+    "0073f4b0",
+    "0073f530",
+    "0073f5a0",
+    "0073f5f0",
+    "0073f660",
+    "0073f770",
+    "0073f810",
+    "0073fa80",
+    "00740410",
+    "007406f0",
+    "00741140",
+    "00749e30",
+    "007506e0",
+    "00757c20",
+    "00757dc0",
+    "00757df0",
+    "00757e10",
+    "00757f50",
+    "00757f60",
+    "00757fb0",
+    "00758290",
+    "00758bf0",
+    "00758c60",
+    "0075ae00",
+    "0075ae40",
+    "0075b280",
+    "0075b6c0",
+    "0075b870",
+    "0075bc80",
+    "0075bff0",
+    "0075c070",
+    "0075c2d0",
+    "0075c4f0",
+    "0075c960",
+    "0075cac0",
+    "0075ea30",
+    "0075eaa0",
+    "0075eeb0",
+    "007634f0",
+    "00763780",
+    "007637c0",
+    "007706f0",
+    "007720c0",
+    "007723b0",
+    "007724a0",
+    "007724e0",
+    "00773260",
+    "007733d0",
+    "00774df0",
+    "00775260",
+    "00775970",
+    "007759d0",
+    "00777a40",
+    "00777a80",
+    "0077dd80",
+    "0077dda0",
+    "0077ddc0",
+    "0077f2f0",
+    "0077fc30",
+    "0077fd40",
+    "00780990",
+    "007809c0",
+    "00780ab0",
+    "00780ad0",
+    "00781250",
+    "007812f0",
+    "00781300",
+    "00781b00",
+    "00782eb0",
+    "00782fa0",
+    "00783350",
+    "00783490",
+    "007834e0",
+    "00783710",
+    "00783760",
+    "00783960",
+    "007839b0",
+    "00783b00",
+    "00783b40",
+    "00783bc0",
+    "00784b70",
+    "00784c40",
+    "00784ed0",
+    "00784f60",
+    "00785400",
+    "007855c0",
+    "00785950",
+    "00785b20",
+    "00785be0",
+    "00786030",
+    "00786650",
+    "007870d0",
+    "00789c80",
+    "00789ca0",
+    "00789cd0",
+    "00789f60",
+    "00789fc0",
+    "0078a4f0",
+    "0078a5f0",
+    "0078c980",
+    "0078ca00",
+    "0078ca30",
+    "0078ca60",
+    "0078cc90",
+    "0078cdb0",
+    "0078ce20",
+    "0078de30",
+    "0078df60",
+    "00790520",
+    "00791290",
+    "00791370",
+    "007913d0",
+    "00791720",
+    "00791910",
+    "007919c0",
+    "007920b0",
+    "00792590",
+    "00792720",
+    "00792ab0",
+    "007931b0",
+    "007933d0",
+    "00796430",
+    "007967a0",
+    "007968a0",
+    "00796b90",
+    "00796c90",
+    "00796d50",
+    "00796d80",
+    "00796e90",
+    "00797020",
+    "00797330",
+    "00797a50",
+    "00797aa0",
+    "00798200",
+    "00798250",
+    "007982c0",
+    "00798e40",
+    "00799080",
+    "00799170",
+    "00799270",
+    "00799350",
+    "00799540",
+    "0079b910",
+    "0079bac0",
+    "0079bd30",
+    "0079c320",
+    "007a2190",
+    "007a23f0",
+    "007a2e10",
+    "007a3e60",
+    "007a42a0",
+    "007a4d50",
+    "007a4df0",
+    "007ac780",
+    "007aca30",
+    "007b85a0",
+    "007b85c0",
+    "007b90b0",
+    "007b9260",
+    "007b96c0",
+    "007c0d90",
+    "007c5080",
+    "007c51a0",
+    "007c52e0",
+    "007c5620",
+    "007c5d50",
+    "007c6050",
+    "007d3800",
+    "007d38d0",
+    "007d39c0",
+    "007d3a10",
+    "007d3a40",
+    "007d3aa0",
+    "007d3ae0",
+    "007d4680",
+    "007d4710",
+    "007d6300",
+    "007d6690",
+    "007d67f0",
+    "007d6890",
+    "007d6910",
+    "007d6a00",
+    "007d7010",
+    "007d7140",
+    "007d75b0",
+    "007d81a0",
+    "007d8b40",
+    "007dc460",
+    "007dc6e0",
+    "007dc8a0",
+    "007dd010",
+    "007dd400",
+    "007dd480",
+    "007dd4f0",
+    "007dd560",
+    "007dd5d0",
+    "007df430",
+    "007df510",
+    "007df750",
+    "007df850",
+    "007e0560"
+  ],
+  "extended_entries": [
+    "00494980",
+    "00641e30",
+    "00645f20",
+    "006cd940",
+    "0073d000",
+    "007dc3a0"
+  ],
+  "totals": {
+    "client": {
+      "complete": 34,
+      "partial": 1435
+    },
+    "engine": {
+      "complete": 0,
+      "partial": 5
+    }
+  },
+  "source_groups": [
+    {
+      "source": "recovered/frontend/dubbing_sound.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "0071de10",
+        "0071def0",
+        "0071df30",
+        "0071e490",
+        "0071e860",
+        "0071e7f0",
+        "0071ecf0",
+        "0071e460",
+        "0071ecc0",
+        "0071e650",
+        "0071de60",
+        "0071e2b0",
+        "0071ee00"
+      ],
+      "coverage": "Sixteen-channel dubbing initialization, reverse free-slot selection, model binding, speech data/playback, scheduled stop, update and retirement."
+    },
+    {
+      "source": "recovered/frontend/game_configuration.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "006ad350",
+        "0061b440",
+        "006b4da0",
+        "006b66d0"
+      ],
+      "coverage": "Shared configuration data initialization/rotation-owner retirement and actual configuration/profile crosshair preference selection; live manager activation excluded."
+    },
+    {
+      "source": "recovered/frontend/opening_subtitles.h",
+      "contract": "analysis/loading-presentation.md",
+      "entries": [
+        "00641e30",
+        "00641d90",
+        "00641cc0"
+      ],
+      "coverage": "Shared lazy ninety-style catalogue, first-hole insertion and tail-trimming removal with movie-style borrowers."
+    },
+    {
+      "source": "recovered/frontend/spatial_sound.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "00433fa0",
+        "00435b00"
+      ],
+      "coverage": "Spatial emission policy, pooled voice allocation, attenuation, hearing payload and listener dispatch; portal occlusion remains a required backend."
+    },
+    {
+      "source": "recovered/frontend/sound_listeners.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [],
+      "coverage": "Actual process sound-listener reverse-hole reuse, frame-to-actor filtering and removal."
+    },
+    {
+      "source": "recovered/game/actor_activation_math.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "00610240"
+      ],
+      "coverage": "Actor world-matrix rotation and activation-field math."
+    },
+    {
+      "source": "recovered/game/actor_base.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "00610200",
+        "00610170",
+        "00610510"
+      ],
+      "coverage": "Common initialized frame/storage ownership and loading activation/deactivation fields, parent pose restoration and reference retirement."
+    },
+    {
+      "source": "recovered/game/actor_frame_data.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "006e9ad0",
+        "006e9b20"
+      ],
+      "coverage": "Typed actor-frame-data allocation and shared storage lifetime."
+    },
+    {
+      "source": "recovered/game/actor_properties.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "006136f0",
+        "00601ac0",
+        "00600a50"
+      ],
+      "coverage": "Bounded switch and door property stream dispatch; only implemented actor property cases."
+    },
+    {
+      "source": "recovered/game/actor_initial_properties.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "0059bf00",
+        "005ea3d0",
+        "005b8d00",
+        "005d4b00",
+        "005ba4d0",
+        "005b3740",
+        "005b4790",
+        "0060c230",
+        "005ff210",
+        "005fa6a0",
+        "005f98e0"
+      ],
+      "coverage": "Known cold constructor/property fields for required actor families, without unwritten native padding or unsupported runtime producers."
+    },
+    {
+      "source": "recovered/game/actor_item_holder.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007d67f0",
+        "007d6910",
+        "007d6890",
+        "007d6a00"
+      ],
+      "coverage": "Single-entry ownership, scalar/volume queries, unsigned cooldown, replace/detach and matching release."
+    },
+    {
+      "source": "recovered/game/actor_slot_storage.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "007d6690",
+        "007d7010",
+        "007d7140",
+        "007d75b0"
+      ],
+      "coverage": "Actual stack-array allocation, grouping, insertion, swap removal, ordered weight/volume and entry release."
+    },
+    {
+      "source": "recovered/game/actor_storage_owner.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "00610f80",
+        "005a2740",
+        "005a29c0",
+        "00611020",
+        "005a2a40"
+      ],
+      "coverage": "Actor/Human holder and stack owner construction and retirement, including borrowed pack contents before pack release."
+    },
+    {
+      "source": "recovered/game/actor_references.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "004ce8f0",
+        "004cff70"
+      ],
+      "coverage": "Native typed actor reference lists and reverse matching invalidation."
+    },
+    {
+      "source": "recovered/game/actor_world_corners.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "006115b0",
+        "00605e50",
+        "005a85f0",
+        "006112b0",
+        "00602bc0",
+        "006111f0",
+        "00602b20"
+      ],
+      "coverage": "Actor/world bounds and corner calculations for implemented model families."
+    },
+    {
+      "source": "recovered/game/actor_proximity_loading.h",
+      "contract": "analysis/sight-loading.md",
+      "entries": [
+        "006e00b0",
+        "006e07c0",
+        "006dfcb0",
+        "006dfe50",
+        "006dffd0",
+        "006e0380",
+        "006e0760",
+        "005a83f0",
+        "005ae640",
+        "005ae810"
+      ],
+      "coverage": "Shared ten-bucket proximity pair ownership, registration/removal, speed update, fixed100 tick, original transition callbacks and Human ID-list feedback."
+    },
+    {
+      "source": "recovered/game/animation_tables.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "00783bc0",
+        "00783710",
+        "00783760",
+        "00783490",
+        "007834e0",
+        "00783960",
+        "007839b0",
+        "00783b00",
+        "00783b40",
+        "00783350"
+      ],
+      "coverage": "Actual animation table row parsing/resource fixups and attempt latch; native transactional owners replace raw arrays."
+    },
+    {
+      "source": "recovered/game/car_ancillary_model.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004e19c0",
+        "004e0930",
+        "004e09d0",
+        "004e0ee0"
+      ],
+      "coverage": "Ancillary DM model, metadata lifetime and original substring/atoi property extraction."
+    },
+    {
+      "source": "recovered/game/car_axes.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004e6de0",
+        "00500fd0"
+      ],
+      "coverage": "Vehicle visual axle records and scale/direction application."
+    },
+    {
+      "source": "recovered/game/car_collision_parts.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004f9e70",
+        "004fa0e0",
+        "004fa140",
+        "004fa190",
+        "004fa2e0"
+      ],
+      "coverage": "Vehicle collision-part construction, loading state and matching owner cleanup."
+    },
+    {
+      "source": "recovered/game/car_contact_callbacks.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004d4130",
+        "004d4620",
+        "004d4450",
+        "004d4a70",
+        "004d4b50",
+        "004d4230",
+        "004d4740",
+        "004d5140",
+        "004d4ca0",
+        "004d4eb0"
+      ],
+      "coverage": "Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory."
+    },
+    {
+      "source": "recovered/game/car_definition_tables.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "0071f9b0",
+        "004d57a0",
+        "004ecd60",
+        "004ecde0"
+      ],
+      "coverage": "Vehicle serialized definition tables, material response values and lookup rebuild/retirement."
+    },
+    {
+      "source": "recovered/game/car_deformable_parts.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004faea0",
+        "004fe6b0"
+      ],
+      "coverage": "Attribute-driven vehicle deformable-part records, variants and initial visibility."
+    },
+    {
+      "source": "recovered/game/car_geometry.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004e2e30",
+        "004e7f10"
+      ],
+      "coverage": "Ordinary vehicle geometry construction and ordered retirement of the real component owners; other runtime/replacement branches excluded."
+    },
+    {
+      "source": "recovered/game/car_lighting.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004e7450",
+        "004e87c0",
+        "004e8d80"
+      ],
+      "coverage": "Vehicle light/PROJ visual creation, metadata and marker binding with actual model borrowers."
+    },
+    {
+      "source": "recovered/game/car_parameter_block.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004d0110"
+      ],
+      "coverage": "COMP branch of the actual serialized vehicle parameter decode."
+    },
+    {
+      "source": "recovered/game/car_parameters.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004d7d80"
+      ],
+      "coverage": "Conversion of the verified serialized vehicle parameter block and consumed fields; unwritten tail bytes excluded."
+    },
+    {
+      "source": "recovered/game/car_particle_pool.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004d5a50",
+        "004ed0c0",
+        "004ecff0"
+      ],
+      "coverage": "Actual EMTR frame pool initialization, reuse and retirement."
+    },
+    {
+      "source": "recovered/game/car_particles.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004d5b10",
+        "004d62c0"
+      ],
+      "coverage": "Vehicle particle/emitter binding callbacks and actual definition/model consumers."
+    },
+    {
+      "source": "recovered/game/car_physics.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004ed270"
+      ],
+      "coverage": "Runtime parameter application to real vehicle geometry for the third-argument-zero loading branch."
+    },
+    {
+      "source": "recovered/game/car_scene_actor.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004d0b60",
+        "004d0f20"
+      ],
+      "coverage": "Cold vehicle construction, initialized geometry/property source and destructor ordering; simulation and populated runtime producers excluded."
+    },
+    {
+      "source": "recovered/game/car_tyres.h",
+      "contract": "analysis/car-geometry-loading.md",
+      "entries": [
+        "004d6900",
+        "004ec980",
+        "004d6bf0",
+        "004eccd0"
+      ],
+      "coverage": "Tyre file/table conversion, duplicate-ID semantics and process default/clear state."
+    },
+    {
+      "source": "recovered/game/collision_sweep.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "00718530"
+      ],
+      "coverage": "Static/dynamic sweep composition using the same actual collision tree and exclusions."
+    },
+    {
+      "source": "recovered/game/collision_sweep_box.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "00706900"
+      ],
+      "coverage": "Swept sphere against expanded box faces with original axis/face ordering."
+    },
+    {
+      "source": "recovered/game/collision_sweep_candidates.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007151d0",
+        "00715510"
+      ],
+      "coverage": "Actual static query candidate masks, ordering and grid traversal; unsupported shapes remain explicit."
+    },
+    {
+      "source": "recovered/game/collision_sweep_triangle.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007041d0",
+        "00704d60"
+      ],
+      "coverage": "Triangle edge/vertex and swept-sphere collision policy with original normal/output math."
+    },
+    {
+      "source": "recovered/game/collision_tree.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "006ee380",
+        "006ee570"
+      ],
+      "coverage": "Collision file loading, shape classification, index fixups and dynamic grid construction."
+    },
+    {
+      "source": "recovered/game/collision_vertical_limits.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "006fda00"
+      ],
+      "coverage": "Vertical limits from the same loaded static collision tree."
+    },
+    {
+      "source": "recovered/game/console_variables.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "00720b80",
+        "0071fe70",
+        "00720a80"
+      ],
+      "coverage": "Verified console initial data and getters/setters; parser/side effects and command execution excluded."
+    },
+    {
+      "source": "recovered/game/door_portal_binding.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "00601ac0",
+        "00600a50"
+      ],
+      "coverage": "Actual door portal association and removal source."
+    },
+    {
+      "source": "recovered/game/dynamic_collision_exclusions.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "006efa70",
+        "006efb10"
+      ],
+      "coverage": "Shared single/multiple descriptor exclusion list and flags."
+    },
+    {
+      "source": "recovered/game/dynamic_collision_grid.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "006ef3e0",
+        "006ef5e0",
+        "006ef7f0",
+        "006ef330"
+      ],
+      "coverage": "Dynamic descriptor bucket register/remove/clear ownership, preserving the tree's same bucket allocation."
+    },
+    {
+      "source": "recovered/game/dynamic_collision_sweep.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "00702810"
+      ],
+      "coverage": "Required dynamic descriptor40/41/42 collision consumers; other families excluded."
+    },
+    {
+      "source": "recovered/game/dynamic_item_actor.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "005b6740",
+        "005b67d0",
+        "005b69b0",
+        "005b6920"
+      ],
+      "coverage": "Actual loose-item owner loading, common physics binding and module-owned entry retirement; contact/network consumers remain required."
+    },
+    {
+      "source": "recovered/game/effect_definitions.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "00444140",
+        "00444490",
+        "004448a0",
+        "00444880",
+        "004454f0",
+        "00445d90",
+        "00445af0"
+      ],
+      "coverage": "Effect definition record parsing, typed nested owners, mission file loading and cleanup; live effects remain separate."
+    },
+    {
+      "source": "recovered/game/effects_environment.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "004860b0"
+      ],
+      "coverage": "Actual environment record/data loading into the shared effect owner."
+    },
+    {
+      "source": "recovered/game/effects_shadow_models.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "004894e0",
+        "00486d30",
+        "0048a3f0",
+        "00758bf0",
+        "00758c60"
+      ],
+      "coverage": "Human shadow/model registration, camera-amount operation, retained material/LOD/group owners and retirement."
+    },
+    {
+      "source": "recovered/game/first_person_animation_playback.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00492a90",
+        "00491440"
+      ],
+      "coverage": "Actual first-person clip selection, blending, playback and return ordering."
+    },
+    {
+      "source": "recovered/game/first_person_animation_sound.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "004933c0"
+      ],
+      "coverage": "First-person animation sound request parsing and real SOUND dispatch."
+    },
+    {
+      "source": "recovered/game/first_person_animation_table.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00490c80"
+      ],
+      "coverage": "Load the actual first-person animation table into the same OverlayOwner rows/resources."
+    },
+    {
+      "source": "recovered/game/first_person_hands_material.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00492610"
+      ],
+      "coverage": "First-person hands material transfer and matching model ownership."
+    },
+    {
+      "source": "recovered/game/first_person_human_items.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005a6da0",
+        "005a2ac0",
+        "005a2b10"
+      ],
+      "coverage": "Actual Human item/holder lookups used by the first-person view."
+    },
+    {
+      "source": "recovered/game/first_person_model_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00490930",
+        "00491130",
+        "004932a0",
+        "00490b50",
+        "004909d0"
+      ],
+      "coverage": "First-person hands/weapon model acquisition, cache, reset and teardown source."
+    },
+    {
+      "source": "recovered/game/first_person_view_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "004922a0",
+        "00492500",
+        "00492930",
+        "00491640",
+        "004920b0",
+        "00492130",
+        "004921f0",
+        "00491fd0"
+      ],
+      "coverage": "Containing first-person loading/close/request and mode/zoom/secondary source using real model/playback/material owners; player/world mappings required."
+    },
+    {
+      "source": "recovered/game/game_music_references.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "0069e920",
+        "0069e970"
+      ],
+      "coverage": "Same game special-music reference transitions and actual SOUND request forwarding."
+    },
+    {
+      "source": "recovered/game/geometry_scene_actors.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "005ea5d0",
+        "005ead20",
+        "005eb120",
+        "005ff210",
+        "00613450",
+        "00613920",
+        "00613bd0"
+      ],
+      "coverage": "Required ladder/door/switch actor geometry activation and retirement source; unsupported simulation/context producers remain explicit."
+    },
+    {
+      "source": "recovered/game/hud_artwork_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "0049b730",
+        "0049b620",
+        "004a8d70"
+      ],
+      "coverage": "HUD artwork borrowers, texture mapping and speed artwork binding/retirement."
+    },
+    {
+      "source": "recovered/game/hud_auxiliary_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004ab860",
+        "004ab230",
+        "004aaf20",
+        "004ab0f0",
+        "004abaf0",
+        "004ab220"
+      ],
+      "coverage": "Actual HUD world-pointer/info/progress artwork/text lifetimes and reached visibility/draw methods."
+    },
+    {
+      "source": "recovered/game/hud_command_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004b4980",
+        "004b4de0",
+        "004b5790",
+        "004b4d40",
+        "004b59c0",
+        "004b6180",
+        "004b7830",
+        "004bf130"
+      ],
+      "coverage": "Command HUD geometry/text setup, teardown, speed cycling and ordered post-scene drawing; real controlled-player/camera dependencies required."
+    },
+    {
+      "source": "recovered/game/hud_command_routes.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004b9d50",
+        "004b7780"
+      ],
+      "coverage": "Actual route buffer ownership and world-space line-strip generation/drawing."
+    },
+    {
+      "source": "recovered/game/hud_compass_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "00493f80",
+        "00494140",
+        "00493b30",
+        "00493bc0",
+        "00493b10",
+        "00494170"
+      ],
+      "coverage": "Compass/marker loaded geometry and retirement/visibility; live simulation marker producers excluded."
+    },
+    {
+      "source": "recovered/game/hud_crosshair_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004a9740",
+        "004a9f00",
+        "004a9f10",
+        "004aa760",
+        "004aaab0"
+      ],
+      "coverage": "Actual crosshair configuration, model/text setup and conditional drawing."
+    },
+    {
+      "source": "recovered/game/hud_cursor_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004a8c10",
+        "004a8cc0",
+        "0049dc60"
+      ],
+      "coverage": "HUD cursor artwork and item-dependent mode selection."
+    },
+    {
+      "source": "recovered/game/hud_dialogs_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004b0750",
+        "004b0900",
+        "004bf480",
+        "004bf2e0",
+        "004b2fa0",
+        "004c05f0",
+        "004c0880"
+      ],
+      "coverage": "Roll/signals geometry/text lifetime and original visibility/draw gates."
+    },
+    {
+      "source": "recovered/game/hud_explosive_timers_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004af630",
+        "004af8b0",
+        "004afbd0"
+      ],
+      "coverage": "Actual actor-registry explosive timer loading and ordered ten-slot draw source."
+    },
+    {
+      "source": "recovered/game/hud_hands_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004a9010",
+        "004a92f0",
+        "004a9320",
+        "004a9720"
+      ],
+      "coverage": "Hands/shoulder HUD artwork, retained texture borrowers and original loaded draw behavior."
+    },
+    {
+      "source": "recovered/game/hud_info_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "00496450",
+        "00496dc0",
+        "00496e40",
+        "00496e00"
+      ],
+      "coverage": "Actual HUD info text/style owner loading, setters and retirement."
+    },
+    {
+      "source": "recovered/game/hud_injury_movies_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004ad250",
+        "004ad310"
+      ],
+      "coverage": "Injury movie presentation owner initialization and teardown with real movie/material lifetimes."
+    },
+    {
+      "source": "recovered/game/hud_inventory_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004a0ee0",
+        "004a41e0",
+        "004a49a0"
+      ],
+      "coverage": "Inventory HUD loading, retained artwork/text, reached drawing and cleanup source; gameplay inventory updates remain separate."
+    },
+    {
+      "source": "recovered/game/hud_map_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004a4ae0",
+        "004a4f60",
+        "004a5190",
+        "004a6fe0",
+        "004a7910",
+        "004a7eb0",
+        "004a4fd0",
+        "004a72c0",
+        "004a7520",
+        "004a7a90",
+        "004a7680",
+        "004a7ed0"
+      ],
+      "coverage": "Actual map owner, camera/state records, goal TEXT/objective artwork and rendering setters; mission objective producers remain separate."
+    },
+    {
+      "source": "recovered/game/hud_material_lookup.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004a89e0",
+        "004a8a90"
+      ],
+      "coverage": "Actual HUD material/texture identity lookup and replacement."
+    },
+    {
+      "source": "recovered/game/hud_message_state.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "00494980"
+      ],
+      "coverage": "Shared inline message/colour initial state and exact fields."
+    },
+    {
+      "source": "recovered/game/hud_messages_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "00495f40",
+        "004960f0",
+        "00494a70",
+        "00494a40",
+        "00495150",
+        "00495f00",
+        "00495a00",
+        "00495900",
+        "004950c0",
+        "00495360",
+        "004952c0"
+      ],
+      "coverage": "Shared message state, loaded text owners, colour requests/update and drawing/retirement source."
+    },
+    {
+      "source": "recovered/game/hud_objective_icons_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004ad8f0",
+        "004ad9b0"
+      ],
+      "coverage": "Loaded objective icon artwork and cleanup/visibility; objective state producer not supplied."
+    },
+    {
+      "source": "recovered/game/hud_panels_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "0049b280",
+        "004a8d50",
+        "0049f1c0",
+        "0049b900",
+        "0049de80"
+      ],
+      "coverage": "Composition/retirement of actual HUD panels and reached forwarding setters; registry/world consumers remain required."
+    },
+    {
+      "source": "recovered/game/hud_render.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "0049b9b0",
+        "0049b9f0",
+        "0049e260"
+      ],
+      "coverage": "Original HUD draw ordering, actor selection vertices and required camera/viewport gates."
+    },
+    {
+      "source": "recovered/game/hud_scene_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "0049a940",
+        "0049b5e0",
+        "0049b1b0",
+        "0049b610"
+      ],
+      "coverage": "Actual HUD scene/light/click-sound/panel loading and ordered failure retirement, sharing77 text owners and process resources."
+    },
+    {
+      "source": "recovered/game/hud_scoreboard_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004ae7c0",
+        "004aed00",
+        "004af2b0"
+      ],
+      "coverage": "Actual scoreboard model/text owner loading and draw/cleanup source."
+    },
+    {
+      "source": "recovered/game/hud_scroll_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004ae2e0",
+        "004ada70",
+        "004adc90",
+        "004ae790",
+        "004adba0",
+        "004ae290",
+        "004addd0",
+        "004ae0f0",
+        "004ae2b0",
+        "004ada20",
+        "004adc50"
+      ],
+      "coverage": "Original HUD scroll lists/text/geometry lifetime, setters and drawing."
+    },
+    {
+      "source": "recovered/game/hud_selection_drawing.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "0049e260"
+      ],
+      "coverage": "Projected actor bounds and original selection-vertex construction."
+    },
+    {
+      "source": "recovered/game/hud_signal_tables.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004bffe0"
+      ],
+      "coverage": "Shared signal definition table initialization and lifetime."
+    },
+    {
+      "source": "recovered/game/hud_small_panels_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004ad4e0",
+        "004ad880",
+        "004af2e0",
+        "004afc00",
+        "004afe50",
+        "004b0000",
+        "004b01a0",
+        "004aaac0",
+        "004af4a0",
+        "004af600",
+        "004ad640",
+        "004af450",
+        "004afda0",
+        "004affc0",
+        "004b0180",
+        "004aad10",
+        "004ad8d0",
+        "004af480",
+        "004afe30",
+        "004aad00",
+        "004afff0",
+        "004b0210"
+      ],
+      "coverage": "Seven small HUD panel loading/retirement and exact text/scalar/visibility setters."
+    },
+    {
+      "source": "recovered/game/hud_soldier_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004b30e0",
+        "004b3840",
+        "004b3e70",
+        "004b3890",
+        "004b4760"
+      ],
+      "coverage": "Soldier HUD frame/material/text lifetime and conditional scene drawing source."
+    },
+    {
+      "source": "recovered/game/hud_sound_direction.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004947e0"
+      ],
+      "coverage": "Actual player-gated sound-direction compass sector computation and shared timers."
+    },
+    {
+      "source": "recovered/game/hud_text_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "006449d0",
+        "00644a80"
+      ],
+      "coverage": "Actual HUD text ownership/record setup and byte-font draw composition."
+    },
+    {
+      "source": "recovered/game/hud_weapon_selector_loading.h",
+      "contract": "analysis/hud-loading.md",
+      "entries": [
+        "004ac440",
+        "004ac530",
+        "004ac190",
+        "004ac990",
+        "004acb70",
+        "004ac370",
+        "004acdc0",
+        "004ad140",
+        "004ace20"
+      ],
+      "coverage": "Loaded weapon selector model/text owner, selection state, visibility and ordered rendering."
+    },
+    {
+      "source": "recovered/game/human_action_control.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "00749e30",
+        "00777a80",
+        "00777a40"
+      ],
+      "coverage": "Typed AA0/C00 links, command-reset stores and actual HD marker lookup."
+    },
+    {
+      "source": "recovered/game/human_active_ai_state_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00524c60",
+        "00525110",
+        "0052a3b0",
+        "0052ef20",
+        "0052e5b0",
+        "0052e6f0",
+        "005377f0",
+        "00538510",
+        "00538550",
+        "00538640",
+        "005380c0"
+      ],
+      "coverage": "Active AI constructor/loading/handover/retirement, loading action modes/reset and Sight reactions; actual weapon reselection remains required."
+    },
+    {
+      "source": "recovered/game/human_ai_action_pool.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00582030",
+        "0058a580",
+        "005827b0",
+        "00582c50"
+      ],
+      "coverage": "Kind1 portion of shared AI action pool, growth, initial record acquisition and release."
+    },
+    {
+      "source": "recovered/game/human_ai_direction.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "0055d860",
+        "0055d630",
+        "0055d2e0"
+      ],
+      "coverage": "AI direction owner initialization, normalization and current/target setters."
+    },
+    {
+      "source": "recovered/game/human_ai_event_queue.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005ac960",
+        "0054cad0",
+        "005ae450",
+        "005adac0",
+        "005adc50",
+        "005adee0",
+        "00574070",
+        "00574130",
+        "005741f0",
+        "005aca30"
+      ],
+      "coverage": "Shared typed AI event allocation/queue/retirement and actual Sight event construction; broader runtime producers remain separate."
+    },
+    {
+      "source": "recovered/game/human_ai_resources.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005607d0",
+        "00560810",
+        "0056ee90",
+        "00563a60",
+        "0055df90",
+        "0055f2c0",
+        "0055e130",
+        "0055e030",
+        "0055e250",
+        "0055e2b0",
+        "0056f0e0",
+        "00576ac0",
+        "00575820"
+      ],
+      "coverage": "Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded."
+    },
+    {
+      "source": "recovered/game/human_ai_state_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "0056f200",
+        "0056f630",
+        "0051e6d0"
+      ],
+      "coverage": "Ordinary AI loading bind and close using actual input/navigation/inline owners; populated runtime jobs remain excluded."
+    },
+    {
+      "source": "recovered/game/human_animation_events.h",
+      "contract": "analysis/human-animation-loading.md",
+      "entries": [
+        "007759d0"
+      ],
+      "coverage": "Actual animation sound marker/event parsing and shared SOUND request dispatch."
+    },
+    {
+      "source": "recovered/game/human_animation_state.h",
+      "contract": "analysis/human-animation-loading.md",
+      "entries": [
+        "00757c20",
+        "00757dc0",
+        "00757df0",
+        "00757e10",
+        "00757f50",
+        "00757fb0",
+        "00757f60",
+        "00758290"
+      ],
+      "coverage": "CD0 initialization/activation/cleanup, control gate, motion classification and loading position updates."
+    },
+    {
+      "source": "recovered/game/human_animation_tracks.h",
+      "contract": "analysis/human-animation-loading.md",
+      "entries": [
+        "007720c0",
+        "007723b0",
+        "007733d0",
+        "00773260",
+        "00782fa0",
+        "007724e0",
+        "00775260",
+        "00775970",
+        "00774df0",
+        "007724a0",
+        "00782eb0"
+      ],
+      "coverage": "Actual animation track allocation/selection/transition, paused/blended state, queued events and ordered cleanup."
+    },
+    {
+      "source": "recovered/game/human_area_ai_state_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00559a50",
+        "00559c20"
+      ],
+      "coverage": "Area AI loading/handover route lists, original stat thresholds and required inventory/context consumers."
+    },
+    {
+      "source": "recovered/game/human_camera_amount.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00786650",
+        "005a97a0",
+        "005a9760"
+      ],
+      "coverage": "Same Human/DD0/equipment camera amount and change-gated effect application."
+    },
+    {
+      "source": "recovered/game/human_collision_markers.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "0075c070",
+        "0075bff0"
+      ],
+      "coverage": "Actual collision marker snapshots and posture-dependent geometry copy."
+    },
+    {
+      "source": "recovered/game/human_control_loading.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "007855c0",
+        "00785b20",
+        "00785be0",
+        "00786030",
+        "00785950",
+        "0075b6c0",
+        "007870d0"
+      ],
+      "coverage": "DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores."
+    },
+    {
+      "source": "recovered/game/human_equipment_action.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "007933d0",
+        "007931b0",
+        "0078de30"
+      ],
+      "coverage": "Actual equipment lens/light action and verified offline retirement branches; action-model creation/simulation excluded."
+    },
+    {
+      "source": "recovered/game/human_equipment_activation.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "0078ca60"
+      ],
+      "coverage": "Actual equipment activation from real inventory, holster counts, selected models and command/cooldown writes."
+    },
+    {
+      "source": "recovered/game/human_equipment_attachments.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "0078df60",
+        "0078de30"
+      ],
+      "coverage": "Equipment attachment cases0/1/2/3/10 and four-root retirement with original geometry/math; action cases4..9 excluded."
+    },
+    {
+      "source": "recovered/game/human_equipment_command.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "0077f2f0"
+      ],
+      "coverage": "Actual E0 command acceptance/deferred-bit policy from current DD0 mode and command identity."
+    },
+    {
+      "source": "recovered/game/human_equipment_loading.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "0078ca00",
+        "0078ca30"
+      ],
+      "coverage": "Containing equipment constructor/destructor source with initialized holsters and same visibility/services owners."
+    },
+    {
+      "source": "recovered/game/human_equipment_services.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "005a2ad0"
+      ],
+      "coverage": "Actual hand-holder model lookup for equipment sound relative frame."
+    },
+    {
+      "source": "recovered/game/human_equipment_state.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "0078c980",
+        "00791290",
+        "0078cc90",
+        "00791370"
+      ],
+      "coverage": "Same230 reset/model selection, actual marker binding and selected-model lookup."
+    },
+    {
+      "source": "recovered/game/human_equipment_transfers.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "00792590",
+        "00792720",
+        "00792ab0",
+        "00790520",
+        "007913d0"
+      ],
+      "coverage": "Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded."
+    },
+    {
+      "source": "recovered/game/human_equipment_visibility.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "007920b0"
+      ],
+      "coverage": "Original equipment name/visibility shadow rebuild and restoration with actual owner borrowers."
+    },
+    {
+      "source": "recovered/game/human_face_control.h",
+      "contract": "analysis/human-model-geometry.md",
+      "entries": [
+        "00780990",
+        "007809c0",
+        "00780ad0",
+        "00781250",
+        "00781300",
+        "007812f0",
+        "00780ab0"
+      ],
+      "coverage": "Actual face/morph loading state, animation scheduling, sound retirement and equipment command stores."
+    },
+    {
+      "source": "recovered/game/human_face_mesh_pool.h",
+      "contract": "analysis/human-model-geometry.md",
+      "entries": [
+        "00796d80",
+        "00797020",
+        "00797a50",
+        "00797aa0",
+        "00796e90",
+        "00797330",
+        "007968a0",
+        "00796b90",
+        "007967a0"
+      ],
+      "coverage": "Actual face mesh groups, adjacency/extrema, shared model records and ordered retirement."
+    },
+    {
+      "source": "recovered/game/human_face_model.h",
+      "contract": "analysis/human-model-geometry.md",
+      "entries": [
+        "00798200",
+        "00798250",
+        "007982c0",
+        "00799350",
+        "00799540",
+        "00799080",
+        "00799270",
+        "00799170",
+        "00798e40"
+      ],
+      "coverage": "Offline face model shared/private texture, camouflage/mask and borrower lifetime source."
+    },
+    {
+      "source": "recovered/game/human_face_resources.h",
+      "contract": "analysis/human-model-geometry.md",
+      "entries": [
+        "00796430",
+        "00796c90",
+        "00796d50"
+      ],
+      "coverage": "Exact face patterns/shared texture cache setup and least-recent borrower allocation/release."
+    },
+    {
+      "source": "recovered/game/human_guard_ai_state_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005478c0",
+        "00547ad0",
+        "00547af0",
+        "00547bf0",
+        "00547cf0",
+        "005518f0",
+        "00551b00",
+        "00551b50",
+        "00551ba0"
+      ],
+      "coverage": "Guard AI loading/handover, timers, route/door lists and verified context-status gates; runtime actions remain required."
+    },
+    {
+      "source": "recovered/game/human_holsters.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "00791720",
+        "0078ce20",
+        "0078cdb0",
+        "007919c0",
+        "00791910"
+      ],
+      "coverage": "Actual holster classification/model extraction and show/hide counters, including underflow and group2/3 count rules."
+    },
+    {
+      "source": "recovered/game/human_inline_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005ab330",
+        "005aba90",
+        "005aa790",
+        "005ac400",
+        "005ac070",
+        "005abf60",
+        "005ac390",
+        "005ac3e0"
+      ],
+      "coverage": "Actual inline98 E0/DD0/230 lifetime and proven loading/control dispatch branches."
+    },
+    {
+      "source": "recovered/game/human_input_callbacks.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "0073d000",
+        "0073cf50",
+        "0073f770",
+        "0053b970"
+      ],
+      "coverage": "Actual bit cursor and player/AI input callback loading policy; common profile resources remain real shared owners."
+    },
+    {
+      "source": "recovered/game/human_input_loading_manager.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "0073ec50",
+        "0073ed00",
+        "00723000",
+        "0073ed80",
+        "0073f5a0",
+        "0073f660",
+        "00741140"
+      ],
+      "coverage": "Containing input manager/embedded record lifetime, actual session profiles/defaults and performance clock binding."
+    },
+    {
+      "source": "recovered/game/human_input_records.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00740410",
+        "0073d7e0",
+        "0073f810",
+        "0073fa80",
+        "007406f0",
+        "0073da50",
+        "0073dc60",
+        "0073dca0",
+        "0073dce0",
+        "0073dd40",
+        "0073ddc0",
+        "0073df70",
+        "0073f5f0",
+        "0073f530",
+        "0073e090",
+        "0073e920",
+        "0073e8d0",
+        "0073e2c0",
+        "0073f2b0",
+        "0073f4b0",
+        "0073e9b0",
+        "0073e970"
+      ],
+      "coverage": "Actual input quantizers, history rings and record owner lookup/creation/default binding/retirement; populated pending packets excluded."
+    },
+    {
+      "source": "recovered/game/human_inventory_counts.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005a6aa0",
+        "005a6c50"
+      ],
+      "coverage": "Actual first-stack/pack ammunition counting and native overwrite/order behavior."
+    },
+    {
+      "source": "recovered/game/human_inventory_lookup.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005a6ff0",
+        "005a6db0"
+      ],
+      "coverage": "Actual whole-inventory and slot-restricted identity lookup through the same runtime item owner."
+    },
+    {
+      "source": "recovered/game/human_joint_math.h",
+      "contract": "analysis/human-model-geometry.md",
+      "entries": [
+        "007a2190",
+        "007a2e10",
+        "007a3e60"
+      ],
+      "coverage": "Joint transpose/basis/shortest-rotation math including parallel and antiparallel cases."
+    },
+    {
+      "source": "recovered/game/human_joint_owners.h",
+      "contract": "analysis/human-model-geometry.md",
+      "entries": [
+        "007c5080",
+        "007c5d50",
+        "007c6050",
+        "007c52e0",
+        "007c5620",
+        "007c51a0"
+      ],
+      "coverage": "Actual joint/body owner construction, range/bone binding and ordered child retirement."
+    },
+    {
+      "source": "recovered/game/human_loading_activation.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "0059f2c0"
+      ],
+      "coverage": "Containing Human loading composition and ordered close/failure cleanup using actual same profile/inline/B0/Sight/SOUND/proximity owners; required formation/VM/player consumers remain."
+    },
+    {
+      "source": "recovered/game/human_loading_inventory.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005a67c0",
+        "005a6830",
+        "005a2b40",
+        "00587bf0",
+        "005a2d50",
+        "005a6a90"
+      ],
+      "coverage": "Offline AI same-Human source1/2-to-empty-hand3 loading command/caller and source identity lookup; queued player/remote/nonoffline packet and general transfers excluded."
+    },
+    {
+      "source": "recovered/game/human_loading_joints.h",
+      "contract": "analysis/human-model-geometry.md",
+      "entries": [
+        "007c0d90"
+      ],
+      "coverage": "Actual Human joint loading and allocation/binding order."
+    },
+    {
+      "source": "recovered/game/human_loading_state_factory.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005a3f20"
+      ],
+      "coverage": "Actual supported Human B0 derived factory cases sharing the same required dependency owners."
+    },
+    {
+      "source": "recovered/game/human_loading_stats.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005a8990",
+        "0059ea90",
+        "005a8790",
+        "005a87c0"
+      ],
+      "coverage": "Difficulty/stat conversion, actual profile binding, eye texture request and profile retirement writes."
+    },
+    {
+      "source": "recovered/game/human_look_control.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "0077fd40",
+        "0077dd80",
+        "0077dda0",
+        "0077ddc0",
+        "0077fc30"
+      ],
+      "coverage": "Actual E0 initial/reset/link state and look-command gating; native pointer slots remain typed."
+    },
+    {
+      "source": "recovered/game/human_look_state.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "007ac780",
+        "007aca30"
+      ],
+      "coverage": "Actual model look state/target math and shared CRT random use."
+    },
+    {
+      "source": "recovered/game/human_model_geometry.h",
+      "contract": "analysis/human-model-geometry.md",
+      "entries": [
+        "0079b910",
+        "0079bac0",
+        "0079bd30",
+        "0079c320",
+        "007b85c0",
+        "007b85a0"
+      ],
+      "coverage": "Actual Human geometry/skeleton/model loading and ordinary offline face lifetime; preserve-pose replacement/simulation excluded."
+    },
+    {
+      "source": "recovered/game/human_morph_tables.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00781b00"
+      ],
+      "coverage": "Actual shared morph-table load and original missing-file zero-table behavior."
+    },
+    {
+      "source": "recovered/game/human_motion_state.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "007506e0"
+      ],
+      "coverage": "Known CB0 motion-state scalar initialization; thunk/empty close not registered."
+    },
+    {
+      "source": "recovered/game/human_movement_control.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "00763780",
+        "007634f0",
+        "0075c960",
+        "0075cac0",
+        "007637c0",
+        "007706f0"
+      ],
+      "coverage": "Actual movement loading/reset, descriptor exclusion traversal and proven empty/loading close branches; runtime movement producer excluded."
+    },
+    {
+      "source": "recovered/game/human_opacity_control.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "00789ca0",
+        "00789c80",
+        "00789f60",
+        "00789cd0",
+        "00789fc0"
+      ],
+      "coverage": "Actual opacity reset/smoothing/sector ambient selection and original change notification."
+    },
+    {
+      "source": "recovered/game/human_passive_states_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005a42f0",
+        "005a4310",
+        "00592140",
+        "00592200",
+        "005a4450"
+      ],
+      "coverage": "Actual passive/remote B0 loading and cleanup with explicit offline/input ownership gates."
+    },
+    {
+      "source": "recovered/game/human_perception.h",
+      "contract": "analysis/sight-loading.md",
+      "entries": [
+        "005a4a10",
+        "005a4840",
+        "005a4be0",
+        "005a4da0",
+        "005a5020",
+        "005a4fc0",
+        "005a4f60",
+        "005a5250",
+        "005a0a50"
+      ],
+      "coverage": "Actual perception lists and source notification routing with original duplicate/remove/friendship behavior."
+    },
+    {
+      "source": "recovered/game/human_perception_records.h",
+      "contract": "analysis/sight-loading.md",
+      "entries": [
+        "00582740",
+        "0058a510"
+      ],
+      "coverage": "Actual shared perception-record pool and typed actor borrowers."
+    },
+    {
+      "source": "recovered/game/human_physics_loading.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "0075b280",
+        "0075ae40",
+        "0075b870",
+        "0075ae00",
+        "0075bc80",
+        "0075eaa0",
+        "0075eeb0",
+        "005ac2e0",
+        "0075c2d0"
+      ],
+      "coverage": "Actual physical loading/descriptor ownership, posture/control registration and sound cleanup; unsupported face transitions reject."
+    },
+    {
+      "source": "recovered/game/human_player_control_loading.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "0045d1f0",
+        "0045d2e0",
+        "0045d3a0",
+        "0045d1d0",
+        "0045d160",
+        "0045d1b0",
+        "0045da60",
+        "0045d480",
+        "0045d710",
+        "0045d7c0",
+        "0045d4a0"
+      ],
+      "coverage": "Actual player roster/current/selected/previous/override/frame buffers and original add/remove/postload ordering; complete module activation excluded."
+    },
+    {
+      "source": "recovered/game/human_player_roster.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "004617f0",
+        "004619c0",
+        "004619f0",
+        "00461a20",
+        "00461a60",
+        "00461aa0",
+        "00461c70",
+        "00462300",
+        "0049b980",
+        "005a8740",
+        "005a86f0",
+        "0045e410",
+        "0045e540",
+        "0045e3b0",
+        "0045e2f0",
+        "0045e2c0",
+        "0045eb30"
+      ],
+      "coverage": "Same borrowed Human roster/selection records, eligibility subset, timers, reference accounting and enemy-list feedback."
+    },
+    {
+      "source": "recovered/game/human_player_state_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "0053b9a0",
+        "0053bc50",
+        "005421c0"
+      ],
+      "coverage": "Actual player B0 loading/handover/input callback and Sight source; required player-mode/formation/Car/FPV consumers remain."
+    },
+    {
+      "source": "recovered/game/human_presentation_shared.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "0078a5f0"
+      ],
+      "coverage": "Shared first/last Human presentation-resource retirement; actual runtime owners remain required."
+    },
+    {
+      "source": "recovered/game/human_presentation_textures.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "0078a4f0"
+      ],
+      "coverage": "Actual shared thirteen-record presentation texture loading and release ownership."
+    },
+    {
+      "source": "recovered/game/human_scene_actor.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "0059bf00",
+        "00533e90",
+        "005aa890",
+        "005aa7d0",
+        "0059e3e0",
+        "0059c270"
+      ],
+      "coverage": "Actual cold Human/context/command allocations, known fields and destructor dependency ordering; populated runtime producers excluded."
+    },
+    {
+      "source": "recovered/game/human_script_ai_state_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "0058d810",
+        "0058d8e0",
+        "00591ee0",
+        "00591ed0"
+      ],
+      "coverage": "Actual script AI loading/state-gate/Sight source; real model context/VM services remain required."
+    },
+    {
+      "source": "recovered/game/human_sight_relations.h",
+      "contract": "analysis/sight-loading.md",
+      "entries": [
+        "005a84f0",
+        "005a0ab0"
+      ],
+      "coverage": "Actual lazy alignment and offline7 friendship policy using the same roster; nonoffline policy remains required."
+    },
+    {
+      "source": "recovered/game/human_skeleton.h",
+      "contract": "analysis/human-model-geometry.md",
+      "entries": [
+        "007a42a0",
+        "007a4d50",
+        "007a4df0",
+        "007a23f0"
+      ],
+      "coverage": "Actual skeleton lookup/bone range, neighbour flags/weights and loading matrix projection."
+    },
+    {
+      "source": "recovered/game/human_sound_look_reaction.h",
+      "contract": "analysis/sight-loading.md",
+      "entries": [
+        "00573900",
+        "00573c50"
+      ],
+      "coverage": "Actual heard-sound look reactions using head/model/perception and original side/NaN/timer rules."
+    },
+    {
+      "source": "recovered/game/human_sound_notifications.h",
+      "contract": "analysis/sight-loading.md",
+      "entries": [
+        "005a5430"
+      ],
+      "coverage": "Actual Human sound callback gates and shared record allocation/notification tail."
+    },
+    {
+      "source": "recovered/game/human_sound_pool.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00784c40",
+        "00784b70",
+        "00784f60",
+        "00784ed0",
+        "00785400",
+        "0075ea30"
+      ],
+      "coverage": "Same process randomized sound variant windows, pooled sound-frame acquisition/release and original lifetime gates."
+    },
+    {
+      "source": "recovered/game/human_sound_state_callbacks.h",
+      "contract": "analysis/sight-loading.md",
+      "entries": [
+        "00574280",
+        "00574310",
+        "00590170",
+        "00574480",
+        "00574d70",
+        "005449b0",
+        "005750f0"
+      ],
+      "coverage": "Actual supported B0 sound receivers/event construction, script interruption, hostile membership and player direction forwarding."
+    },
+    {
+      "source": "recovered/game/human_state_base_loading.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "00582ff0",
+        "005832f0",
+        "00583690",
+        "00584830",
+        "005a80f0",
+        "00587530"
+      ],
+      "coverage": "Actual B0 loading/reset/input/navigation/current-item and first-person state getters; derived close remains explicit."
+    },
+    {
+      "source": "recovered/game/human_state_ground.h",
+      "contract": "analysis/human-control-loading.md",
+      "entries": [
+        "0075c4f0"
+      ],
+      "coverage": "Actual ground reposition query with same physical marker/descriptor/exclusion owners."
+    },
+    {
+      "source": "recovered/game/human_state_loading_owner.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "005a3e60"
+      ],
+      "coverage": "Actual state selection/publication/old-new handover and offline initial-state policy."
+    },
+    {
+      "source": "recovered/game/human_weapon_binding.h",
+      "contract": "analysis/human-equipment-loading.md",
+      "entries": [
+        "007b90b0",
+        "007b9260",
+        "007b96c0"
+      ],
+      "coverage": "Same geometry weapon reference/hand binding, pose and stow operation flags/timing."
+    },
+    {
+      "source": "recovered/game/human_weapon_selection.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "0052f750",
+        "005304b0",
+        "00530930",
+        "00530b30"
+      ],
+      "coverage": "Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate."
+    },
+    {
+      "source": "recovered/game/human_weapon_transfer.h",
+      "contract": "analysis/human-state-loading.md",
+      "entries": [
+        "007d8b40"
+      ],
+      "coverage": "Verified source/no-source same-Human weapon-slot transfer, cooldown/expiry/dry-run/displacement/retain accounting; containing swap/drop and other families excluded."
+    },
+    {
+      "source": "recovered/game/item_identity.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007dd5d0"
+      ],
+      "coverage": "Actual item identity allocation from same current/pending IDs and clock."
+    },
+    {
+      "source": "recovered/game/item_model_cache.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007dc3a0",
+        "007dc460",
+        "007df750",
+        "007df510",
+        "007e0560"
+      ],
+      "coverage": "Actual item model/first-person/magazine cache and definition model tree reference lifetimes."
+    },
+    {
+      "source": "recovered/game/item_scuba_models.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007df850",
+        "007df430"
+      ],
+      "coverage": "Actual scuba four-root model cache/load and ordered release."
+    },
+    {
+      "source": "recovered/game/ladder_geometry.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "00610200"
+      ],
+      "coverage": "Ladder geometry portion of common actor initialization with original transform/source model data."
+    },
+    {
+      "source": "recovered/game/lightmap_aliases.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "0048cd70",
+        "0048d100",
+        "0048d1d0"
+      ],
+      "coverage": "Actual lightmap alias resource table loading/reuse and retirement."
+    },
+    {
+      "source": "recovered/game/loading_item_transfer.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007d8b40"
+      ],
+      "coverage": "Exact no-source loading transfer with module notifications disabled; general runtime exchanges excluded."
+    },
+    {
+      "source": "recovered/game/loading_progress.h",
+      "contract": "analysis/loading-presentation.md",
+      "entries": [
+        "006c95d0",
+        "006ca2c0"
+      ],
+      "coverage": "Actual ordered loading progress/message updates and stage state."
+    },
+    {
+      "source": "recovered/game/loading_screen.h",
+      "contract": "analysis/loading-presentation.md",
+      "entries": [
+        "006c9640",
+        "006ca470",
+        "006ca2d0",
+        "006c95b0",
+        "006c95c0",
+        "006ca670"
+      ],
+      "coverage": "Real loading-screen model/text/music lifetime, stage display and matching retirement; required presentation backend remains explicit."
+    },
+    {
+      "source": "recovered/game/mesh_movie.h",
+      "contract": "analysis/loading-presentation.md",
+      "entries": [
+        "00484260",
+        "004847a0",
+        "00484ae0",
+        "00484a70"
+      ],
+      "coverage": "Actual movie texture/material borrowing, frame ownership and original update/restore lifetime."
+    },
+    {
+      "source": "recovered/game/mission_camera.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "00464ef0",
+        "00465a00",
+        "004656d0",
+        "00465160",
+        "00465610",
+        "00462650",
+        "00462750",
+        "0046cb20",
+        "00465e50",
+        "00465e00",
+        "00465b40",
+        "0046c370",
+        "004626e0"
+      ],
+      "coverage": "Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; camera simulation remains excluded."
+    },
+    {
+      "source": "recovered/game/mission_item_records.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007d81a0"
+      ],
+      "coverage": "Version16 mission item record framing/decoding and loading transfer record boundary."
+    },
+    {
+      "source": "recovered/game/mission_loading.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "006ca780"
+      ],
+      "coverage": "Original ordered mission loading stage composition and cleanup tail; required consumers are explicit interfaces and application integration remains absent."
+    },
+    {
+      "source": "recovered/game/mission_module_dispatch.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "0048dbf0",
+        "006cade0",
+        "0048db00"
+      ],
+      "coverage": "Actual fresh ascending module loading/activation passes with original mode gates."
+    },
+    {
+      "source": "recovered/game/mission_navigation.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "0051d5a0",
+        "0051d5c0",
+        "0051ccd0",
+        "0051cba0",
+        "0051e6d0",
+        "0051e520",
+        "00520830",
+        "00520860",
+        "00520530",
+        "005208e0",
+        "00520910",
+        "00524b10",
+        "005e2420",
+        "00524750",
+        "0051d780",
+        "0051d160"
+      ],
+      "coverage": "Actual navigation volume lookup, route FIFO/marked traversal, reference ownership and distance/query policy; live steering remains separate."
+    },
+    {
+      "source": "recovered/game/mission_scene_reader.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "006cc760"
+      ],
+      "coverage": "Actual bounded Scene2 root/property/object dispatch implemented branches; unresolved actor/VM/world consumers remain required."
+    },
+    {
+      "source": "recovered/game/mission_script_bindings.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "00428600",
+        "00428a70"
+      ],
+      "coverage": "Actual frame/script-name binding parser/filter and retirement; compiler/context/interpreter00427730 explicitly excluded."
+    },
+    {
+      "source": "recovered/game/mission_table_reader.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "0051c870",
+        "0051c910",
+        "00523c00",
+        "0051de80",
+        "00524620"
+      ],
+      "coverage": "Actual mission navigation/check table record parsing and owned allocation fixups."
+    },
+    {
+      "source": "recovered/game/mission_tracks.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "00402120",
+        "00401d40",
+        "00401ed0",
+        "00402040",
+        "00402880"
+      ],
+      "coverage": "Actual cutscene track definitions/key parsing, first-root semantics, lookup and owner cleanup; playback excluded."
+    },
+    {
+      "source": "recovered/game/mission_vertex_instances.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "00474290",
+        "00473790",
+        "00474740",
+        "00473e30",
+        "00473960"
+      ],
+      "coverage": "Actual vertex animation instance definition/loading/reference/retirement source."
+    },
+    {
+      "source": "recovered/game/model_scene_actors.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "005d4b00",
+        "005d4cf0",
+        "005b3740",
+        "005b3930",
+        "005b4790",
+        "005b3710",
+        "005f97d0",
+        "005fa6a0",
+        "005f98e0"
+      ],
+      "coverage": "Required model/supply actor construction, property/model loading and matching cleanup."
+    },
+    {
+      "source": "recovered/game/physics_object.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "0040b5e0",
+        "0040b7e0",
+        "00407390",
+        "004079f0",
+        "0040e810",
+        "0040e320",
+        "0040fb00"
+      ],
+      "coverage": "Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded."
+    },
+    {
+      "source": "recovered/game/physics_object_parameters.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "00410af0"
+      ],
+      "coverage": "Original substring-based physics object metadata parameter extraction."
+    },
+    {
+      "source": "recovered/game/placed_item_actor.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "005e20a0",
+        "005e2130",
+        "005e2240",
+        "005e2260",
+        "005e23e0",
+        "005e2420"
+      ],
+      "coverage": "Actual placed-item actor initialization, authority/presentation activation and ordered retirement."
+    },
+    {
+      "source": "recovered/game/rigid_body.h",
+      "contract": "analysis/rigid-body-loading.md",
+      "entries": [
+        "004c8820",
+        "004c8980",
+        "004c8ea0",
+        "004c8770",
+        "004c8250",
+        "004c8270"
+      ],
+      "coverage": "Actual rigid-body ownership, collision registration/state change and actor borrower writes."
+    },
+    {
+      "source": "recovered/game/rigid_body_bounds.h",
+      "contract": "analysis/rigid-body-loading.md",
+      "entries": [
+        "004c7db0",
+        "004c7e50"
+      ],
+      "coverage": "Actual rigid-body model bounds collection and corner conversion."
+    },
+    {
+      "source": "recovered/game/rigid_body_geometry.h",
+      "contract": "analysis/rigid-body-loading.md",
+      "entries": [
+        "004cd6e0",
+        "004c84a0"
+      ],
+      "coverage": "Verified rigid-body geometry/mass/inertia loading fields; simulation and unsupported model branches excluded."
+    },
+    {
+      "source": "recovered/game/runtime_actor_registry.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "004770b0",
+        "00477190",
+        "004772f0",
+        "00477330",
+        "00477430",
+        "00610230",
+        "00477660",
+        "004774c0",
+        "00477590"
+      ],
+      "coverage": "Actual runtime registry allocation/identity, typed actor owners, ordered initialization/publication and retirement branches."
+    },
+    {
+      "source": "recovered/game/runtime_item.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007dd400",
+        "007dd480",
+        "007dd4f0",
+        "007dd560",
+        "007d39c0",
+        "007d38d0",
+        "007d6300",
+        "007d4710",
+        "007d3a10",
+        "007d3ae0",
+        "007d4680",
+        "007d3aa0",
+        "007d3800",
+        "007d3a40"
+      ],
+      "coverage": "Actual runtime item families, known constructors/amount/model and payload initialization, pack contents and matching destructor owners."
+    },
+    {
+      "source": "recovered/game/scene_actor_registry.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "004759c0",
+        "00475ec0",
+        "00476860",
+        "00610070",
+        "00475c50",
+        "00476680",
+        "005a7fe0",
+        "0049ef70",
+        "00475fb0"
+      ],
+      "coverage": "Actual Scene2 actor/frame identity registry, stable holes, load/property dispatch and ordered retirement; unsupported families remain explicit."
+    },
+    {
+      "source": "recovered/game/sight_loading.h",
+      "contract": "analysis/sight-loading.md",
+      "entries": [
+        "0046d600",
+        "0046ffb0",
+        "0046f350",
+        "0046f9d0",
+        "0046f700",
+        "0046fd50",
+        "0046fdf0",
+        "0046eb20",
+        "0046ecf0"
+      ],
+      "coverage": "Actual shared Sight observer/target/relations allocation, marker binding, mode and removal callbacks."
+    },
+    {
+      "source": "recovered/game/simple_scene_actors.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "005e2b10",
+        "006118d0",
+        "0060c230",
+        "005ba4d0",
+        "005b8d00"
+      ],
+      "coverage": "Required simple actor cold state/property/loading and common model initialization source."
+    },
+    {
+      "source": "recovered/game/sound_emission.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "004374d0"
+      ],
+      "coverage": "Exact known emission value defaults with typed pointer fields."
+    },
+    {
+      "source": "recovered/game/speech_definitions.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "005b0340",
+        "005af880",
+        "005b0570",
+        "005afe00",
+        "005b0390"
+      ],
+      "coverage": "Actual speech definition cache/parser, zero fallback and reference acquisition/release."
+    },
+    {
+      "source": "recovered/game/static_collision_sweep.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007151d0",
+        "007101b0"
+      ],
+      "coverage": "Actual static triangle and captured primitive sweep dispatch; absent shape families remain excluded."
+    },
+    {
+      "source": "recovered/game/static_weapon_actor.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "004c19d0",
+        "004c1aa0",
+        "00602ec0"
+      ],
+      "coverage": "Actual static-weapon cold owner/property source; simulation and live weapon behavior excluded."
+    },
+    {
+      "source": "recovered/game/supply_box_geometry.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "005f98e0",
+        "005fa6a0"
+      ],
+      "coverage": "Actual supply-box geometry/physics binding source and initialized parameters."
+    },
+    {
+      "source": "recovered/game/switch_actor_state.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "006136f0",
+        "00613920",
+        "00613bd0"
+      ],
+      "coverage": "Actual switch property/state and reached context/animation receiver source."
+    },
+    {
+      "source": "recovered/game/text_glyphs.h",
+      "contract": "analysis/loading-presentation.md",
+      "entries": [
+        "00644eb0",
+        "00644e10",
+        "00644d60",
+        "00644ef0",
+        "00648860"
+      ],
+      "coverage": "Actual byte-font metrics/length/truncation and clipped atlas glyph vertices; wide/GDI branches excluded."
+    },
+    {
+      "source": "recovered/game/text_layout.h",
+      "contract": "analysis/loading-presentation.md",
+      "entries": [
+        "00645270",
+        "00645f20",
+        "00646820",
+        "006456f0",
+        "00644c50",
+        "00644ba0",
+        "00644cf0",
+        "006467b0",
+        "00646940",
+        "00648eb0",
+        "00646db0",
+        "006472e0",
+        "00647830"
+      ],
+      "coverage": "Actual byte-font paragraph/fragments/line layout, clipping/scrolling offsets and ordered layout retirement; wide/GDI branches excluded."
+    },
+    {
+      "source": "recovered/game/text_render.h",
+      "contract": "analysis/loading-presentation.md",
+      "entries": [
+        "00647d00",
+        "00647e70"
+      ],
+      "coverage": "Actual byte-atlas text viewport/draw state composition and restoration; separate font-manager branches excluded."
+    },
+    {
+      "source": "recovered/game/volumetric_lights.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "00482a00",
+        "00481810",
+        "00481440",
+        "004813d0",
+        "00480d00",
+        "00482d70",
+        "00482980",
+        "00480fa0",
+        "00480740"
+      ],
+      "coverage": "Actual volumetric light/particle owner initialization, refresh geometry and cleanup source."
+    },
+    {
+      "source": "recovered/host/game_car_frames.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "004c8140"
+      ],
+      "coverage": "Original local-matrix accessor implemented by this host source; engine virtual method calls remain delegated."
+    },
+    {
+      "source": "recovered/host/game_mission_items.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "007dc6e0",
+        "007dc8a0",
+        "007dd010"
+      ],
+      "coverage": "Actual shared Items registry/activation and mission records ownership; real actor/model/notification consumers required."
+    },
+    {
+      "source": "recovered/host/game_physics_objects.h",
+      "contract": "analysis/item-transfer-physics-loading.md",
+      "entries": [
+        "00410b00",
+        "00410830"
+      ],
+      "coverage": "Actual physics module owner/activation/enumeration and ordered two-list retirement; unsupported object families reject."
+    },
+    {
+      "source": "recovered/host/game_runtime_actors.h",
+      "contract": "analysis/actor-loading-ownership.md",
+      "entries": [
+        "004794d0",
+        "00479530",
+        "004795e0"
+      ],
+      "coverage": "Actual runtime item/actor creation-publication helpers and descriptor/owner binding for implemented families."
+    },
+    {
+      "source": "recovered/host/game_scene.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "006d4180",
+        "006cbf30"
+      ],
+      "coverage": "Original scene-open/camera-preparation/registered-name source subset with exact checked DLL ABI; engine scene implementation remains delegated."
+    },
+    {
+      "source": "recovered/host/game_scene_objects.h",
+      "contract": "analysis/mission-world-loading.md",
+      "entries": [
+        "006cd940",
+        "0041d110",
+        "0041d180",
+        "005de200",
+        "0069a2e0",
+        "006d1b80"
+      ],
+      "coverage": "Actual required Scene2 object/resource loading/parser policy and supported branches; engine model parsing remains delegated."
+    },
+    {
+      "source": "recovered/host/game_sight_loading.h",
+      "contract": "analysis/sight-loading.md",
+      "entries": [
+        "005a0980"
+      ],
+      "coverage": "Actual repeated Human friendship negation using the same recovered offline relation policy."
+    },
+    {
+      "source": "recovered/host/game_text_renderer.h",
+      "contract": "analysis/loading-presentation.md",
+      "entries": [
+        "006402a0"
+      ],
+      "coverage": "Actual byte-font atlas/graphics bind and draw bridge policy; graphics engine implementation remains delegated."
+    }
+  ],
+  "not_in_frozen_inventory": [
+    {
+      "entry": "00433ed0",
+      "source": "recovered/frontend/sound_listeners.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "00433e80",
+      "source": "recovered/frontend/sound_listeners.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007d68b0",
+      "source": "recovered/game/actor_item_holder.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007d6970",
+      "source": "recovered/game/actor_item_holder.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007d6990",
+      "source": "recovered/game/actor_item_holder.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007d69b0",
+      "source": "recovered/game/actor_item_holder.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007d69e0",
+      "source": "recovered/game/actor_item_holder.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007d7220",
+      "source": "recovered/game/actor_slot_storage.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007d72a0",
+      "source": "recovered/game/actor_slot_storage.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007d7390",
+      "source": "recovered/game/actor_slot_storage.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007d7470",
+      "source": "recovered/game/actor_slot_storage.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007d7630",
+      "source": "recovered/game/actor_slot_storage.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "004fa520",
+      "source": "recovered/game/car_deformable_parts.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "004d10a0",
+      "source": "recovered/game/car_scene_actor.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "004d55c0",
+      "source": "recovered/game/car_scene_actor.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "005b68d0",
+      "source": "recovered/game/dynamic_item_actor.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "00524e70",
+      "source": "recovered/game/human_active_ai_state_loading.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "0059fa60",
+      "source": "recovered/game/human_loading_activation.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "0045e5d0",
+      "source": "recovered/game/human_player_control_loading.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "0045e670",
+      "source": "recovered/game/human_player_control_loading.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "0045dde0",
+      "source": "recovered/game/human_player_control_loading.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "005422b0",
+      "source": "recovered/game/human_player_state_loading.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "00590060",
+      "source": "recovered/game/human_script_ai_state_loading.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "0058ffe0",
+      "source": "recovered/game/human_script_ai_state_loading.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "00590250",
+      "source": "recovered/game/human_sound_state_callbacks.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "0052e750",
+      "source": "recovered/game/human_sound_state_callbacks.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "005900e0",
+      "source": "recovered/game/human_sound_state_callbacks.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "005902d0",
+      "source": "recovered/game/human_sound_state_callbacks.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "00402020",
+      "source": "recovered/game/mission_tracks.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "005e2250",
+      "source": "recovered/game/placed_item_actor.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "007dcea0",
+      "source": "recovered/host/game_mission_items.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "004106e0",
+      "source": "recovered/host/game_physics_objects.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    },
+    {
+      "entry": "00410a40",
+      "source": "recovered/host/game_physics_objects.h",
+      "reason": "Absent or thunk in the frozen client inventory; no registration/credit."
+    }
+  ],
+  "empty_or_vtable_only_no_credit": [
+    {
+      "entry": "00611080",
+      "source": "recovered/game/actor_base.h",
+      "reason": "Genuine empty callback or vtable-only retirement; no distinct reconstructed body credit."
+    },
+    {
+      "entry": "004ab950",
+      "source": "recovered/game/hud_auxiliary_loading.h",
+      "reason": "Genuine empty callback or vtable-only retirement; no distinct reconstructed body credit."
+    },
+    {
+      "entry": "004ab2d0",
+      "source": "recovered/game/hud_auxiliary_loading.h",
+      "reason": "Genuine empty callback or vtable-only retirement; no distinct reconstructed body credit."
+    },
+    {
+      "entry": "004b5780",
+      "source": "recovered/game/hud_command_loading.h",
+      "reason": "Genuine empty callback or vtable-only retirement; no distinct reconstructed body credit."
+    },
+    {
+      "entry": "004a1da0",
+      "source": "recovered/game/hud_inventory_loading.h",
+      "reason": "Genuine empty callback or vtable-only retirement; no distinct reconstructed body credit."
+    },
+    {
+      "entry": "004ad9a0",
+      "source": "recovered/game/hud_objective_icons_loading.h",
+      "reason": "Genuine empty callback or vtable-only retirement; no distinct reconstructed body credit."
+    },
+    {
+      "entry": "004a8de0",
+      "source": "recovered/game/hud_panels_loading.h",
+      "reason": "Genuine empty callback or vtable-only retirement; no distinct reconstructed body credit."
+    },
+    {
+      "entry": "004af4e0",
+      "source": "recovered/game/hud_small_panels_loading.h",
+      "reason": "Genuine empty callback or vtable-only retirement; no distinct reconstructed body credit."
+    },
+    {
+      "entry": "0055d8b0",
+      "source": "recovered/game/human_ai_direction.h",
+      "reason": "Genuine empty callback or vtable-only retirement; no distinct reconstructed body credit."
+    },
+    {
+      "entry": "00741180",
+      "source": "recovered/game/human_input_loading_manager.h",
+      "reason": "Genuine empty callback or vtable-only retirement; no distinct reconstructed body credit."
+    }
+  ],
+  "uncredited_references": [
+    {
+      "entry": "0040e0b0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/supply_box_geometry.h",
+          "line": 70,
+          "context": "static float distance(const Vector& a,const Vector& b) { //0040E0B0/inlined."
+        }
+      ]
+    },
+    {
+      "entry": "00415d00",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/effect_definitions.h",
+          "line": 71,
+          "context": "//00415D00 /inlined readers consume at most999 bytes then leave chunk."
+        },
+        {
+          "source": "recovered/game/first_person_animation_table.h",
+          "line": 9,
+          "context": "//00490C80 and00415C90/004476C0/00415D00: tables\\FpvAnims.sav. Store names"
+        }
+      ]
+    },
+    {
+      "entry": "0041d5e0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/lightmap_aliases.h",
+          "line": 9,
+          "context": "//0048CD70 /0048D100 /0048D1D0 /0041D5E0. B810 owns case-sensitive"
+        }
+      ]
+    },
+    {
+      "entry": "0041d960",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/switch_actor_state.h",
+          "line": 42,
+          "context": "runtime.notify_switch_state(model_,properties_.fieldd4); //0041D960, before visual work."
+        }
+      ]
+    },
+    {
+      "entry": "0041da20",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_script_ai_state_loading.h",
+          "line": 9,
+          "context": "//the SAME modelEC data1 and actual0041DA20; no empty script context is supplied."
+        }
+      ]
+    },
+    {
+      "entry": "00427730",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/mission_script_bindings.h",
+          "line": 10,
+          "context": "//script resource name. It contains no VM instructions.00427730's later context"
+        }
+      ]
+    },
+    {
+      "entry": "00432be0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/spatial_sound.h",
+          "line": 52,
+          "context": "distance=backend.sound_occlusion_distance(scale,position,listener,source_sector,target_sector,far_range); //00432BE0."
+        }
+      ]
+    },
+    {
+      "entry": "0043c6a0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 157,
+          "context": "backend.car_timed_contact(data->words[5],1000,0); //0043C6A0, return ignored."
+        }
+      ]
+    },
+    {
+      "entry": "004476c0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/first_person_animation_table.h",
+          "line": 9,
+          "context": "//00490C80 and00415C90/004476C0/00415D00: tables\\FpvAnims.sav. Store names"
+        }
+      ]
+    },
+    {
+      "entry": "004563e0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 74,
+          "context": "presentation.offline_player_close(*human); //Actual004563E0 singleton0089AC30 virtual34."
+        }
+      ]
+    },
+    {
+      "entry": "0045dac0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/first_person_view_loading.h",
+          "line": 185,
+          "context": "void update_player_visibility() { //0045DAC0 uses current control player, not necessarily view38."
+        },
+        {
+          "source": "recovered/game/human_player_control_loading.h",
+          "line": 47,
+          "context": "presentation_.refresh_first_person_visibility(); //0045DAC0."
+        }
+      ]
+    },
+    {
+      "entry": "00461410",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_active_ai_state_loading.h",
+          "line": 57,
+          "context": "for(auto n=enemies.size();n;)services_.player_add_enemy(enemies[--n]); //00461410\u21920045E410."
+        },
+        {
+          "source": "recovered/game/human_state_loading_owner.h",
+          "line": 53,
+          "context": "change(1);factory_.player_select_human(human_); //00461410\u21920045DA60, before005AC070."
+        }
+      ]
+    },
+    {
+      "entry": "00463040",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 67,
+          "context": "errors.attempt([&]{services_.remove_human_detached_camera_reference(human_);}); //004650A0\u219200463040."
+        }
+      ]
+    },
+    {
+      "entry": "00464e90",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_render.h",
+          "line": 8,
+          "context": "//0049B9B0. Caller's actual00698500/00464E90 camera owner is mandatory."
+        },
+        {
+          "source": "recovered/game/human_player_control_loading.h",
+          "line": 40,
+          "context": "if(next!=previous)presentation_.reset_player_camera(0); //00464E90 virtual40."
+        }
+      ]
+    },
+    {
+      "entry": "00469300",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/mission_camera.h",
+          "line": 78,
+          "context": "//target loading/retirement is supplied;00469300 camera simulation remains required."
+        }
+      ]
+    },
+    {
+      "entry": "0046ebf0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/game_actor_frames.h",
+          "line": 18,
+          "context": "Frame human_sight_marker(Frame model,const char* name) { //0046EBF0/0046EDE0: engine enumeration stops with2."
+        }
+      ]
+    },
+    {
+      "entry": "0046ede0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/game_actor_frames.h",
+          "line": 18,
+          "context": "Frame human_sight_marker(Frame model,const char* name) { //0046EBF0/0046EDE0: engine enumeration stops with2."
+        }
+      ]
+    },
+    {
+      "entry": "00475dd0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_actor_identity_view.h",
+          "line": 9,
+          "context": "//active list.007D8AB3/00475DD0 prove the receiver. No copied/padded registry:"
+        },
+        {
+          "source": "recovered/host/game_scene_actors.h",
+          "line": 71,
+          "context": "Instance* scene_actor_identity(std::int32_t id)const { //00475DD0, Scene2 identity slots, not runtime IDs."
+        }
+      ]
+    },
+    {
+      "entry": "00479450",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 351,
+          "context": "const auto item=backend.clone_car_contact_item(frame,position,direction); //00479450\u2192runtime004770B0 type12."
+        }
+      ]
+    },
+    {
+      "entry": "00479540",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/game_runtime_actors.h",
+          "line": 45,
+          "context": "void queue_static_item(Frame frame,void* object,Descriptor& descriptor) { //00479540, three borrowed handles."
+        }
+      ]
+    },
+    {
+      "entry": "00486510",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_opacity_control.h",
+          "line": 35,
+          "context": "if(opacity()!=applied_) {smooth(elapsed);services.human_opacity_changed(model,applied_);} //00486510+54."
+        }
+      ]
+    },
+    {
+      "entry": "00489470",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/game_actor_frames.h",
+          "line": 353,
+          "context": "Frame find_human_shadow_model(Frame model) { //00489470/004894B0 stop at first owned kind15 descendant."
+        }
+      ]
+    },
+    {
+      "entry": "0048eb70",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/text_state.h",
+          "line": 60,
+          "context": "// The renderer is absent until mission text is actually initialized by0048EB70."
+        }
+      ]
+    },
+    {
+      "entry": "0048f390",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/game_owner.h",
+          "line": 274,
+          "context": "//0048F390's actual disabled/missing-renderer branch requires no draw."
+        }
+      ]
+    },
+    {
+      "entry": "004936c0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_compass_loading.h",
+          "line": 16,
+          "context": "//Runtime compass/marker producers004936C0/00493D10 and simulation remain separate."
+        }
+      ]
+    },
+    {
+      "entry": "00493d10",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_compass_loading.h",
+          "line": 16,
+          "context": "//Runtime compass/marker producers004936C0/00493D10 and simulation remain separate."
+        }
+      ]
+    },
+    {
+      "entry": "0049b7e0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_player_control_loading.h",
+          "line": 49,
+          "context": "presentation_.hud_add_human(human,static_cast<std::int32_t>(count)-1); //0049B7E0 even when append refused."
+        }
+      ]
+    },
+    {
+      "entry": "0049b870",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_player_control_loading.h",
+          "line": 56,
+          "context": "presentation_.hud_remove_human(human,removed); //0049B870, before current/selected changes."
+        }
+      ]
+    },
+    {
+      "entry": "0049fbf0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_inventory.h",
+          "line": 48,
+          "context": "if((mode&2u)&&receivers.is_current_player(human))receivers.hud_inventory_changed(); //0049FBF0."
+        }
+      ]
+    },
+    {
+      "entry": "004a01f0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_owner.h",
+          "line": 83,
+          "context": "std::array<std::uint32_t, 7> panel_geometry{}; //004A01F0"
+        }
+      ]
+    },
+    {
+      "entry": "004a1da0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_inventory_loading.h",
+          "line": 26,
+          "context": "//004A0EE0/004A1DA0: bind actual HUD+30 inventory inline texts, two model sides,"
+        },
+        {
+          "source": "recovered/game/hud_panels_loading.h",
+          "line": 70,
+          "context": "//004A1DA0/004A8DE0/004A8D50 are RETs: inline geometry/text owners"
+        }
+      ]
+    },
+    {
+      "entry": "004a5630",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_auxiliary_loading.h",
+          "line": 61,
+          "context": "void hide_selected_pointer() { //004ABAF0(-1), reached by004A5630(false,false) on multiplayer map bind."
+        }
+      ]
+    },
+    {
+      "entry": "004a8bd0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_command_loading.h",
+          "line": 87,
+          "context": "frames_.object_visible(b.normal,d.enabled);frames_.object_visible(b.alternate,!d.enabled); //004A8BD0(?,false)."
+        }
+      ]
+    },
+    {
+      "entry": "004a8de0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_panels_loading.h",
+          "line": 70,
+          "context": "//004A1DA0/004A8DE0/004A8D50 are RETs: inline geometry/text owners"
+        }
+      ]
+    },
+    {
+      "entry": "004ab2d0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_auxiliary_loading.h",
+          "line": 10,
+          "context": "//matching004AB950/004AB2D0/004AB0F0. These are real HUD scene borrowers;"
+        }
+      ]
+    },
+    {
+      "entry": "004ab950",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_auxiliary_loading.h",
+          "line": 10,
+          "context": "//matching004AB950/004AB2D0/004AB0F0. These are real HUD scene borrowers;"
+        }
+      ]
+    },
+    {
+      "entry": "004ad9a0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_objective_icons_loading.h",
+          "line": 7,
+          "context": "//004AD8F0/004AD9B0/004AD9A0: this artwork binder is unconditional HUD loading,"
+        }
+      ]
+    },
+    {
+      "entry": "004af4e0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_small_panels_loading.h",
+          "line": 73,
+          "context": "void close_camera()noexcept{} //004AF4E0 is an actual RET; artwork remains borrowed."
+        }
+      ]
+    },
+    {
+      "entry": "004b04a0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_explosive_timers_loading.h",
+          "line": 24,
+          "context": "for(auto count=actors.size();count;)if(auto* actor=actors[--count])if(actor->type()==22)actors_.push_back(actor); //004B04A0 is vector insertion, not an explosive virtual call."
+        }
+      ]
+    },
+    {
+      "entry": "004b5780",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_command_loading.h",
+          "line": 14,
+          "context": "//004B4980/004B4DE0/004B5790 and004B4D40/004B5780/004B59C0. Actual HUD"
+        }
+      ]
+    },
+    {
+      "entry": "004b6720",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_render.h",
+          "line": 41,
+          "context": "consumers.command_before_scene(); //004B6720."
+        }
+      ]
+    },
+    {
+      "entry": "004d9280",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 72,
+          "context": "presentation.leave_player_controlled_car(*human,mode); //Actual native160/type4/164 driver gate\u2192004D9280(0,0)."
+        }
+      ]
+    },
+    {
+      "entry": "004db2b0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 417,
+          "context": "backend.apply_car_wheel_damage(self,event); //004DB2B0."
+        }
+      ]
+    },
+    {
+      "entry": "004db2e0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 238,
+          "context": "backend.submit_car_human_damage(self,event); //004DB2E0, actual network queue required."
+        }
+      ]
+    },
+    {
+      "entry": "004ddcf0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 167,
+          "context": "if((mode_flags&1)&&field6a0!=0) { //004DDCF0 returns1 only when field6A0==0."
+        }
+      ]
+    },
+    {
+      "entry": "004dfa30",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_area_ai_state_loading.h",
+          "line": 36,
+          "context": "if(record->byte16==10)kind10_.push_back(index); //004DFA30 appends to separate native170 WORD vector."
+        }
+      ]
+    },
+    {
+      "entry": "004f32a0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 24,
+          "context": "//004F32A0's CURRENT simulation inputs, relative to the geometry owner. Loading"
+        }
+      ]
+    },
+    {
+      "entry": "00530d40",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_active_ai_state_loading.h",
+          "line": 10,
+          "context": "//00530D40, Players/Speech and0089AC30 consumers are mandatory Services methods."
+        }
+      ]
+    },
+    {
+      "entry": "00537fb0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_active_ai_state_loading.h",
+          "line": 147,
+          "context": "//00537FB0 has no effect until both native74/78 command producers exist."
+        }
+      ]
+    },
+    {
+      "entry": "00538770",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_weapon_transfer.h",
+          "line": 10,
+          "context": "//007D8B40 weapon paths needed by the SAME-Human00538770/007D9DE0 exchange:"
+        }
+      ]
+    },
+    {
+      "entry": "00542060",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 112,
+          "context": "throw std::runtime_error(\"Player Sight requires actual Players/00542060 receivers\");"
+        }
+      ]
+    },
+    {
+      "entry": "005469e0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 64,
+          "context": "presentation.set_player_mode(*this,human,0,mode); //Actual005469E0, including required first-person consumers."
+        }
+      ]
+    },
+    {
+      "entry": "0055d8b0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_ai_direction.h",
+          "line": 8,
+          "context": "//0055D860/0055D8B0 and0055D630/0055D2E0, the SAME60-byte owner at"
+        }
+      ]
+    },
+    {
+      "entry": "005607b0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_active_ai_state_loading.h",
+          "line": 139,
+          "context": "for(auto offset:{0x30u,0x10u,0x14u,0x18u,0u,4u,8u})target.set(offset,std::uint32_t{0}); //005607B0(0)."
+        }
+      ]
+    },
+    {
+      "entry": "00560800",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_ai_resources.h",
+          "line": 10,
+          "context": "//005607D0/00560810, separate50-byte state at AI+128. Its00560800"
+        }
+      ]
+    },
+    {
+      "entry": "00563a70",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_ai_resources.h",
+          "line": 34,
+          "context": "//00563A60/00563A70 at AI+134; matching destructor is RET."
+        }
+      ]
+    },
+    {
+      "entry": "00570a10",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_guard_ai_state_loading.h",
+          "line": 52,
+          "context": "control.look_command(0,nullptr); //00570A10(0)\u2192005A45F0 command5."
+        },
+        {
+          "source": "recovered/game/human_sound_look_reaction.h",
+          "line": 58,
+          "context": "control.look_command(side>0?5:6,nullptr); //00570A10 command5 \u2192 SAME inline98."
+        }
+      ]
+    },
+    {
+      "entry": "00583980",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 74,
+          "context": "human_.field190.clear(); //00583980/005AA9E0: no raw-pointer reinterpretation."
+        }
+      ]
+    },
+    {
+      "entry": "0059ef80",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 103,
+          "context": "if(human_.speech_definition){speech_.release(human_.speech_definition);human_.speech_definition=nullptr;} //0059EF80 only ensures cache,005B0390 releases."
+        }
+      ]
+    },
+    {
+      "entry": "005a0890",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 257,
+          "context": "controlled=backend.car_human_controlled(driver); //005A0890."
+        },
+        {
+          "source": "recovered/game/human_loading_inventory.h",
+          "line": 119,
+          "context": "//005A8190(0) is gated by005A0890: offline B0 kind1 only, already"
+        }
+      ]
+    },
+    {
+      "entry": "005a09a0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_sight_relations.h",
+          "line": 30,
+          "context": "//alignment must invoke actual005A84F0 when reached. Non7 uses005A09A0 and is"
+        }
+      ]
+    },
+    {
+      "entry": "005a15d0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 48,
+          "context": "services_.human_initial_dead_notification(human_); //005A15D0(0E,0,0,-1,zero,zero)."
+        }
+      ]
+    },
+    {
+      "entry": "005a1c90",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 299,
+          "context": "backend.car_human_impact(victim,5,damage,point,impulse,driver,0); //005A1C90, RET18."
+        }
+      ]
+    },
+    {
+      "entry": "005a45f0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_guard_ai_state_loading.h",
+          "line": 52,
+          "context": "control.look_command(0,nullptr); //00570A10(0)\u2192005A45F0 command5."
+        },
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 48,
+          "context": "control.look_command(0,nullptr); //005A45F0\u2192005ABD90 command5/mode0\u2192005ABF60."
+        }
+      ]
+    },
+    {
+      "entry": "005a5cc0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_sound_notifications.h",
+          "line": 43,
+          "context": "//005A5CC0's ignored source-Human result is a PURE B0 flags/E0+50 getter;"
+        }
+      ]
+    },
+    {
+      "entry": "005a5e50",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_sound_look_reaction.h",
+          "line": 18,
+          "context": "if(record.actor->base().type()==3) { //005A5E50: observer's hostile membership, not friendship."
+        }
+      ]
+    },
+    {
+      "entry": "005a6380",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_player_roster.h",
+          "line": 43,
+          "context": "//0049B980/005A8740/005A86F0 and actual Human150/005A6380 when the native gates"
+        }
+      ]
+    },
+    {
+      "entry": "005a63f0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_player_roster.h",
+          "line": 102,
+          "context": "//Suppressed queries actual005A63F0; it may change index/list, hence reload them."
+        }
+      ]
+    },
+    {
+      "entry": "005a6600",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_guard_ai_state_loading.h",
+          "line": 29,
+          "context": "//005A6600(0), used only as an ignored pure stat getter when A4 isNULL."
+        },
+        {
+          "source": "recovered/host/game_scene_actors.h",
+          "line": 133,
+          "context": "return capacity; //0059C2B0\u2192005A6600(1), nativeF0."
+        }
+      ]
+    },
+    {
+      "entry": "005a80d0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_active_ai_state_loading.h",
+          "line": 35,
+          "context": "state_.set(0x160,this->current_direction()); //005A80D0 observes the already published NEW B0."
+        }
+      ]
+    },
+    {
+      "entry": "005a8190",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_inventory.h",
+          "line": 119,
+          "context": "//005A8190(0) is gated by005A0890: offline B0 kind1 only, already"
+        }
+      ]
+    },
+    {
+      "entry": "005a9120",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 88,
+          "context": "errors.attempt([&]{services_.retire_human_formation(human_);}); //005A9120."
+        }
+      ]
+    },
+    {
+      "entry": "005a91a0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 87,
+          "context": "errors.attempt([&]{services_.clear_human_formation(human_);}); //005A91A0(0)."
+        },
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 65,
+          "context": "presentation.clear_human_formation(human); //Actual005A91A0(0); not replaced with a no-op."
+        }
+      ]
+    },
+    {
+      "entry": "005aa9e0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 74,
+          "context": "human_.field190.clear(); //00583980/005AA9E0: no raw-pointer reinterpretation."
+        }
+      ]
+    },
+    {
+      "entry": "005aba70",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 46,
+          "context": "//005ABA70 is genuine constant1. W was uninitialized stack data."
+        }
+      ]
+    },
+    {
+      "entry": "005aba80",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 50,
+          "context": "//005ABA80 is genuine constant1, then Human16C resets before registration."
+        }
+      ]
+    },
+    {
+      "entry": "005abb10",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 91,
+          "context": "//005ABB10/20 are genuine RETs. Authority unregister runs even after the"
+        }
+      ]
+    },
+    {
+      "entry": "005abd90",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_player_state_loading.h",
+          "line": 48,
+          "context": "control.look_command(0,nullptr); //005A45F0\u2192005ABD90 command5/mode0\u2192005ABF60."
+        }
+      ]
+    },
+    {
+      "entry": "005ac220",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_sound_notifications.h",
+          "line": 44,
+          "context": "//005AC220 only reads inline0C+50. It has no mutation or receiver call."
+        }
+      ]
+    },
+    {
+      "entry": "005ac4c0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/spatial_sound.h",
+          "line": 41,
+          "context": "//Native unconditionally calls005AC4C0 on(source+98); null is undefined."
+        },
+        {
+          "source": "recovered/game/mission_camera.h",
+          "line": 159,
+          "context": "if(control_sector)sector=*control_sector; //005AC4C0, SAME CD0+14 sector, including null."
+        }
+      ]
+    },
+    {
+      "entry": "005b7570",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/dynamic_item_actor.h",
+          "line": 74,
+          "context": "if(context&&(activation_.mode_flags()&2))items_.dynamic_item_contact_sound(*this); //005B7570."
+        }
+      ]
+    },
+    {
+      "entry": "005b7c50",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/dynamic_item_actor.h",
+          "line": 78,
+          "context": "items_.dynamic_item_sleep_notification(*this); //005B7C50, actual network producer required."
+        }
+      ]
+    },
+    {
+      "entry": "005d5cb0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/game_sight_loading.h",
+          "line": 12,
+          "context": "//actual module11 roster/005A84F0, non7 friendship and005A5250/005D5CB0"
+        }
+      ]
+    },
+    {
+      "entry": "005fdc00",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 304,
+          "context": "//Known values passed to005FDC50/005FDC00. Native owners deliberately expose"
+        }
+      ]
+    },
+    {
+      "entry": "005fdc50",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 304,
+          "context": "//Known values passed to005FDC50/005FDC00. Native owners deliberately expose"
+        }
+      ]
+    },
+    {
+      "entry": "005fefb0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 170,
+          "context": "backend.car_item_contact(contact.actor,self,wheel); //005FEFB0, not a Door callback."
+        }
+      ]
+    },
+    {
+      "entry": "00611080",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/actor_base.h",
+          "line": 68,
+          "context": "field7c_=0; //00611080(2), like00611080(0), is a genuine RET4."
+        }
+      ]
+    },
+    {
+      "entry": "0063dc50",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/game_fonts.h",
+          "line": 11,
+          "context": "// Byte-font branch of0063DB50/0063DC50/0063DBB0. All game text owners share this"
+        }
+      ]
+    },
+    {
+      "entry": "0063f450",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/text_render.h",
+          "line": 12,
+          "context": "//0063F450 is a separate font-manager branch, outside this byte/atlas consumer."
+        }
+      ]
+    },
+    {
+      "entry": "00643790",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/text_style_data.h",
+          "line": 6,
+          "context": "//00641E30/00643790:90 process styles; original stack padding2E/2F is"
+        }
+      ]
+    },
+    {
+      "entry": "00643b20",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/text_object.h",
+          "line": 55,
+          "context": "// visibility adjustment (00643b20), then rereads the hovered index."
+        }
+      ]
+    },
+    {
+      "entry": "006468d0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/menu_text_geometry.h",
+          "line": 544,
+          "context": "// per record;006468D0 centers the complete block, including empty rows."
+        }
+      ]
+    },
+    {
+      "entry": "006469c0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/menu_text_geometry.h",
+          "line": 581,
+          "context": "//space from block height, but006469C0 adds it to the baseline."
+        }
+      ]
+    },
+    {
+      "entry": "00646a10",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/menu_text_geometry.h",
+          "line": 348,
+          "context": "//00645F20/00646A10/00647270: SMALL top-aligned paragraphs used by mode"
+        }
+      ]
+    },
+    {
+      "entry": "00647270",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/menu_text_geometry.h",
+          "line": 348,
+          "context": "//00645F20/00646A10/00647270: SMALL top-aligned paragraphs used by mode"
+        }
+      ]
+    },
+    {
+      "entry": "0066a4e0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 595,
+          "context": "std::array<float, 2> menu_cursor_{{400, 300}}; //0066A4E0 centers only the first shared owner."
+        }
+      ]
+    },
+    {
+      "entry": "00698500",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_render.h",
+          "line": 8,
+          "context": "//0049B9B0. Caller's actual00698500/00464E90 camera owner is mandatory."
+        },
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 223,
+          "context": "bool mission_active() const { return game_views_.owner()!=nullptr; } //00698500 actual owner, distinct from loaded camera."
+        }
+      ]
+    },
+    {
+      "entry": "0069bfe0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 284,
+          "context": "//0069BFE0 is a genuine empty diagnostic. It has no runtime consumer."
+        }
+      ]
+    },
+    {
+      "entry": "0069f130",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/text_state.h",
+          "line": 59,
+          "context": "// Inlined00698510+60 constructor,0048F400/0048EF40/0069F130 and0048EFC0."
+        }
+      ]
+    },
+    {
+      "entry": "006ab4f0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 360,
+          "context": "//006AB4F0 uppercases first, lowercases the remaining bytes (CRT locale)."
+        }
+      ]
+    },
+    {
+      "entry": "006b13a0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 253,
+          "context": "//006B13A0/006B13C0: mode0 queries the standalone unlock word;"
+        }
+      ]
+    },
+    {
+      "entry": "006b13c0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 253,
+          "context": "//006B13A0/006B13C0: mode0 queries the standalone unlock word;"
+        }
+      ]
+    },
+    {
+      "entry": "006b4a60",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/game_configuration.h",
+          "line": 8,
+          "context": "//Application+24's ACTUAL configuration DATA, initialized by006B4A60\u2192006AD350."
+        }
+      ]
+    },
+    {
+      "entry": "006b6010",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/application_startup_data.h",
+          "line": 11,
+          "context": "// This is the application+04/+08/+20/+10 and+24 configuration-data subset of006B4A60/006B6010;"
+        },
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 169,
+          "context": "errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components."
+        }
+      ]
+    },
+    {
+      "entry": "006b6700",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_loading_activation.h",
+          "line": 123,
+          "context": "if(human_.properties.field19c==2)apply_human_difficulty_stats(human_.properties,services_.human_difficulty()); //006B6700."
+        }
+      ]
+    },
+    {
+      "entry": "006b7400",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 301,
+          "context": "void select_game_binding_mode(std::uint32_t mode) { //006B7400\u2192006A8690 on SAME profile/input owners."
+        }
+      ]
+    },
+    {
+      "entry": "006c84a0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 322,
+          "context": "//006C84A0(mask9A,poll1): no joystick candidate is enabled by this mask."
+        }
+      ]
+    },
+    {
+      "entry": "006c8d70",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 354,
+          "context": "// original virtual call belongs to the FOLLOWING006C8D70 conversion."
+        }
+      ]
+    },
+    {
+      "entry": "006cb0e0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/mission_loading.h",
+          "line": 24,
+          "context": "scratch = services.make_loading_scratch(); //006CB280 then006CB0E0."
+        }
+      ]
+    },
+    {
+      "entry": "006cb280",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/mission_loading.h",
+          "line": 24,
+          "context": "scratch = services.make_loading_scratch(); //006CB280 then006CB0E0."
+        }
+      ]
+    },
+    {
+      "entry": "006d3f20",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/mission_loading.h",
+          "line": 26,
+          "context": "services.prepare_loading(resource, mission); //006D3F20, includes prior unload."
+        }
+      ]
+    },
+    {
+      "entry": "006d4280",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/mission_loading.h",
+          "line": 34,
+          "context": "services.load_check_tables(resource); //006D4280."
+        }
+      ]
+    },
+    {
+      "entry": "006d45c0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/mission_loading.h",
+          "line": 32,
+          "context": "services.load_actors(resource, *scratch); //006D45C0, stage2."
+        }
+      ]
+    },
+    {
+      "entry": "006d4880",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/mission_loading.h",
+          "line": 33,
+          "context": "services.load_sounds(resource, *scratch); //006D4880, stage3."
+        }
+      ]
+    },
+    {
+      "entry": "006d4b40",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/mission_loading.h",
+          "line": 44,
+          "context": "//006D4B40 is a RET."
+        }
+      ]
+    },
+    {
+      "entry": "006d4b50",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/mission_loading.h",
+          "line": 36,
+          "context": "//006D4B50 is a RET; there is no missing successful service here."
+        }
+      ]
+    },
+    {
+      "entry": "006dbfb0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 110,
+          "context": "modules_.initialize(gate_, files_); // Original006DBFB0 includes this phase."
+        }
+      ]
+    },
+    {
+      "entry": "006dcad0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 180,
+          "context": "void application_input_enabled(bool value) { application_input_enabled_ = value; } // 006DCAD0"
+        }
+      ]
+    },
+    {
+      "entry": "006e4c80",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/opening_subtitles.h",
+          "line": 135,
+          "context": "input.clear(); //006E4C80: this is the movie-local cache, not startup captions."
+        }
+      ]
+    },
+    {
+      "entry": "00721b90",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/console_variables.h",
+          "line": 27,
+          "context": "//Reached variable branch00720A80\u219200721B90 validates literal\"0,1\""
+        }
+      ]
+    },
+    {
+      "entry": "00731720",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/game_loading_screen.h",
+          "line": 17,
+          "context": "virtual void send_loading_progress(std::int32_t)=0; //00731720, external branch."
+        }
+      ]
+    },
+    {
+      "entry": "00732360",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 531,
+          "context": "// 00732360(0,0): same cold static flag means no COM/firewall mutation."
+        }
+      ]
+    },
+    {
+      "entry": "00741180",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_input_loading_manager.h",
+          "line": 65,
+          "context": "struct Limiter { //00741140/00741180; destructor rewrites only its native vtable, with no owning cleanup."
+        }
+      ]
+    },
+    {
+      "entry": "00748940",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 79,
+          "context": "// Actual00748940/00748960 clock basis, separate from frame pacing."
+        }
+      ]
+    },
+    {
+      "entry": "00748960",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/car_contact_callbacks.h",
+          "line": 223,
+          "context": "const auto now=backend.car_clock(); //00748960, fresh query for each populated slot."
+        },
+        {
+          "source": "recovered/host/startup_session.h",
+          "line": 79,
+          "context": "// Actual00748940/00748960 clock basis, separate from frame pacing."
+        }
+      ]
+    },
+    {
+      "entry": "0075c770",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_inline_loading.h",
+          "line": 74,
+          "context": "void clear_control_flags(std::uint32_t mask) { //005AC3E0\u21920075C770."
+        },
+        {
+          "source": "recovered/game/human_physics_loading.h",
+          "line": 131,
+          "context": "template<class Look,class Sweep>void clear_control_flags(std::uint32_t mask,const Look& look,Sweep& sweep) { //0075C770."
+        }
+      ]
+    },
+    {
+      "entry": "00781310",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_physics_loading.h",
+          "line": 191,
+          "context": "if(motion<7)throw std::runtime_error(\"Human posture transition requires actual00781310 face/morph/model receiver\");"
+        }
+      ]
+    },
+    {
+      "entry": "007885b0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_sound_direction.h",
+          "line": 11,
+          "context": "//004947E0 \u2192007885B0. Input is world X/Z; no camera rotation or W read."
+        }
+      ]
+    },
+    {
+      "entry": "007a2ed0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_joint_owners.h",
+          "line": 89,
+          "context": "world=frames_.rigid_matrix_product(world,alignment); //007A2ED0."
+        }
+      ]
+    },
+    {
+      "entry": "007d9de0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_weapon_transfer.h",
+          "line": 10,
+          "context": "//007D8B40 weapon paths needed by the SAME-Human00538770/007D9DE0 exchange:"
+        }
+      ]
+    },
+    {
+      "entry": "007dda10",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/runtime_item.h",
+          "line": 38,
+          "context": "if(kind20_registered_)services_.unregister_item_kind20(this); //007DDA10 swap/pop."
+        },
+        {
+          "source": "recovered/game/runtime_item_services.h",
+          "line": 11,
+          "context": "//the SAME containing game's word28, and007DD860/007DDA10's kind20 registry."
+        }
+      ]
+    },
+    {
+      "entry": "007deed0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/pre_mission_data.h",
+          "line": 195,
+          "context": "//  Nested serializers007DEED0..007DF330 supply these exact sizes;"
+        }
+      ]
+    },
+    {
+      "entry": "007df330",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/pre_mission_data.h",
+          "line": 195,
+          "context": "//  Nested serializers007DEED0..007DF330 supply these exact sizes;"
+        },
+        {
+          "source": "recovered/game/runtime_item.h",
+          "line": 102,
+          "context": "if(payload.type==10&&payload.bytes.empty())return 9; //007DF330/340 are zero-byte serializers."
+        }
+      ]
+    },
+    {
+      "entry": "007df340",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/pre_mission_data.h",
+          "line": 196,
+          "context": "//  type10 has a zero-byte payload (007DF330/007DF340)."
+        }
+      ]
+    },
+    {
+      "entry": "007e513c",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_ai_resources.h",
+          "line": 50,
+          "context": "~HumanAIPathLoading(){while(!nodes_.empty())nodes_.pop_back();route_.clear();} //007E513C reverse nodes, then route."
+        }
+      ]
+    },
+    {
+      "entry": "007e5a40",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/frontend/spatial_sound.h",
+          "line": 150,
+          "context": "//007E5A40 is strstr, preserving a .wav occurrence anywhere in the name."
+        },
+        {
+          "source": "recovered/game/effects_shadow_models.h",
+          "line": 57,
+          "context": "if(const auto dot=resource.find('.');dot!=std::string::npos)resource.resize(dot); //007E5A40=strstr(\".\")."
+        }
+      ]
+    },
+    {
+      "entry": "007e5b30",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_holsters.h",
+          "line": 76,
+          "context": "if(const auto dot=name.find('.');dot!=std::string::npos)name.resize(dot); //007E5B30=strchr, first dot."
+        }
+      ]
+    },
+    {
+      "entry": "007e5e00",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/hud_sound_direction.h",
+          "line": 26,
+          "context": "static_cast<std::uint32_t>(static_cast<std::int64_t>(value)); //007E5E00 keeps low DWORD."
+        },
+        {
+          "source": "recovered/game/human_loading_stats.h",
+          "line": 12,
+          "context": "//007E5E00 FISTP signed64 under truncate mode; these callers keep EAX ONLY."
+        },
+        {
+          "source": "recovered/game/text_glyphs.h",
+          "line": 10,
+          "context": "//007E5E00 FISTP QWORD/lowEAX. Invalid/overflow produces integer-indefinite,"
+        }
+      ]
+    },
+    {
+      "entry": "007e6636",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/text_layout.h",
+          "line": 129,
+          "context": "static bool space(unsigned char c){return c==' '||(c>=9&&c<=13);} //007E6636 CRT bit8; BYTE<80 only."
+        }
+      ]
+    },
+    {
+      "entry": "007e88f0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_holsters.h",
+          "line": 39,
+          "context": "return index==first.size()&&!second[index]; //007E88F0's ASCII comparison."
+        }
+      ]
+    },
+    {
+      "entry": "007e8bd0",
+      "reason": "Reference alone is not credited: delegated/required consumer, caller context, constant/library helper, or insufficient explicit body mapping in this reconciliation. No new registration.",
+      "references": [
+        {
+          "source": "recovered/game/human_presentation_shared.h",
+          "line": 62,
+          "context": "return true; //007E8BD0, original default C-locale mission names."
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "ledger_check": "Exact fingerprints, full frozen inventories, unique eligible entries, evidence paths and rendered README pass.",
+    "tracker_tests": "27 existing tests pass.",
+    "baseline_sha256": "fae7472dde156f6a6de2388545912b54a58e27c479afb406503bb2387870f257",
+    "ledger_sha256": "690269ca81ff65c328e5cca0669d7d98df10ae02a0994c471bcf3f8dd5cd6b39"
+  }
+}

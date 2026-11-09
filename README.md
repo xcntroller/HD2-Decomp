@@ -7,6 +7,15 @@ and engine replacement are separate.
 
 ## Current build
 
+**P2.2 is in progress: mission loading is not playable yet.** Source recovery now
+covers the loading presentation, Scene2/resource readers, actor/item/collision
+owners, vehicles, Human control/equipment/AI, first-person view, HUD, Sight,
+sound and proximity. These are source checkpoints; the application still
+declines loading until the actual world and remaining consumers are connected.
+[Current boundary and remaining work](analysis/mission-world-loading.md) |
+[Source progress](analysis/loading-modules.md) |
+[Saved checks](analysis/checkpoints/p2.2-20261109.json).
+
 The accepted bounded launch checkpoint covers: four opening movies with music and
 English subtitles lead into the compiled Main/Exit menu. Pointer/keyboard input,
 Escape skips, confirmation/cancellation, focus return and bounded shutdown/failure
@@ -74,8 +83,10 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and559 partial entries; source-only raw entries remain
-separate from desktop integration.
+complete client functions and1,440 partial entries (1,435 client/five engine).
+The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) adds881
+implemented source subsets without promoting any whole functions to complete.
+Source recovery remains separate from desktop integration.
 
 Phase1 front-end delivery is closed by the user2026-11-03 within its recorded
 acceptance and deferred-flow boundaries, committed as4e530f7. The
@@ -119,8 +130,8 @@ Do not mark loadouts or the complete preparation flow desktop-tested.
 The final owned mission/squad/equipment request explicitly reports **game entry
 unavailable**; gameplay/save loading remain outside this menu checkpoint.
 [Acceptance and remaining limits](analysis/singleplayer-pipeline.md#desktop-acceptance--team-selection-checkpoint-2026-11-01).
-The user requested continuing with **multiplayer menus** while loadout testing is
-deferred. [Plan](plan.md) and [handoff](HANDOFF.md) record the next work.
+Loadout testing remains deferred until the actual game entry path is available.
+[Plan](plan.md) and [handoff](HANDOFF.md) record the active P2.2 loading work.
 
 [Multiplayer front-end work](analysis/multiplayer-pipeline.md#desktop-acceptance--2026-11-01) is desktop accepted2026-11-01 for reachable
 browser, Create/maps/settings, filter editing, Add Server and unavailable-service
@@ -203,11 +214,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **559 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,440 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 554 |
+| Base game client | 17,294 | 34 | 1,435 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre
@@ -234,6 +245,8 @@ difficulty, playability, or time remaining.
 - [Plan](plan.md): remaining menu outcomes and delivery criteria.
 - [Handoff](HANDOFF.md): current state and next session.
 - [Research](RESEARCH.md): detailed findings, evidence and tool instructions.
+- [P2.2 loading](analysis/loading-modules.md): recovered source and integration gaps.
+- [Function reconciliation](analysis/function-ledger-p2.2-reconciliation.md): current source tally and exclusions.
 - [Launch acceptance](analysis/launch-acceptance.md): delivered boundary and provenance.
 - [Menu inventory](analysis/menu-screens.md): known screens and dependencies.
 - [Control contracts](analysis/menu-contracts.md): complete source-only dependency inventory.

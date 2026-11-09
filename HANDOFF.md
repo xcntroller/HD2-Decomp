@@ -1,69 +1,111 @@
-# Session handoff — 2026-11-03
+# Session handoff — 2026-11-09
 
-## Latest result
+Continue FULL P2.2, first unchecked implementation checkbox in plan.md. Read
+AGENTS.md. The user now explicitly authorizes smaller verified local checkpoint
+commits while continuing that full checkbox. Commit all completed changes; no
+push. No subagents/goals/original game/DLL/Proton/Windows-fixture execution.
+Preserve original assets. Focus verification on new work, not repeated audits.
 
-Phase1 is closed and committed as4e530f7. P2.0/P2.1 are ready for the requested commit.
-P2.0 is complete source-only. **P2.1 unloaded owner construction/failure return
-is implemented, integrated, native-verified and user-accepted2026-11-03.**
-Both P2.1 checkboxes are closed. Read [plan.md](plan.md),
-[latest integration/acceptance contract](analysis/game-owner-integration.md),
-[entry/verification index](analysis/game-owner-integration.json) and
-[evidence map](analysis/game-owner-integration-map.json). The
-[initial boundary](analysis/game-owner-start.md) remains valid historical research;
-its missing-backend/controller limits are superseded by this batch.
+GameApplicationState still declines loading. No live world, first frame or new
+mission desktop result. Reconciled ledger:34 complete client/1,440 partial
+(1,435 client/five engine)/18,783 frozen functions.881 new client source partials;
+zero whole-body promotions. See analysis/function-ledger-p2.2-reconciliation.md.
 
-Kind7 now copies actual mission/squad/equipment, installs type1 before initializing
-with the owned kind3 mission, constructs actual native HUD/text/overlay/table
-owners and original-engine scene/callback/viewport, and borrows real owner/scene
-views. HUD has77 shared-font text owners/five actual atlas resources. Audio view
-stays null until a loaded camera exists. The old menu-side unavailable prompt no
-longer prevents the receiver attempt. The006CA780 loader remains unavailable:
-initializer returns honest failure, releases all owners/views and displays the
-existing Main-return error dialog. No scene render/dummy camera/load success.
-Native callback dispatch is installed; active-world callees explicitly reject
-before activation. Live shutdown00698F80 is not replaced by unloaded destruction.
+## Saved checkpoint
 
-## Next work — P2.2
+The accumulated source was reviewed and split into15 local commits after
+f9674b3, through f72ca56. The user undid the subsequent research-record commit;
+its documentation is restored in the README/ledger reconciliation checkpoint.
+[Verification record](analysis/checkpoints/p2.2-20261109.json) saves build/test
+results and prior receipt digests. Strict app/startup i386 compile/link passes;
+250 new headers compile together; existing native menu text test and64 relevant
+Python tests pass. No Windows program or original DLL was executed. The earlier
+user-run resolved-input capture remains the only relevant new desktop action.
 
-User accepted P2.1 on2026-11-03, explicitly confirming the expected constructor log,
-and requested commit and continuation. Both construction/error-teardown items are
-closed within their unloaded boundary; native audits establish failure/repeat cases.
-Commit this batch, then implement the complete P2.2 loading/Scene/Scene2/resource/
-camera pipeline. Read its full boundary in analysis/phase2-delivery-plan.md first.
-Reuse confirmed ownership research. Consume the actual runtime-selected descriptor
-through rw_data loose/language/Patch/base precedence. No forced Tutorial sample.
-Some language/Patch archives are ISD1. Loadouts remain untested; live multiplayer
-receiver/transport acceptance remains Phase3. User tests via Python; no packaging.
+[Human-state contracts](analysis/human-state-loading.md),
+[equipment contracts](analysis/human-equipment-loading.md),
+[Sight/sound contracts](analysis/sight-loading.md) and
+[source progress](analysis/loading-modules.md) are canonical.
 
-## Verification and counting
+Latest source: actual Human containing lifetime, Players roster/current/selected/
+frame buffers, process proximity owner008AED54, derived sound/look callbacks,
+weapon priority/candidate/usability policy and slot-specific inventory lookup.
+HumanLoadingInventoryCommands binds SAME Human.loading_inventory before B0 bind;
+active/area AI now calls its actual source1/2→empty-hand3 offline loading command.
+Player/remote queued commands and nonoffline outgoing packets explicitly reject.
+HumanEquipmentTransfers uses typed230 peers4/0C, SAME holsters/state/DD0/E0 and
+00792590/00792720/00792AB0 notifications. Shoulder model remains attached until
+007913D0 event3 removes source kind2 and attaches hand kind3. Events0..3 only;
+action-model producers remain separate.007B96C0 stow uses631C FLOAT×200→signed64
+truncate/EAX6314 and native flags. Inventory/expiry/forced E0 stores verified.
 
-Consolidated strict application/preview/startup builds, native regressions and158
-Python tests pass. Temporary ASan/UBSan audit covers actual native HUD/text/table/
-session/receiver helper bodies:100 lifetimes,77 shared-font owners, five service
-failures,86 allocation-failure prefixes, copied request/objectives/equipment,
-populated owned/borrowed table frees, world-view lifetimes,100 error-dialog returns,
-1,024 graphics flag/failure cases and13 original metric tables. Fixture font/scene
-endpoints establish lifetime/order only; actual unloaded construction is now user-confirmed. Emitted i386 game initializer and stdcall callback@12 are inspected.
-Temporary audits removed; hashes/logs under
-analysis/work/game-owner-integration-20261103. No agent desktop/original/Windows execution; user confirmation is recorded above.
-No staging/package/push.
+Human weapon transfer source007D8B40 supports SAME-Human/no-source weapons in
+slots1/2/3/6, dry run, cooldown precedence, displaced entries and retained weight
+accounting. Focused ASan/UBSan passes; its containing swap is NOT implemented.
+Prior actual-equipment native/i386 fixture logs survived, but their temporary
+files were lost before hashing in the PC crash. Do not invent removal hashes.
+New checkpoint fixtures were fingerprinted/removed in the saved record.
 
-Ledger34 complete client/559 partial (554 client/five engine),18,783 frozen.
-17 new partials and10 extended this batch; no new complete/engine/CRT credit.
-0063DC50 decompilation exceeds its84-byte frozen entry, so it is reference-only
-here. Original partial backlog559 rows/29 closed/530 open remains postponed and
-unchanged; new delivery partials do not restart it. Complete required functions
-alongside delivery, not numerical/ABI matching quotas. Existing input-owner raw
-entries remain separate from the accepted host InputManager until needed.
+## Next implementation
 
-## Execution rules
+Finish actual active00530D40→00530A40→00538770 reselection and007D9DE0 swap.
+Successful evidence under WORK: human-loading-weapon-selection/,
+human-loading-inventory-commands/,human-inventory-command-receivers/,
+human-inventory-immediate-transfer/,human-inventory-equipment-callbacks/,
+human-inventory-equipment-retirement/,human-equipment-weapon-stow/,
+human-inventory-weapon-swap/,human-inventory-swap-dependencies/. All jobs ended;
+no Ghidra process remains. Ignore older failed action/reset export directories.
 
-Research the complete next delivery boundary, implement the whole checkbox, then
-one consolidated affected verification sweep. Repeat only affected checks after
-concrete fixes. No permanent tests/subagents. Stop after one verified milestone.
-Keep handoff to latest result/next work and link detailed contracts. Preserve
-original assets, staged client, config/profiles and dist. Never run original game,
-DLLs, server, Proton or Windows fixtures. User tests via Python; no packaging/push.
+Important confirmed source:
+-005A2D50 slot lookup ECX is resolved SOURCE actor, from receiver assembly.
+- AI+74=00587BF0/+78=00587E00: immediate receiver; no packet in offline7.
+- Player/remote commands queue on84; do not make them immediate.
+-007D9DE0 calls007DA5E0 preflight,007D8B40 first notify0, then displaced-item
+ transfer override1/retain1;007D9B40 fallback, else actual world drop. Never drop
+ an entry silently or substitute the original no-source loading helper.
+-007DA5E0 uses displaced item's real permitted_slots, storage capacity/volume/
+ flags, current actor limit, stack occupancy and source-slot replacement deltas.
+-007D9B40 fallback uses NO source: pack5, head0, hand3/back2 where eligible,
+ then holsters1/pack6. Preserve the original unusual kind3/back check grouping.
+-00791EB0 holster refresh condition DD0+1E8==20hex then00774CC0; ftol operand
+ still needs assembly. Containing swap callbacks/FPV and fallback remain open.
+-005AC4C0 returns DD0+CE4, i.e. existing CD0.sector(). Compare SAME actual
+ scene root sector. Expose existing typed sector through DD0/inline; no new lookup.
+- Target128+30 and active224 still need typed producers. Cold target constructor
+ genuinely writes NULL. Do not cast raw scalar DWORDs to host actor pointers.
+- Holder+48=007D6890 unsigned(game28<field18); +4C stores expiry. Stack-array
+ +48/+4C genuine no-op mapping still needs saved byte confirmation.
 
-Build: make -C recovered application-launch engine-window startup-probe
-WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
+After equipment: formation005A91A0/005A9120 typed2C8/2CC; detached-camera00463040
+list/current/FPV/HUD mappings; Players module activation. Then full006989B0/
+session/world ownership/camera00469300; actual compiler/VM00427730/runtimePatch
+ISD1 programs; remaining SOUND portal/subtitle/effects and actor/physics1/3/4/6;
+missionA8 objectives/zone37 A4 identities; first rendered frame and user repeat/
+failure acceptance. Runtime actors before physics; descriptors before buckets;
+entries before Items. No successful missing services or alternate viewer.
+
+## Retained verified boundaries
+
+Offline7 is normal single-player. Human19C1 initially becomes active3, not player1.
+State publication/handover/derived close and SAME input/action/perception pools
+are verified. Native derived close does not automatically call base close.
+Proximity is NOT graphical GEffects; fixed100 tick/zero-only expiry and original
+nonzero→nonzero callback quirks are confirmed. Do not simplify/re-audit them.
+Human190 populated tasks and AI D4 threat producers remain typed-producer gaps.
+HUD source wrapper remains uncalled; command-before-offline7 and0049B7E0 loaded
+flag4 are required. Registry32 holes are not active actors; Graph74/78 are not
+Driver18/1C.004A7EB0 draws goal text, not objective state. Captured Tutorial146
+ISD0 base scripts are not runtimePatch ISD1 programs. B810 bindings are not VM
+programs. Preserve resource2/native34 dotted item keys and items.dat.
+
+## Execution
+
+WORK=analysis/work/mission-world-20261103. Ordinary shell uses default sandbox.
+Ghidra config writes and ASan/LSan runs need require_escalated. One Ghidra process,
+fresh export directory; check ERROR even on exit0. Section-map PE reads.
+Sanitizer libraries now persist in ignored .tools/hd2-sanitizer-runtime/usr/lib64
+(exact signed Fedora44 GCC16.2.1-3 packages; extract only, fingerprints in record).
+Use -L/rpath there; native fixtures may be created temporarily under ignored WORK
+so crashes do not erase them before recording. Remove after fingerprinting.
+i386 compiler:.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
+App:make -C recovered -j2 application-launch WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.

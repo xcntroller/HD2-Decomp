@@ -32,8 +32,11 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are34 complete client functions and559 partial entries
-(554 client/five engine). The [first completion audit](function-completion-audit.md)
+The current totals are34 complete client functions and1,440 partial entries
+(1,435 client/five engine). The [P2.2 source reconciliation](function-ledger-p2.2-reconciliation.md)
+adds881 implemented client subsets and extends six existing partial rows, with
+zero complete promotions or denominator changes. Source-only recovery and live
+world/desktop delivery remain separate. The [first completion audit](function-completion-audit.md)
 reviews all564 preexisting entries, corrects stale integration notes and closes
 five original-ABI button queries. Its0 exact instruction matches are recorded
 separately from full-body reconstruction. The subsequent

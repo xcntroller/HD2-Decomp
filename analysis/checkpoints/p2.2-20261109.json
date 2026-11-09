@@ -1,0 +1,407 @@
+{
+  "date": "2026-11-09",
+  "scope": "Local P2.2 source checkpoints; full loading checkbox remains open. No new original function credit or mission desktop verification.",
+  "baseline": "f9674b3",
+  "source_head": "f72ca562f2c383e8f784694c2cfa9bc28c354254",
+  "verification": {
+    "application_and_startup": "Strict i386 compile/link pass. Windows targets were not run.",
+    "new_headers": "250 new headers in one strict i386 translation unit compile successfully; this does not instantiate every template.",
+    "menu_text": "Existing native menu geometry/text test passes.",
+    "python": "64 relevant mission-tools/menu-text tests pass with PYTHONPATH=tools.",
+    "new_weapon_transfer": "Focused native ASan/UBSan passes cooldown/expiry precedence, dry run, displaced ownership, retained accounting, fallback placement and single release. Actual holder/stack owners with fixture item/backend/notification endpoints. Containing swap remains unimplemented.",
+    "prior_equipment": "Focused ASan/UBSan and actual-type i386 composition passed before PC crash; human-equipment-transfer logs persist. Four fixture files were lost before hashing; no fingerprint/removal claim for them.",
+    "desktop": "The user previously ran the resolved-input capture. No loaded-world, geometry or first-frame desktop acceptance."
+  },
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-application-build.log",
+      "sha256": "238a951ad8490d90e89771db652a4739bfad604da20f5b213d35e62bad60c428",
+      "text": "make: Entering directory '/home/control/Documents/Projects/H&D2 Decomp 4/recovered'\nmake: jobserver mkfifo: /tmp/GMfifo51: File exists\n\"../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++\" -I. -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror -static -municode host/application_launch.cpp scene/model_resource_key.cpp host/bitmap_font.cpp host/multiplayer_discovery.cpp frontend/control_events.cpp frontend/menu_event_queue.cpp -lwinmm -lole32 -ladvapi32 -o \"build/application_launch.exe\"\n\"../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++\" -I. -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror -static -municode host/startup_probe.cpp -lole32 -ladvapi32 -o \"build/startup_probe.exe\"\nmake: Leaving directory '/home/control/Documents/Projects/H&D2 Decomp 4/recovered'\n"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-all-headers.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": ""
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-menu-text-build.log",
+      "sha256": "6276d25a1311d386270ebf62dc6b1a38797f243b5f57079ed902333aa18b7ec5",
+      "text": "make: Entering directory '/home/control/Documents/Projects/H&D2 Decomp 4/recovered'\ng++ -I. -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror tests/menu_text_geometry_tests.cpp  -o \"build/menu_text_geometry_tests\"\nmake: Leaving directory '/home/control/Documents/Projects/H&D2 Decomp 4/recovered'\n"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-menu-text-run.log",
+      "sha256": "6780517bc306d9df0911759f65b8e81ae9f7adfed095d218ecc44c97e3ed63f7",
+      "text": "Frame-name ABI, original menu bounds, glyphs and Exit click tests passed\n"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-python-tools.log",
+      "sha256": "6cf37d38f2ac795b3046cc631d191c847633c568f16eb3eac36b3c19596f486e",
+      "text": "................................................................\n----------------------------------------------------------------------\nRan 64 tests in 0.381s\n\nOK\n"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-weapon-transfer-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "text": ""
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-weapon-transfer-run.log",
+      "sha256": "27a8702b1be4776a8d553078121a826bb868d831a3a876c756280cb0708ea9b1",
+      "text": "Weapon exchange transfers: expiry/cooldown precedence, dry run, displaced ownership, retained-source accounting, fallback placement and single release passed\n"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-sanitizer-runtime.log",
+      "sha256": "8b9b9ebb52d6eca348e4f47cf9c2216b04bb5b263b87e3b4ff9ad4a3c4bb61ca",
+      "text": "/tmp/hd2-libasan-signed.rpm b978ff53dc0555ab1647e6f1121d5d56ec64bf179ee2a612209c65bfc0a435e9\n/tmp/hd2-libasan-signed.rpm: digests signatures OK\n/tmp/hd2-libubsan-signed.rpm a21122c2a427fcfa8f3201190765b30c3c0b626a6918d552238dc04b81d624ca\n/tmp/hd2-libubsan-signed.rpm: digests signatures OK\nFingerprint/signature verified; extracted only into ignored .tools, no system installation\n"
+    }
+  ],
+  "prior_focused_receipts": [
+    {
+      "path": "analysis/work/mission-world-20261103/actor-verification-wip.json",
+      "sha256": "7f5cf86cfaa54aacf7351c68acd840a03c7bbb01fa787940cec89d379ef6b41b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/camera-vertex-verification-wip.json",
+      "sha256": "229a2d945793ddbd5060524bed4ec99a3c2418427c116be57a322564406c0b2a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-verification-wip.json",
+      "sha256": "1b1394520bb3f2c43d561193c8955fa9e63e0cf6375efb3d4146f82f29b3ebaf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-verification-wip.json",
+      "sha256": "7d194757ed7c48b9ce929b67e53545e6179d7f986214710dbe0aeaa2d61dc431"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/concrete-actor-verification-wip.json",
+      "sha256": "81cb457cc8b93ab3ea0e0e97f0884c08446eb79555923c2abd01d490919a64aa"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/derived-activation-verification-wip.json",
+      "sha256": "8d1c7e29daab69fcb21bfc8a8baa5930f8b97fabf7a05125581b52bccb0efc64"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/first-person-animation-table-verification-wip.json",
+      "sha256": "69fdc41496302b92905dfff316da2cc67b453bb37c8d8fca943da33449c473d0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/first-person-material-verification-wip.json",
+      "sha256": "ac1455874a2cf04c06d51d63e0d84970bc78feb71fce64edf1a96419ed9768c7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/first-person-model-verification-wip.json",
+      "sha256": "34b6ac5264e899c0257c9c9f392019809d0afef35fc5a69353089d9d22a92c9c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/first-person-playback-camera-sound-verification-wip.json",
+      "sha256": "20c4fb4c4c0d1ff819ca19cebd287330b92654c500c65a3ad04c3ed682f44134"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/first-person-view-verification-wip.json",
+      "sha256": "54426419599ce3c83bd704f92e4474ae91d19c2926fb85e81d7f7c697401dbad"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/game-hud-verification-wip.json",
+      "sha256": "f64e9c3f12d5b3b5d2d535e56331a473508ead3ab8c84282c3f0c5cebe1a874d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-artwork-cursor-verification-wip.json",
+      "sha256": "8b105bfd10f8ce21e947ff837116ac68347056e63b1bf51392d2e58619dd8fed"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-auxiliary-verification-wip.json",
+      "sha256": "e1b04d8591806007949bc3b7ffab76fb2aee70b06dd343dba21869a387e2267f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-command-verification-wip.json",
+      "sha256": "ba9bd0f8faa327841d9cc1b369bc3af65712145df0b7deac0fbd8cf3d0855016"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-compass-verification-wip.json",
+      "sha256": "39311eee6df10628fccba95ff44bbd103edc0bfdb6e67d2711148892c4aacd38"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-configuration-verification-wip.json",
+      "sha256": "7dc1fc9d04e8ad2886c887734412352fbcfa4230153d24d7d27cd6f51671bb5c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-console-verification-wip.json",
+      "sha256": "f519d12550cd54b72dbba936d0a5b37f7e0fa14d3376cd185fe085d163b5f9b5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-crosshair-verification-wip.json",
+      "sha256": "1653802bb4390aa8542f7fa361f99fd9c236713a819ef1e6c815d3532e585f23"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-dialog-draw-verification-wip.json",
+      "sha256": "95c5d7b9b813d4a4333c8e4584a06dde2ef9736f9ebc4297f1aebc6a990686f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-dialogs-verification-wip.json",
+      "sha256": "cd30a580fc4f330da9625b36443c133afe40fcc872bcc7fc6258ae2e6d361900"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-hands-objectives-verification-wip.json",
+      "sha256": "0a12f9367e022dc66aa8f44e2ef9bb3d8fdc179bb66901820bb0013e7dcffaf8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-info-verification-wip.json",
+      "sha256": "bab8fe04e8eb60e431b98e47b6d8285a1b3fc507b1ac74cb719590ea4a637dd3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-injury-movies-verification-wip.json",
+      "sha256": "3a32c61097557907dc460924993d94b6cf03fe47c2395e73dbddec2b256c43d7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-inventory-verification-wip.json",
+      "sha256": "97645203ee34522b62fe01bb93fcb541753e5e020d9c6c59f172fc8c28cc68db"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-map-verification-wip.json",
+      "sha256": "6d727072a3985ad02fbdab328adc95056d6eb1b98a36f40a5574a6535aa0ae11"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-message-draw-verification-wip.json",
+      "sha256": "3cff06fb92da7dc302552eba213d7582a5fdc09ea3cc9da7c174a1edd2c71b7f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-messages-verification-wip.json",
+      "sha256": "13fcf35bf31f83121a15f6e64763f759074b0be920d57f8a23ab7323e0bd58b4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-panel-draw-verification-wip.json",
+      "sha256": "883689abeeb2b8a99538bae35b5e68916c958612929347250d7021f33bfba006"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-panels-verification-wip.json",
+      "sha256": "09aa5577a8cf53258a8f5abca090523d17f980b10d189d8c8866fa99327c2b73"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-render-flow-verification-wip.json",
+      "sha256": "2dacc48c5987c9512703a04239b79f9bb28d934b058c4f14dac3c9643f77e2c5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-route-verification-wip.json",
+      "sha256": "959efb0c24ef5117626cbf986cf9717a3f743ec8bcf4b59683091cc05d848373"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-scene-verification-wip.json",
+      "sha256": "fd8af8596171a96e6a696fbe3c2f015b46a899db0380ab715d713035c4f15224"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-score-timers-verification-wip.json",
+      "sha256": "1c18d80d88ce73b951cf5d595f34faa35cb1b4b9254b90ce6e1d4294d4824835"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-scroll-verification-wip.json",
+      "sha256": "c239d60e4f54675afb06d698c81230dd16416852057627289428736b75b0ea38"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-selection-verification-wip.json",
+      "sha256": "eed1ae195258ca5ab8db4b019ea77a4a9a841b1b9effa7cf37dba5a2a2e6ca57"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-selector-verification-wip.json",
+      "sha256": "042394a2b6994cea615fb8a9e65139e2e784c0dab00208576686f8130fb20f5c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-shared-actor-verification-wip.json",
+      "sha256": "89aeca496f236b0a5522fa2fd243bd16ce7537302576db88ee70edb0e4c39983"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-small-panels-verification-wip.json",
+      "sha256": "8a867e72bf1be9852ecf1b7b01985ca7ee26c3d3fef38f6610c93037a33ba359"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-soldier-verification-wip.json",
+      "sha256": "562cbd600d9cf82684862a2eff48b7c065a681aa839b7f08a79b22a105c2753a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-text-geometry-verification-wip.json",
+      "sha256": "ba9b0ce24f0840dc0151e920389e3bdd83691b21406404e0b01f8b8bf4dcd8c8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-text-verification-wip.json",
+      "sha256": "57967d688b63a49fc13bdea98c1d53422e8b141bb01e6dd97bca8de83cf92e88"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-active-ai-verification-wip.json",
+      "sha256": "18c340cba1a512a4a83495cd5fc49c85f290cc58a0a2a8b45c6938c90d038b69"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-ai-events-verification-wip.json",
+      "sha256": "8321bb3e311eabf875f73af6f6fbe26630adf395f3aef50fb6bd1a7b8e0db9c5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-ai-loading-verification-wip.json",
+      "sha256": "19f4a1d461bffcb4eb8e4442521bc62d3b322c11c7f0ff0570f6aa78e7495959"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-animation-loading-verification-wip.json",
+      "sha256": "4a7c68facc9f7081055ce74808b7d7934449639bb46de8f69234fd7f2ca6771f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-camera-loading-verification-wip.json",
+      "sha256": "5828917e2f0f357a864452352096934407bbdd97074d4d07e09679e2d559989b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-containing-verification-wip.json",
+      "sha256": "b737eccf858a7caedc093a57b033dbdb917b7fa5af14f70ae67723b6f6cb8ad1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-control-loading-verification-wip.json",
+      "sha256": "8f080f0b64b3921931480705dcd69f8b4feb47b5bf4abd2b1d4c82b99ad5142f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-equipment-cache-opacity-verification-wip.json",
+      "sha256": "50c77f13128c5f62bca4027d5bef878dc24daa3b9e9fc6e7ab7189e622ece906"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-equipment-loading-verification-wip.json",
+      "sha256": "9aeaf7956950083975fd943f025c16fda066286d43dd896b56e6542c7b3fdb90"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-first-person-effects-verification-wip.json",
+      "sha256": "b1528eac8d036c5e1ced3db8f2faedf5e55b542dab7223cb36edd9ee7406f755"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-guard-ai-verification-wip.json",
+      "sha256": "d1cc22795a9d614976aa631164c411bea4426d6c2448613cc9a50441adef3555"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-holsters-verification-wip.json",
+      "sha256": "0a6a7de49e27b9436491594cd22a8aead02a0c9ac9dd200c7bc2c755e5350a08"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-input-manager-verification-wip.json",
+      "sha256": "9991422de45924b46af62c580ad8e1a286be7e9e21a4cddd04a34e524dc57857"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-model-verification-wip.json",
+      "sha256": "6e63205729644ddbb4e7808f8d2ff984d74f723e7116099befa699c798620d42"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-offline-equipment-verification-wip.json",
+      "sha256": "b55ed3be8e3b7b1351f4ffc9acd4af6e0497bab44186e64759b8120942df079c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-offline-face-verification-wip.json",
+      "sha256": "5757212e6f5a8dd7a78f1bd428e1785d57b2317b967877e9d378a1c9fada2f5f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-offline-state-verification-wip.json",
+      "sha256": "b71903de461104b6c5f3e987f95b7fe9e0dfcaf883a8c4f88712258ef3633654"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-perception-records-verification-wip.json",
+      "sha256": "57cc12624c58fa39b83ee2705ec23a29d24d47d6c2c3c4437132a1d51e8941cb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-physical-loading-verification-wip.json",
+      "sha256": "ede5ed13e62cef4e818d81c701b29ee85c00053065a4539fa1790db06c741332"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-player-loading-verification-wip.json",
+      "sha256": "7e5951b3fd86532f5bddd4c9313a58f90b226d8679210622bdb72c5c4ca40224"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-proximity-verification-wip.json",
+      "sha256": "ff8479ade93e942492b99a59ed3352af5ad1f8dbb664fd597f5d84d66de9535e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-script-ai-verification-wip.json",
+      "sha256": "3d236e43162bff332d0fe5c7a173059e5d6213caf3f9c86e6141c3f4e14c6c24"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-sight-verification-wip.json",
+      "sha256": "d0006c3490f397373b1211e724c2e6d99d4bb2045b81ffd8be270c0d52c452a0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-sound-states-verification-wip.json",
+      "sha256": "ae0f7a816e80699f60b79ced799a5f5ae54a58d4df4adb298938b43994db4e24"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-sound-verification-wip.json",
+      "sha256": "1beea921c211e0ed6d92128b51c79af762b26f54471c6dddd55971ae9479af25"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-speech-verification-wip.json",
+      "sha256": "46a8b098d13ed47c4ce1adf27a54d022a5f500cdf287450b4e7e667a4152b512"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-state-loading-verification-wip.json",
+      "sha256": "d9f342a90633d90b3d1354f1fbe6eba740cb03a0b76fb98b9bea2b86b583c2ff"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-state-owner-verification-wip.json",
+      "sha256": "ebfd0125fe68cf6a6ecbb41edd490ac6171dcc3278c2d9dde60b0adcb3486355"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-stats-eye-verification-wip.json",
+      "sha256": "34004d2127b89d21d04ce0ecb4248a0a113a3920bb177006a8b276184eb2ba48"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-weapon-selection-verification-wip.json",
+      "sha256": "f90078dba45eb5642ee48ffd4b29c208d20a280d0338ea43705940247f23bd33"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/item-model-verification-wip.json",
+      "sha256": "413d4884e04bc46d5a24f904c85cb713f236d96e2d195d85bfc930c21e598dfe"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/item-placement-verification-wip.json",
+      "sha256": "440ab2b295543164747bad2a983b6cfa7192ff817f0807c55b75ebcbfe017d43"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/items-physics-verification-wip.json",
+      "sha256": "557ab89894eb351199ba13b940fd2de7ed64c17955387e30beb12926629717c1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/loading-module-verification-wip.json",
+      "sha256": "7aaaa282d82af4a5b4aff3d732f154ced48ff647e6b5b09959d259412c7da84a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/loading-screen-verification-wip.json",
+      "sha256": "72a46b975f96f6f0486412e5316f371805430a2402db3bf25d6e5ba417e209a4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/players-loading-verification-wip.json",
+      "sha256": "2056ad1bc43ffdea5238b04d6ce15270ac71de5c953832412f33c6cddb3b5c93"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/players-roster-verification-wip.json",
+      "sha256": "0702242912016a9b1fa562af7d4f541bf3abba8cf4cd4d16143020109a40b9ed"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/verification-wip.json",
+      "sha256": "e005c897d20d34daba0a5cf2dc2fc4207f33692816e60d249c2c29152ebd1559"
+    }
+  ],
+  "temporary_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-all-headers.cpp",
+      "sha256": "d544c6f796f4636e6224eb8f861b8532357e69ac9999566880c647bed5ca456d",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-all-headers.o",
+      "sha256": "eab45da0a6d0bc7965bd376514fadc4a3e05052a315574a1816eafae661ec3a5",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-weapon-transfer-audit.cpp",
+      "sha256": "1530d4f396e0a151f6dd4e53b41ee055b6ced0a53f61f62e523f26fc4c9fb511",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-weapon-transfer-audit",
+      "sha256": "46c0c44e2e6319813b09135df65f21942f9d5eb3f534d949383907620d130598",
+      "removed": true
+    }
+  ],
+  "sanitizer_runtime": {
+    "location": ".tools/hd2-sanitizer-runtime/usr/lib64",
+    "source": "Official Fedora44 GCC16.2.1-3 signed RPMs; extract only, no system installation. Original fingerprints/signatures verified.",
+    "libasan_rpm_sha256": "b978ff53dc0555ab1647e6f1121d5d56ec64bf179ee2a612209c65bfc0a435e9",
+    "libubsan_rpm_sha256": "a21122c2a427fcfa8f3201190765b30c3c0b626a6918d552238dc04b81d624ca"
+  }
+}

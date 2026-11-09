@@ -148,6 +148,10 @@ where possible; shared controller functions retain their other explicit exclusio
 
 ## P2.2 — Load and render one real mission
 
+User clarification2026-11-03: bring required actor construction and collision
+dependencies forward from P2.3; preserve the full loading checkpoint. A separate
+static-scene checkpoint is not authorized. [Current contract](mission-world-loading.md).
+
 Recover the ordered006CA780 pipeline: preparation/loading screen006D3F20/006C9640,
 Scene resource006D4180, scene2 stage006CBF30, root dispatch006CC760 and object
 reader006CD940. Reuse actual archive/directory/chunk/resource owners. Confirm
@@ -166,6 +170,8 @@ set for the chosen level, extend to a second mission before final acceptance and
 keep006CD940 partial until its full original body is reconstructed. No whole-body
 credit for the existing resource-key and candidate-classification fragments.
 Original LS3DF remains the model/scene engine; do not rebuild4DS as a side project.
+[Current module/activation source contracts](loading-modules.md) track the required
+receivers and remaining actual containing-world integration.
 
 Success: actual selected mission assets, original loading presentation, real scene
 and camera reach a world frame through the controller, with readiness tied to

@@ -1,9 +1,84 @@
 # Technical research guide
 
+2026-11-09 ledger reconciliation: [explicit source/body mapping](analysis/function-ledger-p2.2-reconciliation.md)
+registers the implemented P2.2 subsets accumulated since f9674b3. Current tally:
+34 complete client and1,440 partial (1,435 client/five engine),18,783 frozen.
+881 added client partials, six extended rows, zero complete promotions. Prior
+"no new ledger credit" notes below describe their original checkpoints; the
+current tally is now reconciled. Ledger/fingerprint/README checks and27 existing
+tracker tests pass. Actual mission loading/world/desktop delivery remains open.
+
+2026-11-09 latest: [Human lifetime source](analysis/human-state-loading.md#containing-human-loading-source--2026-11-09)
+now composes the two activation/retirement passes, shared stats/profile/eye/speech,
+head marker, B0 and Sight/SOUND registration. [Derived sound callbacks](analysis/sight-loading.md#derived-human-sound-receivers--2026-11-09)
+include script interrupts, look reactions and HUD compass timers. Focused native
+sanitizers, actual i386 and app link pass; fixtures removed. Required Players,
+formation, proximity-pair consumers and complete World/VM/firstframe remain.
+Source-only: loading readiness false, P2.2 unchecked, no new ledger/desktop credit.
+
+Follow-up: actual shared008AED54 proximity pair state/registration/timing/feedback
+and Players control/current/selected/override/frame collection are now source
+verified. Human activation directly consumes the actual proximity owner. Required
+equipment/formation/FPV/HUD/VM/world composition remains. See latest Human-state
+contracts; focused native/i386/app checks pass, eight temporary fixtures removed.
+
+2026-11-09 continuation: [Human states](analysis/human-state-loading.md) now include
+script5/guard4/active3 loading, navigation radius routes, shared AI event/action
+ownership and bidirectional player handover. A concrete camera saved-position
+query mapping was corrected. Focused native sanitizers/actual i386/app pass;
+actual equipment/Players/VM/world/firstframe composition remains required.
+Loading readiness remains false; P2.2 stays open with no new ledger/desktop credit.
+
+2026-11-09: [Sight/perception source](analysis/sight-loading.md) now covers typed target/observer
+registration, markers, cross-links/relationship records, offline friendship and
+Human actor lists/notifications. Focused native sanitizers/actual i386/app pass;
+all8temporary artifacts removed. Actual B0 derived events, alignment and
+world/player/VM/firstframe integration remain required. P2.2 stays open.
+
+2026-11-08 source continuation: required offline Human face geometry/shared
+mesh-texture-mask ownership and equipment action retirement now pass focused
+ASan/UBSan, actual i386 composition and app compile/link. See latest
+[geometry](analysis/human-model-geometry.md) and [equipment](analysis/human-control-loading.md)
+contracts. Actual world/Human/player/VM/firstframe composition remains; loading
+readiness is false. No desktop or ledger credit.
+
 For the plain-English overview and milestone tracker, see [the README](README.md).
 This guide preserves the detailed evidence, limitations, and tool instructions.
 
-Current continuation (2026-11-03): [game-owner integration](analysis/game-owner-integration.md)
+Current execution-path correction (2026-11-08): StartupSession's actual gate7
+is the normal offline single-player path; earlier Human helpers incorrectly
+labelled/excluded it as editor-only. Mode7 Human branches (B0/AI/player binding,
+face geometry and equipment action lifetime) remain REQUIRED for Tutorial.
+See [Human contracts](analysis/human-state-loading.md), latest section. The
+verified non7 source paths remain valid; loading readiness is still false.
+
+Current continuation (2026-11-08): [HUD contracts](analysis/hud-loading.md)
+include all loading panels plus containing0049A940/0049B280/0049B1B0 source,
+actual shared GameSceneActors/movie backend and StartupSession process owners.
+SAME77 inline texts/fonts/styles/signal/compass/camera and registry identity
+view, repeat/failure cleanup pass focused native ASan/UBSan, strict i386 and app
+compile/link. Canonical GameHudLoading source wrapper remains uncalled. Actual
+process console-variable getter/no_gi10 and camera80/B4 getter now recovered;
+console command parsing/sideeffects remain separate. All temporary audits removed.
+Shared byte-font layout/render, panel draw calls, message queue/byte renderer and
+containing HUD draw control flow pass focused ASan/UBSan, strict i386/app link;
+fixtures removed. Populated selector/actual inventory quantity searches now pass
+the same focused verification. Command-before remains the required draw consumer; actor selection bounds/
+world-scene projection now source-verified. World/Players/activation/VM/SOUND/actors/physics/
+firstframe remain. Session stayscold/loading_ready=
+false; P2.2 open, no ledger/desktop credit.
+
+Prior continuation (2026-11-05): full P2.2 remains open. [HUD source contracts](analysis/hud-loading.md)
+now include artwork/text, panel/source lifetimes, soldier/compass/message/crosshair/
+scoreboard/explosive timer initialization and shared actual application24 configuration
+DATA/getters. Startup rules come from006AD350 and differ from menu presets;
+006B66D0 now reads the same current configuration/profile through the actual host.
+Focused native ASan/UBSan, actual i386 composition and application builds pass;
+remaining inventory/map/info/command panels/full HUD scene and world activation
+still prevent readiness. [Human/FPV/camera contracts](analysis/human-state-loading.md)
+remain valid. No live world/first frame/desktop or new ledger credit; no commit/push.
+
+Previous continuation (2026-11-03): [game-owner integration](analysis/game-owner-integration.md)
 now constructs the real native unloaded HUD/text/overlay/table owners and original
 engine scene through the ordinary kind7 controller receiver. Native HUD contains77
 actual shared-font text owners; five font atlases use accepted paths/decoder and
@@ -4292,3 +4367,233 @@ adds33 partial client entries; total559 partial (554client/five engine), zero
 complete /18,783 frozen. All multiplayer delivery gates stay open. Source changes
 are uncommitted; user desktop review is required before an interactive commit.
 Loadout screens remain implemented but completely untested until accessible.
+
+2026-11-03 P2.2 is in progress under the user-selected full loading boundary.
+The user-run runtime capture resolves actual Patch/language/base inputs, including
+the required111708-byte animation table. Native animation/navigation/actor-property,
+Car COMP/runtime parameter and collision-tree readers now pass captured Tutorial/
+ALPS1 inputs and temporary ASan/UBSan failure checks. Concrete engine scene open,
+registration/camera and collision frame/LOD/vertex bridges compile. Full Scene2/
+actor initialization, loading presentation and activation integration are still
+required before a world test. [Current contract and verification limits](analysis/mission-world-loading.md).
+Both P2.2 checkboxes remain open; no new function credit, desktop world claim,
+package, staging, commit or push. Temporary audits removed after fingerprinting.
+
+P2.2 continuation: native Scene2/root/object dispatch, lightmap boundary guards,
+GEffects environment values and real engine/cache object endpoints are source-only.
+Captured Tutorial/ALPS1 audits, strict Windows builds, native regressions and158
+Python tests pass. Vehicle geometry004E2E30/physics004ED270 remain required; the
+expanded read-only capture now derives the nine Car bindings and four missing
+model keys and reads their registered-directory candidates. Await the user-run
+Python capture before validating those geometry dependencies. Both P2.2 boxes
+remain open; no desktop delivery, ledger credit or successful loader integration.
+See [contracts, evidence and input gate](analysis/mission-world-loading.md#scene2-application-continuation-and-vehicle-input-gate).
+
+
+2026-11-04 P2.2 continuation: expanded vehicle capture verified (all35 hashes);
+Car runtime physics/tyres and ordered model geometry now have source-only native
+owners and real LS3DF endpoints. Seats/doors, collision markers, wheels/axles,
+strips, deformables, light/projector resources and original default physics are
+composed and sanitizer-audited with synthetic geometry. Actor callbacks,
+ancillary model and world loading/activation integration remain required.
+[Current Car boundary and evidence](analysis/car-geometry-loading.md). Earlier
+capture-wait notes above are superseded; no new user capture is needed. Both
+P2.2 boxes remain open; no new ledger credit or desktop world claim.
+
+2026-11-04 actor continuation: Car ancillary/BALLAST owners are implemented and
+audited. Native common/Human storage lifetimes, registered-entry/reference
+cleanup, Ladder/SupplyBox geometry and ordered Switch state/property consumers
+now pass focused ASan/UBSan audits. Concrete shared actor/frame services and
+explicit template instantiation compile for i386. Actual actor factory, required
+family owners/callbacks, loading modules and activation remain under the complete
+P2.2 boundary. [Actor contracts and limits](analysis/actor-loading-ownership.md).
+No successful world loader, new function credit or desktop world verification.
+
+2026-11-04 concrete actor continuation: Scene2 registry/frame ownership now
+composes thirteen cold families with real constructor defaults and native
+property/geometry consumers. Captured Tutorial/ALPS1 audits pass205 records,
+113 truncations and66 new initialization/cleanup failures; strict i386 family
+instantiation passes. Human command queues are only the verified cold branch;
+actual Human/Switch runtime services remain mandatory and unintegrated. Car
+callbacks/owner, loading modules/presentation and world activation remain required.
+[Detailed contracts](analysis/actor-loading-ownership.md#concrete-cold-actor-composition).
+No function credit, successful world load or desktop claim.
+
+2026-11-04 loading presentation continuation: separate loader scene, camera/light,
+actual mission briefing/title captions, progress rendering, complementary finish
+gates, Space prompt and ordered lifetime now have source-only owners and real
+engine/font endpoints. ASan/UBSan passes127 lifecycle failures and140 actual-caption
+layouts across seven languages/five resolutions. Strict i386 composition, full
+Windows builds and native regressions pass; no Windows execution. Runtime/module
+and full actor/loading/activation integration remain required. No function credit
+or desktop claim. [Contract](analysis/loading-presentation.md).
+
+-2026-11-04: source-only Car004D0B60/004D10A0/004D55C0 composition, fourteen
+  collision callbacks and004D5140 detached Item contract now implemented/audited;
+  fourteen cold actor families are available to the required-service factory.
+  Nine captured property records/36 truncations,113 composed failure checks,
+  960 contact cases/26 failures and particle order/lifetime/79 failures pass native
+  ASan/UBSan. Actual containing world and live physics/module integration remain
+  open; no P2.2/desktop/ledger credit. [Car contract](analysis/car-geometry-loading.md#car-actor-and-collision-callback-composition).
+
+-2026-11-04: source-only module dispatch, concrete Scene2 parser composition,
+  effect definitions, corrected EMTR region selection/Car emitter pool and flat
+  tables, common actor activation/deactivation, dynamic collision buckets, tracks
+  and script binding pairs are reconstructed/audited. Full module/context/item/
+  actor activation and actual world integration remain open; no P2.2/desktop/
+  ledger credit. The corrected1488-failure emitter audit supersedes the old
+  region-removal interpretation in the79-failure fixture.
+  [Detailed evidence and native verification](analysis/loading-modules.md).
+
+2026-11-04, P2.2 source continuation: loaded camera/settings, mesh-movie timed
+texture update and mission vertex-instance loading/activation/interpolation now
+have native owners and actual host frame/mesh/video endpoints. ASan/UBSan passes
+88 camera words/16 setup failures,160 movie cases/five failures, and5376 real
+Tutorial flag pose words/13 failures. Strict i386 and affected Windows builds/
+native regressions pass. [Contracts, addresses and exclusions](analysis/loading-modules.md#loaded-camera-and-vertex-instances).
+No containing world, desktop verification, new ledger credit or completed P2.2.
+
+2026-11-04, P2.2 continuation: primary item model cache/recursive frame clone and
+cleanup now have native owners and actual host resource/frame endpoints. Native34
+is resources[2]; preserve model keys verbatim. Captured catalogue differs from
+older base bytes; audit passes its228 names/18 absent names and32 failures.
+Special PROJ/EMTR/sound/light release skips are preserved; later consumers remain
+unverified. [Evidence and limits](analysis/loading-modules.md#native-item-instance-owners).
+No live containing world, desktop execution or new function-ledger credit.
+
+P2.2 item services now compose actual cache/frame endpoints, shared game time and
+kind20 registry with all246 RuntimeItems in the native fixture; nested pack-entry
+cleanup removes owners before destruction. Six recursive teardown cases, strict
+host entry/service instantiation and affected Windows/native builds pass. Placed
+actors/transfers/VM/world integration remain; no desktop or new ledger credit.
+# P2.2 continuation — item IDs, navigation and runtime actors (2026-11-04)
+
+Source/native audits now cover007DD5D0 identity reuse,007D81A0 version16 record
+framing,0051D5C0 navigation against the same mission tables, runtime type35
+005E2260/005E23E0, and004770B0/00477190's separate runtime registry. Contracts,
+original addresses, guard differences and audit counts are in
+[loading-modules.md](analysis/loading-modules.md#item-identities-navigation-and-the-separate-runtime-registry).
+Loose mission items use runtime type11 and real005B69B0 physics/collision;
+type35 completion does not complete that path. Full P2.2 remains open, with no
+live world/desktop acceptance or new function credit. Subsequent builds/manifests pass; see the next continuation entry.
+# P2.2 loose-item loading continuation — 2026-11-05
+
+Runtime type11 now composes its actual item model, common actor and reconstructed
+rigid-body loading against the existing dynamic buckets. Root/child bounds,
+inertia, callback/state, descriptor registration and ordered frame/item teardown
+are native audited; actual frame/model/sound/network endpoints remain fixtures.
+Contracts and original addresses: [rigid-body loading](analysis/rigid-body-loading.md).
+All24 captured placed records compose those native owners; strict actual i386
+host adapters, affected Windows compile/link and native regressions pass. The
+containing world and Items transfer/module integration are still open. No new
+ledger/desktop claim; item-placement-verification-wip.json fingerprints the sources,
+evidence and16 removed temporary audit artifacts.
+
+# P2.2 Items transfer and physics producer — 2026-11-05
+
+425 captured inventory transfers now use actual capacities, holders/stacks and
+selected definitions. Items module membership/activation and runtime placement
+queues have source owners; static runtime35 borrows a physics object, not an
+inventory entry. Common/type5/type2 physics loading now registers with the same
+collision buckets and stable frame userdata handles. Focused sanitizer and strict
+i386 checks pass; [contract, evidence and exclusions](analysis/item-transfer-physics-loading.md).
+No containing world, desktop verification or new function credit. Continue full
+P2.2 with derived actor activation/colliders and actual module/VM consumers.
+
+2026-11-05, continuing full P2.2: actual Null/Spawn/Switch/Ladder activation,
+shared collision descriptors and Scene2 retirement ownership now have focused
+native and strict i386 verification. [Evidence and remaining Human boundary](analysis/derived-actor-activation.md).
+No containing world/desktop result or new ledger credit. Immediate work is Human
+inline model/control ownership at98 and its actual activation dependencies.
+
+Human speech definitions/cache005AFE00/005B0570/005B0390 now have native source
+with actual host file resolution and a mandatory shared CRT random stream.
+16 base sets/1697 phrases pass focused checks. [Human contract](analysis/human-loading.md)
+records exact Tables\\speech.set path, ownership and outstanding model/control
+initialization. No containing world, desktop claim or new ledger credit.
+
+Human shared pool00784B70/00784F60/00784ED0 is a SOUND pool, confirmed by
+kind4 frames and40 wav variants; the earlier model-pool interpretation is corrected.
+Persistent variant state, actual resource/frame endpoints and shared-use leases
+are source/native verified. [Human contract](analysis/human-loading.md#shared-human-sound-pool-now-implemented).
+No Human control/world construction, desktop execution or new ledger credit.
+
+Human ordinary model geometry now composes23 bones,11 body/16 point trees,
+14 saved poses, camera/movement defaults and original look state. Focused checks
+pass146 joint/228 model endpoint failures; native E0 binding borrows DD0+258's
+ADDRESS, and original look-state flag overwrites are preserved. [Contract and
+remaining collision/VM/equipment boundary](analysis/human-model-geometry.md).
+No live Human/containing world, desktop result or new ledger credit.
+
+Human ground-query tracing found collision cell+08/+0C are serialized query
+limits, not scratch; the loader now preserves them. Focused checks compare all
+32768 pairs in each captured Tutorial/ALPS1 input against independent file bytes.
+Nine posture-volume markers and006FDA00 vertical limits are also source verified.
+Ground sweeps/VM/physics/equipment remain required; no containing-world claim.
+
+Required Human ground sweep/static and dynamic narrow phases, exclusion owner
+and AC0 reset now have source with focused verification. Morph tables/face loading,
+physical descriptors and sound-frame return also pass native/i386 checks (68 face
+transitions,99 physical frame/five registration failures).004336C0+90 is SOUND,
+not VM; matching startup sound ownership is reused. BSS initializers and base
+morph fixture evidence are preserved. [Current contracts](analysis/human-model-geometry.md).
+No containing world, activated Human, desktop result or new ledger credit.
+
+Human holster loading0078CE20/0078CDB0 now has actual80 model definitions,
+10 sets,24 markers, shared tecko/category3 resource ownership and native track7
+restoration. Equipment selectors/counts also have source. Focused native/i386
+checks pass141 endpoint failures and affected application compile/link.
+[Contract and remaining230 geometry/control activation](analysis/human-equipment-loading.md).
+No activated Human/world, desktop result or new ledger credit.
+
+Definition231's mask/finL/finR/tank cache now reuses the selected catalogue/model
+resolver with original direct-root release semantics. Human opacity/scheduler/
+sector ambient dependencies also have source, including native tied-maxima and
+NaN behavior. Focused checks pass18 cache/11 ambient endpoints; actual i386 and
+application compile/link pass. Exact BSS equipment-offset initializers are
+preserved. [Contract](analysis/human-equipment-loading.md). World remains absent.
+
+2026-11-05 P2.2 continuation: ordinary Human230 activation/cleanup and0078DF60 loading cases0/1/2/3/10 now have source, with E0 equipment commands,6950 weapon binding and actual GEffects category4 shadow/visibility dependencies. Focused native ASan/UBSan checks pass170/13/22/27 endpoint failures; actual host i386 composition compiles. Live DD0/CD0/C00, mandatory spatial SOUND producer and containing-world integration remain. No world readiness, desktop verification or new ledger credit. [Contracts/evidence](analysis/human-equipment-loading.md).
+
+2026-11-05 P2.2 continuation: Human animation tracks/CD0 initialization, marker dispatch/host bridge and shared SOUND spatial producer/hearing now have focused native/i386 checks. Actual speech dubbing, actor/module/portal consumers, DD0/C00/shared presentation and containing-world integration remain; no readiness, desktop result or ledger credit. [Contracts/evidence](analysis/human-animation-loading.md).
+
+2026-11-05 P2.2 continuation: actual sixteen-channel dubbing and DD0/AA0/C00/shared presentation/inline98/230 source composition now pass focused native sanitizer and actual-host i386 checks. Actual inventory/SOUND holder3 model and ordered audio cleanup are composed. Human cold fields/world readiness remain unchanged; actual B0/Sight/VM/world consumers and first-frame integration remain. [Contracts/evidence](analysis/human-control-loading.md). No desktop claim or new ledger credit.
+
+2026-11-05: Human B0 common binding now uses a distinct recovered0051D780 volume-distance navigation query and actual input record/history/quantizer source.3000 captured-table query comparisons and focused B0/input failure checks pass; real i386 Human/frame/input/Win32 clock composition compiles. Quantizer pointers are typed and leaf null-binding preservation is explicit. Actual derived B0/manager/Sight/VM/world remain required. [Contracts/evidence](analysis/human-state-loading.md). No readiness, desktop or ledger credit.
+
+2026-11-05 continued P2.2 source: AI shared direction/five resources, actual input
+callbacks/bit cursors, ordinary AI bind and state6/7 loading, session profiles and
+correct record-ID getter arguments now have focused native/i386 verification.
+[Contracts/evidence/limits](analysis/human-state-loading.md). Application compile/
+link passes; Human/world readiness and ledger credit remain unchanged. Actual
+manager/Car/default/stream lifetime, authority command20, full player state and
+its first-person/Sight/VM/world consumers remain required. No desktop execution.
+
+2026-11-05 further source continuation: actual containing Human input manager
+(embedded record, profile/interval rules and teardown), corrected original
+large/small/medium profile mapping, ordinary player loading composition and
+camera00465EA0 pass focused native/i386/application checks. Actual first-person/
+formation/car-exit Presentation remains mandatory and uncomposed. See
+[contracts and current dependency trace](analysis/human-state-loading.md).
+No world readiness/desktop/function credit.
+
+2026-11-05:00490C80 first-person animation table now reads actual Files into the same OverlayOwner. Base255-weapon/546-name table and focused native/i386/application checks pass. Runtime model/view activation remains; no readiness/desktop/ledger credit. See [contracts](analysis/human-state-loading.md).
+
+2026-11-05: FPV item cache007DF510/class1 magazine and view hands00490930/weapon00491130/reset004932A0/teardown00490B50 source verified with actual-host i386, focused native ownership/14 cleanup failures and application build. Containing view/player/clip/material activation remains; no ledger/world/desktop credit.
+
+2026-11-05: FPV00492610 material transfer,00492A90/00491440 clip selection/blending,004933C0 sound requests and required bounded camera receivers now pass focused native/i386/application checks. Source-only containing player/view/world activation remains. No readiness/desktop/ledger credit. Contracts: [analysis/human-state-loading.md](analysis/human-state-loading.md).
+
+2026-11-05: containing FPV004922A0/00492500/00492930 and enable/zoom/secondary/004909D0 activation source now composes real model/item/table/material/playback/camera/effects receivers. Focused native lifecycle/action/failure checks and actual-host i386/application pass. Players world mappings and HUD cursor remain mandatory declared interfaces; no live session/world/readiness/desktop/ledger credit. See Human-state loading contracts.
+
+2026-11-05: HUD cursor/artwork99 texture borrowers, shared00644A80/006449D0 text geometry and seven small panel startup/setter/close bodies now pass focused native/failure, actual-host i386 and application checks. Same font/localization factory retained. Full HUD scene/panels/teardown/render and world integration remain; no readiness/desktop/ledger credit. [HUD contracts](analysis/hud-loading.md).
+
+2026-11-09 checkpoint recovery: accumulated P2.2 source split into small local
+commits at the user's request. Future verified source checkpoints should also
+be committed without reducing the full plan checkbox scope. App/startup i386
+compile/link,250-header strict compile, existing native menu text and64 relevant
+Python tests pass. Focused new weapon-transfer ASan/UBSan verifies real storage/
+entry ownership and retained exchange accounting. [Saved verification record](analysis/checkpoints/p2.2-20261109.json).
+Human containing lifetime/Players/proximity/sound reactions and offline loading
+inventory/typed equipment handoff are source. Active containing weapon swap,
+formation/camera/player consumers, VM and actual world integration remain; no
+mission first frame, desktop acceptance or function ledger credit is claimed.

@@ -238,7 +238,8 @@ preparation, not a standalone audit-only milestone.
 ## 2. Load an original mission to its first world frame
 
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
-  ordered cleanup; integrate existing readers and finish needed parser/loader bodies.
+  required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
+  [Full loading boundary](analysis/mission-world-loading.md); [Source progress](analysis/loading-modules.md); [Human lifetime/Players/proximity](analysis/human-state-loading.md); [HUD source](analysis/hud-loading.md); runtime/loading integration remains.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat
   loading through Python; unsupported required assets/data cannot report success.
 
