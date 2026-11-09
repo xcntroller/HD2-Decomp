@@ -48,6 +48,9 @@ public:
         for(std::size_t n=1;n<groups.size();++n)frames_.human_eye_group_material(groups[n],retained.get());
         retained.reset();texture.reset();return true; //Material temporary release BEFORE loaded texture release.
     }
+    Frame human_eye_material(Frame model,std::vector<Frame>& groups) { //0048A780 shares actual0048A3F0 finder.
+        return collect_eye_groups(model,groups,0);
+    }
     Frame build(std::uint32_t mode,Frame model,bool human) {
         if(!(mode&2)||!model)return Frame{};
         if(const auto old=frames_.find_human_shadow_model(model)) {

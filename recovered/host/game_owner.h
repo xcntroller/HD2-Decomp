@@ -3,6 +3,12 @@
 
 #include "frontend/application_states.h"
 #include "game/session_owner.h"
+#include "game/session_activation.h"
+#include "game/mission_scene_activation.h"
+#include "game/prepared_human_spawn.h"
+#include "game/prepared_human_clothing.h"
+#include "game/prepared_spawn_packets.h"
+#include "game/session_world_input.h"
 #include "game/scene_callback.h"
 #include "game/activation_flags.h"
 #include "game/hud_owner.h"

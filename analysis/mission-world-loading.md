@@ -299,3 +299,9 @@ native Y,Z,X order. Focused sanitizer/independent-byte comparison passes32768
 pairs each for captured Tutorial/ALPS1. Mesh references in this metadata fixture
 are deliberately unavailable; it is not engine/desktop collision verification.
 [Current Human/collision consumer boundary](human-model-geometry.md).
+
+2026-11-09: [offline containing activation and prepared spawn](session-activation-loading.md)
+now have source ordering, world quantizer/light policy, cold model/equipment
+population and local packet producer. The actual local decoder/camera/world/VM
+composition remains required. Both P2.2 checkboxes remain open; no new world
+rendering or desktop acceptance follows from these focused native/host checks.

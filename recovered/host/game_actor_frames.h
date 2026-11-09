@@ -12,6 +12,37 @@ class GameActorFrames : public GameCarFrames {
 public:
     using GameCarFrames::GameCarFrames;
     MenuDriver::Owner retain_actor_frame(Frame frame) {return retain(frame);}
+    MenuDriver::Owner create_prepared_human_model(){return driver_.create(9);}
+    void link_prepared_human_root(Frame model) {
+        if(const auto root=field<Frame>(scene_.frame(),0x1f8)) {
+            if(call<std::int32_t>(model,0x38,root,std::uint32_t{0})<0)
+                throw std::runtime_error("Cannot link prepared Human to actual scene root");
+        }
+    }
+    void prepared_human_direction(Frame model,const Vector& direction){call<void>(model,0x1c,direction.data(),static_cast<const void*>(nullptr));}
+    struct MissionLightProperties {bool visible;std::int32_t type;std::uint32_t flags;};
+    MissionLightProperties mission_light_properties(Frame frame)const {
+        return {(field<std::uint32_t>(frame,0xe0)&1u)!=0,field<std::int32_t>(frame,0x164),field<std::uint32_t>(frame,0x160)};
+    }
+    Bounds mission_frame_world_bounds(Frame frame) {
+        if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
+        return field<Bounds>(frame,0x10);
+    }
+    template<class Visit>void enumerate_activation_scene(bool root,std::uint32_t mask,Visit&& visit) {
+        using Visitor=std::remove_reference_t<Visit>;
+        struct Context {
+            Visitor& visit;std::exception_ptr failure;
+            static std::int32_t WINAPI invoke(Frame frame,void* opaque)noexcept {
+                auto& context=*static_cast<Context*>(opaque);
+                if(!context.failure)try{context.visit(frame);}catch(...){context.failure=std::current_exception();}
+                return 0;
+            }
+        } context{visit,{}};
+        auto* scope=root?field<Frame>(scene_.frame(),0x1f8):scene_.frame();
+        if(!scope)throw std::runtime_error("Mission activation requires its actual scene scope");
+        call<std::int32_t>(scope,0x44,&Context::invoke,&context,mask,static_cast<const char*>(nullptr));
+        if(context.failure)std::rethrow_exception(context.failure);
+    }
     void* actor_opaque_data(Frame frame) const noexcept {return field<void*>(frame,0xec);}
     void actor_opaque_data(Frame frame,void* data) noexcept {put(frame,0xec,data);}
     Frame actor_find(Frame model,const char* name,std::uint32_t mask) {return car_find(model,name,mask);}
@@ -112,6 +143,19 @@ public:
         if(!texture)throw std::runtime_error("Human eye material lost its actual texture name");
         const auto* name=field<const char*>(texture,0x18);return name?name:"";
     }
+    std::optional<std::string> clothing_eye_material_name(Frame material) { //0048A780's additional TWO lazy resolves.
+        const auto resolve=[&]{if(field<std::uint32_t>(material,8)&0x4000000u)call<void>(material,0x44);};
+        resolve();if(!field<Frame>(material,0xc))return std::nullopt;
+        resolve();const auto texture=field<Frame>(material,0xc);
+        if(!texture)throw std::runtime_error("Clothing eye material lost its resolved texture");
+        const auto* name=field<const char*>(texture,0x18);return name?name:"";
+    }
+    std::vector<Frame> clothing_frame_links(Frame frame)const { //00489FD0: native kind7+120/+128 snapshot, no AddRef.
+        const auto count=field<std::uint32_t>(frame,0x128);const auto list=field<Frame*>(frame,0x120);
+        if(count>0x100000u||(count&&!list))throw std::runtime_error("Invalid clothing frame link array");
+        return count?std::vector<Frame>(list,list+count):std::vector<Frame>{};
+    }
+    void add_clothing_frame_link(Frame frame,Frame value){call<void>(frame,0x74,value);}
     ResourceOwner load_human_eye_texture(const std::string& name) {
         Frame texture=nullptr;
         const auto result=graphics_.methods->load_texture(&graphics_,name.c_str(),"",0x400,&texture);
@@ -286,6 +330,7 @@ public:
     std::int32_t human_model_time(Frame model,std::uint32_t slot) {return call<std::int32_t>(model,0xa0,slot);}
     void human_model_time(Frame model,std::uint32_t slot,std::int32_t time) {call<void>(model,0x9c,slot,time);}
     std::uint32_t human_model_animation_flags(Frame model,std::uint32_t slot) {return call<std::uint32_t>(model,0xa8,slot);}
+    void human_model_animation_flags(Frame model,std::uint32_t slot,std::uint32_t flags) {call<void>(model,0xa4,slot,flags);}
     bool human_model_animation_enabled(Frame model,std::uint32_t slot) {return call<std::uint8_t>(model,0xac,slot)!=0;}
     void human_model_animation(Frame model,Frame clip,std::uint32_t slot,float weight,std::uint32_t flags) {
         call<void>(model,0x84,clip,slot,weight,flags);

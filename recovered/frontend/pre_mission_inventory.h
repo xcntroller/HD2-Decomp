@@ -16,10 +16,14 @@ struct PreMissionEquipmentEntry {
 struct PreMissionSoldier {
     std::string name;
     std::int32_t human = -1, specialization = -1;
+    std::int32_t speech_variant = -1; //Native live-soldier48,006739F0 initializes-1;0059EDC0 consumes1..4.
+    std::int32_t network_identity = 1023; //Native04,006739F0;00727480 also converts-1 to1023.
+    bool flag08 = false, flag09 = false; //Separate from active44 and preparation auto-equip state.
+    std::uint32_t word0c = 0;
     bool active = true, auto_equip = false;
     std::array<PreMissionEquipmentEntry, 5> equipment{}; // masks1,2,4,8,16
     std::vector<PreMissionEquipmentEntry> holsters, backpack;
-    std::int32_t capacity = 0, pack_volume = 0, holster_volume = 0;
+    std::int32_t capacity = 0, pack_volume = 0, holster_volume = 0, pack_available_volume = 0;
     float load = 0, pack_capacity = 0, pack_load = 0, holster_load = 0;
 
     // 006A2340: the live soldier borrows its actual HumanStore identity and
@@ -37,10 +41,20 @@ struct PreMissionSoldier {
         holsters.clear();
         backpack.clear();
         load = pack_capacity = pack_load = holster_load = 0;
-        pack_volume = holster_volume = 0;
+        pack_volume = holster_volume = pack_available_volume = 0;
     }
     float capacity_ratio() const { // 006A2330: signed integer+8C, float+90.
         return std::fabs(load / static_cast<float>(capacity));
+    }
+    void split_spawn_stacks() { //006A2C90; preserve first record/position, append individual items in reverse-record order.
+        for(auto* list:{&holsters,&backpack})for(auto n=list->size();n;) {
+            const auto index=--n;
+            while(list->at(index).count>1) {
+                const auto item=list->at(index).item;
+                list->push_back(PreMissionEquipmentEntry{-1,item,1}); //Allocation precedes decrement; reread after growth.
+                --list->at(index).count;
+            }
+        }
     }
 };
 
@@ -154,9 +168,8 @@ inline PreMissionEquipmentEntry transfer_pre_mission_equipment(PreMissionSoldier
         soldier.load = (item->weight - old_weight) + soldier.load;
         if (mask == 8) {
             soldier.pack_capacity = pack_capacity;
+            soldier.pack_available_volume = pack_volume; //Native98, retained even after ordinary pack removal.
         }
-        // Original+98 stores available pack volume, while+ A0 stores used volume.
-        // Native pack_volume is used volume; keep the available limit on item.
         return previous;
     }
     if (mask != 0x20 && mask != 0x40)
@@ -286,7 +299,7 @@ inline std::int32_t remove_pre_mission_equipment(PreMissionSoldier &soldier,
                                          [](const auto &value) { return value.item == -1; });
     if (fixed_empty && soldier.holsters.empty() && soldier.backpack.empty()) {
         soldier.load = soldier.pack_capacity = soldier.pack_load = soldier.holster_load = 0;
-        soldier.pack_volume = soldier.holster_volume = 0;
+        soldier.pack_volume = soldier.holster_volume = soldier.pack_available_volume = 0;
     }
     return requested.count;
 }

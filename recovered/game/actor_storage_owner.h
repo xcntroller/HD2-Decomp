@@ -58,6 +58,14 @@ public:
         return owner?owner->get():nullptr;
     }
     void pack_slots(Slots* value) {pack_slots_=value;} //007D8B40 publishes Human array index6.
+    void reset_spawn_entries() { //007DDEF0; remove borrowed pack6 BEFORE ascending0..5 retirement.
+        if(!single_)pack_slots_=nullptr;
+        const auto last=single_?0u:6u;
+        for(unsigned index=0;index<=last;++index) {
+            if(auto* array=slots(index))array->clear_entries(); //Array+4C is the genuine base RET4.
+            else if(auto* value=holder(index)){value->clear_entry();value->field18(0);}
+        }
+    }
     void clear_human_entries() { //005A29C0; pack contents6 BEFORE releasing the pack holder5.
         if(single_||count_!=6)throw std::logic_error("Human inventory retirement requires its actual seven-pointer storage");
         for(auto index:{0u,1u,2u,3u,4u,6u,5u}) {

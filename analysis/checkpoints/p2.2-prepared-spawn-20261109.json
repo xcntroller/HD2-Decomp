@@ -1,0 +1,495 @@
+{
+  "original_entries": [
+    "006989b0",
+    "0069bff0",
+    "0069c080",
+    "0072d2b0",
+    "0072d5f0",
+    "0072d900",
+    "0072f500",
+    "00724ec0",
+    "004759a0",
+    "00475940",
+    "004754f0",
+    "00611c90",
+    "00612a60",
+    "0059eb60",
+    "0059edc0",
+    "006a2c90",
+    "006a3080",
+    "006a27c0",
+    "007ddef0",
+    "007d7810",
+    "007d8b40",
+    "005a6930",
+    "0048a780",
+    "00489fd0",
+    "0048a170",
+    "0073cbd0",
+    "0073ccf0",
+    "0073cc40",
+    "0073ccb0",
+    "0073d280",
+    "0073d2f0",
+    "0073d370",
+    "0073d070",
+    "0073d3a0",
+    "0073d3f0",
+    "0073d440",
+    "0073d6c0",
+    "0072bef0",
+    "0072bf90",
+    "0072beb0",
+    "00727450",
+    "00727480",
+    "0072e940"
+  ],
+  "ledger_added_partial_client": 39,
+  "added": [
+    "0069bff0",
+    "0069c080",
+    "0072d2b0",
+    "0072d5f0",
+    "0072d900",
+    "0072f500",
+    "00724ec0",
+    "004759a0",
+    "00475940",
+    "004754f0",
+    "00611c90",
+    "00612a60",
+    "0059eb60",
+    "0059edc0",
+    "006a2c90",
+    "007ddef0",
+    "007d7810",
+    "005a6930",
+    "0048a780",
+    "00489fd0",
+    "0048a170",
+    "0073cbd0",
+    "0073ccf0",
+    "0073cc40",
+    "0073ccb0",
+    "0073d280",
+    "0073d2f0",
+    "0073d370",
+    "0073d070",
+    "0073d3a0",
+    "0073d3f0",
+    "0073d440",
+    "0073d6c0",
+    "0072bef0",
+    "0072bf90",
+    "0072beb0",
+    "00727450",
+    "00727480",
+    "0072e940"
+  ],
+  "extended": [
+    "006989b0",
+    "006a3080",
+    "006a27c0",
+    "007d8b40"
+  ],
+  "body_selections": [
+    {
+      "entry": "006989b0",
+      "source": "recovered/game/session_activation.h",
+      "coverage": "Ordinary offline7 activation ordering over the same descriptor/loaded flag/live squad: module passes, HUD/first-person, prepared spawn, dubbing/text/music/clock and graphics failure restoration."
+    },
+    {
+      "entry": "0069bff0",
+      "source": "recovered/game/mission_scene_activation.h",
+      "coverage": "Restore borrowed hidden LIGHT frames reverse, clear retaining buffer, or restore before filtered scene enumeration."
+    },
+    {
+      "entry": "0069c080",
+      "source": "recovered/game/mission_scene_activation.h",
+      "coverage": "Actual visibility/type/flag LIGHT filter; hide and update before borrowed append, preserving prior failure writes."
+    },
+    {
+      "entry": "0072d2b0",
+      "source": "recovered/game/mission_scene_activation.h",
+      "coverage": "Mode3 scene-root world bounds, SAME session input quantizer rebinding, range bit counts and ordered packet resets."
+    },
+    {
+      "entry": "0072d5f0",
+      "source": "recovered/game/mission_scene_activation.h",
+      "coverage": "Accumulate actual lazy VISUAL world boxes into the containing minimum/maximum."
+    },
+    {
+      "entry": "0072d900",
+      "source": "recovered/game/mission_scene_activation.h",
+      "coverage": "Native range*100 signed64/EAX truncation and unsigned power-of-two bit/count encoding, with malformed overflow guard."
+    },
+    {
+      "entry": "0072f500",
+      "source": "recovered/game/session_world_input.h",
+      "coverage": "Rebuild stable session20 profile, primary then secondary manager/history bindings, process packet index0 then D4 publication; genuine null-manager early return."
+    },
+    {
+      "entry": "00724ec0",
+      "source": "recovered/game/session_world_input.h",
+      "coverage": "Reverse zero of exactly seven DWORDs on each of the same session world statistic buffers."
+    },
+    {
+      "entry": "004759a0",
+      "source": "recovered/host/game_scene_actors.h",
+      "coverage": "First free Scene2 reserved identity0..31 or native-1 fallback."
+    },
+    {
+      "entry": "00475940",
+      "source": "recovered/host/game_scene_actors.h",
+      "coverage": "First ascending active type10 SpawnPoint matching actual team90 and available9C."
+    },
+    {
+      "entry": "004754f0",
+      "source": "recovered/host/game_scene_actors.h",
+      "coverage": "Reserved Scene2 generation signed CHAR lookup, invalid identity returns-1."
+    },
+    {
+      "entry": "00611c90",
+      "source": "recovered/game/prepared_human_spawn.h",
+      "coverage": "Offline authority prepared spawn with actual identity/default clothing/split/model producer, activation passes and required real packet/event publication."
+    },
+    {
+      "entry": "00612a60",
+      "source": "recovered/game/prepared_human_spawn.h",
+      "coverage": "Offline actual kind9/category1 model key/root/pose/name and Scene2 Human creation; release factory reference before required property setup."
+    },
+    {
+      "entry": "0059eb60",
+      "source": "recovered/game/prepared_human_spawn.h",
+      "coverage": "Offline SAME Human storage reset and native fixed/holster/backpack creation order, with real cold clothing receiver between fixed slots."
+    },
+    {
+      "entry": "0059edc0",
+      "source": "recovered/game/prepared_human_spawn.h",
+      "coverage": "Offline kind/personality/profile, actual speech variant selection/release, nine profile stat conversions or explicit twelve-word copy, inventory then eye binding."
+    },
+    {
+      "entry": "006a2c90",
+      "source": "recovered/frontend/pre_mission_inventory.h",
+      "coverage": "Reverse original carried-record traversal appends single-item records before decrement, preserving first positions and load/volume bookkeeping."
+    },
+    {
+      "entry": "006a3080",
+      "source": "recovered/frontend/pre_mission_inventory.h",
+      "coverage": "Retain actual native98 pack volume limit separately from nativeA0 used volume when transferring the fixed backpack."
+    },
+    {
+      "entry": "006a27c0",
+      "source": "recovered/frontend/pre_mission_inventory.h",
+      "coverage": "Clear actual native98 volume limit together with the seven equipment-derived loading fields."
+    },
+    {
+      "entry": "007ddef0",
+      "source": "recovered/game/actor_storage_owner.h",
+      "coverage": "Detach borrowed pack6 before ascending owner slots0..5; clear entries/holder cooldown while preserving stack flags and allocations."
+    },
+    {
+      "entry": "007d7810",
+      "source": "recovered/host/game_mission_items.h",
+      "coverage": "Cold prepared-Human item allocation, actual identity assignment, real transfer, rejected entry release and SAME Items registration."
+    },
+    {
+      "entry": "007d8b40",
+      "source": "recovered/game/prepared_item_transfer.h",
+      "coverage": "Cold no-source prepared Human placement retains enabled-module178/hand cooldown and all-slot game28+920 expiry, explicitly excluding active B0/A8/displaced transfers."
+    },
+    {
+      "entry": "005a6930",
+      "source": "recovered/game/prepared_human_clothing.h",
+      "coverage": "SAME Human inventory lookup; native strstr resource shortcut, actual dubbing retirement/cold model replacement, f marker and178, ignoring optional effects failure."
+    },
+    {
+      "entry": "0048a780",
+      "source": "recovered/game/prepared_human_clothing.h",
+      "coverage": "Cold Human SAME model replacement through actual category1 cache, eye capture/restoration, temporary rand(6)-4 pose and two-way reverse animation/link/foreign-child transfer."
+    },
+    {
+      "entry": "00489fd0",
+      "source": "recovered/game/prepared_human_clothing.h",
+      "coverage": "Reverse recursive kind7 native120/128 link snapshot and matching short-name virtual74 transfer without invented ownership."
+    },
+    {
+      "entry": "0048a170",
+      "source": "recovered/game/prepared_human_clothing.h",
+      "coverage": "Move foreign model100 children after reverse scan by parent short-name/root fallback, preserving LOCAL position/quaternion and updating."
+    },
+    {
+      "entry": "0073cbd0",
+      "source": "recovered/game/human_input_records.h",
+      "coverage": "Owned process packet quantizer ten-slot initialization, distinct from history angle profiles; only actual seeded slots readable."
+    },
+    {
+      "entry": "0073ccf0",
+      "source": "recovered/game/human_input_records.h",
+      "coverage": "Four original process packet profiles with captured minima/range/step constants."
+    },
+    {
+      "entry": "0073cc40",
+      "source": "recovered/game/human_input_records.h",
+      "coverage": "Process packet profile copy with actual single capacity doubling and safe rejection of native out-of-range/unproduced slots."
+    },
+    {
+      "entry": "0073ccb0",
+      "source": "recovered/game/human_input_records.h",
+      "coverage": "Construct actual quantizer from range/minimum/step and publish it into the same process packet table used by world binding."
+    },
+    {
+      "entry": "0073d280",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Owned growing packet buffer initialization/cleanup policy with deterministic semantically-unused padding; no borrowed-buffer receiver claim."
+    },
+    {
+      "entry": "0073d2f0",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Actual first100-byte allocation/equality growth and subsequent bit-capacity doubling for writes, with native cursor overflow guard."
+    },
+    {
+      "entry": "0073d370",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Actual packet primary/secondary override initialization and position0/angle1 defaults over the owned buffer."
+    },
+    {
+      "entry": "0073d070",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "NUL-terminated CHAR writer, preserving signed promotion and native unmasked spill."
+    },
+    {
+      "entry": "0073d3a0",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Primary explicit process index, borrowed override, then native default-index profile selection."
+    },
+    {
+      "entry": "0073d3f0",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Secondary explicit process index, borrowed override, then native default-index profile selection."
+    },
+    {
+      "entry": "0073d440",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Unmasked x87-style quantized XYZ encoding; Y-only minimum clamp and near-zero flag, original XYZ significance result."
+    },
+    {
+      "entry": "0073d6c0",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Native yaw atan2(z,x), pitch asin(y), float stores and secondary mask3 direction encoding."
+    },
+    {
+      "entry": "0072bef0",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Selected broadcast stream active/priority/target/local fields and native five-bit kind prefix; messages append to current cursor."
+    },
+    {
+      "entry": "0072bf90",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Target0 branch clears packet active1C while retaining pending bits; actual targeted/local/remote transport is excluded."
+    },
+    {
+      "entry": "0072beb0",
+      "source": "recovered/game/prepared_spawn_packets.h",
+      "coverage": "Actual target0/local selected priority broadcast-stream wrapper over the containing three streams."
+    },
+    {
+      "entry": "00727450",
+      "source": "recovered/game/prepared_spawn_packets.h",
+      "coverage": "Six-byte equipment record signed position16/item16/count8 unmasked bit writes."
+    },
+    {
+      "entry": "00727480",
+      "source": "recovered/game/prepared_spawn_packets.h",
+      "coverage": "Full/equipment-only prepared soldier serialization with actual field order, fixed/carried records, -1 identity mutations and eight raw bookkeeping words."
+    },
+    {
+      "entry": "0072e940",
+      "source": "recovered/game/prepared_spawn_packets.h",
+      "coverage": "Update actual session player record value/name under the recursive lock; append original-defined records on expansion, preserving unspecified bytes."
+    }
+  ],
+  "no_credit": [
+    "006739F0: recorded scalar defaults only; actual live-squad factory allocation/append body not reconstructed",
+    "00475530/004755B0: wrappers delegate existing packet bodies; no separate new claim",
+    "No delegated engine body or complete promotion"
+  ],
+  "date": "2026-11-09",
+  "source_only": true,
+  "desktop_verified": false,
+  "scope": "Offline activation/world profiles and prepared Human storage/clothing/local spawn packet production",
+  "complete_promotions": 0,
+  "verification": {
+    "native": "ASan/UBSan/LSan PASS: actual Human/RuntimeItem/storage and captured catalogue; cold clothing animation/link/foreign-child/eye transfer, native jitter/shortcut, active/missing-eye guards; actual input manager/history/global quantizers and complete local spawn packet field decode/pending append/recursive direct lock. Frame/cache/presentation/activation boundaries use doubles.",
+    "activation": "Source ordering/light/bounds fixture PASS with29 injected failures/graphics restoration; service ordering doubles, no actual world.",
+    "i386": "Strict actual GameSceneActors/GameActorServices/Human/Items/EffectsShadowModels/DubbingSound/HumanPlayerControlLoading composition compile, including actual source spawn/packet/profile receivers. Required setup/direct/lock/event boundaries are declarations; no linked runtime world.",
+    "application": "Strict i386 application compile/link PASS; no original game/DLL/Proton/Windows fixture execution."
+  },
+  "logs": [
+    "analysis/work/mission-world-20261103/session-activation-native-build.log",
+    "analysis/work/mission-world-20261103/session-activation-native-run.log",
+    "analysis/work/mission-world-20261103/session-activation-host-build.log",
+    "analysis/work/mission-world-20261103/session-activation-app-build.log",
+    "analysis/work/mission-world-20261103/prepared-human-native-build.log",
+    "analysis/work/mission-world-20261103/prepared-human-native-run.log",
+    "analysis/work/mission-world-20261103/prepared-human-host-build.log",
+    "analysis/work/mission-world-20261103/prepared-clothing-native-build.log",
+    "analysis/work/mission-world-20261103/prepared-clothing-native-run.log",
+    "analysis/work/mission-world-20261103/session-packets-native-build.log",
+    "analysis/work/mission-world-20261103/session-packets-native-run.log",
+    "analysis/work/mission-world-20261103/prepared-spawn-composition-host-build.log",
+    "analysis/work/mission-world-20261103/prepared-spawn-final-app-build.log"
+  ],
+  "log_sha256": {
+    "analysis/work/mission-world-20261103/session-activation-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/session-activation-native-run.log": "120a5b9adaf3a63e8f4a45670de9cd3d7b7afe199f76b37bff33776f4d3e6cec",
+    "analysis/work/mission-world-20261103/session-activation-host-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/session-activation-app-build.log": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+    "analysis/work/mission-world-20261103/prepared-human-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/prepared-human-native-run.log": "c5f96c4f60ae2d9082d265c6443470d4f45c319126084c0f3620a1037f80319a",
+    "analysis/work/mission-world-20261103/prepared-human-host-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/prepared-clothing-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/prepared-clothing-native-run.log": "5370dd85a96aa1f9c848cff6f7f3eb50d5f670bd2faea9f64f5d50b5b11893bf",
+    "analysis/work/mission-world-20261103/session-packets-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/session-packets-native-run.log": "e71cd304d9cf3b431d0a3e5e3486ec07cbebaa320807800f82e0ba9b719a3d4e",
+    "analysis/work/mission-world-20261103/prepared-spawn-composition-host-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/prepared-spawn-final-app-build.log": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+  },
+  "temporary_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-activation-audit",
+      "sha256": "ab3b1fb3efdb8bf55f553e28ddf5085e4926a7074c6dcfd2d42918b10098ec79",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-activation-audit.cpp",
+      "sha256": "ba1eb08cbafa231e43da7974115fefcff0b308e251006c1aa2f56e196e69a3a8",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-activation-host.cpp",
+      "sha256": "84e0efd6e0be10996278f57170041987ef9ef7e48827028256c4fe06aa6cc374",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-activation-host.o",
+      "sha256": "76e77f8d045d731c1cb99a00219e84c43f6464aef4a5b091bce2350b6cdd453c",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-prepared-human-audit",
+      "sha256": "d5fadca345a80774c75d1ea8ddf1aa8b2ceb990103ee173034454d61d24bd3eb",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-prepared-human-audit.cpp",
+      "sha256": "ab4bc2a61d845f3e2d1451a3b3e6ab7ef851c9f080b555c5984333f3e24fab4b",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-prepared-human-host.cpp",
+      "sha256": "4bc3c99abeb51a0cc4b0688b1168c1ee63fc17423a012caf9296d09d6bb5e2dc",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-prepared-human-host.o",
+      "sha256": "02679685aa4393ba4bd455ab42ad30bee3eb757b1eaa5bd85295627a269d2576",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-prepared-clothing-audit",
+      "sha256": "f6885b0d6c8e77e87e85be5e7ead56f0dd8c1444d851ebb02f292534a79dbb7f",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-prepared-clothing-audit.cpp",
+      "sha256": "f74d36a49dfe87f1f38e53e7d7c873af9f85b6656d079a8dd5d21b0d3c0f97b0",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-packets-audit",
+      "sha256": "81ee892568508d4481b4dc3d07e1cb1f8dae301849d455c0e8572957848cc1f0",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-packets-audit.cpp",
+      "sha256": "78fa7d268e05eb3eed6ded1a607d4e284b4f1201bb566ae135551ad991d84161",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-prepared-spawn-composition-host.cpp",
+      "sha256": "3d1db5958bcaf636013c8f72a648d33c6a72c91e119388857a19c24c81c40d3e",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-prepared-spawn-composition-host.o",
+      "sha256": "0e81562df6524f0c1c3639e5881940caffe98bfd33467ec0f8b33afe39ed3133",
+      "removed": true
+    }
+  ],
+  "evidence_sha256": {
+    "analysis/work/mission-world-20261103/session-activation-first-camera/00469300.c": "aa01cbcd9991c999a67ed44b1a0ce8180faf0e1e74fab7a2f00928e9ace0073d",
+    "analysis/work/mission-world-20261103/session-activation-first-camera/00475940.c": "c9bce04a3429ff18fe9f37c22f340081ddd693e0fc03a04c2e651f45fe8d8619",
+    "analysis/work/mission-world-20261103/session-activation-first-camera/00611c90.c": "4fb04cdb17430e309cdda9f094c58df7f200dbb7e8ce47e88ed7673c7c054ce8",
+    "analysis/work/mission-world-20261103/session-activation-first-camera/0069bff0.c": "121b84e908ffc14a98bd73b00b2d3f724358045dc09f4b78159dbead86101f6f",
+    "analysis/work/mission-world-20261103/session-activation-first-camera/0069e970.c": "7f3e77e20ae17ba7a438e70debe2376697cfb25cd16e7ac7d397f61f34679cc1",
+    "analysis/work/mission-world-20261103/session-activation-first-camera/006b8ec0.c": "7cd68ddd4471bd306c3a954be25112c270980b1db7791ee6f56901c3f33cfe6e",
+    "analysis/work/mission-world-20261103/session-activation-first-camera/006c4bd0.c": "8882c38b84bcf6342351b22bee1e15dbdd6a98cf510ba786a53e0d366c573b97",
+    "analysis/work/mission-world-20261103/session-activation-first-camera/0071de10.c": "aa10d0ad4f420ca15ba162252096d722fc937c8751d7709899e4dce0781144ff",
+    "analysis/work/mission-world-20261103/session-activation-first-camera/0072d2b0.c": "6ea793a7cd0ae411eae99326323b8d79449a29abc540b6974473659b0bea22f7",
+    "analysis/work/mission-world-20261103/session-activation-first-camera/00796430.c": "6736ac2b1fc27ebe69c31b23b8b0d300859d9e5d2253bca7fd0ba243b2f991f3",
+    "analysis/work/mission-world-20261103/world-camera-required-helpers/00466970.c": "181c376488d20bc23a17f829307d5c4a5b4e7fb425337c7dcfd67c5bd3edcb19",
+    "analysis/work/mission-world-20261103/world-camera-required-helpers/00468130.c": "0672bcfb79c9f3fb4a4a2f614ef653426e81fee6b1a2fa9507dba6b8ce89d22b",
+    "analysis/work/mission-world-20261103/world-camera-required-helpers/0069c080.c": "710a3a0b370cd4e13a1125cd6c17f8ddc4ba5c69231042755a8c379ae2c65c5b",
+    "analysis/work/mission-world-20261103/world-camera-required-helpers/0072d5f0.c": "eb7809af85d35e5e04b440b5e78d58081a18efb3486f366c3ab36acc0d6d0da3",
+    "analysis/work/mission-world-20261103/world-camera-required-helpers/0072d900.c": "dc1bf142c7bc1c65cc49170f789b5a3cfbf789d4b2d8e1b3382479389b4523ad",
+    "analysis/work/mission-world-20261103/world-camera-required-helpers/0072f500.c": "59a9aea329dde00fd7f263a980c4bf135e1baf7caa7d0a4ef4acea5a0313ccb4",
+    "analysis/work/mission-world-20261103/offline-squad-spawn/004759a0.c": "c39a0408455af0f29e95a56f1af85dc4a2e5baf24c7e3897d395e50f08b2ca71",
+    "analysis/work/mission-world-20261103/offline-squad-spawn/00612a60.c": "8ba38ad5719fb8ba3d3c96dbd4879fd7c76aea6d1df72c1b021445dec5ef2944",
+    "analysis/work/mission-world-20261103/offline-squad-spawn/006a2c90.c": "9512c7dac48162c17cff473e9f0cd27e46e7c9fed29e836651b1f955d8950196",
+    "analysis/work/mission-world-20261103/offline-squad-spawn/006b33e0.c": "7492f9a5599f5843a73a50307288f3f840486a7e157ee49a3607b6b2227cb87c",
+    "analysis/work/mission-world-20261103/offline-squad-spawn/0072e940.c": "85c0054ca12e5b4e832711ece28efd5ffe59274c76917d62949996ec9539525a",
+    "analysis/work/mission-world-20261103/offline-squad-human-equipment/00475530.c": "96007cb3cbab813988c1d63b589aace5a67ee88f0b1d96bc97db6bc98f115743",
+    "analysis/work/mission-world-20261103/offline-squad-human-equipment/0059edc0.c": "146cafa3c7ffb354033b90dd688e7a2b36adb28866c53bc720f196b9b5adb966",
+    "analysis/work/mission-world-20261103/offline-squad-human-equipment/006123a0.c": "5055fc471c35ec36497070495cce73009cea2d04f6149a146bbf73f4f02f176c",
+    "analysis/work/mission-world-20261103/offline-squad-human-equipment/006a3080.c": "86e41e9db7f4728e4e52adc9100ece345df3c8ba2df28cc59a5902b5dc520df0",
+    "analysis/work/mission-world-20261103/offline-squad-storage-and-input/0059eb60.c": "00c366dc24ed242b61a8fd03e7615d7ee6f21088597941bd33af91d8f825849e",
+    "analysis/work/mission-world-20261103/offline-squad-storage-and-input/0059ef80.c": "23d6f33a038de5fb5b60fb4f659520d6ec2b7b385258753010c4ea2ec0349fb7",
+    "analysis/work/mission-world-20261103/offline-squad-storage-and-input/00612a60.c": "8ba38ad5719fb8ba3d3c96dbd4879fd7c76aea6d1df72c1b021445dec5ef2944",
+    "analysis/work/mission-world-20261103/offline-squad-storage-and-input/00724ec0.c": "19fe750440cd0f45f43fccaab7aadbf42825bb36c429544c5319ec8198ea7a11",
+    "analysis/work/mission-world-20261103/offline-squad-storage-and-input/0073d7e0.c": "863802c4242925e45ffedab17e1ace182722e05a677adfc939213f5d1a690530",
+    "analysis/work/mission-world-20261103/prepared-item-construction/005a6930.c": "b181658033f86f7fc796701c5c361f77975ce785b467de51b5f6736b3ab3d5a6",
+    "analysis/work/mission-world-20261103/prepared-item-construction/007d7810.c": "9016e3b586e3f4866daa252167fa81cefe47fd4e1f76a6b883f8939d2e59c933",
+    "analysis/work/mission-world-20261103/prepared-item-construction/007ddef0.c": "7e6836dee11e1fc25ca0fb470ba55e2035cb20907ba8679e0070127ad24d9c46",
+    "analysis/work/mission-world-20261103/spawn-clothing-model-change/0048a780.c": "6fe1745f30077fdb2906b3836347cc935bcb03fdab511f0f2647bb47112d8618",
+    "analysis/work/mission-world-20261103/spawn-clothing-model-change/005a6ff0.c": "2419c9503010b11610e38d63103eea26aa43caf16c89f0659392c86be909305e",
+    "analysis/work/mission-world-20261103/spawn-clothing-model-change/0071e650.c": "083bc8f69b0f0b4c213c3129ab6215d1629e4f65e21e77dd00f90e618e169f5f",
+    "analysis/work/mission-world-20261103/clothing-attached-frames/00489fd0.c": "098690b676aade68b2d6592b3e0d19eaed41841048f5a3bf1eaed2a22e1fad69",
+    "analysis/work/mission-world-20261103/clothing-attached-frames/0048a170.c": "dec953d5549a5e56bfadb9564fa8d3cde21e0d87d13842963dbdcbb230f738bb",
+    "analysis/work/mission-world-20261103/offline-spawn-packet/00727480.c": "f4c8d9c98897d3cfc2756510c01c3128550415c360402efad66271242573ca6b",
+    "analysis/work/mission-world-20261103/offline-spawn-packet/0072beb0.c": "89cb1aba347a0b1922c47adb83e7e59f1c7ee98a0f7dc9ba7204fbf7a302f0d7",
+    "analysis/work/mission-world-20261103/offline-spawn-packet/0073ccb0.c": "df5bb8aa650aef0395dc11dcb3ee09921157b86bbb8b39f5c34c0cb791918882",
+    "analysis/work/mission-world-20261103/offline-spawn-packet/0073d070.c": "5a25a962c4e0d817776f09abeceaa31c7da8bad9a504491b32015524787368b4",
+    "analysis/work/mission-world-20261103/offline-spawn-packet/0073d3a0.c": "655a97dce3077002b4f6593f5902b5d968ff95fe977643835faf9af695c58a13",
+    "analysis/work/mission-world-20261103/offline-spawn-packet/0073d440.c": "9d3eff9629b26d8b5cb846644a60e5f1f7e6b8841967b174b077c23367974a24",
+    "analysis/work/mission-world-20261103/offline-spawn-packet/0073d6c0.c": "05e6cdf37311d2fa1dab195151cb59eb6e7e513bb185134bcac2554d76dfe1e8",
+    "analysis/work/mission-world-20261103/offline-spawn-packet-queue/004755b0.c": "af9b61b180556b7df63de04edde7000117c5111d2184a8d2f85f60692172b041",
+    "analysis/work/mission-world-20261103/offline-spawn-packet-queue/00727450.c": "989c1185ca2c6f2ebd3196fe462a25602080ba62da6fe54cdcac460e530e7c1a",
+    "analysis/work/mission-world-20261103/offline-spawn-packet-queue/0072bef0.c": "e6558f8c85159d05d78f1f655f6a7e7d4ddf49f89010f2cd67de40fd5b3d4b07",
+    "analysis/work/mission-world-20261103/offline-spawn-packet-queue/0073cc40.c": "a5258b9fc56dc3d7cfac066e5b94f2e5c4646a6296b1cfcf978ce26cf7f8419b",
+    "analysis/work/mission-world-20261103/offline-spawn-packet-queue/0073d3f0.c": "a00e864964e2015f5015f76f9e82205e00b99287e3ae38388e572823ae13cdec",
+    "analysis/work/mission-world-20261103/session-buffer-construction/00723220.c": "0c931872c3f70bef0461d2b1373c5d3626a73e8c385c1fdaa95499fed4dc9e27",
+    "analysis/work/mission-world-20261103/session-buffer-construction/00725a50.c": "bf7a1744601913e01739c6b950add56ae5fbde3ac4ef7ef78cfdef5e6c900273",
+    "analysis/work/mission-world-20261103/session-buffer-construction/0072ec70.c": "2312189f54877e8e42d1dcd88d2de7eb9288e09917d8facdb13efa2c5cd24b46",
+    "analysis/work/mission-world-20261103/session-buffer-construction/0073d2f0.c": "da00e1164acef8cbc6d8fbe9609a0cb7b589867a4e05ee9d025af980ef64c775",
+    "analysis/work/mission-world-20261103/session-packet-actor-generation/004754f0.c": "b1d45076b20ebfea4132264fd99cec9a0b3f93a1cfaa4e367f4e75df0e5d47e7",
+    "analysis/work/mission-world-20261103/session-packet-actor-generation/00722180.c": "02cda8514b06846ade93032e193fd9357f5a0420066ae6f5c2a41c5a24280b4e",
+    "analysis/work/mission-world-20261103/clothing-model-full.asm": "86388d38747b93bb0c6a10c93b537c1b9cb413eee45db9a51280cdd320f8875f",
+    "analysis/work/mission-world-20261103/clothing-contexts.asm": "1c5566096e1d88cc127ee78a12a3afd89bc354aa8d26fe54a5f8f6135df3ba0c",
+    "analysis/work/mission-world-20261103/clothing-foreign-children.asm": "dddf24ebc5608029f67f2360ed326191ca214c9c5668fda59ea01f50962f12c0",
+    "analysis/work/mission-world-20261103/session-quantize-vector.asm": "fbb08bdcddd43cf7a439d0aad8edf3d5d8e5f4014cecd34ffb4744942b24d7d0",
+    "analysis/work/mission-world-20261103/prepared-spawn.asm": "7dcc2040a66d86965e9e9b8425e8d27eed37bbd5c98ac5ec0aad916622781da1",
+    "analysis/work/mission-world-20261103/prepared-human-model.asm": "e56b61b38044cd855c76bd68987a3d3c8102c7963681873e48b98b7ac0205174",
+    "analysis/work/mission-world-20261103/session-world-bounds.asm": "7707413d377b3da00dc01cf864dd073081cf9f5ea5654c88e76c4294816822fa"
+  }
+}

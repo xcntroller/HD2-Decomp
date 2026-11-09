@@ -29,6 +29,7 @@ public:
     using Instance=game::SceneActor<GameActorServices>;
     using ActorOwner=std::unique_ptr<Instance>;
     using Actor=Instance*;
+    using Spawn=game::SpawnPointSceneActor<GameActorServices>;
     bool has_scene_actor_factory(std::uint32_t type) const {
         switch(type){case 3:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:return true;default:return false;}
     }
@@ -72,6 +73,26 @@ public:
         return id<0?nullptr:actors_.identity(static_cast<std::size_t>(id));
     }
     std::size_t scene_actor_identity_count()const{return actors_.identity_count();}
+    std::int32_t player_generation(std::int32_t identity)const { //004754F0 sign-extends native CHAR.
+        return identity<0||identity>31?-1:static_cast<std::int8_t>(actors_.generation(static_cast<std::size_t>(identity)));
+    }
+    std::int32_t first_free_player_identity()const { //004759A0, physical reserved slots0..31 ascending.
+        for(std::size_t n=0;n!=32;++n)if(!actors_.identity(n))return static_cast<std::int32_t>(n);
+        return -1;
+    }
+    game::HumanSceneActor<GameActorServices,Runtime>* create_prepared_human(Frame frame,std::int32_t identity) {
+        auto* actor=actors_.create(3,frame,true,identity); //004759C0, actual reserved replacement or ordinary append for-1.
+        if(!actor)return nullptr;
+        if(!initialize_actor(actor,frame))return nullptr;
+        return static_cast<game::HumanSceneActor<GameActorServices,Runtime>*>(actor);
+    }
+    game::SpawnPointSceneActor<GameActorServices>* loading_spawn_point(std::uint32_t team)const { //00475940: active list, ascending, first match.
+        for(auto* actor:actors_.active_actors())if(actor&&actor->base().type()==10) {
+            auto* spawn=static_cast<game::SpawnPointSceneActor<GameActorServices>*>(actor);
+            if(spawn->properties.field90==team&&spawn->flag9c)return spawn;
+        }
+        return nullptr;
+    }
     void set_scene_actor_active(GameActorServices::Actor& base,bool value) {
         auto* actor=actors_.actor_for_base(base);
         if(!actor)throw std::runtime_error("Scene actor active-list receiver has no matching owner");

@@ -6951,24 +6951,28 @@
       "program": "client",
       "entry": "006a27c0",
       "status": "partial",
-      "coverage": "Clear equipped slots, carried vectors and derived load bookkeeping.",
-      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "coverage": "Clear equipped slots, carried vectors and derived load bookkeeping. Offline activation/prepared-spawn checkpoint: Clear actual native98 volume limit together with the seven equipment-derived loading fields.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed. New source-only subset requires actual containing world/local packet decoder/camera wiring; no mission desktop acceptance.",
       "evidence": [
         "analysis/singleplayer-pipeline.md",
         "analysis/singleplayer-function-audit.md",
-        "recovered/frontend/pre_mission_inventory.h"
+        "recovered/frontend/pre_mission_inventory.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
       ]
     },
     {
       "program": "client",
       "entry": "006a3080",
       "status": "partial",
-      "coverage": "Transfer equipment to fixed and carried slots with item compatibility and capacity handling.",
-      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "coverage": "Transfer equipment to fixed and carried slots with item compatibility and capacity handling. Offline activation/prepared-spawn checkpoint: Retain actual native98 pack volume limit separately from nativeA0 used volume when transferring the fixed backpack.",
+      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed. New source-only subset requires actual containing world/local packet decoder/camera wiring; no mission desktop acceptance.",
       "evidence": [
         "analysis/singleplayer-pipeline.md",
         "analysis/singleplayer-function-audit.md",
-        "recovered/frontend/pre_mission_inventory.h"
+        "recovered/frontend/pre_mission_inventory.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
       ]
     },
     {
@@ -8542,13 +8546,16 @@
       "program": "client",
       "entry": "006989b0",
       "status": "partial",
-      "coverage": "Installed owner consumes the actual copied mission, scopes/restores graphics bit20 and returns honest failure while006CA780 is unavailable.",
-      "limitations": "No original successful loader/activation/actor/camera/status5 path or live state reset; explicit incomplete-loader outcome is not credited as those bodies. Native resource/exception handling differs; unloaded construction user-accepted2026-11-03. Unloaded constructor/error return user-accepted2026-11-03.",
+      "coverage": "Installed owner consumes the actual copied mission, scopes/restores graphics bit20 and returns honest failure while006CA780 is unavailable. Offline activation/prepared-spawn checkpoint: Ordinary offline7 activation ordering over the same descriptor/loaded flag/live squad: module passes, HUD/first-person, prepared spawn, dubbing/text/music/clock and graphics failure restoration.",
+      "limitations": "No original successful loader/activation/actor/camera/status5 path or live state reset; explicit incomplete-loader outcome is not credited as those bodies. Native resource/exception handling differs; unloaded construction user-accepted2026-11-03. Unloaded constructor/error return user-accepted2026-11-03. New source-only subset requires actual containing world/local packet decoder/camera wiring; no mission desktop acceptance.",
       "evidence": [
         "recovered/host/game_owner.h",
         "analysis/game-owner-integration.md",
         "analysis/game-owner-integration.json",
-        "analysis/game-owner-integration-map.json"
+        "analysis/game-owner-integration-map.json",
+        "recovered/game/session_activation.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
       ]
     },
     {
@@ -17492,15 +17499,18 @@
       "program": "client",
       "entry": "007d8b40",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007d8b40: Verified source/no-source same-Human weapon-slot transfer, cooldown/expiry/dry-run/displacement/retain accounting; containing swap/drop and other families excluded. Exact no-source loading transfer with module notifications disabled; general runtime exchanges excluded.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 007d8b40: Verified source/no-source same-Human weapon-slot transfer, cooldown/expiry/dry-run/displacement/retain accounting; containing swap/drop and other families excluded. Exact no-source loading transfer with module notifications disabled; general runtime exchanges excluded. Offline activation/prepared-spawn checkpoint: Cold no-source prepared Human placement retains enabled-module178/hand cooldown and all-slot game28+920 expiry, explicitly excluding active B0/A8/displaced transfers.",
+      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim. New source-only subset requires actual containing world/local packet decoder/camera wiring; no mission desktop acceptance.",
       "evidence": [
         "recovered/game/human_weapon_transfer.h",
         "recovered/game/loading_item_transfer.h",
         "analysis/human-state-loading.md",
         "analysis/item-transfer-physics-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/prepared_item_transfer.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
       ]
     },
     {
@@ -20694,6 +20704,474 @@
         "recovered/game/players_module_loading.h",
         "analysis/human-state-loading.md",
         "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069bff0",
+      "status": "partial",
+      "coverage": "Restore borrowed hidden LIGHT frames reverse, clear retaining buffer, or restore before filtered scene enumeration.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/mission_scene_activation.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069c080",
+      "status": "partial",
+      "coverage": "Actual visibility/type/flag LIGHT filter; hide and update before borrowed append, preserving prior failure writes.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/mission_scene_activation.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072d2b0",
+      "status": "partial",
+      "coverage": "Mode3 scene-root world bounds, SAME session input quantizer rebinding, range bit counts and ordered packet resets.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/mission_scene_activation.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072d5f0",
+      "status": "partial",
+      "coverage": "Accumulate actual lazy VISUAL world boxes into the containing minimum/maximum.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/mission_scene_activation.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072d900",
+      "status": "partial",
+      "coverage": "Native range*100 signed64/EAX truncation and unsigned power-of-two bit/count encoding, with malformed overflow guard.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/mission_scene_activation.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072f500",
+      "status": "partial",
+      "coverage": "Rebuild stable session20 profile, primary then secondary manager/history bindings, process packet index0 then D4 publication; genuine null-manager early return.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_world_input.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00724ec0",
+      "status": "partial",
+      "coverage": "Reverse zero of exactly seven DWORDs on each of the same session world statistic buffers.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_world_input.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004759a0",
+      "status": "partial",
+      "coverage": "First free Scene2 reserved identity0..31 or native-1 fallback.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/host/game_scene_actors.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00475940",
+      "status": "partial",
+      "coverage": "First ascending active type10 SpawnPoint matching actual team90 and available9C.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/host/game_scene_actors.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004754f0",
+      "status": "partial",
+      "coverage": "Reserved Scene2 generation signed CHAR lookup, invalid identity returns-1.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/host/game_scene_actors.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00611c90",
+      "status": "partial",
+      "coverage": "Offline authority prepared spawn with actual identity/default clothing/split/model producer, activation passes and required real packet/event publication.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_human_spawn.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00612a60",
+      "status": "partial",
+      "coverage": "Offline actual kind9/category1 model key/root/pose/name and Scene2 Human creation; release factory reference before required property setup.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_human_spawn.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059eb60",
+      "status": "partial",
+      "coverage": "Offline SAME Human storage reset and native fixed/holster/backpack creation order, with real cold clothing receiver between fixed slots.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_human_spawn.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059edc0",
+      "status": "partial",
+      "coverage": "Offline kind/personality/profile, actual speech variant selection/release, nine profile stat conversions or explicit twelve-word copy, inventory then eye binding.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_human_spawn.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a2c90",
+      "status": "partial",
+      "coverage": "Reverse original carried-record traversal appends single-item records before decrement, preserving first positions and load/volume bookkeeping.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/frontend/pre_mission_inventory.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007ddef0",
+      "status": "partial",
+      "coverage": "Detach borrowed pack6 before ascending owner slots0..5; clear entries/holder cooldown while preserving stack flags and allocations.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/actor_storage_owner.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d7810",
+      "status": "partial",
+      "coverage": "Cold prepared-Human item allocation, actual identity assignment, real transfer, rejected entry release and SAME Items registration.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/host/game_mission_items.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a6930",
+      "status": "partial",
+      "coverage": "SAME Human inventory lookup; native strstr resource shortcut, actual dubbing retirement/cold model replacement, f marker and178, ignoring optional effects failure.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_human_clothing.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048a780",
+      "status": "partial",
+      "coverage": "Cold Human SAME model replacement through actual category1 cache, eye capture/restoration, temporary rand(6)-4 pose and two-way reverse animation/link/foreign-child transfer.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_human_clothing.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00489fd0",
+      "status": "partial",
+      "coverage": "Reverse recursive kind7 native120/128 link snapshot and matching short-name virtual74 transfer without invented ownership.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_human_clothing.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048a170",
+      "status": "partial",
+      "coverage": "Move foreign model100 children after reverse scan by parent short-name/root fallback, preserving LOCAL position/quaternion and updating.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_human_clothing.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073cbd0",
+      "status": "partial",
+      "coverage": "Owned process packet quantizer ten-slot initialization, distinct from history angle profiles; only actual seeded slots readable.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073ccf0",
+      "status": "partial",
+      "coverage": "Four original process packet profiles with captured minima/range/step constants.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073cc40",
+      "status": "partial",
+      "coverage": "Process packet profile copy with actual single capacity doubling and safe rejection of native out-of-range/unproduced slots.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073ccb0",
+      "status": "partial",
+      "coverage": "Construct actual quantizer from range/minimum/step and publish it into the same process packet table used by world binding.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/human_input_records.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d280",
+      "status": "partial",
+      "coverage": "Owned growing packet buffer initialization/cleanup policy with deterministic semantically-unused padding; no borrowed-buffer receiver claim.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d2f0",
+      "status": "partial",
+      "coverage": "Actual first100-byte allocation/equality growth and subsequent bit-capacity doubling for writes, with native cursor overflow guard.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d370",
+      "status": "partial",
+      "coverage": "Actual packet primary/secondary override initialization and position0/angle1 defaults over the owned buffer.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d070",
+      "status": "partial",
+      "coverage": "NUL-terminated CHAR writer, preserving signed promotion and native unmasked spill.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d3a0",
+      "status": "partial",
+      "coverage": "Primary explicit process index, borrowed override, then native default-index profile selection.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d3f0",
+      "status": "partial",
+      "coverage": "Secondary explicit process index, borrowed override, then native default-index profile selection.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d440",
+      "status": "partial",
+      "coverage": "Unmasked x87-style quantized XYZ encoding; Y-only minimum clamp and near-zero flag, original XYZ significance result.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d6c0",
+      "status": "partial",
+      "coverage": "Native yaw atan2(z,x), pitch asin(y), float stores and secondary mask3 direction encoding.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072bef0",
+      "status": "partial",
+      "coverage": "Selected broadcast stream active/priority/target/local fields and native five-bit kind prefix; messages append to current cursor.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072bf90",
+      "status": "partial",
+      "coverage": "Target0 branch clears packet active1C while retaining pending bits; actual targeted/local/remote transport is excluded.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072beb0",
+      "status": "partial",
+      "coverage": "Actual target0/local selected priority broadcast-stream wrapper over the containing three streams.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_spawn_packets.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00727450",
+      "status": "partial",
+      "coverage": "Six-byte equipment record signed position16/item16/count8 unmasked bit writes.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_spawn_packets.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00727480",
+      "status": "partial",
+      "coverage": "Full/equipment-only prepared soldier serialization with actual field order, fixed/carried records, -1 identity mutations and eight raw bookkeeping words.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_spawn_packets.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072e940",
+      "status": "partial",
+      "coverage": "Update actual session player record value/name under the recursive lock; append original-defined records on expansion, preserving unspecified bytes.",
+      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "evidence": [
+        "recovered/game/prepared_spawn_packets.h",
+        "analysis/session-activation-loading.md",
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
       ]
     }
   ]

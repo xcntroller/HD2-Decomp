@@ -58,6 +58,7 @@ public:
         for(const auto& record:registry_.records())for(auto& history:record->children)history->interval(interval);
     }
     void player_authority_mode(){state_.set(0xc4,std::uint32_t{0});state_.set(0xc8,std::uint32_t{1});} //0053B9A0 authority branch.
+    void world_quantizer_bound(){state_.set(0xd4,std::uint8_t{1});} //0072F500 final publication, after global profile write.
     const auto& state()const{return state_;}
 private:
     static float real(std::uint32_t bits){float value;std::memcpy(&value,&bits,4);return value;}

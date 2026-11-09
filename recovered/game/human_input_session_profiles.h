@@ -27,6 +27,7 @@ public:
         shared.relative_positions=(mode&1u)!=0; //00982F94.
     }
     const auto& profiles()const{return profiles_;}
+    auto& world_profile(){return profiles_[0];} //Same session20 address retained by existing records.
 private:
     static float real(std::uint32_t word){float value;std::memcpy(&value,&word,4);return value;}
     static std::array<float,3> uniform(std::uint32_t word){const auto value=real(word);return {{value,value,value}};}

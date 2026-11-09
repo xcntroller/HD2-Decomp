@@ -611,3 +611,11 @@ cleanup and embedded module lifecycle. Native sanitizers, strict actual-host
 compile and app link pass; fifteen additional partials, no complete/desktop
 promotions. Camera/Players are committed as one subsystem checkpoint. World/VM
 and required loading consumers remain the full P2.2 scope.
+
+2026-11-09: [offline activation/prepared-spawn source](session-activation-loading.md)
+now covers006989B0 ordering, borrowed scene LIGHT visibility, SAME input/global
+world quantizers, actual prepared Human profile/storage/cold clothing replacement
+and broadcast spawn packet production. Focused native sanitizers, strict actual
+host i386 and app link pass.39 new partials, no whole-body/desktop promotion.
+Local flush/decoder, actual006123A0 camera/Players receiver and00469300 first
+simulation remain required within the same full P2.2 checkbox.

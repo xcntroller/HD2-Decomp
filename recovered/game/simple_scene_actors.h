@@ -37,6 +37,7 @@ public:
     SpawnPointActorProperties properties;
     bool flag9c=true;
     std::uint32_t fielda8=0;
+    SceneActor<Backend>* spawned_human=nullptr; //Actual nativeA8 borrower, never an actor pointer in fielda8 DWORD.
 };
 
 template<class Backend>

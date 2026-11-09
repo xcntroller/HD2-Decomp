@@ -27,6 +27,22 @@ public:
         if (offset > size - 4) throw std::out_of_range("Original control record word");
         for (unsigned i = 0; i != 4; ++i) byte(offset + i, static_cast<std::uint8_t>(value >> (i * 8)));
     }
+    std::uint32_t word(std::size_t offset)const {
+        if(offset>size-4)throw std::out_of_range("Original control record word");
+        std::uint32_t value=0;
+        for(unsigned n=0;n!=4;++n){const auto v=byte(offset+n);
+            if(!v)throw std::runtime_error("Control record word has no original producer");
+            value|=std::uint32_t{*v}<<(8*n);}
+        return value;
+    }
+    std::string name()const {
+        std::string value;
+        for(std::size_t n=8;n!=size;++n){const auto c=byte(n);
+            if(!c)throw std::runtime_error("Control record name has no original producer");
+            if(!*c)return value;
+            value.push_back(static_cast<char>(*c));}
+        throw std::runtime_error("Unterminated original control record name");
+    }
 private:
     std::array<std::uint8_t, size> bytes_{};
     std::bitset<size> defined_;
@@ -67,6 +83,8 @@ struct ControlStartupState {
     void* object4ee0 = nullptr;
     std::uint8_t locks5018 = 0;
     std::uint32_t word503c = 0, word5044 = 0, word5054 = 0, word5058 = 0;
+    std::uint32_t word505c = 0;
+    std::array<std::array<std::uint32_t,7>,3> world_buffers{}; //4FB4/4FD0/4FEC,00724EC0.
     std::uint8_t byte5060 = 0;
     std::uint32_t word5064 = 0, word5068 = 0, word506c = 0;
 };

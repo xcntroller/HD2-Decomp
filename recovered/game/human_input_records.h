@@ -4,6 +4,7 @@
 #include "game/human_joint_owners.h"
 #include <functional>
 #include <list>
+#include <optional>
 
 namespace hd2::game {
 
@@ -17,6 +18,35 @@ struct HumanInputShared {
     std::uint64_t frequency=0;bool quantizers_initialized=false;float interpolation_step=0;
     bool relative_positions=false; //00982F94; actual process flag, initially zero.
     std::array<Quantizer,3> quantizers{};
+    //00982DE8 is a separate process table from the angle-history profiles
+    //00982E00 above.0073CBD0 allocates ten slots and0073CCF0 seeds only0..3;
+    //reading another unproduced slot must not invent a zero profile.
+    std::vector<std::optional<Quantizer>> packet_quantizers;
+    void initialize_packet_quantizers() {
+        if(!packet_quantizers.empty())return;
+        packet_quantizers.resize(10);
+        constexpr std::array<std::uint32_t,4> minima{{0xc4bb8000,0xc04947ae,0xc0000000,0xc04947ae}};
+        constexpr std::array<std::uint32_t,4> ranges{{0x453b8000,0x40c947ae,0x40000000,0x40c947ae}};
+        constexpr std::array<std::uint32_t,4> steps{{0x3c23d70a,0x3ccccccd,0x3ca3d70a,0x3e4ccccd}};
+        for(unsigned n=0;n!=4;++n)packet_quantizers[n]=make_quantizer(
+            uniform(minima[n]),uniform(ranges[n]),uniform(steps[n]));
+    }
+    void packet_quantizer(std::int32_t index,const Quantizer& value) { //0073CC40, one doubling, then copy.
+        initialize_packet_quantizers();
+        if(index<0)throw std::out_of_range("Negative process packet quantizer");
+        if(static_cast<std::size_t>(index)>=packet_quantizers.size()) {
+            if(static_cast<std::size_t>(index)>=packet_quantizers.size()*2)
+                throw std::out_of_range("Packet quantizer exceeds native single growth");
+            packet_quantizers.resize(packet_quantizers.size()*2);
+        }
+        packet_quantizers[static_cast<std::size_t>(index)]=value;
+    }
+    const Quantizer* packet_quantizer(std::int32_t index)const {
+        if(index<0||static_cast<std::size_t>(index)>=packet_quantizers.size())return nullptr;
+        const auto& value=packet_quantizers[static_cast<std::size_t>(index)];
+        if(!value)throw std::runtime_error("Packet quantizer slot has no original producer");
+        return &*value;
+    }
     void initialize_quantizers() { //00740410→0073D7E0, actual three uniform vectors.
         if(quantizers_initialized)return;
         constexpr std::array<std::uint32_t,3> minima{{0xc0490fdb,0xbe20d97c,0xbda0d97c}};
@@ -44,6 +74,7 @@ struct HumanInputShared {
         return result;
     }
 private:
+    static std::array<float,3> uniform(std::uint32_t bits){const auto value=real(bits);return {{value,value,value}};}
     static float real(std::uint32_t bits){float result;std::memcpy(&result,&bits,4);return result;}
 };
 

@@ -5,6 +5,7 @@
 #include "host/frame_clock.h"
 #include "game/item_identity.h"
 #include "game/loading_item_transfer.h"
+#include "game/prepared_item_transfer.h"
 #include "game/mission_item_records.h"
 #include <deque>
 
@@ -55,6 +56,15 @@ public:
     auto first_person_model(const frontend::PreMissionItem& definition) {return models_.first_person_model(definition);}
     auto first_person_magazine(const frontend::PreMissionItem& definition) const {return models_.first_person_magazine(definition);}
     void register_loaded_item(Entry entry) {if(entry)registered_.push_back(entry);} //007DC6E0 appends, no deduplication.
+    template<class Human>Entry create_prepared_human_item(Human& human,std::int32_t definition,std::int32_t slot,std::int32_t identity) { //007D7810, cold no-source loading.
+        if(!catalogue_.item(definition))return nullptr;
+        if(slot<0||slot>6)return nullptr;
+        const auto entry=create_item(definition);auto& item=runtime_item(entry);
+        item.identity=identity<0?game::allocate_item_identity(current_identity_,pending_identities_,clock_):identity;
+        const auto result=game::transfer_prepared_cold_item(frames_,human,*this,consumers_,entry,slot,game_word28_,enabled_);
+        if(result<1){frames_.release_entry(entry);return nullptr;}
+        register_loaded_item(entry);return entry;
+    }
     void remove_runtime_item(Entry entry) noexcept { //007DC8A0: first match, swap/pop before matching destruction.
         for(auto i=std::size_t{0};i!=registered_.size();++i)if(registered_[i]==entry) {
             registered_[i]=registered_.back();registered_.pop_back();frames_.release_entry(entry);return;
