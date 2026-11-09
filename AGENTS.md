@@ -17,11 +17,21 @@ When instructed to continue:
    from analysis documents. Keep plan checklist entries short.
 9. Stop after one verified milestone or when blocked.
 
-Do not repeatedly investigate findings already marked as confirmed unless new evidence contradicts them.
+## Audit and Verification Policy
 
-Do not claim desktop verification unless the actual desktop test has been performed.
-
-Prefer a complete, verified reconstruction of a small subsystem over a broad but speculative implementation.
+1. Prioritize implementation progress while maintaining correctness and fidelity to the original game.
+2. Perform lightweight verification during implementation: compile checks, relevant call signatures, ownership, known invariants, and focused tests.
+3. Perform targeted audits when completing a major subsystem or encountering a concrete discrepancy.
+4. Reserve comprehensive audits for major phase milestones, significant architectural changes, or evidence of systemic problems.
+5. Do not repeatedly audit unchanged, previously verified code without a specific reason.
+6. Do not initiate broad audits automatically after every implementation batch.
+7. When an audit identifies issues, prioritize actionable defects affecting the current execution path.
+8. Maintain a concise record of unresolved risks and assumptions rather than repeatedly investigating them without new evidence.
+9. Preserve faithful reconstruction of original functions and behavior. Reduced audit frequency must not justify speculative implementations or bypassing required functionality.
+10. Continue implementation after successful verification rather than starting another audit cycle.
+11. Do not repeatedly investigate findings already marked as confirmed unless new evidence contradicts them.
+12. Do not claim desktop verification unless the actual desktop test has been performed.
+13. Prefer a complete, verified reconstruction of a small subsystem over a broad but speculative implementation.
 
 ## Project boundaries
 
@@ -34,6 +44,8 @@ Prefer a complete, verified reconstruction of a small subsystem over a broad but
 - Mark source-only recovery separately from integrated, desktop-tested delivery.
   Only credit implemented bodies present in the frozen function inventory;
   delegated engine calls and absent functions receive no new credit.
-- Commit when requested. Changes to interactive behavior require user desktop
+- Commit smaller verified checkpoints while continuing the full plan checkbox;
+  do not wait for checkbox completion or accumulate a large working tree.
+  Changes to interactive behavior require user desktop
   confirmation before committing; source-only work needs no invented desktop test.
   Do not push without explicit instruction.
