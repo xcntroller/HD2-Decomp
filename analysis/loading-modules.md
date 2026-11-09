@@ -123,8 +123,11 @@ is true, Scripts.dta otherwise; the caller004270D0 supplies mode!=7.
 The actual captures contain114 Tutorial pairs/114 distinct script names and148
 Alps1 pairs/125 distinct scripts; neither has duplicate frame names. Tutorial's
 MP binding root is genuinely empty. These binding files contain names, not VM
-instructions.00427730's actual context construction/compilation, frame word1,
-actor references and init execution remain mandatory; reading these files is not
+instructions. [Compiler/context source](mission-script-loading.md) now reconstructs
+00427730's compiler/binding owner and frame word1 lifetime with required actual
+base/Human/Dog factory/notification receivers, expression/control-flow compiler
+and one-instruction scheduler. Actual world commands/predicates, containing
+activation and init execution remain mandatory; reading these files is not
 script activation. Census and assembly are preserved under
 `mission-script-bindings-census.json` and `script-program-owner/00428600.asm`.
 

@@ -4634,3 +4634,13 @@ cleanup and embedded module lifecycle. Native sanitizers, strict actual-host
 compile and app link pass; fifteen additional partials, no complete/desktop
 promotions. Camera/Players are committed as one subsystem checkpoint. World/VM
 and required loading consumers remain the full P2.2 scope.
+
+2026-11-09: [script compiler and context source](analysis/mission-script-loading.md)
+now covers actual lexer/signature/pool/expression/control-flow compilation,
+retained frame EC ownership, one-instruction scheduler, event/exit and binding
+failure/removal lifetimes. All114 captured base Tutorial bindings compile;
+145/146 base scripts compile, with one unbound unsafe operator-list rejection.
+Focused native sanitizers, strict actual-host i386, app compile/link and27 tally
+tests pass.75 source partials; zero whole-body/desktop promotions. Actual world
+commands/predicates/derived receivers, runtime Patch selection and full containing
+world remain required. Continue the entire P2.2 checkbox after this checkpoint.

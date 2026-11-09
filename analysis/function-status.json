@@ -21529,6 +21529,906 @@
         "analysis/camera-local-dispatch-loading.md",
         "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0042cc00",
+      "status": "partial",
+      "coverage": "Source mission script lexer tokens and cursor-presence returns.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_lexer.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042cdd0",
+      "status": "partial",
+      "coverage": "Source mission script whitespace and CR counters.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_lexer.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042cf60",
+      "status": "partial",
+      "coverage": "Source mission script consuming token comparison.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_lexer.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042ded0",
+      "status": "partial",
+      "coverage": "Source mission script ASCII identifier classifier.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_lexer.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042df10",
+      "status": "partial",
+      "coverage": "Source mission script numeric-character classifier.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_lexer.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00414680",
+      "status": "partial",
+      "coverage": "Source mission script signature arity.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_commands.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004146d0",
+      "status": "partial",
+      "coverage": "Source mission script signature argument kind.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_commands.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042de80",
+      "status": "partial",
+      "coverage": "Source mission script reverse command lookup.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_commands.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e080",
+      "status": "partial",
+      "coverage": "Source mission script predicate arity.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_commands.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e0e0",
+      "status": "partial",
+      "coverage": "Source mission script forward predicate lookup.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_commands.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00414610",
+      "status": "partial",
+      "coverage": "Source mission script owned instruction payload copying.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_program.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00414660",
+      "status": "partial",
+      "coverage": "Source mission script owned instruction payload retirement.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_program.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00416700",
+      "status": "partial",
+      "coverage": "Source mission script ordered instruction append.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_program.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042ceb0",
+      "status": "partial",
+      "coverage": "Source mission script reverse symbol resolution.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_program.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042d890",
+      "status": "partial",
+      "coverage": "Source mission script typed variable or literal operand.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_program.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042d920",
+      "status": "partial",
+      "coverage": "Source mission script integer and quoted-string literal pools.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_program.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00415fe0",
+      "status": "partial",
+      "coverage": "Source mission script first-identity signal registration.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004161f0",
+      "status": "partial",
+      "coverage": "Source mission script first-identity cutscene registration.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00416400",
+      "status": "partial",
+      "coverage": "Source mission script first-identity cutscene-done registration.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00416750",
+      "status": "partial",
+      "coverage": "Source mission script expression append.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042c0b0",
+      "status": "partial",
+      "coverage": "Source mission script statement dispatch.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042c850",
+      "status": "partial",
+      "coverage": "Source mission script prepared-source compile and validation.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042cf90",
+      "status": "partial",
+      "coverage": "Source mission script compiler/parser state reset.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042d170",
+      "status": "partial",
+      "coverage": "Source mission script expression lexical collection.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042d740",
+      "status": "partial",
+      "coverage": "Source mission script brace stack and payload backpatch.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042dd40",
+      "status": "partial",
+      "coverage": "Source mission script signature-driven argument parse.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e160",
+      "status": "partial",
+      "coverage": "Source mission script assignment emission.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e2a0",
+      "status": "partial",
+      "coverage": "Source mission script If expression and brace lookahead.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e340",
+      "status": "partial",
+      "coverage": "Source mission script Block marker.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e380",
+      "status": "partial",
+      "coverage": "Source mission script Return marker.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e3d0",
+      "status": "partial",
+      "coverage": "Source mission script Else marker.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e410",
+      "status": "partial",
+      "coverage": "Source mission script unique start point.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e460",
+      "status": "partial",
+      "coverage": "Source mission script signal event parse.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e550",
+      "status": "partial",
+      "coverage": "Source mission script cutscene event parse.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e640",
+      "status": "partial",
+      "coverage": "Source mission script cutscene-done event parse.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e730",
+      "status": "partial",
+      "coverage": "Source mission script simple event parse.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042e7c0",
+      "status": "partial",
+      "coverage": "Source mission script Whenever expression and forward symbol patch.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042ec20",
+      "status": "partial",
+      "coverage": "Source mission script normal command parse and emission.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042ecd0",
+      "status": "partial",
+      "coverage": "Source mission script Integer String Frame declaration.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042f0a0",
+      "status": "partial",
+      "coverage": "Source mission script label declaration and patch.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042f2e0",
+      "status": "partial",
+      "coverage": "Source mission script GoTo label resolution.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042f530",
+      "status": "partial",
+      "coverage": "Source mission script SetWhenever reference and literal.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042f920",
+      "status": "partial",
+      "coverage": "Source mission script SetWheneverTime reference and literal.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042fd10",
+      "status": "partial",
+      "coverage": "Source mission script Gosub label resolution.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_compiler.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00411d00",
+      "status": "partial",
+      "coverage": "Source mission script expression token classification and literal pools.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_expression_parser.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00412480",
+      "status": "partial",
+      "coverage": "Source mission script typed literal leaves.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_expression_parser.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00412540",
+      "status": "partial",
+      "coverage": "Source mission script supported operator classification.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_expression_parser.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00412560",
+      "status": "partial",
+      "coverage": "Source mission script ordered binary group folding.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_expression_parser.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00412760",
+      "status": "partial",
+      "coverage": "Source mission script expression grouping and predicate signature validation.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_expression_parser.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00412d70",
+      "status": "partial",
+      "coverage": "Source mission script operator homogeneity classes.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_expression_parser.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00411650",
+      "status": "partial",
+      "coverage": "Source mission script numeric expression evaluation and short circuit.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_expression.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00411860",
+      "status": "partial",
+      "coverage": "Source mission script string expression evaluation.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_expression.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042c4b0",
+      "status": "partial",
+      "coverage": "Source mission script resource/include search and prefix insertion.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_source.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042c580",
+      "status": "partial",
+      "coverage": "Source mission script case-sensitive include expansion.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_source.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00416610",
+      "status": "partial",
+      "coverage": "Source mission script signal masks and context admission.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004167b0",
+      "status": "partial",
+      "coverage": "Source mission script one-instruction tick with periodic and delay scheduling.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00416cf0",
+      "status": "partial",
+      "coverage": "Source mission script guarded PC advance.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00416db0",
+      "status": "partial",
+      "coverage": "Source mission script return-end flags and required Human cleanup receiver.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00416e10",
+      "status": "partial",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041d8d0",
+      "status": "partial",
+      "coverage": "Source mission script begin state and repeated slot preservation.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041d920",
+      "status": "partial",
+      "coverage": "Source mission script death entry or finish.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041d960",
+      "status": "partial",
+      "coverage": "Source mission script use entry exclusion.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041d9b0",
+      "status": "partial",
+      "coverage": "Source mission script cutscene event entry.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041da20",
+      "status": "partial",
+      "coverage": "Source mission script alarm entry exclusion.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041da80",
+      "status": "partial",
+      "coverage": "Source mission script alarm-done entry.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041dae0",
+      "status": "partial",
+      "coverage": "Source mission script cutscene-done event entry.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041db50",
+      "status": "partial",
+      "coverage": "Source mission script load event entry.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041db80",
+      "status": "partial",
+      "coverage": "Source mission script exit block entry.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041dbb0",
+      "status": "partial",
+      "coverage": "Source mission script hit entry exclusion.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041dc00",
+      "status": "partial",
+      "coverage": "Source mission script synchronous block dispatch and PC handling.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041dcb0",
+      "status": "partial",
+      "coverage": "Source mission script frame EC word1 and retained context construction.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041df20",
+      "status": "partial",
+      "coverage": "Source mission script frame EC unbind and context destruction.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041e140",
+      "status": "partial",
+      "coverage": "Source mission script program and retained-frame pool retirement.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041e3f0",
+      "status": "partial",
+      "coverage": "Source mission script pending signal consumption predicate only.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_context.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00427730",
+      "status": "partial",
+      "coverage": "Source mission script actual-factory source load compile begin notify and exit-remove owner.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "evidence": [
+        "analysis/mission-script-loading.md",
+        "recovered/game/mission_script_contexts.h",
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+      ]
     }
   ]
 }

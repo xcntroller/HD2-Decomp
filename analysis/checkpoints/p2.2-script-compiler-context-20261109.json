@@ -1,0 +1,337 @@
+{
+  "date": "2026-11-09",
+  "scope": "Full P2.2 first unchecked checkbox; source script compiler and context checkpoint, continue actual VM/world receivers.",
+  "source_only": true,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "original_entries": [
+    "00411650",
+    "00411860",
+    "00411d00",
+    "00412480",
+    "00412540",
+    "00412560",
+    "00412760",
+    "00412d70",
+    "00414610",
+    "00414660",
+    "00414680",
+    "004146d0",
+    "00415fe0",
+    "004161f0",
+    "00416400",
+    "00416610",
+    "00416700",
+    "00416750",
+    "004167b0",
+    "00416cf0",
+    "00416db0",
+    "00416e10",
+    "0041d8d0",
+    "0041d920",
+    "0041d960",
+    "0041d9b0",
+    "0041da20",
+    "0041da80",
+    "0041dae0",
+    "0041db50",
+    "0041db80",
+    "0041dbb0",
+    "0041dc00",
+    "0041dcb0",
+    "0041df20",
+    "0041e140",
+    "0041e3f0",
+    "00427730",
+    "0042c0b0",
+    "0042c4b0",
+    "0042c580",
+    "0042c850",
+    "0042cc00",
+    "0042cdd0",
+    "0042ceb0",
+    "0042cf60",
+    "0042cf90",
+    "0042d170",
+    "0042d740",
+    "0042d890",
+    "0042d920",
+    "0042dd40",
+    "0042de80",
+    "0042ded0",
+    "0042df10",
+    "0042e080",
+    "0042e0e0",
+    "0042e160",
+    "0042e2a0",
+    "0042e340",
+    "0042e380",
+    "0042e3d0",
+    "0042e410",
+    "0042e460",
+    "0042e550",
+    "0042e640",
+    "0042e730",
+    "0042e7c0",
+    "0042ec20",
+    "0042ecd0",
+    "0042f0a0",
+    "0042f2e0",
+    "0042f530",
+    "0042f920",
+    "0042fd10"
+  ],
+  "ledger_added_partial_client": 75,
+  "added": [
+    "00411650",
+    "00411860",
+    "00411d00",
+    "00412480",
+    "00412540",
+    "00412560",
+    "00412760",
+    "00412d70",
+    "00414610",
+    "00414660",
+    "00414680",
+    "004146d0",
+    "00415fe0",
+    "004161f0",
+    "00416400",
+    "00416610",
+    "00416700",
+    "00416750",
+    "004167b0",
+    "00416cf0",
+    "00416db0",
+    "00416e10",
+    "0041d8d0",
+    "0041d920",
+    "0041d960",
+    "0041d9b0",
+    "0041da20",
+    "0041da80",
+    "0041dae0",
+    "0041db50",
+    "0041db80",
+    "0041dbb0",
+    "0041dc00",
+    "0041dcb0",
+    "0041df20",
+    "0041e140",
+    "0041e3f0",
+    "00427730",
+    "0042c0b0",
+    "0042c4b0",
+    "0042c580",
+    "0042c850",
+    "0042cc00",
+    "0042cdd0",
+    "0042ceb0",
+    "0042cf60",
+    "0042cf90",
+    "0042d170",
+    "0042d740",
+    "0042d890",
+    "0042d920",
+    "0042dd40",
+    "0042de80",
+    "0042ded0",
+    "0042df10",
+    "0042e080",
+    "0042e0e0",
+    "0042e160",
+    "0042e2a0",
+    "0042e340",
+    "0042e380",
+    "0042e3d0",
+    "0042e410",
+    "0042e460",
+    "0042e550",
+    "0042e640",
+    "0042e730",
+    "0042e7c0",
+    "0042ec20",
+    "0042ecd0",
+    "0042f0a0",
+    "0042f2e0",
+    "0042f530",
+    "0042f920",
+    "0042fd10"
+  ],
+  "extended": [],
+  "not_credited": [
+    "00428490 absent frozen inventory",
+    "00411f67 mid-body expression float spill",
+    "0042cb80 table data/count facts alone, no constructor body",
+    "005907c0 required external receiver",
+    "005a3df0 required external receiver",
+    "00421970 Dog dispatcher researched only",
+    "00421c00 Human dispatcher researched only",
+    "007e88f0 delegated/ASCII source comparison is not CRT recovery",
+    "all other merely exported original bodies"
+  ],
+  "temporary_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-census",
+      "size": 3147032,
+      "sha256": "02fa5a2ffeec184a411a40729d278bfe3c5c6bf8b1b40c9faef3828636a82594",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-census-debug",
+      "size": 318608,
+      "sha256": "034893e61f3ae52fda63314fdbc1544da922e5845445a1d1e2d96f7aadcad832",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-census.cpp",
+      "size": 1302,
+      "sha256": "72a0db8ca8950b7afecf757a20510e8492910eaedb2bf5eaf06db85ccd85583c",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-compiler-audit",
+      "size": 2843848,
+      "sha256": "9b5949fd50207c497f6ce37d4f2e3070a4a0fc752ea10f383298522bc31f6639",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-compiler-audit.cpp",
+      "size": 3915,
+      "sha256": "c993ab8a9da970a8581f11ac49da4bec81c20dd684defc4c3e210d9a7d0357f2",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-context-audit",
+      "size": 4707232,
+      "sha256": "6f653a458561c34115e50f1d6e3713d0cb0be23acc004d1d4af3aa660356dcbc",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-context-audit.cpp",
+      "size": 9052,
+      "sha256": "a19b885dc2391894ce05cd7d07a540d32eb97b413bee0591413af928d04aa942",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-host-compile.cpp",
+      "size": 1140,
+      "sha256": "46c33d3a17e80c57cbc0a3abedb24568b7298dc218061acfd679d33c23bd512b",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-host-compile.o",
+      "size": 1155942,
+      "sha256": "2ba1ccca3ea5093387899491f212b9405a8456c5dcb061f0c8a4f49c77083ba5",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-front-compile.cpp",
+      "size": 108,
+      "sha256": "990830c485350f478341a90c179c44fd83f94beb05d354cc5bd741cbdddc92d4",
+      "removed": true
+    }
+  ],
+  "verification": {
+    "compiler_native": "PASS ASan/UBSan/LSan focused compiler fixture",
+    "context_native": "PASS ASan/UBSan/LSan focused context/include/binding fixture; external world receivers/clock are boundary doubles",
+    "base_census": "PASS expected146 sources:145 compiled/4481 instructions; one bounded unbound T_EE_Weather.scr rejection at byte1443; all114 captured B810-bound scripts compile",
+    "i386": "PASS strict actual GameActorServices/ChunkFiles instantiation; World receiver declarations remain external, Windows fixture not executed",
+    "application": "PASS Windows application compile/link; not executed",
+    "tracker": "PASS render/check and27 existing tests",
+    "diff": "PASS git diff --check",
+    "logs": [
+      {
+        "path": "analysis/work/mission-world-20261103/script-compiler-native-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/script-compiler-native-run.log",
+        "sha256": "2bf3327fd70a508235036cc02bc335c0072a662d998a42c75c40955156ef2a8c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/script-context-native-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/script-context-native-run.log",
+        "sha256": "10288d9baf462deaace5da388e2ef33e618f8fcb0b35814e6e66443e2496ce78"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/script-census-native-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/script-census-native-run.log",
+        "sha256": "ed324d64b80ac9db296ac83955c41feacf2fca3105048c76c00d4f5670d34a9b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/script-host-i386-build.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/script-app-build.log",
+        "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/script-ledger-render.log",
+        "sha256": "c892cf425f30a342b8a49952a4084c550d984d6489bf08a3e1fcc0bc31fc299b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/script-ledger-check.log",
+        "sha256": "bedc75f641871e8c644bf045c5da98a55fca67fffa03386b7eff11391c829466"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/script-ledger-tests.log",
+        "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+      }
+    ]
+  },
+  "limitations": "No live script module or successful loaded world. GameApplicationState declines loading. Base ISD0 samples do not establish runtime loose/Patch selection. Actual world/async predicates and commands remain required; no successful placeholder receivers.",
+  "source_files": [
+    {
+      "path": "recovered/game/mission_script_commands.h",
+      "sha256": "d1e61da77e4c02b7d76b6df07b02aefdeb7d85038b123deb0c982e70b204753b"
+    },
+    {
+      "path": "recovered/game/mission_script_compiler.h",
+      "sha256": "e4b60270ce7318da3bed40ab929b66ea75d28ab562493b1e6a2aebfa3b64cb8a"
+    },
+    {
+      "path": "recovered/game/mission_script_context.h",
+      "sha256": "423dbe19f889fa6ac6dfe4bcbb7e8efedf489ed4ee0e1b821a301ebde4ceaeb9"
+    },
+    {
+      "path": "recovered/game/mission_script_contexts.h",
+      "sha256": "f38cd2b8324bdc825f8e7e6551744bfa94710c36aa19f6c3583be97aee0d20c3"
+    },
+    {
+      "path": "recovered/game/mission_script_expression.h",
+      "sha256": "e9a981f0d9482e6094b23b39d242afda7bec3652c861bd1f6b6fd60767cb6186"
+    },
+    {
+      "path": "recovered/game/mission_script_expression_parser.h",
+      "sha256": "68c633ed177f154eaeee2cd07efed5d25e56b2eb7d44bd8f2060e549f7c9cccc"
+    },
+    {
+      "path": "recovered/game/mission_script_lexer.h",
+      "sha256": "2d0bedcfea0b16bea8956acd4ee0da24bedcd6e7380505c5bb1fe9861f23c5b3"
+    },
+    {
+      "path": "recovered/game/mission_script_program.h",
+      "sha256": "7d4d95bfd73e97482987c79824834cbea6cd106583d7123421a8737083f14115"
+    },
+    {
+      "path": "recovered/game/mission_script_source.h",
+      "sha256": "0b511b5f47b0e5e109285f76081b87d7d94f59cc3c500d0e4f182f013233a5d4"
+    }
+  ],
+  "base_source_corpus": {
+    "count": 146,
+    "digest_format": "sha256 of sorted path + space + file-sha256 records joined by newline, final newline",
+    "sha256": "d30b01914467305066a12ceed1963ca5ae8840bd75eb0607031af2053d20fd0a",
+    "provenance": "analysis/work/mission-world-20261103/tutorial-script-programs-base.json",
+    "runtime_patch_selection_verified": false
+  }
+}
