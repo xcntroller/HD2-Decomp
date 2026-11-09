@@ -30,6 +30,12 @@ static_assert(sizeof(MissionTableRecord) == 0x24);
 class TableStorage {
 public:
     static constexpr std::size_t cookie_bytes = alignof(MissionTableRecord);
+    static void* allocate_table_storage(std::size_t bytes) {
+        if (!bytes) return nullptr;
+        auto* result = std::malloc(bytes);
+        if (!result) throw std::bad_alloc();
+        return result;
+    }
     static MissionTableRecord* allocate_table_records(std::uint32_t count) {
         if (count > (std::numeric_limits<std::size_t>::max() - cookie_bytes) / sizeof(MissionTableRecord))
             throw std::bad_array_new_length();
