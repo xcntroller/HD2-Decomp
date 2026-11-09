@@ -1298,3 +1298,42 @@ frame/world/equipment receiver doubles. Initial active bind/close is exercised;
 no original/Windows program, full DD0 activation or desktop scene was run.
 Four eligible bodies gain partial credit; no complete promotions. P2.2 remains
 open for formation/camera/Players, VM and full world integration.
+
+## Next formation loading boundary — 2026-11-09 research
+
+Formation source is not yet implemented.005A91A0 owns Human2CC's leader
+borrower and allocates the leader's2C8 formation only when missing. Its required
+bodies are005949C0/00597880 construction,00597F80 add,00597C50 leader selection,
+00597420 mode3 and005977F0 shared scale. Clear removes through005981C0 and
+retires a leader owner when count7C<2.005A9120 scans six members in reverse,
+rereading Human2C8 after every follower callback because that callback can
+recursively destroy the SAME owner. A retained pointer across that call would
+be unsafe. The actual formation owner and leader borrower must remain distinct.
+
+The owner allocates six A0 records (00595370/005953C0) with typed member70,
+scalar/vector fields and an owned90/94/98 buffer per record. Constructor matrix
+811190 and template table8AB1D0 are separate data. The template table is BSS:
+range references locate its immediate/static initializer writes around00595xxx
+through005974xx, including normalization loops and derived rows. Do not read
+zeros from the on-disk BSS or guess a default formation. Native3 selects six
+position/direction rows; constructor uses2.5 scale before005A91A0 applies the
+shared0089AD40 scale.00597760 direction setter remains to export.
+
+Leader selection00597C50 also updates matrix/direction/positions and invokes
+0059B7B0 navigation projection. That calls actual0051D780, fallback0051D970 and
+0051D5A0 on the SAME MissionNavigation dataset; preserve radius byte13, type16,
+leader height clamp, float stores and failure semantics. Decompiler stack-vector
+results in00597C50 are unreliable: confirm its engine SetDir/transform call ABI
+and writes in assembly before implementing. Imported math calls receive no
+client or engine body credit. A populated formation cannot be represented by
+successful empty cleanup services.
+
+Successful local read-only exports: WORK/human-formation-owner/ and
+human-formation-storage/. Full table-write and call references are in
+human-formation-template-references.txt. Ghidra jobs ended successfully; no
+original binary execution. Next work is implementing/testing this owner boundary,
+then detached-camera00463040 and Players module activation.00463040 scans its
+8-byte records in reverse, resets actual Human camera amount005A9760 BEFORE
+swap/pop, and copies only the last record's actor DWORD into the removed slot;
+its producer/second DWORD still require recovery. Existing human_camera_amount.h
+already supplies the actual amount setter; reuse it rather than a new callback.

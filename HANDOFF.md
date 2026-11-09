@@ -66,7 +66,11 @@ detached-camera00463040/Players module consumers. Existing formation entry expor
 WORK/human-containing-final-dependencies/005a91a0.c and00463040.c;
 human-containing-activation-dependencies/005a9120.c. New dependency export:
 WORK/human-formation-owner/ (check Ghidra log for completion/errors before use).
-Formation dependency export completed successfully; no Ghidra process remains.
+Formation owner/storage/template-reference exports completed successfully; no
+Ghidra process remains. See the next-formation research section in the Human
+contract. Required template data is BSS populated by a large static initializer,
+not on-disk defaults.00597C50 needs assembly to resolve bad decompiler vector
+results;0059B7B0 uses actual navigation projection. Do not implement placeholders.
 
 Confirmed new behavioral details (do not repeat unchanged audits):
 -00530D40/00530A40 gate signed DWORD at64hex>0 and command60!=-1. Not int64.
