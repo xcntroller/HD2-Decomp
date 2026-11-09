@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "source-only dedicated profile/options/selection composition; full N1 startup remains open",
+  "checks": [
+    "native ASan/UBSan/LSan temporary focused profile audit",
+    "independently assembled options/payload chunks and literal expected fields",
+    "headless binding defaults empty, raw record ordering/padding/dirty bytes preserved",
+    "outer-versus-inner fallback, partial settings transfers, malformed/no-progress guards",
+    "all options truncations and sampled payload truncations",
+    "actual directory ordering, failed chdir behavior, legacy raw-name cwd, aliased selection and wide duplicate-name map",
+    "signed/nonfinite x87 conversion and required backend failure propagation",
+    "quick-save signed/marker checks and prior-mission promotion against actual GameData",
+    "100 repeated profile lifetimes",
+    "strict Windows i386 fixture link; not executed"
+  ],
+  "limits": "Owned source composition only; actual application, filesystem/engine/network backend acquisition and live voice ownership remain open. Existing shared native bounds/undefined-input guards retained. Client ledger unchanged. No actual game.cfg read.",
+  "sources": [
+    {
+      "path": "recovered/networking/headless_profile.h",
+      "sha256": "628bcfbc9715cb8a7ef8aac60ba8dddc46862bae830fa352223e45f83db41775"
+    },
+    {
+      "path": "recovered/frontend/profile_directories.h",
+      "sha256": "3dd62d94d2a6d006ea1815213558a9225cd7b8fea58f0983f8a820032bfd731f"
+    },
+    {
+      "path": "recovered/frontend/profile_settings.h",
+      "sha256": "38aa355f71319f0453340e75d9a9739d15e8872ea7ebf5c04d5dc993a832f8b6"
+    },
+    {
+      "path": "recovered/frontend/profile_payload.h",
+      "sha256": "fdb5f7a1639af977f19544e7f6f3b5662b9fa9c608116e5b657d3f062eafa828"
+    },
+    {
+      "path": "recovered/frontend/profile_load.h",
+      "sha256": "a31e523000c1537e798d8380460130028c4a0f411bd90678cdbb3f06d976e9f2"
+    },
+    {
+      "path": "tools/networking/ConfigureNetworkingEvidence.java",
+      "sha256": "f00715b4ed6270dc0c87230b74c86f45b31f33a4c20d9356adcbc4e93e24a01c"
+    }
+  ],
+  "input": {
+    "path": "analysis/work/networking/headless-store-inputs/Gamedata00.gdt",
+    "sha256": "f92ab7e8796148af7854438ffca4df34b55cca8e83336878d7f569cdcd3319b1"
+  },
+  "log_sha256": "469946433646cc4d377be307c0683da6feeb97dfab1b87c5092bcf593d40de14",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/headless-profile-audit/audit.cpp",
+      "sha256": "549694ef24d487e3c8cae18d50edf84e056b1ae64272954029629b75065702d8"
+    },
+    {
+      "path": "analysis/work/networking/headless-profile-audit/native-audit",
+      "sha256": "44fb7ffad401111af427cd31a0954d72e8401301846dcfc644eac8e83391dd1b"
+    },
+    {
+      "path": "analysis/work/networking/headless-profile-audit/windows-link.exe",
+      "sha256": "e9eadb07c88ba5105b5a198c3955ee3209467a913f10611d63403b5dccb959f0"
+    }
+  ]
+}

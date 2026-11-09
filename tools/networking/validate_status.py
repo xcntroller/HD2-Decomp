@@ -8,7 +8,9 @@ ROOT = Path(__file__).resolve().parents[2]
 DIRECTORY = ROOT / "analysis/networking"
 # Headless server reuse requires separate HD2DS-address contract verification.
 # Keep shared sources explicit; the client ledger stays frozen.
-SHARED_SOURCES = {ROOT / "recovered/frontend/human_store.h", ROOT / "recovered/frontend/game_data.h"}
+SHARED_SOURCES = {ROOT / ("recovered/frontend/" + name) for name in (
+    "human_store.h", "game_data.h", "profile_directories.h", "profile_settings.h",
+    "profile_payload.h", "profile_load.h")}
 
 
 def validate(local_evidence=False):

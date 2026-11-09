@@ -428,6 +428,126 @@
       "evidence": [
         "analysis/work/networking/server-startup-profile-20261109/006f9550.json"
       ]
+    },
+    {
+      "program": "server",
+      "entry": "006f0060",
+      "status": "partial",
+      "sources": [
+        "recovered/frontend/profile_directories.h"
+      ],
+      "contract": "Wide-name profile enumeration, metadata and first-duplicate map",
+      "exclusions": "Native storage/bounds/undefined-input guards; actual application/platform/engine/network ownership and desktop integration remain open.",
+      "evidence": [
+        "analysis/work/networking/server-profile-selection-20261109/006f0060.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006f0380",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_profile.h"
+      ],
+      "contract": "Profile selection, directory restoration, shared-word clear and ordered loads",
+      "exclusions": "Native storage/bounds/undefined-input guards; actual application/platform/engine/network ownership and desktop integration remain open.",
+      "evidence": [
+        "analysis/work/networking/server-profile-owner-contract-20261109/006f0380.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006f0700",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_profile.h",
+        "recovered/frontend/profile_load.h"
+      ],
+      "contract": "Legacy profile fallback with actual raw-name directory change and saved-game finalization",
+      "exclusions": "Native storage/bounds/undefined-input guards; actual application/platform/engine/network ownership and desktop integration remain open.",
+      "evidence": [
+        "analysis/work/networking/server-profile-dependent-owners-20261109/006f0700.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006f0f30",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_profile.h",
+        "recovered/frontend/profile_payload.h"
+      ],
+      "contract": "Binary profile open/reset, recognized payload traversal, finalization and missing-file fallback",
+      "exclusions": "Native storage/bounds/undefined-input guards; actual application/platform/engine/network ownership and desktop integration remain open.",
+      "evidence": [
+        "analysis/work/networking/server-profile-owner-contract-20261109/006f0f30.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006f1a10",
+      "status": "partial",
+      "sources": [
+        "recovered/frontend/profile_load.h"
+      ],
+      "contract": "Saved-game slot validation and prior-mission quick-save promotion",
+      "exclusions": "Native storage/bounds/undefined-input guards; actual application/platform/engine/network ownership and desktop integration remain open.",
+      "evidence": [
+        "analysis/work/networking/server-profile-dependent-owners-20261109/006f1a10.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006f4e60",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_profile.h"
+      ],
+      "contract": "Headless options load and actual quality/network-volume backend application order",
+      "exclusions": "Native storage/bounds/undefined-input guards; actual application/platform/engine/network ownership and desktop integration remain open.",
+      "evidence": [
+        "analysis/work/networking/server-profile-owner-contract-20261109/006f4e60.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006f4ea0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_profile.h",
+        "recovered/frontend/profile_settings.h"
+      ],
+      "contract": "Sequential Options.bin chunks and distinct outer versus inner fallback",
+      "exclusions": "Native storage/bounds/undefined-input guards; actual application/platform/engine/network ownership and desktop integration remain open.",
+      "evidence": [
+        "analysis/work/networking/server-profile-options-20261109/006f4ea0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006ec1b0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_profile.h"
+      ],
+      "contract": "Raw headless binding records, version gate, clear and retained dirty bytes",
+      "exclusions": "Native storage/bounds/undefined-input guards; actual application/platform/engine/network ownership and desktop integration remain open.",
+      "evidence": [
+        "analysis/work/networking/server-profile-options-contract-20261109/006ec1b0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006f95c0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_profile.h"
+      ],
+      "contract": "Optional wide scan then startup-owner name selection without persistence",
+      "exclusions": "Native storage/bounds/undefined-input guards; actual application/platform/engine/network ownership and desktop integration remain open.",
+      "evidence": [
+        "analysis/work/networking/server-startup-profile-20261109/006f95c0.json"
+      ]
     }
   ]
 }

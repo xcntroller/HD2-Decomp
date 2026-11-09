@@ -36,6 +36,11 @@ public class ConfigureNetworkingEvidence extends GhidraScript {
             // ECX cursor**, EDX text buffer; stack integer out and keyword table.
             signature(0x7a47b0, "__fastcall", DWordDataType.dataType, ptr, ptr, ptr, ptr);
             signature(0x40d46d, "__fastcall", DWordDataType.dataType, ptr, ptr, ptr, ptr);
+            //006F03A6 saves ECX as the profile owner; name is one stack arg,
+            //006F05C9 RET4. Without this model the decompiler invents an
+            //uninitialized local24 pointer for the real owner.
+            signature(0x6f0380, "__thiscall", ByteDataType.dataType, ptr);
+            signature(0x409d1d, "__thiscall", ByteDataType.dataType, ptr);
         } else throw new IllegalArgumentException("Unsupported networking fingerprint");
     }
 }

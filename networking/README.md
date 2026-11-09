@@ -15,7 +15,7 @@ configuration parsing does not establish a working network session.
 
 | Executable | Inventoried functions | Complete | Partial | No completion claim | Complete % |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| HD2DS.exe | 13,957 | 0 | 20 | 13,937 | 0.00% |
+| HD2DS.exe | 13,957 | 0 | 29 | 13,928 | 0.00% |
 | ServerLauncher.exe | 849 | 0 | 9 | 840 | 0.00% |
 
 ### HD2DS.exe mapped bodies
@@ -27,10 +27,19 @@ configuration parsing does not establish a working network session.
 | `006E15A0` | partial | [Shared headless HumanStore fields, legacy formats and text finalization](../recovered/frontend/human_store.h) |
 | `006E33E0` | partial | [Required HumanStore input open, missing-input preservation and ordered load/close](../recovered/frontend/human_store.h) |
 | `006E36E0` | partial | [Headless record reset/append/parse and optional profile-name overlay order](../recovered/frontend/human_store.h) |
+| `006EC1B0` | partial | [Raw headless binding records, version gate, clear and retained dirty bytes](../recovered/networking/headless_profile.h) |
 | `006ED040` | partial | [Style change copies22 selected profile rules and retains rotation](../recovered/networking/server_commands.cpp) |
 | `006ED2E0` | partial | [Loaded catalogue/style gate, reverse case-insensitive lookup and owned rotation append](../recovered/networking/server_commands.cpp) |
 | `006EDCF0` | partial | [Fresh command-facing server configuration, dedicated flag, admin initializer and active rules](../recovered/networking/server_initial_settings.h) |
+| `006F0060` | partial | [Wide-name profile enumeration, metadata and first-duplicate map](../recovered/frontend/profile_directories.h) |
+| `006F0380` | partial | [Profile selection, directory restoration, shared-word clear and ordered loads](../recovered/networking/headless_profile.h) |
+| `006F0700` | partial | [Legacy profile fallback with actual raw-name directory change and saved-game finalization](../recovered/frontend/profile_load.h) |
+| `006F0F30` | partial | [Binary profile open/reset, recognized payload traversal, finalization and missing-file fallback](../recovered/frontend/profile_payload.h) |
+| `006F1A10` | partial | [Saved-game slot validation and prior-mission quick-save promotion](../recovered/frontend/profile_load.h) |
+| `006F4E60` | partial | [Headless options load and actual quality/network-volume backend application order](../recovered/networking/headless_profile.h) |
+| `006F4EA0` | partial | [Sequential Options.bin chunks and distinct outer versus inner fallback](../recovered/frontend/profile_settings.h) |
 | `006F9550` | partial | [GameData then E8 store then mandatory HumanStore attempt and boolean AND](../recovered/networking/headless_startup_data.h) |
+| `006F95C0` | partial | [Optional wide scan then startup-owner name selection without persistence](../recovered/networking/headless_profile.h) |
 | `006FF900` | partial | [Sequential real GameData loading, format gate, append and invalid-root/cache behavior](../recovered/frontend/game_data.h) |
 | `007065A0` | partial | [Literal -cmd branch and owned pending command](../recovered/networking/command_tokens.cpp) |
 | `00779450` | partial | [Native TCP/IP DirectPlay server acquisition, caps, port and Host submission](../recovered/networking/directplay_server.cpp) |
@@ -93,7 +102,9 @@ with the original path fallback. Full descriptor and application integration rem
 The [headless HumanStore loader](../analysis/networking/headless-startup-data-source.md)
 also reuses the verified shared record parser with the server's original portrait behavior.
 GameData loading and the required GameData-then-HumanStore preparation order are
-now verified against original data. Full application startup is still open.
+now verified against original data. The [dedicated profile path](../analysis/networking/headless-profile-source.md)
+also covers options, headless bindings, binary/legacy payloads and startup selection.
+Full application startup is still open.
 
 Follow the [networking plan](../analysis/networking/plan.md) and
 [latest handoff](../analysis/networking/HANDOFF.md). The

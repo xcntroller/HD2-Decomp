@@ -22,7 +22,7 @@ Commercial images, decompilations and Ghidra databases remain local and ignored.
 
 - [x] Reconstruct launcher configuration, launch specification and bounded command tokens — source only. [Contract](configuration-source.md).
 - [x] Reconstruct cold server settings and command files — source only. [Contract](server-settings-source.md).
-- [ ] Reconstruct startup/shutdown owners and actual network initialization. [Source checkpoint](startup-network-source.md).
+- [ ] Reconstruct startup/shutdown owners and actual network initialization. [Transport](startup-network-source.md), [profiles](headless-profile-source.md).
 - [ ] Reconstruct admission, callbacks, timeout/disconnect and cleanup.
 
 Each item needs assembly-supported original mappings, focused native malformed/
