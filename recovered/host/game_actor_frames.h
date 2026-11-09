@@ -724,7 +724,38 @@ public:
         scene_method<MenuDriver::Release>(frame,module_,0,0x1c370)(frame);
     }
     Frame active_game_camera() const {return field<Frame>(scene_.frame(),0x15c);}
+    MenuDriver::Owner create_supply_helper(std::uint32_t kind){return driver_.create(kind);}
+    std::int32_t load_supply_model(Frame model,const std::string& name,std::uint32_t flags){return resources_.load_model(model,name,flags);} //004290A0, verbatim key.
+    MenuDriver::Owner load_supply_animation(const std::string& name){
+        MenuDriver::Owner result(nullptr,nullptr);if(resources_.cache(3).get(name,result)!=0)result.reset();return result; //0041FC10.
+    }
+    void prepare_supply_morph(Frame morph){call<void>(morph,0xa0);}
+    void supply_model_tick(Frame model,std::uint32_t elapsed){call<void>(model,0x20,elapsed);}
     MenuDriver::Owner create_fowl_model(){return driver_.create(9);}
+    MenuDriver::Owner create_animation_actor_model(){return driver_.create(9);}
+    std::int32_t load_animation_actor_model(Frame model,const std::string& name){return resources_.load_model(model,recovered::model_resource_key(name),0x10);}
+    void animation_actor_name(Frame frame,const std::string& name){if(call<std::int32_t>(frame,0x34,name.c_str())<0)throw std::runtime_error("Cannot name Animation helper model");}
+    void animation_actor_scale(Frame frame,const Vector& scale){
+        put(frame,0xd0,scale);
+        if(!(field<std::uint32_t>(frame,0xe0)&8u)) {
+            using Make=void(WINAPI*)(void*,const void*);
+            exported<Make>("?Make@S_quat@@QAGXABUS_matrix@@@Z",0x2f220)(address(frame,0xc0),address(frame,0x80));
+        }
+        put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+    }
+    template<class Visit>void enumerate_animation_actor_materials(Frame model,Visit&& visit){
+        using Visitor=std::remove_reference_t<Visit>;
+        struct Context {
+            Visitor& visit;std::exception_ptr failure;
+            static std::int32_t WINAPI invoke(Frame frame,void* opaque)noexcept {
+                auto& context=*static_cast<Context*>(opaque);
+                try{return context.visit(frame)?2:0;}catch(...){context.failure=std::current_exception();return 2;}
+            }
+        } context{visit,{}};
+        using Enumerate=std::int32_t(WINAPI*)(Frame,std::int32_t(WINAPI*)(Frame,void*),void*,std::uint32_t,const char*);
+        scene_method<Enumerate>(model,module_,0x44,0x1de40)(model,&Context::invoke,&context,0xffff,nullptr);
+        if(context.failure)std::rethrow_exception(context.failure);
+    }
     std::int32_t load_fowl_template(Frame model,const std::string& name){return resources_.load_model(model,recovered::model_resource_key(name),0x10);}
     void clone_fowl_model(Frame model,Frame source){if(call<std::int32_t>(model,0xd8,source)<0)throw std::runtime_error("Cannot clone required Fowl model");}
     void add_fowl_model(Frame model){call<void>(scene_.frame(),0x80,model);}

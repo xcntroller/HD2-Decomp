@@ -9108,7 +9108,7 @@
       "program": "client",
       "entry": "005b4790",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005b4790: Known cold constructor/property fields for required actor families, without unwritten native padding or unsupported runtime producers. Required model/supply actor construction, property/model loading and matching cleanup. Retire owned BODYCOLB dynamic descriptors before animation model visibility/update and common actor frame release.",
+      "coverage": "P2.2 source reconstruction at original entry 005b4790: Known cold constructor/property fields for required actor families, without unwritten native padding or unsupported runtime producers. Required model/supply actor construction, property/model loading and matching cleanup. Retire owned BODYCOLB dynamic descriptors before animation model visibility/update and common actor frame release. Actual loading owner now retires real helper/event group after collision descriptors and before original frame visibility/update.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "recovered/game/actor_initial_properties.h",
@@ -9117,7 +9117,9 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/mission-script-receivers.md",
-        "analysis/checkpoints/p2.2-script-receivers-20261109.json"
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
       ]
     },
     {
@@ -18447,13 +18449,15 @@
       "program": "client",
       "entry": "00473790",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00473790: Actual vertex animation instance definition/loading/reference/retirement source.",
+      "coverage": "P2.2 source reconstruction at original entry 00473790: Actual vertex animation instance definition/loading/reference/retirement source. Actual actor-owned SupplyBox instance now binds into the same shared registry with native field resets.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_vertex_instances.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
       ]
     },
     {
@@ -18486,13 +18490,15 @@
       "program": "client",
       "entry": "00473960",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00473960: Actual vertex animation instance definition/loading/reference/retirement source.",
+      "coverage": "P2.2 source reconstruction at original entry 00473960: Actual vertex animation instance definition/loading/reference/retirement source. Corrected padded definition normal words4..6 to packed mesh words3..5 from original assembly; mesh words6/7 remain untouched.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_vertex_instances.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
       ]
     },
     {
@@ -23292,6 +23298,246 @@
         "recovered/game/fowl_generator_loading.h",
         "analysis/fowl-loading.md",
         "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b4610",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005b4610: Actual Animation helper/event/material/cold-collider-update and matching retirement source. Interaction, active tracks and special wings excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/animation_actor_events.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b5000",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005b5000: Actual Animation helper/event/material/cold-collider-update and matching retirement source. Interaction, active tracks and special wings excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/animation_actor_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b5190",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005b5190: Actual Animation helper/event/material/cold-collider-update and matching retirement source. Interaction, active tracks and special wings excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/animation_actor_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00611090",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00611090: Actual Animation helper/event/material/cold-collider-update and matching retirement source. Interaction, active tracks and special wings excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/actor_material.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fac80",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005fac80: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005f9a60",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005f9a60: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005f9ec0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005f9ec0: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fb220",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005fb220: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fb380",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005fb380: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fbd90",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005fbd90: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fc860",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005fc860: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fc9a0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005fc9a0: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fca60",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005fca60: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fcd80",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005fcd80: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005fd760",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005fd760: Actual SupplyBox helpers/clips/borrowed vertex/collider/initial flags/open command/cold state6-to0 timer/model tick/ammo and retirement. Only initial/stop animation commands; falling, respawn, pickup, crossfade and positive fade-in excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/supply_box_loading.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004737c0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004737c0: Actual initial geometry reset and actor-borrowed first-match swap/pop unregister without deleting the actor allocation. Padded definition normals map to packed mesh words3..5.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/mission_vertex_instances.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004746b0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004746b0: Actual initial geometry reset and actor-borrowed first-match swap/pop unregister without deleting the actor allocation. Padded definition normals map to packed mesh words3..5.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/mission_vertex_instances.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00489060",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00489060: Actual reverse child recursion/visual filtering and immediate fade-in only, using same existing fade-out queue. Positive fade-in/210 cancellation and allocation excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/effects_frame_fades.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004890f0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004890f0: Actual reverse child recursion/visual filtering and immediate fade-in only, using same existing fade-out queue. Positive fade-in/210 cancellation and allocation excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/effects_frame_fades.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00488ee0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00488ee0: Actual reverse child recursion/visual filtering and immediate fade-in only, using same existing fade-out queue. Positive fade-in/210 cancellation and allocation excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation rather than native object/container/allocator/SEH ABI. Only linked reached branches are implemented. Required real frame/cache/SOUND/material/module owners remain explicit dependencies; no containing application loading, rendered-world or desktop acceptance, whole-body equivalence or delegated callee credit.",
+      "evidence": [
+        "recovered/game/effects_frame_fades.h",
+        "analysis/animation-supply-loading.md",
+        "analysis/checkpoints/p2.2-animation-supply-20261109.json"
       ]
     }
   ]

@@ -5,6 +5,8 @@
 #include "game/actor_initial_properties.h"
 #include "game/supply_box_geometry.h"
 #include "game/animation_actor_collisions.h"
+#include "game/animation_loading_lifetime.h"
+#include "game/supply_box_loading_lifetime.h"
 #include <exception>
 #include <optional>
 
@@ -43,9 +45,11 @@ public:
     explicit AnimationSceneActor(Backend& backend) : SceneActor<Backend>(backend,25),
         properties(initial_animation_properties()) {} //005B3740, cold005B4790.
     ~AnimationSceneActor() override { //005B3930/005B4790, before common frame release.
+        const auto had_loading=bool(loading);
         collisions.reset(); //Actual E0 record destructors remove dynamic descriptors before model retirement.
+        loading.reset();
         const auto frame=this->base_.frame();
-        if(frame) {
+        if(frame&&!had_loading) {
             cleanup([&] {this->backend_.object_visible(frame,true);});
             cleanup([&] {this->backend_.update_scene_object(frame);});
         }
@@ -62,6 +66,7 @@ public:
     AnimationActorProperties properties;
     std::vector<std::uint32_t> fieldc4;
     std::unique_ptr<AnimationActorCollisionLifetime> collisions;
+    std::unique_ptr<AnimationLoadingLifetime<Frame>> loading;
     std::uint32_t field98=0,fieldd4=0,fieldd8=3;
     bool flaga0=false,flaga1=false;
 private:
@@ -110,6 +115,7 @@ public:
     std::uint32_t field130=0,field138=0,field1c0=0,field214=0,
         field244=0,field248=0,field24c=0,field250=0,field254=0;
     bool flag90=false,flag224=false;
+    std::unique_ptr<SupplyBoxLoadingLifetime<Frame>> loading;
 };
 
 } //namespace hd2::game

@@ -62,6 +62,7 @@ public:
         completed_=true;
     }
     Frame wall() const {return wall_;}
+    void refresh(Frames& frames){completed_=false;complete(frames,model_);} //005F98E0 is also called at every actual activation.
     const std::array<Frame,14>& ammo_frames() const {return ammo_;}
     const Vector& position() const {return position_;}
     const Rotation& rotation() const {return rotation_;}

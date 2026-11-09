@@ -233,6 +233,7 @@ public:
     void update_game_dubbing(std::uint32_t elapsed){dubbing_sound_.update(elapsed);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void retire_game_dubbing(EngineFrame* frame){dubbing_sound_.retire_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void clear_game_dubbing(){dubbing_sound_.clear();sound_backend_.rethrow_dubbing_cleanup_failure();}
+    frontend::VertexAnimations& game_vertex_definitions(){return modules_.vertices;} //Same process module9 definitions; world registry borrows these.
     const io::ResourceDirectoryList& model_resource_directories() const { return caches_.client(1); }
     void clear_controller_resources() { loaded_resources_.clear_controller(); }
     void clear_final_resources() { loaded_resources_.clear_final(); }

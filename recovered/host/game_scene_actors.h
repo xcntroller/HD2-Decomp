@@ -132,6 +132,8 @@ public:
             case 10:static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor).activate(authority,activation);break;
             case 13:static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor).activate(authority,activation,collisions);break;
             case 22:static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
+            case 9:activation.activate_supply(static_cast<game::SupplyBoxSceneActor<GameActorServices>&>(actor),authority);break;
+            case 25:activation.activate_animation(static_cast<game::AnimationSceneActor<GameActorServices>&>(actor),authority);break;
             case 28:static_cast<game::PikeSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
             case 29:activation.activate_fowl(static_cast<game::FowlGeneratorSceneActor<GameActorServices>&>(actor),authority);break;
             case 33:static_cast<game::NullSceneActor<GameActorServices>&>(actor).activate(authority,activation);break;
@@ -154,6 +156,8 @@ public:
         case 10:static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor).deactivate(authority,activation);break;
         case 13:static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor).deactivate(authority,activation,collisions);break;
         case 22:static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
+        case 9:activation.deactivate_supply(static_cast<game::SupplyBoxSceneActor<GameActorServices>&>(actor),authority);break;
+        case 25:activation.deactivate_animation(static_cast<game::AnimationSceneActor<GameActorServices>&>(actor),authority);break;
         case 28:static_cast<game::PikeSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
         case 29:activation.deactivate_fowl(static_cast<game::FowlGeneratorSceneActor<GameActorServices>&>(actor),authority);break;
         case 33:static_cast<game::NullSceneActor<GameActorServices>&>(actor).deactivate(authority,activation);break;

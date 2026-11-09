@@ -1,5 +1,13 @@
 # Technical research guide
 
+2026-11-09 latest: [Animation/SupplyBox loading](analysis/animation-supply-loading.md)
+supplies five Animation/seven SupplyBox captured records, shared vertex/fade/
+collision owners, cold first update and retirement. Native ASan/UBSan/LSan
+(41/150 frame failure prefixes), strict actual-host i386, app link and27 tally
+checks pass. Packed mesh normal destinations corrected from original assembly.
+Twenty new partials:34 complete/1,720 partial (1,715 client/five engine),18,783
+frozen; no complete or world/desktop promotion. Continue full P2.2.
+
 2026-11-09 latest: [generated Fowl loading](analysis/fowl-loading.md) now
 recovers actual scene/EC/bird lifetimes,25 generated models from captured count30,
 idle/flight/packets/hearing/proximity and retirement. Native ASan/UBSan/LSan

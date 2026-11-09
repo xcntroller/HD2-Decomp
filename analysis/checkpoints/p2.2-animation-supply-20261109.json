@@ -1,0 +1,127 @@
+{
+  "date": "2026-11-09",
+  "scope": "Full first P2.2 implementation checkbox; combined Animation/SupplyBox source loading/initial-update/retirement checkpoint. Continue remaining required actors/containing owners.",
+  "source_only": true,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 20,
+  "added": [
+    "005b4610",
+    "005b5000",
+    "005b5190",
+    "00611090",
+    "005fac80",
+    "005f9a60",
+    "005f9ec0",
+    "005fb220",
+    "005fb380",
+    "005fbd90",
+    "005fc860",
+    "005fc9a0",
+    "005fca60",
+    "005fcd80",
+    "005fd760",
+    "004737c0",
+    "004746b0",
+    "00489060",
+    "004890f0",
+    "00488ee0"
+  ],
+  "input": {
+    "path": "analysis/work/startup-runtime/run/loading-inputs-90f74f210e9f4150a123e200e31f523a/missions_Tutorial_actors.bin",
+    "bytes": 21064,
+    "sha256": "b98bd7f6e73047fa2dc25ef3725cb8ba13212d6e41f2f0a3aa3e822057d6453d",
+    "animation_records": 5,
+    "supply_box_records": 7,
+    "vertex_definitions_sha256": "15f2a3ba1a3c19452c88a47f7ddbd9d795102570e7f8e044a86475be5c405bfe"
+  },
+  "verification": {
+    "animation_native_sanitizers": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/animation-native-run.log",
+      "coverage": "Five captured records, actual source helper/events/material/BODYCOLB ownership, cold A2 update, repeated activation/retirement and41 frame failure prefixes. Frame/model/math/material/audio boundary doubles."
+    },
+    "supply_native_sanitizers": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/supply-native-run.log",
+      "coverage": "Seven captured records, captured actual vertex definitions, same source registry/buckets/fades, initial open/timer/model tick, repeat and150 frame failure prefixes, null model/sound failure/missing definition. Packed reset/interpolation and untouched mesh words, borrowed swap/pop and fade recursion/opposite retained record checks. Engine model/geometry/math/localized/audio boundary doubles."
+    },
+    "actual_host_i386": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/animation-supply-i386-build.log",
+      "boundary": "Strict compile-only actual Frames/WorldActors/Scene2/descriptor/vertex/fade/events composition; Consumers declares mandatory endpoints."
+    },
+    "application_build": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/animation-supply-app-build.log",
+      "boundary": "i386 compile/link only, including StartupSession definition accessor; no Windows execution."
+    },
+    "tracker_tests": {
+      "result": "PASS",
+      "count": 27,
+      "log": "analysis/work/mission-world-20261103/animation-supply-tracker-tests.log"
+    },
+    "tracker_check": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/animation-supply-tracker-check.log"
+    }
+  },
+  "temporary_artifacts": {
+    "removed": true,
+    "count": 9,
+    "records": [
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-animation-audit.cpp",
+        "bytes": 9065,
+        "sha256": "ab22594caeed90dd5b1d6edc13aa0ac4a21282837d7e74a4fc7bf0aca2c359c3"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-animation-audit",
+        "bytes": 3958104,
+        "sha256": "d2ec1c15955365d6eb045005a47554851a71387ff5de1b106b7b54d67421b4cd"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-animation-host.cpp",
+        "bytes": 999,
+        "sha256": "087234218f03151d3c5d263e2181ddcf99c1460e7621b98fab9f9268b192a08c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-animation-host.o",
+        "bytes": 1282885,
+        "sha256": "2a9443eca54657e89694aa9780f4a6647a1e574cca89805a6ce17ce06e1c1973"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-supply-audit.cpp",
+        "bytes": 13406,
+        "sha256": "0194676c3047e9bcd4771287be360ece3d54c426be58355856587f304673fabf"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-supply-audit",
+        "bytes": 5491528,
+        "sha256": "90d0412b2f7fad6b4e9a56891b070255575a3e1ba7da4f68aad8848ad29c6ad5"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/build_supply_audit.py",
+        "bytes": 10210,
+        "sha256": "4d5f0c4300a438d8da259f91e7b7959c251387238cce68ade0ed654198ebb1d6"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/animation-audit-property-input.txt",
+        "bytes": 853,
+        "sha256": "2e57610d22eb35930cb62107b5efc135d1d3dd4760849ad62863c2ba54d17bc7"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/supply-audit-property-input.txt",
+        "bytes": 1477,
+        "sha256": "577481b963bd58127f99389192348d67fa1b079d16c5d3033e1ee062a4e53336"
+      }
+    ]
+  },
+  "not_credited": [
+    "005B3BE0/005B45B0/005B54A0/005B5F20/005FBD20 absent frozen inventory",
+    "005B5490 thunk",
+    "Previously credited005B4790/00473790/00473960 extensions receive no new credit",
+    "Frame/model/cache/math/audio delegates, researched-only receivers and generic helpers"
+  ],
+  "remaining": "StaticWeapon/Car, containing session/Human/VM/FPV/HUD/SOUND, ordered loader/first update/render/failure/repeat/user acceptance. GameApplicationState still declines loading."
+}

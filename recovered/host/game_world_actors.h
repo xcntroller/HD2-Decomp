@@ -8,6 +8,9 @@
 #include "host/game_fowl_sound_loading.h"
 #include "game/fowl_generator_loading.h"
 #include "game/collision_ray.h"
+#include "host/game_animation_actor_events.h"
+#include "game/animation_actor_loading.h"
+#include "game/supply_box_loading.h"
 
 namespace hd2::host {
 
@@ -24,14 +27,15 @@ public:
     using Items=GameMissionItems<Consumers>;
     using Runtime=GameRuntimeActors<GameWorldActors,Collisions,Items>;
     using Physics=GamePhysicsObjects<GameWorldActors,Collisions,Runtime>;
+    using Vertices=game::MissionVertexInstances<GameActorServices>;
     using Body=game::RigidBody<GameActorServices,Collisions>;
-    GameWorldActors(Scene& scene,Consumers& consumers,game::MissionNavigation& navigation,
+    GameWorldActors(Scene& scene,Consumers& consumers,game::MissionNavigation& navigation,Vertices& vertices,
                     const frontend::LocalizedTextCache& text,const frontend::PreMissionItemCatalogue& catalogue,
                     const std::string& suffix,ChunkFiles& files,FrameClockPlatform& clock,const std::uint32_t& game_word28)
-        :scene_(scene),consumers_(consumers),text_(text),catalogue_(catalogue),models_(scene.frames(),catalogue,suffix,game_word28),
+        :scene_(scene),consumers_(consumers),vertices_(vertices),text_(text),catalogue_(catalogue),models_(scene.frames(),catalogue,suffix,game_word28),
          items_(scene.frames(),models_,catalogue,files,clock,game_word28,consumers),
          runtime_(scene.frames(),*this,navigation,text,scene.buckets(),bodies_,items_),
-         physics_(scene.frames(),*this,scene.buckets(),runtime_,scene.effects().frame_fades()),fowl_sound_(scene.frames(),consumers){}
+         physics_(scene.frames(),*this,scene.buckets(),runtime_,scene.effects().frame_fades()),fowl_sound_(scene.frames(),consumers),animation_events_(scene.frames(),consumers){}
     ~GameWorldActors(){close();}
     GameWorldActors(const GameWorldActors&)=delete;GameWorldActors& operator=(const GameWorldActors&)=delete;
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
@@ -58,7 +62,37 @@ public:
     void update_door(game::DoorSceneActor<GameActorServices>& door,std::uint32_t elapsed) {
         require_open();auto queries=scene_.door_queries();door.frame_update(elapsed,*this,scene_.buckets(),queries,scene_.exclusions());
     }
+    using Supply=game::SupplyBoxSceneActor<GameActorServices>;
+    void activate_supply(Supply& actor,bool authority){
+        require_open();if(!actor.loading)actor.loading=std::make_unique<game::SupplyBoxLoading<GameActorServices,GameWorldActors,Collisions,Vertices,game::EffectsFrameFades<GameActorServices>>>(scene_.frames(),*this,scene_.buckets(),vertices_,scene_.effects().frame_fades(),actor);
+        actor.loading->activate(authority);
+    }
+    void deactivate_supply(Supply& actor,bool authority){if(actor.loading)actor.loading->deactivate(authority);}
+    void update_supply(Supply& actor,bool authority,std::uint32_t elapsed){
+        require_open();if(authority&&(mode_flags()&2u))return; //005FBD20.
+        if(!actor.loading)throw std::runtime_error("SupplyBox update requires its actual loading owner");
+        actor.loading->update(elapsed);
+    }
+    void emit_supply_sound(const frontend::SpatialSoundRequest& request){consumers_.emit_supply_sound(request);}
     using Fowl=game::FowlGeneratorSceneActor<GameActorServices>;
+    using Animation=game::AnimationSceneActor<GameActorServices>;
+    void activate_animation(Animation& actor,bool authority){
+        require_open();if(!actor.loading)actor.loading=std::make_unique<game::AnimationActorLoading<GameActorServices,GameWorldActors,Collisions>>(scene_.frames(),*this,scene_.buckets(),actor);
+        actor.loading->activate(authority);
+    }
+    void deactivate_animation(Animation& actor,bool authority){if(actor.loading)actor.loading->deactivate(authority);}
+    void update_animation(Animation& actor,bool authority,std::uint32_t elapsed){
+        require_open();if(authority&&(mode_flags()&2u))return; //005B54A0; presentation005B5490 is a thunk.
+        if(!actor.loading)throw std::runtime_error("Animation update requires its actual loading owner");
+        actor.loading->update(elapsed);
+    }
+    void install_animation_actor_events(GameActorServices::Frame frame,GameActorServices::Frame group){animation_events_.install(frame,group);}
+    void remove_animation_actor_events(GameActorServices::Frame group){animation_events_.remove(group);}
+    void rethrow_animation_actor_event_failure(){animation_events_.rethrow_failure();}
+    std::uint32_t animation_actor_material_word(std::uint32_t id,unsigned offset){
+        const auto& records=consumers_.car_definitions().materials();if(id>=records.size())throw std::runtime_error("Animation actor requires its actual HD material definition");
+        return records[id].word(offset);
+    }
     void activate_fowl(Fowl& actor,bool authority){
         require_open();if(!actor.loading)actor.loading=std::make_unique<game::FowlGeneratorLoading<GameActorServices,GameWorldActors>>(scene_.frames(),*this,actor);
         actor.loading->activate(authority);
@@ -102,13 +136,14 @@ public:
         runtime_.clear();physics_.clear();
         auto& frames=scene_.frames();frames.clear_scene_actors();
         fowl_sound_.clear();
+        animation_events_.clear();
         items_.clear();frames.clear_actor_entries();models_.clear_model_cache();
     }
 private:
     void require_open()const{if(closed_)throw std::logic_error("World actor owners are closed");}
-    Scene& scene_;Consumers& consumers_;const frontend::LocalizedTextCache& text_;const frontend::PreMissionItemCatalogue& catalogue_;
+    Scene& scene_;Consumers& consumers_;Vertices& vertices_;const frontend::LocalizedTextCache& text_;const frontend::PreMissionItemCatalogue& catalogue_;
     typename Body::Registry bodies_;GameRuntimeItemServices models_;
-    Items items_;Runtime runtime_;Physics physics_;GameFowlSoundLoading<Consumers> fowl_sound_;bool closed_=false;
+    Items items_;Runtime runtime_;Physics physics_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;bool closed_=false;
 };
 } //namespace hd2::host
 #endif

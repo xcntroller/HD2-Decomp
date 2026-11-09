@@ -25,10 +25,50 @@ class MissionVertexInstances {
 public:
     using Frame=typename Services::Frame;
     using Instance=MissionVertexInstance<Frame>;
+    struct Registration {
+        std::unique_ptr<Instance> owned;Instance* value;
+        explicit Registration(std::unique_ptr<Instance> item):owned(std::move(item)),value(owned.get()){}
+        explicit Registration(Instance& item):value(&item){}
+        Instance* get()const{return value;}Instance* operator->()const{return value;}Instance& operator*()const{return *value;}
+    };
     MissionVertexInstances(Services& services,frontend::VertexAnimations& definitions,
                           const std::uint32_t& mode,std::int32_t& clock)
         : services_(services),definitions_(definitions),mode_(mode),clock_(clock) {}
     const auto& values() const {return instances_;}
+    const frontend::VertexAnimation* definition(const std::string& name)const{return find_definition(name);}
+    void register_borrowed(Instance& instance) { //Same0089B38C publication as actor-owned SupplyBox214.
+        if(std::any_of(instances_.begin(),instances_.end(),[&](const auto& value){return value.get()==&instance;}))throw std::logic_error("Vertex instance already has its actual registration");
+        instances_.emplace_back(instance);
+    }
+    void unregister_borrowed(Instance& instance) { //004746B0(instance,false): ascending first match, swap/pop.
+        for(std::size_t n=0;n!=instances_.size();++n)if(instances_[n].get()==&instance) {
+            if(instances_[n].owned)throw std::logic_error("Actor cannot retire a file-owned vertex instance as a borrower");
+            if(n+1!=instances_.size())instances_[n]=std::move(instances_.back());
+            instances_.pop_back();return;
+        }
+    }
+    void bind(Instance& instance,Frame frame,const frontend::VertexAnimation* definition) { //00473790.
+        instance.frame=frame;instance.definition=definition;instance.backward=false;
+        instance.current=0;instance.next=1;instance.elapsed=0;instance.deferred=0;
+    }
+    void reset_geometry(Instance& instance) { //004737C0, independent of visibility epoch/finished/duration.
+        if(!instance.frame||!instance.definition)return;
+        const auto lod=services_.vertex_animation_lod(instance.frame);if(lod>instance.maximum_lod)return;
+        if(lod<0||static_cast<std::size_t>(lod)>=instance.definition->sizes.size()||instance.definition->frames.empty())throw std::runtime_error("Invalid initial vertex geometry LOD");
+        const auto& base=instance.definition->frames.front().at(static_cast<std::size_t>(lod));
+        const auto count=instance.definition->sizes[static_cast<std::size_t>(lod)];if(base.bytes/32<count)throw std::runtime_error("Short initial vertex definition block");
+        services_.write_vertex_animation(instance.frame,static_cast<std::uint32_t>(lod),count,[&](std::size_t index,unsigned char* output){
+            for(unsigned component:{0u,1u,2u,4u,5u,6u}) {
+                float value;std::memcpy(&value,base.data.get()+index*32+component*4,4);
+                const auto zero=static_cast<long double>(value)*0.f;
+                const float result=component==0||component==4?static_cast<float>(zero+value):static_cast<float>(static_cast<long double>(value)+static_cast<float>(zero));
+                //Definitions pad position to16 bytes; engine32-byte vertices pack normals at12..20.
+                const auto destination=component<3?component:component-1;
+                std::memcpy(output+destination*4,&result,4);
+            }
+        });
+        instance.next=1;instance.current=0;instance.elapsed=0;instance.backward=false;
+    }
     void clear() noexcept {while(!instances_.empty())instances_.pop_back();}
     void read(SerializedBytes bytes) {
         clear();const auto version=bytes.word();
@@ -46,7 +86,7 @@ public:
             const auto definition=bytes.section(20).text();
             if(version)item->visibility_required=bytes.word();
             item->definition=find_definition(definition);
-            if(item->definition)instances_.push_back(std::move(item));
+            if(item->definition)instances_.emplace_back(std::move(item));
         }
     }
     template<class Files>bool load(Files& files,const std::string& resource) {
@@ -184,7 +224,9 @@ private:
                         const float second=static_cast<float>(static_cast<long double>(fraction)*b);
                         result=static_cast<float>(static_cast<long double>(first)+second);
                     }
-                    std::memcpy(output+component*4,&result,4);
+                    //Definitions pad position to16 bytes; engine32-byte vertices pack normals at12..20.
+                    const auto destination=component<3?component:component-1;
+                    std::memcpy(output+destination*4,&result,4);
                 }
             });
     }
@@ -192,7 +234,7 @@ private:
     frontend::VertexAnimations& definitions_;
     const std::uint32_t& mode_;
     std::int32_t& clock_; //0089B398 persists independently of mission instance cleanup.
-    std::vector<std::unique_ptr<Instance>> instances_;
+    std::vector<Registration> instances_; //File-owned entries and actual actor-owned borrowers share one ordered registry.
 };
 
 } //namespace hd2::game

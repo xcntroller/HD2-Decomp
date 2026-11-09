@@ -13,6 +13,7 @@ class AnimationActorCollisionLifetime {
 public:
     virtual ~AnimationActorCollisionLifetime()=default;
     virtual void rebuild()=0;
+    virtual void update()=0;
     virtual void clear()noexcept=0;
 };
 
@@ -48,7 +49,7 @@ public:
         }
         throw std::runtime_error("Animation BODYCOLB enumeration exceeds bounded native name sequence");
     }
-    void update() {for(auto& record:records_)update(*record,false);}
+    void update()override {for(auto& record:records_)update(*record,false);}
 private:
     void update(Record& record,bool initial) {
         auto& descriptor=record.descriptor;const auto frame=descriptor.frame;frames_.update_scene_object(frame);

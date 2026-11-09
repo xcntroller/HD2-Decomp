@@ -6,11 +6,12 @@
 #include <memory>
 #include <utility>
 #include <vector>
+#include <stdexcept>
 
 namespace hd2::game {
 
 //GEffects200 fade-out queue00488D60 and its00487240 update pass. Actual
-//opposite fade-in producers/210 queue are not supplied by this reached subset;
+//positive fade-in producers/210 queue are not supplied by this reached subset;
 //do not combine it with another owner that writes those same native queues.
 //Frames must outlive all retained records. Explicit clear/destructor is a source
 //lifetime guard, not a claim that004888C0 clears these queues (it does not).
@@ -33,6 +34,30 @@ public:
         if(!frame)return;
         if(duration<=0){(void)opacity(frame,1);if(hide)frames_.object_visible(frame,false);return;}
         records_.push_back(std::make_unique<Record>(frames_.retain_actor_frame(frame),static_cast<std::uint32_t>(duration),hide));
+    }
+    void fade_in_immediate_tree(Frame frame,bool show,unsigned depth=0) { //00489060→00488EE0 duration<=0 only.
+        if(!frame)throw std::runtime_error("Recursive frame fade-in requires an actual frame");
+        if(depth>256)throw std::runtime_error("Frame fade-in hierarchy exceeds bounds");
+        const auto count=frames_.actor_child_count(frame);if(count>0x100000u)throw std::runtime_error("Frame fade-in child count exceeds bounds");
+        for(auto n=count;n;)fade_in_immediate_tree(frames_.actor_child(frame,--n),show,depth+1);
+        switch(frames_.visual_type(frame)) {
+        case 0x50414d4c:case 0x44524242:case 0x4850524d:case 0x4d474e53:
+        case 0x524d4d53:case 0x5252494d:case 0x5f4a424f:
+            (void)opacity(frame,0);if(show)frames_.object_visible(frame,true);break;
+        default:break;
+        }
+        //Immediate00488EE0 does not allocate or cancel opposite records.
+        //Positive fade-in/210 queue and its cancellation remain separate work.
+    }
+    void fade_out_tree(Frame frame,std::int32_t duration,bool hide,unsigned depth=0) { //004890F0→00488D60.
+        if(!frame||depth>256)throw std::runtime_error("Recursive frame fade-out requires a bounded actual hierarchy");
+        const auto count=frames_.actor_child_count(frame);if(count>0x100000u)throw std::runtime_error("Frame fade-out child count exceeds bounds");
+        for(auto n=count;n;)fade_out_tree(frames_.actor_child(frame,--n),duration,hide,depth+1);
+        switch(frames_.visual_type(frame)) {
+        case 0x50414d4c:case 0x44524242:case 0x4850524d:case 0x4d474e53:
+        case 0x524d4d53:case 0x5252494d:case 0x5f4a424f:fade_out(frame,duration,hide);break;
+        default:break;
+        }
     }
     void update(std::uint32_t elapsed) { //00487240: reverse traversal, signed wrapping remaining, swap/pop completion.
         for(std::size_t n=records_.size();n;) {

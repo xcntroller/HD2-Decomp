@@ -671,3 +671,14 @@ payload-free local packets. Captured count30 produces25 birds. Native
 ASan/UBSan/LSan with554 frame failure prefixes, actual-host i386/app compile/link
 and27 tracker checks pass. Nine partials; borrowed mode0 remains unsupported.
 Continue the same full P2.2 checkbox through other actors and containing world.
+
+2026-11-09: [Animation/SupplyBox loading](animation-supply-loading.md) now
+supplies actual helper/clip/event/material/borrowed-vertex/collision/fade owners,
+initial crate-open/cold first update and ordered failure/repeat retirement. Five
+Animation/seven SupplyBox captured records pass native sanitizers,41/150 frame
+failure prefixes and strict actual-host i386/app link. Shared004737C0 exposed and
+corrected00473960's padded definition → packed mesh normal offsets. Same vertex
+registry/definitions and effects queues; no second pool. Positive fade-in, active
+Animation tracks/wings and falling/respawn/pickup remain distinct receivers.
+Twenty new frozen partials, no complete/world/desktop promotion. Continue the
+full checkbox through required actors and containing-world integration.

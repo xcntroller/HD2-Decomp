@@ -8,7 +8,7 @@ Preserve assets/user changes; focused verification, no repeated broad audits.
 User reopened VSCode after memory shortage: keep heavy compiles sequential.
 
 GameApplicationState still declines loading. No live world, first world frame
-or new desktop acceptance. Ledger:34 complete/1,700 partial (1,695 client/five
+or new desktop acceptance. Ledger:34 complete/1,720 partial (1,715 client/five
 engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
@@ -54,6 +54,27 @@ names/version and session tables. Missing check2 clears tables before probing
 check.bin; legacy-present only opens/closes (no legacy decoder). These owner
 compositions are uncalled by GameApplicationState.
 
+## Latest Animation/SupplyBox checkpoint
+
+[Contract](analysis/animation-supply-loading.md) and
+[receipt](analysis/checkpoints/p2.2-animation-supply-20261109.json): five captured
+Animation/seven SupplyBox records, actual helpers/clips/events/material/colliders,
+shared vertex registry/definitions and effects fades, cold first update and
+retirement. Native ASan/UBSan/LSan with41/150 frame failures, sound/null-model/
+missing-definition/repeat checks; strict actual-host i386/app compile/link and27
+tracker checks pass.20 new frozen partials, no complete/world/desktop promotion.
+Original assembly exposed and corrected004737C0/00473960 padded-definition
+normal words4..6 → packed mesh words3..5; preserve mesh words6/7. Temporary
+fixtures hashed/removed. No repeat audit of these verified bodies.
+
+WorldActors now REQUIRES the actual MissionVertexInstances reference used by
+module9; StartupSession exposes SAME process definitions. Keep actors before
+vertex registry/definitions/frames in cleanup; no second update pool or clock.
+Active Animation tracks/interaction/wings and Supply falling/respawn/pickup/
+crossfade/positive fade-in remain explicit later receivers. Initial captured
+Supply flags120=1 select actual crate-open state6→0 and SOUND group1/entry10.
+Next actual required derived family is StaticWeapon, then Car/containing owners.
+
 ## Next — same entire checkbox
 
 Continue actual containing session/Human/DD0/FPV/HUD/SOUND/VM and required
@@ -61,9 +82,8 @@ Car/module/derived actor activation, then complete ordered loader/first-frame
 update/render/failure/repeat/user acceptance. Existing GameWorldScene and
 GameWorldActors are source composition only, uncalled by GameApplicationState.
 Use them rather than create another frame-data/bucket/item service. Next actual
-required derived families include Animation005B3BE0, SupplyBox005FAC80,
-StaticWeapon and Car; original activation exports already exist under WORK/actor-activation.
-Current GameSceneActors activation dispatch supports3/6/8/10/13/22/28/29/33. Human activation needs its
+required derived families are StaticWeapon and Car; original activation exports already exist under WORK/actor-activation.
+Current GameSceneActors activation dispatch supports3/6/8/9/10/13/22/25/28/29/33. Human activation needs its
 actual bound HumanLoadingActivation lifetime before type3 dispatch.
 
 Do not bring all P2.3 simulation/VM opcodes forward merely for P2.2. Research
