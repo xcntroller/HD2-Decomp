@@ -1,4 +1,4 @@
-# H&D2 script inspector
+# H&D2 modding toolkit
 
 Independent modding workstream on `feature/modding-tools`, based on local master
 `89d3d2f` (latest locally available at start). No game targets are built or changed.
@@ -44,7 +44,34 @@ Use **Open script…** (Ctrl+O) to inspect a local script. The tabs provide:
 - **References / Symbols / Instructions:** structured tables from the CLI report.
 - **Command reference:** searchable command/predicate catalog, available without
   opening a script. Argument kinds are displayed by known type names.
-- **JSON:** the complete inspection report; **Export JSON…** saves it separately.
+- **JSON:** the complete inspection report; **Export JSON…** saves it to a new file.
+
+**Mission explorer…** opens the separate read-only mission browser. Choose a local
+mission directory containing loose original files, then optionally add reference
+folders containing loose scripts/models/sounds. Browse files and expand documented
+records; select fields to see offsets, IDs, provenance and references. The
+**References** tab includes outgoing and incoming local candidates. Double-click
+a candidate to follow it; use **Show all file references** to reset subtree scope.
+**View script** opens the selected source in the existing script inspector.
+Unknown formats/fields stay explicitly unsupported/opaque. No original archives
+are mounted and no mission file is edited.
+
+Headless mission inspection and deterministic export work independently of Tk:
+
+```
+python3 tools/modding/mission.py /path/to/Missions/Tutorial \
+  --reference-root /path/to/loose-assets \
+  --inspector /tmp/hd2-inspect --output /path/outside-inputs/tutorial.json
+```
+
+`--inspector` is optional; without it, scripts are indexed. Reference folders are
+indexed and can be inspected on demand in the GUI. Mission JSON exports require
+a new file outside all inspected folders. The headless command exits 0 when a
+report is produced, even if files are malformed/unsupported; inspect per-file
+status and diagnostics. Invocation/directory/export errors exit 2.
+
+Exact coverage and machine-model contracts: [FORMATS.md](FORMATS.md).
+Real-script/content results and limitations: [VALIDATION.md](VALIDATION.md).
 
 **Inspect again** reads a fresh snapshot. Analysis runs in a background worker;
 old results and export availability clear before a new inspection. Failed syntax
@@ -131,18 +158,19 @@ Expansion requires the actual Files resolver with resource-specific then shared
 include paths; inventing filesystem/archive precedence would mislead modders.
 Use explicitly prepared source if needed, keeping provenance separately.
 Input over 0xFFFE bytes and embedded NUL are rejected rather than silently
-truncated. No source rewriting, archive extraction, mission-content decoder,
-resource existence check, recursive script traversal or runtime simulation exists.
-Only frame-name references are relevant to scene content in this milestone;
-no new content-format research was needed. Sabre Squadron compatibility is not
+truncated. The script CLI has no source rewriting, archive extraction, resource existence
+check, recursive script traversal or runtime simulation. The separate mission
+explorer decodes only the documented subsets in [FORMATS.md](FORMATS.md) and
+provides local reference candidates; it does not establish runtime resolution. Sabre Squadron compatibility is not
 established. Global variables and events are syntax, not inferred lifecycle rules.
 
 ## Extension boundaries
 
 Keep additions under tools/modding; do not change runtime headers to fit tooling.
-Next useful work: source spans and structured diagnostics, explicit numeric event
-records, richer verified reference schemas, and a resolver interface whose search
-policy is supplied by the caller. Add each reference kind only with documented
+The parsers/client are independent of Tk; typed models and deterministic mission
+JSON support future frontends. Next useful work: source spans, structured script
+diagnostics, explicit numeric events, additional verified format subsets, and a
+resolver interface whose search policy is supplied by the caller. Add each reference kind only with documented
 original receiver/operand evidence. A future editor can consume versioned JSON;
 there is no need to expose compiler pool internals as a stable editor model.
 

@@ -1,33 +1,44 @@
 # Modding-tools handoff — 2026-11-09
 
-Latest result: read-only Tk GUI implemented and user desktop-accepted ("Works").
-User authorized committing/pushing feature/modding-tools and delegated branch
-work, with review at merge with master. Keep changes isolated to this workstream;
-do not merge into master. Start with `make -C tools/modding gui` from repository
-root. [Usage and boundaries](README.md#desktop-gui).
+Latest result: useful read-only mission explorer implemented and verified for a
+local commit. Prior user delegated this branch and review at merge; newest
+instruction explicitly prohibits pushing/merging without approval. No push or
+merge in this work. All changes remain under tools/modding on
+feature/modding-tools. Main game/server code, shared handoffs, plan and ledger
+are untouched. No original executable, DLL, Proton or Ghidra was run.
 
-GUI: background CLI analysis of an unchanged byte snapshot; overview, source,
-references, symbols, instructions, searchable 308-entry catalog and JSON tabs;
-export to separate JSON with source/alias protection. No extra script semantics,
-editing, runtime, networking, archive or include resolution was introduced.
+Launch `make -C tools/modding gui`, then **Mission explorer…**. Open a loose
+mission directory and optionally add loose reference folders. The browser exposes
+files, lazy records, fields with source offsets/identities/evidence, incoming and
+outgoing references, original script analysis, and deterministic JSON export.
+Read-only parsers/client are independent of Tk. Exports cannot overwrite existing
+files; mission reports must be outside all inspected roots.
 
-Verification: warning-free backend build, Python compile check, actual desktop
-widgets exercised with synthetic source against real CLI. Passed open/reload,
-275+33 catalog/filtering, reference display, read-only source, JSON round-trip,
-source overwrite protection, stale-result/export clearing, missing file/binary,
-rejected syntax/includes, source-size/NUL bounds and Tk callback checks. Inspected
-Overview/Command reference screenshots; adjusted wrapping/footer and repeated
-that focused GUI check successfully. User subsequently confirmed it works.
-No new native implementation changed; existing CLI sanitizer evidence applies.
-Temporary audit fixtures are not tracked; no commercial source was used.
+Coverage: first-root Scene2/actor/sound document subsets, object transforms and
+names, AE20 actor entries (properties opaque), scene/table/resource references,
+script binding pairs and both version9 check2 table sets. Resource files and
+unknown bounded chunks stay opaque. Local candidates are not engine resolution;
+includes remain unexpanded. See [formats/contracts](FORMATS.md), [actual validation
+and limitations](VALIDATION.md), [usage](README.md) and [backlog](PLAN.md).
 
-CLI checkpoint53f6093; original branch base89d3d2f. CLI synthetic/native
-ASan/UBSan/LSan evidence and original addresses: [README](README.md). Main
-HANDOFF.md, plan.md, function ledger, recovered runtime and networking remain
-untouched. All changes under tools/modding. No original executable/DLL/Proton,
-merge or game build was performed. No P2.2/function-recovery credit applies.
+Verification: 293 original base-archive scripts, 289 accepted/14289 instructions;
+three includes explicitly unavailable and the known Weather negative-expression
+rejection reproduced. Six original scene/object files agree with the previous
+inspector on supported offsets/fields. Tutorial/ALPS1 check2 primary counts
+863/56 and5113/100; binding pairs114/148. Native GUI navigated actual binding →
+source → Scene2 field and incoming references, lazy tables and export; no new
+user desktop acceptance is claimed. Existing initial GUI was previously accepted.
+Python compilation, synthetic truncation/count/version/name checks, unknown
+retention, deterministic JSON, candidate ambiguities and source/alias/symlink
+protections pass. No native bodies changed; no new sanitizer run is claimed.
 
-Next independent implementation candidates in PLAN.md: source spans/structured
-diagnostics, numeric event records and evidence-tagged references. Include
-resolution remains unsupported until caller policy and faithful preprocessing
-are explicit. Do not reinterpret unknown command semantics for GUI convenience.
+Temporary audit harnesses, extracted data, screenshots and reports were under
+/tmp/hd2-toolkit-audit and removed after verification; nothing commercial is
+committed. Final native GUI audit SHA256:
+cdbe0724c49daa9d188a5f7a3c0471604d0c12c8f2831848ace3da7c730952e4.
+Other audit identities are in VALIDATION.md. No permanent tests were added.
+
+Next independent candidates: source spans/structured script diagnostics, explicit
+numeric events and further verified formats. Preserve unknown semantics and
+read-only operation; do not start binary editing before this bounded explorer
+has been reviewed. No P2.2 delivery or frozen-function credit applies.

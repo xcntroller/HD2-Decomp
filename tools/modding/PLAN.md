@@ -1,17 +1,18 @@
 # Independent modding-tools plan
 
-- [x] Inspect established compiler/lexer/tables and receiver contracts.
-- [x] Deliver standalone syntax inspection, catalog and verified references.
-- [x] Version JSON output and document unsupported semantics/compatibility.
-- [x] Verify synthetic success/failure cases and native sanitizers; commit locally.
-- [x] Prepare local read-only GUI and verify real CLI/widget flows.
-- [x] Obtain user desktop confirmation for the GUI.
-- [x] Authorize GUI commit and branch push; review at merge with master.
-- [ ] Add source spans and structured diagnostics without changing game code.
-- [ ] Expose explicit numeric event records and verified reference provenance.
-- [ ] Design caller-supplied include resolution with faithful preprocessing evidence.
+- [x] Deliver standalone script inspector and GUI (initial checkpoints).
+- [x] Validate original scripts, includes/events/expressions and existing UI.
+- [x] Research complete read-only explorer boundary from existing contracts.
+- [x] Implement typed models, Scene2/actor subsets, bindings and mission tables.
+- [x] Add mission browser, local reference navigation and deterministic export.
+- [x] Verify real missions, malformed inputs and native GUI; document coverage.
+- [ ] Add script source spans and structured diagnostics.
+- [ ] Expose explicit numeric event records and richer verified reference kinds.
+- [ ] Design caller-supplied include resolution with faithful preprocessing.
 
-This plan does not advance P2.2 or the function ledger. No runtime integration,
-networking or asset redistribution belongs here. User authorized commits and
-pushes on feature/modding-tools on 2026-11-09 and delegated this branch; merge
-review remains with the user. Do not merge into master from this workstream.
+Latest scope: useful read-only mission explorer before binary editing. Source
+parsers remain independent of GUI. No game/runtime/server changes, commercial
+assets, extracted reports or permanent tests belong in commits. No P2.2 or frozen
+function credit. Earlier user delegated feature/modding-tools and review at merge;
+latest instruction authorizes verified local commits only. **Do not push or merge
+without renewed approval.**

@@ -4,55 +4,13 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor
 import json
 from pathlib import Path
-import subprocess
-import tempfile
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
+from script_client import invoke, inspect_file
+from mission_gui import MissionExplorer
+
 KINDS = {2: "Integer", 4: "String", 5: "Frame", 8: "Whenever"}
-
-
-def invoke(inspector, *args):
-    """Run only the selected inspector binary; source is never executable input."""
-    try:
-        process = subprocess.run(
-            [str(inspector), *map(str, args)], capture_output=True,
-            encoding="utf-8", errors="replace", timeout=20, check=False,
-        )
-    except FileNotFoundError as exc:
-        raise RuntimeError("Inspector not found. Build it with make -C tools/modding, "
-                           "or select it using --inspector PATH.") from exc
-    if process.returncode not in (0, 1):
-        raise RuntimeError(process.stderr.strip() or f"Inspector exited with {process.returncode}")
-    try:
-        result = json.loads(process.stdout)
-    except ValueError as exc:
-        raise RuntimeError("Inspector returned invalid JSON.") from exc
-    if not isinstance(result, dict) or result.get("schema_version") != 1:
-        raise RuntimeError("Unsupported inspector JSON schema; expected version 1.")
-    if args and args[0] == "--catalog":
-        if process.returncode or not all(isinstance(result.get(k), list) for k in ("commands", "predicates")):
-            raise RuntimeError("Invalid command catalog.")
-    else:
-        if (type(result.get("syntax_accepted")) is not bool
-                or result["syntax_accepted"] != (process.returncode == 0)
-                or not all(isinstance(result.get(k), list) for k in (
-                    "variables", "instructions", "references", "lexical_mentions", "limitations", "event_slots"))):
-            raise RuntimeError("Invalid inspection result.")
-    return result
-
-
-def inspect_file(inspector, path):
-    # The preview and report describe the same bounded snapshot, even if the
-    # selected file changes during inspection. Never normalize its line endings.
-    with path.open("rb") as stream:
-        source = stream.read(65535)
-    with tempfile.TemporaryDirectory(prefix="hd2-inspection-") as directory:
-        snapshot = Path(directory) / "source.scr"
-        snapshot.write_bytes(source)
-        report = invoke(inspector, "--json", snapshot)
-    report["file"] = str(path)
-    return source, report
 
 
 class InspectorWindow:
@@ -60,6 +18,8 @@ class InspectorWindow:
         self.root, self.inspector = root, inspector
         self.executor = ThreadPoolExecutor(max_workers=1)
         self.pending = None
+        self.poll_timer = None
+        self.explorer = None
         self.path = None
         self.report = None
         self.catalog = []
@@ -90,6 +50,7 @@ class InspectorWindow:
         toolbar.pack(fill="x")
         self.open_button = ttk.Button(toolbar, text="Open script…", command=self.open_file)
         self.open_button.pack(side="left")
+        ttk.Button(toolbar, text="Mission explorer…", command=self.open_explorer).pack(side="left", padx=(8,0))
         self.reload_button = ttk.Button(toolbar, text="Inspect again", command=self.reload, state="disabled")
         self.reload_button.pack(side="left", padx=8)
         self.export_button = ttk.Button(toolbar, text="Export JSON…", command=self.export, state="disabled")
@@ -191,14 +152,15 @@ class InspectorWindow:
     def submit(self, kind, function):
         self.set_busy(True)
         self.pending = (kind, self.executor.submit(function))
-        self.root.after(50, self.poll)
+        self.poll_timer = self.root.after(50, self.poll)
 
     def poll(self):
+        self.poll_timer = None
         if self.closed:
             return
         kind, future = self.pending
         if not future.done():
-            self.root.after(50, self.poll)
+            self.poll_timer = self.root.after(50, self.poll)
             return
         self.pending = None
         try:
@@ -295,12 +257,23 @@ class InspectorWindow:
                 if destination.resolve() == self.path or (destination.exists() and destination.samefile(self.path)):
                     messagebox.showerror("Cannot overwrite source", "Choose a separate JSON file.", parent=self.root)
                     return
-                destination.write_text(json.dumps(self.report, indent=2, ensure_ascii=True) + "\n", encoding="utf-8")
+                with destination.open("x", encoding="utf-8") as stream:
+                    stream.write(json.dumps(self.report, indent=2, ensure_ascii=True) + "\n")
             except OSError as exc:
                 messagebox.showerror("Export failed", str(exc), parent=self.root)
 
+    def open_explorer(self):
+        if self.explorer is None:
+            self.explorer = MissionExplorer(self)
+        else:
+            self.explorer.root.lift()
+
     def close(self):
         self.closed = True
+        if self.explorer is not None:
+            self.explorer.close()
+        if self.poll_timer is not None:
+            self.root.after_cancel(self.poll_timer)
         self.executor.shutdown(wait=False, cancel_futures=True)
         self.root.destroy()
 
