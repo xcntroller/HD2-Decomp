@@ -83,10 +83,10 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and1,469 partial entries (1,464 client/five engine).
+complete client functions and1,490 partial entries (1,485 client/five engine).
 The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) adds881
 implemented source subsets without promoting any whole functions to complete.
-The [weapon swap checkpoint](analysis/human-equipment-loading.md#same-human-weapon-exchange--2026-11-09) adds eight further partials; [active reselection](analysis/human-state-loading.md#active-weapon-reselection--2026-11-09) adds four, and [formation loading](analysis/human-state-loading.md#formation-loading-owner--2026-11-09) adds seventeen. Source recovery remains separate from desktop integration.
+The [weapon swap checkpoint](analysis/human-equipment-loading.md#same-human-weapon-exchange--2026-11-09) adds eight further partials; [active reselection](analysis/human-state-loading.md#active-weapon-reselection--2026-11-09) adds four, and [formation loading](analysis/human-state-loading.md#formation-loading-owner--2026-11-09) adds seventeen. [Detached-camera references](analysis/human-state-loading.md#detached-camera-human-references--2026-11-09) add six; [Players loading owners](analysis/human-state-loading.md#players-module-and-process--2026-11-09) add fifteen. Source recovery remains separate from desktop integration.
 
 Phase1 front-end delivery is closed by the user2026-11-03 within its recorded
 acceptance and deferred-flow boundaries, committed as4e530f7. The
@@ -214,11 +214,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,469 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,490 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 1,464 |
+| Base game client | 17,294 | 34 | 1,485 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

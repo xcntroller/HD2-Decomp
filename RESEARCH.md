@@ -2,7 +2,7 @@
 
 2026-11-09 ledger reconciliation: [explicit source/body mapping](analysis/function-ledger-p2.2-reconciliation.md)
 registers the implemented P2.2 subsets accumulated since f9674b3. Current tally:
-34 complete client and1,469 partial (1,464 client/five engine),18,783 frozen.
+34 complete client and1,475 partial (1,470 client/five engine),18,783 frozen.
 881 reconciled client partials plus eight weapon swap, four active reselection and seventeen formation partials, six extended rows, zero complete promotions. Prior
 "no new ledger credit" notes below describe their original checkpoints; the
 current tally is now reconciled. Ledger/fingerprint/README checks and27 existing
@@ -4613,3 +4613,16 @@ now binds actual Human2C8/2CC, mode3 table, member/leader navigation and recursi
 retirement. Native sanitizers with89 failures, actual-host i386 and app link pass.
 Seventeen partials, no complete/desktop promotions. Continuing full P2.2 through
 detached camera/Players, then world/VM and remaining loading consumers.
+
+2026-11-09: [detached-camera Human references](analysis/human-state-loading.md#detached-camera-human-references--2026-11-09)
+now use the SAME controller/frame and actual typed Human amount records,
+including original cached-zero and pointer-only removal behavior. Native
+sanitizers, strict actual-host i386 and app link pass; six further partials.
+Continuing full P2.2 into Players module/process control and world/VM.
+
+2026-11-09: [Players module/process loading](analysis/human-state-loading.md#players-module-and-process--2026-11-09)
+now supplies actual shared formation scale, loading tick groups/timers, follower
+cleanup and embedded module lifecycle. Native sanitizers, strict actual-host
+compile and app link pass; fifteen additional partials, no complete/desktop
+promotions. Camera/Players are committed as one subsystem checkpoint. World/VM
+and required loading consumers remain the full P2.2 scope.

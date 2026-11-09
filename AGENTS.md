@@ -15,7 +15,7 @@ When instructed to continue:
 8. Update the research notes, plan, function ledger and handoff as applicable.
    Keep `HANDOFF.md` to the latest result and next work; link detailed contracts
    from analysis documents. Keep plan checklist entries short.
-9. Stop after one verified milestone or when blocked.
+9. Continue after dependencies/checkpoints until the selected full checkbox is done or blocked.
 
 ## Audit and Verification Policy
 
@@ -44,8 +44,8 @@ When instructed to continue:
 - Mark source-only recovery separately from integrated, desktop-tested delivery.
   Only credit implemented bodies present in the frozen function inventory;
   delegated engine calls and absent functions receive no new credit.
-- Commit smaller verified checkpoints while continuing the full plan checkbox;
-  do not wait for checkbox completion or accumulate a large working tree.
+- Commit at larger verified subsystem checkpoints while continuing the full plan
+  checkbox; consolidate documentation/tally updates at those checkpoints.
   Changes to interactive behavior require user desktop
   confirmation before committing; source-only work needs no invented desktop test.
   Do not push without explicit instruction.

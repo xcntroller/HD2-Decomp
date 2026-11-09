@@ -17,13 +17,13 @@ namespace hd2::game {
 //receivers; no successful defaults or containing-world readiness are provided.
 //Explicit deactivate(false/true) precedes destruction of these dependencies.
 template<class Frames,class Human,class Inline,class States,class Services,class Store,
-         class Effects,class Speech,class Sight,class Sound,class Proximity>
+         class Effects,class Speech,class Sight,class Sound,class Proximity,class Camera>
 class HumanLoadingActivation : public HumanLoadingLifetime {
 public:
     HumanLoadingActivation(Frames& frames,Human& human,Inline& control,States& states,Services& services,
-            Store& profiles,Effects& effects,Speech& speech,Sight& sight,Sound& sound,Proximity& proximity)
+            Store& profiles,Effects& effects,Speech& speech,Sight& sight,Sound& sound,Proximity& proximity,Camera& camera)
         :frames_(frames),human_(human),control_(control),states_(states),services_(services),profiles_(profiles),
-         effects_(effects),speech_(speech),sight_(sight),sound_(sound),proximity_(proximity){
+         effects_(effects),speech_(speech),sight_(sight),sound_(sound),proximity_(proximity),camera_(camera){
         if(human_.loading_lifetime)throw std::logic_error("Human already has its containing loading owner");
         human_.loading_lifetime=this;
     }
@@ -65,7 +65,7 @@ public:
     void deactivate(bool authority)override {
         const auto mode=services_.mode_flags();frontend::CleanupErrors errors;
         if(human_.flag90||local_started_) {
-            errors.attempt([&]{services_.remove_human_detached_camera_reference(human_);}); //004650A0→00463040.
+            errors.attempt([&]{camera_.remove_detached_human(human_,&control_);}); //004650A0→00463040, before DD0 retirement.
             update_human_loading_profile_mortality(human_,mode);
             if((mode&7u)==7u?human_.properties.field19c==1:services_.human_is_player(human_))
                 errors.attempt([&]{services_.remove_human_player(human_);}); //Players virtual24.
@@ -151,7 +151,7 @@ private:
     }
     Frames& frames_;Human& human_;Inline& control_;States& states_;Services& services_;Store& profiles_;
     Effects& effects_;Speech& speech_;Sight& sight_;Sound& sound_;
-    Proximity& proximity_;
+    Proximity& proximity_;Camera& camera_;
     bool local_started_=false;
 };
 } //namespace hd2::game

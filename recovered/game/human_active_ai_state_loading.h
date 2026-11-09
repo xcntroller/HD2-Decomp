@@ -100,6 +100,16 @@ public:
         return state_.template get<std::uint32_t>(offset);
     }
     bool follow_enabled()const{return state_.template get<std::uint8_t>(0x189)!=0;}
+    bool follow_immediate()const{return state_.template get<std::uint8_t>(0x188)!=0;}
+    void disable_follow_loading(bool immediate){set_follow(false,immediate);} //005377F0, same actual state.
+    bool process_available()const{return state_.template get<std::uint8_t>(0x202)!=0;}
+    bool has_pending_orders_loading()const {
+        //Native250/254/258 have no populated loading producer yet. Reject raw
+        //writes instead of treating an unknown pointer as an empty order list.
+        for(auto offset:{0x250u,0x254u,0x258u})if(state_.template get<std::uint32_t>(offset))
+            throw std::runtime_error("Active AI populated orders require their actual typed producer");
+        return false;
+    }
     typename Base::PlayerHandover player_handover()const override {
         if(!action_mode_)throw std::runtime_error("Active AI handover has no native initialized action mode");
         const bool alternate=state_.template get<std::uint8_t>(0x18a)!=0;

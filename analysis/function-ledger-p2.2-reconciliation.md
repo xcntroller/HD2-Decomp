@@ -55,7 +55,7 @@ completion queue is not expanded or marked exhausted by this ledger update.
 Subsequent verified [weapon swap](human-equipment-loading.md#same-human-weapon-exchange--2026-11-09)
 and [active reselection](human-state-loading.md#active-weapon-reselection--2026-11-09)
 checkpoints register eight and four additional partial bodies respectively. The
-current ledger is34 complete/1,469 partial/18,783 frozen after seventeen further
-[formation loading](human-state-loading.md#formation-loading-owner--2026-11-09) partials. The JSON mapping here
+current ledger is34 complete/1,490 partial/18,783 frozen after seventeen further
+[formation loading](human-state-loading.md#formation-loading-owner--2026-11-09) partials, six detached-camera partials and fifteen Players loading partials. The JSON mapping here
 remains the original reconciliation snapshot; later body claims live in the
 status ledger and those checkpoint contracts. No whole-body promotions follow.

@@ -72,7 +72,7 @@ public:
         auto* human=this->human();if(!human)throw std::logic_error("Player state close has no bound Human");
         presentation.leave_player_controlled_car(*human,mode); //Actual native160/type4/164 driver gate→004D9280(0,0).
         if((mode&7u)==7u){
-            presentation.offline_player_close(*human); //Actual004563E0 singleton0089AC30 virtual34.
+            presentation.offline_player_close(*human); //004563E0 getter→actual0089AC30 virtual34/004593E0.
         }else{
             auto* input=required_input();
             //0053BC50 unconditionally resets owners, unlike AI destruction's guard.

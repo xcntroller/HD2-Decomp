@@ -3,6 +3,7 @@
 
 #include "game/serialized_bytes.h"
 #include "game/actor_activation_math.h"
+#include "game/detached_camera.h"
 #include "frontend/cleanup.h"
 #include <algorithm>
 #include <functional>
@@ -76,23 +77,25 @@ struct MissionCameraState {
 //00462650's detached camera is a real separately-created kind3 owner; its later
 //interactive controller is not entered by loading. Ordinary unattached Human
 //target loading/retirement is supplied;00469300 camera simulation remains required.
-template<class Services>
+template<class Services,class Human>
 class MissionCamera {
 public:
     using Frame=typename Services::Frame;
     using Owner=decltype(std::declval<Services&>().create_game_camera());
-    explicit MissionCamera(Services& services) : services_(services),detached_(services.create_game_camera()) {
-        if(!detached_.get())throw std::runtime_error("Detached camera factory returned null");
-    }
+    explicit MissionCamera(Services& services) : services_(services),detached_(services) {}
     ~MissionCamera() {try{clear();}catch(...){services_.record_actor_cleanup_failure(std::current_exception());}}
     MissionCamera(const MissionCamera&)=delete;
     MissionCamera& operator=(const MissionCamera&)=delete;
     Frame frame() const {return camera_?camera_->get():Frame{};}
-    Frame detached_frame() const {return detached_.get();}
+    Frame detached_frame() const {return detached_.frame();}
+    auto& detached(){return detached_;} //004650A0, SAME owned controller, not only its frame.
     //004650A0 virtual88 returns the SAME detached controller;00462750 writes
     //its40 speed only.00462650 initializes1, independent of camera simulation.
-    void set_detached_speed(float value){detached_speed_=value;}
-    float detached_speed()const{return detached_speed_;}
+    void set_detached_speed(float value){detached_.speed(value);}
+    float detached_speed()const{return detached_.speed();}
+    template<class Inline>void remove_detached_human(Human& human,Inline* control) {
+        detached_.remove(human,[&](Human& value,float amount){set_human_camera_amount(value,amount,control);});
+    }
     bool hud_suppressed()const{return state_.field2b4!=0;} //00465080, camera virtual80; not detached-camera state.
     Frame saved_scene_camera() const {return previous_;}
     Frame target_frame() const {return target_?target_->get():Frame{};}
@@ -142,7 +145,6 @@ public:
         }
         output=result;return true; //Fourth lane is copied untouched.
     }
-    template<class Human>
     void select_loading_human_target(Human& human,std::optional<Frame> control_sector,
             bool first_person,bool zoom,std::function<void(Frame)> retire) { //0046C370 ordinary unattached Human.
         if(state_.flag26d||!frame())return;
@@ -268,8 +270,7 @@ private:
     Services& services_;
     MissionCameraSettings settings_;
     MissionCameraState state_;
-    Owner detached_; //00462650/004626E0; remains inactive throughout mission loading.
-    float detached_speed_=1.f;
+    DetachedCamera<Services,Human> detached_; //SAME00462650/004626E0 controller, inactive during loading.
     std::optional<Owner> camera_;
     Frame previous_{}; //Original244 borrows; scene owns it during this lifetime.
     std::optional<Owner> target_; //Original248 owns one additional frame reference.

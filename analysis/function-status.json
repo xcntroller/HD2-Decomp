@@ -17858,13 +17858,15 @@
       "program": "client",
       "entry": "00462650",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00462650: Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; camera simulation remains excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 00462650: Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; camera simulation remains excluded. Detached camera now owns actual typed Human amount references with matching frame-before-vector retirement.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_camera.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/detached_camera.h",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
       ]
     },
     {
@@ -17949,13 +17951,15 @@
       "program": "client",
       "entry": "004626e0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004626e0: Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; camera simulation remains excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 004626e0: Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; camera simulation remains excluded. Detached camera now owns actual typed Human amount references with matching frame-before-vector retirement.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_camera.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/detached_camera.h",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
       ]
     },
     {
@@ -20438,6 +20442,258 @@
         "recovered/game/human_formation.h",
         "analysis/human-state-loading.md",
         "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00463040",
+      "status": "partial",
+      "coverage": "Reverse actual detached-camera Human reference removal, Human amount reset before pointer-only swap/pop retaining the old cached FLOAT.",
+      "limitations": "Source-only typed/portable owners replace original object/container/vtable/SEH ABI. Frame/geometry consumers and DD0 amount receiver remain actual external boundaries; containing world, detached movement/toggle/input and camera simulation are excluded. Native undefined W lanes use guards. No desktop or complete-body equivalence claim.",
+      "evidence": [
+        "recovered/game/detached_camera.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00463620",
+      "status": "partial",
+      "coverage": "Detached camera false-only reset of actual Human amounts in reverse followed by record clear retaining capacity.",
+      "limitations": "Source-only typed/portable owners replace original object/container/vtable/SEH ABI. Frame/geometry consumers and DD0 amount receiver remain actual external boundaries; containing world, detached movement/toggle/input and camera simulation are excluded. Native undefined W lanes use guards. No desktop or complete-body equivalence claim.",
+      "evidence": [
+        "recovered/game/detached_camera.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00463690",
+      "status": "partial",
+      "coverage": "Actual head/body camera amount using squared segment distance, extended upper threshold and stored lower threshold/fade.",
+      "limitations": "Source-only typed/portable owners replace original object/container/vtable/SEH ABI. Frame/geometry consumers and DD0 amount receiver remain actual external boundaries; containing world, detached movement/toggle/input and camera simulation are excluded. Native undefined W lanes use guards. No desktop or complete-body equivalence claim.",
+      "evidence": [
+        "recovered/game/detached_camera.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00463780",
+      "status": "partial",
+      "coverage": "Actual cached Human amount update/append, notification order and original old-zero ordered-erase quirk.",
+      "limitations": "Source-only typed/portable owners replace original object/container/vtable/SEH ABI. Frame/geometry consumers and DD0 amount receiver remain actual external boundaries; containing world, detached movement/toggle/input and camera simulation are excluded. Native undefined W lanes use guards. No desktop or complete-body equivalence claim.",
+      "evidence": [
+        "recovered/game/detached_camera.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00463890",
+      "status": "partial",
+      "coverage": "Reverse actual selected-record then roster Human amount traversal without deduplication.",
+      "limitations": "Source-only typed/portable owners replace original object/container/vtable/SEH ABI. Frame/geometry consumers and DD0 amount receiver remain actual external boundaries; containing world, detached movement/toggle/input and camera simulation are excluded. Native undefined W lanes use guards. No desktop or complete-body equivalence claim.",
+      "evidence": [
+        "recovered/game/detached_camera.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00581210",
+      "status": "partial",
+      "coverage": "Squared point-to-segment distance with original extended deltas, float dot/clamp/interior stores and distinct endpoint/interior sum ordering.",
+      "limitations": "Source-only typed/portable owners replace original object/container/vtable/SEH ABI. Frame/geometry consumers and DD0 amount receiver remain actual external boundaries; containing world, detached movement/toggle/input and camera simulation are excluded. Native undefined W lanes use guards. No desktop or complete-body equivalence claim.",
+      "evidence": [
+        "recovered/game/detached_camera.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00456780",
+      "status": "partial",
+      "coverage": "Construct five actual loading group buffers and initialize process scalar state through its real reset; unknown original fields remain guards.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_process.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004563f0",
+      "status": "partial",
+      "coverage": "Derive shared formation XYZ scale from signed120 via FLOAT conversion, extended multiply/add and final FLOAT store.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_process.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00456440",
+      "status": "partial",
+      "coverage": "Reset original byte/timer/mode fields and shared formation scale while preserving actual group buffers and separate delayed-speech queue.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_process.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004564a0",
+      "status": "partial",
+      "coverage": "Expire wrapping timers, rebuild actual Human/active-AI loading groups using original squared-distance threshold and dispatch reverse due speech before ordered erase.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_process.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00461430",
+      "status": "partial",
+      "coverage": "Construct actual module11 registration, subgroup buffer and embedded Players control/auxiliary owners with original destruction order.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004614e0",
+      "status": "partial",
+      "coverage": "Destroy auxiliary then control, release subgroup pointer buffer without fabricating subgroup destruction and clear base registration.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00460aa0",
+      "status": "partial",
+      "coverage": "Publish presentation-active flag and reset the same process singleton only for offline authority activation.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00460ae0",
+      "status": "partial",
+      "coverage": "Mode-bit2 gates actual process tick then reverse subgroup tick on the same module buffer.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00460c20",
+      "status": "partial",
+      "coverage": "Invoke actual embedded post-load receivers through native gates, destroy nonnull subgroups in reverse, clear retained buffer and reset actual process state.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045fb90",
+      "status": "partial",
+      "coverage": "Construct separate auxiliary Human roster and owned raw-record vector and reset known scalar fields.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045fc10",
+      "status": "partial",
+      "coverage": "Reset auxiliary roster/records before releasing vector and base roster storage.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045fc80",
+      "status": "partial",
+      "coverage": "Clear auxiliary roster, reverse-free actual raw record allocations, retain vector capacity and zero four original fields.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045fd80",
+      "status": "partial",
+      "coverage": "Reverse-free auxiliary records and reset known fields without clearing its roster.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00461410",
+      "status": "partial",
+      "coverage": "Return same embedded control1C owner from actual Players module.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00461420",
+      "status": "partial",
+      "coverage": "Return distinct embedded auxiliaryE8 owner from actual Players module.",
+      "limitations": "Source-only typed owners/STL replace original object/vtable/container/allocator/SEH ABI. Populated remote records, subgroup/save and active order producers remain separate; loading raw order writes reject explicitly. Required presentation/frame/speech endpoints are not successful defaults. No loaded-world or desktop claim.",
+      "evidence": [
+        "recovered/game/players_module_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-detached-camera-20261109.json"
       ]
     }
   ]

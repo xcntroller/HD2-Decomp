@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-09",
+  "source_only": true,
+  "desktop_verified": false,
+  "scope": "Detached-camera Human amounts and containing Players module/process loading subsystem",
+  "ledger_added_partial_client": 21,
+  "complete_promotions": 0,
+  "original_entries": [
+    "00463040",
+    "00463620",
+    "00463690",
+    "00463780",
+    "00463890",
+    "00581210",
+    "00456780",
+    "004563f0",
+    "00456440",
+    "004564a0",
+    "00461430",
+    "004614e0",
+    "00460aa0",
+    "00460ae0",
+    "00460c20",
+    "0045fb90",
+    "0045fc10",
+    "0045fc80",
+    "0045fd80",
+    "00461410",
+    "00461420"
+  ],
+  "no_credit": [
+    "004650A0 absent frozen inventory",
+    "Native frame calls and already credited amount setters",
+    "004593E0 and00460B30 absent frozen inventory"
+  ],
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan PASS with actual HumanSceneActor, HumanPlayerControlLoading roster/selection and set_human_camera_amount. Frame and DD0 boundaries use doubles. Tests squared segment geometry, cached zero and pointer-only removal quirks, ordering, reverse traversal, callback failure publication and frame ownership.",
+    "i386": "Strict GameActorServices/GameSceneActors actual Human and Players/camera instantiation, compile only.",
+    "application": "Strict app compile/link. No original game, DLL, Proton or Windows fixture executed.",
+    "players": "Focused native ASan/UBSan/LSan PASS with actual HumanSceneActor/HumanActiveAIStateLoading/input/formation/Players owners. Shared scale, groups, timer expiry, reverse speech/failure, follower cleanup and module lifetime; frame/presentation/speech boundary doubles."
+  },
+  "logs": [
+    "analysis/work/mission-world-20261103/detached-camera-native-build.log",
+    "analysis/work/mission-world-20261103/detached-camera-native-run.log",
+    "analysis/work/mission-world-20261103/detached-camera-host-build.log",
+    "analysis/work/mission-world-20261103/detached-camera-app-build.log",
+    "analysis/work/mission-world-20261103/players-process-native-build.log",
+    "analysis/work/mission-world-20261103/players-process-native-run.log",
+    "analysis/work/mission-world-20261103/players-subsystem-host-build.log",
+    "analysis/work/mission-world-20261103/players-subsystem-app-build.log"
+  ],
+  "temporary_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-detached-camera-audit.cpp",
+      "sha256": "10399e79a7e4444874ac6231baee1a1b0357f75d55c9e664b20877deb9bed6f1",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-detached-camera-audit",
+      "sha256": "3bfd63bb8ed8680d58530d01fb82285ce9fe15006429b8ce08bbc0908d1d9e32",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-detached-camera-host.cpp",
+      "sha256": "2f559038aad0455bc383e053ac92df70ab5051f630b919ff43e163d277f6d9bf",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-detached-camera-host.o",
+      "sha256": "6c3f9813b825bfc2860224e3f84a2cc1c92e4b1ce7a02e9c85d8f31a1e2c39f5",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-players-process-audit.cpp",
+      "sha256": "cdc4f25aa64050036ac12afc0c08e92ee5a2285b53f115866fd8492b0a97a4c0",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-players-process-audit",
+      "sha256": "51a7bd2a47bcb26377ab1ac59a2c3c0ad8661cf8c03810da873293709963364e",
+      "removed": true
+    }
+  ],
+  "log_sha256": {
+    "analysis/work/mission-world-20261103/detached-camera-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/detached-camera-native-run.log": "519e236a45dffa4dca2632ecb6bc476c3b8aeb706b272a5f4262f25c1a3ed273",
+    "analysis/work/mission-world-20261103/detached-camera-host-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/detached-camera-app-build.log": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+    "analysis/work/mission-world-20261103/players-process-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/players-process-native-run.log": "f90c1f46c7945c2d906e38fa9056bbf57c57a23dccead9595355187a45232e82",
+    "analysis/work/mission-world-20261103/players-subsystem-host-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/players-subsystem-app-build.log": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+  }
+}

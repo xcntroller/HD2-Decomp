@@ -23,6 +23,7 @@
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
 #include "game/actor_proximity_loading.h"
+#include "game/players_process.h"
 #include "game/human_input_records.h"
 #include "game/world_views.h"
 #include "game/hud_scene_loading.h"
@@ -60,6 +61,7 @@ namespace hd2::host {
 class StartupSession {
 public:
     using PreMission = frontend::PreMissionFlow<frontend::HumanStore<HumanPortraits>>;
+    using PlayerHuman=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
     std::optional<frontend::MultiplayerLaunchRequest>& multiplayer_request() { return multiplayer_request_; }
     StartupSession(HMODULE engine, HMODULE rw_data, HMODULE joy,const std::string& selected_language={})
         : engine_(engine), files_(rw_data), text_files_(rw_data), directory_(platform_), language_(platform_),
@@ -189,6 +191,8 @@ public:
     game::HumanAIAction1Pool& human_ai_action1_pool(){return human_ai_actions1_;}
     auto& human_perception_record_pool(){return human_perception_records_;}
     auto& actor_proximity_state(){return actor_proximity_;} //Actual process008AED54, preserves bucket timers across world clear.
+    auto& players_process(){return players_process_;} //Actual CRT0089AC30; module reset, not a per-world copy.
+    auto& delayed_player_speech(){return delayed_player_speech_;} //Separate0089AC20, survives00456440 reset.
     template<class Resolve,class Type>std::int32_t add_game_sound_listener(EngineFrame* frame,void* callback,Resolve&& resolve,Type&& type) {
         return frontend::add_sound_listener(sound_data_.runtime,gate_,frame,callback,
             std::forward<Resolve>(resolve),std::forward<Type>(type)); //00433ED0, SAME process manager.
@@ -565,6 +569,8 @@ private:
     game::HumanSoundVariants human_sound_variants_;
     game::HumanInputShared human_input_shared_;
     game::ActorProximityState<GameSceneActors::Instance*> actor_proximity_;
+    game::PlayersProcess<PlayerHuman> players_process_;
+    std::vector<game::PlayersProcess<PlayerHuman>::DelayedSpeech> delayed_player_speech_;
     game::HumanMorphTables human_morph_tables_;
     game::HumanAIEventPool human_ai_events_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;

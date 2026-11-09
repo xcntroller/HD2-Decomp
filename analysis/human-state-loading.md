@@ -1395,3 +1395,100 @@ app compile/link passes. Engine math in the native fixture uses boundary doubles
 actual exports were compiled/linked but never run. Temporary fixtures are hashed
 and removed. Seventeen eligible client partial bodies, zero complete promotions;
 no desktop test or completed P2.2 checkbox. Next: detached camera and Players.
+
+## Detached-camera Human references — 2026-11-09
+
+Correction to earlier boundary notes:8C/90/94 belongs to detached controller
+00462650, returned by MissionCamera004650A0. It is not a Players module vector.
+`detached_camera.h` now owns that actual kind3 frame and typed Human/FLOAT records;
+MissionCamera owns the SAME controller and forwards its speed and frame. Its
+source template now requires the actual Human type. Frame release precedes record
+buffer destruction, as004626E0; destruction has no invented amount callbacks.
+HumanLoadingActivation now borrows this actual Camera and calls its remove path
+before DD0/E0/230 retirement, replacing the external remove-reference declaration.
+
+00463040 searches reverse, invokes005A9760(0) first, then copies ONLY the final
+actor pointer into the removed slot before popping. It deliberately retains that
+slot's old amount.00463620(false) resets amounts in reverse then clears records,
+retaining capacity; true makes no call.00463890 walks selected control38 records
+in reverse, then roster08 in reverse, with no deduplication between those passes.
+
+00463780 computes the amount before lookup. Equal cached amount makes no call.
+A changed existing row notifies BEFORE testing its OLD cached amount: old zero
+erases the row with ordered shift, otherwise it stores the new amount. A newly
+zero value therefore remains cached until a subsequent different value erases
+it; that invocation does not reappend it. A missing nonzero row is appended
+BEFORE notification. Native callback failures do not roll back these prior stores.
+These quirks are retained instead of inventing ordinary erase-on-new-zero logic.
+
+00463690 reads head marker260 matrix before Human model matrix, builds a segment
+from head to bodyY+0.1 and measures from detached20.00581210 returns SQUARED
+distance (not Euclidean distance); threshold constants are2.4 and0.4. It compares
+extended distance>float2.4 before the FLOAT reload for the lower threshold and
+linear fade1-(storedDistance-0.4)*0.5. Segment delta, dot, clamp and interior FLOAT
+stores/order are backed by saved assembly. Degenerate/endpoints sum Z²+Y²+X²;
+interior0041CFD0 sums X²+Y²+Z². Only known XYZ are used; undefined original W
+lanes remain explicit source guards.
+
+Evidence WORK/detached-camera-reference-producers/,
+detached-camera-amounts-and-players/ and detached-camera-distance-players-reset/;
+saved detached-camera-{amount,segment-distance,region}.asm and
+camera-controller-tail.asm. Ignore detached-camera-human-list/ overlapping
+address probes; they are not body evidence.004650A0 is absent from the frozen
+inventory and earns no credit. Six eligible client partials are registered;
+existing00462650/004626E0 coverage extends without duplicate credit. Engine/frame
+calls remain actual required boundaries, not reconstructed engine bodies.
+
+[Saved verification](checkpoints/p2.2-detached-camera-20261109.json): focused native
+ASan/UBSan/LSan uses actual HumanSceneActor, Players roster/selection and Human
+amount setter; tests segment branches, cached-zero/pointer-only quirks, call
+order, reverse traversal, failure publication and camera lifetime. Strict actual
+GameActorServices/GameSceneActors Human/Players/camera instantiation and app
+compile/link pass; all Windows programs/DLLs remain unexecuted. Native tests use
+frame and DD0/presentation boundary doubles. Temporary fixtures hashed/removed.
+Detached motion/toggle/input/00469300 simulation and containing world/VM
+remain separate. Players loading owners follow below. P2.2 checkbox remains open; keep implementing it after commits.
+
+## Players module and process — 2026-11-09
+
+`players_process.h` reconstructs known00456780/00456440 state at CRT singleton
+0089AC30, separate from module11 control1C.004563F0 produces actual0089AD40
+formation scale: FLOAT(signed120) ×0.75 +1.5, initially3.75 XYZ. Reset preserves
+all five group buffers and separate0089AC20 delayed-speech records. StartupSession
+owns these process lifetimes; they are not new per-world copies. Unwritten
+constructor/W fields remain guards, with no full-constructor promotion.
+
+004564A0 expires wrapping timers30/34/9C and clears associated3C/40/98 only on
+nonzero expiry. It clears all five retained group buffers before selected28 lookup;
+no selected Human means no speech work. Actual roster is traversed reverse:
+positive-health, other, B0kind3 Humans use extended position differences and
+FLOAT((Z²+Y²)+X²), strictly below1600. Groups0/1/2 retain native pending-order and
+202 gates. Loading exposes no populated250 order producer; unknown raw writes
+reject rather than silently count as empty. Due speech compares signed due time
+to wrapping game2C+elapsed, calls required005383D0(127,1,300,0) reverse BEFORE
+ordered erase, retaining prior stores on failure.00456EF0 is a genuine RET4.
+004563E0 is only the singleton getter: actual virtual34 is004593E0, which walks
+fresh ascending roster, resets state3 followers through005377F0(false,188), then
+clears their actual2CC formations.004593E0 is absent inventory and earns no credit.
+
+`players_module_loading.h` supplies actual00461430/004614E0 ownership and
+00460AA0/00460AE0/00460B30/00460C20 gates. It embeds SAME control1C and separate
+auxiliaryE8. Control virtual18 is0045DDE0 post-load, not0045D3A0 clear: roster
+survives. Auxiliary0045FC80 clears roster and reverse-retires raw2C allocations;
+0045FD80 preserves roster. Its record type remains opaque without an invented
+populated allocator. Module authority finish drops subgroup pointers without
+calling their destructors; explicit reset destroys nonnull subgroups reverse.
+The real subgroup/save producers and mode9 formations remain separate. No
+subgroup append API or successful replacement receiver is supplied.
+
+Evidence: WORK/players-process-ownership/,players-process-consumers/ (all listed
+valid entries except overlapping0045DDA0),players-auxiliary-records/,
+players-owned-record-producers-correct/,players-loading-records-final/ and saved
+players-process-tick.asm. Discard overlapping00460170 export guesses. Fifteen
+eligible new client partials; absent00460B30 and004593E0 earn no new credit.
+Native ASan/UBSan/LSan uses actual Human/Active AI/input/formation/Players owners
+and tests reset preservation, grouping boundary, expiry, speech order/failure,
+follower cleanup and registration lifetime. Strict actual-host i386 and app
+compile/link pass. Frame/presentation/speech boundaries use explicit doubles;
+no original/Windows program or DLL executed. Saved checks share the camera
+[checkpoint record](checkpoints/p2.2-detached-camera-20261109.json).
