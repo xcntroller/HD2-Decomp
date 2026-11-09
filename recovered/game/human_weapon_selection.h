@@ -14,7 +14,7 @@ namespace hd2::game {
 //Caller must supply those real values; this record is not a world/sector service.
 struct HumanWeaponSelectionContext {
     bool root_sector=false,has_target=false,human_target=false,special_target=false,alternate=false;
-    float squared_distance=0;
+    long double squared_distance=0; //0052F750 compares x87 directly;00530B30 stores FLOAT first.
 };
 inline void human_weapon_priorities(const HumanWeaponSelectionContext& context,std::vector<std::uint32_t>& output) {
     output.clear();std::uint32_t remaining=0xfff;
@@ -95,15 +95,16 @@ auto select_human_weapon(Human& human,Items& items,const std::vector<std::uint32
 
 //00530B30: current item's amount/ammunition check precedes heavy-target/range
 //policy. Exact squared constants1600/100/2500/225, unordered < branches retained.
-template<class Human,class Items,class Entry>
-bool human_weapon_usable(Human& human,Items& items,Entry entry,const HumanWeaponSelectionContext& context) {
+template<class Human,class Items,class Entry,class Context>
+bool human_weapon_usable_with_context(Human& human,Items& items,Entry entry,bool alternate,Context&& resolve_context) {
     if(!entry)return false;
     auto& item=items.runtime_item(entry);const auto& definition=item.definition();
     const bool special=human_special_hand_definition(definition);
-    if(context.alternate&&!special)return false;
+    if(alternate&&!special)return false;
     if(item.amount()==0&&!count_human_ammunition(human,items,definition.ammunition(),true))return false;
-    const auto command=definition.equipment_command();if(context.has_target&&context.special_target)return command==5;
-    const auto square=context.has_target?context.squared_distance:0.f;
+    const auto command=definition.equipment_command();const auto context=resolve_context();
+    if(context.has_target&&context.special_target)return command==5;
+    const auto square=context.has_target?static_cast<float>(context.squared_distance):0.f;
     switch(command) {
     case 1:return square<=1600.f;
     case 2:if(!context.has_target&&!special)return false;return !(square>=100.f);
@@ -112,6 +113,10 @@ bool human_weapon_usable(Human& human,Items& items,Entry entry,const HumanWeapon
     case 6:if(square<=225.f)return false;return !(square>=1600.f);
     default:return false;
     }
+}
+template<class Human,class Items,class Entry>
+bool human_weapon_usable(Human& human,Items& items,Entry entry,const HumanWeaponSelectionContext& context) {
+    return human_weapon_usable_with_context(human,items,entry,context.alternate,[&]{return context;});
 }
 } //namespace hd2::game
 #endif

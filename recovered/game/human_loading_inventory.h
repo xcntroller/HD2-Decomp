@@ -4,6 +4,7 @@
 #include "game/human_inventory_lookup.h"
 #include "game/human_loading_inventory_receiver.h"
 #include "game/human_weapon_swap.h"
+#include "game/human_weapon_context.h"
 #include "frontend/pre_mission_data.h"
 #include <cstring>
 
@@ -89,8 +90,9 @@ bool equip_human_loading_holster(Human& human,Items& items,Commands& commands,st
 //same-Human/empty-hand1/2/6→3 loading boundary is supported. Player1/remote7
 //must use their genuine queued native84 commands; reject those before mutation.
 template<class Frames,class Human,class Items,class States,class Inline,class Players,class Presentation,class World>
-class HumanLoadingInventoryCommands final : public HumanLoadingInventoryReceiver {
+class HumanLoadingInventoryCommands final : public HumanLoadingInventoryReceiver<Frames> {
 public:
+    using Actor=SceneActor<Frames>;
     using Entry=std::decay_t<decltype(std::declval<Human&>().base().storage()->holder(3)->entry())>;
     HumanLoadingInventoryCommands(Frames& frames,Human& human,Items& items,States& states,Inline& control,
             Players& players,Presentation& presentation,World& world)
@@ -147,12 +149,23 @@ public:
         if(result!=1)return false;
         human_.activation.flag178=true;return true; //005A8190 mode0 skipped by genuine offline AI gate.
     }
-    void select_weapon(Entry selected,std::int32_t slot) { //00538770, reread actual hand instead of trusting B0 cache.
+    void select_weapon(Entry selected,std::int32_t slot)override { //00538770, reread actual hand instead of trusting B0 cache.
         auto* storage=human_.base().storage();if(!storage||!storage->holder(3))throw std::runtime_error("Weapon selection has no actual hand holder");
         const auto current=storage->holder(3)->entry();if(!selected||selected==current)return;
         if(current)(void)swap(current,3,human_,selected,slot);
         else (void)move(selected,human_,slot,3,0);
     }
+    bool weapon_usable(Entry entry,Actor* target,bool alternate)override {
+        return human_weapon_usable_with_context(human_,items_,entry,alternate,[&]{
+            return human_weapon_context(frames_,human_,control_,world_,target,alternate,false);
+        });
+    }
+    Entry preferred_weapon(Actor* target,bool alternate,std::int32_t& slot)override {
+        const auto context=human_weapon_context(frames_,human_,control_,world_,target,alternate,true);
+        std::vector<std::uint32_t> priorities;human_weapon_priorities(context,priorities);
+        return select_human_weapon(human_,items_,priorities,slot);
+    }
+    bool special_hand_item(Entry entry)override{return entry&&human_special_hand_definition(items_.runtime_item(entry).definition());}
     void refresh_item(){if(auto* state=states_.get())state->refresh_item();} //005A6A90.
     std::int32_t actor_inventory_capacity(Human& human){return world_.actor_inventory_capacity(human.base());}
     bool is_current_player(Human& human){return players_.current_player()==&human;}

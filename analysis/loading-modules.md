@@ -586,3 +586,9 @@ accounting and containing same-Human swap/fallback/drop now pass focused
 sanitizers and strict i386 checks; active reselection target/sector producers
 and world integration remain. [Human contracts](human-state-loading.md),
 [equipment contracts](human-equipment-loading.md). Full P2.2 checkbox stays open.
+
+2026-11-09: active00530D40/00530A40 reselection now consumes actual target/sector/
+item owners and offline commands, including initial active bind. Assembly-checked
+x87/FLOAT distance semantics retained. Four further partials; no complete or
+desktop promotions. Formation/camera/Players, VM and full world remain.
+[Contract](human-state-loading.md#active-weapon-reselection--2026-11-09).

@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-09",
+  "source_only": true,
+  "desktop_verified": false,
+  "scope": "Same-Human active AI weapon reselection and actual target/sector context",
+  "original_entries": [
+    "00530d40",
+    "00530a40",
+    "005607b0",
+    "005ac4c0"
+  ],
+  "ledger_added_partial_client": 4,
+  "complete_promotions": 0,
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan fixture uses actual HumanSceneActor, RuntimeItem, storage, active/base state, resources and command composition. External frame/world/equipment boundaries use doubles. Tests target/attachment/task fallback, signed command gate, lazy context, threshold precision, initial active bind and close; not full DD0 activation.",
+    "i386": "Same focused fixture strict -Werror compilation, including state factory/inline headers; Windows executable not run.",
+    "application": "Strict application compile/link; no original game/DLL/Proton execution."
+  },
+  "temporary_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-weapon-reselection-audit.cpp",
+      "sha256": "d7c57507fe507d09f65ec21478e362d3e15bdfc6c27835604b96c518f25df29d",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-weapon-reselection-audit",
+      "sha256": "524860c510f4d77e7d08da2fe383a1fd8505bb0978812518e804092d0d95f338",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-weapon-reselection-audit.o",
+      "sha256": "c6fda1bbb957dabf05c24af5378913350189119a1fbcb74d01e1e0d4540ee261",
+      "removed": true
+    }
+  ],
+  "logs": [
+    "analysis/work/mission-world-20261103/weapon-reselection-native-build.log",
+    "analysis/work/mission-world-20261103/weapon-reselection-native-run.log",
+    "analysis/work/mission-world-20261103/weapon-reselection-i386-build.log",
+    "analysis/work/mission-world-20261103/weapon-reselection-app-build.log"
+  ],
+  "log_digests": {
+    "analysis/work/mission-world-20261103/weapon-reselection-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/weapon-reselection-native-run.log": "d64579e5c43766ddfc2267a5775c106d7452d7cf8f1633c2a765c53e7eb38775",
+    "analysis/work/mission-world-20261103/weapon-reselection-i386-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/weapon-reselection-app-build.log": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+  }
+}

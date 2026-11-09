@@ -7,8 +7,8 @@ push. No subagents/goals/original game/DLL/Proton/Windows-fixture execution.
 Preserve original assets. Focus verification on new work, not repeated audits.
 
 GameApplicationState still declines loading. No live world, first frame or new
-mission desktop result. Reconciled ledger:34 complete client/1,448 partial
-(1,443 client/five engine)/18,783 frozen functions.881 reconciled plus eight swap client source partials;
+mission desktop result. Reconciled ledger:34 complete client/1,452 partial
+(1,447 client/five engine)/18,783 frozen functions.881 reconciled plus eight swap and four reselection client source partials;
 zero whole-body promotions. See analysis/function-ledger-p2.2-reconciliation.md.
 
 ## Saved checkpoint
@@ -50,31 +50,38 @@ added; absent00587E00 earns none. No whole-body or desktop promotions.
 [Swap contracts](analysis/human-equipment-loading.md#same-human-weapon-exchange--2026-11-09),
 [saved checks](analysis/checkpoints/p2.2-weapon-swap-20261109.json).
 
+Latest source continuation: active00530D40→00530A40 now binds actual typed
+AI128+30/attachment160/task224, actual CD0 sector/scene root and Items/hand
+selection to offline inventory commands. Initial active bind/close passes.
+005607B0 resets typed target and six scalar accumulator fields;005AC4C0 reads
+SAME DD0/CD0 sector. Special-hand IDs now use actual Items. Native sanitizers,
+strict i386 fixture and app compile/link pass. Four partials added, no complete
+or desktop promotions. [Reselection contract](analysis/human-state-loading.md#active-weapon-reselection--2026-11-09),
+[checks](analysis/checkpoints/p2.2-weapon-reselection-20261109.json).
+
 ## Next implementation
 
-Finish actual active00530D40→00530A40 weapon reselection using the now-implemented
-00538770/007D9DE0 commands. Existing policy0052F750/00530930/00530B30 is verified;
-compose actual target/sector/matrix producers without success stubs.
-Evidence WORK/human-active-ai-actions/00530d40.c,
-human-active-ai-action-lifetime-checked/00530a40.c,
-human-loading-weapon-selection/ and human-inventory-swap-dependencies/.
--005AC4C0 returns DD0+CE4, i.e. existing CD0.sector(). Expose this actual sector
- through DD0/inline; compare SAME scene root, with no second lookup.
--Target128+30 and active224 still need typed actor producers. Cold constructor
- genuinely writes NULL. No raw scalar DWORD to host actor pointer casts.
--00530D40 unwraps Human target160 attachment; fallback224 only when202==0,
- action220 in25/26/22 and target is null. B0 signed64>0 and60!=-1 gate both calls.
--00530A40 refreshes actual hand, checks00530B30 before priorities, sets1A0=4000
- BEFORE dispatch.0069BFE0 debug receiver is genuine RET, not a missing service.
--0052F750 squared distance uses Y²+X²+Z²;00530B30 uses X²+Y²+Z², target matrix
- before Human matrix. Keep FLOAT stores and distinct evaluation order.
--Actual special targets:Car type4+5E0!=0 or actor type19hex+D8==2; recover typed
- producers, never substitute default false.
--No Ghidra process remains. Latest animation export completed. Do not rerun the
- ignored reconciliation script: it predates the committed reconciled baseline.
+Implement formation005A91A0/005A9120 and typed Human2C8 owner/2CC borrower, then
+detached-camera00463040/Players module consumers. Existing formation entry exports:
+WORK/human-containing-final-dependencies/005a91a0.c and00463040.c;
+human-containing-activation-dependencies/005a9120.c. New dependency export:
+WORK/human-formation-owner/ (check Ghidra log for completion/errors before use).
+Formation dependency export completed successfully; no Ghidra process remains.
 
-After equipment: formation005A91A0/005A9120 typed2C8/2CC; detached-camera00463040
-list/current/FPV/HUD mappings; Players module activation. Then full006989B0/
+Confirmed new behavioral details (do not repeat unchanged audits):
+-00530D40/00530A40 gate signed DWORD at64hex>0 and command60!=-1. Not int64.
+-Actual assembly replaces decompiler distance ordering: priority0052FB26 uses
+ (Z²+X²)+Y² in extended x87 THROUGH comparison; usability00530C24 uses
+ (Z²+Y²)+X² then stores FLOAT at00530C4D. Keep threshold distinction.
+-Target128+30 is typed and005607B0 is supplied. Runtime steering/task224 writers
+ remain separate, as does actual Car5E0 service. No fake default-false target.
+-Containing Human deactivation detaches160, clears formation2CC, then retires
+ formation2C8 before the remaining owners. Player bind calls005A91A0(0) too.
+-Formation005A9120 iterates six slots in reverse, rereading owner after callback;
+ clearing followers may destroy the owner recursively. Preserve reentrancy.
+
+After formation: detached-camera00463040 list/current/FPV/HUD mappings; Players
+module activation. Then full006989B0/
 session/world ownership/camera00469300; actual compiler/VM00427730/runtimePatch
 ISD1 programs; remaining SOUND portal/subtitle/effects and actor/physics1/3/4/6;
 missionA8 objectives/zone37 A4 identities; first rendered frame and user repeat/

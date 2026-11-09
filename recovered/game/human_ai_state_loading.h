@@ -5,6 +5,7 @@
 #include "game/human_input_callbacks.h"
 #include "game/human_state_base_loading.h"
 #include "game/human_ai_event_queue.h"
+#include "game/scene_actor.h"
 
 namespace hd2::game {
 
@@ -99,7 +100,7 @@ private:
         if(input->first_owner==this){input->first_receiver=nullptr;input->first_owner=nullptr;}
         if(input->second_owner==this){input->second_receiver=nullptr;input->auxiliary_receiver=nullptr;input->second_owner=nullptr;}
     }
-    Inputs& inputs_;HumanInputCallbacks& callbacks_;HumanAIResources resources_;bool bound_=false;
+    Inputs& inputs_;HumanInputCallbacks& callbacks_;HumanAIResources<SceneActor<Frames>> resources_;bool bound_=false;
 };
 } //namespace hd2::game
 #endif

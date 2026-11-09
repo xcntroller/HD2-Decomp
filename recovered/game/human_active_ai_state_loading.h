@@ -7,7 +7,8 @@
 namespace hd2::game {
 
 //00524C60/00524E70/00525110, actual initial offline B0kind3. Equipment selection
-//00530D40, Players/Speech and0089AC30 consumers are mandatory Services methods.
+//00530D40/00530A40 use the SAME typed inventory owner. Players/Speech and
+//0089AC30 consumers are mandatory Services methods.
 //Runtime task/formation producers are not exposed by this loading owner.
 template<class Frames,class Human,class Inputs,class Services>
 class HumanActiveAIStateLoading : public HumanAIStateLoading<Frames,Human,Inputs> {
@@ -107,7 +108,38 @@ public:
         return {state_.template get<std::uint32_t>(0x174),alternate||state_.template get<std::uint8_t>(0x188)!=0,action}; //00524E00/005385D0.
     }
     auto& state(){return state_;}const auto& state()const{return state_;}
+    SceneActor<Frames>* task_target=nullptr; //Native224 borrower; runtime task writer remains separate.
+    bool reselect_weapon() { //00530D40, including repeated00530A40 command gate.
+        if(weapon_command_blocked())return false;
+        auto* target=this->resources().target().actor;
+        if(target&&target->base().type()==3) {
+            auto* human=dynamic_cast<Human*>(target);
+            if(!human)throw std::runtime_error("Weapon target3 has no actual Human owner");
+            if(human->field160)target=human->field160;
+        }
+        if(!state_.template get<std::uint8_t>(0x202)&&!target) {
+            const auto action=state_.template get<std::int32_t>(0x220);
+            if(action==25||action==26||action==22)target=task_target;
+        }
+        reselect_weapon_for_target(target);return true;
+    }
+    void reselect_weapon_for_target(SceneActor<Frames>* target) { //00530A40.
+        if(weapon_command_blocked())return;
+        auto* human=this->human();if(!human||!human->loading_inventory)
+            throw std::runtime_error("Weapon reselection requires actual Human inventory command owner");
+        auto& inventory=*human->loading_inventory;
+        this->refresh_item();const bool alternate=state_.template get<std::uint8_t>(0x18a)!=0;
+        if(inventory.weapon_usable(this->item(),target,alternate))return;
+        std::int32_t slot=7;const auto selected=inventory.preferred_weapon(target,alternate,slot);
+        if(selected&&selected!=this->item()) {
+            //0069BFE0 debug message receiver is genuine RET. Timer precedes command.
+            state_.set(0x1a0,std::uint32_t{4000});inventory.select_weapon(selected,slot);
+        }
+    }
 private:
+    bool weapon_command_blocked()const {
+        return this->words().template get<std::int32_t>(0x64)>0&&this->words().template get<std::int32_t>(0x60)!=-1;
+    }
     static std::int32_t signed_health(const Human& human){const auto bits=human.properties.stats_ec[0];std::int32_t result;std::memcpy(&result,&bits,4);return result;}
     void reset_action(){this->resources().retire_current_action();} //00575820.
     void set_follow(bool enabled,bool immediate) { //005377F0(false,...) loading branch.
@@ -135,8 +167,7 @@ private:
             if(value>=14)state_.set(0x174,state_.template get<std::uint32_t>(0x174)|4u);
             action_mode_=value>=14?2u:0u;state_.set(0x1d8,*action_mode_);
             state_.set(0x174,state_.template get<std::uint32_t>(0x174)&~0x10u);
-            auto& target=this->resources().target().state;
-            for(auto offset:{0x30u,0x10u,0x14u,0x18u,0u,4u,8u})target.set(offset,std::uint32_t{0}); //005607B0(0).
+            this->resources().target().bind_actor(nullptr); //005607B0(0), actual typed target30.
             refresh_action_mode();prefer_ready=value==12||(value==13&&special_hand_item());adjust=true;
         }else if(value==16||value==17) {
             state_.set(0x18a,std::uint8_t(value==17));state_.set(0x174,state_.template get<std::uint32_t>(0x174)&~4u);
@@ -149,9 +180,13 @@ private:
                 services_.adjust_active_ai_stance(*this,prefer_ready);
         }
         if(!state_.template get<std::uint8_t>(0x18a)||!this->item()||!special_hand_item())
-            services_.reselect_active_ai_weapon(*this); //00530D40; actual target/item/ammunition policy required.
+            (void)reselect_weapon(); //00530D40→00530A40→00538770 on SAME actual inventory.
     }
-    bool special_hand_item(){return services_.active_ai_special_hand_item(*this);} //Native item+4 descriptor8:16/7/104.
+    bool special_hand_item() { //Native item+4 descriptor8:16/7/104, SAME actual Items owner.
+        auto* human=this->human();if(!human||!human->loading_inventory)
+            throw std::runtime_error("Special-hand check requires actual Human inventory owner");
+        return human->loading_inventory->special_hand_item(this->item());
+    }
     HumanAIAction1Pool& actions_;Services& services_;HumanJointWords<0x260> state_;std::optional<std::uint32_t> action_mode_;
 };
 } //namespace hd2::game

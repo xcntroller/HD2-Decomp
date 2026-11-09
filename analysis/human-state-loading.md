@@ -1248,3 +1248,53 @@ Checkpoint ASan/UBSan verifies real holder/stack ownership, failed return paths,
 retained exchange accounting, no-source placement and single release. All250
 new headers pass strict i386 syntax compilation; app/startup link passes.
 No completed P2.2 checkbox, containing world, desktop test or function credit.
+
+## Active weapon reselection — 2026-11-09
+
+`HumanActiveAIStateLoading` now supplies00530D40→00530A40 through the SAME
+Human inventory owner and actual Items/B0/hand storage. Both gates compare signed
+DWORD at B0+64hex>0 and command60!=-1. The first reads typed AI128+30, unwraps
+Human160 attachment once, and selects active224 only when202==0, target is null
+and action220 is25/26/22. Active224 remains a typed borrower; its runtime task
+writer is not supplied.00530A40 refreshes actual hand, tests usability before
+building priorities, and stores1A0=4000 BEFORE00538770 dispatch. An unchanged or
+absent candidate preserves the timer; the debug0069BFE0 receiver is genuine RET.
+Initial active00524E70 now calls this source directly rather than a required
+external reselection method. Special-hand IDs16hex/7/104hex use the SAME Items.
+
+AI target128 owns `HumanAITargetLoading<SceneActor<Frames>>`;005607B0 binds the
+actual actor borrower and resets only scalar00/04/08/10/14/18. It preserves
+20..2C and flags34/35. No pointer30 reads/writes pass through DWORD storage.
+The native cold null target and active action-mode target reset use this owner.
+Runtime targeting/steering and task acquisition remain separate producers.
+
+`human_weapon_context.h` connects0052F750/00530B30 to the actual CD0 sector
+through inline98/DD0005AC4C0 and SAME scene1F8 root, without a second sector
+query. It reads Car5E0 through the required actual runtime service and actual
+Animation actor type19hex+D8==2. Neither special-target read has a successful
+placeholder. Usability resolves target/matrices only AFTER item/alternate/
+ammunition rejection. A special target skips distance; priority distance is
+read only in the root sector. Target matrix is updated before Human matrix.
+
+Assembly corrects the decompiler's expression ordering:0052F750 at0052FB26
+keeps extended subtractions and `(Z²+X²)+Y²` in x87 through its comparisons;
+00530B30 at00530C24 computes `(Z²+Y²)+X²` then stores FLOAT at00530C4D.
+The context retains long double for priority and explicitly rounds usability.
+A tested distance slightly above1600 remains above for priorities while rounding
+to1600 for usability. Older notes that report decompiled X/Y/Z order are
+superseded by these assembly addresses, not by speculation about vector layout.
+
+Evidence: WORK/human-active-ai-actions/00530d40.c,
+human-active-ai-action-lifetime-checked/00530a40.c,
+human-weapon-target-binding/005607b0.c,
+human-inventory-weapon-swap/005ac4c0.c,
+human-loading-weapon-selection/{0052f750,00530b30}.c and
+human-weapon-{priority,usability}-distance.asm. The original binaries were only
+read. [Saved verification](checkpoints/p2.2-weapon-reselection-20261109.json)
+records native ASan/UBSan/LSan, strict i386 fixture compilation and app linking.
+The fixture uses actual HumanSceneActor, RuntimeItem, ActorBase storage,
+HumanActiveAIStateLoading/base bind and command composition, with external
+frame/world/equipment receiver doubles. Initial active bind/close is exercised;
+no original/Windows program, full DD0 activation or desktop scene was run.
+Four eligible bodies gain partial credit; no complete promotions. P2.2 remains
+open for formation/camera/Players, VM and full world integration.

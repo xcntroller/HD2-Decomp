@@ -17436,13 +17436,15 @@
       "program": "client",
       "entry": "0052f750",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0052f750: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate.",
+      "coverage": "P2.2 source reconstruction at original entry 0052f750: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual sector and target context now bound; assembly-preserved extended (Z\u00b2+X\u00b2)+Y\u00b2 comparisons.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_weapon_selection.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_weapon_context.h",
+        "analysis/checkpoints/p2.2-weapon-reselection-20261109.json"
       ]
     },
     {
@@ -17475,13 +17477,15 @@
       "program": "client",
       "entry": "00530b30",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00530b30: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate.",
+      "coverage": "P2.2 source reconstruction at original entry 00530b30: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual target context resolves after item/alternate/ammunition rejection; assembly-preserved FLOAT (Z\u00b2+Y\u00b2)+X\u00b2 distance.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_weapon_selection.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_weapon_context.h",
+        "analysis/checkpoints/p2.2-weapon-reselection-20261109.json"
       ]
     },
     {
@@ -20182,6 +20186,54 @@
         "recovered/game/human_equipment_services.h",
         "analysis/human-equipment-loading.md",
         "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00530d40",
+      "status": "partial",
+      "coverage": "Active weapon reselection command gate, actual typed target/attachment/task fallback and same-Human reselection call.",
+      "limitations": "Source-only portable owner composition; original object/vtable/container/SEH ABI and containing live world remain excluded. Inventory commands cover same-Human offline AI only. Runtime task/steering writers, actual Car5E0 service, full DD0 activation, world integration and desktop delivery are not supplied by this subset.",
+      "evidence": [
+        "recovered/game/human_active_ai_state_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-weapon-reselection-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00530a40",
+      "status": "partial",
+      "coverage": "Refresh actual hand, reject usable weapon before building priorities, preserve same/absent candidates, set4000 timer before actual inventory dispatch.",
+      "limitations": "Source-only portable owner composition; original object/vtable/container/SEH ABI and containing live world remain excluded. Inventory commands cover same-Human offline AI only. Runtime task/steering writers, actual Car5E0 service, full DD0 activation, world integration and desktop delivery are not supplied by this subset.",
+      "evidence": [
+        "recovered/game/human_active_ai_state_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-weapon-reselection-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005607b0",
+      "status": "partial",
+      "coverage": "Bind actual typed target actor and reset only two three-component accumulators, preserving target position and flags.",
+      "limitations": "Source-only portable owner composition; original object/vtable/container/SEH ABI and containing live world remain excluded. Inventory commands cover same-Human offline AI only. Runtime task/steering writers, actual Car5E0 service, full DD0 activation, world integration and desktop delivery are not supplied by this subset.",
+      "evidence": [
+        "recovered/game/human_ai_resources.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-weapon-reselection-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac4c0",
+      "status": "partial",
+      "coverage": "Read the SAME DD0/CD0 sector through the actual inline control owner, without querying a replacement sector.",
+      "limitations": "Source-only portable owner composition; original object/vtable/container/SEH ABI and containing live world remain excluded. Inventory commands cover same-Human offline AI only. Runtime task/steering writers, actual Car5E0 service, full DD0 activation, world integration and desktop delivery are not supplied by this subset.",
+      "evidence": [
+        "recovered/game/human_inline_loading.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-weapon-reselection-20261109.json"
       ]
     }
   ]

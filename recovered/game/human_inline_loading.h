@@ -48,6 +48,10 @@ public:
     Human* human()const{return human_;}Look* look()const{return look_.get();}
     Control* control()const{return control_.get();}Equipment* equipment()const{return equipment_.get();}
     bool initialized()const{return initialized_;}
+    auto scene_sector()const { //005AC4C0: SAME DD0+CE4/CD0 sector, no scene query.
+        if(!control_)throw std::logic_error("Human sector requires actual DD0 owner");
+        return control_->animation().sector();
+    }
     void apply_camera_amount(float amount) { //00786650 through the SAME DD0/230 owners.
         if(!initialized_||!control_||!equipment_)throw std::logic_error("Human camera amount requires live inline98");
         control_->apply_camera_amount(amount,equipment_->state());

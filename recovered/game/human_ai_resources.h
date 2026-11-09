@@ -8,14 +8,19 @@
 namespace hd2::game {
 
 //005607D0/00560810, separate50-byte state at AI+128. Its00560800
-//destructor is RET. No target/steering producer is exposed by loading.
-struct HumanAITargetLoading {
+//destructor is RET. Native30 is a typed actor borrower, never a scalar DWORD.
+template<class Actor>struct HumanAITargetLoading {
     HumanAITargetLoading() {
         state.set(0x34,std::uint8_t{0});state.set(0x35,std::uint8_t{0});
-        for(auto offset:{0x30u,0u,4u,8u,0x10u,0x14u,0x18u,0x38u})state.set(offset,std::uint32_t{0});
+        for(auto offset:{0u,4u,8u,0x10u,0x14u,0x18u,0x38u})state.set(offset,std::uint32_t{0});
         for(auto offset:{0x3cu,0x40u,0x44u,0x48u})state.set(offset,std::int32_t{-1});
     }
     HumanJointWords<0x50> state;
+    Actor* actor=nullptr;
+    void bind_actor(Actor* value) { //005607B0, resets both three-component accumulators.
+        actor=value;
+        for(auto offset:{0x10u,0x14u,0x18u,0u,4u,8u})state.set(offset,std::uint32_t{0});
+    }
 };
 
 //The inline60-byte allocation in0056EE90 at AI+12C. Its runtime graph/query
@@ -68,8 +73,9 @@ private:
 //Owned allocation and cold-field portion of0056EE90/0056F0E0. The containing
 //B0 derived state still supplies actual base bind, input callbacks, jobs and
 //0056F200/0056F630 receivers. This is NOT a successful AI activation service.
-class HumanAIResources {
+template<class Actor>class HumanAIResources {
 public:
+    using Target=HumanAITargetLoading<Actor>;
     HumanAIResources(std::uint32_t kind,MissionTableSet& second) {
         state_.set(0xf4,static_cast<std::uint8_t>(kind));
         //00576AC0 receiver is embedded at C0.
@@ -78,7 +84,7 @@ public:
             state_.set(offset,std::uint32_t{0});
         state_.set(0x114,std::int32_t{-1});state_.set(0x118,std::int32_t{-1});
         try {
-            direction_=std::make_unique<HumanAIDirection>();target_=std::make_unique<HumanAITargetLoading>();
+            direction_=std::make_unique<HumanAIDirection>();target_=std::make_unique<Target>();
             flag_=std::make_unique<HumanAIFlagLoading>();query_=std::make_unique<HumanAIQueryLoading>();
             path_=std::make_unique<HumanAIPathLoading>(second);
         }catch(...){clear();throw;}
@@ -89,7 +95,7 @@ public:
         current_action_.reset(); //Typed nativeF0; explicit state close normally returns it first.
         direction_.reset();target_.reset();flag_.reset();path_.reset();query_.reset();jobs_.clear();
     }
-    HumanAIDirection& direction(){return required(direction_);}HumanAITargetLoading& target(){return required(target_);}
+    HumanAIDirection& direction(){return required(direction_);}Target& target(){return required(target_);}
     const HumanAIDirection& direction()const{return required(direction_);}
     HumanAIFlagLoading& flag(){return required(flag_);}HumanAIQueryLoading& query(){return required(query_);}
     HumanAIPathLoading& path(){return required(path_);}auto& state(){return state_;}const auto& state()const{return state_;}
@@ -102,7 +108,7 @@ private:
         return *owner;
     }
     HumanJointWords<0x140> state_;
-    std::unique_ptr<HumanAIDirection> direction_;std::unique_ptr<HumanAITargetLoading> target_;
+    std::unique_ptr<HumanAIDirection> direction_;std::unique_ptr<Target> target_;
     std::unique_ptr<HumanAIFlagLoading> flag_;std::unique_ptr<HumanAIQueryLoading> query_;std::unique_ptr<HumanAIPathLoading> path_;
     struct Job;std::vector<Job*> jobs_; //NativeF8; no unreconstructed pool/job producer is exposed.
     HumanAIAction1Pool::Lease current_action_{nullptr,HumanAIAction1Pool::Return{}};
