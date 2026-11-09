@@ -9,6 +9,12 @@
 
 namespace hd2::game {
 
+template<class Human>long double human_loading_stat(const Human& human,unsigned index) { //005A6530, x87 return.
+    if(index>=9)return 0;
+    std::int32_t value;std::memcpy(&value,&human.properties.stats_ec[index],4);
+    return static_cast<long double>(value)*(index==0?0x1.47ae14p-10f:0x1.47ae14p-7f);
+}
+
 //007E5E00 FISTP signed64 under truncate mode; these callers keep EAX ONLY.
 //Invalid/out-of-range x87 integer-indefinite has low DWORD0, not INT32_MIN.
 inline std::uint32_t human_loading_stat_word(long double value) {

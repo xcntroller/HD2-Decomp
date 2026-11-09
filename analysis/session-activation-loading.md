@@ -132,3 +132,5 @@ desktop verification. Strict i386 actual host/Items/Human/Effects/Dubbing/Contro
 composition and application compile/link pass. No original client/DLL, Proton or
 Windows fixture was executed. Temporary fixtures are hashed and removed at this
 subsystem checkpoint; unchanged subsystems were not broadly re-audited.
+
+Follow-up: [local spawn dispatch and ordinary camera](camera-local-dispatch-loading.md) now provide the source consumers of the pending local broadcast packets and actual first-update camera path. Containing world composition remains required.

@@ -1,15 +1,16 @@
 # Technical research guide
 
-2026-11-09 latest: [offline session activation and prepared spawning](analysis/session-activation-loading.md)
-now recover containing activation order, scene light/world quantizers, prepared
-Human profile/inventory/clothing and local packet production. Native sanitizers,
-strict actual-host i386 composition and app link pass.39 new partials, no complete
-promotions or desktop claim. Actual local decoder/camera/world/VM remain required;
-continue the full unchecked P2.2 loading checkbox.
+2026-11-09 latest: [local spawn dispatch and ordinary Human camera](analysis/camera-local-dispatch-loading.md)
+now recover the pending broadcast flush/FIFO/module13/SpawnPoint/Players chain,
+actual tree/descriptors ray fallback and ordinary camera follow/pose/first-update
+source. Native ASan/UBSan/LSan, concrete i386 composition and app link pass.
+28 new partials/seven extended rows; no whole-body or mission desktop claim.
+Continue FULL P2.2: containing world, actual compiler/VM/runtimePatch programs,
+remaining actor/physics/presentation receivers and real first-frame acceptance.
 
 2026-11-09 ledger reconciliation: [explicit source/body mapping](analysis/function-ledger-p2.2-reconciliation.md)
 registers the implemented P2.2 subsets accumulated since f9674b3. Current tally:
-34 complete client and1,529 partial (1,524 client/five engine),18,783 frozen.
+34 complete client and1,557 partial (1,552 client/five engine),18,783 frozen.
 881 reconciled client partials plus eight weapon swap, four active reselection and seventeen formation partials, six extended rows, zero complete promotions. Prior
 "no new ledger credit" notes below describe their original checkpoints; the
 current tally includes later camera/Players and offline activation/prepared-spawn checkpoints. Ledger/fingerprint/README checks and27 existing

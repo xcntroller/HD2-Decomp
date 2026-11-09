@@ -39,6 +39,33 @@ void write_prepared_soldier(Bits& bits,frontend::PreMissionSoldier& soldier,bool
     }
 }
 
+template<class Bits>
+frontend::PreMissionEquipmentEntry read_prepared_equipment_entry(Bits& bits) { //00727420, native WORD stores, no catalogue lookup.
+    frontend::PreMissionEquipmentEntry value;
+    const auto position=static_cast<std::uint16_t>(bits.read(16)),item=static_cast<std::uint16_t>(bits.read(16));
+    std::memcpy(&value.position,&position,2);std::memcpy(&value.item,&item,2);
+    value.count=static_cast<std::int16_t>(bits.read(8));return value;
+}
+template<class Bits>
+void read_prepared_soldier(Bits& bits,frontend::PreMissionSoldier& soldier,bool equipment_only) { //00727660, carried records APPEND.
+    if(!equipment_only) {
+        soldier.name=bits.read_string(0xff);soldier.specialization=static_cast<std::int32_t>(bits.read(1));
+        soldier.human=static_cast<std::int32_t>(bits.read(8));soldier.network_identity=static_cast<std::int32_t>(bits.read(10));
+        soldier.flag08=bits.read(1)!=0;soldier.flag09=bits.read(1)!=0;soldier.word0c=bits.read(10);
+    }
+    for(auto n:{0u,1u,3u,4u,2u})soldier.equipment[n]=read_prepared_equipment_entry(bits);
+    for(auto* list:{&soldier.holsters,&soldier.backpack}) {
+        const auto count=bits.read(8);
+        for(std::uint32_t n=0;n<count;++n)list->push_back(read_prepared_equipment_entry(bits));
+    }
+    if(!equipment_only) {
+        const auto integer=[&]{const auto word=bits.read(32);std::int32_t value;std::memcpy(&value,&word,4);return value;};
+        const auto real=[&]{const auto word=bits.read(32);float value;std::memcpy(&value,&word,4);return value;};
+        soldier.capacity=integer();soldier.load=real();soldier.pack_capacity=real();soldier.pack_available_volume=integer();
+        soldier.pack_load=real();soldier.pack_volume=integer();soldier.holster_load=real();soldier.holster_volume=integer();
+    }
+}
+
 //The three original208/244/280 broadcast streams. Their lifetime belongs to
 //the containing0072DE00 session, not a transient spawn callback. Targeted and
 //request streams2BC/2F8 are separate required transport work.

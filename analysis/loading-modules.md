@@ -1,5 +1,11 @@
 # Mission module loading and activation — in progress
 
+2026-11-09 latest: [local spawn dispatch and ordinary camera](camera-local-dispatch-loading.md)
+source now joins flush/FIFO/module13/SpawnPoint/Players and the camera's real
+sweep/ray/follow/pose/update. Focused native sanitizers, concrete i386 composition
+and app link pass; containing world/compiler/VM/presentation wiring remains.
+No world-frame/desktop claim; continue FULL P2.2 after this source checkpoint.
+
 2026-11-09 continuation: [Human states](human-state-loading.md) now include
 script5/guard4/active3 loading, navigation radius routes, shared AI event/action
 ownership and bidirectional player handover. A concrete camera saved-position

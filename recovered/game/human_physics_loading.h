@@ -110,6 +110,15 @@ public:
         append(secondary_,state_.template get<std::int32_t>(0x984));return result;
     }
     auto& exclusions(){return exclusions_;}
+    void exclude_query(bool remove_buckets) { //0075C960, SAME primary/shot/secondary descriptors.
+        auto descriptors=query_descriptors();
+        if(remove_buckets)for(auto* descriptor:descriptors)collisions_.remove(*descriptor);
+        else exclusions_.many(descriptors.data(),descriptors.size(),nullptr);
+    }
+    void restore_query(bool insert_buckets) { //0075CAC0; false clears the shared exclusion list.
+        if(insert_buckets)for(auto* descriptor:query_descriptors())collisions_.insert(*descriptor);
+        else exclusions_.clear();
+    }
     void falling(bool value){state_.set(0xa90,std::uint8_t(value));}
     template<class Pool>void close_audio(std::uint32_t mode,Pool& pool) {
         //0075EAA0(true): native198's final entry first; mode2 gates returns.

@@ -18,6 +18,7 @@ struct ColdControlFrameState {
     std::uint32_t saved_graphics_flags = 0; // +4DFC, static zero until mode-switch writer.
     std::uint32_t timer_started = 0;
     bool timer_initialized = false, timer_enabled = false; // 0073EA70
+    bool packet_maintenance_seen = false; //0097C90C,0072CA10; containing session/process lifetime.
     bool firewall_changed = false; // static0097CC02, untouched in standalone launch.
     bool worker_active = false;
     void* server = nullptr;

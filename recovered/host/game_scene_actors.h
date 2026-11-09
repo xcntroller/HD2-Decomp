@@ -30,6 +30,18 @@ public:
     using ActorOwner=std::unique_ptr<Instance>;
     using Actor=Instance*;
     using Spawn=game::SpawnPointSceneActor<GameActorServices>;
+    using Human=game::HumanSceneActor<GameActorServices,Runtime>;
+    Human* camera_target_human(Frame target)const { //00466970 model100/kind9/EC Scene2 binding.
+        const auto model=frame_model_owner(target);
+        if(!model||frame_kind(model)!=9)return nullptr;
+        const auto* data=find_actor_frame_data(model);
+        if(!data||!data->words[0])return nullptr;
+        auto* actor=reinterpret_cast<Instance*>(data->words[0]);
+        if(actor->base().type()!=3)return nullptr;
+        auto* human=dynamic_cast<Human*>(actor);
+        if(!human||human->base().frame()!=model)throw std::runtime_error("Camera target Human binding disagrees with actual model owner");
+        return human;
+    }
     bool has_scene_actor_factory(std::uint32_t type) const {
         switch(type){case 3:case 4:case 6:case 8:case 9:case 10:case 13:case 21:case 22:case 25:case 28:case 29:case 30:case 33:return true;default:return false;}
     }

@@ -299,6 +299,17 @@ public:
         exported<Rotation>("?RotationMatrix@S_quat@@QBG?AUS_matrix@@XZ",0x2ee70)(rotation.data(),result.data());
         return result;
     }
+    Vector camera_interpolate_direction(const Vector& previous,const Vector& desired,float factor) {
+        game::MissionQuaternion first{},last{},result{};Vector direction{};
+        using Set=void(WINAPI*)(void*,const void*,float);
+        auto set=exported<Set>("?SetDir@S_quat@@QAGXABUS_vector@@M@Z",0x2ff50);
+        set(first.data(),previous.data(),0.f);set(last.data(),desired.data(),0.f);
+        using Slerp=void*(WINAPI*)(const void*,void*,const void*,float,std::uint8_t);
+        exported<Slerp>("?Slerp@S_quat@@QBG?AU1@ABU1@M_N@Z",0x302e0)(first.data(),result.data(),last.data(),factor,0);
+        using Get=void*(WINAPI*)(const void*,void*);
+        exported<Get>("?GetDir@S_quat@@QBG?AUS_vector@@XZ",0x2efd0)(result.data(),direction.data());
+        return direction;
+    }
     void human_equipment_local_matrix(Frame frame,const Matrix& matrix) { //0078DF60's repeated matrix assignment.
         put(frame,0x80,matrix);Vector scale{};
         using Scale=Vector*(WINAPI*)(const void*,void*);

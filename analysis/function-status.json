@@ -4627,56 +4627,68 @@
       "program": "client",
       "entry": "0072c3b0",
       "status": "partial",
-      "coverage": "Cold selected-phase empty-queue branch with actual Win32 lock and original fixed gate predicate.",
+      "coverage": "Cold selected-phase empty-queue branch with actual Win32 lock and original fixed gate predicate. Camera/local-dispatch checkpoint: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
       "limitations": "Populated queue decoding, dispatch, network messages and their ownership are unsupported. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated.",
       "evidence": [
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
         "recovered/frontend/control_frame.h",
         "analysis/function-completion-audit.md",
-        "analysis/phase1-traversal.md"
+        "analysis/phase1-traversal.md",
+        "recovered/game/session_local_packets.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
       ]
     },
     {
       "program": "client",
       "entry": "0072ce70",
       "status": "partial",
-      "coverage": "Cold per-frame inactive-record validation and normal accumulator maintenance over the actual shared gate.",
+      "coverage": "Cold per-frame inactive-record validation and normal accumulator maintenance over the actual shared gate. Camera/local-dispatch checkpoint: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
       "limitations": "Active peers/interfaces and non-standalone modes reject before unsupported changes. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated.",
       "evidence": [
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
         "recovered/frontend/control_frame.h",
         "analysis/function-completion-audit.md",
-        "analysis/phase1-traversal.md"
+        "analysis/phase1-traversal.md",
+        "recovered/game/session_local_packets.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
       ]
     },
     {
       "program": "client",
       "entry": "0072cd50",
       "status": "partial",
-      "coverage": "Actual record lock and32 inactive-record guards on the cold standalone path.",
+      "coverage": "Actual record lock and32 inactive-record guards on the cold standalone path. Camera/local-dispatch checkpoint: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
       "limitations": "Active peer polling, deletion and packet processing are not implemented. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated.",
       "evidence": [
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
         "recovered/frontend/control_frame.h",
         "analysis/function-completion-audit.md",
-        "analysis/phase1-traversal.md"
+        "analysis/phase1-traversal.md",
+        "recovered/game/session_local_packets.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
       ]
     },
     {
       "program": "client",
       "entry": "0072c5d0",
       "status": "partial",
-      "coverage": "Signed/wrapping50ms accumulator, single subtraction, excess reset, actual cold timer initialization and empty pending-stream path.",
+      "coverage": "Signed/wrapping50ms accumulator, single subtraction, excess reset, actual cold timer initialization and empty pending-stream path. Camera/local-dispatch checkpoint: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
       "limitations": "Populated streams, active timer/network/interface branches remain unsupported. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated.",
       "evidence": [
         "analysis/controller-integration-map.json",
         "analysis/controller-integration.md",
         "recovered/frontend/control_frame.h",
         "analysis/function-completion-audit.md",
-        "analysis/phase1-traversal.md"
+        "analysis/phase1-traversal.md",
+        "recovered/game/session_local_packets.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
       ]
     },
     {
@@ -16026,26 +16038,32 @@
       "program": "client",
       "entry": "0075c960",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0075c960: Actual movement loading/reset, descriptor exclusion traversal and proven empty/loading close branches; runtime movement producer excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0075c960: Actual movement loading/reset, descriptor exclusion traversal and proven empty/loading close branches; runtime movement producer excluded. Camera/local-dispatch checkpoint: Actual primary/shot/secondary traversal for shared exclusions or bucket removal/reinsertion; query restore clears the SAME shared exclusion list.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_movement_control.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_physics_loading.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
       ]
     },
     {
       "program": "client",
       "entry": "0075cac0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0075cac0: Actual movement loading/reset, descriptor exclusion traversal and proven empty/loading close branches; runtime movement producer excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0075cac0: Actual movement loading/reset, descriptor exclusion traversal and proven empty/loading close branches; runtime movement producer excluded. Camera/local-dispatch checkpoint: Actual primary/shot/secondary traversal for shared exclusions or bucket removal/reinsertion; query restore clears the SAME shared exclusion list.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_movement_control.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_physics_loading.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
       ]
     },
     {
@@ -17896,13 +17914,15 @@
       "program": "client",
       "entry": "0046cb20",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0046cb20: Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; camera simulation remains excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0046cb20: Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; debug/attached camera simulation remains excluded. Camera/local-dispatch checkpoint: Offline camera commands0/2, including presence/value distinction and actual current-player target refresh.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_camera.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
       ]
     },
     {
@@ -21172,6 +21192,342 @@
         "recovered/game/prepared_spawn_packets.h",
         "analysis/session-activation-loading.md",
         "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072c170",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0072c170: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_local_packets.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072c230",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0072c230: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_local_packets.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072c0b0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0072c0b0: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_local_packets.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072ca10",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0072ca10: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_local_packets.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006125a0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006125a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/offline_spawn_presentation.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006123a0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006123a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/offline_spawn_presentation.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00727420",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00727420: Read native WORD/byte equipment records and prepared soldier payload, preserving append semantics and all raw bookkeeping.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/prepared_spawn_packets.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00727660",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00727660: Read native WORD/byte equipment records and prepared soldier payload, preserving append semantics and all raw bookkeeping.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/prepared_spawn_packets.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d0a0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0073d0a0: Bounded native string and quantized vector/direction readers on the actual owned local payload; signed DWORD component conversion, compressed Y and strict near-zero quantizer steps.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d530",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0073d530: Bounded native string and quantized vector/direction readers on the actual owned local payload; signed DWORD component conversion, compressed Y and strict near-zero quantizer steps.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073d710",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0073d710: Bounded native string and quantized vector/direction readers on the actual owned local payload; signed DWORD component conversion, compressed Y and strict near-zero quantizer steps.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/session_packet_stream.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00469300",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00469300: Ordinary unattached Human camera first update/follow/pose using actual Players, owned camera/target and collision queries: input gating/yaw/pitch/marker direction, temporary snap smoothing, sweep/ray fallback and exclusions, distance history, shake/zoom breathing, target opacity, sector timer and recoil decay. Debug/detached/attached/look-target/config8 producers remain excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_camera.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00468130",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00468130: Ordinary unattached Human camera first update/follow/pose using actual Players, owned camera/target and collision queries: input gating/yaw/pitch/marker direction, temporary snap smoothing, sweep/ray fallback and exclusions, distance history, shake/zoom breathing, target opacity, sector timer and recoil decay. Debug/detached/attached/look-target/config8 producers remain excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_camera.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00466970",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00466970: Ordinary unattached Human camera first update/follow/pose using actual Players, owned camera/target and collision queries: input gating/yaw/pitch/marker direction, temporary snap smoothing, sweep/ray fallback and exclusions, distance history, shake/zoom breathing, target opacity, sector timer and recoil decay. Debug/detached/attached/look-target/config8 producers remain excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_camera.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f7c90",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006f7c90: Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/collision_ray.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f5890",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006f5890: Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/collision_ray.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f2c50",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006f2c50: Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/collision_ray.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f53f0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006f53f0: Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/collision_ray.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f4d00",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006f4d00: Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/collision_ray.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f4310",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006f4310: Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/collision_ray.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac1c0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005ac1c0: SAME DD0 query exclusion/restoration wrappers and actual movement BD4/f1-bone/LookB8 height query; sentinel preserves output, valid compares extended boneY+.2 against stored height.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_inline_loading.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac1b0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005ac1b0: SAME DD0 query exclusion/restoration wrappers and actual movement BD4/f1-bone/LookB8 height query; sentinel preserves output, valid compares extended boneY+.2 against stored height.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_inline_loading.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007860b0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 007860b0: SAME DD0 query exclusion/restoration wrappers and actual movement BD4/f1-bone/LookB8 height query; sentinel preserves output, valid compares extended boneY+.2 against stored height.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_inline_loading.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a8170",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005a8170: Actual borrowed Human B0 player/action52C/focus4D4 and virtual4C target-direction getters, offline kind1 and nonoffline player identity policy.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_camera_state.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a6430",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005a6430: Actual borrowed Human B0 player/action52C/focus4D4 and virtual4C target-direction getters, offline kind1 and nonoffline player identity policy.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_camera_state.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a80e0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005a80e0: Actual borrowed Human B0 player/action52C/focus4D4 and virtual4C target-direction getters, offline kind1 and nonoffline player identity policy.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_camera_state.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a0890",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005a0890: Actual borrowed Human B0 player/action52C/focus4D4 and virtual4C target-direction getters, offline kind1 and nonoffline player identity policy.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_camera_state.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a6530",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005a6530: Signed current Human stat conversion with exact health/general FLOAT multipliers and extended x87-style return.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_loading_stats.h",
+        "analysis/camera-local-dispatch-loading.md",
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
       ]
     }
   ]

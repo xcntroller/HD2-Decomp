@@ -4,6 +4,7 @@
 #include "frontend/application_startup_data.h"
 #include "frontend/control_startup.h"
 #include "frontend/control_frame.h"
+#include <ctime>
 #include "frontend/application_controller.h"
 #include "frontend/profile_save.h"
 #include "frontend/options_save.h"
@@ -451,6 +452,7 @@ public:
     std::int32_t mouse_wheel() const { return input_backend_.mouse_z(graphics()); }
     std::int32_t mouse_x() const { return input_backend_.mouse_x(graphics()); }
     std::int32_t mouse_y() const { return input_backend_.mouse_y(graphics()); }
+    bool camera_mouse_inverted(){return profile_settings().bytes[0x39]!=0;} //00469300 reads current006B6740 settings.
     const std::array<float, 2> &menu_cursor() const { return menu_cursor_; }
     void menu_cursor(float x, float y) { menu_cursor_ = {x, y}; }
     void delay_elapsed() {
@@ -517,6 +519,7 @@ public:
     void reset_control() { control_frame_.reset(); }
     void enter_control_lock(unsigned index) { lock_services_.enter_control_lock(index); }
     void leave_control_lock(unsigned index) noexcept { lock_services_.leave_control_lock(index); }
+    std::uint32_t control_packet_clock()const {return static_cast<std::uint32_t>(std::clock());} //007E814F CRT clock(), packet timestamps.
     void delete_control_critical_section(unsigned index) noexcept {
         lock_services_.delete_control_critical_section(index);
     }

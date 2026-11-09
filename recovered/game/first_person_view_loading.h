@@ -34,6 +34,8 @@ public:
         :frames_(frames),view_(view),models_(models),items_(items),players_(players),camera_(camera),playback_(playback),
          cursor_(cursor),effects_(effects),game_fov_(game_fov),materials_(frames) {}
     std::uint32_t state()const{return state60_;}
+    bool enabled()const{return view_.bytes58[0]!=0;}
+    bool secondary_enabled()const{return view_.bytes58[1]!=0;} //Native59 secondary view; camera tests58/59 independently.
     float bob()const{return bob64_;}
     float fov()const{return fov30_;}
     float parameter78()const{return parameter34_;}

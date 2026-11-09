@@ -1,0 +1,435 @@
+{
+  "date": "2026-11-09",
+  "scope": "Full P2.2 first unchecked implementation checkbox; local spawn dispatch plus ordinary first Human camera source subsystem checkpoint, continue remaining world/compiler/VM work.",
+  "source_only": true,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "original_entries": [
+    "0072c170",
+    "0072c230",
+    "0072c3b0",
+    "0072c0b0",
+    "0072ce70",
+    "0072cd50",
+    "0072c5d0",
+    "0072ca10",
+    "006125a0",
+    "006123a0",
+    "00727420",
+    "00727660",
+    "0073d0a0",
+    "0073d530",
+    "0073d710",
+    "0046cb20",
+    "00469300",
+    "00468130",
+    "00466970",
+    "006f7c90",
+    "006f5890",
+    "006f2c50",
+    "006f53f0",
+    "006f4d00",
+    "006f4310",
+    "005ac1c0",
+    "005ac1b0",
+    "007860b0",
+    "0075c960",
+    "0075cac0",
+    "005a8170",
+    "005a6430",
+    "005a80e0",
+    "005a0890",
+    "005a6530"
+  ],
+  "ledger_added_partial_client": 28,
+  "added": [
+    "0072c170",
+    "0072c230",
+    "0072c0b0",
+    "0072ca10",
+    "006125a0",
+    "006123a0",
+    "00727420",
+    "00727660",
+    "0073d0a0",
+    "0073d530",
+    "0073d710",
+    "00469300",
+    "00468130",
+    "00466970",
+    "006f7c90",
+    "006f5890",
+    "006f2c50",
+    "006f53f0",
+    "006f4d00",
+    "006f4310",
+    "005ac1c0",
+    "005ac1b0",
+    "007860b0",
+    "005a8170",
+    "005a6430",
+    "005a80e0",
+    "005a0890",
+    "005a6530"
+  ],
+  "extended": [
+    "0072c3b0",
+    "0072ce70",
+    "0072cd50",
+    "0072c5d0",
+    "0046cb20",
+    "0075c960",
+    "0075cac0"
+  ],
+  "body_selections": [
+    {
+      "entry": "0072c170",
+      "source": "recovered/game/session_local_packets.h",
+      "coverage": "Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded."
+    },
+    {
+      "entry": "0072c230",
+      "source": "recovered/game/session_local_packets.h",
+      "coverage": "Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded."
+    },
+    {
+      "entry": "0072c3b0",
+      "source": "recovered/game/session_local_packets.h",
+      "coverage": "Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded."
+    },
+    {
+      "entry": "0072c0b0",
+      "source": "recovered/game/session_local_packets.h",
+      "coverage": "Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded."
+    },
+    {
+      "entry": "0072ce70",
+      "source": "recovered/game/session_local_packets.h",
+      "coverage": "Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded."
+    },
+    {
+      "entry": "0072cd50",
+      "source": "recovered/game/session_local_packets.h",
+      "coverage": "Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded."
+    },
+    {
+      "entry": "0072c5d0",
+      "source": "recovered/game/session_local_packets.h",
+      "coverage": "Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded."
+    },
+    {
+      "entry": "0072ca10",
+      "source": "recovered/game/session_local_packets.h",
+      "coverage": "Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded."
+    },
+    {
+      "entry": "006125a0",
+      "source": "recovered/game/offline_spawn_presentation.h",
+      "coverage": "Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application."
+    },
+    {
+      "entry": "006123a0",
+      "source": "recovered/game/offline_spawn_presentation.h",
+      "coverage": "Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application."
+    },
+    {
+      "entry": "00727420",
+      "source": "recovered/game/prepared_spawn_packets.h",
+      "coverage": "Read native WORD/byte equipment records and prepared soldier payload, preserving append semantics and all raw bookkeeping."
+    },
+    {
+      "entry": "00727660",
+      "source": "recovered/game/prepared_spawn_packets.h",
+      "coverage": "Read native WORD/byte equipment records and prepared soldier payload, preserving append semantics and all raw bookkeeping."
+    },
+    {
+      "entry": "0073d0a0",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Bounded native string and quantized vector/direction readers on the actual owned local payload; signed DWORD component conversion, compressed Y and strict near-zero quantizer steps."
+    },
+    {
+      "entry": "0073d530",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Bounded native string and quantized vector/direction readers on the actual owned local payload; signed DWORD component conversion, compressed Y and strict near-zero quantizer steps."
+    },
+    {
+      "entry": "0073d710",
+      "source": "recovered/game/session_packet_stream.h",
+      "coverage": "Bounded native string and quantized vector/direction readers on the actual owned local payload; signed DWORD component conversion, compressed Y and strict near-zero quantizer steps."
+    },
+    {
+      "entry": "0046cb20",
+      "source": "recovered/game/mission_camera.h",
+      "coverage": "Offline camera commands0/2, including presence/value distinction and actual current-player target refresh."
+    },
+    {
+      "entry": "00469300",
+      "source": "recovered/game/mission_camera.h",
+      "coverage": "Ordinary unattached Human camera first update/follow/pose using actual Players, owned camera/target and collision queries: input gating/yaw/pitch/marker direction, temporary snap smoothing, sweep/ray fallback and exclusions, distance history, shake/zoom breathing, target opacity, sector timer and recoil decay. Debug/detached/attached/look-target/config8 producers remain excluded."
+    },
+    {
+      "entry": "00468130",
+      "source": "recovered/game/mission_camera.h",
+      "coverage": "Ordinary unattached Human camera first update/follow/pose using actual Players, owned camera/target and collision queries: input gating/yaw/pitch/marker direction, temporary snap smoothing, sweep/ray fallback and exclusions, distance history, shake/zoom breathing, target opacity, sector timer and recoil decay. Debug/detached/attached/look-target/config8 producers remain excluded."
+    },
+    {
+      "entry": "00466970",
+      "source": "recovered/game/mission_camera.h",
+      "coverage": "Ordinary unattached Human camera first update/follow/pose using actual Players, owned camera/target and collision queries: input gating/yaw/pitch/marker direction, temporary snap smoothing, sweep/ray fallback and exclusions, distance history, shake/zoom breathing, target opacity, sector timer and recoil decay. Debug/detached/attached/look-target/config8 producers remain excluded."
+    },
+    {
+      "entry": "006f7c90",
+      "source": "recovered/game/collision_ray.h",
+      "coverage": "Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject."
+    },
+    {
+      "entry": "006f5890",
+      "source": "recovered/game/collision_ray.h",
+      "coverage": "Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject."
+    },
+    {
+      "entry": "006f2c50",
+      "source": "recovered/game/collision_ray.h",
+      "coverage": "Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject."
+    },
+    {
+      "entry": "006f53f0",
+      "source": "recovered/game/collision_ray.h",
+      "coverage": "Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject."
+    },
+    {
+      "entry": "006f4d00",
+      "source": "recovered/game/collision_ray.h",
+      "coverage": "Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject."
+    },
+    {
+      "entry": "006f4310",
+      "source": "recovered/game/collision_ray.h",
+      "coverage": "Actual loaded-tree segment ray: dominant/vertical traversal and Y limits, sorted triangle classification/backface/barycentric tests, dynamic buckets and exclusions, required40/41/42/44 and80/81/82/83 primitive receivers. Other primitive families explicitly reject."
+    },
+    {
+      "entry": "005ac1c0",
+      "source": "recovered/game/human_inline_loading.h",
+      "coverage": "SAME DD0 query exclusion/restoration wrappers and actual movement BD4/f1-bone/LookB8 height query; sentinel preserves output, valid compares extended boneY+.2 against stored height."
+    },
+    {
+      "entry": "005ac1b0",
+      "source": "recovered/game/human_inline_loading.h",
+      "coverage": "SAME DD0 query exclusion/restoration wrappers and actual movement BD4/f1-bone/LookB8 height query; sentinel preserves output, valid compares extended boneY+.2 against stored height."
+    },
+    {
+      "entry": "007860b0",
+      "source": "recovered/game/human_inline_loading.h",
+      "coverage": "SAME DD0 query exclusion/restoration wrappers and actual movement BD4/f1-bone/LookB8 height query; sentinel preserves output, valid compares extended boneY+.2 against stored height."
+    },
+    {
+      "entry": "0075c960",
+      "source": "recovered/game/human_physics_loading.h",
+      "coverage": "Actual primary/shot/secondary traversal for shared exclusions or bucket removal/reinsertion; query restore clears the SAME shared exclusion list."
+    },
+    {
+      "entry": "0075cac0",
+      "source": "recovered/game/human_physics_loading.h",
+      "coverage": "Actual primary/shot/secondary traversal for shared exclusions or bucket removal/reinsertion; query restore clears the SAME shared exclusion list."
+    },
+    {
+      "entry": "005a8170",
+      "source": "recovered/game/human_camera_state.h",
+      "coverage": "Actual borrowed Human B0 player/action52C/focus4D4 and virtual4C target-direction getters, offline kind1 and nonoffline player identity policy."
+    },
+    {
+      "entry": "005a6430",
+      "source": "recovered/game/human_camera_state.h",
+      "coverage": "Actual borrowed Human B0 player/action52C/focus4D4 and virtual4C target-direction getters, offline kind1 and nonoffline player identity policy."
+    },
+    {
+      "entry": "005a80e0",
+      "source": "recovered/game/human_camera_state.h",
+      "coverage": "Actual borrowed Human B0 player/action52C/focus4D4 and virtual4C target-direction getters, offline kind1 and nonoffline player identity policy."
+    },
+    {
+      "entry": "005a0890",
+      "source": "recovered/game/human_camera_state.h",
+      "coverage": "Actual borrowed Human B0 player/action52C/focus4D4 and virtual4C target-direction getters, offline kind1 and nonoffline player identity policy."
+    },
+    {
+      "entry": "005a6530",
+      "source": "recovered/game/human_loading_stats.h",
+      "coverage": "Signed current Human stat conversion with exact health/general FLOAT multipliers and extended x87-style return."
+    }
+  ],
+  "no_credit": [
+    "00475630 is absent from frozen inventory; real module13 decoder reconstructed without new ledger credit.",
+    "Delegated LS3DF quaternion/vector/camera exports receive no engine credit.",
+    "Source wrappers/typed host lookup/getters add no independent credit beyond the selected inventoried bodies."
+  ],
+  "verification": {
+    "native": "ASan/UBSan/LSan PASS for actual local spawn producer/flush/FIFO/decode/Players chain and actual camera/Players/Human/player-B0/captured camera settings/tree/descriptors/query composition. Engine transforms, UI and inline/world boundary lookups use doubles; no rendered world.",
+    "i386": "Strict actual GameActorServices/GameSceneActors/Human/StartupSession/CameraCollisionQueries and local packet composition compile PASS. Required containing inline/world/FPV endpoints are declarations; no linked loaded world.",
+    "application": "Strict i386 application compile/link PASS; no Windows fixture/original game/DLL/Proton execution.",
+    "tracker": "Frozen inventory/ledger/README consistency and27 existing tracker tests PASS; no complete promotions."
+  },
+  "logs": [
+    "analysis/work/mission-world-20261103/local-spawn-dispatch-native-build.log",
+    "analysis/work/mission-world-20261103/local-spawn-dispatch-native-run.log",
+    "analysis/work/mission-world-20261103/camera-ray-native-build.log",
+    "analysis/work/mission-world-20261103/camera-ray-native-run.log",
+    "analysis/work/mission-world-20261103/camera-follow-native-build.log",
+    "analysis/work/mission-world-20261103/camera-follow-native-run.log",
+    "analysis/work/mission-world-20261103/camera-dispatch-host-build.log",
+    "analysis/work/mission-world-20261103/camera-local-dispatch-app-build.log",
+    "analysis/work/mission-world-20261103/camera-dispatch-tally-render.log",
+    "analysis/work/mission-world-20261103/camera-dispatch-tally-check.log",
+    "analysis/work/mission-world-20261103/camera-dispatch-tracker-tests.log"
+  ],
+  "log_sha256": {
+    "analysis/work/mission-world-20261103/local-spawn-dispatch-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/local-spawn-dispatch-native-run.log": "1f073d338f3f5b9ebfd57bc60bc88965a57ee73caff5e6d0ee1137de6fb7b318",
+    "analysis/work/mission-world-20261103/camera-ray-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/camera-ray-native-run.log": "f7ad55473d3587c8ed62183f520973bdba5dd08af6472c850b96bce9a0e0b0f3",
+    "analysis/work/mission-world-20261103/camera-follow-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/camera-follow-native-run.log": "45050a2bf715d04cc9a4778de93d81b4c2d43116b1e0b5fc2641fc4b1d0d176e",
+    "analysis/work/mission-world-20261103/camera-dispatch-host-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/camera-local-dispatch-app-build.log": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+    "analysis/work/mission-world-20261103/camera-dispatch-tally-render.log": "f4c757211f2352c70585d93dcf851cabb2ced627cbb84bc01a97c184d0e438b4",
+    "analysis/work/mission-world-20261103/camera-dispatch-tally-check.log": "c9742e8183d507555e0bc2d3d3e15772c5fb43ac32a804f3c93f1b1e4984cc06",
+    "analysis/work/mission-world-20261103/camera-dispatch-tracker-tests.log": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+  },
+  "temporary_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-local-spawn-dispatch-audit.cpp",
+      "bytes": 9087,
+      "sha256": "54c3646070a5f26caa1a989f6c63ee90dfc58056bac6474e4de4815fa7198109",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-local-spawn-dispatch-audit",
+      "bytes": 4395632,
+      "sha256": "af788a513678b5eeb2c382061f65720ba3671b80462374dafe26eb41bf0dc399",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-local-spawn-dispatch-host.cpp",
+      "bytes": 2015,
+      "sha256": "e7fca4a4449532376adf7636b1734f3b93687c560a674d65faa61cf604d8a09b",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-local-spawn-dispatch-host.o",
+      "bytes": 634822,
+      "sha256": "900ff85375e03f8e2dadde29737af6f36a93e4f2625922ba89fe0e6dd604e173",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-camera-ray-audit.cpp",
+      "bytes": 3251,
+      "sha256": "4944030d047e4f92a69aca308f1c438bfa06d7bbde38924ff4e6f43fea292a16",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-camera-ray-audit",
+      "bytes": 2105464,
+      "sha256": "0a702957193a5b2bf22f76555d56bc3a9132477a954d4127744b4b6d6530c4cc",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-camera-follow-audit.cpp",
+      "bytes": 11562,
+      "sha256": "2e8da5c779405cdb4462c6706acf856b5c0016b4f6e9e7eba9f0b1cc99183698",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-camera-follow-audit",
+      "bytes": 7762456,
+      "sha256": "c01dd539b36c864c01ddd77fd6b6e3cf6b8038e2125deabb5559d2242b91cd57",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-camera-dispatch-host.cpp",
+      "bytes": 2978,
+      "sha256": "c623f3cfb74a7bd2829b0bb98ecae1aa40c63266c7e395e5550e9542fe24fd2f",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-camera-dispatch-host.o",
+      "bytes": 933946,
+      "sha256": "df45e764a7f2155da8bc8378935d1b915395a3c98da00163b29eb3ace53b5fc9",
+      "removed": true
+    }
+  ],
+  "original_evidence_sha256": {
+    "analysis/work/mission-world-20261103/camera-simulation-typed-abi/00466970.c": "926878d0a0369d060d40edae9f6216180f214aaa5e7fb01f2dbd97d9f90e5de5",
+    "analysis/work/mission-world-20261103/camera-simulation-typed-abi/00466970.json": "7b8cd5f0ae98f6510597e4ee630256c91514846f299699e4d215b0abdb9dd689",
+    "analysis/work/mission-world-20261103/camera-simulation-typed-abi/00468130.c": "1648ba93d019f09f932347e2d085a9fc802ff26f6c525e7f1038747d37d7302e",
+    "analysis/work/mission-world-20261103/camera-simulation-typed-abi/00468130.json": "2fde66dcde4f29b8fa3a72299e87402a8c802dd7037f24952eb6906b88808b20",
+    "analysis/work/mission-world-20261103/camera-simulation-typed-abi/00469300.c": "dbc94635b9664c168242c75100ec3c9379042ff6e60c5e68b1fd9cd0c3f8fd14",
+    "analysis/work/mission-world-20261103/camera-simulation-typed-abi/00469300.json": "6f8716237fc5163f411efe1d2837d7077b3f3bc67c32f075c3a77ba9d36db0c9",
+    "analysis/work/mission-world-20261103/camera-required-ray-fallback/006f7c90.c": "e07bb330d5a381da8b2a2c1e7d621fdebbd1c302ab5a78a2f72471a65c51047a",
+    "analysis/work/mission-world-20261103/camera-required-ray-fallback/006f7c90.json": "b13ffa5888b83df4b1e343bfdedb850970e24522485be9f182c44b8ad369f75b",
+    "analysis/work/mission-world-20261103/camera-required-ray-fallback/00718530.c": "1be46471ed3bc7cf26da4e8e500625699319f2c87f8e1731426b5c507e60c125",
+    "analysis/work/mission-world-20261103/camera-required-ray-fallback/00718530.json": "c9c6e77158ccccfe6ac00fa0d54342ca74bcfb18a69832b3840ee499cb02f7f6",
+    "analysis/work/mission-world-20261103/camera-ray-narrow-required/006f2c50.c": "bf2977fe2fad87ccc5e30950d010dcd4a82dde7ba07f7ca589c7c8f45c3aa061",
+    "analysis/work/mission-world-20261103/camera-ray-narrow-required/006f2c50.json": "5566e2c50d83ca6fe493d0dde89eb2e10f0490c653f775aa9542c0b5ba629f88",
+    "analysis/work/mission-world-20261103/camera-ray-narrow-required/006f53f0.c": "647c14723b49d66fdb727003ba2fbc768168a2c244c4ca05deafd93a15ae608c",
+    "analysis/work/mission-world-20261103/camera-ray-narrow-required/006f53f0.json": "b4f5ec23c1192ff3ef410bc74a844b9084291b2e0c3ab5f44a6060f38ef6efac",
+    "analysis/work/mission-world-20261103/camera-ray-narrow-required/006f5890.c": "ebbfa55ea9333a9fa140e2dfca09132abbd88e8d0d3f1237783de68e1d750329",
+    "analysis/work/mission-world-20261103/camera-ray-narrow-required/006f5890.json": "062c1f9145cdb6c31c7c9d8455ed6d951617af8e7e6265c29e7dc6706aaec03a",
+    "analysis/work/mission-world-20261103/camera-ray-shapes-required/006f4310.c": "d78530a1058e48558554ab786f4c4ae2d88867812d98f8d37b9cc8b2ec2d22ae",
+    "analysis/work/mission-world-20261103/camera-ray-shapes-required/006f4310.json": "5b3265d5a9835588cd780a04f09f2b7b9785ca5e084eaeb4e4914b7352366a39",
+    "analysis/work/mission-world-20261103/camera-ray-shapes-required/006f49a0.c": "488659e9c87fe72b730b91fcf61982c4cca01b1cc5f72fcf37a201870a7f344e",
+    "analysis/work/mission-world-20261103/camera-ray-shapes-required/006f49a0.json": "8034ed3dbad74f5c90011b1ff7a37a1002844d70308f4f6659262be5c79e429f",
+    "analysis/work/mission-world-20261103/camera-ray-shapes-required/006f4d00.c": "b5098c3498e2c3b3061377af4e6be50e5e2b1f6aa7f8e080962cf622fc68acfe",
+    "analysis/work/mission-world-20261103/camera-ray-shapes-required/006f4d00.json": "013dcc31f4e2082ab737b285244e94e358ee9a5602d0070ab1183179cdaabe08",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005a6430.c": "9ce7297566889bf4ee0ebcbc7690d4c4b9645fc6b06aa930a945281638a0195f",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005a6430.json": "8be63208026b4ba55be963b424dcf2f0a867176dd22b9d2b6ab15f227d4ae316",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005a6530.c": "dee5ff3fb21f0cb0e2914b510cbd92ff76d6f6f9279d10e063b75333d5ede31f",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005a6530.json": "4619a25a522fa7027fdff7715937899afd453d832abc8ca8e2f4ebf2164f13d6",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005a80e0.c": "1496d7666f8b53b640bc864ab095f45cb5f82164e830f21da8f18eaf4dc7eb17",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005a80e0.json": "5944f0027ae022d98b1e1dbfe3b737e0adf93cbf5b46f7440bda03f31e938481",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005a8170.c": "09b0df1c4c6ab2c5f86dcfb42c036384940657ff5138cee764927a038573f4b5",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005a8170.json": "748d86424600a07d1f53d09c5dcdc6a976e3a323fabbd49cee66fb9becd4bd3c",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005ac1b0.c": "af253d6f052ad86612450705834fed198c862a9f67d8499a209b52ded345fab1",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005ac1b0.json": "919ce302877346b24386492256b1c3148a0dab3dfe52483bcbcbef27cc60980d",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005ac1c0.c": "f7d7ac1b3cacd34e1e518364783c1f9b7e9aff6df54b46548ff08ca18b536221",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/005ac1c0.json": "df1039c4f319a482363cb21e73d6940e3197ee993d2d5fd48c85fbccef663a22",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/007860b0.c": "49029c811f064022c94dccb5214fe0ab11f2d51f0180f2571259c0d1b9994f74",
+    "analysis/work/mission-world-20261103/camera-human-required-getters/007860b0.json": "08f6e229b886207e9abe8c2518a71837ac359e71ce253a0663e20b6f27d583d7",
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0046cb20.c": "70906b018bd48f87bf528bf87b48e3858889bca174c11f06404ce80d9ad11c4d",
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0046cb20.json": "fa8583e44a340733eac540a59dfb366812fef8841894066248e20948b77a3ff4",
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0072c0b0.c": "2842cfd42353d7dd938f20b29481460028b26078c31602fb4f45db45518f70a2",
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0072c0b0.json": "449df9e8f2f254910726dc86b2e06582d61ae57e23e32d106be63f5ffd36bfd7",
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0072c170.c": "6ed27e00af07ef0d9a08275ed626b29a86517ee50c14bda4ff0f204099801ce6",
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0072c170.json": "57382d9191e76515fc81104dba690d4057d06055ca2838cfcd19c7c26da05d6b",
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0072c230.c": "5510377ff3e851c1d879c6112d9efe1af9fbcdd6374bb9ff65a303946c88d1b7",
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0072c230.json": "ee88dc9c2844e170b20f7adfba80d2814222656782d0f7b3b22949ca23765a55",
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0072ca10.c": "c2c73bf3770eb520cd44dacfe8a4eb3d8496c47c29839f9b017e3a69d5542f7f",
+    "analysis/work/mission-world-20261103/offline-local-packet-dispatch/0072ca10.json": "65638e0bc8ec339da819aceaf5f628e20e279ef615baae3b7e5c9e8b28404ae4",
+    "analysis/work/mission-world-20261103/scene2-spawn-presentation-decoder/00475630.c": "d8d9cb07409cf1de0688c69dde84b2efb11b75bb5ba10fb55bacf1f65f05876d",
+    "analysis/work/mission-world-20261103/scene2-spawn-presentation-decoder/00475630.json": "94d461c61013d9d54b095c10fdb98225698ca3ffc274aa987b8500b7ff490dbf",
+    "analysis/work/mission-world-20261103/scene2-spawn-presentation-decoder/005a5fb0.c": "729fdbba96da5cc4a9e831c286101a0bba178155334bfdddc5eed64290553d28",
+    "analysis/work/mission-world-20261103/scene2-spawn-presentation-decoder/005a5fb0.json": "563acfeb0281a0e36b698011f1600810e8e8ee950fdd57278b3c28e790e243e2",
+    "analysis/work/mission-world-20261103/scene2-spawn-presentation-decoder/006125a0.c": "c757a22806cbdc859e2d021bb63480ef8526b3519576b80e9f18131480eaec0d",
+    "analysis/work/mission-world-20261103/scene2-spawn-presentation-decoder/006125a0.json": "ff46221e372c70fc5a30ef06666e487cea76080cd287b730c82008ba1c84058a",
+    "analysis/work/mission-world-20261103/camera-follow-pose.asm": "c66a05da345e51bce00aad903b6c81b9f9f0627889580820161ab0a1a96b29d1",
+    "analysis/work/mission-world-20261103/camera-opacity-call.asm": "30e2a2b57b09031ed94bdaebd2c23deeec804726f717bb525a34ceb34bef46b8",
+    "analysis/work/mission-world-20261103/camera-ray-traversal.asm": "ff7f80807da14246f3ab522fb9a496290e1328edbbc4bcf0ef6b43e0329d911c",
+    "analysis/work/mission-world-20261103/first-camera-simulation.asm": "221ef44888d6a020be6eedb78731173ed6171bae65c99532dc9036233167aafc"
+  },
+  "evidence_sha256": {
+    "recovered/host/startup_session.h": "b833576409b624056a7abcd7489e88e145dcf64cc722c03f72ae02bf5c3dcd7d",
+    "recovered/game/session_local_packets.h": "5cb1d313df3826953cd946ce8305f990cd0078e793de8f230e235b97d57317b4",
+    "analysis/camera-local-dispatch-loading.md": "20edbaaec5e9ade6221fcc4c02112fc4456834e7cafecbccb69db452b6d4b34e",
+    "recovered/game/prepared_spawn_packets.h": "fc0ca31394b8c21f0215f7c3db859934b2400c88a748f89855d480586b3f90e4",
+    "recovered/game/session_packet_stream.h": "88e9de46601cf3f9dd08a8ae6867f5c6116eac5a9deb75423f51c219a50f9124",
+    "recovered/game/mission_camera.h": "2ad82174d34ca49f3e16fdae7b4f0878f7f542a22c72b54c850a3e0881b2d6d0",
+    "recovered/game/offline_spawn_presentation.h": "f003a986376de680bd81dc8e94fa8b4a2e6d486a1f6f84db74c846421f535623",
+    "recovered/game/human_camera_state.h": "a6fc160070c11b465a6a78cc5d8d85e5b1cd7b07cf9d45ce8a1abf6ac0e66c79",
+    "recovered/game/camera_collision_queries.h": "28905fbc1aacfd090fa69feb3a4a185eae01a9564646c86cbb9c63c170ebdeec",
+    "recovered/host/game_scene_actors.h": "fb05e17123bf7a57bb8d116ea10298b62f451d1a31b06cf8a0934260c96dded8",
+    "recovered/game/human_inline_loading.h": "97ebbe209e9a6fb4407c47163b5783c716cbea5ac112141b5fa3cd3b7691e387",
+    "recovered/game/collision_ray.h": "e72c2b7d2745a95525f77a8004351f1317071d5af77471d12f4a1214cca891d8",
+    "recovered/game/human_physics_loading.h": "19360673c1aba9561718d79ed0f7037c668e5079e9f0bff15058b47c2c997345",
+    "recovered/host/game_actor_frames.h": "ca0fdf4823bed69fd1a510244a6ceee5625513f4a1f0d90f546964c73d9a8438",
+    "recovered/game/human_loading_stats.h": "8c74b50da79bc95190d45ee747de5d77bd0fcda16e9e4422c8d0b37c724c6434"
+  }
+}

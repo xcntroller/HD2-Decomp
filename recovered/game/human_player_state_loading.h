@@ -85,7 +85,7 @@ public:
     }
     auto& player_words(){return state_;}const auto& player_words()const{return state_;}
     std::uint32_t derived_loading_word(unsigned offset)const override {
-        if(offset!=0x528&&offset!=0x548)throw std::runtime_error("Unrecovered player handover word");
+        if(offset!=0x528&&offset!=0x548&&offset!=0x52c&&offset!=0x4d4)throw std::runtime_error("Unrecovered player handover word");
         return state_.template get<std::uint32_t>(offset);
     }
     bool bound()const{return bound_;}

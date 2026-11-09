@@ -48,6 +48,24 @@ public:
     Human* human()const{return human_;}Look* look()const{return look_.get();}
     Control* control()const{return control_.get();}Equipment* equipment()const{return equipment_.get();}
     bool initialized()const{return initialized_;}
+    void exclude_query(bool remove_buckets=false) { //005AC1C0; genuine null-DD0 branch.
+        if(control_)control_->physical().exclude_query(remove_buckets);
+    }
+    void restore_query(bool insert_buckets=false) { //005AC1B0.
+        if(control_)control_->physical().restore_query(insert_buckets);
+    }
+    template<class Frames>bool query_obstruction_height(Frames& frames,bool& valid,float& height)const { //007860B0, actual DD0/Look.
+        if(!control_||!look_)throw std::logic_error("Camera height query requires actual DD0 and Look owners");
+        valid=false;
+        const auto word=control_->animation_state_word(0xbd4);float value;std::memcpy(&value,&word,4);
+        if(value==-10000.099609375f)return false; //00816C6C; output remains untouched.
+        const auto head=control_->physical().bones().at(4); //Native810+4*12=840, actual f1 bone.
+        if(!head)throw std::runtime_error("Camera height query has no actual f1 bone");
+        const auto world=frames.actor_world_matrix(head);
+        const auto threshold=static_cast<long double>(world[13])+.20000000298023224f;
+        height=value;valid=threshold<=value;
+        return look_->state().template get<std::uint32_t>(0xb8)==5;
+    }
     auto scene_sector()const { //005AC4C0: SAME DD0+CE4/CD0 sector, no scene query.
         if(!control_)throw std::logic_error("Human sector requires actual DD0 owner");
         return control_->animation().sector();
