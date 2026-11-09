@@ -4,11 +4,12 @@
 #include "game/human_input_loading_manager.h"
 #include "game/human_input_callbacks.h"
 #include "game/human_state_base_loading.h"
+#include "game/human_formation.h"
 
 namespace hd2::game {
 
 //005A3F20 case1 and ordinary0053B9A0/0053BC50 loading state. The actual
-//first-person/controlled-actor/formation receivers remain mandatory Presentation
+//first-person/controlled-actor receivers remain mandatory Presentation
 //dependencies below; no implementation of those dependencies or successful
 //application activation is supplied here. State3 handover requires its actual
 //camera and saved-state getters; offline7 itself is a required supported mode.
@@ -62,7 +63,7 @@ public:
             state_.set(0x4d8,std::uint32_t{3500});control.clear_control_flags(6);
             state_.set(0x52c,std::int32_t{-1});
             presentation.set_player_mode(*this,human,0,mode); //Actual005469E0, including required first-person consumers.
-            presentation.clear_human_formation(human); //Actual005A91A0(0); not replaced with a no-op.
+            clear_human_formation(human); //Actual005A91A0(0), SAME typed2C8/2CC owners.
             bound_=true;
         }catch(...){detach_callbacks();throw;}
     }

@@ -31,6 +31,15 @@ public:
         return context.found;
     }
     Matrix actor_world_matrix(Frame frame) {return car_world_matrix(frame);}
+    void formation_matrix_direction(Matrix& matrix,const Vector& direction) {
+        using Set=void(WINAPI*)(void*,const void*);
+        exported<Set>("?SetDir@S_matrix@@QAGXABUS_vector@@@Z",0x2c7a0)(matrix.data(),direction.data());
+    }
+    Vector formation_transform(const Vector& vector,const Matrix& matrix) {
+        Vector result{};using Transform=Vector*(WINAPI*)(const void*,void*,const void*);
+        exported<Transform>("??DS_vector@@QBG?AU0@ABUS_matrix@@@Z",0x2eab0)(vector.data(),result.data(),matrix.data());
+        return result;
+    }
     const Matrix* actor_world_matrix_pointer(Frame frame) {
         (void)car_world_matrix(frame);return reinterpret_cast<const Matrix*>(address(frame,0x40));
     }

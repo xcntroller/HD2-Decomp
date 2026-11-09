@@ -20235,6 +20235,210 @@
         "analysis/human-state-loading.md",
         "analysis/checkpoints/p2.2-weapon-reselection-20261109.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005949c0",
+      "status": "partial",
+      "coverage": "Formation construction with actual six-slot loading owner, identity matrix, known scalar fields and mode3/direction/default scale sequence.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00594a70",
+      "status": "partial",
+      "coverage": "Retire actual formation slot/vector ownership through the mode13 close path.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00597420",
+      "status": "partial",
+      "coverage": "Required loading mode3 allocation, actual six position/direction rows and normalization; mode13 closes storage.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00597760",
+      "status": "partial",
+      "coverage": "Store direction and rebuild actual matrix, nine scaled basis entries and member derived vectors.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005977f0",
+      "status": "partial",
+      "coverage": "Store scale and rebuild same actual matrix and derived member vectors.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00597880",
+      "status": "partial",
+      "coverage": "Actual mode3, forward direction and2.5 constructor scale call sequence.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005978e0",
+      "status": "partial",
+      "coverage": "Reverse actual member vector transforms, stored normalization and native FLOAT-bit distance-length policy.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00597c50",
+      "status": "partial",
+      "coverage": "Actual leader membership, member-only slot0 swap, matrix/forward/translation reads and navigation placement.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00597f80",
+      "status": "partial",
+      "coverage": "Actual six-slot member insertion, position/forward reads, derived copies and count update.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005981c0",
+      "status": "partial",
+      "coverage": "Member removal preserving native leader-aware pointer-only compaction and count.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00598290",
+      "status": "partial",
+      "coverage": "Reverse actual member identity lookup with unchanged output on failure.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00594a50",
+      "status": "partial",
+      "coverage": "Reset formation navigation identity and state.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059b7b0",
+      "status": "partial",
+      "coverage": "Actual navigation volume/floor fallback, radius clipping, slot flags/index and leader-height clamp.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051d970",
+      "status": "partial",
+      "coverage": "Same navigation dataset X/Z volume query for type0F, ignoring point height in metric.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/mission_navigation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051ce70",
+      "status": "partial",
+      "coverage": "Type0F band visitor with inclusive lower bound, strict best metric and mixed extended/stored reverse X multiplication.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/mission_navigation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a91a0",
+      "status": "partial",
+      "coverage": "Actual Human2CC leader transfer and2C8 owner allocation/creation/removal, including full-member borrower publication quirk.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a9120",
+      "status": "partial",
+      "coverage": "Reverse follower cleanup with owner rereads across recursive destruction, then matching formation retirement.",
+      "limitations": "Source-only portable typed owners/RAII/STL replace original object, allocator, vtable and SEH ABI. Required mode3 loading/member cleanup only; runtime formation modes/orders/steering and containing world remain separate. Known finite inputs supported; unknown/undefined original lanes use guards. Actual engine math is delegated and not desktop-tested.",
+      "evidence": [
+        "recovered/game/human_formation.h",
+        "analysis/human-state-loading.md",
+        "analysis/checkpoints/p2.2-formation-20261109.json"
+      ]
     }
   ]
 }

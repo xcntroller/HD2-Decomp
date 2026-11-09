@@ -1337,3 +1337,61 @@ then detached-camera00463040 and Players module activation.00463040 scans its
 swap/pop, and copies only the last record's actor DWORD into the removed slot;
 its producer/second DWORD still require recovery. Existing human_camera_amount.h
 already supplies the actual amount setter; reuse it rather than a new callback.
+
+## Formation loading owner — 2026-11-09
+
+`human_formation.h` now supplies the required mode3 loading owner and actual
+Human2C8 ownership/2CC leader borrower.005A91A0 creates an owner's six A0
+records, adds leader/follower, selects the leader, restores mode3 and applies
+the caller's SAME shared scale0089AD40.005A91A0(NULL) removes first, checks
+remaining count<2 and retires the leader owner, then clears the follower borrower.
+005A9120 rereads the owned pointer after EACH reverse follower callback; those
+callbacks can recursively destroy the owner. No cached pointer or recursion
+suppression replaces that original behavior. A full six-member owner still
+publishes a follower's2CC even if00597F80's add fails.
+
+005949C0/00597880/00594A70 use matching owned records/buffers.00595370 is absent
+from the frozen inventory and earns no function credit. Per-record90/94/98 is a
+vector of WORDs, confirmed by005953C0 assembly (not actor pointers or owned
+nodes). Typed member70 and leader74 never enter scalar DWORD storage. Leader
+selection/removal swap/shift MEMBER pointers only, retaining scalar/vector/buffer
+identity for each slot. Native constructor stack W and unwritten fields use
+zero guards, with no equivalence claim for undefined original bytes.
+
+Mode3's six positions/directions come from005965E0 at8ABF50, copied to8AB410
+by005971E0. Both are static source data; no function credit for these data or
+for unspecified initializer entries. Native00597420 mode3 and13 close are
+supplied; runtime cycling/order modes and populated runtime steering remain
+excluded.00597760/005977F0 rebuild the SAME matrix through actual engine
+SetDir export1002C7A0, scale its nine basis entries and rebuild records in reverse.
+005978E0 uses actual vector transform1002EAB0, stored normalization length and
+the original signed FLOAT-bit tiny-distance test. Exported math is delegated,
+receiving no engine body credit. The shared scale must come from the actual
+containing process owner; constructor2.5 is not substituted for that live value.
+
+Assembly00597C50 confirms three leader matrix reads, normalized forward and
+explicit XYZ translation writes, six transformed destinations30, then a full
+XYZW position copy20 for slot0. This replaces the decompiler's false uninitialized
+XYZ values.0059B7B0 projects through SAME MissionNavigation:0051D780 first, then
+0051D970/0051CE70 type0F-only X/Z volume query ignoring height. The fallback's
+lower bound accepts equality and reverse X uses extended×stored-FLOAT. Unchanged
+3D volume-query semantics are retained. Projection clips to byte13/16 radius,
+sets actual navigation index7E and flag88; type0F clamps Y to max(pointY+.5,
+leader's actual cached positionY). No point on either query returns false and
+preserves the original position. Undefined projected W remains a guard.
+
+HumanLoadingActivation retirement and HumanPlayerStateLoading offline bind now
+call these actual formation bodies, replacing their required external clear/
+retire callbacks. Formation owners and borrowers must retire before their Humans
+and SAME navigation/Frames owners; Human destruction alone is not world cleanup.
+No containing mission or interactive readiness changed.
+
+[Saved verification](checkpoints/p2.2-formation-20261109.json): focused native
+ASan/UBSan/LSan passes actual HumanSceneActor ownership, mode3 constants, leader/
+member identity, full-add quirk, nested ownership, recursive destruction,
+actual navigation fallback/projection and89 injected frame/matrix failures.
+Strict i386 instantiates actual GameActorServices/GameSceneActors Human types;
+app compile/link passes. Engine math in the native fixture uses boundary doubles;
+actual exports were compiled/linked but never run. Temporary fixtures are hashed
+and removed. Seventeen eligible client partial bodies, zero complete promotions;
+no desktop test or completed P2.2 checkbox. Next: detached camera and Players.

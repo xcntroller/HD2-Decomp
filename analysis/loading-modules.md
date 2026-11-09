@@ -592,3 +592,9 @@ item owners and offline commands, including initial active bind. Assembly-checke
 x87/FLOAT distance semantics retained. Four further partials; no complete or
 desktop promotions. Formation/camera/Players, VM and full world remain.
 [Contract](human-state-loading.md#active-weapon-reselection--2026-11-09).
+
+2026-11-09: [formation loading owner](human-state-loading.md#formation-loading-owner--2026-11-09)
+now binds actual Human2C8/2CC, mode3 table, member/leader navigation and recursive
+retirement. Native sanitizers with89 failures, actual-host i386 and app link pass.
+Seventeen partials, no complete/desktop promotions. Continuing full P2.2 through
+detached camera/Players, then world/VM and remaining loading consumers.

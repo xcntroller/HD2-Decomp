@@ -129,6 +129,15 @@ public:
     //0051D780/0051D160: Human state binding searches distance to a navigation
     //record's volume (byte13/16 radius), not0051CCD0's point-centre metric.
     std::uint16_t nearest_volume(const std::array<float,3>& point,float radius,float minimum) const {
+        return nearest_volume_impl(point,radius,minimum,false);
+    }
+    //0051D970/0051CE70: type0F only and X/Z volume distance, ignoring Y.
+    //Used after0051D780 fails during formation leader placement.
+    std::uint16_t nearest_floor_volume(const std::array<float,3>& point,float radius,float minimum) const {
+        return nearest_volume_impl(point,radius,minimum,true);
+    }
+private:
+    std::uint16_t nearest_volume_impl(const std::array<float,3>& point,float radius,float minimum,bool floor_only) const {
         if(!table_.count0)return 0xffff;
         for(auto value:point)if(!std::isfinite(value))throw std::runtime_error("Non-finite navigation volume query");
         if(point[1]>100000.f||point[1]<-100000.f)return 0xffff;
@@ -142,7 +151,7 @@ public:
         float left=static_cast<float>((static_cast<long double>(point[0])-static_cast<long double>(left_band)*10)-16);
         float right=static_cast<float>((10.L-left)-32);
         std::uint16_t selected=0xffff;
-        visit_volume_band(left_band,point,selected,best,lower);
+        visit_volume_band(left_band,point,selected,best,lower,floor_only);
         if(best==0)return selected;
         unsigned iterations=0;
         for(;;) {
@@ -151,16 +160,17 @@ public:
             if(left<0||static_cast<long double>(left)*left<best) {
                 left=static_cast<float>(static_cast<long double>(left)+10);
                 if(left_band==std::numeric_limits<std::int32_t>::min())throw std::runtime_error("Navigation band underflow");
-                --left_band;visited_left=true;visit_volume_band(left_band,point,selected,best,lower);
+                --left_band;visited_left=true;visit_volume_band(left_band,point,selected,best,lower,floor_only);
             }
             if(right<0||static_cast<long double>(right)*right<best) {
                 right=static_cast<float>(static_cast<long double>(right)+10);
                 if(right_band==std::numeric_limits<std::int32_t>::max())throw std::runtime_error("Navigation band overflow");
-                ++right_band;visit_volume_band(right_band,point,selected,best,lower);continue;
+                ++right_band;visit_volume_band(right_band,point,selected,best,lower,floor_only);continue;
             }
             if(!visited_left)return selected;
         }
     }
+public:
     void validate() const {
         const MissionTableRecord* previous=nullptr;
         for(std::uint32_t i=0;i!=table_.count0;++i) {
@@ -175,7 +185,7 @@ public:
     }
 private:
     void visit_volume_band(std::int32_t cell,const std::array<float,3>& point,
-                          std::uint16_t& selected,float& best,float minimum) const {
+                          std::uint16_t& selected,float& best,float minimum,bool floor_only=false) const {
         std::uint16_t lower=0xffff,upper=0xffff;
         if(selected!=0xffff) {
             if(band(*record(selected))<cell)lower=selected;else upper=selected;
@@ -185,6 +195,7 @@ private:
         const auto visit=[&](std::uint32_t index,bool reverse) {
             const auto& value=*record(static_cast<std::uint16_t>(index));
             if(band(value)!=cell)return false;
+            if(floor_only&&value.byte16!=15)return true;
             const auto z=static_cast<long double>(point[2])-real(value,8);
             auto edge=(reverse?z:-z)-16;
             if(edge>=0)edge*=edge;
@@ -192,14 +203,15 @@ private:
             auto x=static_cast<long double>(point[0])-real(value,0);
             const auto y=static_cast<long double>(point[1])-real(value,4);
             //Reverse scan stores X and stores/reuses Y before its product.
+            const auto floor_x_squared=reverse?x*static_cast<float>(x):x*x; //0051D00A FST, not FSTP.
             if(reverse)x=static_cast<float>(x);
             const auto y_squared=reverse?y*static_cast<float>(y):y*y;
-            const auto distance=std::sqrt((y_squared+x*x)+z*z);
+            const auto distance=std::sqrt(floor_only?floor_x_squared+z*z:(y_squared+x*x)+z*z);
             const auto far_edge=(distance-16)-10;
             if(far_edge>0&&best<=far_edge*far_edge)return false;
             auto metric=distance-static_cast<unsigned char>(value.prefix[0x13])*.0625L;
             metric=metric<=0?0:metric*metric;
-            if(minimum<metric&&metric<best){best=static_cast<float>(metric);selected=static_cast<std::uint16_t>(index);}
+            if((floor_only?minimum<=metric:minimum<metric)&&metric<best){best=static_cast<float>(metric);selected=static_cast<std::uint16_t>(index);}
             return true;
         };
         for(auto i=pivot;i<table_.count0;++i)if(!visit(i,false)||best==0)break;

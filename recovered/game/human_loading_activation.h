@@ -4,6 +4,7 @@
 #include "game/human_loading_stats.h"
 #include "game/human_joint_math.h"
 #include "game/human_loading_lifetime.h"
+#include "game/human_formation.h"
 #include "game/speech_definitions.h"
 #include "frontend/cleanup.h"
 #include <cstdio>
@@ -12,7 +13,7 @@ namespace hd2::game {
 
 //0059F2C0/0059FA60 loading composition. One instance borrows the SAME Human,
 //inline98, B0 owner/factory, shared profile/speech/pools and Sight/SOUND owners.
-//Services must implement real Players/difficulty/formation/attachment/proximity
+//Services must implement real Players/difficulty/attachment/proximity
 //receivers; no successful defaults or containing-world readiness are provided.
 //Explicit deactivate(false/true) precedes destruction of these dependencies.
 template<class Frames,class Human,class Inline,class States,class Services,class Store,
@@ -84,8 +85,8 @@ public:
             });
             if(human_.field160)errors.attempt([&]{services_.detach_human_attachment(*human_.field160,human_.field164);}); //Actor+80.
             human_.field160=nullptr;human_.field164=-1;
-            errors.attempt([&]{services_.clear_human_formation(human_);}); //005A91A0(0).
-            errors.attempt([&]{services_.retire_human_formation(human_);}); //005A9120.
+            errors.attempt([&]{clear_human_formation(human_);}); //005A91A0(0).
+            errors.attempt([&]{retire_human_formation(human_);}); //005A9120.
             local_started_=false;
         }
         //005ABB10/20 are genuine RETs. Authority unregister runs even after the

@@ -32,10 +32,10 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are34 complete client functions and1,452 partial entries
-(1,447 client/five engine). The [P2.2 source reconciliation](function-ledger-p2.2-reconciliation.md)
+The current totals are34 complete client functions and1,469 partial entries
+(1,464 client/five engine). The [P2.2 source reconciliation](function-ledger-p2.2-reconciliation.md)
 adds881 implemented client subsets and extends six existing partial rows, with
-zero complete promotions or denominator changes. The [weapon swap checkpoint](human-equipment-loading.md#same-human-weapon-exchange--2026-11-09) adds eight further partials; [active reselection](human-state-loading.md#active-weapon-reselection--2026-11-09) adds four. Source-only recovery and live
+zero complete promotions or denominator changes. The [weapon swap checkpoint](human-equipment-loading.md#same-human-weapon-exchange--2026-11-09) adds eight further partials; [active reselection](human-state-loading.md#active-weapon-reselection--2026-11-09) adds four, and [formation loading](human-state-loading.md#formation-loading-owner--2026-11-09) adds seventeen. Source-only recovery and live
 world/desktop delivery remain separate. The [first completion audit](function-completion-audit.md)
 reviews all564 preexisting entries, corrects stale integration notes and closes
 five original-ABI button queries. Its0 exact instruction matches are recorded

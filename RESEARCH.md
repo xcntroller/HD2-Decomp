@@ -2,8 +2,8 @@
 
 2026-11-09 ledger reconciliation: [explicit source/body mapping](analysis/function-ledger-p2.2-reconciliation.md)
 registers the implemented P2.2 subsets accumulated since f9674b3. Current tally:
-34 complete client and1,452 partial (1,447 client/five engine),18,783 frozen.
-881 reconciled client partials plus eight weapon swap and four active reselection partials, six extended rows, zero complete promotions. Prior
+34 complete client and1,469 partial (1,464 client/five engine),18,783 frozen.
+881 reconciled client partials plus eight weapon swap, four active reselection and seventeen formation partials, six extended rows, zero complete promotions. Prior
 "no new ledger credit" notes below describe their original checkpoints; the
 current tally is now reconciled. Ledger/fingerprint/README checks and27 existing
 tracker tests pass. Actual mission loading/world/desktop delivery remains open.
@@ -4607,3 +4607,9 @@ reselection and full world remain. [Contracts](analysis/human-equipment-loading.
 connects actual typed target/sector/Items/B0 and offline weapon commands. Four
 partial registrations; initial active bind/close and focused native sanitizers/
 strict i386/app checks verified. No mission desktop or full world delivery.
+
+2026-11-09: [formation loading owner](analysis/human-state-loading.md#formation-loading-owner--2026-11-09)
+now binds actual Human2C8/2CC, mode3 table, member/leader navigation and recursive
+retirement. Native sanitizers with89 failures, actual-host i386 and app link pass.
+Seventeen partials, no complete/desktop promotions. Continuing full P2.2 through
+detached camera/Players, then world/VM and remaining loading consumers.

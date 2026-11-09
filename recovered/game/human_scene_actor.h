@@ -7,6 +7,7 @@
 #include "game/human_ai_event_queue.h"
 #include "game/human_loading_state_view.h"
 #include "game/human_loading_inventory_receiver.h"
+#include "game/human_formation.h"
 #include "game/human_perception_records.h"
 #include "game/human_activation_fields.h"
 #include "game/human_loading_lifetime.h"
@@ -102,6 +103,8 @@ public:
     std::unique_ptr<HumanColdContextControl<HumanSceneActor>> context;
     HumanLoadingStateView<HumanSceneActor>* loading_state=nullptr; //Borrowed actual B0; containing state owner retires it first.
     HumanLoadingInventoryReceiver<Backend>* loading_inventory=nullptr; //Actual command/transfer owner, before B0 bind.
+    std::unique_ptr<HumanFormation<Backend,HumanSceneActor>> formation; //Native2C8 owned formation; retire members before Human teardown.
+    HumanSceneActor* formation_leader=nullptr; //Native2CC borrower, distinct from own2C8.
     HumanLoadingLifetime* loading_lifetime=nullptr; //Borrowed owner; world retires/unbinds it before deleting Human.
     frontend::HumanRecord* profile_record=nullptr; //Borrowed actual HumanStore B8, outlives the mission.
     Frame head_marker{}; //Borrowed native260, resolved z then f before inline98 activation.

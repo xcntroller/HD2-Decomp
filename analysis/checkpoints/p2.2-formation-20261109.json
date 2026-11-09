@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-09",
+  "source_only": true,
+  "desktop_verified": false,
+  "scope": "Required formation mode3 ownership, navigation projection and loading retirement",
+  "original_entries": [
+    "005949c0",
+    "00594a70",
+    "00597420",
+    "00597760",
+    "005977f0",
+    "00597880",
+    "005978e0",
+    "00597c50",
+    "00597f80",
+    "005981c0",
+    "00598290",
+    "00594a50",
+    "0059b7b0",
+    "0051d970",
+    "0051ce70",
+    "005a91a0",
+    "005a9120"
+  ],
+  "ledger_added_partial_client": 17,
+  "complete_promotions": 0,
+  "no_credit": [
+    "00595370 absent frozen inventory",
+    "005965E0/005971E0 static table data; no independent initializer-body registration",
+    "Delegated engine SetDir1002C7A0/vector transform1002EAB0"
+  ],
+  "verification": {
+    "native": "ASan/UBSan/LSan PASS: actual HumanSceneActor and MissionNavigation with frame/engine boundary doubles; mode3 table, slots/leader/full-add/nested/recursive ownership, clipping and89 injected failures.",
+    "i386": "Strict actual GameActorServices/GameSceneActors Human instantiation; compile only.",
+    "application": "Strict application compile/link. No original game, DLL, Proton or Windows fixture executed."
+  },
+  "logs": [
+    "analysis/work/mission-world-20261103/formation-native-build.log",
+    "analysis/work/mission-world-20261103/formation-native-run.log",
+    "analysis/work/mission-world-20261103/formation-host-build.log",
+    "analysis/work/mission-world-20261103/formation-app-build.log"
+  ],
+  "temporary_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-formation-audit.cpp",
+      "sha256": "07dca9a11938f42c6b901d9b8f846671768c69ec3871ec40441e27ec290bcee1",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-formation-audit",
+      "sha256": "bf209c856eaf652cc92491fb3cc89a6e5eeb8f69dd0f31dbb2842c4d5d9b2d5c",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-formation-host.cpp",
+      "sha256": "e342bfa6136966f1cc99115062e8d8e2ca17d6e5484a89fcff20bfce3f5c64ce",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-formation-host.o",
+      "sha256": "a94070da6bded2d4d259aa21437f78139fa30f06382bace3fc822f4861ed4650",
+      "removed": true
+    }
+  ],
+  "log_digests": {
+    "analysis/work/mission-world-20261103/formation-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/formation-native-run.log": "d93068760c883531b07a622e1919ecfafe549ea7eb40fe83ef77a63e3ef243be",
+    "analysis/work/mission-world-20261103/formation-host-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/formation-app-build.log": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+  }
+}
