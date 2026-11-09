@@ -1,129 +1,107 @@
 # Session handoff — 2026-11-09
 
 Continue FULL P2.2 first unchecked implementation checkbox in plan.md. Read
-AGENTS.md. Continue dependencies/checkpoints until the checkbox is done or
-concretely blocked. Larger verified subsystem commits; consolidate docs/tally.
-No push, subagents/goals, original game/DLL/Proton or Windows fixture execution.
-Preserve assets/user changes; focused verification, no repeated broad audits.
-User reopened VSCode after memory shortage: keep heavy compiles sequential.
+AGENTS.md. Continue dependencies/checkpoints until done or concretely blocked.
+Larger verified subsystem commits; consolidate docs/tally there. No push,
+subagents/goals, original game/DLL/Proton or Windows fixture execution. Preserve
+assets/user changes; focused verification, no repeated broad audits. Keep heavy
+compiles/Ghidra sequential after repeated memory shortages/PC crashes.
 
-GameApplicationState still declines loading. No live world, first world frame
-or new desktop acceptance. Ledger:34 complete/1,720 partial (1,715 client/five
-engine)/18,783 frozen. Zero complete promotions.
+GameApplicationState still declines loading. No live world/first rendered world
+frame/new desktop acceptance. Ledger:34 complete/1,729 partial (1,724 client/
+five engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
 
-[Generated Fowl loading](analysis/fowl-loading.md) supplies actual mode1/2
-scene/Bird/EC/SOUND lifetimes, grid, ground queries, idle/flight/cull, proximity/
-hearing/local packets and failure/repeat retirement. Tutorial count30 generates
-25 birds. Mode0 still rejects the actual missing borrowed pool. [Receipt](analysis/checkpoints/p2.2-fowl-loading-20261109.json):native ASan/UBSan/LSan with554 frame
-failure prefixes plus ground/listener failure, actual-host i386/StartupSession
-SOUND/WorldActors/CollisionRay and app compile/link,27 tracker checks pass.
-Nine partials; absent entries/delegates uncredited. No world/desktop promotion.
-Temporary fixtures hashed/removed. Continue actual Animation/SupplyBox and other
-required actors/containing owners, not another audit of these verified bodies.
+[StaticWeapon](analysis/static-weapon-loading.md) and
+[receipt](analysis/checkpoints/p2.2-static-weapon-20261109.json): actual offline
+mode7 control/item/barrel/marker/pivot/shell/collider/navigation, cold initial
+update and retirement. Captured Tutorial Browning uses w_1919Crouch/item34,
+actual runtime catalogue subtype3. Source SAME Items/entry/frame-data/navigation/
+buckets. Native ASan/UBSan/LSan with84 frame failures and item/event/navigation/
+factory/mode failure, both activation passes/repeat; strict actual-host i386/app
+compile/link and27 tracker checks pass. Nine new partials; absent inventory and
+cold callee null gates receive none. Four temporary artifacts hashed/removed.
+No world/desktop promotion. Firing, occupied control, non7 input/network,
+positive movement sounds and destroyed pose restore remain explicit receivers.
+Do not repeat this verified research. Continue Car and containing owners.
 
-Previous committed f25acbd:
-[Pike/ExplosivePlace](analysis/pike-explosive-loading.md):actual colliders/state/
-cold first-update/cleanup verified; one stationary Pike/three unarmed records.
-Six new partials, four absent inventory uncredited; motion/detonation excluded.
-
-Previous Door checkpoint89d3d2f:
-[Door loading/first update](analysis/door-loading.md) supports25 captured rotating
-Doors/two initial packets. Source portal/descriptor/packets/first-update and
-separate dynamic-only006F78F0/006F3250 query verified. Sliding/protection49/4A
-remain unsupported. Receiver00601F90 absent inventory earns no credit.
-
-Previous committed checkpoint c9c80fc:
-[shared scene/actor ownership](analysis/world-scene-ownership.md) composes actual
-Scene2/documents/tables/environment/effects/tree/grid and Items/runtime/Physics
-using ONE GameActorServices/frame-data/entry registry. Actual Car callback
-factory receives those services before binding. Tree reaches its final stable
-allocation before buckets borrow it. Runtime actors retire before Physics;
-ordinary actors before entries/models; containing Human/state/script owners
-must finish/retire first. Script/Players borrow process module registrations,
-preserving registry identity through repeat/startup/shutdown. Required consumer
-services remain real dependencies, never successful defaults.
-
-[Physics0..5](analysis/item-transfer-physics-loading.md) includes1/3/4 and actual
-retained5000ms fade-out. Type4 reads cached frame+3C FLOAT after bounds update;
-legacy helper name says inverse but byte receiver is correct. Type6 still
-rejects unresolved second registration; opposite fade-in/cancellation excluded.
-File wrappers keep SAME live archive document scope for embedded light maps,
-names/version and session tables. Missing check2 clears tables before probing
-check.bin; legacy-present only opens/closes (no legacy decoder). These owner
-compositions are uncalled by GameApplicationState.
-
-## Latest Animation/SupplyBox checkpoint
-
-[Contract](analysis/animation-supply-loading.md) and
-[receipt](analysis/checkpoints/p2.2-animation-supply-20261109.json): five captured
-Animation/seven SupplyBox records, actual helpers/clips/events/material/colliders,
-shared vertex registry/definitions and effects fades, cold first update and
-retirement. Native ASan/UBSan/LSan with41/150 frame failures, sound/null-model/
-missing-definition/repeat checks; strict actual-host i386/app compile/link and27
-tracker checks pass.20 new frozen partials, no complete/world/desktop promotion.
-Original assembly exposed and corrected004737C0/00473960 padded-definition
-normal words4..6 → packed mesh words3..5; preserve mesh words6/7. Temporary
-fixtures hashed/removed. No repeat audit of these verified bodies.
-
-WorldActors now REQUIRES the actual MissionVertexInstances reference used by
-module9; StartupSession exposes SAME process definitions. Keep actors before
-vertex registry/definitions/frames in cleanup; no second update pool or clock.
+Previous2ef03b2 [Animation/SupplyBox](analysis/animation-supply-loading.md): five/
+seven captured records, actual helpers/clips/events/material/colliders, SAME
+vertex registry/definitions and effects fades, cold first update/retirement.
+Native sanitizers41/150 frame failures plus dependency/repeat cases, strict
+host/app/tracker checks pass.20 partials.004737C0 exposed/corrected00473960:
+padded definition normals4..6 → packed mesh3..5; mesh6/7 untouched. Actual
+WorldActors REQUIRES module9's MissionVertexInstances reference; StartupSession
+exposes SAME process definitions. Retire actors before registry/definitions/
+frames. Initial Supply flags120=1 select crate-open6→0, SOUND group1/entry10.
 Active Animation tracks/interaction/wings and Supply falling/respawn/pickup/
-crossfade/positive fade-in remain explicit later receivers. Initial captured
-Supply flags120=1 select actual crate-open state6→0 and SOUND group1/entry10.
-Next actual required derived family is StaticWeapon, then Car/containing owners.
+crossfade/positive fade-in remain explicit later receivers.
+
+Previous6d5ae97 [Fowl](analysis/fowl-loading.md): captured count30 creates25
+actual generated birds; mode1/2 hearing/proximity/packets/flight/retirement
+verified,554 frame failures plus ground/listener. Mode0 still needs its real
+borrowed pool. Previousf25acbd [Pike/Explosive](analysis/pike-explosive-loading.md):
+stationary one/three unarmed records verified; motion/detonation excluded.
+Door89d3d2f [contract](analysis/door-loading.md):25 captured rotating Doors/two
+initial packets, dynamic-only edge query; sliding/protection49/4A excluded.
+
+[Shared world](analysis/world-scene-ownership.md),c9c80fc: real scene/documents/
+tables/environment/effects/tree/grid/Items/runtime/Physics around ONE actor/
+frame-data/entry registry. Car callback factory receives these services before
+binding. Tree stable allocation before bucket borrowers. Runtime before Physics;
+ordinary actors before entries/models; containing Human/state/VM retire first.
+Script/Players borrow actual process registries across repeat/startup/shutdown.
+[Physics0..5](analysis/item-transfer-physics-loading.md) includes1/3/4/shared
+5000ms fade-out;6 rejects unresolved unsafe second registration. Scene documents
+retain SAME live archive scope for lightmaps. Missing check2 clears tables before
+check.bin probe; legacy-present only opens/closes, no invented decoder.
 
 ## Next — same entire checkbox
 
-Continue actual containing session/Human/DD0/FPV/HUD/SOUND/VM and required
-Car/module/derived actor activation, then complete ordered loader/first-frame
-update/render/failure/repeat/user acceptance. Existing GameWorldScene and
-GameWorldActors are source composition only, uncalled by GameApplicationState.
-Use them rather than create another frame-data/bucket/item service. Next actual
-required derived families are StaticWeapon and Car; original activation exports already exist under WORK/actor-activation.
-Current GameSceneActors activation dispatch supports3/6/8/9/10/13/22/25/28/29/33. Human activation needs its
-actual bound HumanLoadingActivation lifetime before type3 dispatch.
+Finish required Car activation and actual containing session/Human/DD0/FPV/HUD/
+SOUND/VM/module owners, ordered006CA780 loader/postactivation, first camera/
+update/render/failure/repeat and user acceptance. Existing GameWorldScene and
+GameWorldActors are source compositions, still uncalled by application. Reuse
+SAME services. GameSceneActors dispatch3/6/8/9/10/13/21/22/25/28/29/33; type3
+still needs actual bound HumanLoadingActivation. Car activation exports already
+under WORK/actor-activation. No new broad audit before implementation.
 
-Do not bring all P2.3 simulation/VM opcodes forward merely for P2.2. Research
-required first-frame receivers. Full VM compiler/context/visibility/rotations
-source already verified; original switch is two-stage (script-base-vm-jump-map).
-Actual base/Human/Dog context factory/notifications and derived commands remain.
-FRM_Move77/GetPosition79 are unhandled base cases, not successful stubs.
-Position/animation snapshot masks reject;2/20/30 supported. Self ScriptAssign
-rejects executing-context retirement. SetOn decoder resolves scene before driver.
+Do not bring every P2.3 simulation/VM opcode into P2.2. Full compiler/context/
+visibility/rotations source verified; actual context factory/notifications and
+derived command receivers remain.77/79 are unhandled original base cases;
+position/animation snapshot masks reject,2/20/30 supported. Self ScriptAssign
+rejects executing-context retirement. SetOn resolves scene before driver.
 
-MissionA8 loop in006989B0 is skipped in mode7. HUD map kinds2/3/4 bind zone/goals,
-ordinary kind1 does not: recover actual reached consumers before treating zone37
-or A8 as initial Tutorial requirements. Deferred global script frame queue's
-observed producer is save restore004257B0/0042607B, not cold mission loading.
-GameRuntimeActors supports35/11; flag1D/kind10 placed ground/effect still rejects
-(all24 captured placed records flag1D0). Unsupported required input cannot pass.
+Actual mode7 is offline single-player. MissionA8 loop006989B0 skipsmode7. HUD
+map kinds2/3/4 bind zone/goals, ordinary kind1 does not. Deferred global script
+frame queue's observed producer is save restore004257B0/0042607B, not cold load.
+Runtime actors35/11 source; placed flag1D/kind10 ground/effect rejects (all24
+captured placed records flag1D0).145/146 BASE ISD0 Tutorial programs compile;
+114 binding names have source. No runtime Patch/original execution claim.
 
 Canonical: [world](analysis/mission-world-loading.md),
 [modules](analysis/loading-modules.md), [Human](analysis/human-state-loading.md),
 [HUD](analysis/hud-loading.md), [activation](analysis/session-activation-loading.md),
-[camera/local dispatch](analysis/camera-local-dispatch-loading.md),
-[compiler](analysis/mission-script-loading.md), [receivers](analysis/mission-script-receivers.md),
-[sound/subtitles](analysis/sound-world-loading.md).
+[camera](analysis/camera-local-dispatch-loading.md),
+[compiler](analysis/mission-script-loading.md),
+[receivers](analysis/mission-script-receivers.md),
+[sound](analysis/sound-world-loading.md).
 
 ## Execution/evidence
 
 WORK=analysis/work/mission-world-20261103 (ignored durable, not /tmp).
-Fowl verified evidence: fowl-loading-required/, fowl-first-update-required/,
-fowl-bird-update.asm, fowl-bird-flight.asm and fowl-creation-and-packet.asm.
-No repeat compiler/portal/subtitle/Pike/ExplosivePlace/Fowl research needed.
-Post-PC-crash Git metadata repaired:16 empty objects/empty backup ref preserved
-under WORK/git-crash-backup-20261109,10 blobs restored with exact staged hashes;
-working files/staged identities/history preserved, fsck no corruption. Commit
-f25acbd succeeded. No push. Keep heavy builds/Ghidra sequential.
-145/146 BASE ISD0 Tutorial programs compile;114 base binding names all have
-source. This is not runtime Patch selection or original execution evidence.
+StaticWeapon exports static-weapon-loading-required/ and
+static-weapon-control-required/, actor-activation/006036d0, collider ASM, captured
+actor/object fields and base model/member hashes/strings; no repeat exports.
+GunShells is category1/model; payload+1C maps serializedbyte24. No repeat compiler/
+portal/subtitle/Door/Pike/Explosive/Fowl/Animation/SupplyBox audit needed.
+Git crash metadata repair preserved under WORK/git-crash-backup-20261109;
+exact staged blobs restored, fsck passed, commits succeeded. No push.
 
-Default sandbox for normal commands; git mutations/Ghidra config/native
-sanitizers need escalation. One Ghidra process, read-only project, fresh output;
-check ERROR even on exit0. Java25:/home/control/.sdkman/candidates/java/25.0.0.0-oracle.
+Default sandbox normal commands; git/Ghidra config/native sanitizers need
+escalation. One read-only Ghidra process/fresh output; check ERROR even exit0.
+Java25:/home/control/.sdkman/candidates/java/25.0.0.0-oracle.
 Sanitizer libs:.tools/hd2-sanitizer-runtime/usr/lib64 (verified; do not reinstall).
 i386:.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
 App:make -C recovered -j1 application-launch WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.

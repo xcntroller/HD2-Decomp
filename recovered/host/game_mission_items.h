@@ -42,6 +42,12 @@ public:
         tracked_.push_back(entry);
         return entry;
     }
+    Entry create_static_weapon_item(std::int32_t definition) { //007D7AD0, actual item family factory and same module publication.
+        if(definition<0||definition>=500||!catalogue_.item(definition))return nullptr;
+        const auto entry=create_item(definition);
+        try{runtime_item(entry).identity=-1;register_loaded_item(entry);}catch(...){frames_.release_entry(entry);throw;}
+        return entry;
+    }
     Native& runtime_item(Entry entry) {
         if(std::find(tracked_.begin(),tracked_.end(),entry)==tracked_.end())
             throw std::runtime_error("Item has no live native module owner");

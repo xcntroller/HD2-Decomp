@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-09",
+  "scope": "Full first P2.2 implementation checkbox; StaticWeapon offline loading/control/cold update/retirement subsystem. Continue Car and containing owners.",
+  "source_only": true,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 9,
+  "added": [
+    "006036d0",
+    "00603070",
+    "004c1ad0",
+    "006055c0",
+    "00605ae0",
+    "004c57d0",
+    "004c2380",
+    "004c6570",
+    "007d7ad0"
+  ],
+  "inputs": {
+    "actors": "Captured Tutorial type21 Browning/no properties, w_1919Crouch model key; static-weapon-tutorial-input.json preserves exact object fields.",
+    "catalogue_sha256": "9dbad22a089489eb4bf2e7600f7b88d6be5ffc6104146b1872080c41c60a92f0",
+    "base_model_sha256": "bdb262f97676437dbc597f2409529b5564b2dabed8f309c8e914b00d33b00a46",
+    "runtime_model_resolution_claim": false
+  },
+  "verification": {
+    "native_sanitizers": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/static-weapon-native-run.log",
+      "coverage": "Captured runtime catalogue item34 (payload kind3), base authored barrel metadata, actual source control/collider/actor cleanup, both activation passes/cold update/repeat,84 frame failure prefixes and item/event/nav/factory/mode failures. Engine frame/geometry/model/math/localization and item construction are boundary doubles."
+    },
+    "actual_host_i386": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/static-weapon-i386-build.log",
+      "boundary": "Strict compile-only real Items factory/registry/WorldActors/Scene2/frames/frame-data/event/bucket composition; no Windows execution."
+    },
+    "application_build": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/static-weapon-app-build.log",
+      "boundary": "i386 compile/link only."
+    },
+    "tracker_tests": {
+      "result": "PASS",
+      "count": 27,
+      "log": "analysis/work/mission-world-20261103/static-weapon-tracker-tests.log"
+    },
+    "tracker_check": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/static-weapon-tracker-check.log"
+    }
+  },
+  "temporary_artifacts": {
+    "removed": true,
+    "count": 4,
+    "records": [
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-static-weapon-audit.cpp",
+        "bytes": 10709,
+        "sha256": "cbd250947b87422eb4c277429b830b59c258d03a90cda4cbf781167f74ce694f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-static-weapon-audit",
+        "bytes": 3965872,
+        "sha256": "09e895cb3e18e268dcbd08e9af9e1778eb7f7b3e1c6a8208e2fcd5cc6d40a986"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-static-weapon-host.cpp",
+        "bytes": 550,
+        "sha256": "639d46b25362138cd2c9eef8b0dff5c870dc86394af9699a91168935e11fd25e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-static-weapon-host.o",
+        "bytes": 1580363,
+        "sha256": "dcb2d38fd7c2fb11fcff072a3482a04268437dac0cbcc9dc6075b57e9ac5cbe3"
+      }
+    ]
+  },
+  "not_credited": [
+    "00604120/006034D0/004C1990 absent frozen inventory",
+    "004C55E0/004C56A0 cold null-control gates receive no separate credit",
+    "Engine/model/cache/math/navigation delegates and previously credited item bodies",
+    "Firing/occupied/positive movement sound/non7 network/input/destruction receivers"
+  ],
+  "remaining": "Car, actual containing Human/session/VM/FPV/HUD/SOUND, ordered loader/first frame/failure/repeat/user acceptance. GameApplicationState still declines loading."
+}

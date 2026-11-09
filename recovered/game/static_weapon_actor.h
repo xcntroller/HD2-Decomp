@@ -2,6 +2,7 @@
 #define HD2_GAME_STATIC_WEAPON_ACTOR_H
 
 #include "game/scene_actor.h"
+#include "game/static_weapon_loading_lifetime.h"
 #include <array>
 #include <vector>
 
@@ -31,6 +32,7 @@ public:
     std::vector<std::array<std::uint32_t,6>> field2e4;
     std::uint32_t field2f0=3;
     bool flag150=false,flag158=false,flag159=false;
+    std::unique_ptr<StaticWeaponLoadingLifetime> loading;
 };
 
 } //namespace hd2::game

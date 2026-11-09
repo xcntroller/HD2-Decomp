@@ -724,6 +724,21 @@ public:
         scene_method<MenuDriver::Release>(frame,module_,0,0x1c370)(frame);
     }
     Frame active_game_camera() const {return field<Frame>(scene_.frame(),0x15c);}
+    MenuDriver::Owner static_weapon_shells(){MenuDriver::Owner result(nullptr,nullptr);if(resources_.cache(1).get("GunShells",result)!=0)result.reset();return result;} //004C76C0, model category1.
+    void static_weapon_axis_angle(Frame frame,Vector& axis,float& angle){
+        const auto q=actor_rotation(frame);using Inverse=void(WINAPI*)(const void*,void*,float*);
+        exported<Inverse>("?Inverse@S_quat@@QBGXAAUS_vector@@AAM@Z",0x30160)(q.data(),axis.data(),&angle);
+    }
+    void static_weapon_restore_axis(Frame frame,const Vector& axis,float angle){
+        game::MissionQuaternion q{};using Make=void(WINAPI*)(void*,const void*,float);
+        exported<Make>("?Make@S_quat@@QAGXABUS_vector@@M@Z",0x2f070)(q.data(),axis.data(),angle);
+        object_rotation(frame,q);update_scene_object(frame);
+    }
+    Vector static_weapon_world_scale(Frame frame){
+        if(!actor_parent(frame))return actor_local_scale(frame);
+        const auto matrix=actor_world_matrix(frame);Vector scale{};using Scale=Vector*(WINAPI*)(const void*,void*);
+        exported<Scale>("?GetScale@S_matrix@@QBG?AUS_vector@@XZ",0x2db20)(matrix.data(),scale.data());return scale;
+    }
     MenuDriver::Owner create_supply_helper(std::uint32_t kind){return driver_.create(kind);}
     std::int32_t load_supply_model(Frame model,const std::string& name,std::uint32_t flags){return resources_.load_model(model,name,flags);} //004290A0, verbatim key.
     MenuDriver::Owner load_supply_animation(const std::string& name){

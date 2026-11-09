@@ -11,6 +11,8 @@
 #include "host/game_animation_actor_events.h"
 #include "game/animation_actor_loading.h"
 #include "game/supply_box_loading.h"
+#include "game/static_weapon_loading.h"
+#include "host/game_static_weapon_events.h"
 
 namespace hd2::host {
 
@@ -32,10 +34,10 @@ public:
     GameWorldActors(Scene& scene,Consumers& consumers,game::MissionNavigation& navigation,Vertices& vertices,
                     const frontend::LocalizedTextCache& text,const frontend::PreMissionItemCatalogue& catalogue,
                     const std::string& suffix,ChunkFiles& files,FrameClockPlatform& clock,const std::uint32_t& game_word28)
-        :scene_(scene),consumers_(consumers),vertices_(vertices),text_(text),catalogue_(catalogue),models_(scene.frames(),catalogue,suffix,game_word28),
+        :scene_(scene),consumers_(consumers),vertices_(vertices),navigation_(navigation),text_(text),catalogue_(catalogue),models_(scene.frames(),catalogue,suffix,game_word28),
          items_(scene.frames(),models_,catalogue,files,clock,game_word28,consumers),
          runtime_(scene.frames(),*this,navigation,text,scene.buckets(),bodies_,items_),
-         physics_(scene.frames(),*this,scene.buckets(),runtime_,scene.effects().frame_fades()),fowl_sound_(scene.frames(),consumers),animation_events_(scene.frames(),consumers){}
+         physics_(scene.frames(),*this,scene.buckets(),runtime_,scene.effects().frame_fades()),fowl_sound_(scene.frames(),consumers),animation_events_(scene.frames(),consumers),static_weapon_events_(scene.frames()){}
     ~GameWorldActors(){close();}
     GameWorldActors(const GameWorldActors&)=delete;GameWorldActors& operator=(const GameWorldActors&)=delete;
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
@@ -61,6 +63,24 @@ public:
     void door_sound_cursor(std::int32_t handle,std::uint32_t cursor){consumers_.door_sound_cursor(handle,cursor);}
     void update_door(game::DoorSceneActor<GameActorServices>& door,std::uint32_t elapsed) {
         require_open();auto queries=scene_.door_queries();door.frame_update(elapsed,*this,scene_.buckets(),queries,scene_.exclusions());
+    }
+    using StaticWeapon=game::StaticWeaponSceneActor<GameActorServices>;
+    void activate_static_weapon(StaticWeapon& actor,bool authority){
+        require_open();if(!actor.loading)actor.loading=std::make_unique<game::StaticWeaponLoading<GameActorServices,GameWorldActors,Collisions,Items>>(scene_.frames(),*this,scene_.buckets(),items_,actor);
+        actor.loading->activate(authority);
+    }
+    void deactivate_static_weapon(StaticWeapon& actor,bool authority){if(actor.loading)actor.loading->deactivate(authority);}
+    void update_static_weapon(StaticWeapon& actor,bool authority,std::uint32_t elapsed){require_open();if(!actor.loading)throw std::runtime_error("StaticWeapon requires actual loading owner");actor.loading->update(authority,elapsed);}
+    void install_static_weapon_events(GameActorServices::Frame frame,game::StaticWeaponLoadingLifetime& control){static_weapon_events_.install(frame,control);}
+    void remove_static_weapon_events(GameActorServices::Frame frame,game::StaticWeaponLoadingLifetime& control){static_weapon_events_.remove(frame,control);}
+    void rethrow_static_weapon_event_failure(){static_weapon_events_.rethrow_failure();}
+    GameActorServices::Vector static_weapon_navigation_position(StaticWeapon& actor){
+        const auto references=navigation_.actor_references(&actor);if(!references.empty()){
+            const auto position=navigation_.position(references.front());return {{position[0],position[1],position[2],0}};
+        }
+        const auto world=scene_.frames().actor_world_matrix(actor.base().frame());GameActorServices::Vector position{};
+        for(unsigned a=0;a!=3;++a){const float offset=static_cast<float>(static_cast<long double>(world[8+a])*-.5f);position[a]=static_cast<float>(static_cast<long double>(offset)+world[12+a]);}
+        return position;
     }
     using Supply=game::SupplyBoxSceneActor<GameActorServices>;
     void activate_supply(Supply& actor,bool authority){
@@ -137,13 +157,14 @@ public:
         auto& frames=scene_.frames();frames.clear_scene_actors();
         fowl_sound_.clear();
         animation_events_.clear();
+        static_weapon_events_.clear();
         items_.clear();frames.clear_actor_entries();models_.clear_model_cache();
     }
 private:
     void require_open()const{if(closed_)throw std::logic_error("World actor owners are closed");}
-    Scene& scene_;Consumers& consumers_;Vertices& vertices_;const frontend::LocalizedTextCache& text_;const frontend::PreMissionItemCatalogue& catalogue_;
+    Scene& scene_;Consumers& consumers_;Vertices& vertices_;game::MissionNavigation& navigation_;const frontend::LocalizedTextCache& text_;const frontend::PreMissionItemCatalogue& catalogue_;
     typename Body::Registry bodies_;GameRuntimeItemServices models_;
-    Items items_;Runtime runtime_;Physics physics_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;bool closed_=false;
+    Items items_;Runtime runtime_;Physics physics_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;GameStaticWeaponEvents static_weapon_events_;bool closed_=false;
 };
 } //namespace hd2::host
 #endif

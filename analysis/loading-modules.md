@@ -682,3 +682,11 @@ registry/definitions and effects queues; no second pool. Positive fade-in, activ
 Animation tracks/wings and falling/respawn/pickup remain distinct receivers.
 Twenty new frozen partials, no complete/world/desktop promotion. Continue the
 full checkbox through required actors and containing-world integration.
+
+2026-11-09: [StaticWeapon loading](static-weapon-loading.md) now supplies actual
+offline mode7 control/item/barrel/marker/pivot/shell/collision/navigation owners,
+cold update and retirement. Captured catalogue/base metadata verify item34's
+actual subtype3. Native sanitizers/84 frame failures plus explicit dependency
+failures, strict actual host i386/app link and27 tracker checks pass. Nine frozen
+partials; absent entries and cold callee null gates earn no new credit. Continue
+Car/containing-world integration; P2.2 remains open and loading is still declined.

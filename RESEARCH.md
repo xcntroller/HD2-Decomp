@@ -1,5 +1,13 @@
 # Technical research guide
 
+2026-11-09 latest: [StaticWeapon loading](analysis/static-weapon-loading.md)
+supplies offline Tutorial Browning/control/item/collider/marker ownership, cold
+first update and retirement in the same world services. Native sanitizers pass
+84 frame failures plus item/event/navigation/factory/mode cases; strict actual
+host i386, app link and27 tracker checks pass. Nine new partials:34 complete/
+1,729 partial (1,724 client/five engine)/18,783 frozen. No complete or loaded
+world/desktop promotion. Continue Car and containing owners, full P2.2.
+
 2026-11-09 latest: [Animation/SupplyBox loading](analysis/animation-supply-loading.md)
 supplies five Animation/seven SupplyBox captured records, shared vertex/fade/
 collision owners, cold first update and retirement. Native ASan/UBSan/LSan
