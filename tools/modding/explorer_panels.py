@@ -110,6 +110,7 @@ class ExplorerPanels:
                 from mission import walk_records
                 props={p.identity:p for p in walk_records(entry.records) if p.identity in item.property_records}
                 value['source_resolution']=entry.resolution
+                value['archive_decoding']=entry.archive_decoding
                 value['serialized_properties']=[asdict(p) for p in props.values()]
                 value['relations']=[asdict(e) for e in self.report.graph['edges'] if e.source==identity or e.target==identity]
             self.owner.set_text(view['detail'],json.dumps(value,indent=2,ensure_ascii=True))

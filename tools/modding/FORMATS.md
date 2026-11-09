@@ -6,7 +6,7 @@ runtime compatibility. Parsers/models remain independent of Tk:
 `dependency_graph.py`. The existing GUI integrates these modules through
 `mission_gui.py` / `explorer_panels.py`. No client/server source was changed.
 
-Installation discovery, precedence, ISD0 codecs and **ISD1 metadata-only** limits
+Installation discovery, precedence, ISD0 codecs and **verified ISD1 raw/LZSS/checksum** limits
 are documented in [RESOLUTION.md](RESOLUTION.md). In particular, a winning
 unsupported Patch member blocks lower-priority base data; it is not substituted.
 
@@ -112,7 +112,8 @@ be inspected without guessing which mode activates one.
 
 Mission schema **2** extends the earlier file/record/reference model with typed
 entities, graph nodes/edges, structured validation issues, coverage and optional
-resolution profile. Each file can carry selected/shadowed source provenance.
+resolution profile. Each file can carry selected/shadowed source provenance and `archive_decoding`
+integrity/availability separately from content-parse status.
 The script CLI protocol remains version 1. Consumers must check the schema and
 per-file/coverage status. `coverage.complete_format_support` is always false.
 

@@ -66,8 +66,9 @@ class MissionExplorer:
         panes=ttk.Panedwindow(shell,orient="horizontal");panes.pack(fill="both",expand=True)
         left=ttk.Frame(panes);panes.add(left,weight=1)
         ttk.Label(left,text="FILES",style="Muted.TLabel").pack(anchor="w",pady=(0,6))
-        self.files=owner.tree(left,("File","Status"))
-        self.files.column("File",width=260);self.files.column("Status",width=150)
+        self.files=owner.tree(left,("File","Status","Archive"))
+        self.files.column("File",width=230);self.files.column("Status",width=145);self.files.column("Archive",width=170)
+        self.files.heading("Status",text="Content status")
         self.files.bind("<<TreeviewSelect>>",self.select_file)
         right=ttk.Frame(panes);panes.add(right,weight=3)
         tabs=ttk.Notebook(right);tabs.pack(fill="both",expand=True)
@@ -100,6 +101,17 @@ class MissionExplorer:
         self.info=owner.text(self._tab(tabs,"Coverage / limitations"))
         owner.set_text(self.info,"Open a mission folder or installation. No game/DLL execution or file editing.")
         self.panels=ExplorerPanels(self,tabs)
+
+    @staticmethod
+    def file_values(entry):
+        audit=entry.archive_decoding or {}
+        state=audit.get("status")
+        label={"decoded_verified":"decoded / checksums verified","decoded_size_checked":"decoded / size checked",
+               "read":"loose / read","invalid":"invalid","unavailable":"unavailable"}.get(state)
+        if label is None:
+            selected=(entry.resolution or {}).get("selected")
+            label="metadata verified / not read" if selected and selected.get("format")=="ISD1" else "not read"
+        return entry.path,entry.status,label
 
     @staticmethod
     def _tab(tabs,title):
@@ -137,7 +149,7 @@ class MissionExplorer:
                 self.mission_box.configure(values=names)
                 prior=self.mission_name.get()
                 self.mission_name.set(prior if prior in names else "tutorial" if "tutorial" in names else names[0] if names else "")
-                self.status.configure(text=f"{len(names)} missions discovered. Select a mission; chosen ISD1 payloads stay explicitly unavailable.")
+                self.status.configure(text=f"{len(names)} missions discovered. Select a mission; decoding and integrity results are reported per resource.")
                 self.owner.set_text(self.info,json.dumps(self.store.profile(),indent=2))
             elif kind=="script":
                 source,report=result
@@ -146,14 +158,14 @@ class MissionExplorer:
                 self.session=result
                 self.files.delete(*self.files.get_children())
                 for entry in self.session.report.files:
-                    self.files.insert("","end",iid=entry.path,values=(entry.path,entry.status))
+                    self.files.insert("","end",iid=entry.path,values=self.file_values(entry))
                 self.status.configure(text=f"{self.folder} · {len(self.session.report.files)} files · {len(self.reference_roots)} reference folders")
                 self.coverage()
             else:
                 entry,target=result
                 for item in self.session.report.files:
-                    if not self.files.exists(item.path):self.files.insert("","end",iid=item.path,values=(item.path,item.status))
-                    else:self.files.item(item.path,values=(item.path,item.status))
+                    if not self.files.exists(item.path):self.files.insert("","end",iid=item.path,values=self.file_values(item))
+                    else:self.files.item(item.path,values=self.file_values(item))
                 self.render_file(entry,target)
                 self.coverage()
         except Exception as exc:
@@ -301,10 +313,12 @@ class MissionExplorer:
         for node in entry.records:self.insert_node(node)
         summary={"path":entry.path,"format":entry.format,"status":entry.status,"size":entry.size,
                  "sha256":entry.sha256,"diagnostics":entry.diagnostics,"script":entry.script,
-                 "resolution":entry.resolution}
+                 "resolution":entry.resolution,"archive_decoding":entry.archive_decoding}
         self.owner.set_text(self.detail,json.dumps(summary,indent=2,ensure_ascii=True))
         self.populate_refs()
-        self.status.configure(text=f"{entry.path} · {entry.status} · {len(entry.references)} references")
+        origin=((entry.resolution or {}).get("selected") or {}).get("origin","loose")
+        archive_label=self.file_values(entry)[2]
+        self.status.configure(text=f"{entry.path} · {entry.status} · {origin} · {archive_label} · {len(entry.references)} references")
         if target and target!=entry.path:
             def reveal(nodes,chain):
                 for node in nodes:

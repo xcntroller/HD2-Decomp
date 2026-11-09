@@ -37,26 +37,18 @@ For ISD0, it **reuses** `tools/extract_dta_member.py` and its existing raw/LZSS/
 bounded codec-32 support rather than duplicating decompressors. Each payload is
 read on demand into bounded memory; there is no asset extraction output.
 
-ISD1 **metadata only** is supported. Previously exported rw_data 10003763 proves
-its XOR-decoded 20-byte header fields and 28-byte index entries. The existing
-1000C110 export proves the 32-byte member header, name flags at +1C (length low
-15 bits), separately XOR-decoded name and uppercase length/sum lookup hash.
-The inspector checks bounds, names, duplicate paths and name/index hashes. This
-extends index inspection only: original CRC/checksum verification and ISD1 block
-payload reconstruction are **not implemented**. Header/member offsets and source
-sizes remain visible. No function-body completion credit is claimed.
+ISD1 header/index/member/metadata and stored-payload checksums are now verified.
+Raw tags0/2..7 and LZSS tag1 decode using their actual separate descriptor/tag
+layout. Sound tags>=8 remain explicitly unavailable. The shared LZSS primitive
+is reused only after confirming the original common decoder call. Full storage,
+integrity, bounds, evidence and capture comparisons: [ISD1.md](ISD1.md).
 
-The available original metadata passed all 4,560 LangEnglish and 1,059 Patch
-name/index checks, agreeing with the earlier archive census. Seven ISD0 indexes
-retain their documented 53,612 members. This does not establish general ISD1
-compatibility, CRC equivalence or support for other installations/expansions.
-
-If an ISD1 member wins, resolution is `selected_payload_unsupported`, and the
-file is `resolution_blocked`. Its lower-priority copies remain visible under
-`shadowed`, but are **never parsed as though selected**. A corrupt/unindexable
-higher-priority archive similarly blocks archive-dependent lookups that could
-reach it. A valid loose-first hit still wins before any archive. Missing paths,
-case-colliding loose names and changed archive indexes remain explicit.
+The selected/shadowed source list and all precedence rules are unchanged. Winning
+unsupported, invalid or limited resources never cause silent base fallback. A
+corrupt/unindexable higher-priority archive conservatively blocks affected
+archive-dependent lookup; a valid loose-first hit still wins. GUI/export status
+distinguishes invalid resources from unavailable codecs and partial content
+interpretation. ISD0 support remains the existing bounded reader.
 
 ## Discovery and dependencies
 
@@ -100,7 +92,8 @@ reported, not treated as complete success. Byte buffers are discarded after
 parsing; unknown chunks keep span/hash metadata rather than payload copies.
 JSON is streamed from shallow dataclass views, avoiding a deep copy/string of
 the entire mission. UI tables page 250 rows and the graph draws at most four
-nearby edges. No performance claim is made for every mission or hostile input.
+nearby edges. No performance claim is made for every mission or hostile input. Additional
+ISD1 metadata limits are documented in ISD1.md.
 
 All reads use read-only handles and recheck containment/symlinks. Archive
 size/mtime changes require reindexing. No hostile concurrent replacement sandbox

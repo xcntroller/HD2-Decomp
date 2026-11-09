@@ -1,7 +1,7 @@
 """Read-only virtual resource index with explicit original dtaOpen lookup profiles.
 
-ISD0 payload codecs reuse the existing extractor. ISD1 names are indexed from
-previously exported metadata contracts; payload loading deliberately rejects.
+ISD0 codecs reuse the existing extractor. ISD1 metadata/payload integrity and
+raw/LZSS decoding are independent of GUI; unsupported sound tags never fall back.
 """
 from __future__ import annotations
 from dataclasses import asdict, dataclass
@@ -12,10 +12,12 @@ import sys
 
 # Reuse existing verified codecs rather than create another decompressor.
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-from extract_dta_member import read_index, extract_member, read_exact, xor_record, Member
+from extract_dta_member import read_index, extract_member, read_exact
+from isd1 import (read_index as isd1_index, read_member as read_isd1_member,
+                  ArchiveError, ArchiveLimitError, ArchiveIntegrityError, ArchiveBoundsError)
 
 EVIDENCE = "analysis/startup-archives.md:10004B8C/1000C110/006DB6E0"
-INDEX_EVIDENCE = "rw_data 10003763/1000C110: ISD1 index/name metadata only"
+INDEX_EVIDENCE = "rw_data 10003763/1000C110/1000513B/10009E97: verified ISD1 checksums and raw/LZSS"
 ARCHIVES = [
     ("Patch.dta",0x10acb252,0x5d805270), ("Models.dta",0x10acb252,0x5d805259),
     ("Missions.dta",0x22bcda98,0x7654a3f0), ("Maps.dta",0xf26527fa,0xb438d0a5),
@@ -43,6 +45,9 @@ class Source:
     size: int
     header_offset: int | None = None
     data_offset: int | None = None
+    codecs: tuple[int,...] = ()
+    payload_support: str = "available"
+    metadata_integrity: str = "not_crc_protected"
 
 
 @dataclass
@@ -53,40 +58,18 @@ class Resolution:
     status: str
     evidence: str = EVIDENCE
     diagnostic: str = ""
+    diagnostic_code: str = ""
 
 
 class ResolutionError(ValueError):
-    pass
+    kind="unavailable"
 
 
-def isd1_index(stream, key):
-    """10003763 header/table +1000C110 names; no payload/CRC equivalence claim."""
-    stream.seek(0,2);length=stream.tell();stream.seek(0)
-    if read_exact(stream,4)!=b"ISD1":raise ValueError("Not an ISD1 archive")
-    count,offset,size,_,_=struct.unpack("<5I",xor_record(read_exact(stream,20),key))
-    if count>100_000 or size!=count*28 or offset<24 or offset+size!=length:
-        raise ValueError("Invalid ISD1 header/index bounds")
-    stream.seek(offset);table=xor_record(read_exact(stream,size),key)
-    names=[];seen=set()
-    for index in range(count):
-        name_hash,header_offset,data_offset,_=struct.unpack_from("<III16s",table,index*28)
-        if not 24<=header_offset<=offset-32:raise ValueError("Invalid ISD1 member header")
-        stream.seek(header_offset);header=xor_record(read_exact(stream,32),key)
-        flags=struct.unpack_from("<H",header,28)[0];name_length=flags&0x7fff
-        if not name_length or name_length>4096 or header_offset+32+name_length>offset:
-            raise ValueError("Invalid ISD1 member name bounds")
-        raw=xor_record(read_exact(stream,name_length),key)
-        name=raw.decode("ascii");normalized=virtual_name(name)
-        # Original lookup hashes uppercased path length and byte sum.
-        lowered=name.upper().encode("ascii")
-        if name_hash != ((len(lowered)<<16)|(sum(lowered)&0xffff)):
-            raise ValueError("ISD1 name/index hash mismatch")
-        if normalized in seen:raise ValueError("Duplicate ISD1 resource name")
-        seen.add(normalized)
-        unpacked,blocks=struct.unpack_from("<II",header,16)
-        if data_offset>offset or blocks>1_000_000:raise ValueError("Invalid ISD1 member bounds")
-        names.append((normalized,unpacked,header_offset,data_offset))
-    return names
+@dataclass
+class ResourceRead:
+    data: bytes
+    decoding: dict
+
 
 
 class ResourceStore:
@@ -102,6 +85,7 @@ class ResourceStore:
         self.archive_paths={}
         self.archive_stamps={}
         self.errors=[]
+        self.archive_failures={}
         self.barriers=[]
         self.archive_summary=[]
         self._index_loose()
@@ -129,15 +113,22 @@ class ResourceStore:
                         count=len(members)
                     elif signature==b"ISD1":
                         members=isd1_index(stream,key)
-                        for identity,size,header,data in members:
-                            self._add(Source(identity,name,"ISD1",size,header,data),rank)
+                        for member in members:
+                            identity=virtual_name(member.name)
+                            self._add(Source(identity,name,"ISD1",member.size,member.header_offset,member.data_offset,
+                                             member.codecs,"raw_lzss" if member.supported else "unsupported_compression",
+                                             "header_index_member_metadata_verified"),rank)
+                            self.members[(name,identity)]=(member,key)
                         count=len(members)
                     else:raise ValueError("Unsupported archive signature")
                 self.archive_summary.append({"name":name,"format":signature.decode(),"members":count,
-                    "payload_support":signature==b"ISD0","evidence":EVIDENCE,
-                    "integrity":"bounded structural/name checks; original ISD1 CRCs not validated" if signature==b"ISD1" else "existing ISD0 reader"})
+                    "payload_support":"raw/LZSS; sound tags >=8 unavailable" if signature==b"ISD1" else "existing ISD0 codecs",
+                    "unsupported_members":sum(not m.supported for m in members) if signature==b"ISD1" else None,
+                    "evidence":INDEX_EVIDENCE if signature==b"ISD1" else EVIDENCE,
+                    "integrity":"header/index/member/metadata checksums verified; stored blocks checked on read" if signature==b"ISD1" else "existing ISD0 reader"})
             except (ValueError,OSError,UnicodeError,struct.error) as exc:
                 self.barriers.append((rank,name))
+                self.archive_failures[name]=(getattr(exc,"kind","unavailable"),str(exc))
                 self.errors.append(f"{name}: {exc}; later archive resolution cannot be trusted")
 
     def _loose_path(self, name):
@@ -175,35 +166,53 @@ class ResourceStore:
         if not self.archives_first and loose:
             return Resolution(key,loose[0],[s for _,s in archives],"selected")
         rank=archives[0][0] if archives else float("inf")
-        if any(b_rank<=rank for b_rank,_ in self.barriers):
-            return Resolution(key,None,[s for _,s in candidates],"blocked",diagnostic="An earlier archive could not be indexed")
+        barriers=[(r,n) for r,n in self.barriers if r<=rank]
+        if barriers:
+            _,origin=min(barriers)
+            kind,reason=self.archive_failures[origin]
+            return Resolution(key,None,[s for _,s in candidates],
+                              "invalid" if kind in ("invalid","integrity_error","bounds_error") else "blocked",
+                              diagnostic=f"{origin}: {reason}; no lower-priority fallback",diagnostic_code=kind)
         if archives:
             chosen=archives[0][1]
             return Resolution(key,chosen,[s for _,s in archives[1:]]+loose,
-                              "selected" if chosen.format=="ISD0" else "selected_payload_unsupported",
-                              diagnostic="ISD1 payload decoder unavailable; lower-priority resources were not substituted" if chosen.format=="ISD1" else "")
+                              "selected_payload_unsupported" if chosen.payload_support=="unsupported_compression" else "selected",
+                              diagnostic=f"Unsupported ISD1 codecs {chosen.codecs}; no lower-priority fallback" if chosen.payload_support=="unsupported_compression" else "",
+                              diagnostic_code="unsupported_compression" if chosen.payload_support=="unsupported_compression" else "")
         if len(loose)==1:return Resolution(key,loose[0],[],"selected")
         return Resolution(key,None,[],"missing")
 
     def read(self,name):
+        return self.read_result(name).data
+
+    def read_result(self,name):
         resolution=self.resolution(name)
         source=resolution.selected
-        if resolution.status!="selected" or source is None:
+        if resolution.status=="invalid":
+            error=ArchiveIntegrityError if resolution.diagnostic_code=="integrity_error" else ArchiveBoundsError if resolution.diagnostic_code=="bounds_error" else ArchiveError
+            raise error(resolution.diagnostic)
+        if resolution.status not in ("selected","selected_payload_unsupported") or source is None:
             raise ResolutionError(resolution.diagnostic or resolution.status)
-        if source.size>MAX_PAYLOAD:raise ResolutionError("Selected payload exceeds 64 MiB limit")
+        if source.size>MAX_PAYLOAD:raise ArchiveLimitError("Selected payload exceeds 64 MiB limit")
         if source.origin=="loose":
             path=self._loose_path(source.virtual_path)
             self._check(path)
             with path.open("rb") as stream:data=stream.read(MAX_PAYLOAD+1)
+            decoding={"status":"read","format":"loose","integrity":"no archive checksum"}
         else:
             path=self.archive_paths[source.origin];self._check(path)
             stat=path.stat()
             if (stat.st_size,stat.st_mtime_ns)!=self.archive_stamps[source.origin]:
                 raise ResolutionError("Archive changed since indexing; refresh installation")
             member,key=self.members[(source.origin,source.virtual_path)]
-            with path.open("rb") as stream:data=extract_member(stream,member,key)
-        if len(data)>MAX_PAYLOAD:raise ResolutionError("Selected payload exceeds 64 MiB limit")
-        return data
+            with path.open("rb") as stream:
+                data=read_isd1_member(stream,member,key,MAX_PAYLOAD) if source.format=="ISD1" else extract_member(stream,member,key)
+            decoding={"status":"decoded_verified" if source.format=="ISD1" else "decoded_size_checked",
+                      "format":source.format,"evidence":INDEX_EVIDENCE if source.format=="ISD1" else EVIDENCE,
+                      "checks":["archive_header","stored_index","member_header","name_tables_types","stored_blocks"] if source.format=="ISD1" else ["existing ISD0 bounds/size checks"],
+                      "codecs":list(source.codecs),"decoded_bytes":len(data)}
+        if len(data)>MAX_PAYLOAD:raise ArchiveLimitError("Selected payload exceeds 64 MiB limit")
+        return ResourceRead(data,decoding)
 
     def _check(self,path):
         relative=path.relative_to(self.root)
@@ -226,5 +235,5 @@ class ResourceStore:
                 "language":self.language,"evidence":EVIDENCE,"archives":self.archive_summary,
                 "diagnostics":self.errors,
                 "limitations":["Explicit lookup profile, not a capture of live global state.",
-                    "Expansion/PatchX01 registration and ISD1 payload codecs unsupported.",
-                    "ISD1 names are structurally indexed; original CRC verification not implemented."]}
+                    "Expansion/PatchX01 registration unsupported.",
+                    "ISD1 raw tags 0/2..7 and LZSS tag1 supported with checksums; sound tags >=8 unavailable."]}

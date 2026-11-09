@@ -1,5 +1,9 @@
 # Integrated explorer verification — 2026-11-09
 
+Historical checkpoint37dcd58; its ISD1 blocking boundary is superseded by
+[the verified raw/LZSS/checksum milestone](ISD1.md). Counts below describe that
+prior checkpoint, not the current decoder.
+
 Scope: the new resolver, actor subsets, dependency model and integrated GUI.
 [Earlier validation](VALIDATION.md) remains historical evidence for the original
 293-script / loose-folder milestone. No original game/DLL/Proton or Ghidra was

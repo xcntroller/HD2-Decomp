@@ -60,9 +60,11 @@ Unknown formats/fields stay explicitly unsupported/opaque. No mission file is ed
 Use **Open installation…** to discover missions directly from the original loose
 files and established archive registration profile. Set the language and choose
 loose-first or archives-first, then select a discovered mission and **Inspect
-mission**. **Refresh** reindexes changed inputs. Winning ISD1/Patch payloads are
-explicitly unavailable; base copies are never substituted. Archive provenance
-and shadowed copies are shown in file/entity details.
+mission**. **Refresh** reindexes changed inputs. ISD1/Patch raw/LZSS payloads are decoded with verified checksums; invalid or
+unsupported selections never silently substitute base copies. Archive provenance
+and shadowed copies are shown in file/entity details. Separate Content/Archive
+columns distinguish partial content parsing from a verified archive decode,
+unavailable compression and invalid data.
 
 The new **Actors / objects**, **Dependency graph** and **Validation** tabs provide
 searchable/paged results. Actor details show supported serialized properties;
@@ -96,12 +98,14 @@ python3 tools/modding/installation.py /path/to/game --mission tutorial \
 
 Add `--archives-first` / `--language English` to choose a different explicit
 profile. It is not a capture of live global settings. The browser reuses existing
-ISD0 codecs; ISD1 supports index/name metadata only. A successful report command
+ISD0 codecs; ISD1 now verifies container/payload checksums and decodes raw/LZSS.
+ISD1 sound tags>=8 remain unavailable. A successful report command
 can contain blocked/malformed/unsupported entries; inspect validation and coverage.
 
 Exact coverage/schema **2** contracts: [FORMATS.md](FORMATS.md).
 Lookup policy and archive limits: [RESOLUTION.md](RESOLUTION.md).
-Latest real-input verification: [INTEGRATED-VALIDATION.md](INTEGRATED-VALIDATION.md).
+Latest archive/storage verification: [ISD1.md](ISD1.md).
+Earlier integrated verification: [INTEGRATED-VALIDATION.md](INTEGRATED-VALIDATION.md).
 Earlier script/content validation: [VALIDATION.md](VALIDATION.md).
 
 **Inspect again** reads a fresh snapshot. Analysis runs in a background worker;

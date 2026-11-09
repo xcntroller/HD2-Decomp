@@ -1,0 +1,57 @@
+{
+  "archives": {
+    "LangEnglish.dta": "031388ea7c5e29b4a6916987a90c7ecbe1c7dc67c759a4586cbabdc5a3d919d8",
+    "Patch.dta": "eec9d468f343348651051499e6456af2159b2bd6352b1340fb0b9cfc0f21742c"
+  },
+  "binary": {
+    "name": "rw_data.dll",
+    "sha256": "95a65ee003e2d7ab6047ed47d9adad1db330bd5482e33cfb18127d15af5879be"
+  },
+  "captures": {
+    "loading-inputs-22dc45fef6dd48e8b628aa1412d03360/missions_ALPS1_actors.bin": {
+      "bytes": 41052,
+      "sha256": "2523c437d5391fdedeb39b3094488fe1a490dc5cad44ad7f2b4397a5c2d8675b"
+    },
+    "loading-inputs-22dc45fef6dd48e8b628aa1412d03360/missions_ALPS1_scene2.bin": {
+      "bytes": 6727085,
+      "sha256": "ba91c84be678571d5567594a1373a6197731f5e866c6bc0a95b1d1830ecae274"
+    }
+  },
+  "code_ranges": [
+    {
+      "address": "10009e97",
+      "meaning": "WORD checksum recurrence",
+      "sha256": "84547c77f030c51409f797f210cd489258a25755062de9b4f6ce4949f99e3d28",
+      "size": 110
+    },
+    {
+      "address": "10005f06",
+      "meaning": "stored-block checksum before conditional payload XOR",
+      "sha256": "980037db78adf9b42cc3b7ccd664b3f099852d7b30ac4bc7433867d318064e0f",
+      "size": 425
+    },
+    {
+      "address": "100060af",
+      "meaning": "separate codec tag insertion and shared decoder dispatch",
+      "sha256": "b4cc10138e3280d0de77dd8c69d1b7ca6bf51f63bd4b9d7643e46f1aece82c9c",
+      "size": 257
+    },
+    {
+      "address": "100013cf",
+      "meaning": "shared LZSS decoder thunk to 1000EA20",
+      "sha256": "64352afcb9537acf16544ee47c7f117ea914d8277f3b29af1fb92e326cffff59",
+      "size": 5
+    },
+    {
+      "address": "10009d24",
+      "meaning": "repeating eight-byte XOR payload transform",
+      "sha256": "e60c02d0f8b03f51c3b1908c9e07c748e77bc32720f8eae74e17771c579e8949",
+      "size": 282
+    }
+  ],
+  "existing_exports": [
+    "rw-data-startup-exports/10003763.c",
+    "rw-data-lookup-exports/1000c110.c"
+  ],
+  "scope": "Static original-code fingerprints, no original code execution; ISD1 raw/LZSS/checksum contract only."
+}

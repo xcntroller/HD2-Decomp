@@ -68,7 +68,12 @@ def enrich(report):
         edges.append(Edge("edge:"+stable(source,target,relation,label),source,target,relation,label,certainty,status,evidence))
     for entry in report.files:
         nodes[entry.path]=Node(entry.path,entry.path,"file",entry.path)
-        if entry.status in ("malformed_or_unsupported","inspection_error","resolution_blocked","limited"):
+        if entry.status=="invalid_resource":
+            for diagnostic in entry.diagnostics:
+                issue("error","resource_"+(entry.archive_decoding or {}).get("error_kind","invalid"),entry.path,entry.path,diagnostic,"ISD1 10009E97/1000513B")
+        elif entry.status=="unavailable_resource":
+            for diagnostic in entry.diagnostics:issue("warning","resource_unavailable",entry.path,entry.path,diagnostic,entry.format)
+        elif entry.status in ("malformed_or_unsupported","inspection_error","resolution_blocked","limited"):
             for diagnostic in entry.diagnostics:issue("error","input_unavailable",entry.path,entry.path,diagnostic,entry.format)
         elif entry.status=="syntax_unavailable":
             for diagnostic in entry.diagnostics:issue("warning","script_syntax_unavailable",entry.path,entry.path,diagnostic,"0042C850")
@@ -126,7 +131,7 @@ def enrich(report):
             for target in targets:
                 mapped=owners.get(target,target)
                 if mapped not in nodes:nodes[mapped]=Node(mapped,mapped,"resource",mapped)
-                certainty="resolver_selected" if ref.status in ("resolved_resource","selected_payload_unsupported","selected_resource_unavailable") else "name_candidate" if ref.targets else "serialized_unresolved"
+                certainty="resolver_selected" if ref.status in ("resolved_resource","selected_payload_unsupported","selected_resource_unavailable","selected_resource_invalid") else "name_candidate" if ref.targets else "serialized_unresolved"
                 edge(source,mapped,ref.kind,ref.value or "<dynamic>",certainty,ref.status,ref.evidence)
             if ref.status not in ("candidate","resolved_resource"):
                 severity="info" if ref.status in ("dynamic","requires_runtime_parent","empty_or_unsafe","empty_reference") else "warning"

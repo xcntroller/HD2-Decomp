@@ -63,6 +63,7 @@ class FileReport:
     diagnostics: list[str] = field(default_factory=list)
     script: dict | None = None
     resolution: dict | None = None
+    archive_decoding: dict | None = None
 
 
 @dataclass

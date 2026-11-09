@@ -7,12 +7,12 @@
 - [x] Integrate searchable entities, dependency graph and structured validation.
 - [x] Stream deterministic schema2 exports and enforce retention/read-only limits.
 - [x] Verify real Tutorial/ALPS1 paths, negative fixtures and native GUI/sanitizers.
-- [ ] Recover/verify ISD1 CRC/payload support before claiming patched coverage.
+- [x] Verify ISD1 CRC/raw/LZSS and actual Patch inputs; sound remains unsupported.
 - [ ] Add structured script diagnostics/spans and explicit event records.
 - [ ] Add caller-supplied include resolution with faithful preprocessing evidence.
 
 Current boundary: [format/model contracts](FORMATS.md), [resolution](RESOLUTION.md),
-[latest validation](INTEGRATED-VALIDATION.md). Full format/world/engine-cache
+[latest archive verification](ISD1.md); [prior validation](INTEGRATED-VALIDATION.md). Full format/world/engine-cache
 compatibility, expansion profiles and binary editing are excluded. P2.2/server,
 shared handoffs/plan/ledger and original assets remain untouched. No commercial
 assets, extracted reports or permanent tests belong in commits. Earlier user

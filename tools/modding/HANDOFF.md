@@ -1,39 +1,41 @@
 # Modding-tools handoff — 2026-11-09
 
-Latest: integrated read-only Mission Explorer is independently verified for a
-local checkpoint. User's branch delegation permits local commits for merge
-review; **do not push or merge without renewed approval**. All work is under
-tools/modding. Main/client/server handoffs, source, plan and ledger are untouched.
+Latest: first unchecked ISD1 CRC/raw/LZSS milestone is complete and independently
+verified for a local checkpoint. No push/merge without renewed approval. Earlier
+branch delegation permits verified local commits for merge review. Main/client/
+server source, shared handoffs, plan and ledger remain untouched; no credit tally.
 
-Launch `make -C tools/modding gui` → **Mission explorer…** → **Open installation…**.
-Choose explicit language/loose-first/archive-first profile, select a discovered
-mission and inspect. Existing loose-folder mode remains. New actor/object,
-searchable dependency graph (interactive ego view) and structured validation tabs
-share the current application. Files/entities expose offsets, IDs, property
-subsets, confidence, selected/shadowed provenance and deterministic schema2 JSON.
+Launch `make -C tools/modding gui` → Mission explorer → Open installation. The
+original explicit language/loose/archive-first profile is preserved. Patch wins
+where selected; no fallback on invalid/unsupported data. Content and Archive
+columns distinguish decoded verified bytes, partial format parsing, unavailable
+codecs and invalid inputs; file/actor details retain provenance/check results.
 
-Contracts and boundaries: [FORMATS](FORMATS.md), [resolution](RESOLUTION.md),
-[latest verification](INTEGRATED-VALIDATION.md), [usage](README.md).
-ISD0 reuses existing codecs. ISD1 metadata/name indexing is supported, but CRCs/
-payloads are NOT: winning Patch members block fallback. Do not claim full ALPS1,
-expansion, engine cache/joint, include or runtime compatibility. No editing.
+`isd1.py` reconstructs separate descriptor/tag/payload storage, all native
+checksum stages and raw/LZSS. Actual Patch ALPS1 Scene2(6727085 bytes) and actors
+(41052) match existing captures byte-for-byte and by SHA256. Details, addresses,
+limits, checksums and audit hashes: [ISD1](ISD1.md), [evidence](isd1-evidence.json).
+Other contracts: [formats](FORMATS.md), [resolution](RESOLUTION.md), [usage](README.md).
 
-Actual dataset:58 discovered names; Tutorial275 files/2139 entities/5315 edges,
-ALPS1174/178/1464 with10 selected payloads blocked. Tutorial Scene2 selects base
-Missions; ALPS1 Scene2/actors select Patch and remain unavailable. Original base
-ALPS1 was separately checked, not substituted. Thirteen actor property contracts
-retain written serialized fields;205 original payload consumption boundaries
-agree with the actual recovered C++ readers, native ASan/UBSan/LSan clean. Car
-properties remain unsupported. Actor callbacks/defaults/runtime effects excluded.
+Consolidated verification:5619 LangEnglish/Patch metadata records passed; full
+Patch sweep decoded1053 members/259360081 bytes, six sound members remained
+unsupported after stored-checksum verification.32 captured resources match
+byte-for-byte and five absences agree. Tutorial275 files/2139 entities/5345 edges;
+actual selected ALPS1246/4452/8586. No invalid/blocked selected inputs in those
+sessions; format coverage remains partial. Synthetic independent checks cover
+all CRC layers, raw/LZSS, key resets, clear/encrypted/empty/multiblock payloads,
+truncation, offsets, malformed streams, unavailable codecs and precedence. Native
+GUI checked real patched records plus invalid/unavailable states; rendered window
+inspected. Python compilation and small existing inspector build pass.
 
-Focused original/synthetic, headless JSON and actual native GUI checks pass;
-rendered graph/validation windows inspected. No new user desktop acceptance is
-claimed. No original executable/DLL/Proton or Ghidra execution, no heavy game
-build, no permanent tests or commercial assets committed. /tmp/hd2-integrated-audit
-held temporary fixtures/slices/reports/screenshots, removed after verification;
-audit hashes are in INTEGRATED-VALIDATION.md. Source-only tooling, no P2.2 or
-frozen-function credit.
+No original DLL/game/Proton/copied original code executed; static objdump only,
+no Ghidra or heavy game builds. No new native code, hence no new sanitizer claim.
+Originals read-only; no permanent tests/assets/raw exports committed. Temporary
+/tmp/hd2-isd1-audit fixtures, source slices, reports, screenshots and disassembly
+removed after verification. New user desktop acceptance is not claimed.
 
-Next: verified ISD1 CRC/payload decoding (before claiming patched coverage),
-structured script spans/events and faithful include resolution. Preserve scoped
-lookup evidence, explicit unknowns, bounded memory and read-only installation.
+Next unchecked item: structured script diagnostics/spans and explicit events.
+It was not started during this archive milestone. ISD1 sound tags>=8, expansion
+profiles, full actor/asset formats, engine cache/joint resolution and include
+semantics remain excluded. Do not confuse verified container bytes with complete
+mission/runtime compatibility; no 3D/editor/binary serialization work was added.

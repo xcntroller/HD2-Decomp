@@ -6,6 +6,7 @@ from pathlib import Path, PurePosixPath
 from mission import (MissionReport, FileReport, parse_data, identify, safe_name,
                      link_references, enrich, RetentionBudget)
 from resource_store import ResourceStore, ResolutionError, virtual_name
+from isd1 import ArchiveError, UnsupportedCompression, ArchiveLimitError
 
 MAX_DEPENDENCIES=2048
 MAX_SCRIPTS=512
@@ -21,7 +22,7 @@ class InstallationSession:
         self.report.limitations=[
             "Only documented serialized subsets are parsed; no runtime compatibility claim.",
             "Explicit resource profile, not a capture of live game flags or global state.",
-            "ISD1 payloads remain unsupported and block base fallback when selected.",
+            "ISD1 raw/LZSS payloads are checksum-verified; unsupported sound tags and invalid resources never fall back.",
             "Engine frame/cache relationships remain candidates; includes and dynamic data flow are unresolved.",
             "Dependency expansion is bounded to 2048 files / 512 script analyses; opaque resources are not decoded."]
         prefix=f"missions/{mission}/"
@@ -49,22 +50,39 @@ class InstallationSession:
         entry=FileReport(identity,source.size if source else 0,identify(name),resolution=asdict(resolution))
         self.paths[identity]=name
         self._files[identity]=entry
-        if resolution.status!="selected":
-            entry.status="resolution_blocked";entry.diagnostics=[resolution.diagnostic or resolution.status]
+        if resolution.status=="invalid":
+            entry.status="invalid_resource";entry.diagnostics=[resolution.diagnostic]
+            entry.archive_decoding={"status":"invalid","error_kind":resolution.diagnostic_code}
+        elif resolution.status=="blocked":
+            entry.status="unavailable_resource";entry.diagnostics=[resolution.diagnostic]
+            entry.archive_decoding={"status":"unavailable","error_kind":resolution.diagnostic_code}
         elif parse:return self._parse(entry)
+        elif resolution.status=="selected_payload_unsupported":
+            entry.status="unavailable_resource";entry.diagnostics=[resolution.diagnostic]
+            entry.archive_decoding={"status":"unavailable","error_kind":"unsupported_compression","stored_payload_checksums":"not_read"}
         elif entry.format=="opaque":entry.status="unsupported"
         return entry
 
     def _parse(self,entry):
         try:
-            fresh=parse_data(self.store.read(self.paths[entry.path]),entry.path,self.inspector)
+            result=self.store.read_result(self.paths[entry.path])
+            fresh=parse_data(result.data,entry.path,self.inspector)
+            import hashlib
+            fresh.sha256=hashlib.sha256(result.data).hexdigest()
+            fresh.archive_decoding=result.decoding
             fresh.resolution=entry.resolution
             self.budget.admit(fresh)
             self._files[entry.path]=fresh
             return fresh
         except (ValueError,OSError) as exc:
-            entry.status="resolution_blocked";entry.diagnostics=[str(exc)]
-            entry.records=[];entry.references=[];entry.script=None
+            kind=getattr(exc,"kind","unavailable")
+            invalid=kind in ("invalid","integrity_error","bounds_error")
+            entry.status="invalid_resource" if invalid else "limited" if kind=="inspection_limit" else "unavailable_resource"
+            entry.diagnostics=[str(exc)]
+            entry.archive_decoding={"status":"invalid" if invalid else "unavailable","error_kind":kind}
+            if isinstance(exc,UnsupportedCompression):
+                entry.archive_decoding.update(stored_payload_checksums="verified",codecs=list(exc.tags))
+            entry.records=[];entry.references=[];entry.script=None;entry.sha256=None
             return entry
 
     def _resource_candidates(self,kind,value):
@@ -131,14 +149,17 @@ class InstallationSession:
                 if resolution.selected and identity in self._files:
                     ref.targets=[identity]
                     ref.status=("selected_payload_unsupported" if resolution.status!="selected" else
-                                "selected_resource_unavailable" if self._files[identity].status in ("resolution_blocked","limited","inspection_error") else "resolved_resource")
+                                "selected_resource_invalid" if self._files[identity].status=="invalid_resource" else
+                                "selected_resource_unavailable" if self._files[identity].status in ("resolution_blocked","unavailable_resource","limited","inspection_error") else "resolved_resource")
         enrich(self.report)
 
     def inspect(self,identity):
         if identity not in self._files:raise KeyError(identity)
         entry=self._files[identity]
         # Metadata selection remains visible even for unsupported selected payloads.
-        if entry.status=="indexed":entry=self._parse(entry)
+        selected=entry.resolution.get("selected") if entry.resolution else None
+        if entry.status=="indexed" or (entry.archive_decoding is None or entry.status=="unavailable_resource") and selected and selected["format"]=="ISD1":
+            entry=self._parse(entry)
         self._dependencies();self._finish()
         return self._files[identity]
 
