@@ -117,7 +117,11 @@ inline void parse_human_combined_name(HumanRecord& record, std::string text) {
 // 006A00A0/0F30. Graphics and its original DLL must outlive this owner.
 // profile_directory must come from the application's actual current-profile
 // resolver (006B7100), including its trailing separator; not a guessed default.
-template<class Graphics>
+// HD2DS006E2730 is an actual RET-true portrait helper. Its destructor006E0DF0
+// clears+20 without releasing a texture. The headless specialization retains
+// the shared data parser while compiling graphics calls out; client default
+// keeps the original graphics operations.
+template<class Graphics, bool Portraits = true>
 class HumanStore {
 public:
     explicit HumanStore(Graphics& graphics) : graphics_(graphics) {}
@@ -206,7 +210,10 @@ public:
 private:
     void clear() {
         for (auto& value : records_) {
-            if (value && value->portrait) graphics_.release_portrait(value->portrait);
+            if (value && value->portrait) {
+                if constexpr (Portraits) graphics_.release_portrait(value->portrait);
+                else value->portrait = nullptr;
+            }
             value.reset();
         }
         records_.clear(); // Keep vector capacity, original forward destruction order.
@@ -314,9 +321,11 @@ private:
             }
         }
         finalize_human_text(value, wide);
-        if (value.portrait) graphics_.release_portrait(value.portrait);
-        if (graphics_.load_portrait(value.face.c_str(), "x_fc_a.bmp", 4, &value.portrait) < 0)
-            value.portrait = nullptr; // Load failure does not fail the record/store.
+        if constexpr (Portraits) {
+            if (value.portrait) graphics_.release_portrait(value.portrait);
+            if (graphics_.load_portrait(value.face.c_str(), "x_fc_a.bmp", 4, &value.portrait) < 0)
+                value.portrait = nullptr; // Load failure does not fail the record/store.
+        }
     }
     Graphics& graphics_;
     std::vector<std::unique_ptr<HumanRecord>> records_;

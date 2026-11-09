@@ -838,6 +838,174 @@
       "metadata": "analysis/work/networking/server-command-support-owner-20261109/007a21a0.json",
       "metadata_sha256": "e97c464253ac8cdc9a0cacd1a2458d15c584bc201805e3f5872c5569d3042fd3",
       "decompilation_sha256": "bf5f7141c19aa116fb6dc9af5307a99b2bc7c58902b5743846f467e9b84f009c"
+    },
+    {
+      "entry": "006e36e0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-data-20261109/006e36e0.json",
+      "metadata_sha256": "40b8b3b5c8fa980b69134ccb141a3b93758cbb5d2ea113482b5c13bf53c3a21e",
+      "decompilation_sha256": "ce7e5937a9db5a5048b204fb0d7af0c9115ba3aeadaad99131343ba136077c04"
+    },
+    {
+      "entry": "006f81c0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-data-20261109/006f81c0.json",
+      "metadata_sha256": "8566d5e4c5f0d99250b376fa58abb45a8a81ec76e279407197a946ceb5c36d1b",
+      "decompilation_sha256": "6122b0f1328ba7ab7cd7a2c54d32330bd719cc05a0ece8ba7014f046a89a30d7"
+    },
+    {
+      "entry": "006fb290",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-data-20261109/006fb290.json",
+      "metadata_sha256": "20f64c4696f7ae26fa6443175c847ecf98723634d1c6a59103b6857357b2eb00",
+      "decompilation_sha256": "861f6d87292bec1d0355214de97cba9842ad573f7a45cd3911faca9ffd76cc61"
+    },
+    {
+      "entry": "006e0c70",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-contract-20261109/006e0c70.json",
+      "metadata_sha256": "1f55764d65a3244dbdc935a943f04f67d40814131de05d978668c9b58ca50815",
+      "decompilation_sha256": "9010a9ef0552ca0c71ab34e4946686125bac118e4844d9cf67dce9441113a981"
+    },
+    {
+      "entry": "006e15a0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-contract-20261109/006e15a0.json",
+      "metadata_sha256": "f56d0a47b6a1c186ce907ee8c24c912b78875ee571727d8bec090218c27ee336",
+      "decompilation_sha256": "aee459d2152925bfb58b6ce513c1a6cf81e6bcb9893d219e4de2105338852335"
+    },
+    {
+      "entry": "006e27a0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-contract-20261109/006e27a0.json",
+      "metadata_sha256": "b1cd596ad4e581d1cd05bb368144adac9773d7e95322d9265921d456bf27128b",
+      "decompilation_sha256": "3caeddf8357dc5ea60e8121b1a63b36b457cee5b82da95bf025e4aecc9cd10ac"
+    },
+    {
+      "entry": "006e39c0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-contract-20261109/006e39c0.json",
+      "metadata_sha256": "2fb5319e11157393e601e66f9f4867b0374bc16d40e5639e1511530bcc90a1d0",
+      "decompilation_sha256": "f0e6dadec5fb9eac455dddb3774b19e553d7d987fb23f1d1c68a623a23f6567c"
+    },
+    {
+      "entry": "006f81f0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-contract-20261109/006f81f0.json",
+      "metadata_sha256": "14790ccaae635debac4a71fd1b18f0d2ee52eda4ebf5604a9042c92a814f7d89",
+      "decompilation_sha256": "cabe4547882bb5bc98977899e9fa317636004a7801b6c36b5d2df7af14709def"
+    },
+    {
+      "entry": "006ffea0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-contract-20261109/006ffea0.json",
+      "metadata_sha256": "d72391481c431323bf0269ae8bb3c7f6e4c9e5fd03998b15ed50eb062609f311",
+      "decompilation_sha256": "0558f8b3d2e06863bfe3942843a565d8b1eb375d1000b2bf0f9a2754b13e4abd"
+    },
+    {
+      "entry": "006e0df0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-helpers-20261109/006e0df0.json",
+      "metadata_sha256": "0dee10a9ee5c6577927ed09677d9774dad06258105c5c0a7de76189b975fb86b",
+      "decompilation_sha256": "950b339b5a6b26040a20895d4ef1be4bc701484ab2fb5709cddca79ff9b00c34"
+    },
+    {
+      "entry": "006e1210",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-helpers-20261109/006e1210.json",
+      "metadata_sha256": "b791afb66727fb247698e0b77171d299caae7023152b64d2f13f26480efffcda",
+      "decompilation_sha256": "b3f79eaaf32a9dae9a1cf29c7e722a1fa43a3b2fbdf6544a320b734622192b4f"
+    },
+    {
+      "entry": "006e1370",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-helpers-20261109/006e1370.json",
+      "metadata_sha256": "9a8c80960fd64767cc67275e438aa50757b7831ee1b493118417dcfaffbb9575",
+      "decompilation_sha256": "64060a33f42fb690f0f06499355339ce1acd826c4ff59c783079286f9fe4b16f"
+    },
+    {
+      "entry": "006e2670",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-helpers-20261109/006e2670.json",
+      "metadata_sha256": "c6a11cba001a8710bd6671ddb3232d61505802b52845d37ac983ff4b3a6f6f98",
+      "decompilation_sha256": "6f48f92957de8f4d2a1e9f5b709cdfa918225b08b6a117da5772173023f442ac"
+    },
+    {
+      "entry": "006e2730",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-helpers-20261109/006e2730.json",
+      "metadata_sha256": "34d33e4ddc7c850ba9265311be7bbba47a60e828ec8e7fefb41f59369c13ebab",
+      "decompilation_sha256": "04ef5a68b1300199698d3d66182b877f11004a2a07d900f08f9923873b71f300"
+    },
+    {
+      "entry": "006fa160",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-helpers-20261109/006fa160.json",
+      "metadata_sha256": "45ba3c2c968a686d6af82206cf727125d1bf4fc01414c97d6ee87730b2afa639",
+      "decompilation_sha256": "7fd954576b8ba1c3808f4247a73835aaa733dcad97b63f5ca8555b6b64c8cb2e"
+    },
+    {
+      "entry": "0072fd30",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-helpers-20261109/0072fd30.json",
+      "metadata_sha256": "e1c9235ce616a0388456b3a8326f563959cd9e4c33a8656efedf269e29f166a5",
+      "decompilation_sha256": "32444a2e7d4e8fe9393f7e01cac7c64f67303732b80e9b9a45f29457e49b2f77"
+    },
+    {
+      "entry": "006e0960",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-text-20261109/006e0960.json",
+      "metadata_sha256": "433c4c64888a10b862fd7d37812a5802bdbb04ca4ecf1ddd420049f7f4dc6423",
+      "decompilation_sha256": "d523ae0904ad65c4f5d843b039e92bbecb93f06e5acc835ebfe13952c6e11a97"
+    },
+    {
+      "entry": "006e2220",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-text-20261109/006e2220.json",
+      "metadata_sha256": "ad104f8ce9a956d72fe6dfe34a0c4e54a46111d625abda7ebf0107abb26e6dcc",
+      "decompilation_sha256": "135d4b1f1a53544fdc1da0de32918d71b747c2ef94b896e995a2d0403a3ae971"
+    },
+    {
+      "entry": "006e2270",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-text-20261109/006e2270.json",
+      "metadata_sha256": "d83e9e35e1e8837933fbcf27f351f3466e454e09cb2056a6aa8c7579acd3e72b",
+      "decompilation_sha256": "15ed509cec39c3ab062ded4312813a128c2226a14b67f2b80d502f3d525e8ac6"
+    },
+    {
+      "entry": "006e22c0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-text-20261109/006e22c0.json",
+      "metadata_sha256": "5aedc053879374b0de958a350cb47fcfcd2430a1fd8522c7f344f53664f7e2be",
+      "decompilation_sha256": "f1d302e6349d6d4c40586f316e8bae9c3bb3957936c23bafd6e0b1fbe6e67862"
+    },
+    {
+      "entry": "006e3870",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-store-text-20261109/006e3870.json",
+      "metadata_sha256": "75a885bacbaa560e42bc6b4a171dd4757431677ab08409a98c216a886cc89e69",
+      "decompilation_sha256": "1976c61803811014884b15618de24b027b3dacf11d6c7359d89ca790fc3906d6"
+    },
+    {
+      "entry": "0067ff70",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-text-contract-20261109/0067ff70.json",
+      "metadata_sha256": "5c6c630222f63e43d84284115869eacd40505a48282071627c94d18c8cacff85",
+      "decompilation_sha256": "14bb51b80be9c02dbf9264271d830ba93a524dcf93e4d9701d50bd704f0ad5b2"
+    },
+    {
+      "entry": "006e0a40",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-text-contract-20261109/006e0a40.json",
+      "metadata_sha256": "75520733140a9526959f971d33a4e55fcde7b2c0449ca1b627b1648bc7ba6192",
+      "decompilation_sha256": "364b53d76233f63f57f2d04070f36f56194a8300bbb52a2d784846735d2032ff"
+    },
+    {
+      "entry": "0067ffb0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-headless-utf8-20261109/0067ffb0.json",
+      "metadata_sha256": "0ebe098dc7f8105da07b4f57a8509c10d1a9ecb55d1c1473b126c7ab5dee8060",
+      "decompilation_sha256": "5528084331170a488bbb437316ece2caf0bd9a7f94815f6aafb4c6c7c8a2a476"
     }
   ]
 }

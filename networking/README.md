@@ -15,7 +15,7 @@ configuration parsing does not establish a working network session.
 
 | Executable | Inventoried functions | Complete | Partial | No completion claim | Complete % |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| HD2DS.exe | 13,957 | 0 | 14 | 13,943 | 0.00% |
+| HD2DS.exe | 13,957 | 0 | 18 | 13,939 | 0.00% |
 | ServerLauncher.exe | 849 | 0 | 9 | 840 | 0.00% |
 
 ### HD2DS.exe mapped bodies
@@ -23,6 +23,10 @@ configuration parsing does not establish a working network session.
 | Original address | Status | Implemented contract |
 | --- | --- | --- |
 | `00644400` | partial | [Actual catalogue path fallback, metadata loading and four verified profile-rule blocks](../recovered/networking/server_commands.cpp) |
+| `006E0C70` | partial | [Forward headless record retirement and eight localized default-name pairs](../recovered/frontend/human_store.h) |
+| `006E15A0` | partial | [Shared headless HumanStore fields, legacy formats and text finalization](../recovered/frontend/human_store.h) |
+| `006E33E0` | partial | [Required HumanStore input open, missing-input preservation and ordered load/close](../recovered/frontend/human_store.h) |
+| `006E36E0` | partial | [Headless record reset/append/parse and optional profile-name overlay order](../recovered/frontend/human_store.h) |
 | `006ED040` | partial | [Style change copies22 selected profile rules and retains rotation](../recovered/networking/server_commands.cpp) |
 | `006ED2E0` | partial | [Loaded catalogue/style gate, reverse case-insensitive lookup and owned rotation append](../recovered/networking/server_commands.cpp) |
 | `006EDCF0` | partial | [Fresh command-facing server configuration, dedicated flag, admin initializer and active rules](../recovered/networking/server_initial_settings.h) |
@@ -84,6 +88,8 @@ Its containing cold owner now retains both locks and the original initial slot
 records through endpoint cleanup; live player and packet receivers remain open.
 First command dispatch can now load actual catalogue metadata and rule presets
 with the original path fallback. Full descriptor and application integration remain open.
+The [headless HumanStore loader](../analysis/networking/headless-startup-data-source.md)
+also reuses the verified shared record parser with the server's original portrait behavior.
 
 Follow the [networking plan](../analysis/networking/plan.md) and
 [latest handoff](../analysis/networking/HANDOFF.md). The
@@ -93,7 +99,8 @@ and [cold command contract](../analysis/networking/server-settings-source.md), p
 the [startup/transport contract](../analysis/networking/startup-network-source.md),
 retain original addresses, evidence boundaries and verification results.
 
-Source lives in [recovered/networking](../recovered/networking). Strict native and
+Networking entry points live in [recovered/networking](../recovered/networking),
+with explicitly verified shared data helpers. Strict native and
 Windows i386 object builds use its Makefile. Temporary native sanitizer audits
 and Windows compilation/link checks are distinct from desktop or interoperability
 acceptance. Original commercial executables, DLLs, Ghidra databases and generated

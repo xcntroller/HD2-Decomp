@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "source-only headless HumanStore startup dependency; full N1 startup remains open",
+  "checks": [
+    "native ASan/UBSan/LSan headless and default-client template specializations",
+    "65 complete canonical record hashes from independent raw-chunk oracle over original9170-byte HumanStore.def",
+    "client default still loads/releases65 portraits; headless requires no graphics API methods",
+    "default names/lookup, missing-input preservation, overlay order and partial mutation, legacy/wide/tail/item records",
+    "300 truncations, short backend transfers and100 lifetimes",
+    "strict Windows i386 complete fixture link; not executed"
+  ],
+  "limits": "Shared reader keeps its documented native bounds policies. Actual profile-directory/text inputs are required; no containing application/GameData/device/desktop/session integration claimed. Frozen client ledger unchanged.",
+  "input": {
+    "path": "analysis/work/networking/headless-store-inputs/HumanStore.def",
+    "size": 9170,
+    "sha256": "e070e9b0f8f1489ce0ff40316726916afed5bfe5cb58e2e4dcfe06ace073cb5f",
+    "provenance": "authorized original others.DTA; existing native archive decoder; no DLL execution"
+  },
+  "sources": [
+    {
+      "path": "recovered/networking/headless_human_store.h",
+      "sha256": "1900dd5a352984b26fbeeff238dc516ee0c7bf91fc9c73c57b8401bae5ec9983"
+    },
+    {
+      "path": "recovered/frontend/human_store.h",
+      "sha256": "b22c0066779fffaf2b6f6f75cd0d80547ba9a2d9e4d8bc3bd9871bc09abf36f5"
+    }
+  ],
+  "log_sha256": "01185c464e862446e8cb13c0d5796fc5970cddb5a08955728c0e826782d5f287",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/headless-store-audit/audit.cpp",
+      "sha256": "434d3dc2b1a1fe10ca71bac5fb73bbc459fa18d8937769e8d15045d616110030"
+    },
+    {
+      "path": "analysis/work/networking/headless-store-audit/original-records.h",
+      "sha256": "7dda06fc6f43dc164100b1283e07cd45ae94b3c23973587e5e56ac7d0a13cb8b"
+    },
+    {
+      "path": "analysis/work/networking/headless-store-audit/native-audit",
+      "sha256": "a4c8f4a2c4df784190d21c3606e6c0e00d7f00913e7a6a0bf20d85c7eb76254b"
+    },
+    {
+      "path": "analysis/work/networking/headless-store-audit/windows-link.exe",
+      "sha256": "0e593652c9ad8f3860851acb5c7afed46b68a6231a3f48ada575ffcb3dfd4308"
+    }
+  ]
+}

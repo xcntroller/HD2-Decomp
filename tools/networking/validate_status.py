@@ -6,6 +6,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 DIRECTORY = ROOT / "analysis/networking"
+# The headless server reuses this body only after separate HD2DS-address contract
+# verification. Keep the shared-source allowance explicit; client ledger stays frozen.
+SHARED_SOURCES = {ROOT / "recovered/frontend/human_store.h"}
 
 
 def validate(local_evidence=False):
@@ -35,7 +38,8 @@ def validate(local_evidence=False):
         assert row["contract"] and row["exclusions"] and row["evidence"]
         for source in row["sources"]:
             path = (ROOT / source).resolve()
-            assert path.is_relative_to(ROOT / "recovered/networking") and path.is_file()
+            assert (path.is_relative_to(ROOT / "recovered/networking") or
+                    (role == "server" and path in SHARED_SOURCES)) and path.is_file()
         counts[role][row["status"]] += 1
     if local_evidence:
         receipt = json.loads((DIRECTORY / "evidence.json").read_text())

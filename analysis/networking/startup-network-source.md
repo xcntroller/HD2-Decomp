@@ -227,3 +227,7 @@ audit source/binaries are hashed and removed in the
 [receipt](lazy-catalogue-verification.json).007A23E0's existing partial expands;
 00644400 gains partial credit. The containing virtual owner/ABI helpers do not
 receive new credit merely because their logical dependency is acquired here.
+
+The [headless HumanStore follow-up](headless-startup-data-source.md) now provides
+the required HumanStore data loader with the server's verified portrait-free path.
+GameData and the containing application/engine/module owners remain dependencies.

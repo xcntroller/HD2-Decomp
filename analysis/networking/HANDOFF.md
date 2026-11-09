@@ -4,12 +4,21 @@ Work only in `feature/networking` at HD2-Decomp-networking. Main master/P2.2 and
 other worktrees remain untouched. No push, merge, publish, original executable,
 DLL, Proton or Windows-fixture execution. Heavy jobs sequential; no subagents.
 
-Ledger:14 server/9 launcher partials, zero complete. Separate inventories and
+Ledger:18 server/9 launcher partials, zero complete. Separate inventories and
 [progress README](../../networking/README.md) do not alter the frozen client/LS3DF
 baseline. Refresh/check with `python3 tools/networking/update_progress.py [--check]`.
 No independent server, live discovery, session interoperability or desktop acceptance.
 
-Latest source: [lazy command dependencies and cold network owner](startup-network-source.md).
+Latest source: [headless HumanStore](headless-startup-data-source.md). Its shared
+parser now has a headless policy matching006E2730's verified RET-true helper and
+006E0DF0's pointer clear, with no graphics service. Default client policy retains
+actual portrait load/release. Native ASan/UBSan/LSan matches all65 original records
+against an independent raw-chunk oracle; overlay/legacy/wide/truncation/short-read/
+repeat checks pass. Strict Windows i386 fixture link passes, not executed.
+Temporary audits hashed/removed. [Receipt](headless-store-verification.json).
+Frozen client ledger unchanged. Actual profile-directory/text inputs are required.
+
+Prior [lazy command dependencies and cold network owner](startup-network-source.md):
 New three-argument ColdServerCommands takes separate command/catalogue byte
 readers and loads actual catalogue metadata/preset rules before first dispatch.
 Primary/fallback order, no-load file cases, missing/malformed/allocation failure,
@@ -40,7 +49,7 @@ zero is an explicit guard, not an original default.
 Continue the full first open [N1 startup/shutdown checkbox](plan.md); it stays OPEN.
 Logical007A23E0 →007A21A0 →006ED090 →00644400 acquisition now runs on actual input;
 full original virtual owner/descriptor ABI is still excluded. Continue application
-constructor006F71B0,006F9550's GameData006FF900/HumanStore006E33E0,
+constructor006F71B0,006F9550's GameData006FF900 and HumanStore containing owners,
 module registry004A3AB0, command/controller integration and post-Host serialization/
 workers/auxiliaries. Callback dispatch0077DCF0 remains required; no fake ready world.
 
@@ -65,3 +74,7 @@ server-bootstrap-data, server-profile-initial-state, server-multiplayer-profile-
 server-profile-rule-defaults and server-command-support-owner. Earlier server-startup/owners/settings/lifecycle
 exports remain relevant. Follow canonical thunk targets and separate server/client
 addresses. Original binaries, decompilations and Ghidra databases stay untracked.
+Headless data exports are server-headless-{data,store-contract,store-helpers,
+store-text,text-contract,utf8}-20261109; all used pairs are valid. GameData root
+research continues in server-gamedata-root-20261109. Original HumanStore.def is
+locally extracted via the existing native archive decoder under headless-store-inputs.

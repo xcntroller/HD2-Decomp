@@ -345,6 +345,62 @@
       "evidence": [
         "analysis/work/networking/server-multiplayer-profile-bootstrap-20261109/00644400.json"
       ]
+    },
+    {
+      "program": "server",
+      "entry": "006e33e0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_human_store.h",
+        "recovered/frontend/human_store.h"
+      ],
+      "contract": "Required HumanStore input open, missing-input preservation and ordered load/close",
+      "exclusions": "Native owned records/bounds guards, not original object/COW ABI; actual profile directory and loaded text required. Containing application/engine integration remains absent.",
+      "evidence": [
+        "analysis/work/networking/server-profile-deps-20261109/006e33e0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006e36e0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_human_store.h",
+        "recovered/frontend/human_store.h"
+      ],
+      "contract": "Headless record reset/append/parse and optional profile-name overlay order",
+      "exclusions": "Native owned records/bounds guards, not original object/COW ABI; actual profile directory and loaded text required. Containing application/engine integration remains absent.",
+      "evidence": [
+        "analysis/work/networking/server-headless-data-20261109/006e36e0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006e15a0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_human_store.h",
+        "recovered/frontend/human_store.h"
+      ],
+      "contract": "Shared headless HumanStore fields, legacy formats and text finalization",
+      "exclusions": "Native owned records/bounds guards, not original object/COW ABI; actual profile directory and loaded text required. Containing application/engine integration remains absent.",
+      "evidence": [
+        "analysis/work/networking/server-headless-store-contract-20261109/006e15a0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006e0c70",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_human_store.h",
+        "recovered/frontend/human_store.h"
+      ],
+      "contract": "Forward headless record retirement and eight localized default-name pairs",
+      "exclusions": "Native owned records/bounds guards, not original object/COW ABI; actual profile directory and loaded text required. Containing application/engine integration remains absent.",
+      "evidence": [
+        "analysis/work/networking/server-headless-store-contract-20261109/006e0c70.json"
+      ]
     }
   ]
 }
