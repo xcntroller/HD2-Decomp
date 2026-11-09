@@ -23,7 +23,12 @@ public:
                                 Models& models,SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource)
         :registration_(registry,4,"Script"),frames_(frames),files_(files),runtime_(runtime),resource_(std::move(resource)),mode_(mode),
          contexts_(frames,files,runtime,resource_),frame_commands_(frames,contexts_),snapshots_(frames),rotations_(frames,snapshots_),visibility_(frames,snapshots_,models,packets,mode){}
-    auto& registration(){return registration_;}auto& contexts(){return contexts_;}auto& variables(){return variables_;}
+    MissionScriptModuleLoading(frontend::ClientModuleRegistry& registry,Frames& frames,Files& files,Runtime& runtime,
+                                Models& models,SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource,
+                                frontend::ClientModuleRegistration& shared_registration)
+        :registration_(registry,shared_registration,4,"Script"),frames_(frames),files_(files),runtime_(runtime),resource_(std::move(resource)),mode_(mode),
+         contexts_(frames,files,runtime,resource_),frame_commands_(frames,contexts_),snapshots_(frames),rotations_(frames,snapshots_),visibility_(frames,snapshots_,models,packets,mode){}
+    auto& registration(){return registration_.get();}auto& contexts(){return contexts_;}auto& variables(){return variables_;}
     auto& snapshots(){return snapshots_;}auto& visibility(){return visibility_;}
     auto& rotations(){return rotations_;}
     bool loaded()const{return loaded_;}const auto& failed_bindings()const{return failed_bindings_;}
@@ -71,7 +76,7 @@ public:
         if(failure)std::rethrow_exception(failure);
     }
 private:
-    frontend::ClientModuleRegistration registration_;
+    frontend::ClientModuleBinding registration_;
     Frames& frames_;Files& files_;Runtime& runtime_;std::string resource_;std::uint32_t& mode_;
     Contexts contexts_;MissionScriptFrameCommands<Frames,Contexts> frame_commands_;Snapshots snapshots_;MissionScriptRotations<Frames,Snapshots> rotations_;Visibility visibility_;MissionScriptVariables variables_;MissionScriptBindings bindings_;
     std::vector<MissionScriptBindings::Binding> failed_bindings_;

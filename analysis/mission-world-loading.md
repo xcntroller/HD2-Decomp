@@ -1,5 +1,11 @@
 # Full mission loading — work in progress
 
+2026-11-09: [shared scene and actor ownership](world-scene-ownership.md) now
+composes file stages, the same frame/table/effect owners, collision tree/grid
+and Items/runtime/Physics lifetimes. Physics1/3/4 source is verified;6 still
+rejects. This is source-only composition, uncalled by GameApplicationState.
+Required containing session/Human/presentation/VM receivers and first frame remain.
+
 P2.2 is in progress. P2.0/P2.1 committed as `f9674b3` after the user's
 constructor-log confirmation. No loaded world delivery or desktop verification
 is claimed here. The user explicitly chose to bring actor/collision dependencies

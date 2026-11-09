@@ -1,5 +1,14 @@
 # Technical research guide
 
+2026-11-09 latest: [shared world ownership](analysis/world-scene-ownership.md)
+now composes actual scene/documents/tables/effects/tree/grid and Items/runtime/
+Physics around the same frame-data registry. [Physics1/3/4](analysis/item-transfer-physics-loading.md#physics134-and-shared-fade-continuation--2026-11-09)
+adds actual descriptor/axis/fade lifetimes. Borrowed Script/Players process
+registrations survive repeat. Native ASan/UBSan/LSan, strict actual i386/app link
+and27 tracker tests pass;12 temporary artifacts hashed/removed. Nine new
+partials/three extended:34 complete/1,674 partial (1,669 client/five engine),
+18,783 frozen. No world/desktop claim; continue the full P2.2 checkbox.
+
 2026-11-09 latest: [world sound/subtitle source](analysis/sound-world-loading.md) and
 [script rotations](analysis/mission-script-receivers.md#rotationframe-update-continuation--2026-11-09)
 now recover actual portal hearing routing, retained rotation/frame-update/viewport

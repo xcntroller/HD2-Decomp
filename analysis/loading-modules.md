@@ -1,5 +1,13 @@
 # Mission module loading and activation — in progress
 
+2026-11-09 latest: [shared world scene/actor ownership](world-scene-ownership.md)
+composes actual Scene2/documents/tables/effects/tree/grid and Items/runtime/
+Physics, preserving the same frame-data registry and process module identities.
+Physics1/3/4 now have verified source owners. Native sanitizers, strict actual
+i386 composition and application link pass. The source world still needs actual
+session/Human/FPV/HUD/SOUND/VM receivers; GameApplicationState declines loading.
+No world-frame/desktop claim; continue the entire P2.2 checkbox.
+
 2026-11-09 latest: [local spawn dispatch and ordinary camera](camera-local-dispatch-loading.md)
 source now joins flush/FIFO/module13/SpawnPoint/Players and the camera's real
 sweep/ray/follow/pose/update. Focused native sanitizers, concrete i386 composition

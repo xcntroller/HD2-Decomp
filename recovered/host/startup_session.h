@@ -227,6 +227,8 @@ public:
 
     bool mission_active() const { return game_views_.owner()!=nullptr; } //00698500 actual owner, distinct from loaded camera.
     game::WorldViews& game_views() { return game_views_; }
+    frontend::ClientModuleRegistry& game_module_registry(){return registry_;}
+    frontend::ClientModuleRegistration& game_module_registration(std::uint32_t kind){return modules_.registration(kind);}
     input::BindingConfiguration& profile_bindings() { return data_.profile().options.bindings; }
     const std::string& profile_name() { return data_.profile().directories.current_name; }
     PreMission& pre_mission() {

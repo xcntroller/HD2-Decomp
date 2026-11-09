@@ -97,6 +97,7 @@
 #include "host/game_runtime_item.h"
 #include "host/game_mission_items.h"
 #include "host/game_physics_objects.h"
+#include "host/game_world_actors.h"
 #include "host/game_speech_definitions.h"
 #include "host/game_human_audio_loading.h"
 #include "host/game_runtime_actors.h"

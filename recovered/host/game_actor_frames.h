@@ -107,6 +107,10 @@ public:
         (void)car_world_matrix(frame);return reinterpret_cast<const Matrix*>(address(frame,0x40));
     }
     Vector actor_local_scale(Frame frame) const {return field<Vector>(frame,0xd0);}
+    bool physics_inverse_world_below_half(Frame frame) { //0040BD70: cached inverse frame10, element2C.
+        if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
+        return field<float>(frame,0x3c)<.5f;
+    }
     void actor_link_preserving_world(Frame frame,Frame parent) {
         if(call<std::int32_t>(frame,0x38,parent,std::uint32_t{1})<0)
             throw std::runtime_error("Cannot preserve actor pose while linking its parent");
@@ -436,6 +440,7 @@ public:
         if(call<std::int32_t>(frame,0x34,name.c_str())<0)throw std::runtime_error("Cannot name Human equipment");
     }
     void effects_model_opacity(Frame model,float opacity) {call<void>(model,0x50,opacity);} //00486DF0, distinct from OBJ_+A4.
+    void effects_frame_fade_alpha(Frame frame,float alpha){call<void>(frame,0xa8,alpha);} //00486E60, distinct from both model+50 and visual+A4.
     void effects_model_camera_amount(Frame model,float value) {call<void>(model,0x54,value);} //00486D30; distinct from model+50 opacity.
     MenuDriver::Owner human_shadow_template(const std::string& key) {
         MenuDriver::Owner result{nullptr,nullptr};

@@ -21,9 +21,17 @@ public:
                      game::EffectsEnvironment& environment,game::LightmapAliases& aliases)
         : GameSceneActors(scene,driver,module,graphics,files,resources,std::move(progress),text,runtime,cars),
           tables_(tables),table_storage_(table_storage),environment_(environment),aliases_(aliases) {}
+    GameMissionScene(GameScene& scene,MenuDriver& driver,HMODULE module,Graphics& graphics,
+                     ChunkFiles& files,LoadedResources& resources,std::function<void(unsigned,float)> progress,
+                     const frontend::LocalizedTextCache& text,Runtime& runtime,
+                     game::MissionTables<TablesBackend>& tables,TablesBackend& table_storage,
+                     game::EffectsEnvironment& environment,game::LightmapAliases& aliases)
+        :GameSceneActors(scene,driver,module,graphics,files,resources,std::move(progress),text,runtime),
+         tables_(tables),table_storage_(table_storage),environment_(environment),aliases_(aliases){}
     void read_scene_tables(game::SerializedBytes& bytes) {
         for(auto& set:tables_.sets())game::read_mission_table(bytes,set,table_storage_,*this);
     }
+    void clear_scene_tables(){tables_.clear();} //006D4280 uses these SAME session-owned datasets.
     Frame table_frame(const std::string& name) {
         auto* frame=resolve_scene_path(name);
         return frame?frame:find_scene_frame(name,0xcffff);

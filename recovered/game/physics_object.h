@@ -4,6 +4,7 @@
 #include "game/physics_object_parameters.h"
 #include "game/actor_frame_data.h"
 #include "game/rigid_body.h"
+#include "game/effects_frame_fades.h"
 #include "frontend/cleanup.h"
 #include <optional>
 
@@ -12,7 +13,8 @@ namespace hd2::game {
 struct PhysicsObjectHandle {std::int32_t index=-1;bool first_list=false;};
 
 //0040B5E0/0040B7E0 common owner and00407390/004079F0 type5,
-//0040E810 type2 loading. Retain the real frame, SAME userdata store and dynamic
+//0040F6A0 type1,0040E810 type2,0040DAA0 type3 and0040BD70 type4 loading.
+//Retain the real frame, SAME userdata store and dynamic
 //collision grid. Runtime queue pointers refer to THIS object, never an Item.
 //Detached movement/contact/break producers must be supplied before using them.
 template<class Frames,class Collisions,class RuntimeActors>
@@ -24,11 +26,13 @@ public:
     using Parameters=PhysicsObjectParameters<Frame>;
     using Descriptor=RigidBodyCollisionDescriptor<Frame>;
     using FrameOwner=decltype(std::declval<Frames&>().retain_actor_frame(std::declval<Frame>()));
-    PhysicsObject(Frames& frames,Collisions& collisions,RuntimeActors& actors,const Parameters& parameters,PhysicsObjectHandle& handle)
-        : frames_(frames),collisions_(collisions),actors_(actors),parameters_(parameters),handle_(handle) {
+    PhysicsObject(Frames& frames,Collisions& collisions,RuntimeActors& actors,const Parameters& parameters,PhysicsObjectHandle& handle,
+                  EffectsFrameFades<Frames>* fades=nullptr)
+        : frames_(frames),collisions_(collisions),actors_(actors),parameters_(parameters),handle_(handle),fades_(fades) {
         if(!parameters.frame)throw std::logic_error("Physics object requires a real frame");
-        if(parameters.type!=0&&parameters.type!=2&&parameters.type!=5)
+        if(parameters.type!=0&&parameters.type!=1&&parameters.type!=2&&parameters.type!=3&&parameters.type!=4&&parameters.type!=5)
             throw std::runtime_error("Required physics object constructor is unavailable: "+std::to_string(parameters.type));
+        if(parameters.type==4&&!fades_)throw std::runtime_error("Physics type4 requires the actual shared GEffects frame-fade owner");
         frames_.physics_link_root(parameters.frame);frames_.update_scene_object(parameters.frame);
         frame_=frames_.retain_actor_frame(parameters.frame);
         const auto initial=frames_.actor_world_matrix(frame_.get());
@@ -42,14 +46,29 @@ public:
         if(initialized_)throw std::logic_error("Physics object initialized twice");
         initialized_=true;
         if(parameters_.type==0)return; //0040E320 disables common collision registration.
+        if(parameters_.type==4) { //0040BD70 has no collision descriptor registration.
+            flag170_=frames_.physics_inverse_world_below_half(frame_.get());flag171_=false;
+            fades_->fade_out(frame_.get(),5000,false);return;
+        }
         const auto bounds=frames_.physics_object_bounds(frame_.get(),parameters_.type==5);
+        if((parameters_.type==1||parameters_.type==3)&&!(bounds.minimum[0]<bounds.maximum[0]))
+            throw std::runtime_error("Physics aggregate bounds leave native transformed centre undefined");
         world_=frames_.actor_world_matrix(frame_.get());inverse_=frames_.car_inverse_matrix(world_);
         descriptor_.frame=frame_.get();descriptor_.minimum=bounds.minimum;descriptor_.maximum=bounds.maximum;
         descriptor_.matrix=&world_;descriptor_.inverse=&inverse_;
-        if(parameters_.type==2) {
+        if(parameters_.type==1||parameters_.type==2) {
             descriptor_.flags=0x42;descriptor_.mask=0;
             radius170_=parameters_.radius<0?bounds.radius:parameters_.radius;
             descriptor_.radius=radius170_;descriptor_.position=position30_;
+            if(parameters_.type==1) {
+                const auto scale=frames_.car_scale(frame_.get());
+                const auto yz=scale[1]>scale[2]?scale[1]:scale[2];const auto largest=scale[0]>yz?scale[0]:yz;
+                descriptor_.radius=static_cast<float>(static_cast<long double>(largest)*bounds.radius); //Native overrides descriptor radius, not170.
+                descriptor_.position=frames_.car_transform(bounds.centre,world_);
+            }
+        } else if(parameters_.type==3) {
+            descriptor_.flags=0x40;descriptor_.mask=2;descriptor_.radius=bounds.radius;
+            descriptor_.position=frames_.car_transform(bounds.centre,world_);
         } else {
             descriptor_.flags=0x40|(parameters_.sight_pass?0x100000u:0u);
             descriptor_.mask=0x200000;descriptor_.radius=bounds.radius;
@@ -72,6 +91,7 @@ public:
             }
         }
         collisions_.insert(descriptor_);collisions_.move(descriptor_);
+        if(parameters_.type==3)initialize_principal_axes(); //0040DAA0 writes endpoints AFTER registration.
     }
     void publish() { //0040FB00 after construction and list/handle publication.
         auto& data=frames_.actor_frame_data(frame_.get());
@@ -108,13 +128,34 @@ public:
     const Parameters& parameters() const {return parameters_;}
     const Vector& centre170() const {return centre170_;}
     const Vector& span180() const {return span180_;}
+    const auto& principal_axes()const{return principal_axes_;} //Type3 native170/180/190/1A0, XYZ only.
+    bool inverse_flag170()const{return flag170_;} //Type4 native inverse-matrix+2C comparison.
 private:
+    void initialize_principal_axes() {
+        const auto& low=descriptor_.minimum;const auto& high=descriptor_.maximum;Vector centre{};
+        std::array<long double,3> extent{};
+        for(unsigned axis=0;axis!=3;++axis) {
+            const auto span=std::abs(static_cast<long double>(high[axis])-low[axis]);
+            extent[axis]=axis==1?span:static_cast<long double>(static_cast<float>(span)); //Native Y remains in x87 for comparisons.
+            centre[axis]=static_cast<float>((static_cast<long double>(low[axis])+high[axis])*.5f);
+        }
+        unsigned first,second;
+        if(extent[0]>=extent[1]&&extent[0]>=extent[2]){first=0;second=extent[1]<extent[2]?2:1;}
+        else if(extent[1]>=extent[0]&&extent[1]>=extent[2]){first=1;second=extent[0]<extent[2]?2:0;}
+        else {first=2;second=extent[1]<extent[0]?0:1;} //Native Z-first secondary tie prefers Y.
+        for(unsigned pair=0;pair!=2;++pair) {
+            const auto axis=pair?second:first;auto& minimum=principal_axes_[pair*2];auto& maximum=principal_axes_[pair*2+1];
+            maximum=minimum=centre;maximum[axis]=high[axis];minimum[axis]=low[axis];
+        }
+    }
     Frames& frames_;Collisions& collisions_;RuntimeActors& actors_;Parameters parameters_;PhysicsObjectHandle& handle_;
+    EffectsFrameFades<Frames>* fades_;
     FrameOwner frame_{nullptr,nullptr};Descriptor descriptor_{};Matrix world_{},inverse_{};
     Vector position30_{},centre170_{},span180_{},endpoint190_{},endpoint1a0_{};
     std::array<float,4> rotation40_{},rotation1e0_{},rotation1f0_{};
+    std::array<Vector,4> principal_axes_{};
     float radius170_=0;
-    bool initialized_=false,published_=false,queued_=false,closed_=false,flag161_=false,rotation_ready_=false;
+    bool initialized_=false,published_=false,queued_=false,closed_=false,flag161_=false,rotation_ready_=false,flag170_=false,flag171_=false;
 };
 
 } //namespace hd2::game

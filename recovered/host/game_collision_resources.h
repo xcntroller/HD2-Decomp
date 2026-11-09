@@ -14,6 +14,7 @@ class GameCollisionResources {
 public:
     using Frame = EngineFrame*;
     GameCollisionResources(GameScene& scene, HMODULE module) : scene_(scene), module_(module) {}
+    void clear_views() noexcept {views_.clear();} //Only after the tree's borrowed vertex/frame consumers retire.
     Frame collision_frame(const std::string& name) { return scene_.resolve_frame_path(name); }
     bool collision_is_visual(Frame frame) const {
         if (!frame) return false;

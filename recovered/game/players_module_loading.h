@@ -42,8 +42,11 @@ public:
     PlayersModuleLoading(frontend::ClientModuleRegistry& registry,Frames& frames,Presentation& presentation,
                          Process& process,Runtime& runtime,const char* name="TeamMgr")
         :registration_(registry,11,name),control_(frames,presentation),frames_(frames),process_(process),runtime_(runtime){}
+    PlayersModuleLoading(frontend::ClientModuleRegistry& registry,Frames& frames,Presentation& presentation,
+                         Process& process,Runtime& runtime,frontend::ClientModuleRegistration& shared_registration,const char* name="TeamMgr")
+        :registration_(registry,shared_registration,11,name),control_(frames,presentation),frames_(frames),process_(process),runtime_(runtime){}
     PlayersModuleLoading(const PlayersModuleLoading&)=delete;PlayersModuleLoading& operator=(const PlayersModuleLoading&)=delete;
-    auto& registration(){return registration_;}
+    auto& registration(){return registration_.get();}
     auto& control(){return control_;}const auto& control()const{return control_;} //00461410.
     auto& auxiliary(){return auxiliary_;} //00461420.
     bool active()const{return active134_;}bool flag135()const{return flag135_;}
@@ -81,7 +84,7 @@ public:
 private:
     //Declaration order preserves004614E0: auxiliary, control, vector allocation,
     //then base registration. The original destructor does not destroy subgroups.
-    frontend::ClientModuleRegistration registration_;std::vector<Group*> groups_;Control control_;PlayersAuxiliaryLoading<Human> auxiliary_;
+    frontend::ClientModuleBinding registration_;std::vector<Group*> groups_;Control control_;PlayersAuxiliaryLoading<Human> auxiliary_;
     Frames& frames_;Process& process_;Runtime& runtime_;bool active134_=false,flag135_=false;
 };
 } //namespace hd2::game

@@ -26,6 +26,11 @@ public:
             modules_[kind] = std::make_unique<ClientModuleRegistration>(registry, kind, names[kind]);
         }
     }
+    ClientModuleRegistration& registration(std::uint32_t kind) {
+        if(kind>=18||!registry_[kind]||registry_[kind]!=(kind==6?sound_:modules_[kind].get()))
+            throw std::logic_error("Gameplay binding requires the actual startup module registration");
+        return *registry_[kind];
+    }
     // 0048DA60: fresh slot on every ascending iteration, skip missing entries.
     template<class Files>
     void initialize(const std::uint32_t& gate, Files& files) {

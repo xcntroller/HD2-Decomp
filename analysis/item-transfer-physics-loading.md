@@ -92,8 +92,9 @@ centre Y taken from transformed minimum, float stores, cached rotations and
 004079F0 restoration. Invalid aggregate type5 bounds reject an unwritten centre.
 Pickup parameter1E publishes the actual physics object queue before registration.
 
-Detached motion, break/contact producers and constructors1/3/4/6 are still
-unavailable and reject before publication. Type6's second descriptor/register
+Detached motion and break/contact producers remain unavailable. Constructors
+1/3/4 were recovered in the continuation below; type6 still rejects before
+publication. Type6's second descriptor/register
 sequence needs resolution; assembly is preserved without a guessed correction.
 A targeted scan of captured Scene.4ds finds126 Tutorial printable metadata spans
 containing phobj, all choosing type5; these are string spans, not an asserted
@@ -118,3 +119,59 @@ world and wire loading presentation/first-frame consumers. Preserve explicit
 unsupported branches. Existing physics/transfer checks need no repeat without
 new changes or contradictory evidence. No ledger credit is added for these
 partial loading bodies, absent functions or engine delegates.
+
+## Physics1/3/4 and shared fade continuation — 2026-11-09
+
+Types0..5 now have source loading owners.0040F6A0/type1 retains the selected
+or default radius at170, but overrides the descriptor radius with geometry
+radius times the largest actual world scale. Its descriptor centre is the
+aggregate local centre transformed by the world matrix, unlike type2's world
+position. Both use flags42/mask0.
+
+0040DAA0/type3 uses flags40/mask2 and transformed aggregate centre. It writes
+four local principal-axis endpoints at170/180/190/1A0 **after** registration:
+minimum then maximum on each chosen axis. X wins a first-axis three-way tie;
+secondary ties choose Y for X-first, X for Y-first, Y for Z-first. X/Z extents
+spill to FLOAT while Y remains extended through the comparisons; midpoints
+spill to FLOAT. Invalid aggregate X bounds reject an originally unwritten centre.
+
+0040BD70/type4 preserves common root/update/retained-frame lifetime, reads the
+actual cached inverse-world component below.5 into170 and sets171false. It
+requests5000ms fade-out without hiding. It does **not** register a collision
+descriptor and rejects a missing shared fade owner before frame mutation.
+Type1/3/4 destructors simply reach common0040B7E0; no invented cancellation.
+
+`effects_frame_fades.h` reconstructs00488D60's out-only200 queue and the
+fade-out pass within00487240. Positive durations retain each frame, allow
+duplicates and do not set initial opacity. Nonpositive duration sets opacity1
+and optionally hides immediately.00486E60 uses ungated **frame+A8(1-amount)**,
+distinct from model+50/visual+A4. Reverse update subtracts elapsed as DWORD,
+tests signed expiration, applies original FLOAT amount/alpha stores and
+retires references by swap/pop. Physics close may release its frame while this
+same queue still retains it until fade completion.
+
+Opposite fade-in210 scheduling/cancellation is excluded. Native00488D60 removes
+the last opposite-list pointer without releasing its allocation/reference; do
+not invent corrected ownership or combine another independently owned fade-in
+queue. Current type4 is out-only with cold opposite queue empty. Explicit
+source clear/destructor releases retained records; original004888C0 finish
+does **not** clear these queues, and that behavior is not falsely claimed.
+
+Type6 remains unresolved: original00406217 overwrites a saved secondary-
+descriptor pointer with inverse-matrix storage, and004062A2/004062A7 register
+that overwritten pointer while destructor00406300 removes descriptor230.
+Actual grid insertion reads descriptor+0C/+30. A guessed safe230 substitution
+would change native behavior, so this branch still rejects. Captured Tutorial
+printable metadata spans select5; this is not proof for referenced models.
+
+Evidence in WORK: physics-type1/type3/type4-constructor.asm,
+physics-cross-constructor/destructor.asm, physics-effects-fade-required/,
+physics-effects-fade-lifetime/, physics-effects-opacity-required/ and
+physics-effects-fade-finish.asm. Client/engine fingerprints remain unchanged.
+[Receipt](checkpoints/p2.2-world-owners-20261109.json) preserves native sanitizer,
+actual-host i386 and application results and hashes/removes temporary fixtures.
+Six new frozen client partials cover these actual bodies, no complete promotion.
+
+[Shared world composition](world-scene-ownership.md) now binds Physics to the
+same frame-data, buckets, runtime actor queue and GEffects fade owner. The
+containing production Human/session/module/first-frame receivers remain required.

@@ -1,0 +1,135 @@
+{
+  "date": "2026-11-09",
+  "scope": "Full P2.2 first implementation checkbox; combined source physics1/3/4/fades and shared scene/documents/tables/collision/Items/runtime/Physics ownership checkpoint. Continue actual containing Human/session/module receivers.",
+  "source_only": true,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 9,
+  "added": [
+    "0040f6a0",
+    "0040daa0",
+    "0040bd70",
+    "00488d60",
+    "00486e60",
+    "00487240",
+    "006d45c0",
+    "006d4880",
+    "006d4280"
+  ],
+  "extended": [
+    "0040fb00",
+    "004860b0",
+    "006cbf30"
+  ],
+  "not_credited": [
+    "ClientModuleBinding and GameWorldScene/GameWorldActors source composition adapters",
+    "Type6 unsafe second registration, opposite fade-in queue/cancellation and full GEffects update/render",
+    "Delegated engine calls, merely exported functions, required external Car/Human/session/VM/FPV/HUD/SOUND services"
+  ],
+  "contracts": [
+    "analysis/world-scene-ownership.md",
+    "analysis/item-transfer-physics-loading.md"
+  ],
+  "verification": {
+    "native_sanitizers": {
+      "result": "PASS",
+      "tools": "ASan/UBSan/LSan; detect_leaks=1, halt_on_error=1",
+      "logs": [
+        "analysis/work/mission-world-20261103/physics-remaining-native-run.log",
+        "analysis/work/mission-world-20261103/module-binding-native-run.log",
+        "analysis/work/mission-world-20261103/scene-documents-native-run.log"
+      ],
+      "boundary": "Actual source physics/grid/EC/fade lifetimes, Script/Players module owners, file-stage policy and shared table decoder/storage. Engine/matrix/bounds/archive/scene/parser endpoints are boundary doubles."
+    },
+    "actual_host_i386": {
+      "result": "PASS",
+      "logs": [
+        "analysis/work/mission-world-20261103/physics-remaining-i386-build.log",
+        "analysis/work/mission-world-20261103/module-binding-i386-build.log",
+        "analysis/work/mission-world-20261103/world-scene-i386-build.log"
+      ],
+      "boundary": "Strict compile-only actual GameActorServices/StartupSession/Scene2/documents/tree/grid/Items/runtime/Physics instantiation. Required consumer endpoints are declarations; no Windows execution."
+    },
+    "application_build": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/world-owners-app-build.log",
+      "boundary": "i386 Windows compile/link only; no engine/game/DLL/Proton execution."
+    },
+    "tracker_tests": {
+      "result": "PASS",
+      "count": 27,
+      "log": "analysis/work/mission-world-20261103/world-owners-tracker-tests.log"
+    },
+    "tracker_check": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/world-owners-tracker-check.log"
+    }
+  },
+  "temporary_artifacts": {
+    "removed": true,
+    "count": 12,
+    "records": [
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-physics-remaining-audit.cpp",
+        "bytes": 5962,
+        "sha256": "0e7690456774bad86e9649a791bd2b7dab7576228519d28c7fc41b1d9670f98a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-physics-remaining-audit",
+        "bytes": 2163616,
+        "sha256": "00138553b059b3e47b07bc5e119cd6793a3bf88c96191c94c8dcec9faac00028"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-physics-remaining-host.cpp",
+        "bytes": 661,
+        "sha256": "800d1647a194b1f65ed5d10e7e6d99991ba9ad457cc48911b787f64eddd57dcd"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-physics-remaining-host.o",
+        "bytes": 847326,
+        "sha256": "f8819262da81373fffc42f9bbcebf2807a364bfc33d376db9faf45fe79f8c62a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-module-binding-audit.cpp",
+        "bytes": 3985,
+        "sha256": "0f2b03048b2c1d5281e2deb36093d5ef778c8f8b445ba347c6087926314d16c7"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-module-binding-audit",
+        "bytes": 2281280,
+        "sha256": "71a3a9801b2ed703dbb46f08613edb6967a91483c1ce27994996298dd0c5f7e8"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-module-binding-host.cpp",
+        "bytes": 1039,
+        "sha256": "aa25829be8724bb81858394da3a0dd2aa4e437627de09ede37ac499c258448a6"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-module-binding-host.o",
+        "bytes": 646,
+        "sha256": "afd1d85de83662a5c36da6fbd5752a4674693ba4ad83b213b2b4ff8ccb8a41c7"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-scene-documents-audit.cpp",
+        "bytes": 6644,
+        "sha256": "6770ad974ac89e01976e7c0b7a1e8ad910c7ce427c9936eb0f47956b9b19f4b1"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-scene-documents-audit",
+        "bytes": 2076504,
+        "sha256": "6d7e98ac02a47d8bda1907af297937d8824894ec2cd5648741ea22b46f07fe3d"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-world-scene-host.cpp",
+        "bytes": 2038,
+        "sha256": "066a0a87ae686f0afa1862f8fd71afeb04a88097c7b95d320d2d41578a761b9d"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-world-scene-host.o",
+        "bytes": 6093710,
+        "sha256": "507e916a320f4668e0335c571c875118bf609845d53154e1fa2bd2c5f6feb503"
+      }
+    ]
+  },
+  "remaining": "Actual containing production Human/session/Car/module receivers, ordered complete loader and first-frame update/render; required actor activation, derived script contexts and runtime Files selection, failure/repeat/user desktop verification. P2.2 stays unchecked."
+}

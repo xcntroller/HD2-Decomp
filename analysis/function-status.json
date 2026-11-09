@@ -10717,7 +10717,7 @@
       "program": "client",
       "entry": "004860b0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004860b0: Actual environment record/data loading into the shared effect owner. Own cold fade target/current/rate/colour alongside existing recovered GEffects environment/shadow source.",
+      "coverage": "P2.2 source reconstruction at original entry 004860b0: Actual environment record/data loading into the shared effect owner. Own cold fade target/current/rate/colour alongside existing recovered GEffects environment/shadow source. Own the actual retained fade-out200 queue alongside environment/shadow/fade state; opposite fade-in producers and full update/render remain excluded.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "recovered/game/effects_environment.h",
@@ -10726,7 +10726,9 @@
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/mission-script-receivers.md",
         "analysis/checkpoints/p2.2-script-receivers-20261109.json",
-        "recovered/game/effects_shadow_models.h"
+        "recovered/game/effects_shadow_models.h",
+        "analysis/world-scene-ownership.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
       ]
     },
     {
@@ -18627,13 +18629,16 @@
       "program": "client",
       "entry": "0040fb00",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0040fb00: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0040fb00: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded. Factory now supports types0..5 with shared type4 fade-out ownership; unresolved type6 rejects before frame mutation.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/physics_object.h",
         "analysis/item-transfer-physics-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/host/game_physics_objects.h",
+        "analysis/world-scene-ownership.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
       ]
     },
     {
@@ -20031,13 +20036,16 @@
       "program": "client",
       "entry": "006cbf30",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 006cbf30: Original scene-open/camera-preparation/registered-name source subset with exact checked DLL ABI; engine scene implementation remains delegated.",
+      "coverage": "P2.2 source reconstruction at original entry 006cbf30: Original scene-open/camera-preparation/registered-name source subset with exact checked DLL ABI; engine scene implementation remains delegated. Add actual file-stage Car prelude, shared name/camera/parser document scope and native missing/short/other-root statuses; source host uses bounded buffering.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/host/game_scene.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/mission_scene_documents.h",
+        "analysis/world-scene-ownership.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
       ]
     },
     {
@@ -22855,6 +22863,114 @@
         "analysis/mission-script-receivers.md",
         "analysis/checkpoints/p2.2-world-presentation-20261109.json",
         "recovered/game/mission_subtitles_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040f6a0",
+      "status": "partial",
+      "coverage": "Type1 retained loading owner, selected/default radius170, geometry radius times largest world scale for descriptor, transformed aggregate centre, flags42/mask0 and actual shared bucket registration.",
+      "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
+      "evidence": [
+        "recovered/game/physics_object.h",
+        "analysis/item-transfer-physics-loading.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040daa0",
+      "status": "partial",
+      "coverage": "Type3 retained loading owner, flags40/mask2, transformed aggregate centre and actual shared bucket registration followed by native principal/secondary-axis endpoint ordering and tie/precision rules.",
+      "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
+      "evidence": [
+        "recovered/game/physics_object.h",
+        "analysis/item-transfer-physics-loading.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040bd70",
+      "status": "partial",
+      "coverage": "Type4 common retained frame lifetime, actual inverse-world comparison flags and shared GEffects5000ms fade-out scheduling without collision registration.",
+      "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
+      "evidence": [
+        "recovered/game/physics_object.h",
+        "analysis/item-transfer-physics-loading.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00488d60",
+      "status": "partial",
+      "coverage": "Reached out-only fade scheduling: null rejection, immediate opacity/optional hiding, retained positive-duration duplicate records without initial opacity mutation. Opposite fade-in queue/cancellation excluded.",
+      "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
+      "evidence": [
+        "recovered/game/effects_frame_fades.h",
+        "analysis/item-transfer-physics-loading.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00486e60",
+      "status": "partial",
+      "coverage": "Ungated null test and actual frame+A8 opacity(1-amount) receiver, distinct from model+50 and visual+A4.",
+      "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
+      "evidence": [
+        "recovered/game/effects_frame_fades.h",
+        "analysis/item-transfer-physics-loading.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00487240",
+      "status": "partial",
+      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded.",
+      "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
+      "evidence": [
+        "recovered/game/effects_frame_fades.h",
+        "analysis/item-transfer-physics-loading.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d45c0",
+      "status": "partial",
+      "coverage": "Actual optional actors.bin file-stage policy,4C53 root dispatch at stage2 with shared names/version/live archive scope; missing/other root ignored and handle lifetime closed.",
+      "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
+      "evidence": [
+        "recovered/game/mission_scene_documents.h",
+        "analysis/world-scene-ownership.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d4880",
+      "status": "partial",
+      "coverage": "Actual optional sounds.bin file-stage policy,4C53 root dispatch at stage3 with shared names/version/live archive scope; missing/other root ignored and handle lifetime closed.",
+      "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
+      "evidence": [
+        "recovered/game/mission_scene_documents.h",
+        "analysis/world-scene-ownership.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d4280",
+      "status": "partial",
+      "coverage": "Actual check2.bin preference and two existing dataset decoders; clear before check.bin probe, legacy-present open/close without a decoder, missing-both second clear and handle cleanup.",
+      "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
+      "evidence": [
+        "recovered/game/mission_scene_documents.h",
+        "analysis/world-scene-ownership.md",
+        "analysis/checkpoints/p2.2-world-owners-20261109.json"
       ]
     }
   ]

@@ -6,7 +6,7 @@
   "policy": "User postpones exhaustive pre-Phase2 pass; function completion follows delivery with one consolidated sweep. P2.0 research belongs inside the first implementation batch.",
   "source_contract": "analysis/phase2-delivery-plan.md",
   "boundary_evidence": "analysis/phase2-boundary-map.json",
-  "ledger_sha256": "68e52eee4943dff7177a176bd38315ad82bf63a522b1d00b3226715b80215d17",
+  "ledger_sha256": "054dfa5693096ad9aac113ce4e963a0c2023a3d6e1e57f11c80eb182fc2ad289",
   "first_visible_targets": [
     "P2.2",
     "P2.3"
@@ -98,15 +98,16 @@
       "input_gate": "Vehicle input gate resolved: user capture22dc45fef6dd48e8b628aa1412d03360, all35 fingerprints verified, four model resources present. Required actor/physics/loading integration remains open.",
       "source_only_progress": "Source-only loading/parser/cache/module/actor/collision owners and focused native/i386 verification are documented in analysis/loading-modules.md and its linked contracts. Human source now includes DD0/inline98/230/dubbing, common B0/navigation-volume/input-history loading, initial look/animation commands, ground reposition and ordinary physical flag transitions. Required runtime/derived/VM/world consumers remain; no loaded-world or desktop credit.",
       "latest_source_continuation": {
-        "contract": "analysis/human-state-loading.md",
-        "result": "HUD artwork/panels and all-source0049A940/0049B280/0049B1B0 loading/lifetime composition verified: SAME77 inline texts/sharedfont/styles/signal/compass/camera, actual scene/model/light/click/registry identity view, repeat/failure native sanitizers, strictactuali386 source/app compile-link. Shared CONFIGURATION DATA/Human/FPV/camera source remains verified. Source-only, uncalled by active GameApplicationState. Actual shared GameSceneActors/movie backend and host wrapper now bind SAME StartupSession process owners. Console no_gi10 data/getter and camera80/B4 gate verified; no command parser/sideeffects.",
-        "remaining": "Players module/process-control consumers; full world/session ownership and ordered loading; actual script compiler/VM/runtime-patch programs; remaining SOUND/effects/actor/physics/objective/zone consumers; first camera/render and user repeat/failure desktop verification.",
+        "contract": "analysis/world-scene-ownership.md",
+        "result": "Source-only shared scene/documents/tables/effects/collision and Items/runtime/Physics ownership; types0..5 supported, type6 rejects unresolved registration; borrowed Script/Players process registrations preserve repeat identity. Native ASan/UBSan/LSan, strict actual i386/app link and27 tracker tests pass;12 temporary artifacts removed. Nine new partials/three extended;34 complete/1674 partial/18783 frozen. GameApplicationState still declines loading.",
+        "remaining": "Actual containing Human/session/Car/module/VM/FPV/HUD/SOUND receivers, remaining required derived actor activation, complete ordered loading and first-frame/failure/repeat/user verification. MissionA8 finalization is skipped in mode7; deferred script queue producer is save-only.",
         "hud_contract": "analysis/hud-loading.md",
         "offline_human_contracts": [
           "analysis/human-model-geometry.md",
           "analysis/human-control-loading.md"
         ],
-        "human_state_source_continuation": "2026-11-09: containing Human/Players/proximity/Sight/sound reactions and weapon selection source verified. Offline loading inventory commands now use actual typed owner and deferred230 model handoff. Weapon exchange transfer infrastructure verified; same-Human swap/fallback/drop verified with eight partial ledger additions; active reselection/typed target/sector source verified with four further partials; formation mode3 ownership/navigation and retirement verified with seventeen further partials; detached-camera typed Human amounts and lifetime verified with six further partials; Players module/process lifecycle, formation scale and loading tick verified with fifteen further partials; VM/world integration remains. No desktop credit."
+        "human_state_source_continuation": "2026-11-09: containing Human/Players/proximity/Sight/sound reactions and weapon selection source verified. Offline loading inventory commands now use actual typed owner and deferred230 model handoff. Weapon exchange transfer infrastructure verified; same-Human swap/fallback/drop verified with eight partial ledger additions; active reselection/typed target/sector source verified with four further partials; formation mode3 ownership/navigation and retirement verified with seventeen further partials; detached-camera typed Human amounts and lifetime verified with six further partials; Players module/process lifecycle, formation scale and loading tick verified with fifteen further partials; VM/world integration remains. No desktop credit.",
+        "world_owner_receipt": "analysis/checkpoints/p2.2-world-owners-20261109.json"
       },
       "checkpoint_record": "analysis/checkpoints/p2.2-20261109.json"
     },

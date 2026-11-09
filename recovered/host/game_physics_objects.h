@@ -10,7 +10,8 @@ namespace hd2::host {
 //004106E0 module2,00410A40 activation,00410B00 scene enumeration and
 //0040FB00's two owner lists/stable reusable handles. Loading uses actual frame
 //metadata, userdata and the SAME collision buckets/runtime queue as other actors.
-//Further constructor types reject until recovered; no containing world is implied.
+//Types0..5 have source owners; type6 rejects its unresolved second registration.
+//The containing world supplies the actual shared fade-out owner for type4.
 template<class Mode,class Collisions,class RuntimeActors>
 class GamePhysicsObjects {
 public:
@@ -21,6 +22,8 @@ public:
     using Handle=game::PhysicsObjectHandle;
     GamePhysicsObjects(Frames& frames,Mode& mode,Collisions& collisions,RuntimeActors& actors)
         : frames_(frames),mode_(mode),collisions_(collisions),actors_(actors) {}
+    GamePhysicsObjects(Frames& frames,Mode& mode,Collisions& collisions,RuntimeActors& actors,game::EffectsFrameFades<Frames>& fades)
+        :frames_(frames),mode_(mode),collisions_(collisions),actors_(actors),fades_(&fades){}
     ~GamePhysicsObjects(){clear();}
     GamePhysicsObjects(const GamePhysicsObjects&)=delete;
     GamePhysicsObjects& operator=(const GamePhysicsObjects&)=delete;
@@ -39,7 +42,7 @@ public:
         //Capacity before the constructor publishes a collision/queue pointer.
         if(slot==list.end())list.reserve(list.size()+1);
         if(parameters.type==5)scene_objects_.reserve(scene_objects_.size()+1);
-        auto owner=std::make_unique<Object>(frames_,collisions_,actors_,parameters,*handle);
+        auto owner=std::make_unique<Object>(frames_,collisions_,actors_,parameters,*handle,fades_);
         owner->initialize();
         handle->index=static_cast<std::int32_t>(index);handle->first_list=parameters.first_list;
         try {owner->publish();}catch(...) {handle->index=-1;throw;}
@@ -72,6 +75,7 @@ public:
     }
 private:
     Frames& frames_;Mode& mode_;Collisions& collisions_;RuntimeActors& actors_;
+    game::EffectsFrameFades<Frames>* fades_=nullptr;
     std::vector<std::unique_ptr<Handle>> handles_;
     std::vector<std::unique_ptr<Object>> first_,second_;
     std::vector<Object*> scene_objects_;

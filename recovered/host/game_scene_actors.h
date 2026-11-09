@@ -25,7 +25,18 @@ public:
     GameSceneActors(GameScene& scene,MenuDriver& driver,HMODULE module,Graphics& graphics,
                     ChunkFiles& files,LoadedResources& resources,std::function<void(unsigned,float)> progress,
                     const frontend::LocalizedTextCache& text,Runtime& runtime,game::CarCallbackServices<GameActorServices>& cars)
-        : GameMeshMovieServices(scene,driver,module,graphics,files,resources,std::move(progress)),text_(text),runtime_(runtime),cars_(cars) {}
+        :GameSceneActors(scene,driver,module,graphics,files,resources,std::move(progress),text,runtime){bind_car_callbacks(cars);}
+    GameSceneActors(GameScene& scene,MenuDriver& driver,HMODULE module,Graphics& graphics,
+                    ChunkFiles& files,LoadedResources& resources,std::function<void(unsigned,float)> progress,
+                    const frontend::LocalizedTextCache& text,Runtime& runtime)
+        :GameMeshMovieServices(scene,driver,module,graphics,files,resources,std::move(progress)),text_(text),runtime_(runtime){}
+    //The actual Car callback owner borrows these SAME services. Construct them
+    //first, then bind the callback owner before parsing a Car. Never manufacture
+    //another frame-data/entry registry to break that composition dependency.
+    void bind_car_callbacks(game::CarCallbackServices<GameActorServices>& cars) {
+        if(cars_)throw std::logic_error("Car callbacks are already bound to the scene actor services");
+        cars_=&cars;
+    }
     using Instance=game::SceneActor<GameActorServices>;
     using ActorOwner=std::unique_ptr<Instance>;
     using Actor=Instance*;
@@ -48,7 +59,9 @@ public:
     ActorOwner make_scene_actor(std::uint32_t type) {
         switch(type) {
         case 3:return std::make_unique<game::HumanSceneActor<GameActorServices,Runtime>>(*this,runtime_);
-        case 4:return std::make_unique<game::CarSceneActor<GameActorServices>>(*this,cars_,frontend::lookup_localized_text(text_,0x1bf0));
+        case 4:
+            if(!cars_)throw std::runtime_error("Car construction requires the actual shared callback owner");
+            return std::make_unique<game::CarSceneActor<GameActorServices>>(*this,*cars_,frontend::lookup_localized_text(text_,0x1bf0));
         case 6:return std::make_unique<game::DoorSceneActor<GameActorServices>>(*this);
         case 8:return std::make_unique<game::LadderSceneActor<GameActorServices>>(*this,frontend::lookup_localized_text(text_,0x1bf2));
         case 9:return std::make_unique<game::SupplyBoxSceneActor<GameActorServices>>(*this);
@@ -171,7 +184,7 @@ public:
 private:
     const frontend::LocalizedTextCache& text_;
     Runtime& runtime_;
-    game::CarCallbackServices<GameActorServices>& cars_;
+    game::CarCallbackServices<GameActorServices>* cars_=nullptr;
     game::SceneActorRegistry<GameSceneActors> actors_{*this};
 };
 
