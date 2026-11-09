@@ -11,8 +11,25 @@
 #include "frontend/opening_subtitles.h"
 #include "frontend/input_setup.h"
 #include "frontend/sound_manager_data.h"
+#include "frontend/sound_listeners.h"
 #include "frontend/pre_mission_flow.h"
+#include "host/game_animations.h"
+#include "host/game_scene_actors.h"
+#include "host/game_spatial_sound.h"
+#include "host/dubbing_sound_services.h"
+#include "frontend/dubbing_sound.h"
+#include "game/human_sound_pool.h"
+#include "game/human_morph_tables.h"
+#include "game/human_ai_event_queue.h"
+#include "game/human_ai_action_pool.h"
+#include "game/actor_proximity_loading.h"
+#include "game/human_input_records.h"
 #include "game/world_views.h"
+#include "game/hud_scene_loading.h"
+#include "game/hud_signal_tables.h"
+#include "game/hud_compass_loading.h"
+#include "game/console_variables.h"
+#include "game/text_render.h"
 #include "frontend/multiplayer_connection.h"
 #include "frontend/startup_modules.h"
 #include "frontend/options_settings.h"
@@ -49,10 +66,12 @@ public:
           portraits_(engine), data_(portraits_, files_, directory_),
           archive_backend_(rw_data), archives_(archive_backend_),
           graphics_directories_(engine), caches_(graphics_directories_), loaded_resources_(engine, caches_),
+          game_animations_(files_, loaded_resources_),
           joysticks_backend_(engine, joy), joysticks_(joysticks_backend_),
           input_backend_(engine, joysticks_backend_), input_(input_backend_),
           input_setup_(engine, joysticks_), settings_backend_(engine),
           sound_backend_(engine, game_views_.sound), sound_catalog_(sound_backend_),
+          dubbing_sound_(sound_backend_,files_),
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
           control_frame_(control_data_, gate_, *this) {
         if (!selected_language.empty()) language_.select(selected_language);
@@ -149,6 +168,7 @@ public:
         multiplayer_request_.reset();
         errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
         errors.attempt([&] { modules_.shutdown(gate_); }); //0048DA80, after data.
+        game_animations_.close();
         std::printf("Shutdown: input/sound/data/module cleanup completed=%u\n",
                     errors.failed() ? 0u : 1u);
         errors.rethrow();
@@ -161,12 +181,45 @@ public:
     std::uint32_t random_word() { return settings_backend_.sound_random_word(); }
     const frontend::LocalizedTextCache& text() const { return text_; }
     LoadedResources& loaded_resources() { return loaded_resources_; }
+    GameAnimations& game_animations() { return game_animations_; }
+    game::HumanSoundVariants& human_sound_variants() {return human_sound_variants_;}
+    game::HumanInputShared& human_input_shared() {return human_input_shared_;}
+    const game::HumanMorphTables& human_morph_tables() {human_morph_tables_.load(files_);return human_morph_tables_;}
+    game::HumanAIEventPool& human_ai_event_pool(){return human_ai_events_;}
+    game::HumanAIAction1Pool& human_ai_action1_pool(){return human_ai_actions1_;}
+    auto& human_perception_record_pool(){return human_perception_records_;}
+    auto& actor_proximity_state(){return actor_proximity_;} //Actual process008AED54, preserves bucket timers across world clear.
+    template<class Resolve,class Type>std::int32_t add_game_sound_listener(EngineFrame* frame,void* callback,Resolve&& resolve,Type&& type) {
+        return frontend::add_sound_listener(sound_data_.runtime,gate_,frame,callback,
+            std::forward<Resolve>(resolve),std::forward<Type>(type)); //00433ED0, SAME process manager.
+    }
+    bool remove_game_sound_listener(std::int32_t slot){return frontend::remove_sound_listener(sound_data_.runtime,gate_,slot);} //00433E80.
+    void set_game_sound_voice_limit(std::uint32_t group,std::uint32_t limit) {
+        frontend::set_sound_voice_limit(sound_data_.runtime,group,limit); //004324C0, SAME client sound manager.
+    }
+    void stop_game_sound_voice(std::int32_t& handle) {
+        frontend::stop_sound_voice(sound_data_.runtime,handle,sound_backend_); //00437340.
+    }
+    template<class World>std::int32_t emit_game_sound(const frontend::SpatialSoundRequest& request,World& world) {
+        GameSpatialSoundServices<World> backend(engine_,game_views_.sound,loaded_resources_,world);
+        return frontend::emit_spatial_sound(sound_data_.runtime,sound_catalog_,&request,gate_,backend);
+    }
+    template<class World>bool play_game_speech(void* actor,EngineFrame* frame,std::int32_t id,float near_range,float far_range,bool subtitles,World& world) {
+        return dubbing_sound_.play_speech(actor,frame,id,near_range,far_range,subtitles,gate_,world);
+    }
+    void update_game_dubbing(std::uint32_t elapsed){dubbing_sound_.update(elapsed);sound_backend_.rethrow_dubbing_cleanup_failure();}
+    void retire_game_dubbing(EngineFrame* frame){dubbing_sound_.retire_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();}
+    void clear_game_dubbing(){dubbing_sound_.clear();sound_backend_.rethrow_dubbing_cleanup_failure();}
     const io::ResourceDirectoryList& model_resource_directories() const { return caches_.client(1); }
     void clear_controller_resources() { loaded_resources_.clear_controller(); }
     void clear_final_resources() { loaded_resources_.clear_final(); }
     //006B6740: resolve the selected profile's real settings each call. No
     // menu-local defaults/copies or cache of a prior selected-profile pointer.
     frontend::ProfileSettings& profile_settings() { return data_.profile().options.settings; }
+    bool human_face_quality_enabled(){return profile_settings().quality_byte(3)!=0;} //006B6740→006B33E0(3).
+    frontend::GameConfiguration& game_configuration(){return data_.game_configuration();}
+    std::uint8_t hud_crosshair_allowed(){return frontend::hud_crosshair_preference(gate_,game_configuration(),profile_settings());}
+
     bool mission_active() const { return game_views_.owner()!=nullptr; } //00698500 actual owner, distinct from loaded camera.
     game::WorldViews& game_views() { return game_views_; }
     input::BindingConfiguration& profile_bindings() { return data_.profile().options.bindings; }
@@ -245,6 +298,9 @@ public:
         return result;
     }
     void apply_bindings() { input::apply_dirty_bindings(profile_bindings(),input_.state(),input_); }
+    void select_game_binding_mode(std::uint32_t mode) { //006B7400→006A8690 on SAME profile/input owners.
+        input::select_binding_mode(profile_bindings(),input_.state(),input_,mode);
+    }
     void reset_bindings(std::uint32_t layout) {
         input::reset_binding_defaults(profile_bindings(),input_.state(),input_,layout);
     }
@@ -352,6 +408,11 @@ public:
         return frontend::load_localized_text_file(text, text_files_, path);
     }
     frontend::OpeningTextStyles& opening_text_styles() { return opening_text_styles_; }
+    game::HudSignalTables& hud_signal_tables(){return hud_signal_tables_;}
+    game::HudCompassShared& hud_compass_state(){return hud_compass_state_;}
+    game::HudClickSound<MenuDriver::Owner>& hud_click_sound(){return hud_click_sound_;}
+    game::ConsoleVariables& game_console_variables(){return game_console_variables_;}
+    game::TextRenderControls& game_text_render_controls(){return game_text_render_controls_;}
     void set_subtitle_driver_volume() {
         settings_backend_.sound_driver_volume(static_cast<float>(
             static_cast<long double>(data_.profile().options.settings.real(8)) * 0.01f));
@@ -401,6 +462,11 @@ public:
         frontend::schedule_sound_movie_fade(sound_data_.fade, sound_data_.settings.movie_scale, target, milliseconds);
     }
     struct CreditsMusic { std::int32_t request; std::uint32_t position; };
+    std::int32_t game_music_request()const{return sound_data_.selection.requested;} //SOUND+70, SAME primary owner.
+    void queue_game_music(std::int32_t track,std::int32_t fade,std::uint32_t position){ //SOUND+6C.
+        frontend::queue_primary_sound_movie(sound_data_.settings,sound_data_.fade,
+            sound_data_.secondary,sound_data_.selection,track,fade,position);
+    }
     CreditsMusic credits_music_position() {
         return {sound_data_.selection.requested,
             frontend::primary_sound_movie_position(sound_data_.settings,sound_backend_)};
@@ -434,6 +500,7 @@ public:
     }
     void close_sound() {
         frontend::CleanupErrors errors;
+        errors.attempt([&] {clear_game_dubbing();});
         errors.attempt([&] { frontend::reset_sound_runtime(sound_data_.runtime, sound_catalog_, files_,
             sound_data_.settings, sound_data_.fade, sound_data_.secondary, sound_data_.selection,
             gate_, frontend::SoundApplicationMode{nullptr, 0}, 1, 0, sound_backend_); });
@@ -482,6 +549,11 @@ private:
     frontend::ExecutableDirectory<StartupLocalizationPlatform> directory_;
     frontend::ApplicationLanguage<StartupLocalizationPlatform> language_;
     frontend::OpeningTextStyles opening_text_styles_;
+    game::HudSignalTables hud_signal_tables_;
+    game::HudCompassShared hud_compass_state_;
+    game::HudClickSound<MenuDriver::Owner> hud_click_sound_;
+    game::ConsoleVariables game_console_variables_;
+    game::TextRenderControls game_text_render_controls_;
     HumanPortraits portraits_;
     frontend::ApplicationStartupData<HumanPortraits> data_;
     StartupArchiveBackend archive_backend_;
@@ -489,6 +561,14 @@ private:
     GraphicsResourceDirectories graphics_directories_;
     io::ResourceDirectoryCaches<GraphicsResourceDirectories> caches_;
     LoadedResources loaded_resources_;
+    GameAnimations game_animations_;
+    game::HumanSoundVariants human_sound_variants_;
+    game::HumanInputShared human_input_shared_;
+    game::ActorProximityState<GameSceneActors::Instance*> actor_proximity_;
+    game::HumanMorphTables human_morph_tables_;
+    game::HumanAIEventPool human_ai_events_;
+    game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
+    game::HumanAIAction1Pool human_ai_actions1_;
     ResourceDirectoryPlatform directory_platform_;
     JoystickBackend joysticks_backend_;
     input::JoystickDevices<JoystickBackend> joysticks_;
@@ -497,8 +577,9 @@ private:
     GraphicsInputSetup<input::JoystickDevices<JoystickBackend>> input_setup_;
     SettingsServices settings_backend_;
     game::WorldViews game_views_; // Borrowed owner/scene; audio stays null until an actual loaded listener.
-    SoundServices sound_backend_;
+    DubbingSoundServices sound_backend_;
     frontend::SoundCatalog<SoundServices> sound_catalog_;
+    frontend::DubbingSound<DubbingSoundServices,ChunkFiles> dubbing_sound_;
     std::uint32_t sound_clock_ = 0;
     ProfileDirectoryPlatform<frontend::ExecutableDirectory<StartupLocalizationPlatform>> profile_platform_;
     frontend::ClientModuleRegistry registry_{};
