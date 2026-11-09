@@ -80,11 +80,13 @@ preserved in actor-activation-map.json; no repeat family census was performed.
 
 ## Remaining boundary and immediate work
 
-GameSceneActors dispatches these four recovered families. Required others reject;
-this is not permission to claim an activated mission or omit actors. Human, Car,
-Door, SupplyBox, StaticWeapon, ExplosivePlace, Animation, Pike, Fowl and Dog still
-need their actual derived receivers. No new function-ledger credit is added for
-partial loading work or engine delegation.
+GameSceneActors now dispatches3/6/8/10/13/22/28/33 (Human requires its actual
+bound loading owner). [Pike/ExplosivePlace continuation](pike-explosive-loading.md)
+supplies actual type28/type22 initial geometry/state/cleanup; required others
+reject. Car, SupplyBox, StaticWeapon, Animation, Fowl and Dog still require
+actual derived receivers. Containing Human/session activation and full P2.2
+remain open; historical Human dependency notes below are superseded by
+[latest Human state/loading source](human-state-loading.md).
 
 Immediate Human work follows0059F2C0/0059FA60. Assembly0059F5A2…0059F5BA proves
 005AB330 initializes the INLINE owner at Human98, with Human pointer and property

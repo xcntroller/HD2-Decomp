@@ -8,30 +8,25 @@ Preserve assets/user changes; focused verification, no repeated broad audits.
 User reopened VSCode after memory shortage: keep heavy compiles sequential.
 
 GameApplicationState still declines loading. No live world, first world frame
-or new desktop acceptance. Ledger:34 complete/1,685 partial (1,680 client/five
+or new desktop acceptance. Ledger:34 complete/1,691 partial (1,686 client/five
 engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
 
-[Door loading/first update](analysis/door-loading.md) now supplies ordinary
-rotating Door6 activation/portal/descriptor lifetime, local presentation packet
-producer/receiver, handle and Door motion, blocked-closing rollback/cursor and
-actual dynamic-only edge probes. All25 captured Tutorial Door records rotate;
-two start open and produce actual pending packets. Scene2 activation dispatch
-now includes6; GameWorldActors exposes actual Door update/packet consumers.
+[Pike/ExplosivePlace loading](analysis/pike-explosive-loading.md) supplies actual
+same-grid colliders, authored on/off state/captions, initial update guards and
+retirement/failure/repeat lifetimes. Captured Tutorial has one stationary Pike
+and three unarmed ExplosivePlaces. Required motion/detonation still rejects.
+[Receipt](analysis/checkpoints/p2.2-pike-explosive-20261109.json):native
+ASan/UBSan/LSan, strict actual-host i386/world composition, app link and27 tracker
+tests pass. Six new partials; four implemented entries absent inventory receive
+no credit. Four temporary artifacts hashed/removed. No world/desktop promotion.
 
-Door query006F78F0/006F3250 is NOT the camera ray: dynamic-only, one-cell range
-expansion both ends, native Z/X/bucket order, different broad phase and inside/
-zero-length sphere handling. Known49/4A requires real receivers and rejects.
-Sliding Door and ordinal>12 campaign protection guard remain unsupported. The
-receiver00601F90 is absent from frozen inventory: implemented, no new credit.
-
-[Receipt](analysis/checkpoints/p2.2-door-loading-20261109.json):eleven new
-partials; native ASan/UBSan/LSan, strict actual-host i386 Door/World composition,
-app compile/link and27 tracker tests pass. Four temporary artifacts hashed/
-removed. Engine geometry/frames, script/localization/audio/lock endpoints are
-boundary doubles; host/world remains compile-only. No desktop promotion.
-All raw exports/ASM remain in WORK; do not repeat the confirmed Door research.
+Previous Door checkpoint89d3d2f:
+[Door loading/first update](analysis/door-loading.md) supports25 captured rotating
+Doors/two initial packets. Source portal/descriptor/packets/first-update and
+separate dynamic-only006F78F0/006F3250 query verified. Sliding/protection49/4A
+remain unsupported. Receiver00601F90 absent inventory earns no credit.
 
 Previous committed checkpoint c9c80fc:
 [shared scene/actor ownership](analysis/world-scene-ownership.md) composes actual
@@ -61,9 +56,9 @@ update/render/failure/repeat/user acceptance. Existing GameWorldScene and
 GameWorldActors are source composition only, uncalled by GameApplicationState.
 Use them rather than create another frame-data/bucket/item service. Next actual
 required derived families include Animation005B3BE0, SupplyBox005FAC80,
-Pike005B9670, ExplosivePlace0060C3B0, FowlGenerator005BA670, StaticWeapon and
+FowlGenerator005BA670, StaticWeapon and
 Car; original activation exports already exist under WORK/actor-activation.
-Current GameSceneActors activation dispatch supports3/6/8/10/13/33 only. Human activation needs its
+Current GameSceneActors activation dispatch supports3/6/8/10/13/22/28/33. Human activation needs its
 actual bound HumanLoadingActivation lifetime before type3 dispatch.
 
 Do not bring all P2.3 simulation/VM opcodes forward merely for P2.2. Research
@@ -91,7 +86,10 @@ Canonical: [world](analysis/mission-world-loading.md),
 ## Execution/evidence
 
 WORK=analysis/work/mission-world-20261103 (ignored durable, not /tmp).
-No pending process. Do not redo confirmed compiler/portal/subtitle research.
+Fowl required exports now under WORK/fowl-loading-required and
+fowl-first-update-required; static fowl-creation-and-packet.asm. Continue these
+validated original receivers, no empty bird list or ground-query substitute.
+Do not redo confirmed compiler/portal/subtitle/Pike/ExplosivePlace research.
 145/146 BASE ISD0 Tutorial programs compile;114 base binding names all have
 source. This is not runtime Patch selection or original execution evidence.
 

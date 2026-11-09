@@ -1,5 +1,14 @@
 # Technical research guide
 
+2026-11-09 latest: [Pike/ExplosivePlace loading](analysis/pike-explosive-loading.md)
+now recovers actual colliders, visibility/state/captions, cold first-update guards
+and retirement using the SAME world owners. One/three captured Tutorial records
+verified with native ASan/UBSan/LSan, strict actual-host i386/world composition,
+app link and27 tracker tests. Six new partials:34 complete/1,691 partial
+(1,686 client/five engine),18,783 frozen. Four absent frozen entries earn no
+credit. Motion/detonation receivers remain explicit failures; no world/desktop
+delivery. Continue required Fowl/other actors and containing session.
+
 2026-11-09 latest: [Door loading/first update](analysis/door-loading.md) now
 recovers actual rotating activation/portal/descriptor lifetime, local packet
 producer/receiver, opening/blocked closing and distinct dynamic-only edge query.

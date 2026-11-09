@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-09",
+  "scope": "Full first P2.2 implementation checkbox; Pike/ExplosivePlace loading and cold first-update source checkpoint. Continue required other actors and containing world.",
+  "source_only": true,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 6,
+  "added": [
+    "005b97b0",
+    "005b9bc0",
+    "005b9470",
+    "0060c3b0",
+    "0060c6b0",
+    "0060d380"
+  ],
+  "inputs": [
+    {
+      "path": "analysis/work/startup-runtime/run/loading-inputs-90f74f210e9f4150a123e200e31f523a/missions_Tutorial_scene2.bin",
+      "bytes": 3684095,
+      "sha256": "89d9e37a57ad956804fc45e4f9790078a8d3999b14d41a0fca6ba94977ed4773"
+    },
+    {
+      "path": "analysis/work/startup-runtime/run/loading-inputs-90f74f210e9f4150a123e200e31f523a/missions_Tutorial_actors.bin",
+      "bytes": 21064,
+      "sha256": "b98bd7f6e73047fa2dc25ef3725cb8ba13212d6e41f2f0a3aa3e822057d6453d"
+    }
+  ],
+  "verification": {
+    "native_sanitizers": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/pike-explosive-native-run.log",
+      "coverage": "Actual Pike/ExplosivePlace/common actor/properties/dynamic grid; one/three captured records; Dummy/aggregate scaling and matrices, state/captions/timers, cold update, repeat and partial insertion/removal/visibility failures. Engine/frame/math/localization/audio doubles."
+    },
+    "actual_host_i386": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/pike-explosive-i386-build.log",
+      "boundary": "Strict actual-host GameActorServices and same-world catalogue/activation/collision composition; compile only."
+    },
+    "application_build": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/pike-explosive-app-build.log",
+      "boundary": "i386 compile/link only."
+    },
+    "tracker_tests": {
+      "result": "PASS",
+      "count": 27,
+      "log": "analysis/work/mission-world-20261103/pike-explosive-tracker-tests.log"
+    },
+    "tracker_check": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/pike-explosive-tracker-check.log"
+    }
+  },
+  "temporary_artifacts": {
+    "removed": true,
+    "count": 4,
+    "records": [
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-pike-explosive-audit.cpp",
+        "bytes": 8860,
+        "sha256": "785945d6dc4d67699674baf81d24770dbf4327e6f99abc18c4ef7929dab4c2d2"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-pike-explosive-audit",
+        "bytes": 2560024,
+        "sha256": "7d3b1bb5f5607c3f61b58d44ee4c98e0ad55b6a5f29e8e98e1feb6787b00d4f7"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-pike-explosive-host.cpp",
+        "bytes": 1405,
+        "sha256": "5bad2e057f888a59c4afb151548358807eff12d4b067cacfb04d35d0c9470245"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-pike-explosive-host.o",
+        "bytes": 599237,
+        "sha256": "d4456dd05980cab05b8d4851ae95c9c95b714910cac79676500a40a7fd121acb"
+      }
+    ]
+  },
+  "not_credited": [
+    "005b9670,005b9340,0060c330,0060c370 absent frozen inventory despite implemented bounded source",
+    "Engine geometry/frame/quaternion/sound delegates",
+    "Moving Pike and detonation/packet receivers researched or excluded, not implemented",
+    "Source-only host composition adapters"
+  ],
+  "remaining": "Other required actors and actual containing Human/session/FPV/HUD/SOUND/VM/Car owners, loader/first-frame/failure/repeat and user desktop acceptance; GameApplicationState still declines loading."
+}

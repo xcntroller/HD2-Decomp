@@ -131,6 +131,8 @@ public:
             case 8:static_cast<game::LadderSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
             case 10:static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor).activate(authority,activation);break;
             case 13:static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor).activate(authority,activation,collisions);break;
+            case 22:static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
+            case 28:static_cast<game::PikeSceneActor<GameActorServices>&>(actor).activate(authority,activation,collisions);break;
             case 33:static_cast<game::NullSceneActor<GameActorServices>&>(actor).activate(authority,activation);break;
             default:throw std::runtime_error("Required Scene2 actor activation is unavailable: "+std::to_string(actor.base().type()));
             }
@@ -150,6 +152,8 @@ public:
         case 8:static_cast<game::LadderSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
         case 10:static_cast<game::SpawnPointSceneActor<GameActorServices>&>(actor).deactivate(authority,activation);break;
         case 13:static_cast<game::SwitchSceneActor<GameActorServices,Runtime>&>(actor).deactivate(authority,activation,collisions);break;
+        case 22:static_cast<game::ExplosivePlaceSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
+        case 28:static_cast<game::PikeSceneActor<GameActorServices>&>(actor).deactivate(authority,activation,collisions);break;
         case 33:static_cast<game::NullSceneActor<GameActorServices>&>(actor).deactivate(authority,activation);break;
         default:throw std::runtime_error("Required Scene2 actor deactivation is unavailable: "+std::to_string(actor.base().type()));
         }

@@ -657,3 +657,10 @@ app link. English Dialogs.bin3250 records parsed; portal routing preserves actua
 directed two-hop/.125 closed attenuation.14 new partials/two extended, no whole
 function/desktop promotions. Continue containing-world and required actor/physics
 loading dependencies; save-restore deferred queue is not an initial-load blocker.
+
+2026-11-09: [Pike/ExplosivePlace loading](pike-explosive-loading.md) now supplies
+actual same-grid collider ownership, authored visibility/captions, cold update
+and failure/repeat cleanup. One/three captured Tutorial records, native
+ASan/UBSan/LSan, strict actual-host i386/world composition, app link and27 tracker
+tests pass. Six new partials; four implemented entries absent frozen inventory
+earn no credit. Continue required other actors and containing-world integration.

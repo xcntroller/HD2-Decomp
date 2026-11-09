@@ -23104,6 +23104,78 @@
         "analysis/door-loading.md",
         "analysis/checkpoints/p2.2-door-loading-20261109.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005b97b0",
+      "status": "partial",
+      "coverage": "Pike Dummy/aggregate collision bounds/centre/radius, local-scale normalized owned matrices, actual full-world sphere and same-grid insert/move.",
+      "limitations": "Source-only typed STL/RAII values and real required runtime endpoints replace original object/container/refcount/SEH/virtual ABI. Engine/frame/matrix/localization/audio endpoints are boundary doubles in native verification; actual host is compile-only. Pike movement/packets/obstruction and ExplosivePlace detonation/packets remain unrecovered. No integrated world, first rendered frame, desktop or whole-body equivalence claim; delegated bodies get no credit.",
+      "evidence": [
+        "recovered/game/simple_scene_actors.h",
+        "analysis/pike-explosive-loading.md",
+        "analysis/checkpoints/p2.2-pike-explosive-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b9bc0",
+      "status": "partial",
+      "coverage": "Pike common-first retirement, saved quaternion restore/update, descriptor removal and actual sound voice stop endpoint with failure-safe descriptor lifetime.",
+      "limitations": "Source-only typed STL/RAII values and real required runtime endpoints replace original object/container/refcount/SEH/virtual ABI. Engine/frame/matrix/localization/audio endpoints are boundary doubles in native verification; actual host is compile-only. Pike movement/packets/obstruction and ExplosivePlace detonation/packets remain unrecovered. No integrated world, first rendered frame, desktop or whole-body equivalence claim; delegated bodies get no credit.",
+      "evidence": [
+        "recovered/game/simple_scene_actors.h",
+        "analysis/pike-explosive-loading.md",
+        "analysis/checkpoints/p2.2-pike-explosive-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b9470",
+      "status": "partial",
+      "coverage": "Pike presentation first-update wrapping188 timer/signed guard and stationary return; missing motion/audio explicitly rejects.",
+      "limitations": "Source-only typed STL/RAII values and real required runtime endpoints replace original object/container/refcount/SEH/virtual ABI. Engine/frame/matrix/localization/audio endpoints are boundary doubles in native verification; actual host is compile-only. Pike movement/packets/obstruction and ExplosivePlace detonation/packets remain unrecovered. No integrated world, first rendered frame, desktop or whole-body equivalence claim; delegated bodies get no credit.",
+      "evidence": [
+        "recovered/game/simple_scene_actors.h",
+        "analysis/pike-explosive-loading.md",
+        "analysis/checkpoints/p2.2-pike-explosive-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060c3b0",
+      "status": "partial",
+      "coverage": "ExplosivePlace common/once-only actual geometry descriptor, actual authored on/off borrowers and original initial state selector.",
+      "limitations": "Source-only typed STL/RAII values and real required runtime endpoints replace original object/container/refcount/SEH/virtual ABI. Engine/frame/matrix/localization/audio endpoints are boundary doubles in native verification; actual host is compile-only. Pike movement/packets/obstruction and ExplosivePlace detonation/packets remain unrecovered. No integrated world, first rendered frame, desktop or whole-body equivalence claim; delegated bodies get no credit.",
+      "evidence": [
+        "recovered/game/simple_scene_actors.h",
+        "analysis/pike-explosive-loading.md",
+        "analysis/checkpoints/p2.2-pike-explosive-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060c6b0",
+      "status": "partial",
+      "coverage": "ExplosivePlace state4-before-common retirement and partial-publication/visibility failure descriptor cleanup.",
+      "limitations": "Source-only typed STL/RAII values and real required runtime endpoints replace original object/container/refcount/SEH/virtual ABI. Engine/frame/matrix/localization/audio endpoints are boundary doubles in native verification; actual host is compile-only. Pike movement/packets/obstruction and ExplosivePlace detonation/packets remain unrecovered. No integrated world, first rendered frame, desktop or whole-body equivalence claim; delegated bodies get no credit.",
+      "evidence": [
+        "recovered/game/simple_scene_actors.h",
+        "analysis/pike-explosive-loading.md",
+        "analysis/checkpoints/p2.2-pike-explosive-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0060d380",
+      "status": "partial",
+      "coverage": "ExplosivePlace equal-state/missing-pair policy, states0..4 visibility/countdown/caption/collision transitions and unknown-state model update.",
+      "limitations": "Source-only typed STL/RAII values and real required runtime endpoints replace original object/container/refcount/SEH/virtual ABI. Engine/frame/matrix/localization/audio endpoints are boundary doubles in native verification; actual host is compile-only. Pike movement/packets/obstruction and ExplosivePlace detonation/packets remain unrecovered. No integrated world, first rendered frame, desktop or whole-body equivalence claim; delegated bodies get no credit.",
+      "evidence": [
+        "recovered/game/simple_scene_actors.h",
+        "analysis/pike-explosive-loading.md",
+        "analysis/checkpoints/p2.2-pike-explosive-20261109.json"
+      ]
     }
   ]
 }

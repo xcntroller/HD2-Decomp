@@ -25,7 +25,7 @@ public:
     GameWorldActors(Scene& scene,Consumers& consumers,game::MissionNavigation& navigation,
                     const frontend::LocalizedTextCache& text,const frontend::PreMissionItemCatalogue& catalogue,
                     const std::string& suffix,ChunkFiles& files,FrameClockPlatform& clock,const std::uint32_t& game_word28)
-        :scene_(scene),consumers_(consumers),text_(text),models_(scene.frames(),catalogue,suffix,game_word28),
+        :scene_(scene),consumers_(consumers),text_(text),catalogue_(catalogue),models_(scene.frames(),catalogue,suffix,game_word28),
          items_(scene.frames(),models_,catalogue,files,clock,game_word28,consumers),
          runtime_(scene.frames(),*this,navigation,text,scene.buckets(),bodies_,items_),
          physics_(scene.frames(),*this,scene.buckets(),runtime_,scene.effects().frame_fades()){}
@@ -36,6 +36,13 @@ public:
     auto& rigid_bodies(){require_open();return bodies_;}
     std::uint32_t mode_flags()const{return consumers_.mode_flags();}
     std::string actor_localized(std::uint32_t id){return frontend::lookup_localized_text(text_,static_cast<std::int32_t>(id));}
+    std::string actor_item_caption(std::uint32_t id) {
+        if(id>static_cast<std::uint32_t>(std::numeric_limits<std::int32_t>::max()))throw std::runtime_error("ExplosivePlace item definition is unavailable");
+        const auto* item=catalogue_.item(static_cast<std::int32_t>(id));
+        if(!item)throw std::runtime_error("ExplosivePlace requires its actual item definition for the armed caption");
+        return actor_localized(item->caption);
+    }
+    void stop_actor_sound_voice(std::int32_t& handle){consumers_.stop_actor_sound_voice(handle);}
     std::uint32_t session_mission_ordinal()const{return consumers_.session_mission_ordinal();}
     auto& session_broadcast_packets(){return consumers_.session_broadcast_packets();}
     void door_script_use(GameActorServices::Frame frame,std::uint32_t command){consumers_.door_script_use(frame,command);}
@@ -69,7 +76,8 @@ public:
     }
 private:
     void require_open()const{if(closed_)throw std::logic_error("World actor owners are closed");}
-    Scene& scene_;Consumers& consumers_;const frontend::LocalizedTextCache& text_;typename Body::Registry bodies_;GameRuntimeItemServices models_;
+    Scene& scene_;Consumers& consumers_;const frontend::LocalizedTextCache& text_;const frontend::PreMissionItemCatalogue& catalogue_;
+    typename Body::Registry bodies_;GameRuntimeItemServices models_;
     Items items_;Runtime runtime_;Physics physics_;bool closed_=false;
 };
 } //namespace hd2::host
