@@ -187,6 +187,64 @@
       "evidence": [
         "analysis/work/networking/server-startup/007065a0.json"
       ]
+    },
+    {
+      "program": "server",
+      "entry": "007a23e0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/server_commands.h",
+        "recovered/networking/server_commands.cpp"
+      ],
+      "contract": "All launcher settings, idle-mode rules and distinct owned controller/admin requests",
+      "exclusions": "Cold mode7 only; actual bootstrap defaults, network/controller receivers and active-session/game commands excluded.",
+      "evidence": [
+        "analysis/work/networking/server-startup/007a23e0.json",
+        "analysis/work/networking/server-lifecycle/007a23e0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "007a4080",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/server_commands.h",
+        "recovered/networking/server_commands.cpp"
+      ],
+      "contract": "Read-only command files with original scanset/whitespace/EOF order and nested exec",
+      "exclusions": "Native safe length/NUL/depth/cycle handling; no original FILE/CRT ABI or UI logging.",
+      "evidence": [
+        "analysis/work/networking/server-command/007a4080.json",
+        "analysis/work/networking/server-settings-model/007a4080.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006ed040",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/server_commands.h",
+        "recovered/networking/server_commands.cpp"
+      ],
+      "contract": "Style change copies22 selected profile rules and retains rotation",
+      "exclusions": "Actual profile owner is required input; no original options object ABI.",
+      "evidence": [
+        "analysis/work/networking/server-settings/006ed040.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006ed2e0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/server_commands.h",
+        "recovered/networking/server_commands.cpp"
+      ],
+      "contract": "Loaded catalogue/style gate, reverse case-insensitive lookup and owned rotation append",
+      "exclusions": "Only recovered map metadata copied; original full0x48 descriptor/gameplay tail and ABI excluded.",
+      "evidence": [
+        "analysis/work/networking/server-settings/006ed2e0.json"
+      ]
     }
   ]
 }

@@ -3,7 +3,7 @@ WINDOWS_CXX ?= i686-w64-mingw32-g++
 CPPFLAGS := -I..
 CXXFLAGS := -std=c++17 -O2 -Wall -Wextra -Wpedantic -Werror
 BUILD_DIR := ../build/networking
-SOURCES := command_tokens.cpp launcher_config.cpp
+SOURCES := command_tokens.cpp launcher_config.cpp server_commands.cpp
 
 .PHONY: all windows clean
 all: $(SOURCES:%.cpp=$(BUILD_DIR)/%.o)

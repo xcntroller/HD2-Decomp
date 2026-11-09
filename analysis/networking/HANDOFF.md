@@ -7,18 +7,25 @@ DLL, Proton or Windows-fixture execution. Ghidra/build jobs sequential. No subag
 N0 complete as **static research**: [architecture](architecture.md),
 [client boundary](client-boundary.md), [providers](discovery-providers.md),
 [binary manifest](binary-manifest.json), separate server/launcher inventories and
-[evidence receipt](evidence.json). Ledger: nine launcher/three server partials, zero complete.
+[evidence receipt](evidence.json). Ledger: nine launcher/seven server partials, zero complete.
 No independent server, live query, session interoperability or desktop acceptance.
 
-Latest source checkpoint: [configuration/command foundation](configuration-source.md).
-Native strict build, Windows i386 objects/fixture link and native ASan/UBSan/LSan
-pass; original Default.cfg and65-record keyword oracle plus30000 mutation cases.
-Temporary audit sources/binaries hashed/removed. No runtime product is exposed.
+Latest source checkpoint: [cold server settings / command files](server-settings-source.md).
+All launcher-emitted settings, style rule reset, loaded-catalogue rotation append,
+owned rule/host/quit/admin requests and exact exec traversal are reconstructed.
+Controller/transport delivery remains required; no synthetic host/world success.
+Native strict objects, Windows i386 objects/fixture link and native ASan/UBSan/LSan
+pass: original Default.cfg +30 base catalogue entries,12000 C stdio differentials,
+25000 mutations and focused limit/failure/repeat checks. Temporary audits hashed/
+removed. [Receipt](server-settings-verification.json). No runtime product exposed.
 
-Next full checkbox: [server settings ingestion and command files](plan.md).
-Recover the complete cold-start dispatch/default/map/exec boundary before coding.
-New ignored exports: `server-settings` and `launcher-defaults`.
-Do not invent a ready world or successful networking calls.
+Next full checkbox: [startup/shutdown and actual network initialization](plan.md).
+Use the original bootstrap/profile/controller owners and DirectPlay acquisition/
+failure/cleanup; do not invent initial server defaults or successful receivers.
+Relevant durable ignored exports: server-startup, server-command, server-lifecycle,
+server-owners, server-settings, server-settings-model. Client addresses
+must not be reused in server mappings; follow canonical thunk targets.
+Do not execute original programs/DLLs, Proton or Windows fixtures.
 
 Original installation is the main worktree's `Hidden and Dangerous 2`, read only.
 New Ghidra projects are ignored `analysis/work/networking/ghidra-projects`.

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "source-only cold settings and command-file checkpoint; no session or desktop acceptance",
+  "checks": [
+    "strict native C++17 objects",
+    "strict Windows i386 objects and complete temporary-fixture link; not executed",
+    "native ASan/UBSan/LSan production sources and original config/catalogue",
+    "12000 independent C stdio differential files",
+    "25000 malformed/truncated input mutations",
+    "explicit missing input/nested exec/cycle/depth/repeat/ownership checks"
+  ],
+  "limits": "Initial state and profile/controller/network receivers are supplied fixtures or remain absent; actual game descriptor tails are excluded.",
+  "inputs": [
+    {
+      "name": "../H&D2 Decomp 4/Hidden and Dangerous 2/HD2DS.exe",
+      "sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152"
+    },
+    {
+      "name": "../H&D2 Decomp 4/Hidden and Dangerous 2/ServerLauncher.exe",
+      "sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb"
+    },
+    {
+      "name": "../H&D2 Decomp 4/Hidden and Dangerous 2/ServerConfigs/Default.cfg",
+      "sha256": "04d52b32f3a22e4af94c33ddef091cfee837297d5baa1b6c7e90ee1426bbbe01"
+    },
+    {
+      "name": "../H&D2 Decomp 4/Hidden and Dangerous 2/mpmaplist.txt",
+      "sha256": "94c0a744063e0ad5d5c7adc8e1b592fc3a1af577d6d48506b2d81e4927e1a23b"
+    }
+  ],
+  "log_sha256": "f9c74be796479343f5ee427e66b3c1d8088bb721063ba9f26383cc30d114de40",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/server-settings-audit.cpp",
+      "sha256": "63b514f56f0f1f9a4c3c0140203b1ca668cf2cb0aebe5b6fbba7e20f776dab6f"
+    },
+    {
+      "path": "analysis/work/networking/server-settings-audit",
+      "sha256": "67bc6d0d3d85a6c9d87d773d38646a10bf758905c6f35e9bd850d046b9d8741b"
+    },
+    {
+      "path": "analysis/work/networking/server-settings-audit.exe",
+      "sha256": "b2cb10c6bbfdb18c7b8cdf57d40c00a9cc651a61c89944d8ad5a6889140c3832"
+    }
+  ]
+}
