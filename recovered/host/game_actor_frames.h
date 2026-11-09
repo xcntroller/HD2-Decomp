@@ -3,6 +3,7 @@
 
 #include "host/game_car_frames.h"
 #include "game/human_face_mesh_pool.h"
+#include "game/mission_script_frame_snapshots.h"
 
 namespace hd2::host {
 
@@ -12,6 +13,17 @@ class GameActorFrames : public GameCarFrames {
 public:
     using GameCarFrames::GameCarFrames;
     MenuDriver::Owner retain_actor_frame(Frame frame) {return retain(frame);}
+    game::MissionScriptLightSnapshot script_light_snapshot(Frame light)const {
+        return {field<std::array<float,4>>(light,0x1a0),field<std::uint32_t>(light,0x16c)};
+    }
+    void script_restore_light(Frame light,const game::MissionScriptLightSnapshot& original) {
+        call<void>(light,0xb0,original.colour.data());call<void>(light,0x8c,original.parameter);
+    }
+    void script_light_enabled(Frame light,bool enabled) {
+        if(enabled)call<void>(light,0x94,std::uint32_t{0});
+        call<void>(light,0xac,std::uint32_t(enabled),std::uint32_t{0});update_scene_object(light);
+    }
+    void effects_light_visibility(Frame light,bool enabled){call<void>(light,0xac,std::uint32_t(enabled),std::uint32_t{0});}
     MenuDriver::Owner create_prepared_human_model(){return driver_.create(9);}
     void link_prepared_human_root(Frame model) {
         if(const auto root=field<Frame>(scene_.frame(),0x1f8)) {

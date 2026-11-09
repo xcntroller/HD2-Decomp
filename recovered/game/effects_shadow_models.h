@@ -2,6 +2,7 @@
 #define HD2_GAME_EFFECTS_SHADOW_MODELS_H
 
 #include "game/effects_environment.h"
+#include "game/effects_fade.h"
 #include "frontend/cleanup.h"
 #include <cmath>
 #include <string>
@@ -17,6 +18,7 @@ class EffectsShadowModels {
 public:
     using Frame=typename Frames::Frame;
     EffectsShadowModels(Frames& frames,const EffectsEnvironment& environment):frames_(frames),environment_(environment) {}
+    auto& fade(){return fade_;}const auto& fade()const{return fade_;}
     bool model_opacity(std::uint32_t mode,Frame model,float value) { //00486DF0.
         if(!(mode&2)||!model)return false;
         frames_.effects_model_opacity(model,value);return true;
@@ -50,6 +52,9 @@ public:
     }
     Frame human_eye_material(Frame model,std::vector<Frame>& groups) { //0048A780 shares actual0048A3F0 finder.
         return collect_eye_groups(model,groups,0);
+    }
+    void frame_visibility(Frame frame,bool visible,std::uint32_t mask) { //004865E0, children first in reverse order.
+        set_frame_visibility(frame,visible,mask,0);
     }
     Frame build(std::uint32_t mode,Frame model,bool human) {
         if(!(mode&2)||!model)return Frame{};
@@ -86,6 +91,17 @@ public:
         return shadow; //Factory reference releases; model+7C retains its own reference.
     }
 private:
+    void set_frame_visibility(Frame frame,bool visible,std::uint32_t mask,unsigned depth) {
+        if(depth>1024)throw std::runtime_error("Effects visibility hierarchy exceeds native bounded traversal");
+        for(auto count=frames_.actor_child_count(frame);count;)set_frame_visibility(frames_.actor_child(frame,--count),visible,mask,depth+1);
+        const auto kind=frames_.frame_kind(frame);
+        constexpr std::array<std::uint32_t,17> masks{{0,1,2,4,8,0x10,0x20,0x40,0x100,0x80,0x400,0x200,0x800,0,0x1000,0x2000,0x4000}};
+        if(kind>=masks.size()||!(mask&masks[kind]))return;
+        frames_.object_visible(frame,visible);
+        //004865E0 calls light+AC even when enabling, without light+94(0).
+        if(kind==4)frames_.effects_light_visibility(frame,visible);
+        frames_.update_scene_object(frame);
+    }
     static void lower_ascii(std::string& value){for(auto& byte:value)if(byte>='A'&&byte<='Z')byte=static_cast<char>(byte+('a'-'A'));}
     Frame collect_eye_groups(Frame frame,std::vector<Frame>& groups,unsigned depth) { //0048A3F0.
         if(depth>1024)throw std::runtime_error("Human eye frame hierarchy exceeds traversal bounds");
@@ -114,7 +130,7 @@ private:
         }
         return Frame{};
     }
-    Frames& frames_;const EffectsEnvironment& environment_;
+    Frames& frames_;const EffectsEnvironment& environment_;EffectsFade fade_;
 };
 
 //CD0's00758BF0/00758C60 shadow lifetime, native DD0+A9C. The shadow module

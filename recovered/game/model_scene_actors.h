@@ -4,6 +4,7 @@
 #include "game/scene_actor.h"
 #include "game/actor_initial_properties.h"
 #include "game/supply_box_geometry.h"
+#include "game/animation_actor_collisions.h"
 #include <exception>
 #include <optional>
 
@@ -42,6 +43,7 @@ public:
     explicit AnimationSceneActor(Backend& backend) : SceneActor<Backend>(backend,25),
         properties(initial_animation_properties()) {} //005B3740, cold005B4790.
     ~AnimationSceneActor() override { //005B3930/005B4790, before common frame release.
+        collisions.reset(); //Actual E0 record destructors remove dynamic descriptors before model retirement.
         const auto frame=this->base_.frame();
         if(frame) {
             cleanup([&] {this->backend_.object_visible(frame,true);});
@@ -53,14 +55,33 @@ public:
         return this->base_.initialize_frame(frame)&&this->backend_.frame_kind(frame)==9;
     }
     void load(SerializedBytes& bytes) override {properties.load(bytes);} //005B5AF0.
+    void script_visibility(bool enabled) { //005B54C0, actual E0 owner.
+        if(!collisions)throw std::runtime_error("Animation visibility requires its actual BODYCOLB collision owner");
+        if(enabled)collisions->rebuild();else collisions->clear();
+    }
     AnimationActorProperties properties;
     std::vector<std::uint32_t> fieldc4;
+    std::unique_ptr<AnimationActorCollisionLifetime> collisions;
     std::uint32_t field98=0,fieldd4=0,fieldd8=3;
     bool flaga0=false,flaga1=false;
 private:
     template<class Work> void cleanup(Work&& work) noexcept {
         try {work();} catch(...) {this->backend_.record_actor_cleanup_failure(std::current_exception());}
     }
+};
+
+template<class Frames,class Collisions>class AnimationActorVisibility {
+public:
+    using Actor=AnimationSceneActor<Frames>;
+    AnimationActorVisibility(Frames& frames,Collisions& collisions):frames_(frames),collisions_(collisions){}
+    void set_animation_actor_visibility(SceneActor<Frames>& base,bool enabled) {
+        auto* actor=dynamic_cast<Actor*>(&base);
+        if(!actor||actor->base().type()!=25)throw std::runtime_error("Animation visibility requires the actual animation actor");
+        if(!actor->collisions)actor->collisions=std::make_unique<AnimationActorCollisions<Frames,Collisions,Actor>>(frames_,collisions_,*actor);
+        actor->script_visibility(enabled);
+    }
+private:
+    Frames& frames_;Collisions& collisions_;
 };
 
 template<class Backend>

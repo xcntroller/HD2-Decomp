@@ -80,8 +80,9 @@ substrings suppress appending the extension. Null/empty removes; an existing
 context with a nonempty script runs exit, destroys and swap-pops, then returns
 false instead of replacing it. Failure destroys the context/EC binding before
 notification. Reverse context traversal supports the native cutscene filter.
-The containing module's deferred frame queue, timer, loaded gate and actual
-activation/global variable stores remain to compose.00428490 is absent from the
+The [module/visibility continuation](mission-script-receivers.md) now supplies
+activation/global variables, selected VM/world and visibility/finish receivers.
+Deferred frame/timer, remaining commands and actual runtime composition remain.00428490 is absent from the
 frozen inventory and receives no new credit.
 
 ## Evidence and verification

@@ -1,0 +1,129 @@
+{
+  "date": "2026-11-09",
+  "scope": "Full P2.2 first implementation checkbox; source script module/visibility/animation collision subsystem. Continue the entire checkbox.",
+  "source_only": true,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "original_entries": [
+    "004202f0",
+    "0041cfa0",
+    "00423670",
+    "00423bf0",
+    "00423b40",
+    "00423980",
+    "00424590",
+    "0042b650",
+    "00428c80",
+    "004622c0",
+    "005a63b0",
+    "005b54c0",
+    "005b3ac0",
+    "005b4dc0",
+    "005b4de0",
+    "005b4850",
+    "005b48b0",
+    "004865e0",
+    "00486b30",
+    "00416e10",
+    "0041e3f0",
+    "00427730",
+    "005b4790",
+    "004860b0"
+  ],
+  "ledger_added_partial_client": 19,
+  "added": [
+    "004202f0",
+    "0041cfa0",
+    "00423670",
+    "00423bf0",
+    "00423b40",
+    "00423980",
+    "00424590",
+    "0042b650",
+    "00428c80",
+    "004622c0",
+    "005a63b0",
+    "005b54c0",
+    "005b3ac0",
+    "005b4dc0",
+    "005b4de0",
+    "005b4850",
+    "005b48b0",
+    "004865e0",
+    "00486b30"
+  ],
+  "extended": [
+    "00416e10",
+    "0041e3f0",
+    "00427730",
+    "005b4790",
+    "004860b0"
+  ],
+  "not_credited": [
+    "004270d0/00427b80/00428490 absent frozen inventory",
+    "00424540/00424580 existing packet-builder delegation, no separately credited implementation",
+    "004274a0 rotation producer researched only",
+    "007866d0 delegates existing equipment refresh",
+    "Required containing Human/FPV/runtime factory and notifications",
+    "All merely exported bodies and delegated engine functions"
+  ],
+  "verification": {
+    "native_sanitizers": {
+      "result": "PASS",
+      "tools": "ASan/UBSan/LSan; detect_leaks=1, halt_on_error=1",
+      "build_log": "analysis/work/mission-world-20261103/script-receivers-native-build.log",
+      "run_log": "analysis/work/mission-world-20261103/script-receivers-native-run.log",
+      "boundary": "Fixture engine/world/Human inline/FPV doubles; no containing runtime or desktop claim."
+    },
+    "actual_host_i386": {
+      "result": "PASS",
+      "flags": "-std=c++17 -Wall -Wextra -Wpedantic -Werror",
+      "log": "analysis/work/mission-world-20261103/script-receivers-i386-build.log",
+      "boundary": "Actual GameActorServices/ChunkFiles/EffectsShadowModels/Animation actor/buckets and script module templates; required Runtime/Human inline/FPV declarations only. Compile only."
+    },
+    "application_compile_link": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/script-receivers-app-build.log",
+      "sha256": "563c133aa0e6af313bbe1ebb4d115c12d495e35a6de6092f6b67d39d1e67da19",
+      "executed": false
+    },
+    "ledger_readme": {
+      "result": "PASS",
+      "tests": 27,
+      "log": "analysis/work/mission-world-20261103/script-receivers-tracker-tests.log",
+      "totals": {
+        "complete": 34,
+        "partial": 1651,
+        "partial_client": 1646,
+        "partial_engine": 5,
+        "frozen": 18783
+      }
+    }
+  },
+  "temporary_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-receivers-audit.cpp",
+      "size": 21277,
+      "sha256": "c11a201a97b1dc44f3073da49e9b61082f6b2e530e07942f43bbca74e65b2e28",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-receivers-audit",
+      "size": 9738136,
+      "sha256": "c037d487e2309becdded30aa1a080183a404dacd96202dfd06e317b0102e0309",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-receivers-host.cpp",
+      "size": 3703,
+      "sha256": "db67ca2568489dc1781ddadfc3e39f77012c5895cca5b1bc18747e549e2cb045",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-receivers-host.o",
+      "size": 2075187,
+      "sha256": "396162994d3c21700291b85adca187f5ae9c0c5775d5c110ac01a271d8254d4e",
+      "removed": true
+    }
+  ]
+}

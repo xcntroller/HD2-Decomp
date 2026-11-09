@@ -36,6 +36,7 @@ public:
     std::int32_t pc()const{return pc_;}
     bool ready()const{return ready_;}
     bool ended()const{return ended_;}
+    std::size_t slot_count()const{return frame_slots_.size();} //004202F0 pool90 count.
     bool during_cutscene()const{return flags_[5];} //Native byte9, module00428490 filter.
     std::uint32_t elapsed_work()const{return work_microseconds_;} //NativeD0.
     Frame slot(std::size_t n)const{return frame_slots_.at(n)?frame_slots_[n]->get():Frame{};}

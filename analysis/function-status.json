@@ -9108,14 +9108,16 @@
       "program": "client",
       "entry": "005b4790",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005b4790: Known cold constructor/property fields for required actor families, without unwritten native padding or unsupported runtime producers. Required model/supply actor construction, property/model loading and matching cleanup.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 005b4790: Known cold constructor/property fields for required actor families, without unwritten native padding or unsupported runtime producers. Required model/supply actor construction, property/model loading and matching cleanup. Retire owned BODYCOLB dynamic descriptors before animation model visibility/update and common actor frame release.",
+      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "recovered/game/actor_initial_properties.h",
         "recovered/game/model_scene_actors.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json"
       ]
     },
     {
@@ -10715,13 +10717,16 @@
       "program": "client",
       "entry": "004860b0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004860b0: Actual environment record/data loading into the shared effect owner.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 004860b0: Actual environment record/data loading into the shared effect owner. Own cold fade target/current/rate/colour alongside existing recovered GEffects environment/shadow source.",
+      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "recovered/game/effects_environment.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/effects_shadow_models.h"
       ]
     },
     {
@@ -22230,12 +22235,15 @@
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases.",
-      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_context.h",
-        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_module_loading.h"
       ]
     },
     {
@@ -22410,24 +22418,257 @@
       "program": "client",
       "entry": "0041e3f0",
       "status": "partial",
-      "coverage": "Source mission script pending signal consumption predicate only.",
-      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "coverage": "Source mission script pending signal consumption predicate only. Additional player range/all-player/dead/live/lost predicates and _LoadGameValue, same actual roster/health/remote gating and integer/x87/FLOAT boundaries.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_context.h",
-        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_player_predicates.h"
       ]
     },
     {
       "program": "client",
       "entry": "00427730",
       "status": "partial",
-      "coverage": "Source mission script actual-factory source load compile begin notify and exit-remove owner.",
-      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "coverage": "Source mission script actual-factory source load compile begin notify and exit-remove owner. Actual EC-owned lookup and reverse Exit/destruction pass for module finish; reject executing self-assignment.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_contexts.h",
-        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json",
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004202f0",
+      "status": "partial",
+      "coverage": "Retained frame pool count used for native invalid-index VM branches.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_context.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0041cfa0",
+      "status": "partial",
+      "coverage": "Read the SAME frame EC word1 and validate its containing script module owner.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_contexts.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00423670",
+      "status": "partial",
+      "coverage": "Capture once, OR later masks and retain actual frame/parent/local pose/visibility/light snapshot for SetOn masks20/30.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_frame_snapshots.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00423bf0",
+      "status": "partial",
+      "coverage": "Restore snapshot visibility, parent mode0, update/light colour and parameter/update, then retire frame and parent references.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_frame_snapshots.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00423b40",
+      "status": "partial",
+      "coverage": "Reverse-find one frame snapshot, restore through its actual destructor and swap/pop without the module finish prepass.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_frame_snapshots.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00423980",
+      "status": "partial",
+      "coverage": "Borrowed pending light queue reverse identity deduplication before append.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_visibility.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00424590",
+      "status": "partial",
+      "coverage": "Consume actual eight-bit script opcode before presentation gate and dispatch SetOn payload; null stream returns false.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_visibility.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0042b650",
+      "status": "partial",
+      "coverage": "SetOn decoder scene-before-driver lookup, actual light enable/reset, retained snapshot, same Human DD0/230 and FPV or model/animation/effects visibility.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_model_visibility.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00428c80",
+      "status": "partial",
+      "coverage": "Copy256 current module script variable DWORDs to their previous snapshot.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_variables.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004622c0",
+      "status": "partial",
+      "coverage": "Count nonnull actual borrowed roster Humans with signed healthEC greater than zero.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/human_player_roster.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a63b0",
+      "status": "partial",
+      "coverage": "Original mode/B0/faction19C/activation20C player-controlled predicate against actual Human state.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/mission_script_player_predicates.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b54c0",
+      "status": "partial",
+      "coverage": "Enable rebuilds actual animation actor BODYCOLB collisions; disable removes and clears the owned list.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/model_scene_actors.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b3ac0",
+      "status": "partial",
+      "coverage": "Clear prior descriptors then enumerate consecutive BODYCOLB names with maskFFFF, stopping at first missing child.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/animation_actor_collisions.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b4dc0",
+      "status": "partial",
+      "coverage": "Remove animation collision descriptor from actual dynamic bucket before aligned record retirement.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/animation_actor_collisions.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b4de0",
+      "status": "partial",
+      "coverage": "Allocate aligned animation collision record, initialize actual actor/frame/flags/mask and publish after bucket registration.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/animation_actor_collisions.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b4850",
+      "status": "partial",
+      "coverage": "Cold animation collision descriptor state, borrowed actor/frame/flags/mask and initial geometry/grid update.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/animation_actor_collisions.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b48b0",
+      "status": "partial",
+      "coverage": "Dummy or actual driver aggregate bounds, local bbox scale/unscaled transformed centre, normalized world/inverse, material flags, native radius and grid registration/move.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/animation_actor_collisions.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004865e0",
+      "status": "partial",
+      "coverage": "Reverse children-first recursive frame visibility using original kind bitmask table and actual light+AC receiver.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/effects_shadow_models.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00486b30",
+      "status": "partial",
+      "coverage": "Signed duration reciprocal or MAXFLOAT rate, fade target, supplied colour or null-colour XYZ and negative-current clamp.",
+      "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
+      "evidence": [
+        "analysis/mission-script-receivers.md",
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "recovered/game/effects_fade.h"
       ]
     }
   ]

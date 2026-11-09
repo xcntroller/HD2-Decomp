@@ -10,11 +10,11 @@ and engine replacement are separate.
 **P2.2 is in progress: mission loading is not playable yet.** Source recovery now
 covers the loading presentation, Scene2/resource readers, actor/item/collision
 owners, vehicles, Human control/equipment/AI, first-person view, HUD, Sight,
-sound and proximity. These are source checkpoints; the application still
+sound, proximity and the script compiler/context/module receivers. These are source checkpoints; the application still
 declines loading until the actual world and remaining consumers are connected.
 [Current boundary and remaining work](analysis/mission-world-loading.md) |
 [Source progress](analysis/loading-modules.md) |
-[Saved checks](analysis/checkpoints/p2.2-20261109.json).
+[Latest script receiver checks](analysis/checkpoints/p2.2-script-receivers-20261109.json).
 
 The accepted bounded launch checkpoint covers: four opening movies with music and
 English subtitles lead into the compiled Main/Exit menu. Pointer/keyboard input,
@@ -83,10 +83,14 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and1,529 partial entries (1,524 client/five engine).
-The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) adds881
-implemented source subsets without promoting any whole functions to complete.
-The [weapon swap checkpoint](analysis/human-equipment-loading.md#same-human-weapon-exchange--2026-11-09) adds eight further partials; [active reselection](analysis/human-state-loading.md#active-weapon-reselection--2026-11-09) adds four, and [formation loading](analysis/human-state-loading.md#formation-loading-owner--2026-11-09) adds seventeen. [Detached-camera references](analysis/human-state-loading.md#detached-camera-human-references--2026-11-09) add six; [Players loading owners](analysis/human-state-loading.md#players-module-and-process--2026-11-09) add fifteen. [Offline activation and prepared-spawn source](analysis/session-activation-loading.md) adds39 partials. Source recovery remains separate from desktop integration.
+complete client functions and1,651 partial entries (1,646 client/five engine).
+The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) records
+the earlier accumulated source subsets. Later checkpoints include Human
+weapons/formation/Players, [prepared spawning](analysis/session-activation-loading.md),
+[camera and local dispatch](analysis/camera-local-dispatch-loading.md),
+[script compilation/context](analysis/mission-script-loading.md) and
+[script module/visibility receivers](analysis/mission-script-receivers.md).
+Source recovery remains separate from desktop integration.
 
 Phase1 front-end delivery is closed by the user2026-11-03 within its recorded
 acceptance and deferred-flow boundaries, committed as4e530f7. The
@@ -214,11 +218,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,632 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,651 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 1,627 |
+| Base game client | 17,294 | 34 | 1,646 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

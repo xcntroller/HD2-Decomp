@@ -51,6 +51,7 @@ public:
         return true;
     }
     void scene_progress(unsigned stage, float fraction) { progress_(stage, fraction); }
+    bool has_scene()const{return scene_.frame()!=nullptr;}
     Frame find_scene_frame(const std::string& name, std::uint32_t mask) { return scene_.find_frame(name, mask); }
     Frame resolve_scene_path(const std::string& name) { return scene_.resolve_frame_path(name); }
     std::string frame_name(Frame frame) const { const auto* name = engine_frame_name(frame); return name ? name : ""; }

@@ -18,6 +18,15 @@ public:
     MissionScriptContexts(Frames& frames,Files& files,Runtime& runtime,std::string resource):frames_(frames),source_(files,resource),runtime_(runtime),resource_(std::move(resource)){}
     const auto& values()const{return contexts_;}
     const std::string& error()const{return error_;}
+    Context* context_for_frame(Frame frame)const { //0041CFA0, against this actual module's owners.
+        if(!frame)return nullptr;
+        const auto* data=frames_.find_actor_frame_data(frame);if(!data||!data->words[1])return nullptr;
+        for(std::size_t n=contexts_.size();n;)if(contexts_[--n].get()==reinterpret_cast<Context*>(data->words[1])) {
+            if(contexts_[n]->frame()!=frame)throw std::runtime_error("Script EC binding disagrees with its actual owner");
+            return contexts_[n].get();
+        }
+        throw std::runtime_error("Script EC binding has no owner in the actual script module");
+    }
     //00428490 context traversal only. Containing module must first drain its
     //actual deferred frame queue/timer and test loaded10; this entry claims
     //neither of those producers nor a successfully activated world.
@@ -26,6 +35,15 @@ public:
             auto* context=contexts_[--n].get();
             if(context&&(!only_cutscenes||context->during_cutscene()))context->step(elapsed,runtime_);
         }
+    }
+    void finish_contexts() { //00427B80's reverse exit→destroy context pass, after frame restoration.
+        std::exception_ptr failure;
+        while(!contexts_.empty()) {
+            auto* context=contexts_.back().get();
+            try{context->exit(runtime_);}catch(...){if(!failure)failure=std::current_exception();}
+            contexts_.pop_back();
+        }
+        if(failure)std::rethrow_exception(failure);
     }
     bool bind(Frame frame,const char* script) {
         if(!frame)throw std::logic_error("Script binding requires an actual frame");

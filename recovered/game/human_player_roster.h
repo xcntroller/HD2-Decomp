@@ -14,6 +14,14 @@ public:
     explicit HumanRoster(std::int32_t identity=-1):identity_(identity){}
     void clear()noexcept{entries_.clear();} //Retains allocation/name/identity.
     std::size_t size()const{return entries_.size();}
+    std::uint32_t live_count()const { //004622C0, ascending; NULL/dead do not count.
+        std::uint32_t count=0;
+        for(auto* human:entries_)if(human) {
+            std::int32_t health;const auto word=human->properties.stats_ec[0];std::memcpy(&health,&word,4);
+            if(health>0)++count;
+        }
+        return count;
+    }
     Human* at(std::int32_t index)const{ //004619F0 unsigned comparison, invalid returns NULL.
         return static_cast<std::uint32_t>(index)<entries_.size()?entries_[static_cast<std::uint32_t>(index)]:nullptr;
     }

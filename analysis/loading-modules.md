@@ -628,3 +628,10 @@ and broadcast spawn packet production. Focused native sanitizers, strict actual
 host i386 and app link pass.39 new partials, no whole-body/desktop promotion.
 Local flush/decoder, actual006123A0 camera/Players receiver and00469300 first
 simulation remain required within the same full P2.2 checkbox.
+
+2026-11-09: [script module/visibility source](mission-script-receivers.md) now
+connects actual packet5F, snapshots/restore, same Human/model visibility orchestration,
+animation collision ownership, variables and selected player predicates. Native
+sanitizers, actual-host i386, app link and27 tracker tests pass.19 new partials,
+five extended; no complete/desktop promotions. Actual remaining VM/Human/Dog,
+asynchronous/transform owners, runtime Files and full world remain in P2.2.
