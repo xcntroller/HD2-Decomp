@@ -1356,6 +1356,265 @@
       "metadata": "analysis/work/networking/server-profile-finalization-20261109/0070aa50.json",
       "metadata_sha256": "fad4ba2d6c59e00212ea3a772621c88595db49a41465815ef40ac21203aa223d",
       "decompilation_sha256": "dbdb12c9a2614b6d8bc992750ab7f4f3d8dcd70925ceb1bd74b5b6a73bacd6b7"
+    },
+    {
+      "entry": "004a3950",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-registration-20261109/004a3950.json",
+      "metadata_sha256": "995cab1581c9bd76cd7a2ac84032bdac7e970c215423df22dcf65f2bff958ab1",
+      "decompilation_sha256": "b625ff8c8e0872371c71b53b9efbc446e9eb9748718e9dcbe22783061dbdc5b4"
+    },
+    {
+      "entry": "004a3a70",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-registration-20261109/004a3a70.json",
+      "metadata_sha256": "7fb2424478107fa71341c2419b8a7a80e3e01b69eb7f7ddf128ba568c0c57174",
+      "decompilation_sha256": "f0cae361f7e708a91251b5691d5e76359e38a13f2123f5f74e5f03cc75ac3511"
+    },
+    {
+      "entry": "004a3d50",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-registration-20261109/004a3d50.json",
+      "metadata_sha256": "98b4e107209e3c7566bcb0ab6703baaefe758ae5cf1c30dd865ff89319438766",
+      "decompilation_sha256": "a682d0ef13b98286bbdf7d1521c67cf0a1b39cd3153562d5052109f0e12849de"
+    },
+    {
+      "entry": "004a3d80",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-registration-20261109/004a3d80.json",
+      "metadata_sha256": "109bc471fa5ad64fde0165ca81ceb020c638378326e8013563a6d18dc64d150b",
+      "decompilation_sha256": "d261c37f3d4323bc020c48706b18694209c14bced79ac1b2560ccef2a6aafb76"
+    },
+    {
+      "entry": "0042d9b0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/0042d9b0.json",
+      "metadata_sha256": "065e938090f6b34274efb98048dce9c15529d2bc0610b26d428ff5a9c39cb571",
+      "decompilation_sha256": "ceea2020fa823e0fe0d84dfa29ae673778cf17fd957cd4c470d2dc4dc9770ed1"
+    },
+    {
+      "entry": "00446fb0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/00446fb0.json",
+      "metadata_sha256": "f6dcd173630e6d1c58d666f9354e787fe168a88b1d3bb1ee20eece839f676c48",
+      "decompilation_sha256": "069fb70b83662586d12281edfb8043574f58fd18af7284b888b2bf7202c5f831"
+    },
+    {
+      "entry": "00459490",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/00459490.json",
+      "metadata_sha256": "fce8fd0ea11facea9aae72cd7bc0b1882a81cc25b6d7d90f1cd5695dee852853",
+      "decompilation_sha256": "3cf5c89ac6c13efe94c77b55c780ddb48e4239d1c333b447c25eea0b4a0c2c80"
+    },
+    {
+      "entry": "00462490",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/00462490.json",
+      "metadata_sha256": "742eb477797a96c88ba8c46440b8d54968a2950640d6b95fb4c5b6ce1cb0fa91",
+      "decompilation_sha256": "c7b1b269cb40aa86ba8017c8aa610d2e98bf39790ef201d19ce2e9839981dc26"
+    },
+    {
+      "entry": "00464180",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/00464180.json",
+      "metadata_sha256": "90b4b4ad1590c9b108c7732b20392b6d4ccde66e288d1fb49d764c8a11fc7f92",
+      "decompilation_sha256": "a9d01f1839295bd1f6b420f2b56c88e2bdfdb6cc95ce4c6421de9efec5c85567"
+    },
+    {
+      "entry": "0046a040",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/0046a040.json",
+      "metadata_sha256": "51072d37c94f9b01616b0ef04f9f5fb2d88d78120ebad153b5a29126919001e8",
+      "decompilation_sha256": "f496a00e9a1e8a3c84824a567d9b31018daa9fde87f19ee76977a76388a8d583"
+    },
+    {
+      "entry": "0047d3a0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/0047d3a0.json",
+      "metadata_sha256": "d906e9487b03285f3abeefa046366b89369c1082025245a663f558e30e8c3459",
+      "decompilation_sha256": "87328245a4603d2fff8ad8f3b07d8e1b1607c8caf1d72d6f3fba6f69eb429905"
+    },
+    {
+      "entry": "00481e30",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/00481e30.json",
+      "metadata_sha256": "d2499079512df47e77662b424a3549d143f77fa83c5240a887115c1a0226a542",
+      "decompilation_sha256": "3e3e300fb9aa3231654633d4d8522716831e6edefc128de7b8c22cf4765dac3f"
+    },
+    {
+      "entry": "0048aa60",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/0048aa60.json",
+      "metadata_sha256": "cbe7885935d7b647e01b805f1080a512857de243719bd371bf9108f969ece14f",
+      "decompilation_sha256": "52904a3ad6691a3d33bbdda3d1c03b161c1af086d10cd739a0fea23b5ec76d94"
+    },
+    {
+      "entry": "0048d830",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/0048d830.json",
+      "metadata_sha256": "96aeadd6f9698258d3ae85887f4daf9aa17054ea603bc8fc3ab4c253e57159ad",
+      "decompilation_sha256": "fa6468024fdf9a408b1aefa8c407a1cb03813beaea18697843e7646f7124aa9a"
+    },
+    {
+      "entry": "0048fdf0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/0048fdf0.json",
+      "metadata_sha256": "86d540736422acc8db543763b303976c6e5c81b993152369d5e265f81262e94c",
+      "decompilation_sha256": "b72d07563c80b77099faf9d4966d8a8b553488a3dc0b5a3e11730496554c11af"
+    },
+    {
+      "entry": "00491980",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/00491980.json",
+      "metadata_sha256": "f28dd4eddf4ad5f9031e38ba954e2d64ab400662dfaab5fa8b71615640c7271f",
+      "decompilation_sha256": "8813a04edf9b4989044b97dfaab3cfc3660de30d367fb7e8f85256b57b42f68d"
+    },
+    {
+      "entry": "004938d0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/004938d0.json",
+      "metadata_sha256": "9531a6ed6caf13c58e4ce82dd3b8225f3c32215e59b753e2f35fd4e911b55b39",
+      "decompilation_sha256": "26db32b0511ce1e189be7435d62e3dbf132586122571be2b792d3443198c26a5"
+    },
+    {
+      "entry": "004a1970",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/004a1970.json",
+      "metadata_sha256": "458dc93449a5960dc5aac371d1467901c624275f6e008d83062fc33bd0a1c9aa",
+      "decompilation_sha256": "50e8a200715ec7da6b39f068a239ec57c7540b1ee4ee455c139cc5535ab01652"
+    },
+    {
+      "entry": "008178d0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-registered-modules-20261109/008178d0.json",
+      "metadata_sha256": "8ab42b70c0a2f53958bb7f0006c7a22b9fe6896b6a98dd205113b195fe27c8d7",
+      "decompilation_sha256": "9bcaefc912b2452767311fda3a2672a43386c2a352e82dfad8ee11ba51d7936a"
+    },
+    {
+      "entry": "0042cb50",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/0042cb50.json",
+      "metadata_sha256": "6c02bc5126d407efe062c96b0344c8716e32df6e646c5cd725d23901e89c7d5b",
+      "decompilation_sha256": "febc687daef36f80225e6cde320a4e57c1817b0907136fc87c3a944c7d3b8626"
+    },
+    {
+      "entry": "0044cc80",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/0044cc80.json",
+      "metadata_sha256": "41cd263ae99ffa7d595ec5485e2646d775b3434bf1049dc3da063521b2da6231",
+      "decompilation_sha256": "69810e801e07d83f63ab09d4cf90ee39136a760a0ea35935d29ef0bdd93de3ce"
+    },
+    {
+      "entry": "004592d0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/004592d0.json",
+      "metadata_sha256": "c68d596d37f94de4e6a8dfbed1ddeaca1e700b234391041f22c7eef490ca44b4",
+      "decompilation_sha256": "d34cb0eae52ebe1e3b2868ecb266b8b40f93872f5b269b9e1184b62302ecdd1c"
+    },
+    {
+      "entry": "00462460",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/00462460.json",
+      "metadata_sha256": "06006a3e19884bec0475906377e09e1de06ff7bf6b0dae0d2dd2637840c705c9",
+      "decompilation_sha256": "ba4f0972c3f57d90322f996ea6c5c099ed9022ced4e73146370a443b025fb299"
+    },
+    {
+      "entry": "00464150",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/00464150.json",
+      "metadata_sha256": "79e35355be6be68f32dea1738741259dc13ec33f3122703175961224611c911d",
+      "decompilation_sha256": "762d6150285d1e5bcee05a716a5bee73c54c67fa465255a555ccad9d023c4528"
+    },
+    {
+      "entry": "0046a010",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/0046a010.json",
+      "metadata_sha256": "88d8b4302b6783d7f907afc830de8b47572250b44321df8145fb9a0df96f04da",
+      "decompilation_sha256": "5e3ffcd53febeb1b2af5113524770b0c7206d6eea4bb263405f9647fa3350ca3"
+    },
+    {
+      "entry": "0047c760",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/0047c760.json",
+      "metadata_sha256": "c6616ef4d6f8a98ad67a795635051be35cebe01e4dc41bdb916d9f802dd2a33b",
+      "decompilation_sha256": "2c96f629bc268611dabe45ef6f9adefcad51a1e2d13e8e5379b45d5113e92452"
+    },
+    {
+      "entry": "00481eb0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/00481eb0.json",
+      "metadata_sha256": "e5b991d669ef4d8ff9406f73b7d1a79a035f91bb45e0810b9536d3df9447ceb8",
+      "decompilation_sha256": "752464e5b32136647d38b4eb3714fab66d06dda4361ebf667a515501845fca9b"
+    },
+    {
+      "entry": "0048aa30",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/0048aa30.json",
+      "metadata_sha256": "faf8b3ac2c83d62a03c1f15205759f30b5ea963892168390229d7ae0bfb25f00",
+      "decompilation_sha256": "2822be08fb2b331958eb57042fa94f5d341549f0b284ca3441980d8c0e57e9b2"
+    },
+    {
+      "entry": "0048d7a0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/0048d7a0.json",
+      "metadata_sha256": "7a36b526e8fd5a54fe46d0108303055727e0b4b2aa8f012092842809e929497d",
+      "decompilation_sha256": "0def4ef295db7fe204bbfdadd8d5382698a83d1cebdad5b35a494a4bd44a39d9"
+    },
+    {
+      "entry": "0048fd80",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/0048fd80.json",
+      "metadata_sha256": "d74b222f1a276ccd08d5925edb248cacaa9d200ff427c460e22433c64059e8b0",
+      "decompilation_sha256": "67e60286aff33083c625fa8606dacf8302bf010e0e4de87e110896e1db5c5bb9"
+    },
+    {
+      "entry": "00491290",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/00491290.json",
+      "metadata_sha256": "64124b561d238f4cb6e164b09e705e9eeb117541fd19e64b09b5242900ba5bcc",
+      "decompilation_sha256": "fe44d609cf11144451e7d6783a34461dc960d4bbc88aa41183a9c0172547f6d2"
+    },
+    {
+      "entry": "004a1a40",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/004a1a40.json",
+      "metadata_sha256": "4f08d47df002214e9e0b5316e278de3a2843ee4b830e310ebc4f544b2c009907",
+      "decompilation_sha256": "0ca3eb20dd3ee7700a94082ea540d1c7fcfa3b2792adf544de9280408c63f17e"
+    },
+    {
+      "entry": "008113d0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/008113d0.json",
+      "metadata_sha256": "434f5c0173cf8aa47923ccbe1c426038249e09663f6d86759001491e7eec251d",
+      "decompilation_sha256": "636686402f9ad67158a16e715804d106286e3dfd0ebdf532fe974509b9edc8e9"
+    },
+    {
+      "entry": "00817c90",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/00817c90.json",
+      "metadata_sha256": "b5ba9d8b42509db8db1d66616f5d5f743b92c2bf6b3d6a1222f4a93c26fbdfed",
+      "decompilation_sha256": "6c783ee8fe972bb46fbd41a0fb963cfa8ce3d553d5a4108f1560e16ff5f4af2d"
+    },
+    {
+      "entry": "00817db0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-startup-20261109/00817db0.json",
+      "metadata_sha256": "706d585ab55d7f055fcff074b01c506b5320c1bdc57437eaacefeafce5d2787a",
+      "decompilation_sha256": "002e2846ee87074202b3b58f7bf605999c781dbdd72200d17f32c00efb69ad1b"
+    },
+    {
+      "entry": "00481d30",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-derived-registration-20261109/00481d30.json",
+      "metadata_sha256": "fd199b8e2521f13a37b735110523cf6c0e4210e3f937fd7420eb64bff39c929c",
+      "decompilation_sha256": "ac26c165bb20c70f8a119326c778b07eeb8ee6b90950bda2bb7e49ad565a5986"
+    },
+    {
+      "entry": "004a1a10",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-module-derived-registration-20261109/004a1a10.json",
+      "metadata_sha256": "2b830b160281d5529da94bb3b59a46541f2e3ab5832fe4f845407e8ba0609f6e",
+      "decompilation_sha256": "dd1b3a30d2cbf9e9caf6fdeea8845041a3d53947fedac8495f746be21d94adca"
     }
   ]
 }

@@ -4,12 +4,25 @@ Work only in feature/networking at HD2-Decomp-networking. Main worktree and froz
 client/LS3DF ledger stay untouched. No push, merge, publication, original executable,
 DLL, Proton or Windows-fixture execution. Heavy jobs sequential; no subagents.
 
-Ledger:31 server/9 launcher partials, zero complete. [Progress README](../../networking/README.md)
+Ledger:35 server/9 launcher partials, zero complete. [Progress README](../../networking/README.md)
 is generated from the separate inventories/ledger. No independent server, live
 discovery, interoperability or desktop acceptance. First open N1 startup/shutdown
 checkbox in [plan](plan.md) stays OPEN; continue its entire boundary.
 
-Latest [application data composition](headless-startup-data-source.md#owned-startup-composition)
+Latest [startup module registry](startup-modules-source.md) reconstructs actual
+registration/unregistration and ascending live-table init/shutdown. Required
+receivers are borrowed and have no default successful methods. Callbacks can
+mutate later entries; old registration destruction clears overwritten slots.
+Native sanitizer audit passes ordering/mutation/overwrite/exception/bounds and1000
+lifetimes; Windows i386 fixture linked, not executed. Audits hashed/removed in
+[receipt](startup-modules-verification.json). [Target matrix](startup-module-targets.json)
+traces fourteen static registrations. Most lifecycle hooks are actual RETs;
+Items00817C90/00817DB0 have real queue/500-pointer cleanup. Constructors/other
+methods remain real dependencies, not replaced services. Embedded HeavyFireSupport
+base at+4 uses0084EC18, not outer0084EC64. New ignored module exports/refs and
+hashes are retained in evidence.json. No concrete module body got credit.
+
+Prior [application data composition](headless-startup-data-source.md#owned-startup-composition)
 owns the recovered +04/+08/+20/+10/+24 startup data subset. Configuration loads
 immediately; fresh profile construction differs from later reset. Actual data
 preparation precedes profile selection, and command consumers share one settings
@@ -57,8 +70,3 @@ and every JSON/C pair. Keep commercial inputs/decompilations/databases untracked
 Use existing native/archive readers; do not execute Windows fixtures. Commit source
 checkpoints locally and continue the full checkbox; no desktop claim or permission
 request is needed for source-only work. Interactive changes require user testing.
-
-Active static research: registry004A3AB0/3AE0 traverses19 slots ascending.
-004A3950 registers by index,004A3A70 clears it. Slots are BSS; constructor callers
-through thunk0040A9F7 are being enumerated in server-module-* ignored files.
-No module service has been replaced or newly credited.

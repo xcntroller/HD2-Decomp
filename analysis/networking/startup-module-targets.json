@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+  "method": "read-only section-mapped PE vtables and static constructor callers; E9 thunk resolution; no original execution",
+  "scope": "Traced static registrations; concrete owner construction/consumers remain unimplemented",
+  "modules": [
+    {
+      "index": 1,
+      "name": "GEffects",
+      "vtable": "0084eee0",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00401b9a",
+          "canonical": "0041fa40",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00401848",
+          "canonical": "0041fa60",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "name": "Physics",
+      "vtable": "0084e1c0",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "004024f0",
+          "canonical": "0042da50",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "004019d3",
+          "canonical": "0042da70",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "name": "Items",
+      "vtable": "00857048",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00406c71",
+          "canonical": "00817c90",
+          "first_byte": "56"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "0040764e",
+          "canonical": "00817db0",
+          "first_byte": "53"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "name": "Script",
+      "vtable": "0084e308",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00401b9a",
+          "canonical": "0041fa40",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00401848",
+          "canonical": "0041fa60",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "name": "Sight",
+      "vtable": "0084ebc8",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00401b9a",
+          "canonical": "0041fa40",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00401848",
+          "canonical": "0041fa60",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "name": "Sound",
+      "vtable": "0084e380",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00401b9a",
+          "canonical": "0041fa40",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00401848",
+          "canonical": "0041fa60",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "name": "Versions",
+      "vtable": "0084e500",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00401bc7",
+          "canonical": "00462510",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00408dbe",
+          "canonical": "00462530",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "name": "Vertex anim",
+      "vtable": "0084ec80",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "0040150a",
+          "canonical": "00490ae0",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00402d51",
+          "canonical": "00490b00",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "name": "TeamMgr",
+      "vtable": "0084e898",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00401b9a",
+          "canonical": "0041fa40",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00401848",
+          "canonical": "0041fa60",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "name": "Actors",
+      "vtable": "0084ecd0",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "0040674e",
+          "canonical": "00491a50",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "0040108c",
+          "canonical": "00491a70",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "name": "ShotMgr",
+      "vtable": "0084e5c8",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00401b9a",
+          "canonical": "0041fa40",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00401848",
+          "canonical": "0041fa60",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "name": "CameraModule",
+      "vtable": "0084ea08",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00401b9a",
+          "canonical": "0041fa40",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00401848",
+          "canonical": "0041fa60",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "name": "HeavyFireSupportModule",
+      "vtable": "0084ec18",
+      "registered_base_offset": 4,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00401b9a",
+          "canonical": "0041fa40",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00401848",
+          "canonical": "0041fa60",
+          "first_byte": "c3"
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "name": "Particles",
+      "vtable": "0084e550",
+      "registered_base_offset": 0,
+      "methods": [
+        {
+          "vtable_offset": 4,
+          "pointer": "00401b9a",
+          "canonical": "0041fa40",
+          "first_byte": "c3"
+        },
+        {
+          "vtable_offset": 8,
+          "pointer": "00401848",
+          "canonical": "0041fa60",
+          "first_byte": "c3"
+        }
+      ]
+    }
+  ]
+}

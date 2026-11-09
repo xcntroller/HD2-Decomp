@@ -15,13 +15,17 @@ configuration parsing does not establish a working network session.
 
 | Executable | Inventoried functions | Complete | Partial | No completion claim | Complete % |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| HD2DS.exe | 13,957 | 0 | 31 | 13,926 | 0.00% |
+| HD2DS.exe | 13,957 | 0 | 35 | 13,922 | 0.00% |
 | ServerLauncher.exe | 849 | 0 | 9 | 840 | 0.00% |
 
 ### HD2DS.exe mapped bodies
 
 | Original address | Status | Implemented contract |
 | --- | --- | --- |
+| `004A3950` | partial | [Owned module name/index and live registry slot assignment](../recovered/networking/startup_module_registry.h) |
+| `004A3A70` | partial | [Original unconditional slot clear before module-name retirement](../recovered/networking/startup_module_registry.h) |
+| `004A3AB0` | partial | [Ascending live-table startup module initialization callbacks](../recovered/networking/startup_module_registry.h) |
+| `004A3AE0` | partial | [Ascending live-table startup module shutdown callbacks](../recovered/networking/startup_module_registry.h) |
 | `00644400` | partial | [Actual catalogue path fallback, metadata loading and four verified profile-rule blocks](../recovered/networking/server_commands.cpp) |
 | `006E0C70` | partial | [Forward headless record retirement and eight localized default-name pairs](../recovered/frontend/human_store.h) |
 | `006E15A0` | partial | [Shared headless HumanStore fields, legacy formats and text finalization](../recovered/frontend/human_store.h) |
@@ -108,6 +112,8 @@ now verified against original data. The [dedicated profile path](../analysis/net
 also covers options, headless bindings, binary/legacy payloads and startup selection.
 An [application data owner](../recovered/networking/headless_application_data.h)
 connects configuration, preparation, profiles and shared cold settings with ordered cleanup.
+The [startup module registry](../analysis/networking/startup-modules-source.md)
+preserves original registration and live callback traversal; concrete modules remain required.
 Full application startup is still open.
 
 Follow the [networking plan](../analysis/networking/plan.md) and

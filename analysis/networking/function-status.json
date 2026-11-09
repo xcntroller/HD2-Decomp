@@ -574,6 +574,58 @@
       "evidence": [
         "analysis/work/networking/server-bootstrap-deps-20261109/006f8dd0.json"
       ]
+    },
+    {
+      "program": "server",
+      "entry": "004a3950",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/startup_module_registry.h"
+      ],
+      "contract": "Owned module name/index and live registry slot assignment",
+      "exclusions": "Native string/index bounds and interface layout; real concrete modules and bootstrap integration remain required. No delegated service body credit.",
+      "evidence": [
+        "analysis/work/networking/server-module-registration-20261109/004a3950.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "004a3a70",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/startup_module_registry.h"
+      ],
+      "contract": "Original unconditional slot clear before module-name retirement",
+      "exclusions": "Native string/index bounds and interface layout; real concrete modules and bootstrap integration remain required. No delegated service body credit.",
+      "evidence": [
+        "analysis/work/networking/server-module-registration-20261109/004a3a70.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "004a3ab0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/startup_module_registry.h"
+      ],
+      "contract": "Ascending live-table startup module initialization callbacks",
+      "exclusions": "Native string/index bounds and interface layout; real concrete modules and bootstrap integration remain required. No delegated service body credit.",
+      "evidence": [
+        "analysis/work/networking/server-bootstrap-deps-20261109/004a3ab0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "004a3ae0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/startup_module_registry.h"
+      ],
+      "contract": "Ascending live-table startup module shutdown callbacks",
+      "exclusions": "Native string/index bounds and interface layout; real concrete modules and bootstrap integration remain required. No delegated service body credit.",
+      "evidence": [
+        "analysis/work/networking/server-bootstrap-deps-20261109/004a3ae0.json"
+      ]
     }
   ]
 }

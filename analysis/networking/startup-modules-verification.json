@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "source-only registry registration and lifecycle traversal; concrete receivers and full N1 remain open",
+  "checks": [
+    "native ASan/UBSan/LSan null slots and ascending initialization/shutdown",
+    "live mutation of later entries from callbacks, no snapshot",
+    "overwrite then old-registration destruction clears slot unconditionally",
+    "required callback exceptions propagate, index bounds guard",
+    "1000 registration lifetimes",
+    "strict Windows i386 fixture link; not executed"
+  ],
+  "limits": "Borrowed receivers only. No default successful methods or concrete module service/constructor bodies. No desktop test or original code execution.",
+  "sources": [
+    {
+      "path": "recovered/networking/startup_module_registry.h",
+      "sha256": "e2e4946e11fbef304b9097ae58300e0f1118cc4fbd90979ffcd2eb5094384601"
+    }
+  ],
+  "original_targets": {
+    "path": "analysis/networking/startup-module-targets.json",
+    "sha256": "26d7e751ea39874de697837ff8ea48a3aa0db126c3e5cb7ab8ef70d520f0038f"
+  },
+  "log_sha256": "7218560723beff992f9989e885be5a03b501370aa5889d9bf5ece5ab0609e5d1",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/module-registry-audit/audit.cpp",
+      "sha256": "3ca5d966c5d4e22c4e300e4eec8fc77fcd4e9eb8d05641f7d0bb81d4ebde7313"
+    },
+    {
+      "path": "analysis/work/networking/module-registry-audit/native-audit",
+      "sha256": "2f2286bcbe18d84eeae578e985dc1f05bf4bd603d65bf8b274f41d570db71d00"
+    },
+    {
+      "path": "analysis/work/networking/module-registry-audit/windows-link.exe",
+      "sha256": "856072a0d5fbb2a895cbe40767383b53939ef7204739cbf9c8109954ea5ef01a"
+    }
+  ]
+}
