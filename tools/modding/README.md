@@ -1,213 +1,160 @@
-# H&D2 modding toolkit
+# H&D2 Modding Toolkit
 
-Independent modding workstream on `feature/modding-tools`, based on local master
-`89d3d2f` (latest locally available at start). No game targets are built or changed.
-The compiled script CLI builds with C++17 and the recovered headers and runs
-without Python. The GUI and mission backends require Python with Tk for the GUI.
-Normal operation needs neither Ghidra nor original executables; installation
-inspection reads the user's own local assets.
+A standalone, read-only script inspector and integrated Mission Explorer on
+`feature/modding-tools`. Normal operation needs no Ghidra or original executable.
+Use your own local installation; no commercial assets or scripts are included.
+No game, loader, server or runtime implementation is modified.
 
-```
-make -C tools/modding
-/tmp/hd2-inspect my-script.scr
-/tmp/hd2-inspect --json my-script.scr
-/tmp/hd2-inspect --catalog > command-reference.json
-```
-
-Default output describes accepted instruction constructs, symbols, lexical
-command/predicate mentions and references. Exit codes: 0 supported syntax
-accepted, 1 malformed/unsupported/unexpanded source, 2 CLI or file-open error.
-Input is read-only. Supply your own source; no commercial scripts are included.
-
-## Desktop GUI
+## Start
 
 From the repository root:
 
 ```
+make -C tools/modding
 make -C tools/modding gui
 ```
 
-This builds the small inspector sequentially if needed, then launches the local
-Tk desktop application. Requires Python 3 with Tkinter and a graphical desktop;
-there are no pip dependencies, web servers or network requests. On systems where
-Tkinter is packaged separately, install the matching Python Tk package first.
-The default native binary lives in `/tmp` and is rebuilt after a reboot. With an
-already compiled binary you can also run:
+The small C++17 inspector builds sequentially to `/tmp/hd2-inspect`; Python is
+needed to generate checked inspection overlays during the build. The GUI needs
+Python with Tk. There are no pip dependencies, network services or game builds.
+After a reboot, rebuild the temporary native binary. To select another binary:
 
 ```
 python3 tools/modding/gui.py --inspector /path/to/hd2-inspect
 ```
 
-Use **Open script…** (Ctrl+O) to inspect a local script. The tabs provide:
+## Script inspection
 
-- **Overview:** syntax status, diagnostic, construct counts, event indicators,
-  limitations and lexical command/predicate mentions.
-- **Source:** read-only preview of the same bounded byte snapshot used for analysis.
-- **References / Symbols / Instructions:** structured tables from the CLI report.
-- **Command reference:** searchable command/predicate catalog, available without
-  opening a script. Argument kinds are displayed by known type names.
-- **JSON:** the complete inspection report; **Export JSON…** saves it to a new file.
+**Open script…** (Ctrl+O) opens a read-only local source snapshot. **Inspect again**
+reads a fresh snapshot. Supported syntax acceptance is not proof of original-game
+compatibility, valid runtime behavior or execution.
 
-**Mission explorer…** opens the integrated read-only mission browser in this application. Choose a local
-mission directory containing loose original files, then optionally add reference
-folders containing loose scripts/models/sounds. Browse files and expand documented
-records; select fields to see offsets, IDs, provenance and references. The
-**References** tab includes outgoing and incoming local candidates. Double-click
-a candidate to follow it; use **Show all file references** to reset subtree scope.
-**View script** opens the selected source in the existing script inspector.
-Unknown formats/fields stay explicitly unsupported/opaque. No mission file is edited.
+- **Source:** lexer highlighting, diagnostic underlines, exact byte navigation
+  and a root/included-source selector. Display uses Latin-1, normalized line
+  breaks and visible control-byte escapes. Reopened sources must match their hash.
+- **Analysis:** searchable diagnostics, events, declarations, labels, controls,
+  ordinary arguments, symbol uses, references, includes and statements. Filter by
+  kind, page through results, and double-click to navigate to the original source.
+  **Follow mission reference** uses linked entities in the existing Explorer.
+- **References / Symbols / Instructions:** compiler-backed products; double-click
+  for source navigation. These tables show the first2000 rows; Analysis covers all.
+- **Overview:** syntax status, compiler counts and explicit limitations.
+- **Command reference:** searchable recovered command/predicate tables. A table
+  entry does not promise known runtime semantics or actor applicability.
+- **JSON:** bounded preview; **Export JSON…** streams the complete schema2 report
+  to a new file outside the inspected sources/installation.
 
-Use **Open installation…** to discover missions directly from the original loose
-files and established archive registration profile. Set the language and choose
-loose-first or archives-first, then select a discovered mission and **Inspect
-mission**. **Refresh** reindexes changed inputs. ISD1/Patch raw/LZSS payloads are decoded with verified checksums; invalid or
-unsupported selections never silently substitute base copies. Archive provenance
-and shadowed copies are shown in file/entity details. Separate Content/Archive
-columns distinguish partial content parsing from a verified archive decode,
-unavailable compression and invalid data.
+Analysis runs in a background worker. Errors have structured categories, severity,
+source positions and evidence. Rejected compilation retains observed syntax,
+while withholding compiled PCs/events/variables. Lexical mentions are separate
+from instruction products and never asserted to execute.
 
-The new **Actors / objects**, **Dependency graph** and **Validation** tabs provide
-searchable/paged results. Actor details show supported serialized properties;
-unknown fields/types remain labelled. Select a graph row to visualize its local
-relationships; double-click nodes or use **Inspect source/target** to navigate.
-Solid/dashed relationships distinguish serialized/selected-resource evidence from
-candidates. Validation includes unresolved/dynamic references, malformed supported
-records, unsupported payloads and partial coverage. This is not a map editor.
+To resolve includes for a standalone local file, choose **Include context…**,
+select the original installation and enter the mission namespace, then **Inspect
+again**. This uses the default loose/Patch/base profile. For explicit alternate
+language/archive-first profiles, open the script through Mission Explorer.
+An include without a caller-supplied context is rejected rather than guessed.
+The original shared-cursor preprocessing is unusual; some nested/malformed cases
+are deliberately rejected as tool restrictions. See [exact coverage](SCRIPT-ANALYSIS.md).
 
-Headless mission inspection and deterministic export work independently of Tk:
+Headless structured analysis (no Tk):
 
 ```
-python3 tools/modding/mission.py /path/to/Missions/Tutorial \
-  --reference-root /path/to/loose-assets \
-  --inspector /tmp/hd2-inspect --output /path/outside-inputs/tutorial.json
+python3 tools/modding/analyze_script.py /path/to/source.scr
+python3 tools/modding/analyze_script.py scripts/tutorial/example.scr \
+  --installation /path/to/game --resource tutorial
 ```
 
-`--inspector` is optional; without it, scripts are indexed. Reference folders are
-indexed and can be inspected on demand in the GUI. Mission JSON exports require
-a new file outside all inspected folders. Source snapshots protect their originating installation.
-The headless command exits 0 when a report is produced, even if files are malformed/unsupported; inspect per-file
-status and diagnostics. Invocation/directory/export errors exit 2.
+Installation mode takes a virtual resource path, retaining selected Patch/loose
+precedence and include provenance. Add `--archives-first` or `--language English`
+to choose an explicit profile. Output is JSON to stdout; exit0 means recovered
+syntax accepted,1 means rejected/unsupported,2 means invocation/read failure.
+Redirect reports outside the installation and do not commit proprietary outputs.
 
-Installation discovery/headless use (no asset extraction directory):
+The native CLI also works without Python after building:
+
+```
+/tmp/hd2-inspect my-script.scr
+/tmp/hd2-inspect --json my-script.scr
+/tmp/hd2-inspect --catalog > command-reference.json
+```
+
+Native `--json` exposes schema2 token/statement/argument spans, diagnostics,
+symbols, instructions, event tables and established receiver references. It
+requires prepared input when includes occur. `--prepared` explicitly selects
+already-preprocessed bytes; `--lex-one BYTE_OFFSET FILE` exposes one recovered
+lexer read for the faithful Python include pipeline. The Python client adds
+original-source maps, explicit events/control views and include resolution.
+
+## Integrated Mission Explorer
+
+**Mission explorer…** opens the existing child browser in the same application.
+Choose **Open installation…**, set language and loose-first/archive-first profile,
+select Tutorial/another discovered mission, then **Inspect mission**. **Refresh**
+reindexes changes. The installation remains strictly read-only.
+
+Browse recognized mission files and documented records, including supported
+Scene2 object/actor fields, tables and script bindings. File/entity details retain
+record IDs, offsets, unknown data and archive provenance. Separate Content and
+Archive statuses distinguish partial parsing from verified decoded bytes,
+unavailable compression and invalid data. Verified ISD1 raw/LZSS supports selected
+Patch resources; unsupported sound codecs and invalid selections never fall back
+to shadowed copies.
+
+**Actors / objects**, **Dependency graph** and **Validation** provide paged search.
+The graph distinguishes serialized/selected-resource relationships from name
+candidates. Source statements link to compiler instructions, established receiver
+references and include dependencies. It is a relationship diagram, not a map.
+
+Select a script and choose **View script** to use the same source/analysis tabs,
+with the actual installation profile and include context. Local folders and
+optional reference folders also work through **Open mission directory…**;
+without explicit installation context their script includes remain unresolved.
+Unknown types/fields remain labelled opaque or unsupported.
+
+Headless mission inspection and deterministic streaming exports:
 
 ```
 python3 tools/modding/installation.py /path/to/game
 python3 tools/modding/installation.py /path/to/game --mission tutorial \
   --inspector /tmp/hd2-inspect --output /path/outside-game/tutorial.json
+python3 tools/modding/mission.py /path/to/Missions/Tutorial \
+  --reference-root /path/to/loose-assets \
+  --inspector /tmp/hd2-inspect --output /path/outside-inputs/tutorial.json
 ```
 
-Add `--archives-first` / `--language English` to choose a different explicit
-profile. It is not a capture of live global settings. The browser reuses existing
-ISD0 codecs; ISD1 now verifies container/payload checksums and decodes raw/LZSS.
-ISD1 sound tags>=8 remain unavailable. A successful report command
-can contain blocked/malformed/unsupported entries; inspect validation and coverage.
+Without `--inspector`, scripts are indexed. Installation binding/assignment
+references are expanded within explicit budgets; unbound sources stay indexed
+until selected. A produced mission report can contain errors/unsupported records:
+inspect per-file status, validation and coverage rather than the process exit code.
+Mission exports require new files outside protected input folders.
 
-Exact coverage/schema **2** contracts: [FORMATS.md](FORMATS.md).
-Lookup policy and archive limits: [RESOLUTION.md](RESOLUTION.md).
-Latest archive/storage verification: [ISD1.md](ISD1.md).
-Earlier integrated verification: [INTEGRATED-VALIDATION.md](INTEGRATED-VALIDATION.md).
-Earlier script/content validation: [VALIDATION.md](VALIDATION.md).
+## Contracts and limitations
 
-**Inspect again** reads a fresh snapshot. Analysis runs in a background worker;
-old results and export availability clear before a new inspection. Failed syntax
-still provides a diagnostic and lexical mentions, with no partial parse products.
-Export refuses the selected source path, including symlink/hardlink aliases.
+- [Structured scripts, includes, schema and current verification](SCRIPT-ANALYSIS.md)
+- [Mission format/model coverage](FORMATS.md)
+- [Original lookup policy and bounds](RESOLUTION.md)
+- [ISD1 evidence and archive verification](ISD1.md)
+- [Current independent handoff](HANDOFF.md) and [plan](PLAN.md)
+- [Earlier integrated verification](INTEGRATED-VALIDATION.md) and
+  [initial validation](VALIDATION.md) describe historical checkpoints.
 
-Preview is limited to 65,535 bytes, displayed using a reversible Latin-1 byte
-mapping rather than guessed Windows encoding. Line breaks are normalized for
-viewing only, and non-whitespace control bytes are displayed as hex escapes.
-Original bytes are passed to the CLI unchanged. Files beyond its source limit
-remain rejected. The GUI is an inspection frontend, with no script editing,
-execution, include expansion or added semantics. JSON exports are reports, not
-bytecode or mission files.
+The verified lexer/compiler/command/context research is reused. Inspection-only
+header overlays have checked hashes/anchors; runtime headers remain read-only.
+Supported declarations are Integer/String/Frame; Bool/Enum/Real families remain
+outside recovered support. Ordinary command signatures, original expression
+quirks, labels/jumps, event registrations and Whenever structures are exposed;
+expression trees/data-flow, runtime predicates, debugger/execution and editing
+are excluded. Only the three evidenced string receiver references are interpreted.
+String variables remain dynamic even if initialized to literals. Model/frame
+candidates do not prove engine resolution.
 
-Native desktop smoke checks exercised real widgets, catalog filtering, file
-loading/reloading, read-only previews, export/source protection and failure
-states against the actual CLI. User desktop acceptance was received on
-2026-11-09 ("Works"), with authorization to commit and push feature/modding-tools.
-The user delegated branch work and will review changes when merging with master.
+Source/token/expansion, recursion/depth/operator and session retention limits
+are explicit. Oversized reads and embedded NUL are rejected instead of silently
+reproducing original prefix/truncation behavior. Partial mission format support
+is never reported as complete. Sabre Squadron/expansion profiles, full asset
+formats, 3D rendering, binary editing and serialization are not implemented.
 
-## Evidence and supported boundary
-
-The tool consumes the verified header-only lexer/parser and tables **read-only**;
-it is a separate executable with no VM/context, loader, game application or engine
-linkage. It does not introduce a competing parser or change runtime behavior.
-See [compiler contract](../../analysis/mission-script-loading.md) and
-[receiver contract](../../analysis/mission-script-receivers.md).
-
-- Lexer: 0042CC00/0042CDD0, ASCII names, case-insensitive name lookup, CR-based
-  original diagnostic lines, quoted text without invented escape decoding,
-  `//` comments and 1023-character token bounds.
-- Tables: 00835B68 (275 ordered command records), 008338A8 (246 signatures),
-  00832D60 (33 predicates). Reverse command lookup 0042DE80 and forward predicate
-  lookup 0042E0E0 are reused. The catalog preserves aliases and raw masks.
-- Prepared-source parser: 0042C850/0042C0B0; Integer, String, Frame declarations,
-  assignments and established expressions; signature-driven calls, labels,
-  GoTo/Gosub, If/Else, braces, Block/Return, ScriptStartPoint, numeric/simple
-  events and Whenever/SetWhenever/SetWheneverTime. Recognized table entries
-  need not be supported declarations or implemented runtime commands.
-- Variables: kind 2 integer, 4 string, 5 frame; compiler symbols also include
-  kind 8 Whenever identities. Bool/Enum/Real declarations remain unsupported.
-- References: original 00416E10 receivers for opcode 1 ScriptAssign,
-  5E FRM_FindFrame and 66 FRM_FindChildFrame consume string operand 1.
-  Literal strings are reported as script, scene_frame or child_frame references.
-  String-variable operands are marked dynamic with a null literal, even when
-  initialized from a constant. No data-flow or path-existence claim is made.
-  Child names require a parent frame; they are not file paths.
-
-## Script CLI machine interface (schema_version 1)
-
-`--json FILE` emits one JSON object. Fields include syntax_accepted, diagnostic,
-limitations, variables (name/kind/pool_index), start_pc, eight event_slots,
-whenever_count, instructions (pc/name/opcode/operands), references
-(pc/kind/dynamic/literal), lexical_mentions (name/category), and
-include_directive_present. All parse products are omitted/empty on failure;
-lexical mentions remain available but are explicitly **not calls**. Names can
-also occur as symbols. Internal instructions can have `<internal>` names.
-Operands are raw typed-pool/PC indices, not evaluated values or portable VM
-bytecode. Event slots follow the recovered program's DC..F8 order; numeric
-signal/cutscene event identities remain visible in instruction operands.
-
-`--catalog` emits command records with name, opcode, raw_mask and argument_kinds,
-and predicate records with name, opcode and argument_kinds. Kinds stop at the
-first zero. A null signature denotes a special parser construct or absent table
-signature; an empty array denotes zero ordinary arguments. Special constructs
-have dedicated grammar, so their table signature is not a call template.
-Consumers must check schema_version and syntax_accepted before using products.
-Original source bytes >=128 are JSON-escaped as byte-valued Unicode code points;
-this is reversible byte preservation, not a Windows code-page conversion.
-
-## Compatibility and unknowns
-
-Acceptance means the bounded reconstructed front end accepts prepared source.
-It does not establish execution, original-game acceptance or mission delivery.
-Expression quirks and explicit safety rejections are inherited, including the
-known negative-expression fold boundary documented in the compiler contract.
-There is no speculative command description, actor applicability, unit inference
-or predicate evaluation. Raw command masks are not interpreted as capabilities.
-
-Any raw `#include` occurrence blocks validation, even inside a comment/string:
-original 0042C580 searches raw bytes and has shared-cursor behavior. This tool
-flags presence but does not claim a dependency filename or expand includes.
-Expansion requires the actual Files resolver with resource-specific then shared
-include paths; inventing filesystem/archive precedence would mislead modders.
-Use explicitly prepared source if needed, keeping provenance separately.
-Input over 0xFFFE bytes and embedded NUL are rejected rather than silently
-truncated. The script CLI has no source rewriting, archive extraction, resource existence
-check, recursive script traversal or runtime simulation. The separate mission
-explorer decodes only the documented subsets in [FORMATS.md](FORMATS.md) and
-provides local reference candidates; it does not establish runtime resolution. Sabre Squadron compatibility is not
-established. Global variables and events are syntax, not inferred lifecycle rules.
-
-## Extension boundaries
-
-Keep additions under tools/modding; do not change runtime headers to fit tooling.
-The parsers/client are independent of Tk; typed models and deterministic mission
-JSON support future frontends. Next useful work: source spans, structured script
-diagnostics, explicit numeric events, additional verified format subsets, and a
-resolver interface whose search policy is supplied by the caller. Add each reference kind only with documented
-original receiver/operand evidence. A future editor can consume versioned JSON;
-there is no need to expose compiler pool internals as a stable editor model.
-
-Verification uses temporary synthetic fixtures only, removed after audits under
-the project agreement. No permanent tests or commercial examples are added.
+Original files are never modified. Temporary fixtures are removed after focused
+verification; no permanent tests, extracted commercial data or proprietary
+reports belong in commits. Local checkpoints only; no push/merge without approval.

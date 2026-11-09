@@ -5,6 +5,7 @@ from pathlib import Path, PurePosixPath
 
 from mission import (MissionReport, FileReport, parse_data, identify, safe_name,
                      link_references, enrich, RetentionBudget)
+from script_source import InstallationIncludes
 from resource_store import ResourceStore, ResolutionError, virtual_name
 from isd1 import ArchiveError, UnsupportedCompression, ArchiveLimitError
 
@@ -16,6 +17,7 @@ class InstallationSession:
     def __init__(self,store,mission,inspector=None):
         if mission not in {m['name'] for m in store.missions()}:raise ValueError("Unknown discovered mission")
         self.store=store;self.inspector=inspector;self.budget=RetentionBudget()
+        self.include_context=InstallationIncludes(store,mission)
         self.roots=[store.root];self.paths={};self._files={}
         self.report=MissionReport(mission,[])
         self.report.resolution_profile=store.profile()
@@ -23,7 +25,7 @@ class InstallationSession:
             "Only documented serialized subsets are parsed; no runtime compatibility claim.",
             "Explicit resource profile, not a capture of live game flags or global state.",
             "ISD1 raw/LZSS payloads are checksum-verified; unsupported sound tags and invalid resources never fall back.",
-            "Engine frame/cache relationships remain candidates; includes and dynamic data flow are unresolved.",
+            "Engine frame/cache relationships remain candidates; includes use the recovered shared-cursor preprocessing; dynamic data flow remains unresolved.",
             "Dependency expansion is bounded to 2048 files / 512 script analyses; opaque resources are not decoded."]
         prefix=f"missions/{mission}/"
         for name in sorted(store.entries):
@@ -66,13 +68,16 @@ class InstallationSession:
     def _parse(self,entry):
         try:
             result=self.store.read_result(self.paths[entry.path])
-            fresh=parse_data(result.data,entry.path,self.inspector)
+            fresh=parse_data(result.data,entry.path,self.inspector,self.include_context)
             import hashlib
             fresh.sha256=hashlib.sha256(result.data).hexdigest()
             fresh.archive_decoding=result.decoding
             fresh.resolution=entry.resolution
             self.budget.admit(fresh)
             self._files[entry.path]=fresh
+            if fresh.script:
+                for dep in fresh.script["includes"]:
+                    if dep["selected"]:self._ensure(dep["selected"][9:])
             return fresh
         except (ValueError,OSError) as exc:
             kind=getattr(exc,"kind","unavailable")
@@ -151,6 +156,12 @@ class InstallationSession:
                     ref.status=("selected_payload_unsupported" if resolution.status!="selected" else
                                 "selected_resource_invalid" if self._files[identity].status=="invalid_resource" else
                                 "selected_resource_unavailable" if self._files[identity].status in ("resolution_blocked","unavailable_resource","limited","inspection_error") else "resolved_resource")
+        for entry in self.report.files:
+            if not entry.script:continue
+            for n,dep in enumerate(entry.script['includes']):
+                ref=next(r for r in entry.references if r.source==f"{entry.path}#include={n}")
+                ref.targets=[dep['selected']] if dep['selected'] else []
+                ref.status='resolved_resource' if dep['status']=='resolved' else dep['status']
         enrich(self.report)
 
     def inspect(self,identity):

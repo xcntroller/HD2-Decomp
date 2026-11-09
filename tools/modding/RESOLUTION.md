@@ -60,8 +60,9 @@ set produced 58 names; that is not a universal game mission count.
 An installation session inspects selected recognized mission files. It indexes
 all sources under `scripts/<mission>/`, analyzes literal binding/ScriptAssign
 dependencies within explicit limits, and adds matching model/sound resource
-metadata. Unbound sources remain `indexed` until selected. Includes and dynamic
-script assignment remain unsupported; dependency expansion is not an execution
+metadata. Unbound sources remain `indexed` until selected. Caller-supplied includes are supported through the same resolver (see
+[SCRIPT-ANALYSIS.md](SCRIPT-ANALYSIS.md)); dynamic
+script assignment remains unsupported; dependency expansion is not an execution
 trace or complete closure. Conditional/unreached references are still serialized
 references, not asserted reachable behavior.
 
@@ -87,7 +88,8 @@ not asserted.
 
 The index caps total entries at 200,000, each recognized payload at 64 MiB,
 dependencies at 2,048 files and automatic script analyses at 512. Session models
-retain at most 200,000 records and 100,000 script instructions. Limits are
+retain at most 200,000 records and 100,000 combined script tokens, statements,
+arguments, instructions and diagnostics. Limits are
 reported, not treated as complete success. Byte buffers are discarded after
 parsing; unknown chunks keep span/hash metadata rather than payload copies.
 JSON is streamed from shallow dataclass views, avoiding a deep copy/string of

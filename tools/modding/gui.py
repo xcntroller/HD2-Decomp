@@ -5,10 +5,11 @@ from concurrent.futures import ThreadPoolExecutor
 import json
 from pathlib import Path
 import tkinter as tk
-from tkinter import filedialog, messagebox, ttk
+from tkinter import filedialog, messagebox, simpledialog, ttk
 
 from script_client import invoke, inspect_file
 from mission_gui import MissionExplorer
+from script_panels import ScriptPanels
 
 KINDS = {2: "Integer", 4: "String", 5: "Frame", 8: "Whenever"}
 
@@ -24,6 +25,8 @@ class InspectorWindow:
         self.protected_roots = []
         self.report = None
         self.catalog = []
+        self.include_context = None
+        self.source_reader = None
         self.closed = False
         root.title("H&D2 · Script Inspector")
         root.geometry("1180x800")
@@ -52,6 +55,7 @@ class InspectorWindow:
         self.open_button = ttk.Button(toolbar, text="Open script…", command=self.open_file)
         self.open_button.pack(side="left")
         ttk.Button(toolbar, text="Mission explorer…", command=self.open_explorer).pack(side="left", padx=(8,0))
+        ttk.Button(toolbar, text="Include context…", command=self.choose_context).pack(side="left", padx=(8,0))
         self.reload_button = ttk.Button(toolbar, text="Inspect again", command=self.reload, state="disabled")
         self.reload_button.pack(side="left", padx=8)
         self.export_button = ttk.Button(toolbar, text="Export JSON…", command=self.export, state="disabled")
@@ -61,7 +65,7 @@ class InspectorWindow:
         self.status = ttk.Label(shell, text="Loading command reference…", font=("TkDefaultFont", 11, "bold"))
         self.status.pack(anchor="w", pady=(0, 10))
 
-        ttk.Label(shell, text="Prepared source only · includes are unresolved · resources are not checked · no script execution",
+        ttk.Label(shell, text="Read-only source analysis · explicit installation context for includes · no script execution",
                   style="Muted.TLabel", wraplength=800).pack(side="bottom", anchor="w", pady=(12, 0))
         self.tabs = ttk.Notebook(shell)
         self.tabs.pack(fill="both", expand=True)
@@ -72,7 +76,8 @@ class InspectorWindow:
                       "Syntax acceptance does not establish runtime compatibility.\n\n"
                       "The Command reference tab can be searched without opening a script.")
         source_tab = self.tab("Source")
-        ttk.Label(source_tab, text="Read-only byte preview · Latin-1 display · first 65,535 bytes only",
+        self.source_tab=source_tab
+        ttk.Label(source_tab, text="Read-only Latin-1 source · byte spans and normalized line positions · double-click analysis rows to navigate",
                   style="Muted.TLabel").pack(anchor="w", pady=(0, 8))
         self.source_text = self.text(source_tab)
         self.references = self.tree(self.tab("References"), ("PC", "Kind", "Reference", "Resolution"))
@@ -95,6 +100,7 @@ class InspectorWindow:
         ttk.Label(reference_tab, text="Table signatures only. Special constructs use dedicated grammar; "
                   "runtime semantics and actor applicability may be unknown.", wraplength=1000,
                   style="Muted.TLabel").pack(anchor="w", pady=(8, 0))
+        self.analysis=ScriptPanels(self,source_tab)
         self.raw = self.text(self.tab("JSON"))
         root.bind("<Control-o>", lambda _: self.open_file())
         self.submit("catalog", lambda: invoke(self.inspector, "--catalog"))
@@ -146,6 +152,7 @@ class InspectorWindow:
         widget.configure(state="disabled")
 
     def set_busy(self, busy):
+        self.analysis.sources.configure(state="disabled" if busy else "readonly")
         self.open_button.configure(state="disabled" if busy else "normal")
         self.reload_button.configure(state="normal" if self.path and not busy else "disabled")
         self.export_button.configure(state="normal" if self.report and not busy else "disabled")
@@ -171,6 +178,12 @@ class InspectorWindow:
                     ("Command", "commands"), ("Predicate", "predicates")) for item in result[key]]
                 self.filter_catalog()
                 self.status.configure(text="Ready · open a script to inspect")
+            elif kind == "source":
+                self.analysis.display(*result)
+            elif kind == "context":
+                self.include_context=result
+                self.source_reader=result.source
+                self.status.configure(text="Include context selected: "+result.resource+" · Inspect again to apply")
             else:
                 self.show_report(*result)
         except Exception as exc:
@@ -180,20 +193,35 @@ class InspectorWindow:
         finally:
             self.set_busy(False)
 
+    def choose_context(self):
+        if self.pending:return
+        selected=filedialog.askdirectory(parent=self.root,title="Installation for include resolution")
+        if not selected:return
+        namespace=simpledialog.askstring("Include lookup", "Mission resource namespace (for example tutorial or alps1):",parent=self.root)
+        if not namespace:return
+        from resource_store import ResourceStore
+        from script_source import InstallationIncludes
+        # Uses the established default loose/Patch/base profile. Alternate profiles
+        # are selected in Mission Explorer, whose snapshots preserve their context.
+        self.protected_roots.append(Path(selected).resolve())
+        self.submit('context',lambda:InstallationIncludes(ResourceStore(selected),namespace))
+
     def open_file(self):
         if self.pending:
             return
         selected = filedialog.askopenfilename(parent=self.root, title="Open mission script",
                     filetypes=[("Mission scripts", "*.scr"), ("All files", "*")])
         if selected:
+            self.source_reader=self.include_context.source if self.include_context else None
             self.path = Path(selected).resolve()
-            self.protected_roots = [self.path.parent]
+            self.protected_roots = [self.path.parent]+([self.include_context.store.root] if self.include_context else [])
             self.reload()
 
     def reload(self):
         if self.pending or not self.path:
             return
         self.report = None
+        self.analysis.clear()
         self.file_label.configure(text=str(self.path))
         self.status.configure(text="Inspecting…")
         for tree in (self.references, self.variables, self.instructions):
@@ -201,10 +229,12 @@ class InspectorWindow:
         for widget in (self.source_text, self.raw, self.summary):
             self.set_text(widget, "")
         self.tabs.select(self.overview)
-        self.submit("inspection", lambda: inspect_file(self.inspector, self.path))
+        self.submit("inspection", lambda: inspect_file(self.inspector, self.path,self.include_context))
 
     def show_report(self, source, report):
         self.report = report
+        for tree in (self.references,self.variables,self.instructions):tree.delete(*tree.get_children())
+        self.analysis.set_report(source,report,self.source_reader)
         accepted = report["syntax_accepted"]
         title = "Supported syntax accepted" if accepted else "Validation unavailable / source rejected"
         self.status.configure(text=title)
@@ -212,26 +242,28 @@ class InspectorWindow:
                    f"{len(report['instructions'])} instructions  ·  {len(report['variables'])} symbols  ·  "
                    f"{len(report['references'])} references",
                    f"Start PC: {report['start_pc']}  ·  Whenever records: {report['whenever_count']}",
-                   f"Event slots (raw DC..F8 order): {report['event_slots']}", "", "Limitations", *report["limitations"]]
+                   f"Event slots (raw DC..F8 order): {report['event_slots']}",
+                   "References / Symbols / Instructions show the first 2,000 rows; Analysis search covers all constructs.", "", "Limitations", *report["limitations"]]
         if report.get("include_directive_present"):
-            summary += ["", "An #include occurrence was detected. Expansion and dependency resolution are unavailable."]
+            summary += ["", "Preprocessing: "+report.get("preprocessing_status","unknown")]
         summary += ["", "Recognized lexical mentions (these are not confirmed calls)"]
-        summary += [f"{m['category']}: {m['name']}" for m in report["lexical_mentions"]]
+        summary += [f"{m['category']}: {m['name']}" for m in report["lexical_mentions"][:250]]
         self.set_text(self.summary, "\n".join(summary))
-        # Render control bytes visibly; retain tabs and line breaks for reading.
-        preview = "".join(c if ord(c) >= 32 or c in "\t\r\n" else f"\\x{ord(c):02x}"
-                          for c in source.decode("latin-1"))
-        self.set_text(self.source_text, preview.replace("\r\n", "\n").replace("\r", "\n"))
-        for ref in report["references"]:
+        for ref in report["references"][:2000]:
             self.references.insert("", "end", values=(ref["pc"], ref["kind"],
                 "<string variable>" if ref["dynamic"] else ref["literal"],
-                "Dynamic" if ref["dynamic"] else "Literal · existence unchecked"))
-        for symbol in report["variables"]:
+                "Dynamic" if ref["dynamic"] else ref.get("resolution_status","Literal · existence unchecked")))
+        for symbol in report["variables"][:2000]:
             self.variables.insert("", "end", values=(symbol["name"], KINDS.get(symbol["kind"], symbol["kind"]), symbol["pool_index"]))
-        for instruction in report["instructions"]:
+        for instruction in report["instructions"][:2000]:
             self.instructions.insert("", "end", values=(instruction["pc"], instruction["name"],
                 f"0x{instruction['opcode']:X}", ", ".join(map(str, instruction["operands"]))))
-        self.set_text(self.raw, json.dumps(report, indent=2, ensure_ascii=True))
+        parts=[];length=0
+        for chunk in json.JSONEncoder(indent=2,ensure_ascii=True).iterencode(report):
+            parts.append(chunk);length+=len(chunk)
+            if length>262144:break
+        raw=''.join(parts)
+        self.set_text(self.raw,raw[:262144]+("\n[Preview limited to 256 KiB; export contains the full report]" if length>262144 else ""))
 
     def filter_catalog(self):
         query = self.query.get().strip().casefold()
@@ -247,7 +279,8 @@ class InspectorWindow:
             count += 1
         self.catalog_count.configure(text=f"{count} of {len(self.catalog)} table entries")
 
-    def show_snapshot(self,source,report,protected_roots=()):
+    def show_snapshot(self,source,report,protected_roots=(),source_reader=None):
+        self.source_reader=source_reader
         self.path=None
         self.protected_roots=list(protected_roots)
         self.file_label.configure(text=report["file"]+" · read-only resource snapshot")
@@ -270,7 +303,8 @@ class InspectorWindow:
                     messagebox.showerror("Cannot overwrite source", "Choose a separate JSON file.", parent=self.root)
                     return
                 with destination.open("x", encoding="utf-8") as stream:
-                    stream.write(json.dumps(self.report, indent=2, ensure_ascii=True) + "\n")
+                    stream.writelines(json.JSONEncoder(indent=2,ensure_ascii=True,allow_nan=False).iterencode(self.report))
+                    stream.write("\n")
             except OSError as exc:
                 messagebox.showerror("Export failed", str(exc), parent=self.root)
 

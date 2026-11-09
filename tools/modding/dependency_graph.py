@@ -67,6 +67,13 @@ def enrich(report):
     def edge(source,target,relation,label,certainty,status,evidence):
         edges.append(Edge("edge:"+stable(source,target,relation,label),source,target,relation,label,certainty,status,evidence))
     for entry in report.files:
+        if entry.script:
+            by_source={r.source:r for r in entry.references}
+            for ref in entry.script['references']:
+                linked=by_source.get(ref['instruction_identity'])
+                if linked:
+                    ref.update(targets=linked.targets,resolution_status=linked.status,
+                               relationship_certainty='resolver_selected' if linked.status in ('resolved_resource','selected_payload_unsupported','selected_resource_unavailable','selected_resource_invalid') else 'name_candidate' if linked.targets else 'serialized_unresolved')
         nodes[entry.path]=Node(entry.path,entry.path,"file",entry.path)
         if entry.status=="invalid_resource":
             for diagnostic in entry.diagnostics:
@@ -117,11 +124,25 @@ def enrich(report):
                           f"{record.kind}: {record.size} byte span remains opaque",record.evidence)
                 visit(record.children,current)
         visit(entry.records)
+        if entry.script:
+            for statement in entry.script.get('statements',[]):
+                identity=statement['identity'];locations=statement['locations']
+                nodes[identity]=Node(identity,entry.path,'script_statement',statement['name'],locations[0]['start'] if locations else None)
+                edge(entry.path,identity,'contains_syntax',statement['name'],'serialized','observed','0042C0B0')
+            for instruction in entry.script['instructions']:
+                identity=f"{entry.path}#pc={instruction['pc']}"
+                nodes[identity]=Node(identity,entry.path,'script_instruction',instruction['name'])
+                if instruction['statement'] is not None:
+                    edge(entry.script['statements'][instruction['statement']]['identity'],identity,'compiles_to',str(instruction['pc']),'serialized','compiler_product','0042C0B0')
+            for diagnostic in entry.script['diagnostics']:
+                locations=diagnostic.get('locations',[])
+                source=locations[0]['source']+'#byte='+str(locations[0]['start']) if locations else entry.path
+                issue(diagnostic['severity'],'script_'+diagnostic['category'],entry.path,source,diagnostic['message'],diagnostic['evidence'])
     for entry in report.files:
         for index,ref in enumerate(entry.references):
-            source=owners.get(ref.source,ref.source if "#pc=" in ref.source else entry.path)
+            source=owners.get(ref.source,ref.source if "#pc=" in ref.source or "#include=" in ref.source else entry.path)
             if source not in nodes:
-                nodes[source]=Node(source,entry.path,"script_instruction",source.rsplit("#",1)[-1])
+                nodes[source]=Node(source,entry.path,"include_directive" if ref.kind=="include" else "script_instruction",source.rsplit("#",1)[-1])
                 edge(entry.path,source,"contains",nodes[source].label,"serialized","documented",ref.evidence)
             targets=ref.targets
             if not targets:

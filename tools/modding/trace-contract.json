@@ -1,0 +1,15 @@
+{
+  "scope": "Inspection-only lexical/parser observation; no runtime header edits",
+  "headers": {
+    "mission_script_lexer.h": "2d0bedcfea0b16bea8956acd4ee0da24bedcd6e7380505c5bb1fe9861f23c5b3",
+    "mission_script_program.h": "7d4d95bfd73e97482987c79824834cbea6cd106583d7123421a8737083f14115",
+    "mission_script_compiler.h": "e4b60270ce7318da3bed40ab929b66ea75d28ab562493b1e6a2aebfa3b64cb8a"
+  },
+  "evidence": [
+    "0042CC00/0042CDD0/0042CF60",
+    "0042C850/0042C0B0",
+    "0042ECD0",
+    "0042EC20/0042DD40",
+    "0042E410/0042E730/0042E460/0042E550/0042E640/0042E7C0"
+  ]
+}

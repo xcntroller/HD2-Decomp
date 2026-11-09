@@ -1,41 +1,48 @@
 # Modding-tools handoff — 2026-11-09
 
-Latest: first unchecked ISD1 CRC/raw/LZSS milestone is complete and independently
-verified for a local checkpoint. No push/merge without renewed approval. Earlier
-branch delegation permits verified local commits for merge review. Main/client/
-server source, shared handoffs, plan and ledger remain untouched; no credit tally.
+Latest checkpoint: both remaining script milestones are complete. Only
+`tools/modding` changed; client/server/shared handoffs, plan and ledger untouched.
+Earlier branch delegation permits verified local commits for merge review; no
+push/merge without renewed approval. No editing/runtime/debugger work added.
 
-Launch `make -C tools/modding gui` → Mission explorer → Open installation. The
-original explicit language/loose/archive-first profile is preserved. Patch wins
-where selected; no fallback on invalid/unsupported data. Content and Archive
-columns distinguish decoded verified bytes, partial format parsing, unavailable
-codecs and invalid inputs; file/actor details retain provenance/check results.
+`make -C tools/modding gui` launches the existing integrated application. New
+Analysis search/filter/pages navigate diagnostics, events, declarations, labels,
+controls, arguments and references to exact source bytes. Source has highlighting,
+diagnostic underlines, included-file selection and SHA256 checks. Open a script
+from Mission Explorer to retain its actual installation profile/include context;
+standalone Include context selects the default profile explicitly. Headless:
+`python3 tools/modding/analyze_script.py --help`.
 
-`isd1.py` reconstructs separate descriptor/tag/payload storage, all native
-checksum stages and raw/LZSS. Actual Patch ALPS1 Scene2(6727085 bytes) and actors
-(41052) match existing captures byte-for-byte and by SHA256. Details, addresses,
-limits, checksums and audit hashes: [ISD1](ISD1.md), [evidence](isd1-evidence.json).
-Other contracts: [formats](FORMATS.md), [resolution](RESOLUTION.md), [usage](README.md).
+Native schema2 uses checked inspection-only lexer/compiler overlays; recovered
+runtime headers remain untouched. Python adds provenance, actual event mappings,
+control/variable views and faithful shared-cursor includes via ResourceStore.
+Selected invalid/unavailable resources never fall back. Defensive restrictions
+are distinguished from recovered behavior. Mission graph links statements to
+compiler instructions, receiver candidates/selected resources and includes.
+Contracts, addresses, coverage, limits and verification:
+[SCRIPT-ANALYSIS](SCRIPT-ANALYSIS.md), [README](README.md).
 
-Consolidated verification:5619 LangEnglish/Patch metadata records passed; full
-Patch sweep decoded1053 members/259360081 bytes, six sound members remained
-unsupported after stored-checksum verification.32 captured resources match
-byte-for-byte and five absences agree. Tutorial275 files/2139 entities/5345 edges;
-actual selected ALPS1246/4452/8586. No invalid/blocked selected inputs in those
-sessions; format coverage remains partial. Synthetic independent checks cover
-all CRC layers, raw/LZSS, key resets, clear/encrypted/empty/multiblock payloads,
-truncation, offsets, malformed streams, unavailable codecs and precedence. Native
-GUI checked real patched records plus invalid/unavailable states; rendered window
-inspected. Python compilation and small existing inspector build pass.
+Verified all290 selected Tutorial/ALPS1 sources (10 Patch):289 accepted, prior
+compiler products unchanged; Tutorial weather retains its known expression
+rejection at byte1443. All three real include scripts now compile; expanded bytes,
+lookup order and compiler products match unmodified recovered native fixtures.
+Fifteen include and sixteen malformed/safety fixtures plus event/label/Whenever
+checks passed. Native ASan/UBSan/LeakSanitizer passed all290 scripts and focused
+negative/positive fixtures. Actual native Tk checks cover navigation, included
+sources, diagnostics/highlights, search, stale clearing, hash rejection and real
+Patch-selected Tutorial/ALPS1 displays; no new human acceptance is claimed.
 
-No original DLL/game/Proton/copied original code executed; static objdump only,
-no Ghidra or heavy game builds. No new native code, hence no new sanitizer claim.
-Originals read-only; no permanent tests/assets/raw exports committed. Temporary
-/tmp/hd2-isd1-audit fixtures, source slices, reports, screenshots and disassembly
-removed after verification. New user desktop acceptance is not claimed.
+Integrated Tutorial275 files/2139 entities/12777 nodes/14217 edges;
+ALPS1246/4452/27348/29377. Deterministic streaming exports checked; combined script
+retention35592/76338 under100000. Sequential streaming audit peak252012KiB RSS.
+Binary format support remains partial. Retention now counts tokens, statements,
+arguments, instructions and diagnostics. UI pages250, legacy tables2000,
+JSON preview256KiB. Exports stream; originals remain strictly read-only.
 
-Next unchecked item: structured script diagnostics/spans and explicit events.
-It was not started during this archive milestone. ISD1 sound tags>=8, expansion
-profiles, full actor/asset formats, engine cache/joint resolution and include
-semantics remain excluded. Do not confuse verified container bytes with complete
-mission/runtime compatibility; no 3D/editor/binary serialization work was added.
+No original DLL/EXE/Proton/Ghidra or heavy game builds used; no commercial assets,
+permanent tests or raw reports committed. Temporary audit inputs are outside Git
+and removed after verification. ISD1 raw/LZSS remains the earlier verified milestone
+([ISD1](ISD1.md)); sound tags>=8 unavailable. The independent plan has no remaining
+unchecked items in the requested scope. Next work requires a separately scoped
+objective. Expression/data-flow views, full compiler/runtime compatibility,
+expansion profiles, new formats, editing and binary serialization remain excluded.

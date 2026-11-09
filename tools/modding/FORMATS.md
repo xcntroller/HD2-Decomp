@@ -18,7 +18,7 @@ unsupported Patch member blocks lower-priority base data; it is not substituted.
 | actors.bin / sounds.bin | Same framing/fields; AE20/AE21 actor entries, AE22 type, AE23 frame; supported AE24 property families below | Same reader; no scene version invented for a headerless document |
 | mission Scripts.dta / mpscripts.dta | Ordered pairs of bounded frame/script strings in first root; IDs/order/duplicates retained | 00428600, `recovered/game/mission_script_bindings.h`, `analysis/loading-modules.md` |
 | check2.bin / AE40 | Two version 7ED00109 blocks, counts, 32-byte records and WORD link pairs, 18-byte records, frame/actor names | 00523C00/0051DE80/0051C7B0/0051C870/0051C910, `recovered/game/mission_table_reader.h` |
-| .scr | Existing bounded compiler protocol: syntax, symbols, instructions, limited references | `analysis/mission-script-loading.md` / `mission-script-receivers.md` |
+| .scr | Compiler-backed schema2 spans, diagnostics, events, symbols, instructions, includes and limited references | `analysis/mission-script-loading.md` / `mission-script-receivers.md` |
 | Other files | Inventory/size/provenance and explicit unsupported status | No new payload interpretation |
 
 Unknown chunks preserve file offset, size, kind and SHA256; their payloads are
@@ -114,7 +114,7 @@ Mission schema **2** extends the earlier file/record/reference model with typed
 entities, graph nodes/edges, structured validation issues, coverage and optional
 resolution profile. Each file can carry selected/shadowed source provenance and `archive_decoding`
 integrity/availability separately from content-parse status.
-The script CLI protocol remains version 1. Consumers must check the schema and
+The script CLI protocol is now version2; [SCRIPT-ANALYSIS.md](SCRIPT-ANALYSIS.md) describes spans, events, includes and provenance. Consumers must check the schema and
 per-file/coverage status. `coverage.complete_format_support` is always false.
 
 Sorted keys/files/IDs and ordered serialized records produce deterministic
@@ -130,7 +130,7 @@ Unknown payloads retain span/hash metadata, not complete byte dumps. Local repor
 may contain proprietary identifiers and must not be committed as fixtures.
 
 Bounds: 64 MiB per recognized file, 200,000 records per file/session, 100,000
-retained instructions, 20,000 loose-session inventory files, 200,000 installation
+retained script constructs (tokens/statements/arguments/instructions/diagnostics), 20,000 loose-session inventory files, 200,000 installation
 index entries, 2,048 dependencies and 512 automatic script analyses. UI result
 pages contain at most 250 rows. Budget exhaustion is explicitly incomplete.
 Bad chunk lengths, missing terminators and table count/capacity errors reject
@@ -139,3 +139,8 @@ concurrent-filesystem sandbox. Original files are read-only. Exports create new
 files outside protected inputs/installation; overwrites/aliases are refused.
 No binary editing, serialization back to game formats or original-code execution
 is available.
+
+Script source statement nodes use `#statement=` and compiler instruction nodes
+use `#pc=`. `contains_syntax` / `compiles_to` relationships describe observation
+and compilation, not execution. Include edges use the caller's installation
+resolver; reference locations retain source byte spans. See [script contract](SCRIPT-ANALYSIS.md).

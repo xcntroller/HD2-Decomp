@@ -49,6 +49,7 @@ class Reference:
     evidence: str
     status: str = "unresolved"
     targets: list[str] = field(default_factory=list)
+    locations: list[dict] = field(default_factory=list)
 
 
 @dataclass
@@ -321,7 +322,7 @@ def parse_file(path, identity, inspector=None):
     return parse_data(data,identity,inspector)
 
 
-def parse_data(data,identity,inspector=None):
+def parse_data(data,identity,inspector=None,include_context=None):
     size=len(data)
     report=FileReport(identity,size,identify(identity))
     if report.format == "opaque":
@@ -341,12 +342,14 @@ def parse_data(data,identity,inspector=None):
                 report.status="indexed"
                 report.diagnostics=["Source indexed; select to run the standalone inspector"]
                 return report
-            script=inspect_bytes(inspector,data,identity)
+            script=inspect_bytes(inspector,data,identity,include_context)
             report.script=script
             report.status="syntax_accepted" if script["syntax_accepted"] else "syntax_unavailable"
             report.diagnostics=[script["diagnostic"]] if script["diagnostic"] else []
             for ref in script["references"]:
-                report.references.append(Reference(f"{identity}#pc={ref['pc']}",ref["kind"],ref["literal"],SCRIPT_EVIDENCE))
+                report.references.append(Reference(f"{identity}#pc={ref['pc']}",ref["kind"],ref["literal"],SCRIPT_EVIDENCE,locations=ref.get("locations",[])))
+            for n,dep in enumerate(script["includes"]):
+                report.references.append(Reference(f"{identity}#include={n}","include",dep["selected"] or dep["name"],dep["evidence"],locations=dep["locations"]))
             return report
         if report.format == "scene":report.records=parser.scene()
         elif report.format == "bindings":report.records=parser.bindings()
@@ -375,11 +378,11 @@ class RetentionBudget:
     def admit(self,entry):
         old_records,old_instructions=self.entries.get(entry.path,(0,0))
         records=sum(1 for _ in walk_records(entry.records))
-        instructions=len(entry.script.get("instructions",[])) if entry.script else 0
+        instructions=sum(len(entry.script.get(k,[])) for k in ("instructions","tokens","statements","arguments","diagnostics")) if entry.script else 0
         if (self.records-old_records+records>self.record_limit
                 or self.instructions-old_instructions+instructions>self.instruction_limit):
             entry.records=[];entry.references=[];entry.script=None
-            entry.status="limited";entry.diagnostics=["Session retained-record/instruction budget exceeded"]
+            entry.status="limited";entry.diagnostics=["Session retained-record/script-construct budget exceeded"]
             records=instructions=0
         self.records+=records-old_records;self.instructions+=instructions-old_instructions
         self.entries[entry.path]=(records,instructions)

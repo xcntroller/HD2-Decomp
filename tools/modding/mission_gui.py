@@ -153,7 +153,8 @@ class MissionExplorer:
                 self.owner.set_text(self.info,json.dumps(self.store.profile(),indent=2))
             elif kind=="script":
                 source,report=result
-                self.owner.show_snapshot(source,report,self.session.roots)
+                self.owner.show_snapshot(source,report,self.session.roots,
+                    self.session.include_context.source if isinstance(self.session,InstallationSession) else None)
             elif kind=="scan":
                 self.session=result
                 self.files.delete(*self.files.get_children())
