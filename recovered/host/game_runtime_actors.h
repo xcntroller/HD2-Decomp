@@ -1,0 +1,131 @@
+#ifndef HD2_HOST_GAME_RUNTIME_ACTORS_H
+#define HD2_HOST_GAME_RUNTIME_ACTORS_H
+
+#include "host/game_actor_services.h"
+#include "game/placed_item_actor.h"
+#include "game/dynamic_item_actor.h"
+#include "game/runtime_actor_registry.h"
+#include "frontend/localized_text.h"
+
+namespace hd2::host {
+
+//004770B0's separate runtime owner. Borrow the SAME frame-data/entry services
+//as Scene2, not a second GameActorServices instance. Activation supplies actual
+//common registry endpoints and0049EF70 presentation-reference cleanup; the
+//containing world must keep it, navigation and entries alive through clear().
+template<class Activation,class Collisions,class Items>
+class GameRuntimeActors {
+public:
+    using Frame=GameActorServices::Frame;
+    using Base=GameActorServices::Actor;
+    using Instance=game::SceneActor<GameActorServices>;
+    using ActorOwner=std::unique_ptr<Instance>;
+    using ItemActor=game::PlacedItemActor<GameActorServices,Activation>;
+    using LooseItemActor=game::DynamicItemActor<GameActorServices,Activation,Collisions,Items>;
+    using Body=typename LooseItemActor::Body;
+    using Descriptor=typename Body::Descriptor;
+    using Entry=GameActorServices::Entry;
+    struct StaticItem {Frame frame;void* object;Descriptor* descriptor;ItemActor* actor=nullptr;};
+    GameRuntimeActors(GameActorServices& frames,Activation& activation,game::MissionNavigation& navigation,
+                      const frontend::LocalizedTextCache& text,Collisions& collisions,typename Body::Registry& bodies,Items& items)
+        : frames_(frames),activation_(activation),navigation_(navigation),text_(text),collisions_(collisions),bodies_(bodies),items_(items) {}
+    ActorOwner make_runtime_actor(std::uint32_t type) {
+        if(type==35)return std::make_unique<ItemActor>(frames_,activation_,navigation_,frontend::lookup_localized_text(text_,0x1bf6));
+        if(type==11)return std::make_unique<LooseItemActor>(frames_,activation_,collisions_,bodies_,items_);
+        throw std::runtime_error("Required runtime actor constructor is not reconstructed: "+std::to_string(type));
+    }
+    ItemActor* create_item(Frame frame,std::int32_t identity=-1) {
+        return static_cast<ItemActor*>(registry_.create(35,frame,identity));
+    }
+    LooseItemActor* create_loose_item(Frame frame,std::int32_t identity=-1) {
+        return static_cast<LooseItemActor*>(registry_.create(11,frame,identity));
+    }
+    void set_active(Base& base,bool value) {registry_.active(registry_.actor_for_base(base),value);}
+    void begin_activation(bool authority) {registry_.begin_activation(authority);}
+    void queue_static_item(Frame frame,void* object,Descriptor& descriptor) { //00479540, three borrowed handles.
+        if(!frame||!object)throw std::runtime_error("Static item queue requires actual frame and physics object");
+        static_items_.push_back(StaticItem{frame,object,&descriptor});
+    }
+    void activate(bool authority) { //00477660/004794D0/00479530, required mission branches.
+        registry_.begin_activation(authority);field74_=0;
+        if(authority||!(mode_flags()&1)) {
+            for(std::size_t index=0;index!=static_items_.size();++index) {
+                const auto queued=static_items_[index];
+                auto* actor=create_item(queued.frame);
+                actor->physics_object(queued.object);static_items_[index].actor=actor;
+                queued.descriptor->actor=actor;
+                try {collisions_.move(*queued.descriptor);}catch(...) {registry_.remove(actor);throw;}
+            }
+        }
+        if(!authority||!(mode_flags()&1))return;
+        //Items3 precedes this module12 in the original ascending activation.
+        //Use its actual shared placement array, not another decoded item file.
+        for(std::size_t index=0;index!=items_.placed_items().size();++index) {
+            const auto placed=items_.placed_items()[index];
+            auto& item=items_.runtime_item(placed.entry);
+            if(item.flag1d&&item.definition().kind()==10)
+                throw std::runtime_error("Required placed item ground/effect receiver is unavailable");
+            auto model=item.model();
+            if(!model)throw std::runtime_error("Placed mission item model is unavailable");
+            frames_.object_position(model,{placed.position[0],placed.position[1],placed.position[2]});
+            frames_.object_rotation(model,placed.rotation);
+            auto* actor=create_loose_item(model);
+            try {actor->bind_item(placed.entry,{0,0,0,0});}
+            catch(...) {registry_.remove(actor);throw;}
+            if((mode_flags()&7)!=7&&item.definition().kind()==20)retained_items_.push_back(placed);
+        }
+        items_.consume_placed_items();
+    }
+    void remove(Instance* actor) noexcept {registry_.remove(actor);}
+    void clear() noexcept {registry_.clear();}
+    void clear_static_queue() { //004795E0; descriptor owners must outlive registered actors.
+        for(const auto& queued:static_items_)if(queued.actor)
+            throw std::logic_error("Static item queue cannot clear before its runtime actors");
+        static_items_.clear();
+    }
+    void remove_static_item(void* object) noexcept { //Native rollback/teardown guard for the borrowed producer.
+        for(auto index=static_items_.size();index!=0;)if(static_items_[--index].object==object) {
+            if(auto* actor=static_items_[index].actor)registry_.remove(actor);
+            static_items_.erase(static_items_.begin()+static_cast<std::ptrdiff_t>(index));
+        }
+    }
+    const auto& active_actors() const {return registry_.active_actors();}
+    Instance* identity(std::int32_t value) const {return registry_.identity(value);}
+    std::uint32_t mode_flags() const {return activation_.mode_flags();}
+    void bind_runtime_actor_frame(Frame frame,Instance* actor) {frames_.bind_scene_actor_frame(frame,actor);}
+    void unbind_runtime_actor_frame(Frame frame) noexcept {frames_.unbind_scene_actor_frame(frame);}
+    void activate_runtime_actor(Instance& actor,bool authority) {
+        if(actor.base().type()==11)static_cast<LooseItemActor&>(actor).activate(authority);
+        else item(actor).activate(authority);
+    }
+    void deactivate_runtime_actor(Instance& actor,bool authority) {
+        if(actor.base().type()==11)static_cast<LooseItemActor&>(actor).deactivate(authority);
+        else {
+            for(auto& queued:static_items_)if(queued.actor==&actor) {
+                queued.descriptor->actor=nullptr;queued.actor=nullptr;
+            }
+            item(actor).deactivate(authority);
+        }
+    }
+    void remove_actor_presentation_references(Instance& actor) {activation_.remove_actor_presentation_references(actor);}
+    void record_actor_cleanup_failure(std::exception_ptr failure) noexcept {frames_.record_actor_cleanup_failure(std::move(failure));}
+private:
+    static ItemActor& item(Instance& actor) {
+        if(actor.base().type()!=35)throw std::runtime_error("Runtime actor activation receiver is unavailable");
+        return static_cast<ItemActor&>(actor);
+    }
+    GameActorServices& frames_;
+    Activation& activation_;
+    game::MissionNavigation& navigation_;
+    const frontend::LocalizedTextCache& text_;
+    Collisions& collisions_;
+    typename Body::Registry& bodies_;
+    Items& items_;
+    std::vector<StaticItem> static_items_;
+    std::vector<typename Items::Placed> retained_items_;
+    std::uint32_t field74_=0;
+    game::RuntimeActorRegistry<GameRuntimeActors> registry_{*this};
+};
+
+} //namespace hd2::host
+#endif
