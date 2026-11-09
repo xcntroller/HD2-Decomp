@@ -1,5 +1,9 @@
 # Headless startup data — HumanStore and GameData
 
+The [owned application-data composition](../../recovered/networking/headless_application_data.h)
+now connects these loaders to [dedicated profile selection](headless-profile-source.md)
+and the authoritative cold command settings. See the ownership boundary below.
+
 Source-only dependency of the open N1 startup/shutdown checkbox. This does not
 construct the application, start a controller or establish a session. The follow-up
 below now supplies GameData loading and the original preparation order as well.
@@ -123,3 +127,37 @@ exported00700DB0 successfully, then stopped at the erroneous interior00700710
 request; actual legacy mission routing is007006A0. No missing-entry credit.
 Only006FF900 and006F9550 gain new partial mappings. Actual application/profile/
 engine/module construction and controller/transport/session integration remain open.
+
+## Owned startup composition
+
+The source subset of006F71B0 now owns, in construction order, GameData(+04),
+startup configuration(+08, immediately loads), dedicated profile(+20), headless
+HumanStore(+10), and the recovered cold configuration/command fields(+24).
+The startup loader006E8F70 matches the shared three-string reader: executable
+directory plus game.cfg, independently cleared100-byte scratch for LASTPROFIL,
+PARENTLOC and NETCDKEY, actual I/O even though original ignores its result.
+No actual user game.cfg was opened during verification.
+
+Fresh profile construction sets word34=0 and save words74..90=-1, initializes
+settings directly and constructs movie records; it does not perform the later
+payload reset which sets difficulty2 and five slot IDs=-1. HumanStore preparation
+uses the preselection profile-directory value. Profile selection runs separately
+after successful mandatory data preparation in the actual controller sequence.
+One ColdServerCommands object owns the authoritative cold settings; command
+mutations and later consumers observe that same object. Its construction neither
+loads the catalogue nor starts a transport. Catalogue acquisition remains lazy.
+
+Normal close preserves006F8DD0's relative+04,+08,+20,+10,+24 destruction order;
+native close is idempotent, closed access throws and allocation/file exceptions
+unwind owned members. Original allocation-null behavior, raw object/vector ABI,
+unwritten scratch, full+24 descriptor/294 owner and other application managers
+(+18/+1C/+14/+28/+0C) are excluded. They receive no successful substitutes.
+This is an application DATA subset, not the full singleton or controller.
+
+[Composition receipt](headless-application-verification.json): focused native
+ASan/UBSan/LSan using actual GameData/HumanStore/catalogue input and synthetic
+configuration, early read order, fresh profile values, preselection overlay path,
+profile composition, settings identity, lazy catalogue/real command parsing,
+missing/failed input, close/closed access and30 owner lifetimes. Strict Windows
+i386 fixture linked and was not executed. Temporary audit artifacts hashed and
+removed. Only006F71B0 and006F8DD0 gain new partial mappings; full N1 stays open.

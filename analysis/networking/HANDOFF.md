@@ -4,29 +4,28 @@ Work only in feature/networking at HD2-Decomp-networking. Main worktree and froz
 client/LS3DF ledger stay untouched. No push, merge, publication, original executable,
 DLL, Proton or Windows-fixture execution. Heavy jobs sequential; no subagents.
 
-Ledger:29 server/9 launcher partials, zero complete. [Progress README](../../networking/README.md)
+Ledger:31 server/9 launcher partials, zero complete. [Progress README](../../networking/README.md)
 is generated from the separate inventories/ledger. No independent server, live
 discovery, interoperability or desktop acceptance. First open N1 startup/shutdown
 checkbox in [plan](plan.md) stays OPEN; continue its entire boundary.
 
-Latest [dedicated profile contract](headless-profile-source.md): owned options,
-raw binding records, profile payload/legacy fallback and startup selection now
-reconstruct006F95C0/006F0380 and their actual data dependencies. Server defaults
-only clear bindings; apply006EBF40 is RET. Two settings apply helpers are RET;
-quality and network voice-input volume require actual backends. Legacy fallback
-changes into PlayersProfiles plus RAW displayed name before reading profile.pr.
-The shared client outer loader is not reused/changed. No actual game.cfg read.
-Required actual backends have no default successful implementations.
+Latest [application data composition](headless-startup-data-source.md#owned-startup-composition)
+owns the recovered +04/+08/+20/+10/+24 startup data subset. Configuration loads
+immediately; fresh profile construction differs from later reset. Actual data
+preparation precedes profile selection, and command consumers share one settings
+object. Relative original close order is explicit; native failures unwind and
+closed access throws. Other application managers/full descriptors remain excluded.
+[Receipt](headless-application-verification.json): native ASan/UBSan/LSan actual
+GameData/HumanStore/catalogue plus synthetic configuration, preparation/profile
+ordering, lazy catalogue/settings identity, failure/close paths and30 lifetimes.
+Windows i386 fixture link passes, not executed; temporary audits hashed/removed.
 
-Native ASan/UBSan/LSan passes independent chunks/expected fields, raw dirty/padding,
-partial reads, malformed/no-progress guards, options/payload truncations, wide-map
-duplicates, directory order/failure, aliasing, conversion/backend exceptions,
-saved-game finalization/promotion against actual GameData and100 lifetimes.
-Windows i386 fixture link passes, not executed; audits hashed/removed.
-[Receipt](headless-profile-verification.json). New signature model fixes ECX owner
-at006F03A6/RET4 at006F05C9 for006F0380 and thunk00409D1D. New ignored exports:
-server-profile-{selection,owner-contract,options,options-contract,dependent-owners,
-finalization}-20261109. Detailed mappings and hashes are in [evidence](evidence.json).
+Prior [dedicated profile contract](headless-profile-source.md) and
+[receipt](headless-profile-verification.json): headless options/bindings, binary and
+legacy payloads, wide selection and real backend requirements. Bindings default
+clear/apply RET; legacy fallback chdir uses RAW name. Shared client outer loader
+not reused or changed. No actual game.cfg read. ECX/RET4 signature model fixes
+006F0380/thunk00409D1D. All used profile export pairs are in [evidence](evidence.json).
 
 Prior [data preparation](headless-startup-data-source.md):006F9550 loads GameData,
 sets+E8, always attempts HumanStore after false, returns low-bit AND. This is not
@@ -42,8 +41,8 @@ retain verification; do not repeat unchanged audits. Real DirectPlay caller hand
 and owned wide name remain required. Host submission is not readiness. Dedicated
 default1/admin bytes01/02/03 differ from client. Query-port zero is a native guard.
 
-Continue actual application data constructor006F71B0/configuration containing
-owners, backend acquisition, module registry004A3AB0, command/controller integration
+Continue remaining application/configuration containing owners, backend
+acquisition, module registry004A3AB0, command/controller integration
 and post-Host serialization/workers/auxiliaries. Profile source composition is not
 an integrated application. Callback0077DCF0 and real game-owner progress100 remain
 required; no fake ready world.006F97F0 always returns english. TEV22Fh in LS3DRF
@@ -58,3 +57,8 @@ and every JSON/C pair. Keep commercial inputs/decompilations/databases untracked
 Use existing native/archive readers; do not execute Windows fixtures. Commit source
 checkpoints locally and continue the full checkbox; no desktop claim or permission
 request is needed for source-only work. Interactive changes require user testing.
+
+Active static research: registry004A3AB0/3AE0 traverses19 slots ascending.
+004A3950 registers by index,004A3A70 clears it. Slots are BSS; constructor callers
+through thunk0040A9F7 are being enumerated in server-module-* ignored files.
+No module service has been replaced or newly credited.

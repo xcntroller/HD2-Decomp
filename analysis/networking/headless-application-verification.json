@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "result": "source-only application startup data ownership/composition; full N1 remains open",
+  "checks": [
+    "native ASan/UBSan/LSan early synthetic game.cfg load, fresh profile values and real preparation/selection composition",
+    "actual GameData/HumanStore inputs and preselection overlay path",
+    "single authoritative command settings owner, lazy catalogue, actual command file parsing",
+    "missing configuration, file exception, missing GameData with HumanStore still attempted",
+    "idempotent close, closed access rejection and30 owner lifetimes",
+    "strict Windows i386 fixture link; not executed"
+  ],
+  "limits": "Recovered startup data subset only. Other original managers, full configuration descriptor ownership, engine/module/controller and live transport remain open. No user game.cfg read; frozen client ledger unchanged.",
+  "sources": [
+    {
+      "path": "recovered/networking/headless_application_data.h",
+      "sha256": "a172b8e52d22d4499c669454ffe2998efe1dafbd0e9096748a76736dc9dac920"
+    },
+    {
+      "path": "recovered/frontend/startup_configuration.h",
+      "sha256": "b7cbbbf1b941d2aee62b0952bae33ea42dc2120f4c6dae0c5f3fde6848970599"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "analysis/work/networking/headless-store-inputs/Gamedata00.gdt",
+      "sha256": "f92ab7e8796148af7854438ffca4df34b55cca8e83336878d7f569cdcd3319b1"
+    },
+    {
+      "path": "analysis/work/networking/headless-store-inputs/HumanStore.def",
+      "sha256": "e070e9b0f8f1489ce0ff40316726916afed5bfe5cb58e2e4dcfe06ace073cb5f"
+    },
+    {
+      "path": "../H&D2 Decomp 4/Hidden and Dangerous 2/mpmaplist.txt",
+      "sha256": "94c0a744063e0ad5d5c7adc8e1b592fc3a1af577d6d48506b2d81e4927e1a23b"
+    }
+  ],
+  "log_sha256": "d0ca40f4b53935d3e0ea9cdc91581e70dded04e0cd256cdc0526658f4d84a527",
+  "removed_temporary_artifacts": [
+    {
+      "path": "analysis/work/networking/headless-application-audit/audit.cpp",
+      "sha256": "9db217d695138d3c3906dc75c9634991d64f718000914bfc7edc05d561ccf3b7"
+    },
+    {
+      "path": "analysis/work/networking/headless-application-audit/native-audit",
+      "sha256": "bb341cbb8fde2242e5761522e9a46746f88a242ed17dfbd3769cff1b37cfd38f"
+    },
+    {
+      "path": "analysis/work/networking/headless-application-audit/windows-link.exe",
+      "sha256": "00b74e70ab5a76ace3a02b73921f60280d7a3c41da0816a7a837170e82c29cf5"
+    }
+  ]
+}

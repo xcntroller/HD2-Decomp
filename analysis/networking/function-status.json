@@ -548,6 +548,32 @@
       "evidence": [
         "analysis/work/networking/server-startup-profile-20261109/006f95c0.json"
       ]
+    },
+    {
+      "program": "server",
+      "entry": "006f71b0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_application_data.h"
+      ],
+      "contract": "Ordered owned startup data construction, immediate configuration read and fresh profile/cold fields",
+      "exclusions": "Data subset only: other managers, full configuration/294 descriptor owner and application activation are excluded. Native allocation/closed-access guards; no desktop integration.",
+      "evidence": [
+        "analysis/work/networking/server-application-constructor-20261109/006f71b0.json"
+      ]
+    },
+    {
+      "program": "server",
+      "entry": "006f8dd0",
+      "status": "partial",
+      "sources": [
+        "recovered/networking/headless_application_data.h"
+      ],
+      "contract": "Ordered retirement of recovered application data owners",
+      "exclusions": "Data subset only: other managers, full configuration/294 descriptor owner and application activation are excluded. Native allocation/closed-access guards; no desktop integration.",
+      "evidence": [
+        "analysis/work/networking/server-bootstrap-deps-20261109/006f8dd0.json"
+      ]
     }
   ]
 }

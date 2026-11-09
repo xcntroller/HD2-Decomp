@@ -15,7 +15,7 @@ configuration parsing does not establish a working network session.
 
 | Executable | Inventoried functions | Complete | Partial | No completion claim | Complete % |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| HD2DS.exe | 13,957 | 0 | 29 | 13,928 | 0.00% |
+| HD2DS.exe | 13,957 | 0 | 31 | 13,926 | 0.00% |
 | ServerLauncher.exe | 849 | 0 | 9 | 840 | 0.00% |
 
 ### HD2DS.exe mapped bodies
@@ -38,6 +38,8 @@ configuration parsing does not establish a working network session.
 | `006F1A10` | partial | [Saved-game slot validation and prior-mission quick-save promotion](../recovered/frontend/profile_load.h) |
 | `006F4E60` | partial | [Headless options load and actual quality/network-volume backend application order](../recovered/networking/headless_profile.h) |
 | `006F4EA0` | partial | [Sequential Options.bin chunks and distinct outer versus inner fallback](../recovered/frontend/profile_settings.h) |
+| `006F71B0` | partial | [Ordered owned startup data construction, immediate configuration read and fresh profile/cold fields](../recovered/networking/headless_application_data.h) |
+| `006F8DD0` | partial | [Ordered retirement of recovered application data owners](../recovered/networking/headless_application_data.h) |
 | `006F9550` | partial | [GameData then E8 store then mandatory HumanStore attempt and boolean AND](../recovered/networking/headless_startup_data.h) |
 | `006F95C0` | partial | [Optional wide scan then startup-owner name selection without persistence](../recovered/networking/headless_profile.h) |
 | `006FF900` | partial | [Sequential real GameData loading, format gate, append and invalid-root/cache behavior](../recovered/frontend/game_data.h) |
@@ -104,6 +106,8 @@ also reuses the verified shared record parser with the server's original portrai
 GameData loading and the required GameData-then-HumanStore preparation order are
 now verified against original data. The [dedicated profile path](../analysis/networking/headless-profile-source.md)
 also covers options, headless bindings, binary/legacy payloads and startup selection.
+An [application data owner](../recovered/networking/headless_application_data.h)
+connects configuration, preparation, profiles and shared cold settings with ordered cleanup.
 Full application startup is still open.
 
 Follow the [networking plan](../analysis/networking/plan.md) and
