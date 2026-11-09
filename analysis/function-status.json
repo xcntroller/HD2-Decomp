@@ -23176,6 +23176,123 @@
         "analysis/pike-explosive-loading.md",
         "analysis/checkpoints/p2.2-pike-explosive-20261109.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "005ba670",
+      "status": "partial",
+      "coverage": "Generated Fowl mode1/2 activation policy, actual mode2 bird creation and shared SOUND listener, CRT timer and initial launch flag; native no-common-activation behavior.",
+      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "evidence": [
+        "recovered/game/fowl_bird.h",
+        "recovered/game/fowl_generator_loading.h",
+        "analysis/fowl-loading.md",
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ba8b0",
+      "status": "partial",
+      "coverage": "Actual generated Fowl template/clone/scene/root/downward-ray/grid construction, native floor(sqrt(count)) count and varargs name low-DWORD semantics, actual Bird ownership and publication rollback.",
+      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "evidence": [
+        "recovered/game/fowl_bird.h",
+        "recovered/game/fowl_generator_loading.h",
+        "analysis/fowl-loading.md",
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005bb140",
+      "status": "partial",
+      "coverage": "Actual generated Bird launch/group11 count-dependent sound and payload-free pending module13/Scene2 identity notification; native flags and mode1 lazy creation.",
+      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "evidence": [
+        "recovered/game/fowl_bird.h",
+        "recovered/game/fowl_generator_loading.h",
+        "analysis/fowl-loading.md",
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005bb4d0",
+      "status": "partial",
+      "coverage": "Fowl authority timer and reserved/nonreserved actual Scene2 Human/camera proximity traversal, native null termination and eligibility, actual launch receiver.",
+      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "evidence": [
+        "recovered/game/fowl_bird.h",
+        "recovered/game/fowl_generator_loading.h",
+        "analysis/fowl-loading.md",
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004797c0",
+      "status": "partial",
+      "coverage": "Generated Bird actual CRT timers, root/pose, EC binding and actual wing borrowers/visibility; existing borrowed-Bird restore branch excluded.",
+      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "evidence": [
+        "recovered/game/fowl_bird.h",
+        "recovered/game/fowl_generator_loading.h",
+        "analysis/fowl-loading.md",
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004799e0",
+      "status": "partial",
+      "coverage": "Generated Bird matching-EC clear and actual scene removal with retained source frame safety; native borrowed pool branch excluded.",
+      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "evidence": [
+        "recovered/game/fowl_bird.h",
+        "recovered/game/fowl_generator_loading.h",
+        "analysis/fowl-loading.md",
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00479c70",
+      "status": "partial",
+      "coverage": "Generated Bird idle/jump/flight/climb/descent/cull and recursive transitions, actual model/wing quaternion endpoints, branch-specific FLOAT/extended math.",
+      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "evidence": [
+        "recovered/game/fowl_bird.h",
+        "recovered/game/fowl_generator_loading.h",
+        "analysis/fowl-loading.md",
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047a2f0",
+      "status": "partial",
+      "coverage": "Actual generated Bird take-off random/direction/speed/phase, wing/launch flags and visibility with native forward normalization stores.",
+      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "evidence": [
+        "recovered/game/fowl_bird.h",
+        "recovered/game/fowl_generator_loading.h",
+        "analysis/fowl-loading.md",
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047a2e0",
+      "status": "partial",
+      "coverage": "Signed native elapsed DWORD to FLOAT wrapper for the actual reconstructed Bird update receiver.",
+      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "evidence": [
+        "recovered/game/fowl_bird.h",
+        "recovered/game/fowl_generator_loading.h",
+        "analysis/fowl-loading.md",
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+      ]
     }
   ]
 }

@@ -5,6 +5,7 @@
 #include "game/actor_initial_properties.h"
 #include "game/sound_emission.h"
 #include "game/rigid_body.h"
+#include "game/fowl_loading_lifetime.h"
 #include "frontend/cleanup.h"
 #include <functional>
 #include <cmath>
@@ -140,7 +141,7 @@ public:
     bool initialize(Frame frame) override {return this->base_.initialize_frame(frame);} //005BA4B0.
     void load(SerializedBytes& bytes) override {properties.load(bytes);} //005BB7E0.
     FowlGeneratorActorProperties properties;
-    std::vector<std::uint32_t> field94;
+    std::unique_ptr<FowlLoadingLifetime> loading; //Actual generated-bird/listener lifetime, before common frame retirement.
     std::uint32_t fielda4=0xffffffffu;
 };
 

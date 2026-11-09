@@ -83,7 +83,7 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and1,691 partial entries (1,686 client/five engine).
+complete client functions and1,700 partial entries (1,695 client/five engine).
 The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) records
 the earlier accumulated source subsets. Later checkpoints include Human
 weapons/formation/Players, [prepared spawning](analysis/session-activation-loading.md),
@@ -93,7 +93,8 @@ weapons/formation/Players, [prepared spawning](analysis/session-activation-loadi
 [world sound/subtitle receivers](analysis/sound-world-loading.md), and
 [shared scene/actor ownership](analysis/world-scene-ownership.md) and
 [Door loading/first-update receivers](analysis/door-loading.md) and
-[Pike/ExplosivePlace loading](analysis/pike-explosive-loading.md).
+[Pike/ExplosivePlace loading](analysis/pike-explosive-loading.md) and
+[generated Fowl loading](analysis/fowl-loading.md).
 Source recovery remains separate from desktop integration.
 
 Phase1 front-end delivery is closed by the user2026-11-03 within its recorded
@@ -222,11 +223,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,691 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,700 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 1,686 |
+| Base game client | 17,294 | 34 | 1,695 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -724,6 +724,15 @@ public:
         scene_method<MenuDriver::Release>(frame,module_,0,0x1c370)(frame);
     }
     Frame active_game_camera() const {return field<Frame>(scene_.frame(),0x15c);}
+    MenuDriver::Owner create_fowl_model(){return driver_.create(9);}
+    std::int32_t load_fowl_template(Frame model,const std::string& name){return resources_.load_model(model,recovered::model_resource_key(name),0x10);}
+    void clone_fowl_model(Frame model,Frame source){if(call<std::int32_t>(model,0xd8,source)<0)throw std::runtime_error("Cannot clone required Fowl model");}
+    void add_fowl_model(Frame model){call<void>(scene_.frame(),0x80,model);}
+    void fowl_name(Frame model,const char* name){if(call<std::int32_t>(model,0x34,name)<0)throw std::runtime_error("Cannot name generated Fowl model");}
+    void fowl_wing_rotations(Frame first,Frame second,float angle){
+        auto rotation=door_axis_rotation({{0,0,1,0}},angle);object_rotation(first,rotation);
+        rotation[3]=-rotation[3];object_rotation(second,rotation);
+    }
     Frame camera_root_sector()const{return field<Frame>(scene_.frame(),0x1f8);}
     std::string camera_sector_properties(Frame sector)const{return car_user_data(sector);} //0046C370 uses Frame+F0 text.
     void active_game_camera(Frame camera) {

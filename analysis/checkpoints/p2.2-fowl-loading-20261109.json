@@ -1,0 +1,87 @@
+{
+  "date": "2026-11-09",
+  "scope": "Full first P2.2 implementation checkbox; actual generated Fowl loading/hearing/initial update/retirement subsystem checkpoint. Continue other required actors and containing session.",
+  "source_only": true,
+  "desktop_verified": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 9,
+  "added": [
+    "005ba670",
+    "005ba8b0",
+    "005bb140",
+    "005bb4d0",
+    "004797c0",
+    "004799e0",
+    "00479c70",
+    "0047a2f0",
+    "0047a2e0"
+  ],
+  "input": {
+    "path": "analysis/work/startup-runtime/run/loading-inputs-90f74f210e9f4150a123e200e31f523a/missions_Tutorial_actors.bin",
+    "bytes": 21064,
+    "sha256": "b98bd7f6e73047fa2dc25ef3725cb8ba13212d6e41f2f0a3aa3e822057d6453d",
+    "fowl_records": 1,
+    "mode": 2,
+    "serialized_count": 30,
+    "actual_generated_birds": 25
+  },
+  "verification": {
+    "native_sanitizers": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/fowl-native-run.log",
+      "coverage": "Actual source generated Fowl/Bird/packet owners with captured properties, grid/EC/frame/scene/refcount, idle/jump/launch/climb/descent/cull, hearing/camera/reserved-player triggers, repeat and554 frame failure prefixes plus ground/listener failures. Engine frame/model/math/ground/audio/actor lookups are boundary doubles."
+    },
+    "actual_host_i386": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/fowl-i386-build.log",
+      "boundary": "Strict compile-only actual Frames/WorldActors/Scene2/CollisionRay/StartupSession SOUND bridge; required consumers are declared endpoints."
+    },
+    "application_build": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/fowl-app-build.log",
+      "boundary": "i386 compile/link only; no Windows execution."
+    },
+    "tracker_tests": {
+      "result": "PASS",
+      "count": 27,
+      "log": "analysis/work/mission-world-20261103/fowl-tracker-tests.log"
+    },
+    "tracker_check": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/fowl-tracker-check.log"
+    }
+  },
+  "temporary_artifacts": {
+    "removed": true,
+    "count": 4,
+    "records": [
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-fowl-audit.cpp",
+        "bytes": 9503,
+        "sha256": "d9dae21b8b564a9e6b3755eecf27fc9a0c3fb964ec7546c81c55307efe7ba973"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-fowl-audit",
+        "bytes": 2868240,
+        "sha256": "c2b6d84c1541e02c1ae18be3a681ca9e4763a3699192365d77c8151542c3aea7"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-fowl-host.cpp",
+        "bytes": 1085,
+        "sha256": "81b6563a056f56ca40a8ef83beeabe23625b7f501c99af60ec2cf99e4eead443"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-fowl-host.o",
+        "bytes": 739393,
+        "sha256": "77ecc32fc5a38918185b26e5abaac14fc9a1cf3095b27459c1809d231bc8571c"
+      }
+    ]
+  },
+  "not_credited": [
+    "005ba860/005bb290/005bb3c0 absent frozen inventory",
+    "007183a0 delegated ground wrapper",
+    "Borrowed mode0/global pool source not implemented",
+    "Engine/archive/geometry/quaternion/audio delegates and generic helpers"
+  ],
+  "remaining": "Required Animation/SupplyBox/StaticWeapon/Car, actual containing Human/session/VM/FPV/HUD/SOUND owners and loader/first-frame/failure/repeat/user acceptance. GameApplicationState still declines loading."
+}

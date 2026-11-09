@@ -80,10 +80,12 @@ preserved in actor-activation-map.json; no repeat family census was performed.
 
 ## Remaining boundary and immediate work
 
-GameSceneActors now dispatches3/6/8/10/13/22/28/33 (Human requires its actual
+GameSceneActors now dispatches3/6/8/10/13/22/28/29/33 (Human requires its actual
 bound loading owner). [Pike/ExplosivePlace continuation](pike-explosive-loading.md)
 supplies actual type28/type22 initial geometry/state/cleanup; required others
-reject. Car, SupplyBox, StaticWeapon, Animation, Fowl and Dog still require
+reject. [Generated Fowl](fowl-loading.md) now supplies actual mode1/2 initial/update/
+hearing/cleanup; borrowed mode0 rejects. Car, SupplyBox, StaticWeapon, Animation
+and Dog still require
 actual derived receivers. Containing Human/session activation and full P2.2
 remain open; historical Human dependency notes below are superseded by
 [latest Human state/loading source](human-state-loading.md).

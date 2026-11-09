@@ -8,19 +8,25 @@ Preserve assets/user changes; focused verification, no repeated broad audits.
 User reopened VSCode after memory shortage: keep heavy compiles sequential.
 
 GameApplicationState still declines loading. No live world, first world frame
-or new desktop acceptance. Ledger:34 complete/1,691 partial (1,686 client/five
+or new desktop acceptance. Ledger:34 complete/1,700 partial (1,695 client/five
 engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
 
-[Pike/ExplosivePlace loading](analysis/pike-explosive-loading.md) supplies actual
-same-grid colliders, authored on/off state/captions, initial update guards and
-retirement/failure/repeat lifetimes. Captured Tutorial has one stationary Pike
-and three unarmed ExplosivePlaces. Required motion/detonation still rejects.
-[Receipt](analysis/checkpoints/p2.2-pike-explosive-20261109.json):native
-ASan/UBSan/LSan, strict actual-host i386/world composition, app link and27 tracker
-tests pass. Six new partials; four implemented entries absent inventory receive
-no credit. Four temporary artifacts hashed/removed. No world/desktop promotion.
+[Generated Fowl loading](analysis/fowl-loading.md) supplies actual mode1/2
+scene/Bird/EC/SOUND lifetimes, grid, ground queries, idle/flight/cull, proximity/
+hearing/local packets and failure/repeat retirement. Tutorial count30 generates
+25 birds. Mode0 still rejects the actual missing borrowed pool. [Receipt](analysis/checkpoints/p2.2-fowl-loading-20261109.json):native ASan/UBSan/LSan with554 frame
+failure prefixes plus ground/listener failure, actual-host i386/StartupSession
+SOUND/WorldActors/CollisionRay and app compile/link,27 tracker checks pass.
+Nine partials; absent entries/delegates uncredited. No world/desktop promotion.
+Temporary fixtures hashed/removed. Continue actual Animation/SupplyBox and other
+required actors/containing owners, not another audit of these verified bodies.
+
+Previous committed f25acbd:
+[Pike/ExplosivePlace](analysis/pike-explosive-loading.md):actual colliders/state/
+cold first-update/cleanup verified; one stationary Pike/three unarmed records.
+Six new partials, four absent inventory uncredited; motion/detonation excluded.
 
 Previous Door checkpoint89d3d2f:
 [Door loading/first update](analysis/door-loading.md) supports25 captured rotating
@@ -56,9 +62,8 @@ update/render/failure/repeat/user acceptance. Existing GameWorldScene and
 GameWorldActors are source composition only, uncalled by GameApplicationState.
 Use them rather than create another frame-data/bucket/item service. Next actual
 required derived families include Animation005B3BE0, SupplyBox005FAC80,
-FowlGenerator005BA670, StaticWeapon and
-Car; original activation exports already exist under WORK/actor-activation.
-Current GameSceneActors activation dispatch supports3/6/8/10/13/22/28/33. Human activation needs its
+StaticWeapon and Car; original activation exports already exist under WORK/actor-activation.
+Current GameSceneActors activation dispatch supports3/6/8/10/13/22/28/29/33. Human activation needs its
 actual bound HumanLoadingActivation lifetime before type3 dispatch.
 
 Do not bring all P2.3 simulation/VM opcodes forward merely for P2.2. Research
@@ -86,10 +91,13 @@ Canonical: [world](analysis/mission-world-loading.md),
 ## Execution/evidence
 
 WORK=analysis/work/mission-world-20261103 (ignored durable, not /tmp).
-Fowl required exports now under WORK/fowl-loading-required and
-fowl-first-update-required; static fowl-creation-and-packet.asm. Continue these
-validated original receivers, no empty bird list or ground-query substitute.
-Do not redo confirmed compiler/portal/subtitle/Pike/ExplosivePlace research.
+Fowl verified evidence: fowl-loading-required/, fowl-first-update-required/,
+fowl-bird-update.asm, fowl-bird-flight.asm and fowl-creation-and-packet.asm.
+No repeat compiler/portal/subtitle/Pike/ExplosivePlace/Fowl research needed.
+Post-PC-crash Git metadata repaired:16 empty objects/empty backup ref preserved
+under WORK/git-crash-backup-20261109,10 blobs restored with exact staged hashes;
+working files/staged identities/history preserved, fsck no corruption. Commit
+f25acbd succeeded. No push. Keep heavy builds/Ghidra sequential.
 145/146 BASE ISD0 Tutorial programs compile;114 base binding names all have
 source. This is not runtime Patch selection or original execution evidence.
 

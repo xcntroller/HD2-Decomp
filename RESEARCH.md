@@ -1,5 +1,13 @@
 # Technical research guide
 
+2026-11-09 latest: [generated Fowl loading](analysis/fowl-loading.md) now
+recovers actual scene/EC/bird lifetimes,25 generated models from captured count30,
+idle/flight/packets/hearing/proximity and retirement. Native ASan/UBSan/LSan
+with554 frame failures plus ground/listener failures, strict actual-host i386
+composition, app link and27 tracker checks pass. Nine new partials:34 complete/
+1,700 partial (1,695 client/five engine),18,783 frozen. Borrowed mode0 still
+rejects its missing pool; no world/desktop promotion. Continue full P2.2.
+
 2026-11-09 latest: [Pike/ExplosivePlace loading](analysis/pike-explosive-loading.md)
 now recovers actual colliders, visibility/state/captions, cold first-update guards
 and retirement using the SAME world owners. One/three captured Tutorial records

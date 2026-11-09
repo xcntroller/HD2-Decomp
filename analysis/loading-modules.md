@@ -664,3 +664,10 @@ and failure/repeat cleanup. One/three captured Tutorial records, native
 ASan/UBSan/LSan, strict actual-host i386/world composition, app link and27 tracker
 tests pass. Six new partials; four implemented entries absent frozen inventory
 earn no credit. Continue required other actors and containing-world integration.
+
+2026-11-09: [generated Fowl loading](fowl-loading.md) now supplies actual
+mode1/2 scene/bird/EC/SOUND lifetimes, cold/moving update, proximity/hearing and
+payload-free local packets. Captured count30 produces25 birds. Native
+ASan/UBSan/LSan with554 frame failure prefixes, actual-host i386/app compile/link
+and27 tracker checks pass. Nine partials; borrowed mode0 remains unsupported.
+Continue the same full P2.2 checkbox through other actors and containing world.
