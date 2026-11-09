@@ -7,8 +7,8 @@ push. No subagents/goals/original game/DLL/Proton/Windows-fixture execution.
 Preserve original assets. Focus verification on new work, not repeated audits.
 
 GameApplicationState still declines loading. No live world, first frame or new
-mission desktop result. Reconciled ledger:34 complete client/1,440 partial
-(1,435 client/five engine)/18,783 frozen functions.881 new client source partials;
+mission desktop result. Reconciled ledger:34 complete client/1,448 partial
+(1,443 client/five engine)/18,783 frozen functions.881 reconciled plus eight swap client source partials;
 zero whole-body promotions. See analysis/function-ledger-p2.2-reconciliation.md.
 
 ## Saved checkpoint
@@ -39,42 +39,39 @@ HumanEquipmentTransfers uses typed230 peers4/0C, SAME holsters/state/DD0/E0 and
 action-model producers remain separate.007B96C0 stow uses631C FLOAT×200→signed64
 truncate/EAX6314 and native flags. Inventory/expiry/forced E0 stores verified.
 
-Human weapon transfer source007D8B40 supports SAME-Human/no-source weapons in
-slots1/2/3/6, dry run, cooldown precedence, displaced entries and retained weight
-accounting. Focused ASan/UBSan passes; its containing swap is NOT implemented.
-Prior actual-equipment native/i386 fixture logs survived, but their temporary
-files were lost before hashing in the PC crash. Do not invent removal hashes.
-New checkpoint fixtures were fingerprinted/removed in the saved record.
+Latest verified checkpoint: same-Human weapon swap007D9DE0 now composes
+007DA5E0 preflight, retained displaced return,007D9B40 fallback and native
+no-source/no-destination drop. Offline AI command005A2BB0/005A2E90 and hand
+selector00538770 are source.00791EB0 fades BOTH actual animation lanes via
+00774CC0, with350/1.4→truncate250. Focused actual RuntimeItem/storage/230 and
+command fixture passes native ASan/UBSan/LSan and strict i386 compile; app
+compile/link passes. Fixtures fingerprinted/removed. Eight eligible partials
+added; absent00587E00 earns none. No whole-body or desktop promotions.
+[Swap contracts](analysis/human-equipment-loading.md#same-human-weapon-exchange--2026-11-09),
+[saved checks](analysis/checkpoints/p2.2-weapon-swap-20261109.json).
 
 ## Next implementation
 
-Finish actual active00530D40→00530A40→00538770 reselection and007D9DE0 swap.
-Successful evidence under WORK: human-loading-weapon-selection/,
-human-loading-inventory-commands/,human-inventory-command-receivers/,
-human-inventory-immediate-transfer/,human-inventory-equipment-callbacks/,
-human-inventory-equipment-retirement/,human-equipment-weapon-stow/,
-human-inventory-weapon-swap/,human-inventory-swap-dependencies/. All jobs ended;
-no Ghidra process remains. Ignore older failed action/reset export directories.
-
-Important confirmed source:
--005A2D50 slot lookup ECX is resolved SOURCE actor, from receiver assembly.
-- AI+74=00587BF0/+78=00587E00: immediate receiver; no packet in offline7.
-- Player/remote commands queue on84; do not make them immediate.
--007D9DE0 calls007DA5E0 preflight,007D8B40 first notify0, then displaced-item
- transfer override1/retain1;007D9B40 fallback, else actual world drop. Never drop
- an entry silently or substitute the original no-source loading helper.
--007DA5E0 uses displaced item's real permitted_slots, storage capacity/volume/
- flags, current actor limit, stack occupancy and source-slot replacement deltas.
--007D9B40 fallback uses NO source: pack5, head0, hand3/back2 where eligible,
- then holsters1/pack6. Preserve the original unusual kind3/back check grouping.
--00791EB0 holster refresh condition DD0+1E8==20hex then00774CC0; ftol operand
- still needs assembly. Containing swap callbacks/FPV and fallback remain open.
--005AC4C0 returns DD0+CE4, i.e. existing CD0.sector(). Compare SAME actual
- scene root sector. Expose existing typed sector through DD0/inline; no new lookup.
-- Target128+30 and active224 still need typed producers. Cold target constructor
- genuinely writes NULL. Do not cast raw scalar DWORDs to host actor pointers.
-- Holder+48=007D6890 unsigned(game28<field18); +4C stores expiry. Stack-array
- +48/+4C genuine no-op mapping still needs saved byte confirmation.
+Finish actual active00530D40→00530A40 weapon reselection using the now-implemented
+00538770/007D9DE0 commands. Existing policy0052F750/00530930/00530B30 is verified;
+compose actual target/sector/matrix producers without success stubs.
+Evidence WORK/human-active-ai-actions/00530d40.c,
+human-active-ai-action-lifetime-checked/00530a40.c,
+human-loading-weapon-selection/ and human-inventory-swap-dependencies/.
+-005AC4C0 returns DD0+CE4, i.e. existing CD0.sector(). Expose this actual sector
+ through DD0/inline; compare SAME scene root, with no second lookup.
+-Target128+30 and active224 still need typed actor producers. Cold constructor
+ genuinely writes NULL. No raw scalar DWORD to host actor pointer casts.
+-00530D40 unwraps Human target160 attachment; fallback224 only when202==0,
+ action220 in25/26/22 and target is null. B0 signed64>0 and60!=-1 gate both calls.
+-00530A40 refreshes actual hand, checks00530B30 before priorities, sets1A0=4000
+ BEFORE dispatch.0069BFE0 debug receiver is genuine RET, not a missing service.
+-0052F750 squared distance uses Y²+X²+Z²;00530B30 uses X²+Y²+Z², target matrix
+ before Human matrix. Keep FLOAT stores and distinct evaluation order.
+-Actual special targets:Car type4+5E0!=0 or actor type19hex+D8==2; recover typed
+ producers, never substitute default false.
+-No Ghidra process remains. Latest animation export completed. Do not rerun the
+ ignored reconciliation script: it predates the committed reconciled baseline.
 
 After equipment: formation005A91A0/005A9120 typed2C8/2CC; detached-camera00463040
 list/current/FPV/HUD mappings; Players module activation. Then full006989B0/

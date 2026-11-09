@@ -21,6 +21,11 @@ public:
     State& transfer_state()override{return state_;}
     std::int32_t transfer_life()const override{return services_.equipment_life_value();}
     void attach_inventory_model(unsigned kind)override{attachments_.attach(kind);}
+    template<class Entry>void hide_inventory_holster(Entry entry,std::int32_t slot) { //007D9DE0's explicit pre-notification counts.
+        auto& item=items_.runtime_item(entry);
+        if(slot==1||(slot==3&&human_item_holster_group(item.definition())==0))holsters_.hide_items(item.definition(),1);
+    }
+    void refresh_inventory_holster_animation(){services_.refresh_inventory_holster_animation();}
     void remove_inventory_model(unsigned kind)override { //00790520 inventory model cases0..3 only.
         unsigned index;
         switch(kind){case 0:index=3;break;case 1:index=4;break;case 2:index=2;break;case 3:index=0;break;

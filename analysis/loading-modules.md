@@ -582,6 +582,7 @@ selector required next. See [current contracts](human-state-loading.md).
 2026-11-09 committed source checkpoints: [saved checks and limits](checkpoints/p2.2-20261109.json).
 Latest actual offline inventory commands now use SAME Human.loading_inventory
 and230 deferred model handoff. Source weapon transfer ownership/retained exchange
-accounting passes focused sanitizers; containing active reselection/swap/fallback
+accounting and containing same-Human swap/fallback/drop now pass focused
+sanitizers and strict i386 checks; active reselection target/sector producers
 and world integration remain. [Human contracts](human-state-loading.md),
 [equipment contracts](human-equipment-loading.md). Full P2.2 checkbox stays open.

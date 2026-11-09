@@ -20087,6 +20087,102 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00538770",
+      "status": "partial",
+      "coverage": "Reread actual hand and dispatch selected same-Human weapon to swap or empty-hand move.",
+      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_loading_inventory.h",
+        "analysis/human-equipment-loading.md",
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a2bb0",
+      "status": "partial",
+      "coverage": "Same-Human weapon command identity lookup and offline AI B0 dispatch; reject queued player/remote paths before mutation.",
+      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_loading_inventory.h",
+        "analysis/human-equipment-loading.md",
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a2e90",
+      "status": "partial",
+      "coverage": "Resolve both actual weapon entries by ID/slot, invoke same-Human swap and mark activation on success.",
+      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_loading_inventory.h",
+        "analysis/human-equipment-loading.md",
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d9de0",
+      "status": "partial",
+      "coverage": "Same-Human source1/2/6 to hand3 swap, displaced return with retained accounting, fallback/drop, ordered equipment and FPV callbacks.",
+      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_weapon_swap.h",
+        "analysis/human-equipment-loading.md",
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007da5e0",
+      "status": "partial",
+      "coverage": "Same-Human displaced weapon preflight using actual allowed slots, float deltas, capacities, cooldowns and full source-array replacement quirk.",
+      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_weapon_swap.h",
+        "analysis/human-equipment-loading.md",
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d9b40",
+      "status": "partial",
+      "coverage": "Displaced weapon no-source fallback through hand, shoulder, holsters and optional pack contents, retaining native payload3 condition grouping.",
+      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_weapon_swap.h",
+        "analysis/human-equipment-loading.md",
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00774cc0",
+      "status": "partial",
+      "coverage": "Fade both animation metadata lanes after active-lane test, preserving flags and setting duration, elapsed and rates.",
+      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-equipment-loading.md",
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00791eb0",
+      "status": "partial",
+      "coverage": "Actual DD0 state20 gate and same track owner paired fade, with original 350/1.4 signed64 truncation to250.",
+      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_equipment_services.h",
+        "analysis/human-equipment-loading.md",
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+      ]
     }
   ]
 }

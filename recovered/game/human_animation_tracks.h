@@ -207,6 +207,17 @@ public:
             words_.set(0x224,std::int32_t{-1});
         }
     }
+    void fade_pair(unsigned group,std::int32_t duration) { //00774CC0: test active lane; write BOTH lanes.
+        if(group>=4)throw std::out_of_range("Human animation fade group");
+        const auto lane=integer(group*0x2c+0xc);if(lane==-1)return;
+        if(lane<0||lane>1)throw std::runtime_error("Invalid Human animation fade lane");
+        if(word((group*2+static_cast<unsigned>(lane))*0x24+0xcc)&1u)return;
+        for(unsigned n=0;n!=2;++n) {
+            const auto meta=(group*2+n)*0x24;
+            words_.set(meta+0xc4,0.f);words_.set(meta+0xc0,static_cast<float>(duration));
+            words_.set(meta+0xcc,word(meta+0xcc)|1u);words_.set(meta+0xd0,1.f);words_.set(meta+0xd4,1.f);
+        }
+    }
     void queue_event(const char* text,std::int32_t time) { //00774DF0, first DWORD callback argument is unused.
         if(!text)return;
         switch(static_cast<unsigned char>(*text)) {

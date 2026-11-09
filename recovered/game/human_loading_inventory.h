@@ -3,6 +3,7 @@
 
 #include "game/human_inventory_lookup.h"
 #include "game/human_loading_inventory_receiver.h"
+#include "game/human_weapon_swap.h"
 #include "frontend/pre_mission_data.h"
 #include <cstring>
 
@@ -85,7 +86,7 @@ bool equip_human_loading_holster(Human& human,Items& items,Commands& commands,st
 }
 
 //005A2B40→00587BF0→005A2D50 offline loading call composition. Only the actual
-//same-Human/empty-hand1/2→3 loading boundary above is supported. Player1/remote7
+//same-Human/empty-hand1/2/6→3 loading boundary is supported. Player1/remote7
 //must use their genuine queued native84 commands; reject those before mutation.
 template<class Frames,class Human,class Items,class States,class Inline,class Players,class Presentation,class World>
 class HumanLoadingInventoryCommands final : public HumanLoadingInventoryReceiver {
@@ -106,7 +107,7 @@ public:
         if(kind==1||kind==7)throw std::runtime_error("Player/remote inventory command requires its actual queued packet consumer");
         if(kind!=3&&kind!=4&&kind!=5&&kind!=6&&kind!=8)throw std::runtime_error("Unrecovered inventory command state");
         if((mode&7u)!=7u)throw std::runtime_error("AI inventory command requires its actual outgoing packet owner outside offline7");
-        if(&source!=&human_||destination_slot!=3||index!=0||(source_slot!=1&&source_slot!=2))
+        if(&source!=&human_||destination_slot!=3||index!=0||(source_slot!=1&&source_slot!=2&&source_slot!=6))
             throw std::runtime_error("Inventory command is outside the recovered loading weapon move");
         if(!entry)throw std::runtime_error("Human inventory command is missing its actual item entry");
         //Native command carries item identity, then receiver looks it up again
@@ -114,7 +115,14 @@ public:
         const auto found=find_human_inventory_entry(source,items_,items_.runtime_item(entry).identity,source_slot);
         if(!found)return false;
         auto* owner=control_.equipment();if(!owner)throw std::runtime_error("Human inventory command has no actual230 owner");
-        if(move_human_loading_weapon(frames_,human_,items_,owner->transfers(),*this,found,source_slot,mode,world_.game_word28())!=1)return false;
+        std::int32_t result;
+        if(source_slot==6) {
+            auto* storage=human_.base().storage();
+            if(!storage||!storage->holder(3)||!storage->holder(3)->empty())throw std::logic_error("Loading pack move requires actual empty hand");
+            Entry displaced{};
+            result=transfer_human_weapon(frames_,human_,items_,owner->transfers(),*this,found,displaced,true,6,3,0,true,false,false,false,mode,world_.game_word28());
+        }else result=move_human_loading_weapon(frames_,human_,items_,owner->transfers(),*this,found,source_slot,mode,world_.game_word28());
+        if(result!=1)return false;
         human_.activation.flag178=true;
         //005A8190(0) is gated by005A0890: offline B0 kind1 only, already
         //excluded here because its move is queued. AI has no player-mode reset.
@@ -122,7 +130,31 @@ public:
     }
     bool equip_shoulder()override{return equip_human_loading_shoulder(human_,items_,*this);}
     bool equip_holster(std::int32_t kind)override{return equip_human_loading_holster(human_,items_,*this,kind,world_.game_word28());}
+    bool swap(Entry current,std::int32_t current_slot,Human& source,Entry selected,std::int32_t selected_slot) { //005A2BB0→00587E00→005A2E90.
+        auto* state=states_.get();if(!state)throw std::runtime_error("Weapon swap requires actual Human B0");
+        const auto kind=state->words().template get<std::uint32_t>(0x48),mode=world_.mode_flags();
+        if((mode&7u)!=7u||kind==1||kind==7)throw std::runtime_error("Weapon swap requires actual queued/nonoffline packet owner");
+        if(kind!=3&&kind!=4&&kind!=5&&kind!=6&&kind!=8)throw std::runtime_error("Unrecovered weapon swap state");
+        if(&source!=&human_||current_slot!=3||(selected_slot!=1&&selected_slot!=2&&selected_slot!=6))
+            throw std::runtime_error("Weapon swap is outside actual loading weapon slots");
+        if(!current||!selected)throw std::runtime_error("Weapon swap command is missing actual entries");
+        const auto found_current=find_human_inventory_entry(human_,items_,items_.runtime_item(current).identity,current_slot);
+        const auto found_selected=find_human_inventory_entry(source,items_,items_.runtime_item(selected).identity,selected_slot);
+        if(!found_current||!found_selected)return false;
+        auto* owner=control_.equipment();if(!owner)throw std::runtime_error("Weapon swap has no actual230 owner");
+        Entry displaced{};std::int32_t displaced_slot=7;
+        const auto result=swap_human_loading_weapon(frames_,human_,items_,owner->transfers(),*this,found_selected,selected_slot,displaced,displaced_slot,mode,world_.game_word28());
+        if(result!=1)return false;
+        human_.activation.flag178=true;return true; //005A8190 mode0 skipped by genuine offline AI gate.
+    }
+    void select_weapon(Entry selected,std::int32_t slot) { //00538770, reread actual hand instead of trusting B0 cache.
+        auto* storage=human_.base().storage();if(!storage||!storage->holder(3))throw std::runtime_error("Weapon selection has no actual hand holder");
+        const auto current=storage->holder(3)->entry();if(!selected||selected==current)return;
+        if(current)(void)swap(current,3,human_,selected,slot);
+        else (void)move(selected,human_,slot,3,0);
+    }
     void refresh_item(){if(auto* state=states_.get())state->refresh_item();} //005A6A90.
+    std::int32_t actor_inventory_capacity(Human& human){return world_.actor_inventory_capacity(human.base());}
     bool is_current_player(Human& human){return players_.current_player()==&human;}
     void hud_inventory_changed(){presentation_.hud_inventory_changed();} //Required actual0049FBF0.
     void first_person_request(std::uint32_t mode,std::int32_t animation,std::uint32_t argument){presentation_.first_person_request(mode,animation,argument);}

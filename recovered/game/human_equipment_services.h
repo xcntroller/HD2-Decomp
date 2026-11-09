@@ -47,6 +47,9 @@ public:
     void stow_equipment_weapon(bool enabled){control_.geometry().stow_equipment_weapon(enabled);}
     void equipment_transfer_mode(std::uint32_t command,std::uint32_t mode,bool moved){control_.equipment_transfer_mode(command,mode,moved);}
     void force_equipment_command(std::int32_t command){look_.force_equipment_command(command);}
+    void refresh_inventory_holster_animation() { //00791EB0:350.f/1.4f x87→truncate EAX=250.
+        if(control_.animation_state_word(0x1e8)==0x20u)control_.tracks().fade_pair(1,250);
+    }
     void refresh_equipment_visibility() {
         if(!visibility_)throw std::runtime_error("Human230 visibility receiver is not bound");
         visibility_->refresh(human_.base().frame());

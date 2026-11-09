@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-09",
+  "source_only": true,
+  "desktop_verified": false,
+  "scope": "Same-Human offline loading weapon swap and command composition",
+  "original_entries": [
+    "00538770",
+    "005a2bb0",
+    "005a2e90",
+    "007d9de0",
+    "007da5e0",
+    "007d9b40",
+    "00774cc0",
+    "00791eb0"
+  ],
+  "absent_inventory_no_credit": [
+    "00587e00"
+  ],
+  "ledger_added_partial_client": 8,
+  "complete_promotions": 0,
+  "verification": {
+    "native": "Strict g++ build and ASan/UBSan/LSan pass with actual RuntimeItem, ActorBase, holders/stacks, equipment state/transfers; focused receiver doubles at external boundaries. Covers same-Human commands, source6 empty-hand selection, normal swaps, fallback, full-array drop, cooldown/NaN, callbacks/deferred animation event and paired fade.",
+    "i386": "Same focused fixture strict -Werror compile only; no Windows fixture execution.",
+    "application": "Strict actual application compile/link passed; no original game/DLL/Proton run."
+  },
+  "logs": [
+    "analysis/work/mission-world-20261103/weapon-swap-native-build.log",
+    "analysis/work/mission-world-20261103/weapon-swap-native-run.log",
+    "analysis/work/mission-world-20261103/weapon-swap-i386-build.log",
+    "analysis/work/mission-world-20261103/weapon-swap-app-build.log"
+  ],
+  "temporary_artifacts": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-weapon-swap-audit.cpp",
+      "sha256": "a40af5cac2464ee9d57c6cc5698819d168cf300e4b5f5d2004eca06bc3fe6442",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-weapon-swap-audit",
+      "sha256": "a4fb2fb9b80f29b3c4b81b0887663994a09ba553944955169cabe1886bbd04f9",
+      "removed": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-weapon-swap-audit.o",
+      "sha256": "eda901a8c3d226a88c470c87da6a89e32ad16f5facaf3b5b00dd252caa046956",
+      "removed": true
+    }
+  ],
+  "log_digests": {
+    "analysis/work/mission-world-20261103/weapon-swap-native-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/weapon-swap-native-run.log": "c62598ff362f1d78fce67ac0923bb29f990efd35d252d00d55f88cd0db21ebe6",
+    "analysis/work/mission-world-20261103/weapon-swap-i386-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "analysis/work/mission-world-20261103/weapon-swap-app-build.log": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+  }
+}

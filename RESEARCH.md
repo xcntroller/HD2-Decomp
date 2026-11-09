@@ -2,8 +2,8 @@
 
 2026-11-09 ledger reconciliation: [explicit source/body mapping](analysis/function-ledger-p2.2-reconciliation.md)
 registers the implemented P2.2 subsets accumulated since f9674b3. Current tally:
-34 complete client and1,440 partial (1,435 client/five engine),18,783 frozen.
-881 added client partials, six extended rows, zero complete promotions. Prior
+34 complete client and1,448 partial (1,443 client/five engine),18,783 frozen.
+881 reconciled client partials plus eight weapon swap partials, six extended rows, zero complete promotions. Prior
 "no new ledger credit" notes below describe their original checkpoints; the
 current tally is now reconciled. Ledger/fingerprint/README checks and27 existing
 tracker tests pass. Actual mission loading/world/desktop delivery remains open.
@@ -4597,3 +4597,8 @@ Human containing lifetime/Players/proximity/sound reactions and offline loading
 inventory/typed equipment handoff are source. Active containing weapon swap,
 formation/camera/player consumers, VM and actual world integration remain; no
 mission first frame, desktop acceptance or function ledger credit is claimed.
+
+2026-11-09: same-Human offline weapon swap, fallback/drop and paired holster fade
+now pass focused native sanitizers, strict i386 compile and app link. Eight source
+partials added; no whole-body or desktop promotions. Active target/sector
+reselection and full world remain. [Contracts](analysis/human-equipment-loading.md#same-human-weapon-exchange--2026-11-09).

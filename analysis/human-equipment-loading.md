@@ -243,3 +243,46 @@ GameMissionItems, GameActorServices, attachments, holsters and equipment service
 with required DD0/world/Players/presentation declarations. No DLL was executed.
 The subsequent checkpoint header and app compile/link checks pass. No actual
 animation tick, whole Human activation, world integration or desktop delivery.
+
+## Same-Human weapon exchange — 2026-11-09
+
+`human_weapon_swap.h` supplies the same-Human weapon subset of007D9DE0,
+007DA5E0 and007D9B40. Incoming source1/2/6 exchanges with hand3. Preflight
+uses the DISPLACED definition's permitted slots, actual stack/holder limits,
+FLOAT-stored weight/volume subtraction, float-converted actor capacity without
+epsilon and cooldowns. A full source array passes preflight even if removing
+the incoming entry will not empty its stack; the later insertion may fail.
+
+The first transfer suppresses notifications. The displaced return overrides
+holder cooldown and retains weight accounting, while still attempting source
+detach. Failed return tries genuine NO-source hand3/shoulder2/holsters1/pack6
+placement. Payload3 attempts shoulder even when occupied; payload2 requires
+size2/3 and empty shoulder. Exhausted placement follows007D8B40 with BOTH actors
+null: hide the model when flag1C requires it and set item14=game28+398hex.
+That original call does not create a world actor or clear item20/24 borrowers;
+the actual Items module retains ownership. Source/destination weight and holder
+writes are absent in this last call. Do not silently delete the displaced entry.
+
+Explicit holster count changes,230 removed/moved notifications, deferred model
+handoff, events1/2 and FPV requests retain original order.00791EB0 tests actual
+DD0+1E8==20hex;00774CC0 fades BOTH metadata lanes after the active-lane test.
+350.f/1.4f followed by native signed64 truncation yields250. The stack vtable's
+48/4C slots are genuine false/RET4; holder48 compares unsigned game28<expiry.
+
+`HumanLoadingInventoryCommands` composes005A2BB0→00587E00→005A2E90 for offline
+AI only, relooks up both actual item IDs/slots and sets Human178 on success.
+00538770 rereads the hand before choosing swap or move; source6 empty-hand move
+uses the same actual transfer/storage. Player/remote queued commands, nonoffline
+packets, cross-Human and other runtime families remain explicit exclusions.
+
+Evidence: WORK/human-inventory-weapon-swap/007d9de0.c,
+human-inventory-swap-dependencies/{007da5e0,007d9b40,00587e00,00791eb0}.c,
+human-inventory-command-receivers/005a2e90.c and
+human-swap-animation-pause/00774cc0.c; preflight/refresh assembly and PE vtable
+bytes confirm ambiguous comparisons and dispatch. These remain local evidence.
+[Verification record](checkpoints/p2.2-weapon-swap-20261109.json) records focused
+native sanitizers, strict i386 fixture compilation and actual app compile/link.
+Temporary fixtures are fingerprinted and removed. No original/Windows program
+was run. Eight eligible bodies gain partial credit;00587E00 is absent from the
+frozen inventory and receives none. Active reselection target/sector producers
+and containing world integration remain open; P2.2 stays unchecked.
