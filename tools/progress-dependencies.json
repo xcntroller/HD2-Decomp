@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "milestone": "P2.2",
+  "function_program": "client",
+  "render_target": "first_world_frame",
+  "delivery_target": "mission_desktop_acceptance",
+  "nodes": [
+    {
+      "id": "loading_source",
+      "title": "Complete mission loading stages and ordered failure/unload",
+      "stage": "source_recovery",
+      "status": "unresolved",
+      "claim": "The full loading boundary remains open; existing source subsets do not complete it.",
+      "original_entries": ["006ca780", "006d4180", "006cbf30", "006cc760", "006cd940"],
+      "evidence": [
+        {"path": "analysis/mission-world-loading.md", "quote": "Keep both P2.2 items open until their respective boundaries are met."},
+        {"path": "analysis/mission-world-loading.md", "quote": "Complete006CA780's\nloading presentation006C9640/006C95D0, animation00783350/00783BC0, engine Scene\n006D4180, Scene2/root/object006CBF30/006CC760/006CD940, actors006D45C0,\nsounds006D4880, check tables006D4280/00523C00/0051DE80, tree006EE570,\neffects00445D90 and ordered failure/unload."}
+      ]
+    },
+    {
+      "id": "actor_collision_source",
+      "title": "Required actor construction, collision and physics consumers",
+      "stage": "source_recovery",
+      "status": "unresolved",
+      "claim": "Actor/collision dependencies are required within P2.2; remaining actor/physics consumers are explicit.",
+      "original_entries": ["006d45c0", "006ee570"],
+      "evidence": [
+        {"path": "analysis/phase2-delivery-plan.md", "quote": "User clarification2026-11-03: bring required actor construction and collision\ndependencies forward from P2.3; preserve the full loading checkpoint."},
+        {"path": "analysis/mission-script-receivers.md", "quote": "containing world and remaining SOUND/actor/physics/objective/frame consumers."}
+      ]
+    },
+    {
+      "id": "script_source",
+      "title": "Remaining actual script receivers and asynchronous/transform owners",
+      "stage": "source_recovery",
+      "status": "supported_subset",
+      "claim": "Compiler/context/module and visibility source subsets exist; remaining receiver and owner work is explicit.",
+      "original_entries": ["00416e10", "0041e3f0"],
+      "evidence": [
+        {"path": "analysis/mission-script-receivers.md", "quote": "This source checkpoint extends the\n[compiler/context](mission-script-loading.md); it does not activate the host\nworld or enable loading."},
+        {"path": "analysis/mission-script-receivers.md", "quote": "Continue FULL P2.2 through actual remaining base/Human/Dog commands/predicates,\nasynchronous/deferred/transform owners and runtime Files selection, then the\ncontaining world and remaining SOUND/actor/physics/objective/frame consumers."}
+      ]
+    },
+    {
+      "id": "runtime_script_files",
+      "title": "Actual runtime Files selection for script programs",
+      "stage": "integration",
+      "status": "unresolved",
+      "claim": "Runtime Files selection remains required; captured base programs do not establish runtime selection.",
+      "evidence": [
+        {"path": "analysis/mission-script-receivers.md", "quote": "asynchronous/deferred/transform owners and runtime Files selection, then the\ncontaining world and remaining SOUND/actor/physics/objective/frame consumers."}
+      ]
+    },
+    {
+      "id": "world_composition",
+      "title": "Live containing world/session and required receivers",
+      "stage": "integration",
+      "status": "unresolved",
+      "claim": "Live containing world and required module/post-load consumers are not integrated.",
+      "evidence": [
+        {"path": "analysis/loading-modules.md", "quote": "P2.2 remains open. These are source owners and native audits; the live containing\nworld, required module receivers and post-load consumers are not integrated."},
+        {"path": "analysis/mission-script-loading.md", "quote": "`GameApplicationState` still declines loading."}
+      ]
+    },
+    {
+      "id": "session_activation",
+      "title": "Integrate ordered post-load activation and prepared spawning",
+      "stage": "integration",
+      "status": "unresolved",
+      "claim": "Activation source recovery does not supply the containing host composition.",
+      "original_entries": ["006989b0"],
+      "evidence": [
+        {"path": "analysis/session-activation-loading.md", "quote": "This is source recovery within the FULL P2.2 loading checkbox. It does not enable\nGameApplicationState loading or establish a rendered world/desktop acceptance.\nThe containing host still needs actual world/VM/actor/physics/presentation wiring."}
+      ]
+    },
+    {
+      "id": "first_camera",
+      "title": "Integrate actual first Human camera and local dispatch",
+      "stage": "integration",
+      "status": "unresolved",
+      "claim": "Ordinary camera/local dispatch source is verified in fixtures; actual world composition and rendering remain required.",
+      "original_entries": ["00469300", "00468130", "00466970"],
+      "evidence": [
+        {"path": "analysis/camera-local-dispatch-loading.md", "quote": "GameApplicationState\nstill declines loading; no world frame or desktop verification is claimed."},
+        {"path": "analysis/camera-local-dispatch-loading.md", "quote": "actual world/VM/presentation/other actor\nphysics composition, genuine first frame and user failure/repeat acceptance\nremain required."}
+      ]
+    },
+    {
+      "id": "first_world_frame",
+      "title": "Actual controller-owned rendered mission frame",
+      "stage": "integration",
+      "status": "unresolved",
+      "claim": "No first world-frame delivery is claimed; source-only loading still declines in the host.",
+      "evidence": [
+        {"path": "analysis/camera-local-dispatch-loading.md", "quote": "GameApplicationState\nstill declines loading; no world frame or desktop verification is claimed."}
+      ]
+    },
+    {
+      "id": "native_loading_gate",
+      "title": "Native verification of the complete integrated loading boundary",
+      "stage": "native_verification",
+      "status": "unknown",
+      "claim": "Required acceptance scope; source checkpoint fixture passes are reported separately and cannot satisfy this whole gate.",
+      "evidence": [
+        {"path": "analysis/phase2-delivery-plan.md", "quote": "Native audits cover real parser/resource/callback bodies and\ntruncation/missing/bad-resource failures."}
+      ]
+    },
+    {
+      "id": "i386_loading_gate",
+      "title": "Strict i386 compilation of the complete loading composition",
+      "stage": "i386_compilation",
+      "status": "unknown",
+      "claim": "Strict i386 builds are required. Scoped compilation/app-link receipts do not establish complete runtime composition.",
+      "evidence": [
+        {"path": "plan.md", "quote": "Run strict i386 builds, relevant existing checks and temporary focused audits."},
+        {"path": "analysis/camera-local-dispatch-loading.md", "quote": "Strict actual-host i386 template compilation and app link\npass."}
+      ]
+    },
+    {
+      "id": "mission_desktop_acceptance",
+      "title": "User desktop acceptance of real rendering, errors, return and repeat loading",
+      "stage": "desktop_acceptance",
+      "status": "unresolved",
+      "claim": "Mission rendering and failure/repeat desktop acceptance remain required.",
+      "evidence": [
+        {"path": "analysis/camera-local-dispatch-loading.md", "quote": "genuine first frame and user failure/repeat acceptance\nremain required."},
+        {"path": "analysis/phase2-delivery-plan.md", "quote": "User verifies the frame, load errors,\nreturn and repeat loading through Python."}
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "dependent": "loading_source", "prerequisite": "actor_collision_source", "basis": "explicit",
+      "kind": "required_loading_scope",
+      "evidence": [{"path": "analysis/phase2-delivery-plan.md", "quote": "User clarification2026-11-03: bring required actor construction and collision\ndependencies forward from P2.3; preserve the full loading checkpoint."}]
+    },
+    {
+      "dependent": "world_composition", "prerequisite": "script_source", "basis": "explicit",
+      "kind": "required_receiver",
+      "evidence": [{"path": "analysis/mission-script-receivers.md", "quote": "Continue FULL P2.2 through actual remaining base/Human/Dog commands/predicates,\nasynchronous/deferred/transform owners and runtime Files selection, then the\ncontaining world and remaining SOUND/actor/physics/objective/frame consumers."}]
+    },
+    {
+      "dependent": "world_composition", "prerequisite": "runtime_script_files", "basis": "explicit",
+      "kind": "required_runtime_input",
+      "evidence": [{"path": "analysis/mission-script-receivers.md", "quote": "asynchronous/deferred/transform owners and runtime Files selection, then the\ncontaining world and remaining SOUND/actor/physics/objective/frame consumers."}]
+    },
+    {
+      "dependent": "session_activation", "prerequisite": "loading_source", "basis": "explicit",
+      "kind": "original_stage_gate",
+      "evidence": [{"path": "analysis/session-activation-loading.md", "quote": "The SAME loader must publish loaded14; returning true without its stages\nis rejected."}]
+    },
+    {
+      "dependent": "first_world_frame", "prerequisite": "loading_source", "basis": "explicit",
+      "kind": "original_stage_gate",
+      "evidence": [{"path": "analysis/mission-world-loading.md", "quote": "Post-load\nactivation006989B0 and the frame/camera consumers must remain tied to real stage\ncompletion."}]
+    },
+    {
+      "dependent": "first_world_frame", "prerequisite": "world_composition", "basis": "explicit",
+      "kind": "required_composition",
+      "evidence": [{"path": "analysis/camera-local-dispatch-loading.md", "quote": "actual world/VM/presentation/other actor\nphysics composition, genuine first frame and user failure/repeat acceptance\nremain required."}]
+    },
+    {
+      "dependent": "first_world_frame", "prerequisite": "session_activation", "basis": "inferred",
+      "kind": "integration_order",
+      "rationale": "The loading contract names post-load activation alongside frame/camera consumers, and activation owns first-person initialization and squad spawning. This suggests activation precedes the selected first Human world frame; these notes do not independently establish the precise render call order.",
+      "evidence": [
+        {"path": "analysis/mission-world-loading.md", "quote": "Post-load\nactivation006989B0 and the frame/camera consumers must remain tied to real stage\ncompletion."},
+        {"path": "analysis/session-activation-loading.md", "quote": "authority modules, HUD, presentation modules, then first-person initialization.\nProgress5 retains .05/.1/.35/.5/.8/.9; state5 and timer500 precede squad spawning."}
+      ]
+    },
+    {
+      "dependent": "first_world_frame", "prerequisite": "first_camera", "basis": "explicit",
+      "kind": "rendering_requirement",
+      "evidence": [{"path": "analysis/phase2-delivery-plan.md", "quote": "Success: actual selected mission assets, original loading presentation, real scene\nand camera reach a world frame through the controller, with readiness tied to\ncompleted stages."}]
+    },
+    {
+      "dependent": "mission_desktop_acceptance", "prerequisite": "first_world_frame", "basis": "explicit",
+      "kind": "acceptance_gate",
+      "evidence": [{"path": "analysis/phase2-delivery-plan.md", "quote": "User verifies the frame, load errors,\nreturn and repeat loading through Python."}]
+    },
+    {
+      "dependent": "mission_desktop_acceptance", "prerequisite": "native_loading_gate", "basis": "explicit",
+      "kind": "validation_requirement",
+      "evidence": [{"path": "analysis/phase2-delivery-plan.md", "quote": "Native audits cover real parser/resource/callback bodies and\ntruncation/missing/bad-resource failures."}]
+    },
+    {
+      "dependent": "mission_desktop_acceptance", "prerequisite": "i386_loading_gate", "basis": "explicit",
+      "kind": "validation_requirement",
+      "evidence": [{"path": "plan.md", "quote": "Run strict i386 builds, relevant existing checks and temporary focused audits."}]
+    }
+  ]
+}
