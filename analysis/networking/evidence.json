@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-09",
+  "method": "static Ghidra 12.2 / section-mapped PE and objdump; no original execution",
+  "worktree_base": "d8b64f8",
+  "inventories": {
+    "server": {
+      "path": "analysis/networking/server-inventory.json",
+      "sha256": "83c502ca481427100a8986659c05b195128473ec85895710a23bddaafd891f4e",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "total": 20804,
+      "internal_non_thunk": 13957
+    },
+    "launcher": {
+      "path": "analysis/networking/launcher-inventory.json",
+      "sha256": "1e92e57527be152aace0c10e602b1fd36db835cff22e090538558a1de679987a",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "total": 971,
+      "internal_non_thunk": 849
+    }
+  },
+  "exports": [
+    {
+      "entry": "004075c0",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-startup/004075c0.json",
+      "metadata_sha256": "09e94337c2c7a5a1d4d4bfb08c1cacf9d91898835e61e0eaffaee0e91201a172",
+      "decompilation_sha256": "0e19c06df97e70aa62f024fa07d44c1dee3500e338de81ba9f26e3e04ddae95a"
+    },
+    {
+      "entry": "00407c90",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-startup/00407c90.json",
+      "metadata_sha256": "b587c8cc60f208f815caa0283cdf7b2d3ed76ea9ac5503b1c3b06c52faeca8b2",
+      "decompilation_sha256": "ae3bfc12d21705aae07f28bab337239fb48b93da87e7767806350c0968ebae51"
+    },
+    {
+      "entry": "00407d50",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-startup/00407d50.json",
+      "metadata_sha256": "5a4ec3e0de87c3ca272be95fac529597e2f78afe2a1d36c1f2c5a453a5fb1aa6",
+      "decompilation_sha256": "f9c664829d92685d3be63fb8c3e2172fb61a4e7a9c8528f50f37cc4dd7e46c2a"
+    },
+    {
+      "entry": "0041550f",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-startup/0041550f.json",
+      "metadata_sha256": "31636b9bfda84e48b17df224a8ffc2f237c6ec521edfef0377a00136912c43df",
+      "decompilation_sha256": "5fa68a31d534727b56edaad85a3a121deb9e30f8449f5d28d2cf12ecdb26d2c4"
+    },
+    {
+      "entry": "00408fb0",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-config/00408fb0.json",
+      "metadata_sha256": "06af3430cf4a267fd37cff0822f8935c35c8fa467e201c93283fe25822c77811",
+      "decompilation_sha256": "47363fcfb7b72de216249a229a101e6973c23d4c1b64a59e110fcc0ed5692320"
+    },
+    {
+      "entry": "0040aa90",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-config/0040aa90.json",
+      "metadata_sha256": "af94b8fa68e4292c1af32c4a51e6a6265595b5a5020e82b3e70e34899b6ad8bb",
+      "decompilation_sha256": "daea2089874d698764ca7f26a23ad128166754e176dc71bdbf75963c1e8d403c"
+    },
+    {
+      "entry": "0040c010",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-config/0040c010.json",
+      "metadata_sha256": "221d55635b2339fe9cb894ecb825f9b5f38d943f6a5c0cb81199c1e070d6f4f7",
+      "decompilation_sha256": "439c2b43a7622fbc093a83a0707b561dc13b69ccb1dca17d30122bc27ed48a1e"
+    },
+    {
+      "entry": "0040cbe0",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-config/0040cbe0.json",
+      "metadata_sha256": "d809bf15886498568fb7fc3f5fb19707c063d20e6be5cf84920d2725f1703665",
+      "decompilation_sha256": "c5fbce6567861aa30ed49e84fe426c0afc2a77f3f7579919488c6302dfa4ea4f"
+    },
+    {
+      "entry": "00411600",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-config/00411600.json",
+      "metadata_sha256": "4b770f6718901455d305417f87a1b540ba3e67831b7c499d2a993398e10659ec",
+      "decompilation_sha256": "864b0345f7b3310f94f91618e07ec24e67d38a62ea15e3a3b7572df90151814f"
+    },
+    {
+      "entry": "00411f50",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-config/00411f50.json",
+      "metadata_sha256": "bc08098855f9ab589e432d9bea7dfc5b90fc90a830a07ccabc91bba74b6ca03d",
+      "decompilation_sha256": "bb68ae52bf5078aff49f25bd26377665ec628cb2bae2c38d1ca36b353c3b6c65"
+    },
+    {
+      "entry": "00407670",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-contract/00407670.json",
+      "metadata_sha256": "0ffad87065f003a5a8afda0712052d9c54210cfe513d874f7d0e6f92fc1cbef8",
+      "decompilation_sha256": "e1b5e419e97e3436eb4432ebd37be86936be5b2b21488bf1a5aa1c2112420399"
+    },
+    {
+      "entry": "00408130",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-contract/00408130.json",
+      "metadata_sha256": "aaaace89e626b52cd00d33cf697daebea3b84957fc73d386d740a2bfc28c36ab",
+      "decompilation_sha256": "97354f6ddd9f8b83dcc63792664e53da21be7793b08f11dc8aecb749d91055ab"
+    },
+    {
+      "entry": "00408460",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-contract/00408460.json",
+      "metadata_sha256": "b920e66d4d57e6686e510b024613d8b22fde2f98a55e5ebd0c014c7c1170c63a",
+      "decompilation_sha256": "067add8df7378f04792e4d54fd11a25e0ce04a922bc9fc422b08b67ab86142b6"
+    },
+    {
+      "entry": "00408980",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-contract/00408980.json",
+      "metadata_sha256": "7007d636852618e524a80ccc8d2c2a6614d702585e511535eb72c14e123a610a",
+      "decompilation_sha256": "2ffc7282af23b5805b358e954649d68a871fc4b1ddc6fade57685d2bfc5dcf4b"
+    },
+    {
+      "entry": "0040be70",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-contract/0040be70.json",
+      "metadata_sha256": "4406f3b4963bdf4e2a831f0065275d5bcfd7a78cb0a4a7888e44d6648c4c3a22",
+      "decompilation_sha256": "edb0e5a1bc24f390ea02acf399df977e229edc179da609f5e00d88cb0c756828"
+    },
+    {
+      "entry": "00410ef0",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-contract/00410ef0.json",
+      "metadata_sha256": "f2fb9ba8bdc3baa5774ecf7db5318614bb8a77f35a6d8dcd6c6b478bbcbc9c3a",
+      "decompilation_sha256": "fab0caa1bc3f5453d4d1d1ddaedfedd0af474f228c7aedef5c95df9b8416af57"
+    },
+    {
+      "entry": "00411420",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-contract/00411420.json",
+      "metadata_sha256": "30ca1372affe4dbf60c0e750081c24b46fc754e379529fec234c768e217314e5",
+      "decompilation_sha256": "f6aea717e532b73f8e39f9dce560eaa132b3c28927899ac3d949afe7529ceb67"
+    },
+    {
+      "entry": "00411600",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-contract/00411600.json",
+      "metadata_sha256": "6534415e3d8576d31dad8dfbd30a0d753c0f42582b9a7f138295fc63e02963dc",
+      "decompilation_sha256": "0486f564eda6fbf4ff6eaff06df43a72e7409e4115aa6a9c45b95fe1749c72ca"
+    },
+    {
+      "entry": "00411f50",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-contract/00411f50.json",
+      "metadata_sha256": "510dbb6521dff28e56962d1948edb1f4dc58e2c13947d8ccb8232db7b8f74e93",
+      "decompilation_sha256": "bb68ae52bf5078aff49f25bd26377665ec628cb2bae2c38d1ca36b353c3b6c65"
+    },
+    {
+      "entry": "00412720",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "metadata": "analysis/work/networking/launcher-contract/00412720.json",
+      "metadata_sha256": "ff6c4275c4bc079902a428861e5c3c572c484eed4cd17f4e7492e6e7d08ee74f",
+      "decompilation_sha256": "cbbe8d2826d77c9b689ba07e8125f1ae58fbb69275d10043e72fe9a5a18273e6"
+    },
+    {
+      "entry": "006ed7d0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-startup/006ed7d0.json",
+      "metadata_sha256": "21279827aa6e2a65f531459760595cdaf0dfa94af8656ee4e015ce444a725483",
+      "decompilation_sha256": "a0ac47e77fc80d1a5ad5a2b81911050d12e5051abbf13638ff716d4c294011d5"
+    },
+    {
+      "entry": "007065a0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-startup/007065a0.json",
+      "metadata_sha256": "dd43773a6ef218fd620a3e4bc74b1dfa56454d9faeb1912237beb251ebe63f37",
+      "decompilation_sha256": "a2b01fca75ef7bcc7604708fdd1a8d62a9d895385723112d7a44919c04c8030d"
+    },
+    {
+      "entry": "00779450",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-startup/00779450.json",
+      "metadata_sha256": "fd86e5bedd575e774c289f95de7f7ea7f0c33c11409ac51e51191f15020d45ed",
+      "decompilation_sha256": "b746fd2de0c259d7ba08f02a93867aa2ac64f5ac534513c4982c71525acf5f2f"
+    },
+    {
+      "entry": "007a23e0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-startup/007a23e0.json",
+      "metadata_sha256": "cd0bec37ac204ccdd84911553ea75b1eccd17b93fbd0e179c878000f61b7adbb",
+      "decompilation_sha256": "a3281232e8d042d4deb6870fc9e3f52643f2d245c8f18d518d660a96f331470a"
+    },
+    {
+      "entry": "007aace0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-startup/007aace0.json",
+      "metadata_sha256": "648bb828095a59a5fce32fe66c67c063178ac5c86e27385f0f6f65ec588cf66b",
+      "decompilation_sha256": "b69a3cafee43761d08ced4f204f05b5ff6175aa36969b5ff96937aa1298ee50c"
+    },
+    {
+      "entry": "007aafb0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-startup/007aafb0.json",
+      "metadata_sha256": "20aa7aa888500d66f8ad3f2b07f437bdbd833cdb5e5023dc0e6b47517137d78d",
+      "decompilation_sha256": "ef0fbdd409830013ccec2267c7dad8b65d3c95dda3edbc059361f941a62c3ad4"
+    },
+    {
+      "entry": "008252e1",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-startup/008252e1.json",
+      "metadata_sha256": "20fdfc2280519b52b63e7f5151328bcd91fb6460360b8673a28b3b1dac61f938",
+      "decompilation_sha256": "aa658e5bcc6d66e168d125b0a087bcd47d72411dc24cd1f7286c0bd7e19f16e5"
+    },
+    {
+      "entry": "00725fa0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-command/00725fa0.json",
+      "metadata_sha256": "b9c083f773cf4a9dd01a07698a5a1c3a05c1e20152d334f8590ffa92673b0e5f",
+      "decompilation_sha256": "9d68408985aeee5ac86cb5e2b2a15269c690593081ee59110a9519e4db20bf51"
+    },
+    {
+      "entry": "0077bcc0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-command/0077bcc0.json",
+      "metadata_sha256": "82bc1a8233ee77e6f98aee5c0d20ee6a2b847f539ae21c83bec3ba9a03962730",
+      "decompilation_sha256": "fc719c0275bf8cb79acd021b48f3529aad9e65465a9768b7e526476a5c653fee"
+    },
+    {
+      "entry": "007a4080",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-command/007a4080.json",
+      "metadata_sha256": "a1e69205d18b57ab5d73f259067e408f904c923ba8db719d546a52d0cb44f517",
+      "decompilation_sha256": "9ae8a0906feac377db6ba553e607f0faa84e336a2bb25f94edb6afa48f5cbde6"
+    },
+    {
+      "entry": "007a43a0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-command/007a43a0.json",
+      "metadata_sha256": "9ca731fba61d2b82ecf1a106e98f4b4dd36fa2fa4f68f13fc1c9cad9bdbe0fc5",
+      "decompilation_sha256": "03ffd8f546585e5113bde856c8b2436ff0dfcfeaaf5a69cc107313f9f71cfec3"
+    },
+    {
+      "entry": "007a44c0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-command/007a44c0.json",
+      "metadata_sha256": "5ebac528571923657d6a1bdf6bfe57b7a18d853834a115af830f9e1a776c8513",
+      "decompilation_sha256": "9b6c6fac40f4c61eda240ca20f3956cf5a0b231d0dc878a6eacbd98c2c7f5345"
+    },
+    {
+      "entry": "007a47b0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-command/007a47b0.json",
+      "metadata_sha256": "1bd2d7e9c7e745f2b594af8ad5dd24baa7eed9e242deb52df1c546cd4ab02dd0",
+      "decompilation_sha256": "148d7ef3619730b365daa07b837cce9e9d4a956d981bcb5c648850f3e1acda72"
+    },
+    {
+      "entry": "007a4990",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-command/007a4990.json",
+      "metadata_sha256": "d5186b564c762a9a7be14f33fd1ba89b38fab20a70e52fc3b85b40f5a7891af9",
+      "decompilation_sha256": "506527309dda445a193284b507d0c4231ddc84f002ef71a40351af95312dea1f"
+    },
+    {
+      "entry": "00725850",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-lifecycle/00725850.json",
+      "metadata_sha256": "d2a419651f1a19f1f1d54997a24639a2e329b8be80eb289a0b517f4bdab9f7ef",
+      "decompilation_sha256": "d664d9750ee2ab01c83fdc11a723cba7b55846763c9716f05d26053e7ca0fe9a"
+    },
+    {
+      "entry": "007a23e0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-lifecycle/007a23e0.json",
+      "metadata_sha256": "ff43b9320a6900a30ec11f0506356dcb06ec6d224f0c759f5dd7023815406e1b",
+      "decompilation_sha256": "1c65d17fd20e2f6fb0e214d5769a7e920448154ce51ca207fa495e90125a2910"
+    },
+    {
+      "entry": "007a4500",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-lifecycle/007a4500.json",
+      "metadata_sha256": "0653092f29617b13b3d36394c0b78a564800919c559f2dd786cfd1a41f1114de",
+      "decompilation_sha256": "0c5333f30cd7c8a6f1c6c8dcad9bc792d94ef8c015e9c2c5954296611609b06d"
+    },
+    {
+      "entry": "00706250",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-owners/00706250.json",
+      "metadata_sha256": "9cdd4cf96b28c76b698665a70365c77e3b05419cd201061810f05612037e3e03",
+      "decompilation_sha256": "202a289be67161dbaec7b5b5c9bd0656040cccac2b864e1d5afedaf5f7c36e91"
+    },
+    {
+      "entry": "00725260",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-owners/00725260.json",
+      "metadata_sha256": "db1ffcf355f25b4d99daad82af3643590d804bae0478c332846118f58b13c1f3",
+      "decompilation_sha256": "c0dd23fa3002323b7a94c440eb51a21ae7f5e8f7fbefe8ce32d61a44b0a6369a"
+    },
+    {
+      "entry": "00779f30",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-owners/00779f30.json",
+      "metadata_sha256": "3d56f6521c797b541bbb5ecd2e8e92380a1fe25a998e73b3e30417dc41c15e08",
+      "decompilation_sha256": "883d746403e1ee70ecd41351981af7feb5f883dc0f524a13ae67615d8191027d"
+    },
+    {
+      "entry": "0077ab40",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-owners/0077ab40.json",
+      "metadata_sha256": "06d4d6a6960448b6d2a01c44205905d7cd0f5f184b2fc7a436a5ebf21c65724d",
+      "decompilation_sha256": "df7994712a6ff74490cb44de96c3c184593e693d30d0860a96e1f571a1202edd"
+    },
+    {
+      "entry": "0077b500",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-owners/0077b500.json",
+      "metadata_sha256": "c28868341de0ec5eaf08dfd5957886d804ade1b00837dff738ce6a1544d931ac",
+      "decompilation_sha256": "d9be685502aca79adfdf941f655d6e241af52a644feddac7f6b8d32a1db75c86"
+    },
+    {
+      "entry": "0077b590",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-owners/0077b590.json",
+      "metadata_sha256": "998a28626752807d21b80e70b264228b981695d55345ffdb2811f6c122b95c9b",
+      "decompilation_sha256": "d65a57580b48263843a70e934e90ac33b65a2a8fe2583c0f2705e1b344984e03"
+    },
+    {
+      "entry": "0077dcb0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-owners/0077dcb0.json",
+      "metadata_sha256": "99902b9d52e5d45a8b02198c0406da0ca65c4d54b5837302c1abf0a2e580b392",
+      "decompilation_sha256": "f09623bfddfc71b2ec185bf6f88a5bc20b01d8964fde64b48b6d61dab3988192"
+    },
+    {
+      "entry": "0077dcf0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-owners/0077dcf0.json",
+      "metadata_sha256": "655db412d244d0f4413e68629d040b71953bbe469bef45a66d9f5cde6dfa9ad8",
+      "decompilation_sha256": "4a9f2e7320d5ab6477884ca459adf364b706dc10a1256a3cb8f8d2dc42dff9a2"
+    },
+    {
+      "entry": "007a45f0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-owners/007a45f0.json",
+      "metadata_sha256": "c37700cecbbe856b8b32a1a733d11e5263694c6afd6b4b6a7a553fe55a527bf5",
+      "decompilation_sha256": "cf9f81beec9a832848ba99313f56da0b5ebb266d6800ff0e723ea1454a81c688"
+    },
+    {
+      "entry": "007a46d0",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "metadata": "analysis/work/networking/server-owners/007a46d0.json",
+      "metadata_sha256": "8ac2c2a9a63bb33caeef3fb4eb6d1d87fcc30ff16fc84e3a7ea744df48c5e8ce",
+      "decompilation_sha256": "c3dbb2b059d156a79d0c2133931085b0029c88d8aa8f46cc42763fd96ac24601"
+    }
+  ]
+}

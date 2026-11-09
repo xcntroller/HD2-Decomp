@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "scope": "HD2DS.exe and ServerLauncher.exe only; separate from frozen client/LS3DF baseline",
+  "programs": {
+    "server": {
+      "path": "analysis/networking/server-inventory.json",
+      "sha256": "83c502ca481427100a8986659c05b195128473ec85895710a23bddaafd891f4e",
+      "binary_sha256": "48ba25814ab429fed4418d8610b2eca5aaeb594d83a29a0ca6b99fa152f1c152",
+      "total": 20804,
+      "internal_non_thunk": 13957
+    },
+    "launcher": {
+      "path": "analysis/networking/launcher-inventory.json",
+      "sha256": "1e92e57527be152aace0c10e602b1fd36db835cff22e090538558a1de679987a",
+      "binary_sha256": "6ed896ce1b468b04ce3d0136f9d4b51340c648838bd9a2eb34761cc2a1c96fbb",
+      "total": 971,
+      "internal_non_thunk": 849
+    }
+  },
+  "functions": []
+}
