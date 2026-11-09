@@ -6,6 +6,9 @@ import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 
 from mission import MissionSession, walk_records
+from resource_store import ResourceStore
+from installation import InstallationSession
+from explorer_panels import ExplorerPanels
 
 
 class MissionExplorer:
@@ -20,6 +23,7 @@ class MissionExplorer:
         self.pending = None
         self.poll_timer = None
         self.session = None
+        self.store = None
         self.folder = None
         self.reference_roots = []
         self.current = None
@@ -29,7 +33,7 @@ class MissionExplorer:
         shell = ttk.Frame(self.root,padding=16)
         shell.pack(fill="both",expand=True)
         ttk.Label(shell,text="Mission Explorer",style="Title.TLabel").pack(anchor="w")
-        ttk.Label(shell,text="Read-only files and documented records · double-click a reference to follow a local candidate",
+        ttk.Label(shell,text="Discover original resources, inspect documented records and trace evidence-labelled relationships",
                   style="Muted.TLabel").pack(anchor="w",pady=(4,12))
         bar=ttk.Frame(shell);bar.pack(fill="x")
         self.open_button=ttk.Button(bar,text="Open mission folder…",command=self.open_folder)
@@ -42,9 +46,22 @@ class MissionExplorer:
         self.script_button.pack(side="left",padx=8)
         self.export_button=ttk.Button(bar,text="Export mission JSON…",command=self.export,state="disabled")
         self.export_button.pack(side="right")
+        discovery=ttk.Frame(shell);discovery.pack(fill="x",pady=(8,0))
+        self.install_button=ttk.Button(discovery,text="Open installation…",command=self.open_installation)
+        self.install_button.pack(side="left")
+        self.language=tk.StringVar(value="English")
+        ttk.Label(discovery,text="Language").pack(side="left",padx=(10,4))
+        ttk.Entry(discovery,textvariable=self.language,width=12).pack(side="left")
+        self.archives_first=tk.BooleanVar(value=False)
+        ttk.Checkbutton(discovery,text="Archives first (flags/override profile)",variable=self.archives_first).pack(side="left",padx=8)
+        self.mission_name=tk.StringVar()
+        self.mission_box=ttk.Combobox(discovery,textvariable=self.mission_name,state="disabled",width=17)
+        self.mission_box.pack(side="left")
+        self.mission_button=ttk.Button(discovery,text="Inspect mission",command=self.inspect_mission,state="disabled")
+        self.mission_button.pack(side="left",padx=6)
         self.status=ttk.Label(shell,text="Choose a mission directory; optional reference folders supply loose scripts/assets.",wraplength=1100)
         self.status.pack(anchor="w",pady=10)
-        ttk.Label(shell,text="Local matches are candidates, not runtime resolution. Unknown payloads remain opaque. No files are edited.",
+        ttk.Label(shell,text="Partial format coverage · serialized / selected-resource evidence is distinct from name candidates · no files are edited.",
                   style="Muted.TLabel",wraplength=1000).pack(side="bottom",anchor="w",pady=(10,0))
         panes=ttk.Panedwindow(shell,orient="horizontal");panes.pack(fill="both",expand=True)
         left=ttk.Frame(panes);panes.add(left,weight=1)
@@ -54,7 +71,9 @@ class MissionExplorer:
         self.files.bind("<<TreeviewSelect>>",self.select_file)
         right=ttk.Frame(panes);panes.add(right,weight=3)
         tabs=ttk.Notebook(right);tabs.pack(fill="both",expand=True)
+        self.tabs=tabs
         record_tab=ttk.Frame(tabs,padding=8);tabs.add(record_tab,text="Records")
+        self.record_tab=record_tab
         vertical=ttk.Panedwindow(record_tab,orient="vertical");vertical.pack(fill="both",expand=True)
         tree_box=ttk.Frame(vertical);vertical.add(tree_box,weight=2)
         self.records=ttk.Treeview(tree_box,columns=("offset","kind"),show="tree headings")
@@ -79,7 +98,8 @@ class MissionExplorer:
         self.follow_button.pack(anchor="w",pady=(8,0))
         self.targets={}
         self.info=owner.text(self._tab(tabs,"Coverage / limitations"))
-        owner.set_text(self.info,"Open a mission folder to inspect coverage. The tool does not mount archives or load a world.")
+        owner.set_text(self.info,"Open a mission folder or installation. No game/DLL execution or file editing.")
+        self.panels=ExplorerPanels(self,tabs)
 
     @staticmethod
     def _tab(tabs,title):
@@ -87,8 +107,12 @@ class MissionExplorer:
 
     def busy(self,value):
         self.open_button.configure(state="disabled" if value else "normal")
+        self.install_button.configure(state="disabled" if value else "normal")
+        self.mission_button.configure(state="normal" if self.store and not value else "disabled")
+        self.mission_box.configure(state="readonly" if self.store and not value else "disabled")
         for button in (self.add_button,self.reload_button,self.export_button):
             button.configure(state="normal" if self.session and not value else "disabled")
+        if self.store:self.add_button.configure(state="disabled")
         self.follow_button.configure(state="disabled")
         self.script_button.configure(state="normal" if not value and self.current and self.current.format=="script" else "disabled")
 
@@ -107,17 +131,30 @@ class MissionExplorer:
         self.pending=None
         try:
             result=future.result()
-            if kind=="scan":
+            if kind=="discovery":
+                self.store=result
+                names=[m['name'] for m in self.store.missions()]
+                self.mission_box.configure(values=names)
+                prior=self.mission_name.get()
+                self.mission_name.set(prior if prior in names else "tutorial" if "tutorial" in names else names[0] if names else "")
+                self.status.configure(text=f"{len(names)} missions discovered. Select a mission; chosen ISD1 payloads stay explicitly unavailable.")
+                self.owner.set_text(self.info,json.dumps(self.store.profile(),indent=2))
+            elif kind=="script":
+                source,report=result
+                self.owner.show_snapshot(source,report,self.session.roots)
+            elif kind=="scan":
                 self.session=result
                 self.files.delete(*self.files.get_children())
                 for entry in self.session.report.files:
                     self.files.insert("","end",iid=entry.path,values=(entry.path,entry.status))
-                self.status.configure(text=f"{self.folder} · {len(self.session.report.files)} local files · {len(self.reference_roots)} reference folders")
+                self.status.configure(text=f"{self.folder} · {len(self.session.report.files)} files · {len(self.reference_roots)} reference folders")
                 self.coverage()
             else:
                 entry,target=result
+                for item in self.session.report.files:
+                    if not self.files.exists(item.path):self.files.insert("","end",iid=item.path,values=(item.path,item.status))
+                    else:self.files.item(item.path,values=(item.path,item.status))
                 self.render_file(entry,target)
-                self.files.item(entry.path,values=(entry.path,entry.status))
                 self.coverage()
         except Exception as exc:
             self.status.configure(text="Inspection unavailable")
@@ -128,22 +165,46 @@ class MissionExplorer:
         if self.pending:return
         selected=filedialog.askdirectory(parent=self.root,title="Open local mission directory")
         if selected:
-            self.folder=Path(selected).resolve();self.reference_roots=[];self.refresh()
+            self.folder=Path(selected).resolve();self.reference_roots=[];self.store=None;self.refresh()
+
+    def open_installation(self):
+        if self.pending:return
+        selected=filedialog.askdirectory(parent=self.root,title="Open original installation (read-only)")
+        if selected:
+            self.folder=Path(selected).resolve();self.reference_roots=[];self.index_installation()
+
+    def index_installation(self):
+        self.clear_model();self.store=None
+        flags=self.archives_first.get();language=self.language.get();root=self.folder
+        self.submit("discovery",lambda:ResourceStore(root,flags,language))
+
+    def inspect_mission(self):
+        if self.pending or not self.store:return
+        if self.archives_first.get()!=self.store.archives_first or self.language.get()!=self.store.language:
+            self.index_installation();return
+        name=self.mission_name.get()
+        if not name:return
+        self.clear_model()
+        self.submit("scan",lambda:InstallationSession(self.store,name,self.owner.inspector))
 
     def add_folder(self):
-        if self.pending or not self.folder:return
+        if self.pending or not self.folder or self.store:return
         selected=filedialog.askdirectory(parent=self.root,title="Add loose script or asset reference folder")
         if selected:
             path=Path(selected).resolve()
             if path not in [self.folder,*self.reference_roots]:self.reference_roots.append(path)
             self.refresh()
 
-    def refresh(self):
-        if self.pending or not self.folder:return
+    def clear_model(self):
         self.current=None;self.session=None
         self.files.delete(*self.files.get_children());self.records.delete(*self.records.get_children())
         self.ref_tree.delete(*self.ref_tree.get_children());self.targets={};self.nodes={}
-        self.owner.set_text(self.detail,"");self.owner.set_text(self.info,"")
+        self.owner.set_text(self.detail,"");self.owner.set_text(self.info,"");self.panels.clear()
+
+    def refresh(self):
+        if self.pending or not self.folder:return
+        if self.store:self.index_installation();return
+        self.clear_model()
         self.submit("scan",lambda:MissionSession(self.folder,self.reference_roots,self.owner.inspector))
 
     def coverage(self):
@@ -152,8 +213,11 @@ class MissionExplorer:
                  "recognized_files":[{"path":f.path,"format":f.format,"status":f.status,
                      "records":sum(1 for _ in walk_records(f.records)),"references":len(f.references),
                      "diagnostics":f.diagnostics} for f in report.files if f.format!="opaque"],
-                 "diagnostics":report.diagnostics,"limitations":report.limitations}
+                 "diagnostics":report.diagnostics,"limitations":report.limitations,
+                 "resolution_profile":report.resolution_profile,"entities":len(report.entities),
+                 "graph_edges":len(report.graph.get("edges",[])),"validation_issues":len(report.validation)}
         self.owner.set_text(self.info,json.dumps(summary,indent=2,ensure_ascii=True))
+        self.panels.refresh(report)
 
     def select_file(self,_=None):
         if self.pending or not self.session:return
@@ -200,9 +264,19 @@ class MissionExplorer:
 
     def view_script(self):
         if self.pending or not self.current or self.current.format!="script" or self.owner.pending:return
-        self.owner.path=self.session.paths[self.current.path]
-        self.owner.reload()
-        self.owner.root.lift()
+        identity=self.current.path
+        report=self.current.script
+        entry=self.current
+        if report is None:return
+        def read():
+            if isinstance(self.session,InstallationSession):source=self.session.script_bytes(identity)
+            else:
+                with self.session.paths[identity].open("rb") as stream:source=stream.read(65535)
+            import hashlib
+            if entry.size<=65535 and entry.sha256 and hashlib.sha256(source).hexdigest()!=entry.sha256:
+                raise ValueError("Source changed since inspection; refresh before opening its snapshot")
+            return source,report
+        self.submit("script",read)
 
     def populate_refs(self,identity=None):
         self.ref_tree.delete(*self.ref_tree.get_children());self.targets={}
@@ -226,7 +300,8 @@ class MissionExplorer:
         self.files.see(entry.path)
         for node in entry.records:self.insert_node(node)
         summary={"path":entry.path,"format":entry.format,"status":entry.status,"size":entry.size,
-                 "sha256":entry.sha256,"diagnostics":entry.diagnostics,"script":entry.script}
+                 "sha256":entry.sha256,"diagnostics":entry.diagnostics,"script":entry.script,
+                 "resolution":entry.resolution}
         self.owner.set_text(self.detail,json.dumps(summary,indent=2,ensure_ascii=True))
         self.populate_refs()
         self.status.configure(text=f"{entry.path} · {entry.status} · {len(entry.references)} references")

@@ -21,6 +21,7 @@ class InspectorWindow:
         self.poll_timer = None
         self.explorer = None
         self.path = None
+        self.protected_roots = []
         self.report = None
         self.catalog = []
         self.closed = False
@@ -186,6 +187,7 @@ class InspectorWindow:
                     filetypes=[("Mission scripts", "*.scr"), ("All files", "*")])
         if selected:
             self.path = Path(selected).resolve()
+            self.protected_roots = [self.path.parent]
             self.reload()
 
     def reload(self):
@@ -245,16 +247,26 @@ class InspectorWindow:
             count += 1
         self.catalog_count.configure(text=f"{count} of {len(self.catalog)} table entries")
 
+    def show_snapshot(self,source,report,protected_roots=()):
+        self.path=None
+        self.protected_roots=list(protected_roots)
+        self.file_label.configure(text=report["file"]+" · read-only resource snapshot")
+        self.show_report(source,report)
+        self.set_busy(False)
+        self.root.lift()
+
     def export(self):
         if not self.report or self.pending:
             return
         selected = filedialog.asksaveasfilename(parent=self.root, title="Export inspection JSON",
-                   defaultextension=".json", initialfile=self.path.stem + ".inspection.json",
+                   defaultextension=".json", initialfile=Path(self.report["file"]).stem + ".inspection.json",
                    filetypes=[("JSON", "*.json")])
         if selected:
             destination = Path(selected)
             try:
-                if destination.resolve() == self.path or (destination.exists() and destination.samefile(self.path)):
+                if any(destination.resolve().is_relative_to(root) for root in self.protected_roots):
+                    raise OSError("Save reports outside the inspected source folders/installation")
+                if self.path is not None and (destination.resolve() == self.path or (destination.exists() and destination.samefile(self.path))):
                     messagebox.showerror("Cannot overwrite source", "Choose a separate JSON file.", parent=self.root)
                     return
                 with destination.open("x", encoding="utf-8") as stream:

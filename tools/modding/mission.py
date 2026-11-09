@@ -1,7 +1,7 @@
 """Bounded, read-only mission models and parsers. No GUI or game runtime imports."""
 from __future__ import annotations
 import argparse
-from dataclasses import asdict, dataclass, field
+from dataclasses import dataclass, field, fields, is_dataclass
 import hashlib
 import json
 import math
@@ -10,6 +10,8 @@ from pathlib import Path, PurePosixPath
 import struct
 
 from script_client import inspect_bytes
+from dependency_graph import enrich
+from actor_fields import decode_properties, ACTOR_NAMES, FRAME_NAMES
 
 MAX_BYTES = 64 * 1024 * 1024
 MAX_RECORDS = 200_000
@@ -60,6 +62,7 @@ class FileReport:
     references: list[Reference] = field(default_factory=list)
     diagnostics: list[str] = field(default_factory=list)
     script: dict | None = None
+    resolution: dict | None = None
 
 
 @dataclass
@@ -68,10 +71,24 @@ class MissionReport:
     files: list[FileReport]
     diagnostics: list[str] = field(default_factory=list)
     limitations: list[str] = field(default_factory=lambda: list(LIMITATIONS))
-    schema_version: int = 1
+    schema_version: int = 2
+    entities: list = field(default_factory=list)
+    graph: dict = field(default_factory=dict)
+    validation: list = field(default_factory=list)
+    resolution_profile: dict | None = None
+    coverage: dict = field(default_factory=dict)
+
+    def iter_json(self):
+        # Shallow dataclass views avoid an additional deep copy of large documents.
+        class Encoder(json.JSONEncoder):
+            def default(self,value):
+                if is_dataclass(value):return {f.name:getattr(value,f.name) for f in fields(value)}
+                return super().default(value)
+        yield from Encoder(indent=2,sort_keys=True,ensure_ascii=True,allow_nan=False).iterencode(self)
+        yield "\n"
 
     def to_json(self):
-        return json.dumps(asdict(self), indent=2, sort_keys=True, ensure_ascii=True, allow_nan=False) + "\n"
+        return "".join(self.iter_json())
 
 
 class FormatError(ValueError):
@@ -125,7 +142,7 @@ class Parser:
 
     def opaque(self, offset, size, kind, label="opaque payload", evidence=SCENE_EVIDENCE):
         return self.record(offset, size, kind, label, evidence,
-                           {"sha256": hashlib.sha256(self.data[offset:offset+size]).hexdigest()})
+                           {"sha256": hashlib.sha256(memoryview(self.data)[offset:offset+size]).hexdigest()})
 
     def scene(self):
         cursor = Cursor(self.data)
@@ -141,6 +158,7 @@ class Parser:
 
     def scene_children(self, cursor, context):
         nodes = []
+        actor_type = None
         containers = {("root",0x4000):("objects","object container"),
                       ("objects",0x4010):("object","object record"),
                       ("root",0xae20):("actors","actor container"),
@@ -161,6 +179,14 @@ class Parser:
                 next_context, node.label = containers[key]
                 node.values = {}
                 node.children = self.scene_children(payload, next_context)
+                if next_context=="actor":
+                    names=[c.values["text"] for c in node.children if c.label=="actor_frame"]
+                    types=[c.values["value"] for c in node.children if c.label=="actor_type"]
+                    node.values={"frame_names":names,"serialized_types":types,
+                                 "type_labels":[ACTOR_NAMES.get(t,"Unknown") for t in types]}
+                elif next_context=="object":
+                    node.values={"names":[c.values["text"] for c in node.children if c.label=="object_name"],
+                                 "creation_kinds":[c.values["value"] for c in node.children if c.label=="creation_kind"]}
             elif key in texts:
                 node.label = texts[key]
                 value = payload.text()
@@ -170,6 +196,7 @@ class Parser:
             elif context == "object" and kind in (0x4011,0x4012):
                 node.label = "creation_kind" if kind == 0x4011 else "creation_subtype"
                 node.values = {"value":payload.unpack("<I")[0], "unconsumed_bytes":payload.end-payload.position}
+                if kind==0x4011:node.values["label"]=FRAME_NAMES.get(node.values["value"],"Unknown")
             elif context == "object" and kind in floats:
                 node.label, count = floats[kind]
                 values = payload.unpack(f"<{count}f")
@@ -178,9 +205,11 @@ class Parser:
                 node.values = {"serialized":list(values),"unconsumed_bytes":payload.end-payload.position}
             elif context == "actor" and kind == 0xae22:
                 node.label = "actor_type"
-                node.values = {"value":payload.unpack("<I")[0],"unconsumed_bytes":payload.end-payload.position}
+                actor_type=payload.unpack("<I")[0]
+                node.values = {"value":actor_type,"type_label":ACTOR_NAMES.get(actor_type,"Unknown"),"unconsumed_bytes":payload.end-payload.position}
             elif context == "actor" and kind == 0xae24:
-                node.label = "actor properties (opaque)"
+                node.label = "actor properties"
+                node.values.update(decode_properties(payload,actor_type))
             elif context == "root" and kind == 1:
                 node.label = "scene version"
                 version, revision = payload.unpack("<HH")
@@ -284,6 +313,15 @@ def identify(path):
 
 def parse_file(path, identity, inspector=None):
     size=path.stat().st_size
+    if identify(identity)=="opaque":return FileReport(identity,size,"opaque",status="unsupported")
+    if size>MAX_BYTES:
+        return FileReport(identity,size,identify(identity),status="limited",diagnostics=["File exceeds 64 MiB inspection limit"])
+    with path.open("rb") as stream:data=stream.read(MAX_BYTES+1)
+    return parse_data(data,identity,inspector)
+
+
+def parse_data(data,identity,inspector=None):
+    size=len(data)
     report=FileReport(identity,size,identify(identity))
     if report.format == "opaque":
         report.status="unsupported"
@@ -293,9 +331,7 @@ def parse_file(path, identity, inspector=None):
         report.diagnostics=["File exceeds 64 MiB inspection limit"]
         return report
     try:
-        with path.open("rb") as stream:
-            data=stream.read(MAX_BYTES+1)
-        if len(data)>MAX_BYTES: raise FormatError("File grew beyond inspection limit")
+        if len(data)>MAX_BYTES: raise FormatError("File exceeds inspection limit")
         report.size=len(data)
         report.sha256=hashlib.sha256(data).hexdigest()
         parser=Parser(data,identity)
@@ -329,6 +365,26 @@ def walk_records(nodes):
         yield from walk_records(node.children)
 
 
+class RetentionBudget:
+    """Bound retained document models across a session, not just individual reads."""
+    def __init__(self,records=200_000,instructions=100_000):
+        self.record_limit=records;self.instruction_limit=instructions
+        self.entries={};self.records=0;self.instructions=0
+
+    def admit(self,entry):
+        old_records,old_instructions=self.entries.get(entry.path,(0,0))
+        records=sum(1 for _ in walk_records(entry.records))
+        instructions=len(entry.script.get("instructions",[])) if entry.script else 0
+        if (self.records-old_records+records>self.record_limit
+                or self.instructions-old_instructions+instructions>self.instruction_limit):
+            entry.records=[];entry.references=[];entry.script=None
+            entry.status="limited";entry.diagnostics=["Session retained-record/instruction budget exceeded"]
+            records=instructions=0
+        self.records+=records-old_records;self.instructions+=instructions-old_instructions
+        self.entries[entry.path]=(records,instructions)
+        return entry
+
+
 def safe_name(value):
     if not value or "\0" in value:return None
     text=value.replace("\\","/")
@@ -348,13 +404,17 @@ def link_references(report):
         for ref in entry.references:
             ref.targets=[]
             if ref.value is None:ref.status="dynamic";continue
-            value=safe_name(ref.value)
-            if value is None:ref.status="empty_or_unsafe";continue
+            # Engine frame names are identifiers, not filesystem paths. Do not
+            # impose host path syntax on a verbatim serialized name candidate.
             if ref.kind in ("actor_frame","parent_frame","scene_frame","table_frame","table_actor","sound_sector","sound_area"):
                 ref.targets=list(frames.get(ref.value,[]))
-            elif ref.kind=="child_frame":
+                ref.status="candidate" if len(ref.targets)==1 else "ambiguous_candidates" if ref.targets else "empty_reference" if not ref.value else "unresolved_in_supplied_folders"
+                continue
+            if ref.kind=="child_frame":
                 ref.status="requires_runtime_parent";continue
-            elif ref.kind=="script":
+            value=safe_name(ref.value)
+            if value is None:ref.status="empty_reference" if not ref.value else "empty_or_unsafe";continue
+            if ref.kind=="script":
                 #00427730 appends only in absence of exact .scr or .SCR substring.
                 script=value if ".scr" in value or ".SCR" in value else value+".scr"
                 expected=[script.lower(),f"scripts/{report.mission_name}/{script}".lower(),
@@ -377,6 +437,7 @@ class MissionSession:
         self.roots=[Path(root).resolve(),*[Path(p).resolve() for p in reference_roots]]
         if not all(p.is_dir() for p in self.roots):raise ValueError("Select existing local directories")
         self.inspector=inspector
+        self.budget=RetentionBudget()
         self.paths={}
         self.report=MissionReport(self.roots[0].name,[])
         self.scan()
@@ -395,15 +456,17 @@ class MissionSession:
                         self.report.diagnostics.append("File limit reached; inventory is incomplete")
                         self.report.files.sort(key=lambda f:f.path)
                         link_references(self.report)
+                        enrich(self.report)
                         return
                     identity=f"{tag}/{path.relative_to(root).as_posix()}"
                     self.paths[identity]=path
                     try:
-                        if number==0:self.report.files.append(parse_file(path,identity,self.inspector))
+                        if number==0:self.report.files.append(self.budget.admit(parse_file(path,identity,self.inspector)))
                         else:self.report.files.append(FileReport(identity,path.stat().st_size,identify(identity)))
                     except OSError as exc:self.report.diagnostics.append(f"{identity}: {exc}")
         self.report.files.sort(key=lambda f:f.path)
         link_references(self.report)
+        enrich(self.report)
 
     def inspect(self, identity):
         path=self.paths[identity]
@@ -413,9 +476,10 @@ class MissionSession:
         if (not path.resolve().is_relative_to(root)
                 or any(root.joinpath(*relative.parts[:n]).is_symlink() for n in range(1,len(relative.parts)+1))):
             raise ValueError("Reference left selected root or became a symbolic link")
-        fresh=parse_file(path,identity,self.inspector)
+        fresh=self.budget.admit(parse_file(path,identity,self.inspector))
         self.report.files=[fresh if f.path==identity else f for f in self.report.files]
         link_references(self.report)
+        enrich(self.report)
         return fresh
 
     def export(self, destination):
@@ -426,7 +490,8 @@ class MissionSession:
         if destination.exists() and any(destination.samefile(p) for p in self.paths.values() if p.exists()):
             raise ValueError("Cannot overwrite an inspected file or alias")
         # Exclusive create also protects unrelated existing files and hardlinks.
-        with destination.open("x",encoding="utf-8") as stream:stream.write(self.report.to_json())
+        with destination.open("x",encoding="utf-8") as stream:
+            stream.writelines(self.report.iter_json())
 
 
 def main():
@@ -439,7 +504,9 @@ def main():
     try:
         session=MissionSession(args.mission,args.reference_root,args.inspector)
         if args.output:session.export(args.output)
-        else:print(session.report.to_json(),end="")
+        else:
+            import sys
+            sys.stdout.writelines(session.report.iter_json())
     except (ValueError,OSError) as exc:parser.exit(2,f"{exc}\n")
 
 

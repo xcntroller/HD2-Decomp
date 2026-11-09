@@ -2,8 +2,10 @@
 
 Independent modding workstream on `feature/modding-tools`, based on local master
 `89d3d2f` (latest locally available at start). No game targets are built or changed.
-Requires a C++17 compiler and this repository's recovered headers; normal use
-needs neither Ghidra, original executables, commercial assets nor Python.
+The compiled script CLI builds with C++17 and the recovered headers and runs
+without Python. The GUI and mission backends require Python with Tk for the GUI.
+Normal operation needs neither Ghidra nor original executables; installation
+inspection reads the user's own local assets.
 
 ```
 make -C tools/modding
@@ -46,15 +48,29 @@ Use **Open script…** (Ctrl+O) to inspect a local script. The tabs provide:
   opening a script. Argument kinds are displayed by known type names.
 - **JSON:** the complete inspection report; **Export JSON…** saves it to a new file.
 
-**Mission explorer…** opens the separate read-only mission browser. Choose a local
+**Mission explorer…** opens the integrated read-only mission browser in this application. Choose a local
 mission directory containing loose original files, then optionally add reference
 folders containing loose scripts/models/sounds. Browse files and expand documented
 records; select fields to see offsets, IDs, provenance and references. The
 **References** tab includes outgoing and incoming local candidates. Double-click
 a candidate to follow it; use **Show all file references** to reset subtree scope.
 **View script** opens the selected source in the existing script inspector.
-Unknown formats/fields stay explicitly unsupported/opaque. No original archives
-are mounted and no mission file is edited.
+Unknown formats/fields stay explicitly unsupported/opaque. No mission file is edited.
+
+Use **Open installation…** to discover missions directly from the original loose
+files and established archive registration profile. Set the language and choose
+loose-first or archives-first, then select a discovered mission and **Inspect
+mission**. **Refresh** reindexes changed inputs. Winning ISD1/Patch payloads are
+explicitly unavailable; base copies are never substituted. Archive provenance
+and shadowed copies are shown in file/entity details.
+
+The new **Actors / objects**, **Dependency graph** and **Validation** tabs provide
+searchable/paged results. Actor details show supported serialized properties;
+unknown fields/types remain labelled. Select a graph row to visualize its local
+relationships; double-click nodes or use **Inspect source/target** to navigate.
+Solid/dashed relationships distinguish serialized/selected-resource evidence from
+candidates. Validation includes unresolved/dynamic references, malformed supported
+records, unsupported payloads and partial coverage. This is not a map editor.
 
 Headless mission inspection and deterministic export work independently of Tk:
 
@@ -66,12 +82,27 @@ python3 tools/modding/mission.py /path/to/Missions/Tutorial \
 
 `--inspector` is optional; without it, scripts are indexed. Reference folders are
 indexed and can be inspected on demand in the GUI. Mission JSON exports require
-a new file outside all inspected folders. The headless command exits 0 when a
-report is produced, even if files are malformed/unsupported; inspect per-file
+a new file outside all inspected folders. Source snapshots protect their originating installation.
+The headless command exits 0 when a report is produced, even if files are malformed/unsupported; inspect per-file
 status and diagnostics. Invocation/directory/export errors exit 2.
 
-Exact coverage and machine-model contracts: [FORMATS.md](FORMATS.md).
-Real-script/content results and limitations: [VALIDATION.md](VALIDATION.md).
+Installation discovery/headless use (no asset extraction directory):
+
+```
+python3 tools/modding/installation.py /path/to/game
+python3 tools/modding/installation.py /path/to/game --mission tutorial \
+  --inspector /tmp/hd2-inspect --output /path/outside-game/tutorial.json
+```
+
+Add `--archives-first` / `--language English` to choose a different explicit
+profile. It is not a capture of live global settings. The browser reuses existing
+ISD0 codecs; ISD1 supports index/name metadata only. A successful report command
+can contain blocked/malformed/unsupported entries; inspect validation and coverage.
+
+Exact coverage/schema **2** contracts: [FORMATS.md](FORMATS.md).
+Lookup policy and archive limits: [RESOLUTION.md](RESOLUTION.md).
+Latest real-input verification: [INTEGRATED-VALIDATION.md](INTEGRATED-VALIDATION.md).
+Earlier script/content validation: [VALIDATION.md](VALIDATION.md).
 
 **Inspect again** reads a fresh snapshot. Analysis runs in a background worker;
 old results and export availability clear before a new inspection. Failed syntax
@@ -120,7 +151,7 @@ See [compiler contract](../../analysis/mission-script-loading.md) and
   initialized from a constant. No data-flow or path-existence claim is made.
   Child names require a parent frame; they are not file paths.
 
-## Machine interface (schema_version 1)
+## Script CLI machine interface (schema_version 1)
 
 `--json FILE` emits one JSON object. Fields include syntax_accepted, diagnostic,
 limitations, variables (name/kind/pool_index), start_pc, eight event_slots,

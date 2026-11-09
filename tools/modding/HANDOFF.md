@@ -1,44 +1,39 @@
 # Modding-tools handoff — 2026-11-09
 
-Latest result: useful read-only mission explorer implemented and verified for a
-local commit. Prior user delegated this branch and review at merge; newest
-instruction explicitly prohibits pushing/merging without approval. No push or
-merge in this work. All changes remain under tools/modding on
-feature/modding-tools. Main game/server code, shared handoffs, plan and ledger
-are untouched. No original executable, DLL, Proton or Ghidra was run.
+Latest: integrated read-only Mission Explorer is independently verified for a
+local checkpoint. User's branch delegation permits local commits for merge
+review; **do not push or merge without renewed approval**. All work is under
+tools/modding. Main/client/server handoffs, source, plan and ledger are untouched.
 
-Launch `make -C tools/modding gui`, then **Mission explorer…**. Open a loose
-mission directory and optionally add loose reference folders. The browser exposes
-files, lazy records, fields with source offsets/identities/evidence, incoming and
-outgoing references, original script analysis, and deterministic JSON export.
-Read-only parsers/client are independent of Tk. Exports cannot overwrite existing
-files; mission reports must be outside all inspected roots.
+Launch `make -C tools/modding gui` → **Mission explorer…** → **Open installation…**.
+Choose explicit language/loose-first/archive-first profile, select a discovered
+mission and inspect. Existing loose-folder mode remains. New actor/object,
+searchable dependency graph (interactive ego view) and structured validation tabs
+share the current application. Files/entities expose offsets, IDs, property
+subsets, confidence, selected/shadowed provenance and deterministic schema2 JSON.
 
-Coverage: first-root Scene2/actor/sound document subsets, object transforms and
-names, AE20 actor entries (properties opaque), scene/table/resource references,
-script binding pairs and both version9 check2 table sets. Resource files and
-unknown bounded chunks stay opaque. Local candidates are not engine resolution;
-includes remain unexpanded. See [formats/contracts](FORMATS.md), [actual validation
-and limitations](VALIDATION.md), [usage](README.md) and [backlog](PLAN.md).
+Contracts and boundaries: [FORMATS](FORMATS.md), [resolution](RESOLUTION.md),
+[latest verification](INTEGRATED-VALIDATION.md), [usage](README.md).
+ISD0 reuses existing codecs. ISD1 metadata/name indexing is supported, but CRCs/
+payloads are NOT: winning Patch members block fallback. Do not claim full ALPS1,
+expansion, engine cache/joint, include or runtime compatibility. No editing.
 
-Verification: 293 original base-archive scripts, 289 accepted/14289 instructions;
-three includes explicitly unavailable and the known Weather negative-expression
-rejection reproduced. Six original scene/object files agree with the previous
-inspector on supported offsets/fields. Tutorial/ALPS1 check2 primary counts
-863/56 and5113/100; binding pairs114/148. Native GUI navigated actual binding →
-source → Scene2 field and incoming references, lazy tables and export; no new
-user desktop acceptance is claimed. Existing initial GUI was previously accepted.
-Python compilation, synthetic truncation/count/version/name checks, unknown
-retention, deterministic JSON, candidate ambiguities and source/alias/symlink
-protections pass. No native bodies changed; no new sanitizer run is claimed.
+Actual dataset:58 discovered names; Tutorial275 files/2139 entities/5315 edges,
+ALPS1174/178/1464 with10 selected payloads blocked. Tutorial Scene2 selects base
+Missions; ALPS1 Scene2/actors select Patch and remain unavailable. Original base
+ALPS1 was separately checked, not substituted. Thirteen actor property contracts
+retain written serialized fields;205 original payload consumption boundaries
+agree with the actual recovered C++ readers, native ASan/UBSan/LSan clean. Car
+properties remain unsupported. Actor callbacks/defaults/runtime effects excluded.
 
-Temporary audit harnesses, extracted data, screenshots and reports were under
-/tmp/hd2-toolkit-audit and removed after verification; nothing commercial is
-committed. Final native GUI audit SHA256:
-cdbe0724c49daa9d188a5f7a3c0471604d0c12c8f2831848ace3da7c730952e4.
-Other audit identities are in VALIDATION.md. No permanent tests were added.
+Focused original/synthetic, headless JSON and actual native GUI checks pass;
+rendered graph/validation windows inspected. No new user desktop acceptance is
+claimed. No original executable/DLL/Proton or Ghidra execution, no heavy game
+build, no permanent tests or commercial assets committed. /tmp/hd2-integrated-audit
+held temporary fixtures/slices/reports/screenshots, removed after verification;
+audit hashes are in INTEGRATED-VALIDATION.md. Source-only tooling, no P2.2 or
+frozen-function credit.
 
-Next independent candidates: source spans/structured script diagnostics, explicit
-numeric events and further verified formats. Preserve unknown semantics and
-read-only operation; do not start binary editing before this bounded explorer
-has been reviewed. No P2.2 delivery or frozen-function credit applies.
+Next: verified ISD1 CRC/payload decoding (before claiming patched coverage),
+structured script spans/events and faithful include resolution. Preserve scoped
+lookup evidence, explicit unknowns, bounded memory and read-only installation.

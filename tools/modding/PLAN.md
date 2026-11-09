@@ -1,18 +1,20 @@
 # Independent modding-tools plan
 
-- [x] Deliver standalone script inspector and GUI (initial checkpoints).
-- [x] Validate original scripts, includes/events/expressions and existing UI.
-- [x] Research complete read-only explorer boundary from existing contracts.
-- [x] Implement typed models, Scene2/actor subsets, bindings and mission tables.
-- [x] Add mission browser, local reference navigation and deterministic export.
-- [x] Verify real missions, malformed inputs and native GUI; document coverage.
-- [ ] Add script source spans and structured diagnostics.
-- [ ] Expose explicit numeric event records and richer verified reference kinds.
-- [ ] Design caller-supplied include resolution with faithful preprocessing.
+- [x] Deliver and validate the initial inspector, GUI and loose mission browser.
+- [x] Reuse verified source/format contracts; research integrated boundary.
+- [x] Add original-profile installation discovery, provenance and override barriers.
+- [x] Decode supported actor properties and preserve opaque/partial records.
+- [x] Integrate searchable entities, dependency graph and structured validation.
+- [x] Stream deterministic schema2 exports and enforce retention/read-only limits.
+- [x] Verify real Tutorial/ALPS1 paths, negative fixtures and native GUI/sanitizers.
+- [ ] Recover/verify ISD1 CRC/payload support before claiming patched coverage.
+- [ ] Add structured script diagnostics/spans and explicit event records.
+- [ ] Add caller-supplied include resolution with faithful preprocessing evidence.
 
-Latest scope: useful read-only mission explorer before binary editing. Source
-parsers remain independent of GUI. No game/runtime/server changes, commercial
-assets, extracted reports or permanent tests belong in commits. No P2.2 or frozen
-function credit. Earlier user delegated feature/modding-tools and review at merge;
-latest instruction authorizes verified local commits only. **Do not push or merge
-without renewed approval.**
+Current boundary: [format/model contracts](FORMATS.md), [resolution](RESOLUTION.md),
+[latest validation](INTEGRATED-VALIDATION.md). Full format/world/engine-cache
+compatibility, expansion profiles and binary editing are excluded. P2.2/server,
+shared handoffs/plan/ledger and original assets remain untouched. No commercial
+assets, extracted reports or permanent tests belong in commits. Earlier user
+branch delegation permits verified local checkpoints for merge review; latest
+instruction prohibits pushes/merges without renewed approval.
