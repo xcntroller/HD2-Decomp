@@ -3,6 +3,7 @@
 
 #include "host/graphics_settings.h"
 #include "host/menu_presentation.h"
+#include "host/loading_input_capture.h"
 #include <array>
 #include <string>
 
@@ -18,6 +19,7 @@ struct ApplicationLaunchOptions {
     int width = 800, height = 600;
     std::string language;
     bool fullscreen = false;
+    std::wstring loading_capture;
 };
 
 inline ApplicationLaunchOptions application_launch_options(
@@ -39,6 +41,14 @@ inline ApplicationLaunchOptions application_launch_options(
     std::array<bool, 5> seen{};
     for (int index = first; index < argc;) {
         const std::wstring_view option(argv[index]);
+        if (option == L"--capture-loading-inputs") {
+            if (!result.loading_capture.empty() || index + 1 >= argc)
+                throw std::invalid_argument("Loading-input capture needs one fresh output name");
+            result.loading_capture = argv[index + 1];
+            validate_loading_capture_name(result.loading_capture);
+            index += 2;
+            continue;
+        }
         if (option==L"--fullscreen" || option==L"--windowed") {
             if (seen[4]) throw std::invalid_argument("Specify only one display mode");
             seen[4]=true;

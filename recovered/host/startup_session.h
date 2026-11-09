@@ -161,6 +161,7 @@ public:
     std::uint32_t random_word() { return settings_backend_.sound_random_word(); }
     const frontend::LocalizedTextCache& text() const { return text_; }
     LoadedResources& loaded_resources() { return loaded_resources_; }
+    const io::ResourceDirectoryList& model_resource_directories() const { return caches_.client(1); }
     void clear_controller_resources() { loaded_resources_.clear_controller(); }
     void clear_final_resources() { loaded_resources_.clear_final(); }
     //006B6740: resolve the selected profile's real settings each call. No

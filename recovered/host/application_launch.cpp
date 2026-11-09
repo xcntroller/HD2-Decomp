@@ -511,7 +511,31 @@ struct LaunchOwners {
     }
 };
 
-int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int width,int height,const std::string& language,bool fullscreen) {
+class LoadingCaptureOutput {
+public:
+    explicit LoadingCaptureOutput(const std::wstring& folder) : folder_(folder) {
+        host::validate_loading_capture_name(folder);
+        if (!CreateDirectoryW(folder_.c_str(), nullptr))
+            throw std::runtime_error("Cannot create fresh loading-input capture directory");
+    }
+    void write(const std::string& name, const void* bytes, std::size_t size) {
+        const auto path = folder_ + L"\\" + std::wstring(name.begin(), name.end());
+        const auto handle = CreateFileW(path.c_str(), GENERIC_WRITE, 0, nullptr, CREATE_NEW,
+                                        FILE_ATTRIBUTE_NORMAL, nullptr);
+        if (handle == INVALID_HANDLE_VALUE)
+            throw std::runtime_error("Cannot create new loading-input capture file");
+        struct File { HANDLE value; ~File() { CloseHandle(value); } } file{handle};
+        DWORD written = 0;
+        if (size > MAXDWORD || !WriteFile(handle, bytes, static_cast<DWORD>(size), &written, nullptr) ||
+                written != size || !FlushFileBuffers(handle))
+            throw std::runtime_error("Loading-input capture write failed");
+    }
+private:
+    std::wstring folder_;
+};
+
+int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int width,int height,const std::string& language,bool fullscreen,
+           const std::wstring& loading_capture) {
     host::MenuPresentationSession presentation(width,height);
     LaunchOwners owners(module, rw);
     frontend::CleanupErrors errors;
@@ -522,6 +546,14 @@ int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int widt
         owners.sound.emplace(module, graphics.window());
         auto& driver = owners.driver.emplace(module);
         startup.setup_devices();
+        if (!loading_capture.empty()) {
+            LoadingCaptureOutput output(loading_capture);
+            host::capture_loading_inputs(startup.pre_mission_files(), output, startup.model_resource_directories());
+            std::puts("Loading-input capture completed; controller/game not started");
+            frontend::close_launch_owners(owners, errors);
+            errors.rethrow();
+            return 0;
+        }
         presentation.language(startup.language(),startup.wide_characters());
         if (!startup.text().count(2101))
             throw std::runtime_error("Selected language has no installed Main menu translation: "+startup.language());
@@ -599,7 +631,8 @@ int wmain(int argc, wchar_t** argv) {
         Module joy((engine_path.substr(0, engine_path.find_last_of(L"\\/")) + L"\\IJoy.dll").c_str());
         if (FAILED(CoInitializeEx(nullptr, COINIT_MULTITHREADED))) throw std::runtime_error("Launch COM initialization failed");
         struct Com { ~Com() { CoUninitialize(); } } com;
-        return launch(engine.value, rw, joy.value, options.frames,options.width,options.height,options.language,options.fullscreen);
+        return launch(engine.value, rw, joy.value, options.frames,options.width,options.height,options.language,options.fullscreen,
+                      options.loading_capture);
     } catch (const std::exception& error) {
         std::fprintf(stderr, "Controller launch failed: %s\n", error.what());
         return 1;

@@ -7,6 +7,9 @@ from pathlib import Path
 import shlex
 import sys
 import tempfile
+import hashlib
+import json
+import uuid
 
 from run_startup_probe import stage_startup
 from run_engine_window import prepare_launch, run_launch, frame_count
@@ -150,6 +153,8 @@ def main() -> None:
     parser.add_argument("--language", help="Installed byte-font language; installation registry is left unchanged")
     parser.add_argument("--list-languages", action="store_true", help="List installed menu translations without staging or launching")
     parser.add_argument("--stage-only", action="store_true", help="Prepare resources and command without executing Windows code")
+    parser.add_argument("--capture-loading-inputs", action="store_true",
+                        help="Read resolved loading assets into a fresh analysis folder, then exit before the controller starts")
     parser.add_argument("--omit-movie", action="append", choices=OPENING_MOVIES, default=[],
                         help="Temporarily hide this staged movie during a desktop run; repeatable")
     parser.add_argument("--invalid-game-data", action="store_true",
@@ -157,6 +162,8 @@ def main() -> None:
     args = parser.parse_args()
     if args.stage_only and (args.omit_movie or args.invalid_game_data):
         parser.error("Failure fixtures apply during a desktop run and cannot be combined with --stage-only")
+    if args.capture_loading_inputs and (args.omit_movie or args.invalid_game_data):
+        parser.error("Loading-input capture cannot be combined with failure fixtures")
     try:
         languages=installed_menu_languages(args.game_dir)
         if args.list_languages:
@@ -183,6 +190,11 @@ def main() -> None:
             launch.command.append("--fullscreen" if args.fullscreen else "--windowed")
         if selected is not None:
             launch.command.extend(["--language", selected])
+        capture = None
+        if args.capture_loading_inputs:
+            capture = run / ("loading-inputs-" + uuid.uuid4().hex)
+            launch.command.extend(["--capture-loading-inputs", capture.name])
+            print("Resolved loading inputs: " + str(capture))
         print("Controller launch command: " + shlex.join(launch.command))
         print("Runtime log: " + str(run / "host-runtime.log"))
         if not args.stage_only:
@@ -190,6 +202,21 @@ def main() -> None:
                 print("Missing-movie check: " + ", ".join(args.omit_movie))
             with omitted_staged_movies(run, args.omit_movie), invalid_staged_game_data(run, args.invalid_game_data):
                 result = run_launch(launch, sys.stdout)
+            if result == 0 and capture is not None:
+                manifest = capture / "manifest.tsv"
+                if not manifest.is_file() or manifest.is_symlink():
+                    raise ValueError("Loading-input capture has no completion manifest; inspect host-runtime.log")
+                fingerprints = {}
+                for path in sorted(capture.iterdir()):
+                    _check_path(path, file=True)
+                    if not path.is_file():
+                        raise ValueError("Unexpected directory in loading-input capture")
+                    fingerprints[path.name] = {"bytes": path.stat().st_size,
+                                               "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+                with (capture / "fingerprints.json").open("x", encoding="utf-8") as output:
+                    json.dump(fingerprints, output, indent=2)
+                    output.write("\n")
+                print("Loading-input capture complete: " + str(capture))
             raise SystemExit(result)
     except (OSError, ValueError) as error:
         parser.exit(1, f"Controller launch staging failed: {error}\n")
