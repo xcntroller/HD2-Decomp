@@ -1,0 +1,33 @@
+{
+  "result": "PASS",
+  "date_utc": "2026-11-10T22:16:22.153307+00:00",
+  "initial_checkout_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "initial_inspected_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "latest_inspected_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "latest_origin_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "fetch": "successful initial/intermediate/final; no new commits",
+  "resolved_by_new_master_during_research": [],
+  "superseded_before_initial_baseline": [
+    "Missing008AED48 transient owner: GameBlastWaves already implements GameSessionTransientFinish",
+    "Blank Physics0..5 frame receiver",
+    "Blank Human Sight/ray receiver",
+    "Blank module3 projection update"
+  ],
+  "checks": [
+    "All pinned source digests match git objects",
+    "All original raw export/query digests match ignored evidence",
+    "Five new Ghidra exports decompiled without messages; binary SHA checked",
+    "19 module slots accounted for",
+    "Graph endpoint/ID/provenance/address validity",
+    "Blocking edges only required explicit prerequisites; conditional edges nonblocking",
+    "Blocking graph acyclic",
+    "Research Markdown links resolve",
+    "Only authorized research directory changed",
+    "Final master HANDOFF and actual application/module/World source unchanged"
+  ],
+  "nodes": 13,
+  "edges": 17,
+  "desktop_verified": false,
+  "original_execution": false,
+  "builds": "Not rerun: no game implementation changes. Prior checkpoint compile/sanitizer results reported separately and never promoted to integration."
+}

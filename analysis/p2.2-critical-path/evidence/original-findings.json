@@ -1,0 +1,69 @@
+{
+  "findings": [
+    {
+      "id": "P22-R01",
+      "classification": "confirmed_direct_writes",
+      "addresses": [
+        "0099093e",
+        "009f02ad",
+        "009f0458",
+        "009f0d01",
+        "009f0d39"
+      ],
+      "contract": "009905b0 writes pointer00b3bd8c; 009f02a0 allocates00b52f6c and writes00b4c2cc; 009f0a60 allocates00b555b0. This identifies producers, not healthy values.",
+      "unresolved": "009905b0 allocation semantics, startup ordering, indirect payload provenance and validated publication remain unknown."
+    },
+    {
+      "id": "P22-R02",
+      "classification": "confirmed_static_consumers",
+      "addresses": [
+        "009f8c60",
+        "009f8d40",
+        "00995bd7",
+        "00995c74"
+      ],
+      "contract": "Validation21 delegates two branches to external function-pointer queries using root literal80000002 and four-byte result buffers. Results test bits2 and82. Registry-like ABI is an inference until imports/string decoding is checked.",
+      "unresolved": "Actual external API identities, queried keys and target environment outcomes."
+    },
+    {
+      "id": "P22-R03",
+      "classification": "confirmed_original_export",
+      "addresses": [
+        "00482260",
+        "00486bf0",
+        "00482e50"
+      ],
+      "contract": "GEffects pre-scene wrapper delegates volume224; procedural owner is invoked before per-volume visibility loop. No volumes does not prove no procedural work.",
+      "unresolved": "Live texture and phase state, actual camera selection, initial volume history."
+    },
+    {
+      "id": "P22-R04",
+      "classification": "confirmed_original_export",
+      "addresses": [
+        "005647c0",
+        "00564ef0",
+        "005656e0",
+        "00565f30",
+        "00566130",
+        "00566e50",
+        "00567ab0",
+        "00567c80",
+        "00567ba0",
+        "00569530"
+      ],
+      "contract": "Offline7 or remote-AI gate; rebuild shared Human/Car working vectors, classify Human2c4+10a, reverse preparation, eight solver iterations, commit motion and navigation feedback. Not a generic per-actor no-op.",
+      "unresolved": "Positive helper fidelity and ambiguous decompiler indexing require instruction checks during implementation."
+    },
+    {
+      "id": "P22-R05",
+      "classification": "confirmed_original_export",
+      "addresses": [
+        "00787270",
+        "00787d50",
+        "007a7470"
+      ],
+      "contract": "DD0 control and presentation gate at dc4; presentation1ac==0 and9c0==0 still calls geometry007a7470. Offline7 bypasses nonoffline model visibility branch, not geometry.",
+      "unresolved": "Complete state-dependent animation/geometry branches; Agent1 overlap."
+    }
+  ]
+}

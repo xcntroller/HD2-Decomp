@@ -1,0 +1,716 @@
+{
+  "binary": {
+    "program": "hd2.unpacked.exe",
+    "image_base": "00400000",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307"
+  },
+  "initial_checkout_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "initial_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "latest_inspected_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "latest_origin_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "source_inputs": [
+    {
+      "path": "AGENTS.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "4a69ac74eaa5f191fe4cb3d5aef7658eb8e1bd26a12585e79a03c090146de095",
+      "bytes": 3663,
+      "review": "source/contract review"
+    },
+    {
+      "path": "plan.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "699ddc78ceab5ab1f0b1dbdaf82e6d953d0e18288bd3c6fe7fbd3e76708829b9",
+      "bytes": 23326,
+      "review": "source/contract review"
+    },
+    {
+      "path": "HANDOFF.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "3c7a84ae89777cdca62f11e25ff214f363bdf79f6ed282e8cbf5c091b45a21a0",
+      "bytes": 9912,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/phase2-delivery-plan.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "877bf40e40d8e75a1a56bc692e2f8ca77986ff11accdb871e1a30a97e55282bc",
+      "bytes": 19984,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/mission-world-loading.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "328069890eda98e274336a54ab8d007ca211f834d3954e15a02a47b92ce1c0d8",
+      "bytes": 21031,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/containing-world-loading.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "47d12d13fee778892987676079afcf9369472f9227bdb36544fc6b96ce82e0bc",
+      "bytes": 5855,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/mission-loading-integration.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "104899f8845f40916d8dc05f73e01d2d30fca7cc68cc58f9811c1ddb8f3bc27f",
+      "bytes": 7122,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/session-activation-integration.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "66a97cfcdc0568bc4d9940fd7a7db2d0c030d0df4e0da97316a2135340b75e7a",
+      "bytes": 10234,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/process-packet-world-binding.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "3038028afc897f42d52b81462ca0d1310a8798259e4e2375f58ff63f84e9fd10",
+      "bytes": 5147,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/frame-render-source.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "7b43cecbfd374339e2763bbb915584bc7211fe2cbbd525628acb04da0ca4dfba",
+      "bytes": 8932,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/module-actor-frame-source.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "70da8d727c35f6d4904d51920fd5adb24a960bf7b6ba62d55c743566b15127e5",
+      "bytes": 7659,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/physics-object-frame-motion.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "4cdfd033cdc6aae26fce39bbbe43dcadc35021687fa29b1e494a7eb07dc5bab1",
+      "bytes": 11697,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/sight-shot-frame-source.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "30dd7dd33a4d8cecc47a70a9b1c9f08dc26b328b9380e35e8bcc1a92bb8df199",
+      "bytes": 9188,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/human-frame-source.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "c790daf42a3b6ab04f0e17034f26cbb4efdaeb2dca764220c0fb868f2d6e0fb4",
+      "bytes": 13597,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/host/game_owner.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "20ed781fb00b75b4c437fff9b23ebf753aba1a0268aef0050a55c8643406bf08",
+      "bytes": 15538,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "fcdda656de0858f8e0d44424cb7ba9cd8e54920a59e03cf7a9d5c8783b27978f",
+      "bytes": 25931,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/host/game_loading_modules.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "c56c71797c3a6eb29e447e530cb4f96f1d15011fe9a764224d1fd3e4a46e0832",
+      "bytes": 12589,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/host/game_session_activation.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "4816664d8fcfdfafb3a7e3816575293660ec6b4de945453131f4aeff8bdbf537",
+      "bytes": 9017,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/host/game_mission_loading.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "ede16a19644e4d25b24bbe7f0a336b673c5b2f287135f5d49cf42b2ed63e8385",
+      "bytes": 9748,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/host/game_scene_actor_frames.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "65c9f730e74570c46ecf979e6d62c2a56307a2ea57b2730174d4b573f88794ce",
+      "bytes": 2506,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/game/mission_module_dispatch.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "e186bf906e84f0bae82e2a9e71b2c53e83ae4439dbf9b6f28d45a8b9eccc7ac6",
+      "bytes": 2943,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/game/session_activation.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "2766114d67a1538208fc013405dd77f3a6f524d46b40ca73594177de731f3c22",
+      "bytes": 7434,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/game/session_frame_loading.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "10b33d8d308c13c0581f05894d35caa4c52f52565f021434541d486828a066bc",
+      "bytes": 5595,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/game/session_render.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "ebf8ffdd0cf66ba621d0f1e56fef2d12feccab95fb52409fdd6a87ee01e60ddb",
+      "bytes": 555,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/game/scene_callback.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "ec9c3ec2f27cf89e22d528029ba4052df1d3926dc206cc18efaf7b3437b09fe3",
+      "bytes": 1973,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/game/mission_integrity_tables.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "d96e009c053c64e880337a207e6834bc99dacc771b59e087746931286c7663b9",
+      "bytes": 2901,
+      "review": "source/contract review"
+    },
+    {
+      "path": "recovered/frontend/module_registration.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "0ef48c9bfbf14c3e04fad64f6082750d6e22ad63d5fdd70c5d2ab63dbdbff3e3",
+      "bytes": 2874,
+      "review": "source/contract review"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "db3777c2ca8cca11b67b56ecb0b6f51379a0db1fd2e77306e91ac7837ab6e020",
+      "bytes": 21210,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-animation-supply-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "1bbd95566b335dd53b0de84f4325032a1ae15c1d89cb9afbd0d876335c86399f",
+      "bytes": 5357,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-blast-wave-process-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "d1f760a8166776456e7141818147101ce70dd5afb595a07d6e0d248cc8454523",
+      "bytes": 3148,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "63c229622bc0908f322896f7d97285542052b8f29936658b6c926fe55b67a8a5",
+      "bytes": 29283,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-car-activation-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "dc66dcc68956833fd036f25fc5004d4bca8ee7ee815591b3601897bf39b17f65",
+      "bytes": 8424,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "92ddbf6fe962904ecf78584ff24ee80a2606a06be9454dc127b75fe1891aea41",
+      "bytes": 9913,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "607dbfce1dabb284469e45a355e300fe12a9fb02beb4bd7c6edb3c224ed36f38",
+      "bytes": 17429,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-containing-world-loading-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "d4a00f1535432d98fc9813c8d01e2d90e06766ee66377d0dc30200f1280b609a",
+      "bytes": 5781,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-detached-camera-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "0d0910372e66de6f222a641bb22e53d38162359cb4e0174f062b0a36606925ad",
+      "bytes": 4726,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-door-loading-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "f9c8de2a047150c355a9f3f1836d70b231a573c3cc99c74dae988e9a1217a9ee",
+      "bytes": 3906,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-formation-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "9cd0ba4c698b99faad952aa42d80068c5b61b3ec8c29ec367441c1f9bc2ef807",
+      "bytes": 2910,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-fowl-loading-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "e843ecf2aa95072c58766807970390ba62a80a22545b2461d1d7bfa895866492",
+      "bytes": 3499,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-frame-render-source-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "fdea6158ef3dffee41340504a777fa410f6fc186aa35132aa921f541bb2c162a",
+      "bytes": 7129,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "946c8aae3464fd64b0e1e76627cae8ef2f5309fde295e5495403940613e1bfbf",
+      "bytes": 9282,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-hud-player-presentation-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "cc3ce3b999097f25fb0d73a40b3d4aff0b670b115c6ba364d43ae7d25a08c238",
+      "bytes": 4755,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-hud-world-binding-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "2c63041943d3a3b70c1c697d075ff67f014ba1967049fd7df76192489082e25f",
+      "bytes": 4506,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-factory-bindings-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "feccf37deaa4340d461da2fcc2a446b69ba1a36f3e64e7659a77d6f240a2e227",
+      "bytes": 4293,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-frame-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "e37f1ac58bbe7ef0544d441efbe27f94c3b5c9ace8c89fe0b74bb7263fff9666",
+      "bytes": 33874,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-projection-process-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "fb9861b6b7504f76769df22cb54895683ae0b5eba1a88186369e8901f315fb25",
+      "bytes": 9367,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-selection-visibility-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "c26965a7a70933486260d73d1e426f61c3812beff4444c8267635173897f4bc6",
+      "bytes": 4309,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-speech-loading-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "f1740e20ed94584c9cf557f8fecd9011be74f39a2df7aaa1c1caeaf38b3f8ff7",
+      "bytes": 5294,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-vm-world-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "8d02be1426110b9b9c60eaef46ad578fe0193308a571d761790bb087dd1e68f0",
+      "bytes": 4572,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-world-composition-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "1cdb6a4eb066507b53fa0a2f08cab22d4d1ed0b2b91923f4ddad5f5739370acc",
+      "bytes": 5268,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "2297497dd55b1e20b25b0b8b4fc6854922d9075f784ff4b31dff66157544a7ec",
+      "bytes": 11111,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-module-actor-frame-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "723b66cf36972e9e15a0a7f0b6b4099dd3967a8eae89d07075ae5cf7bd537784",
+      "bytes": 9730,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-module-loading-dispatch-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "603eb0b5459d37125ed2f6095b379001a01f0ed005bf2e170ea439c47c2bd083",
+      "bytes": 14429,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-module-loading-lifetimes-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "e235b183930556c3f649af5e7d002d5268d299c33bab55453ccb804fbd9e2df9",
+      "bytes": 6940,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-physics-motion-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "293f3fd2d79bfca66dde603b594d30acc20abfc3111549cc19a83deac95b0a7c",
+      "bytes": 18692,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "2c874653ef94d2df841e0c83e8282bfa26148e6a812d99920b40f8f0c8de9d56",
+      "bytes": 13686,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-pike-explosive-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "533ca4c03f1e3ef0d63b22b1d44a72afd61485fbe8c0140837a1df6f4cba2667",
+      "bytes": 3639,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-player-first-person-composition-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "7fd196e60b2a8dae34a6924f33e415819643edd1739b3ed801f89a766fd21b23",
+      "bytes": 4316,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "1a29703e77416e0a5eb0d05bf6d8cbb2808edca5822f6fbc6dbcbed6634a4bfc",
+      "bytes": 28662,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "871c1a5adf837e509b2444aca82b44d8eecf046d7749a2ba77f3b7b32ba2eecc",
+      "bytes": 2884,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-script-compiler-context-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "cd7083fe1086ba2c3a954e4ced77086623545a7ab0b1e25654eb7cddc20b4fe0",
+      "bytes": 10376,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "d068a0c67b896d69d3a0ac50a7008668468e71bd0f83e1148a7cb4917fe93daf",
+      "bytes": 10136,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "28ef0d1f112a5c0fdb6488091b5db54119b016f840cd89d2d9589efa33fdebbb",
+      "bytes": 3915,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-script-runtime-objectives-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "3f0302b8ff707544e467755e3d339f4812784d393fa35f556108ea9e758a8b61",
+      "bytes": 7111,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-session-activation-integration-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "bc1a2ccd88caac0aee3eab2c239005f62ff6873d664e41f17ec4d32e1c05cc7e",
+      "bytes": 5286,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "c748565d71b70bdb20533aa198fc192b438f603a9f9c342e89741f5c9ab66a5f",
+      "bytes": 8928,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "affc79e58d9b26c300da33da691238f6d5eccd84f3e3a355b94c9c1e0df60604",
+      "bytes": 7805,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-sight-frame-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "2ce29d0354c0bd0b31f52c75306e98ea30cc6e354a5b0bb506f5b8f374ca50e3",
+      "bytes": 15995,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-static-weapon-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "177426c5c8e04e0ef8881d4e2b0d2a0c56351361e95d1fc8e98ade5e13b4a7d1",
+      "bytes": 3615,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-version-module-loading-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "b6f0878ad555508c5b6efa404f1c4ed40198a3e2dc82d95b6baf872e40556661",
+      "bytes": 5547,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-weapon-reselection-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "b4f4e4ccca8465e99664cdceed7663d442a7fc0512db9125ffb8de3b77e157ee",
+      "bytes": 2533,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-weapon-swap-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "883c32e94ec6279a83810d7aadd1d8aac143b9c481d2da5db6560d04eb06d63f",
+      "bytes": 2527,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-world-actor-consumers-20261110.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "791d9be31427d79db151264050422d5522bb07f41e24decc9f8ad67593f59ec6",
+      "bytes": 7185,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-world-owners-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "36ce5c3fd1ef76f0640223cfc50bc48ea82fd16da503b7121b90c2e83ef85da6",
+      "bytes": 5717,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "11fbbdff38be0d72b0bc5a064a9e114e755e57a8abd0c75ce7f9f8718d0b6ab5",
+      "bytes": 6106,
+      "review": "checkpoint receipt; reported checks, not rerun"
+    },
+    {
+      "path": "recovered/host/game_blast_waves.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "2158fda86bfc5dd499eb7de429531fa07c680afb4b94c770ac0643c5fab02017",
+      "bytes": 6026,
+      "review": "actual owner/ordering source inspection"
+    },
+    {
+      "path": "recovered/frontend/application_frame.h",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "b471a79900a8a66fc75155800f1808cf3a416471dc3e8e7e3ac5ced51cf597e9",
+      "bytes": 1320,
+      "review": "actual owner/ordering source inspection"
+    },
+    {
+      "path": "analysis/blast-wave-process.md",
+      "revision": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+      "sha256": "421dd6377d4fa885fc05fdf03856892108d8ac24eb6aaba0d2d8eaa562bab324",
+      "bytes": 8135,
+      "review": "actual owner/ordering source inspection"
+    }
+  ],
+  "original_exports": [
+    {
+      "storage": "shared ignored mission-world-20261103",
+      "path": "frame-effects-render-required/00482260.c",
+      "sha256": "9e44fb511b8f2fc12d76ddf076e52f68ef88ecd5ec017f2508bfe9a9fae2ba3a",
+      "bytes": 9004,
+      "review": "reused original export; decompiler types require instruction confirmation"
+    },
+    {
+      "storage": "shared ignored mission-world-20261103",
+      "path": "human-first-person-effects-receivers/00486bf0.c",
+      "sha256": "259b78abb79c8827e03260b84e1fa2d6e1a08679778df8e88072b918713b638b",
+      "bytes": 109,
+      "review": "reused original export; decompiler types require instruction confirmation"
+    },
+    {
+      "storage": "shared ignored mission-world-20261103",
+      "path": "frame-overlay-init-volume-geometry/00482e50.c",
+      "sha256": "4385f07e0470e2a25ea2333d1d96cbd27d2804c423cde4c1b36ab8556055827d",
+      "bytes": 17584,
+      "review": "reused original export; decompiler types require instruction confirmation"
+    },
+    {
+      "storage": "shared ignored mission-world-20261103",
+      "path": "frame-item-actor-consumers/005647c0.c",
+      "sha256": "2a7e268121dc6b2f79089f0621723b7924ebb52abc6f986f6d63b6e326b135e0",
+      "bytes": 9902,
+      "review": "reused original export; decompiler types require instruction confirmation"
+    },
+    {
+      "storage": "shared ignored mission-world-20261103",
+      "path": "frame-human-control-updates/00787270.c",
+      "sha256": "6b4186f01219b2fc6329c2d67c4c1a76158f3fa57aa9842e8655130bf6570783",
+      "bytes": 12439,
+      "review": "reused original export; decompiler types require instruction confirmation"
+    },
+    {
+      "storage": "shared ignored mission-world-20261103",
+      "path": "frame-human-control-updates/00787d50.c",
+      "sha256": "49a1146f35d7492ed706fd6218109f3be635a7211ee8f43d975aa2a7b3bf2ddf",
+      "bytes": 5738,
+      "review": "reused original export; decompiler types require instruction confirmation"
+    },
+    {
+      "storage": "shared ignored mission-world-20261103",
+      "path": "frame-human-drip-and-geometry/007a7470.c",
+      "sha256": "f95b6cd6e7b68082426ce705a4465bb0978dcb4cb9654b084f17327be6e13407",
+      "bytes": 18450,
+      "review": "reused original export; decompiler types require instruction confirmation"
+    },
+    {
+      "storage": "shared ignored mission-world-20261103",
+      "path": "guard-activation-observed-contracts/00994df0.c",
+      "sha256": "999c899beb856d814b9eca5803850a27448d58121d92255c926bb09b3f8d59c0",
+      "bytes": 15721,
+      "review": "reused original export; decompiler types require instruction confirmation"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-producers/009f02a0.c",
+      "sha256": "28f30bc0f7b411f5353b61413b8dc5f1314cdbb3c347620d7a400b3c42bd4543",
+      "bytes": 3294,
+      "review": "new read-only noanalysis Ghidra export"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-producers/009f02a0.json",
+      "sha256": "1690f5b0c839f7e28545a43226351ed9c01ddcb6517e1b3d72e310d3aa39a78c",
+      "bytes": 32132,
+      "review": "new read-only noanalysis Ghidra export"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-producers/009f0a60.c",
+      "sha256": "57d77e278c1414981e5108f16b8255ad863b004961f921b112a940b6490696ec",
+      "bytes": 13784,
+      "review": "new read-only noanalysis Ghidra export"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-producers/009f0a60.json",
+      "sha256": "d3a9c3267fc63531ad56177e076ed90b256a5e1717217be63836f2f8f8957da8",
+      "bytes": 130849,
+      "review": "new read-only noanalysis Ghidra export"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-producers/009f70d0.c",
+      "sha256": "5d34f373517f37be387ebb85296a3a922f02b2d705ab677974379fb30a484228",
+      "bytes": 278,
+      "review": "new read-only noanalysis Ghidra export"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-producers/009f70d0.json",
+      "sha256": "95515230cf86365d5891a7a3fb357dbd58978e5a6b5635fe27806f9900e32711",
+      "bytes": 2984,
+      "review": "new read-only noanalysis Ghidra export"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-producers/009f8c60.c",
+      "sha256": "09f8486a22d936e75e621e6f746e45dacb40efec620771565af3560b33560dc7",
+      "bytes": 832,
+      "review": "new read-only noanalysis Ghidra export"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-producers/009f8c60.json",
+      "sha256": "486f53e42ca1e2615d93701d3ef6399fe9cf9d203120566dd972359a394d3842",
+      "bytes": 5948,
+      "review": "new read-only noanalysis Ghidra export"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-producers/009f8d40.c",
+      "sha256": "1798a374cf0ee3c6e2b182bec58185babf2fdf27e9f2bf26850d396d2def20bb",
+      "bytes": 835,
+      "review": "new read-only noanalysis Ghidra export"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-producers/009f8d40.json",
+      "sha256": "f40f0a2120449c57d5ed220e12e0b87e4af5a50d9679ef6dbceff571f9363130",
+      "bytes": 5948,
+      "review": "new read-only noanalysis Ghidra export"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "guard-references.txt",
+      "sha256": "7280b58fef2a03804e34a8092a22108b1dd922b978fe0423c6bffbca11777826",
+      "bytes": 12724,
+      "review": "new original instruction reference query"
+    },
+    {
+      "storage": "shared ignored mission-world-20261103",
+      "path": "frame-module-tick-map.json",
+      "sha256": "f5161d97c7a21405ebd2538296982c4c385ae7d530e52d71fa6e568bec41e100",
+      "bytes": 1991,
+      "review": "module paired slots and vtables"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "P22GuardReferences.java",
+      "sha256": "a0767b4c82593b3b97b74c8e2025f43fda1426db97b05f150bd222b46008925c",
+      "bytes": 845,
+      "review": "read-only evidence query/export script"
+    },
+    {
+      "storage": "this worktree ignored analysis/work/p22-critical-path",
+      "path": "ExportFunctions.java",
+      "sha256": "8b64ff824c6d5421f29714d860e8129c277427eec922aad289af4b63ba82bbb5",
+      "bytes": 6442,
+      "review": "read-only evidence query/export script"
+    }
+  ],
+  "execution": "No original EXE/DLL/Proton/Windows fixture executed. Ghidra readOnly/noanalysis. No game builds needed for research-only files."
+}
