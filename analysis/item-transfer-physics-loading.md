@@ -176,3 +176,5 @@ Six new frozen client partials cover these actual bodies, no complete promotion.
 [Shared world composition](world-scene-ownership.md) now binds Physics to the
 same frame-data, buckets, runtime actor queue and GEffects fade owner. The
 containing production Human/session/module/first-frame receivers remain required.
+
+2026-11-10: [Physics frame/impulse source](physics-object-frame-motion.md) supplies SAME module2 owner-list dispatch, four motion families, actual ray/sweep queries, event0/1/2/3/5 and ordered pose/retirement/EC lifetimes. Focused native sanitizers, strict actual-host two18-module passes and app link pass;12 new partials, no complete or desktop promotion. Type3/5 positive receivers, actual application frame/visibility/guards remain required.

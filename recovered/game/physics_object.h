@@ -6,6 +6,7 @@
 #include "game/actor_frame_data.h"
 #include "game/rigid_body.h"
 #include "game/effects_frame_fades.h"
+#include "game/physics_object_motion.h"
 #include "frontend/cleanup.h"
 #include <optional>
 
@@ -35,8 +36,8 @@ public:
         frames_.physics_link_root(parameters.frame);frames_.update_scene_object(parameters.frame);
         frame_=frames_.retain_actor_frame(parameters.frame);
         const auto initial=frames_.actor_world_matrix(frame_.get());
-        position30_={{initial[12],initial[13],initial[14],initial[15]}};
-        rotation40_=frames_.actor_world_rotation(frame_.get());
+        motion_.position={{initial[12],initial[13],initial[14],initial[15]}};
+        motion_.rotation=frames_.actor_world_rotation(frame_.get());
     }
     ~PhysicsObject() {close();}
     PhysicsObject(const PhysicsObject&)=delete;
@@ -46,7 +47,7 @@ public:
         initialized_=true;
         if(parameters_.type==0)return; //0040E320 disables common collision registration.
         if(parameters_.type==4) { //0040BD70 has no collision descriptor registration.
-            flag170_=frames_.physics_inverse_world_below_half(frame_.get());flag171_=false;
+            ground_stop_.enabled=frames_.physics_inverse_world_below_half(frame_.get());ground_stop_.cached=false;
             fades_->fade_out(frame_.get(),5000,false);return;
         }
         const auto bounds=frames_.physics_object_bounds(frame_.get(),parameters_.type==5);
@@ -58,7 +59,7 @@ public:
         if(parameters_.type==1||parameters_.type==2) {
             descriptor_.flags=0x42;descriptor_.mask=0;
             radius170_=parameters_.radius<0?bounds.radius:parameters_.radius;
-            descriptor_.radius=radius170_;descriptor_.position=position30_;
+            descriptor_.radius=radius170_;descriptor_.position=motion_.position;
             if(parameters_.type==1) {
                 const auto scale=frames_.car_scale(frame_.get());
                 const auto yz=scale[1]>scale[2]?scale[1]:scale[2];const auto largest=scale[0]>yz?scale[0]:yz;
@@ -101,31 +102,81 @@ public:
         if(closed_)return;
         closed_=true;
         if(queued_) {actors_.remove_static_item(this);queued_=false;}
+        frontend::CleanupErrors errors;
+        if(frame_&&rotation_ready_) {
+            errors.attempt([&]{frames_.object_rotation(frame_.get(),rotation1f0_);});
+            errors.attempt([&]{frames_.update_scene_object(frame_.get());});
+        }
         collisions_.remove_for_cleanup(descriptor_);
+        errors.attempt([&]{(void)feedback(3);}); //0040B816 ECX3, SAME handle, before EC retraction/frame release.
         if(frame_) {
-            frontend::CleanupErrors errors;
-            if(rotation_ready_) {
-                errors.attempt([&]{frames_.object_rotation(frame_.get(),rotation1f0_);});
-                errors.attempt([&]{frames_.update_scene_object(frame_.get());});
-            }
-            errors.attempt([&]{if(published_) {
-                //No allocation during cleanup; this is the SAME store's block.
-                if(const auto* data=frames_.find_actor_frame_data(frame_.get())) {
-                    if(data->words[4]==reinterpret_cast<std::uintptr_t>(&handle_)) {
-                        auto& writable=frames_.actor_frame_data(frame_.get());writable.words[4]=ActorFrameData::empty_text_token();
-                        frames_.remove_unused_actor_frame_data(frame_.get());
-                    }
-                }
-                published_=false;
-            }});
-            try {errors.rethrow();}catch(...) {frames_.record_actor_cleanup_failure(std::current_exception());}
+            errors.attempt([&]{unpublish_handle();});
         }
         handle_.index=-1;frame_.reset();
+        try {errors.rethrow();}catch(...) {frames_.record_actor_cleanup_failure(std::current_exception());}
+    }
+    void unpublish_handle(bool reclaim_empty=true){
+        if(!frame_)return;
+        if(published_)if(const auto* data=frames_.find_actor_frame_data(frame_.get())) {
+            if(data->words[4]==reinterpret_cast<std::uintptr_t>(&handle_)) {
+                frames_.actor_frame_data(frame_.get()).words[4]=ActorFrameData::empty_text_token();
+            }
+        }
+        published_=false;
+        if(reclaim_empty)frames_.remove_unused_actor_frame_data(frame_.get()); //After event3; native release keeps the EC block through that callback.
     }
     Frame frame() const {return frame_.get();}
     Descriptor& descriptor() {return descriptor_;}
     const Parameters& parameters() const {return parameters_;}
     PhysicsObjectHandle& handle(){return handle_;}
+    PhysicsObjectMotion& motion(){return motion_;}
+    void install_feedback(){feedback_installed_=true;} //0040FB00 installs08/C only after complete derived construction.
+    std::optional<std::int32_t> feedback(unsigned event){
+        if(feedback_installed_&&parameters_.feedback)return parameters_.feedback(event,handle_);
+        return std::nullopt; //Actual absent14C branch, not a replacement callback.
+    }
+    bool delete_when_stopped()const{return flag158_;}
+    void impulse(const Vector& force,const Vector& point,float scale){
+        if(parameters_.type==5)throw std::runtime_error("Physics type5 requires actual004094D0 impulse/contact receiver");
+        struct Binding {
+            PhysicsObject& object;Matrix inverse{};
+            bool physics_frame_exists()const{return bool(object.frame_);}
+            void physics_begin_inverse(){inverse=object.frames_.car_inverse_matrix(object.frames_.actor_world_matrix(object.frame_.get()));}
+            Vector physics_inverse_point(const Vector& point){return object.frames_.car_transform(point,inverse);}
+            Vector physics_world_position(){const auto world=object.frames_.actor_world_matrix(object.frame_.get());return {{world[12],world[13],world[14],world[15]}};}
+        } binding{*this,{}};
+        impulse_physics_object(motion_,force,point,scale,parameters_.type==2,binding);
+    }
+    template<class Simulation>bool advance(float seconds,Simulation& simulation){
+        if(parameters_.type!=0&&parameters_.type!=1&&parameters_.type!=2&&parameters_.type!=4)return simulation.advance_other_physics_object(*this,seconds);
+        struct Binding {
+            PhysicsObject& object;Simulation& simulation;
+            bool physics_frame_exists()const{return bool(object.frame_);}
+            Vector physics_world_position(){const auto world=object.frames_.actor_world_matrix(object.frame_.get());return {{world[12],world[13],world[14],world[15]}};}
+            auto physics_rotate_quaternion(const Vector& rotation,const Vector& angles){return object.frames_.physics_rotate_quaternion(rotation,angles);}
+            auto physics_point_query(const Vector& start,const Vector& delta){return simulation.physics_point_query(start,delta);}
+            auto physics_sphere_query(const Vector& start,const Vector& delta,float radius){return simulation.physics_sphere_query(start,delta,radius);}
+            void physics_collision_feedback(){(void)object.feedback(1);} //0040B5BB ECX1/EDX150/stack154.
+            void physics_publish_extended_position(const Vector& position){
+                object.frames_.physics_publish_position(object.frame_.get(),position);
+                object.world_=object.frames_.actor_world_matrix(object.frame_.get());
+                object.inverse_=object.frames_.car_inverse_matrix(object.world_);
+                object.descriptor_.position=object.frames_.physics_local_translation(object.frame_.get());
+                object.collisions_.move(object.descriptor_);
+            }
+        } binding{*this,simulation};
+        if(parameters_.type==1)return advance_extended_ray_physics_object(motion_,seconds,radius170_,parameters_.flag15,binding);
+        if(parameters_.type==4)return advance_fading_physics_object(motion_,ground_stop_,flag158_,seconds,parameters_.flag15,binding);
+        return advance_basic_physics_object(motion_,seconds,parameters_.type==2,radius170_,parameters_.flag15,binding);
+    }
+    void synchronize_pose(){ //0040AB80, ALWAYS called after the virtual04 result, including false.
+        if(!frame_)return;
+        frames_.physics_publish_pose(frame_.get(),motion_.position,motion_.rotation);
+        if(parameters_.type==0||parameters_.type==4||flag161_)return;
+        world_=frames_.actor_world_matrix(frame_.get());inverse_=frames_.car_inverse_matrix(world_);
+        descriptor_.position=frames_.car_transform(frames_.physics_local_sphere_centre(frame_.get()),world_);
+        collisions_.move(descriptor_);
+    }
     bool contact(unsigned kind,const Vector&,const Vector&) {
         if(parameters_.type==2)return true; //0040EB00, genuine AL1/RET12.
         if(parameters_.type!=5)return false; //0040B790, genuine AL0/RET12, types0/1/3/4.
@@ -137,7 +188,7 @@ public:
     const Vector& centre170() const {return centre170_;}
     const Vector& span180() const {return span180_;}
     const auto& principal_axes()const{return principal_axes_;} //Type3 native170/180/190/1A0, XYZ only.
-    bool inverse_flag170()const{return flag170_;} //Type4 native inverse-matrix+2C comparison.
+    bool inverse_flag170()const{return ground_stop_.enabled;} //Type4 native inverse-matrix+2C comparison.
 private:
     void initialize_principal_axes() {
         const auto& low=descriptor_.minimum;const auto& high=descriptor_.maximum;Vector centre{};
@@ -159,11 +210,13 @@ private:
     Frames& frames_;Collisions& collisions_;RuntimeActors& actors_;Parameters parameters_;PhysicsObjectHandle& handle_;
     EffectsFrameFades<Frames>* fades_;
     FrameOwner frame_{nullptr,nullptr};Descriptor descriptor_{};Matrix world_{},inverse_{};
-    Vector position30_{},centre170_{},span180_{},endpoint190_{},endpoint1a0_{};
-    std::array<float,4> rotation40_{},rotation1e0_{},rotation1f0_{};
+    PhysicsObjectMotion motion_;
+    PhysicsObjectGroundStop ground_stop_;
+    Vector centre170_{},span180_{},endpoint190_{},endpoint1a0_{};
+    std::array<float,4> rotation1e0_{},rotation1f0_{};
     std::array<Vector,4> principal_axes_{};
     float radius170_=0;
-    bool initialized_=false,published_=false,queued_=false,closed_=false,flag161_=false,rotation_ready_=false,flag170_=false,flag171_=false;
+    bool initialized_=false,published_=false,queued_=false,closed_=false,feedback_installed_=false,flag158_=false,flag161_=false,rotation_ready_=false;
 };
 
 } //namespace hd2::game

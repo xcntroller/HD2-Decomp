@@ -18640,26 +18640,38 @@
       "program": "client",
       "entry": "0040b5e0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0040b5e0: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0040b5e0: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded. Common motion fields now share actual frame/impulse/pose state; callback context is captured in a typed callable.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/physics_object.h",
         "analysis/item-transfer-physics-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/physics_object_motion.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
       ]
     },
     {
       "program": "client",
       "entry": "0040b7e0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0040b7e0: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0040b7e0: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded. Destructor now orders collision removal, event3, EC retraction/reclamation and frame release; type5 rotation restore precedes common cleanup.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/physics_object.h",
         "analysis/item-transfer-physics-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/physics_object_motion.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
       ]
     },
     {
@@ -18718,7 +18730,7 @@
       "program": "client",
       "entry": "0040fb00",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0040fb00: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded. Factory now supports types0..5 with shared type4 fade-out ownership; unresolved type6 rejects before frame mutation.",
+      "coverage": "P2.2 source reconstruction at original entry 0040fb00: Actual common/type2/type5 physics owner construction, descriptor registration and teardown; remaining type families excluded. Factory now supports types0..5 with shared type4 fade-out ownership; unresolved type6 rejects before frame mutation. Factory now installs actual feedback after derived construction and emits event0 after list/handle/EC publication with failure cleanup.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/physics_object.h",
@@ -18727,7 +18739,12 @@
         "analysis/checkpoints/p2.2-20261109.json",
         "recovered/host/game_physics_objects.h",
         "analysis/world-scene-ownership.md",
-        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+        "analysis/checkpoints/p2.2-world-owners-20261109.json",
+        "recovered/game/physics_object_motion.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
       ]
     },
     {
@@ -27088,6 +27105,198 @@
         "recovered/host/game_loading_modules.h",
         "analysis/human-projection-frame-process.md",
         "analysis/checkpoints/p2.2-human-projection-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040e160",
+      "status": "partial",
+      "coverage": "Point0 angular/query/advance/gravity and distinct bounce/slow-stop policy.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040edd0",
+      "status": "partial",
+      "coverage": "Extended-ray1 radius extension/subtraction, unchanged high-bounce position, native internal frame/bucket publication and no unobstructed gravity/angular.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040e3b0",
+      "status": "partial",
+      "coverage": "Sphere2 adjusted-start actual sweep, ratio bounce damping and slow-stop linear zeroing.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040b910",
+      "status": "partial",
+      "coverage": "Fading4 normal/protected floor branches, cached actual ray height, floor clamp, distinct stop/deletion and zero-displacement bounce denominator.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040ad40",
+      "status": "partial",
+      "coverage": "Common linear gravity update using native9.81 FLOAT.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040ade0",
+      "status": "partial",
+      "coverage": "Common angular normalization, unclamped time damping, actual Z/Y/X matrix and quaternion receiver order.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040b360",
+      "status": "partial",
+      "coverage": "Velocity reflection with native normalization/double cross/speed restoration and actual event1.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040ab80",
+      "status": "partial",
+      "coverage": "Common frame pose/parent/update and actual collision matrix/sphere-centre bucket refresh, including false virtual update results.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00410940",
+      "status": "partial",
+      "coverage": "Actual event5 then active-to-dormant swap/pop and handle repair; captured deletion flag/exact callback1 deletes after migration.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00410420",
+      "status": "partial",
+      "coverage": "Actual dormant-to-active wake before family impulse then actual callback2.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040b030",
+      "status": "partial",
+      "coverage": "Common impulse magnitude/divisor, inverse actual point/end torque, mutable linear/angular fields and phase reset.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040eb10",
+      "status": "partial",
+      "coverage": "Sphere impulse fixed15 linear magnitude and unscaled inverse point/end angular contribution; caller scale ignored.",
+      "limitations": "Source-only typed native adaptation; original object/container/allocator/SEH ABI and exact x87 intermediate precision remain excluded. Finite/vector and unwritten-field guards reject unsupported input. Engine geometry/math calls are delegated. Actual application loading/first frame and user mission desktop acceptance remain unavailable; no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_motion.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_physics_objects.h",
+        "recovered/host/game_physics_frames.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-motion-20261110.json"
       ]
     }
   ]

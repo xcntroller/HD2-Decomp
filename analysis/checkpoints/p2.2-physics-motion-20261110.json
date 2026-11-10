@@ -1,0 +1,427 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "0040e160",
+    "0040edd0",
+    "0040e3b0",
+    "0040b910",
+    "0040ad40",
+    "0040ade0",
+    "0040b360",
+    "0040ab80",
+    "00410940",
+    "00410420",
+    "0040b030",
+    "0040eb10"
+  ],
+  "ledger_added_partial_client": 12,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2016,
+  "native_checks": "PASS ASan/UBSan/leak four motion families, impulse/inverse geometry, actual manager mode/reverse/signed dt and pose-before-stop, callback0/1/2/3/5, dormant wake/migration, handle repair/reuse/NULL holes, failure cleanup, EC callback lifetime, type5 restore-before-unregister, same GEffects retains retired type4 frame. Engine/query leaves and unsupported type3/5 selector receivers are explicit doubles.",
+  "strict_i386": "PASS actual World/Physics facade/create/impulse/tick/release and both18-module passes. Other required simulation leaves are compile-only declarations; no Windows execution.",
+  "application_link": "PASS",
+  "tracker_tests": 27,
+  "no_new_credit": [
+    "00410100/004101a0/00410230 absent frozen",
+    "0040bee0/0040bec0/0040bea0 absent frozen and only research",
+    "0040bf20/0040ce00/0040d6a0/0040c670/0040d510 research only",
+    "004070c0/00406d10/004094d0/00408780 positive type5 work remains"
+  ],
+  "artifacts": {
+    "analysis/work/mission-world-20261103/physics-remaining-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/physics-remaining-i386-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/physics-remaining-app-build.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/physics-motion-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/physics-manager-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/physics-frame-host-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/physics-frame-application-build.log": {
+      "sha256": "6e5380c7bb02ad45a5105f6ed24b095ff64a5a93cd569b0d920c7b1463ff4913",
+      "bytes": 218,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/physics-remaining-native-run.log": {
+      "sha256": "749cb2790d5ee56bf040d401d903ac44bc7dc436e084027d4ed9fc267235015e",
+      "bytes": 298,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/physics-motion-native-run.log": {
+      "sha256": "f73c3417813d99185f2cdcd25cd4c2b737e047a4b6ba18514eb413655ff5f590",
+      "bytes": 259,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/physics-manager-native-run.log": {
+      "sha256": "ccb535dc97ca700376a9bcea7474842b6ee4adc4f741cfb1dffa0e6e77b0af13",
+      "bytes": 197,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-ticks.asm": {
+      "sha256": "66e7a5d5613eb06752afc8833e57b36269794e41a07243bf10ad8d1339bd1600",
+      "bytes": 6767,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-angular-tail.asm": {
+      "sha256": "a63fc3e4d6ffdd576096cfa6d9a72927cdbd03fe2e253d96af60c7b686005295",
+      "bytes": 4052,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-pose-sync.asm": {
+      "sha256": "283357f1e7dc1e30caf0b6e4f290230944c145c228f7b34bc0331ceeba970cdd",
+      "bytes": 7237,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-scene-can-parameters.asm": {
+      "sha256": "8bad3ff064e872649dd8af46308121417a899de00c6c0ed6155af084c94430be",
+      "bytes": 8408,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-handle-release.asm": {
+      "sha256": "fef5326014fe215a05f320a0e799cf8bb6d9e3b9f2dd2c9cba43e85435585198",
+      "bytes": 15551,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-dormant-transition.asm": {
+      "sha256": "7c4a2bebbf105411ffc9e0692015012c25f9008725265facc6c400f538cac450",
+      "bytes": 4471,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-reflection-tail.asm": {
+      "sha256": "ad4e85cdea20525e72e11c6cf0efbd1676dd9a35ba4f82f88a82de8e8e04034b",
+      "bytes": 5395,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-destruction-feedback.asm": {
+      "sha256": "e8394ea9d72e7b6aaa80fefd381fb6be6eaa2897f6211fb0fb3ad98510bcdf7d",
+      "bytes": 2978,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type5-constructor.asm": {
+      "sha256": "d1b913f8a9d30b45dd44ca94d25e08d1ed9a0f7d1e23f0d831f76465bfc79231",
+      "bytes": 23178,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type4-update.asm": {
+      "sha256": "dd5421d68e86f8d7afc37661cb6ae4e85ede5c18d5ba4c6c58e1995262ad3f5f",
+      "bytes": 18647,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type1-update.asm": {
+      "sha256": "da6aaa03ffc76b04d49876dd68a6b9f727cc7075bada63835843ea8f7e89ae21",
+      "bytes": 34304,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type3-update.asm": {
+      "sha256": "b91db790f5c147310b56d985f4ca28b5ccd16090d7757051823273a2fd1c8f24",
+      "bytes": 108720,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-common-impulse.asm": {
+      "sha256": "c89f66c065e7fe73efb8fbb994ca039aa7b9b89f3b0237de7774ba33cda29116",
+      "bytes": 13393,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-sphere-impulse.asm": {
+      "sha256": "faaf1f3b142401b4ab7b61a7a1a08d01b47ec5e777dce74bdc6e288e02d3de67",
+      "bytes": 11334,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-object-tick-map.json": {
+      "sha256": "eee9174bc4069e73f572217aff163d04abcd4044ca2cf423dd674c283d1e2ae3",
+      "bytes": 580,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-object-update-boundary.log": {
+      "sha256": "7231e933b8fc065e8f07d8a50f633315dddfac6167c0771369c1866a342ee16c",
+      "bytes": 4601,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary.log": {
+      "sha256": "1e1d0f38b7827b3a404160c01d07dfddf311cc0f55b80efb7dc05af4f626bfd3",
+      "bytes": 4806,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies.log": {
+      "sha256": "727047f3c074f4f47d9a1318dadc6f972abf9a8fcf6153fe0717e65e5707e334",
+      "bytes": 4804,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type3-workers.log": {
+      "sha256": "7c5dc6d6bf9f4725616cea646798d29bf6b0ea016143fd7842269716c6c04884",
+      "bytes": 4695,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-impulse-workers.log": {
+      "sha256": "ad361c41a420c0de989c607fe7905f20412631b56c9408cd26060ffc91e08e41",
+      "bytes": 4697,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-object-update-boundary/004070c0.c": {
+      "sha256": "c8c41aef5eb6f3f68b3c78a44ca7b81f42c7c1d3f078c6545e88a18404e29fe4",
+      "bytes": 3616,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-object-update-boundary/004070c0.json": {
+      "sha256": "0056a8602ce5c06bd25a15b86e262d2c43f0af76428a453f0b1144a320116af7",
+      "bytes": 8174,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-object-update-boundary/0040ab80.c": {
+      "sha256": "25c1b4f1911c3707ebeaa68d91ba65ad928307d38e4862a496470d63e6801162",
+      "bytes": 3317,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-object-update-boundary/0040ab80.json": {
+      "sha256": "508967f847b55e8119b542af3ed0f5729f95b0e9474aefae4eb3932697b2d9fd",
+      "bytes": 4474,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-object-update-boundary/00410940.c": {
+      "sha256": "4ae0bf9752e485f5e3586e7d0a8d5d93450525e7e3796db659d199c90298e4f2",
+      "bytes": 1235,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-object-update-boundary/00410940.json": {
+      "sha256": "f2bfb1620dff4bfc0f63a25ba6eaa2abcc558ac241346cc64e7ce758a86b95e1",
+      "bytes": 2641,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary/0040e160.c": {
+      "sha256": "9a648b389e6c3f151e0d918477790ba2aeee4ac0ce4bcaf15e552ac706e0deef",
+      "bytes": 2039,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary/0040e160.json": {
+      "sha256": "d1164425091862fccb7d355d53be0ad64060c991f48582e4abcf724e6f541f4e",
+      "bytes": 4414,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary/0040edd0.c": {
+      "sha256": "86ccb3c0f02de1d1eab8ffa671b7acba414704424218323085d55d3f527c94c1",
+      "bytes": 9067,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary/0040edd0.json": {
+      "sha256": "cb978f73a2446d6a3ea54bfc18719a8cbc14efd72607e448c734ccbd92336d09",
+      "bytes": 54675,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary/0040e3b0.c": {
+      "sha256": "2f7024956d9efdc8278c43637c63473439da02b7985cf7dd4913f4a35bd628dd",
+      "bytes": 4345,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary/0040e3b0.json": {
+      "sha256": "3e0bb402fa5ddd1b575550fd689622f5bc9b268d921f9ff361efa981ade5d1f6",
+      "bytes": 11632,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary/0040b910.c": {
+      "sha256": "b7fb4be428ad4ab5f854b14b8494f7b17696ae00bc0642d0f7850cef91145236",
+      "bytes": 5222,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary/0040b910.json": {
+      "sha256": "2df93edde81e57b2594311f3586b28a65d57504fec65a39e46d36025ca14a782",
+      "bytes": 8932,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary/00406d10.c": {
+      "sha256": "088794bb7fd5fd5f3c8cfa45b7290575bf7d3f07cc41417d6d528ec758f31ae6",
+      "bytes": 4770,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-other-update-boundary/00406d10.json": {
+      "sha256": "84598e45a7e74d7d508884f95a4035ea76a907dd380bb7284cbfbc1bd1b0cdb6",
+      "bytes": 9684,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/0040ad40.c": {
+      "sha256": "67f37970b3039d4ca4720a921cf55937b1669670d0bfbc033fca086cd610a0db",
+      "bytes": 244,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/0040ad40.json": {
+      "sha256": "1cea55ad6ab0596234dfc95fe0ef15ee15071d976c60ce521c8df205e396d533",
+      "bytes": 702,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/0040ade0.c": {
+      "sha256": "723479d5a4b40f83719895e83f260696e2c805be4af28c42222a4b3e9788cbb1",
+      "bytes": 2720,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/0040ade0.json": {
+      "sha256": "e16b7fa7411be2cdbf075fb1ee3bb78e650e0dfae54576bf6c9fe5a785a58fc7",
+      "bytes": 12348,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/0040b360.c": {
+      "sha256": "cb15c604992ee88f866baf4ef98e541e00d6fa25455c11e63d35a53f2e72fd4d",
+      "bytes": 2281,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/0040b360.json": {
+      "sha256": "2fdede2e215c11023396baedb0617e344b46a1824c3bd969283b603f1167725e",
+      "bytes": 11887,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/004110f0.c": {
+      "sha256": "4615df056e6777d61681262ed1f12569ce06d0923482487941038d4b22a01aa8",
+      "bytes": 3421,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/004110f0.json": {
+      "sha256": "761be90998eda824c085cbe1036821988877511e17c0f77a9457e9317844ca9e",
+      "bytes": 8688,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/0043c6a0.c": {
+      "sha256": "49071f304a4719464315b0ceffc24922a5ec2599a704aa7dc8519bd74666ef02",
+      "bytes": 724,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-motion-dependencies/0043c6a0.json": {
+      "sha256": "c19adb79ebc006a4071f143968eeb4d4b643fd1dfe17cd58ebc24ae70a96a655",
+      "bytes": 2676,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type3-workers/0040bf20.c": {
+      "sha256": "71115820a555ba379370e1033c760f2255f4f8e349e9878555b6d1a551918359",
+      "bytes": 7562,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type3-workers/0040bf20.json": {
+      "sha256": "ab708492fa3b012b4b9174d1fd6f8db54b748a02f6cbb095639f1156af4c491b",
+      "bytes": 18407,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type3-workers/0040ce00.c": {
+      "sha256": "2f52c292cdce2c57a8a43adafd65daf8d93478bb17df6f7ffc845162fa185e8a",
+      "bytes": 8466,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type3-workers/0040ce00.json": {
+      "sha256": "354c2c19e657a583ae4821663c93660dfdef12bd9ee177a1f5a0367908014a7d",
+      "bytes": 30187,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type3-workers/0040d6a0.c": {
+      "sha256": "4eb5d997fe86f77b555549911b89bc2ca8779c5032953a501bcc68c39c11b82f",
+      "bytes": 4861,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type3-workers/0040d6a0.json": {
+      "sha256": "aacf78e6fbff3e5ef52b51a59012e705d92505a2fd664ead0d643b84ab62c2d1",
+      "bytes": 18445,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type3-workers/00410420.c": {
+      "sha256": "d230e233b5272a658b800d431db7bb009167e408eccc291ff2fa090b7dfaf10c",
+      "bytes": 1518,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-type3-workers/00410420.json": {
+      "sha256": "aeb12633d5059247f5a27b93c8076a190c8cdfd3a7654ef69a84e802c56e9a0f",
+      "bytes": 3783,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-impulse-workers/0040b030.c": {
+      "sha256": "28ba1169c83c5333314738184c7ebf14d0c119ed1f6c52b296d1f191b45ba0cc",
+      "bytes": 3828,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-impulse-workers/0040b030.json": {
+      "sha256": "1f414cad94563811a5e316c96bc7a5e476c7a476253b0ffceb4a23027c1bd8b6",
+      "bytes": 18033,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-impulse-workers/0040eb10.c": {
+      "sha256": "8ab9114f5d1eecc560f8a3b215df1f508e494d8e61edf5172924d11fb564089d",
+      "bytes": 3305,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-impulse-workers/0040eb10.json": {
+      "sha256": "869388be82d63b7e91b7f295ade147a5093960e911c596f674728ed104f67dad",
+      "bytes": 15412,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-impulse-workers/0040c670.c": {
+      "sha256": "b0f844b8b0a847163a8468033ca81e991926c21b9796260cb0af41a56d8d6da1",
+      "bytes": 6694,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-impulse-workers/0040c670.json": {
+      "sha256": "c2c190abdadb9bd8de5d66aafee07f178cd9f35eb9fcd21da45a382e6a363d7f",
+      "bytes": 50661,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-impulse-workers/0040d510.c": {
+      "sha256": "1890d70920db3206256547a08e114c3836f2ac2568e2a6133d6cc75a22472329",
+      "bytes": 1909,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-physics-impulse-workers/0040d510.json": {
+      "sha256": "5aa60a2a1da401be4a569fd3485078696f5a505a078708c9f0b390fa41494c58",
+      "bytes": 9038,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/physics-motion-native.cpp": {
+      "sha256": "5749a6ea661bfb2f25aa10533318b77ed262c9128b3811348c4103d4a0a9be7f",
+      "bytes": 8756,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/physics-motion-native": {
+      "sha256": "d0585e7e04a1e8bec94237c3f0a7c30a0b835fdb8bda271226728f5a54c819e0",
+      "bytes": 536712,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/physics-manager-native.cpp": {
+      "sha256": "2303342ad23d777f9104cc16a5575b055f2c02a045b9f1aa82602754d932f165",
+      "bytes": 10336,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/physics-manager-native": {
+      "sha256": "9e54824fd6ccd9571d7a601e6c884e26a29664bdeaa1f185583abeb17b68e4bc",
+      "bytes": 2372392,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/physics-frame-host.cpp": {
+      "sha256": "bbbaa5a432d2f987bb30c5c53212b970ce87da35461860727c776f9ad9df8c8e",
+      "bytes": 2125,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/physics-frame-host.o": {
+      "sha256": "c0a19fbc288d2e3d05b0f023a10ec080740bbb8ab600f74e50281256fdc1c8fa",
+      "bytes": 8929460,
+      "retained": false
+    }
+  }
+}

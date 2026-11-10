@@ -132,6 +132,12 @@ public:
         if(call<std::int32_t>(frame,0x38,root,std::uint32_t{1})<0)
             throw std::runtime_error("Cannot link physics object to actual scene root");
     }
+    void physics_publish_pose(Frame frame,const Vector& position,const std::array<float,4>& rotation){ //0040AB80, native frame08, direct normalized quaternion, SceneEC, frame24.
+        call<void>(frame,8,position.data());object_rotation(frame,rotation);auto_parent_object(frame);update_scene_object(frame);
+    }
+    void physics_publish_position(Frame frame,const Vector& position){call<void>(frame,8,position.data());update_scene_object(frame);} //0040F5A2; no quaternion or parent update here.
+    Vector physics_local_translation(Frame frame){const auto matrix=car_local_matrix(frame);return {{matrix[12],matrix[13],matrix[14],matrix[15]}};} //0040F5E3/58 lazy local matrix.
+    Vector physics_local_sphere_centre(Frame frame){(void)rigid_visual_bounds(frame);return field<Vector>(frame,0x1c0);}
     template<class Visit>void enumerate_physics_scene(Visit&& visit) { //00410B00/00410B40.
         using Visitor=std::remove_reference_t<Visit>;
         struct Context {
@@ -310,6 +316,15 @@ public:
         using Product=Matrix*(WINAPI*)(const void*,void*,const void*);
         exported<Product>("??DS_matrix@@QBG?AU0@ABU0@@Z",0x2d830)(first.data(),result.data(),second.data());
         return result;
+    }
+    std::array<float,4> physics_rotate_quaternion(const std::array<float,4>& rotation,const Vector& angles){ //0040ADE0, native engine math call order.
+        Matrix z{},y{},x{};using Rotate=Matrix*(WINAPI*)(void*,float);
+        exported<Rotate>("?RotateZMatrix@@YG?AUS_matrix@@M@Z",0x2c530)(z.data(),angles[2]);
+        exported<Rotate>("?RotateYMatrix@@YG?AUS_matrix@@M@Z",0x2c4d0)(y.data(),angles[1]);
+        exported<Rotate>("?RotateXMatrix@@YG?AUS_matrix@@M@Z",0x2c470)(x.data(),angles[0]);
+        const auto xy=rigid_matrix_product(x,y);const auto xyz=rigid_matrix_product(xy,z);
+        std::array<float,4> result{};using Apply=void*(WINAPI*)(const void*,void*,const void*);
+        exported<Apply>("?RotateByMatrix@S_quat@@QBG?AU1@ABUS_matrix@@@Z",0x30440)(rotation.data(),result.data(),xyz.data());return result;
     }
     std::string actor_user_data(Frame frame) const {return car_user_data(frame);}
     Frame actor_parent(Frame frame) const {return object_parent(frame);}

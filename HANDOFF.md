@@ -9,25 +9,40 @@ WORK, hash/remove temporary fixtures at checkpoint. Interactive changes require
 actual user desktop acceptance.
 
 Application still DECLINES loading. Both P2.2 boxes OPEN; no first world frame or
-mission desktop claim. Tally34 complete/2,004 partial(1,999 client/five engine)/
+mission desktop claim. Tally34 complete/2,016 partial(2,011 client/five engine)/
 18,783 frozen; zero complete promotions.
 
 ## Latest source checkpoint
 
-[Shared Human projection process](analysis/human-projection-frame-process.md),
-[receipt](analysis/checkpoints/p2.2-human-projection-process-20261110.json).
-Actual Items3→0078AD70 uses SAME Startup primary/fading/pool/400 counters and
-process clocks as World visibility. Source duplicate private state removed.
-Strict signed scan>1400 consumes SAME CRT rand()%200 and live quality byte2 even
-when empty. Unsigned oldest-prefix time/epoch expiry; periodic row removal BEFORE
-mode3, timestamp row stays through mode3. Retain detached frames in LIFO pool;
-last-user releases frames before counters/textures, Items3 shutdown releases
-pool frames. Source single-World/active-shutdown guards; no fake append/footprint
-producer.0078AA10/upstream0075D210 and save/restore remain required.
-Native sanitizer positive policy/fade/pool/RNG/clock/NaN/failure and actual private
-process lifetime PASS; actual i386 two18-module passes/Items/World visibility and
-retirement PASS; app link/27 tracker tests PASS. Four temp source/binaries hashed/
-removed. One new partial0078AD70; wrappers007DD390/3B0 absent frozen/no credit.
+[Physics object frames](analysis/physics-object-frame-motion.md),
+[receipt](analysis/checkpoints/p2.2-physics-motion-20261110.json).
+Actual module2 FIRST-list reverse authority/presentation, signed time, four
+motion families0/1/2/4 and same ray/sweep/identity flags. Pose ALWAYS before stop,
+event5 then SECOND migration; captured158/exactcallback1 deletes afterwards.
+Stable handle reuse/NULL holes, event0 after construction/publication, event1
+before damping, event2 after impulse, event3 after collider removal before EC/frame
+release. Type5 restores saved rotation BEFORE common collider removal. Manual
+release keeps cleared EC block alive through event3. Shared GEffects fade keeps
+retired type4 frame until completion. Unwritten protected floor174 rejects early
+read. Extended-ray1 skips unobstructed angular/gravity and leaves high-bounce
+position unchanged; do not add a second ray. Common/sphere impulse uses actual
+inverse point/end torque; sphere fixed15 ignores scale.12 new partials;
+00410100/004101A0/00410230 absent frozen/no credit. Native ASan/UBSan/leak,
+strict actual World/Physics/two18-module passes, app link and27 tracker PASS.
+Six temporary source/binary/object files hashed/removed. Engine/query leaves
+are doubles in native checks; no runtime or desktop claim.
+NEXT SAME checkbox: actual type3 phase workers0040BF20/0040CE00/0040D6A0 and
+pivot helpers0040C670/0040D510; type5 contact/impulse/tipping/update00408780/
+004094D0/004070C0/00406D10. Read-only exports in WORK frame-physics-type3-workers
+and frame-physics-impulse-workers. Native202 remains unwritten in type5 ctor;
+never assume false before real contact seeds it. Type6 unresolved registration
+still rejects.0043C6A0 belongs to a separate grouped Physics owner.
+
+Prior [Human projection process](analysis/human-projection-frame-process.md),
+commit1addb8f: actual Items3→0078AD70 SAME Startup primary/fading/pool/counters,
+RNG/profile/clocks, real frame detach/fade/pool lifetime. Native/i386/app PASS;
+footprint producer0078AA10/0075D210/save/restore remain required. Module3 concrete;
+World construction marker is source-only/parser-v1 unrecognized.
 
 Prior [module/actor frames](analysis/module-actor-frame-source.md), commit7d61668:
 Both module tick passes freshASC all19 slots. Scene2 FORWARD/captured/FIFO;

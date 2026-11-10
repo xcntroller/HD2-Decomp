@@ -6,8 +6,10 @@
 #include <optional>
 #include <stdexcept>
 #include <string>
+#include <functional>
 
 namespace hd2::game {
+struct PhysicsObjectHandle;
 
 //00410B40's native44-byte construction record. Fields with no scene producer
 //retain their original defaults; physics objects are separate from Scene2 actors.
@@ -20,6 +22,9 @@ template<class Frame>struct PhysicsObjectParameters {
     float angle=1.57079637050628662109375f;
     std::string break_model;
     float radius=-1.f;
+    //Native record08 callback/C context, represented by one required typed
+    //callable with captured context. ECX=event, EDX=the SAME stable handle.
+    std::function<std::int32_t(unsigned,PhysicsObjectHandle&)> feedback;
 };
 
 //00410AF0 is strstr, not a token parser: even embedded substrings count. The
