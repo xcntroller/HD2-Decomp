@@ -33,6 +33,10 @@ template<class Frame> struct CarParticleState {
     std::uint32_t definition=0;
     bool active=false,pending=false;
 };
+template<class Frame>bool retire_car_particle(std::vector<CarParticleState<Frame>>& pool,std::int32_t index){ //004ECFC0.
+    if(index<0||static_cast<std::size_t>(index)>=pool.size())return false;
+    pool[static_cast<std::size_t>(index)].pending=true;return true;
+}
 struct CarParticleRegion {
     CarContactVector bounds;
     std::array<std::uint32_t,9> controls{{1,1,1,0,2000,0,0,0,8}};

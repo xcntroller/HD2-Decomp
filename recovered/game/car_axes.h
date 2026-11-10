@@ -39,7 +39,7 @@ public:
         }
         for(auto& axis:sides_)axis.single=count[axis.left?0:1][axis.axle]==1;
     }
-    void apply(Frames& frames,const std::vector<Wheel>& wheels,std::uint32_t flags,std::uint32_t previous) {
+    void apply(Frames& frames,const std::vector<Wheel>& wheels,std::uint32_t flags,std::uint32_t previous) const {
         if((flags&1)!=(previous&1)) {
             for(auto* list:{&sides_,&both_})for(auto axis=list->rbegin();axis!=list->rend();++axis)
                 frames.object_visible(axis->frame,(flags&1)!=0);

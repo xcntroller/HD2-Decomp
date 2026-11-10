@@ -1,5 +1,17 @@
 # Technical research guide
 
+## 2026-11-10 — Car cold runtime source checkpoint
+
+[Contract](analysis/car-runtime-loading.md), [receipt](analysis/checkpoints/p2.2-car-cold-runtime-20261110.json).
+Actual cold solver/BODYCOL/controller/settling/finalizer composition, sound,
+light/door/window/strip/road/health owners pass targeted native sanitizers,
+strict actual-host i386 and application compile/link. Nine parameter blocks/64
+wheels,41 finalizer failure prefixes and retry; geometry/frame/math/clock/actor
+boundaries doubled.54 new partials:34 complete /1,783 partial (1,778 client/five
+engine) /18,783 frozen; zero complete promotions. Car activation, original full
+initializer/retirement and containing owners remain. No loaded world, original
+execution, Windows execution or desktop promotion. Continue the SAME checkbox.
+
 2026-11-09 latest: [StaticWeapon loading](analysis/static-weapon-loading.md)
 supplies offline Tutorial Browning/control/item/collider/marker ownership, cold
 first update and retirement in the same world services. Native sanitizers pass

@@ -242,7 +242,8 @@ preparation, not a standalone audit-only milestone.
   [Full boundary](analysis/mission-world-loading.md); [source progress](analysis/loading-modules.md);
   [shared world composition](analysis/world-scene-ownership.md);
   [Animation/SupplyBox](analysis/animation-supply-loading.md);
-  [StaticWeapon](analysis/static-weapon-loading.md). Runtime/loading integration remains.
+  [StaticWeapon](analysis/static-weapon-loading.md);
+  [cold Car runtime](analysis/car-runtime-loading.md). Runtime/loading integration remains.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat
   loading through Python; unsupported required assets/data cannot report success.
 

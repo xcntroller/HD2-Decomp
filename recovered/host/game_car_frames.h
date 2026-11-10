@@ -312,6 +312,25 @@ public:
             Vector value{};std::memcpy(value.data(),data+index*32,12);return value;
         });
     }
+    template<class Visit>void car_update_strip_vertices(Frame visual,Visit&& visit){ //00506700.
+        const auto mesh=car_mesh(visual);
+        if(!mesh||!field<std::uint32_t>(mesh,0x44))throw std::runtime_error("Car strip update requires its actual LOD0 mesh");
+        const auto lod=call<Frame>(mesh,4,std::uint32_t{0});const auto count=field<std::uint32_t>(lod,0x54);
+        if(field<std::uint32_t>(lod,0x64)!=32)throw std::runtime_error("Unsupported Car strip update vertex format");
+        auto* data=call<unsigned char*>(lod,4,std::uint32_t{0});bool locked=true;
+        struct Unlock {Frame lod;HMODULE module;bool& locked;~Unlock(){if(locked){using Method=void(WINAPI*)(Frame);checked_engine_method<Method>(lod,module,8)(lod);}}} unlock{lod,module_,locked};
+        if(count&&!data)throw std::runtime_error("Cannot lock Car strip update vertices");
+        const auto vertex=[&](std::size_t index){if(index>=count)throw std::out_of_range("Car strip update vertex index");return data+index*32;};
+        visit(count,[&](std::size_t index){Vector result{};std::memcpy(result.data(),vertex(index),12);return result;},
+            [&](std::size_t index,const Vector& position){std::memcpy(vertex(index),position.data(),12);},
+            [&](std::size_t index,float amount){auto* address=vertex(index)+0x18;float value;std::memcpy(&value,address,4);value+=amount;std::memcpy(address,&value,4);});
+        call<void>(lod,8);locked=false;call<void>(lod,0x2c);call<void>(mesh,0x14);
+        call<void>(visual,0xac,std::uint32_t{0});update_scene_object(visual);
+    }
+    void car_scroll_strip(Frame visual,float amount){ //00506C76/00506E50.
+        if(frame_kind(visual)!=1||call<std::uint32_t>(visual,4)!=0x5f4a424fu)return;
+        car_update_strip_vertices(visual,[&](std::size_t count,auto&&,auto&&,auto&& add){for(auto n=count;n;)add(--n,amount);});
+    }
     void remove_car_part(Frame model,Frame part) {
         link_scene_object(part,nullptr);
         call<void>(model,0x80,part);

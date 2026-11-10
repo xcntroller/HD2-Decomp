@@ -1,4 +1,4 @@
-# Session handoff — 2026-11-09
+# Session handoff — 2026-11-10
 
 Continue FULL P2.2 first unchecked implementation checkbox in plan.md. Read
 AGENTS.md. Continue dependencies/checkpoints until done or concretely blocked.
@@ -8,10 +8,25 @@ assets/user changes; focused verification, no repeated broad audits. Keep heavy
 compiles/Ghidra sequential after repeated memory shortages/PC crashes.
 
 GameApplicationState still declines loading. No live world/first rendered world
-frame/new desktop acceptance. Ledger:34 complete/1,729 partial (1,724 client/
+frame/new desktop acceptance. Ledger:34 complete/1,783 partial (1,778 client/
 five engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
+
+[Car cold runtime](analysis/car-runtime-loading.md),
+[receipt](analysis/checkpoints/p2.2-car-cold-runtime-20261110.json): actual cold
+physics/BODYCOL/controller/settling/finalizer source composition. Nine captured
+coefficient sets/64 wheels, actual source tyres/query/tree/grid/buckets,41
+finalizer failures/exclusion cleanup/retry,21 body-contact failures, audio,
+light/shadow/glass, door/window, road rand/health and skid retirement pass native
+ASan/UBSan/LSan. Geometry/frame/math/clock/actor boundaries doubled; composed
+fixture has default materials and doubled geometry, NOT captured full Car/world
+activation. Strict actual-host i386 and app compile/link pass.54 new client
+partials; no complete promotion.60 temporary audit artifacts hashed/removed at
+this larger subsystem checkpoint; captures/exports/logs remain. Continue Car
+initialization/activation and the same entire checkbox.
+
+## Previous verified source checkpoints
 
 [StaticWeapon](analysis/static-weapon-loading.md) and
 [receipt](analysis/checkpoints/p2.2-static-weapon-20261109.json): actual offline
@@ -58,6 +73,45 @@ retain SAME live archive scope for lightmaps. Missing check2 clears tables befor
 check.bin probe; legacy-present only opens/closes, no invented decoder.
 
 ## Next — same entire checkbox
+
+Car actor activation remains unbound. Next implement the remaining actual
+004EA780 initializer and004EC5C0 retirement composition,004FE910(1) part health/
+flag reset,004FE850 glass texture ownership, then004D16A0/004D25C0/004D2790/
+004D3110 and actual DM/session callbacks.004D3110 DOES call00509AA0 in mode7,
+so ordinary BODYCOL cannot be bypassed. Cold solver/finalizer are now implemented;
+do not repeat their verified research/audits. Active skid/positive emitter,
+occupied/running, alternate timed wheel cache and debug transitions still reject.
+
+Car contract links exact source/evidence and limitations. Important binding:
+wheel534/538 masks F02/0; BODYCOL53C/540 masks2/0.004F67B0's real finalizer
+clears22C0; update_car_cold supports the following mass-unchanged sleep/held
+states. Its older update_car_settling entry remains explicitly restricted.
+CarColdFinalizerContext receives SAME geometry/body/wheels/collisions/callbacks/
+material/pool/random owners. Actual shared scene light sampling and shadow
+queries are required; source exists. CarBodyCollisionController requires actual
+applied6F4/6F8 and228C. No runtime/actor dispatch or readiness was connected.
+
+Use car-runtime-typed-v4-required/004ea780.c for remaining initialization:
+SceneEC is THREE args,004290A0 THISCALL/six stack args/RET24. Earlier v2/v3
+initializer exports are superseded. car-runtime-typed-v2-required/0050de60.c
+remains correct for core. Body exports car-body-contact-typed-required/,
+box filters car-box-query-{filters,shapes}-required/. Latest finalizer/audio
+car-finalizer-cold-audio-typed-required/; actual0050CF40 has FLOAT roll
+current/max steering times504. HD2CarSolverABI.java keeps corrected signatures.
+Source218 is an integer skid cursor;004FE610 does NOT hide/release frames.
+Native read-only0083BEC4 gain is1. Shared light/sound receivers remain distinct.
+
+Concrete next initializer research:004FE910(1) skips its large zero-argument
+restore block, then sets each part+24 from+1C, clears flags+38 bit1, invokes
+actual6B4 (cold genuine empty callback). CarDeformableParts lacks current health;
+CarPhysics.geometry().parts[i].scalars has actual1C.004FE850 conditionally loads
+glass textures for kind3 parts with no retained0C texture; recover parameter
+names/native175C/176C mapping from004ED270 and retain actual resource ownership.
+Other initializer helpers and actor seat/camera/control resources are already
+exported under car-activation-required/ and car-loading-runtime-required/.
+Captured four Car models have NO gun-control seat100 flag; avoid widening the
+StaticWeapon subsystem for an absent mount producer. Existing nav/DM/camera/
+sound/skid/collision helpers are committed source and should be composed.
 
 Finish required Car activation and actual containing session/Human/DD0/FPV/HUD/
 SOUND/VM/module owners, ordered006CA780 loader/postactivation, first camera/

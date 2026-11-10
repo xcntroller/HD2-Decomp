@@ -1,0 +1,429 @@
+{
+  "date": "2026-11-10",
+  "scope": "Full first P2.2 implementation checkbox; larger Car cold physics/collision/finalization source subsystem checkpoint. Continue actual Car initialization/activation/retirement and containing owners.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 54,
+  "added": [
+    "004ea780",
+    "004f5620",
+    "004f5840",
+    "004ec5c0",
+    "0051bd80",
+    "00517370",
+    "00517cf0",
+    "005181c0",
+    "0051c180",
+    "004db060",
+    "004dab60",
+    "004dac80",
+    "004dafe0",
+    "004e0ea0",
+    "004e0dc0",
+    "00465f00",
+    "00466110",
+    "0050d2c0",
+    "0050d5c0",
+    "0050d760",
+    "0050de60",
+    "00509aa0",
+    "0050db90",
+    "00512390",
+    "00507400",
+    "004f67b0",
+    "0050b180",
+    "00507a40",
+    "00501cb0",
+    "00506700",
+    "004f6080",
+    "004f61e0",
+    "004ecfc0",
+    "00514d70",
+    "006f06f0",
+    "006f0050",
+    "006f02c0",
+    "006f04f0",
+    "00501750",
+    "00501ab0",
+    "0051a6c0",
+    "0051a7a0",
+    "00519a60",
+    "00519dc0",
+    "0051a130",
+    "0051b660",
+    "0051a580",
+    "0069e9d0",
+    "004feea0",
+    "004fe610",
+    "00506f00",
+    "00508350",
+    "00508ee0",
+    "00509540"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1783,
+    "partial_client": 1778,
+    "partial_engine": 5,
+    "frozen": 18783
+  },
+  "inputs": {
+    "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+    "engine_sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+    "car_parameter_blocks": 9,
+    "wheels": 64,
+    "geometry_models_previously_examined": 4,
+    "runtime_model_resolution_claim": false,
+    "files": [
+      "car-audio-properties.bin",
+      "vehicle-model-inputs/base-tyres.bin",
+      "car-audio-property-inputs.json",
+      "vehicle-model-inputs/verified-capture.json"
+    ]
+  },
+  "verification": {
+    "native_sanitizers": {
+      "result": "PASS",
+      "coverage": "Actual cold update/settling/finalizer/first update; SAME source tyre/material/query/tree/grid/bucket owners;41 finalizer and76 wheel-query endpoint failures, sleep/held, health/road rand order, body response21 endpoint failures, light/cone/shadow/glass, door/window,9 sound sets and skid retirement. Geometry/frame/math/clock/actor boundaries doubled; composed geometry is doubled and material registry default, not full captured Car/world activation.",
+      "logs": [
+        "analysis/work/mission-world-20261103/car-cold-wheel-contacts-native-run.log",
+        "analysis/work/mission-world-20261103/car-body-contacts-native-run.log",
+        "analysis/work/mission-world-20261103/car-sound-updates-native-run.log",
+        "analysis/work/mission-world-20261103/car-skid-retirement-native-run.log"
+      ]
+    },
+    "actual_host_i386": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/car-body-contacts-i386-build.log",
+      "coverage": "Explicit actual-host BODYCOL/controller/finalizer/health/road/audio/door/light instantiation. Compile only."
+    },
+    "application_build": {
+      "result": "PASS",
+      "log": "analysis/work/mission-world-20261103/car-cold-loading-application-build.log",
+      "coverage": "i386 compile/link only; loading remains declined."
+    },
+    "function_tracker": {
+      "result": "PASS",
+      "tests": 27,
+      "logs": [
+        "analysis/work/mission-world-20261103/car-runtime-tracker-tests.log",
+        "analysis/work/mission-world-20261103/car-runtime-tracker-check.log"
+      ]
+    }
+  },
+  "temporary_artifacts": {
+    "removed": true,
+    "count": 60,
+    "records": [
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-audio-audit",
+        "bytes": 2855464,
+        "sha256": "86af1edab735f99f56c7c4a4a7e7ca91b5e51060581b0b02999f417984ee4f5c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-audio-audit.cpp",
+        "bytes": 6825,
+        "sha256": "a58566701a89752db0a2a681f9919c2a332d43bf261b030e8b6b6351d17573b5"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-audio-host.cpp",
+        "bytes": 144,
+        "sha256": "03ff3ba473367946a5f7cb0412b310c6e863e304f59421b9a7984d423aa64a91"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-audio-host.o",
+        "bytes": 381713,
+        "sha256": "89634579d6ed2eab54737026fbc479ff105ca3c9200b6ee8c0dd3e947e19f6e0"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-body-contacts-audit",
+        "bytes": 8583856,
+        "sha256": "1095cee635c3129ce808cec591d3dbfb1076853610101c04df6f7c9d8ab889e5"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-body-contacts-audit.cpp",
+        "bytes": 22776,
+        "sha256": "b3b5f7cbdc4bde2870101512a7e2baa81cd1ccae8978747972a2f4dd1cd7f01a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-body-contacts-host.cpp",
+        "bytes": 3578,
+        "sha256": "b891fe8f5ae04756f66da9988e90e43f75d8d9be3245d3c864833380cb5db54b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-body-contacts-host.o",
+        "bytes": 2235551,
+        "sha256": "ea6cdeabfe2b3045236bcb90ab169ce07a2275071e73afceaaa033a4e07908d0"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-body-integration-audit",
+        "bytes": 2115824,
+        "sha256": "f2335093b0c77393a91e5fb723aefd2babdb9087b8e3581cd42446e0fabf312d"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-body-integration-audit.cpp",
+        "bytes": 5806,
+        "sha256": "cd34f6ee0c9a8ca60b3f25292b733a8f81065b7619f7033ee9e93fee6adf7997"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-body-integration-host.cpp",
+        "bytes": 150,
+        "sha256": "87c2359992585b4fa02269b71c2f0d9653a017b6c3086263bdedcf7caacb2853"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-body-integration-host.o",
+        "bytes": 47707,
+        "sha256": "c2a17e51e3a6eb7227d28b7e33a6ab13e866b4f509b71d5763f221403dac3ef3"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-cold-wheel-contacts-audit",
+        "bytes": 11744672,
+        "sha256": "5c58d416ccf53cd369ab56ff94900d1bd0bdac52baf0f61405e79e64b987e101"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-cold-wheel-contacts-audit.cpp",
+        "bytes": 33492,
+        "sha256": "e943232aaa0bf86b7f146aa13247e4041fdd3923f746759f4dc3722469858410"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-cold-wheel-contacts-host.cpp",
+        "bytes": 5099,
+        "sha256": "7a2ddc2e238c93ddf95bb23960cfd44e420f785c7b99aaa8dd685a506aa39a32"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-cold-wheel-contacts-host.o",
+        "bytes": 889998,
+        "sha256": "901bf8c635105375421d9ddaabaac1f62e2c59967aab5528daa017a8ed3c1ffd"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-cold-wheel-forces-audit",
+        "bytes": 2197312,
+        "sha256": "5dc5a76e735c59b9d3efac266d7ec94005520adbd695842dfa612872d5309ddd"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-cold-wheel-forces-audit.cpp",
+        "bytes": 2285,
+        "sha256": "1344869dc4bb0cedfb03d2a5c6eb3fb5025807c00abc8c659560a2a23cd95f86"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-cold-wheel-forces-host.cpp",
+        "bytes": 372,
+        "sha256": "8713a3d7ad6fe28555f551c21ecd28da0f8d2758c6e8699bfd23ed3c71f2a5fe"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-cold-wheel-forces-host.o",
+        "bytes": 131141,
+        "sha256": "b931e53c9736292255373eb622b801b6fbeebc09e5970e8a324c9edd321dbe8a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-collision-audit",
+        "bytes": 1585184,
+        "sha256": "6b8ec1396ddd3795a79bbe24e671d8a0a3a2524585a9559d9a14476e15c52bb3"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-collision-audit.cpp",
+        "bytes": 4228,
+        "sha256": "2883d855dc825e99d681874d5f5805da711828b96a52b63271e70bbd6c0b64d9"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-collision-host.cpp",
+        "bytes": 245,
+        "sha256": "98e60fef677c09d99d112787edad36fd8bc7b129209ac3962058be8df80027ac"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-collision-host.o",
+        "bytes": 424810,
+        "sha256": "fa27e56e32b377f82431f32e7d7714033ceca2768eb9d0601d704bd8ae66ff66"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-collision-queries-audit",
+        "bytes": 2615488,
+        "sha256": "42c5c70755a2bd4e340df5bddf3489b6164406c43b7634d8ed101cb0854f91e0"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-collision-queries-audit.cpp",
+        "bytes": 3103,
+        "sha256": "b4392625b5907629302ea917c2d63a618d9bb02c7fc5ccfa4dad2117c6ab350a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-collision-queries-host.cpp",
+        "bytes": 613,
+        "sha256": "affb3485dde12a0d27625dc10ed3caa9c9b0ab0558069c8f064d3b9c2062e5d6"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-collision-queries-host.o",
+        "bytes": 237533,
+        "sha256": "86f65efcec9134fdb457c395889fa589355cf0fd0038fc412079ef201e317cbf"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-dm-reset-audit",
+        "bytes": 893544,
+        "sha256": "e5537546121d29d8c81e424d690ffd093d2fcef7376a00f8a079fcb6711e47ea"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-dm-reset-audit.cpp",
+        "bytes": 2682,
+        "sha256": "a254595ae69762e4792be4ae2368a223eb66b76a5944b5aafc52a190472fea09"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-dm-reset-host.cpp",
+        "bytes": 148,
+        "sha256": "7bea7ed595e87f4e1cb81f8a0275a9127e8ca097fd3bcd0b4100e7d6cbf03935"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-dm-reset-host.o",
+        "bytes": 421482,
+        "sha256": "53f5ed42ea03c913799d42db6266bd67f2d7e059f216341962322da34418418f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-drivetrain-audit",
+        "bytes": 1864624,
+        "sha256": "32c6ebc980fe4f840c86357387e7b76b1ed67581bb37b923cc6e87f741bbe673"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-drivetrain-audit.cpp",
+        "bytes": 3152,
+        "sha256": "3c339765f608ae474855e9b66bf3524b440ee7ff2c0d9dac9609f916183e96c7"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-drivetrain-host.cpp",
+        "bytes": 306,
+        "sha256": "e965536407eb6982bc79f256d9373406054a0535180207aa03f5606d5ece5153"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-drivetrain-host.o",
+        "bytes": 26434,
+        "sha256": "b811bd35cf1fb6a53978c0f458a2d790fbc38f9cac22a003b2e902994a354e4a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-navigation-audit",
+        "bytes": 1002904,
+        "sha256": "2d7f3491f338933bc4ae9f17a48de678612a50c26214228ad182d15e562be496"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-navigation-audit.cpp",
+        "bytes": 4209,
+        "sha256": "2d6c6156d770d6e70bc943c43b66a9cc86507dc58c0ad35b04bce2bdc5a9ceb9"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-navigation-host.cpp",
+        "bytes": 154,
+        "sha256": "2befe81b4cee2b697ddbea4d8bc5a42c7f4e8152f1fe0fcdd1ec214082460e58"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-navigation-host.o",
+        "bytes": 227210,
+        "sha256": "1b67e9df3d3be5d35a0e0914170d9946dc0369493f6393874ead36b98486080f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-seat-camera-audit",
+        "bytes": 183488,
+        "sha256": "ccbb7cc650e13e08f30f40d7f7ca6f170aecca85504570bdd9bc4a182372abb6"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-seat-camera-audit.cpp",
+        "bytes": 3628,
+        "sha256": "94eb97f778eaaaff92d94d8f117155bf49da9e02fcf44412c00e09e601ab85a6"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-seat-camera-host.cpp",
+        "bytes": 702,
+        "sha256": "76a92712aa12e3e351d1d05383242fdce1197dc5337c749f3c65750dd75e47a4"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-seat-camera-host.o",
+        "bytes": 176921,
+        "sha256": "02161fb4167335be79dccc16a9652c5861d9d8cfa7e7ccf1dc2c680f386a9df3"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-skid-models-audit",
+        "bytes": 632960,
+        "sha256": "1645c24ead4e8fe36ba2df790d997635eb4fe123182db6b3714bfd10679813ae"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-skid-models-audit.cpp",
+        "bytes": 4071,
+        "sha256": "feb28d7b35f176a252be4290da7723e50533354ec9dc5163ddae275ddf40d75a"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-sound-updates-audit",
+        "bytes": 2802904,
+        "sha256": "6afa2869355d7fe7b1ec68ee99811fe01f1ca6fd2c415d88728a6fb319e07466"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-sound-updates-audit.cpp",
+        "bytes": 7122,
+        "sha256": "a478fff57b201f7ee93bd2da04dd9d2f64ec4f874f7df811d459a311678cb0e6"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-suspension-impact-audit",
+        "bytes": 182832,
+        "sha256": "b15c0e9ef60067f8ebfbd8cb0e9d9a73f03f40cd4c1d6acd43bce37b2f916a52"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-suspension-impact-audit.cpp",
+        "bytes": 1874,
+        "sha256": "bc0d8a04f51ab6e9858899b11f438e327c6a38cf5307a9bd473d35a2a1378f30"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-suspension-impact-host.cpp",
+        "bytes": 392,
+        "sha256": "8470adbe70f8774e0f0774ec36f3601223c1d3278a3f6f7bd744503312c0dd2f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-suspension-impact-host.o",
+        "bytes": 18779,
+        "sha256": "8b56a27b889f0b510e960b2edd243000da3d510070d9c2fa811d1015ceca34eb"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-wheel-runtime-audit",
+        "bytes": 2669768,
+        "sha256": "079b93a5f33c938d3e56d58a9f52995bd365bada191c1c3482b73ef93b29e83f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-wheel-runtime-audit.cpp",
+        "bytes": 4019,
+        "sha256": "a4a976b0f80612dedb247c45bd41c31525dc129f63ef35381387f407fede94f6"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-wheel-runtime-host.cpp",
+        "bytes": 145,
+        "sha256": "13f9bfb245509d62ba1cc115d8660892a661de73720ea7869b50cba9e0887728"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-wheel-runtime-host.o",
+        "bytes": 168790,
+        "sha256": "2e8636cd1516e45fbece9178552776239720924ba76d9fbd39a9cab9ccea2000"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-wheel-traction-audit",
+        "bytes": 1515504,
+        "sha256": "5b2b8dec81a2371273f48ce1c3a00503500f89e9e400710dee23080ead79e48c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-wheel-traction-audit.cpp",
+        "bytes": 2421,
+        "sha256": "6a72aaf609cda6a771f3f87bc80d3ed3451404170135f88b482354611fba6d5b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-wheel-traction-host.cpp",
+        "bytes": 318,
+        "sha256": "412f2f6ea265df246ad43a0242ff66f295003e5b1f1270775eed17717ea1b4a9"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-wheel-traction-host.o",
+        "bytes": 128175,
+        "sha256": "cff770b0e002c78dd8f8a63fe54975bc157036e21b729b00121de089ea654013"
+      }
+    ]
+  },
+  "not_credited": [
+    "Engine/CRT/model/cache/clock/math calls and client forwarding wrappers",
+    "Inlined fragments beyond the single original owning function",
+    "Car004D16A0/004D25C0/004D2790/004D3110 activation/presentation/retirement not yet composed",
+    "Running/occupied/alternate timed query/positive emitter/skid/debug transition receivers"
+  ],
+  "remaining": "Complete original initializer/part reset/glass texture ownership, Car activation/update/retirement and actual callbacks; then containing Human/session/VM/FPV/HUD/SOUND/modules and ordered loader/first frame/failure/repeat/user acceptance."
+}

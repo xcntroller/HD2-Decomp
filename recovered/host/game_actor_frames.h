@@ -3,10 +3,12 @@
 
 #include "game/mission_script_rotations.h"
 #include "game/door_rotation_loading.h"
+#include "game/scene_light_sample.h"
 
 #include "host/game_car_frames.h"
 #include "game/human_face_mesh_pool.h"
 #include "game/mission_script_frame_snapshots.h"
+#include <mmsystem.h>
 
 namespace hd2::host {
 
@@ -489,6 +491,14 @@ public:
         return lights[index];
     }
     std::uint32_t human_light_type(Frame light) const {return field<std::uint32_t>(light,0x164);}
+    game::SceneLightSample scene_light_sample(Frame light)const{
+        game::SceneLightSample result;result.visible=(field<std::uint32_t>(light,0xe0)&1u)!=0;
+        result.kind=field<std::uint32_t>(light,0x164);result.flags=field<std::uint32_t>(light,0x160);
+        result.colour=field<Vector>(light,0x1a0);result.position=field<Vector>(light,0x224);result.direction=field<Vector>(light,0x230);
+        result.attenuation={{field<float>(light,0x244),field<float>(light,0x248),field<float>(light,0x24c),0}};
+        result.range=field<float>(light,0x174);result.outer_cosine=field<float>(light,0x1d0);
+        result.inner_cosine=field<float>(light,0x1d4);result.cone_scale=field<float>(light,0x1d8);return result;
+    }
     std::array<float,3> human_light_colour(Frame light) const {return field<std::array<float,3>>(light,0x130);}
     float human_light_multiplier(Frame light) const {return field<float>(light,0x168);}
     std::uint32_t human_frame_epoch(Frame frame) const {return vertex_frame_epoch(frame);}
@@ -505,6 +515,70 @@ public:
         using Get=Frame(__cdecl*)();const auto driver=exported<Get>("ISndGetDriver",0x68fa0)();
         using Available=std::uint8_t(WINAPI*)(Frame);
         return scene_method<Available>(driver,module_,0x0c,0x7a840)(driver)!=0;
+    }
+    std::int32_t load_car_sound(Frame sound,const std::string& name,std::uint32_t flags){return resources_.load_sound(sound,name,flags);} //0051BD50→0044A1C0.
+    std::string car_sound_filename(Frame sound)const{
+        const auto file=field<Frame>(sound,0x140);if(!file)return {};
+        const auto cow=field<const char*>(file,0x0c);return cow?cow+8:""; //0051C0D0, SAME actual sound resource owner.
+    }
+    void car_sound_pitch(Frame sound,float value){call<void>(sound,0x88,value);}
+    bool car_sound_state(Frame sound){return call<std::uint8_t>(sound,0x78,std::uint32_t{0})!=0;}
+    void car_sound_parameter98(Frame sound,float value){call<void>(sound,0x98,value);}
+    void car_sound_cone(Frame sound,float first,float second){call<void>(sound,0x84,first,second);}
+    void car_sound_register(Frame receiver,Frame sound){call<void>(receiver,0x7c,sound);} //00517CF0.
+    void car_sound_unregister(Frame receiver,Frame sound){call<void>(receiver,0x80,sound);} //005181C0.
+    void car_light_register(Frame receiver,Frame light){call<void>(receiver,0x74,light);} //004F6080.
+    void car_light_unregister(Frame receiver,Frame light){call<void>(receiver,0x78,light);} //004F61E0.
+    void car_projector_texture(Frame projector,Frame texture){call<void>(projector,0x9c,texture);}
+    void car_light_power(Frame light,float value){call<void>(light,0x88,value);}
+    void car_camera_position(Frame marker,const Vector& position){call<void>(marker,8,position.data());}
+    std::uint32_t car_settling_ticks()const{return timeGetTime();} //004F67B0, actual multimedia clock.
+    void car_place_in_scene(Frame model,const Vector& centre){call<void>(scene_.frame(),0xec,model,centre.data());} //004EAA07/0050B214.
+    std::int32_t load_car_skid_model(Frame model,const std::string& key){return resources_.load_model(model,key,0);} //004EC02C/48, verbatim category1 keys.
+    MenuDriver::Owner car_skid_frame(Frame model){
+        const auto frame=call<Frame>(model,0x40,std::uint32_t{0});
+        if(!frame)throw std::runtime_error("Car skid model has no actual frame0");
+        return retain(frame); //004EC06C/004EC0C1, actual WORD E4 ownership.
+    }
+    void car_link_skid_root(Frame frame){link_scene_object(frame,field<Frame>(scene_.frame(),0x1f8));}
+    void car_camera_direction(Frame marker,const Vector& direction,float roll){call<void>(marker,0x0c,direction.data(),roll);}
+    void car_suspension_position(Frame frame,const Vector& position){ //00512390's direct parent-position write.
+        const auto flags=field<std::uint32_t>(frame,0xe0);if(flags&0x80u)return;
+        for(unsigned axis=0;axis!=3;++axis)put(frame,0xb0+axis*4,position[axis]);
+        put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);
+    }
+    void car_steering_rotation(Frame frame,const std::array<float,4>& rotation){ //00507400.
+        put(frame,0xc0,rotation);using Normalize=void(WINAPI*)(void*);
+        exported<Normalize>("?Normalize@S_quat@@QAGXXZ",0x30540)(address(frame,0xc0));
+        put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+    }
+    void car_steering_wheel_direction(Frame frame,const Vector& direction,float roll){call<void>(frame,0x1c,direction.data(),roll);}
+    void car_body_pose(Frame frame,const Vector& position,const Vector& forward,const Vector& up){ //00510E64.
+        car_suspension_position(frame,position);using Set=void(WINAPI*)(void*,const void*,const void*);
+        exported<Set>("?SetDir3@S_matrix@@QAGXABUS_vector@@0@Z",0x2cf10)(address(frame,0x80),forward.data(),up.data());
+        put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffed3u)|0x40000010u);
+    }
+    std::array<float,4> car_axis_quaternion(const Vector& axis,float angle){
+        std::array<float,4> result{};using Make=void(WINAPI*)(void*,const void*,float);
+        exported<Make>("?Make@S_quat@@QAGXABUS_vector@@M@Z",0x2f070)(result.data(),axis.data(),angle);return result;
+    }
+    Matrix car_quaternion_matrix(const std::array<float,4>& rotation){
+        Matrix result{};using Make=Matrix*(WINAPI*)(const void*,void*);
+        exported<Make>("?RotationMatrix@S_quat@@QBG?AUS_matrix@@XZ",0x2ee70)(rotation.data(),result.data());return result;
+    }
+    Matrix car_matrix_product(Matrix first,const Matrix& second){
+        using Multiply=Matrix*(WINAPI*)(void*,const void*);
+        exported<Multiply>("??XS_matrix@@QAGAAU0@ABU0@@Z",0x2d6b0)(first.data(),second.data());return first;
+    }
+    void car_loading_forward_basis(Frame frame){
+        const Vector forward{{0,0,1,0}},up{{0,1,0,0}};using Set=void(WINAPI*)(void*,const void*,const void*);
+        exported<Set>("?SetDir3@S_matrix@@QAGXABUS_vector@@0@Z",0x2cf10)(address(frame,0x80),forward.data(),up.data());
+        put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffed3u)|0x40000010u);
+    }
+    void car_sound_head(Frame sound,const Vector& head){
+        const auto flags=field<std::uint32_t>(sound,0xe0);if(flags&0x80u)return;
+        for(unsigned n=0;n!=3;++n)put(sound,0xb0+n*4,head[n]);
+        put(sound,0xe0,(flags&0xfffffedfu)|0x40000000u);
     }
     std::int32_t load_human_sound(Frame sound,const char* name) {return resources_.load_sound(sound,name,0);}
     void human_sound_enabled(Frame sound,bool enabled) {call<void>(sound,0x30,std::uint32_t(enabled));}

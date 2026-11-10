@@ -15,6 +15,8 @@ declines loading until the actual world and remaining consumers are connected.
 [Current boundary and remaining work](analysis/mission-world-loading.md) |
 [Source progress](analysis/loading-modules.md) |
 [Latest world presentation checks](analysis/checkpoints/p2.2-world-presentation-20261109.json).
+[Cold Car physics/finalization](analysis/car-runtime-loading.md) now has a verified
+source composition; Car actor activation and containing-world integration remain.
 
 The accepted bounded launch checkpoint covers: four opening movies with music and
 English subtitles lead into the compiled Main/Exit menu. Pointer/keyboard input,
@@ -83,7 +85,7 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and1,729 partial entries (1,724 client/five engine).
+complete client functions and1,783 partial entries (1,778 client/five engine).
 The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) records
 the earlier accumulated source subsets. Later checkpoints include Human
 weapons/formation/Players, [prepared spawning](analysis/session-activation-loading.md),
@@ -225,11 +227,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,729 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,783 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 1,724 |
+| Base game client | 17,294 | 34 | 1,778 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

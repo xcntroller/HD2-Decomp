@@ -24,6 +24,7 @@
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
 #include "game/actor_proximity_loading.h"
+#include "game/car_seat_camera.h"
 #include "game/players_process.h"
 #include "game/human_input_records.h"
 #include "game/world_views.h"
@@ -192,6 +193,9 @@ public:
     game::HumanAIAction1Pool& human_ai_action1_pool(){return human_ai_actions1_;}
     auto& human_perception_record_pool(){return human_perception_records_;}
     auto& actor_proximity_state(){return actor_proximity_;} //Actual process008AED54, preserves bucket timers across world clear.
+    auto& car_seat_camera_shared(){return car_seat_camera_;} //Actual process0089B0F8, separate from MissionCamera258.
+    auto& car_light_receivers(){return car_light_receivers_;} //0089C0A4,004E2810 initializes the actual process list empty.
+    auto& car_sound_receivers(){return car_sound_receivers_;} //0089C0B4, separate sound registrations.
     auto& players_process(){return players_process_;} //Actual CRT0089AC30; module reset, not a per-world copy.
     auto& delayed_player_speech(){return delayed_player_speech_;} //Separate0089AC20, survives00456440 reset.
     template<class Resolve,class Type>std::int32_t add_game_sound_listener(EngineFrame* frame,void* callback,Resolve&& resolve,Type&& type) {
@@ -593,6 +597,8 @@ private:
     game::HumanSoundVariants human_sound_variants_;
     game::HumanInputShared human_input_shared_;
     game::ActorProximityState<GameSceneActors::Instance*> actor_proximity_;
+    game::CarSeatCameraShared car_seat_camera_;
+    std::vector<EngineFrame*> car_light_receivers_,car_sound_receivers_;
     game::PlayersProcess<PlayerHuman> players_process_;
     std::vector<game::PlayersProcess<PlayerHuman>::DelayedSpeech> delayed_player_speech_;
     game::HumanMorphTables human_morph_tables_;

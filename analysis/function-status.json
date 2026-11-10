@@ -23647,6 +23647,654 @@
         "analysis/static-weapon-loading.md",
         "analysis/checkpoints/p2.2-static-weapon-20261109.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "004ea780",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004ea780: Actual pose, wheel, collision and skid initialization subsets; full runtime initialization still awaits containing Car activation.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_wheel_runtime.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f5620",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004f5620: Switch actual main/SPECCOLL registrations, preserving empty-list result and independent secondary group.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_collision_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f5840",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004f5840: Enable/disable original descriptor groups in SAME dynamic buckets.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_collision_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ec5c0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004ec5c0: Cold descriptor/model-skid retirement subsets; sound owners are separately retired, full Car teardown composition remains.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_collision_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051bd80",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0051bd80: Actual optional sound acquisition, exact-name reload, flags/loop/ranges/head and failure retirement.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00517370",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00517370: Original81-slot loading attempts over actual applied parameter names and sound coefficients.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00517cf0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00517cf0: Reverse shared receiver order and original sound-slot registration order.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005181c0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005181c0: Same actual receiver/slot order for unregister, separate from sound retirement.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051c180",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0051c180: Original sound detach/release/null order, with native failure cleanup.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004db060",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004db060: Actual SAME-table loading navigation walk/duplicate origin and moving refresh; no invented body-bounds filter.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_navigation_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dab60",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004dab60: Loading navigation mark/removal subset; other counter-mark producer excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_navigation_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dac80",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004dac80: Offline moving navigation marks from actual model/speed/ray proximity on SAME records.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_navigation_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004dafe0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004dafe0: Reverse moving mark clear over actually retained records.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_navigation_loading.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e0ea0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004e0ea0: Cold retained DM metadata reset/reparse before activation; missing required DM rejects.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_ancillary_model.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e0dc0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004e0dc0: Cold ancillary metadata clear subset; live sound/effect handle producers remain excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_ancillary_model.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00465f00",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00465f00: Actual retained marker/local/parent/world camera constructor values.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_seat_camera.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00466110",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00466110: Kind4 Car sweep/smoothing/attachment and actual0089B0F8 process scalar; other actor camera branches excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_seat_camera.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0050d2c0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0050d2c0: Actual drivetrain force/engine-off gates with live body speed and velocities.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_drivetrain.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0050d5c0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0050d5c0: Original piecewise torque curve and speed-dependent loss.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_drivetrain.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0050d760",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0050d760: Reconstructed engine/clutch/transmission updates; actual audible shift receiver mandatory.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_drivetrain.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0050de60",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0050de60: Actual engine-off traction/forces/aero/stabilization, prediction, BODYCOL controller, wheel queries and post-step drivetrain; powered forces excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_cold_solver.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00509aa0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00509aa0: Actual unoccupied zero-input engine-off update, sleeping/held branches, substeps and histories; running/occupied/shift-requested control excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_settling_controller.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0050db90",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0050db90: Original drag, tick/substep snapshots, WORD count/index, wheel travel and prior interval.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_substeps.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00512390",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00512390: F6C&800 wheel query/reuse/filter/material/contact/hard-stop/notification branch; alternate timed cache excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_cold_wheel_contacts.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00507400",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00507400: Original rate/snap/maximum/differential/toe quaternion publication, preserving assembly sign branches.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_steering.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f67b0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004f67b0: Actual timeGetTime loop,83ms update/finalize, clamp/restore/zero-direction behavior with mandatory real callbacks.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_settling.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0050b180",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0050b180: Composed cold finalization through same scene/audio/collision/visual/particle owners, road random state and original result flags; active/debug/engine transitions excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_cold_finalizer.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00507a40",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00507a40: Actual wheel/strip spin, authored rotation, wobble, middle/opposite-side sampling and C0 clearing.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_wheel_rotation.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00501cb0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00501cb0: Cold blink timers and actual billboard/projector/companion hiding; active light commands excluded.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_loading_lights.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00506700",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00506700: Actual private-mesh XYZ transform/Y/inverse edits and original U scroll on SAME connections.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_strip_update.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f6080",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004f6080: Actual shared/single companion registration in reverse process receiver order.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_light_receivers.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f61e0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004f61e0: Native unregister/detach ordering, including duplicate shared light detaches.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_light_receivers.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ecfc0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004ecfc0: Bounds-check original pool slot and set pending byte only; no invented disable/release.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_particles.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00514d70",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00514d70: Actual BODYCOL root/point sorting, reference transforms, exclusions, callbacks, material/static/dynamic impulses, friction, corrections and records; controller supplies pose retry.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_body_contacts.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f06f0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006f06f0: Original broad box query over SAME tree/grid/buckets, corner bounds, squared-radius and cell-Y semantics.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/collision_box_query.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f0050",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006f0050: Dynamic broad filters for40/41/42/44/49 with original layer-only masking and touching behavior.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/collision_box_query.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f02c0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006f02c0: Original static shape broad filters80..84 and genuine absent-family returns.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/collision_box_query.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006f04f0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 006f04f0: Original static cell triangle/shape filters, sorted X early exit and plane/radius comparison.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/collision_box_query.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00501750",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00501750: Reverse seat-linked door updates, native opening/closing inequalities, sounds and normalized quaternion publication.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_door_update.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00501ab0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00501ab0: Original moving-window lateral/Y/visibility endpoints and detached-glass cancellation.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_door_update.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051a6c0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0051a6c0: Actual first inside/outside signal voice selection/state/start/stop order.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051a7a0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0051a7a0: Actual second inside/outside signal voice selection/state/start/stop order.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00519a60",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00519a60: Actual rolling voice speed/rate/fade and external feature gate.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00519dc0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00519dc0: Actual puncture voice forward-speed/rate/fade and retirement gates.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051a130",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0051a130: Actual skid intensity from wheels/materials, smoothing and selected voice volume/retirement.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051b660",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0051b660: Actual audible door sound slot/volume and authored seat-door position.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051a580",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0051a580: Original air-brake feature/state/request latch and actual selected sound voice.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_sound_updates.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069e9d0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0069e9d0: Actual cached scene light sampling, attenuation/cone/shadow/material exception gates and saturation.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/scene_light_sample.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004feea0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004feea0: Applied body/drivetrain/wheel/link health reset and actual paired projector texture/power.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_health_reset.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004fe610",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004fe610: Clear current pair active byte, advance/wrap integer cursor, without frame operations.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_skid_models.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00506f00",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00506f00: Cold body-emitter gate/actual pool pending retirement and quiet return; positive emitter production rejects.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_cold_particles.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00508350",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00508350: Actual cold wheel-emitter gates/slot retirement, including kind8/dummy behavior; positive production rejects.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_cold_particles.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00508ee0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00508ee0: Actual cold exhaust gates and reverse pool-slot retirement; running emitter production rejects.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_cold_particles.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00509540",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 00509540: Actual cold three-impact-slot/material gates and retirement; positive production rejects.",
+      "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+      "evidence": [
+        "recovered/game/car_cold_particles.h",
+        "analysis/car-runtime-loading.md",
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
     }
   ]
 }

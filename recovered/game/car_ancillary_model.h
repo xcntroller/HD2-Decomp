@@ -39,6 +39,28 @@ public:
         if(!model)return;
         if(!frames.load_car_ancillary_model(model.get(),"DM"+resource))return;
         model_.emplace(std::move(model));
+        parse(frames,seat_count);
+        frames.object_visible(model_->get(),false);
+    }
+    //004E0EA0 ->004E0DC0/004E09D0, before this cold owner's first activation.
+    //No live particle/sound handles are produced by this metadata owner. Their
+    //later producers require matching effect owners before active DM updates.
+    void reset_loading(Frames& frames,std::size_t seat_count){
+        if(!model_)throw std::runtime_error("Car activation requires its actual DM model");
+        seats_.clear();planes_.clear();zones_.clear();explosions_.clear();particle_=Frame{};
+        parse(frames,seat_count);
+    }
+    Frame model() const {return model_?model_->get():Frame{};}
+    const std::vector<Frame>& seats() const {return seats_;}
+    const std::vector<Frame>& planes() const {return planes_;}
+    const std::vector<Zone>& zones() const {return zones_;}
+    const std::vector<Explosion>& explosions() const {return explosions_;}
+    Frame particle() const {return particle_;}
+    std::int32_t sound() const {return sound_;}
+    std::int32_t fire() const {return fire_;}
+    std::int32_t smoke() const {return smoke_;}
+private:
+    void parse(Frames& frames,std::size_t seat_count){
         for(std::size_t seat=0;seat<seat_count;++seat) {
             const auto number=std::to_string(seat);
             const auto name=std::string("SEAT")+(number.size()<2?"0":"")+number;
@@ -60,24 +82,11 @@ public:
             }
         }
         particle_=frames.car_find(model_->get(),"particle",0x10020);
-        if(particle_) {
-            const auto user=frames.car_user_data(particle_);
-            sound_=car_attribute_number(user,"SID");fire_=car_attribute_number(user,"PFIRE");smoke_=car_attribute_number(user,"PSMOKE");
-        }
+        const auto user=particle_?frames.car_user_data(particle_):std::string{};
+        sound_=car_attribute_number(user,"SID");fire_=car_attribute_number(user,"PFIRE");smoke_=car_attribute_number(user,"PSMOKE");
         if(fire_==-1)fire_=0x60;
         if(smoke_==-1)smoke_=0x5f;
-        frames.object_visible(model_->get(),false);
     }
-    Frame model() const {return model_?model_->get():Frame{};}
-    const std::vector<Frame>& seats() const {return seats_;}
-    const std::vector<Frame>& planes() const {return planes_;}
-    const std::vector<Zone>& zones() const {return zones_;}
-    const std::vector<Explosion>& explosions() const {return explosions_;}
-    Frame particle() const {return particle_;}
-    std::int32_t sound() const {return sound_;}
-    std::int32_t fire() const {return fire_;}
-    std::int32_t smoke() const {return smoke_;}
-private:
     std::optional<Owner> model_;
     std::vector<Frame> seats_,planes_;
     std::vector<Zone> zones_;
