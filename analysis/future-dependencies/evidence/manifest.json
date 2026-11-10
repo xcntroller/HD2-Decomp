@@ -21104,6 +21104,1763 @@
       "export_path": "analysis/work/future-dependencies/item-runtime-references/005e2510.json",
       "export_sha256": "eb58af7e9cdeb4f331d2faea741cff05f9249adf306b1de0f722a33f3c650698",
       "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 776,
+      "decompilation_sha256": "1d2a62b4c2c453f35941c499016375589833e6cbccb0d662cf086db297120f04",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004e965b",
+          "target": "004fe610"
+        },
+        {
+          "site": "004e96f0",
+          "target": "007e4e72"
+        },
+        {
+          "site": "004e96fd",
+          "target": "007e4e72"
+        },
+        {
+          "site": "004e97ed",
+          "target": "004ecfc0"
+        },
+        {
+          "site": "004e9832",
+          "target": "004ecfc0"
+        },
+        {
+          "site": "004e9853",
+          "target": "004ecfc0"
+        },
+        {
+          "site": "004e9862",
+          "target": "004f5840"
+        },
+        {
+          "site": "004e986e",
+          "target": "007e513c"
+        },
+        {
+          "site": "004e98a0",
+          "target": "004ecfc0"
+        },
+        {
+          "site": "004e98ac",
+          "target": "0051b8f0"
+        }
+      ],
+      "entry": "004e95b0",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004e95b0.json",
+      "export_sha256": "70373a68078fa32c80b30bf894619a3175751ed0ded95d34c76832284f6093a3",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1253,
+      "decompilation_sha256": "31487b38331d637922009166882d905c1fb826f2ad6b6a12034045d095f227f2",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004e98ee",
+          "target": "007e4e36"
+        },
+        {
+          "site": "004e9929",
+          "target": "007e4e5a"
+        },
+        {
+          "site": "004e99f2",
+          "target": "007e4e36"
+        },
+        {
+          "site": "004e9a29",
+          "target": "007e4e54"
+        },
+        {
+          "site": "004e9a7d",
+          "target": "007e4e72"
+        },
+        {
+          "site": "004e9a8a",
+          "target": "007e4e72"
+        },
+        {
+          "site": "004e9abd",
+          "target": "007e4e36"
+        },
+        {
+          "site": "004e9d5d",
+          "target": "00507a40"
+        },
+        {
+          "site": "004e9d68",
+          "target": "004f5840"
+        }
+      ],
+      "entry": "004e98c0",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004e98c0.json",
+      "export_sha256": "8bce4443ddefe16146f6c450122b18a1962481c6b0bfa470ef79072c31a6ac6b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 196,
+      "decompilation_sha256": "c5c5727d3e805fd320ea18150d983ff5e65b15dc570288c9e63b38a5d0567572",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004f40a5",
+          "target": "007e5e00"
+        },
+        {
+          "site": "004f40c0",
+          "target": "007e5e00"
+        },
+        {
+          "site": "004f40f1",
+          "target": "007e5e00"
+        }
+      ],
+      "entry": "004f4040",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004f4040.json",
+      "export_sha256": "4f29be3bafd4f6839d112c6f4035014e4eefd40f0ac888147e652aeee66949f0",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 223,
+      "decompilation_sha256": "981c09e889cb25ad3ef6ebd095c2605ee94e38b18614279da49f0f253d0d0831",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "004f4110",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004f4110.json",
+      "export_sha256": "fce3dc4e327b1f846f4d6b37259c474ee5606e80b5c29c5062e6945b2f524b35",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 247,
+      "decompilation_sha256": "9033d4d09de4b5ad174bcd4b96349078464e3d06edb6bbf62b34bdbe29ecf556",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004f421f",
+          "target": "007e56d0"
+        }
+      ],
+      "entry": "004f41f0",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004f41f0.json",
+      "export_sha256": "b5b6b26874f23492a0f83c65e5d5be977cfc4106920fb8241d63aa5756179b36",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 89,
+      "decompilation_sha256": "efc21fd8a0025e6e5a294dcddd6a3d0d26f2e455a80e0da85f63afc78a2a80e4",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004f432b",
+          "target": "004f41f0"
+        }
+      ],
+      "entry": "004f42f0",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004f42f0.json",
+      "export_sha256": "d153e9bd0d39f1cb2fc215426237156b48149f0e4bf8694afe65fb83d5b84cff",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 620,
+      "decompilation_sha256": "bbbbf4c763d4f5db2e363647eab19f56456fc079cdd4079c969acd38554f3f43",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004f58ce",
+          "target": "007e4e54"
+        },
+        {
+          "site": "004f592c",
+          "target": "007e4e5a"
+        },
+        {
+          "site": "004f5981",
+          "target": "006ef3e0"
+        },
+        {
+          "site": "004f5994",
+          "target": "006ef7f0"
+        },
+        {
+          "site": "004f59d8",
+          "target": "006ef3e0"
+        },
+        {
+          "site": "004f59e3",
+          "target": "006ef7f0"
+        },
+        {
+          "site": "004f5a13",
+          "target": "006ef5e0"
+        },
+        {
+          "site": "004f5a31",
+          "target": "006ef5e0"
+        },
+        {
+          "site": "004f5a7b",
+          "target": "006ef3e0"
+        },
+        {
+          "site": "004f5a86",
+          "target": "006ef7f0"
+        },
+        {
+          "site": "004f5a9f",
+          "target": "006ef5e0"
+        }
+      ],
+      "entry": "004f5840",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004f5840.json",
+      "export_sha256": "b433457eeeb07c10f586ec054013cd25a6cd4e67e97a330065f2182baac4969e",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 92,
+      "decompilation_sha256": "2ee378bc9e41747566a0e5259e9ebf6864a3e40297d314584f2552a82dfac9ce",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "00638d30",
+      "export_path": "analysis/work/future-dependencies/p24-reused/00638d30.json",
+      "export_sha256": "0e5f1d4a74f38032e649733f150a30cd206dc9b765c9d084a878951c86e53c7f",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 875,
+      "decompilation_sha256": "28d4e26d2c5050021b434e1ce8b4fbe71d3c4a97bbe8344defacd671327463e9",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0063a987",
+          "target": "007e520f"
+        },
+        {
+          "site": "0063a99d",
+          "target": "004050a0"
+        },
+        {
+          "site": "0063a9b2",
+          "target": "004050e0"
+        },
+        {
+          "site": "0063aa0a",
+          "target": "00615a90"
+        },
+        {
+          "site": "0063aa17",
+          "target": "004050e0"
+        },
+        {
+          "site": "0063aa47",
+          "target": "00615a90"
+        },
+        {
+          "site": "0063aa54",
+          "target": "004050e0"
+        },
+        {
+          "site": "0063aa80",
+          "target": "00615a90"
+        },
+        {
+          "site": "0063aa8d",
+          "target": "004050e0"
+        },
+        {
+          "site": "0063aabc",
+          "target": "00615a90"
+        },
+        {
+          "site": "0063aac9",
+          "target": "004050e0"
+        },
+        {
+          "site": "0063aaf8",
+          "target": "00615a90"
+        },
+        {
+          "site": "0063ab05",
+          "target": "004050e0"
+        },
+        {
+          "site": "0063ab34",
+          "target": "00615a90"
+        },
+        {
+          "site": "0063ab4d",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0063ab80",
+          "target": "00615a90"
+        },
+        {
+          "site": "0063ab99",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0063abc7",
+          "target": "00615a90"
+        },
+        {
+          "site": "0063abe8",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0063ac08",
+          "target": "006b13a0"
+        },
+        {
+          "site": "0063ac16",
+          "target": "006b9030"
+        },
+        {
+          "site": "0063ac6f",
+          "target": "00615a90"
+        },
+        {
+          "site": "0063ac90",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "0063a950",
+      "export_path": "analysis/work/future-dependencies/p24-reused/0063a950.json",
+      "export_sha256": "67252ea58f694d63d071944f8ea73204f5417f8b0638bd41ed2110061e16b815",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 91,
+      "decompilation_sha256": "499ce1261333d2be8477b6f22d1d6f99153dc376ddca9b5f95c64d928852059a",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "006b8aa0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006b8aa0.json",
+      "export_sha256": "f005634cbc2ca1a4ae3e8d2b0a310503787d6e12b9e3a6773e4b064ac10b9fef",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 115,
+      "decompilation_sha256": "18bed9928053400bd3a5752f69f6395c016bc132e90929896063df83d2e77beb",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "006b8b20",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006b8b20.json",
+      "export_sha256": "b0929630ba3b837d4b06fdc3cd3269a83c445dea4a481887651d5a15903afd3b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1247,
+      "decompilation_sha256": "08a2dba85c9523a11497f3c9a427f03cac0c73c40be0299bfb4dca33e057b41d",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b96f2",
+          "target": "006b8660"
+        },
+        {
+          "site": "006b9716",
+          "target": "006b8510"
+        },
+        {
+          "site": "006b9730",
+          "target": "006b8420"
+        },
+        {
+          "site": "006b9749",
+          "target": "004145d0"
+        },
+        {
+          "site": "006b9758",
+          "target": "004145d0"
+        },
+        {
+          "site": "006b97a2",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b97db",
+          "target": "006b9b60"
+        },
+        {
+          "site": "006b9858",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b9875",
+          "target": "006b9b60"
+        },
+        {
+          "site": "006b9892",
+          "target": "004145b0"
+        },
+        {
+          "site": "006b98c8",
+          "target": "006b9ee0"
+        },
+        {
+          "site": "006b98d9",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b990f",
+          "target": "006b9cf0"
+        },
+        {
+          "site": "006b9921",
+          "target": "005aa7d0"
+        },
+        {
+          "site": "006b9970",
+          "target": "006b9ee0"
+        },
+        {
+          "site": "006b9982",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b99ba",
+          "target": "006b9cf0"
+        },
+        {
+          "site": "006b99cc",
+          "target": "005aa7d0"
+        },
+        {
+          "site": "006b9a11",
+          "target": "006b9ee0"
+        },
+        {
+          "site": "006b9a27",
+          "target": "006b93c0"
+        },
+        {
+          "site": "006b9a2e",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b9a4a",
+          "target": "006b56d0"
+        },
+        {
+          "site": "006b9a80",
+          "target": "006b9ee0"
+        },
+        {
+          "site": "006b9a87",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b9aa3",
+          "target": "006b56d0"
+        },
+        {
+          "site": "006b9ab5",
+          "target": "006b9cf0"
+        },
+        {
+          "site": "006b9ac7",
+          "target": "005aa7d0"
+        },
+        {
+          "site": "006b9b03",
+          "target": "006b9d30"
+        },
+        {
+          "site": "006b9b0a",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b9b3a",
+          "target": "006b9ee0"
+        }
+      ],
+      "entry": "006b9680",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006b9680.json",
+      "export_sha256": "d3852085eb851b14e6e09fd555629a9363e342c10948707d3ff2ac592dd15874",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 696,
+      "decompilation_sha256": "1e2be69d44459e97c7741b5e4dddd1a13be499dba31570b6c729d64ecd5cc708",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b93e2",
+          "target": "006b8420"
+        },
+        {
+          "site": "006b94d6",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b94e8",
+          "target": "006ba460"
+        },
+        {
+          "site": "006b94fb",
+          "target": "006ba4b0"
+        },
+        {
+          "site": "006b950f",
+          "target": "006ba460"
+        },
+        {
+          "site": "006b951e",
+          "target": "006b9ed0"
+        },
+        {
+          "site": "006b9527",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b9539",
+          "target": "006b9d10"
+        },
+        {
+          "site": "006b9564",
+          "target": "006ba460"
+        },
+        {
+          "site": "006b957f",
+          "target": "006ba4b0"
+        },
+        {
+          "site": "006b95b8",
+          "target": "006ba460"
+        }
+      ],
+      "entry": "006b93c0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006b93c0.json",
+      "export_sha256": "bfe84f6e54db2f46081d3177fb1876f27b90ba907de1da965df33c84f25fb012",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 173,
+      "decompilation_sha256": "465c4d7786be5d8f837c046e3d39f6af720a25a4a18c7bff136fae067108c676",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "006b9190",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006b9190.json",
+      "export_sha256": "5385d5ba49f7e2690267bc06ec01f4cc9993f389186552e26de255cc61ba5c83",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 326,
+      "decompilation_sha256": "8b0dd5fc0d3091d03507998bd861404ecfe76895e49a0c7c32758b47cf6787af",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00673a17",
+          "target": "007e520f"
+        },
+        {
+          "site": "00673a8d",
+          "target": "005aa960"
+        },
+        {
+          "site": "00673a9f",
+          "target": "005aa960"
+        },
+        {
+          "site": "00673b18",
+          "target": "00677330"
+        }
+      ],
+      "entry": "006739f0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006739f0.json",
+      "export_sha256": "7eac95357449843433edb4d660fdfeb5f01f8a8a1dda401fd06d98e198a1dc89",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 282,
+      "decompilation_sha256": "72af295c9f12f37ae4bb02c3d97b71cebb1ceb1f1c8d1eca9c2da65d5be2c01a",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00694583",
+          "target": "006a1c80"
+        },
+        {
+          "site": "006945b7",
+          "target": "006a2920"
+        },
+        {
+          "site": "006945f4",
+          "target": "005aa0f0"
+        },
+        {
+          "site": "006945fe",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "00694520",
+      "export_path": "analysis/work/future-dependencies/p24-reused/00694520.json",
+      "export_sha256": "f82c2a8eda81396d3edceee7b606b5e5f8de27e96ee726dff555a054671bf5cd",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 412,
+      "decompilation_sha256": "06ce998bb56138748471bd10fa24400de0c043e0e357a7d64fee596955b8af64",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069596c",
+          "target": "006169d0"
+        },
+        {
+          "site": "00695976",
+          "target": "00616100"
+        },
+        {
+          "site": "00695982",
+          "target": "00616100"
+        },
+        {
+          "site": "0069599a",
+          "target": "006169d0"
+        },
+        {
+          "site": "006959c8",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "00695a15",
+          "target": "00690c00"
+        }
+      ],
+      "entry": "006958a0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006958a0.json",
+      "export_sha256": "f33d03be5987f4186b01ebde4cce9c36ff49678d4cf46a43e14580802d4a4c07",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 344,
+      "decompilation_sha256": "a00bf197485b32413bb56e6218c3ce8b002b684d535850573cc850b1c73431b6",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00694b1a",
+          "target": "006953b0"
+        },
+        {
+          "site": "00694b5c",
+          "target": "006332a0"
+        },
+        {
+          "site": "00694b8f",
+          "target": "006953b0"
+        },
+        {
+          "site": "00694c19",
+          "target": "0065c7c0"
+        },
+        {
+          "site": "00694c2a",
+          "target": "006948d0"
+        }
+      ],
+      "entry": "00694ae0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/00694ae0.json",
+      "export_sha256": "7702ec73070c6a5156eb7259e1167905134e6ca778140479f92d2920f15a96a5",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 790,
+      "decompilation_sha256": "9b223b6637ba364e97ce2769b2a0a04c867dfce73de7b6e150cee1cdac9dd5ee",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00695b7c",
+          "target": "006953b0"
+        },
+        {
+          "site": "00695bb9",
+          "target": "006b7390"
+        },
+        {
+          "site": "00695c03",
+          "target": "006739f0"
+        },
+        {
+          "site": "00695c11",
+          "target": "006a2340"
+        },
+        {
+          "site": "00695cdb",
+          "target": "00633250"
+        },
+        {
+          "site": "00695d7c",
+          "target": "005aa0f0"
+        },
+        {
+          "site": "00695d86",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "00695d95",
+          "target": "00633270"
+        },
+        {
+          "site": "00695e13",
+          "target": "00695ad0"
+        }
+      ],
+      "entry": "00695b30",
+      "export_path": "analysis/work/future-dependencies/p24-reused/00695b30.json",
+      "export_sha256": "e33af389295591314ddd01bb07b1b37241c12bfc1c08d48f83353f6d8684294b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 35,
+      "decompilation_sha256": "6de5ed29ace5c33719c14be0013aaf630da6dbedfb02d2f3a2917493d9188857",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "006953b0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006953b0.json",
+      "export_sha256": "ca59d335d559a7090caa8c8d20d56bf35343339dd823471a088828c12da0f36b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 94,
+      "decompilation_sha256": "e6fd50d6fe77805348f34e4d35f26f4fa864a6b2fd54ca5500d5f1f4f97ee557",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "00695ad0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/00695ad0.json",
+      "export_sha256": "ef07796a628aff2df23907703f96887f06693f02fc005f8de83df20bf6ec850b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 120,
+      "decompilation_sha256": "32cc02c1929fe198d3d28a67e64d68cf53e41cbfad2500430255140caa6dddbd",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0067591a",
+          "target": "007dc4e0"
+        },
+        {
+          "site": "0067592c",
+          "target": "0067bd90"
+        },
+        {
+          "site": "0067593c",
+          "target": "007dc4e0"
+        },
+        {
+          "site": "0067594e",
+          "target": "0067bd90"
+        },
+        {
+          "site": "0067595a",
+          "target": "007dc4e0"
+        },
+        {
+          "site": "0067596b",
+          "target": "0067bd90"
+        },
+        {
+          "site": "00675973",
+          "target": "00673430"
+        }
+      ],
+      "entry": "00675900",
+      "export_path": "analysis/work/future-dependencies/p24-reused/00675900.json",
+      "export_sha256": "3c3fffa13b7b365100e35b526a69e27a0fbfca74755a1e49bd35a8c7985faa97",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 43,
+      "decompilation_sha256": "c62fc04b7ae2dfa4638cd0b87a01810566dc6d4b5dc078f2542ff2a3717c70e5",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0067bdb5",
+          "target": "006a5aa0"
+        },
+        {
+          "site": "0067bdc1",
+          "target": "0067ba60"
+        }
+      ],
+      "entry": "0067bda0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/0067bda0.json",
+      "export_sha256": "1092063b7d31f0d941c11095d73c3905329cb99dbea041120a4eacc58a48459d",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1345,
+      "decompilation_sha256": "9926914cbe91029568e9d60d5686349b8061d42a66ed482879abfc5b6b233e22",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00673e2a",
+          "target": "00633250"
+        },
+        {
+          "site": "00673e40",
+          "target": "00633250"
+        },
+        {
+          "site": "00673e5f",
+          "target": "00633250"
+        },
+        {
+          "site": "00673e76",
+          "target": "00633250"
+        },
+        {
+          "site": "00673e90",
+          "target": "00633250"
+        },
+        {
+          "site": "00673edb",
+          "target": "00615a90"
+        },
+        {
+          "site": "00673efa",
+          "target": "004050e0"
+        },
+        {
+          "site": "00673f11",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "00673f6d",
+          "target": "00615a90"
+        },
+        {
+          "site": "00673f8e",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0067400f",
+          "target": "00615a90"
+        },
+        {
+          "site": "00674061",
+          "target": "00620e30"
+        },
+        {
+          "site": "006740a2",
+          "target": "00615a90"
+        },
+        {
+          "site": "006740bf",
+          "target": "0066d7a0"
+        },
+        {
+          "site": "006740cb",
+          "target": "00678ac0"
+        },
+        {
+          "site": "006740d8",
+          "target": "00673d60"
+        },
+        {
+          "site": "006740ee",
+          "target": "0066d7a0"
+        },
+        {
+          "site": "006740f8",
+          "target": "006743f0"
+        },
+        {
+          "site": "00674111",
+          "target": "0066d7a0"
+        },
+        {
+          "site": "00674155",
+          "target": "00615a90"
+        },
+        {
+          "site": "00674173",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "006741c6",
+          "target": "00673b40"
+        },
+        {
+          "site": "0067422b",
+          "target": "00615a90"
+        },
+        {
+          "site": "00674284",
+          "target": "006169d0"
+        },
+        {
+          "site": "0067428e",
+          "target": "00616100"
+        },
+        {
+          "site": "0067429a",
+          "target": "00616100"
+        },
+        {
+          "site": "006742b2",
+          "target": "006169d0"
+        },
+        {
+          "site": "006742e3",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006742f1",
+          "target": "006a5cd0"
+        }
+      ],
+      "entry": "00673dd0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/00673dd0.json",
+      "export_sha256": "dcb74153b89bf028ff06b9e34e96ae28a8ca068171472b4a4bec380f5d65a961",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1045,
+      "decompilation_sha256": "7e10321e6dc5ae32f3f70c50ebf0b5fab60824d59cd8f60c1817386aad1977e9",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0068811a",
+          "target": "007e5a40"
+        },
+        {
+          "site": "0068812d",
+          "target": "007e5a40"
+        },
+        {
+          "site": "00688140",
+          "target": "007e5a40"
+        },
+        {
+          "site": "00688167",
+          "target": "004336c0"
+        },
+        {
+          "site": "00688176",
+          "target": "004336c0"
+        },
+        {
+          "site": "0068818d",
+          "target": "004336c0"
+        },
+        {
+          "site": "006881a2",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006881af",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006881c5",
+          "target": "006887c0"
+        },
+        {
+          "site": "006881dc",
+          "target": "006890f0"
+        },
+        {
+          "site": "006881ee",
+          "target": "006890f0"
+        },
+        {
+          "site": "006881f8",
+          "target": "007e4eba"
+        },
+        {
+          "site": "00688206",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0068822d",
+          "target": "00688ff0"
+        },
+        {
+          "site": "00688259",
+          "target": "004336c0"
+        },
+        {
+          "site": "00688268",
+          "target": "004336c0"
+        },
+        {
+          "site": "00688277",
+          "target": "004336c0"
+        },
+        {
+          "site": "00688298",
+          "target": "004336c0"
+        },
+        {
+          "site": "006882a9",
+          "target": "004336c0"
+        },
+        {
+          "site": "006882d0",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006882dd",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006882ee",
+          "target": "00688ab0"
+        },
+        {
+          "site": "006882fe",
+          "target": "006887c0"
+        },
+        {
+          "site": "00688315",
+          "target": "006890f0"
+        },
+        {
+          "site": "00688324",
+          "target": "006890f0"
+        },
+        {
+          "site": "00688344",
+          "target": "006890f0"
+        },
+        {
+          "site": "00688361",
+          "target": "00688630"
+        },
+        {
+          "site": "00688370",
+          "target": "006b6740"
+        },
+        {
+          "site": "006883bb",
+          "target": "007e5ea0"
+        },
+        {
+          "site": "006883ca",
+          "target": "007e5e30"
+        }
+      ],
+      "entry": "00688040",
+      "export_path": "analysis/work/future-dependencies/p24-reused/00688040.json",
+      "export_sha256": "fa63c87e5811f022623b0db48beb9303b9899c732b48d30da72c80273cf09f6f",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1332,
+      "decompilation_sha256": "beb93c7e6b001637abc9912f34089d1ad279bc66f6bcf2c09a7ccd1bbd1c6b47",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006989d6",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "006989e0",
+          "target": "006b9030"
+        },
+        {
+          "site": "006989ef",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "00698a16",
+          "target": "007e4eae"
+        },
+        {
+          "site": "00698a27",
+          "target": "007e4eae"
+        },
+        {
+          "site": "00698a56",
+          "target": "006ca780"
+        },
+        {
+          "site": "00698ac9",
+          "target": "006c95d0"
+        },
+        {
+          "site": "00698ad6",
+          "target": "0071f9b0"
+        },
+        {
+          "site": "00698adb",
+          "target": "004d6900"
+        },
+        {
+          "site": "00698ae0",
+          "target": "004d57a0"
+        },
+        {
+          "site": "00698ae5",
+          "target": "004d5a50"
+        },
+        {
+          "site": "00698af5",
+          "target": "0072d2b0"
+        },
+        {
+          "site": "00698b06",
+          "target": "006c95d0"
+        },
+        {
+          "site": "00698b0f",
+          "target": "0069bff0"
+        },
+        {
+          "site": "00698b27",
+          "target": "006b6740"
+        },
+        {
+          "site": "00698b2e",
+          "target": "006b33e0"
+        },
+        {
+          "site": "00698b3e",
+          "target": "00796430"
+        },
+        {
+          "site": "00698b4e",
+          "target": "0048db00"
+        },
+        {
+          "site": "00698b5f",
+          "target": "006c95d0"
+        },
+        {
+          "site": "00698b70",
+          "target": "0049a940"
+        },
+        {
+          "site": "00698b77",
+          "target": "0048db00"
+        },
+        {
+          "site": "00698b88",
+          "target": "006c95d0"
+        },
+        {
+          "site": "00698b99",
+          "target": "004909d0"
+        },
+        {
+          "site": "00698baa",
+          "target": "006c95d0"
+        },
+        {
+          "site": "00698bf5",
+          "target": "007e4eae"
+        },
+        {
+          "site": "00698cb4",
+          "target": "006ad580"
+        },
+        {
+          "site": "00698cd1",
+          "target": "006ca780"
+        },
+        {
+          "site": "00698cde",
+          "target": "007e4eae"
+        },
+        {
+          "site": "00698d2f",
+          "target": "00475940"
+        },
+        {
+          "site": "00698d66",
+          "target": "00611c90"
+        },
+        {
+          "site": "00698d7d",
+          "target": "0071de10"
+        },
+        {
+          "site": "00698d92",
+          "target": "006c95d0"
+        },
+        {
+          "site": "00698da7",
+          "target": "0048eb70"
+        },
+        {
+          "site": "00698e79",
+          "target": "00699290"
+        },
+        {
+          "site": "00698e96",
+          "target": "0069e970"
+        },
+        {
+          "site": "00698ea0",
+          "target": "006c95c0"
+        },
+        {
+          "site": "00698eb3",
+          "target": "006dc940"
+        },
+        {
+          "site": "00698ebc",
+          "target": "006dc940"
+        },
+        {
+          "site": "00698ec3",
+          "target": "006c4bd0"
+        },
+        {
+          "site": "00698ecb",
+          "target": "007e4eae"
+        }
+      ],
+      "entry": "006989b0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006989b0.json",
+      "export_sha256": "4a52b0377cb2a64209f8b66c754c898339fe074301eeea3b3068aae2186acdd9",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1807,
+      "decompilation_sha256": "4fb04cdb17430e309cdda9f094c58df7f200dbb7e8ce47e88ed7673c7c054ce8",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00611cd5",
+          "target": "004759a0"
+        },
+        {
+          "site": "00611d1b",
+          "target": "007e4e36"
+        },
+        {
+          "site": "00611d56",
+          "target": "007e4e36"
+        },
+        {
+          "site": "00611f1c",
+          "target": "00475840"
+        },
+        {
+          "site": "00611f61",
+          "target": "0069d6a0"
+        },
+        {
+          "site": "00611f82",
+          "target": "00475d50"
+        },
+        {
+          "site": "00611fa5",
+          "target": "005ed700"
+        },
+        {
+          "site": "00611fb7",
+          "target": "006dc940"
+        },
+        {
+          "site": "00611fbe",
+          "target": "0072a0b0"
+        },
+        {
+          "site": "00611feb",
+          "target": "00698500"
+        },
+        {
+          "site": "00611ff2",
+          "target": "0069e0a0"
+        },
+        {
+          "site": "00612031",
+          "target": "006a3080"
+        },
+        {
+          "site": "00612038",
+          "target": "006a2c90"
+        },
+        {
+          "site": "00612067",
+          "target": "00612a60"
+        },
+        {
+          "site": "00612097",
+          "target": "0072e940"
+        },
+        {
+          "site": "006120b2",
+          "target": "00698500"
+        },
+        {
+          "site": "006120c2",
+          "target": "00698500"
+        },
+        {
+          "site": "006120c9",
+          "target": "0069aa50"
+        },
+        {
+          "site": "0061210f",
+          "target": "005a5fe0"
+        },
+        {
+          "site": "00612127",
+          "target": "005a8800"
+        },
+        {
+          "site": "00612163",
+          "target": "006b6740"
+        },
+        {
+          "site": "00612174",
+          "target": "00724570"
+        },
+        {
+          "site": "00612179",
+          "target": "00698500"
+        },
+        {
+          "site": "00612189",
+          "target": "0072ec70"
+        },
+        {
+          "site": "006121b2",
+          "target": "0072e940"
+        },
+        {
+          "site": "006121ce",
+          "target": "006123a0"
+        },
+        {
+          "site": "006121d8",
+          "target": "0072ed30"
+        },
+        {
+          "site": "006121f1",
+          "target": "00475530"
+        },
+        {
+          "site": "00612206",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00612210",
+          "target": "0073cf50"
+        },
+        {
+          "site": "0061221e",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00612229",
+          "target": "0073d3a0"
+        },
+        {
+          "site": "00612236",
+          "target": "0073d440"
+        },
+        {
+          "site": "00612244",
+          "target": "0073d6c0"
+        },
+        {
+          "site": "00612253",
+          "target": "004754f0"
+        },
+        {
+          "site": "0061225d",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00612267",
+          "target": "0072ec70"
+        },
+        {
+          "site": "00612288",
+          "target": "0073d070"
+        },
+        {
+          "site": "0061229c",
+          "target": "0073cf50"
+        },
+        {
+          "site": "006122a6",
+          "target": "0072ed30"
+        },
+        {
+          "site": "006122b2",
+          "target": "00727480"
+        },
+        {
+          "site": "006122d3",
+          "target": "0073cf50"
+        },
+        {
+          "site": "006122e0",
+          "target": "0073cf50"
+        },
+        {
+          "site": "006122ed",
+          "target": "0073cf50"
+        },
+        {
+          "site": "006122fa",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00612307",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00612314",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00612321",
+          "target": "0073cf50"
+        },
+        {
+          "site": "0061232e",
+          "target": "0073cf50"
+        },
+        {
+          "site": "0061233b",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00612348",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00612355",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00612362",
+          "target": "0073cf50"
+        },
+        {
+          "site": "0061236d",
+          "target": "004755b0"
+        },
+        {
+          "site": "00612392",
+          "target": "0041d960"
+        }
+      ],
+      "entry": "00611c90",
+      "export_path": "analysis/work/future-dependencies/p24-reused/00611c90.json",
+      "export_sha256": "96ada939fd65ac17302d7c4e35302cefd97230bfa433985d114779a77b2f722c",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 499,
+      "decompilation_sha256": "5055fc471c35ec36497070495cce73009cea2d04f6149a146bbf73f4f02f176c",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006123d0",
+          "target": "00475d50"
+        },
+        {
+          "site": "00612400",
+          "target": "00612a60"
+        },
+        {
+          "site": "0061242a",
+          "target": "00698500"
+        },
+        {
+          "site": "0061243a",
+          "target": "00698500"
+        },
+        {
+          "site": "00612441",
+          "target": "0069aa50"
+        },
+        {
+          "site": "00612471",
+          "target": "00464e90"
+        },
+        {
+          "site": "00612483",
+          "target": "00464e90"
+        },
+        {
+          "site": "0061249b",
+          "target": "00461410"
+        },
+        {
+          "site": "006124a2",
+          "target": "00461a20"
+        },
+        {
+          "site": "006124b0",
+          "target": "00461410"
+        },
+        {
+          "site": "006124d2",
+          "target": "005a5fe0"
+        },
+        {
+          "site": "00612509",
+          "target": "005a8800"
+        },
+        {
+          "site": "00612510",
+          "target": "005a0890"
+        },
+        {
+          "site": "0061251f",
+          "target": "00461410"
+        },
+        {
+          "site": "00612526",
+          "target": "0045da60"
+        },
+        {
+          "site": "00612551",
+          "target": "00698500"
+        },
+        {
+          "site": "00612558",
+          "target": "0069e290"
+        },
+        {
+          "site": "00612575",
+          "target": "006b6740"
+        },
+        {
+          "site": "00612586",
+          "target": "00724570"
+        }
+      ],
+      "entry": "006123a0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006123a0.json",
+      "export_sha256": "6e13fc0ca69c65617d0a8945bc25f937030dac6d1f7194478c14fd7f43463fa3",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 444,
+      "decompilation_sha256": "146cafa3c7ffb354033b90dd688e7a2b36adb28866c53bc720f196b9b5adb966",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0059edf4",
+          "target": "006a1c80"
+        },
+        {
+          "site": "0059ee2f",
+          "target": "00730140"
+        },
+        {
+          "site": "0059ee3b",
+          "target": "00698500"
+        },
+        {
+          "site": "0059ee5a",
+          "target": "0059ef80"
+        },
+        {
+          "site": "0059ee61",
+          "target": "005b0390"
+        },
+        {
+          "site": "0059ee7c",
+          "target": "007e5f33"
+        },
+        {
+          "site": "0059ee8f",
+          "target": "0059ef80"
+        },
+        {
+          "site": "0059ee96",
+          "target": "005afe00"
+        },
+        {
+          "site": "0059eeca",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0059eed8",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0059eee6",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0059eef4",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0059ef02",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0059ef10",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0059ef1e",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0059ef2c",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0059ef3a",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0059ef61",
+          "target": "0059eb60"
+        },
+        {
+          "site": "0059ef68",
+          "target": "005a8790"
+        }
+      ],
+      "entry": "0059edc0",
+      "export_path": "analysis/work/future-dependencies/p24-reused/0059edc0.json",
+      "export_sha256": "118cca848c46f7fd0103f0b4346c772949ef9e6fd4dc51a54ae68894fb1dd46d",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 298,
+      "decompilation_sha256": "9512c7dac48162c17cff473e9f0cd27e46e7c9fed29e836651b1f955d8950196",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006a2cf7",
+          "target": "005aac90"
+        },
+        {
+          "site": "006a2d83",
+          "target": "005aac90"
+        }
+      ],
+      "entry": "006a2c90",
+      "export_path": "analysis/work/future-dependencies/p24-reused/006a2c90.json",
+      "export_sha256": "c50f267ee676a73fe86d3a0688b5055e27ad1950b7153a5c669b088df36a1fd6",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 471,
+      "decompilation_sha256": "f4c8d9c98897d3cfc2756510c01c3128550415c360402efad66271242573ca6b",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "007274a7",
+          "target": "0073d070"
+        },
+        {
+          "site": "007274b4",
+          "target": "0073cf50"
+        },
+        {
+          "site": "007274d2",
+          "target": "0073cf50"
+        },
+        {
+          "site": "007274eb",
+          "target": "0073cf50"
+        },
+        {
+          "site": "007274fa",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00727509",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00727516",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00727520",
+          "target": "00727450"
+        },
+        {
+          "site": "0072752a",
+          "target": "00727450"
+        },
+        {
+          "site": "00727534",
+          "target": "00727450"
+        },
+        {
+          "site": "0072753e",
+          "target": "00727450"
+        },
+        {
+          "site": "00727548",
+          "target": "00727450"
+        },
+        {
+          "site": "00727570",
+          "target": "0073cf50"
+        },
+        {
+          "site": "0072759e",
+          "target": "00727450"
+        },
+        {
+          "site": "007275d2",
+          "target": "0073cf50"
+        },
+        {
+          "site": "00727609",
+          "target": "00727450"
+        },
+        {
+          "site": "00727636",
+          "target": "0073cf50"
+        },
+        {
+          "site": "0072764b",
+          "target": "0073cf50"
+        }
+      ],
+      "entry": "00727480",
+      "export_path": "analysis/work/future-dependencies/p24-reused/00727480.json",
+      "export_sha256": "5f3f0de525474ab2f5895f1d28e4284cecd453e1a408fdc17de1e870f9fe250b",
+      "program": "client"
     }
   ],
   "failed_passes": [
@@ -21223,6 +22980,60 @@
       "claim": "First PRNG factor uses x87 FIMUL score mean, FIADD signed cumulative score then __ftol; second draw multiplies zero FLOAT accumulator",
       "end_exclusive": "0068c6ca",
       "start": "0068c673"
+    },
+    {
+      "bytes_sha256": "e9135d5d4db94b1f852ec6df43ad83719652bf14732ab5e0e8e6eb5755f43b4d",
+      "claim": "Size helper counts changed LOD0 vertices and adds4 per entry; decompiler lost accumulator",
+      "end_exclusive": "004f7509",
+      "start": "004f74ec"
+    },
+    {
+      "bytes_sha256": "e9135d5d4db94b1f852ec6df43ad83719652bf14732ab5e0e8e6eb5755f43b4d",
+      "claim": "Size helper also counts LOD1 delta bytes",
+      "end_exclusive": "004f75ee",
+      "start": "004f75d1"
+    },
+    {
+      "bytes_sha256": "0968d28505195ef5ef0e2467ccf665da072a941aa39d6ebc96273b770694b5b9",
+      "claim": "Final size includes live variable byte accumulator in ECX",
+      "end_exclusive": "004f7645",
+      "start": "004f761d"
+    },
+    {
+      "bytes_sha256": "7b6f7afe02e714cbe3deb7b4d2073a16cd74a363cade91bf04c63ff302607e5d",
+      "claim": "10006 writer receiver is inline Car+24E0",
+      "end_exclusive": "004dd6d3",
+      "start": "004dd6c7"
+    },
+    {
+      "bytes_sha256": "ed099dcd58c66327fd395c1c63691e02060eabbaccc2e0e62e47d1b38c26a330",
+      "claim": "Mesh delta x/y/z quantize by FLOAT00810548 then ftol and mask6 bits",
+      "end_exclusive": "004f8011",
+      "start": "004f7f97"
+    },
+    {
+      "bytes_sha256": "665ff244f162127544d9bec2d111b318edba25252ea747d85025aa0570288256",
+      "claim": "Short suffix hash zero-pads partial DWORD; decompiler incorrect return0",
+      "end_exclusive": "004f426b",
+      "start": "004f4247"
+    },
+    {
+      "bytes_sha256": "69289a89d23d8561578c00a65a3dd2a92231ee68a07c4f218ddfa51b48bea1c2",
+      "claim": "Ancillary record native20/24 and optional28 pointed-to24/28/WORD70",
+      "end_exclusive": "004f9844",
+      "start": "004f97e5"
+    },
+    {
+      "bytes_sha256": "3d556f94acc6e1efdde354439d727d5598af41829aa369fab43c00c3117023b0",
+      "claim": "Distinct secondary918 and primary914 return wrappers; same soldier ECX",
+      "end_exclusive": "006a293c",
+      "start": "006a2920"
+    },
+    {
+      "bytes_sha256": "6596a85f96dc7d66b42a53da1aaa1ec6e5fee8a81a423b4c6bc8b28a49e9b222",
+      "claim": "Team reconciliation assigns native48 from first unused1..4 producer",
+      "end_exclusive": "00695e21",
+      "start": "00695e0c"
     }
   ],
   "method": "Sequential readOnly/noanalysis Ghidra; transient definitions discarded; targeted static PE vtable reads; no execution",

@@ -3,6 +3,9 @@
 import hashlib
 import json
 import re
+import io
+import subprocess
+import tarfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -22,7 +25,8 @@ def generate():
     contracts_path = 'analysis/future-dependencies/evidence/research-contracts.json'
     manifest, modules = read(manifest_path), read(modules_path)
     actors, contracts = read(actors_path), read(contracts_path)
-    ledger = {(r['program'], r['entry']): (i, r) for i, r in enumerate(read('analysis/function-status.json')['functions'])}
+    ledger_bytes = subprocess.check_output(['git','show',SOURCE+':analysis/function-status.json'],cwd=ROOT)
+    ledger = {(r['program'], r['entry']): (i, r) for i, r in enumerate(json.loads(ledger_bytes)['functions'])}
     # Catalog associations are scope groupings, not call or initialization proofs.
     specs = [
       ('preparation','P2.4','Application GameData/squad/stores; process lifetime; descriptors borrowed by states',
@@ -56,11 +60,13 @@ def generate():
     nodes, edges = {}, {}
     exports = {r['entry']: (i, r) for i, r in enumerate(manifest['exports'])}
     mentions = {}
-    for file in sorted((ROOT/'recovered').rglob('*')):
-        if file.suffix not in ('.h','.cpp'): continue
-        for number,line in enumerate(file.read_text(errors='replace').splitlines(),1):
-            for a in set(re.findall(r'(?<![0-9a-f])[0-9a-f]{8}(?![0-9a-f])',line.lower())):
-                mentions.setdefault(a,[]).append({'path':str(file.relative_to(ROOT)), 'line':number,'relationship':'address_mention_only'})
+    archive = subprocess.check_output(['git','archive',SOURCE,'recovered'],cwd=ROOT)
+    with tarfile.open(fileobj=io.BytesIO(archive)) as tree:
+        for entry in tree.getmembers():
+            if not entry.isfile() or Path(entry.name).suffix not in ('.h','.cpp'): continue
+            for number,line in enumerate(tree.extractfile(entry).read().decode(errors='replace').splitlines(),1):
+                for a in set(re.findall(r'(?<![0-9a-f])[0-9a-f]{8}(?![0-9a-f])',line.lower())):
+                    mentions.setdefault(a,[]).append({'path':entry.name,'line':number,'relationship':'address_mention_only','revision':SOURCE})
     def node(key, kind, **data):
         data.setdefault('batch_ids',[])
         data.setdefault('status',data.get('implementation_status','unknown'))
@@ -98,7 +104,7 @@ def generate():
         source_mentions = mentions.get(a,[])
         provenance = [prov(evidence)]
         if indexed: provenance.append(prov(manifest_path,json_pointer=f'/exports/{indexed[0]}'))
-        if row: provenance.append(prov('analysis/function-status.json',json_pointer=f'/functions/{row[0]}'))
+        if row: provenance.append(prov('analysis/function-status.json',json_pointer=f'/functions/{row[0]}',revision=SOURCE))
         status = row[1]['status'] if row else 'no_ledger_claim'
         node(key,'function',label='client:'+a,subsystem=subsystem,milestones=[milestone],original_addresses=[a],
              owner=owner,lifetime='See owner contract; no independent save-only owner',source_mapping=mapping,
@@ -198,6 +204,10 @@ def generate():
     }
     for sid,blocker in corrections.items():
         nodes['subsystem:future:'+sid]['data']['blockers']=[blocker]
+    p24_review_path='analysis/future-dependencies/evidence/p24-review.json'
+    reviewed=read(p24_review_path)
+    for sid in ['p24_fields','p24_routes','p24_squad','p24_inventory','p24_bridge','p24_media','p24_acceptance']:
+        nodes['subsystem:future:'+sid]['data']['source_observations']=[prov(p24_review_path,revision_of_observation=reviewed['source_commit_sha'],json_pointer='/sources'),prov(p24_review_path,json_pointer='/findings')]
     for a,(i,r) in exports.items():
         src='function:client:'+a
         if src not in nodes: continue
@@ -238,9 +248,9 @@ def generate():
             'analysis/future-dependencies/phase2-overview.md','analysis/future-dependencies/p2.6-save-load.md',
             'analysis/future-dependencies/p2.6-context-layout.md','analysis/future-dependencies/p2.7-results.md',
             'analysis/future-dependencies/implementation-guide.md','tools/progress-analyzer.md','tools/progress_graph.py','analysis/future-dependencies/export_graph.py']
-    inputs.append('analysis/future-dependencies/README.md')
+    inputs.extend(['analysis/future-dependencies/README.md','analysis/future-dependencies/p2.6-car-format.md','analysis/future-dependencies/p2.6-human-state-leaves.md','analysis/future-dependencies/evidence/car-packed-v10.json','analysis/future-dependencies/evidence/p24-review.json','analysis/future-dependencies/p2.4-preparation.md','analysis/future-dependencies/p2.4-squad-equipment.md','analysis/future-dependencies/p2.4-game-handoff.md','analysis/future-dependencies/p2.4-acceptance.md'])
     return {'schema_id':'hd2.future-dependencies','schema_version':1,'source_commit_sha':SOURCE,
-            'binary':manifest['binary'],'inputs':[{'path':p,'sha256':digest(p)} for p in sorted(inputs)],
+            'binary':manifest['binary'],'inputs':[{'path':p,'sha256':hashlib.sha256(ledger_bytes).hexdigest(),'revision':SOURCE} if p=='analysis/function-status.json' else {'path':p,'sha256':digest(p)} for p in sorted(inputs)],
             'epistemic_policy':{'call_edge_implies_blocking':False,'dependency_direction':'prerequisite_to_dependent',
                 'call_direction':'caller_to_callee','implementation_status_scope':'Pinned source SHA and exact ledger input digest',
                 'research_is_implementation':False,'runtime_execution':False,'desktop_acceptance':'unknown',

@@ -248,7 +248,7 @@
         "B26.actors.car"
       ],
       "blockers": [
-        "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+        "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
       ],
       "confidence": "confirmed",
       "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
@@ -472,6 +472,332 @@
       "priority_reason": "Existing459 identity must be initialized by real physics queue producer",
       "research_readiness": "partial_contract",
       "subsystem": "actor_physics35"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.car.layout"
+      ],
+      "blockers": [
+        "Format research complete; readiness still requires real owners and integration"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-car-format.md",
+      "id": "subsystem:future:car_layout",
+      "implementation_readiness": "blocked",
+      "label": "Packed version10 byte format and quantization",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "004f7300",
+        "004f7650",
+        "004f8510",
+        "004f4040",
+        "004f4110",
+        "004f41f0",
+        "004f42f0"
+      ],
+      "owner": "Existing Car and actual model/solver owners",
+      "priority": "high",
+      "priority_reason": "User-prioritized remaining actor persistence boundary",
+      "research_readiness": "contract_ready",
+      "subsystem": "car_layout"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.car.mesh",
+        "B26.actors.car.restore"
+      ],
+      "blockers": [
+        "Tipped-pose x87 correction and actual mesh/collision/part integration; inline24E0 producer semantics"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-car-format.md",
+      "id": "subsystem:future:car_restore",
+      "implementation_readiness": "blocked",
+      "label": "Car destructive restore and derived world receivers",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "004e95b0",
+        "004e98c0",
+        "004f5840",
+        "004e0f70",
+        "004e1230",
+        "004c6660",
+        "004c68b0"
+      ],
+      "owner": "Existing Car and actual model/solver owners",
+      "priority": "high",
+      "priority_reason": "User-prioritized remaining actor persistence boundary",
+      "research_readiness": "partial_contract",
+      "subsystem": "car_restore"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.human.player"
+      ],
+      "blockers": [
+        "Format research complete; readiness still requires real owners and integration"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-human-state-leaves.md",
+      "id": "subsystem:future:human_player",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Player state nested payload",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "005461f0",
+        "005464b0"
+      ],
+      "owner": "Human-owned concrete Player B0 state",
+      "priority": "high",
+      "priority_reason": "User-prioritized remaining actor persistence boundary",
+      "research_readiness": "contract_ready",
+      "subsystem": "human_player"
+    },
+    {
+      "batch_ids": [
+        "B24.routes",
+        "B24.progression"
+      ],
+      "blockers": [
+        "Later ordinary mission preparation read missing; kind7 guard is external P2.2 boundary"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-preparation.md",
+      "id": "subsystem:future:p24_routes",
+      "implementation_readiness": "blocked",
+      "label": "Descriptor routes and progression",
+      "lifetime": "Application preparation/session and actual state/scene lifetimes; see P2.4 contracts",
+      "milestones": [
+        "P2.4"
+      ],
+      "original_addresses": [
+        "00638d30",
+        "0063a950",
+        "006b8a20",
+        "006b8aa0",
+        "006b8b20",
+        "006b9680",
+        "006b93c0",
+        "006b9190",
+        "006c0ef0",
+        "006c20f0"
+      ],
+      "owner": "GameData ordinary/synthetic tree; screens borrow current descriptor",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.4 preparation-to-gameplay integration",
+      "research_readiness": "partial_contract",
+      "subsystem": "p24_routes"
+    },
+    {
+      "batch_ids": [
+        "B24.squad"
+      ],
+      "blockers": [
+        "P24-F01 voice48 vs side40",
+        "P24-F02 secondary stock return",
+        "P24-F03 spare-record reuse"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-squad-equipment.md",
+      "id": "subsystem:future:p24_squad",
+      "implementation_readiness": "blocked",
+      "label": "Live soldier identity and native-field correction",
+      "lifetime": "Application preparation/session and actual state/scene lifetimes; see P2.4 contracts",
+      "milestones": [
+        "P2.4"
+      ],
+      "original_addresses": [
+        "006739f0",
+        "006a2340",
+        "00694520",
+        "006958a0",
+        "00694ae0",
+        "006953b0",
+        "00695b30",
+        "00695ad0",
+        "006a2920",
+        "006a2930",
+        "006a2940"
+      ],
+      "owner": "Application live squad and HumanStore; slot records borrow original candidate indices",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.4 preparation-to-gameplay integration",
+      "research_readiness": "contract_ready",
+      "subsystem": "p24_squad"
+    },
+    {
+      "batch_ids": [
+        "B24.inventory"
+      ],
+      "blockers": [
+        "Desktop completely untested; caller-specific refunds/native mutation ordering need correction"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-squad-equipment.md",
+      "id": "subsystem:future:p24_inventory",
+      "implementation_readiness": "blocked",
+      "label": "Preparation equipment UI and stock",
+      "lifetime": "Application preparation/session and actual state/scene lifetimes; see P2.4 contracts",
+      "milestones": [
+        "P2.4"
+      ],
+      "original_addresses": [
+        "00675900",
+        "006739a0",
+        "00675980",
+        "00674560",
+        "006763b0",
+        "00676d10",
+        "006761a0",
+        "006755f0",
+        "00677d00",
+        "00675f30",
+        "00673dd0",
+        "0067bda0",
+        "0067bdd0",
+        "006a3080",
+        "006a2c90"
+      ],
+      "owner": "Actual914/918 stores and live soldier entries; catalogue definitions shared",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.4 preparation-to-gameplay integration",
+      "research_readiness": "contract_ready",
+      "subsystem": "p24_inventory"
+    },
+    {
+      "batch_ids": [
+        "B24.bridge"
+      ],
+      "blockers": [
+        "P2.3 real consumers; P24-F05 mutable squad authority not bound; F01 affects speech draws"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "id": "subsystem:future:p24_bridge",
+      "implementation_readiness": "blocked",
+      "label": "Prepared records into real Human and Items",
+      "lifetime": "Application preparation/session and actual state/scene lifetimes; see P2.4 contracts",
+      "milestones": [
+        "P2.4"
+      ],
+      "original_addresses": [
+        "006989b0",
+        "00611c90",
+        "00612a60",
+        "0059eb60",
+        "0059edc0",
+        "005a6930",
+        "007d7810",
+        "007d8b40",
+        "006123a0",
+        "00698510",
+        "00727480"
+      ],
+      "owner": "One authoritative mutable live squad; HumanStore/catalogue outlive Humans; scene owns registered actors",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.4 preparation-to-gameplay integration",
+      "research_readiness": "partial_contract",
+      "subsystem": "p24_bridge"
+    },
+    {
+      "batch_ids": [
+        "B24.media"
+      ],
+      "blockers": [
+        "Actual descriptor-conditional desktop coverage; no substitute movie success"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-preparation.md",
+      "id": "subsystem:future:p24_media",
+      "implementation_readiness": "blocked",
+      "label": "Briefing and ordinary movie lifecycle",
+      "lifetime": "Application preparation/session and actual state/scene lifetimes; see P2.4 contracts",
+      "milestones": [
+        "P2.4"
+      ],
+      "original_addresses": [
+        "00688040",
+        "00688c10",
+        "006890f0",
+        "00688460"
+      ],
+      "owner": "Briefing state owns copied movie key/backend; GameData keeps traversal cursor",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.4 preparation-to-gameplay integration",
+      "research_readiness": "contract_ready",
+      "subsystem": "p24_media"
+    },
+    {
+      "batch_ids": [
+        "B24.acceptance"
+      ],
+      "blockers": [
+        "P2.3 acceptance and all required matrix cases remain pending"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-acceptance.md",
+      "id": "subsystem:future:p24_acceptance",
+      "implementation_readiness": "blocked",
+      "label": "Preparation desktop boundary",
+      "lifetime": "Application preparation/session and actual state/scene lifetimes; see P2.4 contracts",
+      "milestones": [
+        "P2.4"
+      ],
+      "original_addresses": [
+        "006c0ef0",
+        "006989b0"
+      ],
+      "owner": "User-run reconstructed desktop with isolated legitimate profile",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.4 preparation-to-gameplay integration",
+      "research_readiness": "contract_ready",
+      "subsystem": "p24_acceptance"
+    },
+    {
+      "batch_ids": [
+        "B24.fields"
+      ],
+      "blockers": [
+        "P24-F01 voice48 vs side40",
+        "P24-F02 secondary stock return",
+        "P24-F03 spare-record reuse"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-squad-equipment.md",
+      "id": "subsystem:future:p24_fields",
+      "implementation_readiness": "blocked",
+      "label": "Native field, stock and spare-record corrections",
+      "lifetime": "Application preparation/session and actual state/scene lifetimes; see P2.4 contracts",
+      "milestones": [
+        "P2.4"
+      ],
+      "original_addresses": [
+        "006739f0",
+        "006a2340",
+        "00694520",
+        "006958a0",
+        "00694ae0",
+        "006953b0",
+        "00695b30",
+        "00695ad0",
+        "006a2920",
+        "006a2930",
+        "006a2940"
+      ],
+      "owner": "Application live squad and HumanStore; slot records borrow original candidate indices",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.4 preparation-to-gameplay integration",
+      "research_readiness": "contract_ready",
+      "subsystem": "p24_fields"
     }
   ],
   "existing_associations": [
@@ -764,6 +1090,150 @@
       "relationship": "data_dependency",
       "source": "subsystem:future:world_identity",
       "target": "function:client:007d3d90"
+    },
+    {
+      "blocking": true,
+      "condition": "Correct variable byte boundaries and quantizers precede replay into existing Car owners",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-car-format.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:car_layout",
+      "target": "subsystem:future:car_restore"
+    },
+    {
+      "blocking": true,
+      "condition": "Reuse accepted actual Human/Items/Player world consumers, do not duplicate P2.2/P2.3",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "depends_on",
+      "source": "milestone:P2.3",
+      "target": "subsystem:future:p24_bridge"
+    },
+    {
+      "blocking": true,
+      "condition": "Required bounded P2.4 implementation and desktop predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:p24_squad",
+      "target": "subsystem:future:p24_inventory"
+    },
+    {
+      "blocking": true,
+      "condition": "Required bounded P2.4 implementation and desktop predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:p24_routes",
+      "target": "subsystem:future:p24_bridge"
+    },
+    {
+      "blocking": true,
+      "condition": "Required bounded P2.4 implementation and desktop predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:p24_inventory",
+      "target": "subsystem:future:p24_acceptance"
+    },
+    {
+      "blocking": true,
+      "condition": "Required bounded P2.4 implementation and desktop predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:p24_bridge",
+      "target": "subsystem:future:p24_acceptance"
+    },
+    {
+      "blocking": true,
+      "condition": "Required bounded P2.4 implementation and desktop predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:p24_media",
+      "target": "subsystem:future:p24_acceptance"
+    },
+    {
+      "blocking": false,
+      "condition": "Conditional later campaign branch006C3340(false); full live snapshot is not required",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "data_dependency",
+      "source": "subsystem:future:application_persistence",
+      "target": "subsystem:future:p24_routes"
+    },
+    {
+      "blocking": false,
+      "condition": "Conditional legitimate progress acquisition or existing copied profile; not universal P2.7 prerequisite",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "data_dependency",
+      "source": "subsystem:future:campaign",
+      "target": "subsystem:future:p24_acceptance"
+    },
+    {
+      "blocking": false,
+      "condition": "Split carried records before one-runtime-item-per-record creation",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "initialization_order",
+      "source": "function:client:006a2c90",
+      "target": "function:client:0059eb60"
+    },
+    {
+      "blocking": false,
+      "condition": "Populate actual Human storage/clothing before local player presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "initialization_order",
+      "source": "function:client:0059eb60",
+      "target": "function:client:006123a0"
+    },
+    {
+      "blocking": false,
+      "condition": "Native48 producer must feed actual speech consumer, not native40 side field",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "initialization_order",
+      "source": "function:client:00695b30",
+      "target": "function:client:0059edc0"
+    },
+    {
+      "blocking": false,
+      "condition": "Human170 preserves candidate index; live squad owns prepared records, Human B8 borrows profile",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.4-game-handoff.md",
+      "relationship": "ownership",
+      "source": "subsystem:future:p24_squad",
+      "target": "subsystem:future:p24_bridge"
+    },
+    {
+      "blocking": true,
+      "condition": "Correct native field/stock/reuse policies before full route acceptance",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/implementation-guide.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:p24_fields",
+      "target": "subsystem:future:p24_routes"
+    },
+    {
+      "blocking": true,
+      "condition": "Actual descriptor selects team/replacement owner",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/implementation-guide.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:p24_routes",
+      "target": "subsystem:future:p24_squad"
+    },
+    {
+      "blocking": true,
+      "condition": "Movie descriptor and cursor must survive state replacement",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/implementation-guide.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:p24_routes",
+      "target": "subsystem:future:p24_media"
     }
   ],
   "schema_version": 1

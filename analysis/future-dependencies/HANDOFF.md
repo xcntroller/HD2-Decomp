@@ -1,83 +1,76 @@
-# Forward research handoff — 2026-11-10, deep persistence checkpoint
+# Forward research handoff — P2.4 reconnaissance checkpoint
 
-Branch `research/future-dependencies`. Implementation claims remain pinned to
-`52c568964063207b0d15bea8ef98af09f89d84df`; no main source, ledger, root plan/
-handoff, analyzer, website, networking or other worktree changes. Local research
-only; no original EXE/DLL/Windows fixture/Proton run, desktop claim, push or merge.
+Worktree/branch research/future-dependencies only. P2.6/P2.7 research preserved,
+temporarily deprioritized by user. No main source/ledger/root plan/handoff,
+website/analyzer/networking or other worktree edits. No original executable,
+DLL, Windows fixture or Proton run; no desktop claim, push or merge.
 
-Use [implementation guide](implementation-guide.md), [actor contracts](p2.6-actor-persistence.md),
-[context layout](p2.6-context-layout.md), [module classification](p2.6-module-persistence.md)
-and [results](p2.7-results.md). This is substantially more complete research,
-not a declaration of compatible whole-world save/load or P2.7 delivery.
+Start with [P2.4 route/inventory](p2.4-preparation.md),
+[squad/stock/fields](p2.4-squad-equipment.md), [game handoff](p2.4-game-handoff.md),
+[desktop matrix](p2.4-acceptance.md) and [batches](implementation-guide.md).
+Main was read at dcbef5786db397def454a29b4b68ec2feff401e3:35 source/doc digests
+in [review](evidence/p24-review.json). Main still declines actual loading at that
+snapshot; its strict source composition does not imply P2.2 or gameplay acceptance.
+Graph ledger claims remain52c5689; reviewed main observations are separate.
 
-Latest evidence:250 fingerprinted static exports (186 added),17 concrete actor
-pairs,7 Human B0 state pairs,4 item subtype pairs,18 registered modules classified.
-[Manifest](evidence/manifest.json) retains prior export indices and lists failed/
-excluded probes. Heavy Ghidra ran sequentially readOnly/noanalysis, transient
-function definitions discarded. Full exports remain ignored, no commercial
-binary/asset/disassembly dumps tracked. [Verification](evidence/verification.json)
-records focused provenance/vtable/format/graph checks. Graph310 nodes/629 edges;
-source recovery, research readiness and implementation readiness remain separate.
+High-value new findings, stable IDs in review:
 
-Important resolved/corrected contracts:
+- F01:00695B30/00695AD0 assign native live48 first-unused1..4, consumed by
+0059EDC0 speech. PreMissionTeam instead writes specialization (packet native40)
+while spawn reads speech_variant initialized-1. Connect actual48 producer/consumer;
+do not alias40 to48 or accept extra random fallback draws.
+- F02:00694520 unavailable-member cleanup calls006A2920→SECONDARY008AE918.
+006A2930 is distinct PRIMARY008AE914 wrapper. Flow.return_equipment always
+credits primary; correct destination per original caller before loadout acceptance.
+- F03:00695B30 marks deselected IDs-1, reuses spare records before allocation,
+006A2340 changes name/id/capacity WITHOUT clearing inventory, swaps pointer order,
+then retires negatives. Source defaults new records and refunds unselected gear;
+that is not the observed original replacement contract.
+- F04: prior research labels reversed mask1/2. Actual code already uses kind16
+head=1, kind15 uniform=2. Correct prose, do not swap working mask code.
+- F05: one authoritative mutable squad must feed activation/spawn/HUD/extraction.
+MissionRequest copies squad and exposes const request(); activation live_squad
+services are not concretely application-bound. P2.2/P2.3 agent owns this integration;
+P2.4 verifies it, not a competing world implementation or second roster.
+- F06: later ordinary mission selection remains unavailable_saved_game source.
+It needs previous nonlive preparation006C3340(false) and traversal restoration;
+full live save/actor/VM replay is not required. Reuse existing P2.6 format research.
 
-- Mission-slot IDs and runtime IDs differ; actor14 is an active-list index.
- 00475D50 can return a still-owned retired reserved actor;00475DD0 is physical
- slot lookup only. Existing source's ordinary-lookup comment is misleading;
- do not copy it as a retired-lookup persistence contract.
-- Module12 recreates only actual type11/2 branches;35 resolves existing actor
- created by physics004794D0. Its vtable00812750 pairs005E2630/005E2730, vec3 motion
- only; real borrowed physics90/005E2510 receiver required. No generic factory.
- Module13 is positional, with no per-actor type/ID.00476A50 recomputes Human
- counters/selection;006E0890/0B70 streams proximity entries/speeds/bucket pairs,
- not a deferred-reference table. NullActor33 delegates base, not no-op.
-- Human1001 retires/recreates B0 before1003;1002 receiver is inline98,
- 1004 pointed B4 (instruction-confirmed). Mounted target identities already
- exist. Car packed version10 remains the largest actor-format gap.
-- Four actual item44/48 pairs and nested ownership now mapped. Common writer
- emits102/103 but reader recognizes202/203; jump table/instructions confirm
- this asymmetry. Preserve it explicitly. Items007DC6E0 is a borrowed index,
- not owner transfer; partial nested failure can leave a registered prefix.
-- Script4 reads BEFORE Team11/runtime12/Actors13. Loaded-world identity and
- frame availability precede Script, not actor payload replay.2700 is compiled
- Whenever period/elapsed/enabled,2500 Gosub returns,2450 frame-slot names.
- Scalars now map to actual PC/signals/Delay/flags. Preserve confirmed0x400 current
- globals. Pending animation receiver, rotations and derived contexts remain.
-- Mode/store/current aggregate and frontend006B7410/last path006B7D30 mapped;
- stock quantity follows the closed index chunk. No ignored return proves success.
-- Offline result→transition→shutdown extracts SAME Human/squad before world
- destruction. Debrief activation0068CCF0/0068CB70 produces ranks/medals; accept/
- leave0068C300 commits them. Exact rank thresholds, medal precedence/uniqueness,
- consumed-delta clearing and nine-draw redistribution recovered. One zero-mean
- update still draws. Whole lifecycle is not idempotent merely because deltas clear.
+Original routes are descriptor-driven: Tutorial team→game has no loadout page;
+Arctic briefing can precede equipment; standalone copies eligible movies and
+aggregates prior equipment, with ordinal10 exception. Status2/3 and queued modal
+callbacks must not double-advance/refresh retired team owners. Mode0/1/2/3 is
+separate from standalone/config flag and process mode7. No manufactured unlocks.
 
-Ready bounded source work: identity registry/proximity/positional dispatch,
-mode-stock/current globals, base/item payload formats, context scalar/reference/
-Gosub/Whenever format and result arithmetic. Mandatory owners and transitive
-requirements remain in child batches; live/quick/restart/frontend commands are
-NOT ready to enable wholesale. Preserve module order, partial mutation and real
-cleanup; no successful placeholder, idle context or empty inventory substitute.
+B24.fields is the smallest immediate correction batch. Then routes/squad/inventory,
+accepted P2.3 bridge, ordinary media and15 pending desktop scenarios. Existing
+team acceptance and P2.1 unloaded-constructor/error-return acceptance are bounded.
+Loadout screens remain completely desktop-untested; November2 team-removal source
+corrections still need their own recheck. A request log or fixture does not prove
+modified clothing/items reached actual controllable Humans.
 
-Next research in priority order:
+Evidence:281 fingerprinted exports total;24 existing targeted preparation/spawn
+exports reused and hash-checked. No duplicate Ghidra discovery or heavy analysis
+needed. New instruction anchors verify distinct stock globals and native48 write.
+Raw exports stay ignored. [P2.4 verification](evidence/p24-verification.json)
+checks source revisions/digests, new evidence, original stock targets, source
+mismatches, graph determinism/IDs/edges/pointers, pinned ledger and protected files.
+Graph369 nodes/774 edges, schema1; new source_observations field is documented.
+Prior persistence receipt remains [preserved](evidence/verification.json).
 
-1. Car004F7650/004F8510 exact variable solver layout (size004F7300), part/seat
- leaves; Human B0 command/AI/input plus inline98 animation leaves. Reuse recovered
- outer streams and item payloads, do not repeat dispatch discovery.
-2. Actual pending animation2600 tick receiver; Script rotation/frame animation
- persistence and derived context kind1/2 byte consumers. Existing tick rejects
- pending_pc!=-1; scalar persistence alone cannot enable it.
-3. Remaining nonempty module consumers: Tracks00401B20; Items0078B240/7F0;
- Team controllers; Sound backend; Versions apply; LMaps0048D270; Particles004428E0/
- 00442C80; populated projectile writer if reached. Optional missionA8+10/+14
- remains unresolved. Preserve genuine no-op/reset-only classifications.
-4. Full GameData/HumanStore and legacy aggregate case2, reset0069C390 and failed
- activation/shutdown tails; cleanup/repeat paths before enabling frontend resume.
-5. P2.7 repeated debrief activation/modal gates, protection-table producers,
- original PRNG seed/state lifetime. Arithmetic and producer are mapped; do not
- replace them or assume ignored save writes succeeded.
+Next: Agent #1 can consume B24.fields after P2.3, reusing existing owners and
+focused native checks. Research is adequate for bounded corrections and ordinary
+route integration; whole milestone remains blocked on F01/F02/F03, P2.3 authority
+binding, conditional nonlive preparation leaves/legitimate progress and desktop
+acceptance. Actual installed required resources may expose conditional gaps.
+Kind7 ordinal>=3 protection observations remain the main agent's existing startup
+boundary; never force equality or re-research it as a new P2.4 unlock service.
 
-Export remains schema1, documented additive batch_ids and virtual dispatches
-array (shared targets retain all selectors). Stable nodes/edges and source SHA
-preserved. Regenerate: `python3 analysis/future-dependencies/export_graph.py`.
-Do not refresh implementation claims without deliberately selecting a new source
-SHA and ledger. No permanent gameplay tests or source implementations added.
+Persistence next targets remain linked in p2.6-car-format.md and prior guide:
+tipped-pose correction/live mesh consumers, Human commands/animation, Script async,
+nonempty modules, reset/failure tails and result lifecycle. Do not discard their
+contracts or redo confirmed vtables, ID domains, globals or award arithmetic.
+
+Regenerate: python3 analysis/future-dependencies/export_graph.py. Keep source SHA
+explicit, original call edges nonblocking, conditional progress separate from
+universal scheduling prerequisites. No reconstructed function credit from research.

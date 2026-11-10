@@ -1,0 +1,43 @@
+{
+  "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "blockers": [
+    "F01 native48 voice producer/consumer",
+    "F02 stock refund destination",
+    "F03 spare-record reuse",
+    "F05 real mutable squad services from P2.3",
+    "F06 conditional later preparation persistence",
+    "Legitimate resource/progress access and actual desktop matrix"
+  ],
+  "checks": {
+    "deterministic_regeneration": "pass",
+    "distinct_stock_wrapper_targets": "pass",
+    "edge_semantics_and_scheduling_dag": "pass",
+    "git_diff_check": "pass",
+    "identified_source_producer_consumer_mismatches": "pass",
+    "implementation_claims_remain_at_pinned_ledger": "pass",
+    "markdown_local_links": "pass",
+    "new_stock_and_voice_instruction_anchors": "pass",
+    "prior_manifest_indices_preserved": "pass",
+    "protected_source_ledger_plans_and_tools_untouched": "pass",
+    "provenance_paths_and_json_pointers": "pass",
+    "reused_exports_fingerprints_hashes_and_calls": "pass",
+    "reviewed_main_revision_and_35_source_digests": "pass",
+    "revision_aware_input_digests": "pass",
+    "stable_prior_ids_and_unique_new_ids": "pass"
+  },
+  "desktop_verification": false,
+  "edges": 774,
+  "exports_total": 281,
+  "game_builds": "not_applicable_no_source_changes",
+  "graph_sha256": "372de641d0af085499a0923d6dc91f778a4b882b037c34ae1b3c54b20230bb0f",
+  "native_sanitizers": "not_applicable_static_research",
+  "nodes": 369,
+  "original_binary_execution": false,
+  "prior_persistence_checkpoint": "1d99646",
+  "readiness": "bounded_correction_batches_available_whole_P24_desktop_pending",
+  "reused_exports_added": 24,
+  "reviewed_main_source_commit_sha": "dcbef5786db397def454a29b4b68ec2feff401e3",
+  "schema_version": 1,
+  "scope": "P2.4 original preparation contracts and read-only current-main source review",
+  "source_commit_sha": "52c568964063207b0d15bea8ef98af09f89d84df"
+}

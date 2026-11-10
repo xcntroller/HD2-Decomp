@@ -83,3 +83,33 @@ Only this export and research evidence change; the original analyzer/website do
 not. Readiness and correction details are in the latest handoff/verification
 receipt. Raw exports are local ignored evidence and are unnecessary for website
 rendering; they are needed to reproduce the static verification itself.
+
+
+Car checkpoint adds version1 [car-packed-v10.json](evidence/car-packed-v10.json):
+header_fields use numeric byte offsets/sizes and explicit copy/derived operations;
+sections/count_offsets/size_formula give variable framing, wheel_fields list the
+25 persisted words, unwritten_header_bytes records padding. This sidecar adds no
+new graph record shape or implementation credit. See [Car](p2.6-car-format.md)
+and [Player](p2.6-human-state-leaves.md). Manifest now has257 exports, including
+seven new Car helper exports; previous export indices remain stable.
+
+After newer source commits entered this branch, the exporter was corrected to
+read the ledger and recovered-source mentions from the pinned source SHA via Git.
+Additive optional `revision` on input/provenance/source-mention records means
+resolve that path (and JSON pointer/line) at that commit, not current HEAD. For
+revisioned inputs, SHA256 hashes those revision's bytes. Records without revision
+retain the existing working-tree path semantics. Source SHA stays52c5689; no
+implementation status is silently refreshed. Export regeneration needs that commit
+in the local Git object database. Website rendering can use the self-contained
+export and attach revision-aware repository links; no website code is changed.
+
+
+P2.4 reconnaissance adds four focused contracts and version1
+[evidence/p24-review.json](evidence/p24-review.json). It contains source_commit_sha,
+revisioned source file digests, stable finding IDs and explicit original/source
+boundaries; observations do not overwrite pinned ledger status. New optional
+node data.source_observations links to that record, with revision_of_observation
+identifying reviewed main (not a revision to use for reading the local sidecar).
+Graph shapes, ID hashing and existing P2.6/P2.7 data are preserved. No website or
+analyzer changes.281 exports now include24 reused fingerprint-checked preparation
+exports; no duplicate Ghidra pass was needed for already recovered functions.
