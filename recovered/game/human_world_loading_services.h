@@ -83,6 +83,10 @@ public:
     }
     template<class Human,class Actor>bool human_sound_friendly(Human& human,Actor actor){return dependencies_.sight.human_sight_friendly(&human,actor);}
     template<class Human>auto& human_state_factory(Human& human){return composition(human).state_factory();}
+    template<class Human>auto& human_state_owner(Human& human){return composition(human).states();}
+    template<class Human>auto& human_inline(Human& human){return composition(human).control();}
+    template<class Composition,class Human>Composition& human_loading_owner(Human& human){return dependencies_.world_actors.template human_loading_owner<Composition>(human);}
+    template<class Human>bool human_selected_suppressed(Human& human){return dependencies_.presentation.human_selected_suppressed(human);}
     template<class Human>auto human_attached_actor(Human& human){return human.field160;}
     float human_sound_random(){return dependencies_.scene.frames().volume_random_unit();} //Actual LS3DF RandFloat, distinct from CRT rand.
     template<class Human,class Actor>void player_sight_dog(Human&,Actor& actor){dependencies_.players.control().add_sighted_dog(&actor);} //0045D4A0.

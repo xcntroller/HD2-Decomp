@@ -1,5 +1,7 @@
 # Technical research guide
 
+2026-11-10: [Human/VM world composition](analysis/human-vm-world-composition.md) constructs actual VM receivers/module/runtime with the same Human/Players/FPV/HUD/SOUND owners. Checked context/authority link closes the construction cycle and finishes before Human retirement; actual process registration/mode are borrowed. Native link sanitizers, whole actual i386 composition and app link pass. Tally unchanged. Activation API mappings resolved; private observed publication and containing session/loader remain.
+
 2026-11-10: [Human factory/world bindings](analysis/human-factory-world-bindings.md) construct the actual per-Human composition from shared owners and supply concrete animation/hearing/alignment/HUD/FPV receivers. Full actual-host construction exposed and fixed enemy base-pointer and cursor item-interface mismatches; physics counter now belongs to Startup. Native sanitizers/strict i386/app link pass. No new tally credit;34 complete/1,894 partial. Continue actual VM/session/loader.
 
 2026-11-10: [Human selection/visibility](analysis/human-selection-visibility-loading.md) supplies actual show/hide, borrowed Human fade queue, projection visibility and bounded current/pending Human identity lookup. Physical suspension and inline visibility share the real DD0 shadow owner. Focused sanitizers, strict i386 and app link pass. Five partials added:34 complete/1,894 partial. Source-only; continue actual Human/world/session/loader.

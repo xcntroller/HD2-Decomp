@@ -183,6 +183,7 @@ public:
     void close_archives() { archives_.close(); }
     EngineFrame* graphics() const { return static_cast<EngineFrame*>(input_setup_.graphics()); }
     std::uint32_t application_flags() const { return gate_; }
+    std::uint32_t& application_flags_owner(){return gate_;} //SAME00982100 for source module/runtime borrowers; no per-world mode copy.
     std::int32_t& local_player_identity(){return control_frame_.state().local_peer;} //SAME00982104, not a per-world ID copy.
     const std::int32_t& local_player_identity()const{return control_frame_.state().local_peer;}
     bool application_input_enabled() const { return application_input_enabled_; }

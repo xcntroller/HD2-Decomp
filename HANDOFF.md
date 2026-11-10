@@ -13,42 +13,51 @@ world frame or new desktop acceptance. Ledger34 complete/1,894 partial
 
 ## Latest verified source checkpoint
 
-[Human factory/world bindings](analysis/human-factory-world-bindings.md),
-[receipt](analysis/checkpoints/p2.2-human-factory-bindings-20261110.json).
-Actual HumanLoadingOwnerFactory takes SAME scene/collisions/Items/inputs/VM/
-profiles/Sight/hearing/Players/camera/audio/presentation dependencies. Startup
-owns physical process009832B0 and exposes shared FLOAT0084E80C=1.4. Per-Human
-animation markers/player queries now route through their actual DD0/tracks;
-shared SOUND50/54, alignment/session34/roster/clothing44, HUD direction and
-presentation mission/fallback endpoints supplied. Fixed actual base-actor enemy
-replay→Human selection and HUD cursor→actual item-module interface mismatches.
-Focused native ASan/UBSan/LSan; strict i386 whole Human construction/bothpasses/
-WorldActors dispatch plus real shared animation/hearing/FPV constructors, app
-link and27 tracker tests pass. No new ledger credit. Source-only; no loadedworld.
+[Human/VM world composition](analysis/human-vm-world-composition.md),
+[receipt](analysis/checkpoints/p2.2-human-vm-world-20261110.json).
+MissionScriptWorldLoading owns actual bindings/controls/lifecycle/views/player
+predicates/objectives/visibility/runtime/module; borrows SAME Human/Players/
+FPV/HUD/camera/Sight/hearing/SOUND/session/process owners. Requires existing
+process Script registration, Startup00982100/008692D0 refs. WorldLink supplies
+actual context lookup/authority AFTER module construction, rejects unbound calls,
+finishes module before unlink, before Human retirement. HumanScriptContextServices
+uses link for both Contexts/Runtime types, removing external VM declaration.
+Actor Frames must be GameActorServices, sharing SAME derived GameSceneActors;
+SceneActor<GameSceneActors> is not Human's actor backend. HUD hint signed-ID
+wrapper uses actual small-panel owner, no flags gate. Focused native link
+ASan/UBSan/LSan, full actual i386 Human/VM/module/FPV/SOUND construction, app
+link and27 tracker checks pass. No new tally credit. Source-only, no loadedworld.
 
-Previous58b1095 [selection/visibility](analysis/human-selection-visibility-loading.md),
+Previous11fe11e [Human factory](analysis/human-factory-world-bindings.md),
+58b1095 [selection/visibility](analysis/human-selection-visibility-loading.md),
 4f752cd [speech/dubbing](analysis/human-speech-loading.md),
-9621549 [shared world consumers](analysis/shared-world-loading-consumers.md).
-Actual005AC0F0 controls same DD0 A9C shadow, NOT SOUND. Human228 queue update
-supplied but live world update unintegrated; runtime projection/mark producers
-and pools unimplemented, actual cold primary projection list empty.00489180
-absent frozen/no credit; static ASM primary when Ghidra has no function.
+9621549 [shared consumers](analysis/shared-world-loading-consumers.md).
+Actual005AC0F0 controls SAME DD0 A9C shadow, NOT SOUND. Startup owns physical
+009832B0/shared FLOAT0084E80C=1.4. Cold primary projections empty; producers
+unimplemented. Human228 queue update supplied, live world update unintegrated.
+Fresh B0 clears stance74/78; previous-null Area8 skips B4. Positive stance/area,
+Dog534/nonoffline friendship reject; guards earn no credit.
 
 ## Next — same entire checkbox
 
-Continue actual containing VM/Human/FPV/HUD/SOUND/session aggregate, real integrity
-observed publication, ordered006CA780 loader/postactivation, first camera/update/
-render, failure/repeat then user desktop acceptance. Source WorldScene/WorldActors
-remain uncalled by app. Do not stop at a dependency or expand all P2.3.
-HumanWorldServices now supplies remaining cold selection/speech/Sight bindings;
-00537FB0 populated74/78 and previous Area8 B4 area branches explicitly reject,
-fresh state bind clears74/78 and skips previous-area lookup. Dog null534 genuine
-RET; populated Dog/nonoffline friendship reject. No credit for those guards.
-Source Human factory available, containing actual instance construction remains.
-VM Frames must be actual GameActorServices (Human's actor backend), sharing the
-same derived GameSceneActors instance; do not invent SceneActor<GameSceneActors>.
-Current ScriptContextServices compile check has an external authority/runtime
-boundary; replace it with actual MissionScriptLoadingRuntime/Module/Contexts.
+Continue actual activation APIs/observed publication and containing session/world,
+ordered006CA780 loading/postactivation, first camera/update/render, failure/repeat
+then user desktop acceptance. App still declines loading; WorldScene/WorldActors
+and source VM world remain uncalled. Do not stop at dependency or expand all P2.3.
+
+NEW targeted static evidence in WORK: session-activation-api-resolution.json,
+session-activation-api-boundaries.asm, script-guard-slot13-direct-refs.asm and
+script-guard-slot13-api-resolution.json.006989B0 real API payloads:
+00698AAE→GetTickCount beforeprogress5=.05;00698C09→IsWindowVisible after5=.8,
+GetIGraph virtual48 supplies window;00698C5D→GetCapture beforestatus5/spawn.
+006E9EC2 initializer seed also GetTickCount. Original006989B0 export remains in
+loader-module-composition/. Existing source activate_offline_session currently
+omits those activation API queries; next needs actual payload receivers/order.
+Private expected/observed side effects remain unresolved; do NOT assign raw API
+values or force equality. Original-address/per-thread VM outside accepted startup
+scope. Actual observations still required; no fabricated guard readiness.
+Current active temporary session-world host fixture retains full verified type
+graph for continuing integration; old checkpoint fixtures removed/hashed.
 
 Previous069a96f [HUD/player](analysis/hud-player-presentation-loading.md),
 d6b81e9 [FPV/player](analysis/first-person-loading-composition.md),

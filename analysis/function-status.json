@@ -15702,7 +15702,8 @@
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
-        "analysis/human-factory-world-bindings.md"
+        "analysis/human-factory-world-bindings.md",
+        "analysis/human-vm-world-composition.md"
       ]
     },
     {
@@ -15807,7 +15808,8 @@
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
-        "analysis/human-factory-world-bindings.md"
+        "analysis/human-factory-world-bindings.md",
+        "analysis/human-vm-world-composition.md"
       ]
     },
     {
@@ -22491,7 +22493,8 @@
         "analysis/mission-script-receivers.md",
         "analysis/checkpoints/p2.2-script-receivers-20261109.json",
         "analysis/human-world-composition.md",
-        "recovered/game/mission_script_actor_bindings.h"
+        "recovered/game/mission_script_actor_bindings.h",
+        "analysis/human-vm-world-composition.md"
       ]
     },
     {
@@ -24997,7 +25000,8 @@
       "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
       "evidence": [
         "analysis/mission-script-runtime-composition.md",
-        "recovered/game/mission_objective_status.h"
+        "recovered/game/mission_objective_status.h",
+        "analysis/human-vm-world-composition.md"
       ]
     },
     {

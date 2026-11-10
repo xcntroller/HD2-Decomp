@@ -31,6 +31,7 @@ public:
          contexts_(frames,files,runtime,resource_),frame_commands_(frames,contexts_),snapshots_(frames),rotations_(frames,snapshots_),visibility_(frames,snapshots_,models,packets,mode){}
     auto& registration(){return registration_.get();}auto& contexts(){return contexts_;}auto& variables(){return variables_;}
     Runtime& runtime(){return runtime_;} //Containing source identity check, no new original-function credit.
+    Frames& frames(){return frames_;} //SAME containing registry for checked Human/VM borrowers.
     auto& snapshots(){return snapshots_;}auto& visibility(){return visibility_;}
     auto& rotations(){return rotations_;}
     bool loaded()const{return loaded_;}const auto& failed_bindings()const{return failed_bindings_;}

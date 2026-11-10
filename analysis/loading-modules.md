@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [Human/VM world composition](human-vm-world-composition.md) replaces the external VM declaration with actual module/runtime/contexts and checked same-world Human linkage. Source-only verified; actual session/loader/integrity publication and first-frame delivery remain.
+
 2026-11-10: [Human factory/world bindings](human-factory-world-bindings.md) supply actual same-owner construction, animation callbacks, remaining cold Sight/hearing and common presentation bindings. Full Human/FPV/HUD/Players/source activation composition compiles; no containing application world or first-frame delivery. Continue actual VM/session/loader.
 
 2026-11-10: [Human selection/visibility](human-selection-visibility-loading.md) now supplies actual enemy-selection feedback, show/hide/fade queue, primary projection visibility and shared DD0 shadow identity. Source-only verified; remaining stance/area/Sight and containing Human/world/session/loader remain.

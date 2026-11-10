@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-10",
+  "scope": "Full first P2.2 checkbox; actual same-world Human/VM/module/contexts receiver composition. Continue actual session, API/observed producer and loader.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 0,
+  "tally": {
+    "complete": 34,
+    "partial": 1894,
+    "client_partial": 1889,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan checked Human/VM link identity/publication/authority/null/error/context routing, foreign bind/unbind, retirement/repeat. Module/context/frame endpoints doubled; no context body execution in new fixture.",
+    "host": "Strict i386 actual VM world construction/module/runtime/contexts and complete Human/FPV/HUD/Sight/hearing/SOUND/registry/process reference graph. Module activate/tick/finish and Human construction/both passes compile. External VM declaration removed; outer HUD objective-world and Players subgroup endpoints still declarations.",
+    "application": "Compile/link passed; loading still declines.",
+    "tracker": "27 tests; frozen fingerprints/unique statuses/README checks."
+  },
+  "limitations": [
+    "Source owners remain uncalled by application; no containing world/session constructed.",
+    "Private integrity observed publication unresolved, tables uninitialized; original-address/thread VM outside accepted startup scope. No equality or raw API result substitution.",
+    "Actual activation window/tick/capture receivers/order, loader, first frame/failure/repeat and desktop acceptance remain."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-vm-link-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-vm-link-native-run.log",
+      "bytes": 268,
+      "sha256": "47ca61bfa2cecfb155aca73d1da8549f5e425cfa08a0dd57d2fda527af832dbf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-vm-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-vm-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-vm-tracker-check.log",
+      "bytes": 437,
+      "sha256": "1e015f19f0af997931bb5b19b6b1e7bd56eab6ba9c64e5802549101ad8a7413d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-vm-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "8b2f659099c3d525331665dc15ef749b27dbea4add879f3408d4c6b1f1b11b84"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/mission-world-20261103/session-activation-api-resolution.json",
+      "bytes": 538,
+      "sha256": "cd9f33252b94d2d8dec9167a0780e17f637f28107fcfe271bf4f585d1cdf65f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/session-activation-api-boundaries.asm",
+      "bytes": 25805,
+      "sha256": "8940ab02d3951fa95b355607614e38ddf43d07cbb6112045aa90f3e4c90075dc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-guard-slot13-direct-refs.asm",
+      "bytes": 8887,
+      "sha256": "fb001750f11afc5e2989325c1adab77b3fa5851c8596468cf1cfd72d6bc84d02"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-guard-slot13-api-resolution.json",
+      "bytes": 258,
+      "sha256": "8b9782252b25f95d1f856e2d2e7293e89249e3409834482683abb13356877532"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-vm-link-audit.cpp",
+      "bytes": 3120,
+      "sha256": "24deda7b08d76c944e6db4018b062f9f33c5fab32c11fa22e1eed400d038c93a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-vm-link-audit",
+      "bytes": 311008,
+      "sha256": "9f78bde327d0e87eb71cdcb65a224550386d7749bd81f80015de7a988c3ff786"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-vm-host.cpp",
+      "bytes": 9609,
+      "sha256": "ad9164481e2f8a926a0843728e2456bd31cb05b7926d934b6bfcfba922b5404b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-vm-host.o",
+      "bytes": 11204019,
+      "sha256": "4295a0dff1e69496b230900d1379fd425e20097785b6c2307935ad59abc6621f"
+    }
+  ]
+}
