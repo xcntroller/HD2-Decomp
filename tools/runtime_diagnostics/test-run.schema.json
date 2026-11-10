@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "build_commit": {
+      "pattern": "^[a-fA-F0-9]{40}$",
+      "type": "string"
+    },
+    "build_sha256": {
+      "pattern": "^[a-fA-F0-9]{64}$",
+      "type": "string"
+    },
+    "conditions": {
+      "type": "string"
+    },
+    "exit_code": {
+      "type": "integer"
+    },
+    "launch_arguments": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "mission_expected": {
+      "type": "boolean"
+    },
+    "outcome": {
+      "type": "string"
+    },
+    "scenario": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "screenshots": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "wine_output_reported": {
+      "type": "boolean"
+    }
+  },
+  "title": "HD2 user-reported test run metadata",
+  "type": "object"
+}
