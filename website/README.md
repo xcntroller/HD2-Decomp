@@ -256,3 +256,22 @@ linked only when it is an ancestor of the asserted public build ref. Unknown
 revisions, missing blobs, unsafe paths and historical symlinks are rejected.
 `revision_of_observation` remains descriptive metadata and does not change where
 a local research sidecar is read.
+
+Combined research exports can introduce evidence in additional research areas.
+Receipt discovery includes evidence directories referenced by the graph's tracked
+inputs, alongside the original future-dependencies directory. Receipts retain
+schema version 1 and their original scope. Two explicit receipt shapes are
+supported:
+
+- Single graph: `graph_sha256`, `nodes`, `edges`, `source_commit_sha`.
+- Combined graph: `combined_graph_sha256`, `combined_nodes`, `combined_edges`,
+  `historical_combined_claim_sha`.
+
+Each selected shape must match the exact imported graph digest, counts and claim
+revision and have recorded checks. Focused-only fields are not used to certify a
+combined export. Unknown or incomplete shapes fail closed; receipts in unrelated
+evidence directories cannot authorize the graph. The published receipt metadata
+includes `graph_role`; the original record remains unchanged. Milestone cards
+and graph filters follow the current graph's milestone records, including P2.8,
+while external prerequisites remain distinct. Existing batch-guide import scope
+is unchanged.
