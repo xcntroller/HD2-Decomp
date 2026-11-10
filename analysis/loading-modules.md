@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [GEffects1 loading](geffects-module-loading.md) — GEffects1 loading/activation/finish/file-unload now use actual shared process/scene owners, water, borrowed Birds and real decoration data. Source-only verified; registered dispatch/retirement and containing session/loader/first frame remain.
+
 2026-11-10: [Versions7 loading](version-module-loading.md) — Versions7 cold activation/finish now owns actual matched model/part/EC/grid receivers, verified with positive matches and20 frame failure prefixes. GEffects and containing dispatcher/session/loader still remain.
 
 2026-11-10: [Module loading lifetimes](module-loading-lifetimes.md) — Script bank/SOUND lifecycle and cold Particles17/HeavyFire16 now use actual process state. Initialized particle finish clears definitions; never-activated finish retains them. Source verification passes; actual Versions/GEffects and containing loader remain.

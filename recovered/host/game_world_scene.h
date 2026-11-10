@@ -5,6 +5,7 @@
 #include "host/game_collision_resources.h"
 #include "game/mission_scene_documents.h"
 #include "game/effects_shadow_models.h"
+#include "game/effects_loading_process.h"
 #include "game/dynamic_collision_grid.h"
 #include "game/dynamic_collision_exclusions.h"
 #include "game/door_collision_queries.h"
@@ -31,11 +32,11 @@ public:
     GameWorldScene(GameScene& scene,MenuDriver& driver,HMODULE module,Graphics& graphics,
                    ChunkFiles& files,LoadedResources& resources,std::function<void(unsigned,float)> progress,
                    const frontend::LocalizedTextCache& text,typename Frames::Runtime& runtime,
-                   game::MissionTables<TablesBackend>& tables,TablesBackend& table_storage,
+                   game::MissionTables<TablesBackend>& tables,TablesBackend& table_storage,game::EffectsLoadingProcess<EngineFrame*>& effects_process,
                    CarFactory make_cars,std::function<void()> prepare_cars)
-        :files_(files),collision_resources_(scene,module),
+        :files_(files),environment_(effects_process.environment),collision_resources_(scene,module),
          frames_(scene,driver,module,graphics,files,resources,std::move(progress),text,runtime,tables,table_storage,environment_,aliases_),
-         effects_(frames_,environment_),documents_(files,scene,frames_,std::move(prepare_cars)) {
+         effects_(frames_,environment_,effects_process.fade),documents_(files,scene,frames_,std::move(prepare_cars)) {
         if(!make_cars)throw std::logic_error("World scene requires its actual Car callback factory");
         cars_=make_cars(frames_);
         if(!cars_)throw std::runtime_error("Actual Car callback factory returned no owner");
@@ -85,7 +86,7 @@ public:
     }
 private:
     void require_open()const{if(closed_)throw std::logic_error("World scene owner is closed");}
-    ChunkFiles& files_;game::EffectsEnvironment environment_;game::LightmapAliases aliases_;
+    ChunkFiles& files_;game::EffectsEnvironment& environment_;game::LightmapAliases aliases_;
     GameCollisionResources collision_resources_;std::unique_ptr<Tree> tree_;std::unique_ptr<Buckets> buckets_;
     game::DynamicCollisionExclusions<Descriptor> exclusions_;
     std::unique_ptr<CarServices> cars_; //Must outlive every Car held by frames_.

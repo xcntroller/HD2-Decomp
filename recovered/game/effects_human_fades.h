@@ -46,7 +46,7 @@ public:
         }
     }
     const auto& records()const{return records_;}
-    void clear()noexcept{records_.clear();} //Containing source lifetime guard; no invented native cancellation function.
+    void clear()noexcept{records_.clear();} //00488B80 clears22C..230 (vector228); also used before Human retirement.
 private:
     Frames& frames_;std::vector<Record> records_;
 };

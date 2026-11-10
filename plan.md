@@ -240,7 +240,7 @@ preparation, not a standalone audit-only milestone.
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
   [Full boundary](analysis/mission-world-loading.md); [source progress](analysis/loading-modules.md);
-  [shared ownership](analysis/world-scene-ownership.md). [Versions7](analysis/version-module-loading.md) source verified; GEffects and session/loading integration remain.
+  [shared ownership](analysis/world-scene-ownership.md). [GEffects1](analysis/geffects-module-loading.md) source verified; registered dispatch and session/loading integration remain.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat
   loading through Python; unsupported required assets/data cannot report success.
 

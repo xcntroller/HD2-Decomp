@@ -873,6 +873,28 @@ public:
         rotation[3]=-rotation[3];object_rotation(second,rotation);
     }
     Frame camera_root_sector()const{return field<Frame>(scene_.frame(),0x1f8);}
+    void effects_enable_loading_sectors(){ //004885D0, root THEN hidden sector94(1).
+        for(const auto offset:{0x1f8u,0x200u}){
+            const auto sector=field<Frame>(scene_.frame(),offset);
+            if(!sector)throw std::runtime_error("Effects loading requires its actual scene sectors");
+            call<void>(sector,0x94,std::uint32_t{1});
+        }
+    }
+    void effects_link_root(Frame frame){actor_link_preserving_world(frame,camera_root_sector());}
+    void effects_scene_water(){call<void>(scene_.frame(),0x11c,std::uint32_t{0},std::uint32_t{0});}
+    void effects_restore_water_children(bool visible){ //00486520, actual scene1FC child methods3C/40, reverse order.
+        const auto sector=field<Frame>(scene_.frame(),0x1fc);
+        if(!sector)throw std::runtime_error("Water visibility requires its actual scene sector");
+        for(auto n=call<std::uint32_t>(sector,0x3c);n;){
+            const auto child=call<Frame>(field<Frame>(scene_.frame(),0x1fc),0x40,--n);
+            object_visible(child,visible);
+        }
+    }
+    std::array<float,3> effects_active_camera_parameters()const{
+        const auto camera=field<Frame>(scene_.frame(),0x15c);
+        if(!camera)throw std::runtime_error("Water loading requires the actual active scene camera");
+        return {{field<float>(camera,0x120),field<float>(camera,0x124),field<float>(camera,0x128)}};
+    }
     std::string camera_sector_properties(Frame sector)const{return car_user_data(sector);} //0046C370 uses Frame+F0 text.
     void active_game_camera(Frame camera) {
         using Active=void(WINAPI*)(Frame,Frame);

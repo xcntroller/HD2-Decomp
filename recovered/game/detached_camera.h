@@ -45,6 +45,10 @@ public:
     DetachedCamera(const DetachedCamera&)=delete;DetachedCamera& operator=(const DetachedCamera&)=delete;
     Frame frame()const{return camera_.get();}float speed()const{return speed_;}void speed(float v){speed_=v;} //00462750.
     const auto& references()const{return humans_;}
+    bool enabled()const{return enabled_;} //00462770, constructor00462650 clears native48.
+    void disable_for_loading(){ //00462AE0(false) is a genuine early return while48=false.
+        if(enabled_)throw std::runtime_error("Detached camera disable requires its actual active toggle/scene restoration receiver");
+    }
     const HumanVector& position()const{return position_;}
     void position(const HumanVector& v){position_=v;} //Native20; actual controller movement supplies this slot.
     float amount(Human& human) { //00463690; actual head marker BEFORE actual Human model.
@@ -92,7 +96,7 @@ public:
     }
 private:
     Frames& frames_;std::vector<Reference> humans_;Owner camera_; //Frame release BEFORE vector destruction, as native.
-    HumanVector position_{};float speed_=1; //Position cold guard is not original constructor credit.
+    HumanVector position_{};float speed_=1;bool enabled_=false; //Position cold guard is not original constructor credit; no active toggle producer.
 };
 } //namespace hd2::game
 #endif

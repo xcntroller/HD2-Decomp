@@ -1,5 +1,7 @@
 # Technical research guide
 
+2026-11-10: [GEffects1 loading](analysis/geffects-module-loading.md) — GEffects1 source lifecycle now shares process environment/fade, actual frame/Human reset, borrowed scene Birds, water settings/visibility and decoration definitions/grid/mask. Native sanitizers pass17 Bird/80 full receiver failure prefixes plus process repeat; strict full i386 graph/actual world constructor and app link pass.21 partials added:34 complete/1,936 partial. Loading still declined; continue registered dispatch/containing loader.
+
 2026-11-10: [Versions7 loading](analysis/version-module-loading.md) — Versions7 now supplies positive model/part ownership, shared EC metadata, actual collision snapshot/grid registration and immediate/deferred retirement. Targeted native sanitizers pass all20 reached frame failure prefixes; strict full i386 graph/app link pass.13 partials added:34 complete/1,915 partial. Source-only; continue GEffects and containing loader.
 
 2026-11-10: [Module loading lifetimes](analysis/module-loading-lifetimes.md) — Script variables now survive world teardown in Startup; actual SOUND module lifecycle, distinct particle scene/latch/cache retirement and cold HeavyFire state are source-supplied. Focused native sanitizers, strict actual i386 graph and app link pass. Two partials added:34 complete/1,902 partial. Source-only; continue Versions/GEffects and containing session/loader.

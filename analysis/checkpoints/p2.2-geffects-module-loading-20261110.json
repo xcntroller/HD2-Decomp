@@ -1,0 +1,225 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 21,
+  "added": [
+    "0047a790",
+    "0047aa10",
+    "00488b80",
+    "00489c60",
+    "0047c530",
+    "0047cc90",
+    "0047c930",
+    "0047d0c0",
+    "0047b0b0",
+    "0047b010",
+    "0047e0f0",
+    "0047ea60",
+    "0047c020",
+    "0047b090",
+    "0047ad10",
+    "0047d030",
+    "0047ac40",
+    "00462770",
+    "00486520",
+    "00486580",
+    "00486750"
+  ],
+  "extended": [
+    "004797c0",
+    "004799e0"
+  ],
+  "absent_no_credit": [
+    "00488560",
+    "004885a0",
+    "004885d0",
+    "004888c0",
+    "0047a7b0",
+    "0047e1c0",
+    "004863e0"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1936,
+    "client_partial": 1931,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "scope": "Full first P2.2 checkbox; actual registered GEffects cold loading/activation/finish/file-unload, shared process environment/fade, water, borrowed Birds and decoration definitions/grid/mask. Continue actual registered dispatch/containing session/loader/first frame.",
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan actual water/decoration/mask readers and owners with both BASE fixtures; borrowed Birds ALL17 reached frame failure prefixes; combined actual GEffects source composition ALL80 reached frame failure prefixes, frame/Human queue reset, native sea-before-light order and SAME process repeat. Files/frame/camera/profile doubled; positive volume/movie endpoints deliberately unavailable because prior unchanged bodies already separately verified.",
+    "host": "Strict full actual i386 Human/VM/SOUND/GEffects/ShotMgr/Versions/Particles/HeavyFire source graph and GameWorldScene constructor taking Startup process effects. Containing WorldActors/Car runtime/session remain borrowed construction boundaries.",
+    "application": "Compile/link passes; application still declines mission loading.",
+    "tracker": "27 tests; frozen fingerprints/inventory/unique statuses/evidence/README check."
+  },
+  "limitations": [
+    "No containing loaded world/session/ordered loader/first rendered frame/desktop acceptance.",
+    "Positive grass/cell/template generation, borrowed Bird movement, Fowl mode0 transfer, water-camera1AC, special-frame2E0 and pose304/positive210 producers remain unavailable; no successful runtime/rendering stand-in.",
+    "BASE ISD0 fixtures do not establish live runtime Patch/loose precedence or file absence. Original ISD1 archives not decoded by this research tool.",
+    "Guard tables remain uninitialized; real observed publication unresolved, no raw API results or forced equality."
+  ],
+  "research_exceptions": [
+    "First plain export stopped at absent004888C0; read-only transient definitions succeeded; no project/frozen inventory mutation.",
+    "Initial archive census stopped at ISD1 language archive; subsequent BASE census records ISD1 files UNKNOWN instead of claiming absence.",
+    "Actual host type instantiation caught/fixed four-component stored pose versus native three-component position setter."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-data-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-data-native-run.log",
+      "bytes": 127,
+      "sha256": "868c4cfaabcdbaf6ba24e9c0cb29efe82ab5b785cd0df48b0d97201509393e8e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-module-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-module-native-run.log",
+      "bytes": 269,
+      "sha256": "e729f9ff8b8a997f07ce343b39e7fce7541c0ac9a18b869dc9924726271b085a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-retirement-required.log",
+      "bytes": 5500,
+      "sha256": "54fff0482e75787715769e47db9471fd8e7bb23a77520082ad981d4b4483ffb7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-retirement-owners.log",
+      "bytes": 4935,
+      "sha256": "232e30ab07a5ad40de31f1571ee688824741e648d564c90777222951cfeeb9bf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-cold-owner-dependencies.log",
+      "bytes": 5113,
+      "sha256": "e21b3d5952d2cc57e8395fdb11a3de8251ee337a0ebbdfc5174f3c9164ebd348"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/decorations-loading-required.log",
+      "bytes": 4826,
+      "sha256": "ba4c0cbfa6372efb987475f64f089d805dccf365dbeff7f55135e7925fa5ac0d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/decorations-cold-defaults.log",
+      "bytes": 4825,
+      "sha256": "ec21b0c5f7ec6efde8ffd00257009c9e81e5f622e041004cf0fbfb3e16b18d5d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-finish-scalar-receivers.log",
+      "bytes": 4729,
+      "sha256": "e3e67c54b5bfa9e39ed296ef2f74062997cab911dabdd0ed773bb86d56800869"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-global-finish-consumer.log",
+      "bytes": 4391,
+      "sha256": "84b667e884a4e5546899d6504cc14f6fdab481ad8dd36b8e60196242c62678c5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-movie-unload-receiver.log",
+      "bytes": 4525,
+      "sha256": "56affcc073abc509b8108660759cd94cf0337c85e1b8e8cb077005691b79fdc1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-tracker-render.log",
+      "bytes": 380,
+      "sha256": "cfa2e9496d7a5995652405c9feb73a69ff9030b0ae21445b64ebc48b75775020"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-tracker-check.log",
+      "bytes": 437,
+      "sha256": "7c40ba47ded44b6d95374784a58f676a4f1cb0477a1539f771d687c771eb57b3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-archive-census.json",
+      "bytes": 5115,
+      "sha256": "0f8eec57afb9d407589aa32a0e2a7003c54aa50413cc05f5be863651636ba9f2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-module-finish.asm",
+      "bytes": 12079,
+      "sha256": "20c13f0bdc768ca0d14e14a81c65f539988e31abcf754917600383fd2bd3182d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/geffects-module-unload-tail.asm",
+      "bytes": 915,
+      "sha256": "8c892cacd96f33896964961a90f89406831aa60fcd14e0e0928d43faf65bf428"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/water-child-visibility-abi.asm",
+      "bytes": 2129,
+      "sha256": "53bd131730cb1bd837756602b3932d9013d0cf766f8d4baf7e5ad0479845f034"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/decorations-grid-initialize-call.asm",
+      "bytes": 1780,
+      "sha256": "1ece85150cf85146dd870c511b535c5f7b18b4404e2dda7b0ff332ca0d957baf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-loading-retirement-map.json",
+      "bytes": 3339,
+      "sha256": "ed3e7439ce3d8b61039e0340a3eb008d6dfe43deef2d1f209090c9490a7a4581"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-geffects-data-audit.cpp",
+      "bytes": 7614,
+      "sha256": "47b15caacb27e458a6e1d5c6a3f0a626cdd645ffa37f78833ecc965d32ef2a68"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-geffects-data-audit",
+      "bytes": 2261056,
+      "sha256": "2bb5ac9a56ad1b0aa5a218678984e5c2cb83f896a4a114b3127cb0297881f91f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-geffects-module-audit.cpp",
+      "bytes": 7170,
+      "sha256": "1ad2d124aa53e76f0469cbe1d5905e5477651291b6c178bf5a7f4db6dd985306"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-geffects-module-audit",
+      "bytes": 4515176,
+      "sha256": "eec54796555be31105c9c11aed25b2b8b894fd8cdab1211b0b6fbadc26070655"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-geffects-host.cpp",
+      "bytes": 13605,
+      "sha256": "da76ff82d67690314775f15ea5b6a29619741590cac7bd57b129e0842317a80c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-geffects-host.o",
+      "bytes": 13611692,
+      "sha256": "05ce7cd729f70b79fd4b33f07462082872e032e7e1bb27485854eb1e338942d2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/DefineExportGEffects.java",
+      "bytes": 447,
+      "sha256": "f92992713a40227fc43607bacb6eeba27c513bb44a56ab708c783a6ce2b1916d"
+    }
+  ]
+}

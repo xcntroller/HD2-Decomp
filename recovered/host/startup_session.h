@@ -28,6 +28,7 @@
 #include "game/mission_effects_loading.h"
 #include "game/shot_manager_loading.h"
 #include "game/heavy_fire_module_loading.h"
+#include "game/effects_loading_process.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
 #include "game/actor_proximity_loading.h"
@@ -200,6 +201,7 @@ public:
     game::MissionEffectsProcess<EngineFrame*>& mission_effects_process(){return mission_effects_process_;}
     game::ShotManagerLoadingState<GameActorServices>& shot_manager_process(){return shot_manager_process_;}
     game::HeavyFireLoadingState& heavy_fire_process(){return heavy_fire_process_;}
+    auto& effects_loading_process(){return effects_loading_process_;}
     std::uint8_t& first_person_preference(){return data_.first_person_preference();}
     const frontend::LocalizedTextCache& text() const { return text_; }
     LoadedResources& loaded_resources() { return loaded_resources_; }
@@ -657,6 +659,7 @@ private:
     game::MissionEffectsProcess<EngineFrame*> mission_effects_process_;
     game::ShotManagerLoadingState<GameActorServices> shot_manager_process_;
     game::HeavyFireLoadingState heavy_fire_process_;
+    game::EffectsLoadingProcess<EngineFrame*> effects_loading_process_;
     game::HumanAIEventPool human_ai_events_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
     game::HumanAIAction1Pool human_ai_actions1_;
