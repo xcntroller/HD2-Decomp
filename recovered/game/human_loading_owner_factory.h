@@ -32,7 +32,7 @@ public:
             d.audio,d.audio.random_source(),d.animation_events,d.scene.effects(),d.presentation,
             world_,actors.items(),d.animations,d.catalogue,d.scene.collision_resources(),d.sweep,d.scene.collision_tree()};
         return std::make_unique<Composition>(inline_dependencies,human,d.inputs,d.second_tables,&d.navigation,
-            d.input_callbacks,d.startup.human_ai_action1_pool(),d.contexts,d.profiles,d.audio,d.sight.source(),
+            d.input_callbacks,d.startup.human_ai_action_pools(),d.contexts,d.profiles,d.audio,d.sight.source(),
             d.hearing,d.proximity,d.camera,d.players.control());
     }
 private:

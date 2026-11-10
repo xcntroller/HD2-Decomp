@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_AI_EVENT_QUEUE_H
 
 #include <array>
+#include <cmath>
 #include <cstdint>
 #include <cstring>
 #include <deque>
@@ -87,6 +88,39 @@ public:
     }
     const HumanAIEvent* at(std::size_t index)const{return events_?events_->at(index).get():nullptr;}
     std::size_t size()const{return events_?events_->size():0;}
+    const HumanAIEvent* strongest_at(const std::array<float,4>& position)const { //005AE310, processed deque.
+        if(!events_)return nullptr;
+        const HumanAIEvent* best=nullptr;
+        float best_score=0;
+        for(const auto& event:*events_){
+            std::array<float,3> source;
+            std::memcpy(source.data(),event->words.data()+8,sizeof source);
+            const auto x=static_cast<long double>(source[0])-position[0];
+            const auto y=static_cast<long double>(source[1])-position[1];
+            const auto z=static_cast<long double>(source[2])-position[2];
+            const float square=static_cast<float>((z*z+y*y)+x*x);
+            std::uint32_t bits;
+            std::memcpy(&bits,&square,sizeof bits);
+            long double distance;
+            if(signed_word(bits)<0x322bcc77)distance=0;
+            else if(std::abs(static_cast<long double>(square)-1)<9.99999993922529e-09f)distance=1;
+            else distance=std::sqrt(static_cast<long double>(square));
+            const float lifetime=static_cast<float>(signed_word(event->words[1])*0.0010000000474974513L);
+            const auto score=(lifetime/distance)*(event->words[0]>>28);
+            if(score>best_score){
+                best_score=static_cast<float>(score);
+                best=event.get();
+            }
+        }
+        return best;
+    }
+    const HumanAIEvent* last_of_kind(std::uint32_t kind)const {
+        for(auto index=size();index;){
+            const auto* event=at(--index);
+            if(event->words[0]==kind)return event;
+        }
+        return nullptr;
+    }
     void advance(std::uint32_t elapsed){ //005AD700's per-deque body; reverse, SAME process pool.
         for(auto n=size();n;){
             auto& event=events_->at(--n);if(!event)throw std::logic_error("Human AI frame encountered a missing actual event");

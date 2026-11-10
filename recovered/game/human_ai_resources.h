@@ -4,6 +4,8 @@
 #include "game/human_ai_direction.h"
 #include "game/human_ai_action_pool.h"
 #include "game/mission_tables.h"
+#include "game/human_state_frame_timers.h"
+#include <variant>
 
 namespace hd2::game {
 
@@ -76,6 +78,8 @@ private:
 template<class Actor>class HumanAIResources {
 public:
     using Target=HumanAITargetLoading<Actor>;
+    using Frame=decltype(std::declval<Actor&>().base().frame());
+    using Direction=HumanAIDirection<Frame>;
     HumanAIResources(std::uint32_t kind,MissionTableSet& second) {
         state_.set(0xf4,static_cast<std::uint8_t>(kind));
         //00576AC0 receiver is embedded at C0.
@@ -84,7 +88,7 @@ public:
             state_.set(offset,std::uint32_t{0});
         state_.set(0x114,std::int32_t{-1});state_.set(0x118,std::int32_t{-1});
         try {
-            direction_=std::make_unique<HumanAIDirection>();target_=std::make_unique<Target>();
+            direction_=std::make_unique<Direction>();target_=std::make_unique<Target>();
             flag_=std::make_unique<HumanAIFlagLoading>();query_=std::make_unique<HumanAIQueryLoading>();
             path_=std::make_unique<HumanAIPathLoading>(second);
         }catch(...){clear();throw;}
@@ -92,26 +96,57 @@ public:
     ~HumanAIResources(){clear();}
     HumanAIResources(const HumanAIResources&)=delete;HumanAIResources& operator=(const HumanAIResources&)=delete;
     void clear()noexcept { //0056F0E0:124,128,134,130,12C, then F8 vector; base belongs to containing state.
-        current_action_.reset(); //Typed nativeF0; explicit state close normally returns it first.
+        retire_current_action(); //Typed nativeF0; explicit state close normally returns it first.
         direction_.reset();target_.reset();flag_.reset();path_.reset();query_.reset();jobs_.clear();
     }
-    HumanAIDirection& direction(){return required(direction_);}Target& target(){return required(target_);}
-    const HumanAIDirection& direction()const{return required(direction_);}
+    Direction& direction(){return required(direction_);}Target& target(){return required(target_);}
+    const Direction& direction()const{return required(direction_);}
     HumanAIFlagLoading& flag(){return required(flag_);}HumanAIQueryLoading& query(){return required(query_);}
     HumanAIPathLoading& path(){return required(path_);}auto& state(){return state_;}const auto& state()const{return state_;}
-    HumanAIAction1* current_action()const{return current_action_.get();}
     void current_action(HumanAIAction1Pool::Lease value){current_action_=std::move(value);}
-    void retire_current_action(){current_action_.reset();} //00575820→00582C50 case1.
+    void current_action(HumanAIAction2Pool::Lease value){current_action_=std::move(value);}
+    void current_action(HumanAIAction3Pool::Lease value){current_action_=std::move(value);}
+    void retire_current_action()noexcept{current_action_.template emplace<std::monostate>();} //00575820→00582C50.
+    std::uint32_t current_action_kind()const{
+        if(state_.template get<std::uint32_t>(0xf0))throw std::runtime_error("AI action ageing requires actual typed pooled action owner");
+        return std::visit([](const auto& lease)->std::uint32_t{
+            if constexpr(std::is_same_v<std::decay_t<decltype(lease)>,std::monostate>)return 0;
+            else return lease?lease->state.template get<std::uint32_t>(4):0u;
+        },current_action_);
+    }
+    void advance_current_action(std::uint32_t elapsed){ //00547E70/00559C60.
+        if(state_.template get<std::uint32_t>(0xf0))throw std::runtime_error("AI action ageing requires actual typed pooled action owner");
+        std::visit([elapsed](auto& lease){
+            if constexpr(!std::is_same_v<std::decay_t<decltype(lease)>,std::monostate>){
+                if(!lease)return;
+                auto& state=lease->state;
+                const auto remaining=state.template get<std::uint32_t>(0x10)-elapsed;
+                state.set(0xc,state.template get<std::uint32_t>(0xc)+elapsed);
+                state.set(0x10,human_frame_signed_word(remaining)<0?0u:remaining);
+            }
+        },current_action_);
+    }
+    std::uint32_t reconcile_direction_flags(){ //00575850, actual134 flag/12C query/124 direction owners.
+        auto& flag=required(flag_).state;if(!flag.template get<std::uint8_t>(4))return 1;
+        const auto kind=flag.template get<std::uint32_t>(0);
+        auto& direction=required(direction_);
+        if(kind==1){flag.set(4,std::uint8_t{0});direction.unlock_current();direction.lock_target();return 2;}
+        if(required(query_).state.template get<std::uint32_t>(0x50)&0xf30u)return 0;
+        flag.set(4,std::uint8_t{0});direction.unlock_target();
+        if(kind==2||kind==4)direction.lock_current();else direction.unlock_current();
+        return 2;
+    }
 private:
     template<class T>static T& required(const std::unique_ptr<T>& owner) {
         if(!owner)throw std::logic_error("Human AI resource has already been retired");
         return *owner;
     }
     HumanJointWords<0x140> state_;
-    std::unique_ptr<HumanAIDirection> direction_;std::unique_ptr<Target> target_;
+    std::unique_ptr<Direction> direction_;std::unique_ptr<Target> target_;
     std::unique_ptr<HumanAIFlagLoading> flag_;std::unique_ptr<HumanAIQueryLoading> query_;std::unique_ptr<HumanAIPathLoading> path_;
     struct Job;std::vector<Job*> jobs_; //NativeF8; no unreconstructed pool/job producer is exposed.
-    HumanAIAction1Pool::Lease current_action_{nullptr,HumanAIAction1Pool::Return{}};
+    std::variant<std::monostate,HumanAIAction1Pool::Lease,HumanAIAction2Pool::Lease,
+        HumanAIAction3Pool::Lease> current_action_;
 };
 } //namespace hd2::game
 #endif

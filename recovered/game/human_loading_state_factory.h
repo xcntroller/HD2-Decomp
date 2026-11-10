@@ -32,7 +32,7 @@ public:
     using Remote=HumanRemoteStateLoading<Frames,Human,Inputs>;
     using Area=HumanAreaAIStateLoading<Frames,Human,Inputs,Contexts,Services>;
     HumanLoadingStateFactory(Frames& frames,Inputs& inputs,MissionTableSet& second,MissionNavigation* navigation,
-            HumanInputCallbacks& callbacks,HumanAIAction1Pool& actions,Random& random,Contexts& contexts,
+            HumanInputCallbacks& callbacks,HumanAIActionPools& actions,Random& random,Contexts& contexts,
             Services& services,Inline& control,Camera& camera,Presentation& presentation)
         :frames_(frames),inputs_(inputs),second_(second),navigation_(navigation),callbacks_(callbacks),actions_(actions),
          random_(random),contexts_(contexts),services_(services),control_(control),camera_(camera),presentation_(presentation){}
@@ -40,12 +40,12 @@ public:
         std::unique_ptr<Base> result;
         switch(kind) {
         case 1:{auto player=std::make_unique<Player>(frames_,inputs_,callbacks_);player->bind_sight_services(services_);result=std::move(player);break;}
-        case 3:result=std::make_unique<Active>(frames_,inputs_,second_,callbacks_,actions_,services_);break;
-        case 4:result=std::make_unique<Guard>(frames_,inputs_,second_,callbacks_,random_,contexts_);break;
+        case 3:result=std::make_unique<Active>(frames_,inputs_,second_,callbacks_,actions_.kind1,services_);break;
+        case 4:result=std::make_unique<Guard>(frames_,inputs_,second_,callbacks_,actions_.kind2,random_,contexts_);break;
         case 5:result=std::make_unique<Script>(frames_,inputs_,second_,callbacks_,contexts_);break;
         case 6:result=std::make_unique<Passive>(frames_,inputs_,second_,callbacks_);break;
         case 7:result=std::make_unique<Remote>(frames_,inputs_,callbacks_);break;
-        case 8:result=std::make_unique<Area>(frames_,inputs_,second_,callbacks_,contexts_,services_);break;
+        case 8:result=std::make_unique<Area>(frames_,inputs_,second_,callbacks_,actions_.kind3,contexts_,services_);break;
         default:throw std::runtime_error("No original Human B0 factory case");
         }
         if(kind==4||kind==8)result->bind_special_music_reference([this](bool enabled){services_.human_special_music_reference(enabled);});
@@ -124,7 +124,7 @@ public:
     }
 private:
     Frames& frames_;Inputs& inputs_;MissionTableSet& second_;MissionNavigation* navigation_;
-    HumanInputCallbacks& callbacks_;HumanAIAction1Pool& actions_;Random& random_;Contexts& contexts_;
+    HumanInputCallbacks& callbacks_;HumanAIActionPools& actions_;Random& random_;Contexts& contexts_;
     Services& services_;Inline& control_;Camera& camera_;Presentation& presentation_;
 };
 } //namespace hd2::game

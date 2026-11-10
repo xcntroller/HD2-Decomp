@@ -13406,13 +13406,16 @@
       "program": "client",
       "entry": "00582c50",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00582c50: Kind1 portion of shared AI action pool, growth, initial record acquisition and release.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "Return the typed kind 1, 2 and 3 action leases to their matching shared process pools.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage. Additional action families still require their actual owners.",
       "evidence": [
         "recovered/game/human_ai_action_pool.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_resources.h"
       ]
     },
     {
@@ -13744,13 +13747,15 @@
       "program": "client",
       "entry": "00575820",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00575820: Cold target/query/path/flag allocations and proven loading reset/retirement branches; live target/steering/jobs excluded.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "Return and clear typed kind 1, 2 and 3 current actions. Guard returns its kind 2 event clone before this receiver.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage. Additional action families still require their actual owners.",
       "evidence": [
         "recovered/game/human_ai_resources.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json"
       ]
     },
     {
@@ -17547,7 +17552,7 @@
       "program": "client",
       "entry": "0052f750",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0052f750: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual sector and target context now bound; assembly-preserved extended (Z\u00b2+X\u00b2)+Y\u00b2 comparisons.",
+      "coverage": "P2.2 source reconstruction at original entry 0052f750: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual sector and target context now bound; assembly-preserved extended (Z²+X²)+Y² comparisons.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_weapon_selection.h",
@@ -17588,7 +17593,7 @@
       "program": "client",
       "entry": "00530b30",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00530b30: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual target context resolves after item/alternate/ammunition rejection; assembly-preserved FLOAT (Z\u00b2+Y\u00b2)+X\u00b2 distance.",
+      "coverage": "P2.2 source reconstruction at original entry 00530b30: Actual weapon priority policy, candidate/class/ammunition order and usability; target/sector context production remains separate. Actual target context resolves after item/alternate/ammunition rejection; assembly-preserved FLOAT (Z²+Y²)+X² distance.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_weapon_selection.h",
@@ -25163,7 +25168,7 @@
       "program": "client",
       "entry": "0058f680",
       "status": "partial",
-      "coverage": "EndScript state selection from property19C and actual command14: player select_script, enemy8/4,3\u21926,4/5\u21923; no stale Script borrower after selection.",
+      "coverage": "EndScript state selection from property19C and actual command14: player select_script, enemy8/4,3→6,4/5→3; no stale Script borrower after selection.",
       "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
       "evidence": [
         "analysis/mission-script-runtime-composition.md",
@@ -25374,7 +25379,7 @@
       "program": "client",
       "entry": "005a88b0",
       "status": "partial",
-      "coverage": "Actual missing/non3 B0\u2192-1, else SAME Active AI virtual13C source pending/current first-mode getter.",
+      "coverage": "Actual missing/non3 B0→-1, else SAME Active AI virtual13C source pending/current first-mode getter.",
       "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
       "evidence": [
         "analysis/hud-player-presentation-loading.md",
@@ -25385,7 +25390,7 @@
       "program": "client",
       "entry": "005a88d0",
       "status": "partial",
-      "coverage": "Actual missing/non3 B0\u2192-1, else SAME Active AI virtual140 source pending/current second-mode getter.",
+      "coverage": "Actual missing/non3 B0→-1, else SAME Active AI virtual140 source pending/current second-mode getter.",
       "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
       "evidence": [
         "analysis/hud-player-presentation-loading.md",
@@ -25651,7 +25656,7 @@
       "program": "client",
       "entry": "005a6280",
       "status": "partial",
-      "coverage": "Actual Human16C FLOAT\u2192signed64 truncate low DWORD interpreted signed, clamp0..100.",
+      "coverage": "Actual Human16C FLOAT→signed64 truncate low DWORD interpreted signed, clamp0..100.",
       "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
       "evidence": [
         "recovered/game/human_speech_loading.h",
@@ -28017,6 +28022,450 @@
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-frame-20261110.json",
         "recovered/game/human_frame_stats.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00588010",
+      "status": "partial",
+      "coverage": "Advance B8 and positive action duration, validate actual typed target and preserve cancellation/timeout order.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_state_frame_timers.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00571680",
+      "status": "partial",
+      "coverage": "Advance five signed positive countdowns and the wrapping 10C accumulator before the base timer.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_state_frame_timers.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00547e70",
+      "status": "partial",
+      "coverage": "Guard frame timer prefix, watched target validation, shared scratch publication, reaction cadence and typed action ageing.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_frame_timers.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559c60",
+      "status": "partial",
+      "coverage": "Area frame timer prefix, common timers before target validation and action ageing, with scratch clear last.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_frame_timers.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00547da0",
+      "status": "partial",
+      "coverage": "Guard reaction timer using actual hostile distance/aim predicates, both mode tests and shared CRT draws.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_frame_timers.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005733e0",
+      "status": "partial",
+      "coverage": "Reverse closest hostile search using the actual model positions, signed bit test and FLOAT minimum.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_frame_metrics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00584890",
+      "status": "partial",
+      "coverage": "Strict aim test using actual enemy B0 direction and original extended/spilled normalization order.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_frame_metrics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a64f0",
+      "status": "partial",
+      "coverage": "Wrapping stat 3 addition with signed base upper clamp before lower zero.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_frame_stats.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d8c0",
+      "status": "partial",
+      "coverage": "Set target lock bit, reporting whether it changed.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d8e0",
+      "status": "partial",
+      "coverage": "Set current lock bit, reporting whether it changed.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d900",
+      "status": "partial",
+      "coverage": "Clear target lock bit, reporting whether it changed.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d920",
+      "status": "partial",
+      "coverage": "Clear current lock bit, reporting whether it changed.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d940",
+      "status": "partial",
+      "coverage": "Read current direction lock bit.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d2b0",
+      "status": "partial",
+      "coverage": "Decrement positive look timer and add one interval on signed overshoot.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d1e0",
+      "status": "partial",
+      "coverage": "Set typed borrowed aim frame used by the Area event receiver.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_direction.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00575850",
+      "status": "partial",
+      "coverage": "Reconcile actual AI flag, query mask and direction locks in original order.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00575940",
+      "status": "partial",
+      "coverage": "Run accumulated direction or borrowed head frame steering, real look commands and B0 direction publication.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_direction_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00570a10",
+      "status": "partial",
+      "coverage": "Send actual look command and update B0 look flag for modes 3 and 4.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00570980",
+      "status": "partial",
+      "coverage": "Send directed look command and clear the B0 look flag on the steering path.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00571a10",
+      "status": "partial",
+      "coverage": "Extend the unsigned reaction timer and accumulate duration when the active target flag is set.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058a660",
+      "status": "partial",
+      "coverage": "Grow the original kind 2 pool in mutable batches with aligned 0x50 records and LIFO acquisition.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_action_pool.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058a790",
+      "status": "partial",
+      "coverage": "Grow the original kind 3 pool in mutable batches with aligned 0x40 records and LIFO acquisition.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_action_pool.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00582890",
+      "status": "partial",
+      "coverage": "Acquire kind 2 and set mode, vectors, age and field 44 while retaining lifetime.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_action_pool.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00582990",
+      "status": "partial",
+      "coverage": "Acquire kind 3 and set mode, vector and field 30 while retaining age and lifetime.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_action_pool.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548040",
+      "status": "partial",
+      "coverage": "Guard action reset returns the private kind 2 event clone before returning the current action.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00549360",
+      "status": "partial",
+      "coverage": "Select actual processed Guard task, resolve direct/linked target, clone source event, or acquire mode 2 with lifetime 5000.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559360",
+      "status": "partial",
+      "coverage": "Guard crouch request sets speed and clears 10C before entering the original posture policy.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005767f0",
+      "status": "partial",
+      "coverage": "Guard crouch branch applies actual DD0 and navigation gates, writes shared input 20 and clamps C8 to at least 300.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ae310",
+      "status": "partial",
+      "coverage": "Select the strongest processed event in forward order using signed lifetime, original distance rule and priority.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_event_queue.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ae270",
+      "status": "partial",
+      "coverage": "Find the last processed 0x10000016 record and resolve its target through Scene2.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_event_queue.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005add20",
+      "status": "partial",
+      "coverage": "Return the Guard task clone and rejected Area events to the same AI event pool.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_ai_event_queue.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005aca50",
+      "status": "partial",
+      "coverage": "Resolve nonnegative actor IDs through the actual Scene2 identity registry.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055a130",
+      "status": "partial",
+      "coverage": "Return the previous action, acquire kind 3 mode 3 and reset elapsed field 158.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559eb0",
+      "status": "partial",
+      "coverage": "Advance Area decision time, acquire initial action, drain incoming events on later decisions and apply skill/reset rules.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559f60",
+      "status": "partial",
+      "coverage": "Process Area event kinds using real hostile membership, target head frame, shared CRT reaction and queue merges.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055a0e0",
+      "status": "partial",
+      "coverage": "Return the Area action when flag 4 is set and flag 8 is clear.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a5e50",
+      "status": "partial",
+      "coverage": "Test actual Area hostile identity in reverse order.",
+      "limitations": "Source coverage over typed owners. Positive AI jobs, action workers, B0 output, complete frame integration and user desktop acceptance remain open. Original allocator and virtual ABI are outside this coverage.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+        "recovered/game/human_area_ai_state_loading.h"
       ]
     }
   ]

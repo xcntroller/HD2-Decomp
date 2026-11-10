@@ -4,24 +4,28 @@
 #include "game/human_joint_owners.h"
 #include "game/human_loading_state_view.h"
 #include "game/mission_navigation.h"
+#include "game/human_state_frame_timers.h"
+#include "game/human_frame_inputs.h"
 #include <functional>
 
 namespace hd2::game {
+template<class Backend>class SceneActor;
 
 //00582FF0/005832F0/00583690/00584830 B0 base, including offline mode7. The containing
 //derived state owns its +1C/+20 receivers; this base is NOT a successful AI,
 //player or script state. Input records and navigation are actual shared owners.
-//Native44/40/7C/A0/A4/A8 pointers stay typed, outside scalar DWORD storage.
+//Native44/40/68/74/78/7C/A0/A4/A8 pointers stay typed, outside DWORD storage.
 template<class Frames,class Human,class Inputs>
 class HumanStateBaseLoading : public HumanLoadingStateView<Human> {
 public:
+    using ActionTarget=SceneActor<Frames>;
     using PlayerHandover=typename HumanLoadingStateView<Human>::PlayerHandover;
     using Entry=std::decay_t<decltype(std::declval<Human&>().base().storage()->holder(3)->entry())>;
     using Command=decltype(std::declval<Human&>().command.get());
     using Input=typename Inputs::Record;
     HumanStateBaseLoading(Frames& frames,Inputs& inputs,std::uint32_t kind)
         :frames_(frames),inputs_(inputs) { //00582FF0, including byte-sized writes.
-        for(auto offset:{0x10u,0x14u,0x20u,0x24u,0x30u,0x34u,0x50u,0x74u,0x78u,0xbcu})
+        for(auto offset:{0x10u,0x14u,0x20u,0x24u,0x30u,0x34u,0x50u,0xbcu})
             words_.set(offset,std::uint32_t{0});
         for(auto offset:{0x18u,0x28u,0x38u})words_.set(offset,1.f);
         words_.set(0x48,kind);
@@ -55,8 +59,9 @@ public:
         words_.set(0x5c,std::uint32_t{0x4000});
         if(previous) {
             for(auto offset:{0x50u,0x5cu,0x30u,0x34u,0x38u,0x3cu,0x10u,0x14u,0x18u,0x1cu,
-                0x20u,0x24u,0x28u,0x2cu,0xb0u,0x60u,0x64u,0x68u,0x6cu})
+                0x20u,0x24u,0x28u,0x2cu,0xb0u,0x60u,0x64u,0x6cu})
                 words_.set(offset,previous->words_.template get<std::uint32_t>(offset));
+            action_target_=previous->action_target_; //005832F0 copies native68 identity, not a truncated DWORD.
             words_.set(0x50,words_.template get<std::uint32_t>(0x50)&0x3fffffffu);
             for(auto offset:{0xacu,0xadu})words_.set(offset,previous->words_.template get<std::uint8_t>(offset));
         }else {
@@ -66,7 +71,7 @@ public:
             const auto direction=normalize({{matrix[8],matrix[9],matrix[10],matrix[11]}});
             words_.set(0x10,direction);words_.set(0x20,direction);
         }
-        for(auto offset:{0x54u,0x74u,0x78u})words_.set(offset,std::uint32_t{0});
+        words_.set(0x54,std::uint32_t{0});first_frame_inputs_=second_frame_inputs_=nullptr;
         words_.set(0x4c,words_.template get<std::uint32_t>(0x50)&7u);words_.set(0xb5,std::uint8_t{0});
         if((mode&7u)==7u){
             input_=nullptr; //Offline7 deliberately has NO network input record.
@@ -114,6 +119,12 @@ public:
     HumanJointWords<0xc0>& words()override{return words_;}const HumanJointWords<0xc0>& words()const override{return words_;}
     Human* human()const{return human_;}Command command()const{return command_;}Entry item()const{return item_;}
     void clear_cached_item()noexcept{item_=Entry{};} //005839D0/005783D0 clears A8 AFTER command08, not the hand holder.
+    ActionTarget* action_target()const{return action_target_;}
+    void action_target(ActionTarget* actor){action_target_=actor;}
+    HumanFrameInputBuffer* first_frame_inputs()const{return first_frame_inputs_;}
+    HumanFrameInputBuffer* second_frame_inputs()const{return second_frame_inputs_;}
+    void bind_frame_inputs(HumanFrameInputBuffer& first,HumanFrameInputBuffer& second){first_frame_inputs_=&first;second_frame_inputs_=&second;}
+    template<class Queries>void advance_frame_timers(std::uint32_t elapsed,Queries& queries){advance_human_base_frame_timers(*this,elapsed,queries);} //00588010.
     Input* input()const{return input_;}MissionNavigation* navigation()const{return navigation_;}
     MissionTableRecord* point()const{return point_;}
     void refresh_navigation_point() {
@@ -134,6 +145,8 @@ private:
     Frames& frames_;Inputs& inputs_;HumanJointWords<0xc0> words_;
     struct Task;std::vector<Task*> first_,second_; //Native84/94, no unresearched producers.
     Human* human_=nullptr;Command command_=nullptr;Entry item_{};Input* input_=nullptr;
+    ActionTarget* action_target_=nullptr; //Borrowed native68. Initial no-previous bind leaves it unwritten in original; cold guard only.
+    HumanFrameInputBuffer* first_frame_inputs_=nullptr;HumanFrameInputBuffer* second_frame_inputs_=nullptr; //Actual74/78 borrowers.
     MissionNavigation* navigation_=nullptr;MissionTableRecord* point_=nullptr;
     std::function<void(bool)> special_music_reference_;
 };

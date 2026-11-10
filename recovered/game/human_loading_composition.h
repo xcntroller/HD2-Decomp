@@ -28,7 +28,7 @@ public:
     using Activation=HumanLoadingActivation<Frames,Human,Inline,States,World,Store,Effects,Speech,Sight,Sound,Proximity,Camera>;
     HumanLoadingComposition(typename InlineFactory::Dependencies dependencies,Human& human,
             Inputs& inputs,MissionTableSet& second,MissionNavigation* navigation,
-            HumanInputCallbacks& input_callbacks,HumanAIAction1Pool& actions,Contexts& contexts,
+            HumanInputCallbacks& input_callbacks,HumanAIActionPools& actions,Contexts& contexts,
             Store& profiles,Speech& speech,Sight& sight,Sound& sound,Proximity& proximity,Camera& camera,Players& players)
         :frames_(dependencies.frames),human_(human),factory_(dependencies),control_(factory_),
          state_factory_(dependencies.frames,inputs,second,navigation,input_callbacks,actions,dependencies.random,

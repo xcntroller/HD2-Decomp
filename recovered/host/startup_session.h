@@ -37,6 +37,7 @@
 #include "game/item_hand_models.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
+#include "game/human_frame_inputs.h"
 #include "game/actor_proximity_loading.h"
 #include "game/car_seat_camera.h"
 #include "game/car_definition_tables.h"
@@ -228,7 +229,8 @@ public:
     const float& human_animation_time_scale()const{return human_animation_time_scale_;} //0084E80C initial FLOAT1.4; original direct references are reads.
     game::HumanPhysicsGlobals& human_physics_globals(){return human_physics_globals_;}
     game::HumanAIEventPool& human_ai_event_pool(){return human_ai_events_;}
-    game::HumanAIAction1Pool& human_ai_action1_pool(){return human_ai_actions1_;}
+    game::HumanAIFrameInputs& human_ai_frame_inputs(){return human_ai_frame_inputs_;}
+    game::HumanAIActionPools& human_ai_action_pools(){return human_ai_actions_;}
     auto& human_perception_record_pool(){return human_perception_records_;}
     auto& actor_proximity_state(){return actor_proximity_;} //Actual process008AED54, preserves bucket timers across world clear.
     EngineFrame*& car_loading_scene(){return car_loading_scene_;} //0089C0C0 borrowed engine scene,006D3F20 publication.
@@ -720,8 +722,9 @@ private:
     game::HumanProjectionProcess<MenuDriver::Owner> human_projection_process_;
     game::ItemHandModels<GameActorServices> item_hand_models_;
     game::HumanAIEventPool human_ai_events_;
+    game::HumanAIFrameInputs human_ai_frame_inputs_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
-    game::HumanAIAction1Pool human_ai_actions1_;
+    game::HumanAIActionPools human_ai_actions_;
     ResourceDirectoryPlatform directory_platform_;
     JoystickBackend joysticks_backend_;
     input::JoystickDevices<JoystickBackend> joysticks_;

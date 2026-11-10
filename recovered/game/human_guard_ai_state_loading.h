@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_GUARD_AI_STATE_LOADING_H
 
 #include "game/human_ai_state_loading.h"
+#include "game/human_ai_frame_timers.h"
 #include <optional>
 
 namespace hd2::game {
@@ -13,14 +14,16 @@ template<class Frames,class Human,class Inputs,class Random,class Contexts>
 class HumanGuardAIStateLoading : public HumanAIStateLoading<Frames,Human,Inputs> {
 public:
     using AI=HumanAIStateLoading<Frames,Human,Inputs>;using Base=typename AI::Base;
+    using Actor=SceneActor<Frames>;
     HumanGuardAIStateLoading(Frames& frames,Inputs& inputs,MissionTableSet& second,
-            HumanInputCallbacks& callbacks,Random& random,Contexts& contexts)
-        :AI(frames,inputs,second,callbacks,4),random_(random),contexts_(contexts){}
+            HumanInputCallbacks& callbacks,HumanAIAction2Pool& actions,Random& random,Contexts& contexts)
+        :AI(frames,inputs,second,callbacks,4),actions_(actions),random_(random),contexts_(contexts){}
     template<class Inline>void bind(Human& human,const Base* previous,MissionNavigation* navigation,
             std::uint32_t mode,Inline& control) {
         AI::bind(human,previous,navigation,mode,control);
+        timer_target_=nullptr; //Native19C borrower, independent from AI128's target actor.
         this->resources().state().set(0xf0,std::uint32_t{0});
-        for(auto offset:{0x1b0u,0x148u,0x150u,0x144u,0x14cu,0x19cu,0x1a8u,0x1c4u,0x1d0u,0x1dcu})state_.set(offset,std::uint32_t{0});
+        for(auto offset:{0x1b0u,0x148u,0x150u,0x144u,0x14cu,0x1a8u,0x1c4u,0x1d0u,0x1dcu})state_.set(offset,std::uint32_t{0});
         state_.set(0x190,std::int32_t{-1});state_.set(0x154,std::uint8_t{0});
         state_.set(0x1ac,static_cast<std::int32_t>(static_cast<long double>(random_word())*random_scale*8000.f));
         state_.set(0x1c8,std::uint32_t{5000});state_.set(0x1d8,std::int32_t{-1});state_.set(0x140,std::uint8_t{0});
@@ -52,7 +55,7 @@ public:
         control.look_command(0,nullptr); //00570A10(0)→005A45F0 command5.
         this->words().set(0x50,this->words().template get<std::uint32_t>(0x50)&~0x400000u);
     }
-    void close_loading(){AI::close_loading();primary_.clear();secondary_.clear();doors_.clear();} //00547CF0 retains Human44.
+    void close_loading(){reset_frame_action();AI::close_loading();primary_.clear();secondary_.clear();doors_.clear();} //00547CF0 retains Human44.
     void constant_timers(){state_.set(0x1a4,std::int32_t{100000});state_.set(0x1a8,std::int32_t{10000});} //00547AD0.
     void radius_timers(bool short_range) { //00547AF0/00547BF0.
         auto* human=this->human();if(!human)throw std::logic_error("Guard radius timers have no bound Human");
@@ -79,13 +82,105 @@ public:
     const auto& primary_route()const{return primary_;}const auto& secondary_route()const{return secondary_;}
     const auto& doors()const{return doors_;}std::optional<float> speed()const{return speed_;}
     auto& state(){return state_;}const auto& state()const{return state_;}
+    Actor* timer_target()const{return timer_target_;}void timer_target(Actor* target){timer_target_=target;}
+    void refresh_reaction_timer(){refresh_human_guard_reaction_timer(*this,this->state_frames(),random_);} //00547DA0.
+    template<class Queries>void advance_frame_prefix(std::uint32_t elapsed,Queries& queries){advance_human_guard_frame_prefix(*this,elapsed,queries);} //00547E70.
+    void reset_frame_action(){ //00548040→005ADD20, then00575820.
+        const auto kind=this->resources().current_action_kind();
+        if(kind==2)selected_event_.reset();
+        else if(selected_event_)throw std::logic_error("Guard task event has no matching kind 2 action");
+        this->resources().retire_current_action();
+    }
+    const HumanAIEvent* selected_frame_event()const{return selected_event_.get();}
+    template<class World,class Inline>void select_frame_task(World& world,Inline& control){ //00549360.
+        auto* human=this->human();
+        auto* command=this->command();
+        if(!human||!command)throw std::logic_error("Guard task selection requires the bound Human and command owner");
+        state_.set(0x198,0u);
+        this->resources().target().bind_actor(nullptr);
+        state_.set(0x1b0,0u);
+        if(this->words().template get<std::uint32_t>(0x50)&1u)request_crouch(control);
+        const bool replacing=this->resources().current_action_kind()!=0;
+        if(replacing)reset_frame_action();
+
+        auto& queue=command->second.events;
+        const auto* event=queue.strongest_at(frame_position(*human));
+        if(event){
+            if(auto* target=world.human_ai_resolve_actor(event->words[4])){
+                const auto mode=replacing?6u:(event->words[0]&0xf0000000u)==0x40000000u?0u:4u;
+                select_target_task(queue,*event,*target,mode,false);
+                return;
+            }
+            const auto kind=event->words[0];
+            if(kind==0x20000012u||kind==0x20000004u){
+                auto* source=world.human_ai_resolve_actor(event->words[3]);
+                if(kind==0x20000012u&&!source)
+                    throw std::runtime_error("Guard task 0x20000012 requires its actual source actor");
+                if(source&&(kind==0x20000012u||world.human_sound_friendly(*human,source))){
+                    auto* source_human=dynamic_cast<Human*>(source);
+                    if(!source_human||!source_human->command)
+                        throw std::runtime_error("Guard follow task requires the source Human command owner");
+                    const auto* linked=source_human->command->second.events.last_of_kind(0x10000016u); //005AE270, reverse.
+                    if(linked)if(auto* target=world.human_ai_resolve_actor(linked->words[4])){
+                        select_target_task(queue,*event,*target,4,true);
+                        return;
+                    }
+                }
+            }
+        }
+        //00549690 initializes only XYZ in each stack vector. W is unspecified.
+        selected_event_.reset();
+        const std::array<float,3> origin{};
+        auto action=actions_.acquire(origin,origin,2);
+        auto& words=action->state;
+        this->resources().current_action(std::move(action));
+        words.set(0x10,5000u);
+    }
 private:
+    HumanVector frame_position(Actor& actor){
+        const auto matrix=this->state_frames().actor_world_matrix(actor.base().frame());
+        return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
+    }
+    void select_target_task(HumanAIEventQueue& queue,const HumanAIEvent& event,Actor& target,
+            std::uint32_t mode,bool retarget){
+        HumanVector position;
+        std::memcpy(position.data(),event.words.data()+8,sizeof position);
+        this->resources().current_action(actions_.acquire(position,frame_position(target),mode));
+        auto copy=queue.pool().acquire();
+        copy->words[0]=event.words[0];
+        copy->words[1]=10000;
+        copy->words[2]=event.words[2];
+        copy->words[3]=event.words[3];
+        copy->words[4]=retarget?static_cast<std::uint32_t>(target.base().id10()):event.words[4];
+        std::copy_n(event.words.begin()+8,5,copy->words.begin()+8);
+        selected_event_=std::move(copy);
+    }
+    template<class Inline>void request_crouch(Inline& control){ //00559360(2)→005767F0(2).
+        if(this->words().template get<std::uint32_t>(0x50)&2u)return;
+        state_.set(0x1a0,.59f);
+        speed_=.59f;
+        this->resources().state().set(0x10c,0u);
+        if(this->human()->field174)return;
+        auto* animation=control.control();
+        if(!animation)throw std::logic_error("Guard crouch requires the actual DD0 owner");
+        if(human_frame_signed_word(animation->animation_state_word(0xa30))>0||
+                animation->animation_state_word(0x1d8)==0x5fu)return;
+        this->words().set(0x4c,2u);
+        if(this->point()&&this->point()->byte16==8)return;
+        auto* input=this->second_frame_inputs();
+        if(!input)throw std::logic_error("Guard crouch requires the actual frame input buffer");
+        input->set(0x20,1.f);
+        auto& words=this->resources().state();
+        if(human_frame_signed_word(words.template get<std::uint32_t>(0xc8))<300)words.set(0xc8,300u);
+    }
     static constexpr float random_scale=0x1.0002p-15f; //0080FF64, actual CRT rand divisor.
     std::uint32_t random_word(){const auto value=random_();if(value>0x7fff)throw std::runtime_error("Guard AI requires shared CRT random");return value;}
     static std::int32_t signed_stat(const Human& human,unsigned index){const auto bits=human.properties.stats_ec.at(index);std::int32_t value;std::memcpy(&value,&bits,4);return value;}
-    Random& random_;Contexts& contexts_;HumanJointWords<0x1e0> state_;
+    HumanAIAction2Pool& actions_;Random& random_;Contexts& contexts_;HumanJointWords<0x1e0> state_;
     std::vector<std::uint16_t> primary_,secondary_;std::vector<void*> doors_;
     std::optional<float> speed_;
+    HumanAIEventPool::Lease selected_event_{nullptr,HumanAIEventPool::Return{}}; //Native148, a separate clone from the processed queue.
+    Actor* timer_target_=nullptr; //Actual19C; scalar guard words never publish a host pointer.
 };
 } //namespace hd2::game
 #endif

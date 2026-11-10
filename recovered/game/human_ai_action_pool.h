@@ -46,5 +46,76 @@ private:
     std::vector<std::unique_ptr<HumanAIAction1>> records_;std::vector<HumanAIAction1*> free_;
     std::int32_t batch_=16;
 };
+
+//0058A660/0058A790 grow the distinct manager+78/+90 families. The free-list
+//record remains allocated when returned by00582C50; the next acquire only
+//overwrites the words that00582890/00582990 actually assign.
+template<std::uint32_t Kind,std::size_t Size>struct alignas(16) HumanAIPooledAction {
+    HumanJointWords<Size> state;
+};
+template<std::uint32_t Kind,std::size_t Size>class HumanAIActionPool {
+public:
+    using Action=HumanAIPooledAction<Kind,Size>;
+    struct Return {
+        HumanAIActionPool* pool=nullptr;
+        void operator()(Action* value)const noexcept{if(value)pool->give(value);}
+    };
+    using Lease=std::unique_ptr<Action,Return>;
+    HumanAIActionPool(){grow();}
+    HumanAIActionPool(const HumanAIActionPool&)=delete;
+    HumanAIActionPool& operator=(const HumanAIActionPool&)=delete;
+    std::size_t allocated()const{return records_.size();}
+    std::size_t available()const{return free_.size();}
+    std::int32_t growth_batch()const{return batch_;}
+    void growth_batch(std::int32_t value){batch_=value;}
+protected:
+    Lease acquire_record(){
+        if(free_.empty())grow();
+        auto* result=free_.back();free_.pop_back();
+        return Lease(result,Return{this});
+    }
+private:
+    void give(Action* value)noexcept{free_.push_back(value);}
+    void grow(){
+        if(batch_<=0)throw std::runtime_error("Human AI action pool has a nonpositive growth batch");
+        const auto count=records_.size()+static_cast<std::uint32_t>(batch_);
+        records_.reserve(count);free_.reserve(count);
+        for(std::int32_t n=0;n!=batch_;++n){
+            auto value=std::make_unique<Action>();value->state.set(4,Kind);
+            for(auto offset:{8u,12u,16u})value->state.set(offset,std::uint32_t{0});
+            free_.push_back(value.get());records_.push_back(std::move(value));
+        }
+    }
+    std::vector<std::unique_ptr<Action>> records_;std::vector<Action*> free_;
+    std::int32_t batch_=16;
+};
+class HumanAIAction2Pool : public HumanAIActionPool<2,0x50> {
+public:
+    template<std::size_t N>
+    Lease acquire(const std::array<float,N>& first,const std::array<float,N>& second,std::uint32_t mode){ //00582890.
+        static_assert(N==3||N==4);
+        auto result=acquire_record();auto& state=result->state;
+        state.set(0x44,std::uint32_t{0});state.set(0x20,first);state.set(0x30,second);
+        state.set(0xc,std::uint32_t{0});state.set(8,mode);return result;
+    }
+};
+class HumanAIAction3Pool : public HumanAIActionPool<3,0x40> {
+public:
+    template<std::size_t N>
+    Lease acquire(std::uint32_t mode,std::uint32_t secondary,const std::array<float,N>& position){ //00582990.
+        static_assert(N==3||N==4);
+        auto result=acquire_record();auto& state=result->state;
+        state.set(0x30,secondary);state.set(8,mode);state.set(0x20,position);
+        return result;
+    }
+};
+static_assert(sizeof(HumanAIPooledAction<2,0x50>)==0x50);
+static_assert(sizeof(HumanAIPooledAction<3,0x40>)==0x40);
+
+struct HumanAIActionPools {
+    HumanAIAction1Pool kind1;
+    HumanAIAction2Pool kind2;
+    HumanAIAction3Pool kind3;
+};
 } //namespace hd2::game
 #endif

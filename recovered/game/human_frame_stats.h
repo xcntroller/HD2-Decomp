@@ -4,6 +4,12 @@
 #include <cstring>
 
 namespace hd2::game {
+//005A64F0: DWORD wrapping addition, signed upper-base comparison BEFORE lower0.
+template<class Human>void adjust_human_frame_stat3(Human& human,std::uint32_t amount){
+    auto& value=human.properties.stats_ec[3];value+=amount;std::int32_t current,limit;
+    std::memcpy(&current,&value,4);std::memcpy(&limit,&human.properties.stats_11c[3],4);
+    if(current>limit)value=human.properties.stats_11c[3];else if(current<0)value=0;
+}
 //005A93A0/005A94F0: actual HumanC8/D4 FLOAT words, not profile base stats.
 //Only the original debug-format calls ending in genuine0069BFE0 RET are omitted.
 template<class Human>void increment_human_frame_stat(Human& human,bool endurance,float amount,std::uint32_t mode){

@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_AREA_AI_STATE_LOADING_H
 
 #include "game/human_ai_state_loading.h"
+#include "game/human_ai_frame_timers.h"
 
 namespace hd2::game {
 
@@ -12,15 +13,17 @@ template<class Frames,class Human,class Inputs,class Contexts,class Services>
 class HumanAreaAIStateLoading : public HumanAIStateLoading<Frames,Human,Inputs> {
 public:
     using AI=HumanAIStateLoading<Frames,Human,Inputs>;using Base=typename AI::Base;
+    using Actor=SceneActor<Frames>;
     HumanAreaAIStateLoading(Frames& frames,Inputs& inputs,MissionTableSet& second,
-            HumanInputCallbacks& callbacks,Contexts& contexts,Services& services)
-        :AI(frames,inputs,second,callbacks,8),contexts_(contexts),services_(services) {
+            HumanInputCallbacks& callbacks,HumanAIAction3Pool& actions,Contexts& contexts,Services& services)
+        :AI(frames,inputs,second,callbacks,8),actions_(actions),contexts_(contexts),services_(services) {
         state_.set(0x154,std::uint32_t{0});
     }
     template<class Inline>void bind(Human& human,const Base* previous,MissionNavigation* navigation,
             std::uint32_t mode,Inline& control) {
         AI::bind(human,previous,navigation,mode,control);
-        state_.set(0x154,std::uint32_t{0});state_.set(0x15c,std::uint32_t{0});
+        timer_target_=nullptr; //Actual native15C borrower.
+        state_.set(0x154,std::uint32_t{0});
         this->resources().state().set(0xf0,std::uint32_t{0});
         state_.set(0x150,this->words().template get<std::uint32_t>(0x50)&7u);
         const auto matrix=this->state_frames().actor_world_matrix(human.base().frame());
@@ -53,9 +56,77 @@ public:
     void close_loading(){AI::close_loading();this->clear_human_reference();route_.clear();} //00559C20 retains native170 list.
     const auto& route()const{return route_;}const auto& kind10_points()const{return kind10_;}
     auto& state(){return state_;}const auto& state()const{return state_;}
+    Actor* timer_target()const{return timer_target_;}void timer_target(Actor* target){timer_target_=target;}
+    template<class Queries>void advance_frame_prefix(std::uint32_t elapsed,Queries& queries){advance_human_area_frame_prefix(*this,elapsed,queries);} //00559C60.
+    void select_area_action(){ //0055A130. Area virtual10C is00575820.
+        this->resources().retire_current_action();
+        //The original stack vector initializes XYZ only.
+        this->resources().current_action(actions_.acquire(3,0,std::array<float,3>{}));
+        state_.set(0x158,0u);
+    }
+    std::uint32_t advance_frame_decision(std::uint32_t elapsed){ //00559EB0.
+        auto* human=this->human();
+        if(!human)throw std::logic_error("Area decision requires the bound Human");
+        state_.set(0x158,state_.template get<std::uint32_t>(0x158)+elapsed);
+        auto kind=this->resources().current_action_kind();
+        if(!kind){
+            select_area_action();
+            return this->resources().current_action_kind();
+        }
+        drain_frame_events(); //005A8480 uses the current Area virtualF4.
+        kind=this->resources().current_action_kind();
+        const auto skill=human_frame_signed_word(human->properties.stats_ec[3]);
+        if(kind!=5&&!(state_.template get<std::uint32_t>(0x154)&1u)&&skill<20)
+            return kind; //0055B6A0 is a genuine RET.
+        if(kind==5&&skill>40)select_area_action();
+        else if((state_.template get<std::uint32_t>(0x154)&12u)==4u)
+            this->resources().retire_current_action(); //0055A0E0→00575820.
+        return this->resources().current_action_kind();
+    }
 private:
-    Contexts& contexts_;Services& services_;HumanJointWords<0x180> state_;
+    void drain_frame_events(){
+        auto* command=this->command();
+        if(!command)throw std::logic_error("Area event dispatch requires the actual command owner");
+        auto& source=command->first.events;
+        auto& processed=command->second.events;
+        while(source.size()){
+            auto event=source.pop_front();
+            switch(event->words[0]){ //00559F60.
+            case 0x10000002u:
+                processed.merge(std::move(event),30000,false);
+                break;
+            case 0x3000000bu:case 0x3000000cu:
+                if(aim_at_event_target(*event))processed.merge(std::move(event),20000,false);
+                break;
+            case 0x40000015u:{
+                const auto draw=contexts_.human_script_random();
+                if(draw>0x7fffu)throw std::runtime_error("Area reaction requires the shared CRT random source");
+                this->extend_frame_reaction(static_cast<std::uint32_t>(static_cast<long double>(draw)*0x1.0002p-15f*300.f+100.f));
+                (void)aim_at_event_target(*event);
+                (void)aim_at_event_target(*event); //Native repeats the common 0x40000010/11 path.
+                break;
+            }
+            case 0x40000010u:case 0x40000011u:
+                (void)aim_at_event_target(*event);
+                break;
+            default:
+                break;
+            }
+        }
+    }
+    bool aim_at_event_target(const HumanAIEvent& event){
+        auto* actor=services_.human_ai_resolve_actor(event.words[4]);
+        if(!actor)return false;
+        const auto& hostiles=this->human()->perception.lists()[0];
+        if(std::find(hostiles.rbegin(),hostiles.rend(),actor)!=hostiles.rend())return false; //005A5E50.
+        auto* target=dynamic_cast<Human*>(actor);
+        if(!target)throw std::runtime_error("Area event aim requires a Human head marker owner");
+        this->resources().direction().target_frame(target->head_marker); //0055D1E0.
+        return true;
+    }
+    HumanAIAction3Pool& actions_;Contexts& contexts_;Services& services_;HumanJointWords<0x180> state_;
     std::vector<std::uint16_t> route_,kind10_;
+    Actor* timer_target_=nullptr;
 };
 } //namespace hd2::game
 #endif

@@ -6,6 +6,7 @@
 #include "game/human_state_base_loading.h"
 #include "game/human_ai_event_queue.h"
 #include "game/scene_actor.h"
+#include "game/human_ai_direction_frame.h"
 
 namespace hd2::game {
 
@@ -57,7 +58,7 @@ public:
         bound_=true;
     }
     //0056F630's loading branch: F8 jobs/104 current job stay empty; typed
-    //F0 kind1 actions now have their actual producer/retirement. Base84/94
+    //F0 actions return to their typed process pools. Base84/94
     //commands also have no producer here. No successful runtime close is claimed.
     void close_loading() {
         if(resources_.state().template get<std::uint32_t>(0xf0))
@@ -69,6 +70,24 @@ public:
     HumanVector current_direction()const override{return resources_.direction().state().template get<HumanVector>(0);} //0056FBF0.
     HumanVector target_direction()const override{return resources_.direction().state().template get<HumanVector>(0x10);} //0056FC00.
     bool bound()const{return bound_;}
+    template<class Queries>void advance_frame_timers(std::uint32_t elapsed,Queries& queries){
+        advance_human_ai_frame_timers(resources_.state(),elapsed);Base::advance_frame_timers(elapsed,queries); //00571680→00588010.
+    }
+    void extend_frame_reaction(std::uint32_t duration){ //00571A10.
+        auto& words=resources_.state();
+        if(words.template get<std::uint32_t>(0xc8)<duration)words.set(0xc8,duration);
+        if(this->words().template get<std::uint32_t>(0x50)&0x200000u)
+            words.set(0xc4,words.template get<std::uint32_t>(0xc4)+duration);
+    }
+    template<class Inline>void look_command(std::uint32_t command,Inline& control,const HumanVector* target=nullptr){ //00570A10/00570980.
+        control.look_command(command,target); //005A45F0→005ABD90 kind5, BEFORE flag publication.
+        const auto old=this->words().template get<std::uint32_t>(0x50);
+        this->words().set(0x50,command==3||command==4?old|0x400000u:old&0xffbfffffu);
+    }
+    template<class Inline>std::uint32_t advance_frame_direction(std::uint32_t elapsed,Inline& control){
+        auto look=[&](std::uint32_t command,const HumanVector* target){look_command(command,control,target);};
+        return advance_human_ai_frame_direction(*this,elapsed,this->state_frames(),look); //00575940.
+    }
     HumanSightMetricFamily sight_metric_family()const override{return HumanSightMetricFamily::ai;} //B0+34=0056FC80,+38=00570280.
     void sight_enemy_acquired(Human& actor) override {
         const auto kind=this->words().template get<std::uint32_t>(0x48);

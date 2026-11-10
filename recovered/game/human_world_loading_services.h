@@ -37,6 +37,12 @@ public:
     std::uint32_t game_word28()const{return dependencies().session.words.template get<std::uint32_t>(0x28);}
     std::uint32_t game_frame_serial()const{return dependencies().session.words.template get<std::uint32_t>(0x2c);}
     auto& human_ai_event_pool(){return dependencies().startup.human_ai_event_pool();}
+    auto& human_ai_frame_inputs(){return dependencies().startup.human_ai_frame_inputs();}
+    auto human_ai_resolve_actor(std::uint32_t handle){ //005ACA50→00475DD0, Scene2 identity.
+        auto& scene=dependencies().scene.frames();
+        return handle&0x80000000u?nullptr:scene.scene_actor_identity(static_cast<std::int32_t>(handle));
+    }
+    template<class Actor>bool human_scene_actor_matches(Actor& actor){return dependencies().scene.frames().scene_actor_identity(actor.base().id10())==&actor;} //00475DD0.
     auto& human_perception_record_pool(){return dependencies().startup.human_perception_record_pool();}
     bool human_face_quality_enabled(){return dependencies().startup.human_face_quality_enabled();}
     bool presentation_application_fallback(){return human_remote_ai_enabled();} //00785BE0→006B66B0.
@@ -203,7 +209,7 @@ public:
     struct CommandArea{std::array<float,4> position;float radius;};
     template<class Human>CommandArea human_ai_command_area(Human&){throw std::runtime_error("Area AI handover requires the actual Human B4 area producer");}
     template<class State>void adjust_active_ai_stance(State& state,bool){
-        if(!state.words().template get<std::uint32_t>(0x74)||!state.words().template get<std::uint32_t>(0x78))return;
+        if(!state.first_frame_inputs()||!state.second_frame_inputs())return;
         throw std::runtime_error("Populated Active AI stance requires actual74/78 command and A4/A8 posture producers");
     }
     template<class Human>bool human_unavailable(const Human& human)const { //005A6380, only its native AL result.

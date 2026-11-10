@@ -203,3 +203,60 @@ New durable original exports: frame-human-{feedback-dependencies,feedback-items,
 item-pose-dependencies,inline-updates,control-updates,geometry-target,
 drip-and-geometry,actor-tail,periodic-stats,ai-presentation}; associated assembly
 and constants are fingerprinted in the receipt. No diagnostics marker added.
+
+## B0 AI timers, steering and task selection
+
+00588010/00571680 now have base/AI timer bodies. Typed B0+68 handover preserves
+the actual action-target identity;74/78 are typed frame-input borrowers, separate
+from network7C. Invalid target sends virtual0C(false) before decrementing64;
+timeout stores64 then sends true. Actual process membership0089B4E0/target94/life
+and derived completion remain mandatory. Base bind clears74/78 borrowers as native.
+The actual existing stance gates now inspect those pointers rather than cold DWORD
+guard words. Native Base::bind handover plus timer sanitizer fixture and real-host
+i386 pass.
+
+00547E70 Guard and00559C60 Area prefixes use SAME Startup008AAF48/008AAE48 scratch.
+Guard validates19C/clears scratch BEFORE common timers; Area runs common timers,
+validates15C/ages action BEFORE clearing scratch. Watched pointers are typed and
+resolve through SAME Scene2 identity00475DD0. Guard invalidation clears actual
+AI128 target/accumulators. Area clears its watched target alone. Pooled action
+ageing updates 0C/10 for the typed kind 1, 2 and 3 leases.
+
+Guard00547DA0 uses real reverse closest-enemy distance005733E0, then when needed
+reverse ENEMY B0+4C aim-dot00584890 toward the Guard; this is not Sight visibility.
+Strict dot>FLOAT.9848099947, extended normalized X/Y, stored Z and distinct sum
+orders are preserved. Distance starts65535, uses extended differences/stored FLOAT
+square and signed bit-pattern epsilon test. Independent200/400 mode bits draw from
+SAME CRT and may overwrite the first timer.005AE940 is constant2, so5000 cadence
+adds2-hostile_count to actual Human stat3 through005A64F0, upper base clamp BEFORE
+lower0. Other timers distinguish nonzero from positive starts and preserve wrapping.
+00575850 reconciles query and direction flags. 00575940 steers from accumulated
+direction or a typed borrowed aim frame and publishes both direction vectors to
+B0. 00570A10/00570980 emit the original inline look command before updating
+the B0 look flag. 0055D2B0 fires on signed overshoot, with one interval addition.
+
+Startup owns the separate kind 2 and 3 process pools alongside kind 1. Growth
+0058A660/0058A790 uses 0x50/0x40 byte records in batches of 16.
+00582890 resets kind 2 age and leaves lifetime intact. 00582990 preserves both
+age and lifetime. 00582C50 returns each lease to its own pool.
+
+Guard 00549360 scores the actual processed event queue by signed lifetime,
+distance and priority (005AE310), resolves actor IDs through Scene2 (005ACA50),
+and follows the last 0x10000016 link in reverse (005AE270) when called for by the
+selected event. Its pooled event clone lives in native 148. Guard reset 00548040
+returns that clone before returning the action, leaving the source event in the
+processed deque. The no-target branch creates kind 2 mode 2 with lifetime 5000.
+The fallback vectors have three known lanes and leave W unspecified.
+
+Area 00559EB0 selects kind 3 mode 3 via 0055A130 on the initial decision. Later
+decisions consume the actual first queue through 00559F60, merge selected events
+into the second queue, publish the target's actual head frame and extend the
+reaction using the shared CRT stream. The low-skill 0055B6A0 branch is a genuine
+RET. The 0055A0E0 reset checks flags 4 and 8 before returning the action.
+
+Three native sanitizer fixtures, strict i386 instantiation over the actual
+Guard/Area host types, and the launcher link passed. See the
+[checkpoint receipt](checkpoints/p2.2-human-ai-task-selection-20261110.json) for
+artifacts and coverage. Guard authority decision/worker bodies, Area kind 3
+workers, the navigation job and common B0 output receivers remain required,
+along with player/script/active frames and DD0 integration.

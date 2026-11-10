@@ -194,7 +194,7 @@ private:
         }
         if(adjust) {
             //00537FB0 has no effect until both native74/78 command producers exist.
-            if(this->words().template get<std::uint32_t>(0x74)&&this->words().template get<std::uint32_t>(0x78))
+            if(this->first_frame_inputs()&&this->second_frame_inputs())
                 services_.adjust_active_ai_stance(*this,prefer_ready);
         }
         if(!state_.template get<std::uint8_t>(0x18a)||!this->item()||!special_hand_item())

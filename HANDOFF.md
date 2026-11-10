@@ -9,30 +9,34 @@ WORK, hash/remove temporary fixtures at checkpoint. Interactive changes require
 actual user desktop acceptance.
 
 Application still DECLINES loading. Both P2.2 boxes OPEN; no first world frame or
-mission desktop claim. Tally34 complete/2,068 partial(2,063 client/five engine)/
-18,783 frozen; zero complete promotions.
+mission desktop claim. The ledger has 34 complete and 2,105 partial entries (2,100 client and five engine)
+against 18,783 frozen functions.
 
-## Latest source checkpoint — Human frames
+## Latest source checkpoint
 
-After595f195: [Human frame contract](analysis/human-frame-source.md),
-[receipt](analysis/checkpoints/p2.2-human-frame-20261110.json). SAME World helpers
-now cover containing0059FE30/0059FFD0 order, timers/motion, pooled perception and
-event ageing, E0 directions/oldCC feedback, item/camera poses,230 equipment and
-periodic stats.33 new partials, zero complete promotions. Eight focused native
-sanitizer fixtures, actual-host i386 and app link checked in receipt. Fixtures
-fingerprinted/removed; logs/original evidence retained. No diagnostics marker.
-005A5C80 returns B0+5C, NOT50.005AC0D0 returnsOLDCC beforeclear. Native hide
-rotation00792FD3 uses NEGATIVE translation step, restoration uses angle step.
-FPV projectile direction uses camera1; position camera0 except kind9 weapon48.
-154 FLOAT,17C DWORD countdown. Shared005A6730 reused, no duplicate credit.
-Actual item fire precedes offline AI commandRET; never replace firing withRET.
-Positive derived B0/DD0/fire/blood/contact/formation and005647C0 movement remain
-REQUIRED. Live full frame graph still NOT instantiated; app still DECLINES loading.
-NEXT real B0+24/+28 and DD0 control00787270/presentation00787D50/geometry007A7470.
-Read existing frame-human-{state-updates,control-updates,drip-and-geometry} exports
-before exporting again. Passive005A4330/4340 are confirmedRET4/absent frozen;
-common AI0056F710 returns immediately in offline7. Preserve actual positive jobs,
-directions, physics and formation. Continue SAME full checkbox beyond checkpoints.
+[Human AI frame source](analysis/human-frame-source.md#b0-ai-timers-steering-and-task-selection)
+and [receipt](analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json).
+Shared base/AI timers, Guard and Area prefixes, typed action targets and frame
+inputs, direction steering and pooled kind 2/3 task selection are in source.
+Guard 00549360 resolves actual processed events and owns a separate clone.
+Area 00559EB0 creates a kind 3 action before processing incoming events on later
+decisions. Three native sanitizer fixtures, actual host i386 and application
+link passed. Added 37 partial client entries. The receipt fingerprints the
+removed fixtures and retained evidence.
+
+Continue Guard 00548170 and Area 00559DE0 through their action workers and common
+AI query/output (0057A750, 00583C30, 0058BAF0). The existing
+`frame-human-{ai-selection-leaves,ai-task-leaves,ai-decision-workers,area-worker-leaves}`
+exports cover the next dependencies. 00549AE0 mode 2 sends look 3 before the
+lifetime expiry path. Area 0055AD50 and 0055A6E0 share the actual 0055B860
+hostile/processed event predicate. Positive navigation and jobs remain required.
+Also finish player, script and Active AI frame dispatch, DD0, actual world frame
+services, volumetric and guard integration, then application load and user test.
+
+Prior [Human frame source](analysis/human-frame-source.md) and
+[receipt](analysis/checkpoints/p2.2-human-frame-20261110.json) cover
+0059FE30/0059FFD0 sequencing, E0 direction and feedback, timers, perception,
+item/camera poses, 230 equipment and periodic stats.
 
 ## Prior Sight source checkpoint
 
