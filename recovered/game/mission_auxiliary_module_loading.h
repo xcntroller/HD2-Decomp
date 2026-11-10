@@ -20,6 +20,7 @@ public:
         if(!authority)(void)definitions_.load(files,resource); //00402020, optional file.
     }
     void activate(bool){} //004010B0 genuine RET4.
+    void update(std::uint32_t,std::uint32_t){} //00401FD0 reaches only its cold20/24 playback array; no playback producer/API above.
     void finish(bool){} //00401F40 cold playback only, NOT a claimed RET body.
     void unload(bool authority){if(!authority)definitions_.clear();} //00402030→00402040.
 private:
@@ -87,6 +88,7 @@ public:
     void finish_loading(bool){} //004115E0.
     void activate(bool){} //0048E180.
     void finish(bool){} //0048E1D0.
+    void update(std::uint32_t){} //0048E7E0 genuine RET4 (loads10 to a dead stack slot); NOT0048E7F0's separate worker.
     void unload(bool){} //0048E190, cold array; no positive-state producer/API.
 private:
     frontend::ClientModuleBinding registration_;

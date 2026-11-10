@@ -131,7 +131,7 @@ public:
     void update(std::int32_t delta) { //00474740's deferred pass.
         if(!(mode_&2)||!services_.vertex_animations_enabled())return;
         clock_=add(clock_,delta);
-        if(clock_>299) {
+        if(static_cast<std::uint32_t>(clock_)>=300u) { //0047477F CMP300/JB: UNSIGNED process clock, including wrapped negative deltas.
             clock_=add(clock_,-300); //One subtraction, not modulo.
             const auto camera=services_.active_game_camera();
             if(!camera)throw std::runtime_error("Vertex animation requires the actual camera");

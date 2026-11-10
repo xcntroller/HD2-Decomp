@@ -18528,13 +18528,15 @@
       "program": "client",
       "entry": "00474740",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00474740: Actual vertex animation instance definition/loading/reference/retirement source.",
+      "coverage": "P2.2 source reconstruction at original entry 00474740: Actual vertex animation instance definition/loading/reference/retirement source. Actual module binding now supplies live selected-profile quality byte1; process clock comparison is unsigned>=300 with native wrapping and one subtraction.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_vertex_instances.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/module-actor-frame-source.md",
+        "recovered/host/game_actor_services.h"
       ]
     },
     {
@@ -26984,6 +26986,76 @@
         "recovered/game/dynamic_collision_point_queries.h",
         "analysis/blast-wave-process.md",
         "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00476080",
+      "status": "partial",
+      "coverage": "Authority Scene2 coordinator: native mode-dependent pending retirement, SAME100ms proximity and active-list Human movement before forward captured actor18 traversal and FIFO activity drain.",
+      "limitations": "Source-only portable ownership/callbacks replace original vector/vtable ABI. Actual host template instantiation and focused native sanitizers; positive Human/Dog/movement and other required simulation receivers remain external dependencies, application loading still declines and no desktop first-frame delivery is claimed.",
+      "evidence": [
+        "recovered/game/scene_actor_frame.h",
+        "recovered/host/game_loading_modules.h",
+        "recovered/host/game_scene_actor_frames.h",
+        "analysis/module-actor-frame-source.md",
+        "analysis/checkpoints/p2.2-module-actor-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00476a50",
+      "status": "partial",
+      "coverage": "Actual mode/remote-AI summary gates, signed health/B0/unavailable/Script-suspension conditions and independent4C/50 counts with singleton54 borrower.",
+      "limitations": "Source-only portable ownership/callbacks replace original vector/vtable ABI. Actual host template instantiation and focused native sanitizers; positive Human/Dog/movement and other required simulation receivers remain external dependencies, application loading still declines and no desktop first-frame delivery is claimed.",
+      "evidence": [
+        "recovered/game/scene_actor_registry.h",
+        "recovered/host/game_loading_modules.h",
+        "recovered/host/game_scene_actor_frames.h",
+        "analysis/module-actor-frame-source.md",
+        "analysis/checkpoints/p2.2-module-actor-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048daa0",
+      "status": "partial",
+      "coverage": "Fresh ascending all19-slot authority module0C dispatch, preserving callback replacement and later registration publication.",
+      "limitations": "Source-only portable ownership/callbacks replace original vector/vtable ABI. Actual host template instantiation and focused native sanitizers; positive Human/Dog/movement and other required simulation receivers remain external dependencies, application loading still declines and no desktop first-frame delivery is claimed.",
+      "evidence": [
+        "recovered/game/mission_module_dispatch.h",
+        "recovered/host/game_loading_modules.h",
+        "recovered/host/game_scene_actor_frames.h",
+        "analysis/module-actor-frame-source.md",
+        "analysis/checkpoints/p2.2-module-actor-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048dad0",
+      "status": "partial",
+      "coverage": "Fresh ascending all19-slot presentation module10 dispatch, with real registered owner routes and explicit required positive frame consumers.",
+      "limitations": "Source-only portable ownership/callbacks replace original vector/vtable ABI. Actual host template instantiation and focused native sanitizers; positive Human/Dog/movement and other required simulation receivers remain external dependencies, application loading still declines and no desktop first-frame delivery is claimed.",
+      "evidence": [
+        "recovered/game/mission_module_dispatch.h",
+        "recovered/host/game_loading_modules.h",
+        "recovered/host/game_scene_actor_frames.h",
+        "analysis/module-actor-frame-source.md",
+        "analysis/checkpoints/p2.2-module-actor-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a5d30",
+      "status": "partial",
+      "coverage": "AL-only Script AI suspension query: absent/nonkind5 B0 false, kind5 reads SAME derived state byte1D2 shared with native suspension.",
+      "limitations": "Source-only portable ownership/callbacks replace original vector/vtable ABI. Actual host template instantiation and focused native sanitizers; positive Human/Dog/movement and other required simulation receivers remain external dependencies, application loading still declines and no desktop first-frame delivery is claimed.",
+      "evidence": [
+        "recovered/game/scene_actor_frame.h",
+        "recovered/host/game_loading_modules.h",
+        "recovered/host/game_scene_actor_frames.h",
+        "analysis/module-actor-frame-source.md",
+        "analysis/checkpoints/p2.2-module-actor-frame-20261110.json"
       ]
     }
   ]

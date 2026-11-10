@@ -13,7 +13,8 @@ namespace hd2::game {
 
 //004759C0's Scene2 construction/identity lists, immediate00475C50 removal and
 //00475EC0 active-list changes and00476680/00476860 retirement ownership.
-//Deferred simulation visits and other runtime registries remain separate consumers.
+//Forward simulation visits defer activity changes; the separate runtime registry
+//uses reverse traversal and reverse draining instead.
 //Backend supplies matching concrete ActorOwner factories and atomic frame-data
 //binding/nonthrowing unbinding. Actor exposes base() with00610070 state. Factory
 //registration deliberately precedes the caller's separate +2C initialization.
@@ -58,6 +59,8 @@ public:
     void active(Actor* actor,bool value) {
         if(!actor)return;
         auto& base=actor->base();
+        if((value&&base.id14()>=0)||(!value&&base.id14()<0))return;
+        if(visiting_){toggles_.push_back(actor);return;} //00475EC0 queues the pointer, NOT the desired state.
         if(value&&base.id14()<0) {
             if(active_.size()>=std::size_t(std::numeric_limits<std::int32_t>::max()))throw std::runtime_error("Scene active count exceeds bounds");
             active_.push_back(actor);base.id14(static_cast<std::int32_t>(active_.size()-1));
@@ -114,6 +117,8 @@ public:
         errors.rethrow();
     }
     void clear() noexcept {
+        if(visiting_) {backend_.record_actor_cleanup_failure(std::make_exception_ptr(
+            std::logic_error("Scene actor cleanup during traversal")));return;}
         clearing_=true;
         //00475FB0 visits the original physical identity array in ascending order.
         //Swap/pop writes earlier identities but leaves the old tail pointers in
@@ -130,7 +135,7 @@ public:
             record.owner.reset();
         }
         identities_.resize(32);for(auto& actor:identities_)actor=nullptr;
-        identity_count_=32;active_.clear();generations_.fill(0xff);clearing_=false;
+        identity_count_=32;active_.clear();toggles_.clear();generations_.fill(0xff);clearing_=false;
     }
     Actor* identity(std::size_t index) const {return index<identity_count_?identities_[index]:nullptr;}
     Actor* human_identity(std::int32_t index)const { //00475E00; bounds BEFORE pending lookup, unlike ordinary00475DD0.
@@ -141,6 +146,41 @@ public:
     }
     std::size_t identity_count() const {return identity_count_;}
     const std::vector<Actor*>& active_actors() const {return active_;}
+    template<class Visit>void visit_active(Visit&& visit) { //00476080/+18 and00476160/+14, FORWARD.
+        if(visiting_||clearing_)throw std::logic_error("Nested Scene2 actor traversal");
+        visiting_=true;frontend::CleanupErrors errors;
+        errors.attempt([&]{
+            const auto count=active_.size();
+            for(std::size_t n=0;n!=count;++n) {
+                if(n>=active_.size()||!active_[n])throw std::runtime_error("Scene2 active actor removed during traversal");
+                visit(*active_[n]); //Reload vector after callbacks; a new actor may reallocate it.
+            }
+        });
+        visiting_=false;
+        //Native captures this count separately AFTER visiting. Repeated queued
+        //pointers toggle repeatedly; requests are neither deduplicated nor last-wins.
+        const auto count=toggles_.size();
+        for(std::size_t n=0;n!=count;++n) {
+            auto* actor=toggles_[n];
+            if(owns(actor))errors.attempt([&]{active(actor,actor->base().id14()==-1);});
+        }
+        toggles_.clear();errors.rethrow();
+    }
+    template<class Services>void summarize_humans(Services& services) { //00476A50.
+        if((services.mode_flags()&7u)!=7u&&!services.human_remote_ai_enabled())return;
+        field4c_=field50_=0;single_human54_=nullptr;
+        const auto count=identity_count_;
+        for(std::size_t n=0;n!=count;++n)if(auto* actor=identities_[n];actor&&actor->base().type()==3) {
+            const auto summary=services.human_frame_summary(*actor);
+            if(!summary.eligible)continue;
+            if(!summary.suspended)++field4c_;
+            if(summary.selected){++field50_;single_human54_=actor;}
+        }
+        if(field50_!=1)single_human54_=nullptr;
+    }
+    std::uint32_t available_human_count()const{return field4c_;}
+    std::uint32_t selected_human_count()const{return field50_;}
+    Actor* single_selected_human()const{return single_human54_;}
     template<class Activate>void activate(Activate&& activate_actor) { //00476210 snapshots count, not a growing traversal.
         field4c_=0;field50_=0;
         const auto count=identity_count_;
@@ -168,6 +208,11 @@ public:
         return nullptr;
     }
 private:
+    bool owns(Actor* actor)const {
+        for(const auto& record:owners_)if(record.owner.get()==actor)return true;
+        for(const auto& pending:pending_)if(pending.record.owner.get()==actor)return true;
+        return false;
+    }
     void unlink_identity(Actor* actor) noexcept {
         remove_active(actor);
         const auto identity=std::size_t(actor->base().id10());
@@ -190,11 +235,12 @@ private:
     Backend& backend_;
     std::vector<Record> owners_;
     std::vector<Pending> pending_;
-    std::vector<Actor*> identities_,active_;
+    std::vector<Actor*> identities_,active_,toggles_;
     std::size_t identity_count_=32;
     std::array<std::uint8_t,32> generations_{};
-    bool clearing_=false;
+    bool clearing_=false,visiting_=false;
     std::uint32_t field4c_=0,field50_=0;
+    Actor* single_human54_=nullptr;
 };
 
 } //namespace hd2::game

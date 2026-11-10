@@ -184,6 +184,10 @@ public:
         actor.loading->activate(authority);
     }
     void deactivate_fowl(Fowl& actor,bool authority){if(actor.loading)actor.loading->deactivate(authority);}
+    void update_fowl(Fowl& actor,bool authority,std::uint32_t elapsed){
+        require_open();if(!actor.loading)throw std::runtime_error("Fowl update requires its actual generated-bird owner");
+        if(authority)actor.loading->update_authority(elapsed);else actor.loading->update_presentation(elapsed);
+    }
     std::int32_t fowl_random_word(){return consumers_.fowl_random_word();}
     auto fowl_camera_position(){const auto world=scene_.frames().actor_world_matrix(scene_.frames().active_game_camera());return GameActorServices::Vector{{world[12],world[13],world[14],world[15]}};}
     float fowl_cull_distance(){return consumers_.fowl_cull_distance();} //Actual containing session+C4, not a guessed camera far plane.

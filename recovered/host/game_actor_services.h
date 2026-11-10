@@ -7,6 +7,7 @@
 #include "game/actor_frame_data.h"
 #include "game/scene_actor.h"
 #include <exception>
+#include <functional>
 
 namespace hd2::host {
 
@@ -19,6 +20,14 @@ static_assert(sizeof(game::ActorFrameData)==32,"Actor frame data requires the i3
 class GameActorServices : public GameActorFrames {
 public:
     using GameActorFrames::GameActorFrames;
+    void bind_vertex_animation_preference(std::function<bool()> query){
+        if(vertex_animation_preference_||!query)throw std::logic_error("Vertex animation preference requires its actual containing profile getter once");
+        vertex_animation_preference_=std::move(query);
+    }
+    bool vertex_animations_enabled(){ //00474740/004749A0→006B6740→006B33E0(1), resolve live selected profile.
+        if(!vertex_animation_preference_)throw std::logic_error("Vertex animation update has no actual profile preference owner");
+        return vertex_animation_preference_();
+    }
     using Actor=game::ActorBase<GameActorServices>;
     class Item {
     public:
@@ -85,6 +94,7 @@ public:
         if(failure)std::rethrow_exception(failure);
     }
 private:
+    std::function<bool()> vertex_animation_preference_;
     std::array<std::uint32_t,0x45> dog_shared_state_{};
     std::vector<game::SceneActor<GameActorServices>*> car_actors_;
     std::exception_ptr cleanup_failure_;

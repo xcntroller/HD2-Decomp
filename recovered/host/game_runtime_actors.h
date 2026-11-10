@@ -96,6 +96,13 @@ public:
         }
     }
     const auto& active_actors() const {return registry_.active_actors();}
+    template<class Derived>void tick(bool authority,std::uint32_t elapsed,Derived& derived) {
+        registry_.visit_active([&](Instance& actor){
+            if(actor.base().type()==35)return; //00611050/60 genuine RET4 in00812750.
+            if(actor.base().type()==11){derived.update_loose_item(static_cast<LooseItemActor&>(actor),authority,elapsed);return;}
+            throw std::runtime_error("Required runtime actor frame receiver is unavailable");
+        });
+    }
     Instance* identity(std::int32_t value) const {return registry_.identity(value);}
     std::uint32_t mode_flags() const {return activation_.mode_flags();}
     void bind_runtime_actor_frame(Frame frame,Instance* actor) {frames_.bind_scene_actor_frame(frame,actor);}

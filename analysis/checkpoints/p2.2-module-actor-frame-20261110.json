@@ -1,0 +1,223 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "00476080",
+    "00476a50",
+    "0048daa0",
+    "0048dad0",
+    "005a5d30"
+  ],
+  "ledger_added_partial_client": 5,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2003,
+  "native_checks": "PASS ASan/UBSan/leak captured forward Scene2/FIFO duplicate and redundant toggles/swap-last/callback growth/failure cleanup, reverse runtime deferred removal, Human summary and suspension gates, all19-slot fresh module replacement, unsigned vertex clock boundaries and preference gates. Engine/actor leaves are doubles.",
+  "strict_i386": "PASS actual World two18-module passes, actor family dispatch/retirement, Script/Players/speech/GEffects/SOUND/vertex and actual camera. Missing simulation/movement leaves are compile-only declarations, not successful implementations; no Windows execution.",
+  "application_link": "PASS",
+  "tracker_tests": 27,
+  "no_new_credit": [
+    "00476160 absent frozen",
+    "004749a0 absent frozen",
+    "0048e7e0 absent frozen",
+    "Ladder/common/Door thunk RET methods absent frozen",
+    "Tracks/HeavyFire/Particles empty cold frame bodies",
+    "0059ffd0/005d5620/005d5810/005647c0 research only, positive simulation not implemented",
+    "0078ad70 research only, separate visual process not implemented"
+  ],
+  "artifacts": {
+    "analysis/work/mission-world-20261103/checkpoint-scene-frame-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-scene-frame-native-run.log": {
+      "sha256": "67a8926bd590355082afa1d527c09d68ef4509280e29eea8fceb4b9c8caed468",
+      "bytes": 195,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-scene-frame-host-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-scene-frame-application-build.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-module-tick-map.json": {
+      "sha256": "f5161d97c7a21405ebd2538296982c4c385ae7d530e52d71fa6e568bec41e100",
+      "bytes": 1991,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-actor-tick-map.json": {
+      "sha256": "e37ec00067ac1c7b76d89842a6437beb103b46c7b13c6599905908cc6bd8d870",
+      "bytes": 2061,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-module-tick-passes.asm": {
+      "sha256": "a5117d231957925a4089a57c2d0d258a3c35df6a46d988d8d4d3ad60ed529550",
+      "bytes": 4356,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-scene2-ticks.asm": {
+      "sha256": "baca3b841749d01af9c56dde41fda47c120a2f7fd01d2d7a09593ee69f9191c2",
+      "bytes": 8743,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-ladder-ticks.asm": {
+      "sha256": "182e3d3c7cd575a4809cb067783fffd718646d96b8b4bb2acf4ef1d1efa5fe04",
+      "bytes": 1140,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-door-ticks.asm": {
+      "sha256": "12228c0f10657d25ebadbfc0962c54b450979650f193d58ba432e434c82134ee",
+      "bytes": 1715,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-common-actor-ticks.asm": {
+      "sha256": "e819f5b338180f03eb301533612a938516417576c7633ff8864bccc98111bdc0",
+      "bytes": 1140,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-texture-shift-tick.asm": {
+      "sha256": "4739b6ce66c3fa970ef855d5cdcda3baf9323ffa02eda8c2197d1a1872dda01f",
+      "bytes": 2149,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-particle-authority-ret.asm": {
+      "sha256": "cade3119fd78d6c2c80e4b5ff6ffffcb5902731179893fd6935dddb5eb73090e",
+      "bytes": 628,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-vertex-preference.asm": {
+      "sha256": "3bec8c8fc2ed4a38ef818061cc4e5d031d30f7296c8a68346f56f09fcb3cf8e7",
+      "bytes": 1528,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers.log": {
+      "sha256": "154a4c7e8978a2e82a03f9361c85802bba9801594834c86a867fd4be251f26d8",
+      "bytes": 4797,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-actor-consumers.log": {
+      "sha256": "854e75f336ca13628fd55113aebe66773f23a7a63e28fe6d9b0443252de27f7b",
+      "bytes": 4695,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/00475ec0.c": {
+      "sha256": "f49228dfc57b48591519cd2d164dff73584d1fec8f44f4ec0c61e616528524ef",
+      "bytes": 1321,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/00475ec0.json": {
+      "sha256": "03ecd9cc235957e59b657f243c685b69503427895ceb889dad3b2e7265aa5ea9",
+      "bytes": 4347,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/00476a50.c": {
+      "sha256": "f2b30f346d4af5076826aa397b681d186d2989042317f47e2c381232079eb4b0",
+      "bytes": 1311,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/00476a50.json": {
+      "sha256": "f52d6f062da71c435198bdcd0e59c6bf65ac081563b29abceb10677597d4f183",
+      "bytes": 4434,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/006e0760.c": {
+      "sha256": "e37e25712289bf712cab41a81515378d38d2af767893bad609f145496544097e",
+      "bytes": 602,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/006e0760.json": {
+      "sha256": "d6290924643706ee4b6f8e75ac2c5e8c0152431230a1db3b19010fe58d95503e",
+      "bytes": 1903,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/005647c0.c": {
+      "sha256": "2a7e268121dc6b2f79089f0621723b7924ebb52abc6f986f6d63b6e326b135e0",
+      "bytes": 9902,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/005647c0.json": {
+      "sha256": "6dddfadf14431f4f65c9fd2709c8c242d9021ad9825836ee350c6c35ed87ad0f",
+      "bytes": 36248,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/0078ad70.c": {
+      "sha256": "910a855c87415794fae6dd5ca51ea89ae98e5c0720e30708673f085a46578d73",
+      "bytes": 5558,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/0078ad70.json": {
+      "sha256": "d7c2cbe67811496407a33874ba1b849c77819d5ed9e71fce7d25fa661986ec6d",
+      "bytes": 16378,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-actor-consumers/005a5d30.c": {
+      "sha256": "dc5ae40c36accb94513442254fa11d5dbcb7a31cd36273b458d6c08316dadd53",
+      "bytes": 317,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-actor-consumers/005a5d30.json": {
+      "sha256": "7c2bb481cce9ff4ac30aa3440f2b1849e059d97e9b7bf96a3fa69dbb7b8ed375",
+      "bytes": 1354,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-actor-consumers/0059ffd0.c": {
+      "sha256": "ad5213e9c3d2c3d59692562194eed278f1c9537daaf21d271917044a13dfd041",
+      "bytes": 2645,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-actor-consumers/0059ffd0.json": {
+      "sha256": "1831be15d0dcc11d6267fca8a107556f4b795709507b25d977a03c6fe44208da",
+      "bytes": 13158,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-actor-consumers/005d5620.c": {
+      "sha256": "b5ccc7662b667c72e47fa2522f7e9b78acffbc23476e2a514a67021aa40c9ae5",
+      "bytes": 2017,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-actor-consumers/005d5620.json": {
+      "sha256": "9ceba1cdb5cc154b45d8142fe1aeb3d7a138ab4507a8eb4f87b314a45e476a0e",
+      "bytes": 8002,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-actor-consumers/005d5810.c": {
+      "sha256": "608e79feeb963a389086f239c383f92c8b90c84917e66b0f2034ca58a9542751",
+      "bytes": 479,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-actor-consumers/005d5810.json": {
+      "sha256": "01ae5ca2ae8a9818a4f98f2da717a56ef62b2af286dd3a6a61592170bbe7d01f",
+      "bytes": 1665,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-scene-frame-native.cpp": {
+      "sha256": "e7fe8df601e6d8b9240635e356098604eac60669420f36e7b1534285c0e2847f",
+      "bytes": 9449,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-scene-frame-native": {
+      "sha256": "f48f27a4e3f2992f8667a86ec57a661916fe6a3883809d12ce3dd709c4d0d1a8",
+      "bytes": 1855152,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-scene-frame-host.cpp": {
+      "sha256": "9e64c211832924b693271ae8b144938c2e60f2766438af75d00256f87bb2c9d4",
+      "bytes": 2087,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-scene-frame-host.o": {
+      "sha256": "06a985dce9cfbe62c62cb25ea62c82d785485d0e6be98dcdf7e5e4dffcf56cde",
+      "bytes": 8171494,
+      "retained": false
+    }
+  }
+}

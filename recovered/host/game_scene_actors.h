@@ -4,6 +4,7 @@
 #include "host/game_actor_services.h"
 #include "host/game_mesh_movie.h"
 #include "game/scene_actor_registry.h"
+#include "game/scene_actor_frame.h"
 #include "game/simple_scene_actors.h"
 #include "game/geometry_scene_actors.h"
 #include "game/model_scene_actors.h"
@@ -103,6 +104,12 @@ public:
         return id<0?nullptr:actors_.identity(static_cast<std::size_t>(id));
     }
     std::size_t scene_actor_identity_count()const{return actors_.identity_count();}
+    template<class Services>void tick_scene_actors(bool authority,std::uint32_t elapsed,Services& services){
+        game::tick_scene_actor_registry(actors_,authority,elapsed,services);
+    }
+    std::uint32_t available_human_count()const{return actors_.available_human_count();}
+    std::uint32_t selected_human_count()const{return actors_.selected_human_count();}
+    Actor single_selected_human()const{return actors_.single_selected_human();}
     Human* scene_human_identity(std::int32_t identity)const{ //00475E00, including the SAME pending-retirement list.
         auto* actor=actors_.human_identity(identity);if(!actor)return nullptr;
         auto* human=dynamic_cast<Human*>(actor);if(!human)throw std::runtime_error("Human identity resolves to another actual actor family");

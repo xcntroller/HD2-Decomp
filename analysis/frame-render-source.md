@@ -5,6 +5,11 @@ returns failure; both P2.2 checkboxes remain open. These bodies do not establish
 an integrated first world frame or desktop acceptance.
 [Verification receipt](checkpoints/p2.2-frame-render-source-20261110.json).
 
+The [module/actor frame continuation](module-actor-frame-source.md) now supplies
+actual18-kind dispatch, Scene2 forward/FIFO scheduling and same-owner Human
+summary, plus live selected-profile vertex preference and the original unsigned
+clock boundary. Required positive simulation leaves and application binding remain.
+
 ## Frame coordination and authority
 
 `SessionActivationState` can borrow the actual ApplicationState status DWORD;

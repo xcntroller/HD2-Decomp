@@ -184,6 +184,7 @@ public:
     bool session_loaded()const noexcept{return dependencies_.session.loaded;}
     Dependencies& dependencies(){require_open();return dependencies_;}
     auto& presentation_dependencies(){require_open();return presentation_dependencies_;}
+    Services& human_services(){require_open();return bindings_.services;}
     Scripts& scripts(){require_open();return *scripts_;}
     auto& spawn_records(){require_open();return spawn_records_;}
     auto& input_profiles(){require_open();return input_profiles_;}
@@ -233,6 +234,7 @@ using MissionEffects=game::MissionEffectsLoading<ChunkFiles,Frames>;
 using Particles=game::ParticleModuleLoading<ChunkFiles,Frames>;
 struct ModuleDependencies {
     StartupSession& startup;const game::MissionRequest& request;Scene& scene;Actors& world_actors;
+    game::SessionActivationState& session;Services& human_services;
     Scripts& scripts;Sight& sight;Players& players;Camera& camera;
     game::MissionTracksLoading& tracks;Effects& game_effects;Versions& versions;
     game::MissionLightmapGroupsLoading<Frames>& lightmap_groups;game::MissionTextureShiftLoading& texture_shifts;
@@ -254,7 +256,7 @@ public:
          lightmaps_(registry(),registration(8),d_.scene.frames()),shifts_(registry(),registration(10)),
          shots_(registry(),registration(14),d_.scene.frames(),d_.startup.shot_manager_process(),d_.startup.application_flags_owner()),
          heavy_fire_(registry(),registration(16),d_.startup.heavy_fire_process()),particles_(registry(),registration(17),mission_effects_),
-         dependencies_{d_.startup,d_.request,d_.scene,d_.world_actors,owners.scripts(),d_.sight,d_.players,d_.camera,
+         dependencies_{d_.startup,d_.request,d_.scene,d_.world_actors,d_.session,owners.human_services(),owners.scripts(),d_.sight,d_.players,d_.camera,
              tracks_,effects_,versions_,lightmaps_,shifts_,vertices,shots_,heavy_fire_,particles_},dispatch_(dependencies_){}
     ModuleOwners(const ModuleOwners&)=delete;ModuleOwners& operator=(const ModuleOwners&)=delete;
     auto& dispatch(){return dispatch_;}auto& mission_effects(){return mission_effects_;}
@@ -285,7 +287,10 @@ public:
              [&startup,&backend]{(void)startup.car_tyres().load(startup.pre_mission_files());startup.car_materials().rebuild(startup.car_definitions().materials(),backend);}),
          vertices_(scene_.frames(),startup.game_vertex_definitions(),startup.application_flags_owner(),startup.game_vertex_clock()),
          owners_(bindings_,scene_,parent,backend,startup,session,vertices_,clock,catalogue,suffix,startup.car_definitions(),startup.car_materials()),
-         modules_(owners_,vertices_){startup_.bind_game_packet_world(*this);}
+         modules_(owners_,vertices_){
+        scene_.frames().bind_vertex_animation_preference([&startup]{return startup.profile_settings().quality_byte(1)!=0;});
+        startup_.bind_game_packet_world(*this);
+    }
     ~World()override{
         startup_.unbind_game_packet_world(*this);
         startup_.blast_wave_process().clear(); //Source failure guard: retained frames cannot outlive World/Scene retirement.

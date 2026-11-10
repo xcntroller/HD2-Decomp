@@ -4,6 +4,7 @@
 #include "frontend/module_registration.h"
 #include "game/mission_module_dispatch.h"
 #include "game/offline_spawn_presentation.h"
+#include <cstring>
 
 namespace hd2::host {
 
@@ -16,6 +17,43 @@ public:
     explicit GameLoadingModules(Dependencies& dependencies):d_(dependencies){}
     auto& module_registry(){return d_.startup.game_module_registry();}
     std::uint32_t mode_flags()const{return d_.startup.application_flags();}
+    template<class FrameServices>void tick_modules(bool authority,std::uint32_t elapsed,FrameServices& frames) {
+        //A reference-only adapter supplies the mandatory positive frame owners.
+        //No module can fall through to a successful generic frame handler.
+        struct Pass {
+            GameLoadingModules& owner;FrameServices& frames;
+            void tick_mission_module(frontend::ClientModuleRegistration& module,bool authority,std::uint32_t elapsed){
+                owner.tick_mission_module(module,authority,elapsed,frames);
+            }
+        } pass{*this,frames};
+        game::tick_mission_module_pass(module_registry(),pass,authority,elapsed);
+    }
+    template<class FrameServices>void tick_mission_module(frontend::ClientModuleRegistration& module,bool authority,
+            std::uint32_t elapsed,FrameServices& frames) { //Original module+0C/+10 targets.
+        switch(checked_kind(module)) {
+        case 0:bound(module,d_.tracks);if(!authority)d_.tracks.update(d_.session.status,elapsed);return;
+        case 1:bound(module,d_.game_effects);if(!authority)d_.game_effects.update_loading(elapsed,d_.session,d_.players.control());return;
+        case 2:frames.tick_physics(authority,elapsed);return;
+        case 3:frames.tick_items(authority,elapsed);return;
+        case 4:bound(module,d_.scripts.module());
+            if(authority)d_.scripts.module().tick(elapsed);else d_.scripts.module().frame_update(signed_elapsed(elapsed));return;
+        case 5:if(authority)frames.tick_sight(elapsed);return;
+        case 6:if(!authority)d_.startup.update_sound(elapsed);return; //00436820 RET4/00436830→004368D0.
+        case 7:bound(module,d_.versions);return; //Both original RET4.
+        case 8:bound(module,d_.lightmap_groups);return; //Both original RET4.
+        case 9:if(authority)d_.vertices.update(signed_elapsed(elapsed));else d_.vertices.render_update(signed_elapsed(elapsed));return;
+        case 10:bound(module,d_.texture_shifts);if(!authority)d_.texture_shifts.update(elapsed);return;
+        case 11:bound(module,d_.players);
+            if(authority)d_.players.tick(elapsed,d_.session.words.template get<std::uint32_t>(0x28),d_.startup.delayed_player_speech(),d_.human_services);return;
+        case 12:frames.tick_runtime_actors(authority,elapsed);return;
+        case 13:frames.tick_scene_actors(authority,elapsed);return;
+        case 14:bound(module,d_.shots);frames.tick_shots(authority,elapsed);return;
+        case 15:if(!authority)frames.tick_camera(elapsed);return;
+        case 16:bound(module,d_.heavy_fire);d_.heavy_fire.update(authority,elapsed);return;
+        case 17:bound(module,d_.particles);if(!authority)d_.particles.update(elapsed);return; //004455A0 RET4.
+        }
+        throw std::logic_error("Mission frame module has no actual receiver");
+    }
     void finish_loading_modules(){game::finish_mission_modules(module_registry(),*this,d_.startup.application_flags_owner());}
     void activate_modules(bool authority){game::activate_mission_module_pass(module_registry(),*this,authority);}
     void deactivate_modules(bool authority){game::deactivate_mission_module_pass(module_registry(),*this,authority);}
@@ -128,6 +166,7 @@ public:
         throw std::runtime_error("Reserved Scene2 packet requires actual005A5FB0/005418E0 player-state receiver");
     }
 private:
+    static std::int32_t signed_elapsed(std::uint32_t elapsed){std::int32_t value;std::memcpy(&value,&elapsed,4);return value;}
     std::uint32_t checked_kind(frontend::ClientModuleRegistration& module) {
         const auto kind=module.kind();
         if(&d_.startup.game_module_registration(kind)!=&module)

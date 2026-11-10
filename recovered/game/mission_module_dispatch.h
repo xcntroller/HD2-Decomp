@@ -6,6 +6,17 @@
 
 namespace hd2::game {
 
+//0048DAA0(+0C)/0048DAD0(+10): both tick passes are fresh ASCENDING
+//registration reads, including slot18. There is no finish-order reversal or
+//snapshot of the registry across a callback that can replace a later slot.
+template<class Registry,class Services>void tick_mission_module_pass(Registry& registry,Services& services,
+        bool authority,std::uint32_t elapsed) {
+    for(std::size_t kind=0;kind!=registry.size();++kind) {
+        auto* module=registry[kind];
+        if(module)services.tick_mission_module(*module,authority,elapsed);
+    }
+}
+
 //0048DBF0 /006CADE0. Read each registration afresh; a callback may replace
 //later slots. The containing runtime supplies the actual registered receiver,
 //including its original empty methods where verified, with no default handler.

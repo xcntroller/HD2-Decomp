@@ -31,6 +31,7 @@ public:
     void finish_loading(bool){require_open();} //004115E0 genuine RET4.
     void activate(bool){require_open();state_.flags_.fill(0);} //00472250, BOTH paths, no mode predicate.
     void finish(bool){require_open();} //00472270: both owned lists are genuinely empty.
+    void update(bool,std::uint32_t){require_open();} //00472C60/00472510: SAME unpopulatable cold190/1A0 lists, no live fire-support producer.
     void close()noexcept{if(state_.world_==this)state_.world_=nullptr;}
 private:
     void require_open()const{if(state_.world_!=this)throw std::logic_error("HeavyFireSupport world has been retired");}

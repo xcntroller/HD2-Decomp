@@ -124,3 +124,32 @@ leaves are doubles; no engine behavior is inferred. Strict i386 actual full
 activation/spawn/module/host finish-binding graph and application link pass.
 27 tracker tests pass. Eleven additional frozen partials, zero complete promotions.
 Completed temporary fixtures/binaries are hashed then removed; logs retained.
+
+## Private observation investigation — 2026-11-10
+
+Read-only entry/resolver/descriptor evidence narrows the unresolved guard
+publication.00994810 matches32 four-DWORD descriptors at00A8D258;00996330 applies
+an action only after validation.075AC025 descriptors10116203/11116203 use
+validation11/action62, publishing the third matched expected word to the second
+matched destination pointer only on a valid check.0437E723/923A1 descriptors
+10210207/11210207 use validation21/action02 and publish expected as per-thread
+return override after the actual API.009977FE restores that override/caller;
+00997837 action3 XORs API EAX. Those latter entries are absent frozen/no credit.
+Raw API return is not the observation.00996750 fallback does not equalize it.
+
+00994DF0 validation11 alternates counter00B3BF44 modulo2. One branch requires
+private pointer00B3BD8C and four indexed words all zero; the other requires
+00B52F6C and00B4C2CC==*pointer-96hex. Validation21 uses00B3BF4C modulo4: calls
+009F8C60/009F8D40 on00B3BD7C in two branches; another checks private flags or the
+WORD at00B555B0 against00B4FFEC; branch3 genuinely succeeds.009FB050 also checks
+slot/key-dependent blocked bits in actual private state. Actual producers and
+meaning of those private fields remain unrecovered: do not initialize them to
+convenient values or copy expected into observed as a substitute. The temporal
+relationship to earlier menu guard calls remains an inference, not confirmation.
+
+Evidence under ignored durable WORK: `guard-activation-entry-resolver.asm`,
+`guard-activation-tail.asm`, `guard-activation-descriptors.json`, and
+`guard-activation-observed-contracts/` exports00994810/00996330/00996750/009FB050/
+00994DF0. This is research only; no private-code execution, implementation or
+function credit. Continue frame/runtime recovery alongside this unresolved
+integration dependency; it is not evidence of an external blocker.

@@ -24,6 +24,9 @@ public:
     ParticleModuleLoading(const ParticleModuleLoading&)=delete;
     ParticleModuleLoading& operator=(const ParticleModuleLoading&)=delete;
     auto& registration(){return registration_.get();}
+    void update(std::uint32_t){ //004455B0, SAME genuinely cold1014/1034 lists; no active-particle producer/API.
+        require_open();
+    }
     void finish_loading(bool){ //00444110 ignores authority and always borrows game18.
         require_open();const auto scene=effects_.frames().world_scene_frame();
         if(!scene||(process_.scene&&process_.scene!=scene))
