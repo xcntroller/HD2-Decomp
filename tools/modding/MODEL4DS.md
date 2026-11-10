@@ -10,6 +10,15 @@ handling is `model_resources.py`, and the GUI/renderer are `model_gui.py` /
 `gl_view.py`. Parsing and deterministic metadata export have no Tk/OpenGL dependency.
 The new implementation changes only `tools/modding`.
 
+The subsequent [3D Mission Explorer](SPATIAL.md) reuses this decoder/renderer and
+adds bounded **sector5/portal and occluder12 record traversal**. Their volume
+payloads remain opaque and non-rendered; established extents unlock later visible
+scene meshes. Original readers1004E250/100431A0/1003A960 and dispatch pointers are
+fingerprinted in [spatial-evidence.json](spatial-evidence.json). Both Tutorial and
+ALPS1 base scenes now parse all declared frames, retaining partial status. The
+prior corpus statistics below describe the earlier decoder checkpoint and were
+not rerun or reclassified for this extension.
+
 ## Evidence and format boundary
 
 Existing contracts were reused first: [engine model map](../../analysis/engine-model-map.json),
@@ -38,6 +47,8 @@ as evidence.
 | 1001C060 | Dummy common frame plus32 bytes, retained opaque |
 | 10020BA0 | Joint common frame plusDWORD, retained opaque |
 | 1009B960+70 →1001EC40 | Kind11 common-only serialized body |
+| 1009BC20+70 →1004E250 /100431A0 | Sector header/counts/volume and counted portal extents; retained opaque |
+| 1009B8E8+70 →1003A960 | Occluder counts/volume extent; retained opaque |
 | 10038410 →1005DDD0 | Common visual frame followed by shared geometry reference or new LOD geometry |
 | 1005DDD0 | One-based mesh alias, <=10 LODs, metric/flags/vertex count,32-byte base vertices, additional/special vertex branches, triangle groups/material IDs |
 | 10030DB0/100311E0/10030F30 | Native32-byte base allocation and position/bounds consumption |
@@ -73,6 +84,12 @@ NUL; they are not silently repaired into valid filesystem paths.
 - Dummy6 adds32 opaque bytes, joint10 adds4, kind11 adds none. These exact sizes
   are established, but their payload semantics remain unknown. Small opaque
   payloads retain raw hex; large suffixes retain offset/size/SHA256.
+- Sector5 adds header48, vertex/triangle counts at+8/+12,16-byte vertices,
+  uint16 triangle triples, byte portal count and counted portal records
+  (`byte count; (count+2)*16 bytes`). Occluder12 adds DWORD vertex/triangle counts,
+ 16-byte vertices and uint16 triangle triples. Counts/indices are checked; these
+  are opaque volume records, not renderable environment geometry. See the
+  [composition/verification contract](SPATIAL.md) for tool bounds and real scenes.
 - Visual2 binding tails are length-established: byte count; if nonzero,32 opaque
   bytes, count bytes, count96-byte records, then one DWORD used count and that
   many words per mesh LOD. Counts exceeding LOD vertex capacity reject. The

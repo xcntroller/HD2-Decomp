@@ -114,3 +114,11 @@ Maps/Maps_C/Maps_U roots; only a unique candidate is previewed. This is labelled
 as a name candidate, not proof of original graphics-cache lookup. Archive/loose
 precedence within each exact candidate is unchanged. Ambiguity/invalid selection
 uses a labelled material fallback, with no hidden directory/extension substitution.
+
+The [spatial mission view](SPATIAL.md) reuses this abstraction for the exact
+`missions/<namespace>/scene.4ds` base and serialized model keys under the
+established default Models root. Selection is labelled
+`selected_default_root_profile`; other cache roots/directories/global policies
+remain unresolved. It never substitutes a guessed basename or a lower-priority
+archive when the selected resource fails. Original graph candidate classifications
+are retained, separately from this restricted spatial profile.

@@ -88,27 +88,30 @@ class ModelAsset:
 
 
 class ModelResources:
-    def __init__(self,store):self.store=store
-    def open(self,name):
+    def __init__(self,store,texture_cache=None,texture_limit=MAX_TEXTURE_BYTES,texture_dependencies=MAX_TEXTURES):
+        self.store=store;self.texture_cache=texture_cache;self.texture_limit=texture_limit
+        self.texture_dependencies=texture_dependencies
+    def open(self,name,textures=True):
         from resource_store import virtual_name
         name=virtual_name(name)
         if not name.endswith('.4ds'):raise ValueError('Select an exact .4ds resource')
         resolution=self.store.resolution(name)
         result=self.store.read_result(name)
         asset=ModelAsset(decode(result.data,'resource/'+name,{'resolution':asdict(resolution),'decoding':result.decoding}),protected_roots=[self.store.root])
-        if asset.model.status!='invalid':self.textures(asset)
+        if textures and asset.model.status!='invalid':self.textures(asset)
         return asset
 
     def textures(self,asset):
         from resource_store import virtual_name
-        decoded={};pixel_bytes=0
+        decoded=self.texture_cache if self.texture_cache is not None else {}
+        pixel_bytes=sum(len(image.pixels) for image in decoded.values())
         for material in asset.model.materials:
             for role,name in (('primary',material.primary_texture),('secondary',material.secondary_texture),('extra',material.extra_texture)):
                 if not name:continue
                 dependency={'material':material.index,'role':role,'name':name,'status':'unsupported',
                             'rendering_status':'fallback','evidence':'LS3DF 1002BBE0/1002BE30;006DBE60 registered graphics roots'}
                 asset.textures.append(dependency)
-                if len(asset.textures)>MAX_TEXTURES:
+                if len(asset.textures)>self.texture_dependencies:
                     dependency['message']='Tool texture dependency/decode budget reached';continue
                 try:
                     key=virtual_name(name)
@@ -130,8 +133,8 @@ class ModelResources:
                         dependency.update(status='resolved_uninterpreted',message='Secondary/extra/sequence mapping is not rendered');continue
                     if path not in decoded:
                         result=self.store.read_result(path);image=decode_bmp(result.data)
-                        if pixel_bytes+len(image.pixels)>MAX_TEXTURE_BYTES:
-                            raise TextureError('Total decoded texture budget32MiB exceeded','unsupported')
+                        if pixel_bytes+len(image.pixels)>self.texture_limit:
+                            raise TextureError('Total decoded texture budget exceeded','unsupported')
                         decoded[path]=image;pixel_bytes+=len(image.pixels)
                         dependency['archive_decoding']=result.decoding
                     image=decoded[path]

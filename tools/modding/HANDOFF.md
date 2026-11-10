@@ -1,62 +1,72 @@
 # Modding-tools handoff — 2026-11-10
 
-Latest milestone: integrated read-only 4DS Model Inspector / OpenGL viewer,
-following the completed script and Mission Explorer milestones. Only
-`tools/modding` changed. Main/client/server, shared handoffs/plan/function ledger
-and original assets remain untouched. Verified local checkpoint only; no push or
-merge without renewed approval. Earlier branch delegation permits local review
-checkpoints; no new human desktop acceptance is claimed.
+Latest milestone: **integrated read-only 3D Mission Explorer**, following completed
+4DS, Mission Explorer and scripting milestones. Only `tools/modding` changes.
+Original assets, client/server reconstruction and shared handoffs/plan/function
+ledger remain untouched. Local checkpoint only; no push/merge without renewed
+approval. Earlier branch delegation permits verified local review checkpoints;
+no fresh human desktop acceptance is claimed.
 
-Launch `make -C tools/modding gui` → **Model inspector…** → **Open installation…**,
-search a model and open it. Props/buildings/character-related resources render
-actual decoded geometry with RGB BMP previews. Orbit, pan, zoom, wire/solid,
-manual LOD, grid/axes/bounds, hierarchy highlight, frame-origin selection and
-properties are integrated in the same app. Linux X11/XWayland uses system
-libGL/libX11 through ctypes, no new engine/pip/build dependency. A local .4ds also
-opens independently, with an explicit fallback material when context is absent.
+Launch `make -C tools/modding gui` → **Mission explorer…** → **Open installation…**
+→ choose profile/mission → **Inspect mission** → **Explore 3D / selected object**.
+The existing app now renders actual base Scene.4ds and supported original placed
+models. Orbit/focus, WASD/QE fly + right-drag look, Shift/speed/range, click picking,
+hierarchy/search, wire/solid, visibility, textures, bounds and annotation controls
+work. Select a record in Explorer to navigate into 3D; inspect original record,
+cached model or associated script and return to the selected object. Large
+backdrop geometry can make Fit distant; zoom or focus a hierarchy entry.
 
-Mission Explorer recognizes model records and texture mentions. Follow an existing
-actor/object candidate → select .4ds → **View model**, then **Back to mission
-record**. Existing certainty/profile/Patch/invalid-selection barriers are retained;
-no invented actor links, runtime cache selection or mission placement. Headless:
-`python3 tools/modding/model_inspect.py --help`. Model metadata JSON is schema1;
-mission/script schemas remain2. Reports stream and refuse original folders or
-existing files.
+This is a **partial cold serialized spatial snapshot**, not a complete original
+mission renderer or runtime scene. Unknown parent/sector selection withholds
+world transforms; fallback positions never become guessed mesh placements.
+Original actor initialization/movement, scene paths/cache scopes, lightmaps,
+lighting/alpha, animation/skin and other unknown format consumers remain excluded.
+Gray means material fallback. See [SPATIAL.md](SPATIAL.md) for exact original
+addresses, confirmed/inferred/unknown boundaries, resource certainty, budgets,
+verification counts and visual limitations. [Static fingerprints](spatial-evidence.json)
+retain evidence without raw code/captures or normal-operation binary dependencies.
 
-`model4ds.py` / `model_math.py` are GUI-independent; `model_resources.py` wraps
-ResourceStore and bounded BMP decoding; `gl_view.py` owns GLX resources;
-`model_gui.py` integrates browsing/properties. Exact structural formats, native
-addresses, confidence distinctions, capacities, statuses and tests:
-[MODEL4DS](MODEL4DS.md), [static evidence](model4ds-evidence.json).
-Supported: version0x29, established material table, common frame hierarchy/TRS,
-visual0/1 meshes, LODs, aliases, triangle/material references and positions;
-normal/UV preview interpretation is corroborated, not a reconstruction of graphics
-declarations. Fixed dummy/joint and visual2 binding tails retain opaque fields.
-Skin meshes are undeformed and explicitly partial. Unknown types/layouts stop
-without guessed resynchronization; invalid supported data renders no geometry.
+`spatial_scene.py` is GUI-independent: ordered original stage composition, stable
+IDs/offsets, explicit local/parent/world status, actor binding and existing graph
+links, shared assets and streamed deterministic JSON. Scene2 raw WXYZ reorders to
+normalized engine XYZW per original006CDE38..006CDEC8/0041D180;4DS remains direct
+XYZW. Row matrices compose local*parent. The portable reconstruction reader's
+quaternion pass-through discrepancy is documented, not changed. Exact default
+Models-root selection is explicit; full engine cache search is not claimed.
 
-Verified nine real models against an independent C++ stream reader and original
-byte slices, with focused ASan/UBSan/LeakSanitizer on that audit reader. Actual BMP
-pixels match Pillow (audit only). A3444-member selected model corpus checked table
-endpoints/parents/indices:1496 decoded structural subsets,1916 partial,20
-unsupported,12 numeric guards. Sequential decoder audit peak80244KiB. Synthetic
-truncation/unknown/alias/index/matrix/BMP and200 malformed-input checks passed.
+`spatial_camera.py` separates viewer motion from original transforms;
+`mission_view.py` extends existing native GLX with shared VBO/texture ownership,
+culling/limits and selection; `spatial_gui.py` integrates the existing windows.
+Sector5/portal and occluder12 extent contracts now traverse opaque volume tails,
+unlocking genuine later scene geometry. They remain partial and non-rendered.
+Headless: `python3 tools/modding/spatial_inspect.py --help`; JSON schema1 is
+metadata, not a binary/asset serializer. Existing mission/script schemas stay2.
 
-Actual native toolkit viewport rendered textured crate/barrel/building/helmet,
-complex prop, undeformed hands and checksum-verified Patch `b_drevo2`. Rendered
-images were visually inspected beyond native assertions. GUI checks cover mouse
-orbit/pan/wheel, LOD, shared GL textures, hierarchy highlight, read-only export,
-invalid clearing and repeated context replacement/reopen. Tutorial actor→en09 and
-ALPS1 actor→e_elbx1 candidate/view/return paths passed. See the contract for
-memory/lifecycle observations and remaining rendering limitations.
+Verified Tutorial/ALPS1: base frames1923/1923 and790/790; spatial nodes6345/7211;
+assets106/73; visible supported mesh instances3043/3709. ALPS1 uses checksum-
+verified Patch Scene2. World/fallback position comparisons1148/1148 and1361/1361
+match. Unresolved transforms101/398 including descendants; actor links78 resolved
++2 unresolved /134 resolved. All root-profile assets available in these examples.
+This does not establish full format/world compatibility.
 
-No original executable/DLL/Proton or Ghidra execution, heavy game build, permanent
-tests, commercial assets or raw captures in commits. Temporary audits remain
-outside Git and are removed after verification. All normal asset access is
-read-only and bounded; whole archives are not held in RAM.
+An independent temporary C++ reader matches every base frame offset/end/type/
+parent/world matrix, vertex/triangle count and exact file end. Original base hashes
+match three previous captures each. ASan/UBSan/LeakSanitizer passed for that reader;
+focused Python malformed/transform/ordering/ambiguity/cycle/camera/export checks
+passed. Actual native desktop renders and closer/ground-level captures were
+visually inspected. GUI tests cover native input, picking/tree, record/model/script
+navigation, filters/search, repeated reloads and GL resource deletion. Details and
+memory/performance observations are in SPATIAL.md. This is actual toolkit desktop
+verification, not execution of original code or a fresh user acceptance report.
 
-The independent plan is complete for the requested milestone. Further formats,
-full texture/blend/effect/skin/animation semantics, original cache search,
-mission placement, editing, serialization and runtime/debugging are excluded.
-Prior completed contracts: [scripts/includes](SCRIPT-ANALYSIS.md),
+No original executable/DLL/Proton/Ghidra execution, heavy game build, original
+asset/capture/report commits or permanent tests. Temporary audits are removed
+after verification; a `/tmp/hd2-mission-explorer-preview.png` viewport preview may
+remain outside Git for user review. Original installation is always read-only.
+
+The independent plan is complete for this requested milestone. Next work needs a
+new scoped objective: exact automatic-sector/scene-path/cache relationships,
+additional original geometry consumers or material/rendering semantics. Editing,
+binary writing/serialization, simulation and debugging remain excluded.
+Prior contracts: [4DS](MODEL4DS.md), [scripts/includes](SCRIPT-ANALYSIS.md),
 [ISD1](ISD1.md), [formats](FORMATS.md), [resolution](RESOLUTION.md).

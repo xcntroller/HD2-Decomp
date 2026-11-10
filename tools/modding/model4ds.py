@@ -175,7 +175,7 @@ class Model:
     limitations:list[str]=field(default_factory=lambda:[
         'Serialized model inspection; no original runtime execution or full format support claim.',
         'Material parameter names/blending/effects, animated sequences and skin deformation are not implemented.',
-        'Renderer shows LOD0 by default; LOD metrics remain uninterpreted. No mission placement is applied.',
+        'Standalone model view uses LOD0 by default; metrics remain uninterpreted. Mission composition has separate SPATIAL.md coverage.',
         'Unsupported records stop parsing; an opaque suffix is retained without guessed resynchronization.'])
     def metadata(self):
         return {'schema_version':1,'format':'H&D2 4DS','identity':self.identity,'size':self.size,'sha256':self.sha256,
@@ -262,7 +262,7 @@ def decode(data:bytes,identity='model.4ds',provenance=None):
             if kind==1:
                 sub=c.unpack('B');flags=c.unpack('H')
                 if sub not in (0,1,2):raise ModelError(f'Unsupported visual subtype{sub}',record_start,'unsupported')
-            elif kind not in (6,10,11):raise ModelError(f'Unsupported frame kind{kind}',record_start,'unsupported')
+            elif kind not in (5,6,10,11,12):raise ModelError(f'Unsupported frame kind{kind}',record_start,'unsupported')
             parent=c.unpack('H')
             if parent>index:raise ModelError('Parent must refer to an earlier one-based frame',c.position-2)
             position=c.floats(3);quat=c.floats(4);scale=c.floats(3);unknown=c.floats(1)[0];bits=c.unpack('B')
@@ -286,6 +286,29 @@ def decode(data:bytes,identity='model.4ds',provenance=None):
                     frame.unknown.append(opaque(c,start,c.position,'Skin binding records; undeformed serialized geometry only','LS3DF 10053900'))
                     frame.status='partial'
                     model.diagnostics.append({'severity':'warning','offset':start,'code':'skin_undeformed','message':'Skin bindings retained opaque; no skin deformation or posed-character claim'})
+            elif kind==5:
+                # 1004E250/100431A0: exact sector/portal extents. Volumes are
+                # not environment meshes; retaining them unlocks later visuals.
+                start=c.position;header=bytes(c.take(48))
+                nv,nt=struct.unpack_from('<II',header,8)
+                if nv>MAX_VERTICES or nt>MAX_TRIANGLES:raise ModelError('Tool sector count budget exceeded',start,'unsupported')
+                c.take(nv*16)
+                at=c.position;raw=c.take(nt*6)
+                if any(i[0]>=nv for i in struct.iter_unpack('<H',raw)):raise ModelError('Sector index exceeds vertex count',at)
+                portals=c.unpack('B')
+                for _ in range(portals):
+                    count=c.unpack('B')
+                    if count>23:raise ModelError('Tool portal point buffer limit exceeded',c.position-1,'unsupported')
+                    c.take((count+2)*16)
+                frame.unknown.append(opaque(c,start,c.position,f'Sector header/volume: {nv} vertices,{nt} triangles,{portals} portals; not rendered','LS3DF 1004E250/100431A0'))
+                frame.status='partial'
+            elif kind==12:
+                # 1003A960: opaque occlusion volume, not a visible terrain mesh.
+                start=c.position;nv,nt=c.unpack('II')
+                if nv>MAX_VERTICES or nt>MAX_TRIANGLES:raise ModelError('Tool occluder count budget exceeded',start,'unsupported')
+                c.take(nv*16);at=c.position;raw=c.take(nt*6)
+                if any(i[0]>=nv for i in struct.iter_unpack('<H',raw)):raise ModelError('Occluder index exceeds vertex count',at)
+                frame.unknown.append(opaque(c,start,c.position,'Occluder volume retained; not rendered','LS3DF 1003A960'));frame.status='partial'
             elif kind==6:
                 start=c.position;c.take(32);frame.unknown.append(opaque(c,start,c.position,'Dummy payload,8 raw floats','LS3DF 1001C060'));frame.status='partial'
             elif kind==10:

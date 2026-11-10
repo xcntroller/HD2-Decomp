@@ -13,7 +13,9 @@
 
 - [x] Deliver a verified 4DS decoder, integrated OpenGL viewer and resource links.
 
-Current boundary: [4DS/viewer coverage](MODEL4DS.md),
+- [x] Deliver a verified spatial scene model and integrated interactive mission viewport.
+
+Current boundary: [partial spatial mission viewing](SPATIAL.md), [4DS/viewer coverage](MODEL4DS.md),
 [format/model contracts](FORMATS.md), [resolution](RESOLUTION.md),
 [script/include contract and verification](SCRIPT-ANALYSIS.md),
 [archive verification](ISD1.md); [prior validation](INTEGRATED-VALIDATION.md). Full format/world/engine-cache

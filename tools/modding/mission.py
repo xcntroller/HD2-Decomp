@@ -199,6 +199,10 @@ class Parser:
                 node.label = "creation_kind" if kind == 0x4011 else "creation_subtype"
                 node.values = {"value":payload.unpack("<I")[0], "unconsumed_bytes":payload.end-payload.position}
                 if kind==0x4011:node.values["label"]=FRAME_NAMES.get(node.values["value"],"Unknown")
+            elif context == 'object' and kind==0x4033:
+                node.label='hidden';node.values={'value':True,'unconsumed_bytes':payload.end-payload.position}
+            elif context == 'object' and kind==0x4090:
+                node.label='visual_override';node.values={'value':payload.unpack('<I')[0],'unconsumed_bytes':payload.end-payload.position}
             elif context == "object" and kind in floats:
                 node.label, count = floats[kind]
                 values = payload.unpack(f"<{count}f")

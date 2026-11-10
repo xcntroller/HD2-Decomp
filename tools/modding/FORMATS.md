@@ -32,7 +32,8 @@ mission-local binding document; B810 is not treated as script bindings.
 Lightmaps, lights/geometry, tracks/effects, collision trees, historical check.bin,
 unsupported model records, non-BMP textures/audio and broader historical formats remain opaque here, even
 where separate reconstruction research exists. Scene transforms are serialized
-local fields, not evaluated world transforms. Nonfinite supported transforms
+local fields; the separate [spatial model](SPATIAL.md) composes supported world
+transforms with explicit unresolved parents. Nonfinite supported transforms
 reject as an inspection safeguard, not an original-game verdict.
 
 ## Actor/object inspection
@@ -151,3 +152,9 @@ backend. Mission model records preserve frame/material identities and texture
 mentions; geometry arrays stay in the dedicated model asset, avoiding mission-wide
 mesh retention. Model structural statuses and RGB rendering approximations are
 separate. See [MODEL4DS.md](MODEL4DS.md) for exact confidence/coverage.
+
+The integrated [3D Mission Explorer](SPATIAL.md) now composes the supported
+serialized subset independently of these parsers and the GUI. It reuses exact
+resource resolution, preserves source/record links and graph certainty, traverses
+established opaque sector/occluder extents, and renders actual supported Scene.4ds
+geometry. Runtime actor/sector/material behavior remains outside this snapshot.

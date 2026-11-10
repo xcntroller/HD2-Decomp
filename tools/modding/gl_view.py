@@ -89,7 +89,7 @@ class GLViewport(tk.Frame):
                 if not self.context:raise RuntimeError('Cannot create OpenGL context')
                 self.colormap=self.x.XCreateColormap(self.display,self.winfo_id(),vi.contents.visual,0)
                 wa=WindowAttributes();wa.colormap=self.colormap;wa.border_pixel=0
-                wa.event_mask=(1<<15)|(1<<17)|(1<<2)|(1<<3)|(1<<6)
+                wa.event_mask=(1<<15)|(1<<17)|(1<<2)|(1<<3)|(1<<6)|getattr(self,'extra_event_mask',0)
                 self.window=self.x.XCreateWindow(self.display,self.winfo_id(),0,0,max(self.winfo_width(),1),max(self.winfo_height(),1),
                     0,vi.contents.depth,1,vi.contents.visual,(1<<3)|(1<<11)|(1<<13),C.byref(wa))
             finally:self.x.XFree(vi)

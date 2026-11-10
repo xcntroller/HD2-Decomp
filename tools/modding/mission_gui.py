@@ -29,6 +29,7 @@ class MissionExplorer:
         self.current = None
         self.target = None
         self.model_origin = None
+        self.navigation_target = None
         self.closed = False
         self.nodes = {}
         shell = ttk.Frame(self.root,padding=16)
@@ -47,6 +48,8 @@ class MissionExplorer:
         self.script_button.pack(side="left",padx=8)
         self.model_button=ttk.Button(bar,text="View model",command=self.view_model,state="disabled")
         self.model_button.pack(side="left",padx=4)
+        self.spatial_button=ttk.Button(bar,text="Explore 3D / selected object",command=self.view_spatial,state="disabled")
+        self.spatial_button.pack(side='left',padx=4)
         self.export_button=ttk.Button(bar,text="Export mission JSON…",command=self.export,state="disabled")
         self.export_button.pack(side="right")
         discovery=ttk.Frame(shell);discovery.pack(fill="x",pady=(8,0))
@@ -121,6 +124,7 @@ class MissionExplorer:
         frame=ttk.Frame(tabs,padding=8);tabs.add(frame,text=title);return frame
 
     def busy(self,value):
+        self.spatial_button.configure(state='normal' if isinstance(self.session,InstallationSession) and not value else 'disabled')
         self.open_button.configure(state="disabled" if value else "normal")
         self.install_button.configure(state="disabled" if value else "normal")
         self.mission_button.configure(state="normal" if self.store and not value else "disabled")
@@ -166,6 +170,9 @@ class MissionExplorer:
                     self.files.insert("","end",iid=entry.path,values=self.file_values(entry))
                 self.status.configure(text=f"{self.folder} · {len(self.session.report.files)} files · {len(self.reference_roots)} reference folders")
                 self.coverage()
+                if self.navigation_target:
+                    identity,target=self.navigation_target;self.navigation_target=None
+                    self.root.after_idle(lambda:self.load_file(identity,target))
             else:
                 entry,target=result
                 for item in self.session.report.files:
@@ -183,6 +190,21 @@ class MissionExplorer:
         selected=filedialog.askdirectory(parent=self.root,title="Open local mission directory")
         if selected:
             self.folder=Path(selected).resolve();self.reference_roots=[];self.store=None;self.refresh()
+
+    def view_spatial(self):
+        if self.pending or not isinstance(self.session,InstallationSession):return
+        selected=self.records.selection()
+        self.owner.open_spatial(self.session,selected[0] if selected else None)
+
+    def navigate_session(self,session,identity,target):
+        if self.pending:return
+        self.root.lift()
+        if self.session is session:self.load_file(identity,target);return
+        self.clear_model();self.store=session.store;self.folder=session.store.root
+        self.reference_roots=[];self.mission_name.set(session.report.mission_name)
+        self.archives_first.set(self.store.archives_first);self.language.set(self.store.language)
+        self.navigation_target=(identity,target)
+        self.submit('scan',lambda:session)
 
     def open_installation(self):
         if self.pending:return
@@ -213,7 +235,7 @@ class MissionExplorer:
             self.refresh()
 
     def clear_model(self):
-        self.current=None;self.session=None
+        self.current=None;self.session=None;self.model_origin=None
         self.files.delete(*self.files.get_children());self.records.delete(*self.records.get_children())
         self.ref_tree.delete(*self.ref_tree.get_children());self.targets={};self.nodes={}
         self.owner.set_text(self.detail,"");self.owner.set_text(self.info,"");self.panels.clear()

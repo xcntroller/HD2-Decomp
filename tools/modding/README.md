@@ -1,6 +1,6 @@
 # H&D2 Modding Toolkit
 
-A standalone, read-only script inspector, Mission Explorer and 3D model viewer on
+A standalone, read-only script inspector, Mission Explorer and 3D model/mission viewer on
 `feature/modding-tools`. Normal operation needs no Ghidra or original executable.
 Use your own local installation; no commercial assets or scripts are included.
 No game, loader, server or runtime implementation is modified.
@@ -131,6 +131,25 @@ Mission exports require new files outside protected input folders.
 
 ## 4DS models and 3D viewing
 
+For **interactive missions**, inspect an installation-aware mission in Mission
+Explorer and choose **Explore 3D / selected object**. The integrated window renders
+actual supported base Scene.4ds geometry and resolved Scene2/model placements.
+Use orbit/focus or fly with WASD, Q/E, Shift and right-drag look. Click meshes or
+search the hierarchy; inspect original records, models and associated scripts
+and return to the selected 3D object. Category filters, wireframe, grid/axes/origins,
+bounds, range/speed controls and loading diagnostics are available.
+
+This is a **partial serialized spatial snapshot**: unresolved parenting is withheld,
+and original lighting/lightmaps, alpha, animation and runtime actor/script movement
+are excluded. Gray materials indicate texture fallbacks. Full format coverage,
+verified Tutorial/ALPS1 counts, native desktop checks and limitations:
+[SPATIAL.md](SPATIAL.md). Headless deterministic metadata export:
+
+```
+python3 tools/modding/spatial_inspect.py /path/to/game tutorial \
+  --output /path/outside-game/tutorial.spatial.json
+```
+
 Choose **Model inspector…** to open the integrated model browser and viewport.
 Use **Open installation…**, search an exact model resource, and double-click it.
 Local .4ds files also open independently, with explicit fallback materials when
@@ -169,6 +188,7 @@ describe exact coverage and limits.
 
 ## Contracts and limitations
 
+- [Spatial composition, interactive mission viewing and current verification](SPATIAL.md)
 - [4DS models, OpenGL viewer and current verification](MODEL4DS.md)
 - [Structured scripts, includes, schema and earlier verification](SCRIPT-ANALYSIS.md)
 - [Mission format/model coverage](FORMATS.md)
@@ -192,7 +212,7 @@ Source/token/expansion, recursion/depth/operator and session retention limits
 are explicit. Oversized reads and embedded NUL are rejected instead of silently
 reproducing original prefix/truncation behavior. Partial mission format support
 is never reported as complete. Sabre Squadron/expansion profiles, full asset
-formats, mission placement, binary editing and serialization are not implemented.
+formats, runtime placement/simulation, binary editing and serialization are not implemented.
 
 Original files are never modified. Temporary fixtures are removed after focused
 verification; no permanent tests, extracted commercial data or proprietary

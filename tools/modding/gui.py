@@ -22,6 +22,8 @@ class InspectorWindow:
         self.poll_timer = None
         self.explorer = None
         self.model_viewer = None
+        self.spatial_viewer = None
+        self.navigation_return = None
         self.path = None
         self.protected_roots = []
         self.report = None
@@ -57,6 +59,7 @@ class InspectorWindow:
         self.open_button.pack(side="left")
         ttk.Button(toolbar, text="Model inspector…", command=self.open_model).pack(side="left", padx=(8,0))
         ttk.Button(toolbar, text="Mission explorer…", command=self.open_explorer).pack(side="left", padx=(8,0))
+        ttk.Button(toolbar, text="3D missions…", command=self.open_spatial).pack(side="left", padx=(8,0))
         ttk.Button(toolbar, text="Include context…", command=self.choose_context).pack(side="left", padx=(8,0))
         self.reload_button = ttk.Button(toolbar, text="Inspect again", command=self.reload, state="disabled")
         self.reload_button.pack(side="left", padx=8)
@@ -64,6 +67,8 @@ class InspectorWindow:
         self.export_button.pack(side="right")
         self.file_label = ttk.Label(shell, text="No script selected", style="Muted.TLabel", wraplength=1000)
         self.file_label.pack(anchor="w", pady=(12, 4))
+        self.return_button=ttk.Button(shell,text="Back to 3D object",command=self.return_to_spatial,state="disabled")
+        self.return_button.pack(anchor="w")
         self.status = ttk.Label(shell, text="Loading command reference…", font=("TkDefaultFont", 11, "bold"))
         self.status.pack(anchor="w", pady=(0, 10))
 
@@ -214,6 +219,7 @@ class InspectorWindow:
         selected = filedialog.askopenfilename(parent=self.root, title="Open mission script",
                     filetypes=[("Mission scripts", "*.scr"), ("All files", "*")])
         if selected:
+            self.navigation_return=None;self.return_button.configure(state='disabled')
             self.source_reader=self.include_context.source if self.include_context else None
             self.path = Path(selected).resolve()
             self.protected_roots = [self.path.parent]+([self.include_context.store.root] if self.include_context else [])
@@ -281,7 +287,10 @@ class InspectorWindow:
             count += 1
         self.catalog_count.configure(text=f"{count} of {len(self.catalog)} table entries")
 
-    def show_snapshot(self,source,report,protected_roots=(),source_reader=None):
+    def show_snapshot(self,source,report,protected_roots=(),source_reader=None,on_return=None):
+        if self.pending:return
+        self.navigation_return=on_return
+        self.return_button.configure(state='normal' if on_return else 'disabled')
         self.source_reader=source_reader
         self.path=None
         self.protected_roots=list(protected_roots)
@@ -327,8 +336,22 @@ class InspectorWindow:
         else:
             self.explorer.root.lift()
 
+    def return_to_spatial(self):
+        if self.navigation_return:self.navigation_return()
+
+    def open_spatial(self,session=None,source=None):
+        from spatial_gui import SpatialWindow
+        if self.spatial_viewer is None:self.spatial_viewer=SpatialWindow(self)
+        viewer=self.spatial_viewer
+        if session is not None and not viewer.pending:
+            if viewer.session is not session or viewer.scene is None:
+                viewer.pending_source=source;viewer.load(session)
+            elif source:viewer.focus_source(source)
+        viewer.root.lift()
+
     def close(self):
         self.closed = True
+        if self.spatial_viewer is not None:self.spatial_viewer.close()
         if self.model_viewer is not None:self.model_viewer.close()
         if self.explorer is not None:
             self.explorer.close()
