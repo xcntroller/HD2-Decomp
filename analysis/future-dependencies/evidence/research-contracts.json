@@ -798,6 +798,479 @@
       "priority_reason": "User-prioritized P2.4 preparation-to-gameplay integration",
       "research_readiness": "contract_ready",
       "subsystem": "p24_fields"
+    },
+    {
+      "batch_ids": [
+        "B25.retention.owners"
+      ],
+      "blockers": [
+        "Actual accepted P2.3 world and exclusive native retained ownership required"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "id": "subsystem:future:p25_owners",
+      "implementation_readiness": "blocked",
+      "label": "Same retained game and controller dispatch",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [
+        "0069e620",
+        "006c20f0",
+        "0067e840",
+        "0067f170",
+        "0067ea00",
+        "0067ea10",
+        "00698500"
+      ],
+      "owner": "Application owns current state and retained game lifetime; menu5B8 borrows SAME game",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_owners"
+    },
+    {
+      "batch_ids": [
+        "B25.retention.owners"
+      ],
+      "blockers": [
+        "Actual accepted P2.3 world and exclusive native retained ownership required"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "id": "subsystem:future:batch_b25_retention_owners",
+      "implementation_readiness": "blocked",
+      "label": "B25.retention.owners",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [],
+      "owner": "Application owns current state and retained game lifetime; menu5B8 borrows SAME game",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_implementation_batch"
+    },
+    {
+      "batch_ids": [
+        "B25.retention.timing"
+      ],
+      "blockers": [
+        "Actual P2.3 game/module/input services; no alternate pause tick loop"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "id": "subsystem:future:p25_timing",
+      "implementation_readiness": "blocked",
+      "label": "Forwarded updates and selective simulation pause",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [
+        "0069b8b0",
+        "00680660",
+        "006805d0",
+        "00680620",
+        "0066be90",
+        "0066bea0",
+        "0069a560",
+        "0069af10",
+        "0069b230",
+        "006c3100",
+        "006c20c0"
+      ],
+      "owner": "SAME current game/module/clock/input owners; menu temporary borrower",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_timing"
+    },
+    {
+      "batch_ids": [
+        "B25.retention.timing"
+      ],
+      "blockers": [
+        "Actual P2.3 game/module/input services; no alternate pause tick loop"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "id": "subsystem:future:batch_b25_retention_timing",
+      "implementation_readiness": "blocked",
+      "label": "B25.retention.timing",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [],
+      "owner": "SAME current game/module/clock/input owners; menu temporary borrower",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_implementation_batch"
+    },
+    {
+      "batch_ids": [
+        "B25.audio"
+      ],
+      "blockers": [
+        "Bind actual populated owners and engine sound frames; source coverage is not live acceptance"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-input-audio.md",
+      "id": "subsystem:future:p25_audio",
+      "implementation_readiness": "blocked",
+      "label": "Pause frame gates and current-profile master level",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [
+        "0071f640",
+        "005e8d50",
+        "00428f00",
+        "0049b7c0",
+        "00433550",
+        "006b32a0",
+        "0067f350",
+        "0067f460",
+        "005e3c90",
+        "005e3ef0",
+        "005e3f10"
+      ],
+      "owner": "Existing DubbingSound static records, type36 actor sounds, Script868A08 frames, SOUND manager, current profile",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_audio"
+    },
+    {
+      "batch_ids": [
+        "B25.audio"
+      ],
+      "blockers": [
+        "Bind actual populated owners and engine sound frames; source coverage is not live acceptance"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-input-audio.md",
+      "id": "subsystem:future:batch_b25_audio",
+      "implementation_readiness": "blocked",
+      "label": "B25.audio",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [],
+      "owner": "Existing DubbingSound static records, Car sounds, Script868A08 frames, SOUND manager, current profile",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_implementation_batch"
+    },
+    {
+      "batch_ids": [
+        "B25.presentation"
+      ],
+      "blockers": [
+        "Actual world renderer/camera/effect owners; retained resource failure policy"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-input-audio.md",
+      "id": "subsystem:future:p25_presentation",
+      "implementation_readiness": "blocked",
+      "label": "Retained scene rendering and input camera gate",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [
+        "0066ad10",
+        "0066b3e0",
+        "0066de00",
+        "006821f0",
+        "006822d0",
+        "00682490",
+        "00682470",
+        "0046cb20",
+        "004455b0",
+        "004427a0",
+        "00442860",
+        "0066c5b0"
+      ],
+      "owner": "Menu owns own scene/cursor/controls, borrows actual game scene/CameraModule; effect owner008998E8",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_presentation"
+    },
+    {
+      "batch_ids": [
+        "B25.presentation"
+      ],
+      "blockers": [
+        "Actual world renderer/camera/effect owners; retained resource failure policy"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-input-audio.md",
+      "id": "subsystem:future:batch_b25_presentation",
+      "implementation_readiness": "blocked",
+      "label": "B25.presentation",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [],
+      "owner": "Menu owns own scene/cursor/controls, borrows actual game scene/CameraModule; effect owner008998E8",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_implementation_batch"
+    },
+    {
+      "batch_ids": [
+        "B25.options.family"
+      ],
+      "blockers": [],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "id": "subsystem:future:p25_options",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Shared Options family2 and profile services",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [
+        "0067fb00",
+        "0061cf60",
+        "0061bea0"
+      ],
+      "owner": "Menu1EC owns context; borrowed selected profile/input and same registered screen products",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_options"
+    },
+    {
+      "batch_ids": [
+        "B25.options.family"
+      ],
+      "blockers": [],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "id": "subsystem:future:batch_b25_options_family",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "B25.options.family",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [],
+      "owner": "Menu1EC owns context; borrowed selected profile/input and same registered screen products",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_implementation_batch"
+    },
+    {
+      "batch_ids": [
+        "B25.menu.actions"
+      ],
+      "blockers": [],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "id": "subsystem:future:p25_actions",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Offline menu actions and deferred commands",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [
+        "00680680",
+        "0067f550",
+        "0067faa0",
+        "0069c280"
+      ],
+      "owner": "Menu queue/modal borrows current retained game and missionA8; application owns pending command",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_actions"
+    },
+    {
+      "batch_ids": [
+        "B25.menu.actions"
+      ],
+      "blockers": [],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "id": "subsystem:future:batch_b25_menu_actions",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "B25.menu.actions",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [],
+      "owner": "Menu queue/modal borrows current retained game and missionA8; application owns pending command",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_implementation_batch"
+    },
+    {
+      "batch_ids": [
+        "B25.leave.failure"
+      ],
+      "blockers": [
+        "Review explicit native direct-shutdown deviation; real game shutdown/descriptor continuation services required"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "id": "subsystem:future:p25_failure",
+      "implementation_readiness": "blocked",
+      "label": "Leave, acquired prefix and shutdown policy",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [
+        "006c0920",
+        "0066b140",
+        "0067f460",
+        "0067f180",
+        "0067f1a0",
+        "00670b40",
+        "0069a500"
+      ],
+      "owner": "Menu borrowers must retire before SAME retained world; existing services outlive both",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_failure"
+    },
+    {
+      "batch_ids": [
+        "B25.leave.failure"
+      ],
+      "blockers": [
+        "Review explicit native direct-shutdown deviation; real game shutdown/descriptor continuation services required"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "id": "subsystem:future:batch_b25_leave_failure",
+      "implementation_readiness": "blocked",
+      "label": "B25.leave.failure",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [],
+      "owner": "Menu borrowers must retire before SAME retained world; existing services outlive both",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_implementation_batch"
+    },
+    {
+      "batch_ids": [
+        "B25.player.conditional"
+      ],
+      "blockers": [
+        "Nonoffline player/roster/session mutation leaves and transport; deferred beyond ordinary offline P2.5"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "id": "subsystem:future:p25_player",
+      "implementation_readiness": "blocked",
+      "label": "Conditional nonoffline player panel",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [
+        "00682980"
+      ],
+      "owner": "Actual nonoffline squad/session and preview owners; no offline candidate picker",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "partial_contract",
+      "subsystem": "p25_player"
+    },
+    {
+      "batch_ids": [
+        "B25.player.conditional"
+      ],
+      "blockers": [
+        "Nonoffline player/roster/session mutation leaves and transport; deferred beyond ordinary offline P2.5"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "id": "subsystem:future:batch_b25_player_conditional",
+      "implementation_readiness": "blocked",
+      "label": "B25.player.conditional",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [],
+      "owner": "Actual nonoffline squad/session and preview owners; no offline candidate picker",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "partial_contract",
+      "subsystem": "p25_implementation_batch"
+    },
+    {
+      "batch_ids": [
+        "B25.acceptance"
+      ],
+      "blockers": [
+        "Required integration batches, accepted P2.3 and actual user desktop matrix remain pending"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-acceptance.md",
+      "id": "subsystem:future:p25_acceptance",
+      "implementation_readiness": "blocked",
+      "label": "User desktop retained-world boundary",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [
+        "0069e620",
+        "006c20f0"
+      ],
+      "owner": "User-run actual reconstructed desktop with real loaded world and selected profile",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_acceptance"
+    },
+    {
+      "batch_ids": [
+        "B25.acceptance"
+      ],
+      "blockers": [
+        "Required integration batches, accepted P2.3 and actual user desktop matrix remain pending"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-acceptance.md",
+      "id": "subsystem:future:batch_b25_acceptance",
+      "implementation_readiness": "blocked",
+      "label": "B25.acceptance",
+      "lifetime": "Existing application/world/services outlive temporary retained menu; see original contract",
+      "milestones": [
+        "P2.5"
+      ],
+      "original_addresses": [],
+      "owner": "User-run actual reconstructed desktop with real loaded world and selected profile",
+      "priority": "high",
+      "priority_reason": "User-prioritized P2.5 same-world lifecycle",
+      "research_readiness": "contract_ready",
+      "subsystem": "p25_implementation_batch"
     }
   ],
   "existing_associations": [
@@ -883,6 +1356,12 @@
     "00414e30": "contract_ready",
     "00427010": "contract_ready",
     "00427050": "contract_ready",
+    "00428f00": "contract_ready",
+    "00433550": "contract_ready",
+    "004427a0": "contract_ready",
+    "00442860": "contract_ready",
+    "004455b0": "contract_ready",
+    "0046cb20": "contract_ready",
     "00475d50": "contract_ready",
     "00475dd0": "contract_ready",
     "00475ec0": "contract_ready",
@@ -894,27 +1373,72 @@
     "00477330": "contract_ready",
     "00477b90": "contract_ready",
     "00477f50": "contract_ready",
+    "0049b7c0": "contract_ready",
     "005e2630": "contract_ready",
     "005e2730": "contract_ready",
+    "005e3c90": "contract_ready",
+    "005e3ef0": "contract_ready",
+    "005e3f10": "contract_ready",
+    "005e8d50": "contract_ready",
     "00610230": "contract_ready",
     "00610780": "contract_ready",
     "00610a80": "contract_ready",
+    "0061bea0": "contract_ready",
+    "0061cf60": "contract_ready",
+    "0066ad10": "contract_ready",
+    "0066b140": "contract_ready",
+    "0066b3e0": "contract_ready",
+    "0066be90": "contract_ready",
+    "0066bea0": "contract_ready",
+    "0066c5b0": "contract_ready",
+    "0066de00": "contract_ready",
+    "00670b40": "contract_ready",
+    "0067e840": "contract_ready",
+    "0067ea00": "contract_ready",
+    "0067ea10": "contract_ready",
+    "0067f170": "contract_ready",
+    "0067f180": "contract_ready",
+    "0067f1a0": "contract_ready",
+    "0067f350": "contract_ready",
+    "0067f460": "contract_ready",
+    "0067f550": "contract_ready",
+    "0067faa0": "contract_ready",
+    "0067fb00": "contract_ready",
+    "006805d0": "contract_ready",
+    "00680620": "contract_ready",
+    "00680660": "contract_ready",
+    "00680680": "contract_ready",
+    "006821f0": "contract_ready",
+    "006822d0": "contract_ready",
+    "00682470": "contract_ready",
+    "00682490": "contract_ready",
     "0068c300": "contract_ready",
     "0068c890": "contract_ready",
     "0068c900": "contract_ready",
     "0068cb70": "contract_ready",
+    "00698500": "contract_ready",
+    "0069a560": "contract_ready",
+    "0069af10": "contract_ready",
+    "0069b8b0": "contract_ready",
+    "0069e620": "contract_ready",
     "006a0ef0": "contract_ready",
     "006a2020": "contract_ready",
     "006a46d0": "contract_ready",
     "006a4d00": "contract_ready",
     "006a57b0": "contract_ready",
     "006a5890": "contract_ready",
+    "006b32a0": "contract_ready",
     "006b46b0": "contract_ready",
     "006b47b0": "contract_ready",
     "006b7410": "contract_ready",
     "006b7d30": "contract_ready",
+    "006c0920": "contract_ready",
+    "006c20c0": "contract_ready",
+    "006c20f0": "contract_ready",
+    "006c3100": "contract_ready",
     "006e0890": "contract_ready",
     "006e0b70": "contract_ready",
+    "0071f640": "contract_ready",
     "007d33c0": "contract_ready",
     "007d35c0": "contract_ready",
     "007d3b50": "contract_ready",
@@ -1234,6 +1758,294 @@
       "relationship": "depends_on",
       "source": "subsystem:future:p24_routes",
       "target": "subsystem:future:p24_media"
+    },
+    {
+      "blocking": true,
+      "condition": "Actual accepted same world/scene/Players/module/input owners precede integration",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "milestone:P2.3",
+      "target": "subsystem:future:batch_b25_retention_owners"
+    },
+    {
+      "blocking": true,
+      "condition": "Required original owner/routing integration predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_retention_owners",
+      "target": "subsystem:future:batch_b25_retention_timing"
+    },
+    {
+      "blocking": true,
+      "condition": "Required original owner/routing integration predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_retention_owners",
+      "target": "subsystem:future:batch_b25_audio"
+    },
+    {
+      "blocking": true,
+      "condition": "Required original owner/routing integration predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_retention_owners",
+      "target": "subsystem:future:batch_b25_presentation"
+    },
+    {
+      "blocking": true,
+      "condition": "Required original owner/routing integration predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_retention_owners",
+      "target": "subsystem:future:batch_b25_menu_actions"
+    },
+    {
+      "blocking": true,
+      "condition": "Required original owner/routing integration predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_options_family",
+      "target": "subsystem:future:batch_b25_menu_actions"
+    },
+    {
+      "blocking": true,
+      "condition": "Required original owner/routing integration predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_retention_owners",
+      "target": "subsystem:future:batch_b25_leave_failure"
+    },
+    {
+      "blocking": true,
+      "condition": "Required ordinary offline P2.5 desktop predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_retention_timing",
+      "target": "subsystem:future:batch_b25_acceptance"
+    },
+    {
+      "blocking": true,
+      "condition": "Required ordinary offline P2.5 desktop predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_audio",
+      "target": "subsystem:future:batch_b25_acceptance"
+    },
+    {
+      "blocking": true,
+      "condition": "Required ordinary offline P2.5 desktop predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_presentation",
+      "target": "subsystem:future:batch_b25_acceptance"
+    },
+    {
+      "blocking": true,
+      "condition": "Required ordinary offline P2.5 desktop predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_menu_actions",
+      "target": "subsystem:future:batch_b25_acceptance"
+    },
+    {
+      "blocking": true,
+      "condition": "Required ordinary offline P2.5 desktop predecessor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:batch_b25_leave_failure",
+      "target": "subsystem:future:batch_b25_acceptance"
+    },
+    {
+      "blocking": false,
+      "condition": "Batch is a proposal, not source completion",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "implements_contract",
+      "source": "subsystem:future:batch_b25_retention_owners",
+      "target": "subsystem:future:p25_owners"
+    },
+    {
+      "blocking": false,
+      "condition": "Batch is a proposal, not source completion",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "implements_contract",
+      "source": "subsystem:future:batch_b25_retention_timing",
+      "target": "subsystem:future:p25_timing"
+    },
+    {
+      "blocking": false,
+      "condition": "Batch is a proposal, not source completion",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-input-audio.md",
+      "relationship": "implements_contract",
+      "source": "subsystem:future:batch_b25_audio",
+      "target": "subsystem:future:p25_audio"
+    },
+    {
+      "blocking": false,
+      "condition": "Batch is a proposal, not source completion",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-input-audio.md",
+      "relationship": "implements_contract",
+      "source": "subsystem:future:batch_b25_presentation",
+      "target": "subsystem:future:p25_presentation"
+    },
+    {
+      "blocking": false,
+      "condition": "Batch is a proposal, not source completion",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "relationship": "implements_contract",
+      "source": "subsystem:future:batch_b25_options_family",
+      "target": "subsystem:future:p25_options"
+    },
+    {
+      "blocking": false,
+      "condition": "Batch is a proposal, not source completion",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "relationship": "implements_contract",
+      "source": "subsystem:future:batch_b25_menu_actions",
+      "target": "subsystem:future:p25_actions"
+    },
+    {
+      "blocking": false,
+      "condition": "Batch is a proposal, not source completion",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "implements_contract",
+      "source": "subsystem:future:batch_b25_leave_failure",
+      "target": "subsystem:future:p25_failure"
+    },
+    {
+      "blocking": false,
+      "condition": "Batch is a proposal, not source completion",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "relationship": "implements_contract",
+      "source": "subsystem:future:batch_b25_player_conditional",
+      "target": "subsystem:future:p25_player"
+    },
+    {
+      "blocking": false,
+      "condition": "Batch is a proposal, not source completion",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-acceptance.md",
+      "relationship": "implements_contract",
+      "source": "subsystem:future:batch_b25_acceptance",
+      "target": "subsystem:future:p25_acceptance"
+    },
+    {
+      "blocking": false,
+      "condition": "Conditional P2.6 command1/2/3 receiver; does not block ordinary Resume/Options",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "relationship": "data_dependency",
+      "source": "subsystem:future:resume",
+      "target": "subsystem:future:p25_actions"
+    },
+    {
+      "blocking": false,
+      "condition": "Conditional nonoffline route only; not a mandatory offline batch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "relationship": "data_dependency",
+      "source": "subsystem:future:p25_player",
+      "target": "subsystem:future:p25_acceptance"
+    },
+    {
+      "blocking": false,
+      "condition": "Same borrowed game survives all nested screens; menu1EC owns Options context",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "ownership",
+      "source": "subsystem:future:p25_owners",
+      "target": "subsystem:future:p25_options"
+    },
+    {
+      "blocking": false,
+      "condition": "Native menu borrowers retire before retained world, then shared devices/services; explicit shutdown deviation",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "cleanup_order",
+      "source": "subsystem:future:p25_failure",
+      "target": "subsystem:future:p25_owners"
+    },
+    {
+      "blocking": false,
+      "condition": "Status15/16 publicizes game at application14 before menu shutdown; no post-delete getter",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "initialization_order",
+      "source": "function:client:006c20f0",
+      "target": "function:client:0066b140"
+    },
+    {
+      "blocking": false,
+      "condition": "Normal unwrap calls menu08 before deleting00; borrowed game remains live",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "cleanup_order",
+      "source": "function:client:0066b140",
+      "target": "function:client:0067f180"
+    },
+    {
+      "blocking": false,
+      "condition": "Derived3C hook runs before remaining common screen/scene teardown; edge denotes hook completion ordering, not recursive call",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "cleanup_order",
+      "source": "function:client:0067f460",
+      "target": "function:client:0066b140"
+    },
+    {
+      "blocking": false,
+      "condition": "Offline14 saves pause/request before menu allocate; allocation failure does not restore automatically",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+      "relationship": "initialization_order",
+      "source": "function:client:0069b8b0",
+      "target": "function:client:0069e620"
+    },
+    {
+      "blocking": false,
+      "condition": "Definition family2 sets context9, used by shared dispatcher targets; native source family6 hardcodes need adaptation",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-menu-flows.md",
+      "relationship": "data_dependency",
+      "source": "function:client:0067fb00",
+      "target": "function:client:0061bea0"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual kind36 ctor appends borrowed identity to global vector; pause traverses existing registry",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-input-audio.md",
+      "relationship": "data_dependency",
+      "source": "function:client:005e3c90",
+      "target": "function:client:005e8d50"
+    },
+    {
+      "blocking": false,
+      "condition": "Kind36 destructor removes registry identity before actor memory retirement; no pause callbacks against retired actors",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.5-input-audio.md",
+      "relationship": "cleanup_order",
+      "source": "function:client:005e3f10",
+      "target": "function:client:005e8d50"
     }
   ],
   "schema_version": 1

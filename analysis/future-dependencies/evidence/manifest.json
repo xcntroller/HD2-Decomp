@@ -28,6 +28,16 @@
     {
       "entry": "006a3eb0",
       "reason": "Unverified guessed boundary; defining export pass failed before producing evidence; excluded from graph/contracts"
+    },
+    {
+      "entry": "0067e9b0",
+      "pass_name": "p25-state-leaves",
+      "reason": "Unvalidated function-boundary probe; transient definition failed before exports; excluded from graph/contracts"
+    },
+    {
+      "entry": "006c31a0",
+      "pass_name": "p25-render-input",
+      "reason": "Unvalidated function-boundary probe; transient definition failed before exports; excluded from graph/contracts"
     }
   ],
   "exports": [
@@ -22861,6 +22871,2752 @@
       "export_path": "analysis/work/future-dependencies/p24-reused/00727480.json",
       "export_sha256": "5f3f0de525474ab2f5895f1d28e4284cecd453e1a408fdc17de1e870f9fe250b",
       "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 426,
+      "decompilation_sha256": "d17b9afe92c4830bf30a1568baf174af3d03035a148760255b726360222713de",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0067e862",
+          "target": "0067ead0"
+        },
+        {
+          "site": "0067e8a5",
+          "target": "0067e160"
+        },
+        {
+          "site": "0067e8d8",
+          "target": "0067d660"
+        },
+        {
+          "site": "0067e9d0",
+          "target": "0067e200"
+        }
+      ],
+      "entry": "0067e840",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0067e840.json",
+      "export_sha256": "550a26d502c773dc26a7a732dedfae9691ccbc4fec34f4293485e548b4331de6",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 272,
+      "decompilation_sha256": "16e61d474ba4e61e74813353b864bbdbb366d21644134d83a02d5cc13efb2aeb",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0067f39f",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0067f3cb",
+          "target": "00461410"
+        },
+        {
+          "site": "0067f3d2",
+          "target": "0045d120"
+        },
+        {
+          "site": "0067f3df",
+          "target": "007e520f"
+        },
+        {
+          "site": "0067f403",
+          "target": "004336c0"
+        },
+        {
+          "site": "0067f426",
+          "target": "007e520f"
+        },
+        {
+          "site": "0067f450",
+          "target": "00496450"
+        }
+      ],
+      "entry": "0067f350",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0067f350.json",
+      "export_sha256": "75fa013ce5f8c5a785b22564f82e17da91703d4882f42c5c8ed789ecb7454c64",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 996,
+      "decompilation_sha256": "a76d619a5697930536a22d92918a396a5a9923a3cc81f6dfeeaa84821dcb1843",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0067fb20",
+          "target": "007e520f"
+        },
+        {
+          "site": "0067fb67",
+          "target": "007e520f"
+        },
+        {
+          "site": "0067fb8b",
+          "target": "00625e80"
+        },
+        {
+          "site": "0067fbaa",
+          "target": "00627ed0"
+        },
+        {
+          "site": "0067fbc7",
+          "target": "007e520f"
+        },
+        {
+          "site": "0067fbef",
+          "target": "00625e80"
+        },
+        {
+          "site": "0067fc0b",
+          "target": "00627ed0"
+        },
+        {
+          "site": "0067fc27",
+          "target": "006b66b0"
+        },
+        {
+          "site": "0067fc48",
+          "target": "007e520f"
+        },
+        {
+          "site": "0067fc70",
+          "target": "00625e80"
+        },
+        {
+          "site": "0067fc87",
+          "target": "00627e70"
+        },
+        {
+          "site": "0067fc91",
+          "target": "007e520f"
+        },
+        {
+          "site": "0067fcb9",
+          "target": "00625e80"
+        },
+        {
+          "site": "0067fcd5",
+          "target": "00627ed0"
+        },
+        {
+          "site": "0067fd2c",
+          "target": "0066bfa0"
+        },
+        {
+          "site": "0067fd5a",
+          "target": "00680680"
+        },
+        {
+          "site": "0067fd84",
+          "target": "0061cf60"
+        },
+        {
+          "site": "0067fda6",
+          "target": "00682980"
+        },
+        {
+          "site": "0067fdb0",
+          "target": "007e520f"
+        },
+        {
+          "site": "0067fdd3",
+          "target": "00668120"
+        },
+        {
+          "site": "0067fe25",
+          "target": "0066e750"
+        },
+        {
+          "site": "0067feb0",
+          "target": "0066c950"
+        },
+        {
+          "site": "0067fec9",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "0067fb00",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0067fb00.json",
+      "export_sha256": "6ff70310dc33e1574668688c7464303d28bef6af7d4740d163db46f0e15bf077",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1022,
+      "decompilation_sha256": "92e382bd64d95fd78d27e4371567a08a2da0ef6f77263758e29f3e05ec077b61",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0066ad52",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066ad96",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066ada5",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066adb6",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066adbd",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066adf3",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066aeec",
+          "target": "0066c5b0"
+        },
+        {
+          "site": "0066aef4",
+          "target": "0066a6e0"
+        },
+        {
+          "site": "0066aeff",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066af8a",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066af9a",
+          "target": "007e4eba"
+        },
+        {
+          "site": "0066afbf",
+          "target": "0044a1c0"
+        },
+        {
+          "site": "0066b036",
+          "target": "004336c0"
+        },
+        {
+          "site": "0066b047",
+          "target": "004336c0"
+        },
+        {
+          "site": "0066b059",
+          "target": "004336c0"
+        },
+        {
+          "site": "0066b06a",
+          "target": "004336c0"
+        },
+        {
+          "site": "0066b0de",
+          "target": "006ae510"
+        },
+        {
+          "site": "0066b0e5",
+          "target": "006a7820"
+        }
+      ],
+      "entry": "0066ad10",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0066ad10.json",
+      "export_sha256": "2ba68905796cae21db726d75b51aa762596f0932dd5ebde9e10183bd3307ddb4",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 566,
+      "decompilation_sha256": "3b13c2719b8c63cdfbbc9d151407e568d5089df7a2b233c68f1489c30f46aa19",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0066b16a",
+          "target": "0066e960"
+        },
+        {
+          "site": "0066b190",
+          "target": "0066e960"
+        },
+        {
+          "site": "0066b1f6",
+          "target": "006280a0"
+        },
+        {
+          "site": "0066b203",
+          "target": "0066c6c0"
+        },
+        {
+          "site": "0066b238",
+          "target": "0066a780"
+        },
+        {
+          "site": "0066b299",
+          "target": "00615190"
+        },
+        {
+          "site": "0066b2d0",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0066b31c",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "0066b140",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0066b140.json",
+      "export_sha256": "707fa492bee50399e750413b2af42354110d0c3bc41603fd3e3aff6cbce10444",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 253,
+      "decompilation_sha256": "5d27fa6c60d2076e92120001ab13e078a45c69f8490772c5f772c8f779196d42",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0066bec6",
+          "target": "004336c0"
+        },
+        {
+          "site": "0066bedb",
+          "target": "004336c0"
+        },
+        {
+          "site": "0066bef4",
+          "target": "0066c770"
+        },
+        {
+          "site": "0066bf09",
+          "target": "0066b990"
+        },
+        {
+          "site": "0066bf48",
+          "target": "006332a0"
+        }
+      ],
+      "entry": "0066bea0",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0066bea0.json",
+      "export_sha256": "5fd3d16c45a27dc9b96350e507619ad2f808b26bd9f331da209535817fd05332",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 511,
+      "decompilation_sha256": "cd58315ea962c14cf90b660431abc69677be4160d7b4fd158f650b3ae41c773f",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0066de5b",
+          "target": "00620e30"
+        },
+        {
+          "site": "0066de7f",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066deb5",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066deeb",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066df10",
+          "target": "0066a870"
+        },
+        {
+          "site": "0066df3a",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066df70",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066dfa6",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066dfd6",
+          "target": "0066a870"
+        },
+        {
+          "site": "0066dff3",
+          "target": "0066a870"
+        }
+      ],
+      "entry": "0066de00",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0066de00.json",
+      "export_sha256": "5a1a14866b7570d4aae7555534669b5e3763c6a0cc1109b15eb5f77c52743cf1",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 4034,
+      "decompilation_sha256": "fb5addd254153e638beb446418a56fcb641538eec506fef9c4f72d15109da8e5",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0061befb",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0061bf4f",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061bf95",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061bfaf",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061bfb9",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061bfc1",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0061c00d",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c024",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061c02e",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061c036",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0061c07d",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c094",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061c09e",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061c0a6",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0061c0ed",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c104",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061c10e",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061c115",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0061c15c",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c173",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061c17d",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061c1cb",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c1e2",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061c1ec",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061c24a",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c261",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061c26b",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061c2c4",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c2db",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061c2e5",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061c33e",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c361",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c36e",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061c376",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0061c3c1",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c3e4",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c3f1",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061c43c",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c45c",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c469",
+          "target": "006b6740"
+        },
+        {
+          "site": "0061c4ba",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c500",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c523",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c52d",
+          "target": "00620b80"
+        },
+        {
+          "site": "0061c572",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c593",
+          "target": "006b2950"
+        },
+        {
+          "site": "0061c59e",
+          "target": "006b3340"
+        },
+        {
+          "site": "0061c5af",
+          "target": "006a86c0"
+        },
+        {
+          "site": "0061c5ff",
+          "target": "00620e30"
+        },
+        {
+          "site": "0061c64c",
+          "target": "00620e30"
+        },
+        {
+          "site": "0061c69a",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c6c5",
+          "target": "00620da0"
+        },
+        {
+          "site": "0061c6e0",
+          "target": "006a85b0"
+        },
+        {
+          "site": "0061c6f6",
+          "target": "006a8300"
+        },
+        {
+          "site": "0061c740",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c75c",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c7a2",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c7be",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c804",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c820",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c86a",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c886",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c8cc",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c8e8",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c92e",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c94a",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c998",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061c9bc",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061c9ce",
+          "target": "006a8290"
+        },
+        {
+          "site": "0061ca31",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061ca4d",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061ca64",
+          "target": "006a81e0"
+        },
+        {
+          "site": "0061ca7b",
+          "target": "006a85b0"
+        },
+        {
+          "site": "0061ca99",
+          "target": "0066d7a0"
+        },
+        {
+          "site": "0061caed",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061cb09",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061cb52",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061cb6e",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061cbb7",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061cbd3",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061cc1c",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061cc38",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061cc81",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061cc9d",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061cce6",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061cd02",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061cd42",
+          "target": "00615a90"
+        },
+        {
+          "site": "0061cd5e",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061cdc5",
+          "target": "006157d0"
+        },
+        {
+          "site": "0061cdd7",
+          "target": "00616100"
+        },
+        {
+          "site": "0061cdef",
+          "target": "006157d0"
+        },
+        {
+          "site": "0061cdfb",
+          "target": "00616100"
+        },
+        {
+          "site": "0061ce13",
+          "target": "006169d0"
+        },
+        {
+          "site": "0061ce39",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "0061bea0",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0061bea0.json",
+      "export_sha256": "f91271031f5d264a614ee94ffae711477422a23f0ae1e08c1e7ae2e7e7f7296b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 2726,
+      "decompilation_sha256": "61d0a6a60f03acf335a1c02f098993755b88c0256e0e1c96090cd8733375c2ed",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0061cfa8",
+          "target": "00405100"
+        },
+        {
+          "site": "0061cfca",
+          "target": "0066dbf0"
+        },
+        {
+          "site": "0061cfed",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061d09a",
+          "target": "007e4e36"
+        },
+        {
+          "site": "0061d16c",
+          "target": "00614da0"
+        },
+        {
+          "site": "0061d184",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d1a5",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061d1c7",
+          "target": "007e520f"
+        },
+        {
+          "site": "0061d1f8",
+          "target": "00615090"
+        },
+        {
+          "site": "0061d219",
+          "target": "00615f50"
+        },
+        {
+          "site": "0061d23a",
+          "target": "00614df0"
+        },
+        {
+          "site": "0061d256",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d277",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061d299",
+          "target": "007e520f"
+        },
+        {
+          "site": "0061d2ca",
+          "target": "00615090"
+        },
+        {
+          "site": "0061d2eb",
+          "target": "00615f50"
+        },
+        {
+          "site": "0061d30c",
+          "target": "00614df0"
+        },
+        {
+          "site": "0061d328",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d349",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061d36b",
+          "target": "007e520f"
+        },
+        {
+          "site": "0061d39c",
+          "target": "00615090"
+        },
+        {
+          "site": "0061d3bd",
+          "target": "00615f50"
+        },
+        {
+          "site": "0061d3de",
+          "target": "00614df0"
+        },
+        {
+          "site": "0061d3fa",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d41b",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0061d43d",
+          "target": "007e520f"
+        },
+        {
+          "site": "0061d46e",
+          "target": "00615090"
+        },
+        {
+          "site": "0061d48f",
+          "target": "00615f50"
+        },
+        {
+          "site": "0061d4b0",
+          "target": "00614df0"
+        },
+        {
+          "site": "0061d4cc",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d4e1",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061d4e9",
+          "target": "00615a50"
+        },
+        {
+          "site": "0061d4f5",
+          "target": "007e520f"
+        },
+        {
+          "site": "0061d526",
+          "target": "00615090"
+        },
+        {
+          "site": "0061d547",
+          "target": "00615f50"
+        },
+        {
+          "site": "0061d559",
+          "target": "00615a50"
+        },
+        {
+          "site": "0061d572",
+          "target": "007e520f"
+        },
+        {
+          "site": "0061d5a8",
+          "target": "00615090"
+        },
+        {
+          "site": "0061d5af",
+          "target": "007e520f"
+        },
+        {
+          "site": "0061d5f4",
+          "target": "00615f50"
+        },
+        {
+          "site": "0061d619",
+          "target": "00614df0"
+        },
+        {
+          "site": "0061d639",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d64e",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061d670",
+          "target": "00614dd0"
+        },
+        {
+          "site": "0061d689",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d69e",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061d6aa",
+          "target": "00615a50"
+        },
+        {
+          "site": "0061d6c3",
+          "target": "007e520f"
+        },
+        {
+          "site": "0061d6f9",
+          "target": "00615090"
+        },
+        {
+          "site": "0061d700",
+          "target": "007e520f"
+        },
+        {
+          "site": "0061d745",
+          "target": "00615f50"
+        },
+        {
+          "site": "0061d76a",
+          "target": "00614df0"
+        },
+        {
+          "site": "0061d78a",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d79f",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061d7c1",
+          "target": "00614dd0"
+        },
+        {
+          "site": "0061d7da",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d7ef",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061d7ff",
+          "target": "0061da10"
+        },
+        {
+          "site": "0061d81a",
+          "target": "00614df0"
+        },
+        {
+          "site": "0061d83a",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d84f",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061d871",
+          "target": "00614dd0"
+        },
+        {
+          "site": "0061d88a",
+          "target": "00615d50"
+        },
+        {
+          "site": "0061d89f",
+          "target": "004050e0"
+        },
+        {
+          "site": "0061d8af",
+          "target": "0061da10"
+        },
+        {
+          "site": "0061d8c7",
+          "target": "00614f10"
+        },
+        {
+          "site": "0061d8eb",
+          "target": "00614e80"
+        },
+        {
+          "site": "0061d8fe",
+          "target": "0061da10"
+        },
+        {
+          "site": "0061d916",
+          "target": "00614f10"
+        },
+        {
+          "site": "0061d93a",
+          "target": "00614e80"
+        },
+        {
+          "site": "0061d94d",
+          "target": "0061da10"
+        },
+        {
+          "site": "0061d965",
+          "target": "00614f10"
+        },
+        {
+          "site": "0061d978",
+          "target": "00614e80"
+        },
+        {
+          "site": "0061d986",
+          "target": "0061dbc0"
+        },
+        {
+          "site": "0061d991",
+          "target": "0061e140"
+        },
+        {
+          "site": "0061d99c",
+          "target": "0061e390"
+        },
+        {
+          "site": "0061d9a7",
+          "target": "0061f1d0"
+        },
+        {
+          "site": "0061d9b2",
+          "target": "0061f350"
+        },
+        {
+          "site": "0061d9c0",
+          "target": "00615360"
+        },
+        {
+          "site": "0061d9d4",
+          "target": "00614f10"
+        }
+      ],
+      "entry": "0061cf60",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0061cf60.json",
+      "export_sha256": "f22a33eff262be79cb53ea2677147f736fc5f378db8c70a3dab7427017968e39",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 3102,
+      "decompilation_sha256": "201d29c512804e28126059565419602b1c4f28647c54d8e6424cb9753dabb4ce",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006829ac",
+          "target": "006835e0"
+        },
+        {
+          "site": "006829b5",
+          "target": "00684390"
+        },
+        {
+          "site": "006829be",
+          "target": "00684890"
+        },
+        {
+          "site": "006829c7",
+          "target": "00684af0"
+        },
+        {
+          "site": "006829e2",
+          "target": "00614da0"
+        },
+        {
+          "site": "006829f9",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682a19",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "00682a37",
+          "target": "00614da0"
+        },
+        {
+          "site": "00682a4b",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682a68",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "00682a8d",
+          "target": "007e520f"
+        },
+        {
+          "site": "00682abe",
+          "target": "00615090"
+        },
+        {
+          "site": "00682ada",
+          "target": "00615f50"
+        },
+        {
+          "site": "00682aff",
+          "target": "00614da0"
+        },
+        {
+          "site": "00682b1a",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682b2b",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682b4a",
+          "target": "00614da0"
+        },
+        {
+          "site": "00682b5e",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682b6f",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682b86",
+          "target": "00614df0"
+        },
+        {
+          "site": "00682b9a",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682bab",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682bc2",
+          "target": "00614df0"
+        },
+        {
+          "site": "00682bd6",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682be7",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682bf9",
+          "target": "00614dd0"
+        },
+        {
+          "site": "00682c0d",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682c1e",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682c34",
+          "target": "00685ab0"
+        },
+        {
+          "site": "00682c3b",
+          "target": "00615a50"
+        },
+        {
+          "site": "00682c45",
+          "target": "007e520f"
+        },
+        {
+          "site": "00682c72",
+          "target": "00615090"
+        },
+        {
+          "site": "00682c8e",
+          "target": "00615f50"
+        },
+        {
+          "site": "00682cab",
+          "target": "00614df0"
+        },
+        {
+          "site": "00682cc2",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682cd3",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682cf2",
+          "target": "00614da0"
+        },
+        {
+          "site": "00682d06",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682d17",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682d29",
+          "target": "00614dd0"
+        },
+        {
+          "site": "00682d3d",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682d4e",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682d55",
+          "target": "00615a50"
+        },
+        {
+          "site": "00682d5f",
+          "target": "007e520f"
+        },
+        {
+          "site": "00682d8c",
+          "target": "00615090"
+        },
+        {
+          "site": "00682da8",
+          "target": "00615f50"
+        },
+        {
+          "site": "00682dc5",
+          "target": "00614df0"
+        },
+        {
+          "site": "00682ddc",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682ded",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682e0a",
+          "target": "00614dd0"
+        },
+        {
+          "site": "00682e1e",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682e2f",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682e41",
+          "target": "00614dd0"
+        },
+        {
+          "site": "00682e55",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682e66",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682e70",
+          "target": "006b66b0"
+        },
+        {
+          "site": "00682e7f",
+          "target": "00615a50"
+        },
+        {
+          "site": "00682e89",
+          "target": "007e520f"
+        },
+        {
+          "site": "00682eb6",
+          "target": "00615090"
+        },
+        {
+          "site": "00682ed2",
+          "target": "00615f50"
+        },
+        {
+          "site": "00682eef",
+          "target": "00614df0"
+        },
+        {
+          "site": "00682f04",
+          "target": "00615d50"
+        },
+        {
+          "site": "00682f15",
+          "target": "004050e0"
+        },
+        {
+          "site": "00682f1c",
+          "target": "00615a50"
+        },
+        {
+          "site": "00682f26",
+          "target": "007e520f"
+        },
+        {
+          "site": "00682f53",
+          "target": "00615090"
+        },
+        {
+          "site": "00682f6f",
+          "target": "00615f50"
+        },
+        {
+          "site": "00682f8c",
+          "target": "00614df0"
+        },
+        {
+          "site": "00682f9e",
+          "target": "00615a50"
+        },
+        {
+          "site": "00682fa8",
+          "target": "007e520f"
+        },
+        {
+          "site": "00682fd5",
+          "target": "00615090"
+        },
+        {
+          "site": "00682ff1",
+          "target": "00615f50"
+        },
+        {
+          "site": "0068300e",
+          "target": "00614df0"
+        },
+        {
+          "site": "00683025",
+          "target": "00615d50"
+        },
+        {
+          "site": "00683036",
+          "target": "004050e0"
+        },
+        {
+          "site": "00683056",
+          "target": "00614dd0"
+        },
+        {
+          "site": "0068306a",
+          "target": "00615d50"
+        },
+        {
+          "site": "0068307b",
+          "target": "004050e0"
+        },
+        {
+          "site": "00683082",
+          "target": "00615a50"
+        },
+        {
+          "site": "0068308c",
+          "target": "007e520f"
+        },
+        {
+          "site": "006830b9",
+          "target": "00615090"
+        },
+        {
+          "site": "006830d5",
+          "target": "00615f50"
+        },
+        {
+          "site": "006830f2",
+          "target": "00614df0"
+        },
+        {
+          "site": "00683107",
+          "target": "00615d50"
+        },
+        {
+          "site": "00683118",
+          "target": "004050e0"
+        },
+        {
+          "site": "0068311f",
+          "target": "00615a50"
+        },
+        {
+          "site": "00683129",
+          "target": "007e520f"
+        },
+        {
+          "site": "00683156",
+          "target": "00615090"
+        },
+        {
+          "site": "00683172",
+          "target": "00615f50"
+        },
+        {
+          "site": "0068318f",
+          "target": "00614df0"
+        },
+        {
+          "site": "006831a6",
+          "target": "00615d50"
+        },
+        {
+          "site": "006831b7",
+          "target": "004050e0"
+        },
+        {
+          "site": "006831c9",
+          "target": "00614dd0"
+        },
+        {
+          "site": "006831dd",
+          "target": "00615d50"
+        },
+        {
+          "site": "006831ee",
+          "target": "004050e0"
+        },
+        {
+          "site": "00683200",
+          "target": "00614dd0"
+        },
+        {
+          "site": "00683214",
+          "target": "00615d50"
+        },
+        {
+          "site": "00683225",
+          "target": "004050e0"
+        },
+        {
+          "site": "0068322c",
+          "target": "00615a50"
+        },
+        {
+          "site": "00683236",
+          "target": "007e520f"
+        },
+        {
+          "site": "00683263",
+          "target": "00615090"
+        },
+        {
+          "site": "0068327f",
+          "target": "00615f50"
+        },
+        {
+          "site": "0068329c",
+          "target": "00614df0"
+        },
+        {
+          "site": "006832b3",
+          "target": "00615d50"
+        },
+        {
+          "site": "006832c4",
+          "target": "004050e0"
+        },
+        {
+          "site": "006832d6",
+          "target": "00614dd0"
+        },
+        {
+          "site": "006832ea",
+          "target": "00615d50"
+        },
+        {
+          "site": "006832fb",
+          "target": "004050e0"
+        },
+        {
+          "site": "00683309",
+          "target": "00615360"
+        },
+        {
+          "site": "0068332a",
+          "target": "00614da0"
+        },
+        {
+          "site": "0068333f",
+          "target": "00615d50"
+        },
+        {
+          "site": "00683350",
+          "target": "004050e0"
+        },
+        {
+          "site": "0068335e",
+          "target": "00615360"
+        },
+        {
+          "site": "0068336c",
+          "target": "00615360"
+        },
+        {
+          "site": "00683380",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068338d",
+          "target": "006b66b0"
+        },
+        {
+          "site": "0068339f",
+          "target": "00615360"
+        },
+        {
+          "site": "006833b3",
+          "target": "00614f10"
+        },
+        {
+          "site": "006833c4",
+          "target": "00615360"
+        },
+        {
+          "site": "006833d8",
+          "target": "00614f10"
+        },
+        {
+          "site": "006833e9",
+          "target": "00615360"
+        },
+        {
+          "site": "006833fd",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068340e",
+          "target": "00615360"
+        },
+        {
+          "site": "00683422",
+          "target": "00614f10"
+        },
+        {
+          "site": "00683433",
+          "target": "00615360"
+        },
+        {
+          "site": "00683447",
+          "target": "00614f10"
+        },
+        {
+          "site": "00683458",
+          "target": "00615360"
+        },
+        {
+          "site": "0068346e",
+          "target": "00614f10"
+        },
+        {
+          "site": "00683486",
+          "target": "0061e0a0"
+        },
+        {
+          "site": "00683493",
+          "target": "006b66b0"
+        },
+        {
+          "site": "006834a9",
+          "target": "00615360"
+        },
+        {
+          "site": "006834bd",
+          "target": "00614f10"
+        },
+        {
+          "site": "006834d1",
+          "target": "0066bfa0"
+        },
+        {
+          "site": "006834e1",
+          "target": "007e520f"
+        },
+        {
+          "site": "00683500",
+          "target": "006835a0"
+        },
+        {
+          "site": "0068353b",
+          "target": "00670900"
+        },
+        {
+          "site": "00683575",
+          "target": "00615360"
+        },
+        {
+          "site": "0068358b",
+          "target": "00614f10"
+        }
+      ],
+      "entry": "00682980",
+      "export_path": "analysis/work/future-dependencies/p25-reused/00682980.json",
+      "export_sha256": "dcff16e82e4198400c2fac63f6c62f800bc617dd08b2ffce6258d8113813ce56",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 457,
+      "decompilation_sha256": "1b0a3a70e3ef99ae89e3f7cef2fabb515358abbafc49573205aa3f341102081a",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006c0942",
+          "target": "006c53d0"
+        },
+        {
+          "site": "006c095a",
+          "target": "006c52f0"
+        },
+        {
+          "site": "006c0987",
+          "target": "006c5250"
+        },
+        {
+          "site": "006c099f",
+          "target": "006c5170"
+        },
+        {
+          "site": "006c09cb",
+          "target": "006c5560"
+        },
+        {
+          "site": "006c09e0",
+          "target": "006c5470"
+        },
+        {
+          "site": "006c09f3",
+          "target": "006c5480"
+        },
+        {
+          "site": "006c0a1e",
+          "target": "006c50c0"
+        },
+        {
+          "site": "006c0a33",
+          "target": "006c4fd0"
+        },
+        {
+          "site": "006c0a46",
+          "target": "006c4fe0"
+        },
+        {
+          "site": "006c0a71",
+          "target": "006c5250"
+        },
+        {
+          "site": "006c0a86",
+          "target": "006c5160"
+        },
+        {
+          "site": "006c0a99",
+          "target": "006c5170"
+        },
+        {
+          "site": "006c0ad5",
+          "target": "007e4eae"
+        }
+      ],
+      "entry": "006c0920",
+      "export_path": "analysis/work/future-dependencies/p25-reused/006c0920.json",
+      "export_sha256": "676495b0a4d7aa0ff1ad575ff860b1880063c7b20cab3b41da4f135cd4817237",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 47,
+      "decompilation_sha256": "078426359f26c9b0b307d7b6a405f7b7c586484d1274812c647ab5648f1309e7",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006c20db",
+          "target": "0072b1c0"
+        }
+      ],
+      "entry": "006c20c0",
+      "export_path": "analysis/work/future-dependencies/p25-reused/006c20c0.json",
+      "export_sha256": "93535ef168fc1456822ce063063f270a5c70421eef682d4b4aa1494357ac94d3",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 140,
+      "decompilation_sha256": "ee58c52f043f98191c05fb87ecf546e22886b0ed311c6b79b9f9b150ead18584",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006c313a",
+          "target": "006c30c0"
+        },
+        {
+          "site": "006c3183",
+          "target": "006c30c0"
+        }
+      ],
+      "entry": "006c3100",
+      "export_path": "analysis/work/future-dependencies/p25-reused/006c3100.json",
+      "export_sha256": "b15a23da47baf5674ae9c92714ffab7e591deb3148166594431f26053ee19f18",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 2687,
+      "decompilation_sha256": "70906b018bd48f87bf528bf87b48e3858889bca174c11f06404ce80d9ad11c4d",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0046cbd9",
+          "target": "007866c0"
+        },
+        {
+          "site": "0046cc72",
+          "target": "00405100"
+        },
+        {
+          "site": "0046cc90",
+          "target": "00698500"
+        },
+        {
+          "site": "0046ccbf",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0046cce1",
+          "target": "00698500"
+        },
+        {
+          "site": "0046cd5e",
+          "target": "00405100"
+        },
+        {
+          "site": "0046cd7c",
+          "target": "00698500"
+        },
+        {
+          "site": "0046cdab",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0046cdbd",
+          "target": "007e5f33"
+        },
+        {
+          "site": "0046cdda",
+          "target": "007e6368"
+        },
+        {
+          "site": "0046cddf",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0046cdf5",
+          "target": "00405100"
+        },
+        {
+          "site": "0046ce13",
+          "target": "00698500"
+        },
+        {
+          "site": "0046ce42",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0046ce52",
+          "target": "00698500"
+        },
+        {
+          "site": "0046ce77",
+          "target": "00698500"
+        },
+        {
+          "site": "0046cecf",
+          "target": "00698500"
+        },
+        {
+          "site": "0046cee1",
+          "target": "00698500"
+        },
+        {
+          "site": "0046cefa",
+          "target": "007e4e36"
+        },
+        {
+          "site": "0046cf2f",
+          "target": "00698500"
+        },
+        {
+          "site": "0046cf50",
+          "target": "00698500"
+        },
+        {
+          "site": "0046cf6b",
+          "target": "00698500"
+        },
+        {
+          "site": "0046d012",
+          "target": "007e4e36"
+        }
+      ],
+      "entry": "0046cb20",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0046cb20.json",
+      "export_sha256": "e9bb733b6265603fea5bad7d895be6a5277cba8acdeea173de9215f82caacf8e",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 41,
+      "decompilation_sha256": "1cd19abb190c6b3787fd608acd224f19230d6a87d6a5a7bbb7e5f849e8fa47be",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00433563",
+          "target": "007e4eba"
+        }
+      ],
+      "entry": "00433550",
+      "export_path": "analysis/work/future-dependencies/p25-reused/00433550.json",
+      "export_sha256": "66dc9e37de73b2773d305960fbc99c21687ca71e6cb3f654be69c51c8f82bb2c",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 6,
+      "decompilation_sha256": "0acc8b24c0908dfb6a87bd6f5c130c6d2513506a105f7192c8015ba83b5cd3ea",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "00698500",
+      "export_path": "analysis/work/future-dependencies/p25-reused/00698500.json",
+      "export_sha256": "09c723fe5fc1056dda94d7b1d69f0908b287c3a6b6ac55d9a9bb44ff163b8ea5",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 3,
+      "decompilation_sha256": "60c884cd4bbe74ea278df953858a9ff2b650f271f98aa3559aca18fb4c026d5e",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "0049b7c0",
+      "export_path": "analysis/work/future-dependencies/p25-state-lifecycle/0049b7c0.json",
+      "export_sha256": "173f6396a1ba316f8b415c4fa2ba856de4d9f5f1da70f20a97565575e76688df",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 30,
+      "decompilation_sha256": "a5fe02dd624b3e451c25fae76c0d0286df9a52355a2dbab54d76284d5316e148",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0067f183",
+          "target": "0067f1a0"
+        },
+        {
+          "site": "0067f190",
+          "target": "007e513c"
+        }
+      ],
+      "entry": "0067f180",
+      "export_path": "analysis/work/future-dependencies/p25-state-lifecycle/0067f180.json",
+      "export_sha256": "a81b46c2b114a1358194730211154b2ff9b8ebb322996d64cfe7154b643fb48b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 238,
+      "decompilation_sha256": "cdc2f03334634411a820fb2013add5c2c6995c3c04d0f925012276d05a136465",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0067f46a",
+          "target": "006b32a0"
+        },
+        {
+          "site": "0067f47b",
+          "target": "0061cf40"
+        },
+        {
+          "site": "0067f481",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0067f4c5",
+          "target": "00496dc0"
+        },
+        {
+          "site": "0067f4d6",
+          "target": "0049a6e0"
+        },
+        {
+          "site": "0067f4dc",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0067f4f4",
+          "target": "00670b40"
+        },
+        {
+          "site": "0067f503",
+          "target": "006a5cd0"
+        },
+        {
+          "site": "0067f514",
+          "target": "006a5c80"
+        },
+        {
+          "site": "0067f51a",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0067f52c",
+          "target": "006a5cd0"
+        },
+        {
+          "site": "0067f53d",
+          "target": "006a5c80"
+        },
+        {
+          "site": "0067f543",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "0067f460",
+      "export_path": "analysis/work/future-dependencies/p25-state-lifecycle/0067f460.json",
+      "export_sha256": "0722a73dfd7a7d7670a81eb84b24e735fc11edd5a5d0079cface4c4042e5e73d",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 89,
+      "decompilation_sha256": "65031f6b9082b9259643dc1dcb2e2a6b7644722abe16617f1b1fd4811f8ae380",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "0067faa0",
+      "export_path": "analysis/work/future-dependencies/p25-state-lifecycle/0067faa0.json",
+      "export_sha256": "c7564c7a808eb260ab9554dfcc32d2e42bac133c0c6d5ab47ab3ed85a2ad6fc1",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 76,
+      "decompilation_sha256": "eccf98b470a71a01a084f3e458822c974c5dc53089fc39e604edf29547842483",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006805eb",
+          "target": "006708e0"
+        },
+        {
+          "site": "006805f2",
+          "target": "006866b0"
+        },
+        {
+          "site": "006805f9",
+          "target": "0067ffa0"
+        }
+      ],
+      "entry": "006805d0",
+      "export_path": "analysis/work/future-dependencies/p25-state-lifecycle/006805d0.json",
+      "export_sha256": "608e5b7e19fd9ba917620f7d8891e65262605413451109ea611b1c6be458f505",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 51,
+      "decompilation_sha256": "2d2983c68197fd607b93d40ffb935ac5f1b19006b3580ae79b3bebfad32a6e2b",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "00680620",
+      "export_path": "analysis/work/future-dependencies/p25-state-lifecycle/00680620.json",
+      "export_sha256": "10f0e0b04260ccac0ead3043a89a21c8d054c8ac413670e59b79a627db9312f1",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 24,
+      "decompilation_sha256": "fa7f3f21ed44ee7918baa33905cabc2881766785388aa629b51721ec347df05f",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "00680660",
+      "export_path": "analysis/work/future-dependencies/p25-state-lifecycle/00680660.json",
+      "export_sha256": "cff2851fd63c8f056c594514ee40243d7e22aca208bcdca990d75007c895cd47",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 72,
+      "decompilation_sha256": "4581822c63111dd7329b496edcd2876171a4ecd01ca0f3d02fe293f9114c5d72",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069b8dd",
+          "target": "0071f640"
+        },
+        {
+          "site": "0069b8e4",
+          "target": "005e8d50"
+        },
+        {
+          "site": "0069b8ef",
+          "target": "00428f00"
+        }
+      ],
+      "entry": "0069b8b0",
+      "export_path": "analysis/work/future-dependencies/p25-state-lifecycle/0069b8b0.json",
+      "export_sha256": "afdd1ced19bf18b5cbf541f8de96f49719235960bf7ec40e93da680bd5788ba4",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 79,
+      "decompilation_sha256": "beb314a5b943898991bba5d750bc3475db5ca6f3bca34b56148fcacd09fa5dad",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "00428f00",
+      "export_path": "analysis/work/future-dependencies/p25-runtime-leaves/00428f00.json",
+      "export_sha256": "4e88f5e068a9df7aeb910fc1d07ddd4e147b3668ad9ca81bd3f3890e9784170f",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 192,
+      "decompilation_sha256": "6cae7bcbc9d9b9ce1c5366907cf74ed745b46268c0b2de6be421a675a6284f6c",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "005e8d50",
+      "export_path": "analysis/work/future-dependencies/p25-runtime-leaves/005e8d50.json",
+      "export_sha256": "d3c0779a69449d29d43138f1c0c5e24942163dacc278f7bf8bdf68f99cbc1424",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 80,
+      "decompilation_sha256": "6eec42804783383009cb8d3646b0692eb2604662603746261b0c66ecf74ce46a",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00670b4b",
+          "target": "007d0a80"
+        },
+        {
+          "site": "00670b7c",
+          "target": "007e513c"
+        }
+      ],
+      "entry": "00670b40",
+      "export_path": "analysis/work/future-dependencies/p25-runtime-leaves/00670b40.json",
+      "export_sha256": "946b047a5164ddc4dd6710e66caab0a07bed12ddfe700e1126da3669c1f65dc7",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 6,
+      "decompilation_sha256": "00914e9bbf9e7788f0b72f986be3b86083268fd0a36f4003574b7dda518c7f17",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "0067f170",
+      "export_path": "analysis/work/future-dependencies/p25-runtime-leaves/0067f170.json",
+      "export_sha256": "f5db6e7f613d344a28ecc143b2a6c705ff60322f7d66eae89ba2ec333cd9415b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 418,
+      "decompilation_sha256": "b576a659067183852f5dc2515104f69d680c861fb9316970d7467f9ea86539d2",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0067f1e4",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0067f219",
+          "target": "0067d1d0"
+        },
+        {
+          "site": "0067f222",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0067f242",
+          "target": "0067e0a0"
+        },
+        {
+          "site": "0067f24b",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0067f266",
+          "target": "0067e190"
+        },
+        {
+          "site": "0067f288",
+          "target": "006828b0"
+        },
+        {
+          "site": "0067f298",
+          "target": "006637b0"
+        },
+        {
+          "site": "0067f2a8",
+          "target": "004202d0"
+        },
+        {
+          "site": "0067f2c8",
+          "target": "00420560"
+        },
+        {
+          "site": "0067f2d1",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0067f2f7",
+          "target": "0063dbb0"
+        },
+        {
+          "site": "0067f2fe",
+          "target": "00644ba0"
+        },
+        {
+          "site": "0067f30b",
+          "target": "0049fcf0"
+        },
+        {
+          "site": "0067f318",
+          "target": "0049fcd0"
+        },
+        {
+          "site": "0067f325",
+          "target": "004a4a20"
+        }
+      ],
+      "entry": "0067f1a0",
+      "export_path": "analysis/work/future-dependencies/p25-runtime-leaves/0067f1a0.json",
+      "export_sha256": "ccdc589f7f7de25d2668656a2f98249a47d6adfd60bf58ffa1221f5a4dd2f444",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 215,
+      "decompilation_sha256": "3ddb88baad2cb72eecf12b243b5c8ac67b69a5e22c6388930b456d672e1e78d5",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00682231",
+          "target": "006332a0"
+        },
+        {
+          "site": "0068224e",
+          "target": "006822d0"
+        },
+        {
+          "site": "0068225f",
+          "target": "00682490"
+        },
+        {
+          "site": "0068228a",
+          "target": "00682490"
+        }
+      ],
+      "entry": "006821f0",
+      "export_path": "analysis/work/future-dependencies/p25-runtime-leaves/006821f0.json",
+      "export_sha256": "764672977ec9f920c7623ead22da23c2ddc81288add04e9d70d3c97b871654e5",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 30,
+      "decompilation_sha256": "e23ab1719867e0009618b3672441130af6bb2abb9c074cd83cf30e5422a7a625",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00682486",
+          "target": "00496e00"
+        }
+      ],
+      "entry": "00682470",
+      "export_path": "analysis/work/future-dependencies/p25-runtime-leaves/00682470.json",
+      "export_sha256": "62aa7be8cf70f918ffc79b8c9cc62a93b3ba5a84634f4d454c10cd8d18fff3a1",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 35,
+      "decompilation_sha256": "64968a01da35be10756c8f0a9b547a82f07084331a3b990c717b23906fe9820b",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b32a3",
+          "target": "004336c0"
+        }
+      ],
+      "entry": "006b32a0",
+      "export_path": "analysis/work/future-dependencies/p25-runtime-leaves/006b32a0.json",
+      "export_sha256": "4389d62c47f14a6e5c96ddc46e4247d5450d1e7901540d62c7419d2ef1941b77",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 137,
+      "decompilation_sha256": "24de619c74bb9da07761de8ba3658b9d8329d62b9de1a7aeaf5d0a48748fdbf1",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "0071f640",
+      "export_path": "analysis/work/future-dependencies/p25-runtime-leaves/0071f640.json",
+      "export_sha256": "13e481630531816cfdf36e5fd79b1298ef802f04f3f6a9fe5d62249a592e1b63",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1184,
+      "decompilation_sha256": "c044a5f490d84bf9d5e8cd3846498c0d6d40bde37a11362d61bc88a794a5e3bc",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0066b433",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b460",
+          "target": "0066b380"
+        },
+        {
+          "site": "0066b49a",
+          "target": "00405100"
+        },
+        {
+          "site": "0066b4c9",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0066b519",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b52f",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b545",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b580",
+          "target": "00615a90"
+        },
+        {
+          "site": "0066b59f",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b5e8",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b5fa",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b61b",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b62d",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b64b",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b65d",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0066b6cd",
+          "target": "006332a0"
+        },
+        {
+          "site": "0066b727",
+          "target": "006332a0"
+        },
+        {
+          "site": "0066b76a",
+          "target": "006332a0"
+        },
+        {
+          "site": "0066b7d7",
+          "target": "006157d0"
+        },
+        {
+          "site": "0066b7e9",
+          "target": "00616100"
+        },
+        {
+          "site": "0066b808",
+          "target": "00616100"
+        },
+        {
+          "site": "0066b835",
+          "target": "006157d0"
+        },
+        {
+          "site": "0066b85b",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "0066b3e0",
+      "export_path": "analysis/work/future-dependencies/p25-render-input-verified/0066b3e0.json",
+      "export_sha256": "75536b272550199002428d761df45f9ebed8282cb6ec4857532871368c0f98a0",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 5,
+      "decompilation_sha256": "fe0ec8eaa341503fea90bb4e90a2738d5077851c935c31728555fa4fd7347e92",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "0066be90",
+      "export_path": "analysis/work/future-dependencies/p25-render-input-verified/0066be90.json",
+      "export_sha256": "80ab5b1c301789a750781b9ebbdb6629445816cd1916f3fb866292b0ecd8b6c9",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 402,
+      "decompilation_sha256": "f154fd9d09a868548a271d038595c22b1295e35172e729b64c8e1c3f5a150e91",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006822d7",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "006822e6",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "006822f7",
+          "target": "007e4eae"
+        },
+        {
+          "site": "00682357",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "00682366",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "006823ab",
+          "target": "006332a0"
+        },
+        {
+          "site": "00682438",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "00682446",
+          "target": "007e4e3c"
+        }
+      ],
+      "entry": "006822d0",
+      "export_path": "analysis/work/future-dependencies/p25-render-input-verified/006822d0.json",
+      "export_sha256": "123e0bffe7e78e0c8a33ea0c8f297103f7db269aec1ba98f841643bd23bc3aa6",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 279,
+      "decompilation_sha256": "c12c7f451d0a9914e72a2a28157457877139d5ea57a9817d9ed102162364b7c2",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006824c5",
+          "target": "006708f0"
+        },
+        {
+          "site": "00682520",
+          "target": "006332a0"
+        },
+        {
+          "site": "0068252f",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0068253e",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "00682574",
+          "target": "007e4e3c"
+        }
+      ],
+      "entry": "00682490",
+      "export_path": "analysis/work/future-dependencies/p25-render-input-verified/00682490.json",
+      "export_sha256": "af44d46024e4e164fceb237212828d8297d877b7f08484219b6f5932710a4e3a",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 393,
+      "decompilation_sha256": "67a0ceddd9f0360e2e05cc193f1f932f996da108d6c30b867ef553bc8a8532f1",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004455e8",
+          "target": "00698500"
+        },
+        {
+          "site": "004455fe",
+          "target": "00442860"
+        },
+        {
+          "site": "00445612",
+          "target": "004427a0"
+        },
+        {
+          "site": "00445661",
+          "target": "00698500"
+        },
+        {
+          "site": "0044567d",
+          "target": "00442860"
+        },
+        {
+          "site": "00445693",
+          "target": "004427a0"
+        },
+        {
+          "site": "0044569e",
+          "target": "00440d80"
+        },
+        {
+          "site": "004456be",
+          "target": "004471b0"
+        }
+      ],
+      "entry": "004455b0",
+      "export_path": "analysis/work/future-dependencies/p25-paused-presentation/004455b0.json",
+      "export_sha256": "0a2f59c30e87d5d7b4dab3ed9ab3792dc143282c9ee76407a430258293bb1b22",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 186,
+      "decompilation_sha256": "9babb349cb493ceb5a02519e985675f00cf502b33e288d47bf69c58efb54a35c",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00442800",
+          "target": "00441390"
+        },
+        {
+          "site": "00442811",
+          "target": "004410b0"
+        },
+        {
+          "site": "0044281d",
+          "target": "00441460"
+        },
+        {
+          "site": "0044282a",
+          "target": "00441a00"
+        },
+        {
+          "site": "00442843",
+          "target": "004412d0"
+        }
+      ],
+      "entry": "004427a0",
+      "export_path": "analysis/work/future-dependencies/p25-effect-pause-leaves/004427a0.json",
+      "export_sha256": "7bb10af69a0aa0548bf9cf1a236d23fcdfe56d8412263013cb65a6e09552224a",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 128,
+      "decompilation_sha256": "9c4d78d9fcfc576e92568ef3ce7ab70ffea6d1375ccac44b2585700734008a47",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004428b5",
+          "target": "00441460"
+        },
+        {
+          "site": "004428c1",
+          "target": "00441a00"
+        }
+      ],
+      "entry": "00442860",
+      "export_path": "analysis/work/future-dependencies/p25-effect-pause-leaves/00442860.json",
+      "export_sha256": "0abbdf06bf34ca7733a3c0abfeee0d84d30a6ca62df284c4a5b1da98e832b889",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 579,
+      "decompilation_sha256": "ac41cd791ed4decf248371351579b6b7d76fc96e34f524e546f260b1097c6b14",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "005e3cb3",
+          "target": "00610070"
+        },
+        {
+          "site": "005e3daf",
+          "target": "005e9710"
+        },
+        {
+          "site": "005e3dc2",
+          "target": "005e9710"
+        },
+        {
+          "site": "005e3dd5",
+          "target": "007e520f"
+        },
+        {
+          "site": "005e3ded",
+          "target": "005ea1f0"
+        },
+        {
+          "site": "005e3e01",
+          "target": "005ea220"
+        },
+        {
+          "site": "005e3e16",
+          "target": "005ea1f0"
+        },
+        {
+          "site": "005e3e2e",
+          "target": "005e9af0"
+        },
+        {
+          "site": "005e3e39",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "005e3e53",
+          "target": "005e9710"
+        },
+        {
+          "site": "005e3e70",
+          "target": "005ea1f0"
+        },
+        {
+          "site": "005e3e94",
+          "target": "005ea220"
+        }
+      ],
+      "entry": "005e3c90",
+      "export_path": "analysis/work/future-dependencies/p25-sound-registry-owner/005e3c90.json",
+      "export_sha256": "51dc02b7edd612816167df81d405295fdff7a711040deb8b2bbca5815cf4ae77",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 30,
+      "decompilation_sha256": "f6158d0e5c99aa191d9766e6c4c3be68c53fdccef163a4fdd1c7de59108e3a7c",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "005e3ef3",
+          "target": "005e3f10"
+        },
+        {
+          "site": "005e3f00",
+          "target": "007e513c"
+        }
+      ],
+      "entry": "005e3ef0",
+      "export_path": "analysis/work/future-dependencies/p25-sound-registry-owner/005e3ef0.json",
+      "export_sha256": "05905d50f9a2e4904130b9ea997cc355534b553c75312c9c602319ec4e58d759",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 338,
+      "decompilation_sha256": "9edbf20e1eb971fcf0444747df189e56e761c63dbc4b78f12994894b04b72876",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "005e3f9c",
+          "target": "005e9af0"
+        },
+        {
+          "site": "005e3faf",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "005e3fcd",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "005e3feb",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "005e4009",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "005e4027",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "005e404b",
+          "target": "00610170"
+        }
+      ],
+      "entry": "005e3f10",
+      "export_path": "analysis/work/future-dependencies/p25-sound-registry-retire/005e3f10.json",
+      "export_sha256": "6a35fb60ff77775c95d41f1383ce5e80b29e1f4a697c1768f173deb1cabf71d3",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 260,
+      "decompilation_sha256": "509dc5ff8fc5ee0939e9a971ee49b69c90cc184f75609dfd6b38e4c2e42877f5",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0066c5b6",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066c5cc",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066c5e2",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066c5f8",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066c607",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066c61c",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066c62d",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066c648",
+          "target": "0066bfa0"
+        },
+        {
+          "site": "0066c659",
+          "target": "0066c1d0"
+        },
+        {
+          "site": "0066c665",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066c67d",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "0066c695",
+          "target": "007e4e3c"
+        }
+      ],
+      "entry": "0066c5b0",
+      "export_path": "analysis/work/future-dependencies/p25-reused/0066c5b0.json",
+      "export_sha256": "9172281345009ad87de365f797b516294e75eff9e55331b6b334bde88f99ad03",
+      "program": "client"
     }
   ],
   "failed_passes": [
@@ -22883,6 +25639,14 @@
     {
       "pass": "result-producer-leaves first attempt",
       "reason": "Sandbox config creation failed; no exports; rerun read-only with established approved workflow"
+    },
+    {
+      "pass_name": "p25-state-leaves",
+      "reason": "0067E9B0 unvalidated transient definition failed; no exports; corrected actual vtable targets rerun p25-state-lifecycle"
+    },
+    {
+      "pass_name": "p25-render-input",
+      "reason": "006C31A0 unvalidated transient definition failed; no exports; corrected verified targets rerun p25-render-input-verified"
     }
   ],
   "instruction_anchors": [
@@ -23034,6 +25798,138 @@
       "claim": "Team reconciliation assigns native48 from first unused1..4 producer",
       "end_exclusive": "00695e21",
       "start": "00695e0c"
+    },
+    {
+      "bytes_sha256": "d93cd3448124992fb1dbc66e2e5c6eb953941e4ce7420efbd0654729a3788fe2",
+      "claim": "Entry ECX is game; aligned5C0 allocation",
+      "end_exclusive": "0069e649",
+      "start": "0069e639"
+    },
+    {
+      "bytes_sha256": "73bd18e44d470408fcafecf612079efc88f277bf3cafe25bba1c40631b57b244",
+      "claim": "Game status1; stack selector; borrowed5B8 before menu initialization; final status1",
+      "end_exclusive": "0069e69b",
+      "start": "0069e675"
+    },
+    {
+      "bytes_sha256": "8ca2e2888093f11ce811c263e8a157df7e260f0c9a9500b2cf504d6784f2f2f8",
+      "claim": "Game58 no-op then camera3(1,0); result pointer and RET4",
+      "end_exclusive": "0069e6cd",
+      "start": "0069e69b"
+    },
+    {
+      "bytes_sha256": "6bd5ef3d3ffb0ec30b1064b45d6a1df540e406c6dd81ade3df340a1050518c98",
+      "claim": "Status14 offline saves64 and requests pause before ECX game/stack-1 call/publication",
+      "end_exclusive": "006c2255",
+      "start": "006c2213"
+    },
+    {
+      "bytes_sha256": "5ed43aaa9ebff05bf4d85cbdc1c34e51d843f8c12174cd78c00b78425631d44a",
+      "claim": "Status15 publishes game before menu shutdown/delete;6E=1,camera3 and saved64 restore",
+      "end_exclusive": "006c22c3",
+      "start": "006c225a"
+    },
+    {
+      "bytes_sha256": "5bbfdac0f9ed69f514e86fc35c85a632762d0f751ac37e26c5dbb501c0ec1bf1",
+      "claim": "Status16 publishes game then menu retirement then delayed game exit",
+      "end_exclusive": "006c22ea",
+      "start": "006c22c5"
+    },
+    {
+      "bytes_sha256": "bff2f8c7463cf1ce2beb5138488031c1d7718c97a3e80ae1aa47eab0cdf7b5dd",
+      "claim": "Pause64 time/mode gate; CL actual64 to dubbing versus requested byte to Car and Script ECX868A08",
+      "end_exclusive": "0069b8f8",
+      "start": "0069b8b0"
+    },
+    {
+      "bytes_sha256": "e598d0c3ba86d917b177d7adde0556aa99bc355543c57aee0a3e50b684dd7e99",
+      "claim": "Game58 receiver is actual RET4 no-op",
+      "end_exclusive": "0049b7c3",
+      "start": "0049b7c0"
+    },
+    {
+      "bytes_sha256": "bdeeb2c4aff3cbd9c2d69fb1a8178aa20be4ca863003aeb9114923861f9c8637",
+      "claim": "Update forwards original delta through retained game14",
+      "end_exclusive": "0068061c",
+      "start": "006805fe"
+    },
+    {
+      "bytes_sha256": "6991f6d816840973f74688d79e26b2ace39407ada97719c8cb73e0a3429dd9e6",
+      "claim": "Fixed global clock adds delta then flags1 tail-jump game10 with stack delta",
+      "end_exclusive": "00680653",
+      "start": "00680620"
+    },
+    {
+      "bytes_sha256": "ab089d6346342934777404b9b7b3beaa9f98bb695297efab611dc6c35372e2b7",
+      "claim": "Input game0C receives two null stack views",
+      "end_exclusive": "00680679",
+      "start": "00680660"
+    },
+    {
+      "bytes_sha256": "defe79a28dea4bbef5a8fe970348d54635ededd3cb6c08d75e8dd2e2514ef770",
+      "claim": "Profile global ECX supplied to master level restore",
+      "end_exclusive": "0067f46f",
+      "start": "0067f463"
+    },
+    {
+      "bytes_sha256": "44615d4077919e3b68a841b47449356b053be6493a680218afae12fe614f695d",
+      "claim": "Preview cleanup receiver is inline menu4DC",
+      "end_exclusive": "0067f4f9",
+      "start": "0067f4ee"
+    },
+    {
+      "bytes_sha256": "92883251bcef1669a4c09da03952b7b00a34c9a9c2a863f4840670698e8d1cae",
+      "claim": "Save actual driver6 result on stack",
+      "end_exclusive": "006822f7",
+      "start": "006822e6"
+    },
+    {
+      "bytes_sha256": "845a52621b8db0854808ca019e09175d6bd6b33c0fe76e13b19e261157c30850",
+      "claim": "Restore actual saved driver5 and6; true low byte return",
+      "end_exclusive": "00682462",
+      "start": "00682438"
+    },
+    {
+      "bytes_sha256": "5fdca798b951e409df9e694fca095b00526ce007749c32bc07afcef3ed05828f",
+      "claim": "Profile sound field40 uses FLOAT multiplication constant0080F574, not DOUBLE",
+      "end_exclusive": "006b32b1",
+      "start": "006b32a8"
+    },
+    {
+      "bytes_sha256": "b1cd8b56a260ada40164b3591171edfd66d67d4e0dec13913fb71f21af39c4d0",
+      "claim": "Paused effect receiver uses ECX008998E8 and original stack delta",
+      "end_exclusive": "0069b7c7",
+      "start": "0069b7bc"
+    },
+    {
+      "bytes_sha256": "0bcd0cfafe64e8ea587be00c076d443bb2a9f677ad533364619630f2dbe7d452",
+      "claim": "Actor constructor005E3C90 supplies actual kind24hex=36 to base00610070",
+      "end_exclusive": "005e3cb8",
+      "start": "005e3cad"
+    },
+    {
+      "bytes_sha256": "04e9fd5d06e99efa2f07c6622f8b5b92fb81a38ae4cc6ad506f4ae6f85b18a74",
+      "claim": "Actor vtable00812930, sound frames168/16C null before static registry insertion",
+      "end_exclusive": "005e3d71",
+      "start": "005e3d59"
+    },
+    {
+      "bytes_sha256": "82758a0cc0a6f3be6e2650ee54adf13c44017e3dfddec23355b67beabefc527f",
+      "claim": "Type36 destructor reverse lookup, swap last pointer and decrement borrowed registry before base retirement",
+      "end_exclusive": "005e3fa8",
+      "start": "005e3f37"
+    },
+    {
+      "bytes_sha256": "484898c5a3b9de8b2fbcbd64fb44364f93b85e1e6b5f7d0fa807fc7683b8ddec",
+      "claim": "Options builder ECX is menu1EC; actual role08000000 selects shared builder with stack definition/model",
+      "end_exclusive": "0067fd89",
+      "start": "0067fd76"
+    },
+    {
+      "bytes_sha256": "1e07a43c835ff376a78e1031d8f9c0c58b325db5916e5086796b65b43654e0a3",
+      "claim": "Actual definition40>>26 masked3F is written to Options context byte9; decompiler pointer1 is wrong",
+      "end_exclusive": "0061d166",
+      "start": "0061d146"
     }
   ],
   "method": "Sequential readOnly/noanalysis Ghidra; transient definitions discarded; targeted static PE vtable reads; no execution",
