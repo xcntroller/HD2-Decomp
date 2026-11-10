@@ -136,8 +136,20 @@ public:
         call<void>(frame,8,position.data());object_rotation(frame,rotation);auto_parent_object(frame);update_scene_object(frame);
     }
     void physics_publish_position(Frame frame,const Vector& position){call<void>(frame,8,position.data());update_scene_object(frame);} //0040F5A2; no quaternion or parent update here.
+    void physics_restore_pose(Frame frame,const Vector& position,const Vector& rotation){object_rotation(frame,rotation);call<void>(frame,8,position.data());update_scene_object(frame);} //0040D1B1/0040D9BF, ONE24 after both writes, no SceneEC.
     Vector physics_local_translation(Frame frame){const auto matrix=car_local_matrix(frame);return {{matrix[12],matrix[13],matrix[14],matrix[15]}};} //0040F5E3/58 lazy local matrix.
     Vector physics_local_sphere_centre(Frame frame){(void)rigid_visual_bounds(frame);return field<Vector>(frame,0x1c0);}
+    Vector physics_rotate_about_axis(const Vector& rotation,const Vector& axis,float angle){
+        const auto matrix=human_axis_rotation(axis,angle);Vector result{};using Apply=void*(WINAPI*)(const void*,void*,const void*);
+        exported<Apply>("?RotateByMatrix@S_quat@@QBG?AU1@ABUS_matrix@@@Z",0x30440)(rotation.data(),result.data(),matrix.data());
+        return result;
+    }
+    void physics_publish_axis_rotation(Frame frame,const Vector& rotation,const Vector& axis,float angle){object_rotation(frame,physics_rotate_about_axis(rotation,axis,angle));update_scene_object(frame);}
+    Vector physics_rotate_offset(const Vector& offset,const Vector& axis,float angle){return collision_sweep_rotate(offset,human_axis_rotation(axis,angle));}
+    Vector physics_slerp(const Vector& first,const Vector& last,float factor,bool shortest){
+        Vector result{};using Slerp=void*(WINAPI*)(const void*,void*,const void*,float,std::uint8_t);
+        exported<Slerp>("?Slerp@S_quat@@QBG?AU1@ABU1@M_N@Z",0x302e0)(first.data(),result.data(),last.data(),factor,static_cast<std::uint8_t>(shortest));return result;
+    }
     template<class Visit>void enumerate_physics_scene(Visit&& visit) { //00410B00/00410B40.
         using Visitor=std::remove_reference_t<Visit>;
         struct Context {

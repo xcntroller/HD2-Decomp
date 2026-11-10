@@ -26388,12 +26388,18 @@
       "program": "client",
       "entry": "00408780",
       "status": "partial",
-      "coverage": "Cold type5 kind3/nonpickup contact returns true without tipping; other contacts explicitly require the actual movement/pickup receiver.",
-      "limitations": "Only the cold kind3 gate is supplied. Positive tipping, queued pickup00407BD0 and broken-model/cache/rotation updates remain unrecovered.",
+      "coverage": "Actual non-tree contact seeds tipping/oscillation from same frame, locked/free axis and targets, native active/progress gates, angle-based descriptor disable and kind3 semantics. Pickup204 clears before required notification; tree kind0 preserves unwritten202; positive tree parent-kind9 replacement remains required.",
+      "limitations": "Source-only typed frame/Physics adaptation. Pickup notification/model replacement/cache/proximity branch remains required and throws; no invented success. Unknown constructor202 remains optional until actual contact seeds it. Original ABI/SEH and full x87 precision excluded; no desktop mission acceptance.",
       "evidence": [
         "analysis/car-callback-world-binding.md",
         "recovered/game/physics_object.h",
-        "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json"
+        "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json",
+        "recovered/game/physics_object_pivot.h",
+        "recovered/game/physics_object_tipping.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_physics_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
       ]
     },
     {
@@ -27297,6 +27303,118 @@
         "recovered/host/game_actor_frames.h",
         "analysis/physics-object-frame-motion.md",
         "analysis/checkpoints/p2.2-physics-motion-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040bf20",
+      "status": "partial",
+      "coverage": "Aggregate3 free phase: tentative translation, ordered static rays, bounce/support thresholds, angular query rollback and conditional gravity.",
+      "limitations": "Source-only typed native adaptation; exact original object/container/allocator/SEH ABI and x87 intermediate precision excluded. Engine geometry/quaternion/vector math is delegated. Unwritten pivot/tipping fields reject missing producers. Tree model replacement, pickup notification and type6 remain explicit required branches. No actual application loading/first frame or user desktop acceptance, no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_pivot.h",
+        "recovered/game/physics_object_tipping.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_physics_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040ce00",
+      "status": "partial",
+      "coverage": "Aggregate support phase: actual pivot step, farther/tie endpoint trajectory ordering, clear commit or one-update pose restoration, phase2 publication and false retirement result.",
+      "limitations": "Source-only typed native adaptation; exact original object/container/allocator/SEH ABI and x87 intermediate precision excluded. Engine geometry/quaternion/vector math is delegated. Unwritten pivot/tipping fields reject missing producers. Tree model replacement, pickup notification and type6 remain explicit required branches. No actual application loading/first frame or user desktop acceptance, no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_pivot.h",
+        "recovered/game/physics_object_tipping.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_physics_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040d6a0",
+      "status": "partial",
+      "coverage": "Aggregate axis phase: actual axis step, farther secondary endpoint only, commit or original pose rollback with false result.",
+      "limitations": "Source-only typed native adaptation; exact original object/container/allocator/SEH ABI and x87 intermediate precision excluded. Engine geometry/quaternion/vector math is delegated. Unwritten pivot/tipping fields reject missing producers. Tree model replacement, pickup notification and type6 remain explicit required branches. No actual application loading/first frame or user desktop acceptance, no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_pivot.h",
+        "recovered/game/physics_object_tipping.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_physics_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040c670",
+      "status": "partial",
+      "coverage": "Actual support lever/gravity cross axis and angle, engine quaternion rotation then rotated lever frame position; owner pose remains uncommitted.",
+      "limitations": "Source-only typed native adaptation; exact original object/container/allocator/SEH ABI and x87 intermediate precision excluded. Engine geometry/quaternion/vector math is delegated. Unwritten pivot/tipping fields reject missing producers. Tree model replacement, pickup notification and type6 remain explicit required branches. No actual application loading/first frame or user desktop acceptance, no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_pivot.h",
+        "recovered/game/physics_object_tipping.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_physics_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0040d510",
+      "status": "partial",
+      "coverage": "Axis pivot quaternion using gravity-step length times native130 times .25 and actual frame update.",
+      "limitations": "Source-only typed native adaptation; exact original object/container/allocator/SEH ABI and x87 intermediate precision excluded. Engine geometry/quaternion/vector math is delegated. Unwritten pivot/tipping fields reject missing producers. Tree model replacement, pickup notification and type6 remain explicit required branches. No actual application loading/first frame or user desktop acceptance, no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_pivot.h",
+        "recovered/game/physics_object_tipping.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_physics_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004070c0",
+      "status": "partial",
+      "coverage": "Contact-seeded tipping and oscillation clocks, strict endpoint/phase transitions, phase-specific Slerp flags, amplitude decay and stop.",
+      "limitations": "Source-only typed native adaptation; exact original object/container/allocator/SEH ABI and x87 intermediate precision excluded. Engine geometry/quaternion/vector math is delegated. Unwritten pivot/tipping fields reject missing producers. Tree model replacement, pickup notification and type6 remain explicit required branches. No actual application loading/first frame or user desktop acceptance, no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_pivot.h",
+        "recovered/game/physics_object_tipping.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_physics_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00406d10",
+      "status": "partial",
+      "coverage": "Actual tipping quaternion/frame update, two unconditional static endpoint rays with native masks, shared exclusions and blocked owner-only rollback.",
+      "limitations": "Source-only typed native adaptation; exact original object/container/allocator/SEH ABI and x87 intermediate precision excluded. Engine geometry/quaternion/vector math is delegated. Unwritten pivot/tipping fields reject missing producers. Tree model replacement, pickup notification and type6 remain explicit required branches. No actual application loading/first frame or user desktop acceptance, no whole-body equivalence.",
+      "evidence": [
+        "recovered/game/physics_object_pivot.h",
+        "recovered/game/physics_object_tipping.h",
+        "recovered/game/physics_object.h",
+        "recovered/host/game_actor_frames.h",
+        "recovered/host/game_physics_frames.h",
+        "analysis/physics-object-frame-motion.md",
+        "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
       ]
     }
   ]

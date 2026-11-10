@@ -178,3 +178,5 @@ same frame-data, buckets, runtime actor queue and GEffects fade owner. The
 containing production Human/session/module/first-frame receivers remain required.
 
 2026-11-10: [Physics frame/impulse source](physics-object-frame-motion.md) supplies SAME module2 owner-list dispatch, four motion families, actual ray/sweep queries, event0/1/2/3/5 and ordered pose/retirement/EC lifetimes. Focused native sanitizers, strict actual-host two18-module passes and app link pass;12 new partials, no complete or desktop promotion. Type3/5 positive receivers, actual application frame/visibility/guards remain required.
+
+Physics follow-up2026-11-10: [aggregate/pivot and contact-seeded tipping](physics-object-frame-motion.md#aggregatepivot-and-contact-seeded-tipping-follow-up) supplies type3/5 frame bodies, actual non-tree contact, shared exclusions and original retirement/Slerp/pose semantics. Native/i386/app checks pass; seven partials added. Tree replacement/pickup notification and type6 still require actual receivers. Continue full first-frame integration.

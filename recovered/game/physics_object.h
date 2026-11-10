@@ -7,6 +7,8 @@
 #include "game/rigid_body.h"
 #include "game/effects_frame_fades.h"
 #include "game/physics_object_motion.h"
+#include "game/physics_object_pivot.h"
+#include "game/physics_object_tipping.h"
 #include "frontend/cleanup.h"
 #include <optional>
 
@@ -83,7 +85,8 @@ public:
             centre170_[2]=static_cast<float>(static_cast<long double>(zsum)*.5f);
             endpoint190_=frames_.car_transform(high,inverse_);
             auto projected=low;projected[1]=high[1];endpoint1a0_=frames_.car_transform(projected,inverse_);
-            rotation1e0_=frames_.actor_rotation(frame_.get());rotation1f0_=frames_.actor_rotation(frame_.get());rotation_ready_=true;
+            tipping_.saved=frames_.actor_rotation(frame_.get());rotation1f0_=frames_.actor_rotation(frame_.get());rotation_ready_=true;
+            pickup_=parameters_.pickup;
             flag161_=true;
             if(parameters_.pickup) {
                 descriptor_.flags|=0x100000;
@@ -137,7 +140,7 @@ public:
     }
     bool delete_when_stopped()const{return flag158_;}
     void impulse(const Vector& force,const Vector& point,float scale){
-        if(parameters_.type==5)throw std::runtime_error("Physics type5 requires actual004094D0 impulse/contact receiver");
+        if(parameters_.type==5)return; //004094D0 is genuine RET12, absent frozen/no credit. Manager still emits event2.
         struct Binding {
             PhysicsObject& object;Matrix inverse{};
             bool physics_frame_exists()const{return bool(object.frame_);}
@@ -148,7 +151,6 @@ public:
         impulse_physics_object(motion_,force,point,scale,parameters_.type==2,binding);
     }
     template<class Simulation>bool advance(float seconds,Simulation& simulation){
-        if(parameters_.type!=0&&parameters_.type!=1&&parameters_.type!=2&&parameters_.type!=4)return simulation.advance_other_physics_object(*this,seconds);
         struct Binding {
             PhysicsObject& object;Simulation& simulation;
             bool physics_frame_exists()const{return bool(object.frame_);}
@@ -157,6 +159,19 @@ public:
             auto physics_point_query(const Vector& start,const Vector& delta){return simulation.physics_point_query(start,delta);}
             auto physics_sphere_query(const Vector& start,const Vector& delta,float radius){return simulation.physics_sphere_query(start,delta,radius);}
             void physics_collision_feedback(){(void)object.feedback(1);} //0040B5BB ECX1/EDX150/stack154.
+            Vector physics_axis_world(unsigned n){return object.frames_.car_transform(object.principal_axes_.at(n),object.frames_.actor_world_matrix(object.frame_.get()));}
+            Vector physics_frame_rotation(){return object.frames_.actor_rotation(object.frame_.get());}
+            void physics_publish_position(const Vector& position){object.frames_.physics_publish_position(object.frame_.get(),position);}
+            void physics_publish_rotation(const Vector& rotation){object.frames_.object_rotation(object.frame_.get(),rotation);object.frames_.update_scene_object(object.frame_.get());}
+            void physics_restore_pose(const Vector& position,const Vector& rotation){object.frames_.physics_restore_pose(object.frame_.get(),position,rotation);}
+            void physics_publish_axis_rotation(const Vector& rotation,const Vector& axis,float angle){object.frames_.physics_publish_axis_rotation(object.frame_.get(),rotation,axis,angle);}
+            Vector physics_rotate_offset(const Vector& offset,const Vector& axis,float angle){return object.frames_.physics_rotate_offset(offset,axis,angle);}
+            auto physics_pivot_query(const Vector& start,const Vector& delta){return simulation.physics_pivot_query(start,delta);}
+            Vector physics_tipping_endpoint(unsigned n){return object.frames_.car_transform(n?object.endpoint1a0_:object.endpoint190_,object.frames_.actor_world_matrix(object.frame_.get()));}
+            auto physics_tipping_query(const Vector& start,const Vector& delta){return simulation.physics_tipping_query(start,delta);}
+            Vector physics_slerp(const Vector& first,const Vector& last,float factor,bool shortest){return object.frames_.physics_slerp(first,last,factor,shortest);}
+            void physics_exclude_self(){simulation.physics_exclude(object.descriptor_);}
+            void physics_reset_exclusions(){simulation.physics_reset_exclusions();}
             void physics_publish_extended_position(const Vector& position){
                 object.frames_.physics_publish_position(object.frame_.get(),position);
                 object.world_=object.frames_.actor_world_matrix(object.frame_.get());
@@ -165,6 +180,8 @@ public:
                 object.collisions_.move(object.descriptor_);
             }
         } binding{*this,simulation};
+        if(parameters_.type==5)return advance_tipping_physics_object(motion_,tipping_,seconds,binding);
+        if(parameters_.type==3)return advance_aggregate_physics_object(motion_,pivot_,seconds,binding);
         if(parameters_.type==1)return advance_extended_ray_physics_object(motion_,seconds,radius170_,parameters_.flag15,binding);
         if(parameters_.type==4)return advance_fading_physics_object(motion_,ground_stop_,flag158_,seconds,parameters_.flag15,binding);
         return advance_basic_physics_object(motion_,seconds,parameters_.type==2,radius170_,parameters_.flag15,binding);
@@ -172,18 +189,44 @@ public:
     void synchronize_pose(){ //0040AB80, ALWAYS called after the virtual04 result, including false.
         if(!frame_)return;
         frames_.physics_publish_pose(frame_.get(),motion_.position,motion_.rotation);
-        if(parameters_.type==0||parameters_.type==4||flag161_)return;
+        if(parameters_.type==0||parameters_.type==4||!collision_enabled_||flag161_)return;
         world_=frames_.actor_world_matrix(frame_.get());inverse_=frames_.car_inverse_matrix(world_);
         descriptor_.position=frames_.car_transform(frames_.physics_local_sphere_centre(frame_.get()),world_);
         collisions_.move(descriptor_);
     }
-    bool contact(unsigned kind,const Vector&,const Vector&) {
+    bool contact(unsigned kind,const Vector& velocity,const Vector&) {
         if(parameters_.type==2)return true; //0040EB00, genuine AL1/RET12.
         if(parameters_.type!=5)return false; //0040B790, genuine AL0/RET12, types0/1/3/4.
-        //00408780's cold kind3 skips tipping and only notifies a queued pickup.
-        //No detached/tipping producer is installed in this loading owner.
-        if(kind==3&&!parameters_.pickup)return true;
-        throw std::runtime_error("Physics type5 contact requires actual00408780 tipping/00407BD0 pickup notification");
+        if(tipping_.active&&kind!=3)return false;
+        if(kind==3){
+            if(!pickup_)return true;
+            pickup_=false; //Native204 clears BEFORE required pickup notification.
+            throw std::runtime_error("Physics type5 contact requires actual00407BD0 pickup notification");
+        }
+        if(tipping_.progress!=0)return false;
+        contact1b0_=velocity;
+        if(!frame_)return false;
+        if(!parameters_.free_axis){
+            const auto matrix=frames_.actor_world_matrix(frame_.get());span180_={{matrix[0],matrix[1],matrix[2],matrix[3]}};
+            if(static_cast<long double>(velocity[2])*span180_[0]-static_cast<long double>(span180_[2])*velocity[0]>0)
+                physics_object_pivot_math::damp(span180_,-1.f);
+        }else span180_=physics_object_pivot_math::cross({{0,-1,0,0}},velocity);
+        physics_object_motion_math::normalize(span180_);
+        tipping_.saved=frames_.actor_rotation(frame_.get());tipping_.progress=0;tipping_.active=true;tipping_.amplitude=1;
+        if(kind==0){
+            if(!parameters_.tree){flag161_=true;tipping_.angle=.0172787606716156f;tipping_.oscillating=true;tipping_.speed=12;tipping_.damping=.6000000238418579f;tipping_.phase=1;}
+            else tipping_.active=false; //202 remains exactly as it was, including unwritten.
+        }else{
+            tipping_.oscillating=false;flag161_=false;tipping_.angle=parameters_.angle;
+            if(parameters_.angle>1.2566370964050293f&&collision_enabled_){collision_enabled_=false;collisions_.remove(descriptor_);} //Native160 changes BEFORE removal.
+            tipping_.speed=1;tipping_.damping=.8999999761581421f;
+            const auto parent=parameters_.tree?frames_.actor_parent(frame_.get()):Frame{};
+            if(parent&&frames_.frame_kind(parent)==9)throw std::runtime_error("Physics tree tipping requires actual00408780 model replacement/proximity/cache receivers");
+        }
+        tipping_.positive=tipping_.negative=tipping_.saved;
+        tipping_.positive=frames_.physics_rotate_about_axis(*tipping_.positive,span180_,tipping_.angle);
+        tipping_.negative=frames_.physics_rotate_about_axis(*tipping_.negative,span180_,-tipping_.angle);
+        return true;
     }
     const Vector& centre170() const {return centre170_;}
     const Vector& span180() const {return span180_;}
@@ -212,11 +255,13 @@ private:
     FrameOwner frame_{nullptr,nullptr};Descriptor descriptor_{};Matrix world_{},inverse_{};
     PhysicsObjectMotion motion_;
     PhysicsObjectGroundStop ground_stop_;
+    PhysicsObjectPivot pivot_;
+    PhysicsObjectTipping tipping_;
     Vector centre170_{},span180_{},endpoint190_{},endpoint1a0_{};
-    std::array<float,4> rotation1e0_{},rotation1f0_{};
+    Vector contact1b0_{};std::array<float,4> rotation1f0_{};
     std::array<Vector,4> principal_axes_{};
     float radius170_=0;
-    bool initialized_=false,published_=false,queued_=false,closed_=false,feedback_installed_=false,flag158_=false,flag161_=false,rotation_ready_=false;
+    bool initialized_=false,published_=false,queued_=false,closed_=false,feedback_installed_=false,flag158_=false,flag161_=false,rotation_ready_=false,collision_enabled_=true,pickup_=false;
 };
 
 } //namespace hd2::game

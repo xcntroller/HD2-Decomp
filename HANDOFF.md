@@ -9,34 +9,36 @@ WORK, hash/remove temporary fixtures at checkpoint. Interactive changes require
 actual user desktop acceptance.
 
 Application still DECLINES loading. Both P2.2 boxes OPEN; no first world frame or
-mission desktop claim. Tally34 complete/2,016 partial(2,011 client/five engine)/
+mission desktop claim. Tally34 complete/2,023 partial(2,018 client/five engine)/
 18,783 frozen; zero complete promotions.
 
 ## Latest source checkpoint
 
-[Physics object frames](analysis/physics-object-frame-motion.md),
-[receipt](analysis/checkpoints/p2.2-physics-motion-20261110.json).
-Actual module2 FIRST-list reverse authority/presentation, signed time, four
-motion families0/1/2/4 and same ray/sweep/identity flags. Pose ALWAYS before stop,
-event5 then SECOND migration; captured158/exactcallback1 deletes afterwards.
-Stable handle reuse/NULL holes, event0 after construction/publication, event1
-before damping, event2 after impulse, event3 after collider removal before EC/frame
-release. Type5 restores saved rotation BEFORE common collider removal. Manual
-release keeps cleared EC block alive through event3. Shared GEffects fade keeps
-retired type4 frame until completion. Unwritten protected floor174 rejects early
-read. Extended-ray1 skips unobstructed angular/gravity and leaves high-bounce
-position unchanged; do not add a second ray. Common/sphere impulse uses actual
-inverse point/end torque; sphere fixed15 ignores scale.12 new partials;
-00410100/004101A0/00410230 absent frozen/no credit. Native ASan/UBSan/leak,
-strict actual World/Physics/two18-module passes, app link and27 tracker PASS.
-Six temporary source/binary/object files hashed/removed. Engine/query leaves
-are doubles in native checks; no runtime or desktop claim.
-NEXT SAME checkbox: actual type3 phase workers0040BF20/0040CE00/0040D6A0 and
-pivot helpers0040C670/0040D510; type5 contact/impulse/tipping/update00408780/
-004094D0/004070C0/00406D10. Read-only exports in WORK frame-physics-type3-workers
-and frame-physics-impulse-workers. Native202 remains unwritten in type5 ctor;
-never assume false before real contact seeds it. Type6 unresolved registration
-still rejects.0043C6A0 belongs to a separate grouped Physics owner.
+[Physics motion/pivot/tipping](analysis/physics-object-frame-motion.md),
+[receipt](analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json).
+Actual type0..5 frame bodies now use SAME module2 lists/handles/EC, ray/sweep/grid
+and shared World exclusions. Prior manager/four-family checkpointe97e1d4.
+Type3 phase0 tentative translation/ordered rays/angular/gravity; support phase1
+actual lever×gravity step, FARTHER endpoint first/tie1, BOTH trajectories. A hit
+restores quaternion+position before ONE24, sets phase2 and RETURNS FALSE, causing
+actual retirement; later contact may wake SAME phase2. Phase2 checks ONE farther
+secondary trajectory. BEA0/BEC0 delegate gravity/angular only phase0, not RETs.
+Type5 non-tree actual00408780 contact seeds202/targets/clocks; down×incoming free
+axis. Kind0 oscillates; other kinds use requested angle and disable/remove collider
+at strict angle>1.2566371.004070C0 preserves strict boundaries/onephase/exacttargets,
+Slerp true rising/false returning;00406D10 BOTH static rays even first hit, masks
+FFFFFFFF/200000/no normal; blocked OWNER-only .01progress rollback.004094D0 is
+genuine RET12; manager still emits event2. Debug004D0440 genuine RET16/no credit.
+Required branches: pickup clears204 then throws at00407BD0 notification; tree
+nonzero with actual parent kind9 requires model/cache/proximity replacement.
+Tree kind0 DOES NOT initialize202; early frame read still rejects unwritten state.
+Type6 unresolved registration still rejects.0043C6A0 is separate grouped Physics.
+Three native sanitizer fixtures/actual-host i386 two18-module routes/app link/27
+tracker PASS. Eight temp source/binary/object files hashed/removed. Seven new
+partials; existing00408780 expanded; no complete/desktop promotion.
+NEXT SAME full checkbox: actual remaining Human/Dog/movement/Sight/Shot frame
+receivers, volumetric visibility/procedural, meaningful guard publication and
+actual GameApplicationState loading/activation; user Python desktop last.
 
 Prior [Human projection process](analysis/human-projection-frame-process.md),
 commit1addb8f: actual Items3→0078AD70 SAME Startup primary/fading/pool/counters,

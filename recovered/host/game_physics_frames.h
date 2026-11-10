@@ -6,8 +6,9 @@
 
 namespace hd2::host {
 //Module2 frame binding to SAME actual object lists/handles, loaded tree/buckets,
-//resource geometry and query owners. Point0/extended-ray1/sphere2/fading4 are supplied. Other
-//families remain required when active; no invented success/sleep/delete path.
+//resource geometry and query owners. Types0..5 supply actual frame bodies;
+//type5 requires real contact-seeded state. Tree replacement/pickup notification
+//remain required positive contact branches; no invented success/sleep/delete.
 class GamePhysicsFrames {
 public:
     using Vector=game::PhysicsObjectMotion::Vector;
@@ -16,19 +17,20 @@ public:
         require_loaded();d_.world_actors.physics().tick(authority,elapsed,*this);
         d_.scene.frames().rethrow_actor_cleanup_failure();
     }
-    std::optional<game::PhysicsObjectMotionHit> physics_point_query(const Vector& start,const Vector& displacement){
+    std::optional<game::PhysicsObjectMotionHit> physics_point_query(const Vector& start,const Vector& displacement,std::uint32_t layers=0,std::uint32_t flags=0,bool normal=true){
         require_loaded();
         game::CollisionRay<EngineFrame*,world_loading::Scene::Descriptor,GameCollisionResources,GameActorServices>
             ray(&d_.scene.collision_tree(),&d_.scene.buckets(),d_.scene.collision_resources(),d_.scene.frames());
-        const auto hit=ray.ray(start,displacement,0,0,true);
+        const auto hit=ray.ray(start,displacement,layers,flags,normal);
         return hit?std::optional<game::PhysicsObjectMotionHit>({hit->position,hit->normal,hit_flags(*hit)}):std::nullopt;
     }
+    auto physics_pivot_query(const Vector& start,const Vector& displacement){return physics_point_query(start,displacement,0xffffffffu);}
+    auto physics_tipping_query(const Vector& start,const Vector& displacement){return physics_point_query(start,displacement,0xffffffffu,0x200000u,false);}
+    void physics_exclude(world_loading::Scene::Descriptor& object){require_loaded();d_.scene.exclusions().single(&object);}
+    void physics_reset_exclusions(){d_.scene.exclusions().clear();}
     std::optional<game::PhysicsObjectMotionHit> physics_sphere_query(const Vector& start,const Vector& displacement,float radius){
         require_loaded();const auto hit=d_.sweep.sweep(start,displacement,radius,0,0,true);
         return hit?std::optional<game::PhysicsObjectMotionHit>({hit->position,hit->normal,hit_flags(*hit)}):std::nullopt;
-    }
-    template<class Object>bool advance_other_physics_object(Object& object,float){
-        throw std::runtime_error("Required actual Physics object update is unavailable for type "+std::to_string(object.parameters().type));
     }
 private:
     template<class Hit>std::uint32_t hit_flags(const Hit& hit)const{
