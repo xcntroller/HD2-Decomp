@@ -25747,6 +25747,175 @@
         "analysis/module-loading-lifetimes.md",
         "analysis/checkpoints/p2.2-module-loading-lifetimes-20261110.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e240",
+      "status": "partial",
+      "coverage": "Bounded embedded-keyword decimal metadata parsing with native defaults and safe overflow rejection.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e2c0",
+      "status": "partial",
+      "coverage": "Reverse actual model-master retirement, reverse deferred collision retirement and cold empty borrowed-reload list.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e3e0",
+      "status": "partial",
+      "coverage": "Enumerate actual scene with maskFFFF and metadata callback against same containing owner.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e560",
+      "status": "partial",
+      "coverage": "Validate model100/kind9, reuse same checked EC5 master, create actual collision/master and part owners.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c220",
+      "status": "partial",
+      "coverage": "Retain model, publish EC5, create real model collision snapshot and record index; cold C/28 fields.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c440",
+      "status": "partial",
+      "coverage": "Gate existing partEC5, construct/publish actual part keeper and append in native order.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043adb0",
+      "status": "partial",
+      "coverage": "Retain actual part, publish masterEC5/partEC6, store version/particle/material/trans/index and cold resource arrays.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043aef0",
+      "status": "partial",
+      "coverage": "Clear matching partEC5/6 before actual retained-frame release; cold resource array retirement.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c320",
+      "status": "partial",
+      "coverage": "Lazy actual sphere-radius threshold selects immediate or deferred grid descriptor retirement; master metadata then reverse part release.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c1a0",
+      "status": "partial",
+      "coverage": "Reverse actual part owner retirement then retained model release; cold null C branch.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043ddb0",
+      "status": "partial",
+      "coverage": "Actual kind9 aggregate bounds, local-scale normalized world matrix/inverse, world-scale radius, descriptor and same-grid insertion/move.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e1f0",
+      "status": "partial",
+      "coverage": "Remove actual version descriptor from same dynamic collision buckets during immediate/deferred cleanup.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e830",
+      "status": "partial",
+      "coverage": "Append actual deferred collision owner for ordered retirement after model masters.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
     }
   ]
 }

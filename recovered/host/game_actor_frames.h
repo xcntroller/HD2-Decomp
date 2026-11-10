@@ -114,6 +114,10 @@ public:
         if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
         return field<float>(frame,0x3c)<.5f;
     }
+    bool version_collision_retires_immediately(Frame frame) { //0043C320, sphere radius3C after lazy bounds58.
+        if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
+        return field<float>(frame,0x3c)<=.10000000149011612f;
+    }
     void actor_link_preserving_world(Frame frame,Frame parent) {
         if(call<std::int32_t>(frame,0x38,parent,std::uint32_t{1})<0)
             throw std::runtime_error("Cannot preserve actor pose while linking its parent");

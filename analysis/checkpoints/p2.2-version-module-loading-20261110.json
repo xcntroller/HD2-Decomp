@@ -1,0 +1,142 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 13,
+  "added": [
+    "0043e240",
+    "0043e2c0",
+    "0043e3e0",
+    "0043e560",
+    "0043c220",
+    "0043c440",
+    "0043adb0",
+    "0043aef0",
+    "0043c320",
+    "0043c1a0",
+    "0043ddb0",
+    "0043e1f0",
+    "0043e830"
+  ],
+  "absent_no_credit": [
+    "0043e400",
+    "0043dd40",
+    "0043dd90",
+    "0043dc90"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1915,
+    "client_partial": 1910,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "scope": "Full first P2.2 checkbox; actual Versions7 cold loading including positive model/part/grid ownership and retirement. Continue GEffects/containing loader.",
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan actual module/master/part/ActorFrameDataStore/DynamicCollisionBuckets with explicit frame/geometry doubles: multiple positive parts/models, scaled bounds/normalized matrices/radius, both passes, immediate/deferred retirement, repeat and ALL20 reached frame failure prefixes.",
+    "host": "Strict complete prior actual i386 source graph plus Versions7. WorldActors/Car runtime/session remain borrowed construction boundaries.",
+    "application": "Compile/link pass; loading remains declined.",
+    "tracker": "27 tests; frozen fingerprints/inventory/unique status/evidence/README checks pass."
+  },
+  "research_exceptions": [
+    "Version constructor export stopped at absent0043DD90 after valid0043C220/0043C440 outputs; exact finish instructions captured separately."
+  ],
+  "limitations": [
+    "No version-changing or mesh-extraction producer; cold masterC/28 and part resource arrays/borrowed reload list remain unpopulated.",
+    "Kind6 collision constructor branch not reached via model9 gate and is not supplied. Invalid aggregate bounds/scale reject.",
+    "No containing loaded world/session/dispatcher/ordered loader/first frame/desktop acceptance; guard observations unresolved."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/versions-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-native-run.log",
+      "bytes": 97,
+      "sha256": "3dfade879e17d2257881f860ce720e5fa55a08703d80caf6a82e532e6ad925e4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-construction-required.log",
+      "bytes": 5674,
+      "sha256": "d393565024e73148a990cb50bca6902004b9ec3ace67fa50e218c322156a3c22"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-part-collision-owners.log",
+      "bytes": 4596,
+      "sha256": "6f8c850fe7731007f58ff6fa4ef716dbb39ddf835671905dc293c98e47046d70"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-tracker-render.log",
+      "bytes": 380,
+      "sha256": "443d875eb7b5884deb227fd785ea91d95a1a9f328f8255960cfc50284f5621ad"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-tracker-check.log",
+      "bytes": 437,
+      "sha256": "00d07fc1e03965d24f34918c6ad2612a5f48da0685c6676535d779025968075f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/mission-world-20261103/versions-master-constructor.asm",
+      "bytes": 4822,
+      "sha256": "a5445fe373d8669917c29fb970aa7d6018588fee217960cf538d3232b57833e1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-collision-constructor.asm",
+      "bytes": 17304,
+      "sha256": "ed13dd521cbbe3b3804bcc4bb8a2c7470ab72b92456795720943190426ce0ed5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-callback-argument-order.asm",
+      "bytes": 1141,
+      "sha256": "5ad70620bf65c060b839b792b95d7e9a3c73f1a004c6af257adf3b217c381bfe"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/versions-finish.asm",
+      "bytes": 726,
+      "sha256": "090f4ae90da9645cfa2d5931727deb242c1a9f32f549b298732263911e6953f0"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-versions-audit.cpp",
+      "bytes": 7479,
+      "sha256": "6dff7800f10b650774436440b53fa751024fac19edcf079d073b68d5b3bd1ef2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-versions-audit",
+      "bytes": 2219672,
+      "sha256": "14729319755844dc5b7edd49f934a2ebebc131766d807f8fa3875e0ec7685ffc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-remaining-modules-host.cpp",
+      "bytes": 12124,
+      "sha256": "f9f3c4593f1c14c904f7142ff0152fd7752a35d8d1e1ffedf0ac3d10bb5234b4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-remaining-modules-host.o",
+      "bytes": 12304297,
+      "sha256": "45a2199ae845a3e59796680fe83bc9c22af8b2fa8e220a5bbd6283545c7f0b9d"
+    }
+  ]
+}

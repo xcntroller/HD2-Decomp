@@ -1,5 +1,7 @@
 # Technical research guide
 
+2026-11-10: [Versions7 loading](analysis/version-module-loading.md) — Versions7 now supplies positive model/part ownership, shared EC metadata, actual collision snapshot/grid registration and immediate/deferred retirement. Targeted native sanitizers pass all20 reached frame failure prefixes; strict full i386 graph/app link pass.13 partials added:34 complete/1,915 partial. Source-only; continue GEffects and containing loader.
+
 2026-11-10: [Module loading lifetimes](analysis/module-loading-lifetimes.md) — Script variables now survive world teardown in Startup; actual SOUND module lifecycle, distinct particle scene/latch/cache retirement and cold HeavyFire state are source-supplied. Focused native sanitizers, strict actual i386 graph and app link pass. Two partials added:34 complete/1,902 partial. Source-only; continue Versions/GEffects and containing session/loader.
 
 2026-11-10: [session loading consumers](analysis/session-loading-consumers.md) supply actual activation/window API order, shared mission effect file/cache/scene lifetime and [ShotMgr cold loading](analysis/shot-manager-loading.md). Three focused native sanitizer fixtures, whole actual i386 composition and app link pass. ShotMgr verifies40 failure prefixes and process reuse. Six partials added:34 complete/1,900 partial. Source-only; remaining modules/session/loader/guard/first frame remain.

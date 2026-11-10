@@ -8,12 +8,20 @@ assets/user changes; focused verification only. Heavy builds/Ghidra sequential
 because of memory shortages/crashes. No permanent tests.
 
 GameApplicationState still declines loading. No loaded world, first rendered
-world frame or new desktop acceptance. Ledger34 complete/1,902 partial
-(1,897 client/five engine)/18,783 frozen. Zero complete promotions.
+world frame or new desktop acceptance. Ledger34 complete/1,915 partial
+(1,910 client/five engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
 
-[Module loading lifetimes](analysis/module-loading-lifetimes.md),
+[Versions7](analysis/version-module-loading.md),
+[receipt](analysis/checkpoints/p2.2-version-module-loading-20261110.json).
+Actual matching model/part owners/EC5/6 and SAME collision grid, normalized
+local-scale matrix/inverse/world-scale radius, immediate/deferred cleanup and
+repeat supplied. Cold version-change/masterC/28/part resource arrays/borrowed
+reload list remain empty; no positive mutation producer. Native sanitizers all20
+reached frame failure prefixes, strict full actual i386 graph/app link/27 tracker
+checks pass.13 new partials; absent callback/lifecycle entries no credit.
+Previousc97d95b [Module loading lifetimes](analysis/module-loading-lifetimes.md),
 [receipt](analysis/checkpoints/p2.2-module-loading-lifetimes-20261110.json).
 Startup now owns SAME Script variable bank across worlds; all actual VM
 constructors require it. Native00427B80 leaves bank intact;004270D0 activates
@@ -52,26 +60,30 @@ then desktop acceptance. App still declines loading. Source WorldScene/WorldActo
 VM are uncalled by application; strict checks borrow WorldActors/Car runtime and
 session boundaries, not actual containing instances. Do not stop at dependencies
 or expand all P2.3. Active temporary full type graph for further integration:
-WORK/checkpoint-remaining-modules-host.cpp (audit not permanent test).
+WORK/checkpoint-geffects-host.cpp (audit not permanent test).
 
-Next research already exported Versions contracts in WORK/remaining-module-world-boundary,
-remaining-module-enumeration-callbacks, version-and-decoration-module-dependencies,
-version-frame-physics-required, versions-construction-required and
-versions-part-collision-owners (latter may still be running: check log).
-Versions+20 static versions-finish.asm: same authority OR !(mode&1) clear gate.
-NOTE earlier research interpretation corrected:0043C9F0 is vector INSERT for
-borrowed models to reload, NOT unregister.0043E830 INSERTS deferred collision
-owners, NOT removes.0043C220 builds model master with0043DDB0 collision owner;
-0043C440 creates0043ADB0 parts unless frameEC word5 already set. Need their
-actual positive constructor/resource/lifetime before implementing Versions.
-GEffects water/decorations/birds captures already in same WORK; no successful
-empty scene enumeration assumption from raw token census. All remaining
-positive receivers need actual behavior before dispatch/application integration.
+Next actual GEffects1 receiver. Already captured WORK geffects-module-finish.asm;
+geffects-retirement-required/ exports (check log, may still be running) request
+004888C0,0047AA00 bird-clear,0047B090 decoration-clear,00486520. Earlier capture
+names remaining-module-world-boundary, version-and-decoration-module-dependencies
+and remaining-module-enumeration-callbacks contain GEffects activation dependencies.
+Native00489C60 zeroes41 DWORDs(0xA4) at10C but reads EXACT0xA0 file settings;
+first chunk4-byteversion1 then next chunk payload>=A0, IDs untested. Important:
+004885D0 enables BOTH scene1F8 and200 via sector94(1), not200 only. Uses mirasun,
+water config, actual birds/global0089BA80 and decoration subownerGEffects+20.
+Do not assume absence from raw scene2 token census. Actual positive optional
+receivers need evidence/ownership before reporting loaded success. GameSceneActors
+already derives GameMeshMovieServices (same actor registry); reuse existing
+VolumetricLights/MeshMovie owners. Need actual bird/destructor and decorations
+format/setup/retirement; no successful stand-ins. Versions source complete cold
+path; future mutated flag28 queues borrowed reload models.0043C9F0 INSERTS
+that list,0043E830 INSERTS deferred collision owners. No need re-export/audit
+verified Versions loading code without new discrepancy.
 
 Use loading-modules.md dispatch table and WORK/module-load-activation-map.json:
 all19 original registrations. Existing source Track/Physics/Items/VM/Sight/SOUND/
 Vertex/Players/actors/camera owners should supply their actual methods. Shot14/HeavyFire16/coldParticles17
-now source. GEffects1/Versions7 and other remaining reached receivers
+now source. GEffects1 and other remaining reached receivers
 still need actual ownership/activation where not yet supplied.8/10 verifiedRET,
 18 coldnull. Never add a successful default handler for a missing module.
 
