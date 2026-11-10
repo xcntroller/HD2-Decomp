@@ -10960,26 +10960,32 @@
       "program": "client",
       "entry": "004909d0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004909d0: First-person hands/weapon model acquisition, cache, reset and teardown source.",
+      "coverage": "P2.2 source reconstruction at original entry 004909d0: First-person hands/weapon model acquisition, cache, reset and teardown source. Same session-overlay model/items/animation sound/playback/view source composition and actual current-player/WorldActors/Scene2/inline/B0/sector/retirement mappings now supplied; attachments remain explicit.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/first_person_model_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/first-person-loading-composition.md",
+        "recovered/game/first_person_loading_composition.h",
+        "recovered/game/first_person_players_loading.h"
       ]
     },
     {
       "program": "client",
       "entry": "004922a0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004922a0: Containing first-person loading/close/request and mode/zoom/secondary source using real model/playback/material owners; player/world mappings required.",
+      "coverage": "P2.2 source reconstruction at original entry 004922a0: Containing first-person loading/close/request and mode/zoom/secondary source using real model/playback/material owners; player/world mappings required. Same session-overlay model/items/animation sound/playback/view source composition and actual current-player/WorldActors/Scene2/inline/B0/sector/retirement mappings now supplied; attachments remain explicit.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/first_person_view_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/first-person-loading-composition.md",
+        "recovered/game/first_person_loading_composition.h",
+        "recovered/game/first_person_players_loading.h"
       ]
     },
     {
@@ -11038,13 +11044,16 @@
       "program": "client",
       "entry": "00492130",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00492130: Containing first-person loading/close/request and mode/zoom/secondary source using real model/playback/material owners; player/world mappings required.",
+      "coverage": "P2.2 source reconstruction at original entry 00492130: Containing first-person loading/close/request and mode/zoom/secondary source using real model/playback/material owners; player/world mappings required. Same session-overlay model/items/animation sound/playback/view source composition and actual current-player/WorldActors/Scene2/inline/B0/sector/retirement mappings now supplied; attachments remain explicit.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/first_person_view_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/first-person-loading-composition.md",
+        "recovered/game/first_person_loading_composition.h",
+        "recovered/game/first_person_players_loading.h"
       ]
     },
     {
@@ -11064,13 +11073,16 @@
       "program": "client",
       "entry": "00491fd0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00491fd0: Containing first-person loading/close/request and mode/zoom/secondary source using real model/playback/material owners; player/world mappings required.",
+      "coverage": "P2.2 source reconstruction at original entry 00491fd0: Containing first-person loading/close/request and mode/zoom/secondary source using real model/playback/material owners; player/world mappings required. Same session-overlay model/items/animation sound/playback/view source composition and actual current-player/WorldActors/Scene2/inline/B0/sector/retirement mappings now supplied; attachments remain explicit.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/first_person_view_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/first-person-loading-composition.md",
+        "recovered/game/first_person_loading_composition.h",
+        "recovered/game/first_person_players_loading.h"
       ]
     },
     {
@@ -25032,6 +25044,72 @@
       "evidence": [
         "analysis/mission-script-runtime-composition.md",
         "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005469e0",
+      "status": "partial",
+      "coverage": "Actual player52C store-before-callback/local gate, initial mode0 application preference/zoom-off/530, secondary transitions and modes1/2/3 using real holster/model/action and process guard stage41/FOV. Nonoffline secondary queue explicitly rejects.",
+      "limitations": "Source-only native ownership/dispatch and typed frame borrowers replace original class/virtual/SEH ABI. Native mode/Look/lookup boundaries sanitizer-verified with FPV/Items/frame/clock/world doubles; complete FPV ownership/reset is strict i386 compile-only here. Required original integrity observed publication, occupied attachments/nonoffline command2 queuing, actual containing presentation/HUD/SOUND/session and first world frame remain. No application loading or desktop claim.",
+      "evidence": [
+        "analysis/first-person-loading-composition.md",
+        "recovered/game/human_player_mode_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a6730",
+      "status": "partial",
+      "coverage": "Reverse actual Human holster stacks, first entry only, unsigned game28/item14 cooldown and requested definition kind; first reverse match or null.",
+      "limitations": "Source-only native ownership/dispatch and typed frame borrowers replace original class/virtual/SEH ABI. Native mode/Look/lookup boundaries sanitizer-verified with FPV/Items/frame/clock/world doubles; complete FPV ownership/reset is strict i386 compile-only here. Required original integrity observed publication, occupied attachments/nonoffline command2 queuing, actual containing presentation/HUD/SOUND/session and first world frame remain. No application loading or desktop claim.",
+      "evidence": [
+        "analysis/first-person-loading-composition.md",
+        "recovered/game/human_player_mode_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005abb50",
+      "status": "partial",
+      "coverage": "Actual SAME inline98 case1 action command: optional model0077F710 before scalar action0077F050, preserving null model borrower.",
+      "limitations": "Source-only native ownership/dispatch and typed frame borrowers replace original class/virtual/SEH ABI. Native mode/Look/lookup boundaries sanitizer-verified with FPV/Items/frame/clock/world doubles; complete FPV ownership/reset is strict i386 compile-only here. Required original integrity observed publication, occupied attachments/nonoffline command2 queuing, actual containing presentation/HUD/SOUND/session and first world frame remain. No application loading or desktop claim.",
+      "evidence": [
+        "analysis/first-person-loading-composition.md",
+        "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f710",
+      "status": "partial",
+      "coverage": "Typed E0/native04 frame borrower update under actual D0/D4 bit10000/B0 gates, changed40 and rejectedC8 flags; no pointer truncation.",
+      "limitations": "Source-only native ownership/dispatch and typed frame borrowers replace original class/virtual/SEH ABI. Native mode/Look/lookup boundaries sanitizer-verified with FPV/Items/frame/clock/world doubles; complete FPV ownership/reset is strict i386 compile-only here. Required original integrity observed publication, occupied attachments/nonoffline command2 queuing, actual containing presentation/HUD/SOUND/session and first world frame remain. No application loading or desktop claim.",
+      "evidence": [
+        "analysis/first-person-loading-composition.md",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f050",
+      "status": "partial",
+      "coverage": "E0 scalar48 action update under actual D0/D4 bit2/B0 gates, equality/change/rejection flags independent of equipment54.",
+      "limitations": "Source-only native ownership/dispatch and typed frame borrowers replace original class/virtual/SEH ABI. Native mode/Look/lookup boundaries sanitizer-verified with FPV/Items/frame/clock/world doubles; complete FPV ownership/reset is strict i386 compile-only here. Required original integrity observed publication, occupied attachments/nonoffline command2 queuing, actual containing presentation/HUD/SOUND/session and first world frame remain. No application loading or desktop claim.",
+      "evidence": [
+        "analysis/first-person-loading-composition.md",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00493360",
+      "status": "partial",
+      "coverage": "Source mode2 reset wrapper closes actual FPV models, reactivates same overlay/file/clock/table/view and only then rereads application preference for actual enable.",
+      "limitations": "Source-only native ownership/dispatch and typed frame borrowers replace original class/virtual/SEH ABI. Native mode/Look/lookup boundaries sanitizer-verified with FPV/Items/frame/clock/world doubles; complete FPV ownership/reset is strict i386 compile-only here. Required original integrity observed publication, occupied attachments/nonoffline command2 queuing, actual containing presentation/HUD/SOUND/session and first world frame remain. No application loading or desktop claim.",
+      "evidence": [
+        "analysis/first-person-loading-composition.md",
+        "recovered/game/first_person_loading_composition.h"
       ]
     }
   ]

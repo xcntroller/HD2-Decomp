@@ -1,5 +1,7 @@
 # Technical research guide
 
+2026-11-10: [player/first-person loading composition](analysis/first-person-loading-composition.md) joins the SAME session overlay/model/items/playback/view, actual current-player/WorldActors/Scene2/inline/B0/sector/retirement lookups, genuine application preference byte and player mode/action receivers. Focused native mode/Look/lookup sanitizers, strict actual-host FPV composition and app link pass. Ledger34 complete/1,852 partial; application still unloaded. Continue player presentation/HUD soldier/compass and actual session/loader.
+
 2026-11-10: [script runtime/objectives/lifecycle and camera look](analysis/mission-script-runtime-composition.md) source checkpoint: real receiver composition, shared process guard scalar initialization/comparison, actual objective descriptors/Players experience/HUD result ordering, ReturnEnd/EndScript and active-camera look update. Focused native sanitizers, strict i386 and app link pass. Ledger34 complete/1,846 partial; no application loading/desktop claim. Required observed-value publication and containing world/inline/FPV/session remain open.
 
 Initial Human/VM/view controls checkpoint2026-11-10: [source contracts and original evidence](analysis/mission-script-initial-controls.md). Same-owner eventEC/Guard queues, five initial Human commands, genuine retail output and camera/face/tactical receivers verified with focused sanitizers and strict i386 checks. Ledger34 complete/1,833 partial. Source-only; objective/status and containing session/runtime remain required. Continue P2.2.

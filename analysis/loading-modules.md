@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [player/first-person composition](first-person-loading-composition.md) defines initial player mode/inline action and real player/sector/target-retirement lookups, with actual session-overlay FPV ownership/reset. Source-only; remaining HUD/presentation/session/loader and guard publication keep application loading disabled.
+
 2026-11-10: [source runtime/objective/lifecycle composition](mission-script-runtime-composition.md) now supplies real initial objective88, ReturnEnd/EndScript, shared clock/advance gates, existing Effects fade finish and script active-camera look update. Required observed-value publication and actual world/inline/FPV/session owners remain; application loading stays disabled.
 
 2026-11-10: [initial Human/VM/view control checkpoint](mission-script-initial-controls.md)

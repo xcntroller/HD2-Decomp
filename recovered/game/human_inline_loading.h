@@ -89,6 +89,11 @@ public:
         if(!initialized_||!look_)throw std::logic_error("Human look command requires live inline98");
         look_->command(flags[mode],mode<7?nullptr:target);
     }
+    void action_command(std::int32_t command,typename Control::Frame model={}) { //005A45F0/005ABD90 case1→005ABB50.
+        if(!initialized_||!look_)throw std::logic_error("Human action command requires live inline98");
+        if(model)look_->action_model(model,true); //A null model deliberately retains native04.
+        look_->action_command(command,true);
+    }
     void add_control_flags(std::uint32_t mask) { //005AC390, actual owned DD0.
         if(!initialized_||!control_)throw std::logic_error("Human control flags require live inline98");
         control_->physical().add_control_flags(mask);

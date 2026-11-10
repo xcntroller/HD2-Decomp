@@ -184,6 +184,9 @@ private:
         else if(view_.bytes58[1])frames_.object_visible(model,false);
         else if(view_.bytes58[0])frames_.object_visible(model,true);
     }
+public:
+    //Also called by actual Players0045E5D0 and Human005A5D50 resume, using
+    //this SAME view/camera/current-player owner rather than a second facade.
     void update_player_visibility() { //0045DAC0 uses current control player, not necessarily view38.
         auto* human=players_.current_player();if(!human)return;
         if(!camera_.state().flag26d&&camera_.frame())
@@ -192,6 +195,7 @@ private:
         const bool hidden=human->field160&&players_.attachment_hides_human(*human);
         frames_.object_visible(human->base().frame(),!hidden&&!view_.bytes58[0]&&!view_.bytes58[1]);
     }
+private:
     void update_bob(){bob64_=state60_==1?real(0xbe99999a):0.f;}
     static float real(std::uint32_t bits){float value;std::memcpy(&value,&bits,4);return value;}
     Frames& frames_;View& view_;Models& models_;Items& items_;Players& players_;Camera& camera_;Playback& playback_;Cursor& cursor_;Effects& effects_;

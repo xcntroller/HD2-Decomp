@@ -1,0 +1,101 @@
+{
+  "date": "2026-11-10",
+  "scope": "Full first P2.2 checkbox; player/first-person loading source subsystem, continue actual presentation/HUD/session/loader.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 6,
+  "added": [
+    "005469e0",
+    "005a6730",
+    "005abb50",
+    "0077f710",
+    "0077f050",
+    "00493360"
+  ],
+  "extended": [
+    "004909d0",
+    "004922a0",
+    "00491fd0",
+    "00492130"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1852,
+    "client_partial": 1847,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan actual Human/PlayerState/base/InputManager/holders/stacks/Look source, mode0 preference/equality/failure, reverse holster cooldown/model/action, stage41/FOV, pointer width/blocked/forced flags, actual source current/inline/B0/sector/target-retirement facade lifetime/identity/rejection. FPV/Items/frame/clock/world lookups doubled.",
+    "host": "Strict i386 composes actual SessionOwner overlay, real FPV model/item/playback/animation cache/Effects/Camera, real Players control, WorldActors map/Scene2 lookup, actual state and Inline/Look. DD0/equipment/containing composition/SOUND/cursor boundaries declarations. FPV composition/reset itself compile-only; earlier model/view native checks unchanged.",
+    "application": "application-launch compile/link only; loading disabled",
+    "tracker": "27 tests, frozen inventories/fingerprints/README check"
+  },
+  "limitations": [
+    "Actual containing player presentation, HUD soldier/compass, remaining Human/FPV/SOUND/session owners, ordered loader and first world frame still required.",
+    "Real process integrity observed-value publication required; no production guard equalization.",
+    "Occupied attachment virtualC4/8C and nonoffline secondary command2 queuing remain explicit rejections.",
+    "Original API/class/virtual/SEH equivalence and new desktop delivery are not claimed."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/player-mode-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/player-mode-native-run.log",
+      "bytes": 423,
+      "sha256": "df11c8b86a4f5cad12e76116d0a68f6271839f02c35910626bb81bbf7a4644e7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/player-view-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/player-view-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/player-view-tracker-render.log",
+      "bytes": 380,
+      "sha256": "b096b3203f0ecb13b5a7406b5bf881cdf4bc1978a359c3b3647c90fa0edcf618"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/player-view-tracker-check.log",
+      "bytes": 437,
+      "sha256": "0244ac1654fe7fbae8c2ddfe604fb0dcaa5001919eaa8c5a55b44ef302c6be00"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/player-view-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-player-mode-audit.cpp",
+      "bytes": 10389,
+      "sha256": "e019b64f42aa6aef5a05109e24db204982b307f0fc3e2a7d0ca824e75c9731c3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-player-mode-audit",
+      "bytes": 4274296,
+      "sha256": "2e33ea8004e4b312b920fcf149fc093bd2ff173bea668292a283b2472c0a7741"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-player-view-host.cpp",
+      "bytes": 2950,
+      "sha256": "80518c7b7a29ea337f76961c104f090d70acd291e7c9a66e72452effd404b039"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-player-view-host.o",
+      "bytes": 953791,
+      "sha256": "916f331212838334b3588e88333b32444d93555fe213f918db8726df8f424f38"
+    }
+  ]
+}
