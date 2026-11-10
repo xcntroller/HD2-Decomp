@@ -1,33 +1,105 @@
 {
   "result": "PASS",
-  "date_utc": "2026-11-10T22:16:22.153307+00:00",
-  "initial_checkout_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
-  "initial_inspected_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
-  "latest_inspected_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
-  "latest_origin_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
-  "fetch": "successful initial/intermediate/final; no new commits",
-  "resolved_by_new_master_during_research": [],
-  "superseded_before_initial_baseline": [
-    "Missing008AED48 transient owner: GameBlastWaves already implements GameSessionTransientFinish",
-    "Blank Physics0..5 frame receiver",
-    "Blank Human Sight/ray receiver",
-    "Blank module3 projection update"
+  "date_utc": "2026-11-10T22:58:11.059984+00:00",
+  "prior_audit_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "latest_inspected_master_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
+  "latest_origin_master_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
+  "fetch": "Initial and final fetches succeeded. FETCH_HEAD and origin/master agree.",
+  "fully_resolved": [],
+  "partially_resolved": [
+    "P22-HUM"
   ],
+  "unchanged": [
+    "P22-OWN",
+    "P22-GUARD",
+    "P22-MOVE",
+    "P22-FRAME",
+    "P22-PACK",
+    "P22-RENDER",
+    "P22-UI",
+    "P22-LIFE",
+    "P22-DATA"
+  ],
+  "checkpoint_receipt": "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+  "reported_checks": {
+    "native_state_timers": "PASS (ASan/UBSan/LSan)",
+    "native_ai_prefix_and_pools": "PASS (ASan/UBSan/LSan)",
+    "native_guard_area_selection": "PASS (ASan/UBSan/LSan)",
+    "actual_host_i386": "PASS (strict compile)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "receipt_original_artifacts_checked": [
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-authority/00559eb0.c",
+      "sha256": "f86fb3ab827c1ad2b5e59ef7325decd61869205819859e00157b9f0766ce3929"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-authority/00559eb0.json",
+      "sha256": "83904381432907a926d819d52f85414d2d63426cc49845e874b85fcc264ba75e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-authority/00575940.c",
+      "sha256": "b832da131e3da108fb7c71f87176d64b25629f142d890db00facbf38baf94e59"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-authority/00575940.json",
+      "sha256": "fb878dbad265cae55129f57f702601ab333d1895581a00680fef70edf5983dc6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-selection/00549360.c",
+      "sha256": "f75d9fa6541d06908a142e4e93e3760ed33100a5bf8309a47b35deccdbe54341"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-selection/00549360.json",
+      "sha256": "3c1bc5d5cbf6eb4fa15cd2107f17758644d747c7d584dff3bdc119c2cabc0338"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-timers/00547e70.c",
+      "sha256": "04eed1d4dc20f89385093bfdf9b40140cf98cd4c52817952a0e5a0e6a90d612f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-timers/00547e70.json",
+      "sha256": "6bb2325e445b65606cb130c03f6b0d965fbf02b88c823e0b1180899dd089ed37"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-timers/00559c60.c",
+      "sha256": "3842a8d7b754cff5fe02a7f0104c7cf294fc0807ac787ea7825daab3e34096a2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-guard-area-timers/00559c60.json",
+      "sha256": "98bafbb019594bf76d51330639095c3dfc83e1d99eae5b83cc6667fbfbd01221"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-state-common-updates/00571680.c",
+      "sha256": "26e071419559480bdd89aed2eb4edc1ac9de622a1f195ca7b3e32b38275e7b37"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-state-common-updates/00571680.json",
+      "sha256": "2e2a6ab8df376fbdf4847cc69b159e15e5dbffa0616bff11602a2251226759df"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-state-common-updates/00588010.c",
+      "sha256": "31d842a1e864ad162483b7d3ab08888a23b25577f7578ce578ad547fa8b67ce8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/frame-human-state-common-updates/00588010.json",
+      "sha256": "9c5879fcbdeb8b929283a6827d86f4e4bdadc2d0e405c8248bb55ceb640a0d05"
+    }
+  ],
+  "validated_refresh_source_inputs": 40,
+  "validated_retained_original_exports": 22,
   "checks": [
-    "All pinned source digests match git objects",
-    "All original raw export/query digests match ignored evidence",
-    "Five new Ghidra exports decompiled without messages; binary SHA checked",
-    "19 module slots accounted for",
-    "Graph endpoint/ID/provenance/address validity",
-    "Blocking edges only required explicit prerequisites; conditional edges nonblocking",
-    "Blocking graph acyclic",
-    "Research Markdown links resolve",
-    "Only authorized research directory changed",
-    "Final master HANDOFF and actual application/module/World source unchanged"
+    "Pinned source provenance and retained original evidence hashes match.",
+    "Stable schema, 13 node IDs and 17 edge IDs and endpoint types match prior graph.",
+    "All graph edges resolve. Conditional relationships are nonblocking. Blocking prerequisite graph is acyclic.",
+    "Graph nodes match the blocker records. All 19 module slots are accounted for.",
+    "Markdown links resolve. All changes are under the requested research directory.",
+    "Master does not contain this research directory at the inspected revision."
   ],
   "nodes": 13,
   "edges": 17,
   "desktop_verified": false,
   "original_execution": false,
-  "builds": "Not rerun: no game implementation changes. Prior checkpoint compile/sanitizer results reported separately and never promoted to integration."
+  "builds": "Research-only refresh. The upstream compile, link and native results are recorded from the receipt."
 }

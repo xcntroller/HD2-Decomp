@@ -6,8 +6,8 @@
   },
   "initial_checkout_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
   "initial_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
-  "latest_inspected_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
-  "latest_origin_master_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "latest_inspected_master_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
+  "latest_origin_master_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
   "source_inputs": [
     {
       "path": "AGENTS.md",
@@ -712,5 +712,288 @@
       "review": "read-only evidence query/export script"
     }
   ],
-  "execution": "No original EXE/DLL/Proton/Windows fixture executed. Ghidra readOnly/noanalysis. No game builds needed for research-only files."
+  "execution": "No original EXE/DLL/Proton/Windows fixture executed. Ghidra readOnly/noanalysis. No game builds needed for research-only files.",
+  "prior_audit_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "refresh_source_inputs": [
+    {
+      "path": "HANDOFF.md",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "65fa9c29f57ac6a784839b59e21cca1bc09209bc84bc2094ef6870f85a5d58b9",
+      "bytes": 9971,
+      "changed": true
+    },
+    {
+      "path": "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "0c2a9cc1fadad5b38869b1d3bbdfd46aad188a86a3308936e47b4c20180473fb",
+      "bytes": 41763,
+      "changed": true
+    },
+    {
+      "path": "analysis/frame-render-source.md",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "7b43cecbfd374339e2763bbb915584bc7211fe2cbbd525628acb04da0ca4dfba",
+      "bytes": 8932,
+      "changed": false
+    },
+    {
+      "path": "analysis/human-frame-source.md",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "e6779d4146210fcb20660e9a43e7441995b7d3b0aece468ed2cbe8aa9a04bef4",
+      "bytes": 17326,
+      "changed": true
+    },
+    {
+      "path": "analysis/mission-world-loading.md",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "328069890eda98e274336a54ab8d007ca211f834d3954e15a02a47b92ce1c0d8",
+      "bytes": 21031,
+      "changed": false
+    },
+    {
+      "path": "analysis/phase2-delivery-plan.md",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "877bf40e40d8e75a1a56bc692e2f8ca77986ff11accdb871e1a30a97e55282bc",
+      "bytes": 19984,
+      "changed": false
+    },
+    {
+      "path": "analysis/session-activation-integration.md",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "66a97cfcdc0568bc4d9940fd7a7db2d0c030d0df4e0da97316a2135340b75e7a",
+      "bytes": 10234,
+      "changed": false
+    },
+    {
+      "path": "plan.md",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "89ce946ab2378aff072239363cfc44225babcd160b652f62c074cd7151dbd1ec",
+      "bytes": 23369,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_active_ai_state_loading.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "fdfc662500ae0aa65bf32ddfdc9a1d57dfd6cf32dfce246867e11eae73dcd003",
+      "bytes": 14093,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_ai_action_pool.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "df8442c3b21c69f9ac440169c7be067385f15db271de547a7fe38943b3bc454f",
+      "bytes": 5606,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_ai_direction.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "e412252102fbaf1f6ed68fc2f89a5d655ef68c2980c4b114bad5b34c9e98dd94",
+      "bytes": 5399,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_ai_direction_frame.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "2629637833653698ff4c732ca63d2359bfcd36f9b11af80347abcbdf21088555",
+      "bytes": 4381,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_ai_event_queue.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "48fe41c00274c1000d585be274ba0afa19677bbc90ba1540f0048d0f208b9e02",
+      "bytes": 8243,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_ai_frame_metrics.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "b153c32e6b2223ddd28be9a12aea53b7d1cb5368d83e0a27a1417f613d98db1f",
+      "bytes": 3256,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_ai_frame_timers.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "c6e87f25f47d1ebd8951683214310e34b37c95e505f54d068c11aa43af7b8579",
+      "bytes": 4629,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_ai_resources.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "18bcec2a5598541b02c81f6aecbdb01f55147d316b6ce1c510e989769c93fe3e",
+      "bytes": 8847,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_ai_state_loading.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "a65fb2f0fe51a45cb57bf1b5301f0e5a4b488f57976136c3d9ca13ea350901b6",
+      "bytes": 8111,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_area_ai_state_loading.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "7939e9eacb932eb99b13f135b757d73be0d6bffe21e7a9ff45794e7a2bd430dc",
+      "bytes": 7802,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_frame_inputs.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "c264950af0ee6a8e7f464f2a5898941c07e95ab73da7afa2fce96812104f84d2",
+      "bytes": 491,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_frame_stats.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "90eaeb67479d5aea110e8e4e5c3d590f7d53099f231ef81ba7aecfc89311a8e9",
+      "bytes": 2255,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_guard_ai_state_loading.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "42afa560d792e38fe370562bba7bf49d2c1b0da5b764322b899ff2f32f560ccc",
+      "bytes": 12271,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_loading_composition.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "40545e359207a84037064dc2e66b7a82ea6a6c26c72b3dc84d3d56b21f5292bb",
+      "bytes": 4600,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_loading_owner_factory.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "4fdf9d1b5f65da96c1dc80c40cbc790b3af5135c28344ebe381ff352eeb6d238",
+      "bytes": 2443,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_loading_state_factory.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "dace8c107257fa26ec343065dc975c50f3d28c3c68df896acb37b3b13e52f1e5",
+      "bytes": 8837,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_scene_frame.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "c5ef6becaf3d1e2ab1cfd17a3e28cde4241f28378f8f86130163283878793640",
+      "bytes": 4280,
+      "changed": false
+    },
+    {
+      "path": "recovered/game/human_state_base_loading.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "7010a76f280f223b51817b3319905ffc6f101b610bdc386ddc774b4801f2d0e1",
+      "bytes": 10037,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_state_frame_timers.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "d5ca15298fcdfab684f668bfff7e282b3ed0e68b5b494df713cde09cfa7ce252",
+      "bytes": 2808,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "2a2cbd6f0739c692d4373269b55064c698ee5c2e23f7eee638ac249752fb8791",
+      "bytes": 22895,
+      "changed": true
+    },
+    {
+      "path": "recovered/game/mission_integrity_tables.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "d96e009c053c64e880337a207e6834bc99dacc771b59e087746931286c7663b9",
+      "bytes": 2901,
+      "changed": false
+    },
+    {
+      "path": "recovered/game/scene_callback.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "ec9c3ec2f27cf89e22d528029ba4052df1d3926dc206cc18efaf7b3437b09fe3",
+      "bytes": 1973,
+      "changed": false
+    },
+    {
+      "path": "recovered/game/session_frame_loading.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "10b33d8d308c13c0581f05894d35caa4c52f52565f021434541d486828a066bc",
+      "bytes": 5595,
+      "changed": false
+    },
+    {
+      "path": "recovered/game/session_render.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "ebf8ffdd0cf66ba621d0f1e56fef2d12feccab95fb52409fdd6a87ee01e60ddb",
+      "bytes": 555,
+      "changed": false
+    },
+    {
+      "path": "recovered/host/game_blast_waves.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "2158fda86bfc5dd499eb7de429531fa07c680afb4b94c770ac0643c5fab02017",
+      "bytes": 6026,
+      "changed": false
+    },
+    {
+      "path": "recovered/host/game_loading_modules.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "c56c71797c3a6eb29e447e530cb4f96f1d15011fe9a764224d1fd3e4a46e0832",
+      "bytes": 12589,
+      "changed": false
+    },
+    {
+      "path": "recovered/host/game_mission_loading.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "ede16a19644e4d25b24bbe7f0a336b673c5b2f287135f5d49cf42b2ed63e8385",
+      "bytes": 9748,
+      "changed": false
+    },
+    {
+      "path": "recovered/host/game_owner.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "20ed781fb00b75b4c437fff9b23ebf753aba1a0268aef0050a55c8643406bf08",
+      "bytes": 15538,
+      "changed": false
+    },
+    {
+      "path": "recovered/host/game_scene_actor_frames.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "65c9f730e74570c46ecf979e6d62c2a56307a2ea57b2730174d4b573f88794ce",
+      "bytes": 2506,
+      "changed": false
+    },
+    {
+      "path": "recovered/host/game_session_activation.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "4816664d8fcfdfafb3a7e3816575293660ec6b4de945453131f4aeff8bdbf537",
+      "bytes": 9017,
+      "changed": false
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "fcdda656de0858f8e0d44424cb7ba9cd8e54920a59e03cf7a9d5c8783b27978f",
+      "bytes": 25931,
+      "changed": false
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "revision": "841d89a35c02de2c12c73bb3df8792e758450aed",
+      "sha256": "399ccbd32875989b4acd76975de6e7e0451f175e96e5f9ad96a6b4de709cc602",
+      "bytes": 48374,
+      "changed": true
+    }
+  ]
 }

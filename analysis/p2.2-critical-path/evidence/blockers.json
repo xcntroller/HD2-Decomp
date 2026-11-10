@@ -1,5 +1,5 @@
 {
-  "source_commit_sha": "39b16571dcd4a111e2e077898e55625cc19b47b2",
+  "source_commit_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
   "rows": [
     {
       "id": "P22-OWN",
@@ -13,7 +13,20 @@
       "batch": "Compose loading and activation lifetime in existing GameApplicationState; preserve request and Startup borrowers.",
       "predecessors": "FRAME GUARD LIFE RENDER",
       "overlap": "Agent1 integration still pending",
-      "closure_evidence": "real kind7 initialize invokes the actual loader/activation, publishes only actual loaded/status, and dispatches real callbacks; inject failure at each construction/load/activation prefix."
+      "closure_evidence": "real kind7 initialize invokes the actual loader/activation, publishes only actual loaded/status, and dispatches real callbacks; inject failure at each construction/load/activation prefix.",
+      "reconciliation": "unchanged",
+      "delta": "GameApplicationState still constructs SessionOwner, takes the failed activation path and returns false.",
+      "world_binding": "World, loader and activation source are composed together outside the application.",
+      "remaining": "Application activation and loaded/status publication remain unbound.",
+      "original_research": "No new entry contract gap identified.",
+      "desktop_unknown": "Observe selected request reaching load and activation with correct status.",
+      "source_paths": [
+        "recovered/host/game_owner.h",
+        "recovered/host/game_world_loading.h",
+        "recovered/host/game_mission_loading.h",
+        "recovered/host/game_session_activation.h"
+      ],
+      "verification": "Source comparison at both revisions. No new blocker-specific runtime verification."
     },
     {
       "id": "P22-GUARD",
@@ -27,7 +40,19 @@
       "batch": "Trace original startup producer ordering and actual descriptor actions; bind same CRT/tables only with evidence.",
       "predecessors": "",
       "overlap": "Independent new producer findings; Agent1 unresolved",
-      "closure_evidence": "original startup seed/order and private producer/descriptor/action chain are evidenced; same initialized tables/CRT are used, with no forced equality or raw-API observation substitution."
+      "closure_evidence": "original startup seed/order and private producer/descriptor/action chain are evidenced; same initialized tables/CRT are used, with no forced equality or raw-API observation substitution.",
+      "reconciliation": "unchanged",
+      "delta": "StartupSession changed for AI pools and frame scratch. Its integrity table still has no initializer invocation.",
+      "world_binding": "The table owner is passed into World consumers. Private observation publication is absent.",
+      "remaining": "Bind original startup initialization and validated publication.",
+      "original_research": "Resolve producer call order, upstream payload provenance and descriptor actions.",
+      "desktop_unknown": "Observe actual validation and failure stage in the target environment.",
+      "source_paths": [
+        "recovered/host/startup_session.h",
+        "recovered/host/game_world_loading.h",
+        "recovered/game/mission_integrity_tables.h"
+      ],
+      "verification": "Source comparison at both revisions. No new blocker-specific runtime verification."
     },
     {
       "id": "P22-HUM",
@@ -35,13 +60,33 @@
       "classification": "missing_implementation",
       "requirement": "required",
       "boundary": "A",
-      "addresses": "0059FE30 0059FFD0 00787270 00787D50 007A7470",
+      "addresses": "0059FE30 0059FFD0 00588010 00571680 00547E70 00559C60 00575940 00549360 00559EB0 00548170 00559DE0 00787270 00787D50 007A7470",
       "source": "game/human_scene_frame.h",
-      "status": "Containing frame source exists; real derived B0+24/+28/+80 and DD0 positive services incomplete.",
-      "batch": "Finish same state factory and DD0 bridges with required equipment/fire/contact/formation leaves.",
+      "status": "AI timers, prefixes, steering and task selection recovered with real World owner dependencies. Derived dispatch, action workers and DD0 remain incomplete.",
+      "batch": "Finish Guard and Area workers, common AI query/output and derived dispatch using the existing typed pools and inputs. Bind required DD0 and reached actor leaves.",
       "predecessors": "",
-      "overlap": "Agent1 actively working; do not duplicate",
-      "closure_evidence": "actual subtype slot24/28/80 and DD0 calls compile and run in focused native checks across their reached state guards, preserving positive fire/contact/formation and real owner identity."
+      "overlap": "Agent #1 active B0/DD0 recovery. Reuse the verified timer, steering and selection bodies.",
+      "closure_evidence": "Concrete Scene2 dispatch reaches actual B0+24/+28/+80, timer query/completion receivers and DD0 with original guards and reached positive actor services.",
+      "reconciliation": "partially_resolved",
+      "delta": "Base/AI timers 00588010/00571680, Guard/Area prefixes 00547E70/00559C60, steering 00575940 and selections 00549360/00559EB0 now have bodies.",
+      "world_binding": "The World Human owner factory passes Startup action pools through the state factory. Helpers use shared frame inputs and Scene2 identity. No production frame caller for the Guard/Area prefixes or decisions was found.",
+      "remaining": "Guard 00548170, Area 00559DE0, action/navigation workers, common AI output, player/Script/Active dispatch, DD0 and reached fire/contact/formation remain. Timer target membership/field94/life and derived completion remain required service methods.",
+      "original_research": "Resolve remaining positive action/query/output and DD0 call contracts, including the geometry receiver ABI.",
+      "desktop_unknown": "Observe selected state kinds, actions and reached DD0/actor branches.",
+      "source_paths": [
+        "recovered/game/human_scene_frame.h",
+        "recovered/game/human_loading_owner_factory.h",
+        "recovered/game/human_loading_state_factory.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/human_state_frame_timers.h",
+        "recovered/game/human_ai_frame_timers.h",
+        "recovered/game/human_ai_direction_frame.h",
+        "recovered/game/human_guard_ai_state_loading.h",
+        "recovered/game/human_area_ai_state_loading.h",
+        "recovered/host/startup_session.h"
+      ],
+      "verification": "Checkpoint receipt reports focused native sanitizer checks, strict actual-host i386 compile and launcher link. Application loading disabled.",
+      "checkpoint_receipt": "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json"
     },
     {
       "id": "P22-MOVE",
@@ -55,7 +100,18 @@
       "batch": "Recover shared solver and its Human2c4/Car/navigation helpers; retain original active list.",
       "predecessors": "",
       "overlap": "Transitive blocker adjacent to Agent1 Human work",
-      "closure_evidence": "actual shared process consumes the original active vector, executes the evidenced eight passes/commit/navigation order and uses real movement helpers; inspect ambiguous indices at instruction level."
+      "closure_evidence": "actual shared process consumes the original active vector, executes the evidenced eight passes/commit/navigation order and uses real movement helpers; inspect ambiguous indices at instruction level.",
+      "reconciliation": "unchanged",
+      "delta": "New AI direction helpers operate on B0 steering. The Scene2 frame facade still takes a Movement receiver.",
+      "world_binding": "Existing Scene2 active vector and Human2C4/Car owners remain available.",
+      "remaining": "Shared 008AADD0 solver 005647C0 and its real receiver remain missing.",
+      "original_research": "Verify positive helper behavior and ambiguous indices against instructions.",
+      "desktop_unknown": "Observe solver, contact and navigation outcomes with the actual active actors.",
+      "source_paths": [
+        "recovered/host/game_scene_actor_frames.h",
+        "recovered/game/human_ai_direction_frame.h"
+      ],
+      "verification": "Source comparison at both revisions. No new blocker-specific runtime verification."
     },
     {
       "id": "P22-FRAME",
@@ -69,7 +125,20 @@
       "batch": "Bind existing Physics, Sight, Camera, actors, Script, FPV, HUD/text, sound and process lifetimes.",
       "predecessors": "HUM MOVE UI PACK LIFE",
       "overlap": "Agent1 full checkbox",
-      "closure_evidence": "instantiate the complete concrete frame graph without declaration-only leaves, then verify fixed/variable ordering and same session/status/time/camera/actor identity."
+      "closure_evidence": "instantiate the complete concrete frame graph without declaration-only leaves, then verify fixed/variable ordering and same session/status/time/camera/actor identity.",
+      "reconciliation": "unchanged",
+      "delta": "New Human helper coverage narrows one dependency. Session frame policies and Scene2 facade are unchanged.",
+      "world_binding": "Existing World module owners and policies remain available.",
+      "remaining": "Actual frame service composition and positive module receivers are still incomplete.",
+      "original_research": "Use original contracts for reached remaining module branches.",
+      "desktop_unknown": "Observe actual fixed, variable and presentation callbacks and ordering.",
+      "source_paths": [
+        "recovered/game/session_frame_loading.h",
+        "recovered/host/game_scene_actor_frames.h",
+        "recovered/host/game_loading_modules.h",
+        "recovered/host/game_owner.h"
+      ],
+      "verification": "Source comparison at both revisions. No new blocker-specific runtime verification."
     },
     {
       "id": "P22-PACK",
@@ -83,7 +152,17 @@
       "batch": "Implement reached reserved Human grammar, including null/discard consumption; instrument actual packet kinds.",
       "predecessors": "",
       "overlap": "Agent1 known boundary; reachability of reserved commands needs observation",
-      "closure_evidence": "observed required packet kinds consume their exact original grammar, including null/discard cases; actual reserved Human receivers work through the process queues."
+      "closure_evidence": "observed required packet kinds consume their exact original grammar, including null/discard cases; actual reserved Human receivers work through the process queues.",
+      "reconciliation": "unchanged",
+      "delta": "Reserved Scene2 identities still throw for missing 005A5FB0/005418E0.",
+      "world_binding": "Process queues and initial spawn decoder remain bound in the source World.",
+      "remaining": "Implement the reserved grammar and Human receiver if reached.",
+      "original_research": "Verify reached commands and original null/discard semantics.",
+      "desktop_unknown": "Observe packet kind and identity through the real queue.",
+      "source_paths": [
+        "recovered/host/game_loading_modules.h"
+      ],
+      "verification": "Source comparison at both revisions. No new blocker-specific runtime verification."
     },
     {
       "id": "P22-RENDER",
@@ -97,7 +176,19 @@
       "batch": "Bind same active scene camera/volume224/process renderer and callback stages; preserve state restoration.",
       "predecessors": "UI",
       "overlap": "Independent render evidence; Agent1 integration pending",
-      "closure_evidence": "visibility/procedural owners execute real positive operations, preserve original camera/history and restore driver states on success/failure; callbacks reach actual Scene rendering."
+      "closure_evidence": "visibility/procedural owners execute real positive operations, preserve original camera/history and restore driver states on success/failure; callbacks reach actual Scene rendering.",
+      "reconciliation": "unchanged",
+      "delta": "Application render and pre/post scene callbacks still require the unavailable active World.",
+      "world_binding": "Scene/render policies and draw leaves exist in source.",
+      "remaining": "Bind real render callbacks, visibility/history and positive procedural 00482E50.",
+      "original_research": "Confirm original scene camera fields, first volume history and positive draw state.",
+      "desktop_unknown": "Observe scene render return, actual present and visible world after fade.",
+      "source_paths": [
+        "recovered/host/game_owner.h",
+        "recovered/game/scene_callback.h",
+        "recovered/game/session_render.h"
+      ],
+      "verification": "Source comparison at both revisions. No new blocker-specific runtime verification."
     },
     {
       "id": "P22-UI",
@@ -111,7 +202,19 @@
       "batch": "Wire reached FPV/HUD/text/control callbacks and initialize process overlay using existing owners.",
       "predecessors": "",
       "overlap": "Agent1 known remaining work",
-      "closure_evidence": "actual reached FPV/HUD/text/control callbacks borrow loaded owners, initialize real overlay resources, render required content and retire borrowers in order."
+      "closure_evidence": "actual reached FPV/HUD/text/control callbacks borrow loaded owners, initialize real overlay resources, render required content and retire borrowers in order.",
+      "reconciliation": "unchanged",
+      "delta": "Application before_hud, render_hud and effects/text callbacks still require_world on their positive paths.",
+      "world_binding": "Loading owners exist and the overlay keeps its own source owner.",
+      "remaining": "Positive HUD, first-person, text and control frame/callback service binding remains.",
+      "original_research": "Confirm any reached positive leaf whose original contract is still missing.",
+      "desktop_unknown": "Observe actual HUD, first-person and text visibility and resource ownership.",
+      "source_paths": [
+        "recovered/host/game_owner.h",
+        "recovered/game/scene_callback.h",
+        "recovered/game/session_frame_loading.h"
+      ],
+      "verification": "Source comparison at both revisions. No new blocker-specific runtime verification."
     },
     {
       "id": "P22-LIFE",
@@ -125,7 +228,20 @@
       "batch": "Install ordered finish/file-unload rollback and teardown before parent engine scene reset, including activation failure after loaded14.",
       "predecessors": "",
       "overlap": "Old missing008AED48 owner superseded by blast checkpoint before research began",
-      "closure_evidence": "every loaded/activated partial prefix unwinds in original finish/unload order before parent reset, with actual GameBlastWaves finalizer and no surviving scene borrowers."
+      "closure_evidence": "every loaded/activated partial prefix unwinds in original finish/unload order before parent reset, with actual GameBlastWaves finalizer and no surviving scene borrowers.",
+      "reconciliation": "unchanged",
+      "delta": "Application shutdown still unbinds views and resets SessionOwner.",
+      "world_binding": "Finish, file unload and the concrete blast finalizer exist in the source graph.",
+      "remaining": "Wire rollback for completed load and partial activation prefixes before scene reset.",
+      "original_research": "No new finish-order contract gap identified in this checkpoint.",
+      "desktop_unknown": "Exercise load failure, Main return and repeated entry.",
+      "source_paths": [
+        "recovered/host/game_owner.h",
+        "recovered/host/game_session_activation.h",
+        "recovered/host/game_blast_waves.h",
+        "recovered/host/game_mission_loading.h"
+      ],
+      "verification": "Source comparison at both revisions. No new blocker-specific runtime verification."
     },
     {
       "id": "P22-DATA",
@@ -139,7 +255,18 @@
       "batch": "Emit resolved hash/type/module counts and exact failing positive receiver; implement reached branches, never stage replacements.",
       "predecessors": "",
       "overlap": "Runtime collection populations unknown",
-      "closure_evidence": "record active resolver fingerprints and actual reached positive producers/receivers; each unsupported required resource remains an honest failure until implemented."
+      "closure_evidence": "record active resolver fingerprints and actual reached positive producers/receivers; each unsupported required resource remains an honest failure until implemented.",
+      "reconciliation": "unchanged",
+      "delta": "Loader source and capture evidence are unchanged. New Human helpers do not establish reached state kinds.",
+      "world_binding": "Existing loader and resolver dependencies remain available.",
+      "remaining": "Support positive asset/actor/script branches when reached.",
+      "original_research": "No new parser or resource contract gap identified.",
+      "desktop_unknown": "Capture active resolver fingerprints, actors, scripts and populated services.",
+      "source_paths": [
+        "recovered/host/game_mission_loading.h",
+        "recovered/host/game_world_loading.h"
+      ],
+      "verification": "Source comparison at both revisions. No new blocker-specific runtime verification."
     },
     {
       "id": "P22-VIS",

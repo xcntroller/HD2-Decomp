@@ -1,6 +1,6 @@
 # Focused integrity and rendering evidence
 
-Source status `39b16571dcd4a111e2e077898e55625cc19b47b2`; original client fingerprint and export digests are in [manifest](evidence/manifest.json). Reused exports were read directly, then a sequential readOnly/noanalysis Ghidra reference query and five targeted exports were performed. No original runtime execution and no private-state mutation.
+Source status `841d89a35c02de2c12c73bb3df8792e758450aed`; original client fingerprint and export digests are in [manifest](evidence/manifest.json). The initial audit used a read-only Ghidra reference query and five targeted exports. This refresh checks the retained evidence and current source. The new Human AI checkpoint leaves the integrity and rendering paths below open.
 
 ## Integrity: narrower research gap
 

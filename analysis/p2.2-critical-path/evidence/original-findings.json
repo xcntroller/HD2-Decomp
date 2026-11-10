@@ -11,7 +11,8 @@
         "009f0d39"
       ],
       "contract": "009905b0 writes pointer00b3bd8c; 009f02a0 allocates00b52f6c and writes00b4c2cc; 009f0a60 allocates00b555b0. This identifies producers, not healthy values.",
-      "unresolved": "009905b0 allocation semantics, startup ordering, indirect payload provenance and validated publication remain unknown."
+      "unresolved": "009905b0 allocation semantics, startup ordering, indirect payload provenance and validated publication remain unknown.",
+      "implementation_at_review": "open"
     },
     {
       "id": "P22-R02",
@@ -23,7 +24,8 @@
         "00995c74"
       ],
       "contract": "Validation21 delegates two branches to external function-pointer queries using root literal80000002 and four-byte result buffers. Results test bits2 and82. Registry-like ABI is an inference until imports/string decoding is checked.",
-      "unresolved": "Actual external API identities, queried keys and target environment outcomes."
+      "unresolved": "Actual external API identities, queried keys and target environment outcomes.",
+      "implementation_at_review": "open"
     },
     {
       "id": "P22-R03",
@@ -34,7 +36,8 @@
         "00482e50"
       ],
       "contract": "GEffects pre-scene wrapper delegates volume224; procedural owner is invoked before per-volume visibility loop. No volumes does not prove no procedural work.",
-      "unresolved": "Live texture and phase state, actual camera selection, initial volume history."
+      "unresolved": "Live texture and phase state, actual camera selection, initial volume history.",
+      "implementation_at_review": "open"
     },
     {
       "id": "P22-R04",
@@ -52,7 +55,8 @@
         "00569530"
       ],
       "contract": "Offline7 or remote-AI gate; rebuild shared Human/Car working vectors, classify Human2c4+10a, reverse preparation, eight solver iterations, commit motion and navigation feedback. Not a generic per-actor no-op.",
-      "unresolved": "Positive helper fidelity and ambiguous decompiler indexing require instruction checks during implementation."
+      "unresolved": "Positive helper fidelity and ambiguous decompiler indexing require instruction checks during implementation.",
+      "implementation_at_review": "open"
     },
     {
       "id": "P22-R05",
@@ -63,7 +67,10 @@
         "007a7470"
       ],
       "contract": "DD0 control and presentation gate at dc4; presentation1ac==0 and9c0==0 still calls geometry007a7470. Offline7 bypasses nonoffline model visibility branch, not geometry.",
-      "unresolved": "Complete state-dependent animation/geometry branches; Agent1 overlap."
+      "unresolved": "Complete state-dependent animation/geometry branches; Agent1 overlap.",
+      "implementation_at_review": "open"
     }
-  ]
+  ],
+  "source_review_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
+  "refresh_note": "Prior original exports retained. This checkpoint changes Human AI source coverage, with no implementation of the five independent contracts below."
 }
