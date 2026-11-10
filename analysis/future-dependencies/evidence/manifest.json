@@ -1,0 +1,7446 @@
+{
+  "binary": {
+    "image_base": "00400000",
+    "program": "hd2.unpacked.exe",
+    "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307"
+  },
+  "excluded_probes": [
+    {
+      "entry": "00414720",
+      "reason": "Unvalidated interior/guessed boundary; no behavioral contract or function credit"
+    },
+    {
+      "entry": "006c3eb0",
+      "reason": "Unvalidated interior/guessed boundary; no behavioral contract or function credit"
+    },
+    {
+      "entry": "006c3f00",
+      "reason": "Unvalidated interior/guessed boundary; no behavioral contract or function credit"
+    },
+    {
+      "entry": "006c3fc0",
+      "reason": "Unvalidated interior/guessed boundary; no behavioral contract or function credit"
+    }
+  ],
+  "exports": [
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 109,
+      "decompilation_sha256": "1f4c712528c53b3581f5010118e653a8dfd8c1d46d41d6c95bc12ee90ae49656",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b3cac",
+          "target": "007e56d0"
+        },
+        {
+          "site": "006b3cd1",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b3ce3",
+          "target": "00405180"
+        },
+        {
+          "site": "006b3ceb",
+          "target": "006b3d00"
+        },
+        {
+          "site": "006b3cf2",
+          "target": "006b09a0"
+        }
+      ],
+      "entry": "006b3c90",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-command/006b3c90.json",
+      "export_sha256": "ea7776c51e317e70b3f21496d4b3af091291c9d7deadfe78d88787a13cc30052",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 816,
+      "decompilation_sha256": "556ac977e4e3ae866fd2443a7c9cf689918a32fa11f885180c69d40bea2bb9d4",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b7a29",
+          "target": "006b7100"
+        },
+        {
+          "site": "006b7a5e",
+          "target": "00405100"
+        },
+        {
+          "site": "006b7a82",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b7aa0",
+          "target": "00405180"
+        },
+        {
+          "site": "006b7acb",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b7af5",
+          "target": "00414550"
+        },
+        {
+          "site": "006b7b12",
+          "target": "00405180"
+        },
+        {
+          "site": "006b7b3d",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b7b63",
+          "target": "00414550"
+        },
+        {
+          "site": "006b7b7d",
+          "target": "00405180"
+        },
+        {
+          "site": "006b7ba8",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b7be1",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b7c0e",
+          "target": "00405100"
+        },
+        {
+          "site": "006b7c2c",
+          "target": "00405180"
+        },
+        {
+          "site": "006b7c57",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b7c7d",
+          "target": "00414550"
+        },
+        {
+          "site": "006b7c97",
+          "target": "00405180"
+        },
+        {
+          "site": "006b7cbf",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b7ce8",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b7cfc",
+          "target": "004145b0"
+        },
+        {
+          "site": "006b7d16",
+          "target": "004050e0"
+        }
+      ],
+      "entry": "006b7a00",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-command/006b7a00.json",
+      "export_sha256": "9b2bf6c5027bf57cb773fb832c0a11cdf4d56354f15a3351fcf8093f262dcc67",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 2451,
+      "decompilation_sha256": "0c30d41a191990a3cb85e8d5ba1edd85bfdfb503e17ba0fb3be47257189f0843",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006dcb15",
+          "target": "007e520f"
+        },
+        {
+          "site": "006dcb2b",
+          "target": "006c0750"
+        },
+        {
+          "site": "006dcb55",
+          "target": "006dbfc0"
+        },
+        {
+          "site": "006dcb64",
+          "target": "006c0790"
+        },
+        {
+          "site": "006dcb6a",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006dcc40",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcc52",
+          "target": "006c0820"
+        },
+        {
+          "site": "006dcc7c",
+          "target": "007e520f"
+        },
+        {
+          "site": "006dcc9a",
+          "target": "006dd480"
+        },
+        {
+          "site": "006dcca6",
+          "target": "0059fa40"
+        },
+        {
+          "site": "006dccb1",
+          "target": "005afd50"
+        },
+        {
+          "site": "006dcccb",
+          "target": "00405750"
+        },
+        {
+          "site": "006dcd24",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcd41",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcd81",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcdb9",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcdf3",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcdfe",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dce0c",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dce27",
+          "target": "006dc950"
+        },
+        {
+          "site": "006dce5c",
+          "target": "00486510"
+        },
+        {
+          "site": "006dce86",
+          "target": "007e5e00"
+        },
+        {
+          "site": "006dce93",
+          "target": "007e5e00"
+        },
+        {
+          "site": "006dcea2",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcee4",
+          "target": "006c7870"
+        },
+        {
+          "site": "006dcee9",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "006dcf12",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcf3e",
+          "target": "00647e70"
+        },
+        {
+          "site": "006dcf4b",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcf59",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcf76",
+          "target": "00647e70"
+        },
+        {
+          "site": "006dcf7b",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcf8a",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dcfa6",
+          "target": "006c3190"
+        },
+        {
+          "site": "006dcfb3",
+          "target": "0072c3b0"
+        },
+        {
+          "site": "006dcfc9",
+          "target": "006c3100"
+        },
+        {
+          "site": "006dcfe1",
+          "target": "0072c3b0"
+        },
+        {
+          "site": "006dd008",
+          "target": "006c20f0"
+        },
+        {
+          "site": "006dd01e",
+          "target": "0072ce70"
+        },
+        {
+          "site": "006dd08a",
+          "target": "007e5ed4"
+        },
+        {
+          "site": "006dd0be",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dd119",
+          "target": "00698500"
+        },
+        {
+          "site": "006dd126",
+          "target": "00698500"
+        },
+        {
+          "site": "006dd141",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dd154",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dd170",
+          "target": "006c3ed0"
+        },
+        {
+          "site": "006dd175",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dd190",
+          "target": "006c38f0"
+        },
+        {
+          "site": "006dd195",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dd1b5",
+          "target": "006c38f0"
+        },
+        {
+          "site": "006dd1ba",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dd1d2",
+          "target": "006c3230"
+        },
+        {
+          "site": "006dd1d7",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dd21f",
+          "target": "00698500"
+        },
+        {
+          "site": "006dd236",
+          "target": "006c4070"
+        },
+        {
+          "site": "006dd24b",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dd260",
+          "target": "007e731d"
+        },
+        {
+          "site": "006dd276",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006dd2c7",
+          "target": "006c08d0"
+        },
+        {
+          "site": "006dd2ce",
+          "target": "006c0790"
+        },
+        {
+          "site": "006dd2d4",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006dd2f6",
+          "target": "005afd60"
+        },
+        {
+          "site": "006dd335",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006dd357",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006dd366",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006dd37f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006dd3a3",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006dd3be",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006dd3cf",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006dd3ed",
+          "target": "007e520f"
+        },
+        {
+          "site": "006dd405",
+          "target": "007422d0"
+        },
+        {
+          "site": "006dd44d",
+          "target": "006dc3a0"
+        }
+      ],
+      "entry": "006dcae0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-command/006dcae0.json",
+      "export_sha256": "d0615c12e66cf7cb6b639c61443fad41aba9f24a42a8c220139cb8ef72fdf524",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1523,
+      "decompilation_sha256": "9e890581b74270aaae61f30bfb5d26505480cdef70c7e08401495afc4eb6fda3",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00414807",
+          "target": "004059f0"
+        },
+        {
+          "site": "00414824",
+          "target": "004059f0"
+        },
+        {
+          "site": "0041483e",
+          "target": "004059f0"
+        },
+        {
+          "site": "00414858",
+          "target": "004059f0"
+        },
+        {
+          "site": "00414872",
+          "target": "004059f0"
+        },
+        {
+          "site": "0041487e",
+          "target": "00405820"
+        },
+        {
+          "site": "0041488e",
+          "target": "004059b0"
+        },
+        {
+          "site": "00414898",
+          "target": "00405890"
+        },
+        {
+          "site": "004148a4",
+          "target": "00405820"
+        },
+        {
+          "site": "004148b1",
+          "target": "004059b0"
+        },
+        {
+          "site": "004148b9",
+          "target": "00405890"
+        },
+        {
+          "site": "004148c5",
+          "target": "00405820"
+        },
+        {
+          "site": "004148d2",
+          "target": "004059b0"
+        },
+        {
+          "site": "004148da",
+          "target": "00405890"
+        },
+        {
+          "site": "004148e6",
+          "target": "00405820"
+        },
+        {
+          "site": "004148f3",
+          "target": "004059b0"
+        },
+        {
+          "site": "004148fb",
+          "target": "00405890"
+        },
+        {
+          "site": "00414907",
+          "target": "00405820"
+        },
+        {
+          "site": "00414914",
+          "target": "004059b0"
+        },
+        {
+          "site": "0041491c",
+          "target": "00405890"
+        },
+        {
+          "site": "00414928",
+          "target": "00405820"
+        },
+        {
+          "site": "00414935",
+          "target": "004059b0"
+        },
+        {
+          "site": "0041493d",
+          "target": "00405890"
+        },
+        {
+          "site": "00414949",
+          "target": "00405820"
+        },
+        {
+          "site": "00414959",
+          "target": "004059b0"
+        },
+        {
+          "site": "00414961",
+          "target": "00405890"
+        },
+        {
+          "site": "0041497d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004149a4",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004149ed",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00414a0c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414a2f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414a3f",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00414a59",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414a88",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414aaf",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00414af9",
+          "target": "004059f0"
+        },
+        {
+          "site": "00414b19",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414b3c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414b4c",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00414b67",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414b99",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414bc0",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00414bfb",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00414c3a",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00414c56",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414c79",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414c89",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00414ca4",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414cc7",
+          "target": "00405820"
+        },
+        {
+          "site": "00414cdc",
+          "target": "004059b0"
+        },
+        {
+          "site": "00414cf6",
+          "target": "00414dd0"
+        },
+        {
+          "site": "00414cff",
+          "target": "00405890"
+        },
+        {
+          "site": "00414d0b",
+          "target": "00405820"
+        },
+        {
+          "site": "00414d15",
+          "target": "004202a0"
+        },
+        {
+          "site": "00414d37",
+          "target": "004059b0"
+        },
+        {
+          "site": "00414d4c",
+          "target": "004059b0"
+        },
+        {
+          "site": "00414d59",
+          "target": "004059b0"
+        },
+        {
+          "site": "00414d62",
+          "target": "004202a0"
+        },
+        {
+          "site": "00414d6f",
+          "target": "00405890"
+        },
+        {
+          "site": "00414d90",
+          "target": "004059f0"
+        },
+        {
+          "site": "00414db2",
+          "target": "004059f0"
+        }
+      ],
+      "entry": "004147d0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-context/004147d0.json",
+      "export_sha256": "e2bd32a6be2762a013197084fefeb0e49163298b4776af9592915ee063d9ec6e",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 3666,
+      "decompilation_sha256": "77dc5f4acf79022ba10388e8d4a4eb118c5ecd13d8b235c0f51bbb5e35ed75c9",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00414e6f",
+          "target": "00405100"
+        },
+        {
+          "site": "00414ecd",
+          "target": "00420780"
+        },
+        {
+          "site": "00414ef8",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414f39",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00414f4e",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00414fcd",
+          "target": "00405940"
+        },
+        {
+          "site": "00414fd5",
+          "target": "00405890"
+        },
+        {
+          "site": "00414ff2",
+          "target": "00405940"
+        },
+        {
+          "site": "00414ffa",
+          "target": "00405890"
+        },
+        {
+          "site": "00415017",
+          "target": "00405940"
+        },
+        {
+          "site": "0041501f",
+          "target": "00405890"
+        },
+        {
+          "site": "00415044",
+          "target": "00405940"
+        },
+        {
+          "site": "0041504c",
+          "target": "00405890"
+        },
+        {
+          "site": "00415066",
+          "target": "00405940"
+        },
+        {
+          "site": "0041506e",
+          "target": "00405890"
+        },
+        {
+          "site": "004150c3",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004150eb",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00415107",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00415129",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00415139",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00415152",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00415190",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004151bb",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "004151d7",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004151f9",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00415209",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00415222",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00415260",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00415288",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "004152a8",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004152ca",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004152da",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00415310",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00415338",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00415358",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0041537a",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0041538a",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004153b5",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004153dd",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "004153fd",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0041541f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0041542f",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00415490",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004154bb",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "004154db",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004154fd",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0041550d",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00415538",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00415560",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00415580",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004155a2",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004155b2",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0041560d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0041563a",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0041566a",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0041568d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0041569d",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004156b8",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00415712",
+          "target": "00415c90"
+        },
+        {
+          "site": "00415729",
+          "target": "00405100"
+        },
+        {
+          "site": "00415740",
+          "target": "00415d00"
+        },
+        {
+          "site": "0041576a",
+          "target": "007e5c20"
+        },
+        {
+          "site": "0041579e",
+          "target": "00698500"
+        },
+        {
+          "site": "004157e0",
+          "target": "007d3aa0"
+        },
+        {
+          "site": "00415804",
+          "target": "007d3aa0"
+        },
+        {
+          "site": "0041585c",
+          "target": "007d3aa0"
+        },
+        {
+          "site": "0041586e",
+          "target": "004203c0"
+        },
+        {
+          "site": "00415888",
+          "target": "007d3aa0"
+        },
+        {
+          "site": "004158ab",
+          "target": "007d3aa0"
+        },
+        {
+          "site": "00415900",
+          "target": "007d3aa0"
+        },
+        {
+          "site": "00415926",
+          "target": "00405100"
+        },
+        {
+          "site": "0041593b",
+          "target": "004145d0"
+        },
+        {
+          "site": "00415950",
+          "target": "004050e0"
+        },
+        {
+          "site": "00415996",
+          "target": "004050e0"
+        },
+        {
+          "site": "004159bc",
+          "target": "00405940"
+        },
+        {
+          "site": "004159d8",
+          "target": "00405940"
+        },
+        {
+          "site": "004159ef",
+          "target": "004205c0"
+        },
+        {
+          "site": "00415a00",
+          "target": "00405890"
+        },
+        {
+          "site": "00415a36",
+          "target": "004202a0"
+        },
+        {
+          "site": "00415a54",
+          "target": "00405940"
+        },
+        {
+          "site": "00415a61",
+          "target": "00405940"
+        },
+        {
+          "site": "00415a6e",
+          "target": "00405940"
+        },
+        {
+          "site": "00415a76",
+          "target": "004202a0"
+        },
+        {
+          "site": "00415a83",
+          "target": "00405890"
+        },
+        {
+          "site": "00415a99",
+          "target": "00405940"
+        },
+        {
+          "site": "00415aad",
+          "target": "00415e30"
+        },
+        {
+          "site": "00415ab2",
+          "target": "00698500"
+        },
+        {
+          "site": "00415add",
+          "target": "00405890"
+        },
+        {
+          "site": "00415afe",
+          "target": "00405940"
+        },
+        {
+          "site": "00415b06",
+          "target": "00405890"
+        },
+        {
+          "site": "00415b33",
+          "target": "00405940"
+        },
+        {
+          "site": "00415b3b",
+          "target": "00405890"
+        },
+        {
+          "site": "00415b5e",
+          "target": "007e520f"
+        },
+        {
+          "site": "00415b7e",
+          "target": "004050a0"
+        },
+        {
+          "site": "00415b99",
+          "target": "004050e0"
+        },
+        {
+          "site": "00415bbe",
+          "target": "00405100"
+        },
+        {
+          "site": "00415be0",
+          "target": "004050e0"
+        },
+        {
+          "site": "00415c02",
+          "target": "00405100"
+        },
+        {
+          "site": "00415c17",
+          "target": "004145d0"
+        },
+        {
+          "site": "00415c2c",
+          "target": "004050e0"
+        },
+        {
+          "site": "00415c44",
+          "target": "004050e0"
+        },
+        {
+          "site": "00415c60",
+          "target": "004050e0"
+        }
+      ],
+      "entry": "00414e30",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-context/00414e30.json",
+      "export_sha256": "f48b951cfd011c38a9efdc4e0e6c62bc424636c47e2cf6e29935f527ec4d1b8d",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 292,
+      "decompilation_sha256": "ab05618a8176560252bf320218239d4d64fc4eb119ee5d18e3ad085e48bbee97",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006a2380",
+          "target": "006a1c80"
+        },
+        {
+          "site": "006a23b1",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006a23d3",
+          "target": "006a1c80"
+        },
+        {
+          "site": "006a23db",
+          "target": "007e5e00"
+        },
+        {
+          "site": "006a244b",
+          "target": "006a1cb0"
+        }
+      ],
+      "entry": "006a2340",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-context/006a2340.json",
+      "export_sha256": "178e086975a8d13f71322b1e5a855b249c2449490b72f8a157ec8c6969d90e1f",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 232,
+      "decompilation_sha256": "11f4100029994227b843a371e61ba01d70806c18ff0541faeaf0934e6e5568d1",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006a4e30",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a4e59",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006a4e72",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a4e95",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a4ea5",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006a4ec0",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "006a4e00",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-context/006a4e00.json",
+      "export_sha256": "dff76a07aafeb02925b003e075fd66eda6c78c4e39328e111e2d093ec8ffa22d",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 729,
+      "decompilation_sha256": "5748909fbad9ce6a3d8f135b4b7f7620d093172b30de0ec7438eccb665fd165b",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006e08b9",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e08e0",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006e091e",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0945",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006e0962",
+          "target": "004059b0"
+        },
+        {
+          "site": "006e097d",
+          "target": "004059b0"
+        },
+        {
+          "site": "006e0996",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e09b9",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e09c9",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006e09e4",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0a1c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0a43",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006e0a77",
+          "target": "004059b0"
+        },
+        {
+          "site": "006e0a92",
+          "target": "004059b0"
+        },
+        {
+          "site": "006e0aca",
+          "target": "004059b0"
+        },
+        {
+          "site": "006e0af9",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006e0b14",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006e0b2f",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006e0b4f",
+          "target": "00405890"
+        },
+        {
+          "site": "006e0b58",
+          "target": "00405890"
+        }
+      ],
+      "entry": "006e0890",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-context/006e0890.json",
+      "export_sha256": "1a0c63eec4e653112d97fe8a68f8a2bb1d681561de2b92ec10e55b3052406c54",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 923,
+      "decompilation_sha256": "7fe196474fa9f909184c7b4ba291dca4b9a42221fb595ecc0b50a3d511657318",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006e0b7c",
+          "target": "006e07c0"
+        },
+        {
+          "site": "006e0b9a",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006e0bb0",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0c01",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0c34",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006e0c45",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0c8f",
+          "target": "00405890"
+        },
+        {
+          "site": "006e0cba",
+          "target": "00405940"
+        },
+        {
+          "site": "006e0ccd",
+          "target": "00405940"
+        },
+        {
+          "site": "006e0cdb",
+          "target": "00405940"
+        },
+        {
+          "site": "006e0cf2",
+          "target": "007e520f"
+        },
+        {
+          "site": "006e0d20",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0d45",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006e0d71",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0d96",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006e0dc2",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0de7",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006e0e06",
+          "target": "006e0fb0"
+        },
+        {
+          "site": "006e0e2c",
+          "target": "007e520f"
+        },
+        {
+          "site": "006e0e44",
+          "target": "006e1190"
+        },
+        {
+          "site": "006e0e52",
+          "target": "00405940"
+        },
+        {
+          "site": "006e0e61",
+          "target": "00475d50"
+        },
+        {
+          "site": "006e0e78",
+          "target": "00405940"
+        },
+        {
+          "site": "006e0e8d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0eaf",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0ebf",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006e0ed8",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006e0efa",
+          "target": "00405890"
+        }
+      ],
+      "entry": "006e0b70",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-context/006e0b70.json",
+      "export_sha256": "e07c5cbf15c97cfbaae6021a61b276251ccd7c3037b624cfae8e058c85af889a",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 659,
+      "decompilation_sha256": "27c702f5c66529bc6ebd8757fb1946af8b831f0d359bb5b446a9ca66fba438ec",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0048de7c",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0048de92",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048dee1",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048df04",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048df14",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0048df2d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048df6b",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048df9f",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0048dfb1",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048e005",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048e028",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048e038",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0048e053",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048e086",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048e0a9",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048e0b9",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0048e0d4",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "0048de60",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/0048de60.json",
+      "export_sha256": "cc4f332679aebe839e2aeb563476e8a0a622f312b2f96c5e934ceb6fded34048",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 619,
+      "decompilation_sha256": "21b1ab06b1f797b6e101c2cf9a1b1643136941ea7a88446a22e8287b31cdeb4f",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0048fe02",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048fe35",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0048fe46",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048fe7e",
+          "target": "00405890"
+        },
+        {
+          "site": "0048feaa",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048fed2",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0048fef9",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048ff21",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0048ff48",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048ff6d",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0048ff94",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048ffbc",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0048ffdf",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00490007",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0049000f",
+          "target": "00405890"
+        },
+        {
+          "site": "0049001a",
+          "target": "0048ee50"
+        },
+        {
+          "site": "00490025",
+          "target": "00490040"
+        }
+      ],
+      "entry": "0048fdd0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/0048fdd0.json",
+      "export_sha256": "2d1e82ae848991cec977e7f351491a94c823a4d672514d8a994871d5d9ca7ef9",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 27,
+      "decompilation_sha256": "268c183d78306a68d267acdec5800246a8fdf9361dc46815c547af162c68c18d",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004933a0",
+          "target": "004922a0"
+        },
+        {
+          "site": "004933aa",
+          "target": "00461410"
+        },
+        {
+          "site": "004933b1",
+          "target": "0045dac0"
+        }
+      ],
+      "entry": "004933a0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/004933a0.json",
+      "export_sha256": "81d2365a69196f1654fcb1bdc40e9f4116cd71174125adddf09b15782fa4f25e",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 779,
+      "decompilation_sha256": "d0394708c4bafa541abe2bac577827751759c40391b854c380aad94289063421",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0049f90a",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049f93e",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0049f950",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049f99d",
+          "target": "00405940"
+        },
+        {
+          "site": "0049f9b0",
+          "target": "00461410"
+        },
+        {
+          "site": "0049f9b7",
+          "target": "0045dcc0"
+        },
+        {
+          "site": "0049f9c5",
+          "target": "00405940"
+        },
+        {
+          "site": "0049f9d7",
+          "target": "0049f410"
+        },
+        {
+          "site": "0049f9f4",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049fa17",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049fa27",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0049fa42",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049fa6c",
+          "target": "00499020"
+        },
+        {
+          "site": "0049fa89",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049faac",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049fabc",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0049fad7",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049fb1c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049fb49",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0049fb66",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049fb89",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049fb99",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0049fbaf",
+          "target": "00405940"
+        },
+        {
+          "site": "0049fbb8",
+          "target": "00405890"
+        }
+      ],
+      "entry": "0049f8d0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/0049f8d0.json",
+      "export_sha256": "82a619061400525653b31f422f9663fd3b1455783b26e41715d17eb388d066e7",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 654,
+      "decompilation_sha256": "02bc6d0851e76c61ee0506e56c33a6c2f92afbb5b8c3a6e84f17c454fb48bf0e",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "005241d0",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00524204",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00524216",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00524279",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0052429c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "005242ac",
+          "target": "007e4f32"
+        },
+        {
+          "site": "005242d0",
+          "target": "007e4f38"
+        },
+        {
+          "site": "005242f3",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00524303",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0052431e",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00524355",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00524378",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00524388",
+          "target": "007e4f32"
+        },
+        {
+          "site": "005243a3",
+          "target": "007e4f38"
+        },
+        {
+          "site": "005243c5",
+          "target": "00522b60"
+        },
+        {
+          "site": "005243e2",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00524405",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00524415",
+          "target": "007e4f32"
+        }
+      ],
+      "entry": "005241a0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/005241a0.json",
+      "export_sha256": "238134c5c5a9b241e553eaa9c052891e865942641437a075ad756f655f855a8d",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1752,
+      "decompilation_sha256": "ebef80a28e93971485f2f7b20e6c39d31884e26a01c65508c1293ef1c4a17a7c",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069c91b",
+          "target": "006b6700"
+        },
+        {
+          "site": "0069c9bb",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069c9e1",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069c9fa",
+          "target": "004059f0"
+        },
+        {
+          "site": "0069ca19",
+          "target": "004059f0"
+        },
+        {
+          "site": "0069ca76",
+          "target": "00405820"
+        },
+        {
+          "site": "0069ca84",
+          "target": "004059b0"
+        },
+        {
+          "site": "0069ca8d",
+          "target": "00405890"
+        },
+        {
+          "site": "0069caa5",
+          "target": "004059f0"
+        },
+        {
+          "site": "0069cabf",
+          "target": "004059f0"
+        },
+        {
+          "site": "0069cade",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cb04",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069cb0b",
+          "target": "0048dc90"
+        },
+        {
+          "site": "0069cb28",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cb49",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cb58",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069cb7a",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cbaa",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cbd0",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069cbd9",
+          "target": "0049f600"
+        },
+        {
+          "site": "0069cbf6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cc17",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cc26",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069cc45",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cc75",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cc9b",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069cca2",
+          "target": "006df4c0"
+        },
+        {
+          "site": "0069ccbf",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cce0",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069ccef",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069cd11",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cd41",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cd67",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069cd70",
+          "target": "00523f30"
+        },
+        {
+          "site": "0069cd8d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cdae",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069cdbd",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069cddc",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069ce0c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069ce32",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069ce3b",
+          "target": "0048fc50"
+        },
+        {
+          "site": "0069ce44",
+          "target": "00405890"
+        },
+        {
+          "site": "0069ce50",
+          "target": "00405820"
+        },
+        {
+          "site": "0069ce59",
+          "target": "00493390"
+        },
+        {
+          "site": "0069ce62",
+          "target": "00405890"
+        },
+        {
+          "site": "0069ce78",
+          "target": "00405820"
+        },
+        {
+          "site": "0069ce8d",
+          "target": "00405890"
+        },
+        {
+          "site": "0069ce96",
+          "target": "00405890"
+        },
+        {
+          "site": "0069cea9",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "0069ced8",
+          "target": "00404260"
+        },
+        {
+          "site": "0069cedf",
+          "target": "0069bf70"
+        },
+        {
+          "site": "0069cef5",
+          "target": "004050e0"
+        },
+        {
+          "site": "0069ceff",
+          "target": "006b6700"
+        },
+        {
+          "site": "0069cf1b",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "0069cf48",
+          "target": "00405100"
+        },
+        {
+          "site": "0069cf77",
+          "target": "00404260"
+        },
+        {
+          "site": "0069cf7e",
+          "target": "0069bf70"
+        },
+        {
+          "site": "0069cf8d",
+          "target": "004050e0"
+        },
+        {
+          "site": "0069cf99",
+          "target": "004050e0"
+        }
+      ],
+      "entry": "0069c8e0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/0069c8e0.json",
+      "export_sha256": "3b9e3f1e40e232c2cdf1bc2d0d860893e10ba72227c09933c322827e937927f8",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 96,
+      "decompilation_sha256": "7f3e77e20ae17ba7a438e70debe2376697cfb25cd16e7ac7d397f61f34679cc1",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069e99d",
+          "target": "004336c0"
+        },
+        {
+          "site": "0069e9ad",
+          "target": "004336c0"
+        }
+      ],
+      "entry": "0069e970",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/0069e970.json",
+      "export_sha256": "bea8faa1c82696a06bee123836bd5eca0bfc1dbbe7da3cf7be055ad275e81f6f",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 107,
+      "decompilation_sha256": "0ceaa75ce0006fda9cb738e49d4f4a95235e1163de6331a70d3f6f5eaa47fe88",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "006b12d0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/006b12d0.json",
+      "export_sha256": "03d4c57260bacc0250bfbbf17e23f3578862b1a137ffb2d14b5cf6c515b9886b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 485,
+      "decompilation_sha256": "c296027fa34126bb25c9d157ae4bbbd74d3c3627ff8a9d5680e41ac0b4a4b1c6",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b6df3",
+          "target": "00698500"
+        },
+        {
+          "site": "006b6e22",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6e56",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006b6e68",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6ed2",
+          "target": "006a1b40"
+        },
+        {
+          "site": "006b6edd",
+          "target": "006a2150"
+        },
+        {
+          "site": "006b6ef0",
+          "target": "006a5890"
+        },
+        {
+          "site": "006b6efb",
+          "target": "006a5890"
+        },
+        {
+          "site": "006b6f08",
+          "target": "00427050"
+        },
+        {
+          "site": "006b6f13",
+          "target": "006b4400"
+        },
+        {
+          "site": "006b6f26",
+          "target": "006b47b0"
+        },
+        {
+          "site": "006b6f31",
+          "target": "006a66f0"
+        },
+        {
+          "site": "006b6f4c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6f6f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6f7f",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b6f9a",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "006b6de0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/006b6de0.json",
+      "export_sha256": "298420694128568881196fe9856277f9bdbb3a509d4a9c1a2a1461216ecf1079",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 226,
+      "decompilation_sha256": "e47668f7d996136d516b1bab893321203ac590aa43983d7c29ec32069bf6efa5",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b71e8",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b720f",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b7217",
+          "target": "006b6a50"
+        },
+        {
+          "site": "006b7233",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b7256",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b7266",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b7281",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "006b71c0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/006b71c0.json",
+      "export_sha256": "759f782eca173b919a216e95171fc9d1a63db0f99989a7b3f00354e88b028d06",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 8,
+      "decompilation_sha256": "77d30a68f9dd24fe83b0e390c174d7c2775be60873dfcda6a3a78588d50dc295",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b76d3",
+          "target": "006b3c90"
+        }
+      ],
+      "entry": "006b76d0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/006b76d0.json",
+      "export_sha256": "18f65256e6008738e0a9c9326f392f9d8f7b026310703d7acefa581c7c9d3869",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 656,
+      "decompilation_sha256": "f951deffb9025457be1fad667435a9db84768731ab0d185996e0952af31081e4",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006df69c",
+          "target": "006df390"
+        },
+        {
+          "site": "006df6b5",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006df6cb",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df712",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df746",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006df758",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df79f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df7c2",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df7d2",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006df7ed",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df80a",
+          "target": "007e4f62"
+        },
+        {
+          "site": "006df818",
+          "target": "006ddfa0"
+        },
+        {
+          "site": "006df838",
+          "target": "006df950"
+        },
+        {
+          "site": "006df842",
+          "target": "006dece0"
+        },
+        {
+          "site": "006df85f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df882",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df892",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006df8b3",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df8d6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df8e6",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006df901",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "006df690",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-deep/006df690.json",
+      "export_sha256": "a9c462440ed6c0bb542e640bc8b929de5efee45efbdf46573b979275bfe1d568",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 17,
+      "decompilation_sha256": "2f6099afad6c5de274ce99250844ced40e0305bcddc5ed9022f8b58ff9db84d9",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "0068c2e0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-exports/0068c2e0.json",
+      "export_sha256": "396fabd2b008750dd471ce65af13017148ade08a6a1746c78ee3b29f30c09b8f",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1420,
+      "decompilation_sha256": "19f54e958104ea16dd9836ff6d2eb1ec2bb22ea02ed028e0bb46534af555b17a",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0068c364",
+          "target": "006a1c80"
+        },
+        {
+          "site": "0068c394",
+          "target": "00420ec0"
+        },
+        {
+          "site": "0068c537",
+          "target": "006a1c80"
+        },
+        {
+          "site": "0068c573",
+          "target": "005aa0f0"
+        },
+        {
+          "site": "0068c579",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068c649",
+          "target": "006a1c80"
+        },
+        {
+          "site": "0068c66c",
+          "target": "006a1c80"
+        },
+        {
+          "site": "0068c673",
+          "target": "007e5f33"
+        },
+        {
+          "site": "0068c699",
+          "target": "007e5e00"
+        },
+        {
+          "site": "0068c6a1",
+          "target": "007e5f33"
+        },
+        {
+          "site": "0068c6ca",
+          "target": "007e5f33"
+        },
+        {
+          "site": "0068c6f3",
+          "target": "007e5f33"
+        },
+        {
+          "site": "0068c71c",
+          "target": "007e5f33"
+        },
+        {
+          "site": "0068c745",
+          "target": "007e5f33"
+        },
+        {
+          "site": "0068c76e",
+          "target": "007e5f33"
+        },
+        {
+          "site": "0068c797",
+          "target": "007e5f33"
+        },
+        {
+          "site": "0068c7c0",
+          "target": "007e5f33"
+        }
+      ],
+      "entry": "0068c300",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-exports/0068c300.json",
+      "export_sha256": "60e0db7e3c33b64478d8d705d31004dd83c150163a41418b5e7bfe4e7ddd7ed6",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 191,
+      "decompilation_sha256": "824522ec42f26cb1e44846e3d32607ca86c8cc068f07715d9dfe5d8faa68b9ba",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069c299",
+          "target": "0045f590"
+        },
+        {
+          "site": "0069c2b1",
+          "target": "0045f590"
+        },
+        {
+          "site": "0069c2bf",
+          "target": "006b6700"
+        },
+        {
+          "site": "0069c2fc",
+          "target": "006b6700"
+        },
+        {
+          "site": "0069c324",
+          "target": "006b8ec0"
+        }
+      ],
+      "entry": "0069c280",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-exports/0069c280.json",
+      "export_sha256": "e5e8b8e20c587f7c1bc278d21d68b49a7a9a9800921b75b2588edafd0725acc5",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1350,
+      "decompilation_sha256": "adcfe0686a07d9386b648820b36aba7a9e88741bce59856498e70002e0b4bfea",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069c479",
+          "target": "0072fe60"
+        },
+        {
+          "site": "0069c495",
+          "target": "0072ec70"
+        },
+        {
+          "site": "0069c4f4",
+          "target": "0072ed30"
+        },
+        {
+          "site": "0069c52d",
+          "target": "007e513c"
+        },
+        {
+          "site": "0069c53f",
+          "target": "0069f2e0"
+        },
+        {
+          "site": "0069c54e",
+          "target": "0069f150"
+        },
+        {
+          "site": "0069c565",
+          "target": "0049f5e0"
+        },
+        {
+          "site": "0069c56a",
+          "target": "0071de60"
+        },
+        {
+          "site": "0069c56f",
+          "target": "0071de10"
+        },
+        {
+          "site": "0069c577",
+          "target": "00523e30"
+        },
+        {
+          "site": "0069c5b3",
+          "target": "00475d50"
+        },
+        {
+          "site": "0069c5ea",
+          "target": "00475c50"
+        },
+        {
+          "site": "0069c620",
+          "target": "00475d50"
+        },
+        {
+          "site": "0069c65f",
+          "target": "0048dbc0"
+        },
+        {
+          "site": "0069c6d7",
+          "target": "00475940"
+        },
+        {
+          "site": "0069c70e",
+          "target": "00611c90"
+        },
+        {
+          "site": "0069c728",
+          "target": "00493360"
+        },
+        {
+          "site": "0069c730",
+          "target": "0048f400"
+        },
+        {
+          "site": "0069c77b",
+          "target": "007e4eae"
+        },
+        {
+          "site": "0069c79e",
+          "target": "006df4b0"
+        },
+        {
+          "site": "0069c7ad",
+          "target": "006b83c0"
+        },
+        {
+          "site": "0069c7ca",
+          "target": "00730a40"
+        },
+        {
+          "site": "0069c7d6",
+          "target": "00731610"
+        },
+        {
+          "site": "0069c803",
+          "target": "0049b7c0"
+        },
+        {
+          "site": "0069c820",
+          "target": "00730460"
+        },
+        {
+          "site": "0069c829",
+          "target": "006dc940"
+        },
+        {
+          "site": "0069c830",
+          "target": "00698500"
+        },
+        {
+          "site": "0069c842",
+          "target": "006dc940"
+        },
+        {
+          "site": "0069c849",
+          "target": "0072b1c0"
+        },
+        {
+          "site": "0069c866",
+          "target": "0069e970"
+        },
+        {
+          "site": "0069c86b",
+          "target": "0059ef80"
+        },
+        {
+          "site": "0069c8b4",
+          "target": "006b6740"
+        },
+        {
+          "site": "0069c8bb",
+          "target": "006b33e0"
+        },
+        {
+          "site": "0069c8c9",
+          "target": "00796790"
+        }
+      ],
+      "entry": "0069c390",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-exports/0069c390.json",
+      "export_sha256": "9b6f617ada97d1e79ead8798d38e0f0107ea07302ec665009572c86323881e95",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1747,
+      "decompilation_sha256": "b9d97b3c8a2dfbdf5aabede87f5b386fdd4ef3f5052df9a1a45b488ed4e070e6",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069d02d",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0069d043",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d0a0",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d0d4",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0069d0e6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d162",
+          "target": "004933a0"
+        },
+        {
+          "site": "0069d17f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d1a2",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d1b2",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069d1be",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d1d7",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d208",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d235",
+          "target": "00405940"
+        },
+        {
+          "site": "0069d243",
+          "target": "00405180"
+        },
+        {
+          "site": "0069d24c",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d2ba",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0069d2d0",
+          "target": "00405940"
+        },
+        {
+          "site": "0069d2d9",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d2ef",
+          "target": "0049f8d0"
+        },
+        {
+          "site": "0069d30c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d32f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d33f",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069d34b",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d367",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d39a",
+          "target": "006df690"
+        },
+        {
+          "site": "0069d3a3",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d3af",
+          "target": "0048de60"
+        },
+        {
+          "site": "0069d3b8",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d3c6",
+          "target": "005241a0"
+        },
+        {
+          "site": "0069d3cf",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d406",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d414",
+          "target": "0048fdd0"
+        },
+        {
+          "site": "0069d41d",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d449",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d476",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0069d4e9",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d50c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d51c",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0069d537",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0069d566",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d579",
+          "target": "00405940"
+        },
+        {
+          "site": "0069d582",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d5a1",
+          "target": "00405940"
+        },
+        {
+          "site": "0069d5aa",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d5bf",
+          "target": "00405890"
+        },
+        {
+          "site": "0069d5d3",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "0069d60f",
+          "target": "0069bf70"
+        },
+        {
+          "site": "0069d62b",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0069d64e",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0069d676",
+          "target": "004050e0"
+        }
+      ],
+      "entry": "0069cfc0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-exports/0069cfc0.json",
+      "export_sha256": "10ee3972ffb3b3b5e5744ded52ce031887be0f18714944bc1ff89268470c2037",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 31,
+      "decompilation_sha256": "35a5b8d62c4202e63743d57df0575313957920fbbaa3aca50a7f963eda747082",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b6ff6",
+          "target": "006b4630"
+        },
+        {
+          "site": "006b6ffe",
+          "target": "006a5cd0"
+        }
+      ],
+      "entry": "006b6ff0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-exports/006b6ff0.json",
+      "export_sha256": "324dbae1a815c6895bdfe33451b38e6331e1915d9e78276c6b13d9cdcf898067",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 224,
+      "decompilation_sha256": "c1c0cc1a9799804d009f25009e9ae1b3a33f3e36f3defa79b72857e1419af944",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b72cc",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006b72de",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b7305",
+          "target": "006b6de0"
+        },
+        {
+          "site": "006b7321",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b7344",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b7354",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b736f",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "006b72b0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-exports/006b72b0.json",
+      "export_sha256": "d210d3943b0d78026fc9d472328150d6fd894ff65c39cc671bc5885efae544a2",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 788,
+      "decompilation_sha256": "1ae8301df9aa5f896430e9c622e89a604b3e3f8184a31d3a3f96ee0fed024799",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b7711",
+          "target": "00405100"
+        },
+        {
+          "site": "006b7725",
+          "target": "006b7100"
+        },
+        {
+          "site": "006b774b",
+          "target": "00405100"
+        },
+        {
+          "site": "006b7781",
+          "target": "00405100"
+        },
+        {
+          "site": "006b779d",
+          "target": "004145d0"
+        },
+        {
+          "site": "006b77cb",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b77f3",
+          "target": "00414550"
+        },
+        {
+          "site": "006b780e",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b7837",
+          "target": "00405100"
+        },
+        {
+          "site": "006b7862",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b7897",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b78bf",
+          "target": "00414550"
+        },
+        {
+          "site": "006b78d3",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b78f9",
+          "target": "00405100"
+        },
+        {
+          "site": "006b7924",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b7952",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b797a",
+          "target": "00414550"
+        },
+        {
+          "site": "006b798e",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b79ab",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b79d6",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "006b76e0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-exports/006b76e0.json",
+      "export_sha256": "bb9dbe6f2aa23101f091fd08ba48047ec0db7e99c773c53dbbbd660a79c95d09",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1247,
+      "decompilation_sha256": "91b2e4f8da81b603f939d322b74d3ed5698b91c1a78e5859fa1f7d6fe6542f05",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006c3a9e",
+          "target": "00405620"
+        },
+        {
+          "site": "006c3aab",
+          "target": "00405750"
+        },
+        {
+          "site": "006c3ac4",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "006c3ae9",
+          "target": "00405890"
+        },
+        {
+          "site": "006c3afc",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c3b11",
+          "target": "00405750"
+        },
+        {
+          "site": "006c3b29",
+          "target": "006b9030"
+        },
+        {
+          "site": "006c3b49",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c3b74",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006c3b86",
+          "target": "00405820"
+        },
+        {
+          "site": "006c3b96",
+          "target": "004059b0"
+        },
+        {
+          "site": "006c3ba0",
+          "target": "00405890"
+        },
+        {
+          "site": "006c3baf",
+          "target": "006b71c0"
+        },
+        {
+          "site": "006c3bba",
+          "target": "006ae510"
+        },
+        {
+          "site": "006c3bc9",
+          "target": "0069c8e0"
+        },
+        {
+          "site": "006c3bd8",
+          "target": "006ae510"
+        },
+        {
+          "site": "006c3bfb",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c3c1f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c3c30",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006c3c4c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c3c79",
+          "target": "00405890"
+        },
+        {
+          "site": "006c3c8c",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c3cac",
+          "target": "00405750"
+        },
+        {
+          "site": "006c3d01",
+          "target": "00405620"
+        },
+        {
+          "site": "006c3d2d",
+          "target": "00405890"
+        },
+        {
+          "site": "006c3d43",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c3d5c",
+          "target": "006b71c0"
+        },
+        {
+          "site": "006c3dac",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c3dd6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c3dea",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006c3e0c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c3e3b",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c3e75",
+          "target": "00405890"
+        },
+        {
+          "site": "006c3e8b",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c3eab",
+          "target": "006b76d0"
+        }
+      ],
+      "entry": "006c39f0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-exports/006c39f0.json",
+      "export_sha256": "2efae0f9d980614fc4698d1fc247d2fafc521d3dd54af3904b0db1c2aec2af23",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1358,
+      "decompilation_sha256": "4ae9d6f484c383b0b97d3fb32e35a68a1d700397e89e3b57cd66c55c540c3949",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b3d2b",
+          "target": "006b9190"
+        },
+        {
+          "site": "006b3d54",
+          "target": "007e520f"
+        },
+        {
+          "site": "006b3d72",
+          "target": "004050a0"
+        },
+        {
+          "site": "006b3d88",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b3db6",
+          "target": "007e5a40"
+        },
+        {
+          "site": "006b3dd1",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "006b3df1",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b3e08",
+          "target": "006b9030"
+        },
+        {
+          "site": "006b3e16",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "006b3e22",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "006b3e3a",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "006b3e5a",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b3ea3",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b3ebc",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "006b3edb",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b3f03",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b3f21",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "006b3f40",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b3f68",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b3f86",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "006b3fa5",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b3fcd",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b4022",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "006b404d",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b4078",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b4093",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "006b40ba",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b40e1",
+          "target": "004050e0"
+        },
+        {
+          "site": "006b4103",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "006b411b",
+          "target": "006ed960"
+        },
+        {
+          "site": "006b417f",
+          "target": "00405100"
+        },
+        {
+          "site": "006b41a0",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b41c1",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b41dd",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b41ed",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b4207",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b421b",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006b4231",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "006b3d00",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-front/006b3d00.json",
+      "export_sha256": "f6883add9d3d266d1b26fc288b30a0b3e2fd0a83566d302cfd53c579677c121c",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 270,
+      "decompilation_sha256": "02d64746eb5b1df6c4465723086c907752a4a494243354afed04b3e6826646a3",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006c324c",
+          "target": "004336c0"
+        },
+        {
+          "site": "006c326b",
+          "target": "006c3340"
+        },
+        {
+          "site": "006c3280",
+          "target": "006b7a00"
+        },
+        {
+          "site": "006c328e",
+          "target": "006c3340"
+        },
+        {
+          "site": "006c32b3",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006c32d9",
+          "target": "007e520f"
+        },
+        {
+          "site": "006c331e",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "006c3230",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-front/006c3230.json",
+      "export_sha256": "4317e07e233f1098f5dcdd693ac1e1ea05e777cbcbd4994cd938ec27e9b4de62",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1867,
+      "decompilation_sha256": "92f90c65947f9283593c9b8a4656522b710416f51be2a816c8f7982b69f035e8",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006c40df",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006c4164",
+          "target": "006b7d30"
+        },
+        {
+          "site": "006c4189",
+          "target": "004050e0"
+        },
+        {
+          "site": "006c41a6",
+          "target": "007e520f"
+        },
+        {
+          "site": "006c41c1",
+          "target": "004050a0"
+        },
+        {
+          "site": "006c41d6",
+          "target": "004050e0"
+        },
+        {
+          "site": "006c41fc",
+          "target": "007e5a40"
+        },
+        {
+          "site": "006c4215",
+          "target": "00405620"
+        },
+        {
+          "site": "006c422a",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006c4238",
+          "target": "00405750"
+        },
+        {
+          "site": "006c4276",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006c428f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c42db",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c4318",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006c432d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c4375",
+          "target": "00405890"
+        },
+        {
+          "site": "006c4388",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c43a0",
+          "target": "004050e0"
+        },
+        {
+          "site": "006c43ab",
+          "target": "00405750"
+        },
+        {
+          "site": "006c43e6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c440b",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c441d",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006c4442",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c4457",
+          "target": "006b6ff0"
+        },
+        {
+          "site": "006c4468",
+          "target": "006b7410"
+        },
+        {
+          "site": "006c4485",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "006c44bc",
+          "target": "00405890"
+        },
+        {
+          "site": "006c44e4",
+          "target": "006b8a20"
+        },
+        {
+          "site": "006c44f3",
+          "target": "006b8aa0"
+        },
+        {
+          "site": "006c44fe",
+          "target": "006b8aa0"
+        },
+        {
+          "site": "006c4529",
+          "target": "006b8aa0"
+        },
+        {
+          "site": "006c4533",
+          "target": "006c0ef0"
+        },
+        {
+          "site": "006c4545",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006c4570",
+          "target": "00405890"
+        },
+        {
+          "site": "006c4583",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c45b7",
+          "target": "007e4f62"
+        },
+        {
+          "site": "006c45cc",
+          "target": "00698510"
+        },
+        {
+          "site": "006c45e2",
+          "target": "006ae510"
+        },
+        {
+          "site": "006c45f4",
+          "target": "0069c340"
+        },
+        {
+          "site": "006c45ff",
+          "target": "006ae510"
+        },
+        {
+          "site": "006c464d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c4672",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c4684",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006c46a0",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c46bf",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c46dd",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006c472b",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c4750",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c4762",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006c4784",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c47a3",
+          "target": "007e4f50"
+        }
+      ],
+      "entry": "006c4070",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-front/006c4070.json",
+      "export_sha256": "f1e1956afd2be05abbfec90d8dd3bbb2d3ab6c63bc36dcc775f6ead35e4923f4",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 455,
+      "decompilation_sha256": "845cb4ce79317a7752f25d16cbe275e5d71608a9acd5b638d8a09279a28c211c",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0048dcb6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048dcdd",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0048dd1b",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048dd42",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0048dd68",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048dd8b",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048dd9b",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0048ddb6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048ddea",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048de0d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0048de1d",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0048de38",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "0048dc90",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-identity/0048dc90.json",
+      "export_sha256": "df8ee7334f7f5a6b55e83950c3cca968ffba86e9b2e5846845862a97987356f9",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 490,
+      "decompilation_sha256": "427dc60793d77ee2f4f6b55cc029525578e4f75905204e387f7a6dd28ac4b3fb",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00499050",
+          "target": "004207b0"
+        },
+        {
+          "site": "00499077",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004990aa",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "004990bb",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049910b",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0049913d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00499166",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00499178",
+          "target": "00420ec0"
+        },
+        {
+          "site": "00499194",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004991b6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004991c6",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004991df",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "00499020",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-identity/00499020.json",
+      "export_sha256": "88110e570917fc12807b7986944251468105b983d9d0ce5d38bf6f615c36972b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 557,
+      "decompilation_sha256": "57afb00828e5b7f78084a8b1eb093702bcbe8dcb082e00545b8137a7a9b2abbc",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0068f415",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068f435",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068f43d",
+          "target": "0068f380"
+        },
+        {
+          "site": "0068f47c",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068f4bc",
+          "target": "0068ed90"
+        },
+        {
+          "site": "0068f4fb",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068f518",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068f520",
+          "target": "004336c0"
+        },
+        {
+          "site": "0068f566",
+          "target": "006169d0"
+        },
+        {
+          "site": "0068f570",
+          "target": "00616100"
+        },
+        {
+          "site": "0068f57c",
+          "target": "00616100"
+        },
+        {
+          "site": "0068f594",
+          "target": "006169d0"
+        },
+        {
+          "site": "0068f5b7",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068f5bf",
+          "target": "004336c0"
+        },
+        {
+          "site": "0068f5ce",
+          "target": "004336c0"
+        }
+      ],
+      "entry": "0068f3d0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-identity/0068f3d0.json",
+      "export_sha256": "9f53b1977dc1d355cee6dc7d3f0bd873c03683f12826423dfa2fe4f367e41e0e",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 87,
+      "decompilation_sha256": "588578ccda9820f8b0bcd4b8f551ff6e13987bce0566a93895fc468c986cf444",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069a530",
+          "target": "0072e4e0"
+        },
+        {
+          "site": "0069a548",
+          "target": "006dc940"
+        },
+        {
+          "site": "0069a54f",
+          "target": "0072a0b0"
+        }
+      ],
+      "entry": "0069a500",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-identity/0069a500.json",
+      "export_sha256": "de20ef466ca9cf1c688b53e41c6658ed2eefba8b2efc910004dc3cf5c8f2edb2",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 320,
+      "decompilation_sha256": "263d3d822dbc098060c559b45f0da17dfab249bf75a53a3c01fd84326aae89df",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006a1b48",
+          "target": "0069f930"
+        },
+        {
+          "site": "006a1b70",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a1ba4",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006a1bb6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a1bdc",
+          "target": "006a1d80"
+        },
+        {
+          "site": "006a1be8",
+          "target": "006a00a0"
+        },
+        {
+          "site": "006a1c01",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a1c24",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a1c34",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006a1c4f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a1c70",
+          "target": "006a0f30"
+        }
+      ],
+      "entry": "006a1b40",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-identity/006a1b40.json",
+      "export_sha256": "e00e88f7b9503a9408062017cc784fcc75db3a05ca0a312cda84f16c599a150f",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 446,
+      "decompilation_sha256": "180310d57addf383dd0ae39988f98cdbf9e8bcd2c15572a1ccf1e0bc4d398c98",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006a218f",
+          "target": "005aa0f0"
+        },
+        {
+          "site": "006a2195",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006a21c2",
+          "target": "0069f170"
+        },
+        {
+          "site": "006a21f9",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a222d",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006a223f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a2271",
+          "target": "006739f0"
+        },
+        {
+          "site": "006a227d",
+          "target": "006a4940"
+        },
+        {
+          "site": "006a2296",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a22b9",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a22c9",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006a22e4",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "006a2150",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-identity/006a2150.json",
+      "export_sha256": "ac4e8c03758291c074a73e19dca3f3102d62c5a53af95c64025986a81f1674ce",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 448,
+      "decompilation_sha256": "0e0b5e0b1358688cf8d7352a47d35c7b68c460350b8381b11af1aab39ab38d31",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006a670c",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006a671e",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a677d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a67a6",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006a67bf",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a67e2",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a67f2",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006a680d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a6841",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a6864",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a6874",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006a688f",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "006a66f0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-identity/006a66f0.json",
+      "export_sha256": "652d0ba486323f869b54e3dd234c10239f3f32636389f500e49f559fac3fc1e4",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 908,
+      "decompilation_sha256": "63bc3b42edb782adb46bb8bdc6db40a4d2436ee75fd142c31eb600b97ea5e6a8",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006b6a79",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6aa0",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b6aa9",
+          "target": "006b4250"
+        },
+        {
+          "site": "006b6acc",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6aef",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6aff",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b6b1a",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6b4c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6b73",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b6b7c",
+          "target": "006b46b0"
+        },
+        {
+          "site": "006b6b9c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6bbf",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6bcf",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b6bea",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6c1c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6c43",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b6c6c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6c8f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6c9f",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b6cba",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6cec",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006b6d13",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006b6d1e",
+          "target": "006a1780"
+        },
+        {
+          "site": "006b6d29",
+          "target": "00405890"
+        },
+        {
+          "site": "006b6d35",
+          "target": "00405820"
+        },
+        {
+          "site": "006b6d3e",
+          "target": "006a2020"
+        },
+        {
+          "site": "006b6d49",
+          "target": "00405890"
+        },
+        {
+          "site": "006b6d55",
+          "target": "00405820"
+        },
+        {
+          "site": "006b6d5e",
+          "target": "006a57b0"
+        },
+        {
+          "site": "006b6d69",
+          "target": "00405890"
+        },
+        {
+          "site": "006b6d75",
+          "target": "00405820"
+        },
+        {
+          "site": "006b6d7e",
+          "target": "006a57b0"
+        },
+        {
+          "site": "006b6d89",
+          "target": "00405890"
+        },
+        {
+          "site": "006b6d95",
+          "target": "00405820"
+        },
+        {
+          "site": "006b6da0",
+          "target": "00427010"
+        },
+        {
+          "site": "006b6dab",
+          "target": "00405890"
+        },
+        {
+          "site": "006b6db7",
+          "target": "00405820"
+        },
+        {
+          "site": "006b6dc0",
+          "target": "006a65f0"
+        },
+        {
+          "site": "006b6dcb",
+          "target": "00405890"
+        }
+      ],
+      "entry": "006b6a50",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-identity/006b6a50.json",
+      "export_sha256": "7084021611d71c32f00a855bdb8342b40ed1c0bf6788235343bf016a0df38526",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1105,
+      "decompilation_sha256": "9ae8fa337cacfc230afb50a855b9e0ea6cf6cb17e373e242f10c9a027f92114c",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006ded0f",
+          "target": "006df140"
+        },
+        {
+          "site": "006ded15",
+          "target": "007e513c"
+        },
+        {
+          "site": "006ded42",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006ded58",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006deda9",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006deddd",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006dedef",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006dee5d",
+          "target": "00405940"
+        },
+        {
+          "site": "006dee66",
+          "target": "00405890"
+        },
+        {
+          "site": "006dee80",
+          "target": "00405940"
+        },
+        {
+          "site": "006dee89",
+          "target": "00405890"
+        },
+        {
+          "site": "006deeb9",
+          "target": "00405940"
+        },
+        {
+          "site": "006deec2",
+          "target": "00405890"
+        },
+        {
+          "site": "006deee3",
+          "target": "00405940"
+        },
+        {
+          "site": "006deeec",
+          "target": "00405890"
+        },
+        {
+          "site": "006def06",
+          "target": "00405940"
+        },
+        {
+          "site": "006def0f",
+          "target": "00405890"
+        },
+        {
+          "site": "006def2d",
+          "target": "00475d50"
+        },
+        {
+          "site": "006def57",
+          "target": "00405890"
+        },
+        {
+          "site": "006def65",
+          "target": "007e4f62"
+        },
+        {
+          "site": "006def8a",
+          "target": "006dd9a0"
+        },
+        {
+          "site": "006def93",
+          "target": "00405890"
+        },
+        {
+          "site": "006defb7",
+          "target": "006dd9a0"
+        },
+        {
+          "site": "006defc0",
+          "target": "00405890"
+        },
+        {
+          "site": "006defdb",
+          "target": "00415d00"
+        },
+        {
+          "site": "006deff0",
+          "target": "00698500"
+        },
+        {
+          "site": "006df01f",
+          "target": "004050e0"
+        },
+        {
+          "site": "006df04f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df081",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006df09e",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df0c1",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df0d1",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006df0dd",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df0f6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006df119",
+          "target": "00405890"
+        }
+      ],
+      "entry": "006dece0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-identity/006dece0.json",
+      "export_sha256": "a85ecc421d954424ae1143481afdb4b451c7028f274cb5e7cd5ab70bbc944daa",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 67,
+      "decompilation_sha256": "ff90d623e7f576ed76c4410778bc0929ffe713dca42e95caa6b0d9f2998c27ad",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069c349",
+          "target": "006b9190"
+        },
+        {
+          "site": "0069c361",
+          "target": "0069c390"
+        },
+        {
+          "site": "0069c36d",
+          "target": "0069cfc0"
+        }
+      ],
+      "entry": "0069c340",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-operations/0069c340.json",
+      "export_sha256": "0ef64327fb3a60eb43f028549da7fb8bb7f1cf488a029b050a3d215c9fda69c1",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 247,
+      "decompilation_sha256": "59e48d97017a99154df37dd2f62eb154b0daffe6842b102b952785a1912c33be",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006c3915",
+          "target": "006c39f0"
+        },
+        {
+          "site": "006c392a",
+          "target": "006b7a00"
+        },
+        {
+          "site": "006c393c",
+          "target": "006c39f0"
+        },
+        {
+          "site": "006c3961",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006c3980",
+          "target": "007e520f"
+        },
+        {
+          "site": "006c39c8",
+          "target": "007e1cc0"
+        }
+      ],
+      "entry": "006c38f0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-operations/006c38f0.json",
+      "export_sha256": "1ed3a5b042f13f8435faac6df1aa3a01579ff106a20e5b353c468be56e2e9dda",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 162,
+      "decompilation_sha256": "f405967940038228d32183f826066402745fe4f6532bdb2ff633fc9524b1c797",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006c3ed9",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006c3eed",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006c3f26",
+          "target": "004336c0"
+        },
+        {
+          "site": "006c3f3e",
+          "target": "006b6ff0"
+        },
+        {
+          "site": "006c3f49",
+          "target": "006ae510"
+        },
+        {
+          "site": "006c3f55",
+          "target": "0069c390"
+        },
+        {
+          "site": "006c3f60",
+          "target": "006ae510"
+        }
+      ],
+      "entry": "006c3ed0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-operations/006c3ed0.json",
+      "export_sha256": "5cdcc0b155f709786a018f1cff9173895e1bd3253995003f5fa41b542cd6cf7d",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1244,
+      "decompilation_sha256": "f8be841fdaff4c917a86b121497fd873230c8471d5caf0dbc4787cfa5c3652ac",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069a5b0",
+          "target": "0049fc10"
+        },
+        {
+          "site": "0069a5bd",
+          "target": "006dc940"
+        },
+        {
+          "site": "0069a60c",
+          "target": "0067faa0"
+        },
+        {
+          "site": "0069a61e",
+          "target": "006b6700"
+        },
+        {
+          "site": "0069a637",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "0069a673",
+          "target": "0069bf70"
+        },
+        {
+          "site": "0069a689",
+          "target": "006b6700"
+        },
+        {
+          "site": "0069a6b0",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "0069a6d7",
+          "target": "00405100"
+        },
+        {
+          "site": "0069a713",
+          "target": "0069bf70"
+        },
+        {
+          "site": "0069a72f",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0069a753",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0069a76a",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "0069a777",
+          "target": "006dc940"
+        },
+        {
+          "site": "0069a7a2",
+          "target": "006dc940"
+        },
+        {
+          "site": "0069a7bd",
+          "target": "0049f090"
+        },
+        {
+          "site": "0069a7d0",
+          "target": "0069aab0"
+        },
+        {
+          "site": "0069a87a",
+          "target": "00423eb0"
+        },
+        {
+          "site": "0069a8ca",
+          "target": "0049c3c0"
+        },
+        {
+          "site": "0069a8d4",
+          "target": "00461410"
+        },
+        {
+          "site": "0069a8db",
+          "target": "0045d160"
+        },
+        {
+          "site": "0069a8ee",
+          "target": "0049d300"
+        },
+        {
+          "site": "0069a915",
+          "target": "00461410"
+        },
+        {
+          "site": "0069a91c",
+          "target": "0045d160"
+        },
+        {
+          "site": "0069a923",
+          "target": "005a3de0"
+        },
+        {
+          "site": "0069a94c",
+          "target": "00698500"
+        },
+        {
+          "site": "0069a953",
+          "target": "0069a4b0"
+        },
+        {
+          "site": "0069a95e",
+          "target": "00698500"
+        },
+        {
+          "site": "0069a965",
+          "target": "0069a4a0"
+        },
+        {
+          "site": "0069a96a",
+          "target": "00698500"
+        },
+        {
+          "site": "0069a971",
+          "target": "0069a4b0"
+        },
+        {
+          "site": "0069a99b",
+          "target": "0049c3c0"
+        },
+        {
+          "site": "0069a9a5",
+          "target": "00730460"
+        },
+        {
+          "site": "0069a9b3",
+          "target": "0049d300"
+        },
+        {
+          "site": "0069a9da",
+          "target": "005a3de0"
+        }
+      ],
+      "entry": "0069a560",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-receiver/0069a560.json",
+      "export_sha256": "5c8d37e1c1064fad25fc88e868706c87610e9ae5eb84b1316319a3183a6f0d65",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 787,
+      "decompilation_sha256": "a1320cbb471c81e3523fcd68df7eaff7268f25659e97ccd3e3ba49ad5fb97741",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069af2a",
+          "target": "0049fc10"
+        },
+        {
+          "site": "0069af3d",
+          "target": "00461410"
+        },
+        {
+          "site": "0069af71",
+          "target": "0069f1e0"
+        },
+        {
+          "site": "0069af78",
+          "target": "007447b0"
+        },
+        {
+          "site": "0069af82",
+          "target": "0069f250"
+        },
+        {
+          "site": "0069af89",
+          "target": "00742480"
+        },
+        {
+          "site": "0069af8e",
+          "target": "0069f1e0"
+        },
+        {
+          "site": "0069af95",
+          "target": "007447b0"
+        },
+        {
+          "site": "0069afc6",
+          "target": "00731c10"
+        },
+        {
+          "site": "0069afe6",
+          "target": "006997b0"
+        },
+        {
+          "site": "0069afef",
+          "target": "0069b9f0"
+        },
+        {
+          "site": "0069aff7",
+          "target": "00699b50"
+        },
+        {
+          "site": "0069afff",
+          "target": "00699320"
+        },
+        {
+          "site": "0069b03a",
+          "target": "006b66b0"
+        },
+        {
+          "site": "0069b048",
+          "target": "0072e7e0"
+        },
+        {
+          "site": "0069b06b",
+          "target": "0072ec20"
+        },
+        {
+          "site": "0069b0a7",
+          "target": "00475d50"
+        },
+        {
+          "site": "0069b0e6",
+          "target": "0072fe60"
+        },
+        {
+          "site": "0069b102",
+          "target": "0072ec70"
+        },
+        {
+          "site": "0069b161",
+          "target": "0072ed30"
+        },
+        {
+          "site": "0069b16b",
+          "target": "00731c00"
+        },
+        {
+          "site": "0069b17a",
+          "target": "006dc940"
+        },
+        {
+          "site": "0069b181",
+          "target": "0072a0b0"
+        },
+        {
+          "site": "0069b188",
+          "target": "00699680"
+        },
+        {
+          "site": "0069b198",
+          "target": "00699890"
+        },
+        {
+          "site": "0069b1d4",
+          "target": "0048daa0"
+        },
+        {
+          "site": "0069b1dd",
+          "target": "006df390"
+        }
+      ],
+      "entry": "0069af10",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-receiver/0069af10.json",
+      "export_sha256": "4150d02e765ed1765a64ad7b5ca8bb04767a4d3d82605403bab65648ce968b6b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 3371,
+      "decompilation_sha256": "19866c4e0295e28e5d288d384c05bfb1c78d8d40c2e4eb4c8c9145c97713d56e",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004249a4",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004249cb",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004249d3",
+          "target": "00427010"
+        },
+        {
+          "site": "004249f0",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424a13",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424a23",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00424a2f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424a4b",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424aae",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424ad5",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00424b1b",
+          "target": "004059b0"
+        },
+        {
+          "site": "00424b30",
+          "target": "004059b0"
+        },
+        {
+          "site": "00424b49",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424b6c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424b7c",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00424b97",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424c08",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424c2f",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00424c6f",
+          "target": "004059f0"
+        },
+        {
+          "site": "00424c9b",
+          "target": "007e4e6c"
+        },
+        {
+          "site": "00424cd6",
+          "target": "004059f0"
+        },
+        {
+          "site": "00424cf4",
+          "target": "004059f0"
+        },
+        {
+          "site": "00424d0e",
+          "target": "004059f0"
+        },
+        {
+          "site": "00424d28",
+          "target": "004059f0"
+        },
+        {
+          "site": "00424d41",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424d64",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424d74",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00424d8f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424dcd",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424df4",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00424df9",
+          "target": "00698500"
+        },
+        {
+          "site": "00424ebf",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00424edc",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424eff",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424f0f",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00424f2a",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424f5c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00424f83",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00424feb",
+          "target": "00698500"
+        },
+        {
+          "site": "0042500b",
+          "target": "00423bf0"
+        },
+        {
+          "site": "00425015",
+          "target": "007e513c"
+        },
+        {
+          "site": "0042504e",
+          "target": "00429ab0"
+        },
+        {
+          "site": "00425081",
+          "target": "004059b0"
+        },
+        {
+          "site": "004250f0",
+          "target": "004059b0"
+        },
+        {
+          "site": "00425105",
+          "target": "004059b0"
+        },
+        {
+          "site": "00425124",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00425157",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00425189",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004251c0",
+          "target": "004059b0"
+        },
+        {
+          "site": "004251db",
+          "target": "004059b0"
+        },
+        {
+          "site": "00425208",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00425221",
+          "target": "004059b0"
+        },
+        {
+          "site": "00425254",
+          "target": "007e4e6c"
+        },
+        {
+          "site": "00425295",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004252dd",
+          "target": "004059b0"
+        },
+        {
+          "site": "004252f2",
+          "target": "004059b0"
+        },
+        {
+          "site": "00425355",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0042539e",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004253c2",
+          "target": "004059b0"
+        },
+        {
+          "site": "004253ee",
+          "target": "007e56d0"
+        },
+        {
+          "site": "004253fd",
+          "target": "007e56d0"
+        },
+        {
+          "site": "00425413",
+          "target": "007e56d0"
+        },
+        {
+          "site": "00425441",
+          "target": "004059b0"
+        },
+        {
+          "site": "00425456",
+          "target": "004059b0"
+        },
+        {
+          "site": "00425492",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004254c1",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004254f8",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0042551b",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0042552b",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00425546",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004255a7",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004255ce",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00425606",
+          "target": "004059f0"
+        },
+        {
+          "site": "00425636",
+          "target": "004256a0"
+        },
+        {
+          "site": "00425642",
+          "target": "00405820"
+        },
+        {
+          "site": "00425656",
+          "target": "004147d0"
+        },
+        {
+          "site": "0042565f",
+          "target": "00405890"
+        },
+        {
+          "site": "00425668",
+          "target": "00405890"
+        },
+        {
+          "site": "0042568c",
+          "target": "004059f0"
+        }
+      ],
+      "entry": "00424970",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-world/00424970.json",
+      "export_sha256": "067dd07e037894cd1e0eefb5dbb318979d3d1a20e1caacf3c954a2a5d389c3b0",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 6194,
+      "decompilation_sha256": "005dc2214368c0a98874d3613f4d135ae50b505d0cf8d5deb9db4e7e68c13e69",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004257d1",
+          "target": "007e5f60"
+        },
+        {
+          "site": "004257fa",
+          "target": "0041db80"
+        },
+        {
+          "site": "0042580b",
+          "target": "0041df20"
+        },
+        {
+          "site": "00425811",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "00425827",
+          "target": "004297b0"
+        },
+        {
+          "site": "0042583f",
+          "target": "004297e0"
+        },
+        {
+          "site": "0042587a",
+          "target": "00423bf0"
+        },
+        {
+          "site": "00425884",
+          "target": "007e513c"
+        },
+        {
+          "site": "0042589a",
+          "target": "00429ae0"
+        },
+        {
+          "site": "004258a9",
+          "target": "00405100"
+        },
+        {
+          "site": "004258e6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0042591d",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0042592f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0042599b",
+          "target": "00427050"
+        },
+        {
+          "site": "004259a4",
+          "target": "00405890"
+        },
+        {
+          "site": "004259d8",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00425a0f",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00425a18",
+          "target": "00405890"
+        },
+        {
+          "site": "00425a35",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00425a47",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00425a90",
+          "target": "00405100"
+        },
+        {
+          "site": "00425ab2",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00425ae2",
+          "target": "00405940"
+        },
+        {
+          "site": "00425af3",
+          "target": "00405180"
+        },
+        {
+          "site": "00425afc",
+          "target": "00405890"
+        },
+        {
+          "site": "00425b11",
+          "target": "00698500"
+        },
+        {
+          "site": "00425b44",
+          "target": "00698500"
+        },
+        {
+          "site": "00425b4c",
+          "target": "007e4e3c"
+        },
+        {
+          "site": "00425b7a",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00425b8c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00425bdc",
+          "target": "00415d00"
+        },
+        {
+          "site": "00425bf9",
+          "target": "00427730"
+        },
+        {
+          "site": "00425c1e",
+          "target": "00415c90"
+        },
+        {
+          "site": "00425c33",
+          "target": "00414e30"
+        },
+        {
+          "site": "00425c40",
+          "target": "00405890"
+        },
+        {
+          "site": "00425c61",
+          "target": "004050e0"
+        },
+        {
+          "site": "00425c80",
+          "target": "00405940"
+        },
+        {
+          "site": "00425ca0",
+          "target": "00428d10"
+        },
+        {
+          "site": "00425ca9",
+          "target": "00405890"
+        },
+        {
+          "site": "00425cc9",
+          "target": "00405940"
+        },
+        {
+          "site": "00425cee",
+          "target": "00405940"
+        },
+        {
+          "site": "00425d07",
+          "target": "00428d10"
+        },
+        {
+          "site": "00425d10",
+          "target": "00405890"
+        },
+        {
+          "site": "00425d23",
+          "target": "00405940"
+        },
+        {
+          "site": "00425d34",
+          "target": "00428d10"
+        },
+        {
+          "site": "00425d3d",
+          "target": "00405890"
+        },
+        {
+          "site": "00425d6f",
+          "target": "00405940"
+        },
+        {
+          "site": "00425d9b",
+          "target": "00405940"
+        },
+        {
+          "site": "00425dc7",
+          "target": "00405940"
+        },
+        {
+          "site": "00425dec",
+          "target": "00405940"
+        },
+        {
+          "site": "00425e04",
+          "target": "00405940"
+        },
+        {
+          "site": "00425e2b",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00425e58",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00425e85",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00425eb2",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00425eb7",
+          "target": "00698500"
+        },
+        {
+          "site": "00425eea",
+          "target": "00423670"
+        },
+        {
+          "site": "00425f2d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00425f5e",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00425f93",
+          "target": "00405940"
+        },
+        {
+          "site": "00425fa4",
+          "target": "00405940"
+        },
+        {
+          "site": "00425fcf",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00426000",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00426048",
+          "target": "007e520f"
+        },
+        {
+          "site": "00426082",
+          "target": "00429f00"
+        },
+        {
+          "site": "0042609a",
+          "target": "00405940"
+        },
+        {
+          "site": "00426117",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0042614b",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0042615e",
+          "target": "00402860"
+        },
+        {
+          "site": "0042616a",
+          "target": "007e4e48"
+        },
+        {
+          "site": "004261a7",
+          "target": "00405940"
+        },
+        {
+          "site": "004261d3",
+          "target": "00405940"
+        },
+        {
+          "site": "004261f8",
+          "target": "00405940"
+        },
+        {
+          "site": "00426210",
+          "target": "00405940"
+        },
+        {
+          "site": "00426215",
+          "target": "00698500"
+        },
+        {
+          "site": "00426298",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004262c5",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "004262fc",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00426329",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "0042633f",
+          "target": "00405940"
+        },
+        {
+          "site": "00426355",
+          "target": "00405940"
+        },
+        {
+          "site": "00426381",
+          "target": "00405940"
+        },
+        {
+          "site": "004263a6",
+          "target": "00405940"
+        },
+        {
+          "site": "004263c0",
+          "target": "00405940"
+        },
+        {
+          "site": "004263ed",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0042641a",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00426447",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00426474",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00426510",
+          "target": "004094e0"
+        },
+        {
+          "site": "0042652a",
+          "target": "00429da0"
+        },
+        {
+          "site": "00426542",
+          "target": "00405040"
+        },
+        {
+          "site": "0042657e",
+          "target": "00409600"
+        },
+        {
+          "site": "004265a0",
+          "target": "00409f20"
+        },
+        {
+          "site": "004265e0",
+          "target": "004050e0"
+        },
+        {
+          "site": "0042661e",
+          "target": "00409f20"
+        },
+        {
+          "site": "00426649",
+          "target": "00405100"
+        },
+        {
+          "site": "00426664",
+          "target": "007e4e78"
+        },
+        {
+          "site": "00426677",
+          "target": "004050e0"
+        },
+        {
+          "site": "0042669d",
+          "target": "00409f20"
+        },
+        {
+          "site": "004266c8",
+          "target": "00405100"
+        },
+        {
+          "site": "004266e3",
+          "target": "007e4e78"
+        },
+        {
+          "site": "004266f6",
+          "target": "004050e0"
+        },
+        {
+          "site": "0042670e",
+          "target": "004050e0"
+        },
+        {
+          "site": "00426721",
+          "target": "00409600"
+        },
+        {
+          "site": "00426738",
+          "target": "00420c60"
+        },
+        {
+          "site": "00426750",
+          "target": "00420c60"
+        },
+        {
+          "site": "00426784",
+          "target": "00420c60"
+        },
+        {
+          "site": "004267b6",
+          "target": "004094e0"
+        },
+        {
+          "site": "004267d0",
+          "target": "00429da0"
+        },
+        {
+          "site": "004267ec",
+          "target": "00405040"
+        },
+        {
+          "site": "004267fe",
+          "target": "00429e70"
+        },
+        {
+          "site": "00426822",
+          "target": "00429d60"
+        },
+        {
+          "site": "0042683c",
+          "target": "00420ae0"
+        },
+        {
+          "site": "00426850",
+          "target": "004203e0"
+        },
+        {
+          "site": "00426864",
+          "target": "00429d70"
+        },
+        {
+          "site": "00426879",
+          "target": "00405180"
+        },
+        {
+          "site": "0042689b",
+          "target": "004094e0"
+        },
+        {
+          "site": "004268b5",
+          "target": "00429da0"
+        },
+        {
+          "site": "004268d3",
+          "target": "00405040"
+        },
+        {
+          "site": "0042693c",
+          "target": "00424260"
+        },
+        {
+          "site": "00426989",
+          "target": "00405890"
+        },
+        {
+          "site": "004269b5",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004269e5",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "004269ea",
+          "target": "00698500"
+        },
+        {
+          "site": "00426ace",
+          "target": "00486510"
+        },
+        {
+          "site": "00426ae0",
+          "target": "00405890"
+        },
+        {
+          "site": "00426b23",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00426b57",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00426b69",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00426bd1",
+          "target": "00405940"
+        },
+        {
+          "site": "00426c12",
+          "target": "00405890"
+        },
+        {
+          "site": "00426c66",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00426c96",
+          "target": "00405940"
+        },
+        {
+          "site": "00426ca7",
+          "target": "00405180"
+        },
+        {
+          "site": "00426cb0",
+          "target": "00405890"
+        },
+        {
+          "site": "00426cc6",
+          "target": "00405940"
+        },
+        {
+          "site": "00426ccf",
+          "target": "00405890"
+        },
+        {
+          "site": "00426d00",
+          "target": "00405940"
+        },
+        {
+          "site": "00426d09",
+          "target": "00405890"
+        },
+        {
+          "site": "00426d2a",
+          "target": "00405940"
+        },
+        {
+          "site": "00426d33",
+          "target": "00405890"
+        },
+        {
+          "site": "00426d5a",
+          "target": "00698500"
+        },
+        {
+          "site": "00426d86",
+          "target": "00402860"
+        },
+        {
+          "site": "00426d92",
+          "target": "007e4e48"
+        },
+        {
+          "site": "00426db7",
+          "target": "007e5e00"
+        },
+        {
+          "site": "00426dc7",
+          "target": "007e5e00"
+        },
+        {
+          "site": "00426dd7",
+          "target": "004274a0"
+        },
+        {
+          "site": "00426dec",
+          "target": "004050e0"
+        },
+        {
+          "site": "00426df5",
+          "target": "00405890"
+        },
+        {
+          "site": "00426e1f",
+          "target": "00405100"
+        },
+        {
+          "site": "00426e41",
+          "target": "004050e0"
+        },
+        {
+          "site": "00426e75",
+          "target": "00405100"
+        },
+        {
+          "site": "00426e8a",
+          "target": "004145d0"
+        },
+        {
+          "site": "00426ea2",
+          "target": "004050e0"
+        },
+        {
+          "site": "00426eb7",
+          "target": "004050e0"
+        },
+        {
+          "site": "00426ed2",
+          "target": "00405100"
+        },
+        {
+          "site": "00426ef4",
+          "target": "004050e0"
+        },
+        {
+          "site": "00426f28",
+          "target": "00405100"
+        },
+        {
+          "site": "00426f4a",
+          "target": "004050e0"
+        },
+        {
+          "site": "00426f68",
+          "target": "004050e0"
+        },
+        {
+          "site": "00426f7d",
+          "target": "004050e0"
+        },
+        {
+          "site": "00426f95",
+          "target": "004050e0"
+        },
+        {
+          "site": "00426fc5",
+          "target": "004050e0"
+        }
+      ],
+      "entry": "004257b0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-world/004257b0.json",
+      "export_sha256": "5d180554003bec8638a4b65832c0d2e7f489c316c9ea5a300cb1ca119cda6467",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 352,
+      "decompilation_sha256": "be9d2fe94c4530215a94a1c08c1306dff3f8158a8b44b7bd2d33480f130b1fe3",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00476382",
+          "target": "006e0890"
+        },
+        {
+          "site": "004763db",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00476402",
+          "target": "007e4f32"
+        },
+        {
+          "site": "0047642e",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00476453",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00476476",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00476486",
+          "target": "007e4f32"
+        },
+        {
+          "site": "004764a1",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "00476370",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-world2/00476370.json",
+      "export_sha256": "c8d7107078562cc6765fac93b4281ce58637840c33b29b21e34898e3de87fd41",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 427,
+      "decompilation_sha256": "2f382669c55d61f481f6b8f77b66c03cf6317f210e1eeaf4e3709c8aace7b02d",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004764e2",
+          "target": "006e0b70"
+        },
+        {
+          "site": "0047652f",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00476541",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00476592",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004765bf",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "004765de",
+          "target": "00475ec0"
+        },
+        {
+          "site": "004765f7",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0047661a",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0047662a",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00476645",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0047666b",
+          "target": "00476a50"
+        }
+      ],
+      "entry": "004764d0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-world2/004764d0.json",
+      "export_sha256": "42c9a6248610a2cfcb5c2c3c3d3f7e59c276ca5817cda93ad6a4f689d603f6c6",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 848,
+      "decompilation_sha256": "94379330c9ab5d272587ae93345f59a7d3b96935d0cb84585ea8ebdbb0ecc38b",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "00477f88",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00477fc2",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00477fd3",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00478027",
+          "target": "00405940"
+        },
+        {
+          "site": "00478046",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00478068",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00478078",
+          "target": "007e4f32"
+        },
+        {
+          "site": "00478083",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004780af",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004780d8",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "004780f3",
+          "target": "007de700"
+        },
+        {
+          "site": "00478100",
+          "target": "004793f0"
+        },
+        {
+          "site": "00478125",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00478147",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00478162",
+          "target": "007e4f38"
+        },
+        {
+          "site": "0047819f",
+          "target": "007e4f38"
+        },
+        {
+          "site": "004781c8",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "004781d6",
+          "target": "00405940"
+        },
+        {
+          "site": "004781e4",
+          "target": "00405940"
+        },
+        {
+          "site": "004781f5",
+          "target": "00478e50"
+        },
+        {
+          "site": "0047821c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "00478245",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "00478253",
+          "target": "00405940"
+        },
+        {
+          "site": "0047825f",
+          "target": "004772f0"
+        },
+        {
+          "site": "00478275",
+          "target": "00405890"
+        },
+        {
+          "site": "0047828a",
+          "target": "00477330"
+        }
+      ],
+      "entry": "00477f50",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-world2/00477f50.json",
+      "export_sha256": "e5b0d087457c484a674372cf9528782b2f28d4a2c69f137eda686c30f011bb5b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1517,
+      "decompilation_sha256": "4aa4c3b0c5d29b7ba003986771520863795caa593ce30e8bbf965d3d9c4b363e",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0068edbd",
+          "target": "006b9190"
+        },
+        {
+          "site": "0068ee59",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068ee74",
+          "target": "004050e0"
+        },
+        {
+          "site": "0068ee88",
+          "target": "00405100"
+        },
+        {
+          "site": "0068eeb5",
+          "target": "004145d0"
+        },
+        {
+          "site": "0068eec2",
+          "target": "004050e0"
+        },
+        {
+          "site": "0068eed8",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068eefc",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068ef0e",
+          "target": "00405100"
+        },
+        {
+          "site": "0068ef3c",
+          "target": "004145d0"
+        },
+        {
+          "site": "0068ef49",
+          "target": "004050e0"
+        },
+        {
+          "site": "0068ef63",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068ef7c",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068efb8",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068efdc",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068f068",
+          "target": "00405100"
+        },
+        {
+          "site": "0068f096",
+          "target": "004145d0"
+        },
+        {
+          "site": "0068f0af",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068f0cc",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068f0e5",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068f12a",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068f14e",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068f171",
+          "target": "00405100"
+        },
+        {
+          "site": "0068f19a",
+          "target": "004145d0"
+        },
+        {
+          "site": "0068f1a7",
+          "target": "004050e0"
+        },
+        {
+          "site": "0068f1c1",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068f1e5",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068f1f7",
+          "target": "00405100"
+        },
+        {
+          "site": "0068f222",
+          "target": "004145d0"
+        },
+        {
+          "site": "0068f22f",
+          "target": "004050e0"
+        },
+        {
+          "site": "0068f249",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068f265",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068f2af",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068f2d6",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068f356",
+          "target": "006a1c80"
+        }
+      ],
+      "entry": "0068ed90",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-world2/0068ed90.json",
+      "export_sha256": "43ef2b8696626cb00c9f09f4bb3852f6e137b4e149ad35e1befe73bf793307d6",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 67,
+      "decompilation_sha256": "14eafbf583597c6e195af2d240c6ef4ba91a4ad9f30f612e92d7604c65fc5095",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0068f38d",
+          "target": "006b8ec0"
+        }
+      ],
+      "entry": "0068f380",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-world2/0068f380.json",
+      "export_sha256": "f72a9459d317926d0620a156d49b3b99cc407570df7f33b98f646408562fbd44",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 894,
+      "decompilation_sha256": "1867ef1252f87ab55c58658f91e65dac0ceef4d8b79fade93c2c282365b149f8",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006a496a",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a49a3",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006a49b8",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a4a03",
+          "target": "00405940"
+        },
+        {
+          "site": "006a4a0b",
+          "target": "00405890"
+        },
+        {
+          "site": "006a4a18",
+          "target": "006a2340"
+        },
+        {
+          "site": "006a4a2b",
+          "target": "00405940"
+        },
+        {
+          "site": "006a4a33",
+          "target": "00405890"
+        },
+        {
+          "site": "006a4a48",
+          "target": "006a4e00"
+        },
+        {
+          "site": "006a4a56",
+          "target": "006a4e00"
+        },
+        {
+          "site": "006a4a64",
+          "target": "006a4e00"
+        },
+        {
+          "site": "006a4a72",
+          "target": "006a4e00"
+        },
+        {
+          "site": "006a4a80",
+          "target": "006a4e00"
+        },
+        {
+          "site": "006a4aaa",
+          "target": "006a5000"
+        },
+        {
+          "site": "006a4adb",
+          "target": "006a4e00"
+        },
+        {
+          "site": "006a4b02",
+          "target": "006a5000"
+        },
+        {
+          "site": "006a4b30",
+          "target": "006a4e00"
+        },
+        {
+          "site": "006a4b52",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a4b7d",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006a4b88",
+          "target": "007e5e00"
+        },
+        {
+          "site": "006a4bab",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a4bcd",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a4bdd",
+          "target": "007e4f32"
+        },
+        {
+          "site": "006a4bf6",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a4c2d",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006a4c58",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006a4c60",
+          "target": "00405890"
+        },
+        {
+          "site": "006a4c72",
+          "target": "00405940"
+        },
+        {
+          "site": "006a4c7a",
+          "target": "00405890"
+        },
+        {
+          "site": "006a4c8d",
+          "target": "00405940"
+        },
+        {
+          "site": "006a4c95",
+          "target": "00405890"
+        }
+      ],
+      "entry": "006a4940",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-world2/006a4940.json",
+      "export_sha256": "856ba136d63b030fa9d5033f2c817053dc2c7eabc784180873c7e07bc9016f93",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 561,
+      "decompilation_sha256": "8891b8f59b4e7e1b5e7d8964324c257e0bb2fdaefa77224a831460f8a491ea08",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "007ddcec",
+          "target": "007ded70"
+        },
+        {
+          "site": "007ddd1a",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "007ddd30",
+          "target": "007e4f38"
+        },
+        {
+          "site": "007ddd79",
+          "target": "007e4f38"
+        },
+        {
+          "site": "007ddd9c",
+          "target": "007e4f38"
+        },
+        {
+          "site": "007dddac",
+          "target": "007e4f32"
+        },
+        {
+          "site": "007dddd1",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "007ddde7",
+          "target": "007e4f38"
+        },
+        {
+          "site": "007dde2c",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "007dde42",
+          "target": "007e4f38"
+        },
+        {
+          "site": "007dde7b",
+          "target": "00405940"
+        },
+        {
+          "site": "007dde84",
+          "target": "00405890"
+        },
+        {
+          "site": "007dde97",
+          "target": "00405890"
+        },
+        {
+          "site": "007dde9e",
+          "target": "0078b7f0"
+        },
+        {
+          "site": "007ddea7",
+          "target": "00405890"
+        },
+        {
+          "site": "007ddec1",
+          "target": "007e4f38"
+        }
+      ],
+      "entry": "007ddcb0",
+      "export_path": "analysis/work/future-dependencies/hd2-future-save-world2/007ddcb0.json",
+      "export_sha256": "0c306c1fc9cbc4f87f98b0b3c4a786c819e4f861acec63c077f91b197bd33e8b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1116,
+      "decompilation_sha256": "501e5942e122608f85993fdf0ea5f3820f36527db46a67ac6774ed5beabeebc1",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0067f57c",
+          "target": "0061bea0"
+        },
+        {
+          "site": "0067f5b8",
+          "target": "00633250"
+        },
+        {
+          "site": "0067f5cc",
+          "target": "00633250"
+        },
+        {
+          "site": "0067f5e1",
+          "target": "00633250"
+        },
+        {
+          "site": "0067f5f5",
+          "target": "00633230"
+        },
+        {
+          "site": "0067f600",
+          "target": "00633270"
+        },
+        {
+          "site": "0067f632",
+          "target": "006dc940"
+        },
+        {
+          "site": "0067f639",
+          "target": "0072b1c0"
+        },
+        {
+          "site": "0067f663",
+          "target": "00615a90"
+        },
+        {
+          "site": "0067f681",
+          "target": "0066d7a0"
+        },
+        {
+          "site": "0067f6bd",
+          "target": "00496e40"
+        },
+        {
+          "site": "0067f704",
+          "target": "00620e30"
+        },
+        {
+          "site": "0067f763",
+          "target": "00615a90"
+        },
+        {
+          "site": "0067f7e2",
+          "target": "006dc940"
+        },
+        {
+          "site": "0067f7e9",
+          "target": "0072b1c0"
+        },
+        {
+          "site": "0067f841",
+          "target": "00633230"
+        },
+        {
+          "site": "0067f84e",
+          "target": "00633270"
+        },
+        {
+          "site": "0067f85f",
+          "target": "00698500"
+        },
+        {
+          "site": "0067f86e",
+          "target": "0067faa0"
+        },
+        {
+          "site": "0067f8dc",
+          "target": "005aa0f0"
+        },
+        {
+          "site": "0067f8e2",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0067f8f2",
+          "target": "00633270"
+        },
+        {
+          "site": "0067f920",
+          "target": "00615a90"
+        },
+        {
+          "site": "0067f939",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0067f953",
+          "target": "0066d7a0"
+        },
+        {
+          "site": "0067f961",
+          "target": "006dc940"
+        },
+        {
+          "site": "0067f976",
+          "target": "006dc940"
+        },
+        {
+          "site": "0067f98b",
+          "target": "006dc940"
+        }
+      ],
+      "entry": "0067f550",
+      "export_path": "analysis/work/future-dependencies/prior-contract-exports/0067f550.json",
+      "export_sha256": "15de2941e07398bcd5b3db99291a8c78946265092ed1545211cfdd55be810a1a",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1152,
+      "decompilation_sha256": "aef2f80d445ae3818f1f3d3414f0017aa0edd054fa719835d5dc10780b7799c8",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0068069f",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "006806db",
+          "target": "00680b00"
+        },
+        {
+          "site": "006806ec",
+          "target": "00615360"
+        },
+        {
+          "site": "00680702",
+          "target": "00614f10"
+        },
+        {
+          "site": "00680711",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680719",
+          "target": "00698500"
+        },
+        {
+          "site": "00680735",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680748",
+          "target": "00615360"
+        },
+        {
+          "site": "0068074f",
+          "target": "00698500"
+        },
+        {
+          "site": "006807a8",
+          "target": "00698500"
+        },
+        {
+          "site": "006807c3",
+          "target": "00614f10"
+        },
+        {
+          "site": "006807d1",
+          "target": "00698500"
+        },
+        {
+          "site": "006807ec",
+          "target": "00614f10"
+        },
+        {
+          "site": "006807fb",
+          "target": "00614e80"
+        },
+        {
+          "site": "0068080a",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680814",
+          "target": "00614f10"
+        },
+        {
+          "site": "00680823",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680834",
+          "target": "00615360"
+        },
+        {
+          "site": "0068084a",
+          "target": "00614f10"
+        },
+        {
+          "site": "00680859",
+          "target": "00614e80"
+        },
+        {
+          "site": "0068086a",
+          "target": "00615360"
+        },
+        {
+          "site": "00680880",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068088f",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680897",
+          "target": "00698500"
+        },
+        {
+          "site": "0068089e",
+          "target": "0069c280"
+        },
+        {
+          "site": "006808b3",
+          "target": "00614e80"
+        },
+        {
+          "site": "006808c4",
+          "target": "00615360"
+        },
+        {
+          "site": "006808da",
+          "target": "00614f10"
+        },
+        {
+          "site": "006808e9",
+          "target": "00614e80"
+        },
+        {
+          "site": "006808f1",
+          "target": "00698500"
+        },
+        {
+          "site": "00680902",
+          "target": "006b6700"
+        },
+        {
+          "site": "00680916",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680927",
+          "target": "00615360"
+        },
+        {
+          "site": "0068093d",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068094c",
+          "target": "00614e80"
+        },
+        {
+          "site": "0068095d",
+          "target": "00615360"
+        },
+        {
+          "site": "00680979",
+          "target": "00615360"
+        },
+        {
+          "site": "00680988",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680999",
+          "target": "00615360"
+        },
+        {
+          "site": "006809af",
+          "target": "00614f10"
+        },
+        {
+          "site": "006809be",
+          "target": "00614e80"
+        },
+        {
+          "site": "006809cf",
+          "target": "00615360"
+        },
+        {
+          "site": "006809e5",
+          "target": "00614f10"
+        },
+        {
+          "site": "006809f4",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680a05",
+          "target": "00615360"
+        },
+        {
+          "site": "00680a1b",
+          "target": "00614f10"
+        },
+        {
+          "site": "00680a2a",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680a3b",
+          "target": "00615360"
+        },
+        {
+          "site": "00680a51",
+          "target": "00614f10"
+        },
+        {
+          "site": "00680a60",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680a71",
+          "target": "00615360"
+        },
+        {
+          "site": "00680a87",
+          "target": "00614f10"
+        },
+        {
+          "site": "00680a96",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680aa7",
+          "target": "00615360"
+        },
+        {
+          "site": "00680abd",
+          "target": "00614f10"
+        },
+        {
+          "site": "00680acc",
+          "target": "00614e80"
+        },
+        {
+          "site": "00680add",
+          "target": "00615360"
+        },
+        {
+          "site": "00680af1",
+          "target": "00614f10"
+        }
+      ],
+      "entry": "00680680",
+      "export_path": "analysis/work/future-dependencies/prior-contract-exports/00680680.json",
+      "export_sha256": "e1b60cebcbec920428e7b3c8ead80c848f39f3a521b899aa2e674d6050958ac6",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1044,
+      "decompilation_sha256": "12e689bcfa3d61ec94128d9c00d711b2d7fadf590f7ba1bc3cf91f326fae0fc7",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0068ce8b",
+          "target": "00620e30"
+        },
+        {
+          "site": "0068ced5",
+          "target": "00620e30"
+        },
+        {
+          "site": "0068cf16",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068cf26",
+          "target": "0068c2e0"
+        },
+        {
+          "site": "0068cf3c",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "0068cf4a",
+          "target": "006b13c0"
+        },
+        {
+          "site": "0068cf66",
+          "target": "0066d7a0"
+        },
+        {
+          "site": "0068cf77",
+          "target": "0066d7a0"
+        },
+        {
+          "site": "0068cf90",
+          "target": "0066d7a0"
+        },
+        {
+          "site": "0068cf9c",
+          "target": "0068c2e0"
+        },
+        {
+          "site": "0068cfb6",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "0068cfd1",
+          "target": "0068c300"
+        },
+        {
+          "site": "0068cfde",
+          "target": "006b12d0"
+        },
+        {
+          "site": "0068cfef",
+          "target": "006b76e0"
+        },
+        {
+          "site": "0068d005",
+          "target": "006dc940"
+        },
+        {
+          "site": "0068d00c",
+          "target": "006c39f0"
+        },
+        {
+          "site": "0068d025",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068d056",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068d066",
+          "target": "0068c2e0"
+        },
+        {
+          "site": "0068d080",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "0068d09b",
+          "target": "0068c300"
+        },
+        {
+          "site": "0068d0a8",
+          "target": "006b12d0"
+        },
+        {
+          "site": "0068d0b9",
+          "target": "006b76e0"
+        },
+        {
+          "site": "0068d0cf",
+          "target": "006dc940"
+        },
+        {
+          "site": "0068d0d6",
+          "target": "006c39f0"
+        },
+        {
+          "site": "0068d0ef",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068d124",
+          "target": "00615a90"
+        },
+        {
+          "site": "0068d13c",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "0068d157",
+          "target": "006b76e0"
+        },
+        {
+          "site": "0068d170",
+          "target": "006dc940"
+        },
+        {
+          "site": "0068d177",
+          "target": "006c3340"
+        },
+        {
+          "site": "0068d186",
+          "target": "006b8a20"
+        },
+        {
+          "site": "0068d1ad",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068d1b7",
+          "target": "006b6530"
+        },
+        {
+          "site": "0068d1c2",
+          "target": "006b8a20"
+        },
+        {
+          "site": "0068d1da",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "0068d1e6",
+          "target": "006b6530"
+        },
+        {
+          "site": "0068d1f3",
+          "target": "006b9680"
+        }
+      ],
+      "entry": "0068ce00",
+      "export_path": "analysis/work/future-dependencies/prior-contract-exports/0068ce00.json",
+      "export_sha256": "8b50e4bfc7776dded9b85cffaff53db131ff9f5f0352c0cf3ce938fae7979a79",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 720,
+      "decompilation_sha256": "e2314d166f7880a39a5cd0396a8a21607b747394a6d226f7a4a9d4f6486b00df",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0068d30f",
+          "target": "007e520f"
+        },
+        {
+          "site": "0068d355",
+          "target": "007e520f"
+        },
+        {
+          "site": "0068d37d",
+          "target": "00625e80"
+        },
+        {
+          "site": "0068d39d",
+          "target": "00627ed0"
+        },
+        {
+          "site": "0068d3a4",
+          "target": "0068c2e0"
+        },
+        {
+          "site": "0068d3c5",
+          "target": "007e520f"
+        },
+        {
+          "site": "0068d3ed",
+          "target": "00625e80"
+        },
+        {
+          "site": "0068d40d",
+          "target": "00627ed0"
+        },
+        {
+          "site": "0068d45d",
+          "target": "0066bfa0"
+        },
+        {
+          "site": "0068d487",
+          "target": "0068ead0"
+        },
+        {
+          "site": "0068d496",
+          "target": "0068f3d0"
+        },
+        {
+          "site": "0068d4b8",
+          "target": "0068d5c0"
+        },
+        {
+          "site": "0068d4c2",
+          "target": "007e520f"
+        },
+        {
+          "site": "0068d4e1",
+          "target": "00668120"
+        },
+        {
+          "site": "0068d532",
+          "target": "0066e750"
+        },
+        {
+          "site": "0068d57a",
+          "target": "0066c950"
+        },
+        {
+          "site": "0068d59b",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "0068d5a7",
+          "target": "0068f700"
+        }
+      ],
+      "entry": "0068d2f0",
+      "export_path": "analysis/work/future-dependencies/prior-contract-exports/0068d2f0.json",
+      "export_sha256": "ba003f4479d673882d25ca6aab3efcac0b6e372ae3cd4d4b1f4b24a372c0df0c",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 699,
+      "decompilation_sha256": "998b3c6673db5438bab9b1c1db054ac41edc8f0a4f88f614bf37ef2e75c71c39",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0068eaff",
+          "target": "00615360"
+        },
+        {
+          "site": "0068eb20",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068eb31",
+          "target": "00615360"
+        },
+        {
+          "site": "0068eb45",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068eb56",
+          "target": "00615360"
+        },
+        {
+          "site": "0068eb6a",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068eb7b",
+          "target": "00615360"
+        },
+        {
+          "site": "0068eb8f",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068eba0",
+          "target": "00615360"
+        },
+        {
+          "site": "0068eba9",
+          "target": "0068e0f0"
+        },
+        {
+          "site": "0068ebb7",
+          "target": "00615360"
+        },
+        {
+          "site": "0068ebe0",
+          "target": "00614e80"
+        },
+        {
+          "site": "0068ebf8",
+          "target": "0061e0a0"
+        },
+        {
+          "site": "0068ec09",
+          "target": "00615360"
+        },
+        {
+          "site": "0068ec1f",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068ec2e",
+          "target": "00614e80"
+        },
+        {
+          "site": "0068ec38",
+          "target": "0068f600"
+        },
+        {
+          "site": "0068ec43",
+          "target": "0068c2e0"
+        },
+        {
+          "site": "0068ec56",
+          "target": "00614e80"
+        },
+        {
+          "site": "0068ec67",
+          "target": "00615360"
+        },
+        {
+          "site": "0068ec7d",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068ec98",
+          "target": "0068c2e0"
+        },
+        {
+          "site": "0068ecb2",
+          "target": "00614e80"
+        },
+        {
+          "site": "0068ecc3",
+          "target": "00615360"
+        },
+        {
+          "site": "0068ecd9",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068ecf1",
+          "target": "0061e0a0"
+        },
+        {
+          "site": "0068ed00",
+          "target": "00614e80"
+        },
+        {
+          "site": "0068ed0a",
+          "target": "0068c2e0"
+        },
+        {
+          "site": "0068ed1d",
+          "target": "00614e80"
+        },
+        {
+          "site": "0068ed2e",
+          "target": "00615360"
+        },
+        {
+          "site": "0068ed44",
+          "target": "00614f10"
+        },
+        {
+          "site": "0068ed53",
+          "target": "00614e80"
+        },
+        {
+          "site": "0068ed64",
+          "target": "00615360"
+        },
+        {
+          "site": "0068ed78",
+          "target": "00614f10"
+        }
+      ],
+      "entry": "0068ead0",
+      "export_path": "analysis/work/future-dependencies/prior-contract-exports/0068ead0.json",
+      "export_sha256": "560769bc708ac6424b9d6681e6eaf8f4696c3621d86f81441f347ff529f078f2",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 173,
+      "decompilation_sha256": "fb2ba46b3c1ba344b8031cc63fbda51a610bd4cb748c47e78aa92ff0731ae64a",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "0069e644",
+          "target": "007e4f62"
+        },
+        {
+          "site": "0069e65e",
+          "target": "0067e840"
+        },
+        {
+          "site": "0069e6a0",
+          "target": "0049b7c0"
+        },
+        {
+          "site": "0069e6a5",
+          "target": "00464e90"
+        }
+      ],
+      "entry": "0069e620",
+      "export_path": "analysis/work/future-dependencies/prior-contract-exports/0069e620.json",
+      "export_sha256": "5585ad3b5ab7c3afb5b95791f63b8ae117db260af18bc04db4183b0b7ab8b49d",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 3071,
+      "decompilation_sha256": "1b0c1acf970fa072e2f00e84475fdd939c97eae19e09da598afef89f0468a579",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006c2139",
+          "target": "006b32a0"
+        },
+        {
+          "site": "006c2195",
+          "target": "006c31d0"
+        },
+        {
+          "site": "006c2206",
+          "target": "0069e620"
+        },
+        {
+          "site": "006c2243",
+          "target": "0069b8b0"
+        },
+        {
+          "site": "006c224d",
+          "target": "0069e620"
+        },
+        {
+          "site": "006c2286",
+          "target": "00464e90"
+        },
+        {
+          "site": "006c22be",
+          "target": "0069b8b0"
+        },
+        {
+          "site": "006c22e5",
+          "target": "0069a500"
+        },
+        {
+          "site": "006c22ef",
+          "target": "00461410"
+        },
+        {
+          "site": "006c22f6",
+          "target": "0045d1d0"
+        },
+        {
+          "site": "006c22ff",
+          "target": "00464e90"
+        },
+        {
+          "site": "006c2315",
+          "target": "006c20c0"
+        },
+        {
+          "site": "006c2348",
+          "target": "007e4f62"
+        },
+        {
+          "site": "006c2362",
+          "target": "0067ead0"
+        },
+        {
+          "site": "006c23bc",
+          "target": "007e4f62"
+        },
+        {
+          "site": "006c23d6",
+          "target": "0067ead0"
+        },
+        {
+          "site": "006c241a",
+          "target": "007e4f62"
+        },
+        {
+          "site": "006c2434",
+          "target": "006c3010"
+        },
+        {
+          "site": "006c24d8",
+          "target": "0069e600"
+        },
+        {
+          "site": "006c24e0",
+          "target": "0066eae0"
+        },
+        {
+          "site": "006c2556",
+          "target": "0066eae0"
+        },
+        {
+          "site": "006c2571",
+          "target": "0066eae0"
+        },
+        {
+          "site": "006c258c",
+          "target": "0066eae0"
+        },
+        {
+          "site": "006c25a7",
+          "target": "0066eae0"
+        },
+        {
+          "site": "006c25b7",
+          "target": "006c0ef0"
+        },
+        {
+          "site": "006c2621",
+          "target": "00730a40"
+        },
+        {
+          "site": "006c262b",
+          "target": "0072e890"
+        },
+        {
+          "site": "006c2637",
+          "target": "00731610"
+        },
+        {
+          "site": "006c2643",
+          "target": "007e4f62"
+        },
+        {
+          "site": "006c265b",
+          "target": "00698510"
+        },
+        {
+          "site": "006c2674",
+          "target": "006b8700"
+        },
+        {
+          "site": "006c267f",
+          "target": "006b9190"
+        },
+        {
+          "site": "006c268c",
+          "target": "0072ec70"
+        },
+        {
+          "site": "006c26fe",
+          "target": "006e4fb0"
+        },
+        {
+          "site": "006c2728",
+          "target": "007e5ed4"
+        },
+        {
+          "site": "006c2743",
+          "target": "007e1cc0"
+        },
+        {
+          "site": "006c2765",
+          "target": "006ca5d0"
+        },
+        {
+          "site": "006c2786",
+          "target": "0072ed30"
+        },
+        {
+          "site": "006c27bb",
+          "target": "007e4f62"
+        },
+        {
+          "site": "006c27d9",
+          "target": "0067ead0"
+        },
+        {
+          "site": "006c28ba",
+          "target": "00464e90"
+        },
+        {
+          "site": "006c28d1",
+          "target": "0069e620"
+        },
+        {
+          "site": "006c28f9",
+          "target": "00698500"
+        },
+        {
+          "site": "006c2900",
+          "target": "0069e6e0"
+        },
+        {
+          "site": "006c2926",
+          "target": "007e4f62"
+        },
+        {
+          "site": "006c2944",
+          "target": "0067ead0"
+        },
+        {
+          "site": "006c2a67",
+          "target": "007e4f62"
+        },
+        {
+          "site": "006c2a85",
+          "target": "006c2d50"
+        },
+        {
+          "site": "006c2aa3",
+          "target": "006c2d70"
+        },
+        {
+          "site": "006c2ab2",
+          "target": "006c2e90"
+        },
+        {
+          "site": "006c2ac1",
+          "target": "006c2e90"
+        },
+        {
+          "site": "006c2ad0",
+          "target": "00654540"
+        },
+        {
+          "site": "006c2adf",
+          "target": "006c2eb0"
+        },
+        {
+          "site": "006c2aee",
+          "target": "004374d0"
+        },
+        {
+          "site": "006c2b56",
+          "target": "006637f0"
+        },
+        {
+          "site": "006c2bfb",
+          "target": "006c0910"
+        },
+        {
+          "site": "006c2c10",
+          "target": "006c20c0"
+        },
+        {
+          "site": "006c2c1b",
+          "target": "006b8aa0"
+        },
+        {
+          "site": "006c2c46",
+          "target": "006b8aa0"
+        },
+        {
+          "site": "006c2c50",
+          "target": "006c0ef0"
+        },
+        {
+          "site": "006c2c70",
+          "target": "006c0910"
+        },
+        {
+          "site": "006c2c7e",
+          "target": "006c20c0"
+        },
+        {
+          "site": "006c2c89",
+          "target": "006b8b20"
+        },
+        {
+          "site": "006c2cb4",
+          "target": "006b8b20"
+        },
+        {
+          "site": "006c2cbe",
+          "target": "006c0ef0"
+        },
+        {
+          "site": "006c2cd7",
+          "target": "006c0910"
+        },
+        {
+          "site": "006c2ce3",
+          "target": "0072e4e0"
+        }
+      ],
+      "entry": "006c20f0",
+      "export_path": "analysis/work/future-dependencies/prior-contract-exports/006c20f0.json",
+      "export_sha256": "3c7b106e53d508826eda57f4cc165eec19969fdf55afa050ddab5ef760628a65",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1455,
+      "decompilation_sha256": "78309efd7501c8bef73befd8f99aa4ecd88e0dbbba79c58074f130990113fe51",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "006c33c7",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006c33db",
+          "target": "007e4eae"
+        },
+        {
+          "site": "006c3464",
+          "target": "00405620"
+        },
+        {
+          "site": "006c348c",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006c34a4",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c34ef",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c352e",
+          "target": "007e4f3e"
+        },
+        {
+          "site": "006c3542",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c3587",
+          "target": "00405890"
+        },
+        {
+          "site": "006c3598",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c35b3",
+          "target": "00405750"
+        },
+        {
+          "site": "006c35da",
+          "target": "006b8ec0"
+        },
+        {
+          "site": "006c35ee",
+          "target": "006b9030"
+        },
+        {
+          "site": "006c3601",
+          "target": "00405940"
+        },
+        {
+          "site": "006c360e",
+          "target": "00405890"
+        },
+        {
+          "site": "006c363b",
+          "target": "00405890"
+        },
+        {
+          "site": "006c364e",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c3671",
+          "target": "00405750"
+        },
+        {
+          "site": "006c3690",
+          "target": "006b6ff0"
+        },
+        {
+          "site": "006c36a1",
+          "target": "006b72b0"
+        },
+        {
+          "site": "006c36ac",
+          "target": "006ae510"
+        },
+        {
+          "site": "006c36b8",
+          "target": "0069c390"
+        },
+        {
+          "site": "006c36c6",
+          "target": "0069cfc0"
+        },
+        {
+          "site": "006c36d1",
+          "target": "006ae510"
+        },
+        {
+          "site": "006c36fc",
+          "target": "00405890"
+        },
+        {
+          "site": "006c370f",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c374e",
+          "target": "00405890"
+        },
+        {
+          "site": "006c378a",
+          "target": "00405890"
+        },
+        {
+          "site": "006c37e4",
+          "target": "007e4f44"
+        },
+        {
+          "site": "006c3803",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c3819",
+          "target": "007e4f38"
+        },
+        {
+          "site": "006c382a",
+          "target": "006b6ff0"
+        },
+        {
+          "site": "006c383b",
+          "target": "006b72b0"
+        },
+        {
+          "site": "006c3866",
+          "target": "00405890"
+        },
+        {
+          "site": "006c387c",
+          "target": "007e4f50"
+        },
+        {
+          "site": "006c38bf",
+          "target": "00405890"
+        },
+        {
+          "site": "006c38d5",
+          "target": "007e4f50"
+        }
+      ],
+      "entry": "006c3340",
+      "export_path": "analysis/work/future-dependencies/prior-contract-exports/006c3340.json",
+      "export_sha256": "f2e2d666cf027d5fdf492e937fe04b9155ba295d68085b33a4f7e02c11a5f1fe",
+      "program": "client"
+    }
+  ],
+  "failed_passes": [
+    {
+      "pass": "initial HD2.exe",
+      "reason": "Project program name not found; rerun verified hd2.unpacked.exe"
+    },
+    {
+      "pass": "hd2-future-save-world",
+      "reason": "Export script stopped after Script pair because00476370 absent from database; world2 transiently defined verified vtable entries and exported remaining targets"
+    }
+  ],
+  "instruction_anchors": [
+    {
+      "claim": "ECX actual application 008AE8FC for preparation reset/read, EBX retained game for reset/restore, actual008AE91C flag receiver; nested results ignored",
+      "end_exclusive": "006c36d9",
+      "start": "006c368b"
+    },
+    {
+      "claim": "Writer fresh registered slot traversal0..18, virtual30",
+      "start": "0048dc90"
+    },
+    {
+      "claim": "Reader outer tag and child-tag indexed virtual34 dispatch",
+      "start": "0048de60"
+    },
+    {
+      "claim": "Open writer writes0x400 bytes at this+24, requires exact count",
+      "end_exclusive": "00427042",
+      "start": "00427010"
+    },
+    {
+      "claim": "Open reader bounds0x400, reads into this+24, signed count>=0x400 result",
+      "end_exclusive": "004270c8",
+      "start": "00427050"
+    }
+  ],
+  "method": "Sequential readOnly/noanalysis Ghidra; transient definitions discarded; targeted static PE vtable reads; no execution",
+  "schema_version": 1
+}
