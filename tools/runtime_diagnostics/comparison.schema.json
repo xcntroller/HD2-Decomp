@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "cleanup_changes": {
+      "additionalProperties": false,
+      "properties": {
+        "after": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "values": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "values"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "before": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "values": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "values"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "before",
+        "after"
+      ],
+      "type": "object"
+    },
+    "error_changes": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {},
+          "before": {}
+        },
+        "required": [
+          "before",
+          "after"
+        ],
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "event_changes": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {},
+          "before": {}
+        },
+        "required": [
+          "before",
+          "after"
+        ],
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "kind": {
+      "const": "comparison"
+    },
+    "metadata_changes": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {},
+          "before": {}
+        },
+        "required": [
+          "before",
+          "after"
+        ],
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "newly_observed": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "no_longer_observed": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "sanitized": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "sources": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "lines": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "sha256",
+          "lines"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array"
+    },
+    "stage_changes": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "after": {},
+          "before": {}
+        },
+        "required": [
+          "before",
+          "after"
+        ],
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "uncertainty": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "sanitized",
+    "sources",
+    "newly_observed",
+    "no_longer_observed",
+    "uncertainty",
+    "stage_changes",
+    "error_changes",
+    "event_changes",
+    "metadata_changes",
+    "cleanup_changes"
+  ],
+  "title": "HD2 comparison report v1",
+  "type": "object"
+}

@@ -1,0 +1,252 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "errors": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "event_counts": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "type": "object"
+    },
+    "events": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "line": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "session": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "observed_success",
+              "observed_failure",
+              "not_observed",
+              "not_instrumented",
+              "not_applicable",
+              "indeterminate"
+            ]
+          },
+          "text": {
+            "maxLength": 2048,
+            "type": "string"
+          },
+          "values": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "line",
+          "session",
+          "status"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2000,
+      "type": "array"
+    },
+    "issues": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "type": "string"
+          },
+          "line": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "kind",
+          "line"
+        ],
+        "type": "object"
+      },
+      "maxItems": 2000,
+      "type": "array"
+    },
+    "kind": {
+      "const": "run"
+    },
+    "last_confirmed_mission_stage": {
+      "additionalProperties": false,
+      "properties": {
+        "line": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "stage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "stage",
+        "line"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "last_confirmed_stage": {
+      "additionalProperties": false,
+      "properties": {
+        "line": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "stage": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "stage",
+        "line"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "limits": {
+      "additionalProperties": {
+        "minimum": 0,
+        "type": "integer"
+      },
+      "required": [
+        "retained_events",
+        "events_omitted",
+        "unknown_lines",
+        "oversized_lines"
+      ],
+      "type": "object"
+    },
+    "metadata": {
+      "$ref": "test-run.schema.json"
+    },
+    "next_investigation": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "sanitized": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "source": {
+      "additionalProperties": false,
+      "properties": {
+        "lines": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "sha256",
+        "lines"
+      ],
+      "type": "object"
+    },
+    "stages": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence": {
+            "items": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "maxItems": 32,
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "observed_success",
+              "observed_failure",
+              "not_observed",
+              "not_instrumented",
+              "not_applicable",
+              "indeterminate"
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "evidence"
+        ],
+        "type": "object"
+      },
+      "required": [
+        "startup",
+        "preparation",
+        "game_state",
+        "session_construction",
+        "resource_loading",
+        "actor_module_loading",
+        "activation",
+        "first_camera",
+        "update",
+        "render",
+        "presentation",
+        "cleanup",
+        "shutdown"
+      ],
+      "type": "object"
+    },
+    "uncertainty": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "sanitized",
+    "source",
+    "metadata",
+    "stages",
+    "events",
+    "event_counts",
+    "errors",
+    "issues",
+    "last_confirmed_stage",
+    "last_confirmed_mission_stage",
+    "limits",
+    "uncertainty",
+    "next_investigation"
+  ],
+  "title": "HD2 diagnostic report v1",
+  "type": "object"
+}
