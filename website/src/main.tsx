@@ -14,6 +14,7 @@ import "@fontsource/ibm-plex-mono/latin-400.css";
 import "./styles.css";
 import "./field.css";
 
+const Research = lazy(() => import("./Research"));
 const Dependencies = lazy(() => import("./Dependencies"));
 const allowed = new Set(presentation.navigation.map((n) => n.id));
 function route() {
@@ -208,7 +209,9 @@ function App() {
                 </div>
               }
             >
-              {current.page === "overview" ? (
+              {current.page === "research" ? (
+                <Research dark={dark} />
+              ) : current.page === "overview" ? (
                 <Overview data={data} />
               ) : current.page === "roadmap" ? (
                 <Roadmap data={data} />

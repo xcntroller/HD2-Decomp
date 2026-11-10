@@ -173,3 +173,61 @@ Temporary audit sources are removed after verification, following the repository
 agreement against new permanent tests. No game, engine DLL, Windows fixture or
 Proton was executed. Browser checks establish website behavior, not game desktop
 acceptance. Reconstruction code, ledger, plan, handoff and analyzer are unchanged.
+
+## Research intelligence
+
+`#/research` opens the P2.4–P2.7 briefing, a bounded React Flow explorer and
+ordered implementation-batch board. Research and current implementation are
+separate snapshots on shared stable IDs. The overview and inspector expose
+blockers, original addresses, lifetime/ordering constraints, verification scope,
+source coverage and safe evidence links. Select a subsystem, search an address,
+or explicitly request function nodes to drill down. The canvas starts at 40
+nodes and caps at 150; narrower filters reach further records. The keyboard
+inspection selector includes both visible nodes and relationships. Incoming and
+outgoing relationships can also be opened from the inspector, even outside the
+current canvas. Source, milestone, subsystem, batch, type, evidence, relationship
+and implementation-state filters keep disclosure bounded.
+
+`website/scripts/research_adapter.py` reads the committed future-dependencies
+export without running its generator (which pins historical implementation
+claims). It regenerates current progress using the existing analyzer, joins by
+stable namespaced identity, retains both sources on shared nodes/edges and
+reports stale input digests and state disagreements. Calls remain caller→callee;
+dependencies remain prerequisite→dependent. Ownership and cleanup edges retain
+separate types. Visual layout follows directed dependency edges, including
+conditional dependencies. If no dependency edges are visible, it follows the
+selected relationship topology instead. Cycles are grouped before layering;
+isolated records use a compact grid. Positions do not imply scheduling or a
+critical path. Scheduling validation remains limited to verified, unconditional
+blocking dependencies. Conditions remain in the inspector. The batch graph uses
+actual prerequisite branches from the guide and includes external milestone
+prerequisites; its positions carry no additional ordering claims. No estimate is
+invented.
+
+The batch contract includes purpose, original entries, failure handling and
+focused/desktop acceptance. Contract-ready means bounded research readiness;
+no whole-batch implementation claim is synthesized. The original implementation
+roadmap and dependency explorer are preserved and linked from Research.
+
+### Incorporating research checkpoints
+
+Use ordinary reviewed Git integration of the research commit into the deployment
+source branch. Do not fetch a moving branch from Pages. Compare the research ref
+read-only first, then merge/cherry-pick the agreed checkpoint through the usual
+repository process. This implementation was based on local master `6021978`;
+inspection confirmed checkpoint `cc4571a` is already its ancestor, and the
+research tree matches that branch unchanged. Its implementation snapshot is
+still pinned to `52c5689`. No research findings, ledger, reconstruction source,
+main plan or handoff are edited by the website adapter.
+
+`npm run build` exports both snapshots, validates evidence paths and JSON
+pointers, unique identities, endpoints, edge classifications, batch ordering,
+research verification digest and the scheduling DAG, then builds and audits the
+static artifact. `research.json` must exactly match a fresh deterministic join
+at artifact audit time. Missing versioned research produces an explicit
+unavailable view; malformed present research fails the build. Current-input
+mismatches are retained as diagnostics, not silently promoted claims. Public
+links use the existing publication policy: only safe tracked files matching the
+asserted public revision receive immutable GitHub links. Unpublished records
+remain visible without a fabricated link. Pages still builds only exact master
+revisions, uses `/HD2-Decomp/`, and uploads only the audited `website/dist/`.

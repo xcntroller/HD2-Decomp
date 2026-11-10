@@ -55,7 +55,7 @@ def validate_content(value, key=''):
 
 def validate_public_directory(directory=SITE / 'public'):
     """Prevent Vite's public-directory copying from including unexpected files."""
-    allowed = {'data', 'data/progress.json', 'font-licenses.txt'}
+    allowed = {'data', 'data/progress.json', 'data/research.json', 'font-licenses.txt'}
     require(directory.is_dir() and not directory.is_symlink(), 'Missing or symlinked public directory')
     for path in directory.rglob('*'):
         name = path.relative_to(directory).as_posix()

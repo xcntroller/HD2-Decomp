@@ -61,7 +61,7 @@ jobs:
         run: python3 -B -m unittest discover -s ../tools -p 'test_function_progress.py'
 
       - name: Generate, validate, build and audit the public website
-        # build = analyzer export -> strict snapshot validation -> tsc -> Vite
+        # build = current analyzer + versioned research join -> strict validation -> tsc -> Vite
         # -> artifact audit. Validation errors stop before bundling or uploading.
         run: npm run build
 

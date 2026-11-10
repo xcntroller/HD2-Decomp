@@ -1866,3 +1866,22 @@ footer {
     transition: none !important;
   }
 }
+
+.research-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin:20px 0; }
+.research-facts dt { text-transform:uppercase; font-size:.72rem; color:var(--muted); margin-top:12px; }
+.research-facts dd { margin:4px 0; overflow-wrap:anywhere; }
+.research-json { white-space:pre-wrap; overflow-wrap:anywhere; font-size:.76rem; max-height:320px; overflow:auto; }
+.research-contract { white-space:pre-wrap; }
+.research-grid .panel { padding:20px; }
+
+.research-snapshot { padding:18px; margin:18px 0; overflow-wrap:anywhere; }
+.graph-inspector select { max-width:100%; }
+.research-contract { overflow-wrap:anywhere; }
+.function-chips .tag { max-width:100%; white-space:normal; overflow-wrap:anywhere; }
+.research-facts { min-width:0; }
+.research-facts code, .graph-inspector code { overflow-wrap:anywhere; }
+
+.research-value-list { margin:0; padding-left:1.2rem; }
+.research-value-list li + li { margin-top:6px; }
+.research-nested-facts { border-left:1px solid var(--muted); padding-left:12px; margin:6px 0; }
+.research-nested-facts dt { margin-top:8px; }

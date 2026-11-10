@@ -3,11 +3,36 @@
   "subtitle": "Hidden & Dangerous 2",
   "description": "Rebuilding Hidden & Dangerous 2 from its original behavior.",
   "navigation": [
-    { "id": "overview", "label": "Overview", "icon": "overview" },
-    { "id": "roadmap", "label": "Roadmap", "icon": "roadmap" },
-    { "id": "dependencies", "label": "Dependency Explorer", "icon": "graph" },
-    { "id": "functions", "label": "Function Explorer", "icon": "code" },
-    { "id": "activity", "label": "Development Activity", "icon": "activity" }
+    {
+      "id": "overview",
+      "label": "Overview",
+      "icon": "overview"
+    },
+    {
+      "id": "roadmap",
+      "label": "Roadmap",
+      "icon": "roadmap"
+    },
+    {
+      "id": "dependencies",
+      "label": "Dependency Explorer",
+      "icon": "graph"
+    },
+    {
+      "id": "research",
+      "label": "Research Intelligence",
+      "icon": "graph"
+    },
+    {
+      "id": "functions",
+      "label": "Function Explorer",
+      "icon": "code"
+    },
+    {
+      "id": "activity",
+      "label": "Development Activity",
+      "icon": "activity"
+    }
   ],
   "stages": {
     "source_recovery": "Source recovery",
