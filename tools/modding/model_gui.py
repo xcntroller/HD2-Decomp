@@ -149,8 +149,8 @@ class ModelWindow:
 
     def show(self,asset):
         self.asset=asset;model=asset.model;stats=model.statistics()
-        self.viewport.set_model(model,asset.images);self.backend.configure(text=self.viewport.backend)
-        self.status.configure(text=f"{model.identity} · {model.status} · {stats['decoded_frames']}/{stats['declared_frames']} frames · {stats['stored_vertices']} stored vertices · {stats['lod0_instance_triangles']} LOD0 triangles · {len(asset.images)} RGB texture previews")
+        self.viewport.set_model(model,asset.images,asset.material_preview);self.backend.configure(text=self.viewport.backend)
+        self.status.configure(text=f"{model.identity} · {model.status} · {stats['decoded_frames']}/{stats['declared_frames']} frames · {stats['stored_vertices']} stored vertices · {stats['lod0_instance_triangles']} LOD0 triangles · {len(asset.images)} RGB/RGBA texture previews")
         self.lod_box.configure(values=[str(i) for i in range(max((len(g.lods) for g in model.geometries),default=1))]);self.lod.set('0')
         self.viewport.lod_index=0;self.rows={};self.hierarchy.delete(*self.hierarchy.get_children())
         self.hierarchy.insert('','end',iid='model',text=Path(model.identity).name,values=('4DS',model.status),open=True)
@@ -165,12 +165,13 @@ class ModelWindow:
                     self.hierarchy.insert(key,'end',iid=child,text=f'LOD{lod.index}: {lod.vertex_count} vertices',values=('mesh','decoded'))
                     self.rows[child]=(frame,lod)
         self.hierarchy.insert('model','end',iid='materials',text='Materials / texture dependencies',values=('table',len(model.materials)))
-        self.rows['materials']={'materials':[asdict(m) for m in model.materials],'textures':asset.textures}
+        self.rows['materials']={'materials':[asdict(m) for m in model.materials],'textures':asset.textures,'preview':asset.material_preview}
         for material in model.materials:
             key='material:'+str(material.index)
-            texture_status='RGB preview' if material.index in asset.images else 'fallback' if material.primary_texture else 'neutral preview'
+            texture_status='RGB/RGBA preview' if material.index in asset.images else 'fallback' if material.primary_texture else 'neutral preview'
             self.hierarchy.insert('materials','end',iid=key,text=f'{material.index}: {material.primary_texture or "untextured"}',values=('material',texture_status))
-            self.rows[key]={'material':asdict(material),'textures':[t for t in asset.textures if t['material']==material.index]}
+            self.rows[key]={'material':asdict(material),'preview':asset.material_preview.get(material.index),
+                'textures':[t for t in asset.textures if t['material']==material.index]}
         self.hierarchy.selection_set('model');self.select_node()
 
     def select_node(self,_=None):

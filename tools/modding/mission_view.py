@@ -6,6 +6,7 @@ import tkinter as tk
 
 from gl_view import GLViewport,Event,PointerEvent,bind
 from spatial_camera import Camera
+from gl_material import apply as apply_material,reset as reset_material,blended
 
 MAX_GPU_MESHES=8000
 MAX_DRAWS=6000
@@ -141,36 +142,46 @@ class MissionViewport(GLViewport):
 
     def setup_camera(self):
         g=self.gl;w,h=max(self.winfo_width(),1),max(self.winfo_height(),1)
-        g.glViewport(0,0,w,h);g.glClearColor(.065,.085,.11,1);g.glClear(0x4100)
+        g.glDepthMask(1);g.glViewport(0,0,w,h);g.glClearColor(.065,.085,.11,1);g.glClear(0x4100)
         g.glEnable(0x0b71);g.glDisable(0x0b44);g.glDisable(0x0be2)
         g.glMatrixMode(0x1701);g.glLoadIdentity();near=.05;top=near*math.tan(math.radians(60)*.5)
         g.glFrustum(-top*w/h,top*w/h,-top,top,near,max(self.camera.far,near+1))
         g.glMatrixMode(0x1700);g.glLoadIdentity()
-        g.glRotatef(-self.camera.pitch,1,0,0);g.glRotatef(self.camera.yaw,0,1,0);g.glTranslatef(*(-v for v in self.camera.eye()))
+        g.glMultMatrixf((C.c_float*16)(*self.camera.view_matrix()))
 
-    def geometry(self,node,pick_index=None):
+    def geometry(self,node,pick_index=None,blend_pass=None):
         packet=self.buffers.get(node.geometry.identity) if node.geometry else None
         if packet is None:return 0
         g=self.gl;g.glBindBuffer(0x8892,packet[0])
         g.glVertexPointer(3,0x1406,32,None);g.glNormalPointer(0x1406,32,12);g.glTexCoordPointer(2,0x1406,32,24)
         g.glPushMatrix();g.glMultMatrixf((C.c_float*16)(*node.world));triangles=0
         for ibo,count,material in packet[1]:
-            if pick_index is None:
-                texture=self.texture_ids.get((node.asset,material)) if self.textured and not self.wire else None
-                selected=self.selected is not None and (node.identity==self.selected or node.model_owner==self.selected)
-                if texture and not selected:g.glEnable(0x0de1);g.glBindTexture(0x0de1,texture)
-                else:g.glDisable(0x0de1)
-                g.glColor4f(*((1,.65,.15,1) if selected else (1,1,1,1) if texture else (.65,.70,.74,1)))
+            state=self.scene.assets[node.asset].material_preview.get(material,{})
+            if pick_index is not None and state.get('opacity')==0:continue
+            if blend_pass is not None and blended(state)!=blend_pass:continue
+            texture=self.texture_ids.get((node.asset,material)) if self.textured and not self.wire else None
+            selected=self.selected is not None and (node.identity==self.selected or node.model_owner==self.selected)
+            apply_material(g,state,texture,selected,pick_index is not None)
             g.glBindBuffer(0x8893,ibo);g.glDrawElements(4,count,0x1403,None);triangles+=count//3
         g.glPopMatrix();return triangles
 
     def render_objects(self,picking=False):
         g=self.gl;triangles=0;meshes=0
         for state in (0x8074,0x8075,0x8078):g.glEnableClientState(state)
-        for index,node in enumerate(self.draw_list,1):
-            if picking:g.glColor4ub(index&255,(index>>8)&255,(index>>16)&255,255)
-            if node.geometry:
-                triangles+=self.geometry(node,index if picking else None);meshes+=1
+        if picking:
+            for index,node in enumerate(self.draw_list,1):
+                g.glColor4ub(index&255,(index>>8)&255,(index>>16)&255,255)
+                if node.geometry:triangles+=self.geometry(node,index);meshes+=1
+        else:
+            for node in self.draw_list:
+                if node.geometry:triangles+=self.geometry(node,blend_pass=False);meshes+=1
+            eye=self.camera.eye()
+            #Preview approximation: back-to-front instance sort, not original
+            #sector/triangle ordering. Deterministic identity breaks distance ties.
+            transparent=[node for node in self.draw_list if node.geometry and any(blended(self.scene.assets[node.asset].material_preview.get(g.material,{})) for g in node.geometry.lods[0].groups)]
+            transparent.sort(key=lambda n:(-math.dist(eye,n.world[12:15]),n.identity))
+            for node in transparent:triangles+=self.geometry(node,blend_pass=True)
+        reset_material(g)
         g.glBindBuffer(0x8892,0);g.glBindBuffer(0x8893,0)
         for state in (0x8074,0x8075,0x8078):g.glDisableClientState(state)
         g.glDisable(0x0b50);g.glDisable(0x0de1)

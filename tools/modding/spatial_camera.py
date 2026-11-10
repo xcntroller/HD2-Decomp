@@ -1,4 +1,8 @@
-"""Viewer camera math, deliberately separate from original object transforms."""
+"""Positive-Z camera convention, separate from original object transforms.
+
+LS3DF10009B30 perspective stores clip W=+view Z (10009CC0). OpenGL
+expects negative view Z; convert at the display view matrix, never in assets.
+"""
 from dataclasses import dataclass,field
 import math
 
@@ -12,18 +16,30 @@ class Camera:
     mode:str='orbit'
     position:list=field(default_factory=lambda:[0.,0.,10.])
     target:list=field(default_factory=lambda:[0.,0.,0.])
-    yaw:float=35.
+    yaw:float=145.  # Same initial world eye/direction as the former RH preset.
     pitch:float=-22.
     distance:float=10.
     speed:float=20.
     far:float=1000.
     def basis(self):
         y,p=map(math.radians,(self.yaw,self.pitch));c=math.cos(p)
-        forward=(math.sin(y)*c,math.sin(p),-math.cos(y)*c)
-        right=(math.cos(y),0.,math.sin(y))
-        up=(-math.sin(y)*math.sin(p),c,math.cos(y)*math.sin(p))
+        forward=(math.sin(y)*c,math.sin(p),math.cos(y)*c)
+        right=(math.cos(y),0.,-math.sin(y))
+        up=(-math.sin(y)*math.sin(p),c,-math.cos(y)*math.sin(p))
         return forward,right,up
     def eye(self):return add(self.target,self.basis()[0],-self.distance) if self.mode=='orbit' else list(self.position)
+    def view_matrix(self):
+        """OpenGL column-major view with engine right/up/+forward convention.
+
+        Camera-space depth alone changes sign. Culling/movement/pan use the
+        same basis; drawing, origins, bounds and ID picking share this matrix.
+        Its reflection changes winding; the preview still disables face culling.
+        """
+        forward,right,up=self.basis();eye=self.eye()
+        return (right[0],up[0],-forward[0],0.,
+                right[1],up[1],-forward[1],0.,
+                right[2],up[2],-forward[2],0.,
+                -dot(right,eye),-dot(up,eye),dot(forward,eye),1.)
     def switch(self,mode):
         eye=self.eye()
         if mode=='fly':self.position=eye

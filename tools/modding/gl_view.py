@@ -7,6 +7,8 @@ import ctypes as C
 from ctypes.util import find_library
 import math
 import tkinter as tk
+from gl_material import apply as apply_material,reset as reset_material
+from spatial_camera import Camera
 
 
 class VisualInfo(C.Structure):
@@ -68,6 +70,7 @@ class GLViewport(tk.Frame):
                 'glEnable':(None,ui),'glDisable':(None,ui),'glMatrixMode':(None,ui),'glLoadIdentity':(None,),
                 'glFrustum':(None,d,d,d,d,d,d),'glTranslatef':(None,f,f,f),'glRotatef':(None,f,f,f,f),
                 'glMultMatrixf':(None,C.POINTER(f)),'glPushMatrix':(None,),'glPopMatrix':(None,),
+                'glAlphaFunc':(None,ui,f),'glBlendFunc':(None,ui,ui),'glDepthMask':(None,C.c_ubyte),'glTexEnvi':(None,ui,ui,i),
                 'glColor4f':(None,f,f,f,f),'glPolygonMode':(None,ui,ui),'glLineWidth':(None,f),
                 'glBegin':(None,ui),'glEnd':(None,),'glVertex3f':(None,f,f,f),
                 'glEnableClientState':(None,ui),'glDisableClientState':(None,ui),
@@ -111,8 +114,9 @@ class GLViewport(tk.Frame):
             self.x.XResizeWindow(self.display,self.window,max(1,self.winfo_width()),max(1,self.winfo_height()));self.x.XFlush(self.display)
         self.dirty=True
 
-    def set_model(self,model,images=None):
+    def set_model(self,model,images=None,materials=None):
         if self.closed:return
+        self.materials=materials or {}
         self.model=model;self.images=images or {};self.selected=None;self.packets=[]
         # Keep packed arrays alive for client pointers. No Python tuple per vertex.
         for geometry in model.geometries:
@@ -134,7 +138,8 @@ class GLViewport(tk.Frame):
             self.gl.glBindTexture(0x0de1,texture.value)
             for key,value in ((0x2801,0x2601),(0x2800,0x2601),(0x2802,0x2901),(0x2803,0x2901)):
                 self.gl.glTexParameteri(0x0de1,key,value)
-            self.gl.glTexImage2D(0x0de1,0,0x1907,image.width,image.height,0,0x1907,0x1401,image.pixels)
+            fmt=0x1908 if image.channels==4 else 0x1907
+            self.gl.glTexImage2D(0x0de1,0,fmt,image.width,image.height,0,fmt,0x1401,image.pixels)
         self.gl.glBindTexture(0x0de1,0)
 
     def release_textures(self):
@@ -157,7 +162,7 @@ class GLViewport(tk.Frame):
         elif event.type==6 and self.drag:
             button,x,y=self.drag;dx=p.x-x;dy=p.y-y;self.drag=(button,p.x,p.y)
             if button==1 and not p.state&1:
-                self.yaw=(self.yaw+dx*.45)%360;self.pitch=max(-89.,min(89.,self.pitch+dy*.45))
+                self.yaw=(self.yaw-dx*.45)%360;self.pitch=max(-89.,min(89.,self.pitch+dy*.45))
             else:
                 factor=self.distance/max(self.winfo_height(),1)
                 self.pan[0]+=dx*factor;self.pan[1]-=dy*factor
@@ -195,8 +200,9 @@ class GLViewport(tk.Frame):
         g.glEnable(0x0b71);g.glDisable(0x0b44);g.glDisable(0x0be2)
         g.glMatrixMode(0x1701);g.glLoadIdentity();near=max(self.radius*.001,self.distance*.001);far=self.distance+self.radius*100
         top=near*math.tan(math.radians(40)/2);g.glFrustum(-top*w/h,top*w/h,-top,top,near,far)
-        g.glMatrixMode(0x1700);g.glLoadIdentity();g.glTranslatef(self.pan[0],self.pan[1],-self.distance)
-        g.glRotatef(self.pitch,1,0,0);g.glRotatef(self.yaw,0,1,0);g.glTranslatef(*(-c for c in self.center))
+        g.glMatrixMode(0x1700);g.glLoadIdentity();g.glTranslatef(self.pan[0],self.pan[1],0.)
+        camera=Camera(target=self.center,yaw=180.-self.yaw,pitch=-self.pitch,distance=self.distance)
+        g.glMultMatrixf((C.c_float*16)(*camera.view_matrix()))
         g.glDisable(0x0b50);g.glDisable(0x0de1);g.glPolygonMode(0x0408,0x1b02);g.glLineWidth(1)
         if self.grid:
             step=self.radius/5;ground=self.model.bounds[0][1] if self.model and self.model.bounds else 0
@@ -225,11 +231,10 @@ class GLViewport(tk.Frame):
                 for group in lod.groups:
                     texture=self.texture_ids.get(group.material) if self.textured and not self.wire else None
                     selected=self.selected==frame.identity
-                    if texture and not selected:g.glEnable(0x0de1);g.glBindTexture(0x0de1,texture)
-                    else:g.glDisable(0x0de1)
-                    g.glColor4f(*((1.,.62,.12,1.) if selected else (1.,1.,1.,1.) if texture else (.65,.70,.76,1.)))
+                    apply_material(g,self.materials.get(group.material,{}),texture,selected)
                     g.glDrawElements(4,len(group.indices),0x1403,group.indices.buffer_info()[0])
                 g.glPopMatrix()
+            reset_material(g)
             for state in (0x8074,0x8075,0x8078):g.glDisableClientState(state)
             g.glDisable(0x0b50);g.glDisable(0x0de1);g.glPolygonMode(0x0408,0x1b02)
             frame=next((f for f in self.model.frames if f.identity==self.selected),None)

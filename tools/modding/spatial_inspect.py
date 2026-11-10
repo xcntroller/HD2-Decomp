@@ -17,13 +17,14 @@ def main():
     parser.add_argument('--language',default='English')
     parser.add_argument('--inspector',type=Path,help='Optional script inspector; otherwise script bindings are indexed')
     parser.add_argument('--output',type=Path,help='New metadata report outside installation; default stdout')
+    parser.add_argument('--coverage-only',action='store_true',help='Comparable static coverage without full node metadata')
     args=parser.parse_args()
     try:
         store=ResourceStore(args.installation,args.archives_first,args.language)
         scene=SpatialScene(freeze_session(InstallationSession(store,args.mission,args.inspector)))
-        if args.output:scene.export(args.output)
+        if args.output:scene.export(args.output,args.coverage_only)
         else:
-            sys.stdout.writelines(json.JSONEncoder(sort_keys=True,indent=2,ensure_ascii=True,allow_nan=False).iterencode(scene.metadata()))
+            sys.stdout.writelines(json.JSONEncoder(sort_keys=True,indent=2,ensure_ascii=True,allow_nan=False).iterencode(scene.coverage if args.coverage_only else scene.metadata()))
             sys.stdout.write('\n')
         # Reports always retain a partial status; this exit code is only a
         # successful inspection/export, never a world-compatibility assertion.

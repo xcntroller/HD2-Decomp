@@ -1,5 +1,9 @@
 # Read-only 4DS model inspector / OpenGL viewer — 2026-11-10
 
+Current structural extensions, ordered resource profiles and alpha previews are
+covered by [FIDELITY.md](FIDELITY.md). The initial verification receipt below
+is historical; its corpus status totals have not been rerun as a full census.
+
 This checkpoint adds an actual model viewer to the existing application. Open
 **Model inspector…**, then **Open installation…**, search for a resource, and open
 it. The same viewer opens from Mission Explorer's **View model** button. No game,
@@ -95,6 +99,10 @@ NUL; they are not silently repaired into valid filesystem paths.
   many words per mesh LOD. Counts exceeding LOD vertex capacity reject. The
   geometry is shown **undeformed**, with explicit partial status. No posed or
   skinned-character correctness is claimed.
+- Additional bounded visual3/4/5 animation/fixed tails, visual6 effect entries,
+  target7 frame references and common-only user8 records now traverse according
+  to their actual reader dispatch; see [current extents](FIDELITY.md#additional-structural-4ds-coverage).
+  Animation/effect/target consumers remain unapplied, not successful runtime support.
 - Unrecognized frame kinds/visual subtypes stop at the record's original start.
   No scanning for plausible names or next records is used. Safely decoded earlier
   geometry can remain visible on unsupported input; malformed supported input
@@ -118,8 +126,9 @@ call. Derived matrices/bounds use Python floating arithmetic and are not claimed
 bit-identical to x87/FLOAT spills. OpenGL receives the transposed representation
 by interpreting the same row-major bytes as column-major. Normals use OpenGL's
 normal transform/normalization for display. Original coordinates are not flipped.
-Y-up is the display/camera convention; no unsupported handedness or unit claim is
-made. Bounds cover actual decoded LOD0 vertices only. Unknown frames are excluded
+The shared positive-Z camera performs the required OpenGL view conversion;
+see [handedness evidence and correction](FIDELITY.md#display-handedness-correction-after-user-review).
+No original unit scale is asserted. Bounds cover actual decoded LOD0 vertices only. Unknown frames are excluded
 from partial-model bounds. Selection-origin crosses/grid/axes/bounds are viewer
 annotations, never substitute meshes or inferred actor placement.
 
@@ -145,35 +154,34 @@ a shadowed copy when selection fails. File/archive provenance is visible and
 exported. The independent browser lists `Models/*.4ds`; mission-local .4ds files
 can also be opened through their recognized Mission Explorer entry or the CLI.
 
-Texture primary/secondary/extra references preserve their original spelling and
-roles. For an explicit Maps/Maps_C/Maps_U virtual path, use that path. For bare
-names, enumerate exact name candidates under those three established registered
-roots. A **unique** candidate can be previewed, labelled
-`registered_root_name_candidate`; multiple candidates are ambiguous and render a
-fallback. Registration order is not invented as cache lookup order. Selected
-invalid resources stop at that candidate, without trying another root/archive.
-The actual graphics cache/search policy remains unreconstructed. Mission object
-model candidates keep their pre-existing `name_candidate` classification; opening
-one is an explicit user selection, not a newly asserted actor-to-model mapping.
+Texture primary/secondary/extra references preserve original spelling and roles.
+`resource_lookup.py` uses the established direct / last successful directory /
+reverse registered-directory texture probes and forward model-root search.
+See [resource evidence](FIDELITY.md#resource-selection). Selections are explicitly
+bounded directory profiles; Windows descendant enumeration and warm/global caches
+remain excluded. Selected invalid resources stop without another root/archive.
+Existing Mission Explorer graph model candidates retain `name_candidate`; opening
+one does not invent an actor attachment or upgrade runtime resource certainty.
 
 ## Materials and textures
 
-Only verified local BMP inputs are decoded: BITMAPINFOHEADER40, BI_RGB,
-8-bit indexed palettes and24/32-bit BGR/BGRx, row padding, top-down/bottom-up images.
-RGB output was compared byte-for-byte to Pillow for actual selected textures;
-Pillow is an audit dependency only. Alpha/palette reserved bytes are not guessed.
-DDS, TGA, compressed/extended BMPs and unsupported image formats remain explicit
-fallbacks. No filename-extension substitution, generated textures or alpha-map
-composition is performed. Secondary/extra maps and sequences remain resolved but
-uninterpreted, never reported as successfully displayed original effects.
+Supported sources remain BITMAPINFOHEADER40, BI_RGB8/24/32 BMPs with bounded
+palettes/rows. Source RGB is independently checked; raw8-bit indices and32-bit
+fourth bytes are retained only for established material alpha policies. Palette
+reserved bytes are not alpha. The supported zero-key, raw-index opacity and
+requested intrinsic-alpha branches, original addresses and preview limitations
+are in [FIDELITY.md](FIDELITY.md#materials-recovered-sources-versus-preview-rendering).
+TGA, compressed/extended BMPs, sequences/extra maps and unsupported opacity layouts
+have explicit unsupported/uninterpreted status. No guessed extension or resampling.
 
-Materials show primary RGB texture previews when available, or a clearly labelled
-neutral gray material. Lighting is a conventional OpenGL preview; original
-colors/blending/alpha/specular/effects/culling and renderer globals are excluded.
-All supported frames are shown; serialized visibility flags and automatic LOD
-policy are not evaluated. This approximation remains separate from file-decoding
-status. Untextured source
-materials also use a neutral preview, without claiming their original color.
+Supported materials show RGB/RGBA previews or labelled untextured color/neutral
+gray fallback. Source decode and rendering status are separate. Cutoffs, blending,
+lighting and untextured RGB-block interpretation are viewer approximations;
+lightmaps/full material consumers and original blend ordering remain unknown.
+Standalone groups are not transparency-sorted. All supported standalone frames
+are shown; the mission viewer additionally filters serialized visibility bit0
+and conservative ancestor/hidden state. Neither implements original automatic
+LOD, runtime visibility, skin deformation or animation.
 
 ## GUI and export
 
@@ -218,14 +226,15 @@ no implicit installation/texture search context.
 
 Bounds:64MiB input/member,6000 frames (tool restriction), native6000 materials and
 10 LODs,1million vertices,2million triangles,4096 per texture dimension/8million
-pixels,64 texture dependencies considered for decoding and32MiB total decoded RGB.
+pixels,64 texture dependencies considered for decoding and32MiB retained texture
+storage including source auxiliary/derived RGBA planes.
 Identical images share one GL texture allocation. Model loads replace the previous
 asset; archives are never retained as entire byte buffers. Scene discovery indexes
 models without automatically loading all mesh data. Resource and hierarchy views
 page or bound previews; JSON streams metadata. These are explicit safety limits,
 not original engine capacity claims or hostile concurrent-filesystem isolation.
 
-## Verification actually performed
+## Initial verification actually performed (historical)
 
 No original code execution/Ghidra/heavy game builds were used. All assets were read
 from the authorized local installation/research copy. Temporary fixtures/captures
@@ -281,6 +290,7 @@ were outside Git and removed after verification; no original assets are committe
   candidate →`models/e_elbx1.4ds` (decoded), viewer open and return to the original
   actor record passed. Candidate classification was retained throughout.
 
-Excluded: unsupported record families/additional streams, full graphics cache
-resolution, alpha/effects/animation/skin evaluation, 3D mission placement, editing,
-binary serialization, runtime/gameplay/debugging and full-format compatibility.
+Current extensions: [spatial mission placement](SPATIAL.md) and
+[structural/resource/material fidelity](FIDELITY.md). Remaining exclusions include
+unknown records/streams, full cache/lighting/effect consumers, animation/skin,
+editing/binary serialization, runtime/gameplay/debugging and full compatibility.

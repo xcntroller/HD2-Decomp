@@ -1,4 +1,8 @@
-# Read-only 3D Mission Explorer — 2026-11-10
+# Read-only 3D Mission Explorer — initial milestone, 2026-11-10
+
+Current fidelity improvements and three-mission verification are documented in
+[FIDELITY.md](FIDELITY.md). The initial verification receipt below is historical;
+its counts are superseded by that checkpoint.
 
 The existing toolkit now combines original base Scene.4ds geometry, supported
 Scene2 placements, actors and original model resources in one interactive view.
@@ -52,7 +56,7 @@ python3 tools/modding/spatial_inspect.py /path/to/game tutorial \
 Optional `--inspector /tmp/hd2-inspect` enriches script analysis; otherwise existing
 bindings/dependencies are indexed. `--archives-first` / `--language` retain the
 established resolver profiles. Exit0 means inspection/export completed, not full
-world compatibility. JSON schema1 is deterministic, streamed, and includes
+world compatibility. Current spatial JSON schema2 is deterministic, streamed, and includes
 ordered nodes, stable resource/offset IDs, assets/provenance, parent resolution,
 actor/script relationships, diagnostics, statistics and limitations. Geometry is
 referenced by identity; original vertex/texture payloads are not exported here.
@@ -87,7 +91,7 @@ Original addresses are evidence, never dependencies during normal operation.
 | Client006D1873..006D1987 | Position first (unless E0 bit80), new-frame automatic sector handling, explicit parent, quaternion/scale, hidden state. Known explicit-parent links use flag0 |
 | LS3DF1001D680 | LinkTo flags0 retains local TRS; flags1 preserves world through inverse/decomposition; these are different operations |
 | Client006CDE38..006CDEC8 and0041D180 → Normalize10030540 | Scene2 chunk0x22 is serialized **WXYZ**, reordered to engine XYZW, then normalized |
-| LS3DF1001EC40/1002D450/1001E390/1002D830 | 4DS common stores **XYZW** directly; SetRot3 signs, per-row scale and row-vector `world = local * parent` are established; no axis mirroring/conversion is applied |
+| LS3DF1001EC40/1002D450/1001E390/1002D830 | 4DS common stores **XYZW** directly; SetRot3 signs, per-row scale and row-vector `world = local * parent` are established; serialized coordinates are unchanged. Display camera conversion is documented in FIDELITY.md |
 | LS3DF10047C70, scene+E0 | Automatic sector choice and LinkTo flag1 depend on sector/spatial behavior; this selection is not reconstructed |
 | Client006CC760 /AE23→AE22→AE24 | Actor definition binds to the frame available when its type chunk is read; later frame chunks do not retroactively bind earlier actor definitions |
 | Client006DBE60 / model_resource_key / cache1 /1005D260 | The default Models root is established; toolkit selects the exact `Models/<serialized-key>.4ds` under its explicitly restricted default-root profile |
@@ -108,11 +112,12 @@ Explicit nesting composes supported local matrices; model children retain their
 actual one-based 4DS parents beneath their actual model instance root. Identical
 model instances share decoded Geometry/Image objects and GPU allocations.
 
-The scratch name map contains original base frames and supported explicitly
-created objects. Model child names are a separate index. Actor lookup uses an
-exact unique scratch name first, then an exact unique supported scene child;
-runtime scene-path fallback is excluded. Ambiguous names never select an
-arbitrary object. Removed models do not remain valid lookup targets.
+The scratch name map contains original base frames, supported explicitly
+created objects and prefixed imported members (`instance.originalMember`). Actor
+lookup uses a unique exact scratch name, then a unique ASCII-insensitive supported
+scene name. Global registration scope and duplicate traversal remain excluded;
+see [current name/sector evidence](FIDELITY.md#evidence-and-scene-relationships).
+Ambiguous names never select an arbitrary object.
 
 Chunk0x2C fallback/world position is preserved as metadata and compared with
 computed placements. It is **never** used to invent a mesh placement when sector
@@ -147,8 +152,9 @@ Original lightmaps/aliases, area/environment tables, occlusion/portal traversal,
 original materials/alpha/lighting, animation and actor initialization can change
 appearance and runtime placement. They are not simulated. Joint/skin data remain
 undeformed, with partial status. Actor-attached resources not connected by the
-supported serialized relationships are not invented. Transparent tree textures
-render as opaque RGB and can show dark rectangles. Some ground, sky and blended
+supported serialized relationships are not invented. Supported alpha-source
+previews now exist, with device/color-key and blending limitations; some tree
+rectangles remain. See [material coverage](FIDELITY.md#materials-recovered-sources-versus-preview-rendering). Some ground, sky and blended
 surfaces use explicit gray fallback materials. Spatial previews therefore differ
 visibly from the game, even when geometry/transform decoding is established.
 
@@ -158,18 +164,17 @@ Base scene/model/BMP reads use ResourceStore and retain explicit loose/Patch/bas
 precedence, alternate archive-first profiles and checksum results. An invalid or
 unsupported selected member never falls through to a shadowed resource.
 
-A Scene2 model link is a serialized relationship. Selecting its exact default-root
-resource is labelled `selected_default_root_profile`; other registered cache
-subdirectories/global policies are unresolved, never basename guesses. The
-existing Mission Explorer graph's model candidates remain candidates. Texture
-names use the existing unique registered-root policy and preserve its candidate
-certainty. No stronger cache claim is introduced by successful preview rendering.
+A Scene2 model link is a serialized relationship. Selection now follows explicit
+ordered model/texture directory profiles, including native texture reverse/sticky
+lookup rules. Windows descendant registration and warm/global cache state remain
+unresolved. The existing Mission Explorer graph's model candidates remain
+candidates. See [resource evidence and defensive barriers](FIDELITY.md#resource-selection).
 Neutral gray is an explicit fallback, not successful material decoding. Per-asset
 status/provenance and texture failures are visible in properties/model inspection
 and export.
 
 Budgets:50,000 spatial nodes,192 unique model assets,96MiB retained packed geometry,
-48MiB shared decoded RGB pixels,512 texture dependencies per spatial asset.
+48MiB shared decoded texture storage including auxiliary/RGBA planes,512 texture dependencies per spatial asset.
 Existing64MiB/member, bounded archive decoding and per-image safeguards remain.
 The standalone Model Inspector keeps its earlier64-dependency/32MiB defaults.
 These are payload budgets, **not** a total-process RSS cap. Model/source metadata,
@@ -183,7 +188,7 @@ can consume the draw budget. No distant/unsupported object gets substituted
 geometry. GPU buffers/textures are deleted with their owning current context on
 replacement/close. The independent Model Inspector has a separate GL context.
 
-## Verification receipt
+## Initial verification receipt (historical)
 
 Actual local read-only installation, default loose-first English profile:
 
@@ -261,7 +266,8 @@ part of this checkpoint.
 
 ## Remaining boundary
 
-The requested partial interactive mission-viewing milestone is delivered. Full
+The initial partial interactive mission-viewing milestone was delivered; the
+current [fidelity checkpoint](FIDELITY.md) extends it. Full
 world compatibility needs actual automatic-sector selection, scene-path/name
 scope/cache policy, lightmap/area/landscape/other unsupported record consumers,
 material/alpha/lighting, skins/animation and runtime actor initialization. Those

@@ -72,8 +72,9 @@ Script paths use the established 00427730 `Scripts/<mission>/<name>` and exact
 not that its source compiles or executes. A selected unsupported payload remains
 unavailable. Model cache keys (extension-stripped) and sound filename matches
 remain `name_candidate`, even when the candidate file's own archive provenance
-is known. No model joint hierarchy, directory-priority cache search or scene-path
-engine query is simulated.
+is known. These graph candidates remain separate from the supported model
+hierarchy and ordered directory profiles used by the spatial/model viewers.
+No full scene-path/global-cache engine query is simulated.
 
 ## Bounds, identity and installation protection
 
@@ -109,16 +110,20 @@ overwritten. No editing or binary serialization is present.
 
 Selected model virtual paths use the same ResourceStore with no fallback on bad
 payloads. [MODEL4DS.md](MODEL4DS.md) documents decoding independently of cache
-selection. Bare texture names enumerate exact candidates under registered
-Maps/Maps_C/Maps_U roots; only a unique candidate is previewed. This is labelled
-as a name candidate, not proof of original graphics-cache lookup. Archive/loose
-precedence within each exact candidate is unchanged. Ambiguity/invalid selection
-uses a labelled material fallback, with no hidden directory/extension substitution.
+selection. [FIDELITY.md](FIDELITY.md#resource-selection) records the original
+10069F70/1006FBD0 texture probes: direct path, last successful directory, reverse
+registered directories. Model keys use the recovered client/engine suffix rules
+and forward registered-root order. `resource_lookup.py` supplies bounded explicit
+profiles (Models; Maps/Maps_C/Maps_U), retaining attempts and selection certainty.
 
-The [spatial mission view](SPATIAL.md) reuses this abstraction for the exact
-`missions/<namespace>/scene.4ds` base and serialized model keys under the
-established default Models root. Selection is labelled
-`selected_default_root_profile`; other cache roots/directories/global policies
-remain unresolved. It never substitutes a guessed basename or a lower-priority
-archive when the selected resource fails. Original graph candidate classifications
-are retained, separately from this restricted spatial profile.
+These are ordered directory-profile selections, not full engine cache results.
+Windows descendant enumeration, warm-cache/global scope and duplicate frame
+lookup order remain unknown. Exact archive/loose/Patch selection within each
+candidate is unchanged. A selected invalid/unsupported/unavailable payload never
+falls through to another directory, extension or shadowed archive. The barrier is
+an explicit inspection safety restriction where original status loops differ.
+
+The [spatial mission view](SPATIAL.md) uses exact
+`missions/<namespace>/scene.4ds` and supported serialized model keys. Existing
+dependency-graph name candidates retain their certainty; successful preview
+rendering does not upgrade them to proved actor attachments/runtime resources.

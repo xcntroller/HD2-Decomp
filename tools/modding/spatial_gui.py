@@ -34,7 +34,7 @@ class SpatialWindow:
         self.export_button=ttk.Button(bar,text='Export spatial report…',command=self.export,state='disabled');self.export_button.pack(side='right')
         self.status=ttk.Label(shell,text='Choose an installation-aware mission in the existing Mission Explorer.',wraplength=1380)
         self.status.pack(anchor='w',pady=(7,4))
-        ttk.Label(shell,text='Partial serialized snapshot · lighting, lightmaps, skin/animation and runtime/script movement excluded · grid/origins are viewport aids',style='Muted.TLabel').pack(anchor='w')
+        ttk.Label(shell,text='Partial serialized snapshot · recovered alpha sources / approximate preview lighting and blending · no lightmaps, skin/animation or runtime movement',style='Muted.TLabel').pack(anchor='w')
         controls=ttk.Frame(shell);controls.pack(fill='x',pady=6)
         self.mode=tk.StringVar(value='orbit');box=ttk.Combobox(controls,textvariable=self.mode,values=('orbit','fly'),state='readonly',width=7);box.pack(side='left');box.bind('<<ComboboxSelected>>',self.camera_options)
         ttk.Button(controls,text='Fit scene',command=self.fit).pack(side='left',padx=4)
@@ -125,13 +125,10 @@ class SpatialWindow:
         self.scene=scene;self.selected=None;self.viewport.set_scene(scene)
         self.mode.set('orbit');self.speed.set(f'{self.viewport.camera.speed:.2f}');self.far.set(f'{self.viewport.camera.far:.1f}')
         c=scene.counts
-        self.status.configure(text=f"{scene.mission} · partial serialized spatial view · {c['mesh_instances']} placed mesh instances · {c['unresolved_transforms']} unresolved transforms · {c['unresolved_actors']} unresolved actors · {c['assets']} unique assets")
-        summary={'statistics':dict(c),'documents':scene.documents,'asset_failures':scene.asset_failures,
-            'texture_dependencies':dict(Counter(t['status'] for a in scene.assets.values() for t in a.textures)),
-            'fallback_material':'Neutral gray for unresolved/unsupported/invalid textures; this is not successful original-material rendering.',
-            'actor_resolution':[l for l in scene.actor_links if l['target'] is None],
-            'unresolved_objects':[{'identity':n.identity,'name':n.name,'parent':n.requested_parent,'status':n.parent_status} for n in scene.nodes.values() if n.world is None and not n.model_owner],
-            'ignored_or_unresolved_records':scene.observations,'diagnostics':scene.diagnostics,'limitations':scene.limitations}
+        self.status.configure(text=f"{scene.mission} · partial serialized spatial view · {c['mesh_instances']} placed mesh instances · {c['unresolved_transforms']} unresolved transforms · {scene.coverage['spatial']['unresolved_parent_identity']} unresolved parent identities · {c['unresolved_actors']} unresolved actors · {c['assets']} unique assets")
+        summary={**scene.coverage,'geometry':{key:value for key,value in scene.coverage['geometry'].items() if key not in ('omissions','assets')}}
+        summary['geometry']['omission_samples']=scene.coverage['geometry']['omissions'][:100]
+        summary['geometry']['asset_statuses']=[{'identity':a['identity'],'status':a['status'],'decoded_frames':a['decoded_frames'],'declared_frames':a['declared_frames']} for a in scene.coverage['geometry']['assets']]
         self.text(self.issues,summary);self.owner.set_text(self.properties,'Select an actual mesh, origin marker or hierarchy entry.');self.build_tree()
         if self.pending_source:
             source=self.pending_source;self.pending_source=None
@@ -186,7 +183,7 @@ class SpatialWindow:
             if self.closed or generation!=self.tree_generation:return
             for node in rows[position:position+200]:
                 parent='unresolved-root' if node.world is None else 'scene-root'
-                self.tree.insert(parent,'end',iid=node.identity,text=node.name or '<unnamed>',values=(node.category,'resolved' if node.world is not None else node.parent_status))
+                self.tree.insert(parent,'end',iid=node.identity,text=node.name or '<unnamed>',values=(node.category,'world known / parent unknown' if node.world_status=='verified_translation_only_sector_invariant' else 'resolved' if node.world is not None else node.parent_status))
             position+=200
             if position<len(rows):self.tree_timer=self.root.after(1,batch)
             else:
@@ -225,12 +222,14 @@ class SpatialWindow:
         if not node:return
         owner=self.owner_node(node)
         value=node.metadata()
+        value['omission_reasons']=next((r['reasons'] for r in self.scene.coverage['geometry']['omissions'] if r['identity']==identity),[])
         if owner is not node:value['mission_owner']=owner.metadata()
         asset=self.scene.assets.get(node.asset)
         if asset:
             value['model_asset']={'identity':asset.model.identity,'status':asset.model.status,
                 'provenance':asset.model.provenance,'texture_status':dict(Counter(t['status'] for t in asset.textures)),
-                'fallback_material':'Neutral gray; original lighting/alpha/lightmaps/effects are not reproduced.'}
+                'material_preview':asset.material_preview,
+                'fallback_material':'Neutral gray for unavailable sources; supported alpha sources use approximate preview blending/cutoffs. Original lighting/lightmaps/effects are not reproduced.'}
         value['scope']='Serialized placement, not actual runtime actor/script transform'
         self.text(self.properties,value)
         self.inspect_button.configure(state='normal' if node.inspection_file else 'disabled')

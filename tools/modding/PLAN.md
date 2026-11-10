@@ -15,7 +15,16 @@
 
 - [x] Deliver a verified spatial scene model and integrated interactive mission viewport.
 
-Current boundary: [partial spatial mission viewing](SPATIAL.md), [4DS/viewer coverage](MODEL4DS.md),
+- [x] Improve verified spatial/resource/material fidelity and comparable coverage; validate three missions.
+
+Fidelity checkpoint and positive-Z display-camera correction are toolkit-desktop
+tested and user-accepted (“Looks good; commit”); local checkpoint authorized.
+No push/merge.
+Further read-only reconstruction is essential before safe binary editing; exact
+sector identity, Arctic1 discrepancies and device/material/lightmap consumers
+remain explicit blockers, not successful fallbacks.
+
+Current boundary: [fidelity/coverage/editing readiness](FIDELITY.md), [partial spatial mission viewing](SPATIAL.md), [4DS/viewer coverage](MODEL4DS.md),
 [format/model contracts](FORMATS.md), [resolution](RESOLUTION.md),
 [script/include contract and verification](SCRIPT-ANALYSIS.md),
 [archive verification](ISD1.md); [prior validation](INTEGRATED-VALIDATION.md). Full format/world/engine-cache

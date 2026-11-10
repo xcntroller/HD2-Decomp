@@ -1,7 +1,7 @@
 """Read-only model/texture assets over the established resource abstraction.
 
-A selected invalid resource is never replaced. Engine cache lookup remains
-separate from exact virtual paths and registered-root name candidates.
+A selected invalid resource is never replaced. Explicit ordered directory
+profiles remain separate from warm runtime caches and exact archive selection.
 """
 from dataclasses import dataclass,field,asdict
 import hashlib
@@ -9,6 +9,8 @@ from pathlib import Path
 import struct
 
 from model4ds import decode,read_file,Model
+from resource_lookup import ResourceLookup
+from material_preview import describe,rgba_preview
 
 MAX_TEXTURE_BYTES=32*1024*1024
 MAX_TEXTURE_PIXELS=8_000_000
@@ -26,12 +28,18 @@ class Image:
     height:int
     pixels:bytes=field(repr=False)
     metadata:dict=field(default_factory=dict)
+    channels:int=3
+    indices:bytes|None=field(default=None,repr=False)
+    native_alpha:bytes|None=field(default=None,repr=False)
+    @property
+    def retained_bytes(self):return len(self.pixels)+len(self.indices or b'')+len(self.native_alpha or b'')
 
 
-def decode_bmp(data):
+def decode_bmp(data,keep_aux=False):
     """Verified local BMP inputs: BITMAPINFOHEADER, BI_RGB,8/24/32-bit.
 
-    RGB preview only. Palette reserved bytes/BGRx padding are not inferred alpha.
+    Source RGB plus optional indices/32-bit fourth bytes. Palette reserved bytes
+    are not alpha. A separate established material policy decides alpha usage.
     The returned first row is the top row, matching serialized UV v=0 addressing.
     """
     if len(data)<2:raise TextureError('Truncated image signature')
@@ -53,10 +61,12 @@ def decode_bmp(data):
             if 54+4*n+4>len(data):raise TextureError('Truncated BMP palette')
             b,g,r,_=data[54+4*n:58+4*n];palette.append(bytes((r,g,b)))
     if offset<54 or end>len(data) or file_size and (file_size>end and file_size>len(data) or file_size<end):raise TextureError('BMP pixel/file bounds invalid')
-    pixels=bytearray()
+    pixels=bytearray();indices=bytearray();alpha=bytearray()
     for row in range(rows):
         at=offset+(row if height<0 else rows-1-row)*stride
         raw=data[at:at+width*(bpp//8)]
+        if keep_aux and bpp==8:indices.extend(raw)
+        if keep_aux and bpp==32:alpha.extend(raw[3::4])
         if bpp==8:
             if any(i>=len(palette) for i in raw):raise TextureError('BMP index exceeds palette')
             pixels.extend(b''.join(palette[i] for i in raw))
@@ -66,7 +76,7 @@ def decode_bmp(data):
     return Image(width,rows,bytes(pixels),{'format':'BMP BI_RGB','dib_size':dib,'bits_per_pixel':bpp,
         'pixel_offset':offset,'row_stride':stride,'top_down_serialized':height<0,'palette_entries':len(palette),
         'alpha':'not decoded; opaque RGB preview','sha256':hashlib.sha256(data).hexdigest(),
-        'file_bytes':len(data),'unconsumed_suffix':len(data)-end})
+        'file_bytes':len(data),'unconsumed_suffix':len(data)-end},indices=bytes(indices) if indices else None,native_alpha=bytes(alpha) if alpha else None)
 
 
 @dataclass
@@ -75,12 +85,13 @@ class ModelAsset:
     textures:list[dict]=field(default_factory=list)
     images:dict[int,Image]=field(default_factory=dict,repr=False)
     protected_roots:list[Path]=field(default_factory=list,repr=False)
+    material_preview:dict[int,dict]=field(default_factory=dict)
     def metadata(self):
-        value=self.model.metadata();value['textures']=self.textures
-        value['rendering']={'mode':'serialized geometry / RGB texture preview',
+        value=self.model.metadata();value['textures']=self.textures;value['material_preview']=self.material_preview
+        value['rendering']={'mode':'serialized geometry / supported RGB/RGBA preview',
             'original_renderer_reproduction':False,'fallback_material':'explicit neutral gray',
             'textures_applied_to_materials':sorted(self.images),
-            'limitations':['No original lighting/blending/alpha/shaders/animation or skin deformation.',
+            'limitations':['Only established alpha sources; preview lighting/blending/cutoff differ from original. No lightmaps, animation or skin deformation.',
                            'Only verified mesh layouts are displayed; unsupported data is never replaced with generated geometry.',
                            'Texture cache-directory matching is labelled separately from exact archive selection.',
                            'All supported frames are shown; original visibility/LOD/effect policy is not simulated.']}
@@ -88,9 +99,10 @@ class ModelAsset:
 
 
 class ModelResources:
-    def __init__(self,store,texture_cache=None,texture_limit=MAX_TEXTURE_BYTES,texture_dependencies=MAX_TEXTURES):
+    def __init__(self,store,texture_cache=None,texture_limit=MAX_TEXTURE_BYTES,texture_dependencies=MAX_TEXTURES,lookup=None):
         self.store=store;self.texture_cache=texture_cache;self.texture_limit=texture_limit
         self.texture_dependencies=texture_dependencies
+        self.lookup=lookup or ResourceLookup(store)
     def open(self,name,textures=True):
         from resource_store import virtual_name
         name=virtual_name(name)
@@ -102,50 +114,61 @@ class ModelResources:
         return asset
 
     def textures(self,asset):
-        from resource_store import virtual_name
         decoded=self.texture_cache if self.texture_cache is not None else {}
-        pixel_bytes=sum(len(image.pixels) for image in decoded.values())
+        def admit(key,image):
+            if sum(i.retained_bytes for i in decoded.values())+image.retained_bytes>self.texture_limit:
+                raise TextureError('Shared decoded texture/alpha budget exceeded','unsupported')
+            decoded[key]=image;return image
+        def source(path):
+            if path not in decoded:
+                result=self.store.read_result(path)
+                image=decode_bmp(result.data,keep_aux=True)
+                image.metadata['archive_decoding']=result.decoding
+                admit(path,image)
+            return decoded[path]
         for material in asset.model.materials:
-            for role,name in (('primary',material.primary_texture),('secondary',material.secondary_texture),('extra',material.extra_texture)):
+            policy=describe(material);state=policy.metadata();asset.material_preview[material.index]=state
+            sources={};deps={}
+            #1002BBE0 reads/requests extra first, then primary and optional opacity.
+            for role,name in (('extra',material.extra_texture),('primary',material.primary_texture),('secondary',material.secondary_texture)):
                 if not name:continue
                 dependency={'material':material.index,'role':role,'name':name,'status':'unsupported',
-                            'rendering_status':'fallback','evidence':'LS3DF 1002BBE0/1002BE30;006DBE60 registered graphics roots'}
-                asset.textures.append(dependency)
+                    'rendering_status':'fallback','evidence':policy.evidence}
+                asset.textures.append(dependency);deps[role]=dependency
                 if len(asset.textures)>self.texture_dependencies:
                     dependency['message']='Tool texture dependency/decode budget reached';continue
                 try:
-                    key=virtual_name(name)
-                    if '/' in key:
-                        candidates=[key] if key.startswith(('maps/','maps_c/','maps_u/')) else []
-                        dependency['relationship']='serialized_virtual_path'
-                    else:
-                        candidates=[root+'/'+key for root in ('maps','maps_c','maps_u')]
-                        dependency['relationship']='registered_root_name_candidate'
-                    matches=[p for p in candidates if self.store.resolution(p).status!='missing']
-                    dependency['candidates']=matches
-                    if len(matches)!=1:
-                        dependency.update(status='missing' if not matches else 'ambiguous',message='No unique texture resource; engine cache search is not guessed');continue
-                    path=matches[0];resolution=self.store.resolution(path)
-                    dependency.update(selected='resource/'+path,resolution=asdict(resolution))
-                    # Secondary/extra maps and sequence playback have no verified
-                    # preview interpretation, so do not silently compose them.
-                    if role!='primary' or material.sequence:
-                        dependency.update(status='resolved_uninterpreted',message='Secondary/extra/sequence mapping is not rendered');continue
-                    if path not in decoded:
-                        result=self.store.read_result(path);image=decode_bmp(result.data)
-                        if pixel_bytes+len(image.pixels)>self.texture_limit:
-                            raise TextureError('Total decoded texture budget exceeded','unsupported')
-                        decoded[path]=image;pixel_bytes+=len(image.pixels)
-                        dependency['archive_decoding']=result.decoding
-                    image=decoded[path]
-                    dependency.update(status='decoded',rendering_status='RGB_preview',image=image.metadata,width=image.width,height=image.height)
-                    asset.images[material.index]=image
+                    selection=self.lookup.texture(name);dependency.update(lookup=selection,relationship=selection['certainty'])
+                    path=selection['path']
+                    if path is None:dependency.update(status='missing',message=selection['message']);continue
+                    dependency.update(selected='resource/'+path,resolution=selection['resolution'])
+                    if material.sequence or role=='extra' or role=='secondary' and not policy.opacity_map:
+                        dependency.update(status='resolved_uninterpreted',message='Sequence/extra/unsupported secondary interpretation is not rendered');continue
+                    image=source(path);sources[role]=(path,image)
+                    dependency.update(status='decoded',rendering_status='RGB_source' if role=='primary' else 'alpha_source',
+                        image=image.metadata,width=image.width,height=image.height)
                 except (ValueError,OSError) as exc:
                     status=getattr(exc,'status',None)
-                    if status is None:
-                        kind=getattr(exc,'kind','unavailable')
-                        status='invalid' if kind in ('invalid','integrity_error','bounds_error') else 'unavailable'
+                    if status is None:status='invalid' if getattr(exc,'kind','') in ('invalid','integrity_error','bounds_error') else 'unavailable'
                     dependency.update(status=status,message=str(exc))
+            if 'primary' not in sources:
+                state.update(rendering_status='color_only_preview' if not material.primary_texture and policy.color is not None else 'fallback_material',
+                    alpha_status='not_requested' if not material.primary_texture else 'unavailable_primary');continue
+            path,image=sources['primary'];secondary=sources.get('secondary')
+            try:
+                if policy.opacity_map and not secondary:raise TextureError('Required opacity map unavailable; preview retains RGB only','unsupported')
+                key=(path,policy.color_key,policy.intrinsic_alpha,secondary[0] if secondary else None)
+                if key in decoded:preview=decoded[key]
+                else:
+                    pixels,channels,mode=rgba_preview(image,policy,secondary[1] if secondary else None)
+                    preview=image if channels==3 else admit(key,Image(image.width,image.height,pixels,{**image.metadata,'alpha':mode},channels))
+                asset.images[material.index]=preview
+                state.update(rendering_status='RGBA_preview' if preview.channels==4 else 'RGB_preview',alpha_status=preview.metadata['alpha'] if preview.channels==4 else 'opaque')
+                deps['primary']['rendering_status']=state['rendering_status']
+            except (ValueError,OSError) as exc:
+                asset.images[material.index]=image
+                state.update(rendering_status='RGB_fallback_alpha_unsupported',alpha_status='unsupported',diagnostic=str(exc))
+                deps['primary']['rendering_status']='RGB_fallback_alpha_unsupported'
         return asset
 
 

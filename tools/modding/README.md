@@ -140,10 +140,11 @@ and return to the selected 3D object. Category filters, wireframe, grid/axes/ori
 bounds, range/speed controls and loading diagnostics are available.
 
 This is a **partial serialized spatial snapshot**: unresolved parenting is withheld,
-and original lighting/lightmaps, alpha, animation and runtime actor/script movement
-are excluded. Gray materials indicate texture fallbacks. Full format coverage,
-verified Tutorial/ALPS1 counts, native desktop checks and limitations:
-[SPATIAL.md](SPATIAL.md). Headless deterministic metadata export:
+and original lighting/lightmaps, animation and runtime actor/script movement
+are excluded. Supported alpha-source previews use approximate blending/cutoffs.
+Gray materials indicate texture fallbacks. Current Tutorial/ALPS1/Arctic1 coverage,
+sector/resource evidence and native desktop checks: [FIDELITY.md](FIDELITY.md);
+controls/composition: [SPATIAL.md](SPATIAL.md). Headless deterministic metadata export:
 
 ```
 python3 tools/modding/spatial_inspect.py /path/to/game tutorial \
@@ -159,7 +160,8 @@ The OpenGL viewport supports orbit (left drag), pan (middle/right or Shift+left)
 wheel zoom, solid/wireframe, grid, axes, bounds, manual LOD selection and mesh/frame
 highlighting through the hierarchy. Properties show original offsets, identifiers,
 transforms, geometry samples, materials, texture dependencies and archive provenance.
-Supported BMP materials show RGB texture previews; unsupported textures/effects
+Supported BMP materials show RGB/RGBA previews with explicit material/alpha
+status; unsupported textures/effects
 have clearly labelled fallbacks. This is a read-only viewer, not a mission editor.
 
 In Mission Explorer, follow an existing actor/object model candidate, select the
@@ -190,6 +192,7 @@ describe exact coverage and limits.
 
 - [Spatial composition, interactive mission viewing and current verification](SPATIAL.md)
 - [4DS models, OpenGL viewer and current verification](MODEL4DS.md)
+- [Mission fidelity, coverage and editing readiness](FIDELITY.md)
 - [Structured scripts, includes, schema and earlier verification](SCRIPT-ANALYSIS.md)
 - [Mission format/model coverage](FORMATS.md)
 - [Original lookup policy and bounds](RESOLUTION.md)

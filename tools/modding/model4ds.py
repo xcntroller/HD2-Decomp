@@ -151,6 +151,8 @@ class Frame:
     status:str='decoded'
     unknown:list[Opaque]=field(default_factory=list)
     world_bounds:tuple|None=None
+    frame_references:list[int]=field(default_factory=list)
+    effect_material_references:list[int]=field(default_factory=list)
     def metadata(self):
         result={k:v for k,v in vars(self).items() if k not in ('geometry','unknown')}
         result['geometry_identity']=self.geometry.identity if self.geometry else None
@@ -174,7 +176,7 @@ class Model:
     provenance:dict|None=None
     limitations:list[str]=field(default_factory=lambda:[
         'Serialized model inspection; no original runtime execution or full format support claim.',
-        'Material parameter names/blending/effects, animated sequences and skin deformation are not implemented.',
+        'Full material/lighting/effect consumers, animated sequences and skin deformation are not implemented. Supported alpha-source previews have separate FIDELITY.md coverage.',
         'Standalone model view uses LOD0 by default; metrics remain uninterpreted. Mission composition has separate SPATIAL.md coverage.',
         'Unsupported records stop parsing; an opaque suffix is retained without guessed resynchronization.'])
     def metadata(self):
@@ -261,8 +263,8 @@ def decode(data:bytes,identity='model.4ds',provenance=None):
             record_start=c.position;kind=c.unpack('B');sub=flags=None
             if kind==1:
                 sub=c.unpack('B');flags=c.unpack('H')
-                if sub not in (0,1,2):raise ModelError(f'Unsupported visual subtype{sub}',record_start,'unsupported')
-            elif kind not in (5,6,10,11,12):raise ModelError(f'Unsupported frame kind{kind}',record_start,'unsupported')
+                if sub not in (0,1,2,3,4,5,6):raise ModelError(f'Unsupported visual subtype{sub}',record_start,'unsupported')
+            elif kind not in (5,6,7,8,10,11,12):raise ModelError(f'Unsupported frame kind{kind}',record_start,'unsupported')
             parent=c.unpack('H')
             if parent>index:raise ModelError('Parent must refer to an earlier one-based frame',c.position-2)
             position=c.floats(3);quat=c.floats(4);scale=c.floats(3);unknown=c.floats(1)[0];bits=c.unpack('B')
@@ -271,9 +273,19 @@ def decode(data:bytes,identity='model.4ds',provenance=None):
             if not all(math.isfinite(v) and abs(v)<=1e20 for v in world):raise ModelError('Unsafe hierarchical transform',record_start)
             frame=Frame(index+1,f'{identity}@0x{record_start:x}',record_start,c.position,kind,sub,flags,parent,name,properties,position,quat,scale,unknown,bits,local,world)
             if kind==1:
+                if sub==6:
+                    #10009610: common only + byte count of8-byte parameters /
+                    #word material references. No serialized triangle mesh.
+                    start=c.position;count=c.unpack('B')
+                    for _ in range(count):
+                        c.take(8);material=c.unpack('H')
+                        if material>len(model.materials):raise ModelError('Visual6 material exceeds first table',c.position-2)
+                        frame.effect_material_references.append(material)
+                    frame.unknown.append(opaque(c,start,c.position,'Visual6 counted effect records, not a triangle mesh; not rendered','LS3DF 10009610'))
+                    frame.status='partial';frame.end=c.position;model.frames.append(frame);continue
                 frame.geometry,frame.geometry_reference=geometry()
                 if sub==1:frame.status='partial';model.diagnostics.append({'severity':'warning','offset':record_start,'code':'visual1_preview','message':'Visual subtype1 rendered as serialized mesh; subtype-specific runtime behavior is unknown'})
-                if sub==2 and frame.geometry and frame.geometry.lods:
+                if sub in (2,3) and frame.geometry and frame.geometry.lods:
                     # 10053900 consumes common mesh, byte bone count, opaque32,
                     # per-bone byte and96-byte records, then per-LOD counted words.
                     start=c.position;bones=c.unpack('B')
@@ -286,6 +298,22 @@ def decode(data:bytes,identity='model.4ds',provenance=None):
                     frame.unknown.append(opaque(c,start,c.position,'Skin binding records; undeformed serialized geometry only','LS3DF 10053900'))
                     frame.status='partial'
                     model.diagnostics.append({'severity':'warning','offset':start,'code':'skin_undeformed','message':'Skin bindings retained opaque; no skin deformation or posed-character claim'})
+                if sub in (3,5):
+                    #10054240/10035F00→10035490: counted opaque animation
+                    #tail. This establishes extents, not animated geometry.
+                    start=c.position;channels=c.unpack('B')
+                    if channels:
+                        groups=c.unpack('B');sets=c.unpack('B')
+                        for _ in range(groups*sets):
+                            count=c.unpack('H')
+                            if count:
+                                c.take(channels*count*24)
+                                if c.unpack('B'):c.take(count*2)
+                        c.take(48)
+                    frame.unknown.append(opaque(c,start,c.position,'Counted animation tail retained; no playback/deformation','LS3DF 10035490/10054240/10035F00'));frame.status='partial'
+                elif sub==4:
+                    start=c.position;c.take(5)
+                    frame.unknown.append(opaque(c,start,c.position,'Visual4 fixed tail retained; dynamic rendering behavior unknown','LS3DF 10007DB0'));frame.status='partial'
             elif kind==5:
                 # 1004E250/100431A0: exact sector/portal extents. Volumes are
                 # not environment meshes; retaining them unlocks later visuals.
@@ -313,7 +341,15 @@ def decode(data:bytes,identity='model.4ds',provenance=None):
                 start=c.position;c.take(32);frame.unknown.append(opaque(c,start,c.position,'Dummy payload,8 raw floats','LS3DF 1001C060'));frame.status='partial'
             elif kind==10:
                 start=c.position;c.take(4);frame.unknown.append(opaque(c,start,c.position,'Joint payload DWORD','LS3DF 10020BA0'));frame.status='partial'
-            # kind11 uses the same common reader with no extra serialized body.
+            elif kind==7:
+                #10056C70, then1005D970 postpass resolves word frame IDs.
+                start=c.position;c.take(2);count=c.unpack('B')
+                for _ in range(count):
+                    reference=c.unpack('H')
+                    if reference>model.header['frame_count']:raise ModelError('Target reference exceeds frame table',c.position-2)
+                    frame.frame_references.append(reference)
+                frame.unknown.append(opaque(c,start,c.position,'Target parameters and frame IDs retained; target behavior not evaluated','LS3DF 10056C70/1005D970'));frame.status='partial'
+            #kind8/11 dispatch to1001EC40, with no extra serialized body.
             if frame.geometry and frame.geometry.lods:
                 buffer=frame.geometry.lods[0].vertices
                 frame.world_bounds=bounds(transform(world,tuple(buffer[v:v+3])) for v in range(0,len(buffer),8))

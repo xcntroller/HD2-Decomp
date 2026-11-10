@@ -44,8 +44,14 @@ class SpatialNode:
     source:str
     offset:int|None
     category:str
+    visual_type:int|None=None
+    model_frame:str|None=None
     parent:str|None=None
     parent_status:str='root'
+    world_status:str='unresolved'
+    serialized_name:str|None=None
+    automatic_candidates:list[str]=field(default_factory=list)
+    sector_transform_changed:bool=False
     requested_parent:str|None=None
     position:tuple=(0.,0.,0.)
     quaternion:tuple=(0.,0.,0.,1.)  # Always engine XYZW; raw WXYZ lives in records.
@@ -103,9 +109,9 @@ class SpatialScene:
             'Partial cold serialized spatial rendering, not full mission/world compatibility or runtime actor/script transforms.',
             'Scene2 WXYZ is reordered/normalized;4DS XYZW is retained. Known local transforms compose local*parent.',
             'Ambiguous names, unknown scene paths and missing parents withhold world transforms; no flattening.',
-            'Automatic sector parenting remains unresolved; fallback world positions are metadata, never guessed mesh placements.',
+            'Sector identities can remain unresolved even when a translation-only-parent invariant establishes world TRS; fallback positions are checks only.',
             'Original lighting/lightmaps, skin/animation/effects and geometry visibility policies are not simulated.',
-            'Exact default Models root is tried; other cache directories remain unresolved. Original graph candidates retain their certainty.',
+            'Default ordered cache-root profile is explicit; descendant enumeration and warm caches remain unresolved. Graph candidates retain their certainty.',
             'Bounds enclose supported LOD0 geometry; volume/portal/occluder payloads are not fabricated terrain.']
         self.load()
 
@@ -141,8 +147,15 @@ class SpatialScene:
 
     def lookup(self,name,actor=False):
         values=self.names.get(name,[])
-        if not values and actor:values=self.all_names.get(name,[])
-        return (values[0], 'resolved_exact_name') if len(values)==1 else (None,'ambiguous_name' if values else 'missing_name_or_scene_path')
+        resolved='resolved_exact_name'
+        if not values and actor:
+            #10046920→1001DF00 uses the default C-locale stricmp branch.
+            #The client scratch map remains case-sensitive. Duplicate engine
+            #matches are withheld until traversal/sector scope is established.
+            fold=lambda value:value.translate(str.maketrans('ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))
+            values=[identity for key,ids in self.all_names.items() if fold(key)==fold(name) for identity in ids]
+            resolved='resolved_scene_case_insensitive'
+        return (values[0],resolved) if len(values)==1 else (None,'ambiguous_name' if values else 'missing_name_or_scene_path')
 
     def attach_asset(self,node,path):
         asset=self.asset(path);node.asset=path
@@ -151,12 +164,16 @@ class SpatialScene:
         by_index={}
         for frame in asset.model.frames:
             identity=f'{node.identity}::model@0x{frame.offset:x}'
-            child=SpatialNode(identity,frame.name,frame.kind,path,frame.offset,'props',
+            child=SpatialNode(identity,node.name+'.'+frame.name,frame.kind,path,frame.offset,'props',
+                visual_type=frame.visual_type,model_frame=frame.identity,
                 parent=by_index.get(frame.parent,node.identity),parent_status='model_serialized_parent',
+                serialized_name=frame.name,
                 position=frame.position,quaternion=frame.quaternion,scale=frame.scale,local=frame.local_matrix,
                 flags=frame.serialized_flags,status=frame.status,model_owner=node.identity,asset=path,
-                geometry=frame.geometry,inspection_source=node.inspection_source,inspection_file=node.inspection_file)
-            self.add(child,False);by_index[frame.index]=identity
+                geometry=frame.geometry,visible=bool(frame.serialized_flags&1),inspection_source=node.inspection_source,inspection_file=node.inspection_file)
+            #10034630/1001D470 names imported members owner.member; successful
+            #client model load006CE71D enumerates them through006CC580.
+            self.add(child);by_index[frame.index]=identity
         node.status='model_'+asset.model.status
 
     def record_model(self,node,value):
@@ -168,11 +185,10 @@ class SpatialScene:
             key=safe.rsplit('.',1)[0] if '.' in safe else safe
             path=virtual_name('models/'+key+'.4ds')
         except ValueError as exc:node.status='unsafe_model_reference';node.diagnostics.append(str(exc));return
-        resolution=self.store.resolution(path)
-        node.model_resolution={'status':resolution.status,'path':path,
-            'certainty':'selected_default_root_profile','evidence':'006DBE60/006D4EC0/1005D260',
-            'cache_scope':'Exact default Models root; directory/cache/global policy beyond this path is not inferred'}
-        if resolution.status=='missing':node.status='model_missing_default_root';self.asset_failures.setdefault(path,{'status':'missing'});return
+        selection=self.resources.lookup.model(value);node.model_resolution=selection
+        if selection['path'] is None:
+            node.status='model_missing_directory_profile';self.asset_failures.setdefault(path,{'status':'missing','lookup':selection});return
+        path=selection['path']
         self.attach_asset(node,path)
 
     def base(self):
@@ -187,9 +203,11 @@ class SpatialScene:
             self.checkpoint()
             category='environment' if frame.geometry else 'sectors' if frame.kind==5 else 'frames'
             node=SpatialNode(frame.identity,frame.name,frame.kind,path,frame.offset,category,
+                visual_type=frame.visual_type,model_frame=frame.identity,
                 parent=by_index.get(frame.parent),parent_status='base_serialized_parent' if frame.parent else 'base_root',
                 position=frame.position,quaternion=frame.quaternion,scale=frame.scale,local=frame.local_matrix,
                 flags=frame.serialized_flags,status=frame.status,asset=path,geometry=frame.geometry,
+                visible=bool(frame.serialized_flags&1),serialized_name=frame.name,
                 inspection_source=frame.identity,inspection_file='resource/'+path)
             self.add(node);self.source_nodes[node.identity].append(node.identity);by_index[frame.index]=node.identity
         self.counts['base_declared_frames']=asset.model.header['frame_count'];self.counts['base_decoded_frames']=len(asset.model.frames)
@@ -238,6 +256,7 @@ class SpatialScene:
             elif field.label=='visual_override' and frame is not None:
                 frame.diagnostics.append('Visual replacement/lightmap rendering is not simulated; serialized mesh positions retained')
         if frame is None:return
+        original_placement=(frame.position,frame.quaternion,frame.scale,frame.parent)
         frame.records.append(record.identity);self.source_nodes[record.identity].append(frame.identity)
         applied={'creation_kind','object_name','position','rotation_wxyz','scale','fallback_position','model_resource','parent reference','hidden'}
         frame.uninterpreted_records.extend({'identity':field.identity,'offset':field.offset,'kind':field.kind,
@@ -254,6 +273,7 @@ class SpatialScene:
         if scale is not None:frame.scale=scale
         if hidden:frame.visible=False
         frame.local=local_matrix(frame.position,frame.quaternion,frame.scale)
+        if frame.kind==5 and original_placement!=(frame.position,frame.quaternion,frame.scale,frame.parent):frame.sector_transform_changed=True
 
     def actors(self,entry,record):
         identity=None;status='missing_actor_frame';name=None;link=None
@@ -265,7 +285,7 @@ class SpatialScene:
                 link={'source':record.identity,'definition':field.identity,'file':entry.path,
                     'name':name,'type':kind,'type_label':ACTOR_NAMES.get(kind,'Unknown'),
                     'status':status,'certainty':'serialized_frame_name' if identity else 'unresolved','target':identity,
-                    'evidence':'006CC760 AE23→AE22; exact unique lookup only; runtime path fallback excluded'}
+                    'evidence':'006CC760 AE23→AE22; unique exact scratch map then10046920/1001DF00 ASCII-insensitive scene fallback; duplicate traversal/global scope excluded'}
                 self.actor_links.append(link)
                 if identity:
                     node=self.nodes[identity];node.actors.append(link)
@@ -276,25 +296,55 @@ class SpatialScene:
                 link.setdefault('properties',[]).append({'identity':field.identity,**field.values})
 
     def compose(self):
+        # Re-evaluate the invariant on each composition; it never becomes an
+        # explicit serialized link or survives newly incomplete sector evidence.
+        for node in self.nodes.values():
+            if node.parent_status=='automatic_sector_identity_unresolved':
+                node.parent_status='automatic_sector_unresolved';node.automatic_candidates=[]
         done=set();active=set()
         def world(identity,depth=0):
             node=self.nodes[identity]
             if identity in done:return node.world
+            node.box=None
             if identity in active or depth>256:
                 node.parent_status='cycle_or_depth_limit';node.world=None;return None
             active.add(identity)
-            if node.status=='replacement_unresolved' or node.parent_status in ('removed_model','missing_name_or_scene_path','ambiguous_name','automatic_sector_unresolved','invalid_transform','replacement_unresolved'):
+            if node.status=='replacement_unresolved' or node.parent_status in ('removed_model','missing_name_or_scene_path','ambiguous_name','automatic_sector_unresolved','automatic_sector_identity_unresolved','invalid_transform','replacement_unresolved'):
                 node.world=None
             elif node.parent:
                 parent=world(node.parent,depth+1)
                 node.world=multiply(node.local,parent) if parent is not None else None
             else:node.world=node.local
+            node.world_status='composed_serialized' if node.world is not None else 'unresolved'
             node.display_visible=node.visible and (self.nodes[node.parent].display_visible if node.parent else True)
             if node.world is not None:
-                if not all(math.isfinite(v) and abs(v)<=1e15 for v in node.world):node.world=None;node.diagnostics.append('Unsafe composed transform')
+                if not all(math.isfinite(v) and abs(v)<=1e15 for v in node.world):node.world=None;node.world_status='unresolved';node.diagnostics.append('Unsafe composed transform')
                 elif node.geometry and node.geometry.lods:node.box=transformed_box(node.geometry.lods[0].bounds,node.world)
             active.discard(identity);done.add(identity);return node.world
         for identity in self.order:world(identity)
+        # LinkTo(...,1) preserves the pre-link world matrix. For newly created
+        #unparented frames, if EVERY supported possible sector has identity
+        #linear transform and did not change during document composition, a
+        #later local rotation/scale override cannot change world TRS. Parent
+        #identity remains unknown: do not flatten it into a guessed sector.
+        sectors=[n for n in self.nodes.values() if n.kind==5]
+        linear=tuple(i for i in range(12) if i not in (3,7,11))
+        invariant=sectors and not self.asset_failures and self.counts['base_declared_frames']==self.counts['base_decoded_frames'] and all(
+            a.model.header.get('frame_count')==len(a.model.frames) for a in self.assets.values()) and all(
+            n.world is not None and all(abs(n.world[i]-IDENTITY[i])<1e-12 for i in linear) and not n.sector_transform_changed for n in sectors)
+        if invariant:
+            for node in self.nodes.values():
+                if node.parent_status=='automatic_sector_unresolved' and all(math.isfinite(v) and abs(v)<=1e15 for v in node.local):
+                    node.automatic_candidates=[n.identity for n in sectors]
+                    node.parent_status='automatic_sector_identity_unresolved'
+                    node.world=node.local;node.world_status='verified_translation_only_sector_invariant'
+                    message='World TRS established independently of sector identity; original sector selection/portal order remains unresolved'
+                    if message not in node.diagnostics:node.diagnostics.append(message)
+            #Resolve children only through an established parent matrix.
+            done={i for i,n in self.nodes.items() if n.world is not None}
+            for identity in self.order:
+                node=self.nodes[identity]
+                if identity not in done:world(identity)
         # Category inheritance is display filtering, not actor initialization.
         for identity in self.order:
             node=self.nodes[identity]
@@ -348,23 +398,26 @@ class SpatialScene:
                 elif record.label=='actor record':self.counts[filename+'_actors']+=1;self.actors(entry,record)
         self.compose();self.links()
         self.counts.update(nodes=len(self.nodes),assets=len(self.assets),geometry_bytes=self.geometry_bytes,
-            texture_bytes=sum(len(i.pixels) for i in self.texture_cache.values()),
+            texture_bytes=sum(i.retained_bytes for i in self.texture_cache.values()),
             mesh_instances=sum(bool(n.geometry and n.world is not None and n.display_visible) for n in self.nodes.values()),
             unresolved_transforms=sum(n.world is None for n in self.nodes.values()),
             unresolved_actors=sum(l['target'] is None for l in self.actor_links))
         self.counts['world_fallback_matches']=sum(n.world is not None and n.fallback is not None and math.dist(n.world[12:15],n.fallback)<.02 for n in self.nodes.values())
         self.counts['world_fallback_comparisons']=sum(n.world is not None and n.fallback is not None for n in self.nodes.values())
+        from spatial_coverage import report
+        self.coverage=report(self)
 
     def metadata(self):
-        return {'schema_version':1,'mission':self.mission,'status':'partial_serialized_spatial_snapshot','evidence':EVIDENCE,
+        return {'schema_version':2,'mission':self.mission,'status':'partial_serialized_spatial_snapshot','evidence':EVIDENCE,
             'statistics':dict(self.counts),'documents':self.documents,'bounds':self.bounds,
             'nodes':[self.nodes[i].metadata() for i in self.order],'actor_links':self.actor_links,'observations':self.observations,
             'asset_failures':self.asset_failures,'assets':{k:{'status':a.model.status,'sha256':a.model.sha256,'provenance':a.model.provenance,
-                'statistics':a.model.statistics(),'textures':a.textures} for k,a in sorted(self.assets.items())},
-            'diagnostics':self.diagnostics,'limitations':self.limitations,'resolution_profile':self.store.profile()}
+                'statistics':a.model.statistics(),'textures':a.textures,'material_preview':a.material_preview} for k,a in sorted(self.assets.items())},
+            'diagnostics':self.diagnostics,'limitations':self.limitations,'resolution_profile':self.store.profile(),
+            'cache_directory_profile':self.resources.lookup.metadata(),'coverage':self.coverage}
 
-    def export(self,path):
+    def export(self,path,coverage_only=False):
         path=Path(path)
         if path.resolve().is_relative_to(self.store.root):raise ValueError('Export outside installation')
         with path.open('x',encoding='utf-8') as stream:
-            stream.writelines(json.JSONEncoder(sort_keys=True,indent=2,ensure_ascii=True,allow_nan=False).iterencode(self.metadata()));stream.write('\n')
+            stream.writelines(json.JSONEncoder(sort_keys=True,indent=2,ensure_ascii=True,allow_nan=False).iterencode(self.coverage if coverage_only else self.metadata()));stream.write('\n')
