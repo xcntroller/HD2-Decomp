@@ -1,5 +1,10 @@
 # Script module and visibility receivers — 2026-11-09
 
+2026-11-10: [initial Human/VM/view control checkpoint](mission-script-initial-controls.md)
+adds same-owner context/Guard queues, five reached Human controls and actual
+output/camera/face/tactical receivers. Objective/status and containing runtime/
+session remain required; application loading remains disabled.
+
 P2.2 remains open. This source checkpoint extends the
 [compiler/context](mission-script-loading.md); it does not activate the host
 world or enable loading. No mission desktop test has been performed.

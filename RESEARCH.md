@@ -1,5 +1,7 @@
 # Technical research guide
 
+Initial Human/VM/view controls checkpoint2026-11-10: [source contracts and original evidence](analysis/mission-script-initial-controls.md). Same-owner eventEC/Guard queues, five initial Human commands, genuine retail output and camera/face/tactical receivers verified with focused sanitizers and strict i386 checks. Ledger34 complete/1,833 partial. Source-only; objective/status and containing session/runtime remain required. Continue P2.2.
+
 Human/world composition checkpoint2026-11-10: [actual source lifetimes and script binding](analysis/human-world-composition.md). Concrete DD0/230/B0/inventory ownership, per-Human SOUND routing, pending EC context and native precompile notifications. Focused native sanitizers/strict actual-host compile pass; containing session/VM receivers remain required. Ledger34 complete/1,811 partial; no world/desktop promotion. Continue P2.2.
 
 Car cold activation checkpoint2026-11-10: [actual source sequence, evidence and limitations](analysis/car-activation-loading.md). Both offline passes, cold update, repeat and53 failure prefixes pass native sanitizers; actual host/world dispatch compile-only. Application loading remains disabled. Ledger34 complete/1,807 partial; no complete or desktop promotion. Continue the full P2.2 checkbox.

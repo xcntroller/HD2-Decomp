@@ -1,5 +1,10 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [initial Human/VM/view control checkpoint](mission-script-initial-controls.md)
+adds same-owner context/Guard queues, five reached Human controls and actual
+output/camera/face/tactical receivers. Objective/status and containing runtime/
+session remain required; application loading remains disabled.
+
 2026-11-09 latest: [rotating Door loading/first update](door-loading.md) now
 binds type6 activation/retirement, actual local presentation packets, portal/
 sound/pose and distinct dynamic collision query. All25 captured Door records

@@ -1,0 +1,246 @@
+{
+  "date": "2026-11-10",
+  "scope": "Full first P2.2 implementation checkbox; initial Human/VM/view controls source subsystem checkpoint; continue objective/status and containing runtime/session.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 22,
+  "added": [
+    "0058e710",
+    "0058f330",
+    "0058f5d0",
+    "0058f5f0",
+    "0058f610",
+    "0058faa0",
+    "0058fcc0",
+    "005a5d50",
+    "005a7f50",
+    "005a7fa0",
+    "005af190",
+    "005af2d0",
+    "005af3b0",
+    "005af3d0",
+    "005af3f0",
+    "005af570",
+    "005ac170",
+    "005ac110",
+    "0046f8c0",
+    "00421c00",
+    "0069bfe0",
+    "00465ee0"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1833,
+    "client_partial": 1828,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "absent_no_credit": [
+    "005786c0",
+    "00465b20"
+  ],
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan actual source Human/B0/AI/Guard/Script, two event queues/shared pools, compiler+VM Block, Sight reverse lost notifications, SAME SOUND registration, delayed suspension/retry/resume, MissionCamera retained slots/parameter order/FPV restore, persistent face texture and tactical flag, output operand/authority/PC faults. Engine/frame/inline/identity/presentation/lookup endpoints doubled.",
+    "host": "Strict i386 actual GameActorServices/Inputs/state factory/Scene2 active registry/Sight/GameHumanSoundLoading/StartupSession registration/MissionCamera/Effects compile-only; required inline/Players/FPV/VM consumers declarations.",
+    "application": "application-launch compile/link only; loading remains disabled",
+    "tracker": "27 synthetic tracker tests and frozen inventory/fingerprint/README check"
+  },
+  "limitations": [
+    "Initial objective88 remains required, along with ReturnEnd/EndScript and actual containing runtime/session/FPV/HUD ownership.",
+    "Script suspension outside offline7 rejects unrecovered queued command16/+FC before mutation.",
+    "Script Guard request is recorded; later AI update consumption still required.",
+    "Camera borrowed look-target setter is implemented; its containing first-frame update is still required.",
+    "Static initial command census is research, not live delivery or overlay verification."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-script-services-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-script-services-native-run.log",
+      "bytes": 226,
+      "sha256": "3df76102d8b7e137080fa539d568f23669f4d17861a6247be5650a57c1a97d75"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-script-services-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-initial-commands-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-initial-commands-native-run.log",
+      "bytes": 264,
+      "sha256": "aa720a7a3f3812cb947b67578a00d898f74da7b4499ed0898fd7de629599e57e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-initial-commands-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-view-commands-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-view-commands-native-run.log",
+      "bytes": 268,
+      "sha256": "ebb8f8746ee383c25db4d5dd130bff2b9fa04a2209485f605b79e157ae6d6636"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-view-commands-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-initial-controls-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-initial-controls-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "e6003b583cb2a86a68695abe02a47c7e996ee2aaf2b27c3a8b337ad86d844097"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-initial-controls-tracker-check.log",
+      "bytes": 437,
+      "sha256": "0fca8a8499719d37289dd8dd8c3a4bdb4ebe3b9f4920ef00914f5e1492570c66"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-start-census-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-human-state-controls-required.log",
+      "bytes": 5613,
+      "sha256": "9c4d5dab6604a22ae5238adb772fb45849aeec5b82f7a57be6048081b380c86c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-initial-controls-dependencies.log",
+      "bytes": 5271,
+      "sha256": "4d81be723b8e464bd1916d47e97296e826142795d2184ca6162e65b6fb4dcf6c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-initial-suspend-objective-dependencies.log",
+      "bytes": 5157,
+      "sha256": "8d769975f378ac70678d5c45e1f68ce0edc014673908c1b41d7699878f451cff"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-initial-camera-objective-required.log",
+      "bytes": 5047,
+      "sha256": "d14206724fb36732ff113d60f46c9e632e1a3af8de7369b43c6384c2b421e21e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-initial-camera-target-objective-state.log",
+      "bytes": 5270,
+      "sha256": "ad053d8b6cfcace39bac6ee236cf00594aa634fefd1bf34819bf7db7624a65c7"
+    }
+  ],
+  "temporary_audits": {
+    "removed": true,
+    "artifacts": [
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-script-services-audit.cpp",
+        "bytes": 8299,
+        "sha256": "20d0ca2e53a4989b841c54c19252399f255d638eb7faca52969a2b987dfebcaa"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-script-services-audit",
+        "bytes": 5562104,
+        "sha256": "77bd031c3d92425727432a8cd741749ad32fe44f1066de590ef84df17d70b1cd"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-script-services-host.cpp",
+        "bytes": 1697,
+        "sha256": "ee1540b3fd99e93734c01d536c8be9c75a655bc9bb84d1de508e2a70cf15acab"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-script-services-host.o",
+        "bytes": 344571,
+        "sha256": "fbb13b84fd98127f1a13b357018f75ae597eb66dd570b99e5b17d0d3b05e5cc4"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-initial-commands-audit.cpp",
+        "bytes": 12425,
+        "sha256": "1c7fb0e3e9cd51419c9405675f26703a8c57fd92310af5d3b55b448922232640"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-initial-commands-audit",
+        "bytes": 7798640,
+        "sha256": "b2586bb107d0713964d2e53e231eb58c0e4b8a22960ead7f2428489a5ef7c43b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-initial-commands-host.cpp",
+        "bytes": 3783,
+        "sha256": "ff51e81338b2651690c8e3ffa7311c27da438f45c999c44ad0d13c93a0009e84"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-initial-commands-host.o",
+        "bytes": 954974,
+        "sha256": "b459e98ccc8136ac9026344c4857b561885267d92811546a71e7a5b87fe021e3"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-script-view-commands-audit.cpp",
+        "bytes": 7475,
+        "sha256": "386381b9e47750cf77117de3844562594706f8cd52c6701a0c49eda82762d719"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-script-view-commands-audit",
+        "bytes": 3475032,
+        "sha256": "60e99216da6f168ea91d67fc949e035658a37be0b8438bb0b17ea7139c480ea3"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-script-view-commands-host.cpp",
+        "bytes": 1012,
+        "sha256": "ba7d9003349da3c4bde84e925187210f92bb1f7ec8848409bd4956c942469834"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-script-view-commands-host.o",
+        "bytes": 226266,
+        "sha256": "fd8e6ed784bd14d23d78046ccb024368bf4c8b37830b178b7ca8f7559838e06f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-script-start-census.cpp",
+        "bytes": 3142,
+        "sha256": "44dde65972f00d05f77439aef9774b63e644a13e0934bfffe8e1683a481f1c08"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-script-start-census",
+        "bytes": 392000,
+        "sha256": "d6d96c40f76534e7cbb8805d43ca3a9eab784f0064470f3789f25dffca038c0b"
+      }
+    ]
+  },
+  "captures": [
+    {
+      "path": "analysis/work/mission-world-20261103/script-start-census.json",
+      "bytes": 74407,
+      "sha256": "875bd398bd63b36dbc64206ba4a07a84ea42827025a19f15ed802d0501cab3b2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-human-command-labels.json",
+      "bytes": 8196,
+      "sha256": "0cc93d81587d41bf714780da46d89ac7b267e650750ca06ec90f43158cd85720"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-base-vm-jump-map.json",
+      "bytes": 18174,
+      "sha256": "96461b5d605a382d8508f83987c4f2993d8d1afd3176244f1effed79258212dd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-suspend-vtable-targets.json",
+      "bytes": 654,
+      "sha256": "08cfd683085da8ada018487130e39a97763bb71de9c58dae1edfb13cb38752c3"
+    }
+  ]
+}

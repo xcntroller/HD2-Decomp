@@ -17,6 +17,7 @@ public:
         :MissionScriptContext<Frames>(frames,frame,false),actor_(actor){}
     std::uint32_t family()const override{return Family;} //00421BF0/00421960.
     Actor& actor()const{return actor_;}bool flag108()const{return flag108_;}
+    void flag108(bool value){flag108_=value;}
 private:
     Actor& actor_;bool flag108_=false;
 };

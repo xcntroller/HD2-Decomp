@@ -130,6 +130,22 @@ public:
         default:break;
         }
     }
+    void observer_enabled(std::int32_t index,bool enabled) { //0046F8C0; incidental EAX is not status.
+        auto* value=observer(index);if(!value)return;
+        value->flag24=!enabled;
+        if(enabled)return;
+        for(auto n=value->relations.size();n;) {
+            const auto target=static_cast<std::uint32_t>(--n);
+            if(value->relations[n].state()&&value->frame) {
+                //Native resolves model EC again for every callback. A callback
+                //can change perception; clear this relation AFTER notification.
+                const auto actor=receivers_.sight_actor(value->frame);
+                if(actor&&receivers_.sight_actor_type(actor)==3)
+                    receivers_.human_sight_changed(actor,true,target);
+            }
+            value->relations[n].words[0]=value->relations[n].words[1]=0;
+        }
+    }
     bool remove_observer(std::int32_t index) { //0046FD50 retains the slot and relation allocation.
         auto* observer=record_at(observers_,index);if(!observer)return false;
         observer->mask=0;observer->frame=Frame{};

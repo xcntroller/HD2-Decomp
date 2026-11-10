@@ -39,6 +39,8 @@ public:
     bool ended()const{return ended_;}
     std::size_t slot_count()const{return frame_slots_.size();} //004202F0 pool90 count.
     bool during_cutscene()const{return flags_[5];} //Native byte9, module00428490 filter.
+    bool& saved_first_person(){return flags_[3];} //Native byte7,00416E10 SetActiveCamera.
+    bool& saved_secondary_view(){return flags_[4];} //Native byte8.
     std::uint32_t elapsed_work()const{return work_microseconds_;} //NativeD0.
     Frame slot(std::size_t n)const{return frame_slots_.at(n)?frame_slots_[n]->get():Frame{};}
     void slot(std::size_t n,Frame value) {
@@ -160,6 +162,9 @@ public:
     template<class Runtime>void advance(Runtime& runtime) { //00416CF0 guarded by008692D0/game28.
         if(!runtime.script_authority()||!runtime.script_can_advance())return;
         ++pc_;ready_=valid_pc();
+    }
+    void defer_actor_suspend() { //00421C00/00421970 first suspend invocation.
+        delay_=2000;--pc_;ready_=true;
     }
     //0041DC00 synchronous Block/exit interpreter. A malformed/looping script
     //must not lock the host; the bounded fault adds no original behavior credit.

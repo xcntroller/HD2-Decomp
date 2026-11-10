@@ -8,6 +8,7 @@
 #include "game/mission_script_visibility.h"
 #include "game/mission_script_variables.h"
 #include "game/mission_script_rotations.h"
+#include "game/mission_script_output_commands.h"
 
 namespace hd2::game {
 
@@ -58,6 +59,7 @@ public:
     }
     std::optional<bool> execute(typename Contexts::Context& context,const MissionScriptInstruction& instruction) {
         if(const auto result=frame_commands_.execute(context,instruction,runtime_))return result;
+        if(const auto result=execute_mission_script_output(context,instruction,runtime_))return result;
         if(const auto result=variables_.execute(context,instruction,runtime_))return result;
         if(const auto result=snapshots_.execute(context,instruction,runtime_))return result;
         if(const auto result=rotations_.execute(context,instruction,runtime_))return result;

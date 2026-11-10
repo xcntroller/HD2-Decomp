@@ -101,6 +101,11 @@ public:
     }
     bool hud_suppressed()const{return state_.field2b4!=0;} //00465080, camera virtual80; not detached-camera state.
     Frame saved_scene_camera() const {return previous_;}
+    bool owns_frame(Frame candidate)const{return frame()==candidate;} //00465EE0 virtual4C, compares even null.
+    Frame look_target()const{return look_target_;}
+    void look_target(Frame target,std::int32_t angle) { //00465B20 virtual74, borrowed288, radians28C.
+        look_target_=target;state_.field28c=static_cast<float>(static_cast<long double>(angle)*.01745329238474369f); //0080F6E8.
+    }
     Frame target_frame() const {return target_?target_->get():Frame{};}
     const MissionCameraState& state() const {return state_;}
     const MissionCameraSettings& settings() const {return settings_;}

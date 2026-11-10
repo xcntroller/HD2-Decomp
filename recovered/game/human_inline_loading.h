@@ -97,6 +97,14 @@ public:
         if(!initialized_||!control_||!look_)throw std::logic_error("Human control flags require live inline98");
         control_->physical().clear_control_flags(mask,*look_,factory_.human_collision_sweep());
     }
+    void suspend(bool value) { //005AC170→0075C2D0/0075C770, SAME physical22C.
+        if(value)add_control_flags(8);else clear_control_flags(8);
+    }
+    void working_mode(std::int32_t mode) { //005AC110; only0/1/2 are handled.
+        if(mode<0||mode>2)return;
+        clear_control_flags(6);
+        if(mode)add_control_flags(mode==1?2u:4u);
+    }
 private:
     Factory& factory_;Human* human_=nullptr;std::uint32_t property_=0;
     std::unique_ptr<Look> look_;std::unique_ptr<Control> control_;std::unique_ptr<Equipment> equipment_;

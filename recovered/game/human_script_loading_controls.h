@@ -1,0 +1,90 @@
+#ifndef HD2_GAME_HUMAN_SCRIPT_LOADING_CONTROLS_H
+#define HD2_GAME_HUMAN_SCRIPT_LOADING_CONTROLS_H
+
+#include "game/mission_script_actor_context.h"
+
+namespace hd2::game {
+
+//Actual005AF190/2D0/3B0/3D0/3F0/570 and005A5D50/7F50/7FA0 receivers.
+//All lookups borrow the SAME Human composition; Sight/SOUND and Scene2 active
+//identities are actual owners. Players/FPV still supply real presentation and
+//attachment consumers; this bridge does not advertise application readiness.
+template<class Frames,class Human,class Scene,class Sight,class Sound,class Players,class FPV,class Lookup>
+class HumanScriptLoadingControls {
+public:
+    using Factory=std::decay_t<decltype(std::declval<Lookup&>().human_state_factory(std::declval<Human&>()))>;
+    using Base=typename Factory::Base;using Script=typename Factory::Script;
+    HumanScriptLoadingControls(Frames& frames,Scene& scene,Sight& sight,Sound& sound,Players& players,FPV& fpv,Lookup& lookup)
+        :frames_(frames),scene_(scene),sight_(sight),sound_(sound),players_(players),fpv_(fpv),lookup_(lookup){}
+    std::uint32_t mode_flags(){return scene_.mode_flags();}
+    void set_alarm(Human& human,bool enabled){if(auto* state=script(human))state->set_alarm(enabled);}
+    void guard_mode(Human& human){if(auto* state=script(human))state->request_guard_mode();}
+    void zombie_mode(Human& human){if(auto* state=script(human))state->ai_mode(0x400);}
+    void events(Human& human,bool enabled){if(auto* state=script(human))state->events(enabled,*this);}
+    void suspend(Human& human,bool value){
+        if(auto* state=script(human))state->suspend(value,*this);
+        else {suspend_human(human,value);human_events(human,!value);}
+    }
+    void human_events(Human& human,bool enabled) {
+        if(human.field258!=0xffffffffu)sight_.observer_enabled(signed_word(human.field258),enabled);
+        if(enabled)human.field2a4=static_cast<std::uint32_t>(sound_.add_listener(human.base().frame()));
+        else {
+            if(human.field2a4!=0xffffffffu)sound_.remove_listener(signed_word(human.field2a4));
+            human.field2a4=0xffffffffu;
+        }
+    }
+    void suspend_human(Human& human,bool value) {
+        auto& factory=lookup_.human_state_factory(human);
+        if(factory.control().human()!=&human)throw std::logic_error("Script suspension factory belongs to another Human");
+        scene_.set_scene_actor_active(human.base(),!value); //00475EC0, regardless of current active index.
+        const bool hidden=value||(human.field160&&players_.attachment_hides_human(human));
+        frames_.object_visible(human.base().frame(),!hidden);frames_.update_scene_object(human.base().frame());
+        factory.control().suspend(value);
+        if(human.loading_state) {
+            auto* state=dynamic_cast<Base*>(human.loading_state);
+            if(!state||state->human()!=&human)throw std::logic_error("Script suspension lost its actual current Human state");
+            factory.suspend_human_state(*state,value);
+        }
+        if(human.field25c!=0xffffffffu)sight_.target_mode(signed_word(human.field25c),value?3u:4u);
+        if(!value&&human.properties.field19c==1&&players_.current_player()==&human)fpv_.update_player_visibility();
+    }
+private:
+    Script* script(Human& human) {
+        auto* state=human.loading_state;
+        if(!state)throw std::runtime_error("Human script control requires its actual B0 state");
+        if(state->words().template get<std::uint32_t>(0x48)!=5)return nullptr;
+        auto* result=dynamic_cast<Script*>(state);
+        if(!result||result->human()!=&human)throw std::logic_error("Human script control has a different actual state5");
+        return result;
+    }
+    static std::int32_t signed_word(std::uint32_t bits){std::int32_t value;std::memcpy(&value,&bits,4);return value;}
+    Frames& frames_;Scene& scene_;Sight& sight_;Sound& sound_;Players& players_;FPV& fpv_;Lookup& lookup_;
+};
+
+//00421C00's initial loading commands. The containing runtime must try the
+//actual base00416E10 receiver first, then this derived Human receiver.
+template<class Frames,class Human,class Controls,class Runtime>std::optional<bool> execute_human_loading_script_command(
+        MissionScriptContext<Frames>& context,const MissionScriptInstruction& instruction,Controls& controls,Runtime& runtime){
+    switch(instruction.opcode){case 0x1d:case 0x2f:case 0xc7:case 0xcf:case 0xf8:break;default:return std::nullopt;}
+    if(context.family()!=1)return std::nullopt;
+    if(!runtime.script_authority())return false;
+    auto* derived=dynamic_cast<ActorMissionScriptContext<Frames,1>*>(&context);
+    auto* human=derived?dynamic_cast<Human*>(&derived->actor()):nullptr;
+    if(!human)throw std::logic_error("Human script command requires the actual actor10C");
+    switch(instruction.opcode){
+    case 0x1d:controls.set_alarm(*human,context.program().integers.at(instruction.operands.at(0)).value!=0);break;
+    case 0xc7:controls.guard_mode(*human);break;
+    case 0xcf:controls.zombie_mode(*human);break;
+    case 0xf8:controls.events(*human,context.program().integers.at(instruction.operands.at(0)).value!=0);break;
+    case 0x2f:{
+        const bool value=context.program().integers.at(instruction.operands.at(0)).value!=0;
+        if(value&&!derived->flag108()){context.defer_actor_suspend();derived->flag108(true);return true;}
+        controls.suspend(*human,value);context.advance(runtime);derived->flag108(false);return true;
+    }
+    default:throw std::logic_error("Unreachable Human loading command");
+    }
+    context.advance(runtime);return true;
+}
+
+} //namespace hd2::game
+#endif

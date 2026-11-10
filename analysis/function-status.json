@@ -14853,13 +14853,15 @@
       "program": "client",
       "entry": "005518f0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005518f0: Guard AI loading/handover, timers, route/door lists and verified context-status gates; runtime actions remain required.",
+      "coverage": "P2.2 source reconstruction at original entry 005518f0: Guard AI loading/handover, timers, route/door lists and verified context-status gates; runtime actions remain required. Actual previous-state handover now replays SAME Human2AC/B4 in reverse into command first queue and routes all nine recognized Script1B4 masks/140 position into the distinct processed second queue; inclusive Y bounds100000 and10000 lifetime preserved.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_guard_ai_state_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
       ]
     },
     {
@@ -22251,7 +22253,7 @@
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Objective88 and other containing runtime commands remain pending.",
       "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations. Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
       "evidence": [
         "analysis/mission-script-loading.md",
@@ -22261,7 +22263,9 @@
         "analysis/checkpoints/p2.2-script-receivers-20261109.json",
         "recovered/game/mission_script_module_loading.h",
         "analysis/sound-world-loading.md",
-        "analysis/checkpoints/p2.2-world-presentation-20261109.json"
+        "analysis/checkpoints/p2.2-world-presentation-20261109.json",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
       ]
     },
     {
@@ -24614,6 +24618,270 @@
       "evidence": [
         "analysis/human-world-composition.md",
         "recovered/game/mission_script_actor_context.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058e710",
+      "status": "partial",
+      "coverage": "Clear script alarm sign flag only for false; reacquire one SAME hostile Human through shared CRT random and actual state98; empty list consumes no random.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f330",
+      "status": "partial",
+      "coverage": "Record Guard request in SAME Script1B0 with maskFFFF8FFF/or8000, without switching B0 immediately.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f5d0",
+      "status": "partial",
+      "coverage": "Set Script50 event-disable bit BEFORE disabling actual Human Sight/SOUND registrations.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f5f0",
+      "status": "partial",
+      "coverage": "Clear Script50 event-disable bit BEFORE enabling actual Human Sight/SOUND registrations.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f610",
+      "status": "partial",
+      "coverage": "Replace only Script50 bits700 from the supplied AI mode mask.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058faa0",
+      "status": "partial",
+      "coverage": "Offline7 Script suspend same-value guard, byte1D2 store, actual Human suspend, then event flags/listener control.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058fcc0",
+      "status": "partial",
+      "coverage": "Script1D4 same-value guard, actual inline working-mode call before storing the new value.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_ai_state_loading.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a5d50",
+      "status": "partial",
+      "coverage": "SAME Scene2 active identity, actual model visibility/update, owned inline suspension, current B0 F0, Sight target mode and current-player FPV refresh in original order.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_loading_controls.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a7f50",
+      "status": "partial",
+      "coverage": "Disable actual observer first, remove live SOUND listener then set Human2A4 toFFFFFFFF.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_loading_controls.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a7fa0",
+      "status": "partial",
+      "coverage": "Enable actual observer first then unconditionally register actual model/SOUND callback and store Human2A4, without invented dedup.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_loading_controls.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af190",
+      "status": "partial",
+      "coverage": "Dispatch SetAlarm to actual Script state5, with genuine no-op for another existing B0 kind.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_loading_controls.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af2d0",
+      "status": "partial",
+      "coverage": "Dispatch Guard-mode request to actual Script state5; other existing B0 kinds do nothing.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_loading_controls.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af3b0",
+      "status": "partial",
+      "coverage": "Dispatch event disable to actual Script state5; other existing B0 kinds do nothing.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_loading_controls.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af3d0",
+      "status": "partial",
+      "coverage": "Dispatch event enable to actual Script state5; other existing B0 kinds do nothing.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_loading_controls.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af3f0",
+      "status": "partial",
+      "coverage": "Dispatch required Zombie AI mask400 to actual Script state5; other existing B0 kinds do nothing.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_loading_controls.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af570",
+      "status": "partial",
+      "coverage": "Dispatch required offline Script suspend or actual non-Script Human suspend followed by listener control.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_loading_controls.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac170",
+      "status": "partial",
+      "coverage": "Suspend/resume through SAME inline DD0 physical22C flag8, existing collision removal/restoration and Look owner.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_inline_loading.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac110",
+      "status": "partial",
+      "coverage": "Handle inline working modes0/1/2: clear physical flags6, then add2 or4 for modes1/2; unsupported modes genuinely ignored.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_inline_loading.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0046f8c0",
+      "status": "partial",
+      "coverage": "Enable/disable SAME Sight observer flag24; disable reverses relations, resolves actual model EC, calls Human lost notification before clearing relation words0/1.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00421c00",
+      "status": "partial",
+      "coverage": "Derived Human loading command cases1D/2F/C7/CF/F8 with actual actor10C/B0; first Suspend sets2000ms delay, decrementsPC, sets104/108 and retries before suspension.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/human_script_loading_controls.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069bfe0",
+      "status": "partial",
+      "coverage": "Implement the retail client genuine one-byte RET script output, called after actual Printf/PrintfNumber operand processing; no console/HUD output invented.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/mission_script_output_commands.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00465ee0",
+      "status": "partial",
+      "coverage": "Compare supplied frame with SAME mission-camera240 including null equality.",
+      "limitations": "Source-only required loading subset; actual containing world/VM/FPV/session integration and desktop delivery remain pending. Offline Script suspension rejects non7 queued command16/B0+FC; other Human gameplay commands are not supplied. Original ABI and complete-function equivalence are not claimed.",
+      "evidence": [
+        "recovered/game/mission_camera.h",
+        "analysis/mission-script-initial-controls.md",
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
       ]
     }
   ]

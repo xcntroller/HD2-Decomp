@@ -41,6 +41,42 @@ public:
     using AI::sight_enemy_lost;
     Context* context()const{return context_;}
     void script_context(Context* context){context_=context;} //005907C0, actual B0+1AC borrower update.
+    void set_alarm(bool enabled) { //0058E710; true is genuinely empty.
+        if(enabled)return;
+        this->words().set(0x50,this->words().template get<std::uint32_t>(0x50)&0x7fffffffu);
+        const auto* human=this->human();if(!human)throw std::logic_error("Script alarm requires its actual Human");
+        const auto& enemies=human->perception.lists()[0];
+        if(enemies.empty())return; //No random draw on the cold empty-list branch.
+        auto* actor=dynamic_cast<Human*>(enemies.at(contexts_.human_script_random()%enemies.size()));
+        if(!actor)throw std::runtime_error("Script alarm target requires its actual Human sight receiver");
+        this->sight_enemy_acquired(*actor);
+    }
+    void request_guard_mode() { //0058F330; AI update consumes this request later.
+        state_.set(0x1b0,(state_.template get<std::uint32_t>(0x1b0)&0xffff8fffu)|0x8000u);
+    }
+    void ai_mode(std::uint32_t mask) { //0058F610 replaces ONLY bits700.
+        const auto old=this->words().template get<std::uint32_t>(0x50);
+        this->words().set(0x50,old^((old^mask)&0x700u));
+    }
+    template<class Receivers>void events(bool enabled,Receivers& receivers) { //0058F5D0/0058F5F0.
+        const auto old=this->words().template get<std::uint32_t>(0x50);
+        this->words().set(0x50,enabled?old&0xbfffffffu:old|0x40000000u);
+        auto* human=this->human();if(!human)throw std::logic_error("Script event control requires its actual Human");
+        receivers.human_events(*human,enabled);
+    }
+    template<class Receivers>void suspend(bool value,Receivers& receivers) { //0058FAA0.
+        if(bool(state_.template get<std::uint8_t>(0x1d2))==value)return;
+        if((receivers.mode_flags()&7u)!=7u)
+            throw std::runtime_error("Script suspension requires its actual queued command16 and B0+FC receivers outside offline7");
+        state_.set(0x1d2,std::uint8_t(value));
+        auto* human=this->human();if(!human)throw std::logic_error("Script suspension requires its actual Human");
+        receivers.suspend_human(*human,value);
+        events(!value,receivers);
+    }
+    template<class Inline>void working_mode(std::int32_t mode,Inline& control) { //0058FCC0.
+        if(state_.template get<std::int32_t>(0x1d4)==mode)return;
+        control.working_mode(mode);state_.set(0x1d4,mode);
+    }
     std::uint32_t derived_loading_word(unsigned offset)const override {
         if(offset!=0x1b0)throw std::runtime_error("Unrecovered script AI handover word");
         return state_.template get<std::uint32_t>(offset);

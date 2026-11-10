@@ -84,6 +84,16 @@ public:
     void record_state_cleanup_failure(std::exception_ptr error)noexcept{services_.record_state_cleanup_failure(error);}
     auto& services(){return services_;}auto& contexts(){return contexts_;} //SAME owners for derived sound dispatch.
     auto& control(){return control_;}
+    void suspend_human_state(Base& state,bool value) { //Actual virtualF0 targets.
+        switch(state.words().template get<std::uint32_t>(0x48)){
+        case 1:case 7:return; //00583250 is genuine RET4.
+        case 3:case 4:case 5:case 6:case 8:break; //005786C0.
+        default:throw std::runtime_error("Unrecovered Human state suspension receiver");
+        }
+        if((services_.mode_flags()&7u)==7u)return;
+        auto* input=state.input();if(!input)throw std::runtime_error("Human suspension requires its actual input record");
+        input->word38=value?0u:7u;
+    }
     void script_context(Base& state,typename Contexts::Context* context){
         auto* script=dynamic_cast<Script*>(&state);
         if(!script||state.words().template get<std::uint32_t>(0x48)!=5)

@@ -801,6 +801,7 @@ public:
         scene_method<MenuDriver::Release>(frame,module_,0,0x1c370)(frame);
     }
     Frame active_game_camera() const {return field<Frame>(scene_.frame(),0x15c);}
+    bool script_scene_available()const{return scene_.frame()!=nullptr;} //0041D030's actual game18 borrower.
     MenuDriver::Owner static_weapon_shells(){MenuDriver::Owner result(nullptr,nullptr);if(resources_.cache(1).get("GunShells",result)!=0)result.reset();return result;} //004C76C0, model category1.
     void static_weapon_axis_angle(Frame frame,Vector& axis,float& angle){
         const auto q=actor_rotation(frame);using Inverse=void(WINAPI*)(const void*,void*,float*);
@@ -871,6 +872,7 @@ public:
         scene_method<Range>(camera,module_,0x7c,0x09ef0)(camera,near_clip,far_clip);
     }
     void game_camera_parameter78(Frame camera,float value) {call<void>(camera,0x78,value);}
+    void game_camera_parameter8c(Frame camera,float value) {call<void>(camera,0x8c,value);}
     void game_camera_parameter80(Frame camera,float first,float second) {call<void>(camera,0x80,first,second);}
     void game_camera_name(Frame camera,const char* name) {
         if(call<std::int32_t>(camera,0x34,name)<0)throw std::runtime_error("Cannot name game camera");
