@@ -27,21 +27,34 @@ def load(path):
 
 def matching_receipts(raw, graph_digest, pub):
     receipts = []
-    candidates = sorted(name for name in pub.tracked if re.fullmatch(
-        r'analysis/future-dependencies/evidence/(?:verification|[a-z0-9.-]+-verification)\.json', name))
+    # Discover receipts only in evidence directories used by this graph's
+    # committed inputs. New research areas need no website path allowlist change.
+    directories = {'analysis/future-dependencies/evidence'}
+    for item in raw.get('inputs', []):
+        match = re.match(r'(analysis/[a-z0-9-]+/evidence)/', item['path'])
+        if match:
+            directories.add(match[1])
+    candidates = sorted(name for name in pub.tracked if any(re.fullmatch(
+        re.escape(directory) + r'/(?:verification|[a-z0-9.-]+-verification)\.json', name)
+        for directory in directories))
+    profiles = [
+        ('graph', 'graph_sha256', 'nodes', 'edges', 'source_commit_sha'),
+        ('combined', 'combined_graph_sha256', 'combined_nodes', 'combined_edges', 'historical_combined_claim_sha'),
+    ]
     for name in candidates:
         item = {'path': name}
         require(pub.link(item) is not None, 'Unsafe verification receipt: ' + name)
         record = parse_json(pub.input_bytes(item))
         require(record.get('schema_version') == 1, 'Unsupported research verification schema: ' + name)
-        if record.get('graph_sha256') != graph_digest:
-            continue
-        require(record.get('source_commit_sha') == raw['source_commit_sha'], 'Verification source snapshot mismatch: ' + name)
-        require(type(record.get('nodes')) is int and record['nodes'] == len(raw['graph']['nodes'])
-                and type(record.get('edges')) is int and record['edges'] == len(raw['graph']['edges']),
-                'Verification graph counts mismatch: ' + name)
-        require(isinstance(record.get('checks'), dict) and record['checks'], 'Missing verification checks: ' + name)
-        receipts.append({'path': name, 'record': record})
+        for role, digest_field, nodes_field, edges_field, source_field in profiles:
+            if record.get(digest_field) != graph_digest:
+                continue
+            require(record.get(source_field) == raw['source_commit_sha'], 'Verification source snapshot mismatch: ' + name)
+            require(type(record.get(nodes_field)) is int and record[nodes_field] == len(raw['graph']['nodes'])
+                    and type(record.get(edges_field)) is int and record[edges_field] == len(raw['graph']['edges']),
+                    'Verification graph counts mismatch: ' + name)
+            require(isinstance(record.get('checks'), dict) and record['checks'], 'Missing verification checks: ' + name)
+            receipts.append({'path': name, 'graph_role': role, 'record': record})
     require(receipts, 'Research verification graph digest mismatch: no tracked checkpoint receipt matches ' + graph_digest
             + '; checked ' + ', '.join(candidates))
     return receipts
@@ -172,7 +185,7 @@ def build_research(progress=None):
         ready = {n for n, deps in pending.items() if not deps}
         require(ready, 'Blocking dependency cycle')
         pending = {n: deps - ready for n, deps in pending.items() if n not in ready}
-    return {'schema_version': 1, 'available': True, 'implementation_commit': pub.head, 'research_checkpoint_commit': git('log', '-1', '--format=%H', '--', 'analysis/future-dependencies/phase2-graph.json'), 'research_implementation_commit': raw['source_commit_sha'], 'research_graph_sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'policy': raw['epistemic_policy'], 'diagnostics': diagnostics, 'nodes': sorted(nodes.values(), key=lambda n: n['id']), 'edges': sorted(edges.values(), key=lambda n: n['id']), 'implementation_groups': progress['graph']['groups'], 'unknown_relationships': safe(raw['graph']['unknown_relationships']), 'batches': batches, 'verification': safe(verification), 'verification_receipts': [{'record': safe(r['record']), 'evidence': pub.evidence([{'path': r['path']}])} for r in receipts]}
+    return {'schema_version': 1, 'available': True, 'implementation_commit': pub.head, 'research_checkpoint_commit': git('log', '-1', '--format=%H', '--', 'analysis/future-dependencies/phase2-graph.json'), 'research_implementation_commit': raw['source_commit_sha'], 'research_graph_sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'policy': raw['epistemic_policy'], 'diagnostics': diagnostics, 'nodes': sorted(nodes.values(), key=lambda n: n['id']), 'edges': sorted(edges.values(), key=lambda n: n['id']), 'implementation_groups': progress['graph']['groups'], 'unknown_relationships': safe(raw['graph']['unknown_relationships']), 'batches': batches, 'verification': safe(verification), 'verification_receipts': [{'record': safe(r['record']), 'graph_role': r['graph_role'], 'evidence': pub.evidence([{'path': r['path']}])} for r in receipts]}
 
 
 def export():

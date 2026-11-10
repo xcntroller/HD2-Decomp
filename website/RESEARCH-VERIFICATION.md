@@ -124,3 +124,30 @@ source URLs, P2.4 graph/batch views, formatted inspection, mobile width and runt
 errors. Temporary audit sources removed. No game, DLL, Ghidra or Proton executed.
 The user reviewed the result and explicitly authorized committing the fix.
 Nothing was pushed or deployed.
+
+## Combined P2.8 receipt compatibility
+
+Reproduced against merged master `256f2fe`. The combined graph contains 596
+research nodes and 1,751 edges, SHA-256
+`8e016b11ecb8dac6dca923b5d3dc5c86593361ff6d744506e9028c408f241caa`.
+Its matching receipt already exists in
+`analysis/multiplayer-world/evidence/verification.json`; it uses explicit
+`combined_*` fields and `historical_combined_claim_sha`. Earlier receipt discovery
+was restricted to the future-dependencies evidence directory and the single-graph
+shape. No graph or receipt data was modified to resolve the mismatch.
+
+Discovery now follows graph-input evidence directories. Matching validates the
+selected graph role's exact digest, node/edge counts, implementation-claim SHA
+and recorded checks, and retains the original scoped receipt. The UI derives
+milestones from graph records so the new P2.8 research can be reached.
+
+Passed: Pages-equivalent production build with the exact workflow SHA/public ref,
+TypeScript and static-artifact audit; all 27 existing analyzer tests; temporary
+regressions for original, P2.4 and current combined receipts; rejection of wrong
+hash/count/source, missing fields/checks, focused-only certification and unrelated
+receipt directories. Temporary Chromium checks passed for the combined receipt
+link, 596/1,751 record preservation, P2.8 overview/filter/drill-down, bounded
+canvas, prior milestone navigation, formatted inspection, 390px mobile width and
+no uncaught errors. Temporary audit sources removed. No original game, DLL,
+Ghidra or Proton executed. The user explicitly authorized committing the verified
+fix. Nothing was pushed or deployed.
