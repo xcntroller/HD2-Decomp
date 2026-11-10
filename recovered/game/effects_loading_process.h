@@ -10,13 +10,13 @@ namespace hd2::game {
 
 //GEffects process scalars persist across worlds. The containing module facade
 //owns frame-bearing cold loading lifetimes; retract borrowers before scene
-//retirement. This state supplies no successful update/render/model producer.
+//retirement. The actual loading update borrows it; render/model producers remain separate.
 template<class Frame>struct EffectsLoadingProcess {
     EffectsEnvironment environment;EffectsFade fade;EffectsWaterSettings water;EffectsDecorationsLoading decorations;
     std::array<float,3> colour2f4{{1,1,1}};std::array<std::uint32_t,24> fields25c{};
     Frame sun1b0{},water_camera1ac{};std::array<Frame,4> water_frames238{};
     std::array<float,4> sun_position10{};
-    std::uint32_t field224=0,field2d4=0;float field2d0=0;
+    std::uint32_t field224=0; //Native2D0/2D4 belong exclusively to fade above.
     bool flag220=false,active248=false,flag24c=false;
     const void* world=nullptr; //Typed borrower guard, not native readiness.
 };

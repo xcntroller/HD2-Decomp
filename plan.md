@@ -240,7 +240,7 @@ preparation, not a standalone audit-only milestone.
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
   [Full boundary](analysis/mission-world-loading.md); [source progress](analysis/loading-modules.md);
-  [shared ownership](analysis/world-scene-ownership.md). [Containing world owners](analysis/containing-world-loading.md) source verified; ordered loader/guard/first-frame integration remains.
+  [shared ownership](analysis/world-scene-ownership.md). [Concrete loading allocation](analysis/mission-loading-integration.md) source verified; activation/guard/first-frame integration remains.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat
   loading through Python; unsupported required assets/data cannot report success.
 

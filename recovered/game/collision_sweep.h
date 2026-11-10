@@ -33,6 +33,10 @@ public:
         if(&buckets.grid_identity()!=&tree.dynamic)throw std::logic_error("Collision sweep tree and dynamic grid differ");
         tree_=&tree;buckets_=&buckets;awaiting_tree_=false;
     }
+    void unbind(const Tree& tree){
+        if(awaiting_tree_||tree_!=&tree)throw std::logic_error("Collision sweep retirement requires its SAME bound tree");
+        tree_=nullptr;buckets_=nullptr;awaiting_tree_=true;
+    }
     std::optional<Hit> sweep(const Vector& start,const Vector& displacement,float radius,
         std::uint32_t excluded_layers=0,std::uint32_t excluded_flags=0,bool normal=true) {
         if(awaiting_tree_)throw std::logic_error("Collision sweep requires its actual loaded tree");

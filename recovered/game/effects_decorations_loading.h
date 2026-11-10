@@ -114,6 +114,11 @@ public:
         }
         enabled_=enabled;
     }
+    void update_loading(bool quality){ //0047BCC0 verified profile transition and genuinely empty definition gates.
+        if(quality_!=quality){quality_=quality;set_enabled(quality);}
+        if(!enabled_||definitions_.empty())return;
+        throw std::runtime_error("Decoration update requires actual0047BCC0 spatial/model producers");
+    }
     void clear(){ //0047B090→0047EA60 then0047C020; cold pending grid requests are empty.
         cells_.clear();
         for(auto n=active_entries_.size();n;)active_entries_[--n]->model.reset();

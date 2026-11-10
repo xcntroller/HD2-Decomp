@@ -221,6 +221,7 @@ public:
     game::HumanAIAction1Pool& human_ai_action1_pool(){return human_ai_actions1_;}
     auto& human_perception_record_pool(){return human_perception_records_;}
     auto& actor_proximity_state(){return actor_proximity_;} //Actual process008AED54, preserves bucket timers across world clear.
+    EngineFrame*& car_loading_scene(){return car_loading_scene_;} //0089C0C0 borrowed engine scene,006D3F20 publication.
     auto& car_definitions(){return car_definitions_;} //0071F9B0 process definitions, retained across worlds.
     auto& car_tyres(){return car_tyres_;} //004D6900/004EC980 process registry, reloaded in place.
     auto& car_materials(){return car_materials_;} //004D57A0 canonical process material lookup.
@@ -666,6 +667,7 @@ private:
     game::HumanSoundVariants human_sound_variants_;
     game::HumanInputShared human_input_shared_;
     game::ActorProximityState<GameSceneActors::Instance*> actor_proximity_;
+    EngineFrame* car_loading_scene_=nullptr;
     game::CarDefinitionTables car_definitions_;game::CarTyres car_tyres_;game::CarMaterialRegistry car_materials_;
     std::int32_t game_vertex_clock_=0;
     game::CarSeatCameraShared car_seat_camera_;

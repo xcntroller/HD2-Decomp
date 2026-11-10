@@ -5,6 +5,7 @@
 #include "frontend/cleanup.h"
 #include "game/effects_loading_process.h"
 #include "game/effects_birds_loading.h"
+#include "game/effects_loading_update.h"
 #include "game/volumetric_lights.h"
 #include "game/mesh_movie.h"
 
@@ -20,9 +21,9 @@ public:
     using Frame=typename Frames::Frame;using Process=EffectsLoadingProcess<Frame>;
     EffectsModuleLoading(frontend::ClientModuleRegistry& registry,frontend::ClientModuleRegistration& registration,
             Frames& frames,Files& files,Effects& effects,Process& process,Random& random,Camera& camera,View& view,Startup& startup,
-            const std::uint32_t& mode,std::string resource)
+            const std::uint32_t& mode,std::string resource,const float& far_clip)
         :registration_(registry,registration,1,"GEffects"),frames_(frames),files_(files),effects_(effects),process_(process),
-         birds_(frames,random),volumes_(frames),movie_(frames),camera_(camera),view_(view),startup_(startup),mode_(mode),resource_(std::move(resource)){
+         birds_(frames,random,far_clip),volumes_(frames),movie_(frames),camera_(camera),view_(view),startup_(startup),mode_(mode),resource_(std::move(resource)){
         if(process_.world||process_.water_camera1ac)throw std::logic_error("Retire actual GEffects world/camera borrowers first");
         if(&effects_.frames()!=static_cast<typename Effects::Services*>(&frames_)||&effects_.fade()!=&process_.fade||
            &effects_.environment()!=&process_.environment||&startup_.effects_loading_process()!=&process_)
@@ -63,7 +64,7 @@ public:
         }
         (void)process_.decorations.load(files_,resource_);
         process_.decorations.initialize(startup_.profile_settings().quality_byte(4)!=0,view_.enabled()||view_.secondary_enabled());
-        process_.field2d4=0;process_.field2d0=0;process_.active248=true;
+        process_.fade.reset_loading(false);process_.active248=true;
     }
     void finish(bool authority){ //004888C0; detached disable precedes the authority gate.
         require_open();camera_.detached().disable_for_loading();if(authority)return;
@@ -84,9 +85,13 @@ public:
             errors.attempt([&]{set_water_frames();});process_.water_frames238.fill(Frame{});
             if(process_.water.restore_child_visibility())errors.attempt([&]{frames_.effects_restore_water_children(true);});
         }
-        process_.decorations.clear();process_.field2d4=0;process_.field2d0=-1000;process_.active248=false;
+        process_.decorations.clear();process_.fade.reset_loading(true);process_.active248=false;
         errors.attempt([&]{frames_.effects_scene_water();});process_.flag24c=false; //004863E0(false), actual scalar24C.
         errors.rethrow();finished_=true;
+    }
+    template<class Session,class Players>void update_loading(std::uint32_t elapsed,Session& session,Players& players){ //00487240, actual loading-screen+10 receiver.
+        require_open();
+        update_loading_effects(elapsed,frames_,process_,effects_,birds_,movie_,session,players,startup_);
     }
     void close()noexcept{
         if(process_.world!=this)return;

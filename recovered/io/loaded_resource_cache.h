@@ -9,6 +9,14 @@
 
 namespace hd2::io {
 
+//006D3F20 mission preparation: model1, mesh4, alternate-model5 only.
+//SOUND2 and animation3 survive; each real cache clears entries/tree/current
+//while retaining the actual search directory registrations and capacity.
+template<class Caches>
+void prepare_mission_loaded_caches(Caches& caches) {
+    for(const auto category:{1u,4u,5u})caches.cache(category).clear();
+}
+
 template<class Caches>
 void clear_controller_loaded_caches(Caches& caches) {
     for (const auto category : {2u, 1u, 3u, 4u, 5u}) caches.cache(category).clear(); //006C0920.

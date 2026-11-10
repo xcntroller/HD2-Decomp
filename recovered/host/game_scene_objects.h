@@ -137,7 +137,7 @@ public:
         for (const auto& value : animated_) if (value.get() == frame) return;
         if (call<std::uint32_t>(frame, 0xd0)) animated_.push_back(retain(frame));
     }
-    void clear_scene_object_references() { animated_.clear(); }
+    void clear_scene_object_references() { while(!animated_.empty())animated_.pop_back(); } //0069A3D0 game48, reverse Release.
     void camera_fov(Frame frame, float value) { call<void>(frame, 0x74, value); update_scene_object(frame); }
     void camera_range(Frame frame, float near_clip, float far_clip) { call<void>(frame, 0x7c, near_clip, far_clip); }
     void orthographic_camera() {

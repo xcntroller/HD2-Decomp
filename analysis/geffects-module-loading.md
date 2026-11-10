@@ -1,5 +1,7 @@
 # GEffects1 loading and retirement — source checkpoint, 2026-11-10
 
+2026-11-10 continuation: [loading update](mission-loading-integration.md) now supplies actual shared borrowed-Bird motion and fade/queue/sun/movie composition with explicit required positive gates. Activation/finish reset the SAME fade owner; shadow2D0/2D4 copies are removed and1000/duration is corrected. Earlier exclusions below describe the prior checkpoint.
+
 Full first P2.2 checkbox remains open. No application world, first frame or new
 desktop acceptance. [Receipt](checkpoints/p2.2-geffects-module-loading-20261110.json).
 

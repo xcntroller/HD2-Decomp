@@ -81,7 +81,7 @@ the containing world. Actual004270D0 begins contexts but executes no instruction
 Tick invokes each context once in reverse; deferred-frame/timer producers remain
 required.00427B80 clears lights, restores frames BEFORE reverse context Exit/
 destruction, then requires actual GEffects+8C(0,false,nullptr). `effects_fade.h`
-implements00486B30's duration/target/colour configuration, not its renderer/tick.
+implements00486B30's duration/target/colour configuration. The [loading continuation](mission-loading-integration.md) corrects its1000/duration rate and supplies actual scalar tick/reset; rendering remains separate.
 The native null-colour W is indeterminate; source marks W unspecified.
 004270D0/00427B80/00428490 are absent frozen inventory and earn no new credit.
 

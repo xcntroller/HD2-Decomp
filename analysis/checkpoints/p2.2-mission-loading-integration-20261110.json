@@ -1,0 +1,255 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "ledger_added_partial_client": 5,
+  "added_entries": [
+    "006d3f20",
+    "0069a3d0",
+    "006e9b50",
+    "0047a700",
+    "0047bcc0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 1954,
+  "no_credit_absent_entries": [
+    "004885d0",
+    "004888c0",
+    "0072d1c0",
+    "0072d1f0"
+  ],
+  "native_checks": [
+    "Actual selective cache1/4/5 forward release, external pins, SOUND2/animation3/directory/capacity preservation and repeat",
+    "Actual fade1000/duration, signed elapsed, extended post-FSTS overshoot/sentinel, zero/negative duration/reconfiguration/reset",
+    "Same generated/borrowed Bird movement, idle/jump/flight/cull, EC/refcounts/deferred return, retirement failure/repeat",
+    "Actual loading update same fade/queues/Bird/sun/time and profile gates, positive water/weather/grass/colour rejection at corresponding prefixes",
+    "Actual input manager signedID short circuit, fresh Scene2 getters, same Human callbacks/null-other/required-Car, unpublished record failure and repeat"
+  ],
+  "strict_i386": "PASS actual GameMissionLoadingSession construction, loader run/unload, complete cold World/VM/Human/module graph and loading presentation update; compile only",
+  "application_link": "PASS",
+  "tracker_checks": 27,
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/mission-preparation-order.asm",
+      "sha256": "e3d4c7d3ff3301ba014509e243782af334b917793cad31c641ca4804013a2492"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/mission-unload-order.asm",
+      "sha256": "a0de1e3c513ad8e23d41a922ab072dc04c379ea4d1fc7cd8a3db5030b7967de5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/animated-game48-owner.asm",
+      "sha256": "fea3294b3164504535f915e4a031fcd15b48f6bd9b6fd37aba5b8469b89c2bbb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/effects-fade-clock.asm",
+      "sha256": "99d3241bf7a422bc8f09d19da8a8d146527700a6752c2bfa2df0c8dfee53a047"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/loading-birds-tick.asm",
+      "sha256": "08324316f6556c91ff843f1126decc88ae7eba1092443aef9702faa7d262a185"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/decoration-loading-tick-gates.asm",
+      "sha256": "bcfde394cf148fcb21fb56da4de165c5b989b8a6d1293be08bd3f5cb7104650b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/loader-module-composition/006d3f20.c",
+      "sha256": "a0273c9db6cf5aea304f82a13128030e8830a14e2ba85fb6ffc00614127702d7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/actor-base-lifetime/0069a3d0.c",
+      "sha256": "ad240f3f1752a1e079ca9745a230cbb49ef77573312d1ff97ee182ccc78df4ad"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/actor-unload-dependencies/006e9b50.c",
+      "sha256": "f3294ace830e4332d513fa2a1bd3eafad428a1d179ef7eef820166c993d31bab"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/fowl-first-update-required/00479c70.c",
+      "sha256": "bd4b65d7386b1274644b134fa0e3f13ec2cf32fb09d92fef251efde467ab4e34"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/physics-effects-fade-lifetime/00487240.c",
+      "sha256": "1338e807a3261fb9bd5d87f78fe950d2400b340930c2bbfe05de744e18795a47"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-input-manager-defaults/0072d1c0.c",
+      "sha256": "ea67965af2da6705790e1c0d00bc9564964f643bdc039529199f0710437a2d14"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-input-manager-defaults/0072d1f0.c",
+      "sha256": "98daada4a75ef883ee09e6575e09407c0e2ac6e879d2323a4909a0cef4e90cbb"
+    }
+  ],
+  "verified_sources": [
+    {
+      "path": "recovered/host/game_mission_loading.h",
+      "sha256": "ede16a19644e4d25b24bbe7f0a336b673c5b2f287135f5d49cf42b2ed63e8385"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "sha256": "316f1af8440d8ec98ab415e93322fa6c3013bccd1afd1c15e81d3f996e3c295f"
+    },
+    {
+      "path": "recovered/game/bird_motion.h",
+      "sha256": "bca94f3b576ba28c07a1210fb1231aaa900303fb854cfd3861168cc20d1eb5c1"
+    },
+    {
+      "path": "recovered/game/fowl_bird_random.h",
+      "sha256": "95f8a7893e7a42114767b1c3a12705e1122abdb39b1dd7c25939eca06f5b9467"
+    },
+    {
+      "path": "recovered/game/fowl_bird.h",
+      "sha256": "322c73cbd7ef4d5bff5caad595e857a061435463e7092cfe1c9f01ab9188da65"
+    },
+    {
+      "path": "recovered/game/effects_birds_loading.h",
+      "sha256": "eec88948c14b0536e4adfa0228466c3f6b2ffd43e802ec5363006cdfabcac361"
+    },
+    {
+      "path": "recovered/game/effects_loading_update.h",
+      "sha256": "f2dcf2b0f18ef7723ca982b30fae97b3043adf675a10d7e1dc30f96439e23e25"
+    },
+    {
+      "path": "recovered/game/effects_module_loading.h",
+      "sha256": "af218e2acaa0985a8299dd9ee53a8cefae5eda4c0f4f97a228ffd2b73585dc8f"
+    },
+    {
+      "path": "recovered/game/effects_loading_process.h",
+      "sha256": "4811a19a404c808ceb7f361925efe479dc299d7d652fa89d688bacd35adf8246"
+    },
+    {
+      "path": "recovered/game/effects_fade.h",
+      "sha256": "51c399754d3e22c2b2fff11fcfdd1a5dc026cc2adf24a3506bc70b9ce2d84c07"
+    },
+    {
+      "path": "recovered/game/human_input_default_receiver.h",
+      "sha256": "a5b07aad908718b221686ac65f7b6f33f4d003c83ec9f5e1021ff4021c6a45d1"
+    },
+    {
+      "path": "recovered/io/loaded_resource_cache.h",
+      "sha256": "7fcb41c0e8a824fd2fff77af876f6f9b91b1921517a4fe6d441520837e9e903c"
+    }
+  ],
+  "retained_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-borrowed-bird-motion-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-borrowed-bird-motion-run.log",
+      "sha256": "9045ee94d4ba94e60a9477c2624219a5012459e9defd62c59a9570ff0cc01ed5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-input-default-binding-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-input-default-binding-run.log",
+      "sha256": "15b7d054765826030c71bfb642e565873c89e63ccf8101c3081921a4e56645b7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-loading-effects-update-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-loading-effects-update-run.log",
+      "sha256": "536b0a411297bdab96a2b3e879620d3e378e3a1dc2ce90a0e33e103c823a383b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-loading-fade-clock-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-loading-fade-clock-run.log",
+      "sha256": "457ab11b629f199f9ef5c3d72ce31d506602118277346eb782521c4d813dac94"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-cache-preparation-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-cache-preparation-run.log",
+      "sha256": "02ac8d5a3e464f8eca78795b7fa2770012388b1e93e6f46d7000ba79b8e7ddd7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-loader-app-build.log",
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-loader-host-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-loader-tracker.log",
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "removed_temporary_files": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-cache-preparation.cpp",
+      "sha256": "7ad8810f4ccd53183f78c19e5a152f537547932f33b2d5cb9309e49300f0ec73"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-cache-preparation",
+      "sha256": "b236a7d14eb78a06b335746ebfc24523c2ef3601e9d7a22e6bd23edfc3899f76"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-loading-fade-clock.cpp",
+      "sha256": "fe23bb52ab788b84e79ebf5e035350f3feaff3131c0051290d7ddd6f4598df1e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-loading-fade-clock",
+      "sha256": "95cc462759c2225fb7cf7fb56527eaf32acfd0368f7e0c75e9e9f30382ef310a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-borrowed-bird-motion.cpp",
+      "sha256": "5fa33d2085beffa1911b0874f9143992a5ce43270c79ed20ac9545ab329bc1ed"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-borrowed-bird-motion",
+      "sha256": "f1085c61722a9666ed5c99908caba008fc822417c68d43c949249289e9c01bdc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-loading-effects-update.cpp",
+      "sha256": "386b100cb799e7f7b5afa3cb723076a5388b0648fe09d3666d1064609dee2560"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-loading-effects-update",
+      "sha256": "e6d4fe2a34e4625ec93536232a456bf5fed94a4fb07b9ca40ce4b0cd1144ae17"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-input-default-binding.cpp",
+      "sha256": "ee3a99a4136a2eb71f8d27c55045aa6c351f308023adb835a79dc37ea47667b3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-input-default-binding",
+      "sha256": "fe602080b587598847631a629813b4ab69d258f65a9558327f7ee5874e9566ed"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-loader-host.cpp",
+      "sha256": "f95a6f69114f47bd81c5153aaa23ba8f6acab327bd192ccfee79c5b65dd7b6c7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-loader-host.o",
+      "sha256": "12f82bcc6a52d93de0a09243dadba429e9b77687203fb91d01feae22f844316d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/extract-bird-motion.py",
+      "sha256": "05b4111d5b7f44366f9a353900b0dacc2aa9d828bddc4dabc1edf433a36bf5c3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/update-loading-ledger-checkpoint.py",
+      "sha256": "dafcd6b10bdf2c7d7c035aa96cd87793ebe0600328164b21dbed106ebb818ea3"
+    }
+  ],
+  "remaining": [
+    "Actual activation/shutdown/spawn coordinator and selected catalogue/suffix integration",
+    "Meaningful integrity observations and reached positive receivers",
+    "Application first camera/update/render, failure/repeat and user desktop acceptance"
+  ]
+}

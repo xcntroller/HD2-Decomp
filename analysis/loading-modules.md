@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [Concrete loading allocation](mission-loading-integration.md) supplies actual ordered stage receivers, selective prep caches/non-retained file unload, loading screen/effects callbacks, shared Bird motion and real input defaults. Five new partials; source session still uncalled by application. Activation/guard/first frame remain.
+
 2026-11-10: [Containing world owners](containing-world-loading.md) constructs the actual shared cold graph and all18 module facades. Real tree/grid bind later, retaining required module-tail owners on early failure. Focused checks pass; ordered loader/guard/first frame remain.
 
 2026-11-10: [World actor consumers](world-actor-loading-consumers.md) replaces common declared Consumers with shared source receivers and actual offline spawn/record/camera/Players chain, including compass definition9 correction and reverse-order actor lifetime guards. Source-only verified; Car callback completion and containing session/ordered loader/guard/first frame remain.

@@ -2,6 +2,7 @@
 #define HD2_GAME_EFFECTS_BIRDS_LOADING_H
 
 #include "frontend/cleanup.h"
+#include "game/bird_motion.h"
 #include <memory>
 #include <string>
 #include <vector>
@@ -10,20 +11,23 @@ namespace hd2::game {
 
 //0089BA80 bird owner, separate from actor Fowl and GEffects+20 decorations.
 //0047A790/A7B0 supplies model enumeration; only004797C0's borrowed-model false
-//branch is reached here. No moving/spawned bird producer or simulation exists.
+//branch is reached here. Movement shares actual00479C70 with generated birds;
+//mode0 transfer and spawning remain separate required producers.
 template<class Frames,class Random>class EffectsBirdsLoading {
 public:
     using Frame=typename Frames::Frame;using Vector=typename Frames::Vector;
     using Owner=decltype(std::declval<Frames&>().retain_actor_frame(std::declval<Frame>()));
-    struct Bird {
-        Bird(Owner owner,std::uint32_t timer,float amount):model(std::move(owner)),timer40(timer),field48(amount){}
-        Owner model;Vector velocity{},initial_position{},position{},rotation{};
-        std::uint32_t timer40=0,field44=0;float field48=0,speed5c=5;
-        bool flag4c=false,flag4d=false,spawned60=false,position_ready=false,rotation_ready=false;
-        std::int32_t state64=3;Frame child54{},child58{};
-        //Native velocity W is unwritten; no consumer of it is supplied.
+    struct Bird:BirdMotionState<Frame,Vector> {
+        Bird(Owner owner,std::uint32_t timer,float amount):model(std::move(owner)){this->timer40=timer;this->field48=amount;}
+        Owner model;
     };
-    EffectsBirdsLoading(Frames& frames,Random& random):frames_(frames),random_(random){}
+    struct MotionServices {
+        Frames& frames;Random& random;const float& far_clip;
+        std::int32_t fowl_random_word(){return static_cast<std::int32_t>(random());}
+        Vector fowl_camera_position(){const auto world=frames.actor_world_matrix(frames.active_game_camera());return {{world[12],world[13],world[14],world[15]}};}
+        float fowl_cull_distance()const{return far_clip;}
+    };
+    EffectsBirdsLoading(Frames& frames,Random& random,const float& far_clip):frames_(frames),random_(random),motion_services_{frames,random,far_clip}{}
     ~EffectsBirdsLoading(){try{clear();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}}
     EffectsBirdsLoading(const EffectsBirdsLoading&)=delete;EffectsBirdsLoading& operator=(const EffectsBirdsLoading&)=delete;
     const auto& values()const{return birds_;}
@@ -56,15 +60,19 @@ public:
         current->child58=frames_.actor_find(frame,"Object01",0xffff);
         if(current->child58)frames_.object_visible(current->child58,false);
     }
+    void update(std::uint32_t elapsed){ //0047A700: SAME motion, reverse traversal, retire false then swap/pop.
+        for(auto n=birds_.size();n;){
+            --n;auto& bird=*birds_[n];BirdMotion<Frames,MotionServices> motion(frames_,motion_services_,bird.model.get(),bird);
+            if(motion.update(elapsed))continue;
+            frontend::CleanupErrors errors;errors.attempt([&]{retire(bird);});
+            if(n+1!=birds_.size())birds_[n]=std::move(birds_.back());
+            birds_.pop_back();errors.rethrow();
+        }
+    }
     void clear(){ //0047AA10: reverse bird004799E0 retirement, then reverse deferred show/update.
         frontend::CleanupErrors errors;
         while(!birds_.empty()){
-            auto bird=std::move(birds_.back());birds_.pop_back();const auto model=bird->model.get();
-            if(frames_.actor_opaque_data(model)==bird.get())frames_.actor_opaque_data(model,nullptr);
-            if(bird->position_ready)errors.attempt([&]{const auto& p=bird->initial_position;frames_.object_position(model,{{p[0],p[1],p[2]}});});
-            if(bird->rotation_ready)errors.attempt([&]{frames_.object_rotation(model,bird->rotation);});
-            errors.attempt([&]{frames_.object_visible(model,false);});errors.attempt([&]{frames_.update_scene_object(model);});
-            errors.attempt([&]{deferred_.push_back(std::move(bird->model));});
+            auto bird=std::move(birds_.back());birds_.pop_back();errors.attempt([&]{retire(*bird);});
         }
         while(!deferred_.empty()){
             auto owner=std::move(deferred_.back());deferred_.pop_back();
@@ -73,7 +81,15 @@ public:
         errors.rethrow();
     }
 private:
-    Frames& frames_;Random& random_;std::vector<std::unique_ptr<Bird>> birds_;std::vector<Owner> deferred_;
+    void retire(Bird& bird){ //004799E0(false): retain actual deferred return ownership until0047AA10.
+        frontend::CleanupErrors errors;const auto model=bird.model.get();
+        if(frames_.actor_opaque_data(model)==&bird)frames_.actor_opaque_data(model,nullptr);
+        if(bird.position_ready)errors.attempt([&]{const auto& p=bird.initial_position;frames_.object_position(model,{{p[0],p[1],p[2]}});});
+        if(bird.rotation_ready)errors.attempt([&]{frames_.object_rotation(model,bird.rotation);});
+        errors.attempt([&]{frames_.object_visible(model,false);});errors.attempt([&]{frames_.update_scene_object(model);});
+        errors.attempt([&]{deferred_.push_back(std::move(bird.model));});errors.rethrow();
+    }
+    Frames& frames_;Random& random_;MotionServices motion_services_;std::vector<std::unique_ptr<Bird>> birds_;std::vector<Owner> deferred_;
 };
 } //namespace hd2::game
 #endif

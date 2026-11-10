@@ -95,6 +95,9 @@ public:
         if(!actor)throw std::logic_error("Actor property read requires an owner");
         actor->load(bytes);
     }
+    void clear_scene_frame_data(){ //006E9B50/006E9B70, scene44 maskFFFF, userdata0.
+        enumerate_activation_scene(false,0xffff,[this](Frame frame){erase_actor_frame_data(frame);});
+    }
     void clear_scene_actors() noexcept {actors_.clear();}
     Instance* scene_actor_identity(std::int32_t id)const { //00475DD0, Scene2 identity slots, not runtime IDs.
         return id<0?nullptr:actors_.identity(static_cast<std::size_t>(id));

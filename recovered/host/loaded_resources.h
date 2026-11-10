@@ -133,6 +133,7 @@ public:
         std::printf("Client sound cache: key=%s status=%08x entries=%zu\n", key.c_str(), static_cast<unsigned>(status), cache(2).size());
         return status;
     }
+    void prepare_mission(){io::prepare_mission_loaded_caches(*this);} //006D3F20, AFTER prior unload/resource publication.
     void clear_controller() {
         //006C0920, AFTER state shutdown and BEFORE state deletion/mouse close.
         io::clear_controller_loaded_caches(*this);

@@ -38,6 +38,9 @@ public:
         for(auto* head:grid.heads)if(head)throw std::logic_error("Dynamic collision grid already has an owner");
         grid_=&grid;
     }
+    bool empty()const noexcept{
+        return std::none_of(owned_.begin(),owned_.end(),[](const auto& bucket){return !bucket->objects.empty();});
+    }
     bool bound()const noexcept{return grid_!=nullptr;}
     const Grid& grid_identity()const{return grid();}
     void detach()noexcept{clear();grid_=nullptr;} //Containing tree may now retire.

@@ -73,6 +73,11 @@ public:
         buckets_.bind(tree->dynamic);
         tree_=std::move(tree);
     }
+    void release_collision_tree(){
+        require_open();
+        if(!buckets_.empty())throw std::logic_error("Retire actual collision descriptors before releasing the mission tree");
+        exclusions_.clear();buckets_.detach();tree_.reset();collision_resources_.clear_views();aliases_.clear();
+    }
     void close()noexcept {
         if(closed_)return;
         closed_=true;

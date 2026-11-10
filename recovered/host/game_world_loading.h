@@ -42,6 +42,7 @@
 #include "game/mission_script_model_visibility.h"
 #include "game/human_objective_experience.h"
 #include "game/collision_sweep.h"
+#include "game/human_input_default_receiver.h"
 
 namespace hd2::host::world_loading {
 struct Dependencies;struct PresentationDependencies;
@@ -170,18 +171,20 @@ public:
                 first_person_.view(),camera_,scene.effects(),audio_.random_source(),hud_.scene(),scene.buckets(),clock,session,
                 startup.mission_integrity_tables(),startup.mission_script_variables(),packets_,mode_,startup.script_advance_override(),
                 parent.request().preparation.mission_resource,script_link_);
+            inputs_.configure(input_profiles_,
+                [this](std::int32_t identity){return game::human_input_default_receiver(scene_.frames(),input_callbacks_,identity,false);},
+                [this](std::int32_t identity){return game::human_input_default_receiver(scene_.frames(),input_callbacks_,identity,true);},
+                startup_.local_player_identity(),mode_);
         }catch(...){unbind();throw;}
     }
     ~Owners(){close();}
     Owners(const Owners&)=delete;Owners& operator=(const Owners&)=delete;
     void bind_loaded_collisions(){require_open();sweep_.bind(scene_.collision_tree(),scene_.buckets());}
+    void unbind_loaded_collisions(){require_open();sweep_.unbind(scene_.collision_tree());}
     Dependencies& dependencies(){require_open();return dependencies_;}
     auto& presentation_dependencies(){require_open();return presentation_dependencies_;}
     Scripts& scripts(){require_open();return *scripts_;}
     auto& input_profiles(){require_open();return input_profiles_;}
-    void configure_input(Inputs::Getter first,Inputs::Getter second){
-        require_open();inputs_.configure(input_profiles_,std::move(first),std::move(second),startup_.local_player_identity(),mode_);
-    }
     void close()noexcept {
         if(closed_)return;closed_=true;
         //The ordered loader must first run native module finish passes and VM
@@ -244,7 +247,7 @@ public:
         :d_(owners.dependencies()),mission_effects_(d_.startup.pre_mission_files(),d_.scene.frames(),d_.startup.mission_effects_process()),
          tracks_(registry(),registration(0)),
          effects_(registry(),registration(1),d_.scene.frames(),d_.startup.pre_mission_files(),d_.scene.effects(),d_.startup.effects_loading_process(),
-             d_.audio.random_source(),d_.camera,d_.first_person.view(),d_.startup,d_.startup.application_flags_owner(),d_.request.preparation.mission_resource),
+             d_.audio.random_source(),d_.camera,d_.first_person.view(),d_.startup,d_.startup.application_flags_owner(),d_.request.preparation.mission_resource,d_.scene.documents().fields().far_clip),
          versions_(registry(),registration(7),d_.scene.frames(),d_.scene.buckets(),d_.startup.application_flags_owner()),
          lightmaps_(registry(),registration(8),d_.scene.frames()),shifts_(registry(),registration(10)),
          shots_(registry(),registration(14),d_.scene.frames(),d_.startup.shot_manager_process(),d_.startup.application_flags_owner()),
@@ -253,6 +256,7 @@ public:
              tracks_,effects_,versions_,lightmaps_,shifts_,vertices,shots_,heavy_fire_,particles_},dispatch_(dependencies_){}
     ModuleOwners(const ModuleOwners&)=delete;ModuleOwners& operator=(const ModuleOwners&)=delete;
     auto& dispatch(){return dispatch_;}auto& mission_effects(){return mission_effects_;}
+    auto& game_effects(){return effects_;}
 private:
     frontend::ClientModuleRegistry& registry(){return d_.startup.game_module_registry();}
     frontend::ClientModuleRegistration& registration(unsigned kind){return d_.startup.game_module_registration(kind);}
@@ -284,6 +288,10 @@ public:
     Scene& scene(){return scene_;}Owners& owners(){return owners_;}ModuleOwners& modules(){return modules_;}
     auto& vertices(){return vertices_;}
     void load_collision_tree(const std::string& resource){scene_.load_collision_tree(resource);owners_.bind_loaded_collisions();}
+    void release_collision_tree(){
+        if(!scene_.buckets().empty())throw std::logic_error("Retire actual collision descriptors before unbinding the Human sweep");
+        owners_.unbind_loaded_collisions();scene_.release_collision_tree();
+    }
 private:
     Bindings bindings_;Scene scene_;Actors::Vertices vertices_;Owners owners_;ModuleOwners modules_;
 };

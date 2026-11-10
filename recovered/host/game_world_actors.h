@@ -64,6 +64,7 @@ public:
         if(!owner)throw std::runtime_error("Human callback loading owner has a different concrete type");
         return *owner;
     }
+    bool has_human_loading_owners()const noexcept{return !human_loading_.empty();}
     void activate_human(Human& actor,bool authority){
         require_open();if(closing_)throw std::logic_error("Human activation during world retirement");
         auto found=human_loading_.find(&actor);

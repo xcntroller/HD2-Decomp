@@ -2,6 +2,8 @@
 #define HD2_GAME_SESSION_ACTIVATION_H
 
 #include "game/activation_flags.h"
+#include <memory>
+#include <string>
 #include "game/mission_module_dispatch.h"
 #include "game/human_joint_owners.h"
 #include "frontend/game_data.h"
@@ -14,6 +16,7 @@ namespace hd2::game {
 struct SessionActivationState {
     SessionActivationState(){words.set(0x1c,std::uint32_t{0});} //00698510, normal session packet kind; separate from status04/configuration04.
     std::uint32_t status=0;bool loaded=false;
+    std::shared_ptr<const std::string> resource; //Actual game6A COW owner, distinct from descriptorA8.
     const frontend::GameDataNode* mission=nullptr;
     HumanJointWords<0x110> words; //Scalar slots only; native pointers are separate.
 };

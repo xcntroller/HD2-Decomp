@@ -18068,13 +18068,16 @@
       "program": "client",
       "entry": "006ca780",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 006ca780: Original ordered mission loading stage composition and cleanup tail; required consumers are explicit interfaces and application integration remains absent.",
+      "coverage": "P2.2 source reconstruction at original entry 006ca780: Original ordered mission loading stage composition and cleanup tail; required consumers are explicit interfaces and application integration remains absent. Concrete actual GameMissionLoadingSession now owns screen/backend/cold World/loader with checked progress/effects links; loader stages and required early-failure module tail compile with actual host owners. Activation/guard/first-frame/application wiring remain separate.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_loading.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/host/game_mission_loading.h",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
       ]
     },
     {
@@ -22753,12 +22756,14 @@
       "program": "client",
       "entry": "00486b30",
       "status": "partial",
-      "coverage": "Signed duration reciprocal or MAXFLOAT rate, fade target, supplied colour or null-colour XYZ and negative-current clamp.",
+      "coverage": "Signed duration reciprocal or MAXFLOAT rate, fade target, supplied colour or null-colour XYZ and negative-current clamp. Corrected original0080F708 FLOAT1000 numerator: rate1000/duration, signed integer division before FLOAT store; zero durationFLTMAX.",
       "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "analysis/mission-script-receivers.md",
         "analysis/checkpoints/p2.2-script-receivers-20261109.json",
-        "recovered/game/effects_fade.h"
+        "recovered/game/effects_fade.h",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
       ]
     },
     {
@@ -23007,13 +23012,17 @@
       "program": "client",
       "entry": "00487240",
       "status": "partial",
-      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded. Also source Human228 pass: reverse borrowed-Human updates, signed elapsed/FLOAT stores, native completion/NaN and ordered erase after actual model call; other passes remain excluded.",
+      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded. Also source Human228 pass: reverse borrowed-Human updates, signed elapsed/FLOAT stores, native completion/NaN and ordered erase after actual model call; other passes remain excluded. Actual bounded loading update now composes same fade/time224, frame200/Human228 queues, current-camera sun, shared borrowed-Bird motion, profile4/empty-decoration gates and mesh movie update, in native order. Positive water/game64 weather/rain/grass/colour and unproduced pose304/special2E0/fade-in210 remain excluded. Fade uses signed FILD elapsed, FLOAT .001 and extended post-FSTS overshoot/sentinel semantics.",
       "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
       "evidence": [
         "recovered/game/effects_frame_fades.h",
         "analysis/item-transfer-physics-loading.md",
         "analysis/checkpoints/p2.2-world-owners-20261109.json",
-        "analysis/human-selection-visibility-loading.md"
+        "analysis/human-selection-visibility-loading.md",
+        "recovered/game/effects_loading_update.h",
+        "recovered/game/effects_fade.h",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
       ]
     },
     {
@@ -23312,7 +23321,7 @@
       "program": "client",
       "entry": "004797c0",
       "status": "partial",
-      "coverage": "Generated true and borrowed false Bird loading branches: shared CRT timers, root/pose/checked EC binding and actual wing borrowers/visibility. Borrowed records use the actual GEffects scene manager; generated records remain with their Fowl actor.",
+      "coverage": "Generated true and borrowed false Bird loading branches: shared CRT timers, root/pose/checked EC binding and actual wing borrowers/visibility. Borrowed records use the actual GEffects scene manager; generated records remain with their Fowl actor. Actual borrowed and generated states now share BirdMotionState for subsequent00479C70 updates; separate model/scene/free-list ownership remains.",
       "limitations": "Source-only typed retained native frames and actual scene/CRT dependencies; original layout/allocator/SEH ABI excluded. Borrowed mode0 Fowl transfer and borrowed Bird runtime movement/rendering remain unavailable. No application world or new desktop verification.",
       "evidence": [
         "recovered/game/fowl_bird.h",
@@ -23321,14 +23330,17 @@
         "analysis/checkpoints/p2.2-fowl-loading-20261109.json",
         "recovered/game/effects_birds_loading.h",
         "analysis/geffects-module-loading.md",
-        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json",
+        "recovered/game/bird_motion.h",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
       ]
     },
     {
       "program": "client",
       "entry": "004799e0",
       "status": "partial",
-      "coverage": "Matching Bird EC clear; generated true branch removes actual scene model, borrowed false branch restores XYZ/quaternion, hides/updates then transfers to the actual deferred show/update list with retained source frame safety.",
+      "coverage": "Matching Bird EC clear; generated true branch removes actual scene model, borrowed false branch restores XYZ/quaternion, hides/updates then transfers to the actual deferred show/update list with retained source frame safety. Borrowed retirement is also used by actual0047A700 false-result removal, retaining deferred return ownership until0047AA10.",
       "limitations": "Source-only typed retained native frames and actual scene/CRT dependencies; original layout/allocator/SEH ABI excluded. Borrowed mode0 Fowl transfer and borrowed Bird runtime movement/rendering remain unavailable. No application world or new desktop verification.",
       "evidence": [
         "recovered/game/fowl_bird.h",
@@ -23337,20 +23349,25 @@
         "analysis/checkpoints/p2.2-fowl-loading-20261109.json",
         "recovered/game/effects_birds_loading.h",
         "analysis/geffects-module-loading.md",
-        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
       ]
     },
     {
       "program": "client",
       "entry": "00479c70",
       "status": "partial",
-      "coverage": "Generated Bird idle/jump/flight/climb/descent/cull and recursive transitions, actual model/wing quaternion endpoints, branch-specific FLOAT/extended math.",
+      "coverage": "Generated Bird idle/jump/flight/climb/descent/cull and recursive transitions, actual model/wing quaternion endpoints, branch-specific FLOAT/extended math. Movement body now shared by actual generated and borrowed bird states, with current real camera/session far clip and SAME CRT; ownership remains in each distinct producer.",
       "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
       "evidence": [
         "recovered/game/fowl_bird.h",
         "recovered/game/fowl_generator_loading.h",
         "analysis/fowl-loading.md",
-        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json",
+        "recovered/game/bird_motion.h",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
       ]
     },
     {
@@ -26364,6 +26381,66 @@
         "analysis/car-callback-world-binding.md",
         "recovered/host/game_car_callbacks.h",
         "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006d3f20",
+      "status": "partial",
+      "coverage": "Actual loading-screen preparation flags/order, prior non-retained unload, game6A/controller30 resource and same Car scene publication, then selective actual cache1/4/5 entries/tree/current clear; cache2/3/directories/capacity survive.",
+      "limitations": "Source-only typed STL/RAII owners and checked native-width borrowers replace original object/container/allocator/SEH ABI. Actual host composition is compile-only; native engine/archive/clock/profile leaves are explicit doubles. Required positive and retained-game paths described in the contract remain excluded. No whole-body equivalence, application mission loading, first frame or desktop acceptance.",
+      "evidence": [
+        "recovered/host/game_mission_loading.h",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069a3d0",
+      "status": "partial",
+      "coverage": "Non-retained file unload: loaded guard, CC/C8 reset, actual scene EC cleanup, fresh authority/presentation ascending module+18 passes, reverse game48 animated-model reference release, tables/engine scene/resource/loaded cleanup. Status1 virtual08 and live unfinished Human lifetimes require actual later coordinator.",
+      "limitations": "Source-only typed STL/RAII owners and checked native-width borrowers replace original object/container/allocator/SEH ABI. Actual host composition is compile-only; native engine/archive/clock/profile leaves are explicit doubles. Required positive and retained-game paths described in the contract remain excluded. No whole-body equivalence, application mission loading, first frame or desktop acceptance.",
+      "evidence": [
+        "recovered/host/game_mission_loading.h",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e9b50",
+      "status": "partial",
+      "coverage": "Actual containing Scene44 enumeration maskFFFF invokes matching source-owned frame EC erase/null before module file unload; foreign opaque allocations reject rather than freeing an unknown allocator.",
+      "limitations": "Source-only typed STL/RAII owners and checked native-width borrowers replace original object/container/allocator/SEH ABI. Actual host composition is compile-only; native engine/archive/clock/profile leaves are explicit doubles. Required positive and retained-game paths described in the contract remain excluded. No whole-body equivalence, application mission loading, first frame or desktop acceptance.",
+      "evidence": [
+        "recovered/host/game_scene_actors.h",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047a700",
+      "status": "partial",
+      "coverage": "Reverse borrowed-bird update through SAME00479C70 motion, false-result pose/metadata retirement into actual deferred return list, then swap/pop. Shares movement with generated birds while preserving distinct borrowed model membership.",
+      "limitations": "Source-only typed STL/RAII owners and checked native-width borrowers replace original object/container/allocator/SEH ABI. Actual host composition is compile-only; native engine/archive/clock/profile leaves are explicit doubles. Required positive and retained-game paths described in the contract remain excluded. No whole-body equivalence, application mission loading, first frame or desktop acceptance.",
+      "evidence": [
+        "recovered/game/effects_birds_loading.h",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047bcc0",
+      "status": "partial",
+      "coverage": "Reached loading update profile4 transition through actual enable/disable and genuine disabled/empty-definition gates. Positive decoration spatial/model update explicitly requires its actual remaining producer.",
+      "limitations": "Source-only typed STL/RAII owners and checked native-width borrowers replace original object/container/allocator/SEH ABI. Actual host composition is compile-only; native engine/archive/clock/profile leaves are explicit doubles. Required positive and retained-game paths described in the contract remain excluded. No whole-body equivalence, application mission loading, first frame or desktop acceptance.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/mission-loading-integration.md",
+        "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
       ]
     }
   ]

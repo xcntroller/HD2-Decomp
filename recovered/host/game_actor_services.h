@@ -61,6 +61,10 @@ public:
     void unbind_scene_actor_frame(Frame frame) noexcept {frame_data_.unbind(frame);}
     game::ActorFrameData& actor_frame_data(Frame frame) {return frame_data_.ensure(frame);}
     const game::ActorFrameData* find_actor_frame_data(Frame frame) const {return frame_data_.find(frame);}
+    void erase_actor_frame_data(Frame frame){
+        (void)frame_data_.find(frame); //Reject foreign opaque allocations; never free an unknown producer's data.
+        frame_data_.erase(frame); //006E9B20, retract opaque pointer before releasing its actual allocation/frame.
+    }
     void remove_unused_actor_frame_data(Frame frame) noexcept {frame_data_.remove_if_unused(frame);}
     void register_car_actor(game::SceneActor<GameActorServices>* actor) {
         if(!actor)throw std::logic_error("Car registry requires an owner");

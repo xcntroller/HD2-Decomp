@@ -4,8 +4,9 @@
 screen or a smaller milestone. The game initializer still declines loading.
 `game/loading_screen.h` and `host/game_loading_screen.h` now compose the
 single-player presentation owners and real engine/graphics/font endpoints.
-The containing loader and actual GEffects/external-progress consumers remain
-mandatory; `LoadingPresentationRuntime` has no successful defaults.
+[Concrete loading allocation](mission-loading-integration.md) now supplies the
+source loader and bounded real GEffects update. Flag170 belongs to SAME
+application24 GameConfiguration; positive external transport remains required.
 
 ## Original behavior
 
