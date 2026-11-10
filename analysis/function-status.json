@@ -4433,13 +4433,16 @@
       "program": "client",
       "entry": "006b66b0",
       "status": "partial",
-      "coverage": "Evaluate actual borrowed application activity+04 nonnull and mode+224 equal3 for the reset fallback.",
+      "coverage": "Evaluate actual borrowed application activity+04 nonnull and mode+224 equal3 for the reset fallback. Actual SAME Startup/GameConfiguration04/224 predicate now also supplies Human loading and difficulty.",
       "limitations": "Source-only native strings, vectors, ownership and borrowed field views replace original class/container/refcount/allocation/SEH ABI. Actual DTA/LS3DF composition compiles and links only; engine bodies remain delegated. Playback/cache producers, spatial routing, shared gate/control lifecycle and concrete application/camera ownership remain before live launch. No desktop delivery claimed; native guards do not reconstruct original undefined paths.",
       "evidence": [
         "analysis/sound-runtime-map.json",
         "analysis/sound-runtime.md",
         "recovered/frontend/sound_runtime.h",
-        "recovered/host/sound_services.h"
+        "recovered/host/sound_services.h",
+        "recovered/frontend/game_configuration.h",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
       ]
     },
     {
@@ -8982,14 +8985,17 @@
       "program": "client",
       "entry": "006136f0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 006136f0: Bounded switch and door property stream dispatch; only implemented actor property cases. Actual switch property/state and reached context/animation receiver source.",
+      "coverage": "P2.2 source reconstruction at original entry 006136f0: Bounded switch and door property stream dispatch; only implemented actor property cases. Actual switch property/state and reached context/animation receiver source. Concrete actual module-context Use-PC/runtime spatial sound/proximity consumers supplied, without immediate Block or state-argument assignment.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/actor_properties.h",
         "recovered/game/switch_actor_state.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/scene_actor_loading_runtime.h",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
       ]
     },
     {
@@ -14100,13 +14106,15 @@
       "program": "client",
       "entry": "007855c0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007855c0: DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores.",
+      "coverage": "P2.2 source reconstruction at original entry 007855c0: DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores. Own actual DD0+DC4 initialized0 instead of requesting a world flag.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_control_loading.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
       ]
     },
     {
@@ -14126,13 +14134,15 @@
       "program": "client",
       "entry": "00785be0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00785be0: DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores.",
+      "coverage": "P2.2 source reconstruction at original entry 00785be0: DD0 loading composition, physical/geometry/animation ownership and cleanup/control-delay stores. Physical activation reads SAME owned DD0+DC4 byte.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_control_loading.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
       ]
     },
     {
@@ -16761,39 +16771,16 @@
       "program": "client",
       "entry": "0049b980",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0049b980: Same borrowed Human roster/selection records, eligibility subset, timers, reference accounting and enemy-list feedback.",
+      "coverage": "Actual any-nonzero HUD flags gate, selected Human compass append or newest marker retirement; no soldier/flags mutation.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_player_roster.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
-      ]
-    },
-    {
-      "program": "client",
-      "entry": "005a8740",
-      "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005a8740: Same borrowed Human roster/selection records, eligibility subset, timers, reference accounting and enemy-list feedback.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
-      "evidence": [
-        "recovered/game/human_player_roster.h",
-        "analysis/human-state-loading.md",
-        "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
-      ]
-    },
-    {
-      "program": "client",
-      "entry": "005a86f0",
-      "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005a86f0: Same borrowed Human roster/selection records, eligibility subset, timers, reference accounting and enemy-list feedback.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
-      "evidence": [
-        "recovered/game/human_player_roster.h",
-        "analysis/human-state-loading.md",
-        "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/hud_player_loading.h",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
       ]
     },
     {
@@ -16982,13 +16969,16 @@
       "program": "client",
       "entry": "0059e3e0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0059e3e0: Actual cold Human/context/command allocations, known fields and destructor dependency ordering; populated runtime producers excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0059e3e0: Actual cold Human/context/command allocations, known fields and destructor dependency ordering; populated runtime producers excluded. Concrete source runtime routes same process proximity and required nonoffline player records; no substitute array.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_scene_actor.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/scene_actor_loading_runtime.h",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
       ]
     },
     {
@@ -25278,6 +25268,82 @@
       "evidence": [
         "analysis/hud-player-presentation-loading.md",
         "recovered/game/human_loading_presentation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049fbf0",
+      "status": "partial",
+      "coverage": "Read SAME loaded inventory root visibility, genuine hidden return, explicit visible004A49F0/004A26D0 rejection; presentation routes through actual HUD owner.",
+      "limitations": "Source-only typed borrowed owners and scalar policy; native allocation/class/virtual/SEH ABI and full containing session/loader/first-frame execution remain unreconstructed. Explicit rejected paths and delegated callees are not credited. No application-world or desktop delivery.",
+      "evidence": [
+        "recovered/game/hud_panels_loading.h",
+        "recovered/game/hud_scene_loading.h",
+        "recovered/game/human_loading_presentation.h",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a6420",
+      "status": "partial",
+      "coverage": "Read actual Human current B0 flags50 bit18hex for the actual spatial sound suppression consumer; require actual source/state.",
+      "limitations": "Source-only typed borrowed owners and scalar policy; native allocation/class/virtual/SEH ABI and full containing session/loader/first-frame execution remain unreconstructed. Explicit rejected paths and delegated callees are not credited. No application-world or desktop delivery.",
+      "evidence": [
+        "recovered/game/world_sound_loading.h",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b6700",
+      "status": "partial",
+      "coverage": "Actual remote configuration predicate first, remote26C else offline7 lazy profile34 else3; SAME Startup configuration/profile and shared source policy.",
+      "limitations": "Source-only typed borrowed owners and scalar policy; native allocation/class/virtual/SEH ABI and full containing session/loader/first-frame execution remain unreconstructed. Explicit rejected paths and delegated callees are not credited. No application-world or desktop delivery.",
+      "evidence": [
+        "recovered/frontend/game_configuration.h",
+        "recovered/host/startup_session.h",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069a4b0",
+      "status": "partial",
+      "coverage": "Query actual FPV58 OR59 independently through SAME first-person view, for equipment/view offset consumers.",
+      "limitations": "Source-only typed borrowed owners and scalar policy; native allocation/class/virtual/SEH ABI and full containing session/loader/first-frame execution remain unreconstructed. Explicit rejected paths and delegated callees are not credited. No application-world or desktop delivery.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045e920",
+      "status": "partial",
+      "coverage": "Reverse actual control38 selection-record identity scan; include zero-ref/dead/timed records until actual erasure, distinct from0045E960 positive-reference query.",
+      "limitations": "Source-only typed borrowed owners and scalar policy; native allocation/class/virtual/SEH ABI and full containing session/loader/first-frame execution remain unreconstructed. Explicit rejected paths and delegated callees are not credited. No application-world or desktop delivery.",
+      "evidence": [
+        "recovered/game/human_player_roster.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a6380",
+      "status": "partial",
+      "coverage": "Actual AL eligibility: signed health<1/nullB0/property19C1 false, otherwise current B0 flags50 bit26hex.",
+      "limitations": "Source-only typed borrowed owners and scalar policy; native allocation/class/virtual/SEH ABI and full containing session/loader/first-frame execution remain unreconstructed. Explicit rejected paths and delegated callees are not credited. No application-world or desktop delivery.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/shared-world-loading-consumers.md",
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
       ]
     }
   ]

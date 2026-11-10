@@ -23,7 +23,7 @@ struct ColdControlFrameState {
     bool worker_active = false;
     void* server = nullptr;
     void* client = nullptr;
-    std::uint32_t local_peer = 0; // 00982104
+    std::int32_t local_peer = 0; //00982104, SAME signed Human/player identity, bit pattern preserved.
 };
 
 inline std::int32_t control_signed_word(std::uint32_t value) {
@@ -38,6 +38,7 @@ public:
     ColdControlFrame(ControlStartupState& startup, std::uint32_t& gate, Backend& backend)
         : startup_(startup), gate_(gate), backend_(backend) {}
     ColdControlFrameState& state() { return state_; }
+    const ColdControlFrameState& state()const{return state_;}
 
     void phase(std::uint32_t, bool fixed) {
         require_cold();

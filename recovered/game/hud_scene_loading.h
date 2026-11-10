@@ -70,6 +70,8 @@ public:
         return panels_.add_human(human,index,mode,difficulty,local_player);
     }
     template<class Human>bool remove_human(Human* human,std::int32_t index){return panels_.remove_human(human,index);}
+    template<class Human>void select_human(Human* human,bool selected,std::uint32_t mode,std::uint32_t difficulty){panels_.select_human(human,selected,mode,difficulty);}
+    void inventory_changed(){panels_.inventory_changed();}
     template<class Camera>void render_prepass(Camera& camera){hud_render_prepass(panels_,camera);}
     template<class Camera,class Consumers>void render(Camera& camera,std::uint32_t mode,Consumers& consumers){
         hud_render(frames_,factory_,hud_,scene(),panels_,camera,mode,flags20_,fields6b8f8_,consumers);

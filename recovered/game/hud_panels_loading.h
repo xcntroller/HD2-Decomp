@@ -92,6 +92,12 @@ public:
         return add_hud_loading_human(frames_,hud_,soldiers_,compass_,players_,items_,human,index,mode,difficulty,local_player,[&]{post_bind(mode,hud_.flags);});
     }
     template<class Human>bool remove_human(Human* human,std::int32_t index){return remove_hud_loading_human(frames_,hud_,soldiers_,compass_,human,index);}
+    template<class Human>void select_human(Human* human,bool selected,std::uint32_t mode,std::uint32_t difficulty){select_hud_loading_human(hud_,compass_,human,selected,mode,difficulty);}
+    void inventory_changed(){ //0049FBF0; hidden inventory is a genuine RET, not a successful refresh substitute.
+        const auto root=inventory_.root();if(!root)throw std::logic_error("Inventory notification requires its actual loaded HUD root");
+        if(!frames_.hud_frame_visible(root))return;
+        throw std::runtime_error("Visible inventory refresh requires actual004A49F0/004A26D0 actor/slot consumers");
+    }
     bool hide_cold_soldiers(){return hide_hud_loading_humans(frames_,hud_,soldiers_,compass_);} //0049B900 also retires populated marker amounts.
     void discard_borrowers()noexcept {
         inventory_.retire_inline_scrolls();inventory_.discard_borrowers();cursor_.clear();dialogs_.discard_borrowers();

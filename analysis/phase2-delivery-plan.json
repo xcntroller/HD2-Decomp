@@ -112,7 +112,13 @@
         "pike_explosive_receipt": "analysis/checkpoints/p2.2-pike-explosive-20261109.json",
         "fowl_loading_receipt": "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
       },
-      "checkpoint_record": "analysis/checkpoints/p2.2-20261109.json"
+      "checkpoint_record": "analysis/checkpoints/p2.2-20261109.json",
+      "latest_shared_world_consumers": {
+        "contract": "analysis/shared-world-loading-consumers.md",
+        "receipt": "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json",
+        "result": "Verified source-only actor runtime/shared SOUND and common Human owner/clock/config/pool/Players/FPV/music consumers; hidden inventory/known enemy/eligibility/HUD marker bodies. Six partials added, two delegated-only credits retracted;34 complete/1871 partial. Application still declines loading.",
+        "remaining": "Actual containing Human/VM/FPV/HUD/SOUND/session aggregate, reached remaining receivers and observed guard publication, ordered loader and first frame/failure/repeat/user acceptance."
+      }
     },
     {
       "id": "P2.3",

@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [shared world consumers](shared-world-loading-consumers.md) supply actual hidden inventory refresh, concrete SceneActor runtime and shared SOUND/sector/B0/camera endpoints, common Human owner/pool/clock/config/Players/FPV/music callbacks, known-enemy identity and HUD selected markers. Source-only verified checkpoint; containing Human/VM/session aggregate, remaining reached receivers and loader/first frame remain open.
+
 2026-11-10: [HUD Human/player presentation](hud-player-presentation-loading.md) supplies required soldier/compass add/remove/hide and same-owner Player callbacks, with actual name/rank/AI-mode/definition lookup. Source-only; later HUD updates/current inventory refresh and containing world/session/loader remain. Application loading remains disabled.
 
 2026-11-10: [player/first-person composition](first-person-loading-composition.md) defines initial player mode/inline action and real player/sector/target-retirement lookups, with actual session-overlay FPV ownership/reset. Source-only; remaining HUD/presentation/session/loader and guard publication keep application loading disabled.

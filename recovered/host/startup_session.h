@@ -182,6 +182,8 @@ public:
     void close_archives() { archives_.close(); }
     EngineFrame* graphics() const { return static_cast<EngineFrame*>(input_setup_.graphics()); }
     std::uint32_t application_flags() const { return gate_; }
+    std::int32_t& local_player_identity(){return control_frame_.state().local_peer;} //SAME00982104, not a per-world ID copy.
+    const std::int32_t& local_player_identity()const{return control_frame_.state().local_peer;}
     bool application_input_enabled() const { return application_input_enabled_; }
     void application_input_enabled(bool value) { application_input_enabled_ = value; } // 006DCAD0
     std::uint32_t random_word() { return settings_backend_.sound_random_word(); }
@@ -252,6 +254,10 @@ public:
     frontend::ProfileSettings& profile_settings() { return data_.profile().options.settings; }
     bool human_face_quality_enabled(){return profile_settings().quality_byte(3)!=0;} //006B6740→006B33E0(3).
     frontend::GameConfiguration& game_configuration(){return data_.game_configuration();}
+    bool human_remote_ai_enabled(){return game_configuration().remote_ai_enabled();} //006B66B0, SAME application24 data.
+    unsigned human_difficulty(){ //006B6700; remote predicate precedes offline7/profile test.
+        return frontend::human_difficulty_preference(application_flags(),game_configuration(),[this]{return profile_difficulty();});
+    }
     bool car_camera_setting264(){return game_configuration().car_camera264();}
     std::uint8_t hud_crosshair_allowed(){return frontend::hud_crosshair_preference(gate_,game_configuration(),profile_settings());}
 

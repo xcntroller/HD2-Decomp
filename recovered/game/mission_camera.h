@@ -100,6 +100,7 @@ public:
         detached_.remove(human,[&](Human& value,float amount){set_human_camera_amount(value,amount,control);});
     }
     bool hud_suppressed()const{return state_.field2b4!=0;} //00465080, camera virtual80; not detached-camera state.
+    bool sound_special_mode()const{return state_.flag270;} //00465070, virtual7C; actual byte270, distinct from26D/26E/2B4.
     Frame saved_scene_camera() const {return previous_;}
     bool owns_frame(Frame candidate)const{return frame()==candidate;} //00465EE0 virtual4C, compares even null.
     Frame look_target()const{return look_target_;}
@@ -556,7 +557,7 @@ public:
             if(static_cast<float>(signed_word(state_.field294))>5000.f)state_.field294=5000;
         }
     }
-    Frame scene_sector()const{return sector_;} //00465AD0, borrowed native24C.
+    Frame scene_sector()const{return sector_;} //004650C0, virtual8C, borrowed native24C.
     template<class Files>void activate(bool authority,Files& files,float fov,float near_clip,float far_clip) {
         if(authority)return;
         if(camera_||previous_)throw std::logic_error("Game camera is already activated");

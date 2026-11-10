@@ -59,6 +59,10 @@ public:
         active_count_=inactive_count_=0;notify_=false;
     }
     const auto& records()const{return records_;}
+    bool knows(Human* human)const { //0045E920, reverse identity only, including zero-ref/timed/dead records.
+        for(auto n=records_.size();n;)if(records_[--n]->human==human)return true;
+        return false;
+    }
     std::int32_t active_count()const{return active_count_;}std::int32_t inactive_count()const{return inactive_count_;}
     bool changed()const{return changed_;}bool& notification_flag(){return notify_;} //Native control54, reset by0045D3A0.
     template<class Feedback>void acquire(Human& human,std::uint32_t mode,Feedback& feedback){ //0045E410.

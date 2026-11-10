@@ -248,7 +248,8 @@ preparation, not a standalone audit-only milestone.
   [initial Human/VM/view controls](analysis/mission-script-initial-controls.md);
   [script runtime/objectives](analysis/mission-script-runtime-composition.md);
   [player/first-person composition](analysis/first-person-loading-composition.md);
-  [HUD/player presentation](analysis/hud-player-presentation-loading.md). Session/loading integration remains.
+  [HUD/player presentation](analysis/hud-player-presentation-loading.md);
+  [shared world consumers](analysis/shared-world-loading-consumers.md). Session/loading integration remains.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat
   loading through Python; unsupported required assets/data cannot report success.
 

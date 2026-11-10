@@ -1,5 +1,7 @@
 # P2.2 source ledger reconciliation — 2026-11-09
 
+Current targeted correction2026-11-10: [shared world consumers](shared-world-loading-consumers.md) add six actual eligible bodies and retract005A8740/005A86F0, previously counted from abstract feedback calls without their visibility bodies.0049B980 now has its actual source marker receiver. Current ledger34 complete/1,871 partial; older snapshots below retain their historical meaning. No broader audit or complete promotions.
+
 The prior ledger stopped at unloaded game-owner integration (`f9674b3`). The
 subsequent loading-source checkpoints through `f72ca56` were committed without
 registering their implemented function subsets. This update reconciles those

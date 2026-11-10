@@ -5,6 +5,15 @@
 #include <stdexcept>
 namespace hd2::game {
 
+//0049B980 uses any nonzero HUD flags, then actual selected marker publication
+//or retirement. It neither changes HUD flags nor binds/hides a soldier panel.
+template<class Hud,class Compass,class Human>
+void select_hud_loading_human(Hud& hud,Compass& compass,Human* human,bool selected,std::uint32_t mode,std::uint32_t difficulty){
+    if(!hud.flags)return;
+    if(selected)compass.add_human(human,mode,difficulty);
+    else compass.remove_human(human);
+}
+
 //0049B7E0 actual HUD flag0C/index gates and ordered soldier/marker publication.
 //Refresh is actual0049F1C0 over the SAME panels/current player, never a default.
 template<class Frames,class Hud,class Soldiers,class Compass,class Players,class Items,class Human,class Refresh>

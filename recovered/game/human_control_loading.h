@@ -75,7 +75,7 @@ public:
         try {
             frames_.register_human_model(model);registered_=true;frames_.flag_human_model(model);
             presentation_.acquire();presentation_acquired_=true;amount_=presentation_.settings().amount;
-            physical_.initialize(services_.human_collision_disabled(*human_));
+            physical_.initialize(flag_dc4_); //0075B280 reads SAME DD0+DC4, initialized0 by007855C0.
             motion_.initialize(random_);animation_.activate(model);
             bind_controls(resources,sweep,tree);field_dc8_=0;
             for(unsigned n=0;n!=25;++n) {
@@ -106,6 +106,7 @@ public:
     Human** human_slot_address(){return physical_.human_slot_address();}
     std::uint32_t mode_flags() const{return services_.mode_flags();}
     bool active() const{return active_;}
+    bool collision_disabled()const{return flag_dc4_;} //No loading producer changes this DD0 byte.
     float presentation_amount() const{return amount_;}
     std::uint32_t animation_state_word(unsigned offset) const {
         if(offset>=0x260&&offset<0x604)return tracks_.words().template get<std::uint32_t>(offset-0x260);
@@ -153,6 +154,7 @@ private:
     std::array<std::optional<BoneOwner>,25> bones_{};
     float amount_=0;std::uint32_t field_dc8_=0;
     bool started_=false,active_=false,registered_=false,presentation_acquired_=false;
+    bool flag_dc4_=false;
 };
 } //namespace hd2::game
 #endif

@@ -33,6 +33,8 @@ public:
     std::uint32_t hud_teams240()const{return static_cast<std::uint32_t>(rules228[6]);}
     bool crosshair274()const{return rules228[19]!=0;}
     bool car_camera264()const{return rules228[15]!=0;} //004D16A0 reads current configuration264.
+    bool remote_ai_enabled()const{return field04!=0&&style224==3;} //006B66B0; tests config04 BEFORE224, independent of process mode.
+    std::uint32_t remote_difficulty26c()const{return static_cast<std::uint32_t>(rules228[17]);}
     void clear_rotations()noexcept {while(!rotations284.empty())rotations284.pop_back();rotation290=0xffffffffu;}
     std::uint32_t field04=0;std::array<std::uint8_t,0x168> identity08{};
     std::uint8_t flag170=0;std::uint32_t field174=0,field178=0;
@@ -46,6 +48,13 @@ public:
 //on EVERY call. Existing ProfileSettings bytes start at native38, hence73→3B.
 inline std::uint8_t hud_crosshair_preference(std::uint32_t mode,const GameConfiguration& game,const ProfileSettings& profile) {
     return (mode&7u)==7u?profile.bytes[0x3b]:static_cast<std::uint8_t>(game.crosshair274());
+}
+//006B6700: remote26C takes precedence even in offline7; profile34 is queried
+//only in the actual remaining offline branch, never copied into game rules.
+template<class ProfileDifficulty>
+std::uint32_t human_difficulty_preference(std::uint32_t mode,const GameConfiguration& game,ProfileDifficulty&& profile) {
+    if(game.remote_ai_enabled())return game.remote_difficulty26c();
+    return (mode&7u)==7u?static_cast<std::uint32_t>(profile()):3u;
 }
 } //namespace hd2::frontend
 #endif

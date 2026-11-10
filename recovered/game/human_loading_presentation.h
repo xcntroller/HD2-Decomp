@@ -12,7 +12,7 @@ namespace hd2::game {
 //camera, Players module and HUD scene owners. It may be forward-declared while
 //their mutually borrowing template types are formed; construct it only with
 //the completed actual dependency owner. No default endpoint or readiness flag.
-//Required inventory_changed remains the real0049FBF0 receiver, never success.
+//Inventory change uses the SAME HUD's actual0049FBF0 visibility gate.
 template<class Dependencies>class HumanLoadingPresentation {
 public:
     explicit HumanLoadingPresentation(Dependencies& dependencies):dependencies_(dependencies){}
@@ -47,7 +47,7 @@ public:
             throw std::runtime_error("Player close requires actual occupied Car004D9280 receiver");
     }
     void first_person_request(std::uint32_t mode,std::int32_t animation,std::uint32_t argument){dependencies_.fpv.view().request(mode,animation,argument);}
-    void hud_inventory_changed(){dependencies_.inventory_changed();} //Required actual0049FBF0, supplied by containing HUD consumer.
+    void hud_inventory_changed(){dependencies_.hud.inventory_changed();} //Actual0049FBF0 over the SAME loaded HUD inventory root.
 private:
     Dependencies& dependencies_;
 };

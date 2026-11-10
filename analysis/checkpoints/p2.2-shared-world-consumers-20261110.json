@@ -1,0 +1,181 @@
+{
+  "date": "2026-11-10",
+  "scope": "Continue full first P2.2 checkbox; shared world loading runtime/SOUND/common Human source checkpoint; actual containing session/loader remains.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 6,
+  "added": [
+    "0049fbf0",
+    "005a6420",
+    "006b6700",
+    "0069a4b0",
+    "0045e920",
+    "005a6380"
+  ],
+  "retracted_delegated_only": [
+    "005a8740",
+    "005a86f0"
+  ],
+  "retraction_reason": "Previous reconciliation pointed at abstract show_human/hide_human feedback calls in HumanSelectionRecords; neither original visibility receiver body is implemented.",
+  "extended": [
+    "0049b980",
+    "006b66b0",
+    "006136f0",
+    "0059e3e0",
+    "007855c0",
+    "00785be0"
+  ],
+  "absent_no_credit": [
+    "00465070",
+    "004650c0"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1871,
+    "client_partial": 1866,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "verification": {
+    "native": "Three focused ASan/UBSan/LSan audits: actual Switch/property/context Use and Human teardown runtime, actual Human/B0 shared world SOUND and source hearing callbacks, shared Human world service identity/config/music and actual selection expiry/HUD selected gates. Frame/engine/world/inline-DD0/Players/camera/SOUND endpoints doubled.",
+    "host": "Strict i386 actual Startup, SceneActor runtime/module EC/proximity, actual process spatial producer, WorldActors map and Inline/DD0/230 visibility, FPV getters, Players control selection/removal, game music; hidden inventory presentation\u2192actual HUD visibility gate. Containing aggregate/presentation/animation callbacks/nonoffline records/VM/model owners remain required declarations. Compile-only, no world activation.",
+    "dd0_collision_byte": "Original007855C0 writes0,0075B280 reads same DD0+DC4; source field/call-signature and strict header/host compile checks, no new native full DD0 activation audit.",
+    "application": "application-launch compile/link only; loading disabled",
+    "tracker": "27 tests and frozen inventory/README check"
+  },
+  "research": [
+    "current-player-inventory-refresh-required",
+    "current-inventory-refresh-callees",
+    "human-shared-player-feedback-required",
+    "human-feedback-consumers-required",
+    "spatial-world-camera-targets.json",
+    "spatial-world-camera.asm",
+    "spatial-world-sector-identity.asm",
+    "human-world-config.asm",
+    "human-world-view-offset.asm",
+    "human-world-known-enemy.asm"
+  ],
+  "research_exception": "Read-only camera ExportFunctions found no Ghidra function at00465070; getter bodies/vtable verified by static PE/objdump and absent frozen entries excluded.",
+  "limitations": [
+    "Common Human bridge is not every derived AI/Sight/speech/area consumer; actual full factory/aggregate still required.",
+    "Positive Human visibility and common AI speech receivers researched but not implemented/credited.",
+    "Real process integrity observed-value publication and ordered006CA780 loader/first camera/update/render/failure/repeat/user acceptance remain.",
+    "Visible interactive inventory/occupied attachment/nonoffline consumers reject; no successful placeholders."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/scene-runtime-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/scene-runtime-native-run.log",
+      "bytes": 264,
+      "sha256": "e277ee901b366ae933db6f8d7bfe61fb72a94c4c7ea84c952ce646e7cae646c0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-sound-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-sound-native-run.log",
+      "bytes": 269,
+      "sha256": "654201894e7084ec8d5d123d474caf9e14e1ba6db81ba83ea5135b998cbe2af3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-world-services-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-world-services-native-run.log",
+      "bytes": 273,
+      "sha256": "ba6f4e179ca0562a8340aabc7eb13f66fb4322f1608c7b99cba6a79219824b18"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/scene-sound-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hidden-inventory-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shared-world-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shared-world-tracker-render.log",
+      "bytes": 380,
+      "sha256": "3b2b2a1e6d9f5010ce6f4bb7841f090e9d7df2bcde570fb6c61620deaef1a629"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shared-world-tracker-check.log",
+      "bytes": 437,
+      "sha256": "29f5523d91e075159afadb4b19bb4dc3416d3d57e10bcc7460eb9d697abb8d83"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shared-world-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-scene-runtime-audit.cpp",
+      "bytes": 5661,
+      "sha256": "d743c0d90186aed9b972f2b970e6aa016629f03926d1bd225e92b3f2f2d1287b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-scene-runtime-audit",
+      "bytes": 3126576,
+      "sha256": "bcec5a05a2723235287703c5269c9dddc9179a0e9fba0a3d015f254150e83d0a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-world-sound-audit.cpp",
+      "bytes": 6046,
+      "sha256": "650f2ddaeae86e8f7e700f27782af184f09d88335112e1a5fb85be74919856c7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-world-sound-audit",
+      "bytes": 2279120,
+      "sha256": "f861e231d78af95d0490dc11d535ec8e4271f92cf4f35e45ec2f668dfb097074"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-world-services-audit.cpp",
+      "bytes": 12342,
+      "sha256": "c1b34fcd5582be2c3f0ce0fd800f83fe637139be683a15f61dd035d88d575cd2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-world-services-audit",
+      "bytes": 2571328,
+      "sha256": "1a5b50b75b6a92732b898e004c10e62c8985fb6d377368a9b281bcd7b4a79dd7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-scene-sound-host.cpp",
+      "bytes": 5656,
+      "sha256": "bd30f38c3d2bac9fa3a1180c457d9c5d7b25e95fcda00789c06fab24c6cc2ec1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-scene-sound-host.o",
+      "bytes": 1016693,
+      "sha256": "7f46ff1eb928bfe6542592f1b467024d5a3fb70b4dd6b10322dd6f1a0f4772ff"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hidden-inventory-host.cpp",
+      "bytes": 1026,
+      "sha256": "5735fbdd00f20ebfb6d71a09f8ce18ad11f6ee7a88399a7992f5c345ea2267df"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hidden-inventory-host.o",
+      "bytes": 123557,
+      "sha256": "4fde6a44d0b9913da18bd230c07f06e01642ebe836d47d6d9ce33715e897843e"
+    }
+  ]
+}
