@@ -13,8 +13,9 @@ namespace hd2::game {
 
 // The kind7 marker is not the initializer's mission argument.006B9190 returns
 // the real kind3 mission (or the synthetic standalone copy), with child/objective
-// descriptors consumed after loading. Keep that tree as well as the copied live
-// soldier/equipment payload; neither may dangle after releasing preparation.
+// descriptors consumed after loading. Its copied soldier/equipment payload is
+// immutable handoff metadata, not another live squad. SessionOwner separately
+// borrows application+14's authoritative mutable records through all spawning.
 struct MissionRequest {
     frontend::PreMissionGameRequest preparation;
     std::unique_ptr<frontend::GameDataNode> mission;
@@ -44,16 +45,17 @@ template<class Backend>
 class SessionOwner {
 public:
     using Overlay = OverlayOwner<typename Backend::FrameOwner>;
+    using LiveSquad=std::vector<frontend::PreMissionSoldier>;
     struct Registry {
         SessionOwner* current = nullptr; //00698500 /008AE7E4
         std::array<std::uint32_t, 64> table_e6e0{}, table_e5e0{};
     };
-    SessionOwner(Backend& backend, Registry& registry, MissionRequest request)
-        : backend_(backend), registry_(registry), request_(std::move(request)) {
+    SessionOwner(Backend& backend, Registry& registry, MissionRequest request,LiveSquad& live_squad)
+        : backend_(backend), registry_(registry), request_(std::move(request)),live_squad_(live_squad) {
         if (registry_.current) throw std::logic_error("A game owner is already published");
         if (!request_.mission || request_.mission->kind != 3 ||
             request_.mission->text24 != request_.preparation.mission_resource ||
-            request_.preparation.squad.empty())
+            request_.preparation.squad.empty()||live_squad_.empty())
             throw std::logic_error("Game receiver request is incomplete");
         try {
             hud_ = require(backend_.make_hud()); //006985C4→0049A420
@@ -80,6 +82,14 @@ public:
     SessionOwner(SessionOwner&&) = delete; // Registry/callback identity must stay stable.
     SessionOwner& operator=(SessionOwner&&) = delete;
     const MissionRequest& request() const { return request_; }
+    LiveSquad& live_squad(){
+        if(closed_)throw std::logic_error("Live squad access after session retirement");
+        return live_squad_;
+    }
+    const LiveSquad& live_squad()const{
+        if(closed_)throw std::logic_error("Live squad access after session retirement");
+        return live_squad_;
+    }
     typename Backend::Scene* scene() const { return scene_.get(); }
     typename Backend::Hud* hud() const { return hud_.get(); }
     typename Backend::Text* text() const { return text_.get(); }
@@ -114,6 +124,7 @@ private:
     Backend& backend_;
     Registry& registry_;
     MissionRequest request_;
+    LiveSquad& live_squad_; //Application owner outlives every session/Human/Items borrower; never copied or cleared here.
     std::uint32_t status_ = 0;
     bool closed_ = false;
     std::unique_ptr<typename Backend::Hud> hud_;

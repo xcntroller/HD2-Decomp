@@ -17,6 +17,8 @@ declines loading until the actual world and remaining consumers are connected.
 [Latest Human speech/source composition checks](analysis/checkpoints/p2.2-human-speech-loading-20261110.json).
 [Cold Car physics/finalization](analysis/car-runtime-loading.md) now has a verified
 source composition; [cold Car actor activation](analysis/car-activation-loading.md) is also recovered.
+[Cold Car callback/world binding](analysis/car-callback-world-binding.md) supplies the actual factory, Physics contact and shared solver/pool owners.
+[Live squad authority](analysis/live-squad-session-ownership.md) remains with the persistent application records.
 Actual containing-world integration and first-frame delivery remain.
 
 The accepted bounded launch checkpoint covers: four opening movies with music and
@@ -235,11 +237,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,944 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,949 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 1,939 |
+| Base game client | 17,294 | 34 | 1,944 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

@@ -727,3 +727,9 @@ Car/containing-world integration; P2.2 remains open and loading is still decline
 Car cold activation2026-11-10: [source composition](car-activation-loading.md) now supplies type4 dispatch, SAME initializer/physics/seat/DM/navigation owners and partial-failure/repeat retirement. Both offline passes/cold updates are native sanitizer-verified against explicit model/engine/session doubles; actual host/world dispatch compile-only. Application mission loading remains disabled. Continue containing session/Human/VM/FPV/HUD/SOUND owners and ordered loader; no new completed checkbox or desktop claim.
 
 Human/world composition2026-11-10: [source owner and script notifications](human-world-composition.md) binds type3 dispatch, real DD0/230/state factory/inventory lifetimes, per-Human SOUND factory routing, actual script context families and precompile/complete notifications. Host composition compile-only; native focused ownership/binding sanitizers pass with explicit boundary doubles. Actual containing session/VM command receivers and first world frame remain required.
+
+2026-11-10: [Cold Car/world callback binding](car-callback-world-binding.md) now
+constructs actual frame/body/solver/Physics/pool receivers and retracts module2
+before retirement. Word4 routes to Physics, not Script. Required positive
+contacts and the containing session remain. [P24-F05 squad authority](live-squad-session-ownership.md)
+borrows the persistent application vector; request copies are metadata.

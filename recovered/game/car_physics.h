@@ -57,6 +57,10 @@ public:
     }
     const CarPhysicsGeometry& geometry() const { return geometry_; }
     const CarPhysicsScalars& scalars() const { return body_; }
+    void contact_mass(float value){ //004D3EF0 temporarily scales SAME core918 during one contact.
+        if(!std::isfinite(value)||value<=0)throw std::runtime_error("Invalid Car contact mass");
+        body_.set(0x918,value);
+    }
     //Native1E0/220..228 are live centre/inertia fields as well as initial
     //004ED270 outputs.004F3950 updates this SAME storage before the solver.
     void load_mass_result(const std::array<float,3>& centre,const std::array<float,3>& inertia) {

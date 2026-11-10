@@ -134,18 +134,19 @@ The callable native slot set contains these actual recovered algorithms:
 |690|004D4740|Repeated real driver queries, control/role/mode gates, impulse/mass damage, angle/rollover multiplier, descending occupied seats or target−1 event. |
 |694|004D4CA0|Typed part masses, detached Item12 production, reverse contact-link invalidation and hide/update. |
 |698|004D4EB0|Wheel Item12 production, local/authority damage event routing and hide/update. |
-|69C|004D4A10|Actual GEffects+B4 fade then hide, without update. |
-|6A8|004D4A70|Script word4 precedes timed word5 and flag8bit2 filtering; shared frame data is reread. |
+|69C|004D4A10|Actual GEffects+B4 mesh-fragment request then hide, without update. |
+|6A8|004D4A70|Physics handle word4 precedes Versions word5 and flag8bit2 filtering; shared frame data is reread. |
 |6AC|004D4B50|Material rejection, Item interaction005FEFB0, or actual blast/random surface effect. |
 |6B0 /6B4|004D49F0 /004D4A00|Genuine empty callbacks, RET10 /RET. |
 |6BC /6C0|004D5B10 /004D62C0|Particle texture/configuration and pool reuse described below. |
 
 6A4 is explicitly null;6A0/6B8 remain cold null. The containing native physics
 producer must invoke this typed slot set; no raw original function pointers or
-client ABI objects are fabricated. `car_callback_services.h` makes all absent
-live consumers abstract. `game_car_callback_frames.h` supplies actual common
+client ABI objects are fabricated. `car_callback_services.h` defines the required live receivers. The later
+[concrete cold binding](car-callback-world-binding.md) supplies same-owner frame,
+body/solver, Physics and particle pool routes; required positive branches reject. `game_car_callback_frames.h` supplies actual common
 frame/identity/shared-userdata/control-clock endpoints, while actor damage,
-Item12/004770B0, script, effects, network and particle runtime owners remain
+Item12/004770B0, Versions transitions, effects, network and positive particle owners remain
 mandatory. This does not claim that the callbacks are connected to live physics.
 
 Assembly corrects misleading inferred prototypes:004D99D0 (Car virtual+78)

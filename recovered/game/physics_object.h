@@ -2,6 +2,7 @@
 #define HD2_GAME_PHYSICS_OBJECT_H
 
 #include "game/physics_object_parameters.h"
+#include "game/physics_object_contacts.h"
 #include "game/actor_frame_data.h"
 #include "game/rigid_body.h"
 #include "game/effects_frame_fades.h"
@@ -9,8 +10,6 @@
 #include <optional>
 
 namespace hd2::game {
-
-struct PhysicsObjectHandle {std::int32_t index=-1;bool first_list=false;};
 
 //0040B5E0/0040B7E0 common owner and00407390/004079F0 type5,
 //0040F6A0 type1,0040E810 type2,0040DAA0 type3 and0040BD70 type4 loading.
@@ -126,6 +125,15 @@ public:
     Frame frame() const {return frame_.get();}
     Descriptor& descriptor() {return descriptor_;}
     const Parameters& parameters() const {return parameters_;}
+    PhysicsObjectHandle& handle(){return handle_;}
+    bool contact(unsigned kind,const Vector&,const Vector&) {
+        if(parameters_.type==2)return true; //0040EB00, genuine AL1/RET12.
+        if(parameters_.type!=5)return false; //0040B790, genuine AL0/RET12, types0/1/3/4.
+        //00408780's cold kind3 skips tipping and only notifies a queued pickup.
+        //No detached/tipping producer is installed in this loading owner.
+        if(kind==3&&!parameters_.pickup)return true;
+        throw std::runtime_error("Physics type5 contact requires actual00408780 tipping/00407BD0 pickup notification");
+    }
     const Vector& centre170() const {return centre170_;}
     const Vector& span180() const {return span180_;}
     const auto& principal_axes()const{return principal_axes_;} //Type3 native170/180/190/1A0, XYZ only.

@@ -1,0 +1,217 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "ledger_added_partial_client": 5,
+  "added": [
+    "00410530",
+    "00408780",
+    "004f2a30",
+    "004f2b60",
+    "004d3ef0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 1949,
+  "native_checks": [
+    "Actual Physics list migration, stable moved-handle repair, callback-failure retention and foreign/retired handle guards",
+    "Actual shared Car270/280 force and410/210 impulse response, rotated inertia/live mass, callback order and failure prefixes",
+    "Actual saved initial body position versus refreshed moving pose",
+    "Actual frame word4 Physics-before-word5-Versions routing and type/material gates",
+    "Checked late Physics link: foreign/duplicate/unbound/retired rejection, callback failure and repeat",
+    "Actual SessionOwner/application vector alias through real split_spawn_stacks, identity/voice mutation, teardown, failed construction and repeat; immutable request snapshot"
+  ],
+  "strict_i386": "PASS actual concrete Car factory, same-pool resources, WorldActors/Physics binding and prior Human/VM/module/offline spawn graph; containing aggregate and HUD world data remain unconstructed",
+  "application_link": "PASS",
+  "tracker_checks": 27,
+  "advisory_revision": "433228194815b375e8d524ab50413c748b06fc47",
+  "advisory_scope": "P24-F05 actual persistent application squad borrower; F01/F02/F03/F06 deferred, F04 working masks unchanged; no merge or research-worktree changes",
+  "absent_inventory_no_credit": [
+    "00485ba0",
+    "004d4a10",
+    "0059c2d0",
+    "005a07c0",
+    "00611070",
+    "0040b790",
+    "0040eb00"
+  ],
+  "research_only_no_credit": [
+    "00484f60",
+    "0043b000",
+    "004de800",
+    "004d3d10"
+  ],
+  "remaining": [
+    "Required positive Car Human/state/damage, type5 tipping/pickup and Versions contacts where reached",
+    "Actual containing session/world instances and authoritative live-squad services binding",
+    "Ordered loader, meaningful integrity observations and first camera/update/render",
+    "Failure/repeat integration and user Python desktop acceptance"
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-body-world-required/004de800.c",
+      "sha256": "c8c288df7c56af6360ef83cde141e7f5403a06bb06c35dbc57cc62f57f005a5b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-body-world-required/004d3d10.c",
+      "sha256": "8a2dd737f4a0dd7cfe9c4f942d5bd89d7c9eb1e412be74b9eab7d42e0fbbd5dc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-body-world-required/004f2a30.c",
+      "sha256": "3a1fc5940538d81c720dd218798b4557144faab0ae40e927e164379497f6da6e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-body-world-required/004f2b60.c",
+      "sha256": "f7c93d252689063ea6755af32b0fc393088ab5cb09672466854f41e68e78e4f7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-body-world-required/00475570.c",
+      "sha256": "dd561da43b063fc00c6c894902fd3206d0d99b0226c0b3e849ff46201205e6aa"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-body-world-required/004de800.json",
+      "sha256": "d3424f25a035bb8ec5fddf5f00f82c925f81dda7b5f2900739db3ffa3a5f1e81"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-body-world-required/004d3d10.json",
+      "sha256": "7a5f893a53c63d2dc6fbc6063932bced12ab9b333c8081dabb539e7aea0a6acd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-body-world-required/004f2a30.json",
+      "sha256": "615ca79b096eaadb51e4b6e72db89046aead585051d92ae759986275da15aabf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-body-world-required/004f2b60.json",
+      "sha256": "a36c6aea3f5f4b9ce36b5d2fd3355bf864ab258233c911300df07731dbe90dfe"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-body-world-required/00475570.json",
+      "sha256": "348b038d43da631bea79557cc174142263be8616622182e72dfcc1afa276d152"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-physics-contact-required/00410530.c",
+      "sha256": "246f3cb419771afb7d3d2264490651c197a884ace54a00bfd5c51d8dad5cb625"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-physics-contact-required/00484f60.c",
+      "sha256": "93f04e4b320c6770bbaf4e4e538eb736e5dd391b39c08b9c2cde99541263942e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-physics-contact-required/00410530.json",
+      "sha256": "5da21b9db2585ff1bf75227adc32990f6ec493d32e4fd77cd770ab119edce5b3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-physics-contact-required/00484f60.json",
+      "sha256": "9ee619b7b563ca11df455288cd093e6878553a2f000cd1bf729c5c1c89b5d235"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-physics-type5-required/00408780.c",
+      "sha256": "dd8c3d89f3a1f88043ce68743f2c7fd88bad968452e49a210dc3b9af9f3cdeb6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-physics-type5-required/00408780.json",
+      "sha256": "9b8d49b1ca3982da68c39afd0e3d464d2732f81484611fc4ec6a1fdb63ac88c4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-versions-contact-required/0043b000.c",
+      "sha256": "e81738531df3d0f23134aaee8cb1adb46b5771c2b33a344177653db490689793"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-versions-contact-required/0043b000.json",
+      "sha256": "e9cdea6c51a486d6d7eb040835d71c1b62f8449f38a438ec2926e1e776223928"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-world-actor-hit-map.json",
+      "sha256": "a55a63e1ef20e67d1c79998bb238f855a9805ea0156afb2a266491ebc33e9286"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-world-human58.asm",
+      "sha256": "20547394130f22d067fd491cd928b1460e869a090816e5c0747528cbb5f48b05"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-world-human5c.asm",
+      "sha256": "3f9b911dbce10e53fa61b600b52647637bc0c394cdb0ab86ec9fc2276ae0632f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-world-base-hit-rets.asm",
+      "sha256": "b60f00f92c928401e202d3c01a0ab2fedbf06dd6f91ccb02c4cc5c98652b1f17"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-world-hit58.asm",
+      "sha256": "a95b769f5241ee3cb21a89ed5cab1d7b8b8dda5585dd9447656fd9959c983eee"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-world-part-mesh-effect.asm",
+      "sha256": "3ce487e90384461c4b77ce235a74840882a370642b524e0117dc1449c1671b23"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-body-external-impulses.asm",
+      "sha256": "0da33cdde52110383451cdacb57993d6ba5d72b344eeb14e40cad2fb363f8bc6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-callback-world-required/004d3ef0.c",
+      "sha256": "8b0b9985c2f80b7672afd28cdbbedf70a697fb30f3f04fbc27af68f693a4375d"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-car-callback-native.cpp",
+      "sha256": "559eb43dd46413bcbf3637657d49e342c66060dc60b35670eab4076eb1f92a8a",
+      "removed_after_checkpoint": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-car-callback-native",
+      "sha256": "d8e91e4b3fe3faead9cdc8701003c0962cfe7ad95b3b0a5b20cbfd855496699a",
+      "removed_after_checkpoint": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-squad-native.cpp",
+      "sha256": "5db2afe617fa5320e92a5e63de81206ec2cd4593abf2a534efde53402abd5827",
+      "removed_after_checkpoint": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-squad-native",
+      "sha256": "360ce455bb2ebe8cd63595d043045c43662fbd6e05db0ad6d4fa5895539f7838",
+      "removed_after_checkpoint": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-car-callback-host.cpp",
+      "sha256": "ec9d9f230afcfaaafa67ccc1b21728431e33308469a4b68725a5e0d52b9fa6e0",
+      "removed_after_checkpoint": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-car-callback-host.o",
+      "sha256": "7af1e6c3ea76b803b6656e34a29feddcdf04a1d157c3c9c31ac62b72615cf887",
+      "removed_after_checkpoint": true
+    }
+  ],
+  "active_next_fixture": "analysis/work/mission-world-20261103/checkpoint-containing-world-host.cpp",
+  "validation_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-car-callback-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-car-callback-native-run.log",
+      "sha256": "9b413bb13ae9b790bf878216ceab82117c14d318a6e248a9aa7118931df05c6c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-squad-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-squad-native-run.log",
+      "sha256": "0e03a183f720df570eaf05dd0e0b8a9c9b6159831610ad63667cfcc69de53d14"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-car-callback-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-car-callback-application.log",
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    }
+  ]
+}

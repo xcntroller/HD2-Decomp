@@ -67,8 +67,8 @@ bool activate_offline_session(SessionActivationState& state,Services& services,
         state.status=5;state.words.set(0x20,std::uint32_t{500});state.words.set(0x24,std::uint32_t{0});
         if((services.mode_flags()&7u)==7u) {
             //008AE910 is the LIVE SQUAD, distinct from008AE90C HumanStore.
-            //Use the owned request's actual prepared records, rereading count
-            //and entry after every spawn callback.
+            //Use SessionOwner's SAME borrowed application records, not its
+            //immutable request snapshot. Reread count/entry after every callback.
             for(std::size_t n=0;n<services.live_squad().size();++n) {
                 auto& soldier=services.live_squad().at(n);
                 if(!soldier.active)continue; //Native live-soldier44.

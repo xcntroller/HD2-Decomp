@@ -134,7 +134,7 @@ template<class Backend,class Part>
 void car_hide_contact_part(Backend& backend,const Part& part) { //004D4A10,69C.
     if(!part.frame)throw std::runtime_error("Car contact part has no actual frame");
     if(backend.car_frame_visible(part.frame)&&part.mesh) {
-        backend.fade_car_contact_part(part.frame,.01f); //Actual GEffects+B4.
+        backend.emit_car_contact_fragments(part.frame,.01f); //Actual GEffects+B4.
         backend.object_visible(part.frame,false);
     }
 }
@@ -142,15 +142,15 @@ inline void car_empty_contact_callback() noexcept {} //004D49F0 genuine RET10, u
 inline void car_empty_part_callback() noexcept {} //004D4A00 genuine RET.
 
 template<class Backend,class Contact>
-Contact* car_script_contact_filter(Backend& backend,Contact& contact,bool field5e0,
+Contact* car_physics_contact_filter(Backend& backend,Contact& contact,bool field5e0,
         const CarContactVector& position4a0) { //004D4A70,6A8; two unused stack vectors.
     if(contact.surface==0x46||contact.surface==0x1f||contact.surface==0x20)return nullptr;
     if(!(contact.flags&0x40))return &contact;
     const auto* data=backend.find_actor_frame_data(contact.frame);
-    const auto script=data?data->words[4]:ActorFrameData::empty_text_token();
-    if(script!=ActorFrameData::empty_text_token()) {
-        backend.car_script_contact(script,field5e0?2u:1u,position4a0,CarContactVector{{0,0,0,0}});
-        return nullptr; //Actual script-module+4C precedes timed-target/flags tests.
+    const auto physics=data?data->words[4]:ActorFrameData::empty_text_token();
+    if(physics!=ActorFrameData::empty_text_token()) {
+        backend.car_physics_contact(physics,field5e0?2u:1u,position4a0,CarContactVector{{0,0,0,0}});
+        return nullptr; //00410630→physics module2+4C, before timed-target/flags tests.
     }
     //Original rereads the frame's userdata after its first word4 test.
     data=backend.find_actor_frame_data(contact.frame);
@@ -207,12 +207,12 @@ void car_actor_contact(Backend& backend,const std::uint32_t& mode_flags,Actor se
     if(!target)return;
     const auto type=backend.actor_type(target);
     if(type==4) {
-        backend.car_actor_hit58(target,self,point,impulse,normal,mass,false);
+        backend.car_actor_hit58(target,self,point,impulse,normal,mass,decltype(contact.frame){});
         return;
     }
     if(type!=3) {
         const auto driver=backend.car_driver_actor(self);
-        backend.car_actor_hit5c(target,self,point,position4a0,normal,mass,false,driver);
+        backend.car_actor_hit5c(target,self,point,position4a0,normal,mass,decltype(contact.frame){},driver);
         return;
     }
     //The Human victim is independently captured from descriptor+48. These
@@ -226,7 +226,7 @@ void car_actor_contact(Backend& backend,const std::uint32_t& mode_flags,Actor se
         }
     }
     const auto driver=backend.car_driver_actor(self);
-    backend.car_actor_hit5c(target,self,point,position4a0,normal,mass,false,driver);
+    backend.car_actor_hit5c(target,self,point,position4a0,normal,mass,decltype(contact.frame){},driver);
     if(!(speed958<4.f)) { //Original x87 branch also enters for unordered speed.
         if(!victim)throw std::runtime_error("Car Human contact has no actual victim owner");
         if(backend.actor_health(victim)>0) {

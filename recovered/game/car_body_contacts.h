@@ -107,7 +107,7 @@ bool car_body_contacts(Frames& frames,typename Frames::Frame model,
             auto hit=query([&]{return queries.sweep(point.start,point.displacement,point.point->radius,layers,flags);});
             if(!hit)continue;
             auto* contact=&hit->contact;
-            if(callbacks.script6a8)contact=callbacks.script6a8(*contact);
+            if(callbacks.contact6a8)contact=callbacks.contact6a8(*contact);
             if(!contact)continue;
             if(contact!=&hit->contact)throw std::runtime_error("Car script filter replaced its actual collision descriptor");
             if(hit->flags&0x10000u)output.moving_primitive=true;

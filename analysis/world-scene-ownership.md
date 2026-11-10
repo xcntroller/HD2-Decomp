@@ -105,3 +105,9 @@ queue008692C0's observed producer is save restore, not cold mission loading.
 Physics6 still rejects its unresolved second registration; see the
 [physics contract](item-transfer-physics-loading.md). No speculative correction,
 default successful receiver or partial scene preview is enabled.
+
+2026-11-10: [Concrete cold Car callback binding](car-callback-world-binding.md) now
+supplies the actual factory, checked module2 borrower and same tyre/emitter pool
+resources; WorldActors retracts the borrower before Physics retirement.
+[Application squad authority](live-squad-session-ownership.md) is explicit.
+The containing session and required reached positive receivers remain open.

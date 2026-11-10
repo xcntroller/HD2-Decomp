@@ -4,6 +4,7 @@
 #include "game/scene_actor.h"
 #include "game/car_particles.h"
 #include "game/car_wheel_runtime.h"
+#include "game/car_tyres.h"
 #include <memory>
 
 namespace hd2::game {
@@ -30,7 +31,8 @@ public:
     virtual ~CarCallbackServices()=default;
     virtual const std::uint32_t& car_mode_flags() const=0;
     virtual const std::int32_t& car_local_actor_id() const=0;
-    virtual const std::vector<std::int32_t>& car_tyre_ids() const=0;
+    virtual const CarTyres& car_tyres() const=0;
+    std::vector<std::int32_t> car_tyre_ids()const{return car_tyres().material_ids();}
     virtual std::uint32_t car_clock()=0;
     virtual Actor car_actor_from_frame(Frame)=0;
     virtual std::uint32_t actor_type(Actor)=0;
@@ -51,21 +53,21 @@ public:
     virtual Actor car_occupant(Actor,std::size_t)=0;
     virtual bool car_human_controlled(Actor)=0;
     virtual std::uint32_t car_human_role(Actor)=0;
-    virtual void car_actor_hit58(Actor,Actor,const Vector&,const Vector&,const Vector&,float,bool)=0;
-    virtual void car_actor_hit5c(Actor,Actor,const Vector&,const Vector&,const Vector&,float,bool,Actor)=0;
+    virtual void car_actor_hit58(Actor,Actor,const Vector&,const Vector&,const Vector&,float,Frame)=0;
+    virtual void car_actor_hit5c(Actor,Actor,const Vector&,const Vector&,const Vector&,float,Frame,Actor)=0;
     virtual void human_car_contact(Actor,Actor,const Vector&,const Vector&,const Vector&,float,Frame)=0;
     virtual void car_human_impact(Actor,int,float,const Vector&,const Vector&,Actor,int)=0;
     virtual void submit_car_human_damage(Actor,const CarHumanDamageEvent&)=0;
     virtual void apply_car_wheel_damage(Actor,const CarWheelDamageEvent&)=0;
     virtual void submit_car_wheel_damage(Actor,const CarWheelDamageEvent&)=0;
-    virtual void car_script_contact(std::uintptr_t,unsigned,const Vector&,const Vector&)=0;
+    virtual void car_physics_contact(std::uintptr_t,unsigned,const Vector&,const Vector&)=0;
     virtual void car_timed_contact(std::uintptr_t,unsigned,unsigned)=0;
     virtual void car_item_contact(Actor,Actor,unsigned)=0;
     virtual const Vector& car_wheel_world_position(Actor,unsigned)=0;
     virtual void car_collision_blast(Actor,const Vector&,float,float,unsigned)=0;
     virtual std::uint32_t car_random_word()=0;
     virtual void car_surface_effect(const Vector&,const Vector&,unsigned,unsigned,unsigned)=0;
-    virtual void fade_car_contact_part(Frame,float)=0;
+    virtual void emit_car_contact_fragments(Frame,float)=0;
     virtual Actor clone_car_contact_item(Frame,const Vector&,const Vector&)=0;
     virtual void launch_car_contact_item(Actor,const CarDetachedPartRequest&,unsigned)=0;
     virtual void launch_car_contact_item(Actor,const CarDetachedWheelRequest&,unsigned)=0;

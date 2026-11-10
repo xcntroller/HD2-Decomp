@@ -11,14 +11,14 @@ namespace hd2::game {
 //borrows the live vector directly. No independent callback simulation exists.
 template<class Frames>struct CarActorColdState {
     CarBodyIntegration<Frames>& body;std::vector<CarWheelRuntime<Frames>>& wheels;
-    CarDrivetrainState& drive;CarColdSolverState<Frames>& solver;CarHealthState& health;
+    CarDrivetrainState& drive;CarColdSolverState<Frames>& solver;CarHealthState& health;std::uint32_t& dirty;
     const CarContactState& contact_state(){contact_=body.contact_state();return contact_;}
 private:
     CarContactState contact_{};
 public:
     CarActorColdState(CarBodyIntegration<Frames>& b,std::vector<CarWheelRuntime<Frames>>& w,
-            CarDrivetrainState& d,CarColdSolverState<Frames>& s,CarHealthState& h)
-        :body(b),wheels(w),drive(d),solver(s),health(h){}
+            CarDrivetrainState& d,CarColdSolverState<Frames>& s,CarHealthState& h,std::uint32_t& changed)
+        :body(b),wheels(w),drive(d),solver(s),health(h),dirty(changed){}
 };
 template<class Frames>class CarLoadingLifetime {
 public:

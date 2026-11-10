@@ -45,6 +45,14 @@ public:
     GameWorldActors(const GameWorldActors&)=delete;GameWorldActors& operator=(const GameWorldActors&)=delete;
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
     auto& physics(){require_open();return physics_;}auto& item_models(){require_open();return models_;}
+    template<class Callbacks>void bind_car_physics(Callbacks& callbacks){
+        require_open();
+        static_assert(noexcept(callbacks.unbind_physics(physics_)),"Car physics retirement must not throw");
+        if(car_physics_unbind_||static_cast<typename Scene::CarServices*>(&callbacks)!=&scene_.car_callbacks())
+            throw std::logic_error("Car physics must bind the containing scene's actual callback owner once");
+        std::function<void()> unbind=[this,&callbacks]()noexcept{callbacks.unbind_physics(physics_);};
+        callbacks.bind_physics(physics_);car_physics_unbind_=std::move(unbind);
+    }
     auto& rigid_bodies(){require_open();return bodies_;}
     using Human=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
     template<class Owner>Owner& human_loading_owner(Human& actor){
@@ -217,7 +225,9 @@ public:
         //Runtime35 borrows Physics descriptors. Runtime11 owns a body and an
         //Items entry. Retire both before either producer, then ordinary Scene2
         //actors before the remaining entry registry and cached template models.
-        runtime_.clear();physics_.clear();
+        runtime_.clear();
+        if(car_physics_unbind_){car_physics_unbind_();car_physics_unbind_={};}
+        physics_.clear();
         auto& frames=scene_.frames();frames.clear_scene_actors();
         fowl_sound_.clear();
         animation_events_.clear();
@@ -229,7 +239,7 @@ private:
     Scene& scene_;Consumers& consumers_;Vertices& vertices_;game::MissionNavigation& navigation_;const frontend::LocalizedTextCache& text_;const frontend::PreMissionItemCatalogue& catalogue_;
     typename Body::Registry bodies_;GameRuntimeItemServices models_;
     std::map<Human*,std::unique_ptr<game::HumanLoadingLifetime>> human_loading_;
-    Items items_;Runtime runtime_;Physics physics_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;GameStaticWeaponEvents static_weapon_events_;bool closed_=false,closing_=false;
+    Items items_;Runtime runtime_;Physics physics_;std::function<void()> car_physics_unbind_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;GameStaticWeaponEvents static_weapon_events_;bool closed_=false,closing_=false;
 };
 } //namespace hd2::host
 #endif

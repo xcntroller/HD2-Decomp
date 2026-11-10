@@ -8209,7 +8209,7 @@
       "program": "client",
       "entry": "00698510",
       "status": "partial",
-      "coverage": "Concrete native HUD/text/table factories, real scene/callback/viewport setup, owned selected-mission request and late global publication now integrated at kind7.",
+      "coverage": "Concrete native HUD/text/table factories, real scene/callback/viewport setup, owned selected-mission request and late global publication now integrated at kind7. SessionOwner borrows the persistent application live squad; the request stays metadata and GameApplicationState.live_squad returns that SAME mutable vector.",
       "limitations": "Unloaded constructor/error return user-accepted2026-11-03. Native object/allocator/SEH ABI differs; activation/real loading and live shutdown/simulation remain unavailable. No successful world/audio listener.",
       "evidence": [
         "recovered/game/session_owner.h",
@@ -8220,7 +8220,8 @@
         "analysis/game-owner-integration.json",
         "analysis/game-owner-integration-map.json",
         "recovered/host/game_owner.h",
-        "recovered/game/table_storage.h"
+        "recovered/game/table_storage.h",
+        "analysis/live-squad-session-ownership.md"
       ]
     },
     {
@@ -9911,26 +9912,30 @@
       "program": "client",
       "entry": "004d4450",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004d4450: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory.",
+      "coverage": "P2.2 source reconstruction at original entry 004d4450: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory. Preserve actual sixth contact-frame pointer through Human58/5C forwarding instead of bool conversion.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/car_contact_callbacks.h",
         "analysis/car-geometry-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/car-callback-world-binding.md",
+        "recovered/host/game_car_callbacks.h"
       ]
     },
     {
       "program": "client",
       "entry": "004d4a70",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004d4a70: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory.",
+      "coverage": "P2.2 source reconstruction at original entry 004d4a70: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory. Corrected6A8 to00410630 physics module2+4C/00410530 and actual word4 handle before Versions/flags.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/car_contact_callbacks.h",
         "analysis/car-geometry-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/car-callback-world-binding.md",
+        "recovered/host/game_car_callbacks.h"
       ]
     },
     {
@@ -9950,13 +9955,15 @@
       "program": "client",
       "entry": "004d4230",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004d4230: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory.",
+      "coverage": "P2.2 source reconstruction at original entry 004d4230: Actual vehicle contact/filter/impulse, Human collision, item launch and wheel callback policies; damage/network consumers remain mandatory. Actor58/5C contact-frame argument retains typed pointer identity; cold calls pass null.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/car_contact_callbacks.h",
         "analysis/car-geometry-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/car-callback-world-binding.md",
+        "recovered/host/game_car_callbacks.h"
       ]
     },
     {
@@ -23714,14 +23721,16 @@
       "program": "client",
       "entry": "004ea780",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004ea780: Actual pose, wheel, collision and skid initialization subsets; full runtime initialization still awaits containing Car activation. Compose the cold complete initializer sequence on SAME geometry/runtime: body pose, collisions, reverse wheels, skids, mass, sounds/receivers, health/parts/glass/lights/axes.",
+      "coverage": "P2.2 source reconstruction at original entry 004ea780: Actual pose, wheel, collision and skid initialization subsets; full runtime initialization still awaits containing Car activation. Compose the cold complete initializer sequence on SAME geometry/runtime: body pose, collisions, reverse wheels, skids, mass, sounds/receivers, health/parts/glass/lights/axes. Retain saved model160 position independently of moving pose240 for Human-to-Car external force.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_wheel_runtime.h",
         "analysis/car-runtime-loading.md",
         "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
         "analysis/car-activation-loading.md",
-        "recovered/game/car_cold_initialization.h"
+        "recovered/game/car_cold_initialization.h",
+        "analysis/car-callback-world-binding.md",
+        "recovered/host/game_car_callbacks.h"
       ]
     },
     {
@@ -26285,6 +26294,66 @@
         "analysis/world-actor-loading-consumers.md",
         "recovered/game/dynamic_item_contact_sound.h",
         "recovered/game/dynamic_item_actor.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00410530",
+      "status": "partial",
+      "coverage": "Move actual contacted Physics second-list owner to first, repair swapped stable handle and update original handle before derived contact; callback failure retains migration.",
+      "limitations": "Dense native vectors and checked handle allocations replace raw index ABI/undefined null-hole behavior; positive type5 tipping/pickup remains required.",
+      "evidence": [
+        "analysis/car-callback-world-binding.md",
+        "recovered/game/physics_object_contacts.h",
+        "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00408780",
+      "status": "partial",
+      "coverage": "Cold type5 kind3/nonpickup contact returns true without tipping; other contacts explicitly require the actual movement/pickup receiver.",
+      "limitations": "Only the cold kind3 gate is supplied. Positive tipping, queued pickup00407BD0 and broken-model/cache/rotation updates remain unrecovered.",
+      "evidence": [
+        "analysis/car-callback-world-binding.md",
+        "recovered/game/physics_object.h",
+        "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f2a30",
+      "status": "partial",
+      "coverage": "Accumulate SAME270/280 force/torque with independent flags1/2, cached inverse/rotation transforms, supplied scales and SAME22C0 wake followed by notification.",
+      "limitations": "Native vectors/engine math/source callbacks replace binary ABI. Installed cold6A4 is null; application loading remains declined.",
+      "evidence": [
+        "analysis/car-callback-world-binding.md",
+        "recovered/game/car_external_impulses.h",
+        "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f2b60",
+      "status": "partial",
+      "coverage": "Apply actual410/210 contact velocities with live918 mass/220 inertia and cached COM; F6C deformation/health/passengers precede normalized170 direction and22C0 notification.",
+      "limitations": "Positive deformation/Human damage/particle consumers still reject. Native engine/math/notification ABI and unwritten padding are not reconstructed; callback order/failure prefix are preserved.",
+      "evidence": [
+        "analysis/car-callback-world-binding.md",
+        "recovered/game/car_external_impulses.h",
+        "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d3ef0",
+      "status": "partial",
+      "coverage": "Offline hit58 dispatch: Human force500 using saved model Y/current COM, or actual Car impulse1.2 with destroyed-heavy1.4 impulse/temporary half mass and restoration.",
+      "limitations": "Nonoffline004DE800/004D3D10 ownership/packet routes and required positive Human/deformation consumers remain unavailable; typed native dispatch replaces binary virtual ABI.",
+      "evidence": [
+        "analysis/car-callback-world-binding.md",
+        "recovered/host/game_car_callbacks.h",
+        "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json"
       ]
     }
   ]

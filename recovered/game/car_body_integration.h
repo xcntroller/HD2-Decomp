@@ -22,6 +22,7 @@ public:
         :frames_(frames),model_(model),coefficients_(coefficients){
         if(!model)throw std::runtime_error("Car body integration requires its actual model");
         refresh();
+        initial_position_=pose_.position; //004EA780 core160..16C, retained independently of moving pose240.
     }
     //0050DE60 publishes the candidate BEFORE its optional BODYCOL pass. A
     //containing collision controller must perform the native rollback/retry;
@@ -39,6 +40,7 @@ public:
     }
     const Pose& pose()const{return pose_;}Pose& pose(){return pose_;}
     const Motion& motion()const{return motion_;}Motion& motion(){return motion_;}
+    const Vector& initial_position()const{return initial_position_;}
     CarContactState contact_state()const{ //Actual current producer for004F32A0 and the loading solver.
         return {pose_.centre,motion_.angular_velocity,motion_.velocity,
             {{coefficients_.get(0x220),coefficients_.get(0x224),coefficients_.get(0x228),0}},
@@ -111,7 +113,7 @@ private:
         if(std::abs(square-1.f)<9.99999993922529e-09f)return 1;
         return static_cast<float>(std::sqrt(static_cast<long double>(square)));
     }
-    Frames& frames_;Frame model_;const CarPhysicsScalars& coefficients_;Pose pose_;Motion motion_;
+    Frames& frames_;Frame model_;const CarPhysicsScalars& coefficients_;Pose pose_;Motion motion_;Vector initial_position_{};
 };
 } //namespace hd2::game
 #endif

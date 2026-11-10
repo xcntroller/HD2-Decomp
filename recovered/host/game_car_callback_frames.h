@@ -4,6 +4,9 @@
 #include "host/game_actor_services.h"
 #include "game/car_callback_services.h"
 #include "game/car_scene_actor.h"
+#include "game/car_tyres.h"
+#include "game/human_camera_state.h"
+#include "host/game_scene_actors.h"
 
 namespace hd2::host {
 
@@ -14,13 +17,16 @@ namespace hd2::host {
 class GameCarCallbackFrames : public game::CarCallbackServices<GameActorServices> {
 public:
     GameCarCallbackFrames(GameActorServices& frames,const std::uint32_t& mode,const std::int32_t& local,
-            const std::vector<std::int32_t>& tyres,std::function<std::uint32_t()> clock)
+            const game::CarTyres& tyres,std::function<std::uint32_t()> clock)
         : frames_(frames),mode_(mode),local_(local),tyres_(tyres),clock_(std::move(clock)) {
         if(!clock_)throw std::logic_error("Car callbacks require the actual control clock");
     }
     const std::uint32_t& car_mode_flags() const override {return mode_;}
     const std::int32_t& car_local_actor_id() const override {return local_;}
-    const std::vector<std::int32_t>& car_tyre_ids() const override {return tyres_;}
+    //The registry is replaced during preparation. Derive IDs from its CURRENT
+    //contents at each application; never borrow material_ids()'s temporary or
+    //freeze a copy from before tables\\tyres.bin was loaded.
+    const game::CarTyres& car_tyres() const override {return tyres_;}
     std::uint32_t car_clock() override {return clock_();}
     Actor car_actor_from_frame(Frame frame) override {
         const auto* data=frames_.find_actor_frame_data(frame);
@@ -28,6 +34,9 @@ public:
     }
     std::uint32_t actor_type(Actor actor) override {return frames_.actor_type(&require_actor(actor).base());}
     std::int32_t actor_id(Actor actor) override {return frames_.actor_id(&require_actor(actor).base());}
+    std::int32_t actor_health(Actor actor) override {return game::car_contact_signed_word(human_actor(actor).properties.stats_ec[0]);}
+    bool car_human_controlled(Actor actor) override {return game::human_camera_is_player(human_actor(actor),mode_,local_);}
+    std::uint32_t car_human_role(Actor actor) override {return human_actor(actor).properties.field19c;}
     Vector actor_world_position(Actor actor) override {
         const auto frame=require_actor(actor).base().frame();
         if(!frame)throw std::logic_error("Collision actor has no actual frame");
@@ -84,7 +93,10 @@ public:
 
 protected:
     GameActorServices& frames_;
-private:
+    static GameSceneActors::Human& human_actor(Actor actor){
+        auto* human=dynamic_cast<GameSceneActors::Human*>(&require_actor(actor));
+        if(!human)throw std::logic_error("Car Human callback requires its actual Human owner");return *human;
+    }
     static game::CarSceneActor<GameActorServices>& car_actor(Actor actor){
         auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(&require_actor(actor));
         if(!car)throw std::logic_error("Car callback runtime requires an actual Car actor");return *car;
@@ -96,9 +108,10 @@ private:
     static game::SceneActor<GameActorServices>& require_actor(Actor actor) {
         if(!actor)throw std::logic_error("Car callback requires an actual native actor");return *actor;
     }
+private:
     const std::uint32_t& mode_;
     const std::int32_t& local_;
-    const std::vector<std::int32_t>& tyres_;
+    const game::CarTyres& tyres_;
     std::function<std::uint32_t()> clock_;
 };
 

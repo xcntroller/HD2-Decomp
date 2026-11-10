@@ -28,7 +28,7 @@ public:
         std::function<void(const Vector&,const Vector&,bool,const Contact*)> passenger690;
         std::function<bool(std::size_t,const Vector&,const Vector*)> part694,wheel698;
         std::function<void(std::size_t)> hide69c;
-        std::function<Contact*(Contact&)> script6a8;
+        std::function<Contact*(Contact&)> contact6a8;
         std::function<Contact*(Contact&,unsigned)> surface6ac;
         std::function<void()> empty6b0,empty6b4;
         std::function<bool(CarParticleState<Frame>&,unsigned)> particle6bc;
@@ -122,7 +122,7 @@ private:
                 static_cast<SceneActor<Backend>*>(this),s.car_wheel_contact_states(this),index,velocity,impulse);
         };
         c.hide69c=[this,&s](std::size_t index){car_hide_contact_part(s,geometry->deformables().parts().at(index));};
-        c.script6a8=[this,&s](Contact& contact){return car_script_contact_filter(s,contact,s.car_field5e0(this),s.car_position4a0(this));};
+        c.contact6a8=[this,&s](Contact& contact){return car_physics_contact_filter(s,contact,s.car_field5e0(this),s.car_position4a0(this));};
         c.surface6ac=[this,&s](Contact& contact,unsigned wheel) {
             return car_surface_contact_filter(s,s.car_mode_flags(),static_cast<SceneActor<Backend>*>(this),s.car_field6a0(this),contact,wheel);
         };

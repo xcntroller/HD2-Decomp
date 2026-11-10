@@ -37,7 +37,11 @@ public:
             DynamicCollisionExclusions<RigidBodyCollisionDescriptor<Frame>>& exclusions,MissionNavigation& navigation,
             CarLoadingResources<Frames> resources,Actor& actor)
         :frames_(frames),services_(services),collisions_(collisions),queries_(std::move(queries)),exclusions_(exclusions),resources_(resources),
-         actor_(actor),navigation_(frames,navigation),seats_(frames,actor){if(!resources_.random)throw std::logic_error("Car loading requires the actual process rand stream");}
+         actor_(actor),navigation_(frames,navigation),seats_(frames,actor){
+        if(!resources_.random)throw std::logic_error("Car loading requires the actual process rand stream");
+        if(&resources_.tyres!=&actor.callback_services().car_tyres()||&resources_.particles!=&actor.callback_services().car_particle_pool())
+            throw std::logic_error("Car loading and callbacks require the SAME tyre registry and particle pool");
+    }
     ~CarLoadingActivation()override{
         frontend::CleanupErrors errors;
         if(actor_.flag24a1||ready_)retire_derived(errors);
@@ -59,7 +63,7 @@ public:
         body_collision_.reset();receivers_.reset();view_.reset();initial_.reset();
         initial_.emplace(frames_,*actor_.geometry,collisions_,resources_.sound_receivers,resources_.light_receivers,resources_.particles);
         initial_->initialize(&actor_,resources_.tyres,*actor_.callbacks);
-        view_.emplace(initial_->body(),initial_->wheels,initial_->drive,initial_->solver,initial_->health);
+        view_.emplace(initial_->body(),initial_->wheels,initial_->drive,initial_->solver,initial_->health,initial_->finalizer.dirty_flags);
         initial_->configure_offline_actor_loading();
         receivers_.emplace(frames_,actor_,*initial_,resources_.random);
         body_collision_.emplace(frames_,actor_.geometry->model(),actor_.geometry->collision(),initial_->collision,queries_,exclusions_,resources_.materials,

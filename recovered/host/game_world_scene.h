@@ -45,6 +45,7 @@ public:
     ~GameWorldScene(){close();}
     GameWorldScene(const GameWorldScene&)=delete;GameWorldScene& operator=(const GameWorldScene&)=delete;
     Frames& frames(){require_open();return frames_;}auto& effects(){require_open();return effects_;}auto& environment(){require_open();return environment_;}
+    CarServices& car_callbacks(){require_open();return *cars_;}
     auto& lightmap_aliases(){require_open();return aliases_;}auto& documents(){require_open();return documents_;}
     auto& collision_resources(){require_open();return collision_resources_;}auto& exclusions(){require_open();return exclusions_;}
     Tree& collision_tree(){require_open();if(!tree_)throw std::logic_error("World collision tree is not loaded");return *tree_;}

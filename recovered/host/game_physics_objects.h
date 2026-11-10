@@ -27,6 +27,7 @@ public:
     ~GamePhysicsObjects(){clear();}
     GamePhysicsObjects(const GamePhysicsObjects&)=delete;
     GamePhysicsObjects& operator=(const GamePhysicsObjects&)=delete;
+    Frames& frames(){return frames_;}
     Handle* create(const Parameters& parameters) {
         if(!parameters.frame)return nullptr;
         auto found=std::find_if(handles_.begin(),handles_.end(),[](const auto& handle){return handle->index==-1;});
@@ -57,6 +58,15 @@ public:
         const auto index=static_cast<std::size_t>(handle->index);
         if(index>=list.size())throw std::runtime_error("Invalid physics object handle");
         return list[index].get();
+    }
+    bool contact(std::uintptr_t token,unsigned kind,const Frames::Vector& velocity,const Frames::Vector& point){
+        if(!token)return false;
+        auto* handle=reinterpret_cast<Handle*>(token);
+        //Check the borrower against actual stable allocations BEFORE reading
+        //it; foreign/stale frame data is not a native handle to dereference.
+        if(std::none_of(handles_.begin(),handles_.end(),[&](const auto& value){return value.get()==handle;}))
+            throw std::logic_error("Physics contact has no matching actual handle owner");
+        return game::contact_physics_object(first_,second_,handle,[&](Object& value){return value.contact(kind,velocity,point);});
     }
     void activate(bool authority) { //00410A40: authority OR single-player presentation.
         if(!authority&&(mode_.mode_flags()&1))return;

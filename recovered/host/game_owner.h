@@ -107,6 +107,7 @@
 #include "host/game_fonts.h"
 #include "host/game_text_renderer.h"
 #include "host/startup_session.h"
+#include "host/game_car_callbacks.h"
 #include "game/hud_info_loading.h"
 #include "game/hud_command_loading.h"
 #include "game/hud_map_loading.h"
@@ -216,12 +217,12 @@ public:
         if (owner_ || attempted_) throw std::logic_error("Game initialization repeated");
         attempted_ = true;
         try {
-            owner_ = std::make_unique<Owner>(backend_, registry_, std::move(request_));
+            owner_ = std::make_unique<Owner>(backend_, registry_, std::move(request_),startup_.pre_mission().squad());
             startup_.game_views().bind(this, owner_->scene()->frame());
             owner_->scene()->rethrow_callback_failure();
             std::printf("Game owner constructed: mission=%s soldiers=%zu text-owners=%zu scene=%p status=%u loaded=0\n",
                 owner_->request().preparation.mission_resource.c_str(),
-                owner_->request().preparation.squad.size(), owner_->hud()->text_owners().size(),
+                owner_->live_squad().size(), owner_->hud()->text_owners().size(),
                 static_cast<void*>(owner_->scene()->frame()), status());
             // Preserve006989B0's graphics-flags restoration on a failed load.
             game::with_activation_flags(*this, [] { return false; });
@@ -249,6 +250,10 @@ public:
     }
     std::int32_t activation_flags(std::uint32_t flags) { return graphics_.methods->set_flags(&graphics_, flags); }
     bool has_game() const { return owner_ != nullptr; }
+    Owner::LiveSquad& live_squad(){
+        if(!owner_)throw std::logic_error("Session spawning requires its actual application squad borrower");
+        return owner_->live_squad();
+    }
     std::uint32_t mode_flags()const{return startup_.application_flags();} //SAME process00982100; offline single-player7.
     std::uint32_t game_status() const { return status(); }
     bool suppress_hud() const { return false; } //0086922D initial byte; no loaded HUD mutation yet.
