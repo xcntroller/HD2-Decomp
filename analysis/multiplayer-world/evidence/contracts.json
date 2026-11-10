@@ -1,0 +1,2121 @@
+{
+  "batches": [
+    {
+      "batch_ids": [
+        "B28.metadata"
+      ],
+      "blockers": [
+        "See exact missing receivers in implementation guide; no positive placeholders"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/implementation-guide.md",
+      "description": "Selected-map and request data",
+      "id": "subsystem:future:B28.metadata",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "B28.metadata",
+      "lifetime": "Source integration batch; no new runtime owner",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "006ad580",
+        "006ad590",
+        "006ad5b0",
+        "006ad6e0",
+        "006ad780",
+        "006ad820",
+        "006ad990",
+        "006adb70",
+        "006adbd0",
+        "006adc30",
+        "006adc70",
+        "006b8700"
+      ],
+      "owner": "Reuse containing actual application/process/world owners",
+      "predecessor_batches": [],
+      "priority": "high",
+      "priority_reason": "Small coherent receiver or owner boundary",
+      "research_readiness": "contract_ready",
+      "source_mapping": [
+        "recovered/frontend/game_data.h",
+        "recovered/frontend/multiplayer_maps.h",
+        "recovered/frontend/pre_mission_handoff.h",
+        "recovered/game/session_selection.h"
+      ],
+      "subsystem": "p28_implementation_batch",
+      "transport_required": "Phase3 for live acceptance; no actual sockets required for bounded source/decoder verification"
+    },
+    {
+      "batch_ids": [
+        "B28.entry"
+      ],
+      "blockers": [
+        "See exact missing receivers in implementation guide; no positive placeholders"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/implementation-guide.md",
+      "description": "Shared controller and packet entry",
+      "id": "subsystem:future:B28.entry",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "B28.entry",
+      "lifetime": "Source integration batch; no new runtime owner",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "00698510",
+        "006989b0",
+        "00698f80",
+        "0069e620",
+        "006b9190",
+        "006c20f0",
+        "006ca780",
+        "00723000",
+        "00723220",
+        "00724110",
+        "00728450",
+        "0072e890",
+        "00730a40",
+        "00731610",
+        "0073ec50"
+      ],
+      "owner": "Reuse containing actual application/process/world owners",
+      "predecessor_batches": [
+        "subsystem:future:B28.metadata"
+      ],
+      "priority": "high",
+      "priority_reason": "Small coherent receiver or owner boundary",
+      "research_readiness": "contract_ready",
+      "source_mapping": [
+        "recovered/frontend/application_controller.h",
+        "recovered/game/session_owner.h",
+        "recovered/host/multiplayer_connection_menu.h"
+      ],
+      "subsystem": "p28_implementation_batch",
+      "transport_required": "Phase3 for live acceptance; no actual sockets required for bounded source/decoder verification"
+    },
+    {
+      "batch_ids": [
+        "B28.mode"
+      ],
+      "blockers": [
+        "See exact missing receivers in implementation guide; no positive placeholders"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/implementation-guide.md",
+      "description": "Mode-specific shared lifecycle admission",
+      "id": "subsystem:future:B28.mode",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "B28.mode",
+      "lifetime": "Source integration batch; no new runtime owner",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "004270d0",
+        "0048db00",
+        "00699290",
+        "00699320",
+        "00699b50",
+        "0069af10",
+        "0069b230",
+        "0069b870",
+        "0069eed0",
+        "00722790",
+        "00723d20"
+      ],
+      "owner": "Reuse containing actual application/process/world owners",
+      "predecessor_batches": [
+        "subsystem:future:B28.entry"
+      ],
+      "priority": "high",
+      "priority_reason": "Small coherent receiver or owner boundary",
+      "research_readiness": "contract_ready",
+      "source_mapping": [
+        "recovered/game/session_activation.h",
+        "recovered/game/session_finish.h",
+        "recovered/game/session_frame_loading.h",
+        "recovered/game/session_render.h"
+      ],
+      "subsystem": "p28_implementation_batch",
+      "transport_required": "Phase3 for live acceptance; no actual sockets required for bounded source/decoder verification"
+    },
+    {
+      "batch_ids": [
+        "B28.queues"
+      ],
+      "blockers": [
+        "See exact missing receivers in implementation guide; no positive placeholders"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/implementation-guide.md",
+      "description": "Process/application packet interfaces",
+      "id": "subsystem:future:B28.queues",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "B28.queues",
+      "lifetime": "Source integration batch; no new runtime owner",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "00410ef0",
+        "00410f70",
+        "0042aff0",
+        "0042b330",
+        "0043f090",
+        "0043f120",
+        "004769d0",
+        "00476a10",
+        "004782c0",
+        "00478520",
+        "0048d940",
+        "0048db30",
+        "0048db60",
+        "004ddf90",
+        "004de270",
+        "005a9c40",
+        "005aa1b0",
+        "005aa770",
+        "005aa780",
+        "005b70f0",
+        "005b7100",
+        "005b8880",
+        "005b8890",
+        "005e2930",
+        "005e29a0",
+        "006991b0",
+        "00699220",
+        "0069bc40",
+        "00727480",
+        "00727660",
+        "00727800",
+        "0072a0b0",
+        "0072b1c0",
+        "0072bef0",
+        "0072bf90",
+        "0072c0b0",
+        "0072c170",
+        "0072c230",
+        "0072c360",
+        "0072c3b0",
+        "0072c5d0",
+        "0072d0e0",
+        "00744ed0",
+        "00745130",
+        "00745350",
+        "00745520",
+        "007456d0",
+        "007457c0",
+        "007458d0",
+        "00745920",
+        "00745d20",
+        "00745ea0",
+        "00749a70",
+        "00749ae0"
+      ],
+      "owner": "Reuse containing actual application/process/world owners",
+      "predecessor_batches": [
+        "subsystem:future:B28.entry"
+      ],
+      "priority": "high",
+      "priority_reason": "Small coherent receiver or owner boundary",
+      "research_readiness": "contract_ready",
+      "source_mapping": [
+        "recovered/game/human_input_loading_manager.h",
+        "recovered/game/human_input_session_profiles.h",
+        "recovered/game/session_broadcast_packets.h",
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_packet_world.h",
+        "recovered/host/game_world_loading.h",
+        "recovered/host/startup_session.h"
+      ],
+      "subsystem": "p28_implementation_batch",
+      "transport_required": "Phase3 for live acceptance; no actual sockets required for bounded source/decoder verification"
+    },
+    {
+      "batch_ids": [
+        "B28.spawn"
+      ],
+      "blockers": [
+        "See exact missing receivers in implementation guide; no positive placeholders"
+      ],
+      "classification": "conditional_runtime",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/implementation-guide.md",
+      "description": "Nonoffline Human factory and peer binding",
+      "id": "subsystem:future:B28.spawn",
+      "implementation_readiness": "blocked",
+      "label": "B28.spawn",
+      "lifetime": "Source integration batch; no new runtime owner",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "00410ef0",
+        "00410f70",
+        "0042aff0",
+        "0042b330",
+        "0043f090",
+        "0043f120",
+        "00475d50",
+        "00475dd0",
+        "004769d0",
+        "00476a10",
+        "004772f0",
+        "004782c0",
+        "00478520",
+        "0048d940",
+        "0048db30",
+        "0048db60",
+        "004ddf90",
+        "004de270",
+        "0059edc0",
+        "0059f050",
+        "005a9c40",
+        "005aa1b0",
+        "005aa770",
+        "005aa780",
+        "005b70f0",
+        "005b7100",
+        "005b8880",
+        "005b8890",
+        "005e2930",
+        "005e29a0",
+        "00611c90",
+        "006123a0",
+        "006125a0",
+        "00612a60",
+        "006991b0",
+        "00699220",
+        "0069bc40",
+        "0069d780",
+        "0069d9c0",
+        "0069e290",
+        "0069e340",
+        "0072e940",
+        "0072ec20",
+        "0072ec70",
+        "0072ec90",
+        "0072ed30",
+        "00730140",
+        "00730460",
+        "00749a70",
+        "00749ae0"
+      ],
+      "owner": "Reuse containing actual application/process/world owners",
+      "predecessor_batches": [
+        "subsystem:future:B28.metadata",
+        "subsystem:future:B28.mode",
+        "subsystem:future:B28.queues"
+      ],
+      "priority": "high",
+      "priority_reason": "Small coherent receiver or owner boundary",
+      "research_readiness": "partial_contract",
+      "source_mapping": [
+        "recovered/game/human_input_loading_manager.h",
+        "recovered/game/human_input_session_profiles.h",
+        "recovered/game/offline_spawn_presentation.h",
+        "recovered/game/prepared_human_spawn.h",
+        "recovered/game/prepared_spawn_packets.h",
+        "recovered/host/game_world_loading.h"
+      ],
+      "subsystem": "p28_implementation_batch",
+      "transport_required": "Phase3 for live acceptance; no actual sockets required for bounded source/decoder verification"
+    },
+    {
+      "batch_ids": [
+        "B28.consumers"
+      ],
+      "blockers": [
+        "See exact missing receivers in implementation guide; no positive placeholders"
+      ],
+      "classification": "conditional_runtime",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/implementation-guide.md",
+      "description": "Reached module and Human payload consumers",
+      "id": "subsystem:future:B28.consumers",
+      "implementation_readiness": "blocked",
+      "label": "B28.consumers",
+      "lifetime": "Source integration batch; no new runtime owner",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "00405b20",
+        "00405b30",
+        "00410ef0",
+        "00410f70",
+        "00424590",
+        "0042aff0",
+        "0042b330",
+        "0042b650",
+        "0043f090",
+        "0043f120",
+        "0043f1e0",
+        "0044dc00",
+        "00452bd0",
+        "00472590",
+        "004755d0",
+        "00475630",
+        "004769d0",
+        "00476a10",
+        "004782c0",
+        "00478520",
+        "004788a0",
+        "004788e0",
+        "00478d30",
+        "0048d940",
+        "0048db30",
+        "0048db60",
+        "0048dc50",
+        "0048dc70",
+        "004ddf90",
+        "004de270",
+        "005406c0",
+        "00540db0",
+        "005418e0",
+        "00541cb0",
+        "00583220",
+        "00592fe0",
+        "005a5f60",
+        "005a5f70",
+        "005a5f80",
+        "005a5fb0",
+        "005a9c40",
+        "005aa1b0",
+        "005aa770",
+        "005aa780",
+        "005b0e50",
+        "005b0ee0",
+        "005b0f70",
+        "005b1000",
+        "005b10c0",
+        "005b1180",
+        "005b1290",
+        "005b1510",
+        "005b1800",
+        "005b1980",
+        "005b1a10",
+        "005b1bb0",
+        "005b1d10",
+        "005b1e40",
+        "005b1f10",
+        "005b2100",
+        "005b21d0",
+        "005b22b0",
+        "005b2340",
+        "005b2a90",
+        "005b2f80",
+        "005b2ff0",
+        "005b3060",
+        "005b70f0",
+        "005b7100",
+        "005b8880",
+        "005b8890",
+        "005e2930",
+        "005e29a0",
+        "006991b0",
+        "00699220",
+        "0069bc40",
+        "00749a70",
+        "00749ae0"
+      ],
+      "owner": "Reuse containing actual application/process/world owners",
+      "predecessor_batches": [
+        "subsystem:future:B28.queues",
+        "subsystem:future:B28.spawn"
+      ],
+      "priority": "high",
+      "priority_reason": "Small coherent receiver or owner boundary",
+      "research_readiness": "partial_contract",
+      "source_mapping": [
+        "recovered/game/human_input_loading_manager.h",
+        "recovered/game/human_input_session_profiles.h",
+        "recovered/game/mission_script_visibility.h",
+        "recovered/host/game_loading_modules.h",
+        "recovered/host/game_world_loading.h"
+      ],
+      "subsystem": "p28_implementation_batch",
+      "transport_required": "Phase3 for live acceptance; no actual sockets required for bounded source/decoder verification"
+    },
+    {
+      "batch_ids": [
+        "B28.retirement"
+      ],
+      "blockers": [
+        "See exact missing receivers in implementation guide; no positive placeholders"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/implementation-guide.md",
+      "description": "Borrowed-reference and failure cleanup",
+      "id": "subsystem:future:B28.retirement",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "B28.retirement",
+      "lifetime": "Source integration batch; no new runtime owner",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "00475c50",
+        "00479700",
+        "00698510",
+        "006989b0",
+        "00698f80",
+        "0069e620",
+        "0069e720",
+        "006b9190",
+        "006c20f0",
+        "006ca780",
+        "00722180",
+        "00723000",
+        "00723220",
+        "00724110",
+        "00728450",
+        "0072e890",
+        "00730a40",
+        "00731610",
+        "0073ec50",
+        "00746b50",
+        "00746d20"
+      ],
+      "owner": "Reuse containing actual application/process/world owners",
+      "predecessor_batches": [
+        "subsystem:future:B28.entry",
+        "subsystem:future:B28.mode"
+      ],
+      "priority": "high",
+      "priority_reason": "Small coherent receiver or owner boundary",
+      "research_readiness": "contract_ready",
+      "source_mapping": [
+        "recovered/frontend/application_controller.h",
+        "recovered/game/session_finish.h",
+        "recovered/game/session_owner.h",
+        "recovered/game/session_packet_world.h",
+        "recovered/host/multiplayer_connection_menu.h"
+      ],
+      "subsystem": "p28_implementation_batch",
+      "transport_required": "Phase3 for live acceptance; no actual sockets required for bounded source/decoder verification"
+    },
+    {
+      "batch_ids": [
+        "B28.boundary"
+      ],
+      "blockers": [
+        "See exact missing receivers in implementation guide; no positive placeholders"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/implementation-guide.md",
+      "description": "Truthful Phase2 source acceptance",
+      "id": "subsystem:future:B28.boundary",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "B28.boundary",
+      "lifetime": "Source integration batch; no new runtime owner",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [],
+      "owner": "Reuse containing actual application/process/world owners",
+      "predecessor_batches": [
+        "subsystem:future:B28.metadata",
+        "subsystem:future:B28.entry",
+        "subsystem:future:B28.mode",
+        "subsystem:future:B28.queues",
+        "subsystem:future:B28.retirement"
+      ],
+      "priority": "high",
+      "priority_reason": "Small coherent receiver or owner boundary",
+      "research_readiness": "contract_ready",
+      "source_mapping": [],
+      "subsystem": "p28_implementation_batch",
+      "transport_required": "Phase3 for live acceptance; no actual sockets required for bounded source/decoder verification"
+    }
+  ],
+  "contracts": [
+    {
+      "batch_ids": [
+        "B28.entry",
+        "B28.retirement"
+      ],
+      "blockers": [
+        "Real P2.3 owners; nonoffline positive services absent; allocation failure is not rollback"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/shared-world.md",
+      "id": "subsystem:future:p28_entry",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Shared game entry and lifetime",
+      "lifetime": "See containing owner and focused contract",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "006c20f0",
+        "00698510",
+        "006989b0",
+        "006b9190",
+        "0069e620",
+        "00730a40",
+        "0072e890",
+        "00731610",
+        "00728450",
+        "00724110",
+        "006ca780",
+        "00698f80",
+        "00723000",
+        "00723220",
+        "0073ec50"
+      ],
+      "owner": "Application owns current; menu5B8 borrows game; GameA8 borrows application GameData",
+      "priority": "high",
+      "priority_reason": "User-directed shared-world entry and identity research",
+      "research_readiness": "contract_ready",
+      "source_mapping": [
+        "recovered/frontend/application_controller.h",
+        "recovered/host/multiplayer_connection_menu.h",
+        "recovered/game/session_owner.h"
+      ],
+      "subsystem": "p28_entry"
+    },
+    {
+      "batch_ids": [
+        "B28.metadata"
+      ],
+      "blockers": [
+        "Source lacks complete map metadata/kind12 and admits offline prepared squad only"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/shared-world.md",
+      "id": "subsystem:future:p28_metadata",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Selected map and descriptor request",
+      "lifetime": "See containing owner and focused contract",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "006ad580",
+        "006ad590",
+        "006ad5b0",
+        "006ad6e0",
+        "006ad780",
+        "006ad820",
+        "006ad990",
+        "006adb70",
+        "006adbd0",
+        "006adc30",
+        "006adc70",
+        "006b8700"
+      ],
+      "owner": "Application configuration owns selected map vector; GameData owns imported mission",
+      "priority": "high",
+      "priority_reason": "User-directed shared-world entry and identity research",
+      "research_readiness": "contract_ready",
+      "source_mapping": [
+        "recovered/frontend/multiplayer_maps.h",
+        "recovered/frontend/game_data.h",
+        "recovered/frontend/pre_mission_handoff.h",
+        "recovered/game/session_selection.h"
+      ],
+      "subsystem": "p28_metadata"
+    },
+    {
+      "batch_ids": [
+        "B28.mode"
+      ],
+      "blockers": [
+        "Exact conditional match/input/script receivers required before admitting nonoffline runtime"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/authority-modes.md",
+      "id": "subsystem:future:p28_modes",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Authority and presentation passes",
+      "lifetime": "See containing owner and focused contract",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "00722790",
+        "00723d20",
+        "0048db00",
+        "004270d0",
+        "0069af10",
+        "0069b230",
+        "0069b870",
+        "00699290",
+        "00699320",
+        "0069eed0",
+        "00699b50"
+      ],
+      "owner": "Process flags and session configuration outlive game; concrete module owners belong to real world",
+      "priority": "high",
+      "priority_reason": "User-directed shared-world entry and identity research",
+      "research_readiness": "contract_ready",
+      "source_mapping": [
+        "recovered/game/session_activation.h",
+        "recovered/game/session_frame_loading.h",
+        "recovered/game/session_finish.h",
+        "recovered/game/session_render.h"
+      ],
+      "subsystem": "p28_modes"
+    },
+    {
+      "batch_ids": [
+        "B28.spawn"
+      ],
+      "blockers": [
+        "Nonoffline rule/spawn/input timeline and populated roster sync still conditional"
+      ],
+      "classification": "conditional_runtime",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/player-control.md",
+      "id": "subsystem:future:p28_players",
+      "implementation_readiness": "blocked",
+      "label": "Peer Human identity and local control",
+      "lifetime": "See containing owner and focused contract",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "0072ec90",
+        "0072ec20",
+        "0072ec70",
+        "0072ed30",
+        "00730140",
+        "00730460",
+        "0072e940",
+        "0069e340",
+        "00611c90",
+        "00612a60",
+        "0059edc0",
+        "006125a0",
+        "006123a0",
+        "0069e290",
+        "004772f0",
+        "00475d50",
+        "00475dd0",
+        "0069d780",
+        "0069d9c0",
+        "0059f050"
+      ],
+      "owner": "C4 process peer vector borrows world Humans; Players/input/camera borrow same actors",
+      "priority": "high",
+      "priority_reason": "User-directed shared-world entry and identity research",
+      "research_readiness": "partial_contract",
+      "source_mapping": [
+        "recovered/game/prepared_human_spawn.h",
+        "recovered/game/prepared_spawn_packets.h",
+        "recovered/game/offline_spawn_presentation.h",
+        "recovered/host/game_world_loading.h"
+      ],
+      "subsystem": "p28_players"
+    },
+    {
+      "batch_ids": [
+        "B28.queues"
+      ],
+      "blockers": [
+        "Complete ACK/socket/worker and input-history wire timeline deferred to Phase3"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "id": "subsystem:future:p28_packets",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Process packet and application queues",
+      "lifetime": "See containing owner and focused contract",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "0072bef0",
+        "0072bf90",
+        "0072c170",
+        "0072c230",
+        "0072c360",
+        "0072c3b0",
+        "0072c5d0",
+        "0072c0b0",
+        "00727800",
+        "0072a0b0",
+        "0072b1c0",
+        "0072d0e0",
+        "00745ea0",
+        "00745d20",
+        "00744ed0",
+        "00745350",
+        "007458d0",
+        "00745130",
+        "00745520",
+        "007456d0",
+        "007457c0",
+        "00745920",
+        "00727480",
+        "00727660"
+      ],
+      "owner": "Process owns streams/FIFOs/copied payloads; world link and connection worker borrow recipients",
+      "priority": "high",
+      "priority_reason": "User-directed shared-world entry and identity research",
+      "research_readiness": "contract_ready",
+      "source_mapping": [
+        "recovered/game/session_local_packets.h",
+        "recovered/game/session_broadcast_packets.h",
+        "recovered/game/session_packet_world.h",
+        "recovered/host/startup_session.h"
+      ],
+      "subsystem": "p28_packets"
+    },
+    {
+      "batch_ids": [
+        "B28.consumers"
+      ],
+      "blockers": [
+        "Reached command helper payloads and populated0x15/0x14; conditional module opcode bodies remain"
+      ],
+      "classification": "conditional_runtime",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "id": "subsystem:future:p28_consumers",
+      "implementation_readiness": "blocked",
+      "label": "Actual module and Human state dispatch",
+      "lifetime": "See containing owner and focused contract",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "0048dc50",
+        "0048dc70",
+        "00405b20",
+        "00405b30",
+        "00424590",
+        "0042b650",
+        "0043f1e0",
+        "004788a0",
+        "004788e0",
+        "004755d0",
+        "00475630",
+        "0044dc00",
+        "00452bd0",
+        "00472590",
+        "005a5f60",
+        "005a5f70",
+        "005a5f80",
+        "005a5fb0",
+        "005418e0",
+        "00541cb0",
+        "005406c0",
+        "00540db0",
+        "00592fe0",
+        "00583220",
+        "004782c0",
+        "00478520",
+        "00478d30",
+        "0048db60",
+        "005b10c0",
+        "005b1510",
+        "005b1980",
+        "005b1180",
+        "005b1000",
+        "005b0f70",
+        "005b1a10",
+        "005b1bb0",
+        "005b1e40",
+        "005b1f10",
+        "005b1d10",
+        "005b1290",
+        "005b2340",
+        "005b2100",
+        "005b0ee0",
+        "005b0e50",
+        "005b1800",
+        "005b21d0",
+        "005b22b0",
+        "005b2a90",
+        "005b2f80",
+        "005b2ff0",
+        "005b3060"
+      ],
+      "owner": "Same module registry dispatches actual actor/B0 owners; no generic network actor",
+      "priority": "high",
+      "priority_reason": "User-directed shared-world entry and identity research",
+      "research_readiness": "partial_contract",
+      "source_mapping": [
+        "recovered/host/game_loading_modules.h",
+        "recovered/game/mission_script_visibility.h",
+        "recovered/game/human_input_loading_manager.h"
+      ],
+      "subsystem": "p28_consumers"
+    },
+    {
+      "batch_ids": [
+        "B28.retirement"
+      ],
+      "blockers": [
+        "Native shutdown integration and actual actor/input retirement must exist; live failure acceptance Phase3"
+      ],
+      "classification": "required_source_boundary",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/player-control.md",
+      "id": "subsystem:future:p28_retirement",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Peer and world cleanup",
+      "lifetime": "See containing owner and focused contract",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "0069e720",
+        "00722180",
+        "00746b50",
+        "00746d20",
+        "00479700",
+        "00475c50"
+      ],
+      "owner": "World actor owners retire borrowers; process worker unregisters but does not own connection",
+      "priority": "high",
+      "priority_reason": "User-directed shared-world entry and identity research",
+      "research_readiness": "contract_ready",
+      "source_mapping": [
+        "recovered/game/session_finish.h",
+        "recovered/game/session_packet_world.h"
+      ],
+      "subsystem": "p28_retirement"
+    },
+    {
+      "batch_ids": [],
+      "blockers": [
+        "Campaign descriptor/script/profile/progression/stock/save agreement would be new design"
+      ],
+      "classification": "deferred_extension",
+      "confidence": "inferred",
+      "contract": "analysis/multiplayer-world/coop-feasibility.md",
+      "id": "subsystem:future:p28_coop",
+      "implementation_readiness": "blocked",
+      "label": "Co-op feasibility and deliberate extensions",
+      "lifetime": "See containing owner and focused contract",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [],
+      "owner": "Proposed authority policy reuses original owners; no co-op implementation or original mode claim",
+      "priority": "high",
+      "priority_reason": "User-directed shared-world entry and identity research",
+      "research_readiness": "partial_contract",
+      "source_mapping": [],
+      "subsystem": "p28_coop"
+    },
+    {
+      "batch_ids": [
+        "B28.consumers",
+        "B28.spawn",
+        "B28.queues"
+      ],
+      "blockers": [
+        "Actual actor50/54 nested state; writer-paired Physics/Script/Versions; pending respawn completion; optional00724370/00724570 service"
+      ],
+      "classification": "conditional_runtime",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "id": "subsystem:future:p28_sync",
+      "implementation_readiness": "blocked",
+      "label": "Initial module synchronization and respawn",
+      "lifetime": "Process/input before world; ordered module/actor borrowers and queued allocations",
+      "milestones": [
+        "P2.8"
+      ],
+      "original_addresses": [
+        "0048db30",
+        "0048db60",
+        "0048d940",
+        "00410ef0",
+        "00410f70",
+        "0042aff0",
+        "0042b330",
+        "0043f090",
+        "0043f120",
+        "004769d0",
+        "00476a10",
+        "004782c0",
+        "00478520",
+        "006991b0",
+        "00699220",
+        "00749a70",
+        "00749ae0",
+        "005b8880",
+        "005b8890",
+        "005aa770",
+        "005aa780",
+        "005a9c40",
+        "005aa1b0",
+        "004ddf90",
+        "004de270",
+        "005b70f0",
+        "005b7100",
+        "005e2930",
+        "005e29a0",
+        "0069bc40"
+      ],
+      "owner": "Existing19-slot module registry; actual actor50/54 state; process HumanInput manager; game pending respawn vector owns transferred allocations",
+      "priority": "high",
+      "priority_reason": "Initial world initialization is not synchronization readiness; snapshot interfaces differ from persistence",
+      "research_readiness": "partial_contract",
+      "source_mapping": [
+        "recovered/host/game_world_loading.h",
+        "recovered/game/human_input_loading_manager.h",
+        "recovered/game/human_input_session_profiles.h"
+      ],
+      "subsystem": "p28_sync"
+    }
+  ],
+  "relationships": [
+    {
+      "blocking": false,
+      "condition": "Controller9 load toggles before peer Human/stat reset",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/shared-world.md",
+      "relationship": "initialization_order",
+      "source": "function:client:00730a40",
+      "target": "function:client:0072e890"
+    },
+    {
+      "blocking": false,
+      "condition": "Peer reset before selected queue/input reset",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/shared-world.md",
+      "relationship": "initialization_order",
+      "source": "function:client:0072e890",
+      "target": "function:client:00731610"
+    },
+    {
+      "blocking": false,
+      "condition": "Nonoffline preprocessing before game construction",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/shared-world.md",
+      "relationship": "initialization_order",
+      "source": "function:client:00731610",
+      "target": "function:client:00698510"
+    },
+    {
+      "blocking": false,
+      "condition": "Imported mission must outlive borrowing GameA8",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/shared-world.md",
+      "relationship": "data_dependency",
+      "source": "function:client:006b8700",
+      "target": "function:client:006989b0"
+    },
+    {
+      "blocking": false,
+      "condition": "Received command0 enqueues request9 only after successful initialization",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/shared-world.md",
+      "relationship": "initialization_order",
+      "source": "function:client:006989b0",
+      "target": "function:client:0072b1c0"
+    },
+    {
+      "blocking": false,
+      "condition": "Controller publishes retained game before deleting temporary menu",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/shared-world.md",
+      "relationship": "ownership",
+      "source": "function:client:0069e620",
+      "target": "function:client:006c20f0"
+    },
+    {
+      "blocking": false,
+      "condition": "Previous current game finished/retired before replacement is constructed; repeated entry",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/shared-world.md",
+      "relationship": "cleanup_order",
+      "source": "function:client:00698f80",
+      "target": "function:client:00698510"
+    },
+    {
+      "blocking": false,
+      "condition": "Unregister connection before callback deleting destructor; no implicit ownership in unregister",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/shared-world.md",
+      "relationship": "cleanup_order",
+      "source": "function:client:00746d20",
+      "target": "function:client:00722180"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 0, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 0,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "0080f4d0"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 0, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 0,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "0080f4d0"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 1, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 1,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "008101f0"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 1, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 1,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "008101f0"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 2, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 2,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "0080f640"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 2, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 2,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "0080f640"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 3, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 3,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "00817208"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 3, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 3,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "00817208"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 4, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 4,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "0080f750"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 4, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 4,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00424590",
+      "vtable": "0080f750"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 5, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 5,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "0080ffc8"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 5, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 5,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "0080ffc8"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 6, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 6,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "0080f7b8"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 6, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 6,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "0080f7b8"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 7, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 7,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "0080f908"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 7, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 7,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:0043f1e0",
+      "vtable": "0080f908"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 8, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 8,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "00810398"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 8, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 8,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "00810398"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 9, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 9,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "00810060"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 9, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 9,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "00810060"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 10, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 10,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "00810418"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 10, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 10,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "00810418"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 11, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 11,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "0080fc98"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 11, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 11,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "0080fc98"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 12, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 12,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:004788a0",
+      "vtable": "008100e8"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 12, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 12,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:004788e0",
+      "vtable": "008100e8"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 13, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 13,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:004755d0",
+      "vtable": "008100a8"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 13, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 13,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00475630",
+      "vtable": "008100a8"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 14, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 14,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:0044dc00",
+      "vtable": "0080fa18"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 14, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 14,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00452bd0",
+      "vtable": "0080fa18"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 15, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 15,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "0080fdd0"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 15, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 15,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "0080fdd0"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 16, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 16,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "00810010"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 16, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 16,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00472590",
+      "vtable": "00810010"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 17, authority",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 17,
+      "relationship": "virtual_dispatch",
+      "slot": "28",
+      "source": "function:client:0048dc50",
+      "target": "function:client:00405b30",
+      "vtable": "0080f9a0"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual registered module 17, presentation",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "module_kind": 17,
+      "relationship": "virtual_dispatch",
+      "slot": "24",
+      "source": "function:client:0048dc70",
+      "target": "function:client:00405b20",
+      "vtable": "0080f9a0"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 2",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 2,
+      "relationship": "virtual_dispatch",
+      "slot": "38",
+      "source": "function:client:0048db30",
+      "target": "function:client:00410ef0",
+      "vtable": "0080f640"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 4",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 4,
+      "relationship": "virtual_dispatch",
+      "slot": "38",
+      "source": "function:client:0048db30",
+      "target": "function:client:0042aff0",
+      "vtable": "0080f750"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 7",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 7,
+      "relationship": "virtual_dispatch",
+      "slot": "38",
+      "source": "function:client:0048db30",
+      "target": "function:client:0043f090",
+      "vtable": "0080f908"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 12",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 12,
+      "relationship": "virtual_dispatch",
+      "slot": "38",
+      "source": "function:client:0048db30",
+      "target": "function:client:004782c0",
+      "vtable": "008100e8"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 13",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 13,
+      "relationship": "virtual_dispatch",
+      "slot": "38",
+      "source": "function:client:0048db30",
+      "target": "function:client:004769d0",
+      "vtable": "008100a8"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 0",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 0,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "0080f4d0"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 1",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 1,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "008101f0"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 2",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 2,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:00410f70",
+      "vtable": "0080f640"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 3",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 3,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "00817208"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 4",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 4,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0042b330",
+      "vtable": "0080f750"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 5",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 5,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "0080ffc8"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 6",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 6,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "0080f7b8"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 7",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 7,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0043f120",
+      "vtable": "0080f908"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 8",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 8,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "00810398"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 9",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 9,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "00810060"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 10",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 10,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "00810418"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 11",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 11,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "0080fc98"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 12",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 12,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:00478520",
+      "vtable": "008100e8"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 13",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 13,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:00476a10",
+      "vtable": "008100a8"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 14",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 14,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "0080fa18"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 15",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 15,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "0080fdd0"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 16",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 16,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "00810010"
+    },
+    {
+      "blocking": false,
+      "condition": "Ascending original initial-sync module 17",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "module_kind": 17,
+      "relationship": "virtual_dispatch",
+      "slot": "3c",
+      "source": "function:client:0048db60",
+      "target": "function:client:0048d940",
+      "vtable": "0080f9a0"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual containing B0 state owner",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "relationship": "virtual_dispatch",
+      "slot": "c0",
+      "source": "function:client:005a5f60",
+      "target": "function:client:005406c0",
+      "vtable": "00811848"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual containing B0 state owner",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "relationship": "virtual_dispatch",
+      "slot": "c4",
+      "source": "function:client:005a5f70",
+      "target": "function:client:00540db0",
+      "vtable": "00811848"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual containing B0 state owner",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "relationship": "virtual_dispatch",
+      "slot": "c0",
+      "source": "function:client:005a5f60",
+      "target": "function:client:00592fe0",
+      "vtable": "008112d8"
+    },
+    {
+      "blocking": false,
+      "condition": "Actual containing B0 state owner",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "relationship": "virtual_dispatch",
+      "slot": "c4",
+      "source": "function:client:005a5f70",
+      "target": "function:client:00583220",
+      "vtable": "008112d8"
+    },
+    {
+      "blocking": false,
+      "condition": "Peer3C borrows SAME registry-owned Human, not a new owner",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/player-control.md",
+      "relationship": "ownership",
+      "source": "function:client:00612a60",
+      "target": "function:client:0072ec20"
+    },
+    {
+      "blocking": false,
+      "condition": "Transport callback and application command2 have distinct connection vs Human retirement receivers",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "relationship": "data_dependency",
+      "source": "function:client:00722180",
+      "target": "function:client:0069e720"
+    },
+    {
+      "blocking": false,
+      "condition": "Authority Human must exist before listen presentation reuses it",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/player-control.md",
+      "relationship": "initialization_order",
+      "source": "function:client:00612a60",
+      "target": "function:client:006123a0"
+    },
+    {
+      "blocking": false,
+      "condition": "If disconnect reached, detach peer/HUD/Players borrowers before containing-world finish",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/player-control.md",
+      "relationship": "cleanup_order",
+      "source": "function:client:0069e720",
+      "target": "function:client:00698f80"
+    },
+    {
+      "blocking": false,
+      "condition": "Copied process FIFO payload survives temporary world absence",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "relationship": "ownership",
+      "source": "function:client:0072c170",
+      "target": "function:client:0072c3b0"
+    },
+    {
+      "blocking": false,
+      "condition": "Presentation copied payload retired after unlocked decode",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "relationship": "ownership",
+      "source": "function:client:0072c230",
+      "target": "function:client:0072c3b0"
+    },
+    {
+      "blocking": false,
+      "condition": "Target transport ID converted to peer slot before submit",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "relationship": "data_dependency",
+      "source": "function:client:0072bf90",
+      "target": "function:client:0072d0e0"
+    },
+    {
+      "blocking": false,
+      "condition": "Module12 lookup compares actor10; no saved actor14 identity unification",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/packet-synchronization.md",
+      "relationship": "data_dependency",
+      "source": "function:client:004772f0",
+      "target": "function:client:004788e0"
+    },
+    {
+      "blocking": false,
+      "condition": "Shared authority structure suggests reuse, but campaign semantics require deliberate extension",
+      "confidence": "inferred",
+      "contract": "analysis/multiplayer-world/coop-feasibility.md",
+      "relationship": "data_dependency",
+      "source": "subsystem:future:p28_modes",
+      "target": "subsystem:future:p28_coop"
+    },
+    {
+      "blocking": false,
+      "condition": "Destroy/null old process input manager before constructing replacement",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "cleanup_order",
+      "source": "function:client:00723220",
+      "target": "function:client:00723000"
+    },
+    {
+      "blocking": false,
+      "condition": "Received-start rebuilds process14 before game replacement and before old-world shutdown",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "initialization_order",
+      "source": "function:client:00723000",
+      "target": "function:client:00698510"
+    },
+    {
+      "blocking": false,
+      "condition": "Module12 dynamic actor creation precedes module13 existing actor54 replay",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "initialization_order",
+      "source": "function:client:00478520",
+      "target": "function:client:00476a10"
+    },
+    {
+      "blocking": false,
+      "condition": "All registered initial module3C readers precede objective status4bit replay",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "initialization_order",
+      "source": "function:client:0048db60",
+      "target": "function:client:00699220"
+    },
+    {
+      "blocking": false,
+      "condition": "Existing Human update borrows pose/soldier/stats; containing game pending vector owns transferred allocations later in0069D9C0",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "data_dependency",
+      "source": "function:client:0069d9c0",
+      "target": "function:client:0069d780"
+    },
+    {
+      "actor_type": 2,
+      "blocking": false,
+      "condition": "Existing Scene2 actor packet-state; distinct from saved48/4C",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "virtual_dispatch",
+      "slot": "50",
+      "source": "function:client:004769d0",
+      "target": "function:client:005b8880",
+      "vtable": "00812f08"
+    },
+    {
+      "actor_type": 2,
+      "blocking": false,
+      "condition": "Existing Scene2 actor packet-state; distinct from saved48/4C",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "virtual_dispatch",
+      "slot": "54",
+      "source": "function:client:00476a10",
+      "target": "function:client:005b8890",
+      "vtable": "00812f08"
+    },
+    {
+      "actor_type": 3,
+      "blocking": false,
+      "condition": "Existing Scene2 actor packet-state; distinct from saved48/4C",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "virtual_dispatch",
+      "slot": "50",
+      "source": "function:client:004769d0",
+      "target": "function:client:005aa770",
+      "vtable": "008111e0"
+    },
+    {
+      "actor_type": 3,
+      "blocking": false,
+      "condition": "Existing Scene2 actor packet-state; distinct from saved48/4C",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "virtual_dispatch",
+      "slot": "54",
+      "source": "function:client:00476a10",
+      "target": "function:client:005aa780",
+      "vtable": "008111e0"
+    },
+    {
+      "actor_type": 4,
+      "blocking": false,
+      "condition": "Existing Scene2 actor packet-state; distinct from saved48/4C",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "virtual_dispatch",
+      "slot": "50",
+      "source": "function:client:004769d0",
+      "target": "function:client:004ddf90",
+      "vtable": "00810778"
+    },
+    {
+      "actor_type": 4,
+      "blocking": false,
+      "condition": "Existing Scene2 actor packet-state; distinct from saved48/4C",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "virtual_dispatch",
+      "slot": "54",
+      "source": "function:client:00476a10",
+      "target": "function:client:004de270",
+      "vtable": "00810778"
+    },
+    {
+      "actor_type": 11,
+      "blocking": false,
+      "condition": "Existing Scene2 actor packet-state; distinct from saved48/4C",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "virtual_dispatch",
+      "slot": "50",
+      "source": "function:client:004769d0",
+      "target": "function:client:005b70f0",
+      "vtable": "00811aa8"
+    },
+    {
+      "actor_type": 11,
+      "blocking": false,
+      "condition": "Existing Scene2 actor packet-state; distinct from saved48/4C",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "virtual_dispatch",
+      "slot": "54",
+      "source": "function:client:00476a10",
+      "target": "function:client:005b7100",
+      "vtable": "00811aa8"
+    },
+    {
+      "actor_type": 35,
+      "blocking": false,
+      "condition": "Existing Scene2 actor packet-state; distinct from saved48/4C",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "virtual_dispatch",
+      "slot": "50",
+      "source": "function:client:004769d0",
+      "target": "function:client:005e2930",
+      "vtable": "00812750"
+    },
+    {
+      "actor_type": 35,
+      "blocking": false,
+      "condition": "Existing Scene2 actor packet-state; distinct from saved48/4C",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "virtual_dispatch",
+      "slot": "54",
+      "source": "function:client:00476a10",
+      "target": "function:client:005e29a0",
+      "vtable": "00812750"
+    },
+    {
+      "blocking": false,
+      "condition": "Containing game9C..A0 pending vector owns queued record/soldier/stats produced by0069D9C0; completion receiver remains conditional",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "ownership",
+      "source": "function:client:00698510",
+      "target": "function:client:0069d9c0"
+    },
+    {
+      "blocking": false,
+      "call_sites": [
+        "00699257"
+      ],
+      "condition": "Read4-bit status per actual mission child; increment to1-based index before actual setter",
+      "confidence": "confirmed",
+      "contract": "analysis/multiplayer-world/initial-sync.md",
+      "relationship": "direct_call",
+      "source": "function:client:00699220",
+      "target": "function:client:0069bc40"
+    }
+  ],
+  "schema_version": 1,
+  "unresolved": [
+    {
+      "blocking": false,
+      "confidence": "unresolved",
+      "id": "unknown:p28-input-history",
+      "provenance": [
+        {
+          "path": "analysis/multiplayer-world/packet-synchronization.md"
+        }
+      ],
+      "reason": "Actual HumanInput runtime history writer/reader and playback timeline not recovered by cold source",
+      "relationship": "virtual_dispatch",
+      "slots": [
+        "14",
+        "18"
+      ],
+      "source": "subsystem:future:p28_packets",
+      "target": null
+    },
+    {
+      "blocking": false,
+      "confidence": "unresolved",
+      "id": "unknown:p28-populated-sync",
+      "provenance": [
+        {
+          "path": "analysis/multiplayer-world/packet-synchronization.md"
+        }
+      ],
+      "reason": "Outer0x15/38/3C and module12 formats mapped; remaining actual actor50/54 state, Physics/Script/Versions writer pairing and HumanInput runtime timeline are required for complete live initial sync",
+      "relationship": "data_dependency",
+      "source": "subsystem:future:p28_consumers",
+      "target": null
+    },
+    {
+      "blocking": false,
+      "confidence": "unresolved",
+      "id": "unknown:p28-transport",
+      "provenance": [
+        {
+          "path": "analysis/multiplayer-world/implementation-guide.md"
+        }
+      ],
+      "reason": "Real controlled transport/worker/ACK/server readiness is Phase3, not Phase2 source-boundary prerequisite",
+      "relationship": "data_dependency",
+      "source": "subsystem:future:p28_packets",
+      "target": null
+    }
+  ]
+}
