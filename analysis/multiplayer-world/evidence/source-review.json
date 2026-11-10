@@ -1,0 +1,310 @@
+{
+  "desktop_verification": false,
+  "findings": [
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S01",
+      "line": 156,
+      "observation": "Status9 and14..17 still throw;7/8 route remains connection state",
+      "path": "recovered/frontend/application_controller.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "missing_integration"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S02",
+      "line": 108,
+      "observation": "Host/join return unavailable; game_entry logs unavailable, no real session",
+      "path": "recovered/host/multiplayer_connection_menu.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "explicit_unavailable"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S03",
+      "line": 27,
+      "observation": "MissionRequest and SessionOwner require prepared and mutable live squad; original MP entry uses map/peer data",
+      "path": "recovered/game/session_owner.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "offline_only_contract"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S04",
+      "line": 10,
+      "observation": "Current selection is tied to original campaign route/root, no selected MP importer",
+      "path": "recovered/game/session_selection.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "offline_only_contract"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S05",
+      "line": 31,
+      "observation": "Catalogue contains name/style/description, excludes full selected objective/equipment/zone metadata",
+      "path": "recovered/frontend/multiplayer_maps.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "partial_data"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S06",
+      "line": 94,
+      "observation": "Real process FIFO/broadcast owners exist, nonoffline pump/flush rejected",
+      "path": "recovered/game/session_local_packets.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "source_only_offline"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S07",
+      "line": 124,
+      "observation": "Only actual presentation kind13 bridge; other positive/reserved receivers explicitly unavailable",
+      "path": "recovered/host/game_loading_modules.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "partial_receiver"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S08",
+      "line": 33,
+      "observation": "Actual shared Human factory/equipment source; missing nonoffline identity writeback",
+      "path": "recovered/game/prepared_human_spawn.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "partial_receiver"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S09",
+      "line": 8,
+      "observation": "Existing same-Human presentation and paired decoder are offline only",
+      "path": "recovered/game/offline_spawn_presentation.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "source_only_offline"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S10",
+      "line": 27,
+      "observation": "Actual5F visibility exists but rejects nonoffline publication; not a full Script decoder",
+      "path": "recovered/game/mission_script_visibility.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "partial_receiver"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S11",
+      "line": 3,
+      "observation": "Source/native world/packet bindings not application loading or desktop acceptance",
+      "path": "analysis/process-packet-world-binding.md",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "source_native_reported_no_desktop"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S13",
+      "line": 219,
+      "observation": "Current input manager is a world member; original received-start rebuilds process14 before old-world shutdown; canonical owning-scope adaptation needed",
+      "path": "recovered/host/game_world_loading.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "lifetime_adaptation_required"
+    },
+    {
+      "desktop_acceptance": "not_established_by_this_review",
+      "id": "P28-S12",
+      "line": 75,
+      "observation": "Shared real world source exists, positive nonoffline activation/finish branches unavailable",
+      "path": "analysis/session-activation-integration.md",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "status": "source_native_reported_no_desktop"
+    }
+  ],
+  "implementation_policy": "Source mentions are not complete function implementations; focused graph ledger status pins same main SHA; combined historical claims remain separately pinned",
+  "networking_reference_sha": "e777570c6d0dade25d6a43b6a2e417ebb0756379",
+  "runtime_execution": false,
+  "schema_version": 1,
+  "scope": "Actual main source inspection, no code/ledger refresh and no desktop acceptance",
+  "source_commit_sha": "c09c22c01d1049d7f087142064a3c2c53488f582",
+  "sources": [
+    {
+      "path": "recovered/frontend/application_controller.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "b260d06007957f5f9e2aa86f8c4b109be061fd8c9318691efa999a092a3584a8"
+    },
+    {
+      "path": "recovered/frontend/multiplayer_connection.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "d8faaf9f178665347a2122f17eecf211e38b0a6c19efe9b03639fd5297e491f9"
+    },
+    {
+      "path": "recovered/host/multiplayer_connection_menu.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "25a9e0464db808885cbd8a4259fce3dd51f205e1f714d9acadfa0d5eae33a05a"
+    },
+    {
+      "path": "recovered/frontend/multiplayer_maps.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "03e097e08dcfe1c0540309400f283129e9a81733bf0f5f3f3c19215c075b5d64"
+    },
+    {
+      "path": "recovered/frontend/game_data.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "d4afaa34303c989a9f0d877e864c126d5e8f3082ac3c22756bde99bfa399453f"
+    },
+    {
+      "path": "recovered/frontend/pre_mission_handoff.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "dfbcdb6a0ef9942f8857332a5741d856995dace2d147159eeb0db80e3ad93415"
+    },
+    {
+      "path": "recovered/game/session_owner.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "1bf8aeee49fa7cfde73deab9644384b1dff18fbf0bbf082fe516f6afa0fd0932"
+    },
+    {
+      "path": "recovered/game/session_selection.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "96793ad4273e1f9be436f2c18d8c7a1debd06f457fadd1b39768d4ec1aec0d26"
+    },
+    {
+      "path": "recovered/game/session_activation.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "2766114d67a1538208fc013405dd77f3a6f524d46b40ca73594177de731f3c22"
+    },
+    {
+      "path": "recovered/game/session_finish.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "86b793c357a97bd5298fd2dc6d53129f8f600f3571062aacc15e4999c5313c90"
+    },
+    {
+      "path": "recovered/game/session_frame_loading.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "10b33d8d308c13c0581f05894d35caa4c52f52565f021434541d486828a066bc"
+    },
+    {
+      "path": "recovered/game/session_render.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "ebf8ffdd0cf66ba621d0f1e56fef2d12feccab95fb52409fdd6a87ee01e60ddb"
+    },
+    {
+      "path": "recovered/game/session_local_packets.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "8e87f41b3494a9ed611c1286a5ba8c3f2505ba17ba7993982744d6b8edee1124"
+    },
+    {
+      "path": "recovered/game/session_broadcast_packets.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "7ea126fc98e4d6f5c877354a60965398ec9f78fcd0b2cc0a2f244a5c91dad73d"
+    },
+    {
+      "path": "recovered/game/session_packet_world.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "b8f5dc5d1ada6c4826e59d49d824ac52d2071c9b083c29ca6aeb646854b8e80a"
+    },
+    {
+      "path": "recovered/host/game_loading_modules.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "7792c43dcb22d401e9d020258f87d8c47f224c5bcce090ee1f086c7d22e6d5e5"
+    },
+    {
+      "path": "recovered/game/prepared_human_spawn.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "dbae88e4a6eeaaa4a5a7d176dd0e27d93afc6c939cee4a3c969e0cb5c5d56ed8"
+    },
+    {
+      "path": "recovered/game/prepared_spawn_packets.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "b77db19ad9da868d6e46fe6848a58c962eb47bb606b0086205061f2527ca3f71"
+    },
+    {
+      "path": "recovered/game/offline_spawn_presentation.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "5d8d7388d22c1c33489fb2a8c7f93a5aaced90ced368a409d727638829157c47"
+    },
+    {
+      "path": "recovered/game/human_input_loading_manager.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "98b6ef1311919484d065a3161523404bfd27947a26bb8aba733acc8a39b19bf2"
+    },
+    {
+      "path": "recovered/game/human_input_records.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "69c5fa1802d576b10a3844a5dc55a143622e13c8f0daa238f55571738c75fe57"
+    },
+    {
+      "path": "recovered/game/human_input_session_profiles.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "53e2ad78a66e7180d98d3e59343b491d048feb46249bdba7ec1ada02c2dbb5ed"
+    },
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "b712dd4a2d0226575bdbe523e279b6cbe8e1bffe2286182c755a8fb6b83ab038"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "d9036643928443fc831b279d42c8676cf9b3cdba55967656835c3ee491244620"
+    },
+    {
+      "path": "recovered/game/mission_script_visibility.h",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "fde89a1e8d02970cb5fd3f83a582779bd9459c3da8ad06da72400aa999ef80fc"
+    },
+    {
+      "path": "analysis/process-packet-world-binding.md",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "3038028afc897f42d52b81462ca0d1310a8798259e4e2375f58ff63f84e9fd10"
+    },
+    {
+      "path": "analysis/session-activation-integration.md",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "68a652a3672c789e57fe15f134351ff1ad1c15b82969264c31585b10ce638d5e"
+    },
+    {
+      "path": "analysis/frame-render-source.md",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "f6d81d469f6ae10a7d0f205f7a6d145849c7baa8a994af6b11d58df37a3244f2"
+    },
+    {
+      "path": "analysis/session-activation-loading.md",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "e8edcd20bc6fdd678f689912a675b0b21709c0cd876cb544abd23218382ebb4a"
+    },
+    {
+      "path": "analysis/phase2-delivery-plan.md",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "877bf40e40d8e75a1a56bc692e2f8ca77986ff11accdb871e1a30a97e55282bc"
+    },
+    {
+      "path": "HANDOFF.md",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "e7e445a32eb89476b50c2ee7a296e7a930ade63636f1b44297b8561dfe6c8487"
+    },
+    {
+      "path": "plan.md",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "5cb7c57c7d4660795e8b7097e97a48d512d8b6838bc551b83a690a2c56ab82b6"
+    },
+    {
+      "path": "AGENTS.md",
+      "revision": "c09c22c01d1049d7f087142064a3c2c53488f582",
+      "sha256": "4a69ac74eaa5f191fe4cb3d5aef7658eb8e1bd26a12585e79a03c090146de095"
+    },
+    {
+      "path": "analysis/networking/HANDOFF.md",
+      "revision": "e777570c6d0dade25d6a43b6a2e417ebb0756379",
+      "sha256": "e9dc8e6fe740c4bb583e1d1442cb6cf37843a0a6ad6d9cab401adf56db0aad0a"
+    },
+    {
+      "path": "analysis/networking/architecture.md",
+      "revision": "e777570c6d0dade25d6a43b6a2e417ebb0756379",
+      "sha256": "da4ebe918903bc86839c908c6da3e18cdff68743d642b24ad082b0f99aa5b3cc"
+    },
+    {
+      "path": "analysis/networking/client-boundary.md",
+      "revision": "e777570c6d0dade25d6a43b6a2e417ebb0756379",
+      "sha256": "7b192606cf181d5cae90fd78dcdb5fbc9925793065e9f9f1175810f97a185b9b"
+    }
+  ]
+}

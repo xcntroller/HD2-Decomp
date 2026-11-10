@@ -4,6 +4,10 @@ Research branch: `research/future-dependencies`. Scope: P2.4–P2.7, with P2.6 f
 No game implementation, ledger changes, main plan/handoff edits, website changes,
 networking changes or original executable/DLL execution belong to this directory.
 
+P2.8 has a separate [shared multiplayer world research directory](../multiplayer-world/README.md)
+and [handoff](../multiplayer-world/HANDOFF.md). Its additive graph associations
+preserve this directory's historical research/readiness and source revisions.
+
 Start with [overview](phase2-overview.md), [save contracts](p2.6-save-load.md),
 [results](p2.7-results.md), [batches](implementation-guide.md) and [handoff](HANDOFF.md).
 Deep contracts: [actor identities/payloads](p2.6-actor-persistence.md),

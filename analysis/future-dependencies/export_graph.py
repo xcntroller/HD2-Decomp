@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Deterministic research export; no ledger writes or inferred call dependencies."""
 import hashlib
+import importlib.util
 import json
 import re
 import io
@@ -18,7 +19,7 @@ def read(path):
 def digest(path):
     return hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
 
-def generate():
+def generate_historical():
     manifest_path = 'analysis/future-dependencies/evidence/manifest.json'
     modules_path = 'analysis/future-dependencies/evidence/module-persistence.json'
     actors_path = 'analysis/future-dependencies/evidence/actor-persistence.json'
@@ -281,6 +282,14 @@ def generate():
                      'unknown_relationships':[{'id':'unknown:mission-a8-persistence','source':'subsystem:future:snapshot','target':None,
                        'relationship':'virtual_dispatch','slots':['10','14'],'reason':'Actual mission vtable targets and payload unresolved',
                        'confidence':'unresolved','blocking':True,'provenance':doc}]}}
+
+def generate():
+    # P2.8 is additive; historical ledger/readiness claims remain at SOURCE.
+    path = ROOT / 'analysis/multiplayer-world/export_graph.py'
+    spec = importlib.util.spec_from_file_location('p28_graph', path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.extend(generate_historical())
 
 if __name__=='__main__':
     output=generate()
