@@ -77,3 +77,22 @@ preserves unpublished availability. The production build/artifact audit and a
 temporary Chromium check of actual research arrays, nested verification fields,
 evidence availability, absence of JSON blocks, mobile width and runtime errors
 passed. This presentation change does not alter source data.
+
+## Research checkpoint 8d30062 compatibility
+
+Preview worktree fast-forwarded to research merge `578c7d6`. The updated graph
+contains 310 research nodes and 629 edges. The guide introduces 31 parent/child
+batches, nested dotted/hyphenated identities, three-column child tables and
+forward references. The importer now accepts both supported table forms,
+validates full IDs and the prerequisite DAG independently of table row order,
+retains full prerequisite/owner wording, and uses explicit graph `batch_ids`
+associations where supplied. Batches without a dedicated heading retain their
+table summary and tracked links to associated research contracts. Conditional
+“where actually called” batch edges remain visually distinguished.
+
+Production build/artifact audit and a temporary data/browser check passed:
+all research nodes/edges retained, every guide batch imported, exact declared
+node associations, full child prerequisite IDs, child-batch selection, formatted
+inspection, 390px mobile width and no runtime errors. Research files unchanged.
+The user accepted the updated preview and explicitly authorized committing these
+compatibility changes. Nothing was pushed or deployed.

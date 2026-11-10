@@ -231,3 +231,12 @@ links use the existing publication policy: only safe tracked files matching the
 asserted public revision receive immutable GitHub links. Unpublished records
 remain visible without a fabricated link. Pages still builds only exact master
 revisions, uses `/HD2-Decomp/`, and uploads only the audited `website/dist/`.
+
+The batch importer supports both parent four-column and child three-column guide
+tables. Dotted and hyphenated child IDs are preserved in full. Dependencies may
+reference batches later in the guide; validation checks the complete prerequisite
+DAG rather than assuming table order. Full owner/conditional prerequisite wording
+is displayed alongside the graph. When the research graph supplies `batch_ids`,
+those declared associations take precedence over address-mention fallback matching.
+A batch without its own heading retains its table summary and links to associated
+research contracts; the website does not invent missing acceptance requirements.

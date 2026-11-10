@@ -97,24 +97,46 @@ def build_research(progress=None):
             diagnostics.append({'kind': 'state_conflict', 'id': n['id'], 'current': a.get('status'), 'research': b.get('implementation_status')})
     guide = (ROOT / 'analysis/future-dependencies/implementation-guide.md').read_text()
     batches = []
-    for row in guide.splitlines():
+    sections = re.split(r'(?m)^## ', guide)[1:]
+    batch_pattern = r'B\d+(?:\.[\w-]+)+|P2\.\d+'
+    batch_ids = set()
+    for line, row in enumerate(guide.splitlines(), 1):
         if not re.match(r'\| B\d', row):
             continue
-        name, predecessors, readiness, purpose = [v.strip() for v in row.strip('|').split('|')]
-        sections = re.split(r'(?m)^## ', guide)[1:]
-        section = next((v for v in sections if name in v.split('\n', 1)[0]), None)
-        require(section is not None, 'Missing batch contract')
-        body = section.split('\n', 1)[1]
-        batches.append({'id': 'batch:' + name, 'label': name, 'predecessors': re.findall(r'B\d+\.\w+|P2\.\d', predecessors), 'readiness': readiness, 'purpose': purpose, 'contract': prose(body), 'addresses': sorted(set(a.lower() for a in re.findall(r'(?i)(?<![0-9a-f])00[0-9a-f]{6}(?![0-9a-f])', body))), 'evidence': pub.evidence([{'path': 'analysis/future-dependencies/implementation-guide.md'}])})
-    batch_names = {b['label'] for b in batches}
-    complete = set()
-    for b in batches:
-        require(all(p in complete or p.startswith('P2.') for p in b['predecessors']), 'Unordered or unknown batch prerequisite')
-        complete.add(b['label'])
-    completed = set()
-    for batch in batches:
-        require(all(p in completed or p.startswith('P2.') for p in batch['predecessors']), 'Invalid batch ordering')
-        completed.add(batch['label'])
+        cells = [v.strip() for v in row.strip('|').split('|')]
+        require(len(cells) in {3, 4}, 'Unsupported batch table columns')
+        name, predecessors, readiness = cells[:3]
+        require(re.fullmatch(r'B\d+(?:\.[\w-]+)+', name), 'Invalid batch ID')
+        require(name not in batch_ids, 'Duplicate batch ID')
+        batch_ids.add(name)
+        purpose = cells[3] if len(cells) == 4 else readiness
+        section = next((v for v in sections if name in re.findall(batch_pattern, v.split('\n', 1)[0])), None)
+        if section is None:
+            # A child batch need not own a heading. Keep its exact table contract
+            # and link associated machine-declared research contracts instead.
+            body = purpose + '\nRequired predecessors and owner constraints: ' + predecessors + '\nResearch state: ' + readiness
+        else:
+            body = section.split('\n', 1)[1]
+        associated = [n for n in raw['graph']['nodes'] if name in n['data'].get('batch_ids', [])]
+        addresses = {a for n in associated for a in n['data'].get('original_addresses', [])}
+        if not associated:
+            addresses.update(a.lower() for a in re.findall(r'(?i)(?<![0-9a-f])00[0-9a-f]{6}(?![0-9a-f])', body))
+        evidence = [{'path': 'analysis/future-dependencies/implementation-guide.md', 'line': line}]
+        evidence.extend(e for n in associated for e in n['data'].get('provenance', []))
+        batches.append({'id': 'batch:' + name, 'label': name,
+                        'predecessors': re.findall(batch_pattern, predecessors),
+                        'prerequisite_text': prose(predecessors),
+                        'conditional_predecessors': re.findall(batch_pattern, predecessors) if 'where actually called' in predecessors else [],
+                        'readiness': readiness, 'purpose': purpose, 'contract': prose(body),
+                        'node_ids': sorted(n['id'] for n in associated),
+                        'addresses': sorted(addresses), 'evidence': pub.evidence(evidence)})
+    # Table order groups parent/child contracts, not necessarily execution order.
+    pending_batches = {b['label']: set(b['predecessors']) - {p for p in b['predecessors'] if p.startswith('P2.')} for b in batches}
+    require(all(p in batch_ids for deps in pending_batches.values() for p in deps), 'Unknown batch prerequisite')
+    while pending_batches:
+        ready = {name for name, deps in pending_batches.items() if not deps}
+        require(ready, 'Batch prerequisite cycle')
+        pending_batches = {name: deps - ready for name, deps in pending_batches.items() if name not in ready}
     # Fail cycles only for established blocking dependencies; never calls/ownership.
     blocking = [e for e in raw['graph']['edges'] if e['data'].get('blocking') is True and e['data']['evidence_state'] == 'verified' and e['data']['relationship'] == 'depends_on' and not e['data'].get('condition')]
     pending = {n: set() for n in nodes}
