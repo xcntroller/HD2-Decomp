@@ -9,33 +9,34 @@ WORK, hash/remove temporary fixtures at checkpoint. Interactive changes require
 actual user desktop acceptance.
 
 Application still DECLINES loading. Both P2.2 boxes OPEN; no first world frame or
-mission desktop claim. Tally34 complete/2,003 partial(1,998 client/five engine)/
+mission desktop claim. Tally34 complete/2,004 partial(1,999 client/five engine)/
 18,783 frozen; zero complete promotions.
 
 ## Latest source checkpoint
 
-[Module/actor frames](analysis/module-actor-frame-source.md),
-[receipt](analysis/checkpoints/p2.2-module-actor-frame-20261110.json).
-Actual18-kind frame dispatch uses SAME loading owners, session/status/time28,
-Players/speech and live profile. Both module tick passes fresh ASC all19 slots.
-Scene2 actor visits FORWARD/captured count, activity changes FIFO; runtime actor
-visits/drains REVERSE. Duplicate queued pointers toggle; redundant requests don't
-queue. Authority Scene2 proximity100 then005647C0 receives ACTIVE20, NOT identity10.
-Concrete GameSceneActorFrames joins existing family updates; Human/Dog/movement
-and positive Physics/Items visual process/Sight/Shot ticks are REQUIRED external
-receivers, not successful substitutes. Runtime35/Ladder/Spawn/Switch/Null ticks
-are genuine RETs. TShift registered0048E7E0 is genuineRET, DISTINCT0048E7F0 worker.
-Tracks/HeavyFire/Particles genuinely cold updates earn NO new credit.
+[Shared Human projection process](analysis/human-projection-frame-process.md),
+[receipt](analysis/checkpoints/p2.2-human-projection-process-20261110.json).
+Actual Items3→0078AD70 uses SAME Startup primary/fading/pool/400 counters and
+process clocks as World visibility. Source duplicate private state removed.
+Strict signed scan>1400 consumes SAME CRT rand()%200 and live quality byte2 even
+when empty. Unsigned oldest-prefix time/epoch expiry; periodic row removal BEFORE
+mode3, timestamp row stays through mode3. Retain detached frames in LIFO pool;
+last-user releases frames before counters/textures, Items3 shutdown releases
+pool frames. Source single-World/active-shutdown guards; no fake append/footprint
+producer.0078AA10/upstream0075D210 and save/restore remain required.
+Native sanitizer positive policy/fade/pool/RNG/clock/NaN/failure and actual private
+process lifetime PASS; actual i386 two18-module passes/Items/World visibility and
+retirement PASS; app link/27 tracker tests PASS. Four temp source/binaries hashed/
+removed. One new partial0078AD70; wrappers007DD390/3B0 absent frozen/no credit.
 
-00476A50 same-owner Human summary uses kind19C=2, health/B0/unavailable gates,
-independent available/selected counts and singleton54.005A5D30 AL-only reads
-Script AI SAME suspension byte1D2. Actual vertex preference now resolves live
-selected profile quality byte1.0047477F clock comparison is UNSIGNED>=300,
-including wrapping/negative dt; only one subtraction.00476160/004749A0 absent
-frozen, no credit. Native sanitizer ordering/growth/failure/summary/module/vertex
-checks PASS; actual i386 two18-module passes/actor family dispatch/Players/Script/
-effects/SOUND/vertex/camera compile PASS; missing simulation leaves are declarations.
-App link/27 tracker tests PASS. Four temp source/binaries hashed/removed.
+Prior [module/actor frames](analysis/module-actor-frame-source.md), commit7d61668:
+Both module tick passes freshASC all19 slots. Scene2 FORWARD/captured/FIFO;
+runtime REVERSE/drainsREVERSE. Actual Human summary/Script-suspension byte1D2.
+Vertex live selected-profile quality byte1 and UNSIGNED clock>=300/one subtraction.
+Typed GameSceneActorFrames joins existing family updates; actual Human/Dog/
+movement/Physics/Sight/Shot consumers still required, not successful substitutes.
+Tracks/HeavyFire/Particles cold updates earn no new credit. TShift registered
+0048E7E0 is genuineRET, distinct0048E7F0 worker.00476160/004749A0 absent/no credit.
 
 ## Next — SAME full checkbox
 
@@ -80,8 +81,10 @@ P24-F05 shared mutable squad confirmed; other advisory work deferred as document
 Runtime diagnostics toolkit merged by user, commitc09c22c. Read README,
 INSTRUMENTATION and HANDOFF under tools/runtime_diagnostics. Keep current priority;
 adopt bounded markers at actual World/loader/activation/first callbacks/present/
-teardown boundaries when integrated. No markers added yet; coordinate parser
-support for new names. Analyzer never establishes desktop acceptance.
+teardown boundaries when integrated. World ctor now emits `P2.2 event=world_constructed result=success loaded14=<0|1>`
+after owner/packet binding, reading actual14. No fabricated attempt ID or loaded
+claim. Marker documented in toolkit INSTRUMENTATION; parser v1 does NOT recognize
+it yet. No further instrumentation milestone; analyzer never grants acceptance.
 
 ## Execution
 

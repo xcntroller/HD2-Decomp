@@ -14,7 +14,8 @@ template<class Frames,class Services>
 class HumanPresentationShared {
 public:
     struct Settings {bool winter=false;std::uint32_t terrain=0;float amount=0,scale=1;};
-    HumanPresentationShared(Frames& frames,Services& services):frames_(frames),services_(services),textures_(frames),projections_(frames) {}
+    using ProjectionProcess=typename HumanProjectionModels<Frames>::Process;
+    HumanPresentationShared(Frames& frames,Services& services,ProjectionProcess& process):frames_(frames),services_(services),textures_(frames),projections_(frames,process) {}
     ~HumanPresentationShared(){clear();}
     HumanPresentationShared(const HumanPresentationShared&)=delete;
     HumanPresentationShared& operator=(const HumanPresentationShared&)=delete;
@@ -22,12 +23,14 @@ public:
         if(users_==static_cast<unsigned>(std::numeric_limits<std::int32_t>::max()))throw std::runtime_error("Human presentation reference overflow");
         flag_f308_=false;
         if(!users_) {
-            flag_a6ac_=false;textures_.load(services_.mode_flags());
+            flag_a6ac_=false;
+            projections_.initialize(services_.mode_flags()); //0078A4F0 publishes process settings BEFORE texture acquisition.
+            if(services_.mode_flags()&2u)lifetime_=500;
+            textures_.load(services_.mode_flags());
             try {
                 if((services_.mode_flags()&7)!=7&&!services_.presentation_application_fallback())
                     frames_.human_presentation_driver_state(0x2b,0);
                 const auto& mission=services_.presentation_mission_name();settings_=mission_settings(mission);
-                if(services_.mode_flags()&2u){enabled_=true;dimensions_={{40,40}};lifetime_=500;}
             }catch(...){textures_.clear();throw;}
         }
         ++users_;
@@ -36,9 +39,10 @@ public:
         if(!users_)return;
         //Last-user0078A5F0 clears queues/400 words/textures before the remaining
         //Human unregister/deactivation. Loading has no runtime mark producer.
-        if(!--users_){projections_.clear();words_.fill(0);textures_.clear();}
+        if(!--users_){projections_.clear();textures_.clear();}
     }
-    void clear() noexcept {users_=0;projections_.clear();words_.fill(0);textures_.clear();}
+    void clear() noexcept {users_=0;projections_.clear();textures_.clear();}
+    void tick_item_projections(bool authority,std::uint32_t elapsed){projections_.tick(authority,elapsed,services_);}
     auto& projection_models(){return projections_;}
     unsigned users() const{return users_;}
     const Settings& settings() const{return settings_;}
@@ -65,9 +69,9 @@ private:
     }
     Frames& frames_;Services& services_;HumanPresentationTextures<Frames> textures_;
     HumanProjectionModels<Frames> projections_;
-    unsigned users_=0;Settings settings_;std::array<std::uint32_t,400> words_{};
-    bool flag_f308_=false,flag_a6ac_=false,enabled_=false;
-    std::array<std::uint32_t,2> dimensions_{};std::uint32_t lifetime_=0;
+    unsigned users_=0;Settings settings_;
+    bool flag_f308_=false,flag_a6ac_=false;
+    std::uint32_t lifetime_=0;
 };
 } //namespace hd2::game
 #endif

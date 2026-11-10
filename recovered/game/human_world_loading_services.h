@@ -125,6 +125,9 @@ public:
     void human_special_music_reference(bool enabled){dependencies().music.reference(enabled,mode_flags(),dependencies().startup);} //0069E920/70, SAME gameC8..D4/SOUND.
     std::int32_t emit_human_equipment_sound(const frontend::SpatialSoundRequest& request){return dependencies().sound.emit(request);}
     std::uint32_t speech_random(){return dependencies().startup.random_word();}
+    std::uint32_t projection_game_time(){return dependencies().session.words.template get<std::uint32_t>(0x28);}
+    std::int32_t projection_random_word(){return static_cast<std::int32_t>(dependencies().startup.random_word());}
+    std::uint32_t projection_quality_byte(){return dependencies().startup.profile_settings().quality_byte(2);}
     bool speech_special_mode43(){return dependencies().startup.players_process().words().template get<std::uint8_t>(0x43)!=0;} //00459480.
     bool speech_group0_active(){return !dependencies().startup.players_process().groups()[0].empty();} //00456B80(0), SAME process group48.
     std::uint32_t human_speech_length(std::int32_t identity){return dependencies().startup.game_speech_length(identity);}

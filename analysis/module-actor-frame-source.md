@@ -20,6 +20,10 @@ retirement process, Sight, ShotMgr, and actor simulation still require their
 real frame receivers. The typed compile fixture declares those missing leaves;
 it does not implement them or establish successful simulation.
 
+The [subsequent projection process](human-projection-frame-process.md) now binds
+module3's actual0078AD70 update and shared lists/pool/clocks, removing its external
+frame receiver. Footprint creation/save restoration remain separate required work.
+
 Tracks has definitions but no playback producer; its playback array is genuinely
 cold. HeavyFire has no fire-support list producer; Particles rejects placed
 positive instances before allocation, leaving1014/1034 cold. Their frame entry
@@ -113,3 +117,6 @@ uncertainty model remain authoritative for log classification. No new marker is
 introduced by this source-only frame facade; adopt a small number at real World,
 loader/activation/first-callback/presentation/teardown boundaries when those are
 integrated, and coordinate parser support. Diagnostics do not grant acceptance.
+
+The subsequent projection checkpoint adds one actual World-construction marker;
+see its contract and toolkit INSTRUMENTATION.md. Parser v1 support remains deferred.

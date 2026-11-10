@@ -34,7 +34,7 @@ public:
         case 0:bound(module,d_.tracks);if(!authority)d_.tracks.update(d_.session.status,elapsed);return;
         case 1:bound(module,d_.game_effects);if(!authority)d_.game_effects.update_loading(elapsed,d_.session,d_.players.control());return;
         case 2:frames.tick_physics(authority,elapsed);return;
-        case 3:frames.tick_items(authority,elapsed);return;
+        case 3:d_.presentation_shared.tick_item_projections(authority,elapsed);return;
         case 4:bound(module,d_.scripts.module());
             if(authority)d_.scripts.module().tick(elapsed);else d_.scripts.module().frame_update(signed_elapsed(elapsed));return;
         case 5:if(authority)frames.tick_sight(elapsed);return;

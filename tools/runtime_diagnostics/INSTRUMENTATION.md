@@ -93,3 +93,23 @@ Exact host file ownership may move as Agent #1 integrates the graph. Check the
 actual call boundary before adoption. Module activation/finish summaries must
 preserve native order, not introduce extra passes. No marker alone replaces user
 desktop evidence of a visible scene/camera or acceptance of failure/repeat.
+
+## Source marker adopted — 2026-11-10
+
+`host/game_world_loading.h::World` now emits once after its actual containing
+owners, vertex preference and packet-world link are constructed:
+
+```text
+P2.2 event=world_constructed result=success loaded14=<0|1>
+```
+
+`loaded14` reads the SAME actual session flag. This is construction only, with
+no loader/activation/render/presentation or desktop-success implication. Failed
+construction before that boundary emits no positive marker. Application loading
+still declines in this source checkpoint; no runtime observation is claimed.
+An attempt ID awaits the actual application binding and is not fabricated here.
+
+Parser v1 does **not** recognize this new format. Add a coordinated parser rule
+and focused classification verification before treating it as an automatically
+classified construction stage. Current parser behavior and acceptance policy are
+unchanged. Contract: [shared projection/source boundary](../../analysis/human-projection-frame-process.md).

@@ -48,7 +48,7 @@ public:
     }
     //0048DA80: ascending FRESH registrations, including null slot18. The sixteen
     // other normal targets are verified RETs. No gameplay shutdown is invented.
-    void shutdown(const std::uint32_t& gate) {
+    template<class Projections>void shutdown(const std::uint32_t& gate,Projections& projections) {
         CleanupErrors errors;
         for (std::uint32_t kind = 0; kind != registry_.size(); ++kind) {
             errors.attempt([&] {
@@ -63,7 +63,8 @@ public:
                         if (object) throw std::logic_error("Live Items shutdown is not reconstructed");
                     if (items_pending || items_list_first || items_list_second)
                         throw std::logic_error("Live Items queues are not reconstructed");
-                    if (gate & 2u) items_list_count = 0; //0078A980 cold side effect.
+                    projections.shutdown(gate); //0078A980, actual shared projection payload/frame pool.
+                    if (gate & 2u) items_list_count = 0;
                 } else if (kind == 9 && (gate & 2u)) vertices.clear(); //00474A20.
                 shutdown_[kind] = true;
             });

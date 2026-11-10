@@ -8,6 +8,7 @@
 #include "game/session_local_packets.h"
 #include "game/session_packet_world.h"
 #include "game/blast_wave_process.h"
+#include "game/human_projection_process.h"
 #include <ctime>
 #include <cstdlib>
 #include "frontend/application_controller.h"
@@ -189,7 +190,7 @@ public:
         pre_mission_.reset(); // Borrowed HumanStore/descriptor owners end before application data.
         multiplayer_request_.reset();
         errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
-        errors.attempt([&] { modules_.shutdown(gate_); }); //0048DA80, after data.
+        errors.attempt([&] { modules_.shutdown(gate_,human_projection_process_); }); //0048DA80, after data; actual Items3 pool retirement.
         item_hand_models_.clear();
         game_animations_.close();
         std::printf("Shutdown: input/sound/data/module cleanup completed=%u\n",
@@ -215,6 +216,7 @@ public:
     auto& effects_loading_process(){return effects_loading_process_;}
     using BlastWaves=game::BlastWaveProcess<MenuDriver::Owner,GameSceneActors::Instance>;
     BlastWaves& blast_wave_process(){return blast_wave_process_;} //SAME fixed-update and finish owner.
+    auto& human_projection_process(){return human_projection_process_;} //0098AD28/38/44, SAME records/pool and process timers.
     auto& item_hand_models(){return item_hand_models_;}
     std::uint8_t& first_person_preference(){return data_.first_person_preference();}
     const frontend::LocalizedTextCache& text() const { return text_; }
@@ -713,6 +715,7 @@ private:
     game::HeavyFireLoadingState heavy_fire_process_;
     game::EffectsLoadingProcess<EngineFrame*> effects_loading_process_;
     BlastWaves blast_wave_process_;
+    game::HumanProjectionProcess<MenuDriver::Owner> human_projection_process_;
     game::ItemHandModels<GameActorServices> item_hand_models_;
     game::HumanAIEventPool human_ai_events_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;

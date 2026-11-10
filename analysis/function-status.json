@@ -4887,12 +4887,18 @@
       "program": "client",
       "entry": "0078a980",
       "status": "partial",
-      "coverage": "Reached gate2 cold auxiliary-list shutdown: verify both original zero heads/no native producers and clear the list counter.",
-      "limitations": "Only the PE-zeroed standalone list branch is supported; populated linked lists, engine resource release and original layouts are not reconstructed and are rejected. Integrated/sanitizer-audited; bounded desktop acceptance recorded on2026-10-31.",
+      "coverage": "Gate2 actual shared projection free-payload pool retirement at Items3 startup-module shutdown: frame release before payload in LIFO order, after actual World/active rows retire. Previous standalone cold list guard/count behavior is retained.",
+      "limitations": "Source-only typed shared projection pool now retires retained frames; native allocator/free-node layout and other live Items500/request producers remain excluded and guarded. Prior bounded cold-shutdown desktop acceptance on2026-10-31 does not establish positive projection runtime acceptance.",
       "evidence": [
         "analysis/shutdown-map.json",
         "analysis/shutdown-delivery.md",
-        "recovered/frontend/startup_modules.h"
+        "recovered/frontend/startup_modules.h",
+        "recovered/game/human_projection_process.h",
+        "recovered/game/human_projection_models.h",
+        "recovered/game/human_presentation_shared.h",
+        "recovered/host/game_loading_modules.h",
+        "analysis/human-projection-frame-process.md",
+        "analysis/checkpoints/p2.2-human-projection-process-20261110.json"
       ]
     },
     {
@@ -16950,27 +16956,38 @@
       "program": "client",
       "entry": "0078a5f0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0078a5f0: Shared first/last Human presentation-resource retirement; actual runtime owners remain required.",
+      "coverage": "P2.2 source reconstruction at original entry 0078a5f0: Shared first/last Human presentation-resource retirement; actual runtime owners remain required. SAME Startup projection lists/counts/pool now replace the former private cold copies;40/40 settings publish before textures and last-user retirement releases both active lists before400 counters/textures, preserving process clocks.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_presentation_shared.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
-        "analysis/human-selection-visibility-loading.md"
+        "analysis/human-selection-visibility-loading.md",
+        "recovered/game/human_projection_process.h",
+        "recovered/game/human_projection_models.h",
+        "recovered/host/game_loading_modules.h",
+        "analysis/human-projection-frame-process.md",
+        "analysis/checkpoints/p2.2-human-projection-process-20261110.json"
       ]
     },
     {
       "program": "client",
       "entry": "0078a4f0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0078a4f0: Actual shared thirteen-record presentation texture loading and release ownership.",
+      "coverage": "P2.2 source reconstruction at original entry 0078a4f0: Actual shared thirteen-record presentation texture loading and release ownership. SAME Startup projection lists/counts/pool now replace the former private cold copies;40/40 settings publish before textures and last-user retirement releases both active lists before400 counters/textures, preserving process clocks.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_presentation_textures.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_projection_process.h",
+        "recovered/game/human_projection_models.h",
+        "recovered/game/human_presentation_shared.h",
+        "recovered/host/game_loading_modules.h",
+        "analysis/human-projection-frame-process.md",
+        "analysis/checkpoints/p2.2-human-projection-process-20261110.json"
       ]
     },
     {
@@ -27056,6 +27073,21 @@
         "recovered/host/game_scene_actor_frames.h",
         "analysis/module-actor-frame-source.md",
         "analysis/checkpoints/p2.2-module-actor-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0078ad70",
+      "status": "partial",
+      "coverage": "Actual shared projection process mode/time/epoch gates; strict periodic RNG/selected-profile refresh even on empty queues; per-Human and timestamp prefix expiry; retained LIFO payload pooling; single300ms fade steps, alpha/NaN/mode/blend/update order and process-lived clocks, integrated at Items frame receiver.",
+      "limitations": "Source-only typed list/record ownership replaces original node/allocator/engine ABI. Native positive policy checks use explicit engine doubles; real World two18-module routes compile. Footprint/frame production0078AA10/upstream0075D210 and save/restore remain unavailable, so actual runtime projection queues stay cold; application loading still declines and no mission desktop delivery is claimed.",
+      "evidence": [
+        "recovered/game/human_projection_process.h",
+        "recovered/game/human_projection_models.h",
+        "recovered/game/human_presentation_shared.h",
+        "recovered/host/game_loading_modules.h",
+        "analysis/human-projection-frame-process.md",
+        "analysis/checkpoints/p2.2-human-projection-process-20261110.json"
       ]
     }
   ]

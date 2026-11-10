@@ -1,0 +1,202 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "0078ad70"
+  ],
+  "ledger_added_partial_client": 1,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2004,
+  "native_checks": "PASS ASan/UBSan/leak strict clocks/RNG/profile on empty queues, limit and timestamp prefix expiry, callback publication order, retained frame/pool order, unsigned epoch/time wrapping, fade cadence/overshoot/alpha/NaN, Items mode gates and failed callback/retry, actual private process timer persistence and single-World/shutdown guards. Positive policy engine leaves are doubles; actual source producer remains unavailable.",
+  "strict_i386": "PASS actual private Startup process/shared presentation/World/module3 update/visibility/retirement and both18-module passes; remaining unrelated simulation leaves are compile-only declarations. No Windows execution.",
+  "application_link": "PASS",
+  "tracker_tests": 27,
+  "no_new_credit": [
+    "007dd390/007dd3b0 absent frozen",
+    "0078c810/0078c840/0078c890/0078c6d0 native allocator/list-node bodies represented by typed containers",
+    "0078aa10/0075d210 footprint producer not implemented",
+    "0078b240/0078b7f0 save/restore research only"
+  ],
+  "diagnostic_marker": "P2.2 event=world_constructed result=success loaded14=<0|1>; source construction only; parser v1 does not yet recognize it",
+  "artifacts": {
+    "analysis/work/mission-world-20261103/checkpoint-projection-process-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-projection-process-native-run.log": {
+      "sha256": "a015676a9cdd3bfa52555b4f832b4f25e8ff1965aa8da0b25066e8c1651e3e89",
+      "bytes": 192,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-projection-process-host-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-projection-process-application-build.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-update.asm": {
+      "sha256": "9e3331c18ff161ef8a71b3ddfce432e1d948fd8ace0f3abcfdf19a36a09746ff",
+      "bytes": 16677,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-address-refs.json": {
+      "sha256": "8fb684e51cbcd2d128035eab6a834ad652fde8a6c80967efebae0e90b16601cd",
+      "bytes": 6215,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-ticks.asm": {
+      "sha256": "4deba43b07291a322346e3770fb6b5906e7dddee33dd3b9d824318baf1fefdeb",
+      "bytes": 1413,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies.log": {
+      "sha256": "30ecfdf28c60aba60ff299bea43463f41504e776ae26d22722ff2978d42df542",
+      "bytes": 4808,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-producers.log": {
+      "sha256": "3ce9314f54ac4657c86b72e1dd8dd02a0a6c8a0042c81cdee8d42bdcf662c98b",
+      "bytes": 4694,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/0078ad70.c": {
+      "sha256": "910a855c87415794fae6dd5ca51ea89ae98e5c0720e30708673f085a46578d73",
+      "bytes": 5558,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-item-actor-consumers/0078ad70.json": {
+      "sha256": "d7c2cbe67811496407a33874ba1b849c77819d5ed9e71fce7d25fa661986ec6d",
+      "bytes": 16378,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-control-bindings/0078a4f0.c": {
+      "sha256": "5752074f364f819145e86b2ffeae211421e775a63066b24cfd3dc1c0f8f78778",
+      "bytes": 2329,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-animation-activation/0078a5f0.c": {
+      "sha256": "f4cf89e8fadae5805c44b2aa4cd5dae605ad3fc666f020e5e7dd955cb1e53f8e",
+      "bytes": 2474,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies/0078a2c0.c": {
+      "sha256": "8c09f686bf411a5af675007cb3d0fa7d71f7d9885e68a1ac42d43ad3ac1e5ef5",
+      "bytes": 315,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies/0078a2c0.json": {
+      "sha256": "dbbf906dbd59da1d1e9de8572093c8074c9461835f7abfe01cadbab6554a6b29",
+      "bytes": 1298,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies/0078c6d0.c": {
+      "sha256": "45cc8ccd9a204ac5de9f1c16eadec4e6d42624bd0493bba6a329dafbf107a813",
+      "bytes": 292,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies/0078c6d0.json": {
+      "sha256": "ff1c789535ae6f5f777b3d0aba759c400d88fdc7b4986d4a9858db4039944baf",
+      "bytes": 1153,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies/0078c810.c": {
+      "sha256": "ef9b4982fcda793a161bcd0ed2ebdd4fc2e6435ee4c12c63e0eb8dab82496909",
+      "bytes": 311,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies/0078c810.json": {
+      "sha256": "80d9256cbea3254d0f025d69e0fbdc81bc0687a9d735d05ed95816e1b59a03e8",
+      "bytes": 1110,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies/0078c840.c": {
+      "sha256": "023a8bcaab015e64e82b0caa24e8a8d51160f906ed6fa8acd36d92e8461355c9",
+      "bytes": 525,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies/0078c840.json": {
+      "sha256": "112b744e17a0bec506762bc164f5ea94a1b5f1ee60a6d0fdade8efb8fd3aec0b",
+      "bytes": 1560,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies/0078c890.c": {
+      "sha256": "1258a322011bbee631b3829b5173fc530b7a866f0696a17010ba1ae066c76c9b",
+      "bytes": 378,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-process-dependencies/0078c890.json": {
+      "sha256": "5b33bcbe76e29c5ae0cabff6eee9e6237f8cc880e7b15958955564a5a82283e1",
+      "bytes": 1274,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-producers/0078a7d0.c": {
+      "sha256": "596a8ce4df8f4e54d9471a8a76d7cae7892573d9b73484064bcb5cbfae0254b9",
+      "bytes": 2159,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-producers/0078a7d0.json": {
+      "sha256": "d1c81b48da82c7c09618f5465fe9b3470a63b423d611dd9d3aa4c20b4c0b7ca8",
+      "bytes": 8686,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-producers/0078aa10.c": {
+      "sha256": "be48da676fce0a719511ccb0f7a373167da4ae3e3d2aea27e2cc924c71663ea3",
+      "bytes": 2880,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-producers/0078aa10.json": {
+      "sha256": "997f21e008ad2551e1cf0b0432ab8ccfedd57703ac5b988b124efbff88a2d331",
+      "bytes": 4774,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-producers/0078b240.c": {
+      "sha256": "d207bc18bebead5547315bb067ca2cbd7f266de452cc1de7398273db9a4c0d70",
+      "bytes": 7996,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-producers/0078b240.json": {
+      "sha256": "c49afbcbab64601ed149ed0a4e33bf6fb8ad3485e7d503d6e343655e29e7c669",
+      "bytes": 16180,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-producers/0078b7f0.c": {
+      "sha256": "ae2ae71249beccdf2b7f6e79d0d2dee2268b88fddd43c217d981fccaf32a240f",
+      "bytes": 20128,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-projection-producers/0078b7f0.json": {
+      "sha256": "b1db2b7bedaf35452bf8d2349f385cf74b28a350d76c2bcc146be88d0048b0f1",
+      "bytes": 41024,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-projection-process-native.cpp": {
+      "sha256": "1f0d180d98c3d8c100ca79ed37fd2168e331a5aadf2b41b6fbb5e870553b4e69",
+      "bytes": 8629,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-projection-process-native": {
+      "sha256": "facb1573dffc04920ebc77fe3f06e74a2f69b297c29a72f6b4d337ab8f408d70",
+      "bytes": 982632,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-projection-process-host.cpp": {
+      "sha256": "1d0f5786bd987e78f8dcc34f7bc4ef50ac3b0992c225b15c7df1df55c822c419",
+      "bytes": 1689,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-projection-process-host.o": {
+      "sha256": "b0031c7f2e1ea095c272fed68789ea9415796d1da718f29d655584581d2640bb",
+      "bytes": 8226412,
+      "retained": false
+    }
+  }
+}

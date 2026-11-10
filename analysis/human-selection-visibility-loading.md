@@ -3,6 +3,11 @@
 Full first P2.2 checkbox remains open. Application loading stays disabled; no
 loaded world, first frame or desktop acceptance. [Receipt](checkpoints/p2.2-human-selection-visibility-20261110.json).
 
+2026-11-10 continuation: [projection frame process](human-projection-frame-process.md)
+now supplies0078AD70 over SAME Startup primary/fading/pool state and actual Items
+tick/retirement boundaries. Earlier cold-only process exclusions below describe
+the prior checkpoint; footprint production and save restoration remain required.
+
 ## Original contracts and reconstruction
 
 005A8740 shows only when Human150 is true;005A86F0 hides only when false.

@@ -134,7 +134,7 @@ public:
         :bindings_(bindings.require_unbound(scene,parent,startup)),startup_(startup),scene_(scene),mode_(startup.application_flags_owner()),navigation_(parent.tables()->sets()[0]),
          actors_(scene,bindings.consumers,navigation_,vertices,startup.text(),catalogue,suffix,startup.pre_mission_files(),clock,game::SessionTimeWord(session)),
          camera_(scene.frames()),inputs_(clock,startup.human_input_shared()),audio_(startup,scene.frames()),
-         faces_(scene.frames()),animation_resources_(startup.loaded_resources()),shared_(scene.frames(),bindings.services),
+         faces_(scene.frames()),animation_resources_(startup.loaded_resources()),shared_(scene.frames(),bindings.services,startup.human_projection_process()),
          music_(Music::LiveTracks{scene.documents().fields().field_c8,scene.documents().fields().field_cc}),
          players_(startup.game_module_registry(),scene.frames(),bindings.presentation,startup.players_process(),bindings.services,startup.game_module_registration(11)),
          subtitles_(*parent.text()),dubbing_(players_.control(),subtitles_),sound_(scene.frames(),actors_,camera_,startup),
@@ -234,7 +234,7 @@ using MissionEffects=game::MissionEffectsLoading<ChunkFiles,Frames>;
 using Particles=game::ParticleModuleLoading<ChunkFiles,Frames>;
 struct ModuleDependencies {
     StartupSession& startup;const game::MissionRequest& request;Scene& scene;Actors& world_actors;
-    game::SessionActivationState& session;Services& human_services;
+    game::SessionActivationState& session;Services& human_services;Shared& presentation_shared;
     Scripts& scripts;Sight& sight;Players& players;Camera& camera;
     game::MissionTracksLoading& tracks;Effects& game_effects;Versions& versions;
     game::MissionLightmapGroupsLoading<Frames>& lightmap_groups;game::MissionTextureShiftLoading& texture_shifts;
@@ -256,7 +256,7 @@ public:
          lightmaps_(registry(),registration(8),d_.scene.frames()),shifts_(registry(),registration(10)),
          shots_(registry(),registration(14),d_.scene.frames(),d_.startup.shot_manager_process(),d_.startup.application_flags_owner()),
          heavy_fire_(registry(),registration(16),d_.startup.heavy_fire_process()),particles_(registry(),registration(17),mission_effects_),
-         dependencies_{d_.startup,d_.request,d_.scene,d_.world_actors,d_.session,owners.human_services(),owners.scripts(),d_.sight,d_.players,d_.camera,
+         dependencies_{d_.startup,d_.request,d_.scene,d_.world_actors,d_.session,owners.human_services(),d_.presentation_shared,owners.scripts(),d_.sight,d_.players,d_.camera,
              tracks_,effects_,versions_,lightmaps_,shifts_,vertices,shots_,heavy_fire_,particles_},dispatch_(dependencies_){}
     ModuleOwners(const ModuleOwners&)=delete;ModuleOwners& operator=(const ModuleOwners&)=delete;
     auto& dispatch(){return dispatch_;}auto& mission_effects(){return mission_effects_;}
@@ -290,6 +290,7 @@ public:
          modules_(owners_,vertices_){
         scene_.frames().bind_vertex_animation_preference([&startup]{return startup.profile_settings().quality_byte(1)!=0;});
         startup_.bind_game_packet_world(*this);
+        std::printf("P2.2 event=world_constructed result=success loaded14=%u\n",session.loaded?1u:0u);
     }
     ~World()override{
         startup_.unbind_game_packet_world(*this);
