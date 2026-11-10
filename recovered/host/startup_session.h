@@ -5,6 +5,8 @@
 #include "frontend/control_startup.h"
 #include "frontend/control_actor_records.h"
 #include "frontend/control_frame.h"
+#include "game/session_local_packets.h"
+#include "game/session_packet_world.h"
 #include <ctime>
 #include <cstdlib>
 #include "frontend/application_controller.h"
@@ -82,14 +84,15 @@ public:
           portraits_(engine), data_(portraits_, files_, directory_),
           archive_backend_(rw_data), archives_(archive_backend_),
           graphics_directories_(engine), caches_(graphics_directories_), loaded_resources_(engine, caches_),
-          game_animations_(files_, loaded_resources_),
+          game_animations_(files_, loaded_resources_),broadcast_packets_(human_input_shared_),
           joysticks_backend_(engine, joy), joysticks_(joysticks_backend_),
           input_backend_(engine, joysticks_backend_), input_(input_backend_),
           input_setup_(engine, joysticks_), settings_backend_(engine),
           sound_backend_(engine, game_views_.sound), sound_catalog_(sound_backend_),
           dubbing_sound_(sound_backend_,files_),
           profile_platform_(directory_), sound_data_(registry_), modules_(registry_),
-          control_frame_(control_data_, gate_, *this) {
+          control_frame_(control_data_, gate_, *this,broadcast_packets_),
+          local_packets_(control_data_,control_frame_.state(),broadcast_packets_,human_input_shared_,gate_,*this,packet_world_) {
         if (!selected_language.empty()) language_.select(selected_language);
         menu_cursor_={menu_width()*.5f,menu_height()*.5f};
         // Actual00748940/00748960 clock basis, separate from frame pacing.
@@ -166,7 +169,8 @@ public:
         // pre-device acquisition instead abandons only acquired native locks.
         errors.attempt([&] {
             if (control_ready_ && graphics_alive) {
-                control_frame_.shutdown();
+                if(source_packet_path())control_frame_.shutdown_packets([&](std::uint32_t elapsed){local_packets_.flush(elapsed);},[&]{local_packets_.clear();});
+                else control_frame_.shutdown();
                 std::puts("Shutdown: final cold control reset and startup locks released");
             }
         });
@@ -547,6 +551,7 @@ public:
     std::int32_t mouse_wheel() const { return input_backend_.mouse_z(graphics()); }
     std::int32_t mouse_x() const { return input_backend_.mouse_x(graphics()); }
     std::int32_t mouse_y() const { return input_backend_.mouse_y(graphics()); }
+    float& camera_breathing_amount(){return camera_breathing_;} //00839268 persistent process FLOAT .005, modified by00466970.
     bool camera_mouse_inverted(){return profile_settings().bytes[0x39]!=0;} //00469300 reads current006B6740 settings.
     const std::array<float, 2> &menu_cursor() const { return menu_cursor_; }
     void menu_cursor(float x, float y) { menu_cursor_ = {x, y}; }
@@ -609,9 +614,20 @@ public:
         errors.attempt([&] { sound_catalog_.clear(); });
         errors.rethrow();
     }
-    void control_phase(std::uint32_t milliseconds, bool fixed) { control_frame_.phase(milliseconds, fixed); }
-    void control_maintenance(std::uint32_t milliseconds) { control_frame_.maintain(milliseconds); }
-    void reset_control() { control_frame_.reset(); }
+    void control_phase(std::uint32_t milliseconds,bool fixed){
+        if(source_packet_path())local_packets_.phase(fixed);else control_frame_.phase(milliseconds,fixed);
+    }
+    void control_maintenance(std::uint32_t milliseconds){
+        if(source_packet_path())local_packets_.maintain(milliseconds);else control_frame_.maintain(milliseconds);
+    }
+    void reset_control(){
+        if(source_packet_path())control_frame_.reset_packets([&](std::uint32_t elapsed){local_packets_.flush(elapsed);},[&]{local_packets_.clear();});
+        else control_frame_.reset();
+    }
+    auto& game_broadcast_packets(){return broadcast_packets_;}
+    auto& game_local_packets(){return local_packets_;}
+    void bind_game_packet_world(game::SessionPacketWorld& world){packet_world_.bind(world);}
+    void unbind_game_packet_world(game::SessionPacketWorld& world)noexcept{packet_world_.unbind(world);}
     void enter_control_lock(unsigned index) { lock_services_.enter_control_lock(index); }
     void leave_control_lock(unsigned index) noexcept { lock_services_.leave_control_lock(index); }
     void clear_retired_actor_record(std::int32_t identity){frontend::clear_retired_actor_record(control_data_,lock_services_,identity);}
@@ -657,6 +673,9 @@ private:
     game::HudSignalTables hud_signal_tables_;
     game::HudCompassShared hud_compass_state_;
     game::HudClickSound<MenuDriver::Owner> hud_click_sound_;
+    bool source_packet_path()const{
+        return packet_world_.bound()||broadcast_packets_.pending()||!local_packets_.authority_queue().empty()||!local_packets_.presentation_queue().empty();
+    }
     game::ConsoleVariables game_console_variables_;
     game::TextRenderControls game_text_render_controls_;
     HumanPortraits portraits_;
@@ -669,6 +688,7 @@ private:
     GameAnimations game_animations_;
     game::HumanSoundVariants human_sound_variants_;
     game::HumanInputShared human_input_shared_;
+    game::SessionBroadcastPackets broadcast_packets_; //SAME native208/244/280, process/control-lived, not World-owned.
     game::ActorProximityState<GameSceneActors::Instance*> actor_proximity_;
     EngineFrame* car_loading_scene_=nullptr;
     game::CarDefinitionTables car_definitions_;game::CarTyres car_tyres_;game::CarMaterialRegistry car_materials_;
@@ -678,6 +698,7 @@ private:
     game::PlayersProcess<PlayerHuman> players_process_;
     std::vector<game::PlayersProcess<PlayerHuman>::DelayedSpeech> delayed_player_speech_;
     game::HumanMorphTables human_morph_tables_;
+    float camera_breathing_=0x1.47ae14p-8f; //Original00839268 bytes0A D7 A3 3B, retained across worlds.
     const float human_animation_time_scale_=0x1.666666p+0f;
     game::HumanPhysicsGlobals human_physics_globals_;
     game::MissionIntegrityTables mission_integrity_tables_;
@@ -713,6 +734,8 @@ private:
     std::uint32_t gate_ = 0;
     const char* missing_speech_caption_=nullptr; //Actual process fallback borrower; distinct from game+60 text entries.
     frontend::ColdControlFrame<StartupSession> control_frame_;
+    game::SessionPacketWorldLink packet_world_;
+    game::SessionLocalPackets<StartupSession,game::SessionPacketWorldLink> local_packets_;
     std::uint8_t input_flag_ = 0;
     std::array<float, 2> menu_cursor_{{400, 300}}; //0066A4E0 centers only the first shared owner.
     bool application_input_enabled_ = true; // Original00843470 initial byte1.

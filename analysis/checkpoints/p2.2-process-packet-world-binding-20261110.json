@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "0048dc50",
+    "0048dc70"
+  ],
+  "ledger_added_partial_client": 2,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 1967,
+  "no_credit_absent": [
+    "00475630"
+  ],
+  "not_implemented_or_credited": [
+    "005a5fb0",
+    "005418e0"
+  ],
+  "native_checks": "PASS source serializer/streams/queues/decoder/same-Human roster-camera chain, unbind/unloaded world/decoder failure/single-flush reset and100 empty cold lifetimes; engine/camera actor leaves are doubles.",
+  "strict_i386": "PASS actual full loading/activation/World/packet/camera/finish binding graph; required transient finalizer still interface argument.",
+  "application_link": "PASS",
+  "tracker_tests": 27,
+  "artifacts": {
+    "analysis/work/mission-world-20261103/checkpoint-process-packets.cpp": {
+      "sha256": "f297c53c34c029ec5fc14877e99b46dadcd92aa08316983e3620e9ae965cc80d",
+      "bytes": 8036,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-process-packets": {
+      "sha256": "27a42a50cbe9570a61c58aa3b1eea127eec2cf207a5c035d36f68ebeeb5ca63f",
+      "bytes": 1910648,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-process-packets-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-process-packets-run.log": {
+      "sha256": "a01d50954f19bdd949fb13ac521dd9d72e04854f17de3537f48d787e8ea2b3d0",
+      "bytes": 222,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-process-packets-host.cpp": {
+      "sha256": "f51e02dce59debacdf8ffb6fc703028e62efbc4744435e1ce1c6db7f082eb754",
+      "bytes": 1261,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-process-packets-host.o": {
+      "sha256": "2067def2d51d96ddb99d758c3d60c6c9c03c9e33c92000db0caded1cce2a7e4f",
+      "bytes": 26563754,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-process-packets-host-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-process-packets-app.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/process-packet-receivers.log": {
+      "sha256": "0e71d5793f71982d0de5fe92418980974beb366781880cd4f21d25d94ee3c3f6",
+      "bytes": 4692,
+      "retained": true
+    }
+  }
+}

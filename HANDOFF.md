@@ -8,51 +8,53 @@ changes. Heavy builds/Ghidra SEQUENTIAL (memory crashes); focused checks only,
 no permanent tests. Interactive changes need actual user desktop acceptance.
 
 App still DECLINES loading. No successful mission/first frame/desktop result.
-Both P2.2 boxes OPEN. Tally34 complete/1,965 partial(1,960 client/five engine)/
+Both P2.2 boxes OPEN. Tally34 complete/1,967 partial(1,962 client/five engine)/
 18,783 frozen. Zero complete promotions.
 
 ## Latest source checkpoint
 
-[Concrete activation/writeback bindings](analysis/session-activation-integration.md),
-[receipt](analysis/checkpoints/p2.2-session-activation-integration-20261110.json).
-Actual GameSessionActivation bridges006989B0 to SAME cold loading allocation,
-parent request, Startup live squad, actual module/input/HUD/FPV/Car/music/text/
-profile/Win32 owners. Source session/activation still UNCALLED by application.
-Three native ASan/UBSan/leak fixtures, strict actual i386 activation/spawn/all18
-module paths/finish bindings, app link and27 tracker checks PASS. Completed
-fixtures/binaries hashed/removed, research/logs retained. Eleven new partials.
+[Process packet/camera binding](analysis/process-packet-world-binding.md),
+[receipt](analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json).
+Startup now owns actual broadcast streams208/244/280 + FIFO payloads. World
+borrows them for Spawn/Script; complete World binds packet dispatcher AFTER
+modules exist, unbinds BEFORE destructor. Queue bytes outlive World. Missing/
+unloaded World genuinelyfalse, no successful missing module/receiver. Cold
+control reads actual stream cursors, old duplicate arrays removed; only actual
+unrecovered2BC request words/bits remain. Actual reset/final shutdown1000ms flush
+runs ONCE, then records/queue retirement/locks. Existing unbound empty menu path
+retained; application still never constructs source World, so no interactive
+mission behavior has changed. Source-only checkpoint, no desktop claim.
 
-SessionSelection borrows accepted request.root and actual PreMission GameData/
-route, not stale independently loaded StartupData E8. Synthetic standalone
-mission differs from original location pointer; retain actual flat ordinal.
-Prepared Human cold configure/storage/clothing/eye finishes before publishing
-SAME WorldActors lifetime, then00611C90 direct activation works. Clothing rereads
-session28; input reset rereads SAME mode. Spawn Use(false) validates SAME EC+4
-context.006C4BD0 is READ-ONLY optional first4E8C/BB6 mission DWORD predicate,
-not save restoration/P2.6. Real controller pointer/type1, actual profile quick
-path. Native0071DE10 zero differs from stop/neutral; mission finish0071DE60
-clear(false), general cleanup clear(true). Dialogs actual installed language.
+Actual module13 presentation routes pending spawn through Scene2/WorldActors/
+SpawnDecoder to SAME A8 Human, roster/camera/FPV/HUD. Reserved005A5FB0/005418E0
+still REQUIRED: native NULL/missingB0/nonkind1-or7 invokes actual discard grammar,
+not skip; actual Human virtual1C otherwise. Read-only exports retained.00475630
+ABSENT frozen, no credit.0048DC50/70 new partials only. Positive authority/other
+module receivers explicitly reject. Actual GameCameraLoading now binds existing
+00469300 to SAME current/selected/inline/FPV/tree/buckets/resources/input/profile,
+session6E/64/live local ID. Persistent Startup breathing00839268 FLOAT .005,
+bytes0A D7 A3 3B, retained across worlds. Query scratch is not another geometry.
 
-00698F80 now has source offline writeback and ordered binding policy. SAME live
-squad matched REVERSE by Human170; reserved lookup includes pending Human. Stop
-at first missing/nonkind1. Clear→snapshot→consolidate→recalculate in place.
-Snapshot preserves specialization40 vs voice48, health0C and nine HumanC0 raw
-words10..30. Actual holders/stacks/catalogue; zero38 omitted only holders2/3;
-first duplicate position/WORD count wrap. Native payload kind7 is serialized+4,
-not outer tag. No P2.4 UI/stock/voice-producer/reconciliation changes.
-Finish retains snapshot→FPV→lights→REVERSE presentation→dubbing→REVERSE authority
-→HUD.00699112 GetFocus verified00A59080→IAT0080F3E8. Then collision, definition
-arrays(materials first), status1→6, shared records, text, FIRST navigation reset,
-Car emitters, faces.0051F230/00524870 resets byte1A NOT point byte16; preserves
-vector capacity, removes final40+80 synthesized link FFFF/0/count--/clear80.
-Already-finished source tree supports subsequent file unload with unbound buckets.
+Native ASan/UBSan/leak actual spawn serializer→process stream/flush/FIFO→Scene2
+receive→same Human/roster/camera passes, unbind/unloaded World/decoder failure/
+unlock/single-flush and100 empty cold lives. Engine/camera actor leaves doubles.
+Strict actual full i386 loading/activation/World/packet/camera/finish bindings,
+app link and27 tracker tests PASS. Temp fixtures/binaries hashed/removed; logs
+retained. Prior17d03bd [activation/writeback](analysis/session-activation-integration.md)
+shares actual selection/request/live squad/prepared Human lifetime and native
+read-only marker. Same mutable snapshot, distinct specialization40/voice48.
+Native finish order snapshot→FPV→lights→REVERSE presentation→dubbing(clearfalse)
+→REVERSE authority→HUD→GetFocus(00699112)→collision→definition arrays(materials
+first)→status1→6→shared records→text→FIRST navigation reset→emitters→faces.
+Navigation byte1A NOT byte16; preserve vector capacity, clear synthesized last
+link40+80 toFFFF/0/count--/clear80. No P2.4 UI/stock/voice/reconciliation changes.
 
-**Required unsupplied:** GameSessionTransientFinish for actual008AED48/
-006DF390(0,true); no successful missing default. Strict finish fixture takes an
-explicit interface argument, NOT an implementation. Distinct from proximity
-008AED54. Original producers006DF170 and006DF690 and destructor006DDEE0 exported;
-positive linked trajectory/node/resource semantics still unimplemented. Do not
-replace this with a fictional empty owner or claim full shutdown.
+**Required unsupplied:** GameSessionTransientFinish actual008AED48/
+006DF390(0,true); no successful default. Strict finish takes an interface ARGUMENT,
+not an implementation. Distinct from proximity008AED54. Original producers
+006DF170/006DF690/destructor006DDEE0 exported; actual linked trajectory/node/
+resource semantics still unimplemented. Do not invent an empty owner or claim
+full shutdown. Both P2.2 boxes remain open.
 
 ## Next — SAME full checkbox
 
@@ -61,19 +63,17 @@ supply above actual shared finish owner, meaningful guard observations, reached
 required positive receivers and failure/repeat/user Python desktop acceptance.
 Do NOT stop at dependency/checkpoint, no broad audit.
 
-Immediate control ownership issue: World Owners currently owns broadcast packets,
-but native0072DE00 process/control session retains queues/streams across world
-retirement. SessionLocalPackets is source-ready but UNBOUND. Startup retains
-actual ControlStartupState, ColdControlFrameState/local identity and locks. Bind
-SAME actual process streams/queues/dispatcher, avoid duplicated state or destroying
-queued bytes with World. Current ColdControlFrame callbacks remain the accepted
-menu path; no interactive source path should change before reviewable integration.
-GameLoadingModules currently has no packet dispatcher. Initial module13 spawn
-identity>=32 can use receive_scene2_presentation_packet + actual WorldActors/
-SpawnDecoder. Reserved005A5FB0/005418E0 packet receiver remains required; never
-skip payload or fake success. Missing module nativefalse; unsupported positive
-module receiver explicit. Existing actual camera00469300 and offline presentation
-are in [camera/local dispatch](analysis/camera-local-dispatch-loading.md).
+Immediate continuation: actual game-state frame coordinator0069A560 input,
+0069AF10 fixed,0069B230 update and0069B870 render + scene callback consumers.
+Inventory checked: first THREE frozen functions present;0069B870 ABSENT from
+frozen inventory (no containing body), no new credit. Static render entry asm
+saved WORK/game-state-render-entry.asm: offline7 always Scene78(scene18,0);
+nonoffline only if config24.flag170==0. Exact53-byte body ends0069B8A2. Actual
+engine render endpoint already MenuScene78 RVA46860. No source body written yet.
+Export/read the three known frame functions before implementation and trace only
+required reached consumers. Existing camera math/unchanged code verified; don't
+repeat broad audit. Reserve required positive packet discard grammar for reached
+reserved IDs; first prepared SpawnPoint IDs>=32 already supplied.
 
 Prior source contracts: [concrete loading](analysis/mission-loading-integration.md)
 (commit f0c3268), [cold containing world](analysis/containing-world-loading.md)

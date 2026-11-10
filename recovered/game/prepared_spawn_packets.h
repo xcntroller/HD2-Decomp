@@ -4,7 +4,7 @@
 
 #include "frontend/control_startup.h"
 #include "frontend/pre_mission_inventory.h"
-#include "game/session_packet_stream.h"
+#include "game/session_broadcast_packets.h"
 
 namespace hd2::game {
 
@@ -66,19 +66,6 @@ void read_prepared_soldier(Bits& bits,frontend::PreMissionSoldier& soldier,bool 
         soldier.pack_load=real();soldier.pack_volume=integer();soldier.holster_load=real();soldier.holster_volume=integer();
     }
 }
-
-//The three original208/244/280 broadcast streams. Their lifetime belongs to
-//the containing0072DE00 session, not a transient spawn callback. Targeted and
-//request streams2BC/2F8 are separate required transport work.
-struct SessionBroadcastPackets {
-    explicit SessionBroadcastPackets(HumanInputShared& shared):first(shared),second(shared),third(shared){}
-    SessionPacketStream& begin(std::uint32_t kind,std::int32_t priority) { //0072BEB0→0072BEF0(0,kind,true,priority).
-        if(priority<0)throw std::out_of_range("Negative session packet priority");
-        auto& stream=priority==0?first:priority==1?second:third;
-        stream.begin(kind,priority,0,true);return stream;
-    }
-    SessionPacketStream first,second,third;
-};
 
 //00611C90's actual offline publication, sharing the startup record owner and
 //session locks. Direct is the genuine006123A0 receiver for game1C==1; the normal

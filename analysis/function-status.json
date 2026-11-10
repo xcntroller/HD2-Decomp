@@ -4630,7 +4630,7 @@
       "program": "client",
       "entry": "0072c3b0",
       "status": "partial",
-      "coverage": "Cold selected-phase empty-queue branch with actual Win32 lock and original fixed gate predicate. Camera/local-dispatch checkpoint: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
+      "coverage": "Cold selected-phase empty-queue branch with actual Win32 lock and original fixed gate predicate. Camera/local-dispatch checkpoint: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded. Process packet checkpoint: actual Startup-owned streams/FIFO and checked World receiver preserve lifetime/reset; concrete camera uses SAME actual roster/inline/FPV/tree/buckets/input and persistent breathing FLOAT.",
       "limitations": "Populated queue decoding, dispatch, network messages and their ownership are unsupported. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated.",
       "evidence": [
         "analysis/controller-integration-map.json",
@@ -4640,7 +4640,9 @@
         "analysis/phase1-traversal.md",
         "recovered/game/session_local_packets.h",
         "analysis/camera-local-dispatch-loading.md",
-        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+        "analysis/process-packet-world-binding.md",
+        "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json"
       ]
     },
     {
@@ -4681,7 +4683,7 @@
       "program": "client",
       "entry": "0072c5d0",
       "status": "partial",
-      "coverage": "Signed/wrapping50ms accumulator, single subtraction, excess reset, actual cold timer initialization and empty pending-stream path. Camera/local-dispatch checkpoint: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded.",
+      "coverage": "Signed/wrapping50ms accumulator, single subtraction, excess reset, actual cold timer initialization and empty pending-stream path. Camera/local-dispatch checkpoint: Offline7 owned FIFO packet queues, actual locks/CRT clock, five-bit module dispatch, disabled timer, local broadcast flush terminator and post-enqueue cursor reset; connected peer/history/application-control producers explicitly excluded. Process packet checkpoint: actual Startup-owned streams/FIFO and checked World receiver preserve lifetime/reset; concrete camera uses SAME actual roster/inline/FPV/tree/buckets/input and persistent breathing FLOAT.",
       "limitations": "Populated streams, active timer/network/interface branches remain unsupported. Native ownership, containers and calls replace original object/vtable/SEH/allocator ABI. Accepted front-end delivery and installed byte-font languages/resolutions do not establish whole-function equivalence. Protection/setup, unsupported states, game/save/network receivers and in-game paths remain excluded where relevant. Engine bodies are delegated.",
       "evidence": [
         "analysis/controller-integration-map.json",
@@ -4691,7 +4693,9 @@
         "analysis/phase1-traversal.md",
         "recovered/game/session_local_packets.h",
         "analysis/camera-local-dispatch-loading.md",
-        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+        "analysis/process-packet-world-binding.md",
+        "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json"
       ]
     },
     {
@@ -21417,12 +21421,14 @@
       "program": "client",
       "entry": "00469300",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00469300: Ordinary unattached Human camera first update/follow/pose using actual Players, owned camera/target and collision queries: input gating/yaw/pitch/marker direction, temporary snap smoothing, sweep/ray fallback and exclusions, distance history, shake/zoom breathing, target opacity, sector timer and recoil decay. Debug/detached/attached/look-target/config8 producers remain excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 00469300: Ordinary unattached Human camera first update/follow/pose using actual Players, owned camera/target and collision queries: input gating/yaw/pitch/marker direction, temporary snap smoothing, sweep/ray fallback and exclusions, distance history, shake/zoom breathing, target opacity, sector timer and recoil decay. Debug/detached/attached/look-target/config8 producers remain excluded. Process packet checkpoint: actual Startup-owned streams/FIFO and checked World receiver preserve lifetime/reset; concrete camera uses SAME actual roster/inline/FPV/tree/buckets/input and persistent breathing FLOAT.",
       "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_camera.h",
         "analysis/camera-local-dispatch-loading.md",
-        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+        "analysis/process-packet-world-binding.md",
+        "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json"
       ]
     },
     {
@@ -26579,6 +26585,32 @@
         "recovered/game/session_context_marker.h",
         "analysis/session-activation-integration.md",
         "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048dc50",
+      "status": "partial",
+      "coverage": "Fresh original module registration packet dispatch and native absent-module false result, concrete actual module13 presentation routing; process-owned streams/queues borrow a checked loaded World.",
+      "limitations": "Source-only typed dispatch; unsupported positive authority/other module and reserved Human/discard receivers explicitly require actual implementations. Original vtable/register ABI differs. No enabled application mission path, full update/render or desktop acceptance; delegated callees get no new credit.",
+      "evidence": [
+        "recovered/host/game_loading_modules.h",
+        "recovered/game/session_packet_world.h",
+        "analysis/process-packet-world-binding.md",
+        "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048dc70",
+      "status": "partial",
+      "coverage": "Fresh original module registration packet dispatch and native absent-module false result, concrete actual module13 presentation routing; process-owned streams/queues borrow a checked loaded World.",
+      "limitations": "Source-only typed dispatch; unsupported positive authority/other module and reserved Human/discard receivers explicitly require actual implementations. Original vtable/register ABI differs. No enabled application mission path, full update/render or desktop acceptance; delegated callees get no new credit.",
+      "evidence": [
+        "recovered/host/game_loading_modules.h",
+        "recovered/game/session_packet_world.h",
+        "analysis/process-packet-world-binding.md",
+        "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json"
       ]
     }
   ]

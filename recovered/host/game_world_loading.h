@@ -151,7 +151,7 @@ public:
          player_modes_(actors_.items(),first_person_.view(),first_players_,session,startup.mission_integrity_tables(),startup.first_person_preference(),startup.game_configuration(),scene.documents().fields().field_of_view,startup.local_player_identity()),
          car_random_([&startup]{return static_cast<int>(startup.random_word());}),
          car_resources_{scene.car_callbacks().car_tyres(),materials,startup.car_sound_receivers(),startup.car_light_receivers(),scene.car_callbacks().car_particle_pool(),startup.car_seat_camera_shared(),car_random_},
-         packets_(startup.human_input_shared()),spawn_refresh_([this](Camera& camera){refresh_camera(camera);}),
+         packets_(startup.game_broadcast_packets()),spawn_refresh_([this](Camera& camera){refresh_camera(camera);}),
          spawn_presentation_(players_.control(),camera_,spawn_refresh_,mode_,startup.local_player_identity()),
          spawn_records_(startup.game_control_records(),packets_,startup,scene.frames(),spawn_presentation_,mode_,session),
          spawn_decoder_(spawn_records_,spawn_presentation_,mode_),
@@ -181,6 +181,7 @@ public:
     Owners(const Owners&)=delete;Owners& operator=(const Owners&)=delete;
     void bind_loaded_collisions(){require_open();sweep_.bind(scene_.collision_tree(),scene_.buckets());}
     void unbind_loaded_collisions(){require_open();sweep_.unbind(scene_.collision_tree());}
+    bool session_loaded()const noexcept{return dependencies_.session.loaded;}
     Dependencies& dependencies(){require_open();return dependencies_;}
     auto& presentation_dependencies(){require_open();return presentation_dependencies_;}
     Scripts& scripts(){require_open();return *scripts_;}
@@ -222,7 +223,7 @@ private:
     ScriptLink script_link_;Contexts contexts_;Sight sight_;Router router_;Hearing hearing_;GameActorProximityLoading proximity_;
     FirstPlayers first_players_;HudWorld hud_world_;GameHudLoading<Control,Actors::Items,Camera,HudWorld> hud_;
     FirstPerson first_person_;PlayerModes player_modes_;std::function<int()> car_random_;game::CarLoadingResources<Frames> car_resources_;
-    game::SessionBroadcastPackets packets_;SpawnRefresh spawn_refresh_;SpawnPresentation spawn_presentation_;SpawnRecords spawn_records_;SpawnDecoder spawn_decoder_;
+    game::SessionBroadcastPackets& packets_;SpawnRefresh spawn_refresh_;SpawnPresentation spawn_presentation_;SpawnRecords spawn_records_;SpawnDecoder spawn_decoder_;
     PresentationDependencies presentation_dependencies_;Dependencies dependencies_;std::unique_ptr<Scripts> scripts_;bool closed_=false;
 };
 
@@ -271,20 +272,25 @@ private:
 //operate on these SAME owners; collision data is bound only at006EE570, with no
 //dummy grid and no reference to an unconstructed service. Keep this graph until
 //native module passes/Human/VM borrowers finish, then reset parent engine scene.
-class World {
+class World final:public game::SessionPacketWorld {
 public:
     using Parent=Owners::Parent;
     World(Parent& parent,GameOwnerBackend& backend,StartupSession& startup,
           MenuDriver& driver,HMODULE module,Graphics& graphics,FrameClockPlatform& clock,
           const frontend::PreMissionItemCatalogue& catalogue,const std::string& suffix,
           std::function<void(unsigned,float)> progress,game::SessionActivationState& session)
-        :bindings_(startup),
+        :startup_(startup),bindings_(startup),
          scene_(*parent.scene(),driver,module,graphics,startup.pre_mission_files(),startup.loaded_resources(),std::move(progress),startup.text(),
              bindings_.runtime,*parent.tables(),backend,startup.effects_loading_process(),make_game_car_callback_factory(startup,startup.car_definitions(),startup.car_tyres()),
              [&startup,&backend]{(void)startup.car_tyres().load(startup.pre_mission_files());startup.car_materials().rebuild(startup.car_definitions().materials(),backend);}),
          vertices_(scene_.frames(),startup.game_vertex_definitions(),startup.application_flags_owner(),startup.game_vertex_clock()),
          owners_(bindings_,scene_,parent,backend,startup,session,vertices_,clock,catalogue,suffix,startup.car_definitions(),startup.car_materials()),
-         modules_(owners_,vertices_){}
+         modules_(owners_,vertices_){startup_.bind_game_packet_world(*this);}
+    ~World()override{startup_.unbind_game_packet_world(*this);}
+    bool world_loaded()const override{return owners_.session_loaded();}
+    bool dispatch_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority)override{
+        return modules_.dispatch().dispatch_packet(kind,packet,authority);
+    }
     World(const World&)=delete;World& operator=(const World&)=delete;
     Scene& scene(){return scene_;}Owners& owners(){return owners_;}ModuleOwners& modules(){return modules_;}
     auto& vertices(){return vertices_;}
@@ -298,7 +304,7 @@ public:
         owners_.unbind_loaded_collisions();scene_.release_collision_tree();
     }
 private:
-    Bindings bindings_;Scene scene_;Actors::Vertices vertices_;Owners owners_;ModuleOwners modules_;
+    StartupSession& startup_;Bindings bindings_;Scene scene_;Actors::Vertices vertices_;Owners owners_;ModuleOwners modules_;
 };
 
 } //namespace hd2::host::world_loading

@@ -3,6 +3,7 @@
 
 #include "frontend/module_registration.h"
 #include "game/mission_module_dispatch.h"
+#include "game/offline_spawn_presentation.h"
 
 namespace hd2::host {
 
@@ -115,6 +116,16 @@ public:
         case 17:return; //00444130 RET4.
         }
         throw std::logic_error("Mission file-unload module has no actual receiver");
+    }
+    bool dispatch_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority){ //0048DC50/70, fresh registration.
+        if(kind>=module_registry().size())return false;
+        auto* module=module_registry()[kind];if(!module)return false;
+        (void)checked_kind(*module);
+        if(kind==13&&!authority)return game::receive_scene2_presentation_packet(d_.scene.frames(),packet,d_.world_actors,*this);
+        throw std::runtime_error("Required actual authority/presentation module packet receiver is unavailable");
+    }
+    template<class Actor>void receive_player_packet(Actor*,game::SessionPacketStream&){
+        throw std::runtime_error("Reserved Scene2 packet requires actual005A5FB0/005418E0 player-state receiver");
     }
 private:
     std::uint32_t checked_kind(frontend::ClientModuleRegistration& module) {

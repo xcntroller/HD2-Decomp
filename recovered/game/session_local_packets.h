@@ -79,7 +79,7 @@ public:
             if((mode_&1u)&&(mode_&2u))enqueue(false,stream->written_bytes(),0);
             stream->position(0,0); //Reset cursor only AFTER successful enqueue.
         }
-        if(frame_.stream_words[3]||frame_.stream_bits[3])
+        if(frame_.request_words||frame_.request_bits)
             throw std::runtime_error("Local authority request stream requires its actual producer/decoder");
         frame_.pending_words=frame_.pending_bits=0; //Native2F8 scratch cursor reset.
     }

@@ -4767,3 +4767,5 @@ commands/predicates/derived receivers, runtime Patch selection and full containi
 world remain required. Continue the entire P2.2 checkbox after this checkpoint.
 
 2026-11-10: [Concrete activation/writeback bindings](analysis/session-activation-integration.md) preserve SAME selected route/request/live squad, prepared Human lifetime and original shutdown order. Marker is read-only; actual dubbing/navigation/snapshot sanitizer checks, strict i386 graph and app link pass. Eleven partials, no complete/desktop promotions. Full P2.2 remains open; required shared transient finalizer and guard/control/first-frame work continue.
+
+2026-11-10: [Process packet/camera binding](analysis/process-packet-world-binding.md) now preserves native process streams/FIFO across World exit, routes actual pending spawn/Scene2/roster consumers and binds camera to SAME inline/FPV/tree/input owners. Native sanitizers, full strict i386 graph, app link and27 tracker tests pass; two partials, no complete/desktop promotions. Full P2.2 remains open.

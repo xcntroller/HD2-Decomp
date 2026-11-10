@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [Process packet/camera binding](process-packet-world-binding.md) supplies actual shared streams/FIFO/module13 and camera graph, source-only verified. Required shared finish/guard/update/render remain.
+
 2026-11-10: [Concrete activation/writeback bindings](session-activation-integration.md) now share the actual request/route/squad and prepared Human lifetime; ordered finish retains an explicit required transient-record receiver. Guard/packet/first-frame integration remains.
 
 2026-11-10: [Concrete loading allocation](mission-loading-integration.md) supplies actual ordered stage receivers, selective prep caches/non-retained file unload, loading screen/effects callbacks, shared Bird motion and real input defaults. Five new partials; source session still uncalled by application. Activation/guard/first frame remain.

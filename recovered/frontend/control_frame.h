@@ -3,6 +3,7 @@
 
 #include "frontend/control_startup.h"
 #include "frontend/cleanup.h"
+#include "game/session_broadcast_packets.h"
 #include <cstring>
 
 namespace hd2::frontend {
@@ -13,7 +14,7 @@ namespace hd2::frontend {
 // interfaces/peers or a mode change are unsupported, never treated as success.
 struct ColdControlFrameState {
     std::array<std::uint32_t, 2> queue_counts{}; // +1F8/+204
-    std::array<std::uint32_t, 4> stream_words{}, stream_bits{};
+    std::uint32_t request_words=0,request_bits=0; //Only native2BC request stream; broadcasts have their actual process owners/cursors.
     std::uint32_t pending_words = 0, pending_bits = 0; // +300/+304
     std::uint32_t saved_graphics_flags = 0; // +4DFC, static zero until mode-switch writer.
     std::uint32_t timer_started = 0;
@@ -35,8 +36,8 @@ inline std::int32_t control_signed_word(std::uint32_t value) {
 template<class Backend>
 class ColdControlFrame {
 public:
-    ColdControlFrame(ControlStartupState& startup, std::uint32_t& gate, Backend& backend)
-        : startup_(startup), gate_(gate), backend_(backend) {}
+    ColdControlFrame(ControlStartupState& startup, std::uint32_t& gate, Backend& backend,const game::SessionBroadcastPackets& broadcasts)
+        : startup_(startup), gate_(gate), backend_(backend),broadcasts_(broadcasts) {}
     ColdControlFrameState& state() { return state_; }
     const ColdControlFrameState& state()const{return state_;}
 
@@ -58,38 +59,15 @@ public:
         }
         flush(milliseconds);
     }
-    void reset() {
-        require_cold(); // Reject unsupported live objects BEFORE any mutation.
-        backend_.restore_cold_firewall(state_.firewall_changed); // Real OS/predicate branch.
-        backend_.restore_graphics_flags(state_.saved_graphics_flags);
-        flush(1000); // Original0072E4E0 calls0072C5D0 without peer phase.
-        startup_.word448 = 0;
-        startup_.byte4df8 = 0;
-        startup_.word5044 = 0;
-        gate_ = 7;
-        { Lock peers(backend_, 2); } // Actual empty peer-owner cleanup00746890.
-        { Lock records(backend_, 0); startup_.records.clear(); }
-        { Lock queues(backend_, 1); state_.queue_counts.fill(0); }
-        state_.local_peer = 0;
+    void reset() {reset_impl(false,[&]{flush(1000);},[&]{Lock queues(backend_,1);state_.queue_counts.fill(0);});}
+    //Actual packet owners flush/reset through the SAME native control fields.
+    //Each stage runs ONCE, including1000ms flush; no preliminary cold reset.
+    template<class Flush,class Clear>void reset_packets(Flush flush_packets,Clear clear_packets){
+        reset_impl(true,[&]{flush_packets(1000);},clear_packets);
     }
-    //0072E460 reached standalone branch.0072E1A0 sets all optional owners null;
-    // there are no interface/worker producers in this launch. Reject live ones.
-    // Final reset is distinct from status4 reset and precedes lock deletion.
-    void shutdown() {
-        if (closed_) return;
-        require_cold();
-        if (startup_.object4ee0)
-            throw std::logic_error("Control final resource owner is not reconstructed");
-        closed_ = true;
-        CleanupErrors errors;
-        errors.attempt([&] { reset(); });
-        if (startup_.locks5018) {
-            errors.attempt([&] { backend_.delete_control_critical_section(0); });
-            errors.attempt([&] { backend_.delete_control_critical_section(1); });
-            startup_.locks5018 = 0;
-        }
-        gate_ = 7;
-        errors.rethrow();
+    void shutdown(){shutdown_impl(false,[&]{reset();});}
+    template<class Flush,class Clear>void shutdown_packets(Flush flush_packets,Clear clear_packets){
+        shutdown_impl(true,[&]{reset_packets(flush_packets,clear_packets);});
     }
 private:
     struct Lock {
@@ -98,16 +76,37 @@ private:
         Lock(Backend& value, unsigned slot) : backend(value), index(slot) { backend.enter_control_lock(index); }
         ~Lock() { backend.leave_control_lock(index); }
     };
-    void require_cold() const {
+    template<class Flush,class Clear>void reset_impl(bool packets,Flush flush_packets,Clear clear_packets){
+        require_cold(packets); //Reject live transport/unknown request state BEFORE mutation.
+        backend_.restore_cold_firewall(state_.firewall_changed);
+        backend_.restore_graphics_flags(state_.saved_graphics_flags);
+        flush_packets();
+        startup_.word448=0;startup_.byte4df8=0;startup_.word5044=0;gate_=7;
+        {Lock peers(backend_,2);}
+        {Lock records(backend_,0);startup_.records.clear();}
+        clear_packets();state_.local_peer=0;
+    }
+    template<class Reset>void shutdown_impl(bool packets,Reset reset_control){
+        if(closed_)return;
+        require_cold(packets);
+        if(startup_.object4ee0)throw std::logic_error("Control final resource owner is not reconstructed");
+        closed_=true;CleanupErrors errors;errors.attempt(reset_control);
+        if(startup_.locks5018){
+            errors.attempt([&]{backend_.delete_control_critical_section(0);});
+            errors.attempt([&]{backend_.delete_control_critical_section(1);});startup_.locks5018=0;
+        }
+        gate_=7;errors.rethrow();
+    }
+    void require_cold(bool packets=false) const {
         if (gate_ != 7 || state_.server || state_.client || state_.worker_active ||
                 state_.firewall_changed || startup_.wrapper0c || startup_.wrapper10 ||
                 startup_.service14 || startup_.handle4d3c != -1 || state_.timer_enabled)
             throw std::logic_error("Only standalone cold control lifetime is reconstructed");
-        for (std::size_t i = 0; i < state_.stream_words.size(); ++i)
-            if (state_.stream_words[i] || state_.stream_bits[i])
-                throw std::logic_error("Control packet stream producer is not reconstructed");
-        if (state_.queue_counts[0] || state_.queue_counts[1])
-            throw std::logic_error("Control packet queues are not reconstructed");
+        if(state_.request_words||state_.request_bits)
+            throw std::logic_error("Control request stream requires its actual producer/decoder");
+        if(!packets&&broadcasts_.pending())throw std::logic_error("Control broadcasts require their actual packet pump");
+        if(!packets&&(state_.queue_counts[0]||state_.queue_counts[1]))
+            throw std::logic_error("Control packet queues require their actual packet pump");
         for (const auto& record : startup_.records)
             if (!record.byte(8) || *record.byte(8))
                 throw std::logic_error("Control peer ownership is not reconstructed");
@@ -130,6 +129,7 @@ private:
     ControlStartupState& startup_;
     std::uint32_t& gate_;
     Backend& backend_;
+    const game::SessionBroadcastPackets& broadcasts_;
     ColdControlFrameState state_;
     bool closed_ = false;
 };

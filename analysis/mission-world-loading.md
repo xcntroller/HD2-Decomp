@@ -313,3 +313,5 @@ composition remains required. Both P2.2 checkboxes remain open; no new world
 rendering or desktop acceptance follows from these focused native/host checks.
 
 2026-11-10: [Concrete activation and live-squad finish bindings](session-activation-integration.md) compile across the actual graph; same mutable records preserved, native marker read-only and navigation/dubbing finish checks pass. Shared transient receiver, meaningful guard/control/first frame and desktop acceptance remain.
+
+2026-11-10: [Process packet/camera binding](process-packet-world-binding.md) now preserves native process streams/FIFO across World exit, routes actual pending spawn/Scene2/roster consumers and binds camera to SAME inline/FPV/tree/input owners. Native sanitizers, full strict i386 graph, app link and27 tracker tests pass; two partials, no complete/desktop promotions. Full P2.2 remains open.
