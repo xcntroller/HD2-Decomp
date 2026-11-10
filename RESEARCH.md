@@ -1,5 +1,7 @@
 # Technical research guide
 
+2026-11-10: [Registered module dispatch/retirement](analysis/module-loading-dispatch.md) binds all eighteen actual loading/activation/finish/unload receivers, reverse finish order, real Items inventory/hand-model and runtime queue lifetimes plus positive visual light-map restoration. Native sanitizers/ten light-map failure prefixes, strict whole typed i386 router/WorldActors construction and app link pass; containing session consumers remain borrowed. Seven partials added:34 complete/1,943 partial. Source-only; continue actual containing session/Car/ordered loader/first frame.
+
 2026-11-10: [GEffects1 loading](analysis/geffects-module-loading.md) — GEffects1 source lifecycle now shares process environment/fade, actual frame/Human reset, borrowed scene Birds, water settings/visibility and decoration definitions/grid/mask. Native sanitizers pass17 Bird/80 full receiver failure prefixes plus process repeat; strict full i386 graph/actual world constructor and app link pass.21 partials added:34 complete/1,936 partial. Loading still declined; continue registered dispatch/containing loader.
 
 2026-11-10: [Versions7 loading](analysis/version-module-loading.md) — Versions7 now supplies positive model/part ownership, shared EC metadata, actual collision snapshot/grid registration and immediate/deferred retirement. Targeted native sanitizers pass all20 reached frame failure prefixes; strict full i386 graph/app link pass.13 partials added:34 complete/1,915 partial. Source-only; continue GEffects and containing loader.

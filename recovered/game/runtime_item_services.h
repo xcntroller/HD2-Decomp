@@ -43,6 +43,7 @@ public:
         }
     }
     const std::vector<void*>& kind20_items() const {return kind20_;}
+    void clear_loading_kind20_index()noexcept {kind20_.clear();} //007DCFB0/007D8A90:800=7FC, no item destruction.
     void clear_model_cache() noexcept {
         for(auto index=frontend::PreMissionItemCatalogue::capacity;index!=0;) {
             models_.clear_definition(--index);

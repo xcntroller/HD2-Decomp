@@ -9,6 +9,7 @@
 #include "game/human_face_mesh_pool.h"
 #include "game/mission_script_frame_snapshots.h"
 #include <mmsystem.h>
+#include <cstdlib>
 
 namespace hd2::host {
 
@@ -18,6 +19,9 @@ class GameActorFrames : public GameCarFrames {
 public:
     using GameCarFrames::GameCarFrames;
     MenuDriver::Owner retain_actor_frame(Frame frame) {return retain(frame);}
+    std::uint32_t visual_lightmap_group(Frame frame)const{return field<std::uint32_t>(frame,0x210);}
+    void set_visual_lightmap_group(Frame frame,std::uint32_t group){call<void>(frame,0xc8,group);} //0048D270/0048C790.
+    std::int32_t vertex_random(){return std::rand();} //00474B40, SAME process CRT stream.
     void script_cutscene_viewport() { //00428B30, same actual graphics and world scene.
         const auto width=graphics_.methods->width(&graphics_);const auto height=graphics_.methods->height(&graphics_);
         const auto rectangle=game::mission_script_cutscene_viewport(width,height);
@@ -799,6 +803,13 @@ public:
         call<void>(frame,0x1c,forward.data(),std::uint32_t{0});
     }
     MenuDriver::Owner create_item_template_model() {return driver_.create(9);}
+    void configure_item_cigarette(Frame model) { //007D76C0, borrowed lensf lookup; +24 updates, it does not release.
+        if(const auto lens=call<Frame>(model,0x48,"lensf",std::uint32_t{1})) {
+            put(lens,0x1e4,.15f);put(lens,0x244,.35f);
+            put(lens,0x1e0,1.f);put(lens,0x240,120.f);
+            object_visible(lens,false);update_scene_object(lens);
+        }
+    }
     std::int32_t load_item_template_model(Frame model,const std::string& key) {
         return resources_.load_model(model,key,0); //007DF750 preserves the resource key verbatim.
     }

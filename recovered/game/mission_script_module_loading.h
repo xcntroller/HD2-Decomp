@@ -79,6 +79,10 @@ public:
         try{runtime_.script_loading_finish();}catch(...){if(!failure)failure=std::current_exception();}
         if(failure)std::rethrow_exception(failure);
     }
+    void unload(bool authority) { //004285D0: finish first, then authority binding retirement.
+        if(loaded_)finish(authority);
+        if(authority)bindings_.clear();
+    }
 private:
     frontend::ClientModuleBinding registration_;
     Frames& frames_;Files& files_;Runtime& runtime_;std::string resource_;std::uint32_t& mode_;

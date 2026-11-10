@@ -200,6 +200,7 @@ public:
     void set_scene_actor_active(GameActorServices::Actor& actor,bool value){scene_.frames().set_scene_actor_active(actor,value);}
     void set_runtime_actor_active(GameActorServices::Actor& actor,bool value){runtime_.set_active(actor,value);}
     void remove_actor_presentation_references(typename Runtime::Instance& actor){consumers_.remove_actor_presentation_references(actor);}
+    void clear_retired_actor_record(std::int32_t identity){consumers_.clear_retired_actor_record(identity);}
     void close()noexcept {
         if(closed_||closing_)return;
         closing_=true;

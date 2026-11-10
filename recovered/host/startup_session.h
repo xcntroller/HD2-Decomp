@@ -29,6 +29,7 @@
 #include "game/shot_manager_loading.h"
 #include "game/heavy_fire_module_loading.h"
 #include "game/effects_loading_process.h"
+#include "game/item_hand_models.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
 #include "game/actor_proximity_loading.h"
@@ -180,6 +181,7 @@ public:
         multiplayer_request_.reset();
         errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
         errors.attempt([&] { modules_.shutdown(gate_); }); //0048DA80, after data.
+        item_hand_models_.clear();
         game_animations_.close();
         std::printf("Shutdown: input/sound/data/module cleanup completed=%u\n",
                     errors.failed() ? 0u : 1u);
@@ -202,6 +204,7 @@ public:
     game::ShotManagerLoadingState<GameActorServices>& shot_manager_process(){return shot_manager_process_;}
     game::HeavyFireLoadingState& heavy_fire_process(){return heavy_fire_process_;}
     auto& effects_loading_process(){return effects_loading_process_;}
+    auto& item_hand_models(){return item_hand_models_;}
     std::uint8_t& first_person_preference(){return data_.first_person_preference();}
     const frontend::LocalizedTextCache& text() const { return text_; }
     LoadedResources& loaded_resources() { return loaded_resources_; }
@@ -238,6 +241,12 @@ public:
         frontend::start_sound_runtime(sound_data_.runtime,sound_catalog_,files_,
             sound_data_.settings,sound_data_.fade,sound_data_.secondary,sound_data_.selection,
             gate_,game_sound_application(),std::uint8_t(authority),sound_backend_);
+    }
+    void unload_game_sound(bool authority) { //004338F0, virtual18; no sector clearing here.
+        if(!authority&&(gate_&1u))return;
+        frontend::reset_sound_runtime(sound_data_.runtime,sound_catalog_,files_,
+            sound_data_.settings,sound_data_.fade,sound_data_.secondary,sound_data_.selection,
+            gate_,game_sound_application(),1,0,sound_backend_);
     }
     void finish_game_sound(bool authority) { //004338A0, module6 virtual20.
         frontend::stop_sound_runtime(sound_data_.runtime,sound_catalog_,files_,
@@ -660,6 +669,7 @@ private:
     game::ShotManagerLoadingState<GameActorServices> shot_manager_process_;
     game::HeavyFireLoadingState heavy_fire_process_;
     game::EffectsLoadingProcess<EngineFrame*> effects_loading_process_;
+    game::ItemHandModels<GameActorServices> item_hand_models_;
     game::HumanAIEventPool human_ai_events_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
     game::HumanAIAction1Pool human_ai_actions1_;

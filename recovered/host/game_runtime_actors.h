@@ -78,6 +78,12 @@ public:
     }
     void remove(Instance* actor) noexcept {registry_.remove(actor);}
     void clear() noexcept {registry_.clear();}
+    void finish(bool authority) { //00477A90; actor owners BEFORE both spawn buffers.
+        if(!authority&&(mode_flags()&1))return;
+        registry_.clear();
+        std::vector<StaticItem>().swap(static_items_);
+        std::vector<typename Items::Placed>().swap(retained_items_);
+    }
     void clear_static_queue() { //004795E0; descriptor owners must outlive registered actors.
         for(const auto& queued:static_items_)if(queued.actor)
             throw std::logic_error("Static item queue cannot clear before its runtime actors");

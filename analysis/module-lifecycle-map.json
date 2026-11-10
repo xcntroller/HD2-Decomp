@@ -1,0 +1,149 @@
+{
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "modules": [
+    {
+      "kind": 0,
+      "vtable": "0x80f4d0",
+      "load_tail": "00402020",
+      "activate": "004010b0",
+      "unload_tail": "00402030",
+      "finish": "00401f40"
+    },
+    {
+      "kind": 1,
+      "vtable": "0x8101f0",
+      "load_tail": "00488560",
+      "activate": "004885d0",
+      "unload_tail": "004885a0",
+      "finish": "004888c0"
+    },
+    {
+      "kind": 2,
+      "vtable": "0x80f640",
+      "load_tail": "004106e0",
+      "activate": "00410a40",
+      "unload_tail": "004106f0",
+      "finish": "00410a70"
+    },
+    {
+      "kind": 3,
+      "vtable": "0x817208",
+      "load_tail": "007dcea0",
+      "activate": "007dd010",
+      "unload_tail": "007dcfb0",
+      "finish": "007dd240"
+    },
+    {
+      "kind": 4,
+      "vtable": "0x80f750",
+      "load_tail": "004285c0",
+      "activate": "004270d0",
+      "unload_tail": "004285d0",
+      "finish": "00427b80"
+    },
+    {
+      "kind": 5,
+      "vtable": "0x80ffc8",
+      "load_tail": "0046eee0",
+      "activate": "0046efd0",
+      "unload_tail": "0046eef0",
+      "finish": "0046eff0"
+    },
+    {
+      "kind": 6,
+      "vtable": "0x80f7b8",
+      "load_tail": "004338d0",
+      "activate": "00433840",
+      "unload_tail": "004338f0",
+      "finish": "004338a0"
+    },
+    {
+      "kind": 7,
+      "vtable": "0x80f908",
+      "load_tail": "0043dc90",
+      "activate": "0043dd40",
+      "unload_tail": "0043dca0",
+      "finish": "0043dd90"
+    },
+    {
+      "kind": 8,
+      "vtable": "0x810398",
+      "load_tail": "004115e0",
+      "activate": "00411600",
+      "unload_tail": "0048cb70",
+      "finish": "0048cb60"
+    },
+    {
+      "kind": 9,
+      "vtable": "0x810060",
+      "load_tail": "00474aa0",
+      "activate": "00474b40",
+      "unload_tail": "00474ac0",
+      "finish": "00474c10"
+    },
+    {
+      "kind": 10,
+      "vtable": "0x810418",
+      "load_tail": "004115e0",
+      "activate": "0048e180",
+      "unload_tail": "0048e190",
+      "finish": "0048e1d0"
+    },
+    {
+      "kind": 11,
+      "vtable": "0x80fc98",
+      "load_tail": "004115e0",
+      "activate": "00460aa0",
+      "unload_tail": "004115f0",
+      "finish": "00460b30"
+    },
+    {
+      "kind": 12,
+      "vtable": "0x8100e8",
+      "load_tail": "00476fa0",
+      "activate": "00477660",
+      "unload_tail": "00476fb0",
+      "finish": "00477a90"
+    },
+    {
+      "kind": 13,
+      "vtable": "0x8100a8",
+      "load_tail": "00475750",
+      "activate": "00476210",
+      "unload_tail": "00475760",
+      "finish": "00476260"
+    },
+    {
+      "kind": 14,
+      "vtable": "0x80fa18",
+      "load_tail": "004115e0",
+      "activate": "0044dde0",
+      "unload_tail": "004115f0",
+      "finish": "0044e110"
+    },
+    {
+      "kind": 15,
+      "vtable": "0x80fdd0",
+      "load_tail": "004115e0",
+      "activate": "00465160",
+      "unload_tail": "004115f0",
+      "finish": "00465610"
+    },
+    {
+      "kind": 16,
+      "vtable": "0x810010",
+      "load_tail": "004115e0",
+      "activate": "00472250",
+      "unload_tail": "004115f0",
+      "finish": "00472270"
+    },
+    {
+      "kind": 17,
+      "vtable": "0x80f9a0",
+      "load_tail": "00444110",
+      "activate": "00443f30",
+      "unload_tail": "00444130",
+      "finish": "00443fe0"
+    }
+  ]
+}

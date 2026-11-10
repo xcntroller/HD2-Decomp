@@ -26174,6 +26174,90 @@
         "analysis/geffects-module-loading.md",
         "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0048db90",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0048db90: Fresh reverse registration traversal for actual virtual20 finish receivers.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/game/mission_module_dispatch.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048dc20",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0048dc20: Fresh ascending registration traversal for actual virtual18 file-unload receivers.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/game/mission_module_dispatch.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004285d0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004285d0: Loaded Script finish before authority binding retirement.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/game/mission_script_module_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dcfb0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 007dcfb0: Still-queued placement entry destruction and shared kind20 index clearing, with source sidecar retraction.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/host/game_mission_items.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d8a90",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 007d8a90: Ascending actual Scene2 inventory reset and field7C clearing, placement buffer release and kind20 index reset.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/host/game_mission_items.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d76c0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 007d76c0: Actual process shared cards/bottle/cigarette model loading, failure retry, optional lens configuration and ownership.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/game/item_hand_models.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048d270",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0048d270: Actual retained visual light-map group changes, reverse lookup, original group preservation and swap/pop restoration.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/game/mission_auxiliary_module_loading.h"
+      ]
     }
   ]
 }
