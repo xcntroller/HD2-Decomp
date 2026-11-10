@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [World actor consumers](world-actor-loading-consumers.md) replaces common declared Consumers with shared source receivers and actual offline spawn/record/camera/Players chain, including compass definition9 correction and reverse-order actor lifetime guards. Source-only verified; Car callback completion and containing session/ordered loader/guard/first frame remain.
+
 2026-11-10: [Registered dispatch and retirement](module-loading-dispatch.md) now binds eighteen actual module owners and original reverse finish order, real Items/runtime cleanup and shared hand-model/visual light-map state. Source-only verified; actual containing session/Car consumers, ordered loader/integrity publication and first frame remain.
 
 2026-11-10: [GEffects1 loading](geffects-module-loading.md) — GEffects1 loading/activation/finish/file-unload now use actual shared process/scene owners, water, borrowed Birds and real decoration data. Source-only verified; registered dispatch/retirement and containing session/loader/first frame remain.

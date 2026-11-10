@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_HUD_PANELS_LOADING_H
 #define HD2_GAME_HUD_PANELS_LOADING_H
+#include "game/hud_compass_policy.h"
 #include "game/hud_artwork_loading.h"
 #include "game/hud_auxiliary_loading.h"
 #include "game/hud_command_loading.h"
@@ -80,13 +81,8 @@ public:
         small_.close_carnage();small_.close_server_message();small_.close_injury_message();
         started_=progress_started_=command_started_=false;errors.rethrow();
     }
-    void post_bind(std::uint32_t mode,std::uint32_t flags) { //0049F1C0; current-player/action9 mappings must be real.
-        bool visible=false;
-        if((mode&7u)==7u&&!(flags&0x1a0u)&&!frames_.hud_frame_visible(inventory_.root())&&
-                crosshair_.field14()!=1&&!command_.visible()) {
-            if(auto* player=players_.current_player())visible=players_.action(*player,9,0)!=0;
-        }
-        compass_.show(visible);
+    void post_bind(std::uint32_t mode,std::uint32_t flags) { //0049F1C0, actual current-Human definition9 lookup.
+        update_hud_compass_visibility(frames_,inventory_.root(),crosshair_,command_,players_,items_,compass_,mode,flags);
     }
     template<class Human>bool add_human(Human* human,std::int32_t index,std::uint32_t mode,std::uint32_t difficulty,std::int32_t local_player){
         return add_hud_loading_human(frames_,hud_,soldiers_,compass_,players_,items_,human,index,mode,difficulty,local_player,[&]{post_bind(mode,hud_.flags);});

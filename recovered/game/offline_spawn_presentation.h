@@ -12,7 +12,7 @@ template<class Human,class Control,class Camera,class Refresh>
 class OfflineSpawnPresentation {
 public:
     OfflineSpawnPresentation(Control& control,Camera& camera,Refresh& refresh,
-                              std::uint32_t& mode,std::uint32_t& local_player)
+                              std::uint32_t& mode,std::int32_t& local_player)
         :control_(control),camera_(camera),refresh_(refresh),mode_(mode),local_player_(local_player){}
     template<class Spawn>void present(std::uint32_t player,Spawn& spawn) {
         if(!spawn.base().frame())return;
@@ -20,7 +20,7 @@ public:
         if(!spawn.spawned_human)return;
         auto* human=dynamic_cast<Human*>(spawn.spawned_human);
         if(!human)throw std::runtime_error("SpawnPoint A8 is not its actual Human");
-        if(player==local_player_&&!spawn.properties.fielda0) {
+        if(player==static_cast<std::uint32_t>(local_player_)&&!spawn.properties.fielda0) {
             camera_.command_offline(0,true,0,mode_,refresh_); //Param3 presence1, param4NULL, not bool(true).
             camera_.command_offline(2,true,0,mode_,refresh_); //Native offline7 command2 does nothing.
             if(!control_.human_roster().contains(human))control_.add_human(human);
@@ -29,7 +29,7 @@ public:
     template<class Spawn>void publish_prepared_spawn(std::uint32_t player,Spawn& spawn,Human&,
             frontend::PreMissionSoldier&,const HumanVector&,const HumanVector&){present(player,spawn);} //Direct game1C==1 adapter.
 private:
-    Control& control_;Camera& camera_;Refresh& refresh_;std::uint32_t& mode_;std::uint32_t& local_player_;
+    Control& control_;Camera& camera_;Refresh& refresh_;std::uint32_t& mode_;const std::int32_t& local_player_;
 };
 
 //006125A0: actual SpawnPoint virtual1C presentation decoder, ordinary offline

@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_HUD_SCENE_LOADING_H
 #define HD2_GAME_HUD_SCENE_LOADING_H
+#include "game/hud_actor_retirement.h"
 #include "game/hud_text_loading.h"
 #include "game/hud_render.h"
 #include "frontend/cleanup.h"
@@ -81,6 +82,9 @@ public:
         hud_render(frames_,factory_,hud_,scene(),panels_,camera,mode,flags20_,fields6b8f8_,consumers);
     }
     auto& selection_actors(){return fields6b8f8_;} //SAME original6B8F8/FC borrowed actor pair.
+    template<class Actor>void remove_actor_references(std::uint32_t mode,unsigned kind,Actor* actor) { //0049EF70.
+        retire_hud_actor(hud_,fields6b8f8_,panels_.dialogs(),panels_.command(),mode,kind,actor);
+    }
     Frame scene()const{return scene_?scene_->get():Frame{};}Frame camera()const{return camera_?camera_->get():Frame{};}
     Frame model()const{return model_?model_->get():Frame{};}Frame down_panel()const{return down_panel_;}
 private:

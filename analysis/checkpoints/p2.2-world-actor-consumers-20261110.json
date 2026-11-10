@@ -1,0 +1,166 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "ledger_added_partial_client": 1,
+  "added": [
+    "005b7570"
+  ],
+  "extended_or_corrected": [
+    "0049ef70",
+    "0049f1c0",
+    "0059e3e0",
+    "00421bc0",
+    "00421930",
+    "006123a0",
+    "006125a0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 1944,
+  "native_checks": [
+    "Locked real control records A2/3C with preservation/bounds/exception unlock",
+    "Real Scene2 registry/context retirement and foreign rebinding",
+    "Actual common consumer/context/proximity/SOUND/HUD routes",
+    "Dynamic item contact sound signed threshold/definition/default request/world pose/failure/retry",
+    "Actual current Human inventory definition9 compass and all native visibility gates",
+    "Signed process local identity including-1 and camera-before-roster",
+    "Actual game1C default/live direct/broadcast selection independent of status04, same records and recursive locks"
+  ],
+  "strict_i386": "PASS complete actual router/WorldActors/common Consumers/SceneActorLoadingRuntime/VM and real offline spawn presentation/record/decoder chain; Car factory and containing aggregate/HUD world data still borrowed.",
+  "application_link": "PASS",
+  "tracker_checks": 27,
+  "unimplemented_no_credit": [
+    "004b0920",
+    "004b0f30",
+    "004b27b0",
+    "004c11c0",
+    "004c0370",
+    "004bffe0"
+  ],
+  "remaining": [
+    "Concrete Car callback owner and containing aggregate/session instances",
+    "Ordered loader and actual integrity observations",
+    "Actual camera/update/render and loaded-world publication",
+    "Failure/repeat integration and user desktop acceptance"
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-reference-offsets.asm",
+      "sha256": "3dffbaf4829fe0e014cb8bbfcab5c3919321bd8ac6df3c76aa479e1f0a6fd95b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/item-spawn-loading-boundary/0049ef70.c",
+      "sha256": "10da39880b3510049f1d3eb38d20cd7dd967666dd11772284ba74c5a887ee598"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/item-spawn-loading-boundary/005b69b0.c",
+      "sha256": "a3954f4f738c3d98960e9516af3abdb3c76d66058801dbde191be85bb49f5f6e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/dynamic-item-contact-dependencies/005b7570.c",
+      "sha256": "ffe24d4173628e4aedfa7165896df4cdc7e270f4bdc51f8c877fb7b52ea2a96e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/actor-cold-lifetime/0059e3e0.c",
+      "sha256": "0190bfeaefc596a1f4ff6ebc6dd0af3d1ef1b56d29a960371eeda83f6996a380"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/scene-actor-pending-removal/00476860.c",
+      "sha256": "182f6f2a616d36b40d3810032be7c0553410c79c429cc8c96034dc1798f6651b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-containing-post-bind/0049f1c0.c",
+      "sha256": "91bb355d42869940eac17f13c458456e5cc83eff6162c012bcb259cb1d7609be"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/soldier-bind-first-frame-required/005a78f0.c",
+      "sha256": "f90857bcfa84bb395a4348f01ec072bfefee4b5a6c77c4754484f19b73570190"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-loading-panels-lifetime/004b0750.c",
+      "sha256": "1f0f8284d35297e113bb6a2f579832862841714ce18cd76e992ec65565486297"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-loading-panels-lifetime/004b4980.c",
+      "sha256": "9e072a9f5adbfc753fbb2197d32e3b7d74afad7a59362659e42aca0c6772a764"
+    },
+    {
+      "path": "analysis/work/multiplayer-bitstream-20261101/00698510.c",
+      "sha256": "e572589abd20dcc8c9de2e5c443dcdbc39a770ea890cffbb0c01903bd776a4c7"
+    },
+    {
+      "path": "analysis/work/phase2-owner-20261103/exports/00698f80.c",
+      "sha256": "08076c7d4e9c809583ce313d8904c0dae0f2af455e565f9c1641222dedc06400"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-required/004b0920.c",
+      "sha256": "543616a5653a74f0997999eac1f10eaf2bcd4231f605505e20275f1c76ae117e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-required/004b0920.json",
+      "sha256": "3bfcbb6aeab9124989dc4b6a829bad63a2147131908702ece459fef16f7bf450"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-required/004c11c0.c",
+      "sha256": "1e1ea180d00c54310ecc8c15aa584aa2b0865e0c1f84cdd4c204f42eb55b53ed"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-required/004c11c0.json",
+      "sha256": "fdfade7557a1a65f0e8a7ec0b112c13885afbc2c573c459d30e67d243525d416"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-callees/004b0f30.c",
+      "sha256": "20e7d687daa06c908e0f13d577743fcea0ae7e8a506fa82c96e599d72fcd7499"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-callees/004b0f30.json",
+      "sha256": "b5ee4181af4aa8e9f27e84b5950919b121adba377577ff808c039602be9bb7a5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-callees/004b27b0.c",
+      "sha256": "e93ca284485cd7db01193c6ad9aa9b0f91d5d10afd4a763fba94e947e2227f95"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-callees/004b27b0.json",
+      "sha256": "ce711fe4439c2ccd65eca83df04d8fc850fd23afa18e43010747095a8edb4d6f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-callees/004bffe0.c",
+      "sha256": "f774363f7c096ec1c629d944641c4f7e4081ad9f380ad8b8a285f6f5d1b97a43"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-callees/004bffe0.json",
+      "sha256": "4d93d86399a644e1a7da3a2b75ec5bd1f0105828483398036e28533d1ad6e488"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-callees/004c0370.c",
+      "sha256": "c9548d46802de1dc15d173e471d46280ce87c870cd9876815c58ba25e73fd132"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/world-retirement-hud-callees/004c0370.json",
+      "sha256": "721d7f1104bf2a15c7d4e411f9fa0b166feadc0496a91b716515c029f3d7a8ea"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-world-runtime-native.cpp",
+      "sha256": "eb5dfcd1dae0aac1179f5e3e459d641e436c662bbbba4201339af47db3c5283d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-world-runtime-native",
+      "sha256": "5d57be0f5a1b0e50f18b5fec942677e52295f11954f8bc2cce6656255d015fc4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-world-runtime-host.cpp",
+      "sha256": "29516db1b57cfd0da8309a6d09e1b9c24e4d13db4f0e7f495eeb9b2c61e0c77f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-world-runtime-host.o",
+      "sha256": "5ef79b2717106d3c50058f35599d15137a45a4b4a355149967668fd81dc19817"
+    }
+  ],
+  "temporary_audits_removed": true
+}

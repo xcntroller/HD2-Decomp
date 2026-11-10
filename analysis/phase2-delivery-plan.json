@@ -6,7 +6,7 @@
   "policy": "User postpones exhaustive pre-Phase2 pass; function completion follows delivery with one consolidated sweep. P2.0 research belongs inside the first implementation batch.",
   "source_contract": "analysis/phase2-delivery-plan.md",
   "boundary_evidence": "analysis/phase2-boundary-map.json",
-  "ledger_sha256": "212b120d894714a71d450ec73dd9d5d079ab612abde11303849dd1bb2cf05327",
+  "ledger_sha256": "1ee8cb1cc211f65461e26d46cf081236fda364673edb6ee247e8f03d4c06d16a",
   "first_visible_targets": [
     "P2.2",
     "P2.3"
@@ -115,6 +115,11 @@
           "contract": "analysis/module-loading-dispatch.md",
           "receipt": "analysis/checkpoints/p2.2-module-loading-dispatch-20261110.json",
           "status": "source-only verified; actual containing session/Car consumers, loader and first frame remain"
+        },
+        "world_actor_consumers": {
+          "contract": "analysis/world-actor-loading-consumers.md",
+          "receipt": "analysis/checkpoints/p2.2-world-actor-consumers-20261110.json",
+          "status": "source-only verified common Consumers/SceneActorRuntime/offline spawn; Car/containing session/loader/first frame remain"
         }
       },
       "checkpoint_record": "analysis/checkpoints/p2.2-20261109.json",

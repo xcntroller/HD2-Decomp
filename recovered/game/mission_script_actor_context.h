@@ -14,12 +14,19 @@ public:
     static_assert(Family==1||Family==2,"Actual actor context family is Human1 or Dog2");
     using Actor=SceneActor<Frames>;
     ActorMissionScriptContext(Frames& frames,typename Frames::Frame frame,Actor& actor)
-        :MissionScriptContext<Frames>(frames,frame,false),actor_(actor){}
+        :MissionScriptContext<Frames>(frames,frame,false),actor_(&actor){}
     std::uint32_t family()const override{return Family;} //00421BF0/00421960.
-    Actor& actor()const{return actor_;}bool flag108()const{return flag108_;}
+    Actor& actor()const{
+        //The native reverse module finish can delete reserved Scene2 Humans
+        //before Script4 exits its contexts. The frame remains retained here;
+        //do not dereference a retired10C borrower if an Exit block requests it.
+        if(!this->frame_actor_matches(actor_))
+            throw std::runtime_error("Actor script context has no matching live Scene2 owner");
+        return *actor_;
+    }bool flag108()const{return flag108_;}
     void flag108(bool value){flag108_=value;}
 private:
-    Actor& actor_;bool flag108_=false;
+    Actor* actor_;bool flag108_=false;
 };
 
 //00427730 factory selection from the SAME frame EC word0, before compiler or

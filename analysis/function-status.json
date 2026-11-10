@@ -12315,13 +12315,15 @@
       "program": "client",
       "entry": "0049f1c0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0049f1c0: Composition/retirement of actual HUD panels and reached forwarding setters; registry/world consumers remain required.",
+      "coverage": "P2.2 source reconstruction at original entry 0049f1c0: Actual compass visibility gates and SAME current Human/Items DEFINITION9 lookup005A78F0, replacing the prior unresolved player-action callback.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/hud_panels_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/world-actor-loading-consumers.md",
+        "recovered/game/hud_compass_policy.h"
       ]
     },
     {
@@ -16989,7 +16991,7 @@
       "program": "client",
       "entry": "0059e3e0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0059e3e0: Actual cold Human/context/command allocations, known fields and destructor dependency ordering; populated runtime producers excluded. Concrete source runtime routes same process proximity and required nonoffline player records; no substitute array.",
+      "coverage": "P2.2 source reconstruction at original entry 0059e3e0: Actual cold Human/context/command allocations, known fields and destructor dependency ordering; populated runtime producers excluded. Concrete source runtime routes same process proximity and required nonoffline player records; no substitute array. Actual SAME locked control-record DWORD3C endpoint is supplied through Startup/SceneActorLoadingRuntime.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_scene_actor.h",
@@ -16998,7 +17000,10 @@
         "analysis/checkpoints/p2.2-20261109.json",
         "recovered/game/scene_actor_loading_runtime.h",
         "analysis/shared-world-loading-consumers.md",
-        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
+        "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json",
+        "analysis/world-actor-loading-consumers.md",
+        "recovered/frontend/control_actor_records.h",
+        "recovered/host/startup_session.h"
       ]
     },
     {
@@ -19279,13 +19284,17 @@
       "program": "client",
       "entry": "0049ef70",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0049ef70: Actual Scene2 actor/frame identity registry, stable holes, load/property dispatch and ordered retirement; unsupported families remain explicit.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 0049ef70: Actual HUD flags/mode/kind gates, matching borrowed selection pair and command1C actor clearing, with required populated roll/signal rebuild receivers explicitly unavailable.",
+      "limitations": "Source-only typed HUD actor borrowers replace the original layout/virtual ABI. Positive roll target/menu and signal-row rebuilding remain explicit errors with no successful producer in loading; complete application/UI teardown is not claimed. Native boundary doubles and strict actual i386 consumer composition pass; no world/first-frame/desktop or whole-body equivalence claim.",
       "evidence": [
         "recovered/game/scene_actor_registry.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/world-actor-loading-consumers.md",
+        "recovered/game/hud_actor_retirement.h",
+        "recovered/game/hud_scene_loading.h",
+        "recovered/game/hud_command_loading.h"
       ]
     },
     {
@@ -21295,24 +21304,27 @@
       "program": "client",
       "entry": "006125a0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 006125a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application.",
+      "coverage": "P2.2 source reconstruction at original entry 006125a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application. Actual host presentation/record/packet decoder composition is supplied, borrowing SAME process identities and control records.",
       "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/offline_spawn_presentation.h",
         "analysis/camera-local-dispatch-loading.md",
-        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+        "analysis/world-actor-loading-consumers.md",
+        "recovered/game/prepared_spawn_packets.h"
       ]
     },
     {
       "program": "client",
       "entry": "006123a0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 006123a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application.",
+      "coverage": "P2.2 source reconstruction at original entry 006123a0: Offline SpawnPoint subtype0 decode and existing SAME A8 Human presentation; camera commands precede actual Players roster append; no duplicate Human allocation or decoded-pose application. Actual source presentation borrows signed process local identity; camera/roster chain now instantiates with real host owners.",
       "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/offline_spawn_presentation.h",
         "analysis/camera-local-dispatch-loading.md",
-        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+        "analysis/world-actor-loading-consumers.md"
       ]
     },
     {
@@ -24643,22 +24655,26 @@
       "program": "client",
       "entry": "00421bc0",
       "status": "partial",
-      "coverage": "Actual Human context construction with base retained frame/EC word1, borrowed actor10C and zero108.",
+      "coverage": "Actual Human context construction with base retained frame/EC word1, borrowed actor10C and zero108. Derived actor borrower validates retained-frame EC identity before dereference, including original reverse retirement.",
       "limitations": "Native layout/vtable ABI differs; Human00421C00 commands still require actual receivers.",
       "evidence": [
         "analysis/human-world-composition.md",
-        "recovered/game/mission_script_actor_context.h"
+        "recovered/game/mission_script_actor_context.h",
+        "analysis/world-actor-loading-consumers.md",
+        "recovered/game/mission_script_context.h"
       ]
     },
     {
       "program": "client",
       "entry": "00421930",
       "status": "partial",
-      "coverage": "Actual Dog context construction with base retained frame/EC word1, borrowed actor10C and zero108.",
+      "coverage": "Actual Dog context construction with base retained frame/EC word1, borrowed actor10C and zero108. Derived actor borrower validates retained-frame EC identity before dereference.",
       "limitations": "Native layout/vtable ABI differs; Dog00421970 commands and positive534 owner remain excluded.",
       "evidence": [
         "analysis/human-world-composition.md",
-        "recovered/game/mission_script_actor_context.h"
+        "recovered/game/mission_script_actor_context.h",
+        "analysis/world-actor-loading-consumers.md",
+        "recovered/game/mission_script_context.h"
       ]
     },
     {
@@ -26257,6 +26273,18 @@
         "analysis/module-loading-dispatch.md",
         "analysis/module-lifecycle-map.json",
         "recovered/game/mission_auxiliary_module_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b7570",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 005b7570: Actual dynamic-item entry/definition and signed cooldown gates, world position/default SOUND request, group5/entry38 emission and cooldown2000 publication after emission.",
+      "limitations": "Source-only typed Items/Frames/SOUND borrowers replace native object/request/virtual ABI. Targeted native ASan/UBSan uses explicit frame/item/sound doubles; strict actual world/router/consumer graph compiles for i386. Later item simulation and network events remain separate; no containing application world, first frame, desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/world-actor-loading-consumers.md",
+        "recovered/game/dynamic_item_contact_sound.h",
+        "recovered/game/dynamic_item_actor.h"
       ]
     }
   ]

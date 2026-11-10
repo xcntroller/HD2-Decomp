@@ -5,6 +5,7 @@
 #include "game/rigid_body.h"
 #include "frontend/cleanup.h"
 #include "frontend/pre_mission_data.h"
+#include "game/dynamic_item_contact_sound.h"
 #include <limits>
 
 namespace hd2::game {
@@ -77,6 +78,9 @@ public:
         if(event==0&&entry_&&(activation_.mode_flags()&7)!=7&&(activation_.mode_flags()&1))
             items_.dynamic_item_sleep_notification(*this); //005B7C50, actual network producer required.
         return 0;
+    }
+    template<class Sound>void contact_sound(Sound& sound) { //005B7570, actual item definition38 and world pose.
+        emit_dynamic_item_contact(this->backend_,items_,entry_,this->base_.frame(),field6a4_,sound);
     }
     Entry entry() const {return entry_;}
     Body& body() {return body_;}

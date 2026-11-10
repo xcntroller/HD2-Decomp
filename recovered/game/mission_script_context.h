@@ -31,6 +31,10 @@ public:
     MissionScriptContext(const MissionScriptContext&)=delete;
     MissionScriptContext& operator=(const MissionScriptContext&)=delete;
     Frame frame()const{return frame_;}
+    bool frame_actor_matches(const void* actor)const { //Source lifetime check against the SAME live EC registry.
+        const auto* data=frame_?frames_.find_actor_frame_data(frame_):nullptr;
+        return data&&data->words[0]==reinterpret_cast<std::uintptr_t>(actor);
+    }
     virtual std::uint32_t family()const{return 0;} //0041DF10, actual context virtual+04.
     MissionScriptProgram& program(){return program_;}
     const MissionScriptProgram& program()const{return program_;}

@@ -26,7 +26,7 @@ public:
         if(bound_)throw std::logic_error("HUD command rebound before borrower retirement");
         require(scene);require(world);bound_=true;scene_=scene;world_=world;collision_=collision;contexts_=contexts;
         border_=find("Border");frames_.object_visible(border_,false);frames_.update_scene_object(border_);
-        fields10_.fill(0);bind_buttons();bind_texts();
+        fields10_.fill(0);actor1c_=nullptr;bind_buttons();bind_texts();
         for(unsigned n=0;n!=10;++n){std::array<char,32> name{};std::snprintf(name.data(),name.size(),"info%02u",n);frames_.hud_frame_tag(find(name.data()),n+20);}
         auto model=frames_.create_hud_info_model();if(!model)throw std::runtime_error("HUD command model factory returned null");
         //Original tolerates missing l_aicomm: release the attempted owner and
@@ -51,7 +51,9 @@ public:
     void discard_borrowers()noexcept {
         border_=scene_=world_=Frame{};collision_=nullptr;contexts_.fill(nullptr);textures_.fill(Frame{});
         buttons_.fill(Button{});speed_icons_.fill(Frame{});roll_.discard_borrowers();bound_=false;
+        actor1c_=nullptr;
     }
+    void retire_actor_reference(const void* actor)noexcept {if(actor1c_==actor)actor1c_=nullptr;} //0049EF70, HUD10B3C = command+1C.
     const auto& buttons()const{return buttons_;}const auto& speed_icons()const{return speed_icons_;}
     const auto& textures()const{return textures_;}auto route_counts()const{return routes_.counts();}
     auto& route_buffers(){return routes_;}
@@ -110,7 +112,7 @@ private:
     Frame scene_{},world_{},border_{};void* collision_=nullptr;std::array<void*,5> contexts_{};
     std::array<Button,18> buttons_{};std::array<Frame,5> speed_icons_{};std::array<Frame,10> textures_{};
     std::optional<Owner> model_;std::vector<Owner> route_models_;
-    std::array<std::uint32_t,4> fields10_{};std::array<std::uint32_t,2> fields740_{};
+    std::array<std::uint32_t,3> fields10_{};const void* actor1c_=nullptr;std::array<std::uint32_t,2> fields740_{};
     HudCommandRoutes routes_;
     std::array<std::uint8_t,6> flags5a7b_{};std::uint8_t flag5c_=0,flag5a7b0_=0;std::uint32_t speed_kind_=0,field54_=0;bool bound_=false;
 };

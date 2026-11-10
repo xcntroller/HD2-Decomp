@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_PREPARED_SPAWN_PACKETS_H
 #define HD2_GAME_PREPARED_SPAWN_PACKETS_H
+#include "game/session_activation.h"
 
 #include "frontend/control_startup.h"
 #include "frontend/pre_mission_inventory.h"
@@ -86,8 +87,8 @@ template<class Locks,class Scene,class Direct>
 class PreparedSpawnPackets {
 public:
     PreparedSpawnPackets(frontend::ControlStartupState& state,SessionBroadcastPackets& streams,
-                         Locks& locks,Scene& scene,Direct& direct,std::uint32_t& mode,std::uint32_t& game_kind)
-        :state_(state),streams_(streams),locks_(locks),scene_(scene),direct_(direct),mode_(mode),game_kind_(game_kind){}
+                         Locks& locks,Scene& scene,Direct& direct,std::uint32_t& mode,SessionActivationState& game)
+        :state_(state),streams_(streams),locks_(locks),scene_(scene),direct_(direct),mode_(mode),game_(game){}
     void bind_spawned_player(std::uint32_t player,std::uint32_t value,const std::string& name) { //0072E940.
         if(!(mode_&2u))return;
         Lock lock(locks_);
@@ -105,7 +106,7 @@ public:
     void publish_prepared_spawn(Spawn& spawn,Human& human,frontend::PreMissionSoldier& soldier,
                                 const HumanVector& position,const HumanVector& direction) {
         if((mode_&7u)!=7u)throw std::runtime_error("Prepared packet requires actual nonoffline stat serialization");
-        if(game_kind_==1) {
+        if(game_.words.template get<std::uint32_t>(0x1c)==1) {
             Lock lock(locks_);
             const auto record=state_.records.at(0); //0072EC70 lock remains held through direct receiver.
             if(mode_&2u)bind_spawned_player(0,record.word(0),record.name()); //Native recursive critical section.
@@ -131,7 +132,7 @@ private:
         ~Lock(){locks.leave_control_lock(0);}
     };
     frontend::ControlStartupState& state_;SessionBroadcastPackets& streams_;Locks& locks_;Scene& scene_;Direct& direct_;
-    std::uint32_t& mode_;std::uint32_t& game_kind_;
+    std::uint32_t& mode_;const SessionActivationState& game_;
 };
 } //namespace hd2::game
 #endif

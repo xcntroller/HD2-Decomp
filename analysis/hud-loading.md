@@ -1,3 +1,5 @@
+2026-11-10 correction: [actual world consumer composition](world-actor-loading-consumers.md) wires0049F1C0 to the SAME current Human/Items definition9 lookup005A78F0, replacing the old player-action adapter. HUD0049EF70 now clears actual selection pair and command1C borrowers; populated roll rebuilding remains unavailable.
+
 # HUD mission-loading reconstruction
 
 This is source-only required0049A940 HUD loading work within full P2.2. Current
@@ -847,7 +849,7 @@ appends exact `Camera pos: 0,0,0`,style4E; no replacement text/fonts.
 
 0049F1C0 finalcompass policy uses actual panel borrowers: ordinarily showfalse;
 mode7 only, flags&1A0zero, inventoryroot hidden, crosshairfield14!=1 and command
-Border hidden, then SAME current Players receiver and005A78F0 action9/0 nonzero.
+Border hidden, then SAME current Players receiver and005A78F0 definition9 inventory lookup nonnull.
 Player/action endpoint remains declaration-only in i386, actual production mapping
 not invented.00494170 toleratesnullcompass and neverupdates;004B6180 tests actual
 BorderE0visibility. Native fixture tests ordinary branch skips player lookup and
@@ -884,7 +886,7 @@ requiredmodelerror, optionalnegativeclicksounderror/unavailable-sound branch,
 inline debug, earlyinventory/latecommand unwind. Engine/resource/localization/
 World/player endpoints remain fixtures. Strictactuali386 frame/cache/font/input/
 config/camera/identity source compile and application link pass. Worldscene/
-missionA8 objectives/type37zoneA4/currentplayer/action9 mappings remain explicitly
+missionA8 objectives/type37zoneA4 mappings remain explicitly
 declared; no runtime implementation supplied. Receipts hud-panels-verification-
 wip.json and hud-scene-verification-wip.json fingerprint/remove four audits each.
 

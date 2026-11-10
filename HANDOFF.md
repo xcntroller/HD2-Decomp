@@ -2,70 +2,73 @@
 
 Continue FULL P2.2 first unchecked implementation checkbox in plan.md. Read
 AGENTS.md. Continue dependencies/checkpoints until done or concretely blocked.
-Larger verified subsystem commits; consolidate documentation/tally there. No
-push, agents/goals, original EXE/DLL/Proton or Windows fixture execution. Preserve
-assets/user changes. Focused checks; heavy builds/Ghidra SEQUENTIAL (memory
-crashes). No permanent tests. Interactive changes need user desktop acceptance;
+Larger verified subsystem commits; consolidate docs/tally there. No push,
+agents/goals, original EXE/DLL/Proton or Windows fixture execution. Preserve
+assets/user changes. Heavy builds/Ghidra SEQUENTIAL (memory crashes), focused
+checks, no permanent tests. Interactive changes need user desktop acceptance;
 source-only work needs no invented desktop test.
 
 GameApplicationState still DECLINES loading. No loaded world, first frame or new
-desktop acceptance. Ledger34 complete/1,943 partial(1,938 client/five engine)
+desktop acceptance. Ledger34 complete/1,944 partial(1,939 client/five engine)
 /18,783 frozen. Zero complete promotions. Both P2.2 checkboxes remain OPEN.
 
 ## Latest source checkpoint
 
-[Registered dispatch/retirement](analysis/module-loading-dispatch.md),
-[receipt](analysis/checkpoints/p2.2-module-loading-dispatch-20261110.json),
-[all18 original vtables](analysis/module-lifecycle-map.json).
-GameLoadingModules binds SAME actual Startup registrations/mode/request to real
-source module owners. +14 tail/+1C activation/+18 unload ASCENDING;0048DB90/+20
-finish REVERSE fresh slots. Required failed Script bindings reject activation;
-configuration kind is owned preparation.standalone, not request.mode. Actual
-camera parameters come from scene.documents().fields(). SOUND unload reset1,0
-has no sectorclear. Script unload finishes before authority binding clear.
-Items finish matches authority==bool(mode&1): identity/deque reset,7E4 false,
-ascending SAME Scene2 inventories reset007DDEF0, placement buffer free/kind20
-indexclear, then shared hand models clear. Unload only retires queued placements
-and kind20 index. Registered83C/definition caches are separate. Source sidecars
-retract freed placements instead of retaining stale native rows. Actual shared
-cards/bottle/cigarette process model owner added; borrowed lensf +24 is UPDATE,
-NOT release. Runtime finish retires actors then frees BOTH spawn buffers.
-Positive direct visual lightmap changes/restoration supplied; named-group array
-has no producer. Tracks definitions real; playback and texture-shift arrays
-remain genuinely cold with no successful producer/API. Absent/cold wrappers get
-no extra credit. Seven new frozen partials. Native ASan/UBSan route/ownership,
-ten lightmap failure prefixes/repeat, strict COMPLETE actual typed router AND
-WorldActors/WorldScene constructors/app link/27 tracker checks PASS. Containing
-Consumers are still borrowed declarations in the strict fixture, NOT linked
-application services. Completed temporary audits removed. Active next ignored
-fixture WORK/checkpoint-world-runtime-host.cpp.
+[World actor consumers](analysis/world-actor-loading-consumers.md),
+[receipt](analysis/checkpoints/p2.2-world-actor-consumers-20261110.json).
+WorldActorLoadingConsumers now supplies common formerly-declared methods with
+SAME actual Startup/Scene2/Items/Human factory/Players/Script link/SOUND/HUD/
+proximity/Car/packet borrowers. SceneActorLoadingRuntime now composes with it.
+Actual locked control A2/3C writes, derived script actor lifetime guard, HUD
+selection pair/command1C actor cleanup, dynamic-item contact SOUND005B7570.
+HUD10B3C is COMMAND10B20+1C, NOT Signals; exact assembly retained. Main roll
+2F00+88 cold, positive roll/signal rebuild still rejects/no producer.
+Strict actual spawn composition found compass0049F1C0 needs005A78F0 INVENTORY
+DEFINITION9 lookup, NOT player action. Source now uses SAME Human/Items lookup.
+Offline spawn borrows signed Startup local identity; PreparedSpawnPackets reads
+SAME session.words1C, initialized0 by00698510, distinct from session.status04.
+Startup lends SAME control records with callers' lock0. Strict actual graph now
+constructs real source WorldActors/common Consumers/SceneActorLoadingRuntime/
+VM/router AND actual offline presentation/PreparedSpawnPackets/decoder/camera
+refresh. The old declared common Consumers/Spawn decoder are removed. Car
+factory and containing aggregate/HUD world data remain borrowed, not real
+application instances. Native focused ASan/UBSan checks all contracts/failures/
+repeat and actual game1C direct/broadcast recursive locks; strict i386/app link/
+27 tracker checks PASS. One new partial; existing HUD/context/spawn claims
+corrected/extended once. Completed audits hashed/removed. Active next ignored
+fixture WORK/checkpoint-car-callback-host.cpp.
 
-Prior6021978 [GEffects1](analysis/geffects-module-loading.md),4af20a3
-[Versions7](analysis/version-module-loading.md),c97d95b
-[module lifetimes](analysis/module-loading-lifetimes.md),52c5689
+Prior21b5c7c [module dispatch](analysis/module-loading-dispatch.md)/
+[18 vtables](analysis/module-lifecycle-map.json);6021978
+[GEffects](analysis/geffects-module-loading.md);4af20a3
+[Versions](analysis/version-module-loading.md);c97d95b
+[lifetimes](analysis/module-loading-lifetimes.md);52c5689
 [session consumers](analysis/session-loading-consumers.md)/[ShotMgr](analysis/shot-manager-loading.md).
-Human/VM/FPV/HUD/Players source links in RESEARCH.md/loading-modules.md.
+Other Human/VM/FPV/HUD/Players links in RESEARCH.md/loading-modules.md.
 
 ## Next — SAME full checkbox
 
-Actual containing session/Car/world consumers and instances, ordered006CA780
-loader, actual first camera/update/render, failure/repeat then desktop acceptance.
-Source WorldScene/WorldActors/VM/router are still UNCALLED by application. Strict
-graph constructs source WorldActors but BORROWS Consumers/Car/SceneActorRuntime.
-Existing game/scene_actor_loading_runtime.h already supplies typed Human/Switch
-runtime; bind it rather than reinventing it. GameCarCallbackFrames remains
-abstract until actual actor/item/script/effect/particle receivers are supplied.
-Runtime source receivers now expose concrete requirements through full router
-instantiation; ignored host fixture explicitly declares missing Consumers.
+Actual Car callback owner and containing world/session instances, ordered006CA780
+loader, first camera/update/render, failure/repeat then user desktop acceptance.
+All recovered loading world/VM/router/Consumers are still UNCALLED by application.
+GameCarCallbackFrames is abstract: actual actor/item/script/effect/particle
+receivers remain to bind. Do not add successful placeholder services.
 
-Ownership: VM finishes/unlinks before Human/B0/Items/scene. Clear FPV/camera
-and dubbing actor borrowers first. Same EC registry, roster, collision grid,
-caches/pools, process CRT/mode/config/registrations. Human Frames=GameActorServices
-sharing derived GameSceneActors, no separate actor store. Fresh B0 stance74/78=0,
-previous-null Area8 skips B4. Positive stance/area/Dog534/nonoffline friendship
-reject. Script bank survives finish; standalone kind1 clears current/campaign
-snapshots after contexts begin. Source mode0 Fowl transfer/grass/update/positive
-particle producers remain excluded; keep first-frame gates honest.
+Ordering: +14/+1C/+18 fresh ASCENDING;0048DB90/+20 fresh REVERSE. Original
+00698F80 does presentation finish→dubbing close→authority finish→HUD close.
+Reserved Scene2 Humans can die before Script4 contexts exit. Derived actor
+access now checks SAME retained-frame EC0 before dereference, rejecting retired
+borrowers. Do NOT move VM finish ahead of native module order as a lifetime
+substitute. Final aggregate destruction still retracts VM and remaining Human/
+FPV/camera/dubbing borrowers before engine scene disposal. Positive Exit blocks
+requiring retired B0 remain an explicit required receiver; no successful bypass.
+
+Same EC/roster/grid/pools/cache, process CRT/mode/config/registrations; Human
+Frames=GameActorServices sharing GameSceneActors. Script bank persists and
+standalone kind1/campaign bank selection follows context begin. Fresh B0 clears
+stance74/78, previous-null Area8 skips B4. Positive stance/area/Dog534/nonoffline
+friendship reject. Mode0 Fowl transfer/grass/positive particle producers remain
+excluded; preserve honest first-frame gates and live overlay precedence.
 
 Guard: Startup tables still UNINITIALIZED; private observed publication unresolved.
 006E9EA0 initializer896 SAME CRT draws, WORD indices/DWORD expected+observed.

@@ -12,6 +12,7 @@ namespace hd2::game {
 //owned request. Loaded14 must be written by the SAME006CA780 stage completion;
 //neither construction nor activation policy fabricates that success.
 struct SessionActivationState {
+    SessionActivationState(){words.set(0x1c,std::uint32_t{0});} //00698510, normal session packet kind; separate from status04/configuration04.
     std::uint32_t status=0;bool loaded=false;
     const frontend::GameDataNode* mission=nullptr;
     HumanJointWords<0x110> words; //Scalar slots only; native pointers are separate.

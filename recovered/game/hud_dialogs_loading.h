@@ -13,7 +13,7 @@ class HudDialogsLoading {
 public:
     using Frame=typename Frames::Frame;using Text=typename Factory::DisplayText;
     struct Roll {Frame scene{};Hud* hud=nullptr;Frame root{},cursor{};std::unique_ptr<Text> text;
-        std::array<float,4> position20{};std::uint8_t flag30=0,flag31=0;std::uint32_t field88=0;};
+        std::array<float,4> position20{};std::uint8_t flag30=0,flag31=0;const void* field88=nullptr;}; //Actual borrowed actor88.
     struct Signals {Hud* hud=nullptr;Frame root{},scene{};std::uint32_t field0c=50;
         std::array<std::uint32_t,3> fields60{};std::uint8_t flag6c=1;std::unique_ptr<Text> text;};
     HudDialogsLoading(Frames& frames,Factory& factory,HudSignalTables& tables):frames_(frames),factory_(factory),tables_(tables) {}
@@ -26,7 +26,7 @@ public:
         roll_.position20=frames_.actor_position(roll_.root); //All FOUR nativeB0 words, no world-matrix update.
         roll_.cursor=frames_.hud_find(scene,"kurzor",0xffff);frames_.object_visible(roll_.root,false);
         roll_.text=make_text();bind_hud_text_geometry(frames_,*roll_.text,scene,roll_.root);
-        roll_.field88=0;roll_.flag31=flag;roll_.flag30=0;
+        roll_.field88=nullptr;roll_.flag31=flag;roll_.flag30=0;
     }
     bool bind_signals(Hud& hud,Frame scene,std::uint32_t mode) { //004BF2E0 RET8, final table publish only after geometry.
         cold(signals_.text);require(scene);signals_.scene=scene;
@@ -50,9 +50,18 @@ public:
         factory_.hud_draw_text(*signals_.text);
     }
     void close_signals()noexcept {if(signals_.text)signals_.text->text.clear();signals_.text.reset();} //004BF480; active process table stays.
+    void retire_roll_actor(const void* actor,bool reset_signals) { //0049EF70's004B0920/004C11C0 consumers.
+        if(roll_.field88!=actor)return;
+        (void)reset_signals;
+        //004B0750 initializes88=null. No populated roll/menu producer is
+        //offered by this loading owner. Never pretend to clear its positive
+        //004B0920 target/rebuild or004C11C0 signal rows successfully.
+        throw std::runtime_error("Populated HUD roll retirement requires its actual target/menu receivers");
+    }
     void discard_borrowers()noexcept {
         roll_.scene=roll_.root=roll_.cursor=Frame{};roll_.hud=nullptr;
         signals_.root=signals_.scene=Frame{};signals_.hud=nullptr;
+        roll_.field88=nullptr;
     }
     const auto& roll()const{return roll_;}const auto& signals()const{return signals_;}
 private:
