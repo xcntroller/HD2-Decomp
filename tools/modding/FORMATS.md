@@ -18,6 +18,7 @@ unsupported Patch member blocks lower-priority base data; it is not substituted.
 | actors.bin / sounds.bin | Same framing/fields; AE20/AE21 actor entries, AE22 type, AE23 frame; supported AE24 property families below | Same reader; no scene version invented for a headerless document |
 | mission Scripts.dta / mpscripts.dta | Ordered pairs of bounded frame/script strings in first root; IDs/order/duplicates retained | 00428600, `recovered/game/mission_script_bindings.h`, `analysis/loading-modules.md` |
 | check2.bin / AE40 | Two version 7ED00109 blocks, counts, 32-byte records and WORD link pairs, 18-byte records, frame/actor names | 00523C00/0051DE80/0051C7B0/0051C870/0051C910, `recovered/game/mission_table_reader.h` |
+| .4ds | Bounded version0x29 common frames, standard mesh LODs/aliases/material references and recognized opaque subsets; interactive viewer separate from parser | [4DS contract](MODEL4DS.md), LS3DF1005D970/1005DDD0 |
 | .scr | Compiler-backed schema2 spans, diagnostics, events, symbols, instructions, includes and limited references | `analysis/mission-script-loading.md` / `mission-script-receivers.md` |
 | Other files | Inventory/size/provenance and explicit unsupported status | No new payload interpretation |
 
@@ -29,7 +30,7 @@ extra serialized link. A top-level commercial archive is not confused with a
 mission-local binding document; B810 is not treated as script bindings.
 
 Lightmaps, lights/geometry, tracks/effects, collision trees, historical check.bin,
-meshes, textures/audio and broader historical formats remain opaque here, even
+unsupported model records, non-BMP textures/audio and broader historical formats remain opaque here, even
 where separate reconstruction research exists. Scene transforms are serialized
 local fields, not evaluated world transforms. Nonfinite supported transforms
 reject as an inspection safeguard, not an original-game verdict.
@@ -144,3 +145,9 @@ Script source statement nodes use `#statement=` and compiler instruction nodes
 use `#pc=`. `contains_syntax` / `compiles_to` relationships describe observation
 and compilation, not execution. Include edges use the caller's installation
 resolver; reference locations retain source byte spans. See [script contract](SCRIPT-ANALYSIS.md).
+
+The model inspector now decodes selected .4ds resources through a GUI-independent
+backend. Mission model records preserve frame/material identities and texture
+mentions; geometry arrays stay in the dedicated model asset, avoiding mission-wide
+mesh retention. Model structural statuses and RGB rendering approximations are
+separate. See [MODEL4DS.md](MODEL4DS.md) for exact confidence/coverage.

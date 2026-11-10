@@ -75,7 +75,11 @@ def enrich(report):
                     ref.update(targets=linked.targets,resolution_status=linked.status,
                                relationship_certainty='resolver_selected' if linked.status in ('resolved_resource','selected_payload_unsupported','selected_resource_unavailable','selected_resource_invalid') else 'name_candidate' if linked.targets else 'serialized_unresolved')
         nodes[entry.path]=Node(entry.path,entry.path,"file",entry.path)
-        if entry.status=="invalid_resource":
+        if entry.status=="model_invalid":
+            for diagnostic in entry.diagnostics:issue("error","model_invalid",entry.path,entry.path,diagnostic,"LS3DF 1005D970/1005DDD0")
+        elif entry.status in ("model_partial","model_unsupported"):
+            issue("warning",entry.status,entry.path,entry.path,"Partial/unsupported 4DS coverage; view model details","LS3DF 1005D970/1005DDD0")
+        elif entry.status=="invalid_resource":
             for diagnostic in entry.diagnostics:
                 issue("error","resource_"+(entry.archive_decoding or {}).get("error_kind","invalid"),entry.path,entry.path,diagnostic,"ISD1 10009E97/1000513B")
         elif entry.status=="unavailable_resource":

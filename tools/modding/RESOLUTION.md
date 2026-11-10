@@ -103,3 +103,14 @@ or byte-identical live snapshot across an entire installation is claimed.
 Mission exports require new paths outside inspected roots; source snapshots also
 protect the entire originating installation. Existing files/aliases cannot be
 overwritten. No editing or binary serialization is present.
+
+
+## 4DS / texture viewer integration
+
+Selected model virtual paths use the same ResourceStore with no fallback on bad
+payloads. [MODEL4DS.md](MODEL4DS.md) documents decoding independently of cache
+selection. Bare texture names enumerate exact candidates under registered
+Maps/Maps_C/Maps_U roots; only a unique candidate is previewed. This is labelled
+as a name candidate, not proof of original graphics-cache lookup. Archive/loose
+precedence within each exact candidate is unchanged. Ambiguity/invalid selection
+uses a labelled material fallback, with no hidden directory/extension substitution.

@@ -28,6 +28,7 @@ class MissionExplorer:
         self.reference_roots = []
         self.current = None
         self.target = None
+        self.model_origin = None
         self.closed = False
         self.nodes = {}
         shell = ttk.Frame(self.root,padding=16)
@@ -44,6 +45,8 @@ class MissionExplorer:
         self.reload_button.pack(side="left")
         self.script_button=ttk.Button(bar,text="View script",command=self.view_script,state="disabled")
         self.script_button.pack(side="left",padx=8)
+        self.model_button=ttk.Button(bar,text="View model",command=self.view_model,state="disabled")
+        self.model_button.pack(side="left",padx=4)
         self.export_button=ttk.Button(bar,text="Export mission JSON…",command=self.export,state="disabled")
         self.export_button.pack(side="right")
         discovery=ttk.Frame(shell);discovery.pack(fill="x",pady=(8,0))
@@ -126,6 +129,7 @@ class MissionExplorer:
             button.configure(state="normal" if self.session and not value else "disabled")
         if self.store:self.add_button.configure(state="disabled")
         self.follow_button.configure(state="disabled")
+        self.model_button.configure(state="normal" if not value and self.current and self.current.path.lower().endswith(".4ds") else "disabled")
         self.script_button.configure(state="normal" if not value and self.current and self.current.format=="script" else "disabled")
 
     def submit(self,kind,work):
@@ -275,6 +279,21 @@ class MissionExplorer:
     def show_all_refs(self):
         if self.current and not self.pending:self.populate_refs()
 
+    def view_model(self):
+        if self.pending or not self.current or not self.current.path.lower().endswith('.4ds'):return
+        entry=self.current;session=self.session;target=self.records.selection()
+        record=target[0] if target else entry.path
+        origin=self.model_origin
+        if origin and origin[0] is session and origin[3]==entry.path:
+            _,origin_path,record,_=origin
+        else:origin_path=entry.path
+        def back():
+            if not self.closed and self.session is session:
+                self.root.lift();self.tabs.select(self.record_tab);self.load_file(origin_path,record)
+        if isinstance(session,InstallationSession):
+            self.owner.open_model(session.store,session.paths[entry.path],back)
+        else:self.owner.open_model(local_path=session.paths[entry.path],origin=back)
+
     def view_script(self):
         if self.pending or not self.current or self.current.format!="script" or self.owner.pending:return
         identity=self.current.path
@@ -345,6 +364,9 @@ class MissionExplorer:
         target=self.targets[selection[0]]
         identity=target if target in self.session.paths else target.rsplit("@0x",1)[0].split("#pc=",1)[0]
         if identity in self.session.paths:
+            if identity.lower().endswith('.4ds') and self.current:
+                selection=self.records.selection()
+                self.model_origin=(self.session,self.current.path,selection[0] if selection else self.current.path,identity)
             # Do not generate a second load from the file selection event.
             self.files.selection_set(identity);self.files.see(identity)
             self.load_file(identity,target)

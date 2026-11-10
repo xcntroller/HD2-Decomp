@@ -1,6 +1,6 @@
 # H&D2 Modding Toolkit
 
-A standalone, read-only script inspector and integrated Mission Explorer on
+A standalone, read-only script inspector, Mission Explorer and 3D model viewer on
 `feature/modding-tools`. Normal operation needs no Ghidra or original executable.
 Use your own local installation; no commercial assets or scripts are included.
 No game, loader, server or runtime implementation is modified.
@@ -129,9 +129,48 @@ until selected. A produced mission report can contain errors/unsupported records
 inspect per-file status, validation and coverage rather than the process exit code.
 Mission exports require new files outside protected input folders.
 
+## 4DS models and 3D viewing
+
+Choose **Model inspector…** to open the integrated model browser and viewport.
+Use **Open installation…**, search an exact model resource, and double-click it.
+Local .4ds files also open independently, with explicit fallback materials when
+no installation context exists. No asset extraction directory is required.
+
+The OpenGL viewport supports orbit (left drag), pan (middle/right or Shift+left),
+wheel zoom, solid/wireframe, grid, axes, bounds, manual LOD selection and mesh/frame
+highlighting through the hierarchy. Properties show original offsets, identifiers,
+transforms, geometry samples, materials, texture dependencies and archive provenance.
+Supported BMP materials show RGB texture previews; unsupported textures/effects
+have clearly labelled fallbacks. This is a read-only viewer, not a mission editor.
+
+In Mission Explorer, follow an existing actor/object model candidate, select the
+recognized .4ds file and choose **View model**. **Back to mission record** returns
+to the originating record. Candidate links stay candidates; this does not invent
+engine cache selection or actor placement. Installation profiles and Patch
+selection are shared with the existing resolver; invalid selected data never
+falls back to a shadowed asset.
+
+The decoder supports an evidence-backed subset of original H&D2 version0x29:
+common frames/hierarchy, standard mesh LODs, shared geometry, indices, positions,
+normal/UV preview fields, materials and local/world transforms. Skin bindings,
+unknown payload semantics and unsupported frame/visual types remain partial or
+explicitly unsupported. Real geometry is used for every displayed mesh.
+
+```
+python3 tools/modding/model_inspect.py models/ammocrate.4ds \
+  --installation /path/to/game --output /path/outside-game/model.json
+python3 tools/modding/model_inspect.py /path/to/local.4ds
+```
+
+Headless decoding/export does not need a desktop. The viewport uses Tk plus system
+libGL/libX11 on Linux X11/XWayland, with no game engine or extra Python rendering
+package. [4DS contract, confidence levels and actual rendering verification](MODEL4DS.md)
+describe exact coverage and limits.
+
 ## Contracts and limitations
 
-- [Structured scripts, includes, schema and current verification](SCRIPT-ANALYSIS.md)
+- [4DS models, OpenGL viewer and current verification](MODEL4DS.md)
+- [Structured scripts, includes, schema and earlier verification](SCRIPT-ANALYSIS.md)
 - [Mission format/model coverage](FORMATS.md)
 - [Original lookup policy and bounds](RESOLUTION.md)
 - [ISD1 evidence and archive verification](ISD1.md)
@@ -153,7 +192,7 @@ Source/token/expansion, recursion/depth/operator and session retention limits
 are explicit. Oversized reads and embedded NUL are rejected instead of silently
 reproducing original prefix/truncation behavior. Partial mission format support
 is never reported as complete. Sabre Squadron/expansion profiles, full asset
-formats, 3D rendering, binary editing and serialization are not implemented.
+formats, mission placement, binary editing and serialization are not implemented.
 
 Original files are never modified. Temporary fixtures are removed after focused
 verification; no permanent tests, extracted commercial data or proprietary

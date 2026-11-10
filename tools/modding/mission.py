@@ -310,6 +310,7 @@ def identify(path):
     if name in ("scripts.dta","mpscripts.dta"): return "bindings"
     if name == "check2.bin": return "tables"
     if name.endswith(".scr"): return "script"
+    if name.endswith(".4ds"): return "model"
     return "opaque"
 
 
@@ -350,6 +351,26 @@ def parse_data(data,identity,inspector=None,include_context=None):
                 report.references.append(Reference(f"{identity}#pc={ref['pc']}",ref["kind"],ref["literal"],SCRIPT_EVIDENCE,locations=ref.get("locations",[])))
             for n,dep in enumerate(script["includes"]):
                 report.references.append(Reference(f"{identity}#include={n}","include",dep["selected"] or dep["name"],dep["evidence"],locations=dep["locations"]))
+            return report
+        if report.format == 'model':
+            from model4ds import decode
+            from dataclasses import asdict
+            model=decode(data,identity)
+            report.status='model_'+model.status
+            report.diagnostics=[d['message'] for d in model.diagnostics]
+            report.records=[Record(f'{identity}#header',0,min(16,len(data)),'model_header','4DS header / coverage',
+                'LS3DF 1005D970',{'header':model.header,'statistics':model.statistics(),'bounds':model.bounds,'limitations':model.limitations})]
+            report.records += [Record(frame.identity,frame.offset,frame.end-frame.offset,'model_frame',frame.name,
+                'LS3DF 1001EC40/1005DDD0',frame.metadata()) for frame in model.frames]
+            for material in model.materials:
+                source=f'{identity}@0x{material.offset:x}'
+                report.records.append(Record(source,material.offset,material.end-material.offset,'model_material',
+                    'Material '+str(material.index),material.evidence,asdict(material)))
+                for value in (material.primary_texture,material.secondary_texture,material.extra_texture):
+                    if value:report.references.append(Reference(source,'texture_resource',value,material.evidence))
+            for unknown in model.unknown:
+                report.records.append(Record(f'{identity}@0x{unknown.offset:x}#opaque',unknown.offset,unknown.size,
+                    'opaque_model','Unsupported model suffix',unknown.evidence,asdict(unknown)))
             return report
         if report.format == "scene":report.records=parser.scene()
         elif report.format == "bindings":report.records=parser.bindings()
@@ -424,7 +445,7 @@ def link_references(report):
                 expected=[script.lower(),f"scripts/{report.mission_name}/{script}".lower(),
                           f"{report.mission_name}/{script}".lower()]
                 ref.targets=sorted({p for key in expected for p in files.get(key,[])})
-            elif ref.kind in ("model_resource","sound_resource"):
+            elif ref.kind in ("model_resource","sound_resource","texture_resource"):
                 # Explicit suffix/name candidates, never the engine's cache selection.
                 for path,items in files.items():
                     if path==value.lower() or path.endswith("/"+value.lower()):ref.targets+=items

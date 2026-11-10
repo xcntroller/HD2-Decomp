@@ -29,7 +29,7 @@ class InstallationSession:
             "Dependency expansion is bounded to 2048 files / 512 script analyses; opaque resources are not decoded."]
         prefix=f"missions/{mission}/"
         for name in sorted(store.entries):
-            if name.startswith(prefix):self._ensure(name,identify(name)!="opaque")
+            if name.startswith(prefix):self._ensure(name,identify(name) not in ("opaque","model"))
         for name in sorted(store.entries):
             if name.startswith(f"scripts/{mission}/") and name.endswith(".scr"):self._ensure(name)
         self._dependencies()
@@ -104,6 +104,8 @@ class InstallationSession:
         if kind=="model_resource":
             key=key.rsplit(".",1)[0] if "." in key else key
             return sorted(set(self._resource_index.get(key,[])))
+        if kind=='texture_resource':
+            return [n for n in self.store.entries if n.startswith(('maps/','maps_c/','maps_u/')) and (n==key or n.endswith('/'+key))]
         # Sound identifiers are not guessed to have a .wav extension.
         candidates=[n for n in self.store.entries if n==key or n.endswith("/"+key) and n.startswith("sounds/")]
         return sorted(candidates)
@@ -133,7 +135,7 @@ class InstallationSession:
                                 visited.discard(identity)
                         elif scripts>=MAX_SCRIPTS and "Script analysis budget reached" not in self.report.diagnostics:
                             self.report.diagnostics.append("Script analysis budget reached")
-                    elif ref.kind in ("model_resource","sound_resource"):
+                    elif ref.kind in ("model_resource","sound_resource","texture_resource"):
                         names=self._resource_candidates(ref.kind,value)
                         if len(names)>64:
                             self.report.diagnostics.append(f"Candidate limit exceeded for {ref.kind}; match remains incomplete")

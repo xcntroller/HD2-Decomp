@@ -11,7 +11,10 @@
 - [x] Add structured diagnostics/spans/events and searchable source navigation.
 - [x] Add caller-supplied include resolution, provenance and graph dependencies.
 
-Current boundary: [format/model contracts](FORMATS.md), [resolution](RESOLUTION.md),
+- [x] Deliver a verified 4DS decoder, integrated OpenGL viewer and resource links.
+
+Current boundary: [4DS/viewer coverage](MODEL4DS.md),
+[format/model contracts](FORMATS.md), [resolution](RESOLUTION.md),
 [script/include contract and verification](SCRIPT-ANALYSIS.md),
 [archive verification](ISD1.md); [prior validation](INTEGRATED-VALIDATION.md). Full format/world/engine-cache
 compatibility, expansion profiles and binary editing are excluded. P2.2/server,

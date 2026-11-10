@@ -21,6 +21,7 @@ class InspectorWindow:
         self.pending = None
         self.poll_timer = None
         self.explorer = None
+        self.model_viewer = None
         self.path = None
         self.protected_roots = []
         self.report = None
@@ -54,6 +55,7 @@ class InspectorWindow:
         toolbar.pack(fill="x")
         self.open_button = ttk.Button(toolbar, text="Open script…", command=self.open_file)
         self.open_button.pack(side="left")
+        ttk.Button(toolbar, text="Model inspector…", command=self.open_model).pack(side="left", padx=(8,0))
         ttk.Button(toolbar, text="Mission explorer…", command=self.open_explorer).pack(side="left", padx=(8,0))
         ttk.Button(toolbar, text="Include context…", command=self.choose_context).pack(side="left", padx=(8,0))
         self.reload_button = ttk.Button(toolbar, text="Inspect again", command=self.reload, state="disabled")
@@ -308,6 +310,17 @@ class InspectorWindow:
             except OSError as exc:
                 messagebox.showerror("Export failed", str(exc), parent=self.root)
 
+    def open_model(self,store=None,name=None,origin=None,local_path=None):
+        from model_gui import ModelWindow
+        if self.model_viewer is None:self.model_viewer=ModelWindow(self)
+        if store is not None and name:self.model_viewer.open_resource(store,name,origin)
+        elif local_path is not None:
+            from model_resources import open_local
+            self.model_viewer.origin=origin
+            self.model_viewer.back_button.configure(state='normal' if origin else 'disabled')
+            self.model_viewer.submit('model',lambda:open_local(local_path))
+        self.model_viewer.root.lift()
+
     def open_explorer(self):
         if self.explorer is None:
             self.explorer = MissionExplorer(self)
@@ -316,6 +329,7 @@ class InspectorWindow:
 
     def close(self):
         self.closed = True
+        if self.model_viewer is not None:self.model_viewer.close()
         if self.explorer is not None:
             self.explorer.close()
         if self.poll_timer is not None:
