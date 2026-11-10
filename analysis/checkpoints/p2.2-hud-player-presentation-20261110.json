@@ -1,0 +1,112 @@
+{
+  "date": "2026-11-10",
+  "scope": "Full first P2.2 checkbox; required HUD Human/compass and player presentation source subsystem checkpoint; continue actual containing session/Human/FPV/SOUND and loader/first frame.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 15,
+  "added": [
+    "0049b7e0",
+    "0049b870",
+    "004b3c60",
+    "004b47d0",
+    "004b4860",
+    "004936c0",
+    "00493d10",
+    "00493f40",
+    "00493af0",
+    "005a78f0",
+    "005a8380",
+    "005a81c0",
+    "005a88b0",
+    "005a88d0",
+    "005a63f0"
+  ],
+  "extended": [
+    "004b3890",
+    "0049b900"
+  ],
+  "absent_no_credit": [
+    "00538590",
+    "005385b0"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1867,
+    "client_partial": 1862,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan actual Human/storage/ActiveAI getter/TextState/artwork/soldier/compass/HUD add-remove-hide source; rank/name/caption/photo/stat flags, pending modes, failed texture cache, marker radius/identity/reverse retirement/gates/prefix failure cleanup. Source Players control\u2192concrete presentation\u2192HUD duplicate-add and collected-frame removal lifetime. FPV/engine/frame/item/localization/clock boundaries doubled; AI getter fixtures seed real bind-produced words, not full AI activation.",
+    "host": "Strict i386 actual HUD panels/scene/Items, real SessionOwner overlay/FPV model/cache/Effects/Camera, source player/WorldActors/Scene2 lookup, Players module/process, shared presentation and player close through the concrete presentation bridge. DD0/equipment/containing composition/SOUND/cursor/world/inventory-refresh boundaries declarations.",
+    "application": "application-launch compile/link only; world loading disabled",
+    "tracker": "27 tests and frozen inventory/fingerprint/README checks"
+  },
+  "limitations": [
+    "No actual world/session/remaining Human/FPV/SOUND owners, ordered loader, guard observed publication or first camera/render/failure-repeat desktop delivery.",
+    "Later HUD soldier/compass simulation and actual0049FBF0 inventory refresh remain required.",
+    "Occupied Car004D9280 and unsupported nonoffline state virtual64 explicitly reject; inventory refresh is a required containing dependency.",
+    "Native adaptations do not claim original ABI/SEH/unsafe malformed behavior; no engine/original/Windows execution."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/hud-player-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-player-native-run.log",
+      "bytes": 465,
+      "sha256": "4ece9097ff612968f0ef578e0a0c2158ea2ade3848f6f7de8609ef8e4ada7a15"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-player-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-player-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-player-tracker-render.log",
+      "bytes": 380,
+      "sha256": "55b85c32eb62e76a681619dd56ac3f2b117fde457922f43a30e125bfaae56eed"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-player-tracker-check.log",
+      "bytes": 437,
+      "sha256": "75d7711fbe215d2a174f1286f1d11e4ac5bcb58393cbaf19f193aeba096c49ae"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-player-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hud-player-audit.cpp",
+      "bytes": 14339,
+      "sha256": "cb06de7aa8e2e4339727b0229be286412b93780b3b24ae9d3cfec976b9b787ae"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hud-player-audit",
+      "bytes": 6384856,
+      "sha256": "f956ed364f54b66a16a4ff68ea410c072f65a6400161ebea418a397ba704af2c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hud-player-host.cpp",
+      "bytes": 5030,
+      "sha256": "d94d405fc41f9874ebf5c6c2aa728213708e9e15e2eacbc0f58ffca341102e2c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hud-player-host.o",
+      "bytes": 1080831,
+      "sha256": "13c9f47ce1bcb9dd0873ba58f2aa510ffaaba0933fe5b791754b466fb0454499"
+    }
+  ]
+}

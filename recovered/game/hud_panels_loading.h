@@ -18,6 +18,7 @@
 #include "game/hud_scoreboard_loading.h"
 #include "game/hud_small_panels_loading.h"
 #include "game/hud_soldier_loading.h"
+#include "game/hud_player_loading.h"
 #include "game/hud_weapon_selector_loading.h"
 #include <type_traits>
 namespace hd2::game {
@@ -29,12 +30,12 @@ class HudPanelsLoading {
 public:
     using Frame=typename Frames::Frame;using Soldier=HudSoldierLoading<Frames,Factory>;
     using Dialogs=HudDialogsLoading<Frames,Factory,Hud>;
-    using Actor=std::remove_pointer_t<decltype(std::declval<World&>().hud_actor_identities()[0])>;
+    using Actor=std::remove_pointer_t<std::decay_t<decltype(std::declval<World&>().hud_actor_identities()[0])>>;
     using Map=HudMapLoading<Frames,Factory,Actor,typename World::Objective>;
     struct Borrowers {void* inventory_context=nullptr;void* collision=nullptr;};
     HudPanelsLoading(Frames& frames,Factory& factory,Hud& hud,Players& players,Items& items,
                      Styles& styles,Camera& camera,World& world,HudSignalTables& signals,HudCompassShared& compass)
-        :frames_(frames),factory_(factory),hud_(hud),players_(players),world_(world),artwork_(frames),cursor_(frames,players,items),
+        :frames_(frames),factory_(factory),hud_(hud),players_(players),items_(items),world_(world),artwork_(frames),cursor_(frames,players,items),
          dialogs_(frames,factory,signals),command_roll_(frames,factory,signals),
          soldiers_{{{frames,factory},{frames,factory},{frames,factory},{frames,factory},{frames,factory},{frames,factory}}},
          messages_(frames,factory,hud.message_state()),crosshair_(frames,factory,factory),hands_(frames,factory),small_(frames,factory),
@@ -87,11 +88,11 @@ public:
         }
         compass_.show(visible);
     }
-    void hide_cold_soldiers(){ //0049B900 reverse6. human74/ring records are still cold; no populated producer exposed.
-        for(unsigned n=6;n;){--n;const auto root=soldiers_[n].artwork().root;
-            if(!root)throw std::runtime_error("Loaded HUD soldier root disappeared before hide");
-            frames_.object_visible(root,false);}
+    template<class Human>bool add_human(Human* human,std::int32_t index,std::uint32_t mode,std::uint32_t difficulty,std::int32_t local_player){
+        return add_hud_loading_human(frames_,hud_,soldiers_,compass_,players_,items_,human,index,mode,difficulty,local_player,[&]{post_bind(mode,hud_.flags);});
     }
+    template<class Human>bool remove_human(Human* human,std::int32_t index){return remove_hud_loading_human(frames_,hud_,soldiers_,compass_,human,index);}
+    bool hide_cold_soldiers(){return hide_hud_loading_humans(frames_,hud_,soldiers_,compass_);} //0049B900 also retires populated marker amounts.
     void discard_borrowers()noexcept {
         inventory_.retire_inline_scrolls();inventory_.discard_borrowers();cursor_.clear();dialogs_.discard_borrowers();
         for(auto& soldier:soldiers_)soldier.discard_borrowers();
@@ -106,7 +107,7 @@ public:
     auto& info(){return info_;}auto& selector(){return selector_;}auto& auxiliary(){return auxiliary_;}auto& scoreboard(){return scoreboard_;}
     template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){compass_.sound_direction(direction,kind,players_);} //0049DE80→004947E0.
 private:
-    Frames& frames_;Factory& factory_;Hud& hud_;Players& players_;World& world_;Frame scene_{};bool started_=false,progress_started_=false,command_started_=false;
+    Frames& frames_;Factory& factory_;Hud& hud_;Players& players_;Items& items_;World& world_;Frame scene_{};bool started_=false,progress_started_=false,command_started_=false;
     HudArtworkLoading<Frames> artwork_;HudCursorLoading<Frames,Players,Items> cursor_;Dialogs dialogs_,command_roll_;
     std::array<Soldier,6> soldiers_;HudMessagesLoading<Frames,Factory> messages_;HudCrosshairLoading<Frames,Factory,Factory> crosshair_;
     HudHandsLoading<Frames,Factory> hands_;HudSmallPanelsLoading<Frames,Factory> small_;HudCompassLoading<Frames> compass_;

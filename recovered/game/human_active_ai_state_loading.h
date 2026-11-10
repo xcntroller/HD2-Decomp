@@ -118,6 +118,14 @@ public:
         return {state_.template get<std::uint32_t>(0x174),alternate||state_.template get<std::uint8_t>(0x188)!=0,action}; //00524E00/005385D0.
     }
     auto& state(){return state_;}const auto& state()const{return state_;}
+    std::int32_t hud_first_mode()const override { //00538590, virtual13C: pending1CC unless-1, else current1C8.
+        const auto pending=state_.template get<std::int32_t>(0x1cc);
+        return pending==-1?state_.template get<std::int32_t>(0x1c8):pending;
+    }
+    std::int32_t hud_second_mode()const override { //005385B0, virtual140.
+        const auto pending=state_.template get<std::int32_t>(0x1d4);
+        return pending==-1?state_.template get<std::int32_t>(0x1d0):pending;
+    }
     SceneActor<Frames>* task_target=nullptr; //Native224 borrower; runtime task writer remains separate.
     bool reselect_weapon() { //00530D40, including repeated00530A40 command gate.
         if(weapon_command_blocked())return false;

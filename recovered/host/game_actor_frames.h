@@ -682,6 +682,7 @@ public:
     }
     void hud_material_flags(Frame material,std::uint32_t flags){put(material,8,field<std::uint32_t>(material,8)|flags);}
     void hud_material_vector(Frame material,std::uint32_t slot,const std::array<float,4>& value){call<void>(material,slot,value.data());}
+    Frame hud_portrait_texture(void* portrait)const{return static_cast<Frame>(portrait);} //Typed HumanStore+20 resource borrower, no new original body.
     void hud_material14(Frame material,float value){call<void>(material,0x14,value);}
     void hud_visual_a4(Frame visual,float value){call<void>(visual,0xa4,value);}
     bool hud_frame_visible(Frame frame)const{return (field<std::uint32_t>(frame,0xe0)&1u)!=0;}

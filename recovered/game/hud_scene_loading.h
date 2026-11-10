@@ -66,6 +66,10 @@ public:
         return false;
     }
     bool close(){if(!hud_.flags)return false;retire();return true;} //Native0049B1B0 zero-flags gate; destructor also reclaims failed prefix.
+    template<class Human>bool add_human(Human* human,std::int32_t index,std::uint32_t mode,std::uint32_t difficulty,std::int32_t local_player){
+        return panels_.add_human(human,index,mode,difficulty,local_player);
+    }
+    template<class Human>bool remove_human(Human* human,std::int32_t index){return panels_.remove_human(human,index);}
     template<class Camera>void render_prepass(Camera& camera){hud_render_prepass(panels_,camera);}
     template<class Camera,class Consumers>void render(Camera& camera,std::uint32_t mode,Consumers& consumers){
         hud_render(frames_,factory_,hud_,scene(),panels_,camera,mode,flags20_,fields6b8f8_,consumers);

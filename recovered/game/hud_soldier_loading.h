@@ -2,12 +2,16 @@
 #define HD2_GAME_HUD_SOLDIER_LOADING_H
 #include "game/hud_artwork_loading.h"
 #include "game/hud_text_loading.h"
+#include "game/human_hud_loading.h"
+#include "game/human_inventory_lookup.h"
+#include "game/first_person_human_items.h"
 #include <memory>
 #include <utility>
 namespace hd2::game {
 //004B30E0/004B3840/004B3E70: one of six HUD soldier panels. Main HUD binds
-//indices5..0, sharing the SAME first/second artwork tables. Runtime Human/photo/
-//health/command updates004B3890+ remain required consumers, not invented here.
+//indices5..0, sharing the SAME first/second artwork tables. Actual Human/photo/
+//caption/initial command binding is supplied; later health/command simulation
+//remains a separate receiver, not a successful loading replacement.
 template<class Frames,class Factory>
 class HudSoldierLoading {
 public:
@@ -50,6 +54,60 @@ public:
         if(selected89_==selected)return;
         selected89_=selected;show(art_.selected,selected!=0);
     }
+    template<class Human,class Items>void bind_human(Human& human,Items& items,std::uint32_t mode,std::int32_t local_player) { //004B3C60.
+        human74_=&human;
+        if(!text_||!visibility_text_)throw std::logic_error("HUD Human binding requires its actual text owners");
+        text_->text.clear();visibility_text_->text.clear();
+        update_name(human,mode);
+        if(!alive(human))material_texture(art_.photo_material,death_.get());
+        else if(const auto* profile=human.profile_record){
+            if(profile->portrait)material_texture(art_.photo_material,frames_.hud_portrait_texture(profile->portrait));
+            FirstPersonHumanItems<Items> hand(items);const auto weapon=hand.weapon(human);
+            text_->text.set(weapon?factory_.hud_localized(items.runtime_item(weapon).definition().caption):std::make_shared<const std::string>(),0x3b,1);
+        }
+        require(art_.photo_material);frames_.hud_material_vector(art_.photo_material,4,{{1,1,1,0}}); //Material virtual04, RGB only; native W unwritten.
+        frames_.update_scene_object(art_.photo);
+        flagb0_=true;fields84_=fields80_=fields78_=1;field7c_=1;flag88_=false;selected89_=0;
+        show(art_.selected,false);first_mode_=second_mode_=-1;
+        const bool special=find_human_inventory_definition(human,items,0x16)||find_human_inventory_definition(human,items,7)||find_human_inventory_definition(human,items,0x104);
+        show(art_.silence,special);
+        show(art_.medic,signed_word(human.properties.stats_ec[7])>=41); //005A6600(7), raw signed stat108.
+        update_first_mode(human,mode,local_player);update_second_mode(human,mode,local_player);
+    }
+    template<class Human>void update_name(Human& human,std::uint32_t mode) { //004B3890, offline7 subset.
+        require_human(human);
+        if((mode&7u)!=7u)throw std::runtime_error("HUD Human name/rank requires actual network player/configuration receivers outside offline7");
+        field8c_=offline_human_hud_rank(human);const auto name=offline_human_hud_name(frames_,human);
+        auto value=name;
+        if(human.properties.field19c!=4&&human.properties.field19c!=5){
+            if(field8c_>=8)throw std::runtime_error("HUD Human rank exceeds actual eight localization rows");
+            const auto rank=factory_.hud_localized(0x27a6u+field8c_);value=(rank?*rank:std::string{})+" "+name;
+        }
+        text_->text.set(std::make_shared<const std::string>(std::move(value)),0x3a,0);
+    }
+    template<class Human>void update_first_mode(Human& human,std::uint32_t mode,std::int32_t local_player) { //004B47D0.
+        require_human(human);
+        if(!alive(human)){material_texture(art_.command_material,art_.universal_texture);return;}
+        const auto value=human_hud_first_mode(human);if(first_mode_==value)return;
+        first_mode_=value;
+        if(!human_camera_is_player(human,mode,local_player)&&value!=-1){
+            if(!first_states_)throw std::logic_error("HUD Human lost actual first-state artwork table");
+            const auto index=value==3?2:value==2?3:value;
+            material_texture(art_.command_material,first_states_->at(static_cast<std::size_t>(index)));return;
+        }
+        material_texture(art_.command_material,art_.universal_texture);
+    }
+    template<class Human>void update_second_mode(Human& human,std::uint32_t mode,std::int32_t local_player) { //004B4860.
+        require_human(human);
+        if(!alive(human)){material_texture(art_.mind_material,art_.universal_texture);return;}
+        const auto value=human_hud_second_mode(human);if(second_mode_==value)return;
+        second_mode_=value;
+        if(!human_camera_is_player(human,mode,local_player)&&value!=-1){
+            if(!second_states_)throw std::logic_error("HUD Human lost actual second-state artwork table");
+            material_texture(art_.mind_material,second_states_->at(static_cast<std::size_t>(value)));return;
+        }
+        material_texture(art_.mind_material,art_.universal_texture);
+    }
     void close()noexcept { //004B3840: death FIRST, then primary/visibility text; no preceding record clear.
         death_.reset();text_.reset();visibility_text_.reset();art_.root=Frame{};
     }
@@ -69,7 +127,12 @@ public:
     const auto* first_states()const{return first_states_;}const auto* second_states()const{return second_states_;}
     Frame death_texture()const{return death_.get();}unsigned index()const{return index_;}std::uint8_t selected()const{return selected89_;}
     float field98()const{return field98_;}const auto& colour_a0()const{return colour_a0_;}std::uint32_t field8c()const{return field8c_;}
+    const void* human_borrower()const{return human74_;}std::int32_t first_mode()const{return first_mode_;}std::int32_t second_mode()const{return second_mode_;}
 private:
+    static std::int32_t signed_word(std::uint32_t value){std::int32_t result;std::memcpy(&result,&value,4);return result;}
+    template<class Human>static bool alive(const Human& human){return signed_word(human.properties.stats_ec[0])>0;}
+    template<class Human>void require_human(const Human& human)const{if(human74_!=&human||!text_)throw std::logic_error("HUD soldier update requires its SAME bound Human/text");}
+    void material_texture(Frame material,Frame texture){require(material);frames_.first_person_material_texture(material,texture);} //Actual material virtual1C.
     static void require(Frame frame){if(!frame)throw std::runtime_error("Required HUD soldier artwork is missing");}
     void show(Frame frame,bool visible){require(frame);frames_.object_visible(frame,visible);}
     Frame child(const char* name){const auto result=frames_.actor_find(art_.root,name,0x10001);require(result);frames_.hud_visual_flags(result,0x1000);return result;}
@@ -79,6 +142,7 @@ private:
     TextureOwner death_{};std::unique_ptr<Text> text_,visibility_text_;
     //Defined zero guards for cold/unwritten storage, not recovery credit for a native constructor.
     std::uint8_t selected89_=0;float field98_=0;std::array<float,4> colour_a0_{};std::uint32_t field8c_=0;
+    std::int32_t first_mode_=-1,second_mode_=-1;std::uint32_t fields78_=0,fields80_=0,fields84_=0;float field7c_=0;bool flag88_=false,flagb0_=false;
 };
 } //namespace hd2::game
 #endif

@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [HUD Human/player presentation](hud-player-presentation-loading.md) supplies required soldier/compass add/remove/hide and same-owner Player callbacks, with actual name/rank/AI-mode/definition lookup. Source-only; later HUD updates/current inventory refresh and containing world/session/loader remain. Application loading remains disabled.
+
 2026-11-10: [player/first-person composition](first-person-loading-composition.md) defines initial player mode/inline action and real player/sector/target-retirement lookups, with actual session-overlay FPV ownership/reset. Source-only; remaining HUD/presentation/session/loader and guard publication keep application loading disabled.
 
 2026-11-10: [source runtime/objective/lifecycle composition](mission-script-runtime-composition.md) now supplies real initial objective88, ReturnEnd/EndScript, shared clock/advance gates, existing Effects fade finish and script active-camera look update. Required observed-value publication and actual world/inline/FPV/session owners remain; application loading stays disabled.

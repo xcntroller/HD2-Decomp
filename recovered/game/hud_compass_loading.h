@@ -2,6 +2,8 @@
 #define HD2_GAME_HUD_COMPASS_LOADING_H
 #include "game/hud_sound_direction.h"
 #include <array>
+#include <cmath>
+#include <cstring>
 #include <cstdio>
 #include <cstdint>
 #include <memory>
@@ -13,18 +15,23 @@ namespace hd2::game {
 //before the final compass update; close leaves these process values intact.
 struct HudCompassShared {float field48=0,field4c=0;};
 //00493F80/00494140, ring00493B30/00493BC0 and marker retirement00493B10.
-//Runtime compass/marker producers004936C0/00493D10 and simulation remain separate.
+//Actual marker loading004936C0/00493D10 and removal00493F40/00493AF0;
+//later compass/marker simulation remains separate.
 template<class Frames>
 class HudCompassLoading {
 public:
     using Frame=typename Frames::Frame;
     using FrameOwner=decltype(std::declval<Frames&>().retain_actor_frame(std::declval<Frame>()));
-    struct Marker {FrameOwner frame;};
+    struct Marker {
+        FrameOwner frame;const void* human;float radius,amount;
+        void retire(){if(amount!=0)amount=0;} //00493AF0; no frame call or release.
+    };
     struct Ring {
         Frame us{},en{};std::uint8_t allocator8=0;
         ~Ring(){while(!markers.empty())markers.pop_back();} //Each00493B10 releases its actual frame then frees record, reverse order.
     private:
-        std::vector<std::unique_ptr<Marker>> markers; //Native constructor starts empty; no fabricated producer is exposed.
+        friend class HudCompassLoading;
+        std::vector<std::unique_ptr<Marker>> markers;
     };
     HudCompassLoading(Frames& frames,HudCompassShared& shared):frames_(frames),shared_(shared) {}
     ~HudCompassLoading(){close();}
@@ -46,6 +53,27 @@ public:
     }
     void close()noexcept {ring_.reset();compass_=Frame{};} //00494140 clears ring then root only.
     void show(bool visible){if(compass_)frames_.object_visible(compass_,visible);} //00494170, null root tolerated, no update.
+    template<class Human>void add_human(Human* human,std::uint32_t mode,std::uint32_t difficulty) { //00493D10→004936C0.
+        if(!human||(mode&7u)!=7u||difficulty==4||!ring_||!ring_->us||!ring_->en)return;
+        const auto source=human->properties.field19c==2?ring_->en:ring_->us;
+        auto frame=frames_.create_hud_inventory_visual(); //Actual OBJ_ factory; same frame release, not a model cache.
+        if(!frame.get())throw std::runtime_error("HUD compass marker factory returned null");
+        frames_.hud_inventory_duplicate(frame.get(),source);frames_.object_visible(frame.get(),true);
+        frames_.human_equipment_link(frame.get(),frames_.object_parent(source),1);
+        const auto position=frames_.actor_position(source);frames_.car_suspension_position(frame.get(),position); //Native local B0 and flag80 guard.
+        const auto square=(static_cast<long double>(position[2])*position[2]+static_cast<long double>(position[1])*position[1])+static_cast<long double>(position[0])*position[0];
+        const auto stored=static_cast<float>(square);std::int32_t bits;std::memcpy(&bits,&stored,4);
+        const float radius=bits<0x322bcc77?0.f:std::abs(square-1)>=9.99999993922529e-09f?static_cast<float>(std::sqrt(static_cast<long double>(stored))):1.f;
+        frames_.object_rotation(frame.get(),frames_.actor_rotation(source));frames_.update_scene_object(frame.get());
+        frames_.effects_frame_fade_alpha(frame.get(),0.f); //Actual visual virtualA8, native argument0 bits.
+        ring_->markers.push_back(std::make_unique<Marker>(Marker{std::move(frame),human,radius,1.f})); //Native appends without dedup.
+    }
+    template<class Human>void remove_human(Human* human) { //00493F40; reverse first match, does NOT erase/release.
+        if(!human||!ring_)return;
+        for(auto n=ring_->markers.size();n;){auto& marker=*ring_->markers[--n];if(marker.human==human){marker.retire();return;}}
+    }
+    std::size_t marker_count()const{return ring_?ring_->markers.size():0;}
+    const Marker& marker(std::size_t index)const{if(!ring_)throw std::logic_error("HUD compass marker before actual ring");return *ring_->markers.at(index);}
     template<class Direction,class Players>void sound_direction(const Direction& direction,std::uint32_t kind,Players& players) { //004947E0.
         if(!players.current_player())return; //0045D1D0, checked BEFORE reading input.
         fields60_[hud_sound_direction_sector(direction[0],direction[2])*2+(kind!=0)]=500;

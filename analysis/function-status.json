@@ -12313,13 +12313,15 @@
       "program": "client",
       "entry": "0049b900",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0049b900: Composition/retirement of actual HUD panels and reached forwarding setters; registry/world consumers remain required.",
+      "coverage": "P2.2 source reconstruction at original entry 0049b900: Composition/retirement of actual HUD panels and reached forwarding setters; registry/world consumers remain required. Populated reverse Human marker retirement now precedes each actual root hide; nonzero flags gate and final flags&~6 retained.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/hud_panels_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/hud_player_loading.h"
       ]
     },
     {
@@ -12951,13 +12953,14 @@
       "program": "client",
       "entry": "004b3890",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004b3890: Soldier HUD frame/material/text lifetime and conditional scene drawing source.",
+      "coverage": "P2.2 source reconstruction at original entry 004b3890: Soldier HUD frame/material/text lifetime and conditional scene drawing source. Adds actual offline rank8C/name update, profile user/last/model-name distinctions, conditional rank prefix and same TextState record0/style3A.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/hud_soldier_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/hud-player-presentation-loading.md"
       ]
     },
     {
@@ -25110,6 +25113,171 @@
       "evidence": [
         "analysis/first-person-loading-composition.md",
         "recovered/game/first_person_loading_composition.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049b7e0",
+      "status": "partial",
+      "coverage": "Actual nonzero HUD flag/index0..5 gate, same soldier bind/show then flag4, real compass marker addition, SAME current-player conditional post-bind refresh and native failure prefix.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/hud_player_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049b870",
+      "status": "partial",
+      "coverage": "Hide actual soldier before fresh reverse six-root scan, preserve flag4/markers if another visible root, else clear4 then mark newest matching Human marker without clearing borrower.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/hud_player_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004b3c60",
+      "status": "partial",
+      "coverage": "Bind actual Human74/TextStates/name/rank, dead/profile photo and weapon caption, white colour/update, scalar caches/selection hide, actual inventory/stat silence/medic flags and command/mind textures in original order.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/hud_soldier_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004b47d0",
+      "status": "partial",
+      "coverage": "Actual dead universal or live command-mode cache-before-texture update, player/-1 universal and first-state2/3 swap; equality preserves failed-call cache.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/hud_soldier_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004b4860",
+      "status": "partial",
+      "coverage": "Actual dead universal or live second-mode cache-before-texture update, player/-1 universal and direct second-state indexing; equality/no implicit retry.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/hud_soldier_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004936c0",
+      "status": "partial",
+      "coverage": "Actual Human-kind enemy/friendly OBJ_ marker acquisition/copy/show/parent-link/local pose/radius/normalized rotation/update/alpha0 and amount1 lifetime.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/hud_compass_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00493d10",
+      "status": "partial",
+      "coverage": "Actual offline7/non-null/difficulty!=4/two-artwork marker append, owning created frame without dedup; source failure reclaims unappended prefix.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/hud_compass_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00493f40",
+      "status": "partial",
+      "coverage": "Reverse first actual Human identity match marks marker amount0 without erase/frame release; null/missing genuine returns.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/hud_compass_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00493af0",
+      "status": "partial",
+      "coverage": "Actual marker nonzero FLOAT amount becomes0; no frame call, allocation release or vector mutation.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/hud_compass_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a78f0",
+      "status": "partial",
+      "coverage": "Actual definition identifier lookup through holders0/2/3/4/5 then ascending holster/pack stacks and reverse entries, optional slot written only on match; distinct from runtime identity lookup.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/human_inventory_lookup.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a8380",
+      "status": "partial",
+      "coverage": "Offline actual Human B8 profile.field24 rank or0 absent profile; distinct from profile stat/rank44.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/human_hud_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a81c0",
+      "status": "partial",
+      "coverage": "Offline actual profile user14 else LAST04, absent profile actual modelE8 name; distinct from objective short-name fallback/Actor override.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/human_hud_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a88b0",
+      "status": "partial",
+      "coverage": "Actual missing/non3 B0\u2192-1, else SAME Active AI virtual13C source pending/current first-mode getter.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/human_hud_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a88d0",
+      "status": "partial",
+      "coverage": "Actual missing/non3 B0\u2192-1, else SAME Active AI virtual140 source pending/current second-mode getter.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/human_hud_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a63f0",
+      "status": "partial",
+      "coverage": "Actual AL-only offline7/missing-B0/nonplayer-property false gate, supported nonoffline player1 virtual64/byte70 suppression; other required states explicitly reject.",
+      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "evidence": [
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/human_loading_presentation.h"
       ]
     }
   ]

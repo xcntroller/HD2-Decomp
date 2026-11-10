@@ -20,6 +20,8 @@ public:
     virtual void sight_enemy_acquired(Human&)=0;
     virtual void sight_enemy_lost(Human&)=0;
     virtual void sight_dead_acquired(Human&)=0;
+    virtual std::int32_t hud_first_mode()const{throw std::runtime_error("Human state has no actual Active AI HUD first-mode receiver");}
+    virtual std::int32_t hud_second_mode()const{throw std::runtime_error("Human state has no actual Active AI HUD second-mode receiver");}
 };
 } //namespace hd2::game
 #endif

@@ -51,5 +51,23 @@ auto find_human_inventory_entry(Human& human,Items& items,std::int32_t identity,
     }
     return Entry{};
 }
+//005A78F0 finds DEFINITION identifier, not runtime item identity005A6FF0.
+//The optional native slot output is changed only for an actual match.
+template<class Human,class Items>auto find_human_inventory_definition(Human& human,Items& items,
+        std::int32_t definition,std::int32_t* slot=nullptr) {
+    using Entry=std::decay_t<decltype(human.base().storage()->holder(0)->entry())>;
+    auto* storage=human.base().storage();
+    if(!storage||storage->single())throw std::runtime_error("Human definition lookup requires actual Human storage");
+    const auto matches=[&](Entry entry){return items.runtime_item(entry).definition().identifier==static_cast<std::uint32_t>(definition);};
+    for(unsigned index:{0u,2u,3u,4u,5u}){
+        auto* holder=storage->holder(index);if(!holder)throw std::runtime_error("Human definition lookup lost its actual holder");
+        if(const auto entry=holder->entry();entry&&matches(entry)){if(slot)*slot=static_cast<std::int32_t>(index);return entry;}
+    }
+    for(unsigned index:{1u,6u})if(auto* stacks=storage->slots(index))
+        for(std::size_t n=0;n<stacks->occupied_stacks();++n)
+            for(auto at=stacks->slots().at(n).entries.rbegin();at!=stacks->slots().at(n).entries.rend();++at)
+                if(matches(*at)){if(slot)*slot=static_cast<std::int32_t>(index);return *at;}
+    return Entry{};
+}
 } //namespace hd2::game
 #endif

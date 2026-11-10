@@ -8,53 +8,57 @@ assets/user changes; focused verification only. Heavy builds/Ghidra sequential
 because of memory shortages/crashes. No permanent tests.
 
 GameApplicationState still declines loading. No loaded world, first rendered
-world frame or new desktop acceptance. Ledger34 complete/1,852 partial
-(1,847 client/five engine)/18,783 frozen. Zero complete promotions.
+world frame or new desktop acceptance. Ledger34 complete/1,867 partial
+(1,862 client/five engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
 
-[Player/first-person loading composition](analysis/first-person-loading-composition.md),
-[receipt](analysis/checkpoints/p2.2-player-first-person-composition-20261110.json).
-Actual source initial player mode0/secondary/action/zoom receivers; same session
-OverlayOwner FPV model/items/SOUND notification/playback/view ownership/reset;
-real current-Player/WorldActors/Scene2/inline/B0/sector/target-retirement lookups.
-Native focused mode/Look/lookup sanitizers and strict actual-host full FPV
-composition/app link,27 tracker tests pass. Full FPV composition/reset is compile-
-only; DD0/equipment/containing composition/SOUND/cursor endpoints declarations.
-Six new partials/four extended, no complete promotion. Four temporary artifacts
-hashed/removed. No application readiness/desktop claim.
+[HUD Human/player presentation](analysis/hud-player-presentation-loading.md),
+[receipt](analysis/checkpoints/p2.2-hud-player-presentation-20261110.json).
+Actual soldier bind/name/rank/photo/caption/AI textures and inventory identity,
+real compass OBJ_ markers and add/remove/hide ownership; source Players control
+→concrete presentation→HUD duplicate/add/remove and collected-frame cleanup.
+Focused native sanitizers, strict actual-host HUD/FPV/Players/shared-presentation/
+player-close composition, app link and27 tracker tests pass. FPV/engine/frame/
+item/localization/clock boundaries doubled in native; remaining DD0/equipment/
+containing composition/SOUND/cursor/world/inventory-refresh interfaces declarations.
+15 new partials/two extended, no completes.00538590/B0 absent inventory: no credit.
+Four temporary artifacts hashed/removed. No application/desktop readiness claim.
 
-Application+0C/008AE908 owns ONE BYTE initialized0, independent of profile
-settings and live FPV58. Player005469E0 stores52C before local gate/callbacks;
-initial old-1→0 reads that preference, enables ordinary view, resets zoom and530.
-Mode1 holster kind14 calls actual inline command17/model; leaving1 calls18.
-Static ASM: command kind1 at+8, action17/18 at+C, not genuine default no-ops.
-Inline005ABB50 updates optional typed Look04 through0077F710 then scalar48
-through0077F050. Null model retains04; D0/D4/B0 and40/C8 flags preserved.
-Modes2/3 require actual process stage41 guard match; never force equality.
-FirstPersonPlayersLoading uses actual world checked per-Human map; target
-retirement captures world/actors and must run before their destruction.
-Occupied C4/8C and nonoffline secondary command2 queues remain explicit.
+005A81C0 offline user14 else LAST04 or actual modelE8, not005A82C0 short10.
+005A8380 uses profile.field24. Active3 HUD first/second virtual13C/140 target
+00538590/B0: pending1CC/1D4 unless-1, else current1C8/1D0. Texture caches store
+before frame calls, equality suppresses retry.005A78F0 finds DEFINITION ID, unlike
+005A6FF0 runtime identity. Rank table first IDs27A6..AD already confirmed in
+analysis/human-store.md; raw BSS0 is not an initialized rank table.
+0049B870 hides then reverse-scans roots; any visible root skips marker removal.
+Last hides clear4 then retire newest matching marker amount, without erase.
+0049B900 marks each Human before reverse hide, then flags&~6.004936C0 creates
+real OBJ_, local pose/radius/update/A8alpha0, amount1; difficulty4 blocks append.
+Native duplicate marker behavior preserved. HUD Actor alias now decays actual
+array/vector element reference before removing pointer; no second identity store.
 
-Previous5cf27a0 [script runtime/objectives](analysis/mission-script-runtime-composition.md)
-composes actual VM/module, objective88, ReturnEnd/EndScript and camera look.
-Tables006E9EA0 use896 CRT draws; objective stage13 indices are WORDs, compared
-values DWORDs. Startup tables remain uninitialized; real observed publication
-required. Original-address integrity VM excluded from accepted startup scope.
-008692D0 normallyfalse; only confirmed direct writer00424900 scopes reset.
-Advance is override OR game28. Module loaded10 can latch after bad binding;
-containing loader must inspect failed_bindings. F9 uses directPC++, unlike normal
-advance. Look288 rotates actual scene15C through0C before main240 update.
-Previousad54f4c [initial controls](analysis/mission-script-initial-controls.md)
-recovers same-Human eventEC/Guard queues/five controls, delayed suspend, Sight/
-SOUND, retail output/views. ContextEC is events[4], not executingD8 or pending24.
-Previous1b703b8 [Human ownership](analysis/human-world-composition.md) owns actual
+Previousd6b81e9 [FPV/player owners](analysis/first-person-loading-composition.md):
+actual same-overlay model/items/animation SOUND/playback/view/reset, actual
+current-Player/WorldActors/Scene2/inline/B0/sector/retirement lookups, mode005469E0
+and typed Look04/scalar48 actions. Application+0C/008AE908 byte0 preference is
+separate from profile and FPV58. Source model/FPV composition/reset compile-only.
+Previous5cf27a0 [script runtime/objectives](analysis/mission-script-runtime-composition.md):
+VM/module, objective88, ReturnEnd/EndScript and camera look.006E9EA0 tables use896
+CRT draws; stage13/41 WORD indices select DWORDs. Actual observed publication
+required; never force equality. Startup tables stay uninitialized. Original-address
+integrity VM excluded from accepted startup scope.008692D0 normallyfalse, actual
+advance=override OR game28; reset00424900 is its confirmed scoped writer.
+Module loaded10 can latch on bad binding; inspect failed_bindings in real loader.
+Previousad54f4c [initial controls](analysis/mission-script-initial-controls.md):
+contextEC=events[4], Guard queues, Human controls/suspend, Sight/SOUND and views.
+Previous1b703b8 [Human ownership](analysis/human-world-composition.md) composes
 DD0/E0/230/B0/inventory/activation;99c8688 recovers cold Car activation.
 
 ## Next — same entire checkbox
 
-Actual containing player presentation/HUD soldier/compass binding/removal,
-remaining Human/inline/FPV/HUD/SOUND/VM/world/session ownership, required
+Actual0049FBF0 current inventory refresh and remaining reached HUD updates,
+containing Human/inline/FPV/HUD/SOUND/VM/world/session ownership, required
 observed-value producer, ordered006CA780 loader/postactivation, first camera/
 update/render and failure/repeat, then user desktop acceptance. WorldScene/
 WorldActors remain uncalled by application. Consumers.make_human_loading_owner,
@@ -70,17 +74,13 @@ resolver authoritative. Captures script-start-census.json, script-human-command-
 labels.json/base jump map and human-suspend-vtable-targets.json remain in WORK.
 Human float switch labels decode bits against COMMANDS only, not predicates.
 
-Fresh required HUD exports in WORK: player-mode-and-soldier-receivers/
-0049B7E0/0049B870/004B3C60/0049F1C0/00493D10; soldier-bind-first-frame-required/
-004B3890/004B47D0/004B4860/004936C0/00493F40/005A78F0/005A6600;
-soldier-human-name-modes/005A8380/005A81C0/005A88B0/005A88D0. Jobs clean/completed.
-004B3C60 calls name/rank, photo/weapon caption, VIP/stat7 flags and AI textures.
-005A81C0 offline profile user14 else LAST name04 (not005A82C0 short10).
-005A8380 profile.field24, absent profile0.005A88B0/D0 return-1 unless B0kind3,
-then virtual13C/140 still need actual ActiveAI getter targets.005A78F0 searches
-DEFINITION identifier (not item instance identity), holder0/2/3/4/5 then reverse
-entries in ascending holster/pack stacks. Rank localization table8AE850 stride16
-and actual getters/marker dependencies still need confirmation before coding.
+Next concrete presentation dependency0049FBF0 has no source receiver yet;
+HumanLoadingPresentation requires explicit Dependencies.inventory_changed().
+Car004D9280 and other nonoffline virtual64 remain deliberate rejections; no
+successful callback default exists. Source bridge permits completed cyclic
+owner types but does not construct the actual dependency aggregate or world.
+Detailed new HUD contracts/captures are linked above; no further broad audit of
+unchanged source needed. All Ghidra jobs completed cleanly.
 
 Canonical contracts: [world](analysis/mission-world-loading.md),
 [shared ownership](analysis/world-scene-ownership.md),
