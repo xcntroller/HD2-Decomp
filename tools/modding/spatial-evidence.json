@@ -1,0 +1,108 @@
+{
+  "normal_operation_requires_original_binary": false,
+  "original_code_executed": false,
+  "scope": "Serialized spatial snapshot and bounded volume record extents; not runtime reconstruction",
+  "binaries": [
+    {
+      "name": "LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "code_spans": [
+        {
+          "address": "1004e250",
+          "size": 610,
+          "sha256": "5b0751f8d34f06e5954d5a2bf742d41b280eadce20c461dfe6c53cf6a1e518a3",
+          "claim": "Sector common/header48,16-byte vertices,uint16 triangles,portals"
+        },
+        {
+          "address": "100431a0",
+          "size": 58,
+          "sha256": "6f43ca43cce83fa48ac80c0aa490f349e4a6e3b3ca05ac95d01801630cc53adf",
+          "claim": "Portal byte count followed by(count+2)*16"
+        },
+        {
+          "address": "1003a960",
+          "size": 208,
+          "sha256": "2a9e449b172742488d32ab4fb99f7f0af1bed05ba8c02421908b6bc62549dc0e",
+          "claim": "Occluder common,counts,16-byte vertices,uint16 triangles"
+        },
+        {
+          "address": "1001d680",
+          "size": 813,
+          "sha256": "919fc84f5d64702648a4843ce7d0e3d9abab62fa492768ca3db2fa228859b34e",
+          "claim": "LinkTo flags0 local preserved versus flag1 world preservation"
+        },
+        {
+          "address": "10047c70",
+          "size": 144,
+          "sha256": "bc0c9a50a8d126b955f482ece1bf60dc25e5dcd5f5ef0c5de68dbb4df4c3155a",
+          "claim": "Automatic sector selection calls LinkTo flag1; selection not reconstructed"
+        },
+        {
+          "address": "100462b0",
+          "size": 672,
+          "sha256": "daf4b78d3a6aa2d8f80e30ab34b1c30f3e3ddf1c702484b9f4c970f88a83ead5",
+          "claim": "Scene constructor builtin sectors"
+        },
+        {
+          "address": "1001c0e0",
+          "size": 304,
+          "sha256": "77ed450596fa027ead821d5f1493763531339263c9c692bcfa8beeb0a1709cd0",
+          "claim": "Frame constructor identity/zero/unit defaults"
+        },
+        {
+          "address": "1001ec40",
+          "size": 324,
+          "sha256": "5030f855a220eff07722a7c29d1a54f307b4acf2195c087405490b23e0ed9708",
+          "claim": "Common serialized byte at E0; position-lock bit80 retained"
+        },
+        {
+          "address": "10030540",
+          "size": 96,
+          "sha256": "264a40143e9a8236019d16369e496fa01cc9e15392bb9a4ff1ab7887f493cbb8",
+          "claim": "Quaternion normalization target"
+        }
+      ],
+      "pointers": [
+        {
+          "address": "1009bc90",
+          "target": "1004e250"
+        },
+        {
+          "address": "1009b958",
+          "target": "1003a960"
+        }
+      ]
+    },
+    {
+      "name": "hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "code_spans": [
+        {
+          "address": "006cde38",
+          "size": 144,
+          "sha256": "0f24c1b10615a9dfd6afe338fcfa7ca1a8486013d563981678ea7b59d22f2a16",
+          "claim": "Scene2 WXYZ-to-XYZW stack reorder"
+        },
+        {
+          "address": "006d1873",
+          "size": 277,
+          "sha256": "398e1e121c2b511ee8ba3b90d47bc053594e71f62212f39f5ab6cdaaf6313855",
+          "claim": "Object finalization positions,parents,rotation,scale,hidden"
+        },
+        {
+          "address": "0041d180",
+          "size": 128,
+          "sha256": "54ce92a0f62135ecf6e8d1ab159bab5aac24de4bfab9a61beaa11df64aec4885",
+          "claim": "Set quaternion delegates Normalize"
+        },
+        {
+          "address": "006d4180",
+          "size": 144,
+          "sha256": "c05e915f4eb85a27a2f5f5574d906354d6e8635509ac97538c59c4d828bc142b",
+          "claim": "Mission base scene load before Scene2"
+        }
+      ],
+      "pointers": []
+    }
+  ]
+}

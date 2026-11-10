@@ -1,0 +1,187 @@
+{
+  "normal_operation_requires_original_binary": false,
+  "original_code_executed": false,
+  "scope": "Read-only structural, lookup and alpha-source evidence; preview rendering remains approximate",
+  "binaries": [
+    {
+      "name": "LS3DF.dll",
+      "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee",
+      "code_spans": [
+        {
+          "address": "10034630",
+          "size": 105,
+          "sha256": "98fa2dd3e63195c9c2d87103b1cec7dfb7de7dfcc7e771d501aa01e8ddffdf89",
+          "claim": "Imported member prefix registration"
+        },
+        {
+          "address": "1001d470",
+          "size": 352,
+          "sha256": "65b193449c1e44cc53925c1ae26a7952e1846bf390993b11bade4da992063d3a",
+          "claim": "Prefix owner.member preserves original suffix"
+        },
+        {
+          "address": "1001df00",
+          "size": 480,
+          "sha256": "84bb324ef5ca0e8c26a4b95d13aedd551f52b7e539a72cf585fc4aff2d8ac094",
+          "claim": "Frame mask and default case-insensitive scene search"
+        },
+        {
+          "address": "1001a0f0",
+          "size": 253,
+          "sha256": "85f984803af0822da516ce61666b9b1249401db6dd81539daf82a738db92415b",
+          "claim": "Driver registered full-name tree filtered by owning scene; not path splitting"
+        },
+        {
+          "address": "10047a90",
+          "size": 79,
+          "sha256": "dd74b6928a438faf495e2a4eb6b7c0e45d5407d570108350553471046cab1c7a",
+          "claim": "First containing sector in linked list, Primary fallback"
+        },
+        {
+          "address": "1004d6f0",
+          "size": 200,
+          "sha256": "a0e3853d6c492c083fb0bc1711cd9650a295ce62f02c8f0d13025f5238f94dd8",
+          "claim": "Containment requires updated bounds and derived plane set"
+        },
+        {
+          "address": "10047c70",
+          "size": 116,
+          "sha256": "b306dff6cbd20ebd955e8ab7ee7c7917719a48019cc98d40682cd5e11541744d",
+          "claim": "Automatic link uses flag1 world preservation"
+        },
+        {
+          "address": "1001cfe0",
+          "size": 91,
+          "sha256": "a69af6636eed7b3382b8c41e4e475ea1b3975a22e5a00295465fd54ca3e25f52",
+          "claim": "Visibility setter updates E0 bit0"
+        },
+        {
+          "address": "10069f70",
+          "size": 640,
+          "sha256": "f30312f57853da5550da79c950b542575425076bf04101b5515c1cf63235ea6e",
+          "claim": "Texture cache modes and path helper calls"
+        },
+        {
+          "address": "1006fbd0",
+          "size": 386,
+          "sha256": "15d1913159adddfde88aef4c4783cef2cb1637207b842ba035d567ace1663320",
+          "claim": "Direct path, sticky directory, reverse registered path probes"
+        },
+        {
+          "address": "1002bbe0",
+          "size": 576,
+          "sha256": "3c4e2232c4040c264c1aec46253b4e08f8d62f009f6b7a1c247d28affe044515",
+          "claim": "Material flags mapped into texture modes"
+        },
+        {
+          "address": "1002b140",
+          "size": 160,
+          "sha256": "a6388872efd6eca99d2a446028b45f03d86dce780ea39d2f4e3196b095ba1405",
+          "claim": "RGB block/scalar setters"
+        },
+        {
+          "address": "1000181c",
+          "size": 39,
+          "sha256": "781576a8c700c2fcc299955df7132798fd25322ef5d2aadc3eccf98cfc105834",
+          "claim": "Material+58 participates in opacity classification"
+        },
+        {
+          "address": "10074fc0",
+          "size": 129,
+          "sha256": "54d6f8fc4743366e85a3970acb0b996b1b9a7a0e14f23b5b5d261b6ece6c5462",
+          "claim": "Zero transparent key initialization and source dispatch"
+        },
+        {
+          "address": "10075140",
+          "size": 1026,
+          "sha256": "8db6f93d99e0a05b2d9cf989b88d72c2b73127df3b4cf8741131c9f37fb854fe",
+          "claim": "8/24/32-bit alpha conversion consumers"
+        },
+        {
+          "address": "10007db0",
+          "size": 30,
+          "sha256": "ea7d9f2009e5676f8f321f242a3c4ea55d5881c254c52eb3c07a1af3b85971aa",
+          "claim": "Visual4 common mesh plus5"
+        },
+        {
+          "address": "10035490",
+          "size": 597,
+          "sha256": "5974675bbadc65b01f597d375267a30511cb620d21d4c389ee5ac1ecf577643c",
+          "claim": "Counted animation tail extents"
+        },
+        {
+          "address": "10054240",
+          "size": 121,
+          "sha256": "a293d771676ba0d72add1d47ef2c3251089a62f6ed83fc9bc6d8e5ba8a0bcb5b",
+          "claim": "Visual3 skin and animation tail"
+        },
+        {
+          "address": "10035f00",
+          "size": 110,
+          "sha256": "5e064d72aa9d608ee5b2d3a275b6bbdc998b19eb5c9920ce16616d3dfa557dd9",
+          "claim": "Visual5 mesh and animation tail"
+        },
+        {
+          "address": "10009610",
+          "size": 476,
+          "sha256": "63e80e94f5cb98622873d23370497a6fb217866592861fc8922c27a09e6a54ce",
+          "claim": "Visual6 common plus counted8-byte/word-material effect entries"
+        },
+        {
+          "address": "10056c70",
+          "size": 518,
+          "sha256": "798f9c9753b5b67370a5d89efa0233008399091f5fa7025ff7ea2a7fb12d619b",
+          "claim": "Target7 common plus word/byte/word-frame IDs"
+        },
+        {
+          "address": "10009b30",
+          "size": 424,
+          "sha256": "c738b34203708142926fdffc77bebb29b4dddb5e2a2e88402499fbe8c3e77b08",
+          "claim": "Perspective projection zeroes matrix then sets m23=+1 and m33=0: positive camera-Z clip W; display conversion required for OpenGL"
+        }
+      ],
+      "dispatch": [
+        {
+          "address": "1009c580",
+          "target": "10054240"
+        },
+        {
+          "address": "1009c4b0",
+          "target": "10007db0"
+        },
+        {
+          "address": "1009c3e8",
+          "target": "10035f00"
+        },
+        {
+          "address": "1009c330",
+          "target": "10009610"
+        },
+        {
+          "address": "1009bf20",
+          "target": "10056c70"
+        },
+        {
+          "address": "1009bba0",
+          "target": "1001ec40"
+        },
+        {
+          "address": "1009d87c",
+          "target": "10069f70"
+        }
+      ]
+    },
+    {
+      "name": "hd2.unpacked.exe",
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "code_spans": [
+        {
+          "address": "006ce71d",
+          "size": 23,
+          "sha256": "43d3fdb89737a6a3d2e271dccdb731a1546e28a47f6adf15567445df7f6f6ffb",
+          "claim": "Successful model load enumerates imported members through006CC580"
+        }
+      ]
+    }
+  ]
+}

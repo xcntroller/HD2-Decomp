@@ -1,0 +1,138 @@
+{
+  "binary": {
+    "image_base": "10000000",
+    "name": "LS3DF.dll",
+    "sha256": "12c61eed2aec0c45700ad0a5ddfd7cbb3cbf0ea15ec67de155790bb24e7756ee"
+  },
+  "code_spans": [
+    {
+      "address": "1005d970",
+      "claim": "header/table/frame dispatch; original parent references",
+      "sha256": "135454627347aea01dba0ad3a36a387b98fc5eed2826a45febd16f8ec1f8c7a8",
+      "size": 1117
+    },
+    {
+      "address": "1001ec40",
+      "claim": "common frame position,quaternion,scale,unknown scalar,byte,names",
+      "sha256": "5030f855a220eff07722a7c29d1a54f307b4acf2195c087405490b23e0ed9708",
+      "size": 324
+    },
+    {
+      "address": "10038410",
+      "claim": "standard visual delegates common and geometry readers",
+      "sha256": "fd66a17afc9b8154d386b91bf8405ed74e955e773d53828c649f9487121cd3a1",
+      "size": 40
+    },
+    {
+      "address": "1005ddd0",
+      "claim": "mesh alias,LODs,vertices,groups,indices,materials",
+      "sha256": "4f276f90ce839b1b8ce33452d1258f8d1dcd6d7831187e5cfef5e50690942b83",
+      "size": 961
+    },
+    {
+      "address": "1001c060",
+      "claim": "dummy common+32 bytes",
+      "sha256": "372e99bd85217400ad8e7f3420ddbcfd1bbc12cca7b59e40ace458bd1de2250d",
+      "size": 30
+    },
+    {
+      "address": "10020ba0",
+      "claim": "joint common+DWORD",
+      "sha256": "dc5f37696459d3b189b323b6464d703be8d1279a8d93ab3f32522abaaf4264ff",
+      "size": 30
+    },
+    {
+      "address": "10053900",
+      "claim": "visual2 common mesh+opaque binding/LOD records",
+      "sha256": "02143d78d3f1a4f18d4c58ba35ad1e7c6f29af3bf712182902253db2890911db",
+      "size": 636
+    },
+    {
+      "address": "1002d450",
+      "claim": "serialized XYZW to rotation matrix",
+      "sha256": "b55970fb833a8ebc1aa311c529a398b6a9fcb0fe92aa75991e96e3cf4162c103",
+      "size": 301
+    },
+    {
+      "address": "1001e390",
+      "claim": "per-row scale and local*parent world matrix",
+      "sha256": "d5a4ea6f2052a4eee40eff442c19fcf1ca3c3b29beea3ea096eb468c39d133eb",
+      "size": 435
+    },
+    {
+      "address": "1002d830",
+      "claim": "row-vector matrix multiplication",
+      "sha256": "a19c092d91e42a921e71dbdf9cd91076d86fc5bc8883ddb85cece6488ac8185f",
+      "size": 528
+    },
+    {
+      "address": "10030db0",
+      "claim": "native mesh stride initialization32",
+      "sha256": "7297f95b07178f732e208c951077d14654ba3cb2b49eb31af9aa8fa7a663d08e",
+      "size": 110
+    },
+    {
+      "address": "1002bbe0",
+      "claim": "first table/texture references",
+      "sha256": "3c4e2232c4040c264c1aec46253b4e08f8d62f009f6b7a1c247d28affe044515",
+      "size": 576
+    },
+    {
+      "address": "1002be30",
+      "claim": "sequence first table",
+      "sha256": "7a4d375a3fd8aff5faedc4f6a4cba5bed1d4fbd09294cf2df824f7992be88fc1",
+      "size": 368
+    },
+    {
+      "address": "100311e0",
+      "claim": "vertex allocator count and32-byte element allocation",
+      "sha256": "9bec01be67714a83f0d081ec994deda35ee2c776df908fef3d74f5b8c25199df",
+      "size": 229
+    },
+    {
+      "address": "10031ce0",
+      "claim": "additional stream stride mask; unsupported by toolkit",
+      "sha256": "e1f7a93f7e24faf9f6483b6a99abedcde20acb273efc833a224535ce5eb30867",
+      "size": 52
+    }
+  ],
+  "normal_operation_requires_original_binary": false,
+  "original_code_executed": false,
+  "pointers": [
+    {
+      "address": "1009c838",
+      "target": "10038410"
+    },
+    {
+      "address": "1009c748",
+      "target": "10038410"
+    },
+    {
+      "address": "1009c668",
+      "target": "10053900"
+    },
+    {
+      "address": "1009bc18",
+      "target": "1001c060"
+    },
+    {
+      "address": "1009ba48",
+      "target": "10020ba0"
+    },
+    {
+      "address": "1009b9d0",
+      "target": "1001ec40"
+    }
+  ],
+  "scope": "Read-only 4DS structural observation and approximate RGB preview; no engine runtime claims",
+  "unknowns": [
+    "material parameter semantics",
+    "nonzero additional vertex layouts",
+    "special0xffff vertex reuse",
+    "visual subtypes>=3",
+    "other frame types",
+    "LOD selection metric",
+    "skin binding semantics/deformation",
+    "original cache search and rendering state"
+  ]
+}
