@@ -35,7 +35,7 @@ public:
     auto& actor_proximity(){return d_.proximity;}
     void clear_retired_actor_record(std::int32_t identity){d_.startup.clear_retired_actor_record(identity);}
     void clear_human_player_slot(std::uint32_t identity){d_.startup.clear_human_player_slot(identity);}
-    template<class Actor>void remove_actor_presentation_references(Actor& actor){d_.hud.remove_actor_references(mode_flags(),1,&actor);}
+    template<class Actor>void remove_actor_presentation_references(Actor& actor){d_.hud.remove_actor_references(mode_flags(),1,&actor.base());}
     auto car_loading_resources(){return d_.car_resources;}
     auto& car_definitions(){return d_.car_definitions;}
     bool car_camera_setting264(){return d_.startup.car_camera_setting264();}

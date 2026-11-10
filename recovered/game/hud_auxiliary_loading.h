@@ -77,6 +77,7 @@ public:
         info_.frames.fill(Frame{});info_.selected=Frame{};info_.states=nullptr;info_.actions=nullptr;
         progress_.background=progress_.bar=Frame{};
     }
+    auto& pointer(){return pointer_;}
     const auto& pointer()const{return pointer_;}const auto& info()const{return info_;}const auto& progress()const{return progress_;}
 private:
     static void require(Frame frame){if(!frame)throw std::runtime_error("Required HUD auxiliary artwork is missing");}

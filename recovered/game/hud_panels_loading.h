@@ -33,7 +33,6 @@ public:
     using Dialogs=HudDialogsLoading<Frames,Factory,Hud>;
     using Actor=std::remove_pointer_t<std::decay_t<decltype(std::declval<World&>().hud_actor_identities()[0])>>;
     using Map=HudMapLoading<Frames,Factory,Actor,typename World::Objective>;
-    struct Borrowers {void* inventory_context=nullptr;void* collision=nullptr;};
     HudPanelsLoading(Frames& frames,Factory& factory,Hud& hud,Players& players,Items& items,
                      Styles& styles,Camera& camera,World& world,HudSignalTables& signals,HudCompassShared& compass)
         :frames_(frames),factory_(factory),hud_(hud),players_(players),items_(items),world_(world),artwork_(frames),cursor_(frames,players,items),
@@ -43,7 +42,7 @@ public:
          compass_(frames,compass),auxiliary_(frames,factory),map_(frames,factory),inventory_(frames,factory,hud),
          info_(frames,factory,styles),selector_(frames,factory),movies_(frames),objectives_(frames),scoreboard_(frames,factory),
          timers_(frames,factory),command_(frames,factory,hud,command_roll_,camera){}
-    void bind(Frame scene,const std::string& selected_mission,std::uint32_t mode,bool editor_kind3,const Borrowers& borrowers) {
+    void bind(Frame scene,const std::string& selected_mission,std::uint32_t mode,bool editor_kind3) {
         if(started_)throw std::logic_error("HUD panels rebound before retirement");
         started_=true;scene_=scene;
         artwork_.bind_actions(scene);artwork_.bind_player_states(scene);
@@ -51,8 +50,9 @@ public:
         for(unsigned n=6;n;) {--n;soldiers_[n].bind(scene,n,artwork_,mode);}
         messages_.bind(scene,50);crosshair_.bind(scene);hands_.bind(scene);small_.bind_status(scene);compass_.bind(scene);
         auxiliary_.bind_pointer(scene,world_.scene_frame());
-        (void)map_.bind(scene,selected_mission,borrowers.inventory_context,mode,factory_,world_,auxiliary_);
-        inventory_.bind(scene,borrowers.inventory_context);
+        auto* pointer=&auxiliary_.pointer(); //0049B280: HUD6B320, SAME inline pointer context for map/inventory/command.
+        (void)map_.bind(scene,selected_mission,pointer,mode,factory_,world_,auxiliary_);
+        inventory_.bind(scene,pointer);
         progress_started_=true;auxiliary_.bind_progress(scene);info_.bind(scene,mode,factory_);selector_.bind(scene);
         movies_.bind(scene);small_.bind_hint(scene);small_.bind_camera(scene);objectives_.bind(scene);scoreboard_.bind(scene,mode,factory_);
         small_.bind_voting(scene);timers_.bind(scene,world_.hud_actor_identities());small_.bind_carnage(scene);small_.bind_server_message(scene);small_.bind_injury_message(scene);
@@ -63,8 +63,8 @@ public:
         auxiliary_.bind_info(scene,artwork_);
         std::array<void*,5> command_contexts{{&hud_,const_cast<std::array<Frame,20>*>(&artwork_.first_states()),
             const_cast<std::array<Frame,39>*>(&artwork_.actions()),
-            const_cast<typename HudAuxiliaryLoading<Frames,Factory>::Info*>(&auxiliary_.info()),borrowers.inventory_context}};
-        command_started_=true;command_.bind(scene,world_.scene_frame(),borrowers.collision,command_contexts);
+            const_cast<typename HudAuxiliaryLoading<Frames,Factory>::Info*>(&auxiliary_.info()),pointer}};
+        command_started_=true;command_.bind(scene,world_.scene_frame(),world_.navigation_context(),command_contexts);
     }
     void close() {
         if(!started_)return;

@@ -11333,13 +11333,15 @@
       "program": "client",
       "entry": "004b4980",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004b4980: Command HUD geometry/text setup, teardown, speed cycling and ordered post-scene drawing; real controlled-player/camera dependencies required.",
+      "coverage": "P2.2 source reconstruction at original entry 004b4980: Command HUD geometry/text setup, teardown, speed cycling and ordered post-scene drawing; real controlled-player/camera dependencies required. Corrected command5A7B4 borrower to SAME game54/00523AB0 navigation datasets; world context comes from the actual parent scene.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/hud_command_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/hud-world-binding.md",
+        "recovered/game/hud_world_loading.h"
       ]
     },
     {
@@ -12049,13 +12051,15 @@
       "program": "client",
       "entry": "004a7520",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004a7520: Actual map owner, camera/state records, goal TEXT/objective artwork and rendering setters; mission objective producers remain separate.",
+      "coverage": "P2.2 source reconstruction at original entry 004a7520: Actual map owner, camera/state records, goal TEXT/objective artwork and rendering setters; mission objective producers remain separate. Actual session.mission.related view captures missionA8 once and observes live vector count/entries through map binding.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/hud_map_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/hud-world-binding.md",
+        "recovered/game/hud_world_loading.h"
       ]
     },
     {
@@ -12075,13 +12079,15 @@
       "program": "client",
       "entry": "004a7680",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004a7680: Actual map owner, camera/state records, goal TEXT/objective artwork and rendering setters; mission objective producers remain separate.",
+      "coverage": "P2.2 source reconstruction at original entry 004a7680: Actual map owner, camera/state records, goal TEXT/objective artwork and rendering setters; mission objective producers remain separate. Actual session.mission.related view preserves nullA8 gate and per-pass descriptor capture with live vector reads.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/hud_map_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/hud-world-binding.md",
+        "recovered/game/hud_world_loading.h"
       ]
     },
     {
@@ -12296,13 +12302,15 @@
       "program": "client",
       "entry": "0049b280",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0049b280: Composition/retirement of actual HUD panels and reached forwarding setters; registry/world consumers remain required.",
+      "coverage": "P2.2 source reconstruction at original entry 0049b280: Composition/retirement of actual HUD panels and reached forwarding setters; registry/world consumers remain required. Concrete bind now derives SAME inline HUD6B320 pointer for map/inventory/command and borrows actual game54 navigation tables; no external pointer/grid stand-in.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/hud_panels_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/hud-world-binding.md",
+        "recovered/game/hud_world_loading.h"
       ]
     },
     {
@@ -19291,7 +19299,7 @@
       "program": "client",
       "entry": "0049ef70",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0049ef70: Actual HUD flags/mode/kind gates, matching borrowed selection pair and command1C actor clearing, with required populated roll/signal rebuild receivers explicitly unavailable.",
+      "coverage": "P2.2 source reconstruction at original entry 0049ef70: Actual HUD flags/mode/kind gates, matching borrowed selection pair and command1C actor clearing, with required populated roll/signal rebuild receivers explicitly unavailable. Actual WorldActorLoadingConsumers retirement now uses SAME ActorBase identity as the full Scene2 HUD view, rather than its outer SceneActor wrapper.",
       "limitations": "Source-only typed HUD actor borrowers replace the original layout/virtual ABI. Positive roll target/menu and signal-row rebuilding remain explicit errors with no successful producer in loading; complete application/UI teardown is not claimed. Native boundary doubles and strict actual i386 consumer composition pass; no world/first-frame/desktop or whole-body equivalence claim.",
       "evidence": [
         "recovered/game/scene_actor_registry.h",
@@ -19301,7 +19309,9 @@
         "analysis/world-actor-loading-consumers.md",
         "recovered/game/hud_actor_retirement.h",
         "recovered/game/hud_scene_loading.h",
-        "recovered/game/hud_command_loading.h"
+        "recovered/game/hud_command_loading.h",
+        "analysis/hud-world-binding.md",
+        "recovered/game/hud_world_loading.h"
       ]
     },
     {

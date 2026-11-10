@@ -25,7 +25,7 @@ public:
         :frames_(frames),factory_(factory),hud_(hud),panels_(panels),click_(click){}
     ~HudSceneLoading(){try{retire();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}}
     HudSceneLoading(const HudSceneLoading&)=delete;HudSceneLoading& operator=(const HudSceneLoading&)=delete;
-    bool bind(const std::string& mission,std::uint32_t mode,bool editor_kind3,const typename Panels::Borrowers& borrowers) {
+    bool bind(const std::string& mission,std::uint32_t mode,bool editor_kind3) {
         if(hud_.flags&1u)return true; //Actual idempotent guard before any allocation.
         if(scene_||model_||camera_)throw std::logic_error("HUD loading prefix was not retired");
         if(click_.owner)throw std::logic_error("Another HUD owns the shared click sound");
@@ -56,7 +56,7 @@ public:
             if(frames_.human_sound_available())(void)frames_.load_human_sound(sound,"button.wav"); //Original ignores sound cache status.
             frames_.human_sound_parameter7c(sound,3);frames_.object_visible(sound,false);frames_.human_sound_volume(sound,1.f);
             frames_.human_shadow_name(sound,"sound_click");frames_.hud_inventory_link_root(sound,scene);
-            panels_started_=true;panels_.bind(scene,mission,mode,editor_kind3,borrowers);
+            panels_started_=true;panels_.bind(scene,mission,mode,editor_kind3);
             down_panel_=frames_.hud_find(scene,"down_panel",0xffff);fields6b8f8_.fill(nullptr);
             hud_.flags=9;fields10_.fill(0);flags20_.fill(0);
             const auto border=frames_.hud_find(scene,"Border",0xffff);

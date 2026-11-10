@@ -19,6 +19,7 @@ declines loading until the actual world and remaining consumers are connected.
 source composition; [cold Car actor activation](analysis/car-activation-loading.md) is also recovered.
 [Cold Car callback/world binding](analysis/car-callback-world-binding.md) supplies the actual factory, Physics contact and shared solver/pool owners.
 [Live squad authority](analysis/live-squad-session-ownership.md) remains with the persistent application records.
+[HUD world/parent binding](analysis/hud-world-binding.md) now composes with the actual identity, objective and navigation owners.
 Actual containing-world integration and first-frame delivery remain.
 
 The accepted bounded launch checkpoint covers: four opening movies with music and

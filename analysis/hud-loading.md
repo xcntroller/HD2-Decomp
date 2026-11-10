@@ -1251,3 +1251,10 @@ projection-map.json preserve evidence; hud-selection-verification-wip.json remov
 four temporary fixtures. No active world/desktop/ledger credit.
 
 2026-11-10: [HUD Human/player presentation checkpoint](hud-player-presentation-loading.md) implements0049B7E0/0049B870/populated0049B900,004B3C60/name/photo/caption/mode textures and actual compass marker construction/removal over SAME HUD owners. Source Players/presentation bridge and failure/duplicate/lifetime checks pass. Later HUD simulation and actual world/session remain; application still unloaded.
+
+2026-11-10: [Concrete HUD world/parent binding](hud-world-binding.md) supersedes
+the older declaration-only mission/registry/pointer-context boundary: actual
+Scene2 Base identities, mission.related view, inline6B320 map/inventory pointer
+and game54 navigation datasets now compose in the real GameHudLoading bind.
+The source containing graph uses GameOwnerBackend table identity. Application
+world/first-frame integration remains open; no desktop claim.

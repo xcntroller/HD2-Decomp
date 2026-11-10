@@ -6,7 +6,7 @@
   "policy": "User postpones exhaustive pre-Phase2 pass; function completion follows delivery with one consolidated sweep. P2.0 research belongs inside the first implementation batch.",
   "source_contract": "analysis/phase2-delivery-plan.md",
   "boundary_evidence": "analysis/phase2-boundary-map.json",
-  "ledger_sha256": "a52d665a0d6280ca3a4ca54250a179e1635123cd6d37886a075fe7527033f474",
+  "ledger_sha256": "e1c1f5f9b781cd0abfcc82ac7f1d6d6b73f4df9b5e8ecabc01e7c7c0dd58aa10",
   "first_visible_targets": [
     "P2.2",
     "P2.3"
@@ -126,6 +126,11 @@
           "receipt": "analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json",
           "status": "Source-only concrete cold Car/Physics/body/pool binding; required positive contacts, containing session/loader/first frame remain",
           "squad_ownership": "analysis/live-squad-session-ownership.md"
+        },
+        "hud_world_binding": {
+          "contract": "analysis/hud-world-binding.md",
+          "receipt": "analysis/checkpoints/p2.2-hud-world-binding-20261110.json",
+          "status": "Source-only actual full HUD bind/world views/parent navigation ownership verified; containing session/loader/first frame remain"
         }
       },
       "checkpoint_record": "analysis/checkpoints/p2.2-20261109.json",

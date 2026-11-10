@@ -124,8 +124,9 @@ private:
             for(auto frame:{zone.allied,zone.axis})if(frame){frames_.hud_frame_tag(frame,zone.tag);frames_.object_visible(frame,false);frames_.update_scene_object(frame);}}
     }
     template<class World>void bind_goals(World& world){ //004A7520/004A7A90, ignored false when faction visuals absent.
-        for(std::size_t n=0;n<world.map_objectives().size();++n){const auto root=objective_root(n);if(!root)continue;
-            goals_.emplace_back();auto& goal=goals_.back();goal.root=root;goal.objective=world.map_objectives()[n];
+        decltype(auto) objectives=world.map_objectives(); //Same missionA8 captured once, live vector count reread.
+        for(std::size_t n=0;n<objectives.size();++n){const auto root=objective_root(n);if(!root)continue;
+            goals_.emplace_back();auto& goal=goals_.back();goal.root=root;goal.objective=objectives[n];
             const auto caption=frames_.actor_find(root,"text_obj*",0x10001);
             goal.allied=frames_.actor_find(root,"allied_obj*",0x10001);goal.axis=frames_.actor_find(root,"axis_obj*",0x10001);
             if(!goal.allied||!goal.axis)continue;
@@ -134,8 +135,9 @@ private:
             goal.state0c=4;goal.state10=2;}
     }
     template<class World>void bind_editor_goals(World& world){ //004A7680/004A7ED0: only successful record is appended.
-        for(std::size_t n=0;n<world.map_objectives().size();++n){const auto root=objective_root(n);if(!root)continue;
-            EditorGoal goal;goal.root=root;goal.objective=world.map_objectives()[n];
+        decltype(auto) objectives=world.map_objectives();
+        for(std::size_t n=0;n<objectives.size();++n){const auto root=objective_root(n);if(!root)continue;
+            EditorGoal goal;goal.root=root;goal.objective=objectives[n];
             goal.allied=frames_.actor_find(root,"allied_obj*",0x10001);goal.axis=frames_.actor_find(root,"axis_obj*",0x10001);
             if(!goal.allied||!goal.axis)continue;
             frames_.object_visible(goal.allied,false);frames_.object_visible(goal.axis,false);frames_.object_visible(root,false);editor_goals_.push_back(goal);}

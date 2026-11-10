@@ -8,6 +8,16 @@
 
 namespace hd2::game {
 
+//Required native subgroup virtual14/04 interface. The loading module has no
+//append producer and creates no subgroup. A later real producer must supply
+//both bodies; an empty successful tick/destroy is not a loading dependency.
+class PlayersSubgroup {
+public:
+    virtual ~PlayersSubgroup()=default;
+    virtual void tick(std::uint32_t)=0;
+    virtual void destroy(bool)=0;
+};
+
 //Actual module+E8/0045FB90, separate roster and raw owned record buffer2C.
 //The populated remote-AI record producer and its format remain separate. There
 //is deliberately no allocator/append API for an invented record shape.

@@ -1,0 +1,99 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "ledger_added_partial_client": 0,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 1949,
+  "native_checks": [
+    "Actual HUD identity view: same bases, reserved32/current count/holes/changes",
+    "Actual objective view: null gate, same descriptor/vector, captured mission and live vector append/status alias",
+    "Actual common world consumer Base-domain retirement clears matching HUD borrowers"
+  ],
+  "strict_i386": "PASS actual GameHudLoading bind/close with real WorldScene<GameOwnerBackend>/WorldActors/SessionOwner tables/HUD world data and prior Car/Human/VM/router/offline spawn graph; containing dependency aggregate still unconstructed",
+  "application_link": "PASS",
+  "tracker_checks": 27,
+  "remaining": [
+    "Checked construction of actual mutually borrowing containing dependency graph",
+    "Required positive receivers, ordered loader and meaningful guard observations",
+    "First camera/update/render, failure/repeat and user desktop acceptance"
+  ],
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/hud-inline-pointer-context.asm",
+      "sha256": "677c123ca30a39520234daf7067aed1b179665d976013334b817bc957b3ba758"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-command-navigation-owner.asm",
+      "sha256": "77cc108376e5e9e671c5de41fdba22f27fe1e24df3e56c022611902c9d9ffa8d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/session-navigation-owner.asm",
+      "sha256": "db657d559b1551caad52592f88e6955510a7622b9ae919991126dcb275334d95"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-loading-artwork-bindings/0049b280.c",
+      "sha256": "21d7848bbabd89ea0e77e9b354a19b04319336b88119ab2827a7e65b375b4c38"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-loading-panels-lifetime/004b4980.c",
+      "sha256": "9e072a9f5adbfc753fbb2197d32e3b7d74afad7a59362659e42aca0c6772a764"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-map-command-dependencies/004a7520.c",
+      "sha256": "bd7211e5bbd009544dde7a9f7c54777fc7a274901497efa21efa33c37b966027"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/hud-map-command-dependencies/004a7680.c",
+      "sha256": "1fad51d36c573cc1ebe66c52d056803a32d02854abe5e82b535f8f57c4911cfa"
+    },
+    {
+      "path": "analysis/work/multiplayer-bitstream-20261101/00698510.c",
+      "sha256": "e572589abd20dcc8c9de2e5c443dcdbc39a770ea890cffbb0c01903bd776a4c7"
+    }
+  ],
+  "validation_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hud-world-native-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hud-world-native-run.log",
+      "sha256": "3a271f80757c4efdb683ba385c575c4815d7d9045e4d696c2188d705c46a3273"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-containing-world-host.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hud-world-application.log",
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hud-world-native.cpp",
+      "sha256": "59ffdc59299234a264e2143750b6902d02c38cd12f802e6b5d66ef7a8943d01a",
+      "removed_after_checkpoint": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-hud-world-native",
+      "sha256": "9df611ecaa70ade276e57eac0fc390c71caad3fd957cbba65a8882401c0d7823",
+      "removed_after_checkpoint": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-containing-world-host.cpp",
+      "sha256": "d1dfa1731d54ab0dcb88bff5bb880bd509fcc444f38d036752e49028eb581bd8",
+      "removed_after_checkpoint": true
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-containing-world-host.o",
+      "sha256": "d4ce4dff2bb4ac6dcf577f6fe712b6d3be7abccaa74eb52a08cdaab531f9d79f",
+      "removed_after_checkpoint": true
+    }
+  ],
+  "active_next_fixture": "analysis/work/mission-world-20261103/checkpoint-containing-session-host.cpp"
+}

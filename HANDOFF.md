@@ -14,42 +14,43 @@ Zero complete promotions. Both P2.2 checkboxes remain OPEN.
 
 ## Latest source checkpoint
 
-[Cold Car/world callback binding](analysis/car-callback-world-binding.md),
-[receipt](analysis/checkpoints/p2.2-car-callback-world-binding-20261110.json).
-Concrete GameCarCallbacks/factory now borrow SAME Startup/mode/local/clock/CRT,
-frame/EC/Scene2, actual Car body/solver/health/wheels and owned emitter pool.
-Tyre IDs derive from CURRENT CarTyres; activation rejects other tyre/pool owners.
-Checked PhysicsContactLink breaks construction cycle; WorldActors binds its OWN
-scene's Car callbacks and unbinds before Physics retirement. Real force004F2A30,
-impulse004F2B60 and offline004D3EF0 target SAME270/280/410/210/918/220/22C0.
-Saved initial model160 position is independent of moving240. Heavy/destroyed
-contact temporarily halves SAME mass, scales impulse1.4 and restores on failure.
+[HUD world/parent binding](analysis/hud-world-binding.md),
+[receipt](analysis/checkpoints/p2.2-hud-world-binding-20261110.json).
+Actual GameHudLoading/HudPanels/HudScene bind/close now composes with SAME Scene2
+identity view, session.mission.related objective view and parent navigation tables.
+HUD needs full reserved32/holes/current Scene2 count, not its selection pair.
+Common world retirement uses SAME ActorBase pointer, not outer SceneActor.
+Map captures missionA8 once per pass, reads its vector count/entries live.
+0049B280 passes SAME inlineHUD6B320 pointer to map/inventory/command; source now
+uses auxiliary.pointer(), removing external invented opaque Borrowers.
+004B4980 command5A7B4 reads game54, which00698510 gets from00523AB0: NAVIGATION
+TABLES, not collision tree/grid. Source world facade borrows actual owner.tables().
+Strict graph now uses GameOwnerBackend template parameter matching SessionOwner's
+actual MissionTables<GameOwnerBackend>, not unrelated TableStorage instantiation.
+Players subgroup is pure required interface; no loading append producer or fake
+successful tick/destroy. Type37 zone/groupA4 still requires its actual owner.
+Native focused views/Base retirement, strict REAL complete HUD bind and prior
+world/Car/Human/VM/router/spawn graph, app link and27 tracker checks PASS.
+No new credit. Completed audits hashed/removed; active ignored next fixture
+WORK/checkpoint-containing-session-host.cpp. Actual containing dependency
+aggregate, ordered loader and first frame remain UNCALLED by application.
 
-Concrete corrections:004D4A70/6A8 word4 is PHYSICS handle, NOT Script.
-00410630→module2 vtable80F640+4C→00410530. It migrates second→first list and
-repairs moved handles BEFORE derived contact.6A8 callback is now contact6a8.
-Human58 preserves SIXTH FRAME pointer before appending null seventh to5C;
-old bool signature lost it. NonHuman5C00611070 genuineRET, Human nullB0 genuine
-skip. GEffects+B4 is00485BA0 mesh fragments→00484F60, NOT opacity fade. Positive
-mesh fragments/type5 tipping/queued pickup/Human hits/Versions changes/detached
-Item12/non7 event/blast/effect producers explicitly reject; no fake success.
+Prior7f55042 [cold Car binding](analysis/car-callback-world-binding.md) supplies
+actual factory/body/solver/Physics contact link/emitter pool. Tyres derive current
+IDs; activation rejects different tyre/pool identities.6A8 word4 is Physics2
+00410630→00410530, NOT Script. Same270/280/410/210/918/220/22C0 force/impulse
+receivers, initial model160 versus moving240, temporary heavy-contact mass restore.
+Human58 preserves sixth FRAME before appending null seventh. GEffects+B4 is
+00485BA0 mesh fragments, NOT opacity fade. Positive Human/tipping/Versions/
+Item12/non7/blast/effect paths explicitly reject. Five partials added there.
 
-[P24-F05 squad authority](analysis/live-squad-session-ownership.md): user advisory
-was read via git show research/future-dependencies at4332281, no merge/worktree
-changes. SessionOwner now REQUIRES mutable Startup.pre_mission().squad() borrower;
-GameApplicationState.live_squad returns SAME. Request squad is immutable handoff
-metadata, never spawn authority. Real stack splits/identity/voice mutations survive
-teardown/repeat/failure in persistent application records. No P2.4 UI/stock/mask/
-voice-producer/reconciliation/save/result changes. F01/F02/F03/F06 remain later;
-F04 working head1/uniform2 unchanged. No extra random fallback.
-
-Focused native ASan/UBSan/LSan: real list migration/handle repair/failure, actual
-force/impulse/rotated inertia/live mass/callback order/prefix/initial pose,6A8
-routing/link lifetime and actual SessionOwner/stack split alias all PASS.
-Strict i386 actual concrete Car factory/WorldScene/WorldActors/Physics bind/
-shared resource guard and prior Human/VM/router/spawn graph PASS; app link and
-27 tracker checks PASS. Five partials added. Completed audits hashed/removed;
-active next ignored fixture WORK/checkpoint-containing-world-host.cpp.
+[P24-F05 squad authority](analysis/live-squad-session-ownership.md): advisory read
+via git show research/future-dependencies at4332281; no merge/worktree changes.
+SessionOwner REQUIRES mutable Startup.pre_mission().squad() borrower; GameApp
+live_squad returns SAME. Request squad is immutable metadata. Real splits/identity/
+voice mutations survive teardown/repeat/failure in application records. No P2.4
+UI/stock/mask/voice-producer/reconciliation/save/result changes; F01/F02/F03/F06
+remain later, F04 head1/uniform2 unchanged. No extra random fallback.
 
 Prior dcbef57 [world consumers](analysis/world-actor-loading-consumers.md),
 21b5c7c [module dispatch](analysis/module-loading-dispatch.md)/
@@ -65,13 +66,15 @@ Other Human/VM/FPV/HUD/Players contracts in RESEARCH.md/loading-modules.md.
 Actual containing world/session instances and reached required positive receivers,
 ordered006CA780 loader, first camera/update/render, failure/repeat then user
 Python desktop acceptance. All recovered loading world/VM/router remain UNCALLED
-by application. The strict fixture supplies actual Car factory now, but still has
-DECLARED HGroup and HHudWorld and borrowed dependency aggregates. Next construct
-actual containing graph; resolve cycles with checked SAME-owner borrowers, never
-references to unconstructed objects or successful default endpoints. HUD map bind
-needs actual scene_frame/objective/Scene2 registry views; its template was not yet
-instantiated by prior graph. Players subgroup has no append producer; don't invent
-successful tick/destroy services. Continue after this dependency checkpoint.
+by application. The strict fixture supplies actual Car factory and complete HUD bind now, with
+real parent tables/identity/objective/pointer views; dependency aggregates are
+still borrowed. Next construct actual containing graph, resolving cycles with
+checked SAME-owner borrowers, never references to unconstructed objects or
+successful defaults. WorldActorLoadingConsumers/HumanWorldLoadingServices/
+HumanLoadingPresentation/HumanLoadingOwnerFactory currently store Dependencies&;
+containing cycles require checked late dependency binding before activation.
+Preserve actual instance identities and original teardown order. Continue after
+this dependency checkpoint.
 
 Ordering: +14/+1C/+18 fresh ASCENDING;0048DB90/+20 fresh REVERSE.00698F80 does
 presentation finish→dubbing close→authority finish→HUD close. Reserved Humans can

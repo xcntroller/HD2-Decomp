@@ -12,7 +12,7 @@
 #include <vector>
 namespace hd2::game {
 //004B4980/004B4DE0/004B5790 and004B4D40/004B5780/004B59C0. Actual HUD
-//eight inline texts, world/collision borrowers, separate nested roll receiver,
+//eight inline texts, world/navigation borrowers, separate nested roll receiver,
 //SAME camera/input owners. No command interactions or generated route producer.
 template<class Frames,class Factory,class Hud,class Dialogs,class Camera>
 class HudCommandLoading {
@@ -22,9 +22,9 @@ public:
     struct Button {Frame normal{},alternate{};std::uint32_t tag=0;};
     HudCommandLoading(Frames& frames,Factory& factory,Hud& hud,Dialogs& roll,Camera& camera)
         :frames_(frames),factory_(factory),hud_(hud),roll_(roll),camera_(camera){}
-    void bind(Frame scene,Frame world,void* collision,std::array<void*,5> contexts) {
+    void bind(Frame scene,Frame world,void* navigation,std::array<void*,5> contexts) {
         if(bound_)throw std::logic_error("HUD command rebound before borrower retirement");
-        require(scene);require(world);bound_=true;scene_=scene;world_=world;collision_=collision;contexts_=contexts;
+        require(scene);require(world);bound_=true;scene_=scene;world_=world;navigation_=navigation;contexts_=contexts;
         border_=find("Border");frames_.object_visible(border_,false);frames_.update_scene_object(border_);
         fields10_.fill(0);actor1c_=nullptr;bind_buttons();bind_texts();
         for(unsigned n=0;n!=10;++n){std::array<char,32> name{};std::snprintf(name.data(),name.size(),"info%02u",n);frames_.hud_frame_tag(find(name.data()),n+20);}
@@ -49,7 +49,7 @@ public:
         model_.reset();while(!route_models_.empty())route_models_.pop_back();roll_.close_roll();errors.rethrow();
     }
     void discard_borrowers()noexcept {
-        border_=scene_=world_=Frame{};collision_=nullptr;contexts_.fill(nullptr);textures_.fill(Frame{});
+        border_=scene_=world_=Frame{};navigation_=nullptr;contexts_.fill(nullptr);textures_.fill(Frame{});
         buttons_.fill(Button{});speed_icons_.fill(Frame{});roll_.discard_borrowers();bound_=false;
         actor1c_=nullptr;
     }
@@ -109,7 +109,7 @@ private:
         }
     }
     Frames& frames_;Factory& factory_;Hud& hud_;Dialogs& roll_;Camera& camera_;
-    Frame scene_{},world_{},border_{};void* collision_=nullptr;std::array<void*,5> contexts_{};
+    Frame scene_{},world_{},border_{};void* navigation_=nullptr;std::array<void*,5> contexts_{};
     std::array<Button,18> buttons_{};std::array<Frame,5> speed_icons_{};std::array<Frame,10> textures_{};
     std::optional<Owner> model_;std::vector<Owner> route_models_;
     std::array<std::uint32_t,3> fields10_{};const void* actor1c_=nullptr;std::array<std::uint32_t,2> fields740_{};
