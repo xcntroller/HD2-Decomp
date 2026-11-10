@@ -90,6 +90,10 @@ or guessed native stack-buffer capacity. Invalid operands reject safely.
   It does not toggle HUD or FPV.00465EE0 virtual4C compares actual camera240,
   including null equality.
 
+[Subsequent source runtime checkpoint](mission-script-runtime-composition.md) implements
+objective88, ReturnEnd/EndScript and script look-target pose; containing world
+integration remains required. The remaining-work list below records this earlier checkpoint.
+
 All commands preserve authority/ordinary advance gates. Application does not
 construct these view/derived runtime consumers yet. Objective88, ReturnEnd/
 EndScript, subsequent needed tick commands/predicates, script look-target camera

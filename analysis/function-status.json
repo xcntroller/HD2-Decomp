@@ -21377,12 +21377,13 @@
       "program": "client",
       "entry": "00466970",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00466970: Ordinary unattached Human camera first update/follow/pose using actual Players, owned camera/target and collision queries: input gating/yaw/pitch/marker direction, temporary snap smoothing, sweep/ray fallback and exclusions, distance history, shake/zoom breathing, target opacity, sector timer and recoil decay. Debug/detached/attached/look-target/config8 producers remain excluded.",
-      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 00466970: Ordinary unattached Human camera first update/follow/pose using actual Players, owned camera/target and collision queries: input gating/yaw/pitch/marker direction, temporary snap smoothing, sweep/ray fallback and exclusions, distance history, shake/zoom breathing, target opacity, sector timer and recoil decay. Debug/detached/attached/config8 producers remain excluded. Adds script look target288 update of actual active scene camera, immediate/timed direction, native normalization, signed timer and strict clamp, actual virtual0C and active-before-main update order.",
+      "limitations": "Source-only typed/STL/RAII adaptation, with explicit runtime/primitive exclusions in the linked contract; containing world composition and mission desktop acceptance remain open. Original object/allocator/SEH ABI, undefined padding/unsafe malformed inputs and delegated engine bodies are excluded. No whole-body equivalence claim. Source runtime/objective/look update verified separately; containing world remains unintegrated.",
       "evidence": [
         "recovered/game/mission_camera.h",
         "analysis/camera-local-dispatch-loading.md",
-        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+        "analysis/mission-script-runtime-composition.md"
       ]
     },
     {
@@ -22217,12 +22218,14 @@
       "program": "client",
       "entry": "004167b0",
       "status": "partial",
-      "coverage": "Source mission script one-instruction tick with periodic and delay scheduling.",
-      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "coverage": "Source mission script one-instruction tick with periodic and delay scheduling. Containing runtime uses actual clock microseconds, shared process008692D0/game28 advancement and source lifecycle/predicate/command receivers.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source runtime/objective/look update verified separately; containing world remains unintegrated.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_context.h",
-        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json",
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_script_loading_runtime.h"
       ]
     },
     {
@@ -22241,20 +22244,22 @@
       "program": "client",
       "entry": "00416db0",
       "status": "partial",
-      "coverage": "Source mission script return-end flags and required Human cleanup receiver.",
-      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions.",
+      "coverage": "Source ReturnEnd authority gate,104false/D4true before actual frameEC Human state5 working0/resume; no health gate.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source runtime/objective/look update verified separately; containing world remains unintegrated.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_context.h",
-        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json"
+        "analysis/checkpoints/p2.2-script-compiler-context-20261109.json",
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_script_actor_lifecycle.h"
       ]
     },
     {
       "program": "client",
       "entry": "00416e10",
       "status": "partial",
-      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Objective88 and other containing runtime commands remain pending.",
-      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations. Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate.",
+      "coverage": "Source mission script core assignment branch frame Whenever and signal-control VM cases. Additional original1/5E/66/87/6D/5F/8D ScriptAssign/find child/signal/restore/packet SetOn/SaveGameValue receivers; preserve native null/unhandled and advance distinctions. Original rotation opcodes74/75/76 now dispatch actual module rotation records independently from the instruction tick. Adds required original opcodes8C/B7 retail output,3A persistent Human eye-texture/Effects receiver,7B/7C retained active-camera switching and FPV flag save/restore,7D borrowed look-at target/radians andFD SAME session36 tactical flag. Other containing world/runtime commands remain pending. Adds objective88 and F9 EndScript stored-ended-before-callback ordering, positive-health Human cleanup and direct PC increment bypassing advance gate; unknown required commands reject through containing runtime.",
+      "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations. Source-only typed ownership/ABI. No containing-world activation or desktop verification. Engine/sector/Files/glyph endpoints are boundary doubles in native fixtures; actual-host checks compile without running Windows. Unsafe/truncated native inputs reject; wide glyph rendering and remaining world/VM/physics/actor consumers are separate. Source runtime/objective/look update verified separately; containing world remains unintegrated.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_context.h",
@@ -22265,7 +22270,9 @@
         "analysis/sound-world-loading.md",
         "analysis/checkpoints/p2.2-world-presentation-20261109.json",
         "analysis/mission-script-initial-controls.md",
-        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+        "analysis/checkpoints/p2.2-script-initial-controls-20261110.json",
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_script_loading_runtime.h"
       ]
     },
     {
@@ -24882,6 +24889,149 @@
         "recovered/game/mission_camera.h",
         "analysis/mission-script-initial-controls.md",
         "analysis/checkpoints/p2.2-script-initial-controls-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e9ea0",
+      "status": "partial",
+      "coverage": "Process scalar128-entry expected/observed DWORD tables, independent WORD permutations, shared CRT seed and896 ordered random draws; three auxiliary arrays preserved.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_integrity_tables.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069ba60",
+      "status": "partial",
+      "coverage": "Offline7 objective stage13 expected/observed comparison, conditional shared rand failure trial, latch-aware reverse positive-health Players experience awards and actual status application.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_objective_status.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069bc40",
+      "status": "partial",
+      "coverage": "Actual objective store, status3 failure, status4 immediate return, empty/all4/pending0 completion gates and real session result/clock/HUD hint publication.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_objective_status.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069beb0",
+      "status": "partial",
+      "coverage": "Mission related/native34 one-based objective status store with persistent flag15 latch only for status1.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_objective_status.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069bed0",
+      "status": "partial",
+      "coverage": "Set session failure6F/result88/clock8C, actual hint before changing only pending0 objective statuses to2.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_objective_status.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069bfd0",
+      "status": "partial",
+      "coverage": "Genuine retail empty objective status output body.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_objective_status.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b6510",
+      "status": "partial",
+      "coverage": "Offline7 objective-status receiver and base opcode88 bridge into actual shared mission/session/Players/guard/HUD owners.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_objective_status.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049de30",
+      "status": "partial",
+      "coverage": "Objective result hint forwards actual enabled flag/text identity to existing HudSmallPanelsLoading set_hint004AD880.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/mission_objective_status.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a9640",
+      "status": "partial",
+      "coverage": "Offline7 HumanE0 experience wrapping add, actual Human name and signed amount/total formatting through genuine empty retail output; other modes no-op.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/human_objective_experience.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a82c0",
+      "status": "partial",
+      "coverage": "Offline Human name uses actual profile user14, fallback short10 or actual actor name when no profile.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/human_objective_experience.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af5c0",
+      "status": "partial",
+      "coverage": "Actual SAME Human state5 working-mode wrapper forwards0058FCC0 to SAME inline owner.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af450",
+      "status": "partial",
+      "coverage": "Actual SAME Human state5 EndScript wrapper, reenabling events before actual state-owner selection.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/human_script_loading_controls.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058f680",
+      "status": "partial",
+      "coverage": "EndScript state selection from property19C and actual command14: player select_script, enemy8/4,3\u21926,4/5\u21923; no stale Script borrower after selection.",
+      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "evidence": [
+        "analysis/mission-script-runtime-composition.md",
+        "recovered/game/human_script_loading_controls.h"
       ]
     }
   ]

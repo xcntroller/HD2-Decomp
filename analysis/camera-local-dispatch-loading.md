@@ -58,7 +58,7 @@ virtual4C direction/height check, yaw/pitch limits, and flag1/8 target-marker
 orientation preserve that distinction.00468130 then00466970 precede the final
 camera update, actual active-camera scene-sector query every500ms, recoil timers
 29C/2A0 and capped zoom timer294. Debug0046BEB0, detached0046B550, attached
-0046ADA0, target configuration8 and look-target producers explicitly reject.
+0046ADA0, target configuration8 explicitly reject. The later [script runtime checkpoint](mission-script-runtime-composition.md) adds the required borrowed look-target pose branch.
 
 00468130 keeps native quaternion direction interpolation: near-forward planar
 angle uses the DOUBLE0080FF20 (~.08), temporary +.5/- .5 rotations, first-snap

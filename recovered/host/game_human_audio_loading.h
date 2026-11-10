@@ -17,6 +17,7 @@ public:
     struct Random {
         StartupSession& startup;
         std::uint32_t operator()(){return startup.random_word();}
+        void seed(std::uint32_t value){startup.seed_random(value);}
     };
     using Pools=game::HumanSoundPoolManager<GameActorServices,Random>;
     GameHumanAudioLoading(StartupSession& startup,GameActorServices& frames)

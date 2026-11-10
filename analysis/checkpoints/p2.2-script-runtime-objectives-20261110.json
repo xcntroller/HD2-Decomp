@@ -1,0 +1,173 @@
+{
+  "date": "2026-11-10",
+  "scope": "Full first P2.2 checkbox; script runtime/objectives/lifecycle and required look-target source subsystem checkpoint; continue containing owners/loader.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 13,
+  "added": [
+    "006e9ea0",
+    "0069ba60",
+    "0069bc40",
+    "0069beb0",
+    "0069bed0",
+    "0069bfd0",
+    "006b6510",
+    "0049de30",
+    "005a9640",
+    "005a82c0",
+    "005af5c0",
+    "005af450",
+    "0058f680"
+  ],
+  "extended": [
+    "00416db0",
+    "00416e10",
+    "004167b0",
+    "00466970"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1846,
+    "client_partial": 1841,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan actual compiler/VM/Tutorial objective first Block, guard scalar896-draw initializer/golden/threshold, actual mission descriptors/Players/Human experience/HUD small panel result/failure ordering; source Runtime/Module/Contexts/Bindings tick/finish/repeat/bad binding/identity; actual Camera load/look/clear/repeat. Engine/CRT/frame/file/clock/presentation and lifecycle cleanup endpoints doubled.",
+    "host": "Strict i386 actual Human/state/Scene2/HUD/Clock/Script/Effects/Camera template compile-only. Required world/inline/FPV/presentation consumers declarations.",
+    "application": "application-launch compile/link only; loading remains disabled",
+    "tracker": "27 tests, frozen inventories/fingerprints/README check"
+  },
+  "limitations": [
+    "Actual integrity observed-value publication remains required; production never forces equality. Original-address integrity VM excluded from accepted startup checkpoint.",
+    "Actual containing world/session/Human/inline/FPV/HUD/SOUND composition and loader/first-frame orchestration remain.",
+    "Live Dog/current-player type22 attachment EndScript, nonoffline objective transport, debug/config8 camera pose and broader gameplay remain explicit rejections.",
+    "No application loading, engine execution, Windows fixture execution or desktop claim."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/objective-status-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/objective-status-native-run.log",
+      "bytes": 569,
+      "sha256": "07ebecfef8c0249b73934fcc56573a7ae05ae763aa1e9bc284224283d547e43d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/objective-status-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-lifecycle-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-runtime-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-look-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-look-native-run.log",
+      "bytes": 261,
+      "sha256": "9053458325bc31ec4d95b7ea6f95192ef58cea0951209897070b6b9534ff9391"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-look-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-objectives-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-objectives-tracker-render.log",
+      "bytes": 380,
+      "sha256": "2c2f34432e02601f026c00f13fa5176fffde116de07aae33d9d2074687fcd729"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-objectives-tracker-check.log",
+      "bytes": 437,
+      "sha256": "235abbbc24d9115a53c073ba723531b0730797365feee21fc87c5a381c6e5335"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-objectives-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-objective-status-audit",
+      "bytes": 9317912,
+      "sha256": "aaba475927ecbeeec2d9c8c52530a68658c151fae2a0e1517ef9b300ce17fcf3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-objective-status-audit.cpp",
+      "bytes": 25449,
+      "sha256": "6fa1f3abef6ffdb412eed98918c83fef4c9b60d0199aa3083970611291fdf898"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-objective-status-host.cpp",
+      "bytes": 1301,
+      "sha256": "603336feab7698217a051a16c5005a94456e2aa8fbcd944673c45bf582677f88"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-objective-status-host.o",
+      "bytes": 247335,
+      "sha256": "9e3f416481484468c2b5792401f7f1540a190e47f4f2da163117e24adba40da4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-lifecycle-host.cpp",
+      "bytes": 2553,
+      "sha256": "dbba8b69f1da2d20bed1c05696dfc2d40d2d7d8188358df6548d7f6fc1f5e73e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-lifecycle-host.o",
+      "bytes": 182830,
+      "sha256": "97ec9a7ac6828c383c4008cca4d83f398b9380a70f8bc29a8fa0d3fb18d1f0e4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-runtime-host.cpp",
+      "bytes": 2605,
+      "sha256": "c264a85376844cec15786496864179042c342d7b7af7161ea6e8926a8dacc7f5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-runtime-host.o",
+      "bytes": 2042779,
+      "sha256": "121937a7187e3c83165199c6c46300b0a4c958864a74bd826f142084b844d642"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-look-audit",
+      "bytes": 1032848,
+      "sha256": "bb119dc4a6d0fa31003ac41df8cc32c94222a25025f1b031c619ba561703eace"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-look-audit.cpp",
+      "bytes": 5953,
+      "sha256": "61f164b4b89bc2aea627eb8b2d4b90c35cbd22b3c43192308091501310158264"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-look-host.cpp",
+      "bytes": 496,
+      "sha256": "e7209b6b962b93a59a6932ddb24d12dbb131c4229a04f387070158ead9f4fa5f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-look-host.o",
+      "bytes": 50275,
+      "sha256": "2d4d72e4dde9a74b353fde87d6f7cd15d85fad5a7dc3db340134421b36a2194c"
+    }
+  ]
+}

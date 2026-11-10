@@ -5,6 +5,7 @@
 #include "frontend/control_startup.h"
 #include "frontend/control_frame.h"
 #include <ctime>
+#include <cstdlib>
 #include "frontend/application_controller.h"
 #include "frontend/profile_save.h"
 #include "frontend/options_save.h"
@@ -21,6 +22,7 @@
 #include "frontend/dubbing_sound.h"
 #include "game/human_sound_pool.h"
 #include "game/human_morph_tables.h"
+#include "game/mission_integrity_tables.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
 #include "game/actor_proximity_loading.h"
@@ -183,6 +185,9 @@ public:
     bool application_input_enabled() const { return application_input_enabled_; }
     void application_input_enabled(bool value) { application_input_enabled_ = value; } // 006DCAD0
     std::uint32_t random_word() { return settings_backend_.sound_random_word(); }
+    void seed_random(std::uint32_t seed){std::srand(seed);} //006E9EA0 uses the SAME CRT stream as sound/AI.
+    bool& script_advance_override(){return script_advance_override_;} //008692D0;00424900 reset scope owns its writes.
+    game::MissionIntegrityTables& mission_integrity_tables(){return mission_integrity_tables_;} //SAME process owner; no invented initialized/healthy state.
     const frontend::LocalizedTextCache& text() const { return text_; }
     LoadedResources& loaded_resources() { return loaded_resources_; }
     GameAnimations& game_animations() { return game_animations_; }
@@ -603,6 +608,7 @@ private:
     game::PlayersProcess<PlayerHuman> players_process_;
     std::vector<game::PlayersProcess<PlayerHuman>::DelayedSpeech> delayed_player_speech_;
     game::HumanMorphTables human_morph_tables_;
+    game::MissionIntegrityTables mission_integrity_tables_;
     game::HumanAIEventPool human_ai_events_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
     game::HumanAIAction1Pool human_ai_actions1_;
@@ -631,6 +637,7 @@ private:
     std::uint8_t input_flag_ = 0;
     std::array<float, 2> menu_cursor_{{400, 300}}; //0066A4E0 centers only the first shared owner.
     bool application_input_enabled_ = true; // Original00843470 initial byte1.
+    bool script_advance_override_=false; //Original008692D0 BSS; never a fabricated loading-success flag.
     bool control_ready_ = false, setup_started_ = false;
     bool input_setup_started_ = false, mouse_attempted_ = false;
     Phase phase_ = Phase::constructed;

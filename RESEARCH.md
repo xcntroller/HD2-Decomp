@@ -1,5 +1,7 @@
 # Technical research guide
 
+2026-11-10: [script runtime/objectives/lifecycle and camera look](analysis/mission-script-runtime-composition.md) source checkpoint: real receiver composition, shared process guard scalar initialization/comparison, actual objective descriptors/Players experience/HUD result ordering, ReturnEnd/EndScript and active-camera look update. Focused native sanitizers, strict i386 and app link pass. Ledger34 complete/1,846 partial; no application loading/desktop claim. Required observed-value publication and containing world/inline/FPV/session remain open.
+
 Initial Human/VM/view controls checkpoint2026-11-10: [source contracts and original evidence](analysis/mission-script-initial-controls.md). Same-owner eventEC/Guard queues, five initial Human commands, genuine retail output and camera/face/tactical receivers verified with focused sanitizers and strict i386 checks. Ledger34 complete/1,833 partial. Source-only; objective/status and containing session/runtime remain required. Continue P2.2.
 
 Human/world composition checkpoint2026-11-10: [actual source lifetimes and script binding](analysis/human-world-composition.md). Concrete DD0/230/B0/inventory ownership, per-Human SOUND routing, pending EC context and native precompile notifications. Focused native sanitizers/strict actual-host compile pass; containing session/VM receivers remain required. Ledger34 complete/1,811 partial; no world/desktop promotion. Continue P2.2.

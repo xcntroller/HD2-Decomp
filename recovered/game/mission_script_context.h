@@ -166,6 +166,8 @@ public:
     void defer_actor_suspend() { //00421C00/00421970 first suspend invocation.
         delay_=2000;--pc_;ready_=true;
     }
+    void begin_end_script(){ended_=true;} //00416E10 F9 storesD4 BEFORE actor callbacks.
+    void advance_end_script(){++pc_;} //F9 bypasses00416CF0 and leaves104 unchanged.
     //0041DC00 synchronous Block/exit interpreter. A malformed/looping script
     //must not lock the host; the bounded fault adds no original behavior credit.
     template<class Runtime>void block(Runtime& runtime) {
@@ -191,7 +193,7 @@ private:
     };
     template<class Runtime>std::uint32_t number(std::uint32_t index,Runtime& runtime){Predicates<Runtime> predicates{*this,runtime};return expression(index).number(&program_,predicates);}
     void enter_event(std::int32_t pc){ready_=true;delay_=0;ended_=false;pc_=pc;}
-    template<class Runtime>void finish(Runtime& runtime){ready_=false;ended_=true;runtime.script_return_end(*this);} //00416DB0 Human B0-kind5 cleanup.
+    template<class Runtime>void finish(Runtime& runtime){if(!runtime.script_authority())return;ready_=false;ended_=true;runtime.script_return_end(*this);} //00416DB0 Human B0-kind5 cleanup.
     template<class Runtime>void execute(const MissionScriptInstruction& instruction,Runtime& runtime) { //00416E10 core cases, ORIGINAL opcodes.
         switch(instruction.opcode) {
         case 0x4e:

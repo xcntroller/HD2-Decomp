@@ -358,7 +358,7 @@ public:
             state_.field280+=elapsed;if(signed_word(state_.field280)>0)state_.field280=0;
         }
     }
-    //00466970 ordinary, unattached Human pose/shake/breathing and opacity.
+    //00466970 ordinary, unattached Human pose/shake/breathing, script look and opacity.
     //target_human is resolved from target248's actual model100/Scene2 binding;
     //breathing is the containing process's SAME FLOAT00839268 (initial .005).
     template<class Inline,class FirstPerson>
@@ -366,8 +366,8 @@ public:
                            Inline* target_inline,FirstPerson& first_person,std::uint32_t mode,
                            std::int32_t local_player_id,float& breathing) {
         if(!frame()||game64)return;
-        if(state_.flag26d||state_.field260==8||look_target_)
-            throw std::runtime_error("Camera pose requires actual debug/attached/look-target receivers");
+        if(state_.flag26d||state_.field260==8)
+            throw std::runtime_error("Camera pose requires actual debug/attached receivers");
         if(signed_word(state_.field284)>0) {
             state_.field284-=elapsed;
             if(signed_word(state_.field284)<0) {
@@ -395,6 +395,8 @@ public:
         const float z=static_cast<float>(static_cast<long double>(state_.vectors[0][2])+state_.previous_position[2]);
         position[2]=static_cast<float>(static_cast<long double>(positional[2])+z);
         services_.object_position(frame(),position);
+        if(look_target_)apply_look_target(elapsed);
+        else {
         MissionCameraState::Vector direction{};
         if(!state_.flag290) {
             const auto offset=transformed_offset(state_.vectors[2]);
@@ -437,7 +439,9 @@ public:
             }
             direction=camera_normalize(direction,2); //00467222..238: (Y²+Z²)+X².
         }
-        services_.car_direction(frame(),direction);services_.update_scene_object(frame());
+        services_.car_direction(frame(),direction);
+        }
+        services_.update_scene_object(frame());
         if(!target_frame()||first_person.enabled()||first_person.secondary_enabled())return;
         if(target_human) {
             if(!target_human->head_marker||!target_human->base().frame())throw std::runtime_error("Camera opacity requires actual target Human head/model");
@@ -614,13 +618,35 @@ private:
     }
     static MissionCameraState::Vector camera_normalize(MissionCameraState::Vector value,unsigned order) {
         const auto x=static_cast<long double>(value[0])*value[0],y=static_cast<long double>(value[1])*value[1],z=static_cast<long double>(value[2])*value[2];
-        const auto square=order==0?(x+z)+y:(z+y)+x;const float stored=static_cast<float>(square);
+        const auto square=order==0?(x+z)+y:order==1?(x+y)+z:(z+y)+x;const float stored=static_cast<float>(square);
         if(!std::isfinite(square))throw std::runtime_error("Non-finite camera direction");
         if(std::abs(square-1)>=9.99999993922529e-09f) {
             if(stored>=9.99999993922529e-09f){const auto scale=1/std::sqrt(static_cast<long double>(stored));for(unsigned a=0;a!=3;++a)value[a]=static_cast<float>(value[a]*scale);}
             else {const auto a=value[0]!=0?0u:value[2]!=0?2u:1u;value[a]=value[a]<0?-1.f:1.f;}
         }
         return value;
+    }
+    void apply_look_target(std::uint32_t elapsed) { //00467353..0046784F within00466970.
+        if(!services_.script_scene_available())return;
+        const auto active=services_.active_game_camera();if(!active)return;
+        //The script may have selected an EXTERNAL camera. Native288 is a
+        //borrower, independent of retained Human-follow248 and main-camera240.
+        const auto camera=services_.actor_world_matrix(active);
+        const auto target=services_.actor_world_matrix(look_target_);
+        MissionCameraState::Vector desired{};
+        for(unsigned a=0;a!=3;++a)desired[a]=static_cast<float>(static_cast<long double>(target[12+a])-camera[12+a]);
+        desired=camera_normalize(desired,1); //004673E2: (X²+Y²)+Z².
+        if(state_.field28c>0||std::isnan(state_.field28c)) {
+            const auto updated=services_.actor_world_matrix(active);
+            const auto previous=camera_normalize({{updated[8],updated[9],updated[10],updated[11]}},2);
+            const auto angle=services_.car_vector_angle(previous,desired);
+            const auto amount=static_cast<long double>(signed_word(elapsed))*state_.field28c*0x1.0624dep-10f/angle; //0080F514=.001f.
+            float factor=static_cast<float>(amount);
+            if(amount>1){factor=1;state_.field28c=-1;} //Strict >; equality retains the speed.
+            desired=camera_normalize(services_.camera_interpolate_direction(previous,desired,factor),2);
+        }
+        services_.car_camera_direction(active,desired,0.f); //Camera virtual0C, not frame virtual1C.
+        services_.update_scene_object(active); //Before common main-camera update, even when SAME.
     }
     static void decay_camera_offset(MissionCameraState::Vector& value,std::uint32_t& timer,std::uint32_t elapsed) {
         const auto square=(static_cast<long double>(value[2])*value[2]+static_cast<long double>(value[1])*value[1])+static_cast<long double>(value[0])*value[0];

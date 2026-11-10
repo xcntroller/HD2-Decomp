@@ -21,6 +21,31 @@ public:
     void guard_mode(Human& human){if(auto* state=script(human))state->request_guard_mode();}
     void zombie_mode(Human& human){if(auto* state=script(human))state->ai_mode(0x400);}
     void events(Human& human,bool enabled){if(auto* state=script(human))state->events(enabled,*this);}
+    void working_mode(Human& human,std::int32_t mode) { //005AF5C0→0058FCC0.
+        if(auto* state=script(human)){
+            auto& factory=lookup_.human_state_factory(human);
+            if(factory.control().human()!=&human)throw std::logic_error("Script working mode factory belongs to another Human");
+            state->working_mode(mode,factory.control());
+        }
+    }
+    void end_script(Human& human) { //005AF450→0058F680; no state borrower survives selection.
+        auto* state=script(human);if(!state)return;
+        if(state->words().template get<std::uint32_t>(0x50)&0x40000000u)state->events(true,*this);
+        auto& owner=lookup_.human_state_owner(human);
+        if(owner.get()!=state)throw std::logic_error("EndScript requires the SAME published B0 owner");
+        switch(human.properties.field19c){
+        case 1:{
+            auto& factory=lookup_.human_state_factory(human);
+            owner.select_script(false,factory.control(),players_,mode_flags(),scene_.human_current_player_id());return;
+        }
+        case 2:
+            if(!human.command)throw std::logic_error("EndScript requires its actual Human command owner");
+            owner.change(human.command->flag14?8u:4u);return;
+        case 3:owner.change(6);return;
+        case 4:case 5:owner.change(3);return;
+        default:return;
+        }
+    }
     void suspend(Human& human,bool value){
         if(auto* state=script(human))state->suspend(value,*this);
         else {suspend_human(human,value);human_events(human,!value);}
