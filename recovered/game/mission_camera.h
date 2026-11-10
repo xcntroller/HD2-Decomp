@@ -74,6 +74,22 @@ struct MissionCameraState {
     std::uint32_t field294=0;
 };
 
+//0046CB20 command1 over SAME camera state/frame. Engine matrix is required.
+template<class Services,class Frame>void apply_camera_blast_impulse(MissionCameraState& state,Services& services,Frame frame,
+        const MissionCameraState::Vector& centre,std::uint32_t range,std::uint32_t mode){
+        if(!(mode&2u))return;
+        float distance_limit=static_cast<float>(range); //Native unsigned DWORD via zero-extended QWORD/FILD.
+        if(state.field2b4)distance_limit=static_cast<float>(static_cast<long double>(distance_limit)*2.5f);
+        if(!frame)throw std::logic_error("Blast camera impulse requires actual loaded camera240");
+        const auto matrix=services.actor_world_matrix(frame);
+        const auto dx=static_cast<long double>(centre[0])-matrix[12],dy=static_cast<long double>(centre[1])-matrix[13],dz=static_cast<long double>(centre[2])-matrix[14];
+        const float square=static_cast<float>((dy*dy+dx*dx)+dz*dz); //0046D02C..3C.
+        if(!std::isfinite(square))throw std::runtime_error("Non-finite blast camera distance");
+        std::int32_t bits;std::memcpy(&bits,&square,4);
+        const auto distance=bits<0x322bcc77?0.L:std::abs(static_cast<long double>(square)-1.f)<9.99999993922529e-09f?1.L:std::sqrt(static_cast<long double>(square));
+        if(distance<distance_limit)state.field284=2000;
+}
+
 //Loaded portion of00465160 and matching00465610 camera lifetime. The containing
 //scene must outlive this owner and keep the saved scene camera alive until clear.
 //00462650's detached camera is a real separately-created kind3 owner; its later
@@ -115,6 +131,9 @@ public:
     }
     void set_zoom_control(bool enabled) { //0046CB20 command7; boolean is param3 presence, not param4.
         state_.field294=0;state_.flag290=enabled;
+    }
+    void blast_impulse(const MissionCameraState::Vector& centre,std::uint32_t range,std::uint32_t mode){ //0046CB20 command1.
+        apply_camera_blast_impulse(state_,services_,frame(),centre,range,mode);
     }
     template<class Refresh>void command_offline(std::uint32_t command,bool parameter_present,std::uint32_t parameter,
                                                std::uint32_t mode,Refresh& refresh) { //0046CB20 commands0/2, loading/spawn path.

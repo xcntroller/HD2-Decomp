@@ -17983,7 +17983,7 @@
       "program": "client",
       "entry": "0046cb20",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0046cb20: Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; debug/attached camera simulation remains excluded. Camera/local-dispatch checkpoint: Offline camera commands0/2, including presence/value distinction and actual current-player target refresh.",
+      "coverage": "P2.2 source reconstruction at original entry 0046cb20: Actual camera configuration, loaded owner/target state, detached camera and original direction/mode/sector selectors; debug/attached camera simulation remains excluded. Camera/local-dispatch checkpoint: Offline camera commands0/2, including presence/value distinction and actual current-player target refresh. Blast-wave checkpoint: command1 uses actual camera240 matrix, unsigned radius,2B4 amplification and native strict distance/shake284 publication.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/mission_camera.h",
@@ -17991,7 +17991,8 @@
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/camera-local-dispatch-loading.md",
-        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json"
+        "analysis/checkpoints/p2.2-camera-local-dispatch-20261109.json",
+        "analysis/blast-wave-process.md"
       ]
     },
     {
@@ -26851,6 +26852,138 @@
         "recovered/game/volumetric_lights.h",
         "analysis/frame-render-source.md",
         "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006df170",
+      "status": "partial",
+      "coverage": "Construct actual shared blast record, immediate100ms advance, conditional append and consumed-wave true return.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/game/blast_wave_process.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ddfc0",
+      "status": "partial",
+      "coverage": "Blast candidate point/radius query, repeated Human child dedup, camera notification, reverse retained-frame node geometry and native tail insertion.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/game/blast_wave_process.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006de780",
+      "status": "partial",
+      "coverage": "Shared blast progress/threshold, Human sector/occlusion and static ray policy, power/direction/hit order, node retirement and extra-tick retention.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/game/blast_wave_process.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006df390",
+      "status": "partial",
+      "coverage": "SAME process reverse update with callback-safe swap-LAST removal and reverse full clear, concrete actual World fixed/finish borrower.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/game/blast_wave_process.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ddee0",
+      "status": "partial",
+      "coverage": "Shared record retained-node chain cleanup before hit-actor vector retirement.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/game/blast_wave_process.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ddf60",
+      "status": "partial",
+      "coverage": "Retained node frame release BEFORE recursive next-node destruction.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/game/blast_wave_process.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ddd40",
+      "status": "partial",
+      "coverage": "Blast hit actor-pointer dedup, unsigned material absorption, authority/damage selector and independent Physics impulse count policy; positive host receivers remain required.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/game/blast_wave_process.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ddd00",
+      "status": "partial",
+      "coverage": "Actual direct frameEC actor then model100(kind9) EC fallback, sharing original World frame-data registry.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/host/game_blast_waves.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006de560",
+      "status": "partial",
+      "coverage": "Actual Human a/1 skeletal214 marker order and first-clear shortened static ray using same World tree/buckets/resources.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/host/game_blast_waves.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006fcb60",
+      "status": "partial",
+      "coverage": "Actual dynamic grid radius candidate query with native extended expanded ranges, Z/X order, layer mask/horizontal test and pointer dedup.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/game/dynamic_collision_point_queries.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006fb920",
+      "status": "partial",
+      "coverage": "Actual dynamic grid point query, native ranges/first result, strict-lower inclusive-upper box and40/41/42/44 primitive tests.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; native allocator/SEH/register/object ABI differs. Original unsafe malformed inputs reject. Actor material/damage and Physics-force positive host receivers remain required; generic positive native fixture doubles those leaves. Application frame integration and real-engine/desktop acceptance remain open; delegated calls get no new credit.",
+      "evidence": [
+        "recovered/game/dynamic_collision_point_queries.h",
+        "analysis/blast-wave-process.md",
+        "analysis/checkpoints/p2.2-blast-wave-process-20261110.json"
       ]
     }
   ]

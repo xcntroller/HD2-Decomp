@@ -7,6 +7,7 @@
 #include "frontend/control_frame.h"
 #include "game/session_local_packets.h"
 #include "game/session_packet_world.h"
+#include "game/blast_wave_process.h"
 #include <ctime>
 #include <cstdlib>
 #include "frontend/application_controller.h"
@@ -184,6 +185,7 @@ public:
         if (graphics_alive && input_setup_started_) errors.attempt([&] { close_keyboard(); });
         errors.attempt([&] { input_.detach(); });
         errors.attempt([&] { joysticks_.close(); });
+        blast_wave_process_.clear(); //Actual process008AED48 fallback retirement before device/module owners close.
         pre_mission_.reset(); // Borrowed HumanStore/descriptor owners end before application data.
         multiplayer_request_.reset();
         errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
@@ -211,6 +213,8 @@ public:
     game::ShotManagerLoadingState<GameActorServices>& shot_manager_process(){return shot_manager_process_;}
     game::HeavyFireLoadingState& heavy_fire_process(){return heavy_fire_process_;}
     auto& effects_loading_process(){return effects_loading_process_;}
+    using BlastWaves=game::BlastWaveProcess<MenuDriver::Owner,GameSceneActors::Instance>;
+    BlastWaves& blast_wave_process(){return blast_wave_process_;} //SAME fixed-update and finish owner.
     auto& item_hand_models(){return item_hand_models_;}
     std::uint8_t& first_person_preference(){return data_.first_person_preference();}
     const frontend::LocalizedTextCache& text() const { return text_; }
@@ -708,6 +712,7 @@ private:
     game::ShotManagerLoadingState<GameActorServices> shot_manager_process_;
     game::HeavyFireLoadingState heavy_fire_process_;
     game::EffectsLoadingProcess<EngineFrame*> effects_loading_process_;
+    BlastWaves blast_wave_process_;
     game::ItemHandModels<GameActorServices> item_hand_models_;
     game::HumanAIEventPool human_ai_events_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;

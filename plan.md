@@ -239,8 +239,7 @@ preparation, not a standalone audit-only milestone.
 
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
-  [Full boundary](analysis/mission-world-loading.md); [source progress](analysis/loading-modules.md);
-  [shared ownership](analysis/world-scene-ownership.md). [Loading](analysis/mission-loading-integration.md) and [activation/writeback bindings](analysis/session-activation-integration.md) source verified; [process packet/camera bindings](analysis/process-packet-world-binding.md) supplied; [frame/render source](analysis/frame-render-source.md) verified; required finish/guard and actual frame/visibility integration remains.
+  [Full boundary/source progress](analysis/mission-world-loading.md), [frame/render source](analysis/frame-render-source.md), [shared blast process](analysis/blast-wave-process.md). Actual frame/visibility/guard integration remains.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat
   loading through Python; unsupported required assets/data cannot report success.
 

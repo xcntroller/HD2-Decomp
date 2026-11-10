@@ -286,7 +286,10 @@ public:
          vertices_(scene_.frames(),startup.game_vertex_definitions(),startup.application_flags_owner(),startup.game_vertex_clock()),
          owners_(bindings_,scene_,parent,backend,startup,session,vertices_,clock,catalogue,suffix,startup.car_definitions(),startup.car_materials()),
          modules_(owners_,vertices_){startup_.bind_game_packet_world(*this);}
-    ~World()override{startup_.unbind_game_packet_world(*this);}
+    ~World()override{
+        startup_.unbind_game_packet_world(*this);
+        startup_.blast_wave_process().clear(); //Source failure guard: retained frames cannot outlive World/Scene retirement.
+    }
     bool world_loaded()const override{return owners_.session_loaded();}
     bool dispatch_packet(std::uint32_t kind,game::SessionPacketStream& packet,bool authority)override{
         return modules_.dispatch().dispatch_packet(kind,packet,authority);

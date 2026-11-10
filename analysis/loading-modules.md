@@ -743,3 +743,5 @@ contacts and the containing session remain. [P24-F05 squad authority](live-squad
 borrows the persistent application vector; request copies are metadata.
 
 2026-11-10: [Frame/render source](frame-render-source.md) now covers offline coordination policies, same-status warming, actual Car/dubbing/HUD ticks, fades, separate overlay owner and volumetric draw leaves. Five focused sanitizer fixtures, strict actual-host i386 and app link pass.20 partials, no complete/desktop promotions; actual full frame services, volumetric visibility/procedural owner and transient/guard integration remain. Continue FULL P2.2.
+
+2026-11-10: [Shared blast-wave process](blast-wave-process.md) now supplies actual persistent008AED48 storage, positive constructor/update/retirement policies, same collision grid point/radius queries, camera1 and concrete ordered-finish receiver. Focused sanitizers cover callback reallocation/dedup/cleanup, full actual i386 binding and app link pass.11 partials; positive damage/Physics leaves, actual frame/visibility/guard integration and desktop delivery remain. Continue FULL P2.2.

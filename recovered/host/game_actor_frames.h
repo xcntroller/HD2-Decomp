@@ -400,6 +400,24 @@ public:
     std::int32_t human_clip_duration(Frame clip) {return call<std::int32_t>(clip,8);}
     void human_clip_word8(Frame clip,std::uint32_t value) {put(clip,8,value);}
     Frame human_scene_sector(const Vector& position) {return call<Frame>(scene_.frame(),0xe0,position.data());}
+    Bounds blast_frame_bounds(Frame frame){ //006DDFC0 uses driver+A8, DISTINCT from Car bounds+AC.
+        if(frame_kind(frame)==6)return field<Bounds>(frame,0x120);
+        Bounds storage{};using Get=const Bounds*(WINAPI*)(Frame,Bounds*,Frame);
+        const auto* result=checked_engine_method<Get>(driver_.frame(),module_,0xa8)(driver_.frame(),&storage,frame);
+        if(!result)throw std::runtime_error("Actual blast target bounds are unavailable");return *result;
+    }
+    template<class Clear>bool visit_blast_human_markers(Frame model,Clear&& clear){ //006DE560, actual 'a' visual skeletal table214.
+        const auto visual=actor_find(model,"a",1);
+        if(!visual)throw std::runtime_error("Blast occlusion requires Human a visual");
+        const auto* table=field<const Frame*>(visual,0x214);
+        if(!table)throw std::runtime_error("Blast occlusion requires actual Human skeletal frames");
+        constexpr std::array<unsigned,6> indices{{24,3,14,10,17,21}}; //008434EC.
+        for(const auto index:indices){const auto marker=table[index];
+            if(!marker)throw std::runtime_error("Missing actual Human blast marker");
+            if(clear(marker))return true; //Do not read later markers after first clear ray.
+        }
+        return false;
+    }
     Frame effects_lensflare() { //00485B70 searches actual scene+1FC frame's+48, not scene+7C.
         const auto root=field<Frame>(scene_.frame(),0x1fc);
         if(!root)throw std::runtime_error("Effects lensflare lookup requires the actual loaded scene root");

@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "006df170",
+    "006ddfc0",
+    "006de780",
+    "006df390",
+    "006ddee0",
+    "006ddf60",
+    "006ddd40",
+    "006ddd00",
+    "006de560",
+    "006fcb60",
+    "006fb920"
+  ],
+  "ledger_added_partial_client": 11,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 1998,
+  "native_checks": "PASS ASan/UBSan/leak positive process/query/camera policy, delayed and initial consumption, reverse release/failures, callback growth/swap-LAST,14-frame actor dedup/heavy flags, strict transformed point/radius/mask boundaries. Engine/actor leaves are doubles.",
+  "strict_i386": "PASS actual full loading/activation/World/positive generation/update/ordered finish with REAL GameBlastWaves finalizer, no fixture execution.",
+  "application_link": "PASS",
+  "tracker_tests": 27,
+  "not_implemented_or_credited": [
+    "006df690",
+    "006dece0",
+    "0043c6a0",
+    "positive actor virtualD8 material/virtualD4 damage receivers"
+  ],
+  "artifacts": {
+    "analysis/work/mission-world-20261103/checkpoint-blast-waves-native": {
+      "sha256": "ea9299d13741458a22305467964344417099b730b8546b55ca13937972f3dcea",
+      "bytes": 2066152,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-blast-waves-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-blast-waves-native-run.log": {
+      "sha256": "f5b451825753eb76bb06ff2775d4ec505cb80d193e797bd7624dcf92374a27f3",
+      "bytes": 113,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-blast-waves-native.cpp": {
+      "sha256": "66923f9f6f8120c4ec7b205eb63237e6775693ecf567409fe373146ab5a4109b",
+      "bytes": 12201,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-blast-waves-host-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-blast-waves-host.cpp": {
+      "sha256": "177de42481d634aaabba23478a7d2ff325d53bceed1ef45a111fc214fb84a415",
+      "bytes": 1251,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-blast-waves-host.o": {
+      "sha256": "ef44c3d206e1263059cbf299db12afcf5795696fe686bf4567ede9a039c5d230",
+      "bytes": 26596846,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-blast-application-build.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/shared-trajectory-query-contracts.log": {
+      "sha256": "d91e5866d125372bd37a5c589ed7793800db96e79dcafacf2ed5c93583ab88df",
+      "bytes": 5089,
+      "retained": true
+    }
+  }
+}
