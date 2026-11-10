@@ -240,16 +240,7 @@ preparation, not a standalone audit-only milestone.
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
   [Full boundary](analysis/mission-world-loading.md); [source progress](analysis/loading-modules.md);
-  [shared world composition](analysis/world-scene-ownership.md);
-  [Animation/SupplyBox](analysis/animation-supply-loading.md);
-  [StaticWeapon](analysis/static-weapon-loading.md);
-  [cold Car runtime](analysis/car-runtime-loading.md);
-  [Car activation](analysis/car-activation-loading.md);
-  [initial Human/VM/view controls](analysis/mission-script-initial-controls.md);
-  [script runtime/objectives](analysis/mission-script-runtime-composition.md);
-  [player/first-person composition](analysis/first-person-loading-composition.md);
-  [HUD/player presentation](analysis/hud-player-presentation-loading.md);
-  [shared world consumers](analysis/shared-world-loading-consumers.md). Session/loading integration remains.
+  [shared ownership](analysis/world-scene-ownership.md). Session/loading integration remains.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat
   loading through Python; unsupported required assets/data cannot report success.
 

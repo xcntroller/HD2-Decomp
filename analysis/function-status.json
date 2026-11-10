@@ -8659,13 +8659,17 @@
       "program": "client",
       "entry": "0071df30",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0071df30: Sixteen-channel dubbing initialization, reverse free-slot selection, model binding, speech data/playback, scheduled stop, update and retirement.",
+      "coverage": "P2.2 source reconstruction at original entry 0071df30: Sixteen-channel dubbing initialization, reverse free-slot selection, model binding, speech data/playback, scheduled stop, update and retirement. Actual source world binding now reads typed Human2B8/2BC and SAME Players/subtitles; no second channel or state owner.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/frontend/dubbing_sound.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_dubbing_loading.h",
+        "recovered/game/human_scene_actor.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
       ]
     },
     {
@@ -25344,6 +25348,222 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/shared-world-loading-consumers.md",
         "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af7d0",
+      "status": "partial",
+      "coverage": "Actual category deadline = shared game28 + delay, DWORD wrapping.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af7f0",
+      "status": "partial",
+      "coverage": "Unsigned actual game28 < category deadline, including wrapped times and equality.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af810",
+      "status": "partial",
+      "coverage": "Actual cooldown check before enabled and populated phrase-vector gate.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af850",
+      "status": "partial",
+      "coverage": "Actual enabled/populated phrase-vector gate without cooldown.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005af8e0",
+      "status": "partial",
+      "coverage": "Valid category, guarded selection, optional positive delay and actual shared vector/window rotation with one CRT draw.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005afa60",
+      "status": "partial",
+      "coverage": "Actual shared vector/window rotation and one CRT draw without cooldown; enabled/populated/category gates retained.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005afd10",
+      "status": "partial",
+      "coverage": "Actual enabled category delay publication even for zero/wrapped negative delay; invalid category no-op.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0440",
+      "status": "partial",
+      "coverage": "Actual unsigned DIV remainder10000 +90000000 speech sample identity.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0460",
+      "status": "partial",
+      "coverage": "Unsigned QWORD FILD, exact DOUBLE -1e-6, x87 truncation/low DWORD and wrapped -90 subtraction.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0490",
+      "status": "partial",
+      "coverage": "Unsigned QWORD FILD/exact DOUBLE1e-6, retain extended fractional part across signed integer truncate, FLOAT100 then truncate.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005882f0",
+      "status": "partial",
+      "coverage": "Actual offline common speech: null definition, first guarded phrase rotation before timer/suppression, B8/deadline mutation, second offline playback and FIRST sample metadata return; explicit nonoffline task/peer rejection.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00588170",
+      "status": "partial",
+      "coverage": "Actual second unguarded phrase rotation, Player notification before quiet, actual camera/head FLOAT differences and distance/unordered gate, real shared process dubbing of second sample.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005383d0",
+      "status": "partial",
+      "coverage": "Actual suppression precheck, Active18A/188/process43 category variant and common speech request ordering.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00542060",
+      "status": "partial",
+      "coverage": "Actual offline Human readiness/process group0/PlayerC0 variant and quiet choice, then shared common speech; nonoffline reserved-Human scan rejects.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a6280",
+      "status": "partial",
+      "coverage": "Actual Human16C FLOAT\u2192signed64 truncate low DWORD interpreted signed, clamp0..100.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004900e0",
+      "status": "partial",
+      "coverage": "Signed speech ID range, first matching entry/first caption, missing process fallback, exact empty-record/null-text behavior without renderer/selection mutation.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_subtitles_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a46a0",
+      "status": "partial",
+      "coverage": "Actual offline property19C1 caption reread/name formatting/colour/HUD message and genuine offline tail; undefined varargs/overflow and nonoffline identity/text reject.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/human_speech_notifications.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049d2e0",
+      "status": "partial",
+      "coverage": "Actual any-nonzero HUD flags forwards SAME message receiver; zero flags returns without message mutation.",
+      "limitations": "Source-only typed borrowers/STL/RAII/scalar policy instead of original object/allocation/virtual/SEH ABI. Required containing session/loading integration and wider nonoffline/task/unsafe data branches remain excluded. Frame/engine/dubbing endpoints doubled in native; actual host composition compile-only. No loaded world/desktop or complete equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_scene_loading.h",
+        "analysis/human-speech-loading.md",
+        "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
       ]
     }
   ]

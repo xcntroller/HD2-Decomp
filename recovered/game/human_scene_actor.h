@@ -82,7 +82,7 @@ public:
     bool initialize(Frame frame) override { //0059E5E0.
         if(!this->base_.initialize_frame(frame,scalars_)||this->backend_.frame_kind(frame)!=9)return false;
         properties.field170=0xffffffffu;flag90=false;field160=nullptr;fieldb0=0;
-        field2b8=field2bc=field208=field204=field94=0;return true;
+        field2b8=field2bc=Frame{};field208=field204=field94=0;return true;
     }
     void load(SerializedBytes& bytes) override {properties.load(bytes);} //0059E800.
     void activate(bool authority) {
@@ -108,12 +108,13 @@ public:
     HumanLoadingLifetime* loading_lifetime=nullptr; //Borrowed owner; world retires/unbinds it before deleting Human.
     frontend::HumanRecord* profile_record=nullptr; //Borrowed actual HumanStore B8, outlives the mission.
     Frame head_marker{}; //Borrowed native260, resolved z then f before inline98 activation.
+    Frame field2b8{},field2bc{}; //Actual borrowed dubbing attachments, not frame pointers in DWORD scalar storage.
     SceneActor<Backend>* field160=nullptr; //Actual borrowed attachment actor, never a pointer in a DWORD.
     std::int32_t field164=-1;
     HumanActivationFields activation;
     SpeechDefinition* speech_definition=nullptr; //Actual borrowed2C0; release its shared cache reference on deactivation.
     std::uint32_t field94=0,field98=0,fielda0=0,fielda8=0,fieldb0=0,fieldb8=0,
-        field174=0,field204=0,field208=0,field2b8=0,field2bc=0,
+        field174=0,field204=0,field208=0,
         field258=0xffffffffu,field25c=0xffffffffu,field2a4=0xffffffffu;
     std::int32_t field188=-1;
     bool flag90=false;

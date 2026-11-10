@@ -242,6 +242,8 @@ public:
     template<class World>bool play_game_speech(void* actor,EngineFrame* frame,std::int32_t id,float near_range,float far_range,bool subtitles,World& world) {
         return dubbing_sound_.play_speech(actor,frame,id,near_range,far_range,subtitles,gate_,world);
     }
+    std::uint32_t game_speech_length(std::int32_t id){return sound_catalog_.speech_sample_size(id);} //SOUND virtual94, SAME catalogue mappings.
+    const char* missing_speech_caption()const{return missing_speech_caption_;} //Process0089BB44 cold null; no populated writer is fabricated.
     void update_game_dubbing(std::uint32_t elapsed){dubbing_sound_.update(elapsed);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void retire_game_dubbing(EngineFrame* frame){dubbing_sound_.retire_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void clear_game_dubbing(){dubbing_sound_.clear();sound_backend_.rethrow_dubbing_cleanup_failure();}
@@ -640,6 +642,7 @@ private:
     frontend::ProfileSelectionWords profile_words_;
     frontend::LocalizedTextCache text_;
     std::uint32_t gate_ = 0;
+    const char* missing_speech_caption_=nullptr; //Actual process fallback borrower; distinct from game+60 text entries.
     frontend::ColdControlFrame<StartupSession> control_frame_;
     std::uint8_t input_flag_ = 0;
     std::array<float, 2> menu_cursor_{{400, 300}}; //0066A4E0 centers only the first shared owner.

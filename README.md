@@ -14,7 +14,7 @@ sound, proximity and the script compiler/context/module receivers. These are sou
 declines loading until the actual world and remaining consumers are connected.
 [Current boundary and remaining work](analysis/mission-world-loading.md) |
 [Source progress](analysis/loading-modules.md) |
-[Latest shared world source checks](analysis/checkpoints/p2.2-shared-world-consumers-20261110.json).
+[Latest Human speech/source composition checks](analysis/checkpoints/p2.2-human-speech-loading-20261110.json).
 [Cold Car physics/finalization](analysis/car-runtime-loading.md) now has a verified
 source composition; [cold Car actor activation](analysis/car-activation-loading.md) is also recovered.
 Actual containing-world integration and first-frame delivery remain.
@@ -235,11 +235,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,871 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,889 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 1,866 |
+| Base game client | 17,294 | 34 | 1,884 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

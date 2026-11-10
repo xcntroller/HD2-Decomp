@@ -3,6 +3,8 @@
 
 #include "io/chunk_file.h"
 #include <algorithm>
+#include <cstdio>
+#include <cstring>
 #include <map>
 #include <memory>
 #include <optional>
@@ -197,6 +199,14 @@ public:
         if (!value) throw std::runtime_error("Null original sound catalog group");
         if (static_cast<std::uint32_t>(index) >= value->entries.size()) return nullptr;
         return value->entries[static_cast<std::uint32_t>(index)].get();
+    }
+
+    std::uint32_t speech_sample_size(std::int32_t identity){ //004326C0→00439A10; SAME signed-key map, ungated.
+        const auto value=mappings[identity]; //Native operator[] inserts missing identity with0, retaining the entry.
+        std::int32_t signed_value;std::memcpy(&signed_value,&value,4);
+        if(signed_value>=100)return value;
+        char message[160];std::snprintf(message,sizeof message," ERROR : C_sound_table::GetDabingSampleSize() : dabing id '%d' with unknown lenght",identity);
+        backend_.catalog_diagnostic(message);return 2000; //Fallback does NOT overwrite the retained map value.
     }
 
     // 004398B0: reverse destruction, reset groups/map, loaded last.

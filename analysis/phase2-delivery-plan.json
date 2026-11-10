@@ -118,6 +118,12 @@
         "receipt": "analysis/checkpoints/p2.2-shared-world-consumers-20261110.json",
         "result": "Verified source-only actor runtime/shared SOUND and common Human owner/clock/config/pool/Players/FPV/music consumers; hidden inventory/known enemy/eligibility/HUD marker bodies. Six partials added, two delegated-only credits retracted;34 complete/1871 partial. Application still declines loading.",
         "remaining": "Actual containing Human/VM/FPV/HUD/SOUND/session aggregate, reached remaining receivers and observed guard publication, ordered loader and first frame/failure/repeat/user acceptance."
+      },
+      "latest_human_speech": {
+        "contract": "analysis/human-speech-loading.md",
+        "receipt": "analysis/checkpoints/p2.2-human-speech-loading-20261110.json",
+        "result": "Offline common/Active/Player speech source, shared phrase/CRT/deadline/metadata and actual dubbing/subtitles/HUD receivers verified;18 partials,34 complete/1889 partial. Application still declines.",
+        "remaining": "Actual Human selection/stance/area/Sight and containing factory/VM/FPV/HUD/SOUND/session ownership; guard observed publication, loader/first frame and failure/repeat/user acceptance."
       }
     },
     {

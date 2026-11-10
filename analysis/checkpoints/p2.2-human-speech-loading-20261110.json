@@ -1,0 +1,128 @@
+{
+  "date": "2026-11-10",
+  "scope": "Full first P2.2 checkbox; offline Human speech, metadata, dubbing world and player caption/HUD message subsystem; continue remaining actual Human/factory/session/loader.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 18,
+  "added": [
+    "005af7d0",
+    "005af7f0",
+    "005af810",
+    "005af850",
+    "005af8e0",
+    "005afa60",
+    "005afd10",
+    "005b0440",
+    "005b0460",
+    "005b0490",
+    "005882f0",
+    "00588170",
+    "005383d0",
+    "00542060",
+    "005a6280",
+    "004900e0",
+    "005a46a0",
+    "0049d2e0"
+  ],
+  "extended": [
+    "0071df30"
+  ],
+  "absent_no_credit": [
+    "004326c0",
+    "00439a10",
+    "00436470",
+    "0059e5e0",
+    "00459480",
+    "00456b80"
+  ],
+  "not_implemented_no_new_credit": [
+    "0069bf70",
+    "005a9b30"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1889,
+    "client_partial": 1884,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan actual Human/Actor/storage/B0, category cursor/deadline/wrap, independent exact-constant scalar goldens, two phrase rotations and first-return/second-playback identity, timer/suppression/quiet/variants/process/distance/unordered/failure prefixes, metadata map/fallback, parsed duplicate captions/actual HUD message queue, actual Players control/dubbing typed attachments/subtitle routing. Frame/engine/dubbing/clock/process boundaries doubled.",
+    "host": "Strict i386 actual Active/Player source types, common world service, Startup/SOUND/catalogue/dubbing/Players/HUD/messages/subtitles and actual typed Human attachments. Containing frame/aggregate/presentation/item/style/world lookup declarations remain; compile-only, no loaded Human/world.",
+    "application": "application-launch compile/link; loading still declines",
+    "tracker": "27 tests, frozen inventories/fingerprints/unique statuses/README check"
+  },
+  "research_exception": "ExportFunctions has no function at004326C0; static original jump to00439A10/map body used, both frozen-absent and excluded. Successful speech/presentation/notification/category exports preserved separately.",
+  "limitations": [
+    "Nonoffline reserved-Human scans/queued kind13 tasks/peer/HUD text remain explicit rejections.",
+    "Later B8 simulation countdown and containing channel-before-Human retirement/session ordering remain separate required work.",
+    "General0069BF70 varargs and nonoffline005A9B30 bodies are excluded; known offline zero-argument formatting/RET behavior preserved only in required caller.",
+    "Source alone supplies no containing aggregate, guard observed publication, ordered loader, first frame/failure/repeat or desktop acceptance."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-speech-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-speech-native-run.log",
+      "bytes": 294,
+      "sha256": "8307a0cdc8c81521cbfa5fb8bdd43342a9f9483ed1b70e386a96024d9dc77540"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-speech-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-speech-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-speech-tracker-render.log",
+      "bytes": 380,
+      "sha256": "405efd5ff7c49846aeb7c9881fc9efe087e78d645ecda208639a762e5ffa841c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-speech-tracker-check.log",
+      "bytes": 437,
+      "sha256": "366678f163b209bcf2e42bc1e59694347c011b5aa101e849e6c43080a26ce789"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-speech-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-speech-audit.cpp",
+      "bytes": 12942,
+      "sha256": "015486135187c63b475de66c26deddf1ab8b1774a7d36882a44e19f49aea7905"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-speech-audit",
+      "bytes": 5063232,
+      "sha256": "70c7d4d05fd4777c067ca2bb6667c80590bd3a58300f4d5b1b0fac5b1f32703c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/speech-golden-initializers.inc",
+      "bytes": 296,
+      "sha256": "3972b37e595b27556786f12dcb7857b2a88ed0e6aea94516bd4018a77d20c929"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-speech-host.cpp",
+      "bytes": 2303,
+      "sha256": "fb1c386f2d7ae5d44e44958d955b0d5d821ba91383d67f8ad575c6bd791c5fcf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-speech-host.o",
+      "bytes": 502640,
+      "sha256": "03057626f416468baf405d756c364e1126af0926155aaf1cbe8c3cdb4c1e6b1c"
+    }
+  ]
+}

@@ -8,43 +8,49 @@ assets/user changes; focused verification only. Heavy builds/Ghidra sequential
 because of memory shortages/crashes. No permanent tests.
 
 GameApplicationState still declines loading. No loaded world, first rendered
-world frame or new desktop acceptance. Ledger34 complete/1,871 partial
-(1,866 client/five engine)/18,783 frozen. Zero complete promotions.
+world frame or new desktop acceptance. Ledger34 complete/1,889 partial
+(1,884 client/five engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
 
-[Shared world loading consumers](analysis/shared-world-loading-consumers.md),
-[receipt](analysis/checkpoints/p2.2-shared-world-consumers-20261110.json).
-Three focused native ASan/UBSan/LSan audits, strict actual-host i386 composition,
-app link and27 tracker tests pass. Actual frame/engine/containing world/DD0/
-Players/camera/SOUND boundaries doubled in native; containing aggregate,
-presentation endpoints/animation callbacks/VM/models/nonoffline records remain
-required declarations in host compile. Source-only, not complete Human activation.
+[Human speech/dubbing consumers](analysis/human-speech-loading.md),
+[receipt](analysis/checkpoints/p2.2-human-speech-loading-20261110.json).
+Focused native ASan/UBSan/LSan actual Human/Actor/storage/B0/phrase-window/
+caption/message/Players-control/subtitle checks; strict actual-host Active/
+Player/Startup/catalogue/dubbing/HUD composition, app link and27 tracker tests
+pass. Engine/frame/playback/clock/process endpoints doubled in native;
+containing frame/aggregate/presentation/item/style/world owners declarations in
+host. Source-only, not complete Human/world activation.18 new partials.
 
-0049FBF0 actual inventory root E0bit0 hidden RET now routes same presentation→HUD.
-Visible004A49F0→004A26D0 interactive inventory explicitly rejects; normal bind hides.
-SceneActorLoadingRuntime uses SAME checked module EC lookup/Use event0041D960,
-unused pushed state/RET4; actual Switch flags1/group1/entryD8/world position.
-Human teardown actual proximity/nonoffline-record endpoints, no substitute map.
-WorldSoundLoading calls SAME Startup.emit_game_sound; actual WorldActors checked
-composition/DD0 sector, B0 flags50 bit18, camera sector24C and byte270. Camera
-virtual7C00465070/virtual8C004650C0 absent frozen, no credit. Getter address
-comment corrected from unrelated00465AD0. Camera export had missing-function
-error; static PE/vtable/objdump verified getter bodies instead.
+HumanSpeechLoading owns no extra definition/random/clock: actual shared category
+field14 unsigned deadline/window.005882F0 FIRST rotation precedes B8/40000 test;
+accepted storesB8=1000/deadline, offline00588170 rotates AGAIN ignoring deadline,
+Player notice before quiet, camera/head FLOAT distance with unordered playing.
+Returns FIRST sample's catalogue metadata but plays SECOND sample. Exact DOUBLE
+±1e-6/FISTP decoding differs from decimal digit extraction.005383D0 and00542060
+now actual common Human-world service methods/process queries. Source B8's later
+simulation countdown remains separate. Nonoffline tasks/scans/peers reject.
+SOUND94→004326C0→00439A10 map[] inserts0; signed value<100 returns2000/logs but
+retains map value.004326C0/439A10/436470 absent frozen: no credit.00459480/456B80
+also absent; no new query credit. General0069BF70 varargs/nonoffline005A9B30 not
+implemented/credited. Known offline caller formatting handles%%, rejects unsafe
+conversion/overflow, actualHUDflags→message queue.004900E0 caption lookup has
+actual BSS0089BB44 null fallback (PE/raw tail and direct references captured).
+HumanDubbingLoading supplies SAME currentPlayer/model/typed2B8/2BC/subtitle
+callbacks to process channels. Clear channels before Human/models/session;
+containing teardown order remains required, no automatic world readiness.
 
-HumanWorldLoadingServices supplies common clocks/pools/Look/230/Players/FPV/
-faces/animation/music/SOUND callbacks, NOT every derived AI/Sight/speech/area
-consumer. It uses Dependencies::Composition through checked WorldActors map.
-007855C0 DD0DC4 initialized0/0075B280 same-byte read now owned in DD0, replacing
-an unnecessary external human_collision_disabled service. Control process's
-SAME00982104 local_peer now signed32 and exposed by Startup; no per-world copy.
-006B66B0 config04nonzero AND224==3;006B6700 remote26C first, else offline7 lazy
-profile34 else3.0069A4B0 actualFPV58 OR59.0045E920 reverse selection identity
-includes zero-ref/dead/timed records until erasure; differs from0045E960.
-005A6380 health/nullB0/property19C1 false else B0flags50 bit26.0049B980 actual
-HUDflags→compass selected append/retire now has source body.
-Six new partials; retracted005A8740/005A86F0 abstract-callback-only prior credits.
-No broad audit: targeted discrepancy on next dependency. See linked contract.
+Previous9621549 [shared world consumers](analysis/shared-world-loading-consumers.md):
+actual hidden inventory refresh, concrete SceneActor runtime, world SOUND
+inline/B0/camera endpoints and common Human clocks/pools/config/Players/FPV/
+equipment/music.006136F0→0041D960 uses Use PC, pushed state unused/RET4; Switch
+flags1/group1/entryD8/position. Camera byte270/sector24C getters00465070/C0 absent
+frozen; incorrect00465AD0 comment corrected. DD0 owns actualDC4 byte0, not a world
+flag. Startup exposes SAME process00982104 signed identity.006B6700 remote26C
+first elseoffline7 lazyprofile34 else3.0045E920 includes zero-ref/dead/timed
+selection records until erasure.005A6380 actualhealth/null/property/flags26.
+0049B980 realcompassreceiver. Retracted005A8740/005A86F0 abstract-only old credits;
+these visibility bodies remain unimplemented. No broad audit.
 
 ## Next — same entire checkbox
 
@@ -54,19 +60,16 @@ Human/Players/Sight receivers, required integrity observed publication, ordered
 user desktop acceptance. WorldScene/WorldActors remain uncalled by application.
 Do not stop at a dependency; do not expand all P2.3 simulation/opcodes/inventory.
 New common Human bridge still needs player_add_enemy/player_remove_enemy,
-queue_active_ai_speech/queue_player_ai_speech, stance/area and Sight feedback
-receivers to instantiate complete actual Human factory. Source existing
-HumanSelectionRecords acquire/release owns enemy records, but its show/hide
-feedback is not005A8740/005A86F0's body. Loading notification flag startsfalse;
-trace reached branches before expanding positive Human fades into P2.2.
-New exports human-shared-player-feedback-required/{0049b980,005a8740,005a86f0,
-005383d0}.c and human-feedback-consumers-required/{005882f0,005ac0f0,0078b180}.c
-are researched ONLY; speech/visibility consumers not implemented/credited.
-005383D0 checks B0flags50 bit40000 then group code adjustment/process query and
-calls common005882F0. Common null speech_definition is genuine return0; populated
-path005AF8E0/005AFD10/00588170 and shared SOUND remain to recover.00542060 export
-already in human-player-sight-speech/. Existing confirmed Switch/runtime/portal/
-DD0/FPV code needs no repeated broad audit.
+stance/area and Sight feedback receivers to instantiate complete actual Human
+factory. Speech consumers are now supplied. Existing HumanSelectionRecords
+acquire/release owns enemy records, but show/hide feedback is not005A8740/
+005A86F0's body. Loading notification flag startsfalse; trace reached branches
+before expanding positive Human fades into P2.2. Original005A8740/005A86F0:
+actual GEffects virtual74, then Human150 mutation, inline005AC0F0 sound enable,
+0078B180 matching actor projection visibility. Their original exports remain in
+human-shared-player-feedback-required/ and human-feedback-consumers-required/.
+New speech evidence directories/captures and exact semantics are linked from
+the latest note; no need to re-export/re-audit them. App still declines loading.
 
 Previous069a96f [HUD/player](analysis/hud-player-presentation-loading.md),
 d6b81e9 [FPV/player](analysis/first-person-loading-composition.md),

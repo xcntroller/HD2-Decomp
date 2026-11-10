@@ -3,13 +3,16 @@
 
 #include "game/human_camera_state.h"
 #include "frontend/spatial_sound.h"
+#include "game/human_speech_loading.h"
+#include "game/human_speech_notifications.h"
 #include <stdexcept>
 
 namespace hd2::game {
 
 //Concrete shared loading consumers for DD0/230, B0 and Human activation.
 //Dependencies owns/borrows the SAME startup, session, scene, world_actors,
-//players, first_person, faces, animations, presentation_shared, music and sound.
+//players, first_person, faces, animations, presentation_shared, music, sound,
+//dubbing, subtitles and hud. Speech borrows actual process SOUND and Players.
 //Composition is resolved only when a callback runs, permitting the containing
 //owner's mutually borrowing types to be declared before construction. It must
 //publish actual WorldActors lifetimes before activation; no secondary map.
@@ -55,6 +58,23 @@ public:
     template<class Actor>void set_runtime_actor_active(Actor& actor,bool enabled){dependencies_.world_actors.runtime().set_active(actor,enabled);}
     void human_special_music_reference(bool enabled){dependencies_.music.reference(enabled,mode_flags(),dependencies_.startup);} //0069E920/70, SAME gameC8..D4/SOUND.
     std::int32_t emit_human_equipment_sound(const frontend::SpatialSoundRequest& request){return dependencies_.sound.emit(request);}
+    std::uint32_t speech_random(){return dependencies_.startup.random_word();}
+    bool speech_special_mode43(){return dependencies_.startup.players_process().words().template get<std::uint8_t>(0x43)!=0;} //00459480.
+    bool speech_group0_active(){return !dependencies_.startup.players_process().groups()[0].empty();} //00456B80(0), SAME process group48.
+    std::uint32_t human_speech_length(std::int32_t identity){return dependencies_.startup.game_speech_length(identity);}
+    const char* missing_speech_caption(){return dependencies_.startup.missing_speech_caption();}
+    template<class Human>void play_human_speech(Human& human,std::int32_t identity,float near_range,float far_range,bool subtitles){
+        (void)dependencies_.startup.play_game_speech(&human,nullptr,identity,near_range,far_range,subtitles,dependencies_.dubbing);
+    }
+    template<class Human>void player_speech_notification(Human& human,std::int32_t identity){
+        HumanSpeechNotifications notifications(dependencies_.subtitles,dependencies_.hud,*this);notifications.notify(human,identity);
+    }
+    template<class State>void queue_active_ai_speech(State& state,std::uint32_t category,bool variant,std::uint32_t delay,bool quiet){
+        HumanSpeechLoading speech(dependencies_.scene.frames(),*this);speech.active(state,speech_signed_word(category),variant,delay,quiet);
+    }
+    template<class State>void queue_player_ai_speech(State& state,std::uint32_t category,std::uint32_t delay){
+        HumanSpeechLoading speech(dependencies_.scene.frames(),*this);speech.player(state,speech_signed_word(category),delay);
+    }
     void record_state_cleanup_failure(std::exception_ptr failure)noexcept{dependencies_.scene.frames().record_actor_cleanup_failure(std::move(failure));}
     //These reached branches require populated nonoffline/attachment producers.
     //The normal offline, freshly unattached loading path never invokes them.

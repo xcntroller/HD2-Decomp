@@ -14,6 +14,13 @@ namespace hd2::game {
 template<class Text>class MissionSubtitlesLoading {
 public:
     explicit MissionSubtitlesLoading(MissionText<Text>& state):state_(state){}
+    const char* speech_caption(std::int32_t identity,const char* missing_caption)const { //004900E0, first matching ID, first text; no selection/renderer mutation.
+        if(identity<90000000)return missing_caption;
+        const auto index=find(static_cast<std::uint32_t>(identity));if(index==missing)return missing_caption;
+        const auto& records=state_.entries[index]->records;
+        if(records.empty())return "NO TEXT WITH THIS ID !!!";
+        return records.front().second?records.front().second->c_str():"";
+    }
     bool read(SerializedBytes bytes) {
         const auto root=next_mission_chunk(bytes);if(!root)return false;
         bool valid=true;
