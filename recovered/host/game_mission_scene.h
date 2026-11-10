@@ -28,6 +28,7 @@ public:
                      game::EffectsEnvironment& environment,game::LightmapAliases& aliases)
         :GameSceneActors(scene,driver,module,graphics,files,resources,std::move(progress),text,runtime),
          tables_(tables),table_storage_(table_storage),environment_(environment),aliases_(aliases){}
+    auto& mission_tables()const noexcept{return tables_;} //SAME parent navigation allocation.
     void read_scene_tables(game::SerializedBytes& bytes) {
         for(auto& set:tables_.sets())game::read_mission_table(bytes,set,table_storage_,*this);
     }

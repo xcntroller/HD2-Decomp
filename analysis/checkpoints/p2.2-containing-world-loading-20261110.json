@@ -1,0 +1,134 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "ledger_added_partial_client": 0,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 1949,
+  "native_checks": [
+    "Actual cold Scene2 consumer live process mode/player identity; unbound/foreign/duplicate rejection and retirement/rebind",
+    "Actual dynamic bucket validation/binding/insertion/migration/recycling/cleanup/detach/repeat",
+    "Actual deferred sweep unbound query rejection and same-tree/grid binding",
+    "Actual live session time/music field changes and signed local-player reset"
+  ],
+  "strict_i386": "PASS actual cold World/Owners/module constructors, actual script runtime and all18 loading/activation/finish/unload routes; compile only",
+  "application_link": "PASS",
+  "tracker_checks": 27,
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/navigation-owner-binding.asm",
+      "sha256": "9d8d900f6c650b51835d59ab7e7332ef9dcb881979f5985f288500c89af155f4"
+    }
+  ],
+  "verified_sources": [
+    {
+      "path": "recovered/host/game_world_loading.h",
+      "sha256": "1564e53fcfb3242d7477d26dde40c9cc21176b662cc36e49625cc1ad002ebf0c"
+    },
+    {
+      "path": "recovered/game/world_loading_dependency_link.h",
+      "sha256": "1954ed2face38fa1bea7b84d4a7da7c959570cb890e6ce34b22945e9c9c07c6e"
+    },
+    {
+      "path": "recovered/game/session_time_word.h",
+      "sha256": "c01d361b5aa2765816c02abe23d62f0088c4365d3ea9bc1a05b28166f5f467fd"
+    },
+    {
+      "path": "recovered/game/dynamic_collision_grid.h",
+      "sha256": "09e20eb9417ff20f3cdeba353be27183a883cb1e6b607a3465b3a23e7db7ec0a"
+    },
+    {
+      "path": "recovered/game/collision_sweep.h",
+      "sha256": "979a0be4ad9d5d760b6e686fa20092dc6d4b79bebe512c8cda007b5163db676d"
+    },
+    {
+      "path": "recovered/game/game_music_references.h",
+      "sha256": "1351d62f6ac273606e90001d654fcc748563def8f16ea076c6459fcd32e64dbf"
+    },
+    {
+      "path": "recovered/host/game_world_scene.h",
+      "sha256": "fbf5fbcd73c13b0a267a4700398ef0c0a62a7f1fbdadcf8bff7202e3a9fca42a"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "sha256": "17879e1430bf63921676b4b66b5334273656846917263bc7448ed1db3762b008"
+    }
+  ],
+  "retained_logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-cold-collision-binding-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-cold-collision-binding-run.log",
+      "sha256": "f4cd0fa23ccf83c14edd05beebd6d4ce7bdfc75c51cf6b1081a077b2b2bb421a"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-containing-owners-app-build.log",
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-containing-owners-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-containing-owners-tracker.log",
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-dependency-links-build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-dependency-links-run.log",
+      "sha256": "1c32bc907fd9abc71ccafe65aae8b8636fcdb88940acb15937c46beda61e9ebd"
+    }
+  ],
+  "removed_temporary_files": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-dependency-links.cpp",
+      "sha256": "01c6b3cabec16a6f7c1e7e1faf210b02e01d939511499742867e85eed3c0b747"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-dependency-links",
+      "sha256": "08c3c0e651b063d95a93c69ccbaf71cfce905a717bbf3f418033195295b71816"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-cold-collision-binding.cpp",
+      "sha256": "7d240f0c4a1836d53f74e9da5c5b282a6397b2087cdb7998bab3b52dd0b66fe1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-cold-collision-binding",
+      "sha256": "a2b33d086c4d7e5963ee01d40d2780228b8b0609ea6ed9c7c66de096eb16e6a4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-containing-owners.cpp",
+      "sha256": "981c49fae6479dc7ed00947194ba29cc353f643d65a42a2c052ab2e4a8525814"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-containing-owners.o",
+      "sha256": "d0a57420a8cd646e38543aa9af018b2436214ac471d4334cbc6375be470bccec"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-containing-session-host.cpp",
+      "sha256": "c4ed356cd7e8b9041d0856476ba445943a1d106f09af9c2353257dc04aa1db45"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-containing-session-host.o",
+      "sha256": "46f2f148b811de5ce6a1c2626675f0bfd6b121a4494fd9d1846fa8ca53a4da40"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/generate-containing-owners.py",
+      "sha256": "5e93398596337ca572b1cfb6117e13059fb349b1e9c1b2c1505ae8e71f53bab2"
+    }
+  ],
+  "remaining": [
+    "Concrete006CA780 ordered loader and006D3F20 prep/prior unload/cache boundary",
+    "Actual required input getter/profile configuration and selected catalogue/suffix",
+    "Meaningful integrity observations and reached required positive receivers",
+    "First camera/update/render, failure/repeat and user desktop acceptance"
+  ]
+}

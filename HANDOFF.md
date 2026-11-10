@@ -14,26 +14,29 @@ Zero complete promotions. Both P2.2 checkboxes remain OPEN.
 
 ## Latest source checkpoint
 
-[HUD world/parent binding](analysis/hud-world-binding.md),
-[receipt](analysis/checkpoints/p2.2-hud-world-binding-20261110.json).
-Actual GameHudLoading/HudPanels/HudScene bind/close now composes with SAME Scene2
-identity view, session.mission.related objective view and parent navigation tables.
-HUD needs full reserved32/holes/current Scene2 count, not its selection pair.
-Common world retirement uses SAME ActorBase pointer, not outer SceneActor.
-Map captures missionA8 once per pass, reads its vector count/entries live.
-0049B280 passes SAME inlineHUD6B320 pointer to map/inventory/command; source now
-uses auxiliary.pointer(), removing external invented opaque Borrowers.
-004B4980 command5A7B4 reads game54, which00698510 gets from00523AB0: NAVIGATION
-TABLES, not collision tree/grid. Source world facade borrows actual owner.tables().
-Strict graph now uses GameOwnerBackend template parameter matching SessionOwner's
-actual MissionTables<GameOwnerBackend>, not unrelated TableStorage instantiation.
-Players subgroup is pure required interface; no loading append producer or fake
-successful tick/destroy. Type37 zone/groupA4 still requires its actual owner.
-Native focused views/Base retirement, strict REAL complete HUD bind and prior
-world/Car/Human/VM/router/spawn graph, app link and27 tracker checks PASS.
-No new credit. Completed audits hashed/removed; active ignored next fixture
-WORK/checkpoint-containing-session-host.cpp. Actual containing dependency
-aggregate, ordered loader and first frame remain UNCALLED by application.
+[Containing world owners](analysis/containing-world-loading.md),
+[receipt](analysis/checkpoints/p2.2-containing-world-loading-20261110.json).
+Actual world_loading::World constructs cold Scene2 callbacks, SAME WorldScene,
+vertex registry, actual Human/Players/HUD/FPV/camera/audio/script owners and all18
+module facades. Dependencies formed LAST; checked late links bind SAME completed
+aggregate before use. Cold Human mode comes from actual Startup mode early.
+Same Startup/runtime/parent engine scene/table identities checked before graph.
+SAME bucket owner exists before tree, queries/register reject while unbound;
+006EE570 binds actual final tree grid, then actual Human sweep. This preserves
+ability to run006CADE0 real module tail even on failure before collision loading.
+No dummy grid or missing-data no-hit. Native grid cleanup detaches before tree.
+Navigation FIRST parent dataset confirmed004DB08A..004DB0CD; Humans second set.
+Items reread SAME session.words28 through SessionTimeWord without byte aliasing.
+Music reads parsed C8/CC live (cold construction precedes Scene2 B840/B880).
+HUD mode/player/difficulty use live process values; local input signed identity.
+Startup now owns persistent Car defs/tyres/materials and vertex clock0089B398.
+Source World still requires actual catalogue/model suffix. Module/VM native
+finish/unload ordering remains with NEXT loader; constructors set no loaded flag.
+Focused native binding/grid/sweep/live scalar sanitizer checks, strict actual cold
+World/Owners/module constructors/all18 routes, app link and27 tally checks PASS.
+Zero new credit; completed fixtures hashed/removed, logs/evidence retained.
+Prior8da1f97 [HUD parent binding](analysis/hud-world-binding.md) supplied SAME
+inlineHUD6B320 pointer and game54 navigation tables/ActorBase identity domain.
 
 Prior7f55042 [cold Car binding](analysis/car-callback-world-binding.md) supplies
 actual factory/body/solver/Physics contact link/emitter pool. Tyres derive current
@@ -63,18 +66,21 @@ Other Human/VM/FPV/HUD/Players contracts in RESEARCH.md/loading-modules.md.
 
 ## Next — SAME full checkbox
 
-Actual containing world/session instances and reached required positive receivers,
-ordered006CA780 loader, first camera/update/render, failure/repeat then user
-Python desktop acceptance. All recovered loading world/VM/router remain UNCALLED
-by application. The strict fixture supplies actual Car factory and complete HUD bind now, with
-real parent tables/identity/objective/pointer views; dependency aggregates are
-still borrowed. Next construct actual containing graph, resolving cycles with
-checked SAME-owner borrowers, never references to unconstructed objects or
-successful defaults. WorldActorLoadingConsumers/HumanWorldLoadingServices/
-HumanLoadingPresentation/HumanLoadingOwnerFactory currently store Dependencies&;
-containing cycles require checked late dependency binding before activation.
-Preserve actual instance identities and original teardown order. Continue after
-this dependency checkpoint.
+Concrete006CA780 ordered loader and006D3F20 prep/prior unload/cache boundary,
+then reached required positive receivers/meaningful guard observations,
+first camera/update/render, failure/repeat and user Python desktop acceptance.
+Actual source cold graph now EXISTS but is still UNCALLED by application.
+Original006D3F20 read at WORK/loader-module-composition/006d3f20.c: loading screen
+prepare first,0069A3D0 prior unload, selected game6A/globalCar scene resource
+publication, then cache category1/4/5 tree/vector/current-ref clears. Existing
+analysis/shutdown-preparation.md has process owner map; exact mission-prep cache
+operations need binding, do not replace them with broad controller clear.
+No loader adapter/fake prep endpoint was added yet. Input manager still requires
+actual ID-dependent getters/configure before Human record publication; World
+constructs cold input owner only. Required actual suffix/catalogue must come from
+live selected resources. Constructor/strict compile is NOT engine execution.
+Continue implementation, no fresh broad audit. Full ownership contract at latest
+analysis document; new World module-tail owners exist before tree data.
 
 Ordering: +14/+1C/+18 fresh ASCENDING;0048DB90/+20 fresh REVERSE.00698F80 does
 presentation finish→dubbing close→authority finish→HUD close. Reserved Humans can

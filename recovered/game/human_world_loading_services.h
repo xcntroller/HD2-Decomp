@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 
+#include "game/world_loading_dependency_link.h"
 #include "game/human_camera_state.h"
 #include "frontend/spatial_sound.h"
 #include "game/human_speech_loading.h"
@@ -19,21 +20,25 @@ namespace hd2::game {
 //publish actual WorldActors lifetimes before activation; no secondary map.
 template<class Dependencies>class HumanWorldLoadingServices {
 public:
+    HumanWorldLoadingServices()=default;
     explicit HumanWorldLoadingServices(Dependencies& dependencies):dependencies_(dependencies){}
-    std::uint32_t mode_flags()const{return dependencies_.startup.application_flags();}
-    std::int32_t human_current_player_id()const{return dependencies_.startup.local_player_identity();}
-    bool human_remote_ai_enabled(){return dependencies_.startup.human_remote_ai_enabled();}
-    auto human_difficulty(){return dependencies_.startup.human_difficulty();}
-    std::uint32_t game_word28()const{return dependencies_.session.words.template get<std::uint32_t>(0x28);}
-    std::uint32_t game_frame_serial()const{return dependencies_.session.words.template get<std::uint32_t>(0x2c);}
-    auto& human_ai_event_pool(){return dependencies_.startup.human_ai_event_pool();}
-    auto& human_perception_record_pool(){return dependencies_.startup.human_perception_record_pool();}
-    bool human_face_quality_enabled(){return dependencies_.startup.human_face_quality_enabled();}
+    void bind_dependencies(Dependencies& dependencies){dependencies_.bind(dependencies);}
+    void unbind_dependencies(Dependencies& dependencies)noexcept{dependencies_.unbind(dependencies);}
+    bool dependencies_bound()const noexcept{return dependencies_.bound();}
+    std::uint32_t mode_flags()const{return dependencies().startup.application_flags();}
+    std::int32_t human_current_player_id()const{return dependencies().startup.local_player_identity();}
+    bool human_remote_ai_enabled(){return dependencies().startup.human_remote_ai_enabled();}
+    auto human_difficulty(){return dependencies().startup.human_difficulty();}
+    std::uint32_t game_word28()const{return dependencies().session.words.template get<std::uint32_t>(0x28);}
+    std::uint32_t game_frame_serial()const{return dependencies().session.words.template get<std::uint32_t>(0x2c);}
+    auto& human_ai_event_pool(){return dependencies().startup.human_ai_event_pool();}
+    auto& human_perception_record_pool(){return dependencies().startup.human_perception_record_pool();}
+    bool human_face_quality_enabled(){return dependencies().startup.human_face_quality_enabled();}
     bool presentation_application_fallback(){return human_remote_ai_enabled();} //00785BE0→006B66B0.
-    const auto& presentation_mission_name()const{return dependencies_.request.preparation.mission_resource;}
-    auto& human_face_resources(){return dependencies_.faces;}
-    std::int32_t human_face_camouflage(){return static_cast<std::int32_t>(dependencies_.presentation_shared.settings().terrain);} //Actual0098A6B0.
-    auto human_animation_resource(unsigned table,unsigned row){return dependencies_.animations.resource(table,row);}
+    const auto& presentation_mission_name()const{return dependencies().request.preparation.mission_resource;}
+    auto& human_face_resources(){return dependencies().faces;}
+    std::int32_t human_face_camouflage(){return static_cast<std::int32_t>(dependencies().presentation_shared.settings().terrain);} //Actual0098A6B0.
+    auto human_animation_resource(unsigned table,unsigned row){return dependencies().animations.resource(table,row);}
     template<class Human>auto& human_look_control(Human& human){
         auto* look=composition(human).control().look();
         if(!look)throw std::runtime_error("Human animation requires its actual inline E0");
@@ -47,58 +52,58 @@ public:
     }
     template<class Human>bool human_is_player(const Human& human)const{return human_camera_is_player(human,mode_flags(),human_current_player_id());} //005A0890, AL.
     template<class Human>bool human_is_view_actor(const Human& human)const{return human_is_player(human);}
-    bool human_view_offset_enabled(){auto& view=dependencies_.first_person.view();return view.enabled()||view.secondary_enabled();} //0069A4B0, actual58 OR59.
-    template<class Human>void player_select_human(Human& human){dependencies_.players.control().select_human(human);} //00461410→0045DA60.
-    template<class Human>void remove_human_player(Human& human){(void)dependencies_.players.control().remove_human(&human);} //0045E670.
-    template<class Human>bool player_knows_enemy(Human& human){return dependencies_.players.control().selection().knows(&human);} //0045E920.
+    bool human_view_offset_enabled(){auto& view=dependencies().first_person.view();return view.enabled()||view.secondary_enabled();} //0069A4B0, actual58 OR59.
+    template<class Human>void player_select_human(Human& human){dependencies().players.control().select_human(human);} //00461410→0045DA60.
+    template<class Human>void remove_human_player(Human& human){(void)dependencies().players.control().remove_human(&human);} //0045E670.
+    template<class Human>bool player_knows_enemy(Human& human){return dependencies().players.control().selection().knows(&human);} //0045E920.
     template<class Human>void player_add_enemy(Human* human){
         if(!human)throw std::runtime_error("Player enemy acquisition requires its actual Human");
-        dependencies_.players.control().selection().acquire(selection_human(*human),mode_flags(),*this); //0045E410 with actual feedback, before record publication.
+        dependencies().players.control().selection().acquire(selection_human(*human),mode_flags(),*this); //0045E410 with actual feedback, before record publication.
     }
     template<class Human>void player_remove_enemy(Human* human){
         if(!human)throw std::runtime_error("Player enemy release requires its actual Human");
-        dependencies_.players.control().selection().release(selection_human(*human),mode_flags(),*this); //0045E540.
+        dependencies().players.control().selection().release(selection_human(*human),mode_flags(),*this); //0045E540.
     }
-    template<class Human>void hud_selected(Human& human,bool selected){dependencies_.hud.select_human(&human,selected,mode_flags(),human_difficulty());} //0049B980.
+    template<class Human>void hud_selected(Human& human,bool selected){dependencies().hud.select_human(&human,selected,mode_flags(),human_difficulty());} //0049B980.
     template<class Human>bool human_hidden(const Human& human)const{return human.activation.flag150;}
     template<class Human>void show_human(Human& human,std::uint32_t duration){ //005A8740, genuine already-shown RET.
         if(!human.activation.flag150)return;
-        dependencies_.scene.effects().human_fades().visibility(human,signed_duration(duration),true);
+        dependencies().scene.effects().human_fades().visibility(human,signed_duration(duration),true);
         human.activation.flag150=false;
-        composition(human).control().shadow_visible(dependencies_.scene.frames(),true); //005AC0F0, SAME A9C shadow, not SOUND.
-        dependencies_.presentation_shared.projection_models().visibility(dependencies_.scene.frames(),&human,true,mode_flags());
+        composition(human).control().shadow_visible(dependencies().scene.frames(),true); //005AC0F0, SAME A9C shadow, not SOUND.
+        dependencies().presentation_shared.projection_models().visibility(dependencies().scene.frames(),&human,true,mode_flags());
     }
     template<class Human>void hide_human(Human& human,std::uint32_t duration){ //005A86F0.
         if(human.activation.flag150)return;
-        dependencies_.scene.effects().human_fades().visibility(human,signed_duration(duration),false);
+        dependencies().scene.effects().human_fades().visibility(human,signed_duration(duration),false);
         human.activation.flag150=true;
-        composition(human).control().shadow_visible(dependencies_.scene.frames(),false);
-        dependencies_.presentation_shared.projection_models().visibility(dependencies_.scene.frames(),&human,false,mode_flags());
+        composition(human).control().shadow_visible(dependencies().scene.frames(),false);
+        dependencies().presentation_shared.projection_models().visibility(dependencies().scene.frames(),&human,false,mode_flags());
     }
-    auto& human_roster(){return dependencies_.players.control().human_roster();}
+    auto& human_roster(){return dependencies().players.control().human_roster();}
     template<class Human>std::uint32_t human_sight_alignment(Human& human){
-        return game::human_sight_alignment(human,human_roster(),dependencies_.session.words.template get<std::uint8_t>(0x34)!=0,
+        return game::human_sight_alignment(human,human_roster(),dependencies().session.words.template get<std::uint8_t>(0x34)!=0,
             [&]{return human_remote_ai_enabled();},[](auto& value){return value.activation.field16c;},
-            [&](auto entry){return dependencies_.world_actors.items().human_entry_alignment(entry);});
+            [&](auto entry){return dependencies().world_actors.items().human_entry_alignment(entry);});
     }
-    template<class Human,class Actor>bool human_sound_friendly(Human& human,Actor actor){return dependencies_.sight.human_sight_friendly(&human,actor);}
+    template<class Human,class Actor>bool human_sound_friendly(Human& human,Actor actor){return dependencies().sight.human_sight_friendly(&human,actor);}
     template<class Human>auto& human_state_factory(Human& human){return composition(human).state_factory();}
     template<class Human>auto& human_state_owner(Human& human){return composition(human).states();}
     template<class Human>auto& human_inline(Human& human){return composition(human).control();}
-    template<class Composition,class Human>Composition& human_loading_owner(Human& human){return dependencies_.world_actors.template human_loading_owner<Composition>(human);}
-    template<class Human>bool human_selected_suppressed(Human& human){return dependencies_.presentation.human_selected_suppressed(human);}
+    template<class Composition,class Human>Composition& human_loading_owner(Human& human){return dependencies().world_actors.template human_loading_owner<Composition>(human);}
+    template<class Human>bool human_selected_suppressed(Human& human){return dependencies().presentation.human_selected_suppressed(human);}
     template<class Human>auto human_attached_actor(Human& human){return human.field160;}
-    float human_sound_random(){return dependencies_.scene.frames().volume_random_unit();} //Actual LS3DF RandFloat, distinct from CRT rand.
-    template<class Human,class Actor>void player_sight_dog(Human&,Actor& actor){dependencies_.players.control().add_sighted_dog(&actor);} //0045D4A0.
+    float human_sound_random(){return dependencies().scene.frames().volume_random_unit();} //Actual LS3DF RandFloat, distinct from CRT rand.
+    template<class Human,class Actor>void player_sight_dog(Human&,Actor& actor){dependencies().players.control().add_sighted_dog(&actor);} //0045D4A0.
     template<class Human,class Actor>bool network_human_sight_friendly(Human&,Actor&){throw std::runtime_error("Nonoffline Sight requires actual005A09A0 friendship receiver");}
     template<class Actor>void dog_sight_changed(Actor& actor,bool,std::uint32_t){ //005D5CB0's genuine cold null534 gate.
-        using Dog=typename std::decay_t<decltype(dependencies_.scene.frames())>::Dog;
+        using Dog=typename std::decay_t<decltype(dependencies().scene.frames())>::Dog;
         auto* dog=dynamic_cast<Dog*>(&actor);if(!dog)throw std::logic_error("Dog Sight requires its actual actor family");
         if(dog->field534)throw std::runtime_error("Populated Dog Sight requires actual534 control receiver");
     }
-    template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){dependencies_.hud.hud_sound_direction(direction,kind);}
+    template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){dependencies().hud.hud_sound_direction(direction,kind);}
     template<class Actor>bool car_field5e0(Actor* actor){
-        using Car=typename std::decay_t<decltype(dependencies_.world_actors)>::Car;
+        using Car=typename std::decay_t<decltype(dependencies().world_actors)>::Car;
         auto* car=dynamic_cast<Car*>(actor);
         if(!car||!car->geometry)throw std::runtime_error("Human weapon context requires actual initialized Car geometry");
         return car->geometry->physics().scalars().get(0x550)!=0; //Actor5E0, SAME owner as collision callbacks.
@@ -114,29 +119,29 @@ public:
         if(health<1||!human.loading_state||human.properties.field19c==1)return false;
         return (human.loading_state->words().template get<std::uint32_t>(0x50)&0x4000000u)!=0;
     }
-    template<class Actor>auto actor_inventory_capacity(const Actor& actor){return dependencies_.scene.frames().actor_inventory_capacity(actor);}
-    template<class Actor>void set_scene_actor_active(Actor& actor,bool enabled){dependencies_.scene.frames().set_scene_actor_active(actor,enabled);}
-    template<class Actor>void set_runtime_actor_active(Actor& actor,bool enabled){dependencies_.world_actors.runtime().set_active(actor,enabled);}
-    void human_special_music_reference(bool enabled){dependencies_.music.reference(enabled,mode_flags(),dependencies_.startup);} //0069E920/70, SAME gameC8..D4/SOUND.
-    std::int32_t emit_human_equipment_sound(const frontend::SpatialSoundRequest& request){return dependencies_.sound.emit(request);}
-    std::uint32_t speech_random(){return dependencies_.startup.random_word();}
-    bool speech_special_mode43(){return dependencies_.startup.players_process().words().template get<std::uint8_t>(0x43)!=0;} //00459480.
-    bool speech_group0_active(){return !dependencies_.startup.players_process().groups()[0].empty();} //00456B80(0), SAME process group48.
-    std::uint32_t human_speech_length(std::int32_t identity){return dependencies_.startup.game_speech_length(identity);}
-    const char* missing_speech_caption(){return dependencies_.startup.missing_speech_caption();}
+    template<class Actor>auto actor_inventory_capacity(const Actor& actor){return dependencies().scene.frames().actor_inventory_capacity(actor);}
+    template<class Actor>void set_scene_actor_active(Actor& actor,bool enabled){dependencies().scene.frames().set_scene_actor_active(actor,enabled);}
+    template<class Actor>void set_runtime_actor_active(Actor& actor,bool enabled){dependencies().world_actors.runtime().set_active(actor,enabled);}
+    void human_special_music_reference(bool enabled){dependencies().music.reference(enabled,mode_flags(),dependencies().startup);} //0069E920/70, SAME gameC8..D4/SOUND.
+    std::int32_t emit_human_equipment_sound(const frontend::SpatialSoundRequest& request){return dependencies().sound.emit(request);}
+    std::uint32_t speech_random(){return dependencies().startup.random_word();}
+    bool speech_special_mode43(){return dependencies().startup.players_process().words().template get<std::uint8_t>(0x43)!=0;} //00459480.
+    bool speech_group0_active(){return !dependencies().startup.players_process().groups()[0].empty();} //00456B80(0), SAME process group48.
+    std::uint32_t human_speech_length(std::int32_t identity){return dependencies().startup.game_speech_length(identity);}
+    const char* missing_speech_caption(){return dependencies().startup.missing_speech_caption();}
     template<class Human>void play_human_speech(Human& human,std::int32_t identity,float near_range,float far_range,bool subtitles){
-        (void)dependencies_.startup.play_game_speech(&human,nullptr,identity,near_range,far_range,subtitles,dependencies_.dubbing);
+        (void)dependencies().startup.play_game_speech(&human,nullptr,identity,near_range,far_range,subtitles,dependencies().dubbing);
     }
     template<class Human>void player_speech_notification(Human& human,std::int32_t identity){
-        HumanSpeechNotifications notifications(dependencies_.subtitles,dependencies_.hud,*this);notifications.notify(human,identity);
+        HumanSpeechNotifications notifications(dependencies().subtitles,dependencies().hud,*this);notifications.notify(human,identity);
     }
     template<class State>void queue_active_ai_speech(State& state,std::uint32_t category,bool variant,std::uint32_t delay,bool quiet){
-        HumanSpeechLoading speech(dependencies_.scene.frames(),*this);speech.active(state,speech_signed_word(category),variant,delay,quiet);
+        HumanSpeechLoading speech(dependencies().scene.frames(),*this);speech.active(state,speech_signed_word(category),variant,delay,quiet);
     }
     template<class State>void queue_player_ai_speech(State& state,std::uint32_t category,std::uint32_t delay){
-        HumanSpeechLoading speech(dependencies_.scene.frames(),*this);speech.player(state,speech_signed_word(category),delay);
+        HumanSpeechLoading speech(dependencies().scene.frames(),*this);speech.player(state,speech_signed_word(category),delay);
     }
-    void record_state_cleanup_failure(std::exception_ptr failure)noexcept{dependencies_.scene.frames().record_actor_cleanup_failure(std::move(failure));}
+    void record_state_cleanup_failure(std::exception_ptr failure)noexcept{dependencies().scene.frames().record_actor_cleanup_failure(std::move(failure));}
     //These reached branches require populated nonoffline/attachment producers.
     //The normal offline, freshly unattached loading path never invokes them.
     std::int32_t human_respawn_delay_seconds(){throw std::runtime_error("Human respawn requires its actual nonoffline configuration consumer");}
@@ -151,8 +156,9 @@ private:
         return *human;
     }
     static std::int32_t signed_duration(std::uint32_t value){std::int32_t result;std::memcpy(&result,&value,4);return result;}
-    template<class Human>auto& composition(Human& human){return dependencies_.world_actors.template human_loading_owner<typename Dependencies::Composition>(human);}
-    Dependencies& dependencies_;
+    template<class Human>auto& composition(Human& human){return dependencies().world_actors.template human_loading_owner<typename Dependencies::Composition>(human);}
+    Dependencies& dependencies()const{return dependencies_.get();}
+    WorldLoadingDependencyLink<Dependencies> dependencies_;
 };
 } //namespace hd2::game
 #endif

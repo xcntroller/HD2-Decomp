@@ -1,6 +1,7 @@
 #ifndef HD2_GAME_RUNTIME_ITEM_SERVICES_H
 #define HD2_GAME_RUNTIME_ITEM_SERVICES_H
 
+#include "game/session_time_word.h"
 #include "game/item_model_cache.h"
 #include "game/item_scuba_models.h"
 #include <algorithm>
@@ -17,7 +18,7 @@ public:
     using Frame=typename Frames::Frame;
     using ItemModelOwner=typename ItemPrimaryModelCache<Frames>::ItemModelOwner;
     RuntimeItemServices(Frames& frames,const frontend::PreMissionItemCatalogue& catalogue,
-                        const std::string& suffix,const std::uint32_t& game_word28)
+                        const std::string& suffix,SessionTimeWord game_word28)
         : frames_(frames),models_(frames,catalogue,suffix),scuba_(frames,catalogue,suffix),game_word28_(game_word28) {}
     ~RuntimeItemServices(){clear_model_cache();}
     RuntimeItemServices(const RuntimeItemServices&)=delete;
@@ -54,7 +55,7 @@ private:
     Frames& frames_;
     ItemPrimaryModelCache<Frames> models_;
     ItemScubaModelCache<Frames> scuba_;
-    const std::uint32_t& game_word28_;
+    SessionTimeWord game_word28_;
     std::vector<void*> kind20_;
 };
 

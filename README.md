@@ -20,7 +20,7 @@ source composition; [cold Car actor activation](analysis/car-activation-loading.
 [Cold Car callback/world binding](analysis/car-callback-world-binding.md) supplies the actual factory, Physics contact and shared solver/pool owners.
 [Live squad authority](analysis/live-squad-session-ownership.md) remains with the persistent application records.
 [HUD world/parent binding](analysis/hud-world-binding.md) now composes with the actual identity, objective and navigation owners.
-Actual containing-world integration and first-frame delivery remain.
+[Containing world owners](analysis/containing-world-loading.md) now construct the actual shared Human/VM/HUD/module graph before collision loading, with checked late tree binding. Ordered loader integration and first-frame delivery remain.
 
 The accepted bounded launch checkpoint covers: four opening movies with music and
 English subtitles lead into the compiled Main/Exit menu. Pointer/keyboard input,

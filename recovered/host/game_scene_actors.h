@@ -37,6 +37,7 @@ public:
         if(cars_)throw std::logic_error("Car callbacks are already bound to the scene actor services");
         cars_=&cars;
     }
+    Runtime& actor_runtime()const noexcept{return runtime_;} //Containing construction checks SAME cold runtime owner.
     using Instance=game::SceneActor<GameActorServices>;
     using ActorOwner=std::unique_ptr<Instance>;
     using Actor=Instance*;

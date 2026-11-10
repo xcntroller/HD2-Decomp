@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_LOADING_OWNER_FACTORY_H
 
 #include "game/human_loading_composition.h"
+#include "game/world_loading_dependency_link.h"
 #include <memory>
 
 namespace hd2::game {
@@ -14,11 +15,15 @@ namespace hd2::game {
 template<class Composition,class Dependencies,class WorldServices>
 class HumanLoadingOwnerFactory {
 public:
+    explicit HumanLoadingOwnerFactory(WorldServices& world):world_(world){}
+    void bind_dependencies(Dependencies& dependencies){dependencies_.bind(dependencies);}
+    void unbind_dependencies(Dependencies& dependencies)noexcept{dependencies_.unbind(dependencies);}
+    bool dependencies_bound()const noexcept{return dependencies_.bound();}
     HumanLoadingOwnerFactory(Dependencies& dependencies,WorldServices& world)
         :dependencies_(dependencies),world_(world){}
     template<class Frames,class Actors,class Human>
     std::unique_ptr<Composition> make_human_loading_owner(Frames& frames,Actors& actors,Human& human){
-        auto& d=dependencies_;
+        auto& d=dependencies_.get();
         if(&frames!=&d.scene.frames()||&actors!=&d.world_actors)
             throw std::logic_error("Human factory requires the SAME containing scene and WorldActors");
         using Factory=typename Composition::Factory;
@@ -31,7 +36,7 @@ public:
             d.hearing,d.proximity,d.camera,d.players.control());
     }
 private:
-    Dependencies& dependencies_;WorldServices& world_;
+    WorldLoadingDependencyLink<Dependencies> dependencies_;WorldServices& world_;
 };
 
 } //namespace hd2::game

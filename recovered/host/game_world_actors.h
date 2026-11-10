@@ -1,6 +1,7 @@
 #ifndef HD2_HOST_GAME_WORLD_ACTORS_H
 #define HD2_HOST_GAME_WORLD_ACTORS_H
 
+#include "game/session_time_word.h"
 #include "host/game_world_scene.h"
 #include "host/game_mission_items.h"
 #include "host/game_runtime_actors.h"
@@ -19,8 +20,8 @@
 
 namespace hd2::host {
 
-//Actual shared loading composition, constructed AFTER the scene's collision
-//tree and BEFORE module activation. Consumers supplies real item-transfer,
+//Actual shared cold loading composition, constructed BEFORE module activation.
+//The SAME bucket owner may await its real tree; registration/queries require it. Consumers supplies real item-transfer,
 //sound/network and presentation-reference receivers; none are defaulted here.
 //Containing Human/state/script owners must finish and retire before close().
 //The scene/session/catalogue/clock/Consumers outlive this owner. Module event
@@ -36,7 +37,7 @@ public:
     using Body=game::RigidBody<GameActorServices,Collisions>;
     GameWorldActors(Scene& scene,Consumers& consumers,game::MissionNavigation& navigation,Vertices& vertices,
                     const frontend::LocalizedTextCache& text,const frontend::PreMissionItemCatalogue& catalogue,
-                    const std::string& suffix,ChunkFiles& files,FrameClockPlatform& clock,const std::uint32_t& game_word28)
+                    const std::string& suffix,ChunkFiles& files,FrameClockPlatform& clock,game::SessionTimeWord game_word28)
         :scene_(scene),consumers_(consumers),vertices_(vertices),navigation_(navigation),text_(text),catalogue_(catalogue),models_(scene.frames(),catalogue,suffix,game_word28),
          items_(scene.frames(),models_,catalogue,files,clock,game_word28,consumers),
          runtime_(scene.frames(),*this,navigation,text,scene.buckets(),bodies_,items_),

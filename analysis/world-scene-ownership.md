@@ -30,8 +30,9 @@ new operations. This is a source lifetime composition, not a new original body.
 
 `host/game_world_actors.h` composes the selected catalogue's actual model service,
 Items owner, rigid-body registry, runtime actors and Physics against that same
-scene and bucket owner. It is constructed after the collision tree, before
-activation. Its common active-list callbacks dispatch to the actual Scene2 or
+scene and bucket owner. The containing graph can now construct it cold before
+the collision tree; queries/registration still require its actual grid binding.
+See [containing construction](containing-world-loading.md). Its common active-list callbacks dispatch to the actual Scene2 or
 runtime registry, based on the existing ActorBase policy. Sound/network/item
 transfer and presentation-reference removal remain required real consumers.
 There are no default implementations for them.

@@ -1,6 +1,7 @@
 #ifndef HD2_HOST_GAME_MISSION_ITEMS_H
 #define HD2_HOST_GAME_MISSION_ITEMS_H
 
+#include "game/session_time_word.h"
 #include "host/game_runtime_item.h"
 #include "host/frame_clock.h"
 #include "game/item_identity.h"
@@ -28,7 +29,7 @@ public:
     };
     GameMissionItems(GameActorServices& frames,GameRuntimeItemServices& models,
                      const frontend::PreMissionItemCatalogue& catalogue,ChunkFiles& files,
-                     FrameClockPlatform& clock,const std::uint32_t& game_word28,Consumers& consumers)
+                     FrameClockPlatform& clock,game::SessionTimeWord game_word28,Consumers& consumers)
         : frames_(frames),models_(models),catalogue_(catalogue),files_(files),clock_(clock),game_word28_(game_word28),consumers_(consumers) {}
     ~GameMissionItems() {clear();}
     GameMissionItems(const GameMissionItems&)=delete;
@@ -194,7 +195,7 @@ private:
     void require_catalogue() const {if(!catalogue_.loaded())throw std::runtime_error("Items module requires the actual selected catalogue");}
     GameActorServices& frames_;GameRuntimeItemServices& models_;
     const frontend::PreMissionItemCatalogue& catalogue_;ChunkFiles& files_;FrameClockPlatform& clock_;
-    const std::uint32_t& game_word28_;Consumers& consumers_;
+    game::SessionTimeWord game_word28_;Consumers& consumers_;
     std::vector<Entry> tracked_,registered_;
     std::vector<Placed> placed_;
     std::int32_t current_identity_=-1;

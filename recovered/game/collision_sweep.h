@@ -24,8 +24,18 @@ public:
     };
     CollisionSweep(const Tree* tree,const Buckets* buckets,Resources& resources,Math& math)
         :tree_(tree),buckets_(buckets),resources_(resources),static_(math),dynamic_(math) {}
+    //Source cold containing graph: forbid queries until the same loaded tree
+    //and bucket owner are published, rather than treating missing data as no hit.
+    CollisionSweep(Resources& resources,Math& math)
+        :tree_(nullptr),buckets_(nullptr),resources_(resources),static_(math),dynamic_(math),awaiting_tree_(true){}
+    void bind(const Tree& tree,const Buckets& buckets){
+        if(!awaiting_tree_)throw std::logic_error("Collision sweep already has its actual tree binding");
+        if(&buckets.grid_identity()!=&tree.dynamic)throw std::logic_error("Collision sweep tree and dynamic grid differ");
+        tree_=&tree;buckets_=&buckets;awaiting_tree_=false;
+    }
     std::optional<Hit> sweep(const Vector& start,const Vector& displacement,float radius,
         std::uint32_t excluded_layers=0,std::uint32_t excluded_flags=0,bool normal=true) {
+        if(awaiting_tree_)throw std::logic_error("Collision sweep requires its actual loaded tree");
         if(!tree_)return std::nullopt;
         if(!std::isfinite(radius))throw std::runtime_error("Non-finite collision sweep radius");
         CollisionSweepState state;state.start=start;state.displacement=displacement;state.radius=radius;
@@ -92,6 +102,7 @@ private:
     const Tree* tree_;const Buckets* buckets_;Resources& resources_;
     StaticCollisionSweepNarrowPhase<Frame,Math> static_;
     DynamicCollisionSweepNarrowPhase<Object,Math> dynamic_;
+    bool awaiting_tree_=false;
 };
 } //namespace hd2::game
 #endif

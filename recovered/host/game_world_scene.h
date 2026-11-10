@@ -49,7 +49,8 @@ public:
     auto& lightmap_aliases(){require_open();return aliases_;}auto& documents(){require_open();return documents_;}
     auto& collision_resources(){require_open();return collision_resources_;}auto& exclusions(){require_open();return exclusions_;}
     Tree& collision_tree(){require_open();if(!tree_)throw std::logic_error("World collision tree is not loaded");return *tree_;}
-    Buckets& buckets(){require_open();if(!buckets_)throw std::logic_error("World dynamic collision grid is not loaded");return *buckets_;}
+    const Tree* collision_tree_if_loaded()const noexcept{return tree_.get();}
+    Buckets& buckets(){require_open();return buckets_;}
     auto door_queries(){return game::DoorCollisionQueries<EngineFrame*,Descriptor,GameActorServices>(collision_tree(),buckets(),frames_);}
     auto car_queries(){
         return game::CarCollisionQueries<EngineFrame*,Descriptor,GameCollisionResources,GameActorServices,game::SceneActor<GameActorServices>*>(
@@ -57,7 +58,7 @@ public:
     }
     void load_collision_tree(const std::string& resource) {
         require_open();
-        if(tree_||buckets_)throw std::logic_error("Retire actual world collision owners before loading another tree");
+        if(tree_||buckets_.bound())throw std::logic_error("Retire actual world collision owners before loading another tree");
         const auto path="missions\\"+resource+"\\tree.klz";
         const auto handle=files_.open(path.c_str(),0);
         if(handle==0xffffffffu)throw std::runtime_error("Required mission collision tree is unavailable");
@@ -69,8 +70,8 @@ public:
         if(size&&files_.read(handle,bytes.data(),size)!=size)throw std::runtime_error("Short mission collision tree read");
         auto tree=std::make_unique<Tree>(game::read_collision_tree(game::SerializedBytes(bytes),collision_resources_,true));
         //Construct against its final stable allocation, never a local/moved grid.
-        auto buckets=std::make_unique<Buckets>(tree->dynamic);
-        tree_=std::move(tree);buckets_=std::move(buckets);
+        buckets_.bind(tree->dynamic);
+        tree_=std::move(tree);
     }
     void close()noexcept {
         if(closed_)return;
@@ -80,7 +81,7 @@ public:
         frames_.clear_scene_actors(); //Car borrowers retire while cars_ still lives.
         effects_.frame_fades().clear();
         cars_.reset();
-        buckets_.reset();tree_.reset();collision_resources_.clear_views();
+        buckets_.detach();tree_.reset();collision_resources_.clear_views();
         aliases_.clear();
         //Scene reset/release belongs to the containing SessionOwner, after all
         //other runtime actor/entry/physics owners have retired as required above.
@@ -88,7 +89,7 @@ public:
 private:
     void require_open()const{if(closed_)throw std::logic_error("World scene owner is closed");}
     ChunkFiles& files_;game::EffectsEnvironment& environment_;game::LightmapAliases aliases_;
-    GameCollisionResources collision_resources_;std::unique_ptr<Tree> tree_;std::unique_ptr<Buckets> buckets_;
+    GameCollisionResources collision_resources_;std::unique_ptr<Tree> tree_;Buckets buckets_;
     game::DynamicCollisionExclusions<Descriptor> exclusions_;
     std::unique_ptr<CarServices> cars_; //Must outlive every Car held by frames_.
     Frames frames_;game::EffectsShadowModels<GameActorServices> effects_;Documents documents_;bool closed_=false;
