@@ -1,114 +1,108 @@
 # Session handoff — 2026-11-10
 
-Continue FULL P2.2 first unchecked implementation checkbox in plan.md. Read
-AGENTS.md; continue dependencies/checkpoints until done or concretely blocked.
-Larger verified subsystem commits, consolidated docs/tally; no push. No agents/
-goals, original EXE/DLL/Proton or Windows fixture execution. Preserve assets/user
-changes. Heavy builds/Ghidra SEQUENTIAL (memory crashes); focused checks only,
-no permanent tests. Interactive changes need actual user desktop acceptance.
+Continue FULL first unchecked P2.2 checkbox in plan.md. Read AGENTS.md; continue
+past dependencies/checkpoints until done or concretely blocked. Larger verified
+subsystem commits, consolidated docs/tally; no push. No agents/goals. Never run
+original EXE/DLL/Proton or Windows fixtures. Preserve assets/user changes. Heavy
+builds/Ghidra SEQUENTIAL (memory crashes). No permanent tests; use ignored durable
+WORK, hash/remove temporary fixtures at checkpoint. Interactive changes require
+actual user desktop acceptance.
 
-App still DECLINES loading. No successful mission/first frame/desktop result.
-Both P2.2 boxes OPEN. Tally34 complete/1,967 partial(1,962 client/five engine)/
-18,783 frozen. Zero complete promotions.
+Application still DECLINES loading. Both P2.2 boxes OPEN; no first world frame or
+mission desktop claim. Tally34 complete/1,987 partial(1,982 client/five engine)/
+18,783 frozen; zero complete promotions.
 
 ## Latest source checkpoint
 
-[Process packet/camera binding](analysis/process-packet-world-binding.md),
-[receipt](analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json).
-Startup now owns actual broadcast streams208/244/280 + FIFO payloads. World
-borrows them for Spawn/Script; complete World binds packet dispatcher AFTER
-modules exist, unbinds BEFORE destructor. Queue bytes outlive World. Missing/
-unloaded World genuinelyfalse, no successful missing module/receiver. Cold
-control reads actual stream cursors, old duplicate arrays removed; only actual
-unrecovered2BC request words/bits remain. Actual reset/final shutdown1000ms flush
-runs ONCE, then records/queue retirement/locks. Existing unbound empty menu path
-retained; application still never constructs source World, so no interactive
-mission behavior has changed. Source-only checkpoint, no desktop claim.
+[Frame/render source](analysis/frame-render-source.md),
+[receipt](analysis/checkpoints/p2.2-frame-render-source-20261110.json).
+Same actual application status can be borrowed by SessionActivationState;
+offline0069A560/0069AF10/0069B230 policies preserve initial input gates, warming
+status transition/timers/MusicD0, native fixed/presentation/pause ordering.
+Actual shared Car emitter and dubbing attachment ticks, warming HUD timer,
+engine Scene20/78 and reverse animated game48 model refs supplied. Actual process
+fade quad/rounding/boolean state restoration, startup fade/sentinel and separate
+session fade supplied. Separate text overlay owner has actual optional editfont/
+matrix init, borrowed-page registry, glyph/reversal/batching and raw driver-state
+restoration. Volumetric fan/ribbon and visible volume transform/alpha draw leaves
+bind SAME texture/geometry; visibility/phase inputs still caller requirements.
 
-Actual module13 presentation routes pending spawn through Scene2/WorldActors/
-SpawnDecoder to SAME A8 Human, roster/camera/FPV/HUD. Reserved005A5FB0/005418E0
-still REQUIRED: native NULL/missingB0/nonkind1-or7 invokes actual discard grammar,
-not skip; actual Human virtual1C otherwise. Read-only exports retained.00475630
-ABSENT frozen, no credit.0048DC50/70 new partials only. Positive authority/other
-module receivers explicitly reject. Actual GameCameraLoading now binds existing
-00469300 to SAME current/selected/inline/FPV/tree/buckets/resources/input/profile,
-session6E/64/live local ID. Persistent Startup breathing00839268 FLOAT .005,
-bytes0A D7 A3 3B, retained across worlds. Query scratch is not another geometry.
+Five focused native ASan/UBSan/leak fixtures and strict actual full i386 loading/
+activation/World/packet/camera/fade/HUD/overlay/volumetric-leaf compile PASS.
+App link and27 tracker tests PASS.12 temporary source/binary files hashed and
+removed; evidence/logs remain WORK.20 new partials. Full actual frame services
+NOT supplied or integrated; no application behavior enabled. Native/Windows
+fixture scopes and remaining requirements are explicit in the contract.
 
-Native ASan/UBSan/leak actual spawn serializer→process stream/flush/FIFO→Scene2
-receive→same Human/roster/camera passes, unbind/unloaded World/decoder failure/
-unlock/single-flush and100 empty cold lives. Engine/camera actor leaves doubles.
-Strict actual full i386 loading/activation/World/packet/camera/finish bindings,
-app link and27 tracker tests PASS. Temp fixtures/binaries hashed/removed; logs
-retained. Prior17d03bd [activation/writeback](analysis/session-activation-integration.md)
-shares actual selection/request/live squad/prepared Human lifetime and native
-read-only marker. Same mutable snapshot, distinct specialization40/voice48.
-Native finish order snapshot→FPV→lights→REVERSE presentation→dubbing(clearfalse)
-→REVERSE authority→HUD→GetFocus(00699112)→collision→definition arrays(materials
-first)→status1→6→shared records→text→FIRST navigation reset→emitters→faces.
-Navigation byte1A NOT byte16; preserve vector capacity, clear synthesized last
-link40+80 toFFFF/0/count--/clear80. No P2.4 UI/stock/voice/reconciliation changes.
-
-**Required unsupplied:** GameSessionTransientFinish actual008AED48/
-006DF390(0,true); no successful default. Strict finish takes an interface ARGUMENT,
-not an implementation. Distinct from proximity008AED54. Original producers
-006DF170/006DF690/destructor006DDEE0 exported; actual linked trajectory/node/
-resource semantics still unimplemented. Do not invent an empty owner or claim
-full shutdown. Both P2.2 boxes remain open.
+Important render findings:0069B870 and00486BF0 ABSENT frozen, no credit; use
+saved static asm, don't redefine frozen project. Frame renders BEFORE updates;
+black startup fade lasts3→4s, so actual reached ticks are required for meaningful
+render.00724CB0 is a genuine one-byte RET, not network transport.006E8490 overlay
+default enabled1, not false; own editfont texture, not menu font.00480D80 zeros
+matrix3/7/11 padding, PRESERVES world translation12..14.00482260 calls00482E50 on
+process0089B63C: first word is TEXTURE pointer, NOT enable flag; two initial null
+textures.00485B50→00483E50 loads clouder/clouder2 flags502 and two3CC00 buffers;
+00483DE0 clears. Positive procedural render still required. Native volume3C/40
+history not initialized by ctor/read/refresh; don't invent initial spin. Captured
+BASE Tutorial2C is0 for all3 lights; not proof of actual Patch inputs.007885B0 is
+atan2 difference, NOT RNG. Detailed static/native evidence in frame contract.
 
 ## Next — SAME full checkbox
 
-Continue actual control/local packet/first camera/update/render integration and
-supply above actual shared finish owner, meaningful guard observations, reached
-required positive receivers and failure/repeat/user Python desktop acceptance.
-Do NOT stop at dependency/checkpoint, no broad audit.
+Actual shared process transient008AED48 construction/update/finish owner, then
+actual18-module/control/frame/callback graph, volumetric visibility/process owner,
+meaningful integrity observations, reached positive receivers and application
+failure/repeat/user Python desktop acceptance. Do NOT stop at next dependency.
 
-Immediate continuation: actual game-state frame coordinator0069A560 input,
-0069AF10 fixed,0069B230 update and0069B870 render + scene callback consumers.
-Inventory checked: first THREE frozen functions present;0069B870 ABSENT from
-frozen inventory (no containing body), no new credit. Static render entry asm
-saved WORK/game-state-render-entry.asm: offline7 always Scene78(scene18,0);
-nonoffline only if config24.flag170==0. Exact53-byte body ends0069B8A2. Actual
-engine render endpoint already MenuScene78 RVA46860. No source body written yet.
-Export/read the three known frame functions before implementation and trace only
-required reached consumers. Existing camera math/unchanged code verified; don't
-repeat broad audit. Reserve required positive packet discard grammar for reached
-reserved IDs; first prepared SpawnPoint IDs>=32 already supplied.
+Immediate continuation:006DF390(elapsed,false) fixed update and(0,true) shutdown
+are SAME owner; GameSessionTransientFinish remains REQUIRED interface, not actual
+implementation. Do not invent an empty owner/successful tick.006DF170 constructs
+64B aligned record006DDFC0, immediately advances100ms via006DE780; false destroys
+but STILL returns1, true appends. Tick reverse: false removes by swap-LAST, not
+erase/shift; clear reverse. Record+20 linked nodes: frame/resource+10 release,
+next+18 recursive006DDF60, node aligned delete; record raw vector+30 free. Shared
+owner distinct proximity008AED54. Constructor export has MANY unreachable-code
+warnings: use static instructions/typed transient export before implementing
+trajectory query/deferred collision effects. Existing producer guards reject
+before live records. Export dirs session-finish-required, session-finish-shared-
+resources, session-finish-transient-producers, frame-shared-records-and-ticks.
 
-Prior source contracts: [concrete loading](analysis/mission-loading-integration.md)
-(commit f0c3268), [cold containing world](analysis/containing-world-loading.md)
-(ae4d40f), [HUD](analysis/hud-world-binding.md)(8da1f97),
-[Car](analysis/car-callback-world-binding.md)(7f55042). Source loading screen/
-World/18 module graph works before real tree; late dependencies checked, no fake
-geometry. Navigation FIRST parent set0, Human factory second set1. Same session28/
-C8/CC live readers, Startup Car registries/clock0089B398. Catalogue/suffix still
-actual required callers.0069A2E0 game48 is reverse animated MODEL refs, not tree.
-Native+14/+1C/+18 fresh ASCENDING, +20 REVERSE. Reserved Humans may die before
-Script4 Exit; retained-frame EC0 guard prevents dangling actor deref. Don't reorder
-VM finish as substitute. All borrowers retire before parent engine scene reset.
-Script bank persists Startup, kind1 standalone/kind0 campaign, check failed binds.
+Prior contracts: [packet/camera](analysis/process-packet-world-binding.md),
+[activation/writeback](analysis/session-activation-integration.md),
+[loading](analysis/mission-loading-integration.md),
+[containing World](analysis/containing-world-loading.md).
+Same Startup persistent streams/FIFO and mutable live squad; request is metadata.
+World packet link binds after actual modules, unbinds before destruction. Scene2
+presentation uses same Human/Spawn decoder/roster/camera. Reserved005A5FB0/
+005418E0 grammar remains required; absent00475630 no credit. Source tree/grid
+late link, no fake geometry. Navigation FIRST parent table0, Human factory table1.
+Native module+14/+1C/+18 fresh ASC; finish+20 REVERSE. Retained VM frameEC0 guard
+prevents dangling Human after Scene2 destruction; don't reorder VM as substitute.
+Game48 is animated model refs, not tree. Transient receiver still required to
+complete actual finish. Actual script bank persists Startup, check bad bindings.
 
-Integrity tables UNINITIALIZED; meaningful private observed publication unresolved.
-006E9EA0:128 entries/896 SAME CRT draws, WORD indices/DWORD values. API payloads
-00698AAE ticks,00698C09 visible,00698C5D capture supplied. Never raw API→observed
-or forced equality. Original-address/per-thread VM outside accepted startup scope.
+Integrity tables UNINITIALIZED.006E9EA0 uses128entries/896 SAME CRT draws; WORD
+indices/DWORD values. Actual API payloads00698AAE ticks/00698C09 visible/00698C5D
+capture/00699112 focus supplied. Meaningful private observed publication remains
+unresolved: never raw API→observed or forced equality. Original-address/thread
+integrity VM outside accepted startup checkpoint, not claimed reconstructed.
 Positive stance/Area/Dog534/nonoffline friendship, Fowl mode0 transfer, weather/
-grass/colour/particles remain required where reached. Live resolver authoritative:
-BASE ISD0 captures don't establish ISD1/Patch/language absence/precedence. Initial
-114 script bindings supplied; later NPC CreateItem not initial prerequisite.
-[P24-F05](analysis/live-squad-session-ownership.md): actual Startup mutable squad;
-request snapshot metadata. Deferred F01/F02/F03/F06, F04 head1/uniform2 unchanged.
+grass/colour/particles remain required when reached. Live resolver authoritative:
+BASE ISD0 captures don't establish ISD1/Patch/language precedence/absence.
+P24-F05 same actual Startup mutable squad confirmed; metadata request isn't a
+second authority. F01/F02/F03/F06 deferred, F04 head1/uniform2 unchanged. No P2.4
+UI/stock/voice/reconciliation/save implementation or random fallback.
 
 ## Execution
 
 WORK=analysis/work/mission-world-20261103 (ignored durable, not/tmp).
 Client SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
-Native libs .tools/hd2-sanitizer-runtime/usr/lib64; do not reinstall.
+Native sanitizer libs .tools/hd2-sanitizer-runtime/usr/lib64; do not reinstall.
 i386 .tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
 App make -C recovered -j1 application-launch WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
 Ghidra JAVA_HOME=/home/control/.sdkman/candidates/java/25.0.0.0-oracle;
-project /home/control/Documents/Projects/HD2ResearchProject HD2Research.
-Read-only/noanalysis/fresh output; check ERROR even exit0. Check frozen entries
-FIRST; absent confirmed entries use static instructions/transient definition.
+project /home/control/Documents/Projects/HD2ResearchProject HD2Research;
+readOnly/noanalysis/fresh output; inspect ERROR even exit0. Check frozen entries
+FIRST; absent known bodies use static asm/transient definition, no frozen edits.
 Default reads/edits; git/Ghidra/native run escalation. Tracker python3
 tools/function_progress.py --render/--check; python3 tools/test_function_progress.py.

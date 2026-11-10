@@ -66,6 +66,11 @@ public:
         }catch(...){frontend::CleanupErrors errors(std::current_exception());errors.attempt([&]{retire();});errors.rethrow();}
         return false;
     }
+    void update_loading(std::uint32_t elapsed){ //0049BD50's native zero/warming HUD prefix.
+        if(!hud_.flags)return;
+        if(!(hud_.flags&4u)){panels_.messages().update(elapsed);panels_.crosshair().show(0);return;}
+        throw std::runtime_error("Active full HUD update requires actual0049BD50 panel/player/equipment receivers");
+    }
     bool close(){if(!hud_.flags)return false;retire();return true;} //Native0049B1B0 zero-flags gate; destructor also reclaims failed prefix.
     template<class Human>bool add_human(Human* human,std::int32_t index,std::uint32_t mode,std::uint32_t difficulty,std::int32_t local_player){
         return panels_.add_human(human,index,mode,difficulty,local_player);

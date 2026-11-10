@@ -35,6 +35,7 @@ public:
         current_=static_cast<float>(next);
         if(rising?next>target_:next<target_)current_=-1.f;
     }
+    void resolve_render_sentinel()noexcept{if(current_!=target_&&current_<0)current_=target_;} //00486C10, distinct from next update reset.
     float current()const{return current_;}float target()const{return target_;}float rate()const{return rate_;}
     const auto& colour()const{return colour_;}bool colour_w_defined()const{return colour_w_defined_;}
 private:

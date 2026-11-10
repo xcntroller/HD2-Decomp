@@ -123,6 +123,12 @@ public:
         for(unsigned n=0;n!=16;++n)retire(n,reset_morph);
         fades_.clear();
     }
+    void synchronize_attachments(){ //0071ED30, ascending channels; native+20 then+24.
+        for(std::size_t channel=0;channel<channels_.size();++channel){
+            if(auto* frame=channels_[channel].attachments[1])backend_.synchronize_dubbing_attachment(frame);
+            if(auto* frame=channels_[channel].attachments[0])backend_.synchronize_dubbing_attachment(frame);
+        }
+    }
     void update(std::uint32_t elapsed) { //0071EE00, native unsigned millisecond/timer arithmetic.
         bool resume=false;if(resume_countdown_>0&&--resume_countdown_<1)resume=true;
         for(auto& channel:channels_) {

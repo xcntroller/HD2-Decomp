@@ -4,6 +4,7 @@
 #include "game/mission_script_rotations.h"
 #include "game/door_rotation_loading.h"
 #include "game/scene_light_sample.h"
+#include "game/volumetric_lights.h"
 
 #include "host/game_car_frames.h"
 #include "game/human_face_mesh_pool.h"
@@ -646,6 +647,19 @@ public:
         //004B30E0 copies an unwritten fourth stack lane to DC; preserve known padding.
         (void)car_rotation(frame);
         put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+    }
+    bool volume_visible(Frame frame)const{return car_frame_visible(frame);}
+    void volume_bind_texture(Frame texture){(void)graphics_.methods->bind_texture(&graphics_,texture,0);}
+    void volume_set_dir3(Matrix& matrix,const Vector& forward,const Vector& up){
+        using Set=void(WINAPI*)(void*,const void*,const void*);
+        exported<Set>("?SetDir3@S_matrix@@QAGXABUS_vector@@0@Z",0x2cf10)(matrix.data(),forward.data(),up.data());
+    }
+    void volume_world_transform(const Matrix& matrix){
+        if(graphics_.methods->set_world_transform(&graphics_,matrix.data())<0)throw std::runtime_error("Actual volumetric world transform failed");
+    }
+    void volume_graphics_state(std::uint32_t state,std::uint32_t value){graphics_.methods->set_state(&graphics_,state,value);}
+    void volume_draw(const game::VolumetricVertex* vertices,std::uint32_t triangles){
+        if(graphics_.methods->draw_primitive(&graphics_,3,triangles,vertices,0)<0)throw std::runtime_error("Actual volumetric draw failed");
     }
     std::uint32_t hud_driver_state(std::uint32_t state)const{return driver_.render_state(state);}
     void hud_driver_state(std::uint32_t state,std::uint32_t value){(void)driver_.set_render_state(state,value);}

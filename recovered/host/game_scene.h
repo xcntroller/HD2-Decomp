@@ -75,6 +75,16 @@ public:
         rethrow_callback_failure();
         return result;
     }
+    void advance(std::uint32_t elapsed){ //0069AF10/0069B230, actual engine scene virtual20.
+        using Advance=void(WINAPI*)(EngineFrame*,std::uint32_t);
+        checked_engine_method<Advance>(scene_.get(),module_,0x20)(scene_.get(),elapsed);
+        rethrow_callback_failure();
+    }
+    void render(){ //0069B870/Scene78(scene,0), actual checked LS3DF target.
+        using Render=void(WINAPI*)(EngineFrame*,std::uint32_t);
+        scene_method<Render>(scene_.get(),module_,0x78,0x46860)(scene_.get(),0);
+        rethrow_callback_failure();
+    }
     void refresh() {
         using Refresh = void (WINAPI *)(EngineFrame*);
         scene_method<Refresh>(scene_.get(), module_, 0xf0, 0x4be10)(scene_.get());

@@ -297,6 +297,8 @@ public:
         if(!texture)throw std::runtime_error("Car emitter texture is missing");
         const auto* name=field<const char*>(texture,0x18);return name?name:"";
     }
+    void advance_car_particle(Frame frame,std::uint32_t elapsed){call<void>(frame,0x20,elapsed);}
+    std::int32_t car_particle_live_count(Frame frame)const{return field<std::int32_t>(frame,0x220);}
     void activate_car_particle(Frame frame,bool active) {
         using Method=void(WINAPI*)(Frame,std::uint8_t);
         scene_method<Method>(frame,module_,0xac,0x3bfb0)(frame,std::uint8_t(active));

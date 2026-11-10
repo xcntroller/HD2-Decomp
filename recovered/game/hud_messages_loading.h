@@ -43,7 +43,7 @@ public:
     void append(const char* text,const std::array<float,3>& colour){
         if(!text)throw std::invalid_argument("HUD message requires an actual string");
         const auto length=std::strlen(text);if(!length)return;
-        for(auto& record:records_)++record.words[3]; //00495150 wrapping DWORD line indices BEFORE allocation.
+        advance_line_indices(); //00495150 BEFORE allocation.
         Record record;
         for(unsigned n=0;n!=3;++n)record.words[n]=static_cast<std::uint32_t>(text_ftol(colour[n]));
         record.words[3]=0;record.words[4]=3;
@@ -55,6 +55,15 @@ public:
         records_.push_back(std::move(record));
     }
     void append(const char* text){append(text,state_.colours);}
+    void update(std::uint32_t elapsed){ //00496230, SAME actual message/input state.
+        if(state_.flagd385){
+            state_.caret_d380+=elapsed;
+            throw std::runtime_error("Active HUD message input requires actual00494D20 edit/clipboard receiver");
+        }
+        state_.fieldd37c+=elapsed;
+        std::int32_t time;std::memcpy(&time,&state_.fieldd37c,4);
+        if(time>2000){state_.fieldd37c=0;advance_line_indices();} //ONE step, discard overshoot, signed compare.
+    }
     void draw(){ //00495F00 wraps00495A00 in RAW driver3 save→1→restore.
         if(!fonts_)throw std::logic_error("HUD messages draw before actual font initialization");
         const auto previous=frames_.hud_driver_state(3);frames_.hud_driver_state(3,1);
@@ -123,6 +132,7 @@ public:
         }
     }
 private:
+    void advance_line_indices(){for(auto& record:records_)++record.words[3];} //00495150 native DWORD wrapping.
     static void require(Frame value){if(!value)throw std::runtime_error("Required HUD Text artwork is missing");}
     static std::int32_t signed_word(std::uint32_t bits){std::int32_t out;std::memcpy(&out,&bits,4);return out;}
     template<class Glyph>void emit_message_glyph(const Glyph& glyph,std::int32_t x,std::int32_t y,std::int32_t height,std::int32_t advance,std::uint32_t colour){

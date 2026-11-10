@@ -33,6 +33,7 @@ public:
     ~EffectsModuleLoading(){close();}
     EffectsModuleLoading(const EffectsModuleLoading&)=delete;EffectsModuleLoading& operator=(const EffectsModuleLoading&)=delete;
     auto& registration(){return registration_.get();}auto& birds(){return birds_;}auto& volumes(){return volumes_;}auto& movie(){return movie_;}
+    template<class Draw>void render_after_scene(Draw& draw){require_open();render_loading_effects_fade(process_,draw);} //00486C10.
     void reset(){ //00488B80's reached queues/scalars; unproduced210/304 genuinely empty.
         require_open();
         process_.colour2f4.fill(1);effects_.frame_fades().reset_loading();effects_.human_fades().clear();

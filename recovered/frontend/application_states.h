@@ -33,6 +33,7 @@ public:
     }
     virtual std::string selected_video_filename() const { return {}; }
     std::uint32_t type() const { return type_; }
+    std::uint32_t& status_storage(){return status_;} //Native game04 is SAME application-state status, borrowed by the source session.
     std::uint32_t status() const { return status_; } // 0067EA00
     HD2_CLIENT_BODY void HD2_CLIENT_THISCALL status(std::uint32_t value) { status_ = value; } //0067EA10/+04 on i386.
     std::uint32_t pending() const { return pending_; } // 0067EA20

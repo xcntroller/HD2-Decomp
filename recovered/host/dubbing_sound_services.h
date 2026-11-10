@@ -33,6 +33,14 @@ public:
     void range_dubbing_sound(void* frame,float near_range,float far_range,float first,float second){call<void>(frame,0x80,near_range,far_range,first,second);}
     void frequency_dubbing_sound(void* frame,float value){call<void>(frame,0x88,value);}
     void dubbing_missing_data(std::int32_t id){std::fprintf(stderr,"Nenalezen Dabing %08d.dat\n",id);}
+    void synchronize_dubbing_attachment(void* frame){ //0071ED30's actual engine leaf.
+        const auto flags=field<std::uint32_t>(frame,0xe0);if(!(flags&1u))return;
+        if(!(flags&0x80u)){
+            for(unsigned axis=0;axis<3;++axis){const auto value=field<std::uint32_t>(frame,0xb0+axis*4);put(frame,0xb0+axis*4,value);}
+            put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);
+        }
+        call<void>(frame,0x24);
+    }
     void record_dubbing_cleanup_failure(std::exception_ptr failure)noexcept{if(!failure_)failure_=std::move(failure);}
     void rethrow_dubbing_cleanup_failure(){if(failure_)std::rethrow_exception(std::exchange(failure_,{}));}
 private:

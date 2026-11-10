@@ -2,7 +2,7 @@
 #define HD2_GAME_EFFECTS_LOADING_PROCESS_H
 
 #include "game/effects_environment.h"
-#include "game/effects_fade.h"
+#include "game/effects_fade_render.h"
 #include "game/effects_water_settings.h"
 #include "game/effects_decorations_loading.h"
 
@@ -12,6 +12,7 @@ namespace hd2::game {
 //owns frame-bearing cold loading lifetimes; retract borrowers before scene
 //retirement. The actual loading update borrows it; render/model producers remain separate.
 template<class Frame>struct EffectsLoadingProcess {
+    std::array<EffectsFadeVertex,4> fade_vertices{}; //SAME process BSS0089B6E8 retained across worlds.
     EffectsEnvironment environment;EffectsFade fade;EffectsWaterSettings water;EffectsDecorationsLoading decorations;
     std::array<float,3> colour2f4{{1,1,1}};std::array<std::uint32_t,24> fields25c{};
     Frame sun1b0{},water_camera1ac{};std::array<Frame,4> water_frames238{};

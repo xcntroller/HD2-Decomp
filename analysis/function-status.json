@@ -26612,6 +26612,246 @@
         "analysis/process-packet-world-binding.md",
         "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0069a560",
+      "status": "partial",
+      "coverage": "Native initial signed20/38 input gates, then required actual positive input receiver.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_frame_loading.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069af10",
+      "status": "partial",
+      "coverage": "Offline fixed-frame ordering over same session clock, required actual control/modules/shared transient receiver.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_frame_loading.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069b230",
+      "status": "partial",
+      "coverage": "Offline update policy, same Music D0/application status/timers, native warming/pause/leaf ordering; positive actual endpoints required.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/session_frame_loading.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0071ed30",
+      "status": "partial",
+      "coverage": "Actual ascending dubbing channel native20-before24 attachment synchronization with callback reread, visible/protected transform flags and engine24.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/frontend/dubbing_sound.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ed130",
+      "status": "partial",
+      "coverage": "Actual reverse shared Car emitter pool update, callback reread and native tick/pending/stop/count/unlink ordering.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/car_particle_pool.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00496230",
+      "status": "partial",
+      "coverage": "HUD normal signed timer/strict threshold/discard overshoot/line-index advance and caret increment before required positive editing.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/hud_messages_loading.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049bd50",
+      "status": "partial",
+      "coverage": "Actual zero/warming HUD branch over shared message owner and crosshair; positive full-HUD update requires receiver.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/hud_scene_loading.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00486c10",
+      "status": "partial",
+      "coverage": "Same process fade render sentinel resolution, startup time opacity, current maximum and actual colour draw selection.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/effects_fade_render.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004867f0",
+      "status": "partial",
+      "coverage": "Actual persistent static quad XY/diffuse, FISTP current rounding/unmasked packing, real state/dimension/texture/draw endpoints and saved boolean state restoration.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/effects_fade_render.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069ae10",
+      "status": "partial",
+      "coverage": "Distinct native session fade status5 return, signed20-200 clamp and original FLOAT alpha scale.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/effects_fade_render.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e8490",
+      "status": "partial",
+      "coverage": "Separate process text-overlay render registry, reverse pages, wrapper flag reread, actual texture including null and RAW driver-state restoration.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/frame_text_overlay.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e8530",
+      "status": "partial",
+      "coverage": "Actual editfont texture flags8, optional failure and zeroed glyph table before possibly short font-matrix read.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/frame_text_overlay.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e8590",
+      "status": "partial",
+      "coverage": "Initialize separate overlay font through recovered real texture/file endpoints.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/frame_text_overlay.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e85a0",
+      "status": "partial",
+      "coverage": "Clear borrowed page rows and reverse owned wrappers then release separate process overlay texture.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/frame_text_overlay.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e7af0",
+      "status": "partial",
+      "coverage": "Reverse owned row retirement, retain vector capacity and zero native age34.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/frame_text_overlay.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e7cc0",
+      "status": "partial",
+      "coverage": "Native glyph layout/reversal/blank spacing/colour packing and persistent triangle batching with explicit malformed native buffer/index guards.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/frame_text_overlay.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e83b0",
+      "status": "partial",
+      "coverage": "Reverse page identity lookup, original ALL-page clear before wrapper erase, page owners survive.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/frame_text_overlay.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006e8460",
+      "status": "partial",
+      "coverage": "Reverse clear of all borrowed page row owners with retained capacities.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/frame_text_overlay.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00480390",
+      "status": "partial",
+      "coverage": "Actual retained volumetric fan/ribbon texture/geometry rendering, UV time/phase and alpha sentinel/current-rounding packing.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/volumetric_lights.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00480d80",
+      "status": "partial",
+      "coverage": "Visible volumetric light actual world matrix/SetDir3 padding preservation, near/far alpha, phase terms and ascending actual particle draw.",
+      "limitations": "Source-only typed owner/policy reconstruction; native object/register ABI differs and original engine calls remain delegated. Required positive producers/visibility/module/frame endpoints remain explicit. Native checks use endpoint doubles; full actual application frame integration and desktop verification remain open. No whole-body or delegated-callee credit.",
+      "evidence": [
+        "recovered/game/volumetric_lights.h",
+        "analysis/frame-render-source.md",
+        "analysis/checkpoints/p2.2-frame-render-source-20261110.json"
+      ]
     }
   ]
 }

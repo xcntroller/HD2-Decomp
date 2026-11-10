@@ -1,0 +1,176 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "0069a560",
+    "0069af10",
+    "0069b230",
+    "0071ed30",
+    "004ed130",
+    "00496230",
+    "0049bd50",
+    "00486c10",
+    "004867f0",
+    "0069ae10",
+    "006e8490",
+    "006e8530",
+    "006e8590",
+    "006e85a0",
+    "006e7af0",
+    "006e7cc0",
+    "006e83b0",
+    "006e8460",
+    "00480390",
+    "00480d80"
+  ],
+  "ledger_added_partial_client": 20,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 1987,
+  "no_credit_absent": [
+    "0069b870",
+    "00486bf0",
+    "006e8160"
+  ],
+  "native_checks": "PASS five ASan/UBSan/leak fixtures: same status/offline frame policy, actual Car/Dubbing mutation, fade rounding/restoration, separate overlay positive geometry/failures, same volumetric geometry/texture draw leaves. Required engine/controller boundaries are doubles.",
+  "strict_i386": "PASS actual full loading/activation/World/packet/camera/fade/HUD/overlay/volumetric leaf compile. Not a complete actual session frame service graph; transient finish still interface argument.",
+  "application_link": "PASS",
+  "tracker_tests": 27,
+  "remaining": [
+    "Actual18-module and control/FPV/HUD/text/particle frame receivers",
+    "Actual volumetric visibility/sort/procedural texture owner and phase boundary",
+    "Actual shared transient record construction/update/retirement",
+    "Meaningful integrity observed-value publication",
+    "Application integration and user desktop failure/repeat/first frame acceptance"
+  ],
+  "artifacts": {
+    "analysis/work/mission-world-20261103/checkpoint-frame-policy-native": {
+      "sha256": "de9181aa195ac15524e6017013f570c3cbc779e11ac05693a2354608c6f980b3",
+      "bytes": 601208,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-policy-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-policy-native-run.log": {
+      "sha256": "74d9579409b45a0794de7aa6888f407a12ae4f942ce0cc8abc0aa154c20dddb4",
+      "bytes": 151,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-policy-native.cpp": {
+      "sha256": "ef80a3b184353feb95a0fb6a3fc8b42357ac72dd60137cd4d65279e8f8fd27b9",
+      "bytes": 5184,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-leaf-native": {
+      "sha256": "30a58570f10f894d19fad26cb8dc502a1567302349085f9cc0b6b7a683dfd99c",
+      "bytes": 969928,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-leaf-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-leaf-native-run.log": {
+      "sha256": "aba42e6facb5f9029b50322a07df09930372ec442f7b7341d9dbd69d1a26d424",
+      "bytes": 164,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-leaf-native.cpp": {
+      "sha256": "88111f0be945a62fad5b382b575593256b4cd02b808784525d1bd6d19fd4591d",
+      "bytes": 3308,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-fade-native": {
+      "sha256": "cbfc7ba72b1f2b6ee063e54aac485150e80fdac0e517adbfb675b8b00d1445eb",
+      "bytes": 1134136,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-fade-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-fade-native-run.log": {
+      "sha256": "aa751b971c4f7c0efffbdb16df3b0fad1532372c553f5a28ff06a5221d10ab6b",
+      "bytes": 173,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-fade-native.cpp": {
+      "sha256": "980e920630a1e1bec00fee48dc624eafc4114be0d7043b9e692f1f41310137d3",
+      "bytes": 3714,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-overlay-native": {
+      "sha256": "00accd3b43ba92c31a3a19cebffe276c863ec778a1724bdcf0925cce6f0f52e0",
+      "bytes": 1011976,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-overlay-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-overlay-native-run.log": {
+      "sha256": "813c5ffbef5a4fc709991b66ac156784f8cf9bd297ae439b1a0d0204b9bb8070",
+      "bytes": 26,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-overlay-native.cpp": {
+      "sha256": "9e33875d48241e1ce49c86fadd38acc2222eab127ea11a6db2b73bd9ca4529db",
+      "bytes": 4380,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-volume-native": {
+      "sha256": "c4cd32fb57a414db6649dffb5e624b85f2014275c9a2040add97c4aa94ae45f0",
+      "bytes": 866648,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-volume-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-volume-native-run.log": {
+      "sha256": "aabc96bf110998386ee2b349215804ea65a73f3e1feeaa345d36120c330e6a81",
+      "bytes": 37,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-volume-native.cpp": {
+      "sha256": "eef223bb4821e9f0c34fe721a18271abbab03445c414a9f748cad2860a83abf2",
+      "bytes": 3603,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-leaves-host-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-leaves-host.cpp": {
+      "sha256": "8fe1d381de39361eaade322b9edc5bd3380c1615396b1aef2ff5c0cc3ec1d264",
+      "bytes": 2875,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-leaves-host.o": {
+      "sha256": "30e0945af612fb2b2d67901c54a765d4f65b199fccdb2f7d0c01fa879194e745",
+      "bytes": 26774314,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-application-build.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-frame-tracker-tests.log": {
+      "sha256": "32123c06afaa22405df0ae455b2a9957a73a7a30732623e89bdb1eee75d7e097",
+      "bytes": 126,
+      "retained": true
+    }
+  }
+}

@@ -30,6 +30,7 @@ public:
     const std::vector<game::CarParticleDefinition>& car_particle_definitions()const override{return definitions_.particles();}
     std::vector<game::CarParticleState<Frame>>& car_particle_pool()override{return particles_.states();}
     void clear_particles(){particles_.clear();}
+    void update_particles(std::uint32_t elapsed){particles_.update(elapsed);} //004ED130, same actual emitter pool.
     std::uint32_t car_random_word()override{return startup_.random_word();}
     template<class Physics>void bind_physics(Physics& physics){physics_contact_.bind(physics);}
     template<class Physics>void unbind_physics(Physics& physics)noexcept{physics_contact_.unbind(physics);}

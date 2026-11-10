@@ -137,6 +137,10 @@ public:
         for (const auto& value : animated_) if (value.get() == frame) return;
         if (call<std::uint32_t>(frame, 0xd0)) animated_.push_back(retain(frame));
     }
+    void advance_animated_models(std::uint32_t elapsed){ //0069AF10/0069B230, reverse actual game48 references.
+        for(std::size_t n=animated_.size();n;){--n;call<void>(animated_.at(n).get(),0x20,elapsed);}
+        scene_.rethrow_callback_failure();
+    }
     void clear_scene_object_references() { while(!animated_.empty())animated_.pop_back(); } //0069A3D0 game48, reverse Release.
     void camera_fov(Frame frame, float value) { call<void>(frame, 0x74, value); update_scene_object(frame); }
     void camera_range(Frame frame, float near_clip, float far_clip) { call<void>(frame, 0x7c, near_clip, far_clip); }

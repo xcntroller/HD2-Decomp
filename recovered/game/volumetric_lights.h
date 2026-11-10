@@ -21,7 +21,8 @@ static_assert(sizeof(VolumetricVertex)==24);
 
 //00482A00/00481810/00481440 and their construction/refresh/cleanup owners.
 //Frame/texture endpoints are mandatory real scene/graphics methods. The scene
-//outlives these borrowed light references. Rendering004800xx remains separate.
+//outlives these borrowed light references. Rendering uses the SAME geometry,
+//textures and alpha records; the caller supplies actual visibility/phase state.
 template<class Frames>
 class VolumetricLights {
 public:
@@ -50,6 +51,75 @@ public:
     VolumetricLights(const VolumetricLights&)=delete;
     VolumetricLights& operator=(const VolumetricLights&)=delete;
     const std::vector<std::unique_ptr<Volume>>& values() const {return volumes_;}
+    //00480390, over the original retained texture and geometry. An alpha<0
+    //preserves the previous vertex colours; it is not a fully opaque request.
+    template<class Draw>void render_particle(Particle& particle,std::int32_t time,float phase,float alpha,Draw& draw){
+        if(!particle.texture||!(*particle.texture))return;
+        draw.volume_bind_texture(particle.texture->get());
+        auto opacity=[&](std::size_t n){
+            if(alpha>=0.f){
+                const float scaled=static_cast<float>(static_cast<long double>(alpha)*particle.alphas.at(n)*255.f);
+                const auto rounded=std::nearbyint(static_cast<long double>(scaled));
+                const auto word=!std::isfinite(rounded)||rounded<-2147483648.L||rounded>2147483647.L?0x80000000u:
+                    static_cast<std::uint32_t>(static_cast<std::int32_t>(rounded));
+                particle.vertices.at(n).colour=(word<<24)|0x00ffffffu;
+            }
+        };
+        if(particle.ribbon){
+            const auto value=std::trunc(static_cast<long double>(particle.seed)*1000.f+time);
+            if(!std::isfinite(value)||value<-2147483648.L||value>2147483647.L)throw std::runtime_error("Volumetric ribbon clock exceeds native integer range");
+            const auto tick=static_cast<std::int32_t>(value);
+            const float u=static_cast<float>(static_cast<long double>(tick)*particle.field3d4*.0010000000474974513f);
+            const float v=static_cast<float>(static_cast<long double>(tick)*particle.field3d8*.0010000000474974513f);
+            for(std::size_t n=3;n;){--n;auto& vertex=particle.vertices.at(n);
+                vertex.uv={static_cast<float>(static_cast<long double>(u)+particle.ribbon_uv[n][0]),
+                           static_cast<float>(static_cast<long double>(v)+particle.ribbon_uv[n][1])};opacity(n);
+            }
+            draw.volume_draw(particle.vertices.data(),1);return;
+        }
+        //The native field3D0 is multiplied by the FLOAT degree conversion,
+        //including its default pi value. Do not reinterpret it as radians.
+        const auto count=particle.segments;
+        if(count<0||count>10)throw std::runtime_error("Invalid volumetric fan draw count");
+        float angle=static_cast<float>((static_cast<long double>(phase)+particle.seed)*particle.field3c8);
+        const float step=static_cast<float>(static_cast<long double>(particle.field3d0)*.01745329238474369f/count);
+        for(std::int32_t n=0;n<count;++n){
+            const auto offset=std::size_t(n)*3;
+            auto uv=[](long double a){return std::array<float,2>{static_cast<float>((std::cos(a)+1.L)*.5),static_cast<float>((std::sin(a)+1.L)*.5)};};
+            particle.vertices.at(offset+1).uv=uv(angle);
+            const auto next=static_cast<long double>(step)+angle;particle.vertices.at(offset+2).uv=uv(next);angle=static_cast<float>(next);
+            opacity(offset);opacity(offset+1);opacity(offset+2);
+        }
+        draw.volume_draw(particle.vertices.data(),static_cast<std::uint32_t>(count));
+    }
+    //00480D80. Distance and angular accumulator MUST come from00482260's
+    //actual per-volume state; this leaf does not manufacture camera visibility.
+    template<class Draw>bool render_volume(Volume& volume,std::int32_t time,const std::array<float,4>& camera,
+            float distance,float angular_accumulator,float phase,Draw& draw){
+        if(!volume.light||!draw.volume_visible(volume.light))return false;
+        auto matrix=frames_.car_world_matrix(volume.light);
+        const std::array<float,4> original_forward{{matrix[8],matrix[9],matrix[10],matrix[11]}};
+        const std::array<float,4> relative{{static_cast<float>(static_cast<long double>(matrix[12])-camera[0]),
+            static_cast<float>(static_cast<long double>(matrix[13])-camera[1]),static_cast<float>(static_cast<long double>(matrix[14])-camera[2]),0}};
+        draw.volume_set_dir3(matrix,original_forward,relative);
+        matrix[3]=matrix[7]=matrix[11]=0; //Native zeros homogeneous basis lanes, NOT world translation.
+        draw.volume_world_transform(matrix);draw.volume_graphics_state(13,volume.field18<distance);
+        const float distance_phase=static_cast<float>(static_cast<long double>(volume.field28)*distance);
+        const float angle_phase=static_cast<float>(static_cast<long double>(angular_accumulator)*volume.field2c);
+        if(distance>=volume.field30)return false;
+        float alpha=-1.f;
+        if(distance<=volume.field34){
+            if(volume.field1c!=0){
+                if(distance>=volume.field1c)alpha=1.f;
+                else if(distance<=volume.field20)return false;
+                else alpha=static_cast<float>((static_cast<long double>(distance)-volume.field20)/(static_cast<long double>(volume.field1c)-volume.field20));
+            }
+        }else alpha=static_cast<float>(1.L-(static_cast<long double>(distance)-volume.field34)/(static_cast<long double>(volume.field30)-volume.field34));
+        if(alpha==0.f)return false;
+        const float spin=static_cast<float>(static_cast<long double>(angle_phase)+distance_phase+phase);
+        for(auto& particle:volume.particles)render_particle(*particle,time,spin,alpha,draw);
+        return true;
+    }
     void clear() noexcept {while(!volumes_.empty())volumes_.pop_back();} //00482D70.
     bool read(SerializedBytes bytes) {
         clear();auto root=next_mission_chunk(bytes);

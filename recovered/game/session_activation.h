@@ -13,9 +13,20 @@ namespace hd2::game {
 //Known game fields used by006989B0. DescriptorA8 stays a typed borrower of the
 //owned request. Loaded14 must be written by the SAME006CA780 stage completion;
 //neither construction nor activation policy fabricates that success.
+class SessionStatusWord {
+public:
+    SessionStatusWord()=default;
+    explicit SessionStatusWord(std::uint32_t& application_status):word_(&application_status){}
+    SessionStatusWord(const SessionStatusWord&)=delete;SessionStatusWord& operator=(const SessionStatusWord&)=delete;
+    operator std::uint32_t()const noexcept{return *word_;}
+    SessionStatusWord& operator=(std::uint32_t value)noexcept{*word_=value;return *this;}
+private:
+    std::uint32_t local_=0;std::uint32_t* word_=&local_;
+};
 struct SessionActivationState {
     SessionActivationState(){words.set(0x1c,std::uint32_t{0});} //00698510, normal session packet kind; separate from status04/configuration04.
-    std::uint32_t status=0;bool loaded=false;
+    explicit SessionActivationState(std::uint32_t& application_status):status(application_status){words.set(0x1c,std::uint32_t{0});}
+    SessionStatusWord status;bool loaded=false;
     std::shared_ptr<const std::string> resource; //Actual game6A COW owner, distinct from descriptorA8.
     const frontend::GameDataNode* mission=nullptr;
     HumanJointWords<0x110> words; //Scalar slots only; native pointers are separate.

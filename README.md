@@ -20,7 +20,7 @@ source composition; [cold Car actor activation](analysis/car-activation-loading.
 [Cold Car callback/world binding](analysis/car-callback-world-binding.md) supplies the actual factory, Physics contact and shared solver/pool owners.
 [Live squad authority](analysis/live-squad-session-ownership.md) remains with the persistent application records.
 [HUD world/parent binding](analysis/hud-world-binding.md) now composes with the actual identity, objective and navigation owners.
-[Containing world owners](analysis/containing-world-loading.md) now construct the actual shared Human/VM/HUD/module graph before collision loading, with checked late tree binding. [Concrete loading session](analysis/mission-loading-integration.md) now binds the real screen/stages/module tail, shared Bird/effects update and input defaults. [Concrete activation/writeback bindings](analysis/session-activation-integration.md) now share the actual request/route/squad and prepared Human lifetime; ordered finish retains an explicit required transient-record receiver. [Process packet/camera binding](analysis/process-packet-world-binding.md) now connects source queues to the actual roster and camera owners. Required finish/guard/update/render integration remains.
+[Containing world owners](analysis/containing-world-loading.md) now construct the actual shared Human/VM/HUD/module graph before collision loading, with checked late tree binding. [Concrete loading session](analysis/mission-loading-integration.md) now binds the real screen/stages/module tail, shared Bird/effects update and input defaults. [Concrete activation/writeback bindings](analysis/session-activation-integration.md) now share the actual request/route/squad and prepared Human lifetime; ordered finish retains an explicit required transient-record receiver. [Process packet/camera binding](analysis/process-packet-world-binding.md) now connects source queues to the actual roster and camera owners. [Frame and render source](analysis/frame-render-source.md) now supplies native coordination policies, shared emitter/dubbing ticks, fades, a separate text overlay and volumetric draw leaves. Required finish/guard and actual frame/visibility integration remains.
 
 The accepted bounded launch checkpoint covers: four opening movies with music and
 English subtitles lead into the compiled Main/Exit menu. Pointer/keyboard input,
@@ -89,7 +89,7 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and1,867 partial entries (1,862 client/five engine).
+complete client functions and1,987 partial entries (1,982 client/five engine).
 The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) records
 the earlier accumulated source subsets. Later checkpoints include Human
 weapons/formation/Players, [prepared spawning](analysis/session-activation-loading.md),
@@ -238,11 +238,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,967 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **1,987 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 1,962 |
+| Base game client | 17,294 | 34 | 1,982 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

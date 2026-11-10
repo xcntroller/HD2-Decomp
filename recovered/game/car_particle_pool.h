@@ -46,6 +46,20 @@ public:
         }
         return true;
     }
+    void update(std::uint32_t elapsed){ //004ED130, reverse states, engine tick BEFORE pending/count checks.
+        for(std::size_t n=states_.size();n;){--n;
+            if(!states_.at(n).active)continue;
+            auto frame=states_.at(n).visual;if(!frame)throw std::logic_error("Active Car emitter has no actual retained visual");
+            frames_.advance_car_particle(frame,elapsed);
+            if(!states_.at(n).pending)continue; //Reread actual state AFTER callback.
+            frame=states_.at(n).visual;frames_.activate_car_particle(frame,false);
+            frame=states_.at(n).visual;
+            if(frames_.car_particle_live_count(frame)<1){
+                states_.at(n).pending=states_.at(n).active=false;
+                frames_.link_scene_object(states_.at(n).visual,nullptr);
+            }
+        }
+    }
     void clear() {
         frontend::CleanupErrors errors;
         for(auto n=owners_.size();n!=0;) {

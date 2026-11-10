@@ -296,6 +296,7 @@ public:
     std::uint32_t game_speech_length(std::int32_t id){return sound_catalog_.speech_sample_size(id);} //SOUND virtual94, SAME catalogue mappings.
     const char* missing_speech_caption()const{return missing_speech_caption_;} //Process0089BB44 cold null; no populated writer is fabricated.
     void initialize_game_dubbing(){dubbing_sound_.initialize_loading();}
+    void synchronize_game_dubbing(){dubbing_sound_.synchronize_attachments();}
     void update_game_dubbing(std::uint32_t elapsed){dubbing_sound_.update(elapsed);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void retire_game_dubbing(EngineFrame* frame){dubbing_sound_.retire_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void finish_game_dubbing(){dubbing_sound_.clear(false);sound_backend_.rethrow_dubbing_cleanup_failure();} //0071DE60: no morph neutral on native mission finish.
