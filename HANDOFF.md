@@ -1,4 +1,4 @@
-# Session handoff — 2026-11-10
+# Session handoff — 2026-11-11
 
 Continue FULL first unchecked P2.2 checkbox in plan.md. Read AGENTS.md; continue
 past dependencies/checkpoints until done or concretely blocked. Larger verified
@@ -8,35 +8,43 @@ builds/Ghidra SEQUENTIAL (memory crashes). No permanent tests; ignored durable
 WORK, hash/remove temporary fixtures at checkpoint. Interactive changes require
 actual user desktop acceptance.
 
-Application still DECLINES loading. Both P2.2 boxes OPEN; no first world frame or
-mission desktop claim. The ledger has 34 complete and 2,105 partial entries (2,100 client and five engine)
+Application still declines loading. Both P2.2 checkboxes remain open. The
+ledger has 34 complete and 2,171 partial entries (2,166 client and five engine)
 against 18,783 frozen functions.
 
 ## Latest source checkpoint
 
-[Human AI frame source](analysis/human-frame-source.md#b0-ai-timers-steering-and-task-selection)
-and [receipt](analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json).
-Shared base/AI timers, Guard and Area prefixes, typed action targets and frame
-inputs, direction steering and pooled kind 2/3 task selection are in source.
-Guard 00549360 resolves actual processed events and owns a separate clone.
-Area 00559EB0 creates a kind 3 action before processing incoming events on later
-decisions. Three native sanitizer fixtures, actual host i386 and application
-link passed. Added 37 partial client entries. The receipt fingerprints the
-removed fixtures and retained evidence.
+[Guard and Area waits and navigation](analysis/human-frame-source.md#guard-and-area-waits-and-navigation)
+and [receipt](analysis/checkpoints/p2.2-human-ai-navigation-20261111.json).
+Guard 00549AE0 wait modes 2, 0D and 0C use actual look, readiness, posture and
+query receivers. Area 0055AD50/0055A6E0 preserve four CRT draws per wait.
+0057A750 uses the loaded table and same Startup navigation-job pool for
+ordinary point, coordinate and escape paths. Route ordering, smoothing,
+job progress and no-progress failure, Door approach and climb request pass
+the native sanitizer fixture, actual-host i386 and launcher link. The Human
++2C4 allocation feeds steering. Shared Scene2 005647C0 still needs its producer.
 
-Continue Guard 00548170 and Area 00559DE0 through their action workers and common
-AI query/output (0057A750, 00583C30, 0058BAF0). The existing
-`frame-human-{ai-selection-leaves,ai-task-leaves,ai-decision-workers,area-worker-leaves}`
-exports cover the next dependencies. 00549AE0 mode 2 sends look 3 before the
-lifetime expiry path. Area 0055AD50 and 0055A6E0 share the actual 0055B860
-hostile/processed event predicate. Positive navigation and jobs remain required.
-Also finish player, script and Active AI frame dispatch, DD0, actual world frame
-services, volumetric and guard integration, then application load and user test.
+Continue 00548170 and 00559DE0 through actual action selection, 00583C30 and
+0058BAF0 outputs, and frame dispatch. Reached specialized navigation still needs
+0057CC50/007861A0 interaction, the positive Human Door kind 6 receiver, and
+00581E30 populated floor actor-list work. Original exports are in WORK
+`frame-human-ai-{path-consumers,path-receivers,traversal-interactions}` and
+`frame-human-guard-area-authority`. 00583C30 emits actual E0 command kinds
+0, 2 and 3 before 0058BAF0's input and item handling. The `0058BAF0` B0+B0
+clock increment precedes its null-buffer and actual vehicle/weapon gates.
+The active localized posture text and further B0 actions remain required.
+
+The independent advisory is available through
+`git show research/p22:analysis/p2.2-critical-path/HANDOFF.md` and the sibling
+`integrity-and-rendering.md` at `52b4f27`. Integrity producers 009905B0,
+009F02A0, 009F0A60 and 009995F0 remain to be integrated in actual startup order.
+00482260 calls procedural 00482E50 before the volume-light list. Preserve its
+process texture owner and driver restoration. Keep the current Human priority.
 
 Prior [Human frame source](analysis/human-frame-source.md) and
 [receipt](analysis/checkpoints/p2.2-human-frame-20261110.json) cover
-0059FE30/0059FFD0 sequencing, E0 direction and feedback, timers, perception,
-item/camera poses, 230 equipment and periodic stats.
+0059FE30/0059FFD0 sequencing, E0 direction/feedback, timers, perception,
+item/camera poses, equipment and periodic stats.
 
 ## Prior Sight source checkpoint
 

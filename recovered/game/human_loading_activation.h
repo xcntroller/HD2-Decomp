@@ -60,7 +60,7 @@ public:
             }
         }
         fields.vector1c0=fields.vector1b0;
-        if(human_.context)human_.context->reset_loading(human_);
+        if(human_.scene_movement)human_.scene_movement->reset_loading(human_); //0059F2C0, Human+2C4.
     }
     void deactivate(bool authority)override {
         const auto mode=services_.mode_flags();frontend::CleanupErrors errors;

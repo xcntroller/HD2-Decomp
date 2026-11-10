@@ -5,6 +5,7 @@
 #include "game/table_storage.h"
 #include "game/serialized_bytes.h"
 #include "game/mission_table_reader.h"
+#include <algorithm>
 #include <cmath>
 #include <limits>
 
@@ -90,10 +91,81 @@ public:
             if(point->reserved17[0]|point->reserved17[1]|point->reserved17[2])output.push_back(index); //00524B10(7).
         return true;
     }
+    //005223B0 -> 00521B60. Search scratch is indexed by the original point
+    //number; all positions, flags and edges still belong to the loaded table.
+    bool find_route(std::uint16_t start,std::uint16_t destination,std::uint32_t mask,
+                    std::vector<std::uint16_t>& route) const {
+        if(!record(start)||!record(destination))return false;
+        route.clear();
+        if(start==destination){route.push_back(start);return true;}
+
+        const auto target=position(destination);
+        const auto estimate=[&](std::uint16_t index){
+            const auto point=position(index);
+            const auto x=std::abs(static_cast<long double>(target[0])-point[0]);
+            const auto y=std::abs(static_cast<long double>(target[1])-point[1]);
+            const auto z=std::abs(static_cast<long double>(target[2])-point[2]);
+            const auto scaled=((z+y)+x)*256.f; //008109C4, then __ftol.
+            return route_integer(scaled);
+        };
+        return search_route(start,destination,mask,route,estimate);
+    }
+    //00521460 -> 00521480. End at the first discovered point outside every
+    //target's exclusion radius with zero truncated distance penalty.
+    bool find_escape_route(std::uint16_t start,const std::vector<std::array<float,3>>& targets,
+                           float exclusion,float range,std::uint32_t mask,std::vector<std::uint16_t>& route)const {
+        if(!record(start)||targets.empty())return false;
+        route.clear();
+        const auto estimate=[&](std::uint16_t index){
+            const auto point=position(index);
+            float penalty=0;
+            for(auto target=targets.rbegin();target!=targets.rend();++target){
+                const auto x=static_cast<long double>(static_cast<float>(point[0]-(*target)[0]));
+                const auto y=static_cast<long double>(static_cast<float>(point[1]-(*target)[1]));
+                const auto z=static_cast<long double>(static_cast<float>(point[2]-(*target)[2]));
+                const float square=static_cast<float>((x*x+y*y)+z*z);
+                const auto distance=square<1.e-8f?0.L:
+                    std::abs(static_cast<long double>(square)-1)<1.e-8f?1.L:std::sqrt(static_cast<long double>(square));
+                if(!(distance>exclusion))return 0xffffffffu;
+                const auto value=static_cast<long double>(range)/distance-1;
+                if(penalty<value)penalty=static_cast<float>(value);
+            }
+            return route_integer(static_cast<long double>(penalty)*256.f);
+        };
+        return search_route(start,0xffff,mask,route,estimate);
+    }
     MissionTableRecord* record(std::uint16_t index) const {
         if(index>=table_.count0)return nullptr;
         if(!table_.records4)throw std::runtime_error("Navigation table has no records");
         return static_cast<MissionTableRecord*>(table_.records4)+index;
+    }
+    std::uint16_t index_of(const MissionTableRecord& point)const{
+        //The reference comes from this table's actual A4/record() borrower.
+        return static_cast<std::uint16_t>(&point-record(0));
+    }
+    std::uint16_t escape_restricted_point(const MissionTableRecord* start)const { //0051E8A0.
+        if(!table_.count0||!start)return 0;
+        const auto index=index_of(*start);
+        const auto origin=position(index);
+        for(float radius=5;radius<=20;radius+=5){
+            std::vector<std::uint16_t> nearby;
+            append_reachable(index,radius,nearby);
+            std::uint16_t selected=0xffff;
+            float best=10000.f;
+            for(auto candidate:nearby){
+                const auto* point=record(candidate);
+                if(!point)throw std::runtime_error("Navigation escape link exceeds the point table");
+                if(point->flags&0x2000u)continue;
+                const auto xyz=position(candidate);
+                const float x=xyz[0]-origin[0];
+                const auto y=static_cast<long double>(xyz[1])-origin[1];
+                const auto z=static_cast<long double>(xyz[2])-origin[2];
+                const auto squared=(static_cast<long double>(x)*x+y*y)+z*z;
+                if(squared<best){best=static_cast<float>(squared);selected=candidate;}
+            }
+            if(selected!=0xffff)return selected;
+        }
+        return 0xffff;
     }
     std::array<float,3> position(std::uint16_t index) const {
         const auto* value=record(index);if(!value)throw std::runtime_error("Navigation point is unavailable");
@@ -153,6 +225,76 @@ public:
         return nearest_volume_impl(point,radius,minimum,true);
     }
 private:
+    static std::uint32_t route_integer(long double value){
+        if(!(value<0x1p63L))return 0; //Low DWORD of the x87 indefinite.
+        return static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
+    }
+    template<class Estimate>
+    bool search_route(std::uint16_t start,std::uint16_t destination,std::uint32_t mask,
+                      std::vector<std::uint16_t>& route,Estimate estimate)const {
+        constexpr std::uint16_t none=0xffff;
+        struct SearchPoint {
+            std::uint32_t cost=0,estimate=0,score=0;
+            std::uint16_t parent=0xffff,next=0xffff;
+            bool closed=false;
+        };
+        std::vector<SearchPoint> points(table_.count0);
+        points[start].parent=start;
+        points[start].estimate=points[start].score=estimate(start);
+        if(destination==none&&points[start].estimate==0xffffffffu)return false;
+        for(auto head=start;head!=none;head=points[head].next){
+            auto& current=points[head];
+            current.closed=true;
+            const auto& point=*record(head);
+            auto remaining=point.flags&0x3fu;
+            if(remaining&&!point.payload)throw std::runtime_error("Navigation route has missing link storage");
+            const auto* links=static_cast<const unsigned char*>(point.payload);
+            while(remaining){
+                SerializedBytes link(links+(--remaining)*4u,4);
+                const auto index=link.half();
+                const auto weight=link.half();
+                const auto* neighbor=record(index);
+                if(!neighbor)throw std::runtime_error("Navigation route link exceeds the point table");
+                if(neighbor->flags&mask&0xfb40u)continue;
+
+                auto& next=points[index];
+                const bool pending=next.parent!=none;
+                const float cost=static_cast<float>(current.cost+weight); //Original DWORD add then FLOAT spill.
+                if(!pending||(!next.closed&&static_cast<long double>(cost)<next.cost)){
+                    next.parent=head;
+                    next.cost=static_cast<std::uint32_t>(static_cast<std::uint64_t>(cost));
+                    if(!pending)next.estimate=estimate(index);
+                    if(destination==none&&next.estimate==0xffffffffu){
+                        next.closed=true;
+                        continue;
+                    }
+                    next.score=next.cost+next.estimate;
+                    //00521120/00521160 keep the expanding head in place and
+                    //insert before equal scores. Find the insertion position
+                    //before unlinking an existing node, as in 00521160.
+                    auto* insert=&current.next;
+                    while(*insert!=none&&points[*insert].score<next.score)insert=&points[*insert].next;
+                    if(pending){
+                        auto* old=insert;
+                        while(*old!=index)old=&points[*old].next;
+                        *old=next.next;
+                    }
+                    next.next=*insert;
+                    *insert=index;
+                }
+                if(destination==none?(!pending&&next.estimate==0):index==destination){
+                    //The original accepts a goal on discovery, before popping it.
+                    for(auto node=index;;node=points[node].parent){
+                        route.push_back(node);
+                        if(node==start)break;
+                    }
+                    std::reverse(route.begin(),route.end());
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
     std::uint16_t nearest_volume_impl(const std::array<float,3>& point,float radius,float minimum,bool floor_only) const {
         if(!table_.count0)return 0xffff;
         for(auto value:point)if(!std::isfinite(value))throw std::runtime_error("Non-finite navigation volume query");

@@ -136,6 +136,7 @@ public:
     }
 protected:
     Frames& state_frames(){return frames_;}
+    void navigation_point(MissionTableRecord* point){point_=point;} //Actual A4 borrower.
     void clear_human_reference()noexcept{human_=nullptr;} //Derived+20 may clear44 without removing shared7C.
 private:
     static bool positive_health(const Human& human){

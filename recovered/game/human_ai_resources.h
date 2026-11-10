@@ -3,6 +3,7 @@
 
 #include "game/human_ai_direction.h"
 #include "game/human_ai_action_pool.h"
+#include "game/human_ai_navigation_jobs.h"
 #include "game/mission_tables.h"
 #include "game/human_state_frame_timers.h"
 #include <variant>
@@ -25,23 +26,55 @@ template<class Actor>struct HumanAITargetLoading {
     }
 };
 
-//The inline60-byte allocation in0056EE90 at AI+12C. Its runtime graph/query
-//producers remain unexposed; unwritten bytes are not fabricated as recovered.
+//The inline60-byte allocation in0056EE90 at AI+12C. Requests and path
+//publication share this owner with the original typed actor and Door borrowers.
 struct HumanAIQueryLoading {
     HumanAIQueryLoading() {
         state.set(0x38,std::uint32_t{6});state.set(0x3c,std::uint32_t{40});
-        for(auto offset:{0x50u,0x54u,0x4cu,0x28u,0x40u,0x24u})state.set(offset,std::uint32_t{0});
+        for(auto offset:{0x50u,0x54u,0x4cu,0x28u,0x24u})state.set(offset,std::uint32_t{0});
         state.set(0x48,std::uint16_t{0xffff});state.set(0x4a,std::uint16_t{0xffff});
         state.set(0x58,std::uint8_t{0});state.set(0x30,std::int32_t{-1});state.set(0x2c,std::uint32_t{0x7f7fffff});
     }
     HumanJointWords<0x60> state;
     void* actor=nullptr; //Native44 actor identity, shared with actual navigation references.
+    void* door=nullptr; //Native40, populated by the actual path job worker.
+    void request_position(const HumanVector& position){ //00560EA0.
+        if(position[1]<-100000.f||position[1]>100000.f)return; //Both native bounds tests accept unordered Y.
+        state.set(0x10,position);
+        state.set(0x20,std::uint16_t{0xffff});
+        state.set(0x50,(state.get<std::uint32_t>(0x50)&0x7ff7fffcu)|1u);
+        state.set(0x58,std::uint8_t{0});
+        state.set(0x24,0u);
+    }
+    void request_point(std::uint16_t index){ //00560F00.
+        if(index==0xffff)return;
+        state.set(0x20,index);
+        state.set(0x50,(state.get<std::uint32_t>(0x50)&0x7ff7fffcu)|1u);
+        state.set(0x58,std::uint8_t{0});
+        state.set(0x24,0u);
+    }
+    void finish(){ //00560F30.
+        door=nullptr;
+        state.set(0x50,(state.get<std::uint32_t>(0x50)&0xcfff57ffu)|0x80000000u);
+    }
+    void begin_path(){ //00560F50.
+        state.set(0x2c,0x7f7fffffu);
+        door=nullptr;
+        state.set(0x28,0u);
+        state.set(0x34,0u);
+        state.set(0x50,(state.get<std::uint32_t>(0x50)&0x6fffeff8u)|0x10001000u);
+    }
 };
 
 //00563A60/00563A70 at AI+134; matching destructor is RET.
 struct HumanAIFlagLoading {
     HumanAIFlagLoading(){state.set(0,std::uint32_t{0});state.set(4,std::uint8_t{0});}
     HumanJointWords<8> state;
+    void request(std::uint32_t mode){ //00563A20.
+        if(state.get<std::uint32_t>(0)==mode)return;
+        state.set(0,mode);
+        state.set(4,std::uint8_t{1});
+    }
 };
 
 //0055DF90/0055F2C0/0055E130/0055E030. Borrow the actual SECOND MissionTableSet
@@ -84,7 +117,7 @@ public:
         state_.set(0xf4,static_cast<std::uint8_t>(kind));
         //00576AC0 receiver is embedded at C0.
         state_.set(0xc0,std::uint8_t{0});
-        for(auto offset:{0xc4u,0xd8u,0xccu,0xc8u,0xd0u,0xd4u,0x108u,0x10cu,0x110u,0xf0u,0x104u})
+        for(auto offset:{0xc4u,0xd8u,0xccu,0xc8u,0xd0u,0xd4u,0x108u,0x10cu,0x110u,0xf0u})
             state_.set(offset,std::uint32_t{0});
         state_.set(0x114,std::int32_t{-1});state_.set(0x118,std::int32_t{-1});
         try {
@@ -97,15 +130,32 @@ public:
     HumanAIResources(const HumanAIResources&)=delete;HumanAIResources& operator=(const HumanAIResources&)=delete;
     void clear()noexcept { //0056F0E0:124,128,134,130,12C, then F8 vector; base belongs to containing state.
         retire_current_action(); //Typed nativeF0; explicit state close normally returns it first.
-        direction_.reset();target_.reset();flag_.reset();path_.reset();query_.reset();jobs_.clear();
+        direction_.reset();target_.reset();flag_.reset();path_.reset();query_.reset();finish_navigation_jobs();
     }
     Direction& direction(){return required(direction_);}Target& target(){return required(target_);}
     const Direction& direction()const{return required(direction_);}
     HumanAIFlagLoading& flag(){return required(flag_);}HumanAIQueryLoading& query(){return required(query_);}
     HumanAIPathLoading& path(){return required(path_);}auto& state(){return state_;}const auto& state()const{return state_;}
+    auto& navigation_jobs(){return jobs_;}
+    const HumanAINavigationJob* current_navigation_job()const{return current_job_.get();}
+    void advance_navigation_job(){
+        current_job_=std::move(jobs_.front());
+        jobs_.erase(jobs_.begin());
+    }
+    void release_queued_navigation_jobs()noexcept{
+        while(!jobs_.empty())jobs_.pop_back();
+    }
+    void finish_navigation_jobs()noexcept{ //0057F6F0/0056F630 reverse F8, then104.
+        release_queued_navigation_jobs();
+        current_job_.reset();
+    }
     void current_action(HumanAIAction1Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction2Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction3Pool::Lease value){current_action_=std::move(value);}
+    template<class Pool>auto* current_action_as(){
+        const auto* lease=std::get_if<typename Pool::Lease>(&current_action_);
+        return lease?lease->get():nullptr;
+    }
     void retire_current_action()noexcept{current_action_.template emplace<std::monostate>();} //00575820→00582C50.
     std::uint32_t current_action_kind()const{
         if(state_.template get<std::uint32_t>(0xf0))throw std::runtime_error("AI action ageing requires actual typed pooled action owner");
@@ -144,7 +194,8 @@ private:
     HumanJointWords<0x140> state_;
     std::unique_ptr<Direction> direction_;std::unique_ptr<Target> target_;
     std::unique_ptr<HumanAIFlagLoading> flag_;std::unique_ptr<HumanAIQueryLoading> query_;std::unique_ptr<HumanAIPathLoading> path_;
-    struct Job;std::vector<Job*> jobs_; //NativeF8; no unreconstructed pool/job producer is exposed.
+    std::vector<HumanAINavigationJobPool::Lease> jobs_; //NativeF8.
+    HumanAINavigationJobPool::Lease current_job_{nullptr,HumanAINavigationJobPool::Return{}}; //Native104.
     std::variant<std::monostate,HumanAIAction1Pool::Lease,HumanAIAction2Pool::Lease,
         HumanAIAction3Pool::Lease> current_action_;
 };

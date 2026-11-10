@@ -51,6 +51,39 @@ public:
             if(state_.template get<std::int32_t>(0x48)!=command){state_.set(0x48,command);if(changed)state_.set(0x40,state_.template get<std::uint32_t>(0x40)|2u);}
         }else state_.set(0xc8,state_.template get<std::uint32_t>(0xc8)|2u);
     }
+    void frame_item_action(std::int32_t command){ //0077F380.
+        if(locked(0x200u)){defer(0x200u);return;}
+        if(state_.template get<std::int32_t>(0x58)==command)return;
+        state_.set(0x58,command);
+        state_.set(0x40,state_.template get<std::uint32_t>(0x40)|0x200u);
+    }
+    template<class Notify>void frame_item_ready(bool ready,Notify&& notify){ //0077F3D0.
+        constexpr std::uint32_t mask=0x400u;
+        if((state_.template get<std::uint32_t>(0xd0)|state_.template get<std::uint32_t>(0xd4))&mask){defer(mask);return;}
+        if(state_.template get<std::uint32_t>(0x5c)==std::uint32_t(ready))return;
+        state_.set(0x5c,std::uint32_t(ready));
+        notify(ready?2u:1u);
+        state_.set(0x40,state_.template get<std::uint32_t>(0x40)|mask);
+    }
+    template<class ClearMovement>void frame_climb(ClearMovement&& clear_movement){ //0077EC00, subtype1E supplies 6A.
+        if(!control_)throw std::logic_error("Human climb requires actual DD0");
+        const auto mask=state_.template get<std::uint32_t>(0xc0)|state_.template get<std::uint32_t>(0xd0)|
+            state_.template get<std::uint32_t>(0xd4)|state_.template get<std::uint32_t>(0xd8);
+        if(((mask&1u)||(control_->animation_state_word(0xbd0)&0x80000000u))&&
+           !state_.template get<std::uint8_t>(0xb0)){
+            defer(1);
+            return;
+        }
+        const auto old=state_.template get<std::int32_t>(0x44);
+        if(old>0x70&&old<0x9b)return;
+        const auto mode=state_.template get<std::uint32_t>(0xb8);
+        if(mode==1)clear_movement(); //005A5C90(0).
+        const std::int32_t animation=mode==4?0xce:0x6a;
+        if(old==animation||(animation>=0xbe&&control_->animation_state_word(0x1d8)==0x11))return;
+        state_.set(0xb4,state_.template get<std::uint32_t>(0xb4)+1);
+        state_.set(0x44,animation);
+        state_.set(0x40,state_.template get<std::uint32_t>(0x40)|1u);
+    }
     Frame action_model()const{return action_model_;}
     void force_equipment_command(std::int32_t command) { //00792590/00792720/00792AB0 set B0=1 then0.
         state_.set(0xb0,std::uint8_t{1});

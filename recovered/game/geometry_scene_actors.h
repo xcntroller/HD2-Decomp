@@ -127,6 +127,16 @@ public:
     void load(SerializedBytes& bytes) override { //00601AC0, including real00600A50.
         properties.load(bytes,[&] {portal.refresh(this->backend_,this->base_.frame(),properties.flaga0!=0);});
     }
+    std::uint32_t navigation_side(const std::array<float,4>& position){ //00602320.
+        if(properties.fields220[0]==1)return 2;
+        const auto frame=this->base_.frame();
+        if(!frame)throw std::logic_error("Door navigation side requires the actual Door model");
+        const auto world=this->backend_.actor_world_matrix(frame);
+        const auto x=(static_cast<long double>(position[0])-world[12])*real_word(properties.vector200[0]);
+        const auto y=(static_cast<long double>(position[1])-world[13])*real_word(properties.vector200[1]);
+        const auto z=(static_cast<long double>(position[2])-world[14])*real_word(properties.vector200[2]);
+        return ((z+y)+x)<0?0u:1u;
+    }
     ~DoorSceneActor()override{if(remove_collision_)remove_collision_();}
     template<class Activation,class Collisions>void activate(bool authority,Activation& activation,Collisions& collisions) { //00600CC0.
         this->base_.activate_frame(authority,activation);const auto frame=this->base_.frame();

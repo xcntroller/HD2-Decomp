@@ -37,6 +37,7 @@
 #include "game/item_hand_models.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
+#include "game/human_ai_navigation_jobs.h"
 #include "game/human_frame_inputs.h"
 #include "game/actor_proximity_loading.h"
 #include "game/car_seat_camera.h"
@@ -231,6 +232,7 @@ public:
     game::HumanAIEventPool& human_ai_event_pool(){return human_ai_events_;}
     game::HumanAIFrameInputs& human_ai_frame_inputs(){return human_ai_frame_inputs_;}
     game::HumanAIActionPools& human_ai_action_pools(){return human_ai_actions_;}
+    game::HumanAINavigationJobPool& human_ai_navigation_jobs(){return human_ai_navigation_jobs_;}
     auto& human_perception_record_pool(){return human_perception_records_;}
     auto& actor_proximity_state(){return actor_proximity_;} //Actual process008AED54, preserves bucket timers across world clear.
     EngineFrame*& car_loading_scene(){return car_loading_scene_;} //0089C0C0 borrowed engine scene,006D3F20 publication.
@@ -725,6 +727,7 @@ private:
     game::HumanAIFrameInputs human_ai_frame_inputs_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
     game::HumanAIActionPools human_ai_actions_;
+    game::HumanAINavigationJobPool human_ai_navigation_jobs_;
     ResourceDirectoryPlatform directory_platform_;
     JoystickBackend joysticks_backend_;
     input::JoystickDevices<JoystickBackend> joysticks_;

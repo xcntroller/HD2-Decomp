@@ -28467,6 +28467,798 @@
         "analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json",
         "recovered/game/human_area_ai_state_loading.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00549ae0",
+      "status": "partial",
+      "coverage": "Advance kind 2 wait mode 2 through look, expiry and the actual navigation request, then handle completion and the randomized mode 0C wait.",
+      "limitations": "Mode 2/0D/0C waits and reached hostile interruption only.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058c400",
+      "status": "partial",
+      "coverage": "Clear the E0 item-ready state and notify the current FPV player before offline command dispatch.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055ad50",
+      "status": "partial",
+      "coverage": "Advance the normal Area wait through the original four CRT draws and elapsed modes.",
+      "limitations": "No-target wait modes only. Positive route and hostile workers remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055a6e0",
+      "status": "partial",
+      "coverage": "Advance the short Area wait through its distinct four-draw interval and cold mode branches.",
+      "limitations": "No-target wait modes only. Positive route and hostile workers remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055b860",
+      "status": "partial",
+      "coverage": "Check the actual hostile list and processed event queue for the no-target wait predicate.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f380",
+      "status": "partial",
+      "coverage": "Publish the item-action change or defer it through the original E0 mask.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f3d0",
+      "status": "partial",
+      "coverage": "Publish readiness changes, notify FPV and mark E0 dirty in original order.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077ec00",
+      "status": "partial",
+      "coverage": "Select and publish the offline E0 climb animation for subtype 1E, including the original defer and mode gates.",
+      "limitations": "Offline climb animation request only. Other movement and animation commands require their actual receivers.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057f610",
+      "status": "partial",
+      "coverage": "Evaluate actual Human +2C4 movement and maintain the query steering bit before consuming the movement.",
+      "limitations": "The separate 005647C0 movement producer remains required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_scene_steering.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057eec0",
+      "status": "partial",
+      "coverage": "Test the actual movement vector against the native squared threshold.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_scene_steering.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057ef00",
+      "status": "partial",
+      "coverage": "Gate free steering on the actual B0 and query flags and movement threshold.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_scene_steering.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057ef30",
+      "status": "partial",
+      "coverage": "Write directional input and stance from the actual movement record and aim state.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_scene_steering.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057fda0",
+      "status": "partial",
+      "coverage": "Apply movement and navigation job restrictions to running.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_scene_steering.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057fd30",
+      "status": "partial",
+      "coverage": "Apply direction mode, posture, held-item and actual input restrictions to the faster stance.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_scene_steering.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057a750",
+      "status": "partial",
+      "coverage": "Advance request timers, restricted-path gates, completion and actual navigation callbacks before publishing the result.",
+      "limitations": "The containing Guard/Area authority and specialized path workers remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_frame_query.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057a610",
+      "status": "partial",
+      "coverage": "Select reroute and restricted-head release branches using the actual table and current job queue.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_frame_query.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057a420",
+      "status": "partial",
+      "coverage": "Handle a direct destination or update the current route tail when its target still matches.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_frame_query.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057fe40",
+      "status": "partial",
+      "coverage": "Compare actual model position against the original strict spherical radius.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_frame_query.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057feb0",
+      "status": "partial",
+      "coverage": "Test an updated coordinate against the existing job centre and radius.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_frame_query.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560ea0",
+      "status": "partial",
+      "coverage": "Publish the coordinate request, flags and timers after the original height gate.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560f00",
+      "status": "partial",
+      "coverage": "Publish a valid table-point request with the original flags and timers.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560f30",
+      "status": "partial",
+      "coverage": "Clear the typed Door reference and publish the native path finish flags.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560f50",
+      "status": "partial",
+      "coverage": "Initialize progress, clear the Door and publish actual path activation flags.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_resources.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00582670",
+      "status": "partial",
+      "coverage": "Acquire a pooled job and write both position lanes, point index, flags, kind and radius.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_jobs.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058a4a0",
+      "status": "partial",
+      "coverage": "Grow the aligned 0x30-byte process job records in batches of 16.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_jobs.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005638e0",
+      "status": "partial",
+      "coverage": "Return the same navigation job to its process free list.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_jobs.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00521120",
+      "status": "partial",
+      "coverage": "Insert a discovered point before equal unsigned pending scores while retaining the expanding head.",
+      "limitations": "Order and head retention are recovered. Native scratch pool and profiling counters are represented separately.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/mission_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00521160",
+      "status": "partial",
+      "coverage": "Relocate a decreased-cost pending point using the original insertion-before-unlink order.",
+      "limitations": "Order and head retention are recovered. Native scratch pool and profiling counters are represented separately.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/mission_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00521b60",
+      "status": "partial",
+      "coverage": "Search the live loaded table using reverse links, native cost and mask arithmetic and first discovery of the destination.",
+      "limitations": "Uses indexed temporary search records over the live table. Malformed out-of-range edges raise an error.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/mission_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00521480",
+      "status": "partial",
+      "coverage": "Search for an escape point using the actual threat positions, per-threat exclusion and truncated distance penalty.",
+      "limitations": "Uses indexed temporary search records over the live table. Malformed out-of-range edges raise an error.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/mission_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051e8a0",
+      "status": "partial",
+      "coverage": "Find the nearest unrestricted point within successively larger graph reachability limits.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/mission_navigation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057aaf0",
+      "status": "partial",
+      "coverage": "Build and shape pooled coordinate-route jobs, including the original explicit direct-job branch.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_path.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057b2e0",
+      "status": "partial",
+      "coverage": "Build and shape a pooled table-point route with the original validation and paired-point handling.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_path.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057b740",
+      "status": "partial",
+      "coverage": "Build a pooled escape route against the actual hostile perception models.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_path.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057a8e0",
+      "status": "partial",
+      "coverage": "Clamp the mutable tail toward the requested coordinate, preserving the kind-15 height rule.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_path.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057bdc0",
+      "status": "partial",
+      "coverage": "Project eligible coordinate route jobs toward the next path segment and apply the floor pass.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_path.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057c2b0",
+      "status": "partial",
+      "coverage": "Project table-route jobs with the original smaller clamp and separate tail handling.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_path.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057c760",
+      "status": "partial",
+      "coverage": "Interpolate kind-15 heights with the prior adjusted height, remaining distance and node floor.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_path.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00571730",
+      "status": "partial",
+      "coverage": "Aim along the actual path displacement and set the separate floor-mode target direction when applicable.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_path.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057f6f0",
+      "status": "partial",
+      "coverage": "Return the actual queued and current jobs in order and publish path completion.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057ff10",
+      "status": "partial",
+      "coverage": "Refresh the current navigation record from the model, queued head and current job link.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005802a0",
+      "status": "partial",
+      "coverage": "Test strict interior projection and interpolated radius of a job link.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00580460",
+      "status": "partial",
+      "coverage": "Select the job point by squared distance less its linear radius.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057d5a0",
+      "status": "partial",
+      "coverage": "Track progress to the head job and apply the close, overshoot and no-progress branches.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057e030",
+      "status": "partial",
+      "coverage": "Write actual path-facing and movement inputs, retaining the first facing gate and stance selection.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057e020",
+      "status": "partial",
+      "coverage": "Compute the cosine of the original degree-scaled facing threshold.",
+      "limitations": "Uses the native long-double cosine library for the original FCOS calculation.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_navigation_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057bd00",
+      "status": "partial",
+      "coverage": "Dispatch the original coordinate, table-point and escape producers and publish point-route flag changes.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057ca50",
+      "status": "partial",
+      "coverage": "Compare X and Z for the starting-job direction choice.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057ca70",
+      "status": "partial",
+      "coverage": "Build the actual route, publish success or failure, and initialize the direction and control state.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057b270",
+      "status": "partial",
+      "coverage": "Replace a restricted path using the actual table escape point and query lifecycle.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00560f90",
+      "status": "partial",
+      "coverage": "Publish the restricted flag and timer using one draw from the same CRT stream.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057ec60",
+      "status": "partial",
+      "coverage": "Select and restore the actual DD0 collision-control flags for reached navigation kinds.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057edc0",
+      "status": "partial",
+      "coverage": "Check the live current point and queued head for ordinary traversal kinds.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057ee00",
+      "status": "partial",
+      "coverage": "Apply the command-area proximity test to the actual model position.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ae890",
+      "status": "partial",
+      "coverage": "Walk the command-area actor IDs in reverse and compare actual model distance.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057db70",
+      "status": "partial",
+      "coverage": "Gate the climb request on the original cadence and dispatch the offline E0 animation.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057dbd0",
+      "status": "partial",
+      "coverage": "Drive ordinary job arrival, specialized transition flags, lease transfer and steering.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057da40",
+      "status": "partial",
+      "coverage": "Advance floor-path job arrival and steering when the command-area actor list is empty.",
+      "limitations": "Populated command-area floor work remains required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057f670",
+      "status": "partial",
+      "coverage": "Dispatch the path control, ordinary traversal, cold floor and Door callbacks with required specialized boundaries.",
+      "limitations": "The 0057CC50 interaction worker, populated floor receiver and positive Human Door action remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00576610",
+      "status": "partial",
+      "coverage": "Write posture inputs according to the actual current navigation record and next job kind.",
+      "limitations": "Active AI localized text receiver remains required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057cf80",
+      "status": "partial",
+      "coverage": "Handle Door approach, ready state, direction locks and traversal from the actual Door owner.",
+      "limitations": "The positive Human kind 6 Door action remains required when the direct Door command is not reached.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00586200",
+      "status": "partial",
+      "coverage": "Dispatch the direct Door command branch of the original subtype 1B from the retained Door actor.",
+      "limitations": "Only the direct Door branch. Other command cases and Human kind 6 remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00602320",
+      "status": "partial",
+      "coverage": "Determine the traversal side using the real Door model and loaded direction.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/geometry_scene_actors.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac310",
+      "status": "partial",
+      "coverage": "Read the actual E0 navigation mode used for floor search and steering.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac3f0",
+      "status": "partial",
+      "coverage": "Read the actual DD0 collision-control mode for navigation save and restore.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0055d950",
+      "status": "partial",
+      "coverage": "Read the native target-direction lock bit.",
+      "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
+        "recovered/game/human_ai_direction.h"
+      ]
     }
   ]
 }

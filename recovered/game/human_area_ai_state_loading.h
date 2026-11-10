@@ -83,6 +83,38 @@ public:
             this->resources().retire_current_action(); //0055A0E0→00575820.
         return this->resources().current_action_kind();
     }
+    bool advance_frame_wait_action(){ //0055AD50/0055A6E0, kind 3 wait and no-target modes.
+        const auto kind=this->resources().current_action_kind();
+        if(kind==5||kind==0)return true; //0055A100 has no worker for these kinds.
+        if(kind!=3)return false;
+        auto* action=this->resources().template current_action_as<HumanAIAction3Pool>();
+        auto* human=this->human();
+        auto* command=this->command();
+        if(!action||!human||!command)throw std::logic_error("Area worker requires the bound Human, command and kind 3 action");
+        auto& words=action->state;
+        const auto mode=words.template get<std::uint32_t>(8);
+        const bool short_range=(this->words().template get<std::uint32_t>(0x50)&0x400u)!=0;
+        const bool expired=words.template get<std::uint32_t>(0x10)==0;
+        if(mode==2&&(!expired||short_range))return true;
+        if(mode!=0&&mode!=2&&mode!=3)return false;
+        if(!human->perception.lists()[0].empty()||command->second.events.size())return false; //0055B860.
+        if(mode==0){
+            if(expired)state_.set(0x154,state_.template get<std::uint32_t>(0x154)|4u);
+            return true;
+        }
+        //Normal range mode 2 first changes to mode 3, then runs the same wait reset.
+        words.set(8,0u);
+        std::uint32_t total=0;
+        for(unsigned n=0;n<4;++n){
+            const auto draw=contexts_.human_script_random();
+            if(draw>0x7fffu)throw std::runtime_error("Area wait requires the shared CRT random source");
+            total+=draw>>2;
+        }
+        const auto centered=static_cast<long double>(total)*0x1.0002p-15f-.5;
+        const auto lifetime=short_range?centered*6000.+8000.:centered*8000.+16000.;
+        words.set(0x10,static_cast<std::uint32_t>(lifetime));
+        return true;
+    }
 private:
     void drain_frame_events(){
         auto* command=this->command();

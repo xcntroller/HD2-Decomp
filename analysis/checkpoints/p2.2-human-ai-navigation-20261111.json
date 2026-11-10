@@ -1,0 +1,348 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "previous_checkpoint": "841d89a",
+  "added_entries": [
+    "00549ae0",
+    "0058c400",
+    "0055ad50",
+    "0055a6e0",
+    "0055b860",
+    "0077f380",
+    "0077f3d0",
+    "0077ec00",
+    "0057f610",
+    "0057eec0",
+    "0057ef00",
+    "0057ef30",
+    "0057fda0",
+    "0057fd30",
+    "0057a750",
+    "0057a610",
+    "0057a420",
+    "0057fe40",
+    "0057feb0",
+    "00560ea0",
+    "00560f00",
+    "00560f30",
+    "00560f50",
+    "00582670",
+    "0058a4a0",
+    "005638e0",
+    "00521120",
+    "00521160",
+    "00521b60",
+    "00521480",
+    "0051e8a0",
+    "0057aaf0",
+    "0057b2e0",
+    "0057b740",
+    "0057a8e0",
+    "0057bdc0",
+    "0057c2b0",
+    "0057c760",
+    "00571730",
+    "0057f6f0",
+    "0057ff10",
+    "005802a0",
+    "00580460",
+    "0057d5a0",
+    "0057e030",
+    "0057e020",
+    "0057bd00",
+    "0057ca50",
+    "0057ca70",
+    "0057b270",
+    "00560f90",
+    "0057ec60",
+    "0057edc0",
+    "0057ee00",
+    "005ae890",
+    "0057db70",
+    "0057dbd0",
+    "0057da40",
+    "0057f670",
+    "00576610",
+    "0057cf80",
+    "00586200",
+    "00602320",
+    "005ac310",
+    "005ac3f0",
+    "0055d950"
+  ],
+  "ledger_added_partial_client": 66,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2171,
+  "checks": {
+    "native_guard_area_navigation": "PASS (ASan/UBSan/LSan)",
+    "actual_host_i386": "PASS (strict compile)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/frame-human-ai-wait-workers-native.cpp": {
+      "sha256": "60265213c534bb0afc53df5bb4f7540f595e8f048c9858f1c346460b1468b13a",
+      "bytes": 21023,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-wait-workers-native": {
+      "sha256": "17a91e5aa9d1b1ebddbf3387fd8d52bcc69b3e18167a9de31c3de7156a88f7fa",
+      "bytes": 6583344,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-wait-workers-host.cpp": {
+      "sha256": "3fe3e097faa83c5b4ffdfb42bb24e32c64beb11b4b34876c90d4db9fd184078c",
+      "bytes": 681,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-wait-workers-host.o": {
+      "sha256": "9547ba617901b55e57a8fede2d34f466b88a110231c1ef1f5f7fc9c9ea240552",
+      "bytes": 2392625,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-wait-workers-native.log": {
+      "sha256": "b9c5a1e149fd209d8ff995edc44ad92cd209e22fe3f84b675d6459d61dec4a25",
+      "bytes": 278,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-wait-workers-host.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-navigation-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-navigation-search-core.asm": {
+      "sha256": "c994941d50aca5e566d1f2a2ba38f013911b39f0ca616759b318a5cbec860e80",
+      "bytes": 31104,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-builders/0057aaf0.c": {
+      "sha256": "a9f8f98434df31cb6ed570c933068aa0d9505673ca28a66802ee55908812b158",
+      "bytes": 5335,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-builders/0057b2e0.c": {
+      "sha256": "fbee295260badd1053bd5f389710df531a46f5f05886fc89cac458c8f402fcec",
+      "bytes": 4875,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-builders/0057b740.c": {
+      "sha256": "847c1e93d3e677941c03ae6ee5ba2263f05d92e2b2990df091d7c25cea8aac6c",
+      "bytes": 6719,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-builders/0057d5a0.c": {
+      "sha256": "c6ae2b5cf79454618741db6c5182a39afa728767107a5bd70d1e198980863afc",
+      "bytes": 7053,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-builders/0057db70.c": {
+      "sha256": "1530a382449c57b63f4a38723948e19542f4d01b12f9b615bbf9079135b8bb1f",
+      "bytes": 447,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-builders/005802a0.c": {
+      "sha256": "37c53314b1b6e5eb91a859c4b2cb20ef2f9500b3e40c2d0709a4762e1ad7d171",
+      "bytes": 2618,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-builders/00580460.c": {
+      "sha256": "bb834f71910a0f5658aa467a5f867be7686dd768b6b873656ff6ab494cee8381",
+      "bytes": 1009,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-builders.log": {
+      "sha256": "752690ef28adc35cbadec449c64e32e9036a07a56bb56bffa81eace16f503548",
+      "bytes": 5005,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-search/005223b0.c": {
+      "sha256": "fcae8039170de6fdc34778f36385babb1e3c732e5ce0dd6f384ff6d4032adc37",
+      "bytes": 59,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-search/0057a8e0.c": {
+      "sha256": "a54fa6f92f754850a40798503215f16b9293ed2da48307f39504f6c656662212",
+      "bytes": 1905,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-search/0057bdc0.c": {
+      "sha256": "b590940b8334bd279bfaec6b9cc5f9979006942b2830d47575850d32120e2020",
+      "bytes": 4395,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-search/0057c2b0.c": {
+      "sha256": "4e66c41eeeab5c2f29d4bf6c939bce8f58e68991a38a4e4062cd39f0a0898080",
+      "bytes": 4412,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-search.log": {
+      "sha256": "462e317ac78914e84b2da247bd1e4b58e765078683f5744bfc141836d380f27a",
+      "bytes": 4797,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-navigation-search-core/00521120.c": {
+      "sha256": "e697341bd7206d36a86ce01c1f8caad1d0b8661f431f15376a15ccff122f14aa",
+      "bytes": 551,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-navigation-search-core/00521160.c": {
+      "sha256": "6bd33bfbc43de875e70b3fc0a406a8a0caab940da7e82338b809079af4bcf53b",
+      "bytes": 889,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-navigation-search-core/00521b60.c": {
+      "sha256": "e6677f77af8ec49384e92e9a3b8673a1a4a079cb37ca25e835983832264d746b",
+      "bytes": 10033,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-navigation-search-core/0057c760.c": {
+      "sha256": "93ed56bb5871ed8b7355af61da5242b014f2c28f866aa047a0436118fda84355",
+      "bytes": 3653,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-navigation-search-core.log": {
+      "sha256": "edaec7b82bbb20a5345c01b450cae12d50f3ffcec3eeab568f710297bf009a90",
+      "bytes": 5011,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-consumers/0057e030.c": {
+      "sha256": "42e849f4eb2dada6c7e6c809438792b5607a22c30cef19eda2b9253cf8fbd33d",
+      "bytes": 12704,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-consumers/00576610.c": {
+      "sha256": "9be9768a3ce32b58605c6772e3f1c7856ab95c7b4b9799917d6bc6b1007b52de",
+      "bytes": 2650,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-consumers/0057da40.c": {
+      "sha256": "a870fb3a1af031ad7807905c0d7652cc16bf42dfe65907808915d20561ec6874",
+      "bytes": 1747,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-consumers/0057cf80.c": {
+      "sha256": "515c1240929b8bdb047f6bbc8786a1055d1c69bc6e82e55b995e54101712e785",
+      "bytes": 6325,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-consumers/0057cc50.c": {
+      "sha256": "a4b89152fafb4f0afdaadf14533374879f9a096fb1dc894d46e643a31ba088d8",
+      "bytes": 4124,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-consumers/0057edc0.c": {
+      "sha256": "5d964643012a99680844d956bde7db04e55424046ee7206d9b05446375483e76",
+      "bytes": 564,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-consumers/0057ee00.c": {
+      "sha256": "4a00e7ceeb0c8e2ae548fa697b070e1cbb307ea207b67a3294cc4040c460d00a",
+      "bytes": 253,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-consumers/00560f90.c": {
+      "sha256": "958ca7a76f500d161b456ca9433f84fec29dba4baa1f2fbd3c527bd597dc7f21",
+      "bytes": 222,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-consumers.log": {
+      "sha256": "56ead9c8157e7163a88c68b9f07ebf1d7d45d9d6fb8607f4ebdbb0d36b9c00c9",
+      "bytes": 5315,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-receivers/00521480.c": {
+      "sha256": "a09dc4fc36aac3384cadb2f39eebdbad0c380469e8d390ac69f018495252eff5",
+      "bytes": 9875,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-receivers/00581e30.c": {
+      "sha256": "f2ae24daea5e6e2d9c1c1dd9c0b49293f23a4d7774c4ae6d59491edea3abf449",
+      "bytes": 1385,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-receivers/005ae890.c": {
+      "sha256": "00f935c8bdc61035c935fa88e6b27b81a62294428a1eb9b5c9394c487c922b6a",
+      "bytes": 1308,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-path-receivers.log": {
+      "sha256": "0f683576ac53ef36e47deb8c45eae07f9d6d6194d04d519c0071bd0ea31381a8",
+      "bytes": 4697,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-traversal-interactions/0077ec00.c": {
+      "sha256": "02e7f452d310e737fba9fc71ae90e6210d5574cacbd4cf1eecab0589818a3297",
+      "bytes": 4381,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-traversal-interactions/007861a0.c": {
+      "sha256": "fb7f53ee0c7e61a1bdec7fce4cb3d50ac5b82f6007841ca36e94741fae95b90d",
+      "bytes": 5576,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-traversal-interactions/00602320.c": {
+      "sha256": "a94d957328b90713863aa41b54d2a54b0182728e21c6b90b40dab775f8aa614f",
+      "bytes": 638,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-traversal-interactions.log": {
+      "sha256": "bbb56a226f82abe507319f9e62a82b1d5b1dc311499cbcdb555fb51269fb7e54",
+      "bytes": 4808,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-decision-workers/00549ae0.c": {
+      "sha256": "cae7a0686fb22dd0293b6c1e0de5803346799ab4b9779e69d03aed8040704b30",
+      "bytes": 17972,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-decision-workers.log": {
+      "sha256": "2546290835eb0ba982fecddd9156cdae5c436264f10750b95c1819c2e6712913",
+      "bytes": 5317,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-query-leaves/0057a420.c": {
+      "sha256": "3403df5e4a6146b6df2537999953f304286005457393ea4bd65943a052daa85f",
+      "bytes": 3057,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-query-leaves/0057ca70.c": {
+      "sha256": "d6d5edffca2743ec3633690161a3bd53efc0336270f46c85115ebad72117c430",
+      "bytes": 2319,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-query-leaves/0057dbd0.c": {
+      "sha256": "4e46a14f46a327464dd7cbe407f115895bbf0e40682c967863a1668453a7b4d2",
+      "bytes": 6064,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-query-leaves/0057ec60.c": {
+      "sha256": "5b4abb59237d0c4702709e97c59c78f25ffb3ec035aefdb5b2a0404ae67e0b24",
+      "bytes": 1728,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-query-leaves/0057ff10.c": {
+      "sha256": "0667c5f47900cd5f848974b0a8c69faae7e5d514cbc109cfc51ffbd455bb705d",
+      "bytes": 2759,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-query-leaves/0057ef30.c": {
+      "sha256": "4a8a12d7aee24bbb3ad5f92e0a7707127d04f1d4755a31aee7f768549a1bfd1f",
+      "bytes": 6224,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-query-leaves.log": {
+      "sha256": "c00e912bd285104801c8a2bba6eb597f901f69a35759804172e0d5a1a923c689",
+      "bytes": 5622,
+      "retained": true
+    }
+  }
+}

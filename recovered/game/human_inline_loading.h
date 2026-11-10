@@ -85,7 +85,15 @@ public:
         const auto world=frames.actor_world_matrix(head);
         const auto threshold=static_cast<long double>(world[13])+.20000000298023224f;
         height=value;valid=threshold<=value;
+        return frame_navigation_floor();
+    }
+    bool frame_navigation_floor()const{ //005AC310, actual E0 mode.
+        if(!look_)throw std::logic_error("Human navigation requires actual live E0");
         return look_->state().template get<std::uint32_t>(0xb8)==5;
+    }
+    std::uint32_t frame_navigation_control_mode()const{ //005AC3F0.
+        if(!control_)throw std::logic_error("Human navigation requires actual live DD0");
+        return control_->physical().state().template get<std::uint32_t>(0x22c)&7u;
     }
     auto scene_sector()const { //005AC4C0: SAME DD0+CE4/CD0 sector, no scene query.
         if(!control_)throw std::logic_error("Human sector requires actual DD0 owner");
@@ -114,6 +122,11 @@ public:
         if(!initialized_||!look_)throw std::logic_error("Human action command requires live inline98");
         if(model)look_->action_model(model,true); //A null model deliberately retains native04.
         look_->action_command(command,true);
+    }
+    void clear_frame_item_action(){required_look().frame_item_action(-1);} //005ABE30 subtype16.
+    template<class Notify>void clear_frame_item_ready(Notify&& notify){required_look().frame_item_ready(false,notify);} //005ABE30 subtype15.
+    template<class ClearMovement>void frame_climb(ClearMovement&& clear_movement){
+        required_look().frame_climb(clear_movement); //005ABE30 subtype1E, reached under offline authority.
     }
     void add_control_flags(std::uint32_t mask) { //005AC390, actual owned DD0.
         if(!initialized_||!control_)throw std::logic_error("Human control flags require live inline98");

@@ -49,6 +49,7 @@ public:
     bool unlock_target(){return change_lock(1,false);} //0055D900.
     bool unlock_current(){return change_lock(2,false);} //0055D920.
     bool current_locked()const{return (state_.get<std::uint16_t>(0x40)&2u)!=0;} //0055D940.
+    bool target_locked()const{return (state_.get<std::uint16_t>(0x40)&1u)!=0;} //0055D950.
     bool advance_look_interval(std::uint32_t elapsed){ //0055D2B0: EXACT0 does not fire; overshoot adds48 ONCE.
         const auto old=state_.get<std::uint32_t>(0x4c);std::int32_t signed_old;std::memcpy(&signed_old,&old,4);
         if(signed_old>0){

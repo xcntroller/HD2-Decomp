@@ -12,6 +12,7 @@
 #include "game/human_item_frame_execution.h"
 #include "game/human_scene_frame.h"
 #include "game/human_frame_stats.h"
+#include "game/geometry_scene_actors.h"
 #include <stdexcept>
 
 namespace hd2::game {
@@ -38,6 +39,22 @@ public:
     std::uint32_t game_frame_serial()const{return dependencies().session.words.template get<std::uint32_t>(0x2c);}
     auto& human_ai_event_pool(){return dependencies().startup.human_ai_event_pool();}
     auto& human_ai_frame_inputs(){return dependencies().startup.human_ai_frame_inputs();}
+    auto& human_ai_navigation_jobs(){return dependencies().startup.human_ai_navigation_jobs();}
+    std::uint32_t human_frame_random_word(){return dependencies().startup.random_word();}
+    auto& human_navigation_door(void* actor){
+        using Frames=typename Dependencies::ActorFrames;
+        auto* door=dynamic_cast<DoorSceneActor<Frames>*>(static_cast<SceneActor<Frames>*>(actor));
+        if(!door)throw std::runtime_error("AI navigation reference requires an actual Door");
+        return *door;
+    }
+    void human_navigation_request_door(void* actor,std::uint32_t flags){ //00586200 subtype1B.
+        auto& door=human_navigation_door(actor);
+        if((flags&1u)&&(mode_flags()&1u)){
+            door.change_state(1,true,false,false,dependencies().world_actors);
+            return;
+        }
+        throw std::runtime_error("AI Door action requires the actual Human kind6 interaction receiver");
+    }
     auto human_ai_resolve_actor(std::uint32_t handle){ //005ACA50→00475DD0, Scene2 identity.
         auto& scene=dependencies().scene.frames();
         return handle&0x80000000u?nullptr:scene.scene_actor_identity(static_cast<std::int32_t>(handle));
@@ -65,6 +82,11 @@ public:
     template<class Human>bool human_is_view_actor(const Human& human)const{return human_is_player(human);}
     bool human_view_offset_enabled(){auto& view=dependencies().first_person.view();return view.enabled()||view.secondary_enabled();} //0069A4B0, actual58 OR59.
     template<class Human>void player_select_human(Human& human){dependencies().players.control().select_human(human);} //00461410→0045DA60.
+    template<class Human>void human_frame_first_person_state(Human& human,std::uint32_t state){
+        const auto mode=mode_flags();
+        if((mode&2u)&&dependencies().players.control().current_player()==&human)
+            dependencies().first_person.view().set_state(mode,state); //0077F3D0→00491640.
+    }
     template<class Human>void remove_human_player(Human& human){(void)dependencies().players.control().remove_human(&human);} //0045E670.
     template<class Human>bool player_knows_enemy(Human& human){return dependencies().players.control().selection().knows(&human);} //0045E920.
     template<class Human>void player_add_enemy(Human* human){

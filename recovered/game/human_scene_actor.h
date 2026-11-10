@@ -41,20 +41,23 @@ struct alignas(16) HumanColdCommandControl {
     }
 };
 
+//Human+2C4, allocated by0059BF00 and reset by0059F2C0. The vector at zero
+//feeds0057EEC0 and0057EF30. Its producer is the shared005647C0 movement pass.
 template<class Actor>
-struct alignas(16) HumanColdContextControl {
-    explicit HumanColdContextControl(Actor* actor) : owner(actor) {}
+struct alignas(16) HumanSceneMovementState {
+    explicit HumanSceneMovementState(Actor* actor) : owner(actor) {}
     Actor* owner;
-    std::array<std::uint32_t,3> fields0{};
+    std::array<float,3> steering{};
     std::array<std::uint32_t,3> position20{},direction40{};
-    std::array<std::vector<std::uint32_t>,2> lists;
+    //The E0/EC/F0 borrowers are cleared here. Their populated types and
+    //producers belong to the shared movement pass.
     std::uint32_t fielde0=0,fieldec=0,fieldf0=0,field100=0xffffffffu;
     std::uint16_t fielde4=0;
     std::uint32_t field70=0x7fc00000,field80=0x7fc00000;
     bool flag10=false,flag104=true,flag105=true,flag106=true,flag109=false,flag10a=false;
-    void reset_loading(Actor& actor) { //0059F2C0 tail, retains both list allocations/contents.
+    void reset_loading(Actor& actor) { //0059F2C0 tail.
         owner=&actor;fielde0=fieldec=fieldf0=0;fielde4=0;flag104=true;field100=0xffffffffu;
-        fields0.fill(0);position20.fill(0);direction40.fill(0);flag10=flag109=flag10a=false;
+        steering.fill(0);position20.fill(0);direction40.fill(0);flag10=flag109=flag10a=false;
         flag105=flag106=true;field70=field80=0x7fc00000u;
     }
 };
@@ -66,7 +69,7 @@ public:
     HumanSceneActor(Backend& backend,Runtime& runtime,HumanStorageScalars scalars={})
         : SceneActor<Backend>(backend,3),properties(initial_human_properties(runtime.mode_flags())),
           command(std::make_unique<HumanColdCommandControl>()),
-          context(std::make_unique<HumanColdContextControl<HumanSceneActor>>(this)),runtime_(runtime),scalars_(scalars) {}
+          scene_movement(std::make_unique<HumanSceneMovementState<HumanSceneActor>>(this)),runtime_(runtime),scalars_(scalars) {}
     ~HumanSceneActor() override { //0059E3E0; actual proximity/player endpoints are mandatory.
         if(field188!=-1)cleanup([&] {runtime_.release_human_proximity(field188);});
         cleanup([&] {
@@ -82,7 +85,7 @@ public:
             command.reset();
         }
         this->base_.clear_storage(); //005A2A40 precedes second aligned owner release.
-        context.reset();
+        scene_movement.reset(); //0059E3E0 frees2C4 after005A2A40.
     }
     bool initialize(Frame frame) override { //0059E5E0.
         if(!this->base_.initialize_frame(frame,scalars_)||this->backend_.frame_kind(frame)!=9)return false;
@@ -105,7 +108,7 @@ public:
     HumanPerceptionLists<SceneActor<Backend>*> perception; //Actual268/278/288/298 actor borrowers.
     HumanPerceptionRecords<SceneActor<Backend>*> list2ac; //Actual pooled sound-perception records; bind shared process pool first.
     std::unique_ptr<HumanColdCommandControl> command;
-    std::unique_ptr<HumanColdContextControl<HumanSceneActor>> context;
+    std::unique_ptr<HumanSceneMovementState<HumanSceneActor>> scene_movement;
     HumanLoadingStateView<HumanSceneActor>* loading_state=nullptr; //Borrowed actual B0; containing state owner retires it first.
     HumanLoadingInventoryReceiver<Backend>* loading_inventory=nullptr; //Actual command/transfer owner, before B0 bind.
     std::unique_ptr<HumanFormation<Backend,HumanSceneActor>> formation; //Native2C8 owned formation; retire members before Human teardown.

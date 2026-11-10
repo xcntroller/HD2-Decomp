@@ -260,3 +260,51 @@ Guard/Area host types, and the launcher link passed. See the
 artifacts and coverage. Guard authority decision/worker bodies, Area kind 3
 workers, the navigation job and common B0 output receivers remain required,
 along with player/script/active frames and DD0 integration.
+
+## Guard and Area waits and navigation
+
+Guard 00549AE0 kind 2 mode 2 issues look 3 before the lifetime test. On expiry
+it clears readiness through E0 0077F3D0 and the current player's FPV receiver,
+requests posture, then publishes the 00560EA0 destination and enters mode 0D.
+Completion enters mode 0C with one shared CRT draw for the next wait. Area
+0055AD50/0055A6E0 use 0055B860 over the actual hostile list and processed event
+queue. Their waits take four separate CRT draws, each shifted right by two
+before the sum. The positive action workers and common B0 frame dispatch
+remain open.
+
+The Human allocation at +2C4 feeds 0057F610 and 0057EF30. Its cold storage
+and reset remain with the same Human. The separate Scene2 process 005647C0
+still needs its actual movement producer. 0057A750 now advances request timers,
+handles direct destinations and restricted points, and binds path callbacks
+to the loaded table, actual Human model and Startup job pool.
+
+00521B60 expands links in reverse order, filters with the requested flags and
+inserts before equal unsigned scores. It stops on first discovery of the goal.
+00521480 uses the same open-list order with a distance penalty against the
+actual hostile model positions and rejects points inside the exclusion range.
+Both searches read the same loaded navigation records. The aligned 0x30-byte job
+records at 008AB048+30 grow in batches of 16. The ordinary point, coordinate and
+escape builders (0057B2E0, 0057AAF0 and 0057B740) populate both job position
+lanes, native flags, kind and radius. The source retains the prior W lane when
+00404260 writes only XYZ. 0057A8E0, 0057BDC0, 0057C2B0 and 0057C760 retain
+separate tail projection and floor-height rules.
+
+0057F670 now resolves the current point and drives the ordinary 0057DBD0
+worker. 0057D5A0 handles the close radius and no-progress failure. On a reached
+job the old current lease returns before moving the queue head into that slot.
+Finish returns queued jobs in reverse and the current job last. 0057E030 writes
+the same B0 input buffers and preserves the first facing gate. The reached
+Door worker 0057CF80 uses real Door status, side and direction locks. It still
+requires the Human kind 6 interaction receiver when the direct Door command
+branch does not apply. The climb branch supplies the actual offline E0
+animation6A request. The 0057CC50 interaction worker and populated floor
+actor-list branch remain required.
+
+The focused native fixture exercises waits, steering, query results, search
+ordering and masks, cost relaxation, escape, floor smoothing, job reuse,
+ordinary route progress and stall, Door approach and the climb request.
+Strict i386 instantiates the real World service, Guard/Area, Inline, Door and
+Startup owner types. The application link and tracker checks are recorded in
+the [receipt](checkpoints/p2.2-human-ai-navigation-20261111.json).
+The containing authority dispatch, specialized interactions and first live
+mission load remain open.
