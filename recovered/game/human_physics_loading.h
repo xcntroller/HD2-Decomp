@@ -7,12 +7,12 @@
 #include "game/rigid_body.h"
 #include "game/dynamic_collision_exclusions.h"
 #include "game/human_state_ground.h"
+#include "game/human_physics_globals.h"
 #include <deque>
 #include <functional>
 
 namespace hd2::game {
 
-struct HumanPhysicsGlobals {std::uint32_t active=0;}; //009832B0, shared by actual DD0 owners.
 
 //Loading0075B280/0075AE40/0075B870 and the descriptor portion of0075B6C0.
 //Uses the containing world's SAME buckets/exclusions and its real face/audio

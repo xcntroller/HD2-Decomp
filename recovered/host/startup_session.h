@@ -22,6 +22,7 @@
 #include "frontend/dubbing_sound.h"
 #include "game/human_sound_pool.h"
 #include "game/human_morph_tables.h"
+#include "game/human_physics_globals.h"
 #include "game/mission_integrity_tables.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
@@ -197,6 +198,8 @@ public:
     game::HumanSoundVariants& human_sound_variants() {return human_sound_variants_;}
     game::HumanInputShared& human_input_shared() {return human_input_shared_;}
     const game::HumanMorphTables& human_morph_tables() {human_morph_tables_.load(files_);return human_morph_tables_;}
+    const float& human_animation_time_scale()const{return human_animation_time_scale_;} //0084E80C initial FLOAT1.4; original direct references are reads.
+    game::HumanPhysicsGlobals& human_physics_globals(){return human_physics_globals_;}
     game::HumanAIEventPool& human_ai_event_pool(){return human_ai_events_;}
     game::HumanAIAction1Pool& human_ai_action1_pool(){return human_ai_actions1_;}
     auto& human_perception_record_pool(){return human_perception_records_;}
@@ -617,6 +620,8 @@ private:
     game::PlayersProcess<PlayerHuman> players_process_;
     std::vector<game::PlayersProcess<PlayerHuman>::DelayedSpeech> delayed_player_speech_;
     game::HumanMorphTables human_morph_tables_;
+    const float human_animation_time_scale_=0x1.666666p+0f;
+    game::HumanPhysicsGlobals human_physics_globals_;
     game::MissionIntegrityTables mission_integrity_tables_;
     game::HumanAIEventPool human_ai_events_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;

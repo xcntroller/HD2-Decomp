@@ -141,7 +141,7 @@ public:
             //Native zeroes the high half of the __ftol result before FILD.
             const float base=static_cast<float>(static_cast<std::uint32_t>(elapsed));
             for(unsigned slot=0;slot!=8;++slot) {
-                callbacks_.animation_player_check();
+                callbacks_.animation_player_check(model_);
                 auto value=static_cast<long double>(base)*callbacks_.animation_time_scale();
                 if(slot<6)value*=static_cast<long double>(real(slot*0x24+0xd0))*real(slot*0x24+0xd4);
                 advances[slot]=ftol(value);

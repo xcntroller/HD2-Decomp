@@ -1,0 +1,99 @@
+{
+  "date": "2026-11-10",
+  "scope": "Full first P2.2 checkbox; actual Human owner factory, same-world animation/Sight/hearing/presentation/HUD/FPV bindings. Continue containing VM/session/loader.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 0,
+  "extended": [
+    "0049dc60",
+    "0049de80",
+    "005a84f0",
+    "007724e0",
+    "007759d0",
+    "0059f2c0",
+    "005a3f20",
+    "0075ae40"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1894,
+    "client_partial": 1889,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan factory borrower/identity validation, per-Human source track event routing, common alignment/checked selection, shared animation scale/SOUND and actual item-query cursor. Outer constructed composition/actors/frames/process endpoints doubled.",
+    "host": "Strict i386 actual full Human composition construction/both activation and retirement passes/WorldActors dispatch. Actual DD0/E0/230/all seven B0 cases/input/callbacks/Sight/hearing/animation/Players/shared presentation/HUD/camera/FPV source types; shared animation/hearing/FPV constructor signatures. VM authority/runtime, outer HUD objective world and Players subgroup endpoints remain declarations; no containing application instance.",
+    "application": "Compile/link passed; loading remains disabled.",
+    "tracker": "27 tests; frozen fingerprints/unique statuses/README checks."
+  },
+  "limitations": [
+    "Actual containing VM/module/contexts and session instance still required.",
+    "Fresh stance74/78 gate and Area8 previous-null bypass verified from existing original/source; populated producers reject without new credit.",
+    "Cold Dog null534 gate only; positive Dog/nonoffline friendship remains unavailable.",
+    "No loader/integrity observed publication/first frame/failure-repeat/desktop delivery."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-factory-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-factory-native-run.log",
+      "bytes": 302,
+      "sha256": "4f9a2973343e817ef83f53ea4e5b1c0ed5698fd94b523075aa05b9840501ecc4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-factory-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-factory-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-factory-tracker-check.log",
+      "bytes": 437,
+      "sha256": "1e015f19f0af997931bb5b19b6b1e7bd56eab6ba9c64e5802549101ad8a7413d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-factory-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-animation-process-scale-refs.asm",
+      "bytes": 9821,
+      "sha256": "0d78b65df0b5414ecb654563a78d5b65ae736ec7e57aee51bdae1e48b35778fa"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-factory-audit.cpp",
+      "bytes": 11315,
+      "sha256": "181409661edf1f98a08d9f7ac4f782a674e8dcf6f4e52df43fba25b9aa7bba8d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-factory-audit",
+      "bytes": 1612864,
+      "sha256": "612f44c7d09b96ae75f37e32c14b47c82f69ebbd68e2b1261fb45a6c99ec0f24"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-factory-host.cpp",
+      "bytes": 8512,
+      "sha256": "a5f87db40aaba3d884d789bd5688c3df3674c7ff5c3ac30477de271faef62e93"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-factory-host.o",
+      "bytes": 8991870,
+      "sha256": "898f7b3236f4ec68f9d07db5a777a2088b928b5f8c9b04871d96ba10aad9a9ea"
+    }
+  ]
+}

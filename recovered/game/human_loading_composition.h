@@ -17,6 +17,7 @@ template<class InlineFactory,class Inputs,class Contexts,class Store,class Speec
          class Sight,class Sound,class Proximity,class Camera,class Players>
 class HumanLoadingComposition final : public HumanLoadingLifetime {
 public:
+    using Factory=InlineFactory;
     using Frames=typename InlineFactory::Frames;using Human=typename InlineFactory::Human;
     using World=typename InlineFactory::World;using Random=typename InlineFactory::Random;
     using Inline=typename InlineFactory::Inline;using Presentation=typename InlineFactory::Presentation;

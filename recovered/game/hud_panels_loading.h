@@ -112,6 +112,7 @@ public:
     auto& dialogs(){return dialogs_;}auto& timers(){return timers_;}auto& inventory(){return inventory_;}auto& map(){return map_;}
     auto& info(){return info_;}auto& selector(){return selector_;}auto& auxiliary(){return auxiliary_;}auto& scoreboard(){return scoreboard_;}
     template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){compass_.sound_direction(direction,kind,players_);} //0049DE80→004947E0.
+    auto& cursor(){return cursor_;} //FPV borrows the SAME HUD2E60 artwork/cursor owner.
 private:
     Frames& frames_;Factory& factory_;Hud& hud_;Players& players_;Items& items_;World& world_;Frame scene_{};bool started_=false,progress_started_=false,command_started_=false;
     HudArtworkLoading<Frames> artwork_;HudCursorLoading<Frames,Players,Items> cursor_;Dialogs dialogs_,command_roll_;

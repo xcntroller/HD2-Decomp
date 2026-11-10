@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <stdexcept>
 #include "frontend/pre_mission_data.h"
+#include "game/first_person_human_items.h"
 namespace hd2::game {
 //004A8C10 and004A8CC0, HUD+2E60. These are borrowed artwork frames from
 //the actual HUD scene; that scene must outlive the receiver. No empty artwork
@@ -35,9 +36,10 @@ public:
         case 3:{
             auto* human=players_.current_player();
             if(!human)throw std::runtime_error("HUD weapon cursor requires an actual current player");
-            const auto weapon=items_.weapon(*human);
+            FirstPersonHumanItems<Items> human_items(items_);
+            const auto weapon=human_items.weapon(*human);
             if(!weapon)throw std::runtime_error("HUD weapon cursor requires the actual hand weapon");
-            const auto& payload=items_.definition(weapon).payloads[1];
+            const auto& payload=human_items.definition(weapon).payloads[1];
             if(!payload.type||payload.type>=10||payload.bytes.size()<12)
                 throw std::runtime_error("HUD weapon cursor payload has no native0C field");
             const auto bits=frontend::pre_mission_detail::Bytes::word(payload.bytes.data()+8);

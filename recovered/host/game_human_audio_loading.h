@@ -25,6 +25,9 @@ public:
     typename Pools::Lease acquire_pool(){return pools_.acquire();}
     game::SpeechDefinition* acquire_speech(std::int32_t index){return speech_.acquire(index);}
     void release_speech(game::SpeechDefinition* definition) noexcept {speech_.release(definition);}
+    //HumanLoadingActivation borrows this SAME speech cache, not another pool.
+    game::SpeechDefinition* acquire(std::int32_t index){return acquire_speech(index);}
+    void release(game::SpeechDefinition* definition)noexcept{release_speech(definition);}
     Random& random_source() {return random_;}
     void configure_physics_voices() {random_.startup.set_game_sound_voice_limit(3,4);} //0075AE40→sound+90.
     void stop_voice(std::int32_t& handle) {random_.startup.stop_game_sound_voice(handle);}

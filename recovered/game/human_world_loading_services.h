@@ -5,6 +5,7 @@
 #include "frontend/spatial_sound.h"
 #include "game/human_speech_loading.h"
 #include "game/human_speech_notifications.h"
+#include "game/human_sight_relations.h"
 #include <stdexcept>
 
 namespace hd2::game {
@@ -28,6 +29,8 @@ public:
     auto& human_ai_event_pool(){return dependencies_.startup.human_ai_event_pool();}
     auto& human_perception_record_pool(){return dependencies_.startup.human_perception_record_pool();}
     bool human_face_quality_enabled(){return dependencies_.startup.human_face_quality_enabled();}
+    bool presentation_application_fallback(){return human_remote_ai_enabled();} //00785BE0→006B66B0.
+    const auto& presentation_mission_name()const{return dependencies_.request.preparation.mission_resource;}
     auto& human_face_resources(){return dependencies_.faces;}
     std::int32_t human_face_camouflage(){return static_cast<std::int32_t>(dependencies_.presentation_shared.settings().terrain);} //Actual0098A6B0.
     auto human_animation_resource(unsigned table,unsigned row){return dependencies_.animations.resource(table,row);}
@@ -50,11 +53,11 @@ public:
     template<class Human>bool player_knows_enemy(Human& human){return dependencies_.players.control().selection().knows(&human);} //0045E920.
     template<class Human>void player_add_enemy(Human* human){
         if(!human)throw std::runtime_error("Player enemy acquisition requires its actual Human");
-        dependencies_.players.control().selection().acquire(*human,mode_flags(),*this); //0045E410 with actual feedback, before record publication.
+        dependencies_.players.control().selection().acquire(selection_human(*human),mode_flags(),*this); //0045E410 with actual feedback, before record publication.
     }
     template<class Human>void player_remove_enemy(Human* human){
         if(!human)throw std::runtime_error("Player enemy release requires its actual Human");
-        dependencies_.players.control().selection().release(*human,mode_flags(),*this); //0045E540.
+        dependencies_.players.control().selection().release(selection_human(*human),mode_flags(),*this); //0045E540.
     }
     template<class Human>void hud_selected(Human& human,bool selected){dependencies_.hud.select_human(&human,selected,mode_flags(),human_difficulty());} //0049B980.
     template<class Human>bool human_hidden(const Human& human)const{return human.activation.flag150;}
@@ -71,6 +74,36 @@ public:
         human.activation.flag150=true;
         composition(human).control().shadow_visible(dependencies_.scene.frames(),false);
         dependencies_.presentation_shared.projection_models().visibility(dependencies_.scene.frames(),&human,false,mode_flags());
+    }
+    auto& human_roster(){return dependencies_.players.control().human_roster();}
+    template<class Human>std::uint32_t human_sight_alignment(Human& human){
+        return game::human_sight_alignment(human,human_roster(),dependencies_.session.words.template get<std::uint8_t>(0x34)!=0,
+            [&]{return human_remote_ai_enabled();},[](auto& value){return value.activation.field16c;},
+            [&](auto entry){return dependencies_.world_actors.items().human_entry_alignment(entry);});
+    }
+    template<class Human,class Actor>bool human_sound_friendly(Human& human,Actor actor){return dependencies_.sight.human_sight_friendly(&human,actor);}
+    template<class Human>auto& human_state_factory(Human& human){return composition(human).state_factory();}
+    template<class Human>auto human_attached_actor(Human& human){return human.field160;}
+    float human_sound_random(){return dependencies_.scene.frames().volume_random_unit();} //Actual LS3DF RandFloat, distinct from CRT rand.
+    template<class Human,class Actor>void player_sight_dog(Human&,Actor& actor){dependencies_.players.control().add_sighted_dog(&actor);} //0045D4A0.
+    template<class Human,class Actor>bool network_human_sight_friendly(Human&,Actor&){throw std::runtime_error("Nonoffline Sight requires actual005A09A0 friendship receiver");}
+    template<class Actor>void dog_sight_changed(Actor& actor,bool,std::uint32_t){ //005D5CB0's genuine cold null534 gate.
+        using Dog=typename std::decay_t<decltype(dependencies_.scene.frames())>::Dog;
+        auto* dog=dynamic_cast<Dog*>(&actor);if(!dog)throw std::logic_error("Dog Sight requires its actual actor family");
+        if(dog->field534)throw std::runtime_error("Populated Dog Sight requires actual534 control receiver");
+    }
+    template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){dependencies_.hud.hud_sound_direction(direction,kind);}
+    template<class Actor>bool car_field5e0(Actor* actor){
+        using Car=typename std::decay_t<decltype(dependencies_.world_actors)>::Car;
+        auto* car=dynamic_cast<Car*>(actor);
+        if(!car||!car->geometry)throw std::runtime_error("Human weapon context requires actual initialized Car geometry");
+        return car->geometry->physics().scalars().get(0x550)!=0; //Actor5E0, SAME owner as collision callbacks.
+    }
+    struct CommandArea{std::array<float,4> position;float radius;};
+    template<class Human>CommandArea human_ai_command_area(Human&){throw std::runtime_error("Area AI handover requires the actual Human B4 area producer");}
+    template<class State>void adjust_active_ai_stance(State& state,bool){
+        if(!state.words().template get<std::uint32_t>(0x74)||!state.words().template get<std::uint32_t>(0x78))return;
+        throw std::runtime_error("Populated Active AI stance requires actual74/78 command and A4/A8 posture producers");
     }
     template<class Human>bool human_unavailable(const Human& human)const { //005A6380, only its native AL result.
         std::int32_t health;const auto bits=human.properties.stats_ec[0];std::memcpy(&health,&bits,4);
@@ -107,6 +140,12 @@ public:
     template<class Human>void human_initial_dead_notification(Human&){throw std::runtime_error("Nonoffline dead Human requires actual005A15D0 event dispatch");}
     template<class Actor>void detach_human_attachment(Actor&,std::int32_t){throw std::runtime_error("Occupied Human attachment requires its actual actor virtual80 receiver");}
 private:
+    template<class Actor>auto& selection_human(Actor& actor){
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=dynamic_cast<Human*>(&actor);
+        if(!human)throw std::logic_error("Enemy selection requires the actual Human family");
+        return *human;
+    }
     static std::int32_t signed_duration(std::uint32_t value){std::int32_t result;std::memcpy(&result,&value,4);return result;}
     template<class Human>auto& composition(Human& human){return dependencies_.world_actors.template human_loading_owner<typename Dependencies::Composition>(human);}
     Dependencies& dependencies_;

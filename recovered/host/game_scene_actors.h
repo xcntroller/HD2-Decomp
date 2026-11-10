@@ -42,6 +42,7 @@ public:
     using Actor=Instance*;
     using Spawn=game::SpawnPointSceneActor<GameActorServices>;
     using Human=game::HumanSceneActor<GameActorServices,Runtime>;
+    using Dog=game::DogSceneActor<GameActorServices>;
     Human* camera_target_human(Frame target)const { //00466970 model100/kind9/EC Scene2 binding.
         const auto model=frame_model_owner(target);
         if(!model||frame_kind(model)!=9)return nullptr;

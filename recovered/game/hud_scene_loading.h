@@ -72,6 +72,7 @@ public:
     template<class Human>bool remove_human(Human* human,std::int32_t index){return panels_.remove_human(human,index);}
     template<class Human>void select_human(Human* human,bool selected,std::uint32_t mode,std::uint32_t difficulty){panels_.select_human(human,selected,mode,difficulty);}
     void inventory_changed(){panels_.inventory_changed();}
+    template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){panels_.hud_sound_direction(direction,kind);} //0049DE80 has no flags gate.
     void append_message(const char* text,const std::array<float,3>& colour){if(hud_.flags)panels_.messages().append(text,colour);} //0049D2E0→00494A40, any nonzero flags.
     template<class Camera>void render_prepass(Camera& camera){hud_render_prepass(panels_,camera);}
     template<class Camera,class Consumers>void render(Camera& camera,std::uint32_t mode,Consumers& consumers){

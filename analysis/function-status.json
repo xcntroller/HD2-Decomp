@@ -11627,7 +11627,8 @@
         "recovered/game/hud_cursor_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-factory-world-bindings.md"
       ]
     },
     {
@@ -12344,7 +12345,8 @@
         "recovered/game/hud_panels_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-factory-world-bindings.md"
       ]
     },
     {
@@ -13765,7 +13767,8 @@
         "recovered/game/human_animation_events.h",
         "analysis/human-animation-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-factory-world-bindings.md"
       ]
     },
     {
@@ -13948,7 +13951,8 @@
         "recovered/game/human_animation_tracks.h",
         "analysis/human-animation-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-factory-world-bindings.md"
       ]
     },
     {
@@ -15697,7 +15701,8 @@
         "recovered/game/human_loading_activation.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-factory-world-bindings.md"
       ]
     },
     {
@@ -15801,7 +15806,8 @@
         "recovered/game/human_loading_state_factory.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-factory-world-bindings.md"
       ]
     },
     {
@@ -16431,7 +16437,8 @@
         "recovered/game/human_physics_loading.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-factory-world-bindings.md"
       ]
     },
     {
@@ -17063,7 +17070,8 @@
         "recovered/game/human_sight_relations.h",
         "analysis/sight-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-factory-world-bindings.md"
       ]
     },
     {

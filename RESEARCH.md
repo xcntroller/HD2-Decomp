@@ -1,5 +1,7 @@
 # Technical research guide
 
+2026-11-10: [Human factory/world bindings](analysis/human-factory-world-bindings.md) construct the actual per-Human composition from shared owners and supply concrete animation/hearing/alignment/HUD/FPV receivers. Full actual-host construction exposed and fixed enemy base-pointer and cursor item-interface mismatches; physics counter now belongs to Startup. Native sanitizers/strict i386/app link pass. No new tally credit;34 complete/1,894 partial. Continue actual VM/session/loader.
+
 2026-11-10: [Human selection/visibility](analysis/human-selection-visibility-loading.md) supplies actual show/hide, borrowed Human fade queue, projection visibility and bounded current/pending Human identity lookup. Physical suspension and inline visibility share the real DD0 shadow owner. Focused sanitizers, strict i386 and app link pass. Five partials added:34 complete/1,894 partial. Source-only; continue actual Human/world/session/loader.
 
 2026-11-10: [offline Human speech and dubbing consumers](analysis/human-speech-loading.md) recover shared phrase windows/cooldowns, two-rotation request/playback order, scalar decoding, actual catalogue metadata and player caption/HUD output. Native sanitizers, strict actual-host Active/Player/Startup/dubbing/HUD composition and app link pass.18 new partials:34 complete/1,889 partial; no world/desktop delivery. Continue remaining Human feedback/factory/session/loader.
