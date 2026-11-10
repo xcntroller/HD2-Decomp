@@ -73,7 +73,7 @@ prepare services first; replay must keep the original stream order.
 | B26.identity.registry | P2.3 | contract-ready: preserve mission slot/generation/retired and runtime ID domains |
 | B26.actors.items | B26.envelope, real catalogue/holder owners | contract-ready: four item+44/+48 subtype formats and original common-tag asymmetry; actual catalogue/holders required |
 | B26.actors.base | B26.actors.items, initialized model/holder owners | contract-ready base format; actual inventory/model owners required |
-| B26.actors.car | B26.actors.base, initialized Car solver/parts | blocked variable packed version10 leaves |
+| B26.actors.car | B26.actors.base, initialized Car solver/parts | byte format closed; pose correction and actual mesh/collision restore remain |
 | B26.actors.human | B26.actors.base, B26.identity.registry, reached vehicle/target owners | outer and state selection closed; nested B0/input/animation/AI leaves open |
 | B26.actors.conditional | B26.actors.base where actually called | small actor pairs available; other reached families partial, catalog is conditional |
 | B26.identity.dynamic | B26.identity.registry, B26.actors.items, reached type2/11 payloads | dispatcher/item formats closed; type2/11 physical leaves and type35 actual motion receiver remain |
@@ -214,3 +214,29 @@ standalone recreated route and null/empty table variants. Verify modal cancel/
 re-entry/failed write, real profile reopen and descriptor lifetime. Desktop:
 actual result stats, retry, next, Diary/Back, Main/reopen; UI-only panels do not
 close arithmetic, save or campaign acceptance.
+
+
+## Car and Player leaf checkpoint
+
+[B26.actors.car.layout](p2.6-car-format.md) depends on B26.envelope and the real
+Car metadata. Fixed header108 fields, variable section boundaries and both
+quantizers are available for bounded source work. Preserve explicit padding policy;
+size must include four bytes per changed vertex. No complete Car implementation
+readiness follows automatically from this map.
+
+B26.actors.car.mesh follows layout plus initialized baseline/deformed mesh owners:
+original658/668 name matching, reverse hash lookup, LOD0/1 lock/restore/invalidation.
+Still blocked on exact live mesh receiver integration; failure must release actual
+locks/retains without inventing rollback of changed geometry.
+
+B26.actors.car.restore follows layout, mesh, Car loading/solver/collision owners
+and B26.actors.base. Preserve detach004E95B0→model pose/correction→004E98C0→saved
+fields→variable records→real collision/part publication. Tipped-pose x87 correction
+is still instruction-sensitive. Verify deformed and empty counts, skipped hashes,
+short packed bytes, null ancillary child and repeat teardown before real desktop
+moving/damaged/occupied-vehicle round trips. Decoder round trips alone are insufficient.
+
+[B26.actors.human.player](p2.6-human-state-leaves.md) follows existing common B0,
+Player initialization and Human/controller owners. Implement exact18-byte0840 and
+optional68-byte0841; preserve absent-field constructor defaults. Remaining ordinary
+command/AI/inline98 and Script async leaves keep whole Human compatibility blocked.

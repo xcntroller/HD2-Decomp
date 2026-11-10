@@ -1,83 +1,72 @@
-# Forward research handoff — 2026-11-10, deep persistence checkpoint
+# Forward research handoff — Car packed-format checkpoint
 
-Branch `research/future-dependencies`. Implementation claims remain pinned to
-`52c568964063207b0d15bea8ef98af09f89d84df`; no main source, ledger, root plan/
-handoff, analyzer, website, networking or other worktree changes. Local research
-only; no original EXE/DLL/Windows fixture/Proton run, desktop claim, push or merge.
+Branch `research/future-dependencies`. Implementation status remains pinned to
+52c568964063207b0d15bea8ef98af09f89d84df. Main source, ledger, root plan/handoff,
+website/analyzer, networking and other worktrees unchanged. No original EXE/DLL,
+Windows fixture or Proton execution; no desktop result or new reconstruction credit.
+No push or merge.
 
-Use [implementation guide](implementation-guide.md), [actor contracts](p2.6-actor-persistence.md),
-[context layout](p2.6-context-layout.md), [module classification](p2.6-module-persistence.md)
-and [results](p2.7-results.md). This is substantially more complete research,
-not a declaration of compatible whole-world save/load or P2.7 delivery.
+New: [Car version10](p2.6-car-format.md), [numeric byte map](evidence/car-packed-v10.json)
+and [Player nested state](p2.6-human-state-leaves.md). Existing actor/context/module/
+result contracts remain prerequisites. Do not redo confirmed vtables, IDs, globals
+or result arithmetic. [Batches](implementation-guide.md) now distinguish layout,
+mesh, Car restore and Player leaf work; whole live save/load remains blocked.
 
-Latest evidence:250 fingerprinted static exports (186 added),17 concrete actor
-pairs,7 Human B0 state pairs,4 item subtype pairs,18 registered modules classified.
-[Manifest](evidence/manifest.json) retains prior export indices and lists failed/
-excluded probes. Heavy Ghidra ran sequentially readOnly/noanalysis, transient
-function definitions discarded. Full exports remain ignored, no commercial
-binary/asset/disassembly dumps tracked. [Verification](evidence/verification.json)
-records focused provenance/vtable/format/graph checks. Graph310 nodes/629 edges;
-source recovery, research readiness and implementation readiness remain separate.
+Resolved in this checkpoint:
 
-Important resolved/corrected contracts:
+-108 fixed Car header fields cover000..170;171..173 are unwritten padding.
+ Complete variable boundaries:12-byte point records;20-byte geometry headers plus
+ four bytes per changed LOD0/LOD1 vertex;20-byte ancillary records;100-byte wheels.
+ Full raw word/byte map, point quantizer, six-bit mesh displacement quantizer,
+ suffix hash/lookup, existing-array matching and skipped-record behavior recorded.
+-IMPORTANT correction:004F7300 size is174h+12P+20G+4*sum(n0+n1)+20A+100W.
+ Its decompilation lost the live changed-vertex byte accumulator. Assembly counts
+ both LODs. The previous formula would underallocate deformed saves.
+-Outer packed byte count and internal computed size are distinct;004F8510 checks
+ version10, not buffer length. It destructively detaches before changing model
+ pose.004E95B0/004E98C0/004F5840 side effects and required real collision/model/
+ mesh owners mapped. Allocation padding and null ancillary-child bytes are not
+ deterministically initialized by the original writer.
+-10006 receiver is inline Car+24E0. Its bytes contain no actor-ID resolution;
+ previous seat/attachment label was unsupported and is corrected. Mounted Human
+ references remain in established Human1001/1006, not a new Car passenger array.
+-Player B0 kind1 owns18-byte0840 and optional68-byte0841 (64 bytes plus counter).
+ Reader omission retains constructor state; no count-sized input allocation.
+ Common B0/real Human-controller dependencies remain mandatory.
 
-- Mission-slot IDs and runtime IDs differ; actor14 is an active-list index.
- 00475D50 can return a still-owned retired reserved actor;00475DD0 is physical
- slot lookup only. Existing source's ordinary-lookup comment is misleading;
- do not copy it as a retired-lookup persistence contract.
-- Module12 recreates only actual type11/2 branches;35 resolves existing actor
- created by physics004794D0. Its vtable00812750 pairs005E2630/005E2730, vec3 motion
- only; real borrowed physics90/005E2510 receiver required. No generic factory.
- Module13 is positional, with no per-actor type/ID.00476A50 recomputes Human
- counters/selection;006E0890/0B70 streams proximity entries/speeds/bucket pairs,
- not a deferred-reference table. NullActor33 delegates base, not no-op.
-- Human1001 retires/recreates B0 before1003;1002 receiver is inline98,
- 1004 pointed B4 (instruction-confirmed). Mounted target identities already
- exist. Car packed version10 remains the largest actor-format gap.
-- Four actual item44/48 pairs and nested ownership now mapped. Common writer
- emits102/103 but reader recognizes202/203; jump table/instructions confirm
- this asymmetry. Preserve it explicitly. Items007DC6E0 is a borrowed index,
- not owner transfer; partial nested failure can leave a registered prefix.
-- Script4 reads BEFORE Team11/runtime12/Actors13. Loaded-world identity and
- frame availability precede Script, not actor payload replay.2700 is compiled
- Whenever period/elapsed/enabled,2500 Gosub returns,2450 frame-slot names.
- Scalars now map to actual PC/signals/Delay/flags. Preserve confirmed0x400 current
- globals. Pending animation receiver, rotations and derived contexts remain.
-- Mode/store/current aggregate and frontend006B7410/last path006B7D30 mapped;
- stock quantity follows the closed index chunk. No ignored return proves success.
-- Offline result→transition→shutdown extracts SAME Human/squad before world
- destruction. Debrief activation0068CCF0/0068CB70 produces ranks/medals; accept/
- leave0068C300 commits them. Exact rank thresholds, medal precedence/uniqueness,
- consumed-delta clearing and nine-draw redistribution recovered. One zero-mean
- update still draws. Whole lifecycle is not idempotent merely because deltas clear.
+Evidence:257 fingerprinted exports, seven new targeted Car support exports.
+Prior indices retained. New assembly anchors cover size accumulation, byte
+quantization, short-name hashing and24E0 receiver. Full exports/disassembly remain
+ignored or temporary, outside Git. Heavy Ghidra was sequential readOnly/noanalysis.
+[Verification](evidence/verification.json): direct header copy fields independently
+matched assembly, field nonoverlap/padding/wheel extent, constants, new export and
+anchor digests, deterministic graph/provenance/dependency validation. Graph320 nodes,
+659 edges, unchanged schema1 with new catalog groups and sidecar documented in README.
+This branch contains newer main-agent commits; exporter now reads ledger/source
+mentions from the actual pinned Git snapshot. Optional revision on evidence/inputs
+is documented. Previous HEAD-dependent joins must not be used to refresh status.
+No codec execution against original save files, runtime equivalence or desktop test.
 
-Ready bounded source work: identity registry/proximity/positional dispatch,
-mode-stock/current globals, base/item payload formats, context scalar/reference/
-Gosub/Whenever format and result arithmetic. Mandatory owners and transitive
-requirements remain in child batches; live/quick/restart/frontend commands are
-NOT ready to enable wholesale. Preserve module order, partial mutation and real
-cleanup; no successful placeholder, idle context or empty inventory substitute.
+Next research boundary, in order:
 
-Next research in priority order:
+1.004F8510 tipped-pose correction004F8600..004F89EF: match x87 AngleTo gate,
+ source axes, basis reconstruction and normalize branches against instructions.
+ Then verify real mesh clone/lock/invalidate and part post-read receiver semantics;
+ the byte format is closed, whole Car restore is not. Resolve actual producers of
+24E0 fields without assuming seats. Reuse existing Car loading/mass/deformation owners.
+2. Human ordinary00576FE0/005774A0 command leaves, Guard/Script/Active extensions,
+ inline98 animation0077FE20/00780100,00783FD0/00784310,007938C0/00794430.
+ Player payload discovery need not repeat; common B0 and actual control tail remain.
+3. Pending Script2600 tick receiver, rotations/frame animation and derived context
+ bytes. Existing tick rejects pending_pc!=-1; module4 stays before11/12/13 replay.
+4. Remaining demonstrated nonempty module consumers and optional missionA8;
+ full GameData/HumanStore, reset0069C390 and failed activation/repeat shutdown.
+006B7410/006B7D30 are already mapped; reopen only their unknown called leaves.
+5. P2.7 repeated activation/modal gates, protection producers, PRNG seed lifetime.
+ Rank/medal/nine-draw arithmetic and producer order are already confirmed.
 
-1. Car004F7650/004F8510 exact variable solver layout (size004F7300), part/seat
- leaves; Human B0 command/AI/input plus inline98 animation leaves. Reuse recovered
- outer streams and item payloads, do not repeat dispatch discovery.
-2. Actual pending animation2600 tick receiver; Script rotation/frame animation
- persistence and derived context kind1/2 byte consumers. Existing tick rejects
- pending_pc!=-1; scalar persistence alone cannot enable it.
-3. Remaining nonempty module consumers: Tracks00401B20; Items0078B240/7F0;
- Team controllers; Sound backend; Versions apply; LMaps0048D270; Particles004428E0/
- 00442C80; populated projectile writer if reached. Optional missionA8+10/+14
- remains unresolved. Preserve genuine no-op/reset-only classifications.
-4. Full GameData/HumanStore and legacy aggregate case2, reset0069C390 and failed
- activation/shutdown tails; cleanup/repeat paths before enabling frontend resume.
-5. P2.7 repeated debrief activation/modal gates, protection-table producers,
- original PRNG seed/state lifetime. Arithmetic and producer are mapped; do not
- replace them or assume ignored save writes succeeded.
-
-Export remains schema1, documented additive batch_ids and virtual dispatches
-array (shared targets retain all selectors). Stable nodes/edges and source SHA
-preserved. Regenerate: `python3 analysis/future-dependencies/export_graph.py`.
-Do not refresh implementation claims without deliberately selecting a new source
-SHA and ledger. No permanent gameplay tests or source implementations added.
+Regenerate graph with `python3 analysis/future-dependencies/export_graph.py`.
+Research readiness does not promote implementation readiness; Car layout group
+remains implementation-blocked on real owners/integration. Explicit native length,
+count/index/cleanup guards and zero padding are sensible deviations, not original
+atomic rollback or proven successful recovery.

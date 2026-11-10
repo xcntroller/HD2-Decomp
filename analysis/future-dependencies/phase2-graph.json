@@ -858,6 +858,29 @@
           "evidence_state": "verified",
           "provenance": [
             {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:0c4458aee5c5264ced14e16d43c61ba04e8c2e3452977671d03df8b2e26e1200",
+        "source": "subsystem:future:car_restore",
+        "target": "function:client:004f5840",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
               "path": "analysis/future-dependencies/p2.6-actor-persistence.md"
             },
             {
@@ -1984,6 +2007,29 @@
           "evidence_state": "verified",
           "provenance": [
             {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:209ad757e6528ed2764a81e3dfefcef3b6829d71a7cf60310d87dbdfbbccf489",
+        "source": "subsystem:future:car_layout",
+        "target": "function:client:004f7300",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
               "path": "analysis/future-dependencies/p2.6-save-load.md"
             }
           ],
@@ -2741,6 +2787,52 @@
         "data": {
           "basis": "explicit",
           "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:2db942eada3a5b353accf9756bbad35f41d11b6b04164700b430eee1e92a0917",
+        "source": "subsystem:future:car_layout",
+        "target": "function:client:004f41f0",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-human-state-leaves.md"
+            },
+            {
+              "json_pointer": "/contracts/16",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "contains_subsystem"
+        },
+        "id": "relationship:2de813ddc3540f767ea1e515325c4e6a0893995a527463c7fb9a533c47a240d3",
+        "source": "milestone:P2.6",
+        "target": "subsystem:future:human_player",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
           "call_sites": [
             "00425c33"
           ],
@@ -3436,6 +3528,29 @@
           "evidence_state": "verified",
           "provenance": [
             {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:35d3fd424504e7511f52603631ce4e5c5bdbafc889b9a7fb52959d3004592703",
+        "source": "subsystem:future:car_layout",
+        "target": "function:client:004f7650",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
               "path": "analysis/future-dependencies/p2.6-save-load.md"
             }
           ],
@@ -3444,6 +3559,29 @@
         "id": "relationship:35d6fd9fd02300997770617e35ab79397516f07a1122a6125e1ee0e69a4d7028",
         "source": "subsystem:future:application_persistence",
         "target": "function:client:006b7410",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "contains_subsystem"
+        },
+        "id": "relationship:37f7703e4d6f28ba24689e13be42dbd41eea7a5e479f5f6187e81813cbc075f3",
+        "source": "milestone:P2.6",
+        "target": "subsystem:future:car_restore",
         "type": "relationship"
       },
       {
@@ -3828,6 +3966,29 @@
         "data": {
           "basis": "explicit",
           "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-human-state-leaves.md"
+            },
+            {
+              "json_pointer": "/contracts/16",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:3fde8f7df5ece2e2233a61acdbd9346a05e1e0540ccbdf9717c05f7ac5d7a946",
+        "source": "subsystem:future:human_player",
+        "target": "function:client:005464b0",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
           "call_sites": [
             "00605335"
           ],
@@ -4035,6 +4196,29 @@
         "id": "relationship:4326b3357c8e13390fad5923caf17ac7f7c9e030388c1a1c91823c338cd48f71",
         "source": "function:client:0068ce00",
         "target": "function:client:006b9680",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "call_sites": [
+            "004f853c"
+          ],
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "json_pointer": "/exports/123/direct_calls",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            }
+          ],
+          "relationship": "direct_call"
+        },
+        "id": "relationship:435eadce286f9d0d484268013b1a1e95dd60b03c3e54209ee66ba8d12851b5fb",
+        "source": "function:client:004f8510",
+        "target": "function:client:004e95b0",
         "type": "relationship"
       },
       {
@@ -5681,6 +5865,29 @@
         "data": {
           "basis": "explicit",
           "blocking": false,
+          "call_sites": [
+            "004f432b"
+          ],
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "json_pointer": "/exports/255/direct_calls",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            }
+          ],
+          "relationship": "direct_call"
+        },
+        "id": "relationship:614cfa90bc52ba182e6abc841b37cd5bf08a50794cf5f56781c64dc1ef73fcba",
+        "source": "function:client:004f42f0",
+        "target": "function:client:004f41f0",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
           "condition": "Catalogue-selected actual item family basic",
           "confidence": "confirmed",
           "dispatches": [
@@ -6647,6 +6854,29 @@
           "basis": "explicit",
           "blocking": false,
           "call_sites": [
+            "004f7dd2"
+          ],
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "json_pointer": "/exports/122/direct_calls",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            }
+          ],
+          "relationship": "direct_call"
+        },
+        "id": "relationship:718c0f24e7f0a43924a9f648ce62374b1a1b8d767ece6c343b37a816e3eaa344",
+        "source": "function:client:004f7650",
+        "target": "function:client:004f41f0",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "call_sites": [
             "005e2b05"
           ],
           "condition": null,
@@ -6788,6 +7018,29 @@
         "id": "relationship:7374026a5435a89fb3f7381eb9e4dde8b2b3295baa1bf5da626af1ad17c9f805",
         "source": "subsystem:future:actor_items",
         "target": "function:client:007de3e0",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:7499ac0fb38642fb3b7e0d6d36f35395e172744c13201f13b16072c7fb80b9cc",
+        "source": "subsystem:future:car_layout",
+        "target": "function:client:004f42f0",
         "type": "relationship"
       },
       {
@@ -6970,6 +7223,29 @@
         "id": "relationship:789c00f5291d553ed7de7a469851ca409c77cf5c34a0a2beb0fad2061c62d0eb",
         "source": "function:client:004dd350",
         "target": "function:client:004e0f70",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:78a80dd15b133895a4a5c98971b1d14e4bb699998b992a2e97aa4b73059dd526",
+        "source": "subsystem:future:car_restore",
+        "target": "function:client:004e98c0",
         "type": "relationship"
       },
       {
@@ -7609,6 +7885,29 @@
         "data": {
           "basis": "explicit",
           "blocking": false,
+          "call_sites": [
+            "004f8f8e"
+          ],
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "json_pointer": "/exports/123/direct_calls",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            }
+          ],
+          "relationship": "direct_call"
+        },
+        "id": "relationship:827c87f40df9244021c0783fb7fd8982758c605d3c4a364bdefb9bda314c84dc",
+        "source": "function:client:004f8510",
+        "target": "function:client:004f5840",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
           "condition": "Catalogue-selected actual item family pack",
           "confidence": "confirmed",
           "dispatches": [
@@ -7681,6 +7980,29 @@
         "id": "relationship:839cfde961e111dbb50557389764e51e96e0d229c8dff9aa3352cd7fd718c0ec",
         "source": "function:client:006997b0",
         "target": "function:client:0069c390",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:8564b980c45c28e58de44782922da55acb2ad6d8b83285b2063f9b3b3e0e0d31",
+        "source": "subsystem:future:car_restore",
+        "target": "function:client:004e0f70",
         "type": "relationship"
       },
       {
@@ -8336,6 +8658,29 @@
         "id": "relationship:8e69fd553e7d933f2e4d81dbb01fd98294f386ef596ad3974234049c146cfca4",
         "source": "function:client:00680680",
         "target": "function:client:0069c280",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:8e9918fc8e28a072d58cbeae127be91157ba2319f45c6eb43cc570541990daec",
+        "source": "subsystem:future:car_layout",
+        "target": "function:client:004f4040",
         "type": "relationship"
       },
       {
@@ -9151,6 +9496,29 @@
           "basis": "explicit",
           "blocking": false,
           "call_sites": [
+            "004f9169"
+          ],
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "json_pointer": "/exports/123/direct_calls",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            }
+          ],
+          "relationship": "direct_call"
+        },
+        "id": "relationship:9c8acf959166280545f657d9aba64477b0ec3766fb1e6b9be89095e06cfb47a9",
+        "source": "function:client:004f8510",
+        "target": "function:client:004f42f0",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "call_sites": [
             "00698fa7",
             "00699004"
           ],
@@ -9650,6 +10018,29 @@
         "id": "relationship:a5cfe1ee36ea39a11416eca2a514f2a394f2f0c23f5e4ba403402a9af94e6aac",
         "source": "subsystem:future:world_identity",
         "target": "function:client:00475c50",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:a6a32a40b62d00627520e0b661b87e9c1a753991e9fb3e3ae3d290ae994c01fd",
+        "source": "subsystem:future:car_restore",
+        "target": "function:client:004c68b0",
         "type": "relationship"
       },
       {
@@ -11575,6 +11966,29 @@
       {
         "data": {
           "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:c408398287990fda25b7f4188d3b3cc446c33999848a9fffdf5f6d4e4833a24a",
+        "source": "subsystem:future:car_restore",
+        "target": "function:client:004c6660",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
           "blocking": true,
           "condition": "Loaded actual mission actors/frame and catalog owners are the external prerequisite",
           "confidence": "confirmed",
@@ -11908,6 +12322,29 @@
       {
         "data": {
           "basis": "explicit",
+          "blocking": true,
+          "condition": "Correct variable byte boundaries and quantizers precede replay into existing Car owners",
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/relationships/18",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "depends_on"
+        },
+        "id": "relationship:c9bb81af3ae5d7aba22bc515cf3592c010e54c0f2893fe340fc5679e7d8dd4fc",
+        "source": "subsystem:future:car_layout",
+        "target": "subsystem:future:car_restore",
+        "type": "dependency"
+      },
+      {
+        "data": {
+          "basis": "explicit",
           "blocking": false,
           "condition": null,
           "confidence": "confirmed",
@@ -12157,6 +12594,29 @@
         "data": {
           "basis": "explicit",
           "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:ce76a3ecc9d84481b0a7a85f480b83171dd5063aa590a6ac01627186f3f514ed",
+        "source": "subsystem:future:car_layout",
+        "target": "function:client:004f8510",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
           "condition": "Catalogue-selected actual item family weapon",
           "confidence": "confirmed",
           "dispatches": [
@@ -12356,6 +12816,29 @@
         "data": {
           "basis": "explicit",
           "blocking": false,
+          "call_sites": [
+            "004f7c4c"
+          ],
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "json_pointer": "/exports/122/direct_calls",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            }
+          ],
+          "relationship": "direct_call"
+        },
+        "id": "relationship:d20d09c104710ffac2e0f6de886d2c01c6b104fbb141062332b42345d5af9f48",
+        "source": "function:client:004f7650",
+        "target": "function:client:004f4040",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
           "condition": null,
           "confidence": "confirmed",
           "evidence_state": "verified",
@@ -12476,6 +12959,29 @@
         "id": "relationship:d3a8f2aaed11a6df0216d71ae581ccba7073421d6da492c485411864e4c6019a",
         "source": "milestone:P2.7",
         "target": "subsystem:future:world_identity",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "call_sites": [
+            "004e9862"
+          ],
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "json_pointer": "/exports/250/direct_calls",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            }
+          ],
+          "relationship": "direct_call"
+        },
+        "id": "relationship:d4f69fe53943bf011b45bbf3543f7d56f9f20bd05f253d31c708e6689bd05f9e",
+        "source": "function:client:004e95b0",
+        "target": "function:client:004f5840",
         "type": "relationship"
       },
       {
@@ -13630,6 +14136,29 @@
           "basis": "explicit",
           "blocking": false,
           "call_sites": [
+            "004f89ae"
+          ],
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "json_pointer": "/exports/123/direct_calls",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            }
+          ],
+          "relationship": "direct_call"
+        },
+        "id": "relationship:e6bba219b4c2a0eac060f66b165428c33d994e70d8cdbb27ad188bed3fbac906",
+        "source": "function:client:004f8510",
+        "target": "function:client:004e98c0",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "call_sites": [
             "006b6f26"
           ],
           "condition": null,
@@ -13711,6 +14240,29 @@
         "id": "relationship:e7f9c6f48ee1ebdb8b5d97b900297ba839f2e5056e71705f5beafcac4070be90",
         "source": "function:client:006a2940",
         "target": "function:client:006a27c0",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-human-state-leaves.md"
+            },
+            {
+              "json_pointer": "/contracts/16",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:e83846f2834c8d555f9e46188bdfd98b504b27e0fc3624d8c5c1450c206a87bc",
+        "source": "subsystem:future:human_player",
+        "target": "function:client:005461f0",
         "type": "relationship"
       },
       {
@@ -13819,6 +14371,29 @@
         "id": "relationship:ea79b455fa36a0e59e5f30a1c2d0db6824b50bbdacd465bdf05e976e9dcb5927",
         "source": "function:client:00475a70",
         "target": "function:client:00610230",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:ea9e78b997030fd69d3c918f2d3fcb79b4b8da3858ed65c02560f3b7176325f3",
+        "source": "subsystem:future:car_restore",
+        "target": "function:client:004e95b0",
         "type": "relationship"
       },
       {
@@ -14613,6 +15188,29 @@
       },
       {
         "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "contains_subsystem"
+        },
+        "id": "relationship:f563dcc09393a4f5bd0ace1d79407710b6f97851400b3b3ded999c932c077369",
+        "source": "milestone:P2.6",
+        "target": "subsystem:future:car_layout",
+        "type": "relationship"
+      },
+      {
+        "data": {
           "actor_type": 8,
           "basis": "explicit",
           "blocking": false,
@@ -14760,6 +15358,29 @@
         "data": {
           "basis": "explicit",
           "blocking": false,
+          "call_sites": [
+            "004f8fce"
+          ],
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "json_pointer": "/exports/123/direct_calls",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            }
+          ],
+          "relationship": "direct_call"
+        },
+        "id": "relationship:fb0a90f45d803c927002d61ded11ca562b43a0d98bcc6c96d0034796e7638e2c",
+        "source": "function:client:004f8510",
+        "target": "function:client:004f4110",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
           "condition": null,
           "confidence": "confirmed",
           "evidence_state": "verified",
@@ -14819,6 +15440,29 @@
         "id": "relationship:fbe0f19d16ae10998bd3385780d49914cfdd5a162f166d8abccbda74eb25bef0",
         "source": "function:client:007de700",
         "target": "function:client:007de700",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "call_sites": [
+            "004e9d68"
+          ],
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "json_pointer": "/exports/251/direct_calls",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            }
+          ],
+          "relationship": "direct_call"
+        },
+        "id": "relationship:fc249a7bd18384cf92fc32319ad43b2a560b3a2703978e5f8f6d2032bbe4d839",
+        "source": "function:client:004e98c0",
+        "target": "function:client:004f5840",
         "type": "relationship"
       },
       {
@@ -14907,6 +15551,52 @@
         "id": "relationship:fdcd06eddd63c1b46430a28c8cd7c1cf7fb3ae4af27a191272f7bf75eaf2c37c",
         "source": "subsystem:future:identity",
         "target": "function:client:007ddcb0",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:fddbe9e4df92a833eecbf2e3ae8b6f9036768014c976049fa509a9b51972a789",
+        "source": "subsystem:future:car_layout",
+        "target": "function:client:004f4110",
+        "type": "relationship"
+      },
+      {
+        "data": {
+          "basis": "explicit",
+          "blocking": false,
+          "condition": null,
+          "confidence": "confirmed",
+          "evidence_state": "verified",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "relationship": "original_function_reference"
+        },
+        "id": "relationship:fe1f0cd05b9a0203616993a3fbc756111b60f22c80bfc83a2c4bfa9616e87117",
+        "source": "subsystem:future:car_restore",
+        "target": "function:client:004e1230",
         "type": "relationship"
       },
       {
@@ -15647,7 +16337,8 @@
             },
             {
               "json_pointer": "/functions/1643",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/8",
@@ -15662,12 +16353,14 @@
             {
               "line": 97,
               "path": "recovered/game/mission_script_context.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 43,
               "path": "recovered/game/mission_script_loading_runtime.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -15693,7 +16386,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1643",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -15740,7 +16434,8 @@
             },
             {
               "json_pointer": "/functions/1644",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/8",
@@ -15756,12 +16451,14 @@
             {
               "line": 112,
               "path": "recovered/game/mission_script_context.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 39,
               "path": "recovered/game/mission_script_loading_runtime.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -15787,7 +16484,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1644",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -15834,7 +16532,8 @@
             },
             {
               "json_pointer": "/functions/1648",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/8",
@@ -15849,12 +16548,14 @@
             {
               "line": 40,
               "path": "recovered/game/human_script_context_services.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 55,
               "path": "recovered/game/mission_script_context.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -15880,7 +16581,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1648",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -15927,7 +16629,8 @@
             },
             {
               "json_pointer": "/functions/1659",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/8",
@@ -15942,7 +16645,8 @@
             {
               "line": 9,
               "path": "recovered/game/mission_script_context.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -15968,7 +16672,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1659",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -16292,7 +16997,8 @@
             },
             {
               "json_pointer": "/functions/1663",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -16304,37 +17010,44 @@
             {
               "line": 38,
               "path": "recovered/game/human_script_context_services.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 9,
               "path": "recovered/game/mission_script_actor_bindings.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 25,
               "path": "recovered/game/mission_script_actor_context.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 10,
               "path": "recovered/game/mission_script_bindings.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 10,
               "path": "recovered/game/mission_script_contexts.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 24,
               "path": "recovered/game/mission_script_contexts.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 50,
               "path": "recovered/game/mission_script_module_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -16360,7 +17073,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1663",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -17611,7 +18325,8 @@
             },
             {
               "json_pointer": "/functions/1530",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/0",
@@ -17626,12 +18341,14 @@
             {
               "line": 74,
               "path": "recovered/game/session_activation.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 120,
               "path": "recovered/host/game_scene_actors.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -17657,7 +18374,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1530",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -17702,7 +18420,8 @@
             },
             {
               "json_pointer": "/functions/1396",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/0",
@@ -17717,12 +18436,14 @@
             {
               "line": 14,
               "path": "recovered/game/scene_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 115,
               "path": "recovered/host/game_scene_actors.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -17748,7 +18469,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1396",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -17866,7 +18588,8 @@
             },
             {
               "json_pointer": "/functions/1400",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/0",
@@ -17881,12 +18604,14 @@
             {
               "line": 20,
               "path": "recovered/game/actor_frame_data.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 79,
               "path": "recovered/game/scene_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -17912,7 +18637,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1400",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -18052,17 +18778,20 @@
             {
               "line": 9,
               "path": "recovered/game/hud_actor_identity_view.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 136,
               "path": "recovered/game/scene_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 98,
               "path": "recovered/host/game_scene_actors.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "no_ledger_claim",
@@ -18134,7 +18863,8 @@
             },
             {
               "json_pointer": "/functions/1397",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/0",
@@ -18153,12 +18883,14 @@
             {
               "line": 64,
               "path": "recovered/game/human_script_loading_controls.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 15,
               "path": "recovered/game/scene_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -18184,7 +18916,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1397",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -18388,7 +19121,8 @@
             },
             {
               "json_pointer": "/functions/1401",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/0",
@@ -18403,7 +19137,8 @@
             {
               "line": 79,
               "path": "recovered/game/scene_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -18429,7 +19164,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1401",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -18474,7 +19210,8 @@
             },
             {
               "json_pointer": "/functions/1398",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/0",
@@ -18489,12 +19226,14 @@
             {
               "line": 15,
               "path": "recovered/game/scene_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 95,
               "path": "recovered/game/scene_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -18520,7 +19259,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1398",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -18648,7 +19388,8 @@
             },
             {
               "json_pointer": "/functions/1373",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/0",
@@ -18667,17 +19408,20 @@
             {
               "line": 14,
               "path": "recovered/game/placed_item_actor.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 14,
               "path": "recovered/game/runtime_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 12,
               "path": "recovered/host/game_runtime_actors.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -18703,7 +19447,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1373",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -18752,7 +19497,8 @@
             },
             {
               "json_pointer": "/functions/1375",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/0",
@@ -18771,12 +19517,14 @@
             {
               "line": 14,
               "path": "recovered/game/runtime_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 63,
               "path": "recovered/game/runtime_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -18802,7 +19550,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1375",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -18851,7 +19600,8 @@
             },
             {
               "json_pointer": "/functions/1376",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/0",
@@ -18870,12 +19620,14 @@
             {
               "line": 14,
               "path": "recovered/game/runtime_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 71,
               "path": "recovered/game/runtime_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -18901,7 +19653,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1376",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -19242,7 +19995,8 @@
             },
             {
               "json_pointer": "/functions/1460",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/13",
@@ -19257,12 +20011,14 @@
             {
               "line": 30,
               "path": "recovered/game/placed_item_actor.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 49,
               "path": "recovered/host/game_runtime_actors.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -19288,7 +20044,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1460",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -20068,7 +20825,8 @@
             },
             {
               "json_pointer": "/functions/1872",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/11",
@@ -20083,12 +20841,14 @@
             {
               "line": 76,
               "path": "recovered/game/hud_scene_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 78,
               "path": "recovered/game/mission_objective_status.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -20114,7 +20874,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1872",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -20292,7 +21053,8 @@
             },
             {
               "json_pointer": "/functions/898",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/11",
@@ -20307,12 +21069,14 @@
             {
               "line": 24,
               "path": "recovered/game/hud_small_panels_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 78,
               "path": "recovered/game/mission_objective_status.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -20338,7 +21102,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/898",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -20351,10 +21116,12 @@
       {
         "data": {
           "batch_ids": [
-            "B26.actors.car"
+            "B26.actors.car",
+            "B26.actors.car.mesh",
+            "B26.actors.car.restore"
           ],
           "blockers": [
-            "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+            "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
           ],
           "confidence": "confirmed",
           "implementation_limitations": "No ledger claim; absence is not proof of no source",
@@ -20370,7 +21137,7 @@
           "original_addresses": [
             "004c6660"
           ],
-          "owner": "Actual Car solver/model arrays, parts, seats and emitter owners",
+          "owner": "Existing Car and actual model/solver owners",
           "prerequisites": [],
           "priority": "high",
           "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
@@ -20385,13 +21152,17 @@
             {
               "json_pointer": "/contracts/7",
               "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
             }
           ],
           "research_readiness": "partial_contract",
           "source_mapping": [],
           "source_mentions": [],
           "status": "no_ledger_claim",
-          "subsystem": "actor_car",
+          "subsystem": "car_restore",
           "verification_levels": {
             "desktop": {
               "provenance": [],
@@ -20421,10 +21192,12 @@
       {
         "data": {
           "batch_ids": [
-            "B26.actors.car"
+            "B26.actors.car",
+            "B26.actors.car.mesh",
+            "B26.actors.car.restore"
           ],
           "blockers": [
-            "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+            "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
           ],
           "confidence": "confirmed",
           "implementation_limitations": "No ledger claim; absence is not proof of no source",
@@ -20440,7 +21213,7 @@
           "original_addresses": [
             "004c68b0"
           ],
-          "owner": "Actual Car solver/model arrays, parts, seats and emitter owners",
+          "owner": "Existing Car and actual model/solver owners",
           "prerequisites": [],
           "priority": "high",
           "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
@@ -20455,13 +21228,17 @@
             {
               "json_pointer": "/contracts/7",
               "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
             }
           ],
           "research_readiness": "partial_contract",
           "source_mapping": [],
           "source_mentions": [],
           "status": "no_ledger_claim",
-          "subsystem": "actor_car",
+          "subsystem": "car_restore",
           "verification_levels": {
             "desktop": {
               "provenance": [],
@@ -20494,7 +21271,7 @@
             "B26.actors.car"
           ],
           "blockers": [
-            "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+            "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
           ],
           "confidence": "confirmed",
           "implementation_limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
@@ -20524,7 +21301,8 @@
             },
             {
               "json_pointer": "/functions/716",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/7",
@@ -20539,17 +21317,20 @@
             {
               "line": 13,
               "path": "recovered/game/car_scene_actor.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 75,
               "path": "recovered/game/car_scene_actor.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 67,
               "path": "recovered/host/game_actor_services.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -20575,7 +21356,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/716",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -20591,7 +21373,7 @@
             "B26.actors.car"
           ],
           "blockers": [
-            "Outer chunks mapped; variable packed solver layout remains"
+            "Complete packed byte map available; tipped-pose correction and live mesh/collision/part receiver integration remain"
           ],
           "confidence": "confirmed",
           "implementation_limitations": "No ledger claim; absence is not proof of no source",
@@ -20668,7 +21450,7 @@
             "B26.actors.car"
           ],
           "blockers": [
-            "Outer chunks mapped; variable packed solver layout remains"
+            "Complete packed byte map available; tipped-pose correction and live mesh/collision/part receiver integration remain"
           ],
           "confidence": "confirmed",
           "implementation_limitations": "No ledger claim; absence is not proof of no source",
@@ -20742,10 +21524,12 @@
       {
         "data": {
           "batch_ids": [
-            "B26.actors.car"
+            "B26.actors.car",
+            "B26.actors.car.mesh",
+            "B26.actors.car.restore"
           ],
           "blockers": [
-            "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+            "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
           ],
           "confidence": "confirmed",
           "implementation_limitations": "No ledger claim; absence is not proof of no source",
@@ -20761,7 +21545,7 @@
           "original_addresses": [
             "004e0f70"
           ],
-          "owner": "Actual Car solver/model arrays, parts, seats and emitter owners",
+          "owner": "Existing Car and actual model/solver owners",
           "prerequisites": [],
           "priority": "high",
           "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
@@ -20776,13 +21560,17 @@
             {
               "json_pointer": "/contracts/7",
               "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
             }
           ],
           "research_readiness": "partial_contract",
           "source_mapping": [],
           "source_mentions": [],
           "status": "no_ledger_claim",
-          "subsystem": "actor_car",
+          "subsystem": "car_restore",
           "verification_levels": {
             "desktop": {
               "provenance": [],
@@ -20812,10 +21600,12 @@
       {
         "data": {
           "batch_ids": [
-            "B26.actors.car"
+            "B26.actors.car",
+            "B26.actors.car.mesh",
+            "B26.actors.car.restore"
           ],
           "blockers": [
-            "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+            "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
           ],
           "confidence": "confirmed",
           "implementation_limitations": "No ledger claim; absence is not proof of no source",
@@ -20831,7 +21621,7 @@
           "original_addresses": [
             "004e1230"
           ],
-          "owner": "Actual Car solver/model arrays, parts, seats and emitter owners",
+          "owner": "Existing Car and actual model/solver owners",
           "prerequisites": [],
           "priority": "high",
           "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
@@ -20846,13 +21636,17 @@
             {
               "json_pointer": "/contracts/7",
               "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
             }
           ],
           "research_readiness": "partial_contract",
           "source_mapping": [],
           "source_mentions": [],
           "status": "no_ledger_claim",
-          "subsystem": "actor_car",
+          "subsystem": "car_restore",
           "verification_levels": {
             "desktop": {
               "provenance": [],
@@ -20882,10 +21676,536 @@
       {
         "data": {
           "batch_ids": [
-            "B26.actors.car"
+            "B26.actors.car.mesh",
+            "B26.actors.car.restore"
           ],
           "blockers": [
-            "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+            "Tipped-pose x87 correction and actual mesh/collision/part integration; inline24E0 producer semantics"
+          ],
+          "confidence": "confirmed",
+          "implementation_limitations": "No ledger claim; absence is not proof of no source",
+          "implementation_readiness": "blocked",
+          "implementation_status": "no_ledger_claim",
+          "inventory_membership": "unknown",
+          "label": "client:004e95b0",
+          "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+          "milestones": [
+            "P2.6"
+          ],
+          "ordering_constraints": [],
+          "original_addresses": [
+            "004e95b0"
+          ],
+          "owner": "Existing Car and actual model/solver owners",
+          "prerequisites": [],
+          "priority": "high",
+          "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/exports/250",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "research_readiness": "partial_contract",
+          "source_mapping": [],
+          "source_mentions": [],
+          "status": "no_ledger_claim",
+          "subsystem": "car_restore",
+          "verification_levels": {
+            "desktop": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "i386": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "integration": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "native": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "source_recovery": {
+              "provenance": [],
+              "status": "no_ledger_claim"
+            }
+          }
+        },
+        "id": "function:client:004e95b0",
+        "type": "function"
+      },
+      {
+        "data": {
+          "batch_ids": [
+            "B26.actors.car.mesh",
+            "B26.actors.car.restore"
+          ],
+          "blockers": [
+            "Tipped-pose x87 correction and actual mesh/collision/part integration; inline24E0 producer semantics"
+          ],
+          "confidence": "confirmed",
+          "implementation_limitations": "No ledger claim; absence is not proof of no source",
+          "implementation_readiness": "blocked",
+          "implementation_status": "no_ledger_claim",
+          "inventory_membership": "unknown",
+          "label": "client:004e98c0",
+          "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+          "milestones": [
+            "P2.6"
+          ],
+          "ordering_constraints": [],
+          "original_addresses": [
+            "004e98c0"
+          ],
+          "owner": "Existing Car and actual model/solver owners",
+          "prerequisites": [],
+          "priority": "high",
+          "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/exports/251",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "research_readiness": "partial_contract",
+          "source_mapping": [],
+          "source_mentions": [],
+          "status": "no_ledger_claim",
+          "subsystem": "car_restore",
+          "verification_levels": {
+            "desktop": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "i386": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "integration": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "native": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "source_recovery": {
+              "provenance": [],
+              "status": "no_ledger_claim"
+            }
+          }
+        },
+        "id": "function:client:004e98c0",
+        "type": "function"
+      },
+      {
+        "data": {
+          "batch_ids": [
+            "B26.actors.car.layout"
+          ],
+          "blockers": [
+            "Format research complete; readiness still requires real owners and integration"
+          ],
+          "confidence": "confirmed",
+          "implementation_limitations": "No ledger claim; absence is not proof of no source",
+          "implementation_readiness": "blocked",
+          "implementation_status": "no_ledger_claim",
+          "inventory_membership": "unknown",
+          "label": "client:004f4040",
+          "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+          "milestones": [
+            "P2.6"
+          ],
+          "ordering_constraints": [],
+          "original_addresses": [
+            "004f4040"
+          ],
+          "owner": "Existing Car and actual model/solver owners",
+          "prerequisites": [],
+          "priority": "high",
+          "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/exports/252",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "research_readiness": "partial_contract",
+          "source_mapping": [],
+          "source_mentions": [],
+          "status": "no_ledger_claim",
+          "subsystem": "car_layout",
+          "verification_levels": {
+            "desktop": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "i386": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "integration": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "native": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "source_recovery": {
+              "provenance": [],
+              "status": "no_ledger_claim"
+            }
+          }
+        },
+        "id": "function:client:004f4040",
+        "type": "function"
+      },
+      {
+        "data": {
+          "batch_ids": [
+            "B26.actors.car.layout"
+          ],
+          "blockers": [
+            "Format research complete; readiness still requires real owners and integration"
+          ],
+          "confidence": "confirmed",
+          "implementation_limitations": "No ledger claim; absence is not proof of no source",
+          "implementation_readiness": "blocked",
+          "implementation_status": "no_ledger_claim",
+          "inventory_membership": "unknown",
+          "label": "client:004f4110",
+          "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+          "milestones": [
+            "P2.6"
+          ],
+          "ordering_constraints": [],
+          "original_addresses": [
+            "004f4110"
+          ],
+          "owner": "Existing Car and actual model/solver owners",
+          "prerequisites": [],
+          "priority": "high",
+          "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/exports/253",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "research_readiness": "partial_contract",
+          "source_mapping": [],
+          "source_mentions": [],
+          "status": "no_ledger_claim",
+          "subsystem": "car_layout",
+          "verification_levels": {
+            "desktop": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "i386": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "integration": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "native": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "source_recovery": {
+              "provenance": [],
+              "status": "no_ledger_claim"
+            }
+          }
+        },
+        "id": "function:client:004f4110",
+        "type": "function"
+      },
+      {
+        "data": {
+          "batch_ids": [
+            "B26.actors.car.layout"
+          ],
+          "blockers": [
+            "Format research complete; readiness still requires real owners and integration"
+          ],
+          "confidence": "confirmed",
+          "implementation_limitations": "No ledger claim; absence is not proof of no source",
+          "implementation_readiness": "blocked",
+          "implementation_status": "no_ledger_claim",
+          "inventory_membership": "unknown",
+          "label": "client:004f41f0",
+          "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+          "milestones": [
+            "P2.6"
+          ],
+          "ordering_constraints": [],
+          "original_addresses": [
+            "004f41f0"
+          ],
+          "owner": "Existing Car and actual model/solver owners",
+          "prerequisites": [],
+          "priority": "high",
+          "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/exports/254",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "research_readiness": "partial_contract",
+          "source_mapping": [],
+          "source_mentions": [],
+          "status": "no_ledger_claim",
+          "subsystem": "car_layout",
+          "verification_levels": {
+            "desktop": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "i386": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "integration": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "native": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "source_recovery": {
+              "provenance": [],
+              "status": "no_ledger_claim"
+            }
+          }
+        },
+        "id": "function:client:004f41f0",
+        "type": "function"
+      },
+      {
+        "data": {
+          "batch_ids": [
+            "B26.actors.car.layout"
+          ],
+          "blockers": [
+            "Format research complete; readiness still requires real owners and integration"
+          ],
+          "confidence": "confirmed",
+          "implementation_limitations": "No ledger claim; absence is not proof of no source",
+          "implementation_readiness": "blocked",
+          "implementation_status": "no_ledger_claim",
+          "inventory_membership": "unknown",
+          "label": "client:004f42f0",
+          "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+          "milestones": [
+            "P2.6"
+          ],
+          "ordering_constraints": [],
+          "original_addresses": [
+            "004f42f0"
+          ],
+          "owner": "Existing Car and actual model/solver owners",
+          "prerequisites": [],
+          "priority": "high",
+          "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/exports/255",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "research_readiness": "partial_contract",
+          "source_mapping": [],
+          "source_mentions": [],
+          "status": "no_ledger_claim",
+          "subsystem": "car_layout",
+          "verification_levels": {
+            "desktop": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "i386": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "integration": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "native": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "source_recovery": {
+              "provenance": [],
+              "status": "no_ledger_claim"
+            }
+          }
+        },
+        "id": "function:client:004f42f0",
+        "type": "function"
+      },
+      {
+        "data": {
+          "batch_ids": [
+            "B26.actors.car.mesh",
+            "B26.actors.car.restore"
+          ],
+          "blockers": [
+            "Tipped-pose x87 correction and actual mesh/collision/part integration; inline24E0 producer semantics"
+          ],
+          "confidence": "confirmed",
+          "implementation_limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
+          "implementation_readiness": "blocked",
+          "implementation_status": "partial",
+          "inventory_membership": "unknown",
+          "label": "client:004f5840",
+          "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+          "milestones": [
+            "P2.6"
+          ],
+          "ordering_constraints": [],
+          "original_addresses": [
+            "004f5840"
+          ],
+          "owner": "Existing Car and actual model/solver owners",
+          "prerequisites": [],
+          "priority": "high",
+          "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/exports/256",
+              "path": "analysis/future-dependencies/evidence/manifest.json"
+            },
+            {
+              "json_pointer": "/functions/1763",
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "research_readiness": "partial_contract",
+          "source_mapping": [
+            "recovered/game/car_collision_loading.h"
+          ],
+          "source_mentions": [
+            {
+              "line": 7,
+              "path": "recovered/game/car_collision_loading.h",
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
+            },
+            {
+              "line": 37,
+              "path": "recovered/game/car_collision_loading.h",
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
+            },
+            {
+              "line": 45,
+              "path": "recovered/game/car_collision_loading.h",
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
+            }
+          ],
+          "status": "partial",
+          "subsystem": "car_restore",
+          "verification_levels": {
+            "desktop": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "i386": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "integration": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "native": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "source_recovery": {
+              "provenance": [
+                {
+                  "json_pointer": "/functions/1763",
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
+                }
+              ],
+              "status": "partial"
+            }
+          }
+        },
+        "id": "function:client:004f5840",
+        "type": "function"
+      },
+      {
+        "data": {
+          "batch_ids": [
+            "B26.actors.car",
+            "B26.actors.car.layout"
+          ],
+          "blockers": [
+            "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
           ],
           "confidence": "confirmed",
           "implementation_limitations": "No ledger claim; absence is not proof of no source",
@@ -20901,7 +22221,7 @@
           "original_addresses": [
             "004f7300"
           ],
-          "owner": "Actual Car solver/model arrays, parts, seats and emitter owners",
+          "owner": "Existing Car and actual model/solver owners",
           "prerequisites": [],
           "priority": "high",
           "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
@@ -20916,13 +22236,17 @@
             {
               "json_pointer": "/contracts/7",
               "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
             }
           ],
           "research_readiness": "partial_contract",
           "source_mapping": [],
           "source_mentions": [],
           "status": "no_ledger_claim",
-          "subsystem": "actor_car",
+          "subsystem": "car_layout",
           "verification_levels": {
             "desktop": {
               "provenance": [],
@@ -20952,10 +22276,11 @@
       {
         "data": {
           "batch_ids": [
-            "B26.actors.car"
+            "B26.actors.car",
+            "B26.actors.car.layout"
           ],
           "blockers": [
-            "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+            "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
           ],
           "confidence": "confirmed",
           "implementation_limitations": "No ledger claim; absence is not proof of no source",
@@ -20971,7 +22296,7 @@
           "original_addresses": [
             "004f7650"
           ],
-          "owner": "Actual Car solver/model arrays, parts, seats and emitter owners",
+          "owner": "Existing Car and actual model/solver owners",
           "prerequisites": [],
           "priority": "high",
           "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
@@ -20986,13 +22311,17 @@
             {
               "json_pointer": "/contracts/7",
               "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
             }
           ],
           "research_readiness": "partial_contract",
           "source_mapping": [],
           "source_mentions": [],
           "status": "no_ledger_claim",
-          "subsystem": "actor_car",
+          "subsystem": "car_layout",
           "verification_levels": {
             "desktop": {
               "provenance": [],
@@ -21022,10 +22351,11 @@
       {
         "data": {
           "batch_ids": [
-            "B26.actors.car"
+            "B26.actors.car",
+            "B26.actors.car.layout"
           ],
           "blockers": [
-            "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+            "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
           ],
           "confidence": "confirmed",
           "implementation_limitations": "No ledger claim; absence is not proof of no source",
@@ -21041,7 +22371,7 @@
           "original_addresses": [
             "004f8510"
           ],
-          "owner": "Actual Car solver/model arrays, parts, seats and emitter owners",
+          "owner": "Existing Car and actual model/solver owners",
           "prerequisites": [],
           "priority": "high",
           "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
@@ -21056,13 +22386,17 @@
             {
               "json_pointer": "/contracts/7",
               "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
             }
           ],
           "research_readiness": "partial_contract",
           "source_mapping": [],
           "source_mentions": [],
           "status": "no_ledger_claim",
-          "subsystem": "actor_car",
+          "subsystem": "car_layout",
           "verification_levels": {
             "desktop": {
               "provenance": [],
@@ -21224,7 +22558,8 @@
       {
         "data": {
           "batch_ids": [
-            "B26.actors.human"
+            "B26.actors.human",
+            "B26.actors.human.player"
           ],
           "blockers": [
             "Remaining nested command, AI and input leaf interpretation"
@@ -21243,7 +22578,7 @@
           "original_addresses": [
             "005461f0"
           ],
-          "owner": "State family selected and constructed by005A3F20 after retiring old B0; same owning Human",
+          "owner": "Human-owned concrete Player B0 state",
           "prerequisites": [],
           "priority": "high",
           "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
@@ -21258,13 +22593,17 @@
             {
               "json_pointer": "/contracts/6",
               "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            },
+            {
+              "json_pointer": "/contracts/16",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
             }
           ],
           "research_readiness": "partial_contract",
           "source_mapping": [],
           "source_mentions": [],
           "status": "no_ledger_claim",
-          "subsystem": "human_states",
+          "subsystem": "human_player",
           "verification_levels": {
             "desktop": {
               "provenance": [],
@@ -21294,7 +22633,8 @@
       {
         "data": {
           "batch_ids": [
-            "B26.actors.human"
+            "B26.actors.human",
+            "B26.actors.human.player"
           ],
           "blockers": [
             "Remaining nested command, AI and input leaf interpretation"
@@ -21313,7 +22653,7 @@
           "original_addresses": [
             "005464b0"
           ],
-          "owner": "State family selected and constructed by005A3F20 after retiring old B0; same owning Human",
+          "owner": "Human-owned concrete Player B0 state",
           "prerequisites": [],
           "priority": "high",
           "priority_reason": "Persistence can constrain actor/VM identity and lifecycle",
@@ -21328,13 +22668,17 @@
             {
               "json_pointer": "/contracts/6",
               "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            },
+            {
+              "json_pointer": "/contracts/16",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
             }
           ],
           "research_readiness": "partial_contract",
           "source_mapping": [],
           "source_mentions": [],
           "status": "no_ledger_claim",
-          "subsystem": "human_states",
+          "subsystem": "human_player",
           "verification_levels": {
             "desktop": {
               "provenance": [],
@@ -22387,7 +23731,8 @@
             },
             {
               "json_pointer": "/functions/623",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/5",
@@ -22403,12 +23748,14 @@
             {
               "line": 11,
               "path": "recovered/game/actor_initial_properties.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 21,
               "path": "recovered/game/human_scene_actor.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -22434,7 +23781,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/623",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -22858,7 +24206,8 @@
             },
             {
               "json_pointer": "/functions/1139",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/5",
@@ -22873,37 +24222,44 @@
             {
               "line": 8,
               "path": "recovered/game/human_area_ai_state_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 9,
               "path": "recovered/game/human_guard_ai_state_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 8,
               "path": "recovered/game/human_passive_states_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 20,
               "path": "recovered/game/human_passive_states_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 11,
               "path": "recovered/game/human_player_state_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 8,
               "path": "recovered/game/human_script_ai_state_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 14,
               "path": "recovered/game/human_state_loading_owner.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -22929,7 +24285,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1139",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -23185,7 +24542,8 @@
             },
             {
               "json_pointer": "/functions/1873",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/11",
@@ -23200,7 +24558,8 @@
             {
               "line": 16,
               "path": "recovered/game/human_objective_experience.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -23226,7 +24585,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1873",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -23850,7 +25210,8 @@
             },
             {
               "json_pointer": "/functions/743",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/2",
@@ -23865,12 +25226,14 @@
             {
               "line": 12,
               "path": "recovered/game/dynamic_item_actor.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 35,
               "path": "recovered/game/dynamic_item_actor.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -23896,7 +25259,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/743",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -25862,7 +27226,8 @@
             },
             {
               "json_pointer": "/functions/1378",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/0",
@@ -25881,7 +27246,8 @@
             {
               "line": 42,
               "path": "recovered/game/runtime_actor_registry.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -25907,7 +27273,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1378",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -26390,7 +27757,8 @@
             {
               "line": 168,
               "path": "recovered/frontend/pre_mission_flow.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "no_ledger_claim",
@@ -28018,7 +29386,8 @@
             },
             {
               "json_pointer": "/functions/564",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -28031,12 +29400,14 @@
             {
               "line": 11,
               "path": "recovered/frontend/pre_mission_handoff.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 199,
               "path": "recovered/host/game_owner.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -28062,7 +29433,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/564",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -28117,7 +29489,8 @@
             {
               "line": 33,
               "path": "recovered/game/session_owner.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "no_ledger_claim",
@@ -28744,7 +30117,8 @@
             },
             {
               "json_pointer": "/functions/1866",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -28755,12 +30129,14 @@
             {
               "line": 41,
               "path": "recovered/game/mission_integrity_tables.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 12,
               "path": "recovered/game/mission_objective_status.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -28786,7 +30162,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1866",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -28835,7 +30212,8 @@
             },
             {
               "json_pointer": "/functions/1867",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "partial_contract",
@@ -28846,12 +30224,14 @@
             {
               "line": 12,
               "path": "recovered/game/mission_objective_status.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 52,
               "path": "recovered/game/mission_objective_status.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -28877,7 +30257,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1867",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -28922,7 +30303,8 @@
             },
             {
               "json_pointer": "/functions/1868",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -28933,7 +30315,8 @@
             {
               "line": 52,
               "path": "recovered/game/mission_objective_status.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -28959,7 +30342,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1868",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -29004,7 +30388,8 @@
             },
             {
               "json_pointer": "/functions/1869",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -29015,7 +30400,8 @@
             {
               "line": 37,
               "path": "recovered/game/mission_objective_status.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -29041,7 +30427,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1869",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -29637,7 +31024,8 @@
             },
             {
               "json_pointer": "/functions/179",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "partial_contract",
@@ -29669,7 +31057,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/179",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -29862,7 +31251,8 @@
             },
             {
               "json_pointer": "/functions/461",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "partial_contract",
@@ -29873,7 +31263,8 @@
             {
               "line": 29,
               "path": "recovered/frontend/pre_mission_inventory.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -29899,7 +31290,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/461",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -29945,7 +31337,8 @@
             },
             {
               "json_pointer": "/functions/462",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/11",
@@ -29960,7 +31353,8 @@
             {
               "line": 39,
               "path": "recovered/frontend/pre_mission_inventory.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -29986,7 +31380,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/462",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -30751,7 +32146,8 @@
             },
             {
               "json_pointer": "/functions/466",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/9",
@@ -30766,7 +32162,8 @@
             {
               "line": 66,
               "path": "recovered/frontend/pre_mission_inventory.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -30792,7 +32189,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/466",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -31194,7 +32592,8 @@
             },
             {
               "json_pointer": "/functions/215",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -31210,7 +32609,8 @@
             {
               "line": 161,
               "path": "recovered/frontend/profile_load.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -31236,7 +32636,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/215",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -31278,7 +32679,8 @@
             },
             {
               "json_pointer": "/functions/216",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -31294,7 +32696,8 @@
             {
               "line": 134,
               "path": "recovered/frontend/profile_load.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -31320,7 +32723,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/216",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -32625,7 +34029,8 @@
             },
             {
               "json_pointer": "/functions/481",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -32636,17 +34041,20 @@
             {
               "line": 9,
               "path": "recovered/frontend/pre_mission_handoff.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 257,
               "path": "recovered/frontend/pre_mission_route.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 14,
               "path": "recovered/game/session_owner.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -32672,7 +34080,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/481",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -32714,7 +34123,8 @@
             },
             {
               "json_pointer": "/functions/483",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -32725,7 +34135,8 @@
             {
               "line": 163,
               "path": "recovered/frontend/pre_mission_route.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -32751,7 +34162,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/483",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -32793,7 +34205,8 @@
             },
             {
               "json_pointer": "/functions/106",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -32806,22 +34219,26 @@
             {
               "line": 104,
               "path": "recovered/frontend/application_controller.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 196,
               "path": "recovered/frontend/application_states.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 9,
               "path": "recovered/frontend/pre_mission_handoff.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 10,
               "path": "recovered/game/receive_request.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -32847,7 +34264,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/106",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -32893,7 +34311,8 @@
             },
             {
               "json_pointer": "/functions/108",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "partial_contract",
@@ -32908,32 +34327,38 @@
             {
               "line": 126,
               "path": "recovered/frontend/application_controller.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 213,
               "path": "recovered/frontend/application_controller.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 32,
               "path": "recovered/frontend/opening_playback.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 9,
               "path": "recovered/frontend/opening_video.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 216,
               "path": "recovered/frontend/pre_mission_route.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 233,
               "path": "recovered/frontend/pre_mission_route.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -32959,7 +34384,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/108",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -33417,7 +34843,8 @@
             },
             {
               "json_pointer": "/functions/214",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "address_or_existing_contract_only",
@@ -33433,7 +34860,8 @@
             {
               "line": 86,
               "path": "recovered/frontend/profile_load.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -33459,7 +34887,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/214",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -33510,7 +34939,8 @@
             },
             {
               "json_pointer": "/functions/295",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "research_readiness": "partial_contract",
@@ -33521,17 +34951,20 @@
             {
               "line": 8,
               "path": "recovered/frontend/application_frame.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 24,
               "path": "recovered/frontend/cleanup.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 12,
               "path": "recovered/host/frame_clock.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -33557,7 +34990,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/295",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -33803,7 +35237,8 @@
             },
             {
               "json_pointer": "/functions/656",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/1",
@@ -33818,7 +35253,8 @@
             {
               "line": 13,
               "path": "recovered/game/actor_proximity_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -33844,7 +35280,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/656",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -33890,7 +35327,8 @@
             },
             {
               "json_pointer": "/functions/657",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/1",
@@ -33905,7 +35343,8 @@
             {
               "line": 22,
               "path": "recovered/game/actor_proximity_loading.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -33931,7 +35370,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/657",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -34367,7 +35807,8 @@
             },
             {
               "json_pointer": "/functions/1394",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/4",
@@ -34382,7 +35823,8 @@
             {
               "line": 89,
               "path": "recovered/game/runtime_item.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -34408,7 +35850,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1394",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -35086,7 +36529,8 @@
             },
             {
               "json_pointer": "/functions/1455",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/4",
@@ -35101,12 +36545,14 @@
             {
               "line": 14,
               "path": "recovered/host/game_mission_items.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "line": 64,
               "path": "recovered/host/game_mission_items.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -35132,7 +36578,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1455",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -35180,7 +36627,8 @@
             },
             {
               "json_pointer": "/functions/1382",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/4",
@@ -35195,7 +36643,8 @@
             {
               "line": 12,
               "path": "recovered/game/runtime_item.h",
-              "relationship": "address_mention_only"
+              "relationship": "address_mention_only",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             }
           ],
           "status": "partial",
@@ -35221,7 +36670,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1382",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -35269,7 +36719,8 @@
             },
             {
               "json_pointer": "/functions/1383",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/4",
@@ -35304,7 +36755,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1383",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -35352,7 +36804,8 @@
             },
             {
               "json_pointer": "/functions/1384",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/4",
@@ -35387,7 +36840,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1384",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -35435,7 +36889,8 @@
             },
             {
               "json_pointer": "/functions/1385",
-              "path": "analysis/function-status.json"
+              "path": "analysis/function-status.json",
+              "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
             },
             {
               "json_pointer": "/contracts/4",
@@ -35470,7 +36925,8 @@
               "provenance": [
                 {
                   "json_pointer": "/functions/1385",
-                  "path": "analysis/function-status.json"
+                  "path": "analysis/function-status.json",
+                  "revision": "52c568964063207b0d15bea8ef98af09f89d84df"
                 }
               ],
               "status": "partial"
@@ -36267,7 +37723,7 @@
             "B26.actors.car"
           ],
           "blockers": [
-            "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+            "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
           ],
           "confidence": "confirmed",
           "implementation_readiness": "blocked",
@@ -36713,6 +38169,147 @@
       {
         "data": {
           "batch_ids": [
+            "B26.actors.car.layout"
+          ],
+          "blockers": [
+            "Format research complete; readiness still requires real owners and integration"
+          ],
+          "confidence": "confirmed",
+          "implementation_readiness": "blocked",
+          "implementation_status": "research_only_no_new_implementation",
+          "label": "Packed version10 byte format and quantization",
+          "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+          "milestones": [
+            "P2.6"
+          ],
+          "ordering_constraints": [],
+          "original_addresses": [
+            "004f7300",
+            "004f7650",
+            "004f8510",
+            "004f4040",
+            "004f4110",
+            "004f41f0",
+            "004f42f0"
+          ],
+          "owner": "Existing Car and actual model/solver owners",
+          "prerequisites": [],
+          "priority": "high",
+          "priority_reason": "User-prioritized remaining actor persistence boundary",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/14",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "research_readiness": "contract_ready",
+          "source_mapping": [],
+          "status": "research_only_no_new_implementation",
+          "subsystem": "car_layout",
+          "verification_levels": {
+            "desktop": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "i386": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "integration": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "native": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "source_recovery": {
+              "provenance": [],
+              "status": "unknown"
+            }
+          }
+        },
+        "id": "subsystem:future:car_layout",
+        "type": "subsystem"
+      },
+      {
+        "data": {
+          "batch_ids": [
+            "B26.actors.car.mesh",
+            "B26.actors.car.restore"
+          ],
+          "blockers": [
+            "Tipped-pose x87 correction and actual mesh/collision/part integration; inline24E0 producer semantics"
+          ],
+          "confidence": "confirmed",
+          "implementation_readiness": "blocked",
+          "implementation_status": "research_only_no_new_implementation",
+          "label": "Car destructive restore and derived world receivers",
+          "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+          "milestones": [
+            "P2.6"
+          ],
+          "ordering_constraints": [],
+          "original_addresses": [
+            "004e95b0",
+            "004e98c0",
+            "004f5840",
+            "004e0f70",
+            "004e1230",
+            "004c6660",
+            "004c68b0"
+          ],
+          "owner": "Existing Car and actual model/solver owners",
+          "prerequisites": [
+            "subsystem:future:car_layout"
+          ],
+          "priority": "high",
+          "priority_reason": "User-prioritized remaining actor persistence boundary",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-car-format.md"
+            },
+            {
+              "json_pointer": "/contracts/15",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "research_readiness": "partial_contract",
+          "source_mapping": [],
+          "status": "research_only_no_new_implementation",
+          "subsystem": "car_restore",
+          "verification_levels": {
+            "desktop": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "i386": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "integration": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "native": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "source_recovery": {
+              "provenance": [],
+              "status": "unknown"
+            }
+          }
+        },
+        "id": "subsystem:future:car_restore",
+        "type": "subsystem"
+      },
+      {
+        "data": {
+          "batch_ids": [
             "B26.identity.dynamic"
           ],
           "blockers": [
@@ -36839,6 +38436,70 @@
           }
         },
         "id": "subsystem:future:envelope",
+        "type": "subsystem"
+      },
+      {
+        "data": {
+          "batch_ids": [
+            "B26.actors.human.player"
+          ],
+          "blockers": [
+            "Format research complete; readiness still requires real owners and integration"
+          ],
+          "confidence": "confirmed",
+          "implementation_readiness": "bounded_contract_available",
+          "implementation_status": "research_only_no_new_implementation",
+          "label": "Player state nested payload",
+          "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+          "milestones": [
+            "P2.6"
+          ],
+          "ordering_constraints": [],
+          "original_addresses": [
+            "005461f0",
+            "005464b0"
+          ],
+          "owner": "Human-owned concrete Player B0 state",
+          "prerequisites": [],
+          "priority": "high",
+          "priority_reason": "User-prioritized remaining actor persistence boundary",
+          "provenance": [
+            {
+              "path": "analysis/future-dependencies/p2.6-human-state-leaves.md"
+            },
+            {
+              "json_pointer": "/contracts/16",
+              "path": "analysis/future-dependencies/evidence/research-contracts.json"
+            }
+          ],
+          "research_readiness": "contract_ready",
+          "source_mapping": [],
+          "status": "research_only_no_new_implementation",
+          "subsystem": "human_player",
+          "verification_levels": {
+            "desktop": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "i386": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "integration": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "native": {
+              "provenance": [],
+              "status": "unknown"
+            },
+            "source_recovery": {
+              "provenance": [],
+              "status": "unknown"
+            }
+          }
+        },
+        "id": "subsystem:future:human_player",
         "type": "subsystem"
       },
       {
@@ -37955,19 +39616,24 @@
   "inputs": [
     {
       "path": "analysis/function-status.json",
+      "revision": "52c568964063207b0d15bea8ef98af09f89d84df",
       "sha256": "7d0ba92e5786b78680aab826b6ef878c561cd441df3fc63095313cc7db831b2a"
     },
     {
       "path": "analysis/future-dependencies/README.md",
-      "sha256": "2a68a7a4b806f08288796473a8aa47b08aa6b191bf7a739a8392c04336ed43aa"
+      "sha256": "f0f3df36fe25b12cf53cf83f78953ec99b379da848bf963aeb915d0ff8e111cf"
     },
     {
       "path": "analysis/future-dependencies/evidence/actor-persistence.json",
-      "sha256": "408906274877304dba820577b4763eb95674aa6c0ff1288f4889e23177f12c8b"
+      "sha256": "460469f84b0ea6509159216799f65f7c29aaf7a837655d247a0f17870aca45a8"
+    },
+    {
+      "path": "analysis/future-dependencies/evidence/car-packed-v10.json",
+      "sha256": "0d4341af163b682558b9b941cb3277843b7ffa7f59715e89289e378dd39c405b"
     },
     {
       "path": "analysis/future-dependencies/evidence/manifest.json",
-      "sha256": "b98e13ab19aa5687479a2497b5d2cf40a94de452952389cea38c6b523c92cebb"
+      "sha256": "d0cda4102afaeda691b879e0f9c25c8c25a9a4c43ce8a8a2abff35b25565e401"
     },
     {
       "path": "analysis/future-dependencies/evidence/module-persistence.json",
@@ -37975,7 +39641,7 @@
     },
     {
       "path": "analysis/future-dependencies/evidence/research-contracts.json",
-      "sha256": "dbd82f81c386885945ebbf948e1a34b80a8807536ea46474479f1d0e3f1c917f"
+      "sha256": "9846eecd06c1c1233b9eeee5d42481a6ddc181ed980108d83c8d6a336481d7c6"
     },
     {
       "path": "analysis/future-dependencies/evidence/results-arithmetic.json",
@@ -37983,19 +39649,27 @@
     },
     {
       "path": "analysis/future-dependencies/export_graph.py",
-      "sha256": "f49fc61c521dfb04e0fb599e81297440860002a484bbb8ae392832bdc170bae2"
+      "sha256": "da5f4841199edc3433f35309e74054c04933b3056ebfca56cb5a0e0c041a1672"
     },
     {
       "path": "analysis/future-dependencies/implementation-guide.md",
-      "sha256": "53f1135b516d25a6feda5fe8107558c21b0e902c8f0a39de7ff7bf7646874350"
+      "sha256": "39e326905f96fb27617f51f8dba04b4f6c63e89fa0bd2448cac9351e5a4d2a00"
     },
     {
       "path": "analysis/future-dependencies/p2.6-actor-persistence.md",
-      "sha256": "e6413dd352e2a2e12ffb068555c5976ded27683326a292bfc5b10d33a6530086"
+      "sha256": "4e1c622463d5f55e977b9ddecbaea32fbe3b3b74b450bae30c12365443b95df1"
+    },
+    {
+      "path": "analysis/future-dependencies/p2.6-car-format.md",
+      "sha256": "d4270e894b3862c36b1738d0340ff0b4fbafded2027f2f171d384936812a3f6b"
     },
     {
       "path": "analysis/future-dependencies/p2.6-context-layout.md",
       "sha256": "75c688dcb8a17fd0dc06e71132d3a6b3487bd61c535d2882736d733037d75187"
+    },
+    {
+      "path": "analysis/future-dependencies/p2.6-human-state-leaves.md",
+      "sha256": "42e71c2bf342a2d1bfc6aa109dc10d0ae7868bc5987e3c888b734da03b8e6f22"
     },
     {
       "path": "analysis/future-dependencies/p2.6-module-persistence.md",
@@ -38015,7 +39689,7 @@
     },
     {
       "path": "analysis/phase2-delivery-plan.json",
-      "sha256": "02f5116c73af256c768e96660e66bce8319a711c7a2cb27daf6d4fa61605321c"
+      "sha256": "880d41b3ad6c8976b749a0a8cd13d4e3fb803b609e342d9f2f4c37f4477a90ef"
     },
     {
       "path": "tools/progress-analyzer.md",

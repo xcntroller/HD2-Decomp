@@ -21104,6 +21104,229 @@
       "export_path": "analysis/work/future-dependencies/item-runtime-references/005e2510.json",
       "export_sha256": "eb58af7e9cdeb4f331d2faea741cff05f9249adf306b1de0f722a33f3c650698",
       "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 776,
+      "decompilation_sha256": "1d2a62b4c2c453f35941c499016375589833e6cbccb0d662cf086db297120f04",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004e965b",
+          "target": "004fe610"
+        },
+        {
+          "site": "004e96f0",
+          "target": "007e4e72"
+        },
+        {
+          "site": "004e96fd",
+          "target": "007e4e72"
+        },
+        {
+          "site": "004e97ed",
+          "target": "004ecfc0"
+        },
+        {
+          "site": "004e9832",
+          "target": "004ecfc0"
+        },
+        {
+          "site": "004e9853",
+          "target": "004ecfc0"
+        },
+        {
+          "site": "004e9862",
+          "target": "004f5840"
+        },
+        {
+          "site": "004e986e",
+          "target": "007e513c"
+        },
+        {
+          "site": "004e98a0",
+          "target": "004ecfc0"
+        },
+        {
+          "site": "004e98ac",
+          "target": "0051b8f0"
+        }
+      ],
+      "entry": "004e95b0",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004e95b0.json",
+      "export_sha256": "70373a68078fa32c80b30bf894619a3175751ed0ded95d34c76832284f6093a3",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 1253,
+      "decompilation_sha256": "31487b38331d637922009166882d905c1fb826f2ad6b6a12034045d095f227f2",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004e98ee",
+          "target": "007e4e36"
+        },
+        {
+          "site": "004e9929",
+          "target": "007e4e5a"
+        },
+        {
+          "site": "004e99f2",
+          "target": "007e4e36"
+        },
+        {
+          "site": "004e9a29",
+          "target": "007e4e54"
+        },
+        {
+          "site": "004e9a7d",
+          "target": "007e4e72"
+        },
+        {
+          "site": "004e9a8a",
+          "target": "007e4e72"
+        },
+        {
+          "site": "004e9abd",
+          "target": "007e4e36"
+        },
+        {
+          "site": "004e9d5d",
+          "target": "00507a40"
+        },
+        {
+          "site": "004e9d68",
+          "target": "004f5840"
+        }
+      ],
+      "entry": "004e98c0",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004e98c0.json",
+      "export_sha256": "8bce4443ddefe16146f6c450122b18a1962481c6b0bfa470ef79072c31a6ac6b",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 196,
+      "decompilation_sha256": "c5c5727d3e805fd320ea18150d983ff5e65b15dc570288c9e63b38a5d0567572",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004f40a5",
+          "target": "007e5e00"
+        },
+        {
+          "site": "004f40c0",
+          "target": "007e5e00"
+        },
+        {
+          "site": "004f40f1",
+          "target": "007e5e00"
+        }
+      ],
+      "entry": "004f4040",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004f4040.json",
+      "export_sha256": "4f29be3bafd4f6839d112c6f4035014e4eefd40f0ac888147e652aeee66949f0",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 223,
+      "decompilation_sha256": "981c09e889cb25ad3ef6ebd095c2605ee94e38b18614279da49f0f253d0d0831",
+      "decompiled": true,
+      "direct_calls": [],
+      "entry": "004f4110",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004f4110.json",
+      "export_sha256": "fce3dc4e327b1f846f4d6b37259c474ee5606e80b5c29c5062e6945b2f524b35",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 247,
+      "decompilation_sha256": "9033d4d09de4b5ad174bcd4b96349078464e3d06edb6bbf62b34bdbe29ecf556",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004f421f",
+          "target": "007e56d0"
+        }
+      ],
+      "entry": "004f41f0",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004f41f0.json",
+      "export_sha256": "b5b6b26874f23492a0f83c65e5d5be977cfc4106920fb8241d63aa5756179b36",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 89,
+      "decompilation_sha256": "efc21fd8a0025e6e5a294dcddd6a3d0d26f2e455a80e0da85f63afc78a2a80e4",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004f432b",
+          "target": "004f41f0"
+        }
+      ],
+      "entry": "004f42f0",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004f42f0.json",
+      "export_sha256": "d153e9bd0d39f1cb2fc215426237156b48149f0e4bf8694afe65fb83d5b84cff",
+      "program": "client"
+    },
+    {
+      "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "body_bytes": 620,
+      "decompilation_sha256": "bbbbf4c763d4f5db2e363647eab19f56456fc079cdd4079c969acd38554f3f43",
+      "decompiled": true,
+      "direct_calls": [
+        {
+          "site": "004f58ce",
+          "target": "007e4e54"
+        },
+        {
+          "site": "004f592c",
+          "target": "007e4e5a"
+        },
+        {
+          "site": "004f5981",
+          "target": "006ef3e0"
+        },
+        {
+          "site": "004f5994",
+          "target": "006ef7f0"
+        },
+        {
+          "site": "004f59d8",
+          "target": "006ef3e0"
+        },
+        {
+          "site": "004f59e3",
+          "target": "006ef7f0"
+        },
+        {
+          "site": "004f5a13",
+          "target": "006ef5e0"
+        },
+        {
+          "site": "004f5a31",
+          "target": "006ef5e0"
+        },
+        {
+          "site": "004f5a7b",
+          "target": "006ef3e0"
+        },
+        {
+          "site": "004f5a86",
+          "target": "006ef7f0"
+        },
+        {
+          "site": "004f5a9f",
+          "target": "006ef5e0"
+        }
+      ],
+      "entry": "004f5840",
+      "export_path": "analysis/work/future-dependencies/car-packed-support/004f5840.json",
+      "export_sha256": "b433457eeeb07c10f586ec054013cd25a6cd4e67e97a330065f2182baac4969e",
+      "program": "client"
     }
   ],
   "failed_passes": [
@@ -21223,6 +21446,48 @@
       "claim": "First PRNG factor uses x87 FIMUL score mean, FIADD signed cumulative score then __ftol; second draw multiplies zero FLOAT accumulator",
       "end_exclusive": "0068c6ca",
       "start": "0068c673"
+    },
+    {
+      "bytes_sha256": "e9135d5d4db94b1f852ec6df43ad83719652bf14732ab5e0e8e6eb5755f43b4d",
+      "claim": "Size helper counts changed LOD0 vertices and adds4 per entry; decompiler lost accumulator",
+      "end_exclusive": "004f7509",
+      "start": "004f74ec"
+    },
+    {
+      "bytes_sha256": "e9135d5d4db94b1f852ec6df43ad83719652bf14732ab5e0e8e6eb5755f43b4d",
+      "claim": "Size helper also counts LOD1 delta bytes",
+      "end_exclusive": "004f75ee",
+      "start": "004f75d1"
+    },
+    {
+      "bytes_sha256": "0968d28505195ef5ef0e2467ccf665da072a941aa39d6ebc96273b770694b5b9",
+      "claim": "Final size includes live variable byte accumulator in ECX",
+      "end_exclusive": "004f7645",
+      "start": "004f761d"
+    },
+    {
+      "bytes_sha256": "7b6f7afe02e714cbe3deb7b4d2073a16cd74a363cade91bf04c63ff302607e5d",
+      "claim": "10006 writer receiver is inline Car+24E0",
+      "end_exclusive": "004dd6d3",
+      "start": "004dd6c7"
+    },
+    {
+      "bytes_sha256": "ed099dcd58c66327fd395c1c63691e02060eabbaccc2e0e62e47d1b38c26a330",
+      "claim": "Mesh delta x/y/z quantize by FLOAT00810548 then ftol and mask6 bits",
+      "end_exclusive": "004f8011",
+      "start": "004f7f97"
+    },
+    {
+      "bytes_sha256": "665ff244f162127544d9bec2d111b318edba25252ea747d85025aa0570288256",
+      "claim": "Short suffix hash zero-pads partial DWORD; decompiler incorrect return0",
+      "end_exclusive": "004f426b",
+      "start": "004f4247"
+    },
+    {
+      "bytes_sha256": "69289a89d23d8561578c00a65a3dd2a92231ee68a07c4f218ddfa51b48bea1c2",
+      "claim": "Ancillary record native20/24 and optional28 pointed-to24/28/WORD70",
+      "end_exclusive": "004f9844",
+      "start": "004f97e5"
     }
   ],
   "method": "Sequential readOnly/noanalysis Ghidra; transient definitions discarded; targeted static PE vtable reads; no execution",

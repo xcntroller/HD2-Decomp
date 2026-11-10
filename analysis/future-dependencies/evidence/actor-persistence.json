@@ -43,7 +43,7 @@
       "vtable_bytes_sha256": "325e7e15d8332d60f1a34044dd2a34fa2713e4d407d60c4bc87e968104e019cc"
     },
     {
-      "boundary": "Outer chunks mapped; variable packed solver layout remains",
+      "boundary": "Complete packed byte map available; tipped-pose correction and live mesh/collision/part receiver integration remain",
       "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
       "confidence": "confirmed",
       "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",

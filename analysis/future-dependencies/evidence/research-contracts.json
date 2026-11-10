@@ -248,7 +248,7 @@
         "B26.actors.car"
       ],
       "blockers": [
-        "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+        "Packed format mapped; tipped-pose correction, live mesh/collision/part receivers and inline24E0 producer semantics remain"
       ],
       "confidence": "confirmed",
       "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
@@ -472,6 +472,95 @@
       "priority_reason": "Existing459 identity must be initialized by real physics queue producer",
       "research_readiness": "partial_contract",
       "subsystem": "actor_physics35"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.car.layout"
+      ],
+      "blockers": [
+        "Format research complete; readiness still requires real owners and integration"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-car-format.md",
+      "id": "subsystem:future:car_layout",
+      "implementation_readiness": "blocked",
+      "label": "Packed version10 byte format and quantization",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "004f7300",
+        "004f7650",
+        "004f8510",
+        "004f4040",
+        "004f4110",
+        "004f41f0",
+        "004f42f0"
+      ],
+      "owner": "Existing Car and actual model/solver owners",
+      "priority": "high",
+      "priority_reason": "User-prioritized remaining actor persistence boundary",
+      "research_readiness": "contract_ready",
+      "subsystem": "car_layout"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.car.mesh",
+        "B26.actors.car.restore"
+      ],
+      "blockers": [
+        "Tipped-pose x87 correction and actual mesh/collision/part integration; inline24E0 producer semantics"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-car-format.md",
+      "id": "subsystem:future:car_restore",
+      "implementation_readiness": "blocked",
+      "label": "Car destructive restore and derived world receivers",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "004e95b0",
+        "004e98c0",
+        "004f5840",
+        "004e0f70",
+        "004e1230",
+        "004c6660",
+        "004c68b0"
+      ],
+      "owner": "Existing Car and actual model/solver owners",
+      "priority": "high",
+      "priority_reason": "User-prioritized remaining actor persistence boundary",
+      "research_readiness": "partial_contract",
+      "subsystem": "car_restore"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.human.player"
+      ],
+      "blockers": [
+        "Format research complete; readiness still requires real owners and integration"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-human-state-leaves.md",
+      "id": "subsystem:future:human_player",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Player state nested payload",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "005461f0",
+        "005464b0"
+      ],
+      "owner": "Human-owned concrete Player B0 state",
+      "priority": "high",
+      "priority_reason": "User-prioritized remaining actor persistence boundary",
+      "research_readiness": "contract_ready",
+      "subsystem": "human_player"
     }
   ],
   "existing_associations": [
@@ -764,6 +853,15 @@
       "relationship": "data_dependency",
       "source": "subsystem:future:world_identity",
       "target": "function:client:007d3d90"
+    },
+    {
+      "blocking": true,
+      "condition": "Correct variable byte boundaries and quantizers precede replay into existing Car owners",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-car-format.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:car_layout",
+      "target": "subsystem:future:car_restore"
     }
   ],
   "schema_version": 1
