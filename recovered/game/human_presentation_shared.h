@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_PRESENTATION_SHARED_H
 
 #include "game/human_presentation_textures.h"
+#include "game/human_projection_models.h"
 #include <limits>
 
 namespace hd2::game {
@@ -13,7 +14,7 @@ template<class Frames,class Services>
 class HumanPresentationShared {
 public:
     struct Settings {bool winter=false;std::uint32_t terrain=0;float amount=0,scale=1;};
-    HumanPresentationShared(Frames& frames,Services& services):frames_(frames),services_(services),textures_(frames) {}
+    HumanPresentationShared(Frames& frames,Services& services):frames_(frames),services_(services),textures_(frames),projections_(frames) {}
     ~HumanPresentationShared(){clear();}
     HumanPresentationShared(const HumanPresentationShared&)=delete;
     HumanPresentationShared& operator=(const HumanPresentationShared&)=delete;
@@ -35,9 +36,10 @@ public:
         if(!users_)return;
         //Last-user0078A5F0 clears queues/400 words/textures before the remaining
         //Human unregister/deactivation. Loading has no runtime mark producer.
-        if(!--users_){words_.fill(0);textures_.clear();}
+        if(!--users_){projections_.clear();words_.fill(0);textures_.clear();}
     }
-    void clear() noexcept {users_=0;words_.fill(0);textures_.clear();}
+    void clear() noexcept {users_=0;projections_.clear();words_.fill(0);textures_.clear();}
+    auto& projection_models(){return projections_;}
     unsigned users() const{return users_;}
     const Settings& settings() const{return settings_;}
     static Settings mission_settings(const std::string& name) {
@@ -62,6 +64,7 @@ private:
         return true; //007E8BD0, original default C-locale mission names.
     }
     Frames& frames_;Services& services_;HumanPresentationTextures<Frames> textures_;
+    HumanProjectionModels<Frames> projections_;
     unsigned users_=0;Settings settings_;std::array<std::uint32_t,400> words_{};
     bool flag_f308_=false,flag_a6ac_=false,enabled_=false;
     std::array<std::uint32_t,2> dimensions_{};std::uint32_t lifetime_=0;

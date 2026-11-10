@@ -41,7 +41,7 @@ public:
             const HumanMorphTables& morph,HumanPhysicsGlobals& physics_globals,Audio& audio,Random& random,
             Callbacks& callbacks,Effects& effects,Presentation& presentation,Services& services)
         :frames_(frames),audio_(audio),random_(random),effects_(effects),presentation_(presentation),services_(services),
-         geometry_(frames,random),face_(frames,morph,random),physical_(frames,collisions,exclusions,face_,audio,physics_globals),
+         geometry_(frames,random),face_(frames,morph,random),physical_(frames,collisions,exclusions,face_,audio,physics_globals,[this]{return shadow_.frame();}),
          tracks_(frames,callbacks),shadow_(frames,effects),animation_(frames,tracks_,shadow_,*this,opacity_,random) {
         pool_.emplace(audio_.acquire_pool()); //Geometry constructor precedes007855C0's shared pool lease.
     }
@@ -109,13 +109,20 @@ public:
     bool collision_disabled()const{return flag_dc4_;} //No loading producer changes this DD0 byte.
     float presentation_amount() const{return amount_;}
     std::uint32_t animation_state_word(unsigned offset) const {
+        if(offset==0xa9c)throw std::logic_error("DD0 A9C is the actual typed shadow frame, not a scalar word");
         if(offset>=0x260&&offset<0x604)return tracks_.words().template get<std::uint32_t>(offset-0x260);
         if(offset<0xaa0)return physical_.state().template get<std::uint32_t>(offset);
         if(offset>=0xac0&&offset<0xc00)return movement_.state().template get<std::uint32_t>(offset-0xac0);
         if(offset>=0xc00&&offset<0xcb0)return action_.state().template get<std::uint32_t>(offset-0xc00);
         throw std::out_of_range("DD0 loading scalar has no recovered owner");
     }
-    void animation_state_word(unsigned offset,std::uint32_t value){physical_.animation_loading_word(offset,value);}
+    void animation_state_word(unsigned offset,std::uint32_t value){
+        if(offset==0xa9c){
+            if(value||shadow_.frame())throw std::logic_error("CD0 initialization requires its actual A9C shadow already retired");
+            return; //00757DC0's cold null write; no pointer is copied into scalar storage.
+        }
+        physical_.animation_loading_word(offset,value);
+    }
     std::uint32_t animation_human_flags() const{return human_->properties.field1a0;}
     int animation_look_word5c() const{return services_.human_look_control(*human_).state().template get<std::int32_t>(0x5c);}
     int animation_property_a0() const{return services_.human_look_control(*human_).state().template get<std::int32_t>(0xa0);}

@@ -51,6 +51,10 @@ public:
     void exclude_query(bool remove_buckets=false) { //005AC1C0; genuine null-DD0 branch.
         if(control_)control_->physical().exclude_query(remove_buckets);
     }
+    template<class Frames>void shadow_visible(Frames& frames,bool visible){ //005AC0F0→actual DD0+A9C frame virtual30.
+        if(!control_)throw std::logic_error("Human auxiliary visibility requires actual DD0 owner");
+        if(const auto shadow=control_->shadow().frame())frames.object_visible(shadow,visible);
+    }
     void restore_query(bool insert_buckets=false) { //005AC1B0.
         if(control_)control_->physical().restore_query(insert_buckets);
     }

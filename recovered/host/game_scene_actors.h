@@ -98,6 +98,11 @@ public:
         return id<0?nullptr:actors_.identity(static_cast<std::size_t>(id));
     }
     std::size_t scene_actor_identity_count()const{return actors_.identity_count();}
+    Human* scene_human_identity(std::int32_t identity)const{ //00475E00, including the SAME pending-retirement list.
+        auto* actor=actors_.human_identity(identity);if(!actor)return nullptr;
+        auto* human=dynamic_cast<Human*>(actor);if(!human)throw std::runtime_error("Human identity resolves to another actual actor family");
+        return human;
+    }
     std::int32_t player_generation(std::int32_t identity)const { //004754F0 sign-extends native CHAR.
         return identity<0||identity>31?-1:static_cast<std::int8_t>(actors_.generation(static_cast<std::size_t>(identity)));
     }

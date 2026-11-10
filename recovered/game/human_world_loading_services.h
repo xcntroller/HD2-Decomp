@@ -48,6 +48,30 @@ public:
     template<class Human>void player_select_human(Human& human){dependencies_.players.control().select_human(human);} //00461410→0045DA60.
     template<class Human>void remove_human_player(Human& human){(void)dependencies_.players.control().remove_human(&human);} //0045E670.
     template<class Human>bool player_knows_enemy(Human& human){return dependencies_.players.control().selection().knows(&human);} //0045E920.
+    template<class Human>void player_add_enemy(Human* human){
+        if(!human)throw std::runtime_error("Player enemy acquisition requires its actual Human");
+        dependencies_.players.control().selection().acquire(*human,mode_flags(),*this); //0045E410 with actual feedback, before record publication.
+    }
+    template<class Human>void player_remove_enemy(Human* human){
+        if(!human)throw std::runtime_error("Player enemy release requires its actual Human");
+        dependencies_.players.control().selection().release(*human,mode_flags(),*this); //0045E540.
+    }
+    template<class Human>void hud_selected(Human& human,bool selected){dependencies_.hud.select_human(&human,selected,mode_flags(),human_difficulty());} //0049B980.
+    template<class Human>bool human_hidden(const Human& human)const{return human.activation.flag150;}
+    template<class Human>void show_human(Human& human,std::uint32_t duration){ //005A8740, genuine already-shown RET.
+        if(!human.activation.flag150)return;
+        dependencies_.scene.effects().human_fades().visibility(human,signed_duration(duration),true);
+        human.activation.flag150=false;
+        composition(human).control().shadow_visible(dependencies_.scene.frames(),true); //005AC0F0, SAME A9C shadow, not SOUND.
+        dependencies_.presentation_shared.projection_models().visibility(dependencies_.scene.frames(),&human,true,mode_flags());
+    }
+    template<class Human>void hide_human(Human& human,std::uint32_t duration){ //005A86F0.
+        if(human.activation.flag150)return;
+        dependencies_.scene.effects().human_fades().visibility(human,signed_duration(duration),false);
+        human.activation.flag150=true;
+        composition(human).control().shadow_visible(dependencies_.scene.frames(),false);
+        dependencies_.presentation_shared.projection_models().visibility(dependencies_.scene.frames(),&human,false,mode_flags());
+    }
     template<class Human>bool human_unavailable(const Human& human)const { //005A6380, only its native AL result.
         std::int32_t health;const auto bits=human.properties.stats_ec[0];std::memcpy(&health,&bits,4);
         if(health<1||!human.loading_state||human.properties.field19c==1)return false;
@@ -83,6 +107,7 @@ public:
     template<class Human>void human_initial_dead_notification(Human&){throw std::runtime_error("Nonoffline dead Human requires actual005A15D0 event dispatch");}
     template<class Actor>void detach_human_attachment(Actor&,std::int32_t){throw std::runtime_error("Occupied Human attachment requires its actual actor virtual80 receiver");}
 private:
+    static std::int32_t signed_duration(std::uint32_t value){std::int32_t result;std::memcpy(&result,&value,4);return result;}
     template<class Human>auto& composition(Human& human){return dependencies_.world_actors.template human_loading_owner<typename Dependencies::Composition>(human);}
     Dependencies& dependencies_;
 };

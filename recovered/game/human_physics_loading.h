@@ -8,6 +8,7 @@
 #include "game/dynamic_collision_exclusions.h"
 #include "game/human_state_ground.h"
 #include <deque>
+#include <functional>
 
 namespace hd2::game {
 
@@ -26,8 +27,9 @@ public:
     using Vector=std::array<float,4>;
     using SoundOwner=decltype(std::declval<Frames&>().create_human_sound());
     HumanPhysicsLoading(Frames& frames,Collisions& collisions,DynamicCollisionExclusions<Descriptor>& exclusions,
-        Face& face,Audio& audio,HumanPhysicsGlobals& globals)
-        :frames_(frames),collisions_(collisions),exclusions_(exclusions),face_(face),audio_(audio),globals_(globals),markers_(frames) {
+        Face& face,Audio& audio,HumanPhysicsGlobals& globals,std::function<Frame()> shadow)
+        :frames_(frames),collisions_(collisions),exclusions_(exclusions),face_(face),audio_(audio),globals_(globals),markers_(frames),shadow_(std::move(shadow)) {
+        if(!shadow_)throw std::invalid_argument("Human physics requires the SAME DD0 A9C shadow lookup");
         state_.set(0x1c8,.8f);state_.set(0x1cc,1.f);state_.set(0x1d0,1.f);
         state_.set(0x994,std::int32_t{-1});
     }
@@ -152,11 +154,7 @@ public:
         return (animation>=106&&animation<=108)||animation==8||animation==14?interaction_actor_:nullptr;
     }
     void animation_loading_word(unsigned offset,std::uint32_t value) {
-        if(offset!=0x750&&offset!=0xa9c)throw std::out_of_range("Human animation loading scalar");
-        if(offset==0xa9c) {
-            if(value)throw std::runtime_error("Human auxiliary frame requires its actual typed producer");
-            collision_auxiliary_=Frame{};
-        }
+        if(offset!=0x750)throw std::out_of_range("Human animation loading scalar");
         state_.set(offset,value);
     }
     const auto& primary() const{return primary_;}
@@ -240,7 +238,7 @@ private:
                 collisions_.insert(descriptor);
             }
         }
-        if(collision_auxiliary_)frames_.object_visible(collision_auxiliary_,!suspended);
+        if(const auto shadow=shadow_())frames_.object_visible(shadow,!suspended); //SAME DD0+A9C, not a second zero-only borrower.
     }
     std::unique_ptr<Descriptor> make(std::uint32_t flags,std::uint32_t mask) {
         auto descriptor=std::make_unique<Descriptor>();descriptor->flags=flags;descriptor->mask=mask;
@@ -315,7 +313,7 @@ private:
     std::array<Vector,4> posture_{};std::array<Vector,2> shots_{},shot_relative_{};
     std::array<Frame,2> shot_markers_{};std::array<Frame,25> bones_{};std::array<bool,25> bone_flags_{};
     Vector offset740_{};std::deque<std::array<std::uint32_t,3>> queue_;
-    Frame collision_auxiliary_{}; //NativeA9C; runtime producer remains unexposed.
+    std::function<Frame()> shadow_; //Borrow actual HumanShadowModel's A9C; owner outlives calls, including failure retirement.
     void* interaction_actor_=nullptr; //Identity matches MissionTableReference::object; no virtual actor calls through this slot.
     bool active_=false,initializing_=false;
 };

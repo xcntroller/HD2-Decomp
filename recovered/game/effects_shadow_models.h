@@ -4,6 +4,7 @@
 #include "game/effects_environment.h"
 #include "game/effects_fade.h"
 #include "game/effects_frame_fades.h"
+#include "game/effects_human_fades.h"
 #include "frontend/cleanup.h"
 #include <cmath>
 #include <string>
@@ -18,9 +19,10 @@ template<class Frames>
 class EffectsShadowModels {
 public:
     using Frame=typename Frames::Frame;
-    EffectsShadowModels(Frames& frames,const EffectsEnvironment& environment):frames_(frames),environment_(environment),frame_fades_(frames) {}
+    EffectsShadowModels(Frames& frames,const EffectsEnvironment& environment):frames_(frames),environment_(environment),frame_fades_(frames),human_fades_(frames) {}
     auto& fade(){return fade_;}const auto& fade()const{return fade_;}
     auto& frame_fades(){return frame_fades_;}
+    auto& human_fades(){return human_fades_;}
     bool model_opacity(std::uint32_t mode,Frame model,float value) { //00486DF0.
         if(!(mode&2)||!model)return false;
         frames_.effects_model_opacity(model,value);return true;
@@ -133,6 +135,7 @@ private:
         return Frame{};
     }
     Frames& frames_;const EffectsEnvironment& environment_;EffectsFade fade_;EffectsFrameFades<Frames> frame_fades_;
+    EffectsHumanFades<Frames> human_fades_;
 };
 
 //CD0's00758BF0/00758C60 shadow lifetime, native DD0+A9C. The shadow module

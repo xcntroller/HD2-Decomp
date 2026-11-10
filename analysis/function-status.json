@@ -13791,7 +13791,8 @@
         "recovered/game/human_animation_state.h",
         "analysis/human-animation-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-selection-visibility-loading.md"
       ]
     },
     {
@@ -16521,7 +16522,8 @@
         "recovered/game/human_physics_loading.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-selection-visibility-loading.md"
       ]
     },
     {
@@ -16914,7 +16916,8 @@
         "recovered/game/human_presentation_shared.h",
         "analysis/human-control-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-selection-visibility-loading.md"
       ]
     },
     {
@@ -22960,12 +22963,13 @@
       "program": "client",
       "entry": "00487240",
       "status": "partial",
-      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded.",
+      "coverage": "Fade-out200 pass only: reverse traversal, DWORD elapsed subtraction/signed expiration, native amount/alpha stores, optional hide and retained reference swap-pop retirement. Other GEffects passes excluded. Also source Human228 pass: reverse borrowed-Human updates, signed elapsed/FLOAT stores, native completion/NaN and ordered erase after actual model call; other passes remain excluded.",
       "limitations": "Source-only typed STL/RAII ownership and bounded byte views replace original object/container/allocator/SEH ABI. No whole-body equivalence, integrated world or mission desktop claim. Engine/archive/runtime endpoints in native checks are boundary doubles; actual host composition is compile-only. Wider producers, unsupported required receivers and delegated callee bodies receive no credit.",
       "evidence": [
         "recovered/game/effects_frame_fades.h",
         "analysis/item-transfer-physics-loading.md",
-        "analysis/checkpoints/p2.2-world-owners-20261109.json"
+        "analysis/checkpoints/p2.2-world-owners-20261109.json",
+        "analysis/human-selection-visibility-loading.md"
       ]
     },
     {
@@ -25564,6 +25568,66 @@
         "recovered/game/hud_scene_loading.h",
         "analysis/human-speech-loading.md",
         "analysis/checkpoints/p2.2-human-speech-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00475e00",
+      "status": "partial",
+      "coverage": "Bound signed Human identity before current-kind3 and reverse pending-retirement lookup.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original allocation/container/object/SEH ABI and runtime projection producers remain excluded. Native engine/frame/Human endpoints doubled; actual-host composition compile-only. No integrated world, whole-body equivalence or desktop claim.",
+      "evidence": [
+        "recovered/game/scene_actor_registry.h",
+        "analysis/human-selection-visibility-loading.md",
+        "analysis/checkpoints/p2.2-human-selection-visibility-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a8740",
+      "status": "partial",
+      "coverage": "Actual hidden-Human show receiver: Effects visibility before flag150 mutation, same DD0 shadow and inverse matching projection visibility.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original allocation/container/object/SEH ABI and runtime projection producers remain excluded. Native engine/frame/Human endpoints doubled; actual-host composition compile-only. No integrated world, whole-body equivalence or desktop claim.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-selection-visibility-loading.md",
+        "analysis/checkpoints/p2.2-human-selection-visibility-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a86f0",
+      "status": "partial",
+      "coverage": "Actual shown-Human hide receiver: Effects visibility before flag150 mutation, same DD0 shadow and inverse matching projection visibility.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original allocation/container/object/SEH ABI and runtime projection producers remain excluded. Native engine/frame/Human endpoints doubled; actual-host composition compile-only. No integrated world, whole-body equivalence or desktop claim.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-selection-visibility-loading.md",
+        "analysis/checkpoints/p2.2-human-selection-visibility-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac0f0",
+      "status": "partial",
+      "coverage": "Actual DD0 A9C shadow visibility, genuine absent-shadow return; no SOUND substitution or duplicate frame borrower.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original allocation/container/object/SEH ABI and runtime projection producers remain excluded. Native engine/frame/Human endpoints doubled; actual-host composition compile-only. No integrated world, whole-body equivalence or desktop claim.",
+      "evidence": [
+        "recovered/game/human_inline_loading.h",
+        "analysis/human-selection-visibility-loading.md",
+        "analysis/checkpoints/p2.2-human-selection-visibility-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0078b180",
+      "status": "partial",
+      "coverage": "Mode2 primary projection visibility: forward records, signed Human ID resolved twice, matching/null target and inverted requested visibility. Cold list owned by shared presentation; producer excluded.",
+      "limitations": "Source-only typed/STL/RAII reconstruction; original allocation/container/object/SEH ABI and runtime projection producers remain excluded. Native engine/frame/Human endpoints doubled; actual-host composition compile-only. No integrated world, whole-body equivalence or desktop claim.",
+      "evidence": [
+        "recovered/game/human_projection_models.h",
+        "analysis/human-selection-visibility-loading.md",
+        "analysis/checkpoints/p2.2-human-selection-visibility-20261110.json"
       ]
     }
   ]

@@ -445,6 +445,8 @@ public:
     void effects_model_opacity(Frame model,float opacity) {call<void>(model,0x50,opacity);} //00486DF0, distinct from OBJ_+A4.
     void effects_frame_fade_alpha(Frame frame,float alpha){call<void>(frame,0xa8,alpha);} //00486E60, distinct from both model+50 and visual+A4.
     void effects_model_camera_amount(Frame model,float value) {call<void>(model,0x54,value);} //00486D30; distinct from model+50 opacity.
+    float effects_human_fade_amount(Frame visual)const{return field<float>(visual,0x1ec);} //00489180 reads actual child a/flag-mask1.
+    void detach_human_projection(Frame frame){link_scene_object(frame,Frame{});call<void>(scene_.frame(),0x84,frame);} //0078A5F0, release owning reference separately AFTER scene removal.
     MenuDriver::Owner human_shadow_template(const std::string& key) {
         MenuDriver::Owner result{nullptr,nullptr};
         if(resources_.cache(4).get(key,result)!=0)result.reset(); //004894E0 requires exact zero after a cache miss.

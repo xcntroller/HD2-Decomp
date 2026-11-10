@@ -133,6 +133,12 @@ public:
         identity_count_=32;active_.clear();generations_.fill(0xff);clearing_=false;
     }
     Actor* identity(std::size_t index) const {return index<identity_count_?identities_[index]:nullptr;}
+    Actor* human_identity(std::int32_t index)const { //00475E00; bounds BEFORE pending lookup, unlike ordinary00475DD0.
+        if(index<0||static_cast<std::size_t>(index)>=identity_count_)return nullptr;
+        if(auto* actor=identities_[static_cast<std::size_t>(index)];actor&&actor->base().type()==3)return actor;
+        for(auto n=pending_.size();n;)if(auto* actor=pending_[--n].record.owner.get();actor&&actor->base().id10()==index)return actor;
+        return nullptr;
+    }
     std::size_t identity_count() const {return identity_count_;}
     const std::vector<Actor*>& active_actors() const {return active_;}
     template<class Activate>void activate(Activate&& activate_actor) { //00476210 snapshots count, not a growing traversal.

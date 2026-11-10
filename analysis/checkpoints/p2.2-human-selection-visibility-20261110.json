@@ -1,0 +1,106 @@
+{
+  "date": "2026-11-10",
+  "scope": "Full first P2.2 checkbox; Human enemy selection feedback, visibility/fade/projection consumers and shared DD0 shadow owner. Continue actual Human/world/session/loader.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 5,
+  "added": [
+    "00475e00",
+    "005a8740",
+    "005a86f0",
+    "005ac0f0",
+    "0078b180"
+  ],
+  "extended": [
+    "00487240",
+    "0075c2d0",
+    "00757dc0",
+    "0078a5f0"
+  ],
+  "absent_no_credit": [
+    "00489180"
+  ],
+  "constructor_only_no_credit": [
+    "0078a2c0"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1894,
+    "client_partial": 1889,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "verification": {
+    "native": "Focused ASan/UBSan/LSan source fade queue/order/failure/rounding/current-model/signed/NaN, live physical shadow getter, actual selection feedback and projection consumer/registry identity. Human/frame/inline/registry actor endpoints doubled; populated projection records are fixture range, production shared cold owner empty.",
+    "host": "Strict i386 actual host Scene/WorldActors/Startup/Players/HUD/Inline/physical/shadow types. Containing composition/presentation/aggregate boundaries declarations; compile-only.",
+    "application": "Compile/link passed; loading remains disabled.",
+    "tracker": "27 tests, frozen fingerprints/unique statuses/README checks."
+  },
+  "research_exception": "Read-only Ghidra no function at00489180; original static ABI/vtable captured, function absent frozen and excluded.",
+  "limitations": [
+    "Human228 queue update supplied but not integrated into a live world update.",
+    "Primary projection runtime creation/mark producers and pool payloads unreconstructed; no successful drawing service or append API.",
+    "Containing aggregate, observed integrity producer, ordered loader, first frame, failure/repeat and desktop acceptance remain."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-selection-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-selection-native-run.log",
+      "bytes": 280,
+      "sha256": "76a7739c730f63a2e5afd23707675e2876f69b69a1a98228b6e7d4a25f49af00"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-selection-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-selection-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-selection-tracker-render.log",
+      "bytes": 380,
+      "sha256": "f8ea2d711f3e11075a033d54a8d6b20c37c9e419fc11fc49ae8a0043a85e35c6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-selection-tracker-check.log",
+      "bytes": 437,
+      "sha256": "1e015f19f0af997931bb5b19b6b1e7bd56eab6ba9c64e5802549101ad8a7413d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-selection-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-selection-audit.cpp",
+      "bytes": 10185,
+      "sha256": "2b7fdfc85c3b7025954546cbbd390d1c086e7440218a65e25f636abced5c0150"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-selection-audit",
+      "bytes": 2549504,
+      "sha256": "cb6dcb3eb4c45304e6a0f16e60644fbf21423a7d4e2291424cf43be069ca269b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-selection-host.cpp",
+      "bytes": 2829,
+      "sha256": "e9ca8c35d95ae676d62961dbca0e6727cc786362bf53a5190f539d8b60189ddc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-human-selection-host.o",
+      "bytes": 812756,
+      "sha256": "6b0c5f599f9f9d588796d31bdf8576bf758eeb3fded3b6e1c886891fe3d4cada"
+    }
+  ]
+}

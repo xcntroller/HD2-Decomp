@@ -74,6 +74,7 @@ public:
         if(closed_)return;
         closed_=true;
         exclusions_.clear(); //Must stop querying while its actual descriptors still live.
+        effects_.human_fades().clear(); //Borrowed Human228 records before Scene2 Human deletion.
         frames_.clear_scene_actors(); //Car borrowers retire while cars_ still lives.
         effects_.frame_fades().clear();
         cars_.reset();
