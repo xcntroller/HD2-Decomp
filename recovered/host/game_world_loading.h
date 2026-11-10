@@ -184,6 +184,7 @@ public:
     Dependencies& dependencies(){require_open();return dependencies_;}
     auto& presentation_dependencies(){require_open();return presentation_dependencies_;}
     Scripts& scripts(){require_open();return *scripts_;}
+    auto& spawn_records(){require_open();return spawn_records_;}
     auto& input_profiles(){require_open();return input_profiles_;}
     void close()noexcept {
         if(closed_)return;closed_=true;
@@ -289,6 +290,10 @@ public:
     auto& vertices(){return vertices_;}
     void load_collision_tree(const std::string& resource){scene_.load_collision_tree(resource);owners_.bind_loaded_collisions();}
     void release_collision_tree(){
+        if(!scene_.collision_tree_if_loaded()){
+            if(scene_.buckets().bound())throw std::logic_error("Collision buckets outlive their actual tree");
+            return; //Native already-cleared tree branch, including file unload after00698F80.
+        }
         if(!scene_.buckets().empty())throw std::logic_error("Retire actual collision descriptors before unbinding the Human sweep");
         owners_.unbind_loaded_collisions();scene_.release_collision_tree();
     }

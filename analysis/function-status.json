@@ -8562,7 +8562,7 @@
       "program": "client",
       "entry": "006989b0",
       "status": "partial",
-      "coverage": "Installed owner consumes the actual copied mission, scopes/restores graphics bit20 and returns honest failure while006CA780 is unavailable. Offline activation/prepared-spawn checkpoint: Ordinary offline7 activation ordering over the same descriptor/loaded flag/live squad: module passes, HUD/first-person, prepared spawn, dubbing/text/music/clock and graphics failure restoration.",
+      "coverage": "Installed owner consumes the actual copied mission, scopes/restores graphics bit20 and returns honest failure while006CA780 is unavailable. Offline activation/prepared-spawn checkpoint: Ordinary offline7 activation ordering over the same descriptor/loaded flag/live squad: module passes, HUD/first-person, prepared spawn, dubbing/text/music/clock and graphics failure restoration. Concrete activation checkpoint: SAME actual World/request/squad bindings, selected route ordinal, prepared Human lifetime, real dubbing initialization and optional read-only context marker; native finish caller keeps non-neutral dubbing close distinct.",
       "limitations": "No original successful loader/activation/actor/camera/status5 path or live state reset; explicit incomplete-loader outcome is not credited as those bodies. Native resource/exception handling differs; unloaded construction user-accepted2026-11-03. Unloaded constructor/error return user-accepted2026-11-03. New source-only subset requires actual containing world/local packet decoder/camera wiring; no mission desktop acceptance.",
       "evidence": [
         "recovered/host/game_owner.h",
@@ -8572,7 +8572,10 @@
         "recovered/game/session_activation.h",
         "analysis/session-activation-loading.md",
         "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
-        "analysis/session-loading-consumers.md"
+        "analysis/session-loading-consumers.md",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json",
+        "recovered/host/game_session_activation.h"
       ]
     },
     {
@@ -8635,13 +8638,16 @@
       "program": "client",
       "entry": "0071de10",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0071de10: Sixteen-channel dubbing initialization, reverse free-slot selection, model binding, speech data/playback, scheduled stop, update and retirement.",
+      "coverage": "P2.2 source reconstruction at original entry 0071de10: Sixteen-channel dubbing initialization, reverse free-slot selection, model binding, speech data/playback, scheduled stop, update and retirement. Concrete activation checkpoint: SAME actual World/request/squad bindings, selected route ordinal, prepared Human lifetime, real dubbing initialization and optional read-only context marker; native finish caller keeps non-neutral dubbing close distinct.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/frontend/dubbing_sound.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json",
+        "recovered/host/game_session_activation.h"
       ]
     },
     {
@@ -26441,6 +26447,138 @@
         "recovered/game/effects_decorations_loading.h",
         "analysis/mission-loading-integration.md",
         "analysis/checkpoints/p2.2-mission-loading-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00698f80",
+      "status": "partial",
+      "coverage": "Offline same-squad writeback and native ordered FPV/light/presentation/dubbing/authority/HUD and process-tail orchestration; concrete host bindings require actual transient-record finalizer.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/session_finish.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a9040",
+      "status": "partial",
+      "coverage": "Offline Human-to-SAME live soldier health/identity/specialization/raw nine-word and actual equipment snapshot; voice48 kept separate.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_squad_snapshot.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a8b50",
+      "status": "partial",
+      "coverage": "Offline actual holder/stack inventory extraction, fixed-slot order, untouched positions, definition38 zero-amount omission only at holders2/3.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_squad_snapshot.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a8820",
+      "status": "partial",
+      "coverage": "Actual offline kind-to-specialization mapping consumed by live squad extraction; nonoffline transport branches excluded.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_squad_snapshot.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a2a90",
+      "status": "partial",
+      "coverage": "Forward first-record/reverse later duplicate carried-equipment consolidation, stable first position, native signed-WORD count wrapping.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_squad_snapshot.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a2e50",
+      "status": "partial",
+      "coverage": "Actual same HumanStore/catalogue fixed/carried totals, assign identity/name/Might and native-kind7 pack capacities on mission finish.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_squad_snapshot.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a2dc0",
+      "status": "partial",
+      "coverage": "Actual catalogue entry weight/count and signed category zero/double volume computation, native float store and integer low-word conversion.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_squad_snapshot.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051f230",
+      "status": "partial",
+      "coverage": "FIRST actual navigation dataset runtime reset, retained vector capacity, end34=begin30 and ordered per-record reset.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/mission_navigation.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00524870",
+      "status": "partial",
+      "coverage": "Actual navigation flags0200/2000 and byte1A reset with synthesized final sentinel rewrite/count removal; byte16 preserved.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/mission_navigation.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c4bd0",
+      "status": "partial",
+      "coverage": "Actual controller state type1 gated read-only first4E8C/BB6 mission DWORD comparison; no save restoration or snapshot mutation.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/session_context_marker.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b7a00",
+      "status": "partial",
+      "coverage": "Actual selected-profile quick-context path for ordinary kind0 modes1/2/3 and standalone kind1 modes0/3, native empty path for other modes in these cases.",
+      "limitations": "Source-only native adaptation with typed owners/STL/RAII and bounded malformed-input rejection; original object/allocator/SEH ABI differs. Wider positive/nonoffline/protection and delegated callee bodies excluded. Shared transient-record finalizer remains a required caller interface; no successful application activation, full shutdown, first frame or mission desktop acceptance.",
+      "evidence": [
+        "recovered/game/session_context_marker.h",
+        "analysis/session-activation-integration.md",
+        "analysis/checkpoints/p2.2-session-activation-integration-20261110.json"
       ]
     }
   ]

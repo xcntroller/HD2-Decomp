@@ -20,6 +20,7 @@ struct PreMissionSoldier {
     std::int32_t network_identity = 1023; //Native04,006739F0;00727480 also converts-1 to1023.
     bool flag08 = false, flag09 = false; //Separate from active44 and preparation auto-equip state.
     std::uint32_t word0c = 0;
+    std::array<std::uint32_t,9> state10{}; //Native10..30, copied from SAME HumanC0..E0 by005A9040; retained through live finish.
     bool active = true, auto_equip = false;
     std::array<PreMissionEquipmentEntry, 5> equipment{}; // masks1,2,4,8,16
     std::vector<PreMissionEquipmentEntry> holsters, backpack;

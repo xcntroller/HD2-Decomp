@@ -65,8 +65,10 @@ public:
         return *owner;
     }
     bool has_human_loading_owners()const noexcept{return !human_loading_.empty();}
-    void activate_human(Human& actor,bool authority){
+    game::HumanLoadingLifetime& prepare_human_loading(Human& actor){
         require_open();if(closing_)throw std::logic_error("Human activation during world retirement");
+        if(scene_.frames().scene_actor_identity(actor.base().id10())!=&actor)
+            throw std::logic_error("Human loading requires SAME registered Scene2 identity");
         auto found=human_loading_.find(&actor);
         if(found==human_loading_.end()){
             if(actor.loading_lifetime)throw std::logic_error("Human loading already belongs to another containing world");
@@ -74,8 +76,9 @@ public:
             if(!owner||actor.loading_lifetime!=owner.get())throw std::runtime_error("Human factory must publish its actual composed loading owner");
             found=human_loading_.emplace(&actor,std::move(owner)).first;
         }
-        found->second->activate(authority);
+        return *found->second;
     }
+    void activate_human(Human& actor,bool authority){prepare_human_loading(actor).activate(authority);}
     void deactivate_human(Human& actor,bool authority){
         const auto found=human_loading_.find(&actor);
         if(found==human_loading_.end())throw std::runtime_error("Human retirement requires its actual containing loading owner");

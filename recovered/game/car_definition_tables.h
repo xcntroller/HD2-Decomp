@@ -39,6 +39,9 @@ public:
         read_particles(SerializedBytes(*particles));return true;
     }
     void clear() noexcept {materials_.clear();particles_.clear();}
+    void finish_mission() noexcept { //00698F80 frees actual0097B8A4 BEFORE0097B89C and zeroes both capacities.
+        std::vector<CarMaterialDefinition>().swap(materials_);std::vector<CarParticleDefinition>().swap(particles_);
+    }
 private:
     template<class Record> static void read_records(SerializedBytes bytes,std::vector<Record>& destination) {
         std::vector<Record> next(bytes.remaining()/sizeof(Record));

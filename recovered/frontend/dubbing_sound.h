@@ -28,6 +28,12 @@ public:
     ~DubbingSound(){clear(false);}
     DubbingSound(const DubbingSound&)=delete;
     DubbingSound& operator=(const DubbingSound&)=delete;
+    void initialize_loading(){ //0071DE10, actual16x68 zero and morph-fade end=begin; not stop_model/clear.
+        for(const auto& channel:channels_)if(channel.sound||!channel.data.empty())
+            throw std::logic_error("Retire actual owned dubbing channels before loading initialization");
+        for(auto& channel:channels_)channel={};
+        fades_.clear(); //Borrowed pending morph records, native capacity survives. No neutral/playback call.
+    }
     unsigned free_channel() const { //0071DEF0 searches15 down to0, overwrites15 if full.
         for(unsigned n=16;n!=0;)if(!channels_[--n].state)return n;
         return 15;

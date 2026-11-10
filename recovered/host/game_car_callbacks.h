@@ -22,6 +22,10 @@ public:
     GameCarCallbacks(GameActorServices& actors,StartupSession& startup,game::CarDefinitionTables& definitions,const game::CarTyres& tyres)
         :GameCarCallbackFrames(actors,startup.application_flags_owner(),startup.local_player_identity(),
             tyres,[&startup]{return startup.control_milliseconds();}),startup_(startup),definitions_(definitions),particles_(actors,*this),physics_contact_(actors){}
+    bool initialize(const std::vector<game::CarParticleDefinition>& definitions){
+        if(&definitions!=&car_particle_definitions())throw std::logic_error("Car particles require SAME actual definition owner");
+        return initialize_particles();
+    }
     bool initialize_particles(){return particles_.initialize(definitions_.particles());} //004D5A50, after real table preparation.
     const std::vector<game::CarParticleDefinition>& car_particle_definitions()const override{return definitions_.particles();}
     std::vector<game::CarParticleState<Frame>>& car_particle_pool()override{return particles_.states();}

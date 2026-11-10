@@ -23,6 +23,7 @@ public:
     BOOL query_iconic_window(){return IsIconic(window());} //006CAB29.
     DWORD query_activation_ticks(){return GetTickCount();} //00698AAE, also006E9EC2 initializer seed API.
     BOOL query_activation_visible_window(){return IsWindowVisible(window());} //00698C09.
+    HWND query_finish_focus(){return GetFocus();} //00699112, actual shutdown payload.
     HWND query_activation_capture(){return GetCapture();} //00698C5D, no graphics/window query.
 private:
     HWND window(){

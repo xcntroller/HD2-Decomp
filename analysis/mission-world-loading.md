@@ -311,3 +311,5 @@ now have source ordering, world quantizer/light policy, cold model/equipment
 population and local packet producer. The actual local decoder/camera/world/VM
 composition remains required. Both P2.2 checkboxes remain open; no new world
 rendering or desktop acceptance follows from these focused native/host checks.
+
+2026-11-10: [Concrete activation and live-squad finish bindings](session-activation-integration.md) compile across the actual graph; same mutable records preserved, native marker read-only and navigation/dubbing finish checks pass. Shared transient receiver, meaningful guard/control/first frame and desktop acceptance remain.

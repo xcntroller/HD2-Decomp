@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [Concrete activation/writeback bindings](session-activation-integration.md) now share the actual request/route/squad and prepared Human lifetime; ordered finish retains an explicit required transient-record receiver. Guard/packet/first-frame integration remains.
+
 2026-11-10: [Concrete loading allocation](mission-loading-integration.md) supplies actual ordered stage receivers, selective prep caches/non-retained file unload, loading screen/effects callbacks, shared Bird motion and real input defaults. Five new partials; source session still uncalled by application. Activation/guard/first frame remain.
 
 2026-11-10: [Containing world owners](containing-world-loading.md) constructs the actual shared cold graph and all18 module facades. Real tree/grid bind later, retaining required module-tail owners on early failure. Focused checks pass; ordered loader/guard/first frame remain.

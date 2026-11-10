@@ -12,7 +12,7 @@ template<class Manager,class PacketState>
 class SessionWorldInput {
 public:
     SessionWorldInput(HumanInputSessionProfiles& profiles,HumanInputShared& shared,
-                      Manager* manager,PacketState& packets,std::int32_t& local_player,std::uint32_t mode)
+                      Manager* manager,PacketState& packets,std::int32_t& local_player,const std::uint32_t& mode)
         :profiles_(profiles),shared_(shared),manager_(manager),packets_(packets),local_player_(local_player),mode_(mode){}
     void bind_world_quantizer(const HumanVector& minimum,const HumanVector& range) {
         if(!manager_)return;
@@ -32,7 +32,7 @@ public:
     }
 private:
     HumanInputSessionProfiles& profiles_;HumanInputShared& shared_;Manager* manager_;
-    PacketState& packets_;std::int32_t& local_player_;std::uint32_t mode_;
+    PacketState& packets_;std::int32_t& local_player_;const std::uint32_t& mode_;
 };
 } //namespace hd2::game
 #endif

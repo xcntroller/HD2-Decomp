@@ -2,6 +2,7 @@
 #define HD2_GAME_PREPARED_HUMAN_CLOTHING_H
 
 #include "game/prepared_human_spawn.h"
+#include "game/session_time_word.h"
 
 namespace hd2::game {
 
@@ -120,7 +121,7 @@ template<class Frames,class Models,class Items,class Effects,class Random,class 
 class PreparedHumanClothing {
 public:
     PreparedHumanClothing(Frames& frames,Models& models,Items& items,Effects& effects,Random& random,
-                          Dubbing& dubbing,Control& control,const frontend::PreMissionItemCatalogue& catalogue,std::uint32_t& game_time)
+                          Dubbing& dubbing,Control& control,const frontend::PreMissionItemCatalogue& catalogue,SessionTimeWord game_time)
         :frames_(frames),models_(models),items_(items),effects_(effects),random_(random),dubbing_(dubbing),control_(control),catalogue_(catalogue),game_time_(game_time){}
     template<class Human>bool apply_prepared_human_clothing(Human& human,std::int32_t identity) { //005A6930.
         auto* item=find_human_inventory_item(human,items_,identity);if(!item)return false;
@@ -137,7 +138,7 @@ public:
     }
 private:
     Frames& frames_;Models& models_;Items& items_;Effects& effects_;Random& random_;Dubbing& dubbing_;Control& control_;
-    const frontend::PreMissionItemCatalogue& catalogue_;std::uint32_t& game_time_;
+    const frontend::PreMissionItemCatalogue& catalogue_;SessionTimeWord game_time_;
 };
 } //namespace hd2::game
 #endif

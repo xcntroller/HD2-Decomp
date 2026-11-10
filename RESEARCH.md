@@ -4765,3 +4765,5 @@ Focused native sanitizers, strict actual-host i386, app compile/link and27 tally
 tests pass.75 source partials; zero whole-body/desktop promotions. Actual world
 commands/predicates/derived receivers, runtime Patch selection and full containing
 world remain required. Continue the entire P2.2 checkbox after this checkpoint.
+
+2026-11-10: [Concrete activation/writeback bindings](analysis/session-activation-integration.md) preserve SAME selected route/request/live squad, prepared Human lifetime and original shutdown order. Marker is read-only; actual dubbing/navigation/snapshot sanitizer checks, strict i386 graph and app link pass. Eleven partials, no complete/desktop promotions. Full P2.2 remains open; required shared transient finalizer and guard/control/first-frame work continue.

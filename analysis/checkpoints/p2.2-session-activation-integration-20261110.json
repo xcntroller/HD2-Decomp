@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "00698f80",
+    "005a9040",
+    "005a8b50",
+    "005a8820",
+    "006a2a90",
+    "006a2e50",
+    "006a2dc0",
+    "0051f230",
+    "00524870",
+    "006c4bd0",
+    "006b7a00"
+  ],
+  "ledger_added_partial_client": 11,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 1965,
+  "required_unsupplied": "GameSessionTransientFinish actual008AED48/006DF390(0,true), distinct from proximity; interface argument in strict fixture is not an implementation.",
+  "native_checks": [
+    "route/request/synthetic selection, live time and read-only marker malformed/repeat/no writes",
+    "same live squad, actual holders/stacks/catalogue snapshot/totals/voice distinction and100 lifetimes",
+    "actual dubbing/nav plus native finish order/fresh reverse/status/required-tail failure"
+  ],
+  "strict_i386": "Actual complete activation/spawn/all module paths and host finish bindings PASS; shared transient finalizer is an explicit required interface parameter.",
+  "application_link": "PASS",
+  "tracker_tests": 27,
+  "shutdown_payload": {
+    "return_address": "00699112",
+    "mapping_address": "00a59080",
+    "iat_slot": "0080f3e8",
+    "api": "GetFocus"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/checkpoint-activation-selection.cpp": {
+      "sha256": "f4ef252e2f99a3fd562ebf0f7e53f63ff2f25ec06d6f768f561b106ffab4f9f2",
+      "bytes": 5325,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-activation-selection": {
+      "sha256": "5c524ddb3b797694304dffbfa8d11e4ae70d0d8f749f6c641ea64e6cc3c4e103",
+      "bytes": 2153016,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-activation-selection-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-activation-selection-run.log": {
+      "sha256": "ef09663f1b8d859833a85c0e4865ca9dff8a81a3a0895065ff514086ddd4fc80",
+      "bytes": 151,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-live-squad-snapshot.cpp": {
+      "sha256": "4396083d018b1a0bffe562d68fb170195bea07294e9ae7095b2a0671bac59369",
+      "bytes": 5266,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-live-squad-snapshot": {
+      "sha256": "88bc20379afc0cdb98c56e4cb50856bc5162df62a1ed59556bd186e513d09efc",
+      "bytes": 1811112,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-live-squad-snapshot-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-live-squad-snapshot-run.log": {
+      "sha256": "3158a0f01d7ca5479a4dd01be202b42d7985fe80639455fe4d070ac7f1d4fe1a",
+      "bytes": 182,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-session-finish.cpp": {
+      "sha256": "fad3686e5a443cfdddaf08093242492a089e02028e009b4d7c0af20c0fd578b8",
+      "bytes": 5014,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-session-finish": {
+      "sha256": "9126d89047654f992417a72d95ffa4b976f6068f3be828ae28929ae91f679494",
+      "bytes": 828648,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-session-finish-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-session-finish-run.log": {
+      "sha256": "2c9c868309d8a696d4bfe16acf53ba431995b13911e566001e7571d0e760ee32",
+      "bytes": 173,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-activation-host.cpp": {
+      "sha256": "7722e6dd6a88e86c4998621e0980060c9a2d348e8a1470f8cbf2560b3961576c",
+      "bytes": 1175,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-activation-host.o": {
+      "sha256": "d01295c713b9a4ec4bf721f45e5149884ec69c0a6a189b43817b6849ce7a298e",
+      "bytes": 24607972,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/checkpoint-activation-host-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/checkpoint-session-activation-app.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/session-finish-tail.asm": {
+      "sha256": "36936d48325890d75c87cfe6b794b2804fd8f80216e9a4419d99a276599a0345",
+      "bytes": 4177,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/soldier-total-leaf.asm": {
+      "sha256": "a6e347351ac3194007cd27d752575c6eebadef851d29966ba946b6dfd11c2ce0",
+      "bytes": 2677,
+      "retained": true
+    }
+  }
+}

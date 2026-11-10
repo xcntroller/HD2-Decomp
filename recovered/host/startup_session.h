@@ -291,8 +291,10 @@ public:
     }
     std::uint32_t game_speech_length(std::int32_t id){return sound_catalog_.speech_sample_size(id);} //SOUND virtual94, SAME catalogue mappings.
     const char* missing_speech_caption()const{return missing_speech_caption_;} //Process0089BB44 cold null; no populated writer is fabricated.
+    void initialize_game_dubbing(){dubbing_sound_.initialize_loading();}
     void update_game_dubbing(std::uint32_t elapsed){dubbing_sound_.update(elapsed);sound_backend_.rethrow_dubbing_cleanup_failure();}
     void retire_game_dubbing(EngineFrame* frame){dubbing_sound_.retire_model(frame);sound_backend_.rethrow_dubbing_cleanup_failure();}
+    void finish_game_dubbing(){dubbing_sound_.clear(false);sound_backend_.rethrow_dubbing_cleanup_failure();} //0071DE60: no morph neutral on native mission finish.
     void clear_game_dubbing(){dubbing_sound_.clear();sound_backend_.rethrow_dubbing_cleanup_failure();}
     frontend::VertexAnimations& game_vertex_definitions(){return modules_.vertices;} //Same process module9 definitions; world registry borrows these.
     const io::ResourceDirectoryList& model_resource_directories() const { return caches_.client(1); }
@@ -497,6 +499,7 @@ public:
     }
     bool wide_characters() const { return language_.state().wide_characters; }
     std::string language() { return language_.get(); }
+    std::string game_text_directory(){return language_.text_directory();} //0048FBC0 actual installed language prefix.
     const auto& profile_movies() { return data_.profile().payload.movies.records(); }
     bool subtitles_enabled() { return data_.profile().options.settings.bytes[0x3a] != 0; }
     bool load_movie_subtitles(const char* filename, frontend::LocalizedTextCache& text) {

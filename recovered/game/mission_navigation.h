@@ -16,6 +16,22 @@ namespace hd2::game {
 class MissionNavigation {
 public:
     explicit MissionNavigation(MissionTableSet& table) : table_(table) {}
+    void reset_runtime_links(){ //0051F230 via00523E30: FIRST dataset only; retains vector capacity.
+        table_.end34=table_.begin30;
+        for(std::uint32_t n=0;n<table_.count0;++n){
+            auto* point=record(static_cast<std::uint16_t>(n));
+            point->flags&=0xddffu;point->reserved17[3]=0; //Native byte1A, NOT navigation point byte16.
+            if((point->flags&0xc0u)==0xc0u){ //00524870: remove final synthesized sentinel.
+                const auto count=point->flags&0x3fu;
+                if(count){
+                    if(!point->payload)throw std::runtime_error("Navigation reset lost actual synthesized link payload");
+                    auto* last=static_cast<unsigned char*>(point->payload)+(count-1)*4;
+                    last[0]=last[1]=0xff;last[2]=last[3]=0;--point->flags;
+                }
+                point->flags&=0xff7fu;
+            }
+        }
+    }
     std::vector<std::uint16_t> actor_references(const void* actor)const { //0051E6D0, reverse second-family references.
         if(table_.count1c&&!table_.data20)throw std::runtime_error("Navigation table has no actor references");
         const auto* references=static_cast<const MissionTableReference*>(table_.data20);
