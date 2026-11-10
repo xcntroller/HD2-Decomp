@@ -19,6 +19,7 @@ public:
         return hand->entry();
     }
     const auto& definition(Entry entry) {return items_.runtime_item(entry).definition();}
+    const auto* definition_by_id(std::int32_t id)const{return items_.catalogue().item(id);}
     float amount(Entry entry) {return items_.runtime_item(entry).amount();}
     auto model(Entry entry) {return items_.first_person_model(definition(entry));}
     auto magazine(Entry entry) {return items_.first_person_magazine(definition(entry));}

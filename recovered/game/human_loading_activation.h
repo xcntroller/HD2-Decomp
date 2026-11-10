@@ -120,7 +120,7 @@ private:
                 frames_.actor_link_preserving_world(model,sector);frames_.update_scene_object(model);
             }
         }
-        auto& fields=human_.activation;fields.rotation17c.fill(0);human_.field94=0;
+        auto& fields=human_.activation;fields.field17c=fields.field180=fields.field184=0;human_.field94=0;
         if(human_.properties.field19c==2)apply_human_difficulty_stats(human_.properties,services_.human_difficulty()); //006B6700.
         human_.properties.stats_ec=human_.properties.stats_11c;
         if(human_.properties.field19c==4||human_.properties.field19c==5)

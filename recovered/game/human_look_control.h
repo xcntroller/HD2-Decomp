@@ -58,7 +58,46 @@ public:
         state_.set(0xb0,std::uint8_t{0});
     }
     const auto& state() const {return state_;}
+    void position_command(const HumanVector& value,bool changed=true){ //0077F260.
+        if(locked(0x40)){defer(0x40);return;}
+        const auto old=state_.template get<HumanVector>(0x10);
+        if(old[0]!=value[0]||old[1]!=value[1]||old[2]!=value[2]){
+            state_.set(0x10,value);if(changed)state_.set(0x40,state_.template get<std::uint32_t>(0x40)|0x40u);
+        } //A fourth-lane-only change leaves all four old lanes unchanged.
+    }
+    void current_direction(const HumanVector& input){ //0077F460.
+        if(locked(0x800)){defer(0x800);return;}
+        if(!control_)throw std::logic_error("Human direction requires bound DD0");
+        const auto mode=control_->mode_flags();
+        if((mode&7u)!=7u&&!state_.template get<std::uint8_t>(0xb0)&&!(mode&1u)&&!control_->human_is_player())return;
+        HumanVector value{{input[0],0,input[2],input[3]}};
+        const float square=static_cast<float>(static_cast<long double>(value[0])*value[0]+static_cast<long double>(value[2])*value[2]);
+        constexpr float epsilon=9.99999993922529e-09f;
+        if(!(std::abs(static_cast<long double>(square)-1)<epsilon)){
+            if(!(square<epsilon)){
+                const auto scale=1/std::sqrt(static_cast<long double>(square));
+                for(unsigned axis=0;axis!=3;++axis)value[axis]=static_cast<float>(value[axis]*scale);
+            }else{const auto axis=value[0]!=0?0u:value[2]!=0?2u:1u;value[axis]=value[axis]<0?-1.f:1.f;}
+        }
+        const auto physical=control_->physical().current_direction_override(),old=state_.template get<HumanVector>(0x20);
+        const auto differs=[&](const HumanVector& a){return std::abs(static_cast<long double>(a[0])-value[0])+std::abs(static_cast<long double>(a[2])-value[2])>.009999999776482582f;};
+        if(differs(physical)&&differs(old)){
+            control_->physical().invalidate_current_direction();state_.set(0x20,value);
+            state_.set(0x40,state_.template get<std::uint32_t>(0x40)|0x800u);
+        }
+    }
+    void target_direction(const HumanVector& value){ //0077F690 calls geometry007B8E80, not vector normalization.
+        if(locked(0x1000)){defer(0x1000);return;}
+        if(!control_)throw std::logic_error("Human target direction requires bound DD0");
+        control_->geometry().command_target_direction(value,control_->human_is_player());
+        control_->physical().target_direction(value);
+    }
+    std::uint32_t consume_frame_feedback(){ //005AC0D0, EAX returns OLD CC before clearing one-shot bits.
+        const auto flags=state_.template get<std::uint32_t>(0xcc);state_.set(0xcc,flags&0xfffd0fefu);return flags;
+    }
 private:
+    bool locked(std::uint32_t mask)const{return !state_.template get<std::uint8_t>(0xb0)&&((state_.template get<std::uint32_t>(0xd0)|state_.template get<std::uint32_t>(0xd4))&mask);}
+    void defer(std::uint32_t mask){state_.set(0xc8,state_.template get<std::uint32_t>(0xc8)|mask);}
     HumanJointWords<0xe0> state_; //Only the stores above are behaviorally reconstructed.
     Control* control_=nullptr;Control* second_control_=nullptr;Frame action_model_{};
     decltype(std::declval<Control&>().human_slot_address()) human_slot_=nullptr;

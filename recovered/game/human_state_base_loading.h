@@ -113,6 +113,7 @@ public:
     }
     HumanJointWords<0xc0>& words()override{return words_;}const HumanJointWords<0xc0>& words()const override{return words_;}
     Human* human()const{return human_;}Command command()const{return command_;}Entry item()const{return item_;}
+    void clear_cached_item()noexcept{item_=Entry{};} //005839D0/005783D0 clears A8 AFTER command08, not the hand holder.
     Input* input()const{return input_;}MissionNavigation* navigation()const{return navigation_;}
     MissionTableRecord* point()const{return point_;}
     void refresh_navigation_point() {

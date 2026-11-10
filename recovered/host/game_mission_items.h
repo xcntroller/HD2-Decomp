@@ -49,6 +49,7 @@ public:
         try{runtime_item(entry).identity=-1;register_loaded_item(entry);}catch(...){frames_.release_entry(entry);throw;}
         return entry;
     }
+    const auto& catalogue()const{return catalogue_;}
     Native& runtime_item(Entry entry) {
         if(std::find(tracked_.begin(),tracked_.end(),entry)==tracked_.end())
             throw std::runtime_error("Item has no live native module owner");

@@ -48,6 +48,23 @@ public:
     Human* human()const{return human_;}Look* look()const{return look_.get();}
     Control* control()const{return control_.get();}Equipment* equipment()const{return equipment_.get();}
     bool initialized()const{return initialized_;}
+    void frame_position(const HumanVector& value){required_look().position_command(value);} //005AC080.
+    void frame_current_direction(const HumanVector& value){required_look().current_direction(value);} //005AC0A0.
+    void frame_target_direction(const HumanVector& value){required_look().target_direction(value);} //005AC0C0.
+    std::uint32_t consume_frame_feedback(){return required_look().consume_frame_feedback();} //005AC0D0.
+    template<class Frames>void advance_presentation_frame(std::uint32_t elapsed,Frames& frames){ //005ABC20.
+        if(!initialized_||!control_||!equipment_)throw std::logic_error("Human presentation requires actual DD0/230");
+        const bool player=control_->human_is_player();
+        if((player&&(factory_.mode_flags()&2u))||!(factory_.mode_flags()&1u))frames.advance_human_control(*control_,elapsed); //00787270 mandatory.
+        frames.present_human_control(*control_,elapsed); //00787D50 mandatory, even when the first call was skipped.
+        equipment_->advance_frame(elapsed);
+    }
+    template<class Frames>void advance_authority_frame(std::uint32_t elapsed,Frames& frames){ //005ABC70.
+        if(!initialized_||!control_||!equipment_)throw std::logic_error("Human authority requires actual DD0/230");
+        if(!(factory_.mode_flags()&2u)){
+            frames.advance_human_control(*control_,elapsed);equipment_->advance_frame(elapsed);
+        }else if(!control_->human_is_player())frames.advance_human_control(*control_,elapsed);
+    }
     void exclude_query(bool remove_buckets=false) { //005AC1C0; genuine null-DD0 branch.
         if(control_)control_->physical().exclude_query(remove_buckets);
     }
@@ -115,6 +132,7 @@ public:
         if(mode)add_control_flags(mode==1?2u:4u);
     }
 private:
+    Look& required_look(){if(!initialized_||!look_)throw std::logic_error("Human frame requires actual live E0");return *look_;}
     Factory& factory_;Human* human_=nullptr;std::uint32_t property_=0;
     std::unique_ptr<Look> look_;std::unique_ptr<Control> control_;std::unique_ptr<Equipment> equipment_;
     bool flag14_=false,initialized_=false;

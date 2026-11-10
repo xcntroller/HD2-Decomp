@@ -29,6 +29,11 @@ struct alignas(16) HumanColdCommandControl {
     std::uint32_t field10=0;
     bool flag14=false;
     void bind_event_pool(HumanAIEventPool& pool){first.events.bind(pool);second.events.bind(pool);}
+    void advance_events(std::uint32_t elapsed){ //005AD700: FIRST then SECOND, both reverse; actual typed deques.
+        for(const auto* queue:{&first,&second})for(auto word:queue->words)
+            if(word)throw std::logic_error("Unknown raw Human command queue requires its actual frame producer");
+        first.events.advance(elapsed);second.events.advance(elapsed);
+    }
     void clear_empty() { //005AE450: known typed events plus guarded unknown raw producers.
         for(const auto& queue:{&first,&second})for(auto word:queue->words)
             if(word)throw std::logic_error("Unknown raw Human command queue requires its actual producer");

@@ -5,6 +5,7 @@
 #include <memory>
 #include <vector>
 #include <cstdint>
+#include <cstring>
 #include <stdexcept>
 
 namespace hd2::game {
@@ -68,6 +69,15 @@ public:
         notify(*result); //Native B0+B4 sees the newly appended record; never replaced by a no-op callback.
     }
     void clear()noexcept{while(!records_.empty())records_.pop_back();} //0059FA60, retain list allocation.
+    void expire(std::uint32_t now){ //005A5380, SAME timeGetTime basis as append/refresh.
+        for(auto n=records_.size();n;){
+            auto& record=records_[--n];if(!record)throw std::logic_error("Human perception expiry encountered a missing actual record");
+            const auto bits=now-record->timestamp;std::int32_t elapsed;std::memcpy(&elapsed,&bits,4);
+            if(elapsed<=3000)continue;
+            record.reset(); //Return SAME record to process pool BEFORE compacting the list; strict>3000.
+            records_.erase(records_.begin()+static_cast<std::ptrdiff_t>(n));
+        }
+    }
     ~HumanPerceptionRecords(){clear();}
 private:
     Pool* pool_=nullptr;std::vector<typename Pool::Lease> records_;

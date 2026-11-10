@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_PLAYER_MODE_LOADING_H
 
 #include "game/human_camera_state.h"
+#include "game/human_holster_lookup.h"
 #include "game/mission_integrity_tables.h"
 #include "game/session_activation.h"
 #include "frontend/game_configuration.h"
@@ -9,22 +10,6 @@
 #include <type_traits>
 
 namespace hd2::game {
-
-//005A6730: reverse actual holster stacks, inspecting only their first entry.
-//Unlike005A6830 this compares the REQUESTED kind and returns the first match.
-//Cooldown is unsigned game28>=item14; no amount/family/secondary-slot search.
-template<class Human,class Items>auto find_player_mode_holster(Human& human,Items& items,std::int32_t kind,std::uint32_t now) {
-    using Entry=std::decay_t<decltype(human.base().storage()->holder(3)->entry())>;
-    auto* storage=human.base().storage();
-    if(!storage||storage->single()||!storage->slots(1))throw std::runtime_error("Player mode requires its actual Human holsters");
-    const auto& stacks=storage->slots(1)->slots();
-    for(auto n=storage->slots(1)->occupied_stacks();n;){
-        const auto& entries=stacks.at(--n).entries;if(entries.empty())continue;
-        const auto entry=entries.front();auto& item=items.runtime_item(entry);
-        if(now>=item.field14&&item.definition().kind()==static_cast<std::uint32_t>(kind))return entry;
-    }
-    return Entry{};
-}
 
 //005469E0's actual player-state mode transition, including offline0..3.
 //Borrow SAME FPV, Items, session clock, process guard, application+0C preference

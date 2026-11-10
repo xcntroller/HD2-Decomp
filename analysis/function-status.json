@@ -25189,7 +25189,9 @@
       "limitations": "Source-only native ownership/dispatch and typed frame borrowers replace original class/virtual/SEH ABI. Native mode/Look/lookup boundaries sanitizer-verified with FPV/Items/frame/clock/world doubles; complete FPV ownership/reset is strict i386 compile-only here. Required original integrity observed publication, occupied attachments/nonoffline command2 queuing, actual containing presentation/HUD/SOUND/session and first world frame remain. No application loading or desktop claim.",
       "evidence": [
         "analysis/first-person-loading-composition.md",
-        "recovered/game/human_player_mode_loading.h"
+        "recovered/game/human_player_mode_loading.h",
+        "analysis/human-frame-source.md",
+        "recovered/game/human_holster_lookup.h"
       ]
     },
     {
@@ -27619,6 +27621,402 @@
         "recovered/host/game_actor_frames.h",
         "analysis/sight-shot-frame-source.md",
         "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a0420",
+      "status": "partial",
+      "coverage": "Unsigned elapsed FLOAT154 countdown with extended below-zero clamp and unordered NaN preservation.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_frame_samples.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a0660",
+      "status": "partial",
+      "coverage": "Same-model motion samples preserve previous velocity/position lanes, old-minus-new difference, negative1000/unsigned elapsed and attached/zero-dt branches.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_frame_samples.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a5380",
+      "status": "partial",
+      "coverage": "Reverse pooled perception expiry with strict signed wrapping age>3000, SAME pool return before erase and survivor order.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_perception_records.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ad700",
+      "status": "partial",
+      "coverage": "FIRST then SECOND event deque ageing, both reverse, unsigned age/lifetime wrap and signed expiry with pool return before erase.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_ai_event_queue.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0046f320",
+      "status": "partial",
+      "coverage": "Actual relation feedback query uses target marker count in mode0 and relation current/previous/BYTE feedback otherwise.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/sight_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a50a0",
+      "status": "partial",
+      "coverage": "Alive perception refresh collects dead hostiles/neutrals in native reverse order before mutations, applies visible-neutral alignment and dispatches loss before acquisition.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_perception.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a60d0",
+      "status": "partial",
+      "coverage": "Offline/game/174 alignment gates, actual holder order0/4/3/2/5 and descriptor44 reset, add with upper100-only clamp.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_sight_relations.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a6250",
+      "status": "partial",
+      "coverage": "Set actual Human alignment16C to requested FLOAT in offline7, zero otherwise, without extra clamp.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_sight_relations.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005839d0",
+      "status": "partial",
+      "coverage": "Base/player inline feedback BYTE writes, flags preservation, actual hand refresh/readiness, post-write nonplayer gate and prioritized item execution/command/cache ordering.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_frame_feedback.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005783d0",
+      "status": "partial",
+      "coverage": "AI inline feedback preserves actual BYTE/flag/readiness and prioritized action ordering without base nonplayer gate.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_frame_feedback.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058b6c0",
+      "status": "partial",
+      "coverage": "Actual item-execution gate, raw B0/player-camera directions, head/shdum/model/FPV positions, kind9 adjustment and required actual item virtual24/28 return propagation.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_item_frame_execution.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00492790",
+      "status": "partial",
+      "coverage": "Actual active-camera selector0 position unless mode2 valid selected kind9 uses actual first-person weapon48 world position; reject unwritten output.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/first_person_view_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00492880",
+      "status": "partial",
+      "coverage": "Actual mission-camera virtual68 selector1 direction with all four lanes; reject unwritten camera output.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/first_person_view_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058ba80",
+      "status": "partial",
+      "coverage": "Typed borrowed itemA4 shdum cache, actual primary model/find mask20 and repeated missing lookup without a synthetic fallback.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/runtime_item.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005785b0",
+      "status": "partial",
+      "coverage": "Confirmed offline7 command08 RET reached after actual item execution; nonoffline actual packet receiver remains required.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_loading_state_factory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00542920",
+      "status": "partial",
+      "coverage": "Offline frame command8 applies actual alignment-10, commands4/6/7 take genuine default no-effect path; other effects and nonoffline packet publication required.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_loading_state_factory.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f260",
+      "status": "partial",
+      "coverage": "E0 position setter honors locks/force/deferred flags, compares XYZ only, copies XYZW on change and optional dirty40.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f460",
+      "status": "partial",
+      "coverage": "E0 current direction lock/player/authority gates, horizontal normalization, dual physical/E0 XZ thresholds, actual physical240 invalidation and dirty800.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f690",
+      "status": "partial",
+      "coverage": "E0 target-direction locks/deferred1000, actual geometry target receiver before physical940 four-lane copy, no invented normalization.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac080",
+      "status": "partial",
+      "coverage": "Same live inline E0 position setter with actual original changed flag.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac0a0",
+      "status": "partial",
+      "coverage": "Same live inline E0 current-direction setter and DD0/geometry owners.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac0c0",
+      "status": "partial",
+      "coverage": "Same live inline E0 target-direction setter.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac0d0",
+      "status": "partial",
+      "coverage": "Return OLD feedback CC then clear one-shot bits with FFFD0FEF, preserving native EAX result omitted by decompiler.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b8e80",
+      "status": "partial",
+      "coverage": "Actual geometry6304 gate, bound-player and near-parallel/opposite snap, clamped dot/acos/sine and timed target-direction seeding.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_model_geometry.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00792ce0",
+      "status": "partial",
+      "coverage": "Actual230 attachment/event/blend expiry, signed FLOAT rates, hide/restore translation and native asymmetric rotation, light/lens timers over SAME owners.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_equipment_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b8d00",
+      "status": "partial",
+      "coverage": "Actual retained weapon/flag gates, signed duration times FLOAT6318 with QWORD truncation low DWORD, original timer/flag publication.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_weapon_binding.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005abc20",
+      "status": "partial",
+      "coverage": "Same inline presentation mode/player policy, required real DD0 control then presentation and actual230 frame receiver in native order.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005abc70",
+      "status": "partial",
+      "coverage": "Same inline authority mode/player policy and actual230 update only on mode2-clear path; required real DD0 receiver.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0059ffd0",
+      "status": "partial",
+      "coverage": "Containing authority order over SAME current state/inline owners: registered gate, item/timer/perception/queues, fresh B0 directions, control/feedback then alive motion/contact/stats/formation.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_scene_frame.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a0480",
+      "status": "partial",
+      "coverage": "Actual154/158 bleeding cadence, mode2 timer distinction, ordered engine RandFloat and positive required blood receiver without a second timer gate.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_frame_samples.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a88f0",
+      "status": "partial",
+      "coverage": "Activity50/action5C distinction, signed strict25000/20000 periodic timers, endurance priority and one award/subtraction per call.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_frame_stats.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a93a0",
+      "status": "partial",
+      "coverage": "Offline HumanC8 FLOAT endurance addition and extended upper5 clamp with negative/NaN behavior.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_frame_stats.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a94f0",
+      "status": "partial",
+      "coverage": "Offline HumanD4 FLOAT stealth addition and extended upper2 clamp with negative/NaN behavior.",
+      "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-frame-20261110.json",
+        "recovered/game/human_frame_stats.h"
       ]
     }
   ]

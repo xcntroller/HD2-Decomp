@@ -3,8 +3,26 @@
 
 #include <stdexcept>
 #include <cstdint>
+#include <initializer_list>
 
 namespace hd2::game {
+template<class Human>void set_human_sight_alignment(Human& human,float value,std::uint32_t mode){ //005A6250, direct setter, no clamp/game34 gate.
+    human.activation.field16c=(mode&7u)==7u?value:0.f;
+}
+
+//005A60D0: actual offline/game34 alignment amount. Holder order and repeated
+//entry lookup match native; zero descriptor44 resets, upper clamp100 only.
+template<class Human,class EntryFlags>void adjust_human_sight_alignment(Human& human,float amount,
+        std::uint32_t mode,bool game34,EntryFlags&& entry_flags){
+    auto& value=human.activation.field16c;
+    if((mode&7u)!=7u||!game34||human.field174){value=0;return;}
+    auto* storage=human.base().storage();if(!storage||storage->single())throw std::runtime_error("Human alignment update requires actual multi-holder storage");
+    for(unsigned index:{0u,4u,3u,2u,5u}){
+        auto* holder=storage->holder(index);if(!holder)throw std::runtime_error("Human alignment update lost its actual holder");
+        if(holder->entry()&&entry_flags(holder->entry())==0){value=0;return;}
+    }
+    value=static_cast<float>(static_cast<long double>(value)+amount);if(value>100.f)value=100.f;
+}
 
 //005A84F0. game34 and16C are actual containing-game/Human scalars; lazy
 //getters preserve native short circuits. Entry flags read SAME item's descriptor44.

@@ -146,6 +146,11 @@ public:
         if(!(next&6u)&&(old&6u)&&next!=old)reposition_human_state_on_ground(frames_,*human_,*this,look,sweep);
     }
     const auto& state() const{return state_;}
+    HumanVector current_direction_override()const{return state_.template get<HumanVector>(0x240);}
+    void invalidate_current_direction(){ //0077F460 invalidates XYZ only; native24C comes from unwritten stack.
+        for(unsigned axis=0;axis!=3;++axis)state_.set(0x240+axis*4,-10000.099609375f);
+    }
+    void target_direction(const HumanVector& value){state_.set(0x940,value);} //0077F690, AFTER geometry receiver.
     void equipment_transfer_mode(std::uint32_t command,std::uint32_t mode) { //00792590/00792720 DD0 stores.
         state_.set(0x7c4,command);state_.set(0xa20,mode);
     }

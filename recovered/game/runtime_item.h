@@ -54,7 +54,8 @@ public:
     std::int32_t holder_slot=0; //Native24.
     std::array<std::uint32_t,2> fields50_54{{0xbf800000u,0xbf800000u}};
     std::uint32_t field58=0,field5c=0,field60=1,field64=0,field68=0,field6c=0;
-    std::uint32_t field74=0,field7c=1,field88=1,field8c=0,field9c=0,fielda0=0,fielda4=0,fielda8=0xffffffffu;
+    std::uint32_t field74=0,field7c=1,field88=1,field8c=0,field9c=0,fielda0=0,fielda8=0xffffffffu;
+    Frame shot_marker{}; //Native A4 borrowed child, never truncate its identity into a DWORD.
     bool flag90=false;
     float field98=1;
     float amount() const { //007D3320/007D3870/007D4680.
@@ -79,6 +80,13 @@ public:
         return model_?model_->get():Frame{};
     }
     Frame flash_frame() const {return flash_;} //Borrowed from primary model.
+    Frame shot_frame() { //0058BA80: absent shdum is NOT cached as a successful fallback.
+        if(!shot_marker){
+            const auto frame=model();if(!frame)throw std::runtime_error("Item shot marker requires actual primary model");
+            shot_marker=services_.find_item_model_frame(frame,"shdum",0x20);
+        }
+        return shot_marker;
+    }
     std::uint32_t other_field28() const {return other_field28_;}
     float auxiliary_amount()const{return family_==Family::other?real(other_field28_):-1.f;} //007D41A0/007D3280 virtual20.
 private:
@@ -134,7 +142,7 @@ private:
             flash_=services_.find_item_model_frame(frame,"flash",1);
             if(flash_)services_.item_model_visible(flash_,false);
         }
-        field9c=fielda0=fielda4=field8c=0;fielda8=0xffffffffu; //007D4780.
+        field9c=fielda0=field8c=0;shot_marker=Frame{};fielda8=0xffffffffu; //007D4780.
     }
     Services& services_;
     const Catalogue& catalogue_;

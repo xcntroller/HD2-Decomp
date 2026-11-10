@@ -6,6 +6,7 @@
 #include "game/human_equipment_visibility.h"
 #include "game/human_equipment_services.h"
 #include "game/human_equipment_transfers.h"
+#include "game/human_equipment_frame.h"
 
 namespace hd2::game {
 
@@ -24,7 +25,7 @@ public:
     using Transfers=HumanEquipmentTransfers<Frames,Items,Services,Holsters,Attachments>;
     template<class Human>HumanEquipmentLoading(Frames& frames,Items& items,Animations& animations,
             Services& services,Shadow& shadow,const frontend::PreMissionItemCatalogue& catalogue,Human& human)
-        :services_(services),holsters_(frames,animations),attachments_(frames,items,services,catalogue,state_),
+        :frames_(frames),catalogue_(catalogue),services_(services),holsters_(frames,animations),attachments_(frames,items,services,catalogue,state_),
          visibility_(frames,shadow,services,catalogue,state_),activation_(frames,items,services,holsters_,attachments_,state_),
          transfers_(frames,items,services,holsters_,attachments_,state_) {
         holsters_.initialize(human.base().frame()); //Native constructor loads before DD0 binds/activates.
@@ -39,7 +40,9 @@ public:
     auto& state(){return state_;}const auto& state()const{return state_;}
     auto& attachments(){return attachments_;}
     auto& transfers(){return transfers_;}
+    void advance_frame(std::uint32_t elapsed){advance_human_equipment_frame(frames_,state_,services_,attachments_,transfers_,activation_.light(),catalogue_,elapsed);} //00792CE0.
 private:
+    Frames& frames_;const frontend::PreMissionItemCatalogue& catalogue_;
     Services& services_;State state_;Holsters holsters_;Attachments attachments_;Visibility visibility_;Activation activation_;Transfers transfers_;
 };
 } //namespace hd2::game

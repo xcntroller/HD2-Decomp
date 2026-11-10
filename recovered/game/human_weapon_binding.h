@@ -28,6 +28,14 @@ public:
     Frame right() const{return right_;}
     Frame butt() const{return butt_;}
     bool stowed()const{return (state_.field62d8&0x80000000u)!=0;}
+    void blend(std::int32_t duration){ //007B8D00; signed duration, FLOAT6318, __ftol LOW DWORD.
+        if(state_.flag62c8||(state_.field6304&0x38u)||!model())return;
+        float factor;std::memcpy(&factor,&state_.field6318,4);
+        const auto value=static_cast<long double>(duration)*factor;
+        state_.field630c=static_cast<std::uint32_t>(duration);
+        state_.field6308=std::isfinite(value)&&value>=-0x1p63L&&value<0x1p63L?static_cast<std::uint32_t>(static_cast<std::int64_t>(value)):0;
+        state_.flag62c8=true;state_.field6304=(state_.field6304&0x0fffffc2u)|0x40000001u;
+    }
     void stow(bool enabled) { //007B96C0; clearing is completed by the later geometry update.
         if(!model()||stowed()==enabled)return;
         float amount;std::memcpy(&amount,&state_.field631c,4);

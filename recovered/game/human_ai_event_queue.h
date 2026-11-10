@@ -87,6 +87,15 @@ public:
     }
     const HumanAIEvent* at(std::size_t index)const{return events_?events_->at(index).get():nullptr;}
     std::size_t size()const{return events_?events_->size():0;}
+    void advance(std::uint32_t elapsed){ //005AD700's per-deque body; reverse, SAME process pool.
+        for(auto n=size();n;){
+            auto& event=events_->at(--n);if(!event)throw std::logic_error("Human AI frame encountered a missing actual event");
+            event->words[2]+=elapsed;event->words[1]-=elapsed;
+            if(signed_word(event->words[1])>0)continue;
+            event.reset(); //00533850 returns record BEFORE00533880 erases/compacts.
+            events_->erase(events_->begin()+static_cast<std::ptrdiff_t>(n));
+        }
+    }
     void clear()noexcept{if(events_){while(!events_->empty())events_->pop_back();events_.reset();}}
     ~HumanAIEventQueue(){clear();}
 private:

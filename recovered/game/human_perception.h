@@ -72,5 +72,26 @@ void notify_human_sight(Human& human,bool lost,std::uint32_t index,Targets& targ
         if(bindings.sight_dog_health(*target->actor)>0)bindings.player_sight_dog(human,*target->actor);
     }
 }
+
+//005A50A0: collect indices before any callbacks mutate actual perception lists.
+//Reverse hostile, then reverse neutral, then reverse queued loss+acquisition.
+template<class Human,class Sight,class Bindings>void refresh_human_perception(Human& human,Sight& sight,Bindings& bindings){
+    const auto alive=[](const auto& actor){return !(actor.properties.stats_ec[0]&0x80000000u)&&actor.properties.stats_ec[0]!=0;};
+    if(!alive(human))return;
+    const auto actual=[](auto actor)->Human&{auto* result=dynamic_cast<Human*>(actor);if(!result)throw std::runtime_error("Human perception list lost its actual Human actor");return *result;};
+    std::vector<std::uint32_t> queued;
+    auto& hostile=human.perception.lists()[0];
+    for(auto n=hostile.size();n;){auto& other=actual(hostile.at(--n));if(!alive(other))queued.push_back(other.field25c);}
+    auto& neutral=human.perception.lists()[3];
+    for(auto n=neutral.size();n;){
+        auto& other=actual(neutral.at(--n));
+        if(!alive(other)||bindings.human_sight_hostile(&human,&other))queued.push_back(other.field25c);
+        else{
+            bool visible=false;(void)sight.human_relation_feedback(static_cast<std::int32_t>(human.field258),static_cast<std::int32_t>(other.field25c),nullptr,&visible);
+            if(visible)bindings.adjust_human_sight_alignment(human,-1.f);
+        }
+    }
+    for(auto n=queued.size();n;){const auto index=queued[--n];bindings.human_sight_changed(&human,true,index);bindings.human_sight_changed(&human,false,index);}
+}
 } //namespace hd2::game
 #endif

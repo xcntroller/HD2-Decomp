@@ -8,6 +8,10 @@
 #include "game/human_speech_notifications.h"
 #include "game/human_sight_relations.h"
 #include "game/collision_ray.h"
+#include "game/human_frame_feedback.h"
+#include "game/human_item_frame_execution.h"
+#include "game/human_scene_frame.h"
+#include "game/human_frame_stats.h"
 #include <stdexcept>
 
 namespace hd2::game {
@@ -87,9 +91,58 @@ public:
             [&]{return human_remote_ai_enabled();},[](auto& value){return value.activation.field16c;},
             [&](auto entry){return dependencies().world_actors.items().human_entry_alignment(entry);});
     }
+    template<class Human>void adjust_human_sight_alignment(Human& human,float amount){
+        game::adjust_human_sight_alignment(human,amount,mode_flags(),dependencies().session.words.template get<std::uint8_t>(0x34)!=0,
+            [&](auto entry){return dependencies().world_actors.items().human_entry_alignment(entry);});
+    }
+    template<class Human>void refresh_human_frame_perception(Human& human){
+        dependencies().sight.refresh_human_perception(human);human.list2ac.expire(dependencies().hearing.human_sound_ticks());
+    }
+    template<class Human>void advance_human_command_events(Human& human,std::uint32_t elapsed){
+        if(!human.command)throw std::logic_error("Human frame requires actual commandB4 owner");
+        human.command->advance_events(elapsed);
+    }
+    template<class Entry>bool human_feedback_item_ready(Entry entry){return dependencies().world_actors.items().runtime_item(entry).field14<=game_word28();}
+    template<class Human>auto human_feedback_kind9(Human& human){return find_player_mode_holster(human,dependencies().world_actors.items(),9,game_word28());}
+    auto human_projectile_direction(){return dependencies().first_person.view().projectile_direction();}
+    auto human_projectile_position(){return dependencies().first_person.view().projectile_position(mode_flags());}
+    template<class State,class Entry,class Fire>void execute_human_feedback_item(State& state,Entry entry,std::uint32_t command,Fire& fire){
+        auto* human=state.human();if(!human)throw std::logic_error("Human feedback execution requires bound B0+44");
+        //The offline command receiver below genuinely ignores its vector/scalar
+        //arguments. Nonoffline needs the actual0x70 input packet and must not
+        //consume unwritten vectors from0058B6C0's remote early return.
+        if((mode_flags()&7u)!=7u)throw std::runtime_error("Nonoffline feedback execution requires actual0073E5A0 packet publication");
+        auto& items=dependencies().world_actors.items();
+        auto* item=entry?&items.runtime_item(entry):nullptr;
+        HumanVector position,direction;
+        (void)execute_human_item_frame(state,item,true,0,position,direction,*this,fire);
+        composition(*human).state_factory().notify_inline_frame_command(state,command); //AFTER actual item virtual24.
+    }
+    template<class Human,class Fire>void apply_human_frame_feedback(Human& human,std::uint32_t flags,Fire& fire){
+        auto& owner=composition(human);auto* state=owner.states().get();
+        if(!state)throw std::logic_error("Human feedback requires actual current B0");
+        HumanFrameFeedbackReceivers<HumanWorldLoadingServices,Fire> receivers{*this,fire};
+        owner.state_factory().apply_inline_feedback(*state,flags,receivers);
+    }
+    template<class Human,class Runtime>void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed,Runtime& runtime){
+        game::advance_human_scene_frame(human,authority,elapsed,*this,runtime,dependencies().scene.frames());
+    }
+    template<class Human,class Drops>void advance_human_bleeding(Human& human,std::uint32_t elapsed,Drops& drops){
+        auto& frames=dependencies().scene.frames();auto random=[&]{return frames.volume_random_unit();};
+        advance_human_frame_bleeding(human,frames,random,drops,elapsed,mode_flags());
+    }
+    template<class Human>void advance_human_periodic_stats(Human& human,std::uint32_t elapsed){
+        auto* state=composition(human).states().get();if(!state)throw std::logic_error("Human periodic stats require actual B0");
+        game::advance_human_periodic_stats(human,*state,elapsed,mode_flags());
+    }
     template<class Human,class Actor>bool human_sound_friendly(Human& human,Actor actor){return dependencies().sight.human_sight_friendly(&human,actor);}
     template<class Human>auto& human_state_factory(Human& human){return composition(human).state_factory();}
     template<class Human>auto& human_state_owner(Human& human){return composition(human).states();}
+    struct HumanRespawnConfiguration{std::int32_t style;std::uint32_t delay,enabled;};
+    HumanRespawnConfiguration human_respawn_configuration(){
+        const auto& config=dependencies().startup.game_configuration();
+        return {config.style224,static_cast<std::uint32_t>(config.rules228[5]),static_cast<std::uint32_t>(config.rules228[6])};
+    }
     template<class Human>auto& human_inline(Human& human){return composition(human).control();}
     template<class Human>bool sight_controlled_target(Human& human){ //005A59E0's SAME00461410/20 roster membership.
         if((mode_flags()&7u)!=7u&&human_remote_ai_enabled()&&(mode_flags()&1u))return dependencies().players.auxiliary().human_roster().contains(&human);

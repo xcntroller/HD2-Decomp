@@ -392,6 +392,11 @@ public:
         for(unsigned axis=0;axis!=3;++axis)put(frame,0xd0+axis*4,scale[axis]); //DC is unwritten SIMD padding.
         put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xffffffd7u)|0x40000014u);
     }
+    void human_equipment_shift_z(Frame frame,float amount){ //00792CE0: static80 suppresses position and dirty stores.
+        const auto flags=field<std::uint32_t>(frame,0xe0);if(flags&0x80u)return;
+        put(frame,0xb8,static_cast<float>(static_cast<long double>(field<float>(frame,0xb8))+amount));
+        put(frame,0xe0,(flags&0xfffffedfu)|0x40000000u);
+    }
     void human_equipment_link(Frame frame,Frame parent,std::uint32_t flags) {
         if(call<std::int32_t>(frame,0x38,parent,flags)<0)
             throw std::runtime_error("Cannot attach required Human equipment frame");

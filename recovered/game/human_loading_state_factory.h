@@ -8,6 +8,8 @@
 #include "game/human_passive_states_loading.h"
 #include "game/human_player_state_loading.h"
 #include "game/human_state_loading_owner.h"
+#include "game/human_frame_feedback.h"
+#include "game/human_sight_relations.h"
 
 namespace hd2::game {
 
@@ -84,6 +86,26 @@ public:
     void record_state_cleanup_failure(std::exception_ptr error)noexcept{services_.record_state_cleanup_failure(error);}
     auto& services(){return services_;}auto& contexts(){return contexts_;} //SAME owners for derived sound dispatch.
     auto& control(){return control_;}
+    template<class FrameServices>void apply_inline_feedback(Base& state,std::uint32_t flags,FrameServices& frames){
+        const auto kind=state.words().template get<std::uint32_t>(0x48);
+        switch(kind){
+        case 1:apply_human_frame_feedback(state,flags,false,frames);return;
+        case 3:case 4:case 5:case 6:case 8:apply_human_frame_feedback(state,flags,true,frames);return;
+        case 7:throw std::runtime_error("Remote Human frame feedback requires actual005941B0");
+        default:throw std::runtime_error("Human frame feedback has no actual B0 receiver");
+        }
+    }
+    void notify_inline_frame_command(Base& state,std::uint32_t command){ //Actual virtual08 subset reached by+80 feedback.
+        if((services_.mode_flags()&7u)!=7u)throw std::runtime_error("Human feedback command requires actual0073E5A0 packet receiver");
+        switch(state.words().template get<std::uint32_t>(0x48)){
+        case 3:case 4:case 5:case 6:case 8:return; //005785B0 genuinely does nothing in offline7, AFTER actual item execution.
+        case 1:
+            if(command==8){auto* human=state.human();if(!human)throw std::logic_error("Player feedback command has no bound Human");set_human_sight_alignment(*human,-10.f,services_.mode_flags());return;} //00542920→005A6250.
+            if(command==4||command==6||command==7)return; //Actual default branch of00542920, no offline packet.
+            throw std::runtime_error("Other player command requires its actual00542920 effects");
+        default:throw std::runtime_error("Human command08 requires its actual current B0 receiver");
+        }
+    }
     void suspend_human_state(Base& state,bool value) { //Actual virtualF0 targets.
         switch(state.words().template get<std::uint32_t>(0x48)){
         case 1:case 7:return; //00583250 is genuine RET4.

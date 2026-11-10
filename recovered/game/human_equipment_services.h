@@ -46,6 +46,8 @@ public:
     void set_equipment_weapon(Frame model,std::int32_t kind){control_.geometry().set_equipment_weapon(model,kind);}
     bool equipment_weapon_stowed()const{return control_.geometry().equipped_weapon().stowed();}
     void stow_equipment_weapon(bool enabled){control_.geometry().stow_equipment_weapon(enabled);}
+    std::int32_t equipment_look_command()const{return look_.state().template get<std::int32_t>(0x5c);}
+    void blend_equipment_weapon(std::int32_t duration){control_.geometry().blend_equipment_weapon(duration);}
     void equipment_transfer_mode(std::uint32_t command,std::uint32_t mode,bool moved){control_.equipment_transfer_mode(command,mode,moved);}
     void force_equipment_command(std::int32_t command){look_.force_equipment_command(command);}
     void refresh_inventory_holster_animation() { //00791EB0:350.f/1.4f x87→truncate EAX=250.

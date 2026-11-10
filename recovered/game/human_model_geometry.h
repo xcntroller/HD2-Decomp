@@ -90,11 +90,29 @@ public:
         std::uint32_t field62cc=0,field62d0=0,field65f4=0,field62d8=1,
             field6304=0,field6308=0,field630c=300,field6310=0,field6314=0,field6318=0,field631c=0,field6410=100;
         std::int32_t field62dc=0;
+        std::uint32_t time62c0=0,time62c4=0;
+        float angle63c0=0,sine63c4=0;
         Vector direction6360{},direction6370{},direction6380{},offset6390{},
             position6400{},field6350{},field63d0{},field63e0{},field63f0{},
             offset63a0{{-.075f,-.041f,-.003f,0}},offset63b0{{.075f,-.041f,-.003f,0}};
     };
     const Movement& movement() const {return movement_;}
+    void command_target_direction(const Vector& target,bool player) { //007B8E80, no normalization of its input.
+        if(!(movement_.field6304&1u))return;
+        auto snap=[&]{movement_.direction6360=movement_.direction6380=movement_.direction6370=target;movement_.time62c0=0;};
+        if(human_&&player){snap();return;} //Native leaves62C4 and angle/sine untouched.
+        const auto& current=movement_.direction6360;
+        const auto dot=(static_cast<long double>(current[2])*target[2]+static_cast<long double>(current[1])*target[1])+static_cast<long double>(current[0])*target[0];
+        movement_.angle63c0=static_cast<float>(dot);
+        if(dot>1)movement_.angle63c0=1;else if(dot< -1)movement_.angle63c0=-1;
+        if(1.L-std::abs(static_cast<long double>(movement_.angle63c0))<9.99999993922529e-09){snap();return;}
+        const auto angle=std::acos(static_cast<long double>(movement_.angle63c0));
+        movement_.angle63c0=static_cast<float>(angle);movement_.sine63c4=static_cast<float>(std::sin(angle));
+        const auto duration=static_cast<long double>(movement_.angle63c0)*95.49296569824219f; //00816E78.
+        movement_.time62c0=movement_.time62c4=std::isfinite(duration)?static_cast<std::uint32_t>(duration):0; //__ftol QWORD indefinite has LOW DWORD0.
+        movement_.direction6370=movement_.direction6360;movement_.direction6380=target;
+    }
+    void blend_equipment_weapon(std::int32_t duration){equipped_weapon_.blend(duration);} //007B8D00.
 private:
     void reset_loading() { //0079BD30(false), state written before any model-dependent work.
         const auto random=random_();if(random>0x7fff)throw std::runtime_error("Human geometry requires shared CRT random");

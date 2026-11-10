@@ -47,6 +47,25 @@ public:
     const auto& rotation()const{return rotation10_;}
     const auto& offset()const{return offset20_;}
     float scale()const{return scale6c_;}
+    std::array<float,4> projectile_direction() { //00492880: camera virtual68 selector1, not raw FPV rotation10.
+        std::array<float,4> result;
+        if(!camera_.query_direction(1,result))throw std::runtime_error("Projectile direction requires actual mission camera1; native output is unwritten on failure");
+        return result;
+    }
+    std::array<float,4> projectile_position(std::uint32_t mode) { //00492790: camera virtual64 selector0, except actual kind9 weapon48.
+        if(mode&2u){
+            const auto id=models_.definition();
+            if(id>=0&&id<500)if(const auto* definition=items_.definition_by_id(id))if(definition->kind()==9){
+                const auto frame=models_.weapon();
+                if(!frame)throw std::runtime_error("Kind9 projectile position requires actual first-person weapon48");
+                const auto matrix=frames_.actor_world_matrix(frame);
+                return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
+            }
+        }
+        std::array<float,4> result;
+        if(!camera_.query_vector(0,result))throw std::runtime_error("Projectile position requires actual active camera0; native output is unwritten on failure");
+        return result;
+    }
     template<class Files,class Clock>void activate(std::uint32_t mode,Files& files,Clock& clock) { //004909D0.
         if(!(mode&2u))return;
         if(view_.byte3c||models_.model()||models_.hands())throw std::logic_error("First-person view activation requires cold models");

@@ -105,6 +105,7 @@ public:
     const auto& animation() const{return animation_;}const auto& opacity() const{return opacity_;}
     Human** human_slot_address(){return physical_.human_slot_address();}
     std::uint32_t mode_flags() const{return services_.mode_flags();}
+    bool human_is_player()const{if(!human_)throw std::logic_error("Human control has no bound actor");return services_.human_is_player(*human_);}
     bool active() const{return active_;}
     bool collision_disabled()const{return flag_dc4_;} //No loading producer changes this DD0 byte.
     float presentation_amount() const{return amount_;}

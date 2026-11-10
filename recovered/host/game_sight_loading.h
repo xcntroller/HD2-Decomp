@@ -42,6 +42,8 @@ public:
     }
     void player_sight_dog(Human& observer,GameSceneActors::Instance& target){world_.player_sight_dog(observer,target);}
     void dog_sight_changed(Actor observer,bool lost,std::uint32_t target){world_.dog_sight_changed(*observer,lost,target);}
+    void adjust_human_sight_alignment(Human& human,float amount){world_.adjust_human_sight_alignment(human,amount);}
+    void refresh_human_perception(Human& human){game::refresh_human_perception(human,source_,*this);}
     using Source=game::SightLoading<GameSceneActors,GameSightLoading,Actor>;
     std::optional<float> sight_human_metric(Actor observer,Actor target){return game::human_sight_human_metric(human(observer),human(target),frames_,world_).score;}
     template<class DogQueries>std::optional<float> sight_dog_metric(Actor observer,Actor target,DogQueries& dogs){return game::human_sight_dog_metric(human(observer),target,frames_,world_,dogs).score;}

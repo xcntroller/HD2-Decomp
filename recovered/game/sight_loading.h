@@ -334,6 +334,19 @@ public:
         target->markers.clear();return true;
     }
     Observer* observer(std::int32_t index){auto* value=record_at(observers_,index);return value&&value->mask?value:nullptr;} //0046EFA0.
+    std::uint32_t human_relation_feedback(std::int32_t observer_index,std::int32_t target_index,
+            std::uint32_t* previous,bool* visible){ //0046F320→Human virtual0C0046DB60 (latter absent frozen).
+        auto& observer=required_observer(observer_index);
+        if(receivers_.sight_actor_type(observer.actor)!=3)throw std::runtime_error("Sight feedback query requires actual Human observer virtual0C");
+        const auto& relation=required_relation(observer,target_index);
+        if(relation.mode()==0){
+            const auto* target=live_target(target_index);if(!target)throw std::runtime_error("Sight mode0 feedback requires actual target marker count");
+            const auto count=static_cast<std::uint32_t>(target->markers.size());if(previous)*previous=count;if(visible)*visible=true;return count;
+        }
+        if(previous)*previous=relation.words[2];
+        if(visible)*visible=(relation.words[3]&0xffu)!=0;
+        return relation.words[1];
+    }
     Target* target(std::int32_t index){return live_target(index);}
     const auto& observers()const{return observers_;}const auto& targets()const{return targets_;}
 private:

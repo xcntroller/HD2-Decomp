@@ -32,7 +32,12 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are34 complete client functions and1,833 partial entries
+The current totals are34 complete client functions and2,068 partial entries
+(2,063 client/five engine). The [Human frame source checkpoint](human-frame-source.md)
+adds33 frozen client partials, with no complete or desktop promotions. The current
+[ledger](function-status.json) and generated README tally remain authoritative.
+
+An earlier checkpoint had34 complete client functions and1,833 partial entries
 (1,828 client/five engine), including [Car activation](car-activation-loading.md)
 and [Human/world composition](human-world-composition.md), followed by22
 [initial Human/VM/view control subsets](mission-script-initial-controls.md). The [P2.2 source reconciliation](function-ledger-p2.2-reconciliation.md)
