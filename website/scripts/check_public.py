@@ -30,7 +30,7 @@ def audit(root):
         for name in [entry.get('file'), *entry.get('css', []), *entry.get('assets', [])]:
             require(isinstance(name, str) and ASSET.fullmatch(name), 'Unexpected Vite asset path/type')
             assets.add(name)
-    allowed = assets | {'index.html', 'font-licenses.txt', 'data/progress.json', '.vite/manifest.json'}
+    allowed = assets | {'index.html', 'font-licenses.txt', 'data/progress.json', 'data/research.json', '.vite/manifest.json'}
     actual = {p.relative_to(root).as_posix() for p in paths if p.is_file()}
     require(actual == allowed, 'Artifact has missing or undeclared files (only Vite assets, snapshot and licenses allowed)')
     for name in sorted(actual):
@@ -44,6 +44,8 @@ def audit(root):
             continue
         require(not MACHINE.search(path.read_text(encoding='utf-8')),
                 'Private machine path in public output')
+    from research_adapter import build_research
+    require(load_snapshot(root / 'data/research.json') == build_research(), 'Stale research snapshot')
     index = (root / 'index.html').read_text(encoding='utf-8')
     require('/HD2-Decomp/assets/' in index and '/src/' not in index, 'Incorrect Pages base or unbuilt index.html')
     validate_snapshot(load_snapshot(root / 'data/progress.json'))
