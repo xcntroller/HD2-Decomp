@@ -1,0 +1,563 @@
+{
+  "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "contract": "analysis/future-dependencies/p2.5-retained-game.md",
+  "controller_fields": {
+    "14": "current state",
+    "18": "fixed accumulator",
+    "20": "saved offline pause BYTE",
+    "28": "phase marker; not a time accumulator"
+  },
+  "desktop_verification": false,
+  "entry_abi": {
+    "cleanup": "RET4",
+    "entry": "0069e620",
+    "receiver": "ECX actual game",
+    "result": "EAX current-state candidate",
+    "stack": [
+      "selector -1 or -2"
+    ]
+  },
+  "function_owners": {
+    "00428f00": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing Script module00868A08; vector85C holds actual sound-frame references"
+    },
+    "00433550": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing SOUND singleton00899728 and borrowed ISnd driver; process/world services lifetime"
+    },
+    "004427a0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing effect manager008998E8 / live effect instance; model/frame borrowers survive paused update"
+    },
+    "00442860": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing effect manager008998E8 / live effect instance; model/frame borrowers survive paused update"
+    },
+    "004455b0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing effect manager008998E8 / live effect instance; model/frame borrowers survive paused update"
+    },
+    "0046cb20": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing CameraModule singleton0089AEA0; borrowed world camera/selected actors"
+    },
+    "0049b7c0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "005e3c90": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual actor-kind36 instances; static vector008AC8B8 borrows until actor destruction"
+    },
+    "005e3ef0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual actor-kind36 instances; static vector008AC8B8 borrows until actor destruction"
+    },
+    "005e3f10": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual actor-kind36 instances; static vector008AC8B8 borrows until actor destruction"
+    },
+    "005e8d50": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual actor-kind36 instances; static vector008AC8B8 borrows until actor destruction"
+    },
+    "0061bea0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Menu-owned Options context1EC, borrowed menu/profile/input/screen definitions"
+    },
+    "0061cf60": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Menu-owned Options context1EC, borrowed menu/profile/input/screen definitions"
+    },
+    "0066ad10": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Common frontend state; retained type11 uses mode11; temporary menu lifetime"
+    },
+    "0066b140": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Common frontend state; retained type11 uses mode11; temporary menu lifetime"
+    },
+    "0066b3e0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Common frontend state; retained type11 uses mode11; temporary menu lifetime"
+    },
+    "0066be90": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Common frontend state; retained type11 uses mode11; temporary menu lifetime"
+    },
+    "0066bea0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Common frontend state; retained type11 uses mode11; temporary menu lifetime"
+    },
+    "0066c5b0": {
+      "lifetime": "Temporary menu; existing driver and shared resources outlive it",
+      "owner": "Common frontend resource setup receiver; retained type11 uses mode11"
+    },
+    "0066de00": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Common frontend state; retained type11 uses mode11; temporary menu lifetime"
+    },
+    "00670b40": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Menu inline4DC preview owner; owns model+4 and releases its real subresources"
+    },
+    "0067e840": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "0067ea00": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "ApplicationState base status word+04, current concrete owner lifetime"
+    },
+    "0067ea10": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "ApplicationState base status word+04, current concrete owner lifetime"
+    },
+    "0067f170": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "0067f180": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "0067f1a0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "0067f350": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "0067f460": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "0067f550": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "0067faa0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "0067fb00": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "006805d0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "00680620": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "00680660": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "00680680": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "006821f0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "006822d0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "00682470": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "00682490": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "00682980": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Actual retained menu state (type11); temporary menu lifetime; game5B8 is borrowed"
+    },
+    "00698500": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Process game registry008AE7E4; borrowed actual game returned, no allocation"
+    },
+    "0069a560": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing actual game/session; world lifetime survives temporary menu"
+    },
+    "0069af10": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing actual game/session; world lifetime survives temporary menu"
+    },
+    "0069b8b0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing actual game/session; world lifetime survives temporary menu"
+    },
+    "0069e620": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing actual game/session; world lifetime survives temporary menu"
+    },
+    "006b32a0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Current profile008AE91C (ECX), applies sound to same SOUND singleton"
+    },
+    "006c0920": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing application/controller; current-state publication and process/controller lifetime"
+    },
+    "006c20c0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing application/controller; current-state publication and process/controller lifetime"
+    },
+    "006c20f0": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing application/controller; current-state publication and process/controller lifetime"
+    },
+    "006c3100": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing application/controller; current-state publication and process/controller lifetime"
+    },
+    "0071f640": {
+      "lifetime": "See receiver contract; services/world outlive temporary menu borrowers",
+      "owner": "Existing static DubbingSound16-record owner; borrowed live sound frames, no allocation"
+    }
+  },
+  "key_boundaries": [
+    "allocation failure retains game but leaves pause/camera side effects",
+    "ordinary offline no player registration",
+    "menu updates game twice; fixed forwards original delta",
+    "direct application shutdown does not retire borrowed game in verified menu bodies"
+  ],
+  "original_execution": false,
+  "pause_helper_arguments": [
+    {
+      "argument": "CL actual game64",
+      "receiver": "0071f640"
+    },
+    {
+      "argument": "CL requested byte",
+      "receiver": "005e8d50"
+    },
+    {
+      "argument": "stack requested byte",
+      "owner": "00868a08 Script module",
+      "receiver": "00428f00"
+    }
+  ],
+  "paused_effects": {
+    "active_vector": "1014..1018, 16-byte rows",
+    "base_vector": "1034..1038, 16-byte rows",
+    "boundary": "Reuse existing actual particle/effect model receivers; not a frozen simulation loop",
+    "exceptions": "active type2C/2D still uses ordinary004427A0; retired records remove in-place without skipping shifted entry",
+    "owner": "008998e8",
+    "paused_helper": "00442860 omits elapsed-dependent update, refreshes current model/attachment",
+    "receiver": "004455b0",
+    "required_nested_receivers": [
+      "00441460",
+      "00441a00"
+    ]
+  },
+  "routes": [
+    {
+      "condition": "current type1; offline pause save/request conditional",
+      "selector": -1,
+      "status": 14
+    },
+    {
+      "condition": "unwrap/publicize before cleanup; status1,6E,camera26F,saved64",
+      "status": 15
+    },
+    {
+      "condition": "unwrap before cleanup; delayed status6 exit",
+      "status": 16
+    },
+    {
+      "condition": "current type1 and nonoffline only",
+      "selector": -2,
+      "status": 17
+    }
+  ],
+  "schema_version": 1,
+  "type36_sound_registry": {
+    "actor_kind": 36,
+    "constructor": "005e3c90",
+    "deleting_destructor": "005e3ef0",
+    "destructor": "005e3f10",
+    "global_vector": "008ac8b8..008ac8bc, capacity008ac8c0",
+    "ownership": "Registry borrows pointers appended by actor construction; actor destructor removes reverse-found identity by swap-last before base00610170",
+    "pause_receiver": "005e8d50",
+    "requirement": "Only populated actual type36 registry; empty existing registry is valid",
+    "semantic_type_name": "unresolved; do not alias this to Car kind4 sound owners",
+    "vtable": "00812930"
+  },
+  "unresolved": [
+    "Nonoffline player/session mutation leaves and live selector-2 acceptance",
+    "Foreign engine failure/reacquisition behavior beyond existing verified interfaces",
+    "Actual native retained shutdown deviation must be reviewed and tested"
+  ],
+  "virtual_calls": [
+    {
+      "caller": "0069e620",
+      "condition": "Allocated actual retained menu initialized with selector-1/-2",
+      "slot": "04",
+      "target": "0066ad10",
+      "vtable": "00815750"
+    },
+    {
+      "caller": "006c20f0",
+      "condition": "Type11 menu shutdown after current game publication, statuses15/16/11",
+      "slot": "08",
+      "target": "0066b140",
+      "vtable": "00815750"
+    },
+    {
+      "caller": "006c20f0",
+      "condition": "Type11 menu deleting destructor after shutdown",
+      "slot": "00",
+      "target": "0067f180",
+      "vtable": "00815750"
+    },
+    {
+      "caller": "0066b140",
+      "condition": "Derived cleanup hook before common screen/scene release",
+      "slot": "3c",
+      "target": "0067f460",
+      "vtable": "00815750"
+    },
+    {
+      "caller": "0066ad10",
+      "condition": "Derived retained-menu initialization hook",
+      "slot": "40",
+      "target": "0067f350",
+      "vtable": "00815750"
+    },
+    {
+      "caller": "0066b3e0",
+      "condition": "Menu input first forwards null views to retained game",
+      "slot": "44",
+      "target": "00680660",
+      "vtable": "00815750"
+    },
+    {
+      "caller": "0066bea0",
+      "condition": "Twice per common variable update, same elapsed delta",
+      "slot": "48",
+      "target": "006805d0",
+      "vtable": "00815750"
+    },
+    {
+      "caller": "0066be90",
+      "condition": "Tail-call preserving fixed stack delta",
+      "slot": "4c",
+      "target": "00680620",
+      "vtable": "00815750"
+    },
+    {
+      "caller": "0066de00",
+      "condition": "Custom retained-world background render before common fallback",
+      "slot": "50",
+      "target": "006821f0",
+      "vtable": "00815750"
+    },
+    {
+      "caller": "00680660",
+      "condition": "Borrowed actual game input with two null views",
+      "slot": "0c",
+      "target": "0069a560",
+      "vtable": "008159ac"
+    },
+    {
+      "caller": "006805d0",
+      "condition": "flags2 and actual borrowed game; elapsed forwarded",
+      "slot": "14",
+      "target": "0069b230",
+      "vtable": "008159ac"
+    },
+    {
+      "caller": "00680620",
+      "condition": "flags1 and actual borrowed game; tail-call fixed delta",
+      "slot": "10",
+      "target": "0069af10",
+      "vtable": "008159ac"
+    },
+    {
+      "caller": "0069e620",
+      "condition": "Camera command3(1,0) even if menu allocation fails",
+      "slot": "44",
+      "target": "0046cb20",
+      "vtable": "0080fdd0"
+    },
+    {
+      "caller": "006c20f0",
+      "condition": "Status15 camera3(1,1); exit path conditional camera2(1,0)",
+      "slot": "44",
+      "target": "0046cb20",
+      "vtable": "0080fdd0"
+    },
+    {
+      "caller": "0067f350",
+      "condition": "Initialization master-volume0",
+      "slot": "84",
+      "target": "00433550",
+      "vtable": "0080f7b8"
+    },
+    {
+      "caller": "006b32a0",
+      "condition": "Reapply current profile sound field40 times FLOAT.01",
+      "slot": "84",
+      "target": "00433550",
+      "vtable": "0080f7b8"
+    },
+    {
+      "caller": "0066c5b0",
+      "condition": "Common resource setup calls derived screen construction after cursor/confirmation load",
+      "slot": "38",
+      "target": "0067fb00",
+      "vtable": "00815750"
+    }
+  ],
+  "volume_constant": {
+    "address": "0080f574",
+    "type": "float32",
+    "value": 0.009999999776482582
+  },
+  "vtable_dispatch": [
+    {
+      "confidence": "confirmed",
+      "slot": "00",
+      "target": "0067f180",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "04",
+      "target": "0066ad10",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "08",
+      "target": "0066b140",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "0c",
+      "target": "0066b3e0",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "10",
+      "target": "0066be90",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "14",
+      "target": "0066bea0",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "18",
+      "target": "0066de00",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "1c",
+      "target": "0067f170",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "20",
+      "target": "0067ea00",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "24",
+      "target": "0067ea10",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "34",
+      "target": "0067f550",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "38",
+      "target": "0067fb00",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "3c",
+      "target": "0067f460",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "40",
+      "target": "0067f350",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "44",
+      "target": "00680660",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "48",
+      "target": "006805d0",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "4c",
+      "target": "00680620",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "50",
+      "target": "006821f0",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "54",
+      "target": "00682470",
+      "vtable": "00815750"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "44",
+      "target": "0046cb20",
+      "vtable": "0080fdd0"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "84",
+      "target": "00433550",
+      "vtable": "0080f7b8"
+    },
+    {
+      "confidence": "confirmed",
+      "slot": "00",
+      "target": "005e3ef0",
+      "vtable": "00812930"
+    }
+  ]
+}

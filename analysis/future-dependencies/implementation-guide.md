@@ -9,7 +9,7 @@ work is requested in this branch.
 | Batch | Required predecessors | Research state | Purpose |
 | --- | --- | --- | --- |
 | B24.preparation | P2.3 | partial: native field/stock/reuse corrections and live authority binding | Carry actual preparation into spawned actors |
-| B25.retention | P2.3 | partial; pause/audio leaves remain | Retain same world through menus/Options |
+| B25.retention | P2.3 | offline bounded contracts ready; actual owners/integration pending | Retain same world through menus/Options |
 | B26.envelope | none for source recovery | contract-ready bounded I/O and metadata | Separate metadata, preparation and snapshot envelopes |
 | B26.preparation | B26.envelope | partial; bounded child batches below | Existing application persistence |
 | B26.identity | P2.3 | partial; registry/proximity dispatch closed | Loaded identities and actor replay |
@@ -39,15 +39,13 @@ changed equipment; prior team acceptance does not cover untested loadout.
 
 ## B25.retention
 
-Entries0069E620/0067F350/0067FB00/00680680 and006C20F0 statuses14–17.
-Menu+5B8 borrows game; application current pointer is restored before menu
-shutdown/destruction. Reuse actual frontend stack/Options definitions and input/
-audio services. Missing: in-game Options variants/player panels and pause clocks,
-shared game+6E/audio state. Keep P2.6 actions unavailable until their real receiver.
-Failure: allocation failure retains original game; modal cancel pops actual owner.
-Focused verification: pointer identity and input/audio/pause order across repeated
-resume15 versus leave16, allocation-failure and nested modal. Desktop: real
-mission pause/options/player/ordinary resume with same scene/actor, focus changes.
+Stable parent, now split into the detailed B25 batches below. Read
+[lifecycle](p2.5-retained-game.md), [input/audio](p2.5-input-audio.md),
+[menu routes](p2.5-menu-flows.md) and [user matrix](p2.5-acceptance.md).
+Ordinary offline retain/resume is contract-ready, with real P2.3 owners still
+required. Conditional player/transport leaves remain research-blocked; no whole
+P2.6 save/load requirement is imposed. Source observations at7f55042 are separate
+from ledger52c5689. No native fixture or static finding supplies desktop acceptance.
 
 ## B26.envelope
 
@@ -268,3 +266,32 @@ unexercised branch honestly. Remaining blockers are F01/F02/F03 source correctio
 F05 containing authority binding, F06 bounded preparation persistence, live
 acceptance and any required installed resource that fails its actual resolver.
 Kind7 protection observations belong to the existing P2.2 startup contract.
+
+
+## Detailed P2.5 delivery batches
+
+The smallest independent source batch is **B25.options.family**: remove the
+verified family6 assumptions using actual original context9, preserving accepted
+front-end behavior. Immediately after P2.3 acceptance, **B25.retention.owners**
+is the smallest same-world integration batch. Do not publish an interactive pause
+route until timing, presentation, audio and cleanup companions are connected.
+All work belongs to Agent #1; this branch contains specifications only.
+
+| Stable batch | Required predecessors / research state | Implementation, exact ownership and failure boundary | Focused native verification / desktop boundary |
+| --- | --- | --- | --- |
+|B25.options.family|Existing accepted menu/Options services; contract-ready, bounded source work available|0061CF60 context9 from root+40,0061BEA0 targets; reuse frontend/options_flow,options_definition and host/options_menu/widgets/factory. Root family2 versus6, including all binding-list IDs/callbacks/text; internal pages6..11 stay unchanged. Own context1EC once per retained menu; selected profile/input borrowed. Preserve GD03/crosshair mission-active gates, first-entry byte8, save→apply/binding order and2530/C7 modal. Failed nested construction retires acquired controls/listeners before scene; no guaranteed original rollback.|Compose actual products/family2 and6, complete emitted target coverage, current-root checks, missing binding reply and failed-prefix cleanup. Reuse existing native tests; no broad Phase1 audit. Desktop A09-A11 after real owner batch.|
+|B25.retention.owners|Accepted P2.3 actual loaded game/scene/Players/Script/camera; contract-ready but integration blocked until these exist|006C20F0 status14/15/16/17,0069E620 ECXgame+stackselector RET4,0067E840 type11/5C0 owner. Reuse ApplicationController/ApplicationState/GameApplicationState/SessionOwner and registry, not another game stack manager. Menu5B8 borrows; initialize menu locally while game is still current, then move ownership at publication. Controller preserves exclusive retained lifetime separately from currently published state. Publish game BEFORE menu08/deleting00. Keep video retention separate where nested ownership actually differs. Allocation failure leaves original pause/camera effects; choose/report native checked recovery explicitly.|Actual owner getter observes game during shutdown; no game load/spawn/delete on15; same identities survive repeated nested navigation. Distinguish early/late allocation and thrown constructor/init; retained-video regression only if touched. Desktop A01-A04/A16.|
+|B25.retention.timing|B25.retention.owners; actual P2.3 loop services; contract-ready, integration gated|0069B8B0 actual game64 time2500/mode gate;00680660 null game input;006805D0 retained14 twice via0066BEA0;00680620 retained10 with same delta,008AE51C increments;0069AF10/0069B230 selective module/timer gate. Keep controller18 fixed accumulator,28 phase, same frame clock. Do not globally suspend app or add tick/catch-up on resume. No actor/Script state serialization or replay.|Real loop trace: two updates, one100 tick, gated28/2C/30 versus live20/24/38/D0, actual Script/physics service counts, early2500 and saved64, null-input quick command exclusion. Desktop A05-A08; P2.3 service gaps remain explicit.|
+|B25.audio|B25.retention.owners plus real world sound/type36 registry/Script/dubbing; contract-ready, actual services required|0069B8B0→0071F640(CL computed64),005E8D50(CL request),00428F00(ECX868A08,stackrequest). Reuse DubbingSound/type36 actor sound frames/Script model frames/SOUND singleton.0067F350→SOUND84(0),0067F460→profile006B32A0→00433550(profile40×FLOAT.01). No sound shutdown/music reselection; restore NEW current-profile value. Menu click audibility obeys actual master level. Preserve partial failure/empty real-container semantics.|Computed versus requested arguments below2500, reverse frames, kind2-only dubbing resume, repeated level changes/Options/current profile, no stale listener or release. Desktop A10/A14; backend/resource failures explicit.|
+|B25.presentation|B25.retention.owners; same real camera/renderer/effect services; contract-ready|0066AD10 mode11 resource policy,0066B3E0 shared input/capture/Back,006821F0/006822D0 original world scene+78 then menu scene; saved driver5/6 and modal visibility restored.0046CB20 command3 explicitly sets26F, existing MissionCamera.simulate consumes it.00682490 preview is conditional nonoffline. Paused004455B0 uses00442860 except populated types2C/2D still ordinary update. Reuse frame_clock,MenuScene/MenuFrameInput/cursor/common state and P2.3 effects. Do not install menu camera as world listener or draw full game HUD. Missing screen is explicit failure; release menu-owned prefix only.|Actual scene/world pointer and render-state identity, modal passes, camera mouse gate and same target/FPV, focus/capture reuse, effect exception calls with real owners. Desktop A01/A05/A13/A14/A17.|
+|B25.menu.actions|B25.retention.owners,B25.options.family; contract-ready|0067FB00 registration1/2 offline,00680680 controls9CF..9E1 and missionA8 gates,0067FAA0 predicate,0067F550 Options-first switch; use real queue/dialog stack and actual world getters. Restart7D4/B5,leave7D9/B8; cancel0 preserves menu. B5/B6/B7 status15 THEN appcommand1/2/3. Actual receivers deferred to P2.6; unavailable controls explicit BEFORE command/resume. No separate explicit-save browser invented.|Event masks/IDs, objective empty/all4/pending0/non4/failure6F, remove-before-reply, one reply, no stale command after leave/game replacement. Desktop A09/A11/A12/A18/A19 conditional.|
+|B25.leave.failure|B25.retention.owners; actual P2.3 teardown and existing descriptor/Main construction; contract-ready, native policy review required|0067F460 derived→0066B140 common→0067F180/1A0 delete;00670B40 receives inline4DC. Status16/11 unwrap then0069A500 status6,+20=500,+24=1000; B8game1C=2 leads10, C6 can2. Reuse controller resource/input close and actual game shutdown.006C0920 original only retires current menu; native must explicitly retire retained world AFTER borrowers and BEFORE caches/devices/global services. This direct-shutdown policy is a deviation; no atomic rollback claim. Do not dereference retired menu to get game.|Partial init/resources, same pointer unavailable receiver, repeat attempted pause/load, menu-first world teardown, shutdown exception priority and no double retirement. Failure never reports save/restart success. Desktop A12/A15-A18; fail injection through existing workflow only.|
+|B25.player.conditional|Real nonoffline route/session/preview owners; RESEARCH-BLOCKED|0067FB00 role3 and selector-2;00682980 builder/0067F5506A/77,006805D0 nonoffline previews. Enclosing registration/mutation dependency established; inner side/roster/session receiver contracts not recovered here. Preserve actual squad identities; no HumanStore picker/duplicate offline panel. Conditional future milestone work, no universal P2.5 dependency.|Native cannot accept transport with successful fixtures. Dedicated later route audit and desktop A20 only when genuinely supported. Offline selected-Human preservation is A04.|
+|B25.acceptance|Required offline owner/timing/audio/presentation/Options/actions/failure batches; conditional receivers only where reached|User-run actual reconstructed desktop matrix with source/build/profile/mission and stable identity evidence. No counts/percentages stand in for gameplay. Unsupported P2.6/player branches remain explicitly unavailable; never force progress or fake save success.|All required A01-A06/A09-A18 performed and recorded; A07/A08/A19/A20 conditional per legitimate route. Desktop result remains unknown until user supplies it.|
+
+Graph schema1 represents these stable batch nodes as `type=subsystem`,
+`data.subsystem=p25_implementation_batch`, with exact batch ID as label/batch_ids.
+This documented encoding avoids adding a fourth type unsupported by the website.
+Only explicit prerequisite→dependent `depends_on` edges are blocking. Typed
+calls/dispatch/ownership/cleanup/data relationships never automatically schedule
+all their targets; P2.6/player conditionals therefore remain nonblocking.

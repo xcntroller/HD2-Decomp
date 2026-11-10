@@ -113,3 +113,20 @@ identifying reviewed main (not a revision to use for reading the local sidecar).
 Graph shapes, ID hashing and existing P2.6/P2.7 data are preserved. No website or
 analyzer changes.281 exports now include24 reused fingerprint-checked preparation
 exports; no duplicate Ghidra pass was needed for already recovered functions.
+
+
+P2.5 checkpoint adds [retained lifecycle](p2.5-retained-game.md),
+[input/audio](p2.5-input-audio.md), [menu flows](p2.5-menu-flows.md) and
+[acceptance](p2.5-acceptance.md), preserving all older contracts.
+Version1 [p25-review.json](evidence/p25-review.json) uses the same revisioned source
+observation shape as P2.4, plus finding_revisions for explicitly superseded
+historical source observations. Ledger status remains separately pinned.
+[p25-lifecycle.json](evidence/p25-lifecycle.json) records verified vtable/slot/target,
+entry_abi, pause_helper_arguments, controller_fields, routes, key_boundaries,
+paused_effects, type36_sound_registry, function_owners, volume_constant and unresolved evidence. These are derived
+contracts, not raw code. [Verification](evidence/p25-verification.json) is separate
+from prior checkpoint receipts. Graph schema/IDs/types are unchanged; P2.5 batch
+nodes use existing subsystem type with subsystem=p25_implementation_batch and
+stable B25 label/batch_ids. New source_observations on P2.5 function/group nodes
+refer to reviewed main7f55042 and do not promote their older implementation status.
+Exports and instruction anchors are append-only, retaining prior JSON pointers.

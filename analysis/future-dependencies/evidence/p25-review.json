@@ -1,0 +1,320 @@
+{
+  "desktop_verification": false,
+  "finding_revisions": [
+    {
+      "evidence": "analysis/live-squad-session-ownership.md",
+      "id": "P24-F05",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "status": "source_binding_recovered_not_live_accepted",
+      "summary": "SessionOwner now requires SAME mutable application squad borrower; P2.4 old review remains historical, no automatic graph implementation promotion"
+    }
+  ],
+  "findings": [
+    {
+      "blocker": "Implement same-game ownership/publication; current retained_ only serves video",
+      "confidence": "confirmed",
+      "id": "P25-F01",
+      "original": [
+        "0069e620",
+        "006c20f0"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/frontend/application_controller.h",
+        "recovered/frontend/application_states.h"
+      ],
+      "summary": "Retained type11 state and statuses14..17 absent"
+    },
+    {
+      "blocker": "Parameterize actual family targets including definitions/callbacks/lists; keep internal pages6..11",
+      "confidence": "confirmed",
+      "id": "P25-F02",
+      "original": [
+        "0067fb00",
+        "0061cf60",
+        "0061bea0"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/frontend/options_flow.h",
+        "recovered/frontend/options_definition.h",
+        "recovered/host/options_menu.h"
+      ],
+      "summary": "Options family6 hardcodes conflict with retained family2"
+    },
+    {
+      "blocker": "Add actual explicit26F setter semantics to same camera; no new camera owner",
+      "confidence": "confirmed",
+      "id": "P25-F03",
+      "original": [
+        "0046cb20",
+        "0069e620"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/game/mission_camera.h"
+      ],
+      "summary": "Camera command3 missing despite26F input consumer"
+    },
+    {
+      "blocker": "Use real same-world/Script/type36 sound-registry/dubbing owners; early2500 exception and twice update are required",
+      "confidence": "confirmed",
+      "id": "P25-F04",
+      "original": [
+        "0069b8b0",
+        "00680660",
+        "006805d0",
+        "00680620"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/host/game_owner.h",
+        "recovered/frontend/dubbing_sound.h"
+      ],
+      "summary": "Pause helper and forwarded loop integration absent"
+    },
+    {
+      "blocker": "Native menu-first then retained-game shutdown policy must be explicit deviation and tested",
+      "confidence": "confirmed",
+      "id": "P25-F05",
+      "original": [
+        "006c0920",
+        "0067f460",
+        "0067f1a0"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/frontend/application_controller.h"
+      ],
+      "summary": "Direct paused shutdown does not retire borrowed game in verified original bodies"
+    },
+    {
+      "blocker": "Use world scene background, mode11, shared cursor and master-level contract; do not begin menu music",
+      "confidence": "confirmed",
+      "id": "P25-F06",
+      "original": [
+        "006821f0",
+        "006822d0",
+        "0067f350",
+        "0066ad10"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/host/application_menu.h"
+      ],
+      "summary": "Frontend Main renderer/music initializer unsuitable for retained game"
+    },
+    {
+      "blocker": "Player/selector-2 branch conditional nonoffline, not an offline P2.5 blocker",
+      "confidence": "confirmed",
+      "id": "P25-F07",
+      "original": [
+        "0067fb00",
+        "00682980"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/frontend/application_states.h"
+      ],
+      "summary": "Offline has no registered player panel"
+    }
+  ],
+  "new_exports": [
+    "0067e840",
+    "0067f350",
+    "0067fb00",
+    "0066ad10",
+    "0066b140",
+    "0066bea0",
+    "0066de00",
+    "0061bea0",
+    "0061cf60",
+    "00682980",
+    "006c0920",
+    "006c20c0",
+    "006c3100",
+    "0046cb20",
+    "00433550",
+    "00698500",
+    "0049b7c0",
+    "0067f180",
+    "0067f460",
+    "0067faa0",
+    "006805d0",
+    "00680620",
+    "00680660",
+    "0069b8b0",
+    "00428f00",
+    "005e8d50",
+    "00670b40",
+    "0067f170",
+    "0067f1a0",
+    "006821f0",
+    "00682470",
+    "006b32a0",
+    "0071f640",
+    "0066b3e0",
+    "0066be90",
+    "006822d0",
+    "00682490",
+    "004455b0",
+    "004427a0",
+    "00442860",
+    "005e3c90",
+    "005e3ef0",
+    "005e3f10",
+    "0066c5b0"
+  ],
+  "original_evidence": "analysis/future-dependencies/evidence/manifest.json",
+  "original_execution": false,
+  "schema_version": 1,
+  "scope": "Targeted current-main read-only P2.5 review; old ledger claims unchanged",
+  "source_commit_sha": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "4a69ac74eaa5f191fe4cb3d5aef7658eb8e1bd26a12585e79a03c090146de095"
+    },
+    {
+      "path": "HANDOFF.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "1373d389cef7858d275f71791143bd437c467bf204254708a63dc3595f72b26f"
+    },
+    {
+      "path": "plan.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "366dbc4f1c6253b490993d2afca137325e195b03cb62c4bcf0028b3d5d0454aa"
+    },
+    {
+      "path": "analysis/phase2-delivery-plan.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "877bf40e40d8e75a1a56bc692e2f8ca77986ff11accdb871e1a30a97e55282bc"
+    },
+    {
+      "path": "analysis/application-controller.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "c9ed818fbac50c38076c8c5e20010fadc1440c6f7de3487d5c639e1a4bd807b2"
+    },
+    {
+      "path": "analysis/menu-update.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "ca4cbf78319067ad7f091264bfad5cef98a254b4c780c44b5436584c1937b1fb"
+    },
+    {
+      "path": "analysis/options-flow.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "15f323227b881832a6b7ac9745de304f4510cd558e4f47545ae22498d0565311"
+    },
+    {
+      "path": "analysis/frame-input.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "83d020bc359af1e67be6102147bc8f09a2e09e75f05bbbbeabc65951d2895836"
+    },
+    {
+      "path": "analysis/input-fidelity.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "9fda9d2bfb017886e7f52701b5738a5dc304bc44cd633b690bcf3976f3a2ab8c"
+    },
+    {
+      "path": "analysis/audio-preferences-fidelity.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "ec11ceff47c736cd7c4d88acbeec14f5984e15307524fb0c37eb8407cdd5a12b"
+    },
+    {
+      "path": "analysis/controller-integration-preparation.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "56973d5841504eaab25633b0fc6692c8c58a60092e618a0d37cda6a471af11e5"
+    },
+    {
+      "path": "recovered/frontend/application_controller.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "b260d06007957f5f9e2aa86f8c4b109be061fd8c9318691efa999a092a3584a8"
+    },
+    {
+      "path": "recovered/frontend/application_states.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "ad340a7b8b37dafb45838861562356a7bf202f0786b9583f62ad2dea018e556e"
+    },
+    {
+      "path": "recovered/frontend/options_flow.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "cc5cebee7c6745926e70b05a8c0847dbfbe45111ab677ba6455b525f70cf4386"
+    },
+    {
+      "path": "recovered/frontend/options_definition.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "62fb62835905e0d92bb003990ff45303d3add3187e2dd56fea81bc273cf119c3"
+    },
+    {
+      "path": "recovered/frontend/menu_event_queue.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "9477f978227e6ef063f07a0bbe893aa364c5889042bafaf417e3d20c8bd08171"
+    },
+    {
+      "path": "recovered/frontend/menu_event_queue.cpp",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "46ad42f434cf0dcc21288b161326d91b420e764a605f4b035a293c6631e6d73f"
+    },
+    {
+      "path": "recovered/frontend/menu_content_settings.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "01db757bde86cb684782464a39b6eafc6c8f4f0cc4d9989142e7a64b61d40a79"
+    },
+    {
+      "path": "recovered/host/options_menu.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "2641c9ac9bae63db7cc967f0400bf6143af8c6a34507aea304389e7fd07fb663"
+    },
+    {
+      "path": "recovered/host/application_menu.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "f5ce262081f0d27314fb2c5a1d17d7146bff32b3c0e9000c502936a815500be5"
+    },
+    {
+      "path": "recovered/host/game_owner.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "20ed781fb00b75b4c437fff9b23ebf753aba1a0268aef0050a55c8643406bf08"
+    },
+    {
+      "path": "recovered/host/application_launch.cpp",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "c60f4ffbd67b1d72fc0471751736ea64444110bb137a0403a703fd3abf7c84a0"
+    },
+    {
+      "path": "recovered/game/mission_camera.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "efd6b5f587504f23d09f84f8819f5941982074917bda4ec43615757cfda8ed00"
+    },
+    {
+      "path": "recovered/game/session_activation.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "104081c140397a7f8a7550b0cc5140b2bd3e2c215c12033b2aef89cae9604003"
+    },
+    {
+      "path": "recovered/game/session_owner.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "1bf8aeee49fa7cfde73deab9644384b1dff18fbf0bbf082fe516f6afa0fd0932"
+    },
+    {
+      "path": "recovered/frontend/dubbing_sound.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "3334946b70bd1c866f03d3297a750f247128618417d390f68490fe362b9ddc35"
+    },
+    {
+      "path": "recovered/frontend/sound_runtime.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "8caa6c495be1c816b58acbaa6986ed5f0a1328a599185e4bf2afa947955b680f"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "ddc3b4a9a3fe54bcadfbce0c83c7aaa6b1d3755241033971eecd1ee6b2b374b8"
+    },
+    {
+      "path": "analysis/live-squad-session-ownership.md",
+      "revision": "7f55042c78dd14ffb423537ea042ecc5221e8a29",
+      "sha256": "7525f0be54a6a2088df03f4c81d40a8b31f2cd82e65e141375556c07080b537d"
+    }
+  ]
+}

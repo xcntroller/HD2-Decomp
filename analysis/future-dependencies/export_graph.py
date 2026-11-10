@@ -155,7 +155,8 @@ def generate():
             fk=function(a,c['subsystem'],c['milestones'][0],c['owner'],c['contract'],'; '.join(c['blockers']) or 'Actual owners and called services must be integrated')
             data=nodes[fk]['data'];data.setdefault('batch_ids',[]).extend(c['batch_ids'])
             data['milestones'].extend(c['milestones'])
-            data['owner']=c['owner'];data['lifetime']=c['lifetime'];data['subsystem']=c['subsystem']
+            if not ('P2.5' in c['milestones'] and any(m in data['milestones'] for m in ['P2.6','P2.7'])):
+                data['owner']=c['owner'];data['lifetime']=c['lifetime'];data['subsystem']=c['subsystem']
             data['provenance'].append(prov(contracts_path,json_pointer=f'/contracts/{i}'))
             edge(key,fk,'original_function_reference',evidence)
     for association in contracts['existing_associations']:
@@ -196,6 +197,7 @@ def generate():
         data['implementation_readiness']='bounded_contract_available'
         data['blockers']=['Whole-path readiness still requires actual owners and downstream contracts; see batch']
     corrections={
+      'retention':'Offline lifecycle/input/audio/role2 contracts closed; actual P2.3 integration and desktop pending; nonoffline player conditional',
       'identity':'Dispatch/ID/proximity/item formats closed; Human/Car/physical actor leaves and actual type35 motion receiver remain',
       'script_persistence':'Scalar/PC/Gosub/Whenever/frame slots mapped; derived contexts, pending animation and module rotation leaves remain',
       'resume':'Frontend preparation/path leaves closed; whole snapshot, restart/reset and failed activation teardown remain',
@@ -208,6 +210,25 @@ def generate():
     reviewed=read(p24_review_path)
     for sid in ['p24_fields','p24_routes','p24_squad','p24_inventory','p24_bridge','p24_media','p24_acceptance']:
         nodes['subsystem:future:'+sid]['data']['source_observations']=[prov(p24_review_path,revision_of_observation=reviewed['source_commit_sha'],json_pointer='/sources'),prov(p24_review_path,json_pointer='/findings')]
+    p25_review_path='analysis/future-dependencies/evidence/p25-review.json'
+    reviewed25=read(p25_review_path)
+    p25_provenance=[prov(p25_review_path,revision_of_observation=reviewed25['source_commit_sha'],json_pointer='/sources'),prov(p25_review_path,json_pointer='/findings')]
+    for n in nodes.values():
+        if 'P2.5' in n['data'].get('milestones',[]): n['data']['source_observations']=p25_provenance
+    lifecycle_path='analysis/future-dependencies/evidence/p25-lifecycle.json'
+    lifecycle=read(lifecycle_path)
+    for a,owner in lifecycle['function_owners'].items():
+        nodes['function:client:'+a]['data'].update(owner)
+        nodes['function:client:'+a]['data']['provenance'].append(prov(lifecycle_path,json_pointer='/function_owners/'+a))
+    for i,r in enumerate(lifecycle['vtable_dispatch']):
+        dst='function:client:'+r['target']
+        constructor={'00815750':'0067e840','00812930':'005e3c90'}.get(r['vtable'])
+        if dst not in nodes or not constructor: continue
+        edge('function:client:'+constructor,dst,'vtable_binding',[prov(lifecycle_path,json_pointer=f'/vtable_dispatch/{i}')],
+             condition='Constructor installs final vtable; this is not a call',vtable=r['vtable'],slot=r['slot'])
+    for i,r in enumerate(lifecycle['virtual_calls']):
+        edge('function:client:'+r['caller'],'function:client:'+r['target'],'virtual_dispatch',
+             [prov(lifecycle_path,json_pointer=f'/virtual_calls/{i}')],condition=r['condition'],vtable=r['vtable'],slot=r['slot'])
     for a,(i,r) in exports.items():
         src='function:client:'+a
         if src not in nodes: continue
@@ -249,6 +270,7 @@ def generate():
             'analysis/future-dependencies/p2.6-context-layout.md','analysis/future-dependencies/p2.7-results.md',
             'analysis/future-dependencies/implementation-guide.md','tools/progress-analyzer.md','tools/progress_graph.py','analysis/future-dependencies/export_graph.py']
     inputs.extend(['analysis/future-dependencies/README.md','analysis/future-dependencies/p2.6-car-format.md','analysis/future-dependencies/p2.6-human-state-leaves.md','analysis/future-dependencies/evidence/car-packed-v10.json','analysis/future-dependencies/evidence/p24-review.json','analysis/future-dependencies/p2.4-preparation.md','analysis/future-dependencies/p2.4-squad-equipment.md','analysis/future-dependencies/p2.4-game-handoff.md','analysis/future-dependencies/p2.4-acceptance.md'])
+    inputs.extend(['analysis/future-dependencies/evidence/p25-review.json','analysis/future-dependencies/evidence/p25-lifecycle.json','analysis/future-dependencies/p2.5-retained-game.md','analysis/future-dependencies/p2.5-input-audio.md','analysis/future-dependencies/p2.5-menu-flows.md','analysis/future-dependencies/p2.5-acceptance.md'])
     return {'schema_id':'hd2.future-dependencies','schema_version':1,'source_commit_sha':SOURCE,
             'binary':manifest['binary'],'inputs':[{'path':p,'sha256':hashlib.sha256(ledger_bytes).hexdigest(),'revision':SOURCE} if p=='analysis/function-status.json' else {'path':p,'sha256':digest(p)} for p in sorted(inputs)],
             'epistemic_policy':{'call_edge_implies_blocking':False,'dependency_direction':'prerequisite_to_dependent',
