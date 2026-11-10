@@ -16,6 +16,34 @@ template<class Frames>class CarSoundUpdates {
 public:
     using Frame=typename Frames::Frame;using Vector=typename Frames::Vector;
     CarSoundUpdates(Frames& frames,CarSoundLoading<Frames>& sounds):frames_(frames),sounds_(sounds){}
+    void audible(CarDrivetrainState& drive,bool enabled){ //004F2710.
+        if(!enabled&&drive.audible)sounds_.stop_all();
+        drive.audible=enabled;
+    }
+    void suspension(float volume,bool audible,bool inside){ //0051B560.
+        if(!audible)return;
+        const auto sound=sounds_.sound(inside?0x9e8:0xcb8);if(!sound)return;
+        if(frames_.car_sound_state(sound)){
+            if(!frames_.car_sound_state(sound))return;
+            if(!(static_cast<long double>(volume)+.15000000596046448f>frames_.car_sound_volume(sound)))return;
+        }
+        frames_.human_sound_enabled(sound,true);frames_.human_sound_volume(sound,volume); //Read-only gain0083BEC4=1.
+    }
+    template<class Random>void collision(const CarPhysics& physics,float impulse,bool gear,bool inside,Random& random){ //0051A950.
+        const auto& fields=physics.scalars();const unsigned threshold=inside?0xc38:0xf38;
+        if(impulse<=fields.get(threshold))return;
+        unsigned level=0;while(level<3&&!(impulse<fields.get(threshold+(level+1)*4)))++level;
+        if(physics.flags().at((inside?0x22ad:0x22bb)+level)&&gear)return;
+        const auto first=sounds_.sound((inside?0x9f0:0xcc0)+level*4);
+        const auto second=sounds_.sound((inside?0xa00:0xcd0)+level*4);
+        Frame selected=first?first:second;if(!selected)return;
+        if(first&&second){
+            const bool alternate=random()>0x3ffe;selected=alternate?second:first;const auto other=alternate?first:second;
+            if(frames_.car_sound_state(selected))return;
+            if(frames_.car_sound_state(other)&&frames_.car_sound_elapsed(other)<800)return;
+        }else if(frames_.car_sound_state(selected))return;
+        frames_.human_sound_enabled(selected,true);frames_.human_sound_volume(selected,1.f);
+    }
     void signal(bool second,bool enabled,bool inside){ //0051A6C0 /0051A7A0.
         const unsigned first=second?0x9d0:0x9cc,other=second?0xca0:0xc9c;
         if(!enabled){stop(first);stop(other);return;}

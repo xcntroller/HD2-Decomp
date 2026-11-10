@@ -41,7 +41,7 @@ public:
         if(slot>0x7fffffffu)throw std::length_error("Actor proximity exceeds original signed index range");
         auto record=std::make_unique<typename State::Entry>();record->actor=actor;record->speed=speed;
         if(slot==state_.entries.size())state_.entries.push_back(std::move(record));else state_.entries[slot]=std::move(record);
-        for(std::size_t other=0;other<state_.entries.size();++other) {
+        try{for(std::size_t other=0;other<state_.entries.size();++other) {
             if(other==slot)continue;
             const auto kind=actor->base().type();
             if(kind==4||kind==37) {
@@ -51,7 +51,7 @@ public:
             auto pair=std::make_unique<Pair>();
             pair->first=static_cast<std::uint8_t>(std::min(slot,other));pair->second=static_cast<std::uint8_t>(std::max(slot,other));
             auto& first=state_.buckets[0].pairs;first.push_back(std::move(pair));update(0,first.size()-1,true);
-        }
+        }}catch(...){remove(static_cast<std::int32_t>(slot),mode);throw;}
         return static_cast<std::int32_t>(slot);
     }
     bool remove(std::int32_t index,std::uint32_t mode) { //006DFE50, no exit callbacks.

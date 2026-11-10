@@ -88,6 +88,7 @@ public:
     const std::array<float,4>& world_position() const {return position_;}
     void world_position(const std::array<float,4>& value){position_=value;} //Human0075C4F0 writes its actual base30 slot.
     const std::array<float,4>& world_direction() const {return direction_;}
+    void world_direction(const std::array<float,4>& value){direction_=value;} //Car004D38F0 copies its native core240 into base40.
     std::uint32_t type() const {return type_;}
     std::int32_t id10() const {return id10_;}
     std::int32_t id14() const {return id14_;}

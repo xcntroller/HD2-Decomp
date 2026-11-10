@@ -1,0 +1,216 @@
+{
+  "date": "2026-11-10",
+  "scope": "Full first P2.2 implementation checkbox; larger cold Car activation/source dispatch checkpoint; continue containing session/Human owners.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 24,
+  "added": [
+    "004f3950",
+    "004fe910",
+    "004fe850",
+    "004f4e40",
+    "00500eb0",
+    "0051a950",
+    "0051b560",
+    "0051b8f0",
+    "004f2710",
+    "004d3970",
+    "004ff8b0",
+    "004d16a0",
+    "004d25c0",
+    "004d2790",
+    "004d3110",
+    "00466010",
+    "004d5430",
+    "004d2c50",
+    "006fcda0",
+    "006fd340",
+    "006fd7e0",
+    "004e1990",
+    "004f2670",
+    "0073ea90"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1807,
+    "client_partial": 1802,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "verification": {
+    "native": "ASan/UBSan/LSan: nine captured coefficient sets, part/glass/mass/impact, live source cache/tree/tyres, water/support/proximity; composed two-pass Car activation/update/repeat/stable descriptors and53 endpoint failures",
+    "host": "Strict actual GameActorServices/Car/WorldActors dispatch i386 compile-only; Windows programs not executed",
+    "application": "application-launch compile/link only; still declines loading",
+    "tracker": "27 tests and fingerprint/inventory/frozen tally/README checks pass"
+  },
+  "limitations": [
+    "Synthetic four-wheel model/frame/math/clock/callback/session boundaries in composed native fixture; no captured full-model/world activation",
+    "Default materials in composed fixture; original transforms and engine/resource/audio methods remain delegated",
+    "Required positive running/occupied/gun-seat/deformation/skid/emitter/non7/front-rear-plane-cache/queued SOUND paths explicitly reject",
+    "WorldScene/WorldActors not called by application; actual containing Human/VM/FPV/HUD/SOUND/module/session/loader/render still required"
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/car-parts-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-parts-native-run.log",
+      "bytes": 112,
+      "sha256": "59d2c1c99ad6c4d1b85e67588b9bf8c8311c71b057d7460c5cc56890276864b7"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-impact-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-impact-native-run.log",
+      "bytes": 160,
+      "sha256": "a8646d67eee86c65be94f8c5d17fb612aeb8cdf7a1d3f3566b056914f9370e77"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-initializer-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-initializer-native-run.log",
+      "bytes": 172,
+      "sha256": "91008adaee7e699645b08f673584f4fce5e8c130b17f5adb0dab60d69ad207be"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-cache-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-cache-native-run.log",
+      "bytes": 171,
+      "sha256": "cdc4413d963cc0abbb8c44151c9359d96ff298e5a81948534ed76d7ee80f934d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-water-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-water-native-run.log",
+      "bytes": 224,
+      "sha256": "5e02aa93413f9992da87252b2c6d335faa7dc71dff501468f0e7ce6f7e50dd18"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-activation-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-activation-native-run.log",
+      "bytes": 215,
+      "sha256": "ca1943402a31adbdc785073b389b71b47acec42442e586bb2477935b67a1821f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-initializer-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-initializer-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-activation-tracker-check.log",
+      "bytes": 437,
+      "sha256": "7c5b0511dce9998fb615684c52434aa43a7b6aea374bfd295c8cff1c029a79ae"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/car-activation-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "temporary_audits": {
+    "removed": true,
+    "artifacts": [
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-activation-audit",
+        "bytes": 20584112,
+        "sha256": "ea5b308d3f2f99151e6fbae6a5880fa0fc8767656232e98a144a1d6e5f89b43e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-activation-audit.cpp",
+        "bytes": 19457,
+        "sha256": "25827a43368ec7aea153b063d45a297b0b5b33505e04c89d401e0654f527dae8"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-cache-audit",
+        "bytes": 7633176,
+        "sha256": "479e716db6732186f1f56c118b83aa311e8fdaea25bdf4f79bdd605c86857bdd"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-cache-audit.cpp",
+        "bytes": 5331,
+        "sha256": "1d02b433687c39836fffa44f64bcd3cdf7cd743ae1a8f54576f487c00bb444d0"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-impact-audit",
+        "bytes": 3058064,
+        "sha256": "6cebe4dbf6c3b7eeb19e2d03d0d0c85602b21e99854e1904547e09925d0def5c"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-impact-audit.cpp",
+        "bytes": 9514,
+        "sha256": "7e245359672f7f0da53510e47269d069a7857c5d509e5d1faea2a8678233d8d8"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-initializer-audit",
+        "bytes": 5845184,
+        "sha256": "7b9ea0dd7aa90d0ed6b6bd3fa44074eb379b5196f76dc23c34aedc6a0aa4645e"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-initializer-audit.cpp",
+        "bytes": 11315,
+        "sha256": "a24a2214ce3fb4944a3fad3ed942dbdb5a6241902eb10f8f684913f7e288f4c9"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-initializer-host.cpp",
+        "bytes": 4316,
+        "sha256": "3e1bc921e28c3cb57693d90d54b8a2077df40def629939b1e5449cf125d7cc66"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-initializer-host.o",
+        "bytes": 4362503,
+        "sha256": "2f895826e0b90bc838de74bbfb9d7dae5fc0971b8f097f4b10096dab7c087bf7"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-parts-audit",
+        "bytes": 2338464,
+        "sha256": "a3b9261f0a79a5c66b6501a00a1b40cb470ef6b84d15d7f182089c3803ee2b68"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-parts-audit.cpp",
+        "bytes": 6236,
+        "sha256": "b6bcb4c6aa3b443dd3f350feae635c9ef5f1d9741374420531b8bebaf0d8109b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-water-audit",
+        "bytes": 1867888,
+        "sha256": "f07074eeff039f0676b3da8e2e6a61408896974525ea5f1a087d8bbe70a25578"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-car-water-audit.cpp",
+        "bytes": 7717,
+        "sha256": "25f24fbebb77351575af8ee029983cede7e5df43a50da22a5aa40c6dd7602695"
+      }
+    ]
+  },
+  "not_credited": [
+    "Absent004DA090 and004D9A40",
+    "Inlined fragments and delegated engine/CRT calls",
+    "Existing006FDA00 reused without duplicate credit"
+  ]
+}

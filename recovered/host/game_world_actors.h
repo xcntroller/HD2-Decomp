@@ -13,6 +13,7 @@
 #include "game/supply_box_loading.h"
 #include "game/static_weapon_loading.h"
 #include "host/game_static_weapon_events.h"
+#include "game/car_loading_activation.h"
 
 namespace hd2::host {
 
@@ -64,6 +65,26 @@ public:
     void update_door(game::DoorSceneActor<GameActorServices>& door,std::uint32_t elapsed) {
         require_open();auto queries=scene_.door_queries();door.frame_update(elapsed,*this,scene_.buckets(),queries,scene_.exclusions());
     }
+    using Car=game::CarSceneActor<GameActorServices>;
+    void activate_car(Car& actor,bool authority){
+        require_open();
+        if(!actor.loading){
+            auto queries=scene_.car_queries();
+            actor.loading=std::make_unique<game::CarLoadingActivation<GameActorServices,GameWorldActors,Collisions,decltype(queries)>>(
+                scene_.frames(),*this,scene_.buckets(),std::move(queries),scene_.exclusions(),navigation_,consumers_.car_loading_resources(),actor);
+        }
+        actor.loading->activate(authority);
+    }
+    void deactivate_car(Car& actor,bool authority){if(actor.loading)actor.loading->deactivate(authority);}
+    void update_car(Car& actor,bool authority,std::uint32_t elapsed){
+        require_open();if(!actor.loading)throw std::runtime_error("Car update requires its actual loading owner");
+        actor.loading->update(authority,elapsed);
+    }
+    bool car_camera_setting264(){return consumers_.car_camera_setting264();}
+    std::int32_t add_car_proximity(Car& actor,unsigned kind){return consumers_.actor_proximity().add_actor(&actor,kind);}
+    void remove_car_proximity(std::int32_t index){consumers_.actor_proximity().remove_actor(index);}
+    const Car* car_current_attachment(){return consumers_.car_current_attachment();}
+    unsigned car_game_kind(){return consumers_.car_game_kind();}
     using StaticWeapon=game::StaticWeaponSceneActor<GameActorServices>;
     void activate_static_weapon(StaticWeapon& actor,bool authority){
         require_open();if(!actor.loading)actor.loading=std::make_unique<game::StaticWeaponLoading<GameActorServices,GameWorldActors,Collisions,Items>>(scene_.frames(),*this,scene_.buckets(),items_,actor);

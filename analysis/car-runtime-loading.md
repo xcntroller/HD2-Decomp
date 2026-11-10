@@ -1,8 +1,9 @@
 # Car loading runtime — source checkpoint, 2026-11-10
 
 The cold Car physics and finalization subsystem is reconstructed and verified in
-source. **Car actor activation is still unbound; the application still declines
-mission loading.** This is neither a loaded-world nor a desktop result. The full
+source. [Cold actor activation](car-activation-loading.md) now composes its
+initializer/retirement and binds source Scene2 dispatch; **the application still
+declines mission loading.** This is neither a loaded-world nor a desktop result. The full
 first P2.2 implementation checkbox remains open. See [geometry](car-geometry-loading.md)
 for the earlier model/parameter/callback owners and the
 [checkpoint receipt](checkpoints/p2.2-car-cold-runtime-20261110.json) for validation.

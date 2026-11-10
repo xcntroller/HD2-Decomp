@@ -92,7 +92,7 @@ bool initialize_car_particle(Backend& backend,CarParticleState<Frame>& state,
     state.definition=index;
     backend.car_particle_texture(state.visual,texture.get());
     backend.car_particle_name(state.visual,"Car_particle");
-    backend.link_scene_object(state.visual,nullptr);
+    backend.link_scene_object(state.visual,Frame{});
     backend.car_particle_unit_scale(state.visual);
     backend.car_direction(state.visual,CarContactVector{{0,0,1,0}});
     backend.update_scene_object(state.visual);

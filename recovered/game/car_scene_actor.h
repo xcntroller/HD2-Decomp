@@ -5,6 +5,7 @@
 #include "game/car_geometry.h"
 #include "game/car_ancillary_model.h"
 #include "game/car_callback_services.h"
+#include "game/car_loading_lifetime.h"
 #include <functional>
 
 namespace hd2::game {
@@ -41,6 +42,7 @@ public:
         registered_=true;
     }
     ~CarSceneActor() override { //004D0F20; no populated-producer cleanup is invented.
+        loading.reset(); //Actual runtime borrowers precede DM/geometry/frame retirement.
         ancillary.reset(); //004E0EE0 precedes registry removal.
         if(registered_)this->backend_.unregister_car_actor(this);
         lists259c.clear();lists258c.clear();
@@ -53,6 +55,7 @@ public:
         if(!this->base_.initialize_frame(frame))return false;
         if(geometry)throw std::logic_error("Car geometry initialization repeated");
         geometry.emplace(this->backend_,frame,services_.car_tyre_ids());
+        occupants.assign(geometry->auxiliary().seats().size(),nullptr); //004E2E30's actual FA8+30 zeroed seats.
         bind_callbacks();
         ancillary.emplace();
         ancillary->load(this->backend_,geometry->resource(),geometry->auxiliary().seats().size());
@@ -67,10 +70,18 @@ public:
     std::optional<CarGeometry<Backend>> geometry;
     std::optional<CarAncillaryModel<Backend>> ancillary;
     std::optional<Callbacks> callbacks;
+    std::unique_ptr<CarLoadingLifetime<Backend>> loading;
+    std::vector<SceneActor<Backend>*> occupants;
+    SceneActor<Backend>* driver24ac=nullptr; //004D0B60, separate from seat0's current occupant.
+    Services& callback_services(){return services_;}
+    bool clock_expired(){ //0073EA90 on the actual0073EA50 owner at actor2470.
+        if(!fields2474[1])return false;
+        if(car_contact_signed_word(clock2470+fields2474[0])>=car_contact_signed_word(services_.car_clock()))return false;
+        clock2470=services_.car_clock();return true;
+    }
     //Actual runtime producers must fill these owners before invoking callbacks;
     //cold loading alone does not initialize a current simulation state.
     std::vector<CarSeatContactCooldown> cooldowns;
-    std::vector<CarContactLink> contact_links;
     std::array<std::uint32_t,10> fields24b4{};
     std::array<std::uint32_t,2> fields2474{};
     std::uint32_t clock2470,field24dc=0xffffffffu;
@@ -104,7 +115,7 @@ private:
                 geometry->auxiliary().seats().size(),impulse,point,collision,contact);
         };
         c.part694=[this,&s](std::size_t index,const Vector& velocity,const Vector* impulse) {
-            return car_detach_contact_part(s,geometry->deformables().parts(),contact_links,index,velocity,impulse);
+            return car_detach_contact_part(s,geometry->deformables().parts(),geometry->lighting().lights(),index,velocity,impulse);
         };
         c.wheel698=[this,&s](std::size_t index,const Vector& velocity,const Vector* impulse) {
             return car_detach_contact_wheel(s,s.car_mode_flags(),s.car_local_actor_id(),

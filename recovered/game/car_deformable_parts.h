@@ -4,6 +4,7 @@
 #include "game/car_physics.h"
 #include <string_view>
 #include <cstdlib>
+#include <functional>
 
 namespace hd2::game {
 
@@ -14,6 +15,8 @@ template<class Frames>
 class CarDeformableParts {
 public:
     using Frame=typename Frames::Frame;
+    using TextureOwner=decltype(std::declval<Frames&>().load_car_glass_texture(
+        std::declval<const std::string&>(),std::declval<const std::string&>()));
     struct Part {
         Frame frame{},mesh{};
         std::string name;
@@ -21,6 +24,8 @@ public:
         bool variants=false;
         std::vector<Frame> alternatives;
         std::uint8_t flags=0; //Original+38, including detached bit1.
+        float health=0; //24, produced by004FE910 from the SAME applied part+1C.
+        std::optional<TextureOwner> glass_texture{}; //0C, released with the actual part owner.
     };
     void discover(Frames& frames,Frame model) {
         if(!parts_.empty())throw std::logic_error("Car deformable discovery repeated");
@@ -43,6 +48,50 @@ public:
     }
     const std::vector<Part>& parts() const {return parts_;}
     std::vector<Part>& parts() {return parts_;}
+    void reset_loading_health(const CarPhysics& physics,const std::function<void()>& callback) { //004FE910(1).
+        const auto& applied=physics.geometry().parts;
+        if(applied.size()!=parts_.size())throw std::logic_error("Car part health requires the SAME applied geometry");
+        for(auto n=parts_.size();n;) {
+            const auto index=--n;auto& part=parts_[index];
+            if(part.type!=applied[index].type)throw std::logic_error("Car part health ordering differs from applied geometry");
+            part.health=applied[index].scalars.get(0x1c);part.flags&=0xfeu;
+        }
+        //The callback runs once, including for an empty parts list. The real
+        //cold actor installs004D4A00, a genuine empty body, in slot6B4.
+        if(callback)callback();
+    }
+    void load_glass_textures(Frames& frames,const CarParameters& parameters) { //004FE850.
+        //004ED270 copies the parameter block to nativeFDC;175C/176C are
+        //therefore names1E0/1E4. Both inline pointers exist even for empty text.
+        const auto primary=parameters.name(0x1e0),secondary=parameters.name(0x1e4);
+        if(primary.empty())return;
+        for(auto& part:parts_)if(part.type==3&&!part.glass_texture) {
+            auto texture=frames.load_car_glass_texture(primary,secondary);
+            if(texture)part.glass_texture.emplace(std::move(texture));
+            //A rejected graphics status leaves this part empty and continues.
+        }
+    }
+    //004FE910(0), for the actual cold unoccupied lifetime. Mesh backup and
+    //glass swaps are produced only by later positive deformation. No seat
+    //attachment/nativeFA8+28 owner may be installed through this entry.
+    void restore_cold(Frames& frames,const CarPhysics& physics,const std::function<void()>& callback) {
+        const auto& applied=physics.geometry().parts;
+        if(applied.size()!=parts_.size())throw std::logic_error("Car part restore requires the SAME applied geometry");
+        for(std::size_t n=0;n<parts_.size();++n){
+            if(parts_[n].type!=applied[n].type)throw std::logic_error("Car part restore ordering differs from applied geometry");
+            if(parts_[n].flags&0xcu)throw std::runtime_error("Car part restore requires its actual deformed mesh/glass backup owner");
+        }
+        for(auto n=parts_.size();n;){const auto index=--n;auto& part=parts_[index];
+            for(auto alternative=part.alternatives.rbegin();alternative!=part.alternatives.rend();++alternative){
+                if(!*alternative)throw std::runtime_error("Car deformable variant sequence has a missing frame");
+                frames.object_visible(*alternative,false);frames.update_scene_object(*alternative);
+            }
+            if(!part.frame)throw std::runtime_error("Car deformable base frame is unavailable");
+            frames.object_visible(part.frame,true);frames.update_scene_object(part.frame);
+            part.health=applied[index].scalars.get(0x1c);part.flags&=0xfeu;
+        }
+        if(callback)callback();
+    }
     std::vector<CarPartPhysics> physics_parts() const {
         std::vector<CarPartPhysics> result;
         for(const auto& part:parts_)result.push_back({part.type,{}});

@@ -100,7 +100,8 @@ unsigned finalize_car_cold(CarColdFinalizerContext<Frames,Geometry,Collisions,Qu
     if(kind==0)update_car_steering(c.frames,model,physics,c.body,c.wheels,c.steering,elapsed,solver.speed);
     else if(kind==2)reset_car_tracked_steering(c.frames,c.wheels);
     update_car_wheel_rotation(c.frames,physics,c.body,c.wheels,drive,solver.queries,solver.wheel_spin,elapsed);
-    update_car_loading_lights(c.frames,c.geometry.lighting(),state.lights,elapsed,solver.substeps.flags,state.previous_features);
+    const CarLoadingLightInputs light_inputs{drive.gear,drive.brake,c.steering.current};
+    update_car_loading_lights(c.frames,c.geometry.lighting(),state.lights,elapsed,solver.substeps.flags,state.previous_features,&light_inputs);
     update_car_steering_wheel(c.frames,c.geometry.auxiliary(),physics,c.steering);
     if(state.live||solver.substeps.flags!=state.previous_features)
         c.geometry.axes().apply(c.frames,c.geometry.wheels().wheels(),solver.substeps.flags,state.previous_features);

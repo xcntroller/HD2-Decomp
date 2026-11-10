@@ -79,6 +79,12 @@ public:
             if(found==discovered.end())throw std::runtime_error("Car wheel axle pair is missing");
             ordered.push_back(*found);
         }
+        //004F9BE0 appends nativeF60's linked list in enumeration order;
+        //F64 is the separate axle-sorted index.004EC5C0 visits both orders.
+        for(const auto& wheel:discovered){
+            const auto found=std::find_if(ordered.begin(),ordered.end(),[&](const Wheel& value){return value.frame==wheel.frame;});
+            linked_order_.push_back(static_cast<std::size_t>(found-ordered.begin()));
+        }
         wheels_=std::move(ordered);
     }
     void initialize_positions(Frames& frames,Frame model) {
@@ -95,6 +101,7 @@ public:
     }
     const std::vector<Wheel>& wheels() const {return wheels_;}
     std::vector<Wheel>& wheels() {return wheels_;}
+    const std::vector<std::size_t>& linked_order()const{return linked_order_;}
     std::vector<CarWheelPhysics> physics_wheels() const {
         std::vector<CarWheelPhysics> result;
         for(const auto& wheel:wheels_)result.push_back({wheel.radius,wheel.flags,-1,-1,{}});
@@ -112,6 +119,7 @@ private:
         return value;
     }
     std::vector<Wheel> wheels_;
+    std::vector<std::size_t> linked_order_;
 };
 
 } //namespace hd2::game

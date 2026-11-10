@@ -9496,13 +9496,14 @@
       "program": "client",
       "entry": "006dfcb0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 006dfcb0: Shared ten-bucket proximity pair ownership, registration/removal, speed update, fixed100 tick, original transition callbacks and Human ID-list feedback.",
+      "coverage": "P2.2 source reconstruction at original entry 006dfcb0: Shared ten-bucket proximity pair ownership, registration/removal, speed update, fixed100 tick, original transition callbacks and Human ID-list feedback. Retract acquired proximity entry/pairs when native frame/receiver or allocation boundary throws during registration.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/actor_proximity_loading.h",
         "analysis/sight-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/car-activation-loading.md"
       ]
     },
     {
@@ -10237,13 +10238,14 @@
       "program": "client",
       "entry": "004ed270",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004ed270: Runtime parameter application to real vehicle geometry for the third-argument-zero loading branch.",
+      "coverage": "P2.2 source reconstruction at original entry 004ed270: Runtime parameter application to real vehicle geometry for the third-argument-zero loading branch. Correct interior collision thresholds toC38..C44 and flags22AD..22B0; retain distinct C34 puncture volume.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/car_physics.h",
         "analysis/car-geometry-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/car-activation-loading.md"
       ]
     },
     {
@@ -23652,12 +23654,14 @@
       "program": "client",
       "entry": "004ea780",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004ea780: Actual pose, wheel, collision and skid initialization subsets; full runtime initialization still awaits containing Car activation.",
+      "coverage": "P2.2 source reconstruction at original entry 004ea780: Actual pose, wheel, collision and skid initialization subsets; full runtime initialization still awaits containing Car activation. Compose the cold complete initializer sequence on SAME geometry/runtime: body pose, collisions, reverse wheels, skids, mass, sounds/receivers, health/parts/glass/lights/axes.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_wheel_runtime.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_cold_initialization.h"
       ]
     },
     {
@@ -23688,12 +23692,14 @@
       "program": "client",
       "entry": "004ec5c0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004ec5c0: Cold descriptor/model-skid retirement subsets; sound owners are separately retired, full Car teardown composition remains.",
+      "coverage": "P2.2 source reconstruction at original entry 004ec5c0: Cold descriptor/model-skid retirement subsets; sound owners are separately retired, full Car teardown composition remains. Compose cold runtime retirement with native linked/axle wheel order, per-wheel skids, SAME part visibility/health, lights and receiver/resource cleanup.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_collision_loading.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_cold_initialization.h"
       ]
     },
     {
@@ -23808,12 +23814,13 @@
       "program": "client",
       "entry": "004e0ea0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004e0ea0: Cold retained DM metadata reset/reparse before activation; missing required DM rejects.",
+      "coverage": "P2.2 source reconstruction at original entry 004e0ea0: Cold retained DM metadata reset/reparse before activation; missing required DM rejects. Reset/reparse SAME DM model and set actual countdown0/triggeredfalse before first authority update.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_ancillary_model.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/car-activation-loading.md"
       ]
     },
     {
@@ -23928,12 +23935,13 @@
       "program": "client",
       "entry": "00512390",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00512390: F6C&800 wheel query/reuse/filter/material/contact/hard-stop/notification branch; alternate timed cache excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 00512390: F6C&800 wheel query/reuse/filter/material/contact/hard-stop/notification branch; alternate timed cache excluded. Add actual20000 per-wheel alternating timed caches and period/substep gates, retaining typed live primitive identity separately at140/200.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_cold_wheel_contacts.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/car-activation-loading.md"
       ]
     },
     {
@@ -23988,12 +23996,13 @@
       "program": "client",
       "entry": "00501cb0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00501cb0: Cold blink timers and actual billboard/projector/companion hiding; active light commands excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 00501cb0: Cold blink timers and actual billboard/projector/companion hiding; active light commands excluded. Add actual8808 cold automatic light command inputs and native steering threshold; active projector production still rejects.",
       "limitations": "Source-only typed/STL/RAII adaptation; original full object/container/allocator/SEH ABI and wider simulation paths are not claimed. Native geometry/frame/math/clock/actor endpoints are boundary doubles. Car activation and containing world/session/runtime remain unbound; application still declines loading. No loaded world, rendered frame, desktop acceptance, whole-body equivalence or delegated callee credit. See contract for active receiver exclusions.",
       "evidence": [
         "recovered/game/car_loading_lights.h",
         "analysis/car-runtime-loading.md",
-        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+        "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json",
+        "analysis/car-activation-loading.md"
       ]
     },
     {
@@ -24294,6 +24303,270 @@
         "recovered/game/car_cold_particles.h",
         "analysis/car-runtime-loading.md",
         "analysis/checkpoints/p2.2-car-cold-runtime-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f3950",
+      "status": "partial",
+      "coverage": "Actual seat/ballast weighted centre and inertia on SAME applied physics, native zero starting masses and changed flag.",
+      "limitations": "Only reached seat setter; no populated ballast producer or original object ABI.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_mass_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004fe910",
+      "status": "partial",
+      "coverage": "Reset SAME part health/flags; cold reverse alternatives/base visibility restore and actual6B4 callback.",
+      "limitations": "Positive deformed mesh/glass backups and occupied attachment restore remain excluded.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_deformable_parts.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004fe850",
+      "status": "partial",
+      "coverage": "Conditional per-glass texture load from actual175C/176C parameter names, retaining real texture ownership across deactivation.",
+      "limitations": "Native object/string ABI differs; actual graphics calls are delegated.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_deformable_parts.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f4e40",
+      "status": "partial",
+      "coverage": "Original six projector families/masks, reverse light order and real visual scale writes.",
+      "limitations": "Engine calls remain delegated; native object/vector ABI differs.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_lighting.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00500eb0",
+      "status": "partial",
+      "coverage": "Original per-frame damage gates, thresholds, health clamps, torque multiplier and destroyed latch on SAME runtime.",
+      "limitations": "Native object ABI differs; wider destruction notification is separate.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_health_reset.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051a950",
+      "status": "partial",
+      "coverage": "Actual inside/outside impact bands, process rand selection, playing/800ms arbitration and selected voice enable/volume.",
+      "limitations": "Actual engine sound methods remain delegated; no original object ABI.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_sound_updates.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051b560",
+      "status": "partial",
+      "coverage": "Actual suspension sound state reread, existing volume plus0.15 arbitration and enable/volume calls.",
+      "limitations": "Engine sound ABI delegated; native object layout differs.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_sound_updates.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0051b8f0",
+      "status": "partial",
+      "coverage": "Stop all81 SAME optional voices in native slot order via actual AC(sound,0,1).",
+      "limitations": "Native array/object ABI differs; sound calls delegated.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_sound_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f2710",
+      "status": "partial",
+      "coverage": "Actual audible flag setter with all81 voice stop on true-to-false transition.",
+      "limitations": "Native object ABI differs; sound methods delegated.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_sound_updates.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d3970",
+      "status": "partial",
+      "coverage": "Actual active camera/model distance and epoch feature flags, destroyed branch and audible transition.",
+      "limitations": "Native object ABI differs; containing world remains unintegrated.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_actor_features.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004ff8b0",
+      "status": "partial",
+      "coverage": "Actual cold body/part/wheel threshold skip gates on SAME physics and geometry before any deformation mutation.",
+      "limitations": "Positive mesh/variant/glass/wheel deformation explicitly rejects; no whole-function claim.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_cold_deformation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d16a0",
+      "status": "partial",
+      "coverage": "Compose actual offline two-pass common/DM/proximity/runtime initialization, seats/cameras, helper, navigation and settling.",
+      "limitations": "Unoccupied loading only; mounted/occupied/non7 receivers excluded. Host composition compile-only, no live world/desktop result.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_loading_activation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d25c0",
+      "status": "partial",
+      "coverage": "Actual offline derived/common retirement order, repeated seats/cameras/runtime, navigation/proximity cleanup and acquired-prefix guards.",
+      "limitations": "Occupied/mounted/non7 teardown excluded; engine/model/frame operations delegated.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_loading_activation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d2790",
+      "status": "partial",
+      "coverage": "Actual offline cold authority update gates, water damage, post-reset DM and support checks using SAME owners.",
+      "limitations": "Unoccupied loading only; periodic event, targeted damage, occupied control/UI and non7 paths excluded.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_loading_activation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d3110",
+      "status": "partial",
+      "coverage": "Actual offline cold presentation clamp, epoch/steering threshold, core/finalizer/base pose/features, seat cameras, navigation and model tick.",
+      "limitations": "Unoccupied loading only; mounted/non7/positive queued SOUND receivers excluded; no application binding.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_loading_activation.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00466010",
+      "status": "partial",
+      "coverage": "Restore actual retained camera local position/quaternion, update, parent/world cache and next-update snap flag.",
+      "limitations": "Engine calls delegated; native pointer/object ABI differs.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_seat_camera.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d5430",
+      "status": "partial",
+      "coverage": "Original health/fuel/wheel support, speed/up and even/odd contact tests on SAME cold runtime.",
+      "limitations": "Native object ABI differs; no occupied actor integration claim.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_support_checks.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004d2c50",
+      "status": "partial",
+      "coverage": "Actual offline upper water bound, upward100 query and zero body health plus reverse occupied Human impact dispatch.",
+      "limitations": "Non7 notifications excluded; actual Human damage receiver mandatory, positive fixture uses explicit boundary receiver.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_water_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006fcda0",
+      "status": "partial",
+      "coverage": "Actual no-output water segment wrapper using SAME tree and static Y/Z/X cell traversal.",
+      "limitations": "Point/normal output modes and original ABI excluded; no dynamic query invented.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/collision_water_queries.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006fd340",
+      "status": "partial",
+      "coverage": "Actual water-only static triangles/83, sorted-X exit, plane/classification/sidedness and barycentric gates.",
+      "limitations": "Only no-output segment path; original cache/object ABI differs.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/collision_water_queries.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006fd7e0",
+      "status": "partial",
+      "coverage": "Actual family83 inverse local plane segment, strict parameter and inclusive rectangle bounds; other families return false.",
+      "limitations": "Point/normal output modes excluded; transform engine calls delegated.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/collision_water_queries.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004e1990",
+      "status": "partial",
+      "coverage": "Actual cold post-reset countdown0/triggered gate used by offline authority update.",
+      "limitations": "Positive timed destruction/sound/effect receivers explicitly reject.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_ancillary_model.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004f2670",
+      "status": "partial",
+      "coverage": "Actual fuel setter upper clamp only and true result, using SAME applied capacity.",
+      "limitations": "Native object ABI and undefined upper return bytes differ.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_cold_initialization.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0073ea90",
+      "status": "partial",
+      "coverage": "Actual enabled timer signed wrapping sum comparison and second-clock store on expiry.",
+      "limitations": "Native object ABI differs; clock is mandatory containing source.",
+      "evidence": [
+        "analysis/car-activation-loading.md",
+        "recovered/game/car_scene_actor.h"
       ]
     }
   ]

@@ -4,158 +4,91 @@ Continue FULL P2.2 first unchecked implementation checkbox in plan.md. Read
 AGENTS.md. Continue dependencies/checkpoints until done or concretely blocked.
 Larger verified subsystem commits; consolidate docs/tally there. No push,
 subagents/goals, original game/DLL/Proton or Windows fixture execution. Preserve
-assets/user changes; focused verification, no repeated broad audits. Keep heavy
-compiles/Ghidra sequential after repeated memory shortages/PC crashes.
+assets/user changes; focused verification only. Heavy compiles/Ghidra sequential
+because of memory shortages/crashes. No permanent tests.
 
-GameApplicationState still declines loading. No live world/first rendered world
-frame/new desktop acceptance. Ledger:34 complete/1,783 partial (1,778 client/
-five engine)/18,783 frozen. Zero complete promotions.
+GameApplicationState still declines loading. No loaded world, first rendered
+world frame or new desktop acceptance. Ledger34 complete/1,807 partial
+(1,802 client/five engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
 
-[Car cold runtime](analysis/car-runtime-loading.md),
-[receipt](analysis/checkpoints/p2.2-car-cold-runtime-20261110.json): actual cold
-physics/BODYCOL/controller/settling/finalizer source composition. Nine captured
-coefficient sets/64 wheels, actual source tyres/query/tree/grid/buckets,41
-finalizer failures/exclusion cleanup/retry,21 body-contact failures, audio,
-light/shadow/glass, door/window, road rand/health and skid retirement pass native
-ASan/UBSan/LSan. Geometry/frame/math/clock/actor boundaries doubled; composed
-fixture has default materials and doubled geometry, NOT captured full Car/world
-activation. Strict actual-host i386 and app compile/link pass.54 new client
-partials; no complete promotion.60 temporary audit artifacts hashed/removed at
-this larger subsystem checkpoint; captures/exports/logs remain. Continue Car
-initialization/activation and the same entire checkbox.
+[Car cold activation](analysis/car-activation-loading.md),
+[receipt](analysis/checkpoints/p2.2-car-activation-20261110.json): actual offline
+004D16A0/004D25C0/004D2790/004D3110 composition and source type4 Scene2 dispatch.
+SAME geometry/initializer/solver/BODYCOL/finalizer/navigation/DM/seats/camera/
+process receivers; native repeat and53 activation/teardown failures pass
+ASan/UBSan/LSan with nine captured parameter sets and explicit synthetic
+four-wheel model/engine/math/session/callback doubles. Actual host/world dispatch
+is compile-only. Part/glass/mass/audio/damage, nine-set live alternating wheel
+cache and shared water/support/proximity checks pass. Strict i386, app link and
+27 tracker tests pass.24 new partials, none complete. Temporary audits hashed/
+removed; captures/exports/logs remain. No application readiness changed.
 
-## Previous verified source checkpoints
+Important corrections/limits are in the contract; do not repeat verified research:
+actor624/core594 is SAME lighting list; actor4A0/core410 is velocity, actor958/
+core8C8 speed. Interior impact bands C38..C44/22AD..22B0, not punctureC34.
+Actual actor overrides wheel534=98302 and BODYCOL53C=D8002, flags0; F02/2 are
+pre-actor initializer defaults. DM ctor countdown-1 is reset to0 before cold
+update. Water uses SECOND/max006FDA00 output/-FLOATMAX; reuse existing decoder.
+Native descriptor addresses remain stable across reactivation using inline
+optional initializer storage. Per-wheel20000 alternating caches are implemented;
+front/rear plane-cache mode remains excluded. Positive running/occupied/gun-seat/
+deformation/skid/emitter/non7/queued SOUND receivers remain explicit errors.
 
-[StaticWeapon](analysis/static-weapon-loading.md) and
-[receipt](analysis/checkpoints/p2.2-static-weapon-20261109.json): actual offline
-mode7 control/item/barrel/marker/pivot/shell/collider/navigation, cold initial
-update and retirement. Captured Tutorial Browning uses w_1919Crouch/item34,
-actual runtime catalogue subtype3. Source SAME Items/entry/frame-data/navigation/
-buckets. Native ASan/UBSan/LSan with84 frame failures and item/event/navigation/
-factory/mode failure, both activation passes/repeat; strict actual-host i386/app
-compile/link and27 tracker checks pass. Nine new partials; absent inventory and
-cold callee null gates receive none. Four temporary artifacts hashed/removed.
-No world/desktop promotion. Firing, occupied control, non7 input/network,
-positive movement sounds and destroyed pose restore remain explicit receivers.
-Do not repeat this verified research. Continue Car and containing owners.
-
-Previous2ef03b2 [Animation/SupplyBox](analysis/animation-supply-loading.md): five/
-seven captured records, actual helpers/clips/events/material/colliders, SAME
-vertex registry/definitions and effects fades, cold first update/retirement.
-Native sanitizers41/150 frame failures plus dependency/repeat cases, strict
-host/app/tracker checks pass.20 partials.004737C0 exposed/corrected00473960:
-padded definition normals4..6 → packed mesh3..5; mesh6/7 untouched. Actual
-WorldActors REQUIRES module9's MissionVertexInstances reference; StartupSession
-exposes SAME process definitions. Retire actors before registry/definitions/
-frames. Initial Supply flags120=1 select crate-open6→0, SOUND group1/entry10.
-Active Animation tracks/interaction/wings and Supply falling/respawn/pickup/
-crossfade/positive fade-in remain explicit later receivers.
-
-Previous6d5ae97 [Fowl](analysis/fowl-loading.md): captured count30 creates25
-actual generated birds; mode1/2 hearing/proximity/packets/flight/retirement
-verified,554 frame failures plus ground/listener. Mode0 still needs its real
-borrowed pool. Previousf25acbd [Pike/Explosive](analysis/pike-explosive-loading.md):
-stationary one/three unarmed records verified; motion/detonation excluded.
-Door89d3d2f [contract](analysis/door-loading.md):25 captured rotating Doors/two
-initial packets, dynamic-only edge query; sliding/protection49/4A excluded.
-
-[Shared world](analysis/world-scene-ownership.md),c9c80fc: real scene/documents/
-tables/environment/effects/tree/grid/Items/runtime/Physics around ONE actor/
-frame-data/entry registry. Car callback factory receives these services before
-binding. Tree stable allocation before bucket borrowers. Runtime before Physics;
-ordinary actors before entries/models; containing Human/state/VM retire first.
-Script/Players borrow actual process registries across repeat/startup/shutdown.
-[Physics0..5](analysis/item-transfer-physics-loading.md) includes1/3/4/shared
-5000ms fade-out;6 rejects unresolved unsafe second registration. Scene documents
-retain SAME live archive scope for lightmaps. Missing check2 clears tables before
-check.bin probe; legacy-present only opens/closes, no invented decoder.
+Car callback GameCarCallbackFrames now exposes SAME runtime state through
+actor.loading; remaining pure module/Human/effect/script receivers need actual
+containing owners. GameWorldActors.activate_car requires actual Consumers
+car_loading_resources (tyres/materials/process sound+light lists/pool/seat-camera/
+rand), actor_proximity(), current attachment/settings264/game kind. StartupSession
+exposes SAME process seat camera/lists/settings; real proximity bridge now has
+remove_actor. Do not supply successful placeholders. Car cameras/geometry retain
+resources until their actual ordered retirement.
 
 ## Next — same entire checkbox
 
-Car actor activation remains unbound. Next implement the remaining actual
-004EA780 initializer and004EC5C0 retirement composition,004FE910(1) part health/
-flag reset,004FE850 glass texture ownership, then004D16A0/004D25C0/004D2790/
-004D3110 and actual DM/session callbacks.004D3110 DOES call00509AA0 in mode7,
-so ordinary BODYCOL cannot be bypassed. Cold solver/finalizer are now implemented;
-do not repeat their verified research/audits. Active skid/positive emitter,
-occupied/running, alternate timed wheel cache and debug transitions still reject.
+Finish actual containing Human/DD0/state/FPV/HUD/SOUND/VM/module/session ownership,
+ordered006CA780 loader/postactivation, first camera/update/render/failure/repeat
+and user desktop acceptance. WorldScene/WorldActors still uncalled by application.
+HumanSceneActor.loading_lifetime is a borrowed endpoint, still needs actual bound
+HumanLoadingActivation. Existing HumanInlineLoading, HumanControlLoading,
+HumanEquipmentServices/Loading, HumanLoadingStateFactory/Owner, inventory receiver,
+Sight/SOUND/proximity, Players and camera sources must share real dependencies.
+Retire Human/B0/VM owners before world actors, before entries/models/tree/session.
+Do not bring all P2.3 simulation/VM opcodes into P2.2.
 
-Car contract links exact source/evidence and limitations. Important binding:
-wheel534/538 masks F02/0; BODYCOL53C/540 masks2/0.004F67B0's real finalizer
-clears22C0; update_car_cold supports the following mass-unchanged sleep/held
-states. Its older update_car_settling entry remains explicitly restricted.
-CarColdFinalizerContext receives SAME geometry/body/wheels/collisions/callbacks/
-material/pool/random owners. Actual shared scene light sampling and shadow
-queries are required; source exists. CarBodyCollisionController requires actual
-applied6F4/6F8 and228C. No runtime/actor dispatch or readiness was connected.
-
-Use car-runtime-typed-v4-required/004ea780.c for remaining initialization:
-SceneEC is THREE args,004290A0 THISCALL/six stack args/RET24. Earlier v2/v3
-initializer exports are superseded. car-runtime-typed-v2-required/0050de60.c
-remains correct for core. Body exports car-body-contact-typed-required/,
-box filters car-box-query-{filters,shapes}-required/. Latest finalizer/audio
-car-finalizer-cold-audio-typed-required/; actual0050CF40 has FLOAT roll
-current/max steering times504. HD2CarSolverABI.java keeps corrected signatures.
-Source218 is an integer skid cursor;004FE610 does NOT hide/release frames.
-Native read-only0083BEC4 gain is1. Shared light/sound receivers remain distinct.
-
-Concrete next initializer research:004FE910(1) skips its large zero-argument
-restore block, then sets each part+24 from+1C, clears flags+38 bit1, invokes
-actual6B4 (cold genuine empty callback). CarDeformableParts lacks current health;
-CarPhysics.geometry().parts[i].scalars has actual1C.004FE850 conditionally loads
-glass textures for kind3 parts with no retained0C texture; recover parameter
-names/native175C/176C mapping from004ED270 and retain actual resource ownership.
-Other initializer helpers and actor seat/camera/control resources are already
-exported under car-activation-required/ and car-loading-runtime-required/.
-Captured four Car models have NO gun-control seat100 flag; avoid widening the
-StaticWeapon subsystem for an absent mount producer. Existing nav/DM/camera/
-sound/skid/collision helpers are committed source and should be composed.
-
-Finish required Car activation and actual containing session/Human/DD0/FPV/HUD/
-SOUND/VM/module owners, ordered006CA780 loader/postactivation, first camera/
-update/render/failure/repeat and user acceptance. Existing GameWorldScene and
-GameWorldActors are source compositions, still uncalled by application. Reuse
-SAME services. GameSceneActors dispatch3/6/8/9/10/13/21/22/25/28/29/33; type3
-still needs actual bound HumanLoadingActivation. Car activation exports already
-under WORK/actor-activation. No new broad audit before implementation.
-
-Do not bring every P2.3 simulation/VM opcode into P2.2. Full compiler/context/
-visibility/rotations source verified; actual context factory/notifications and
-derived command receivers remain.77/79 are unhandled original base cases;
-position/animation snapshot masks reject,2/20/30 supported. Self ScriptAssign
-rejects executing-context retirement. SetOn resolves scene before driver.
-
-Actual mode7 is offline single-player. MissionA8 loop006989B0 skipsmode7. HUD
-map kinds2/3/4 bind zone/goals, ordinary kind1 does not. Deferred global script
-frame queue's observed producer is save restore004257B0/0042607B, not cold load.
-Runtime actors35/11 source; placed flag1D/kind10 ground/effect rejects (all24
-captured placed records flag1D0).145/146 BASE ISD0 Tutorial programs compile;
-114 binding names have source. No runtime Patch/original execution claim.
-
-Canonical: [world](analysis/mission-world-loading.md),
+Canonical contracts: [world](analysis/mission-world-loading.md),
+[shared ownership](analysis/world-scene-ownership.md),
 [modules](analysis/loading-modules.md), [Human](analysis/human-state-loading.md),
 [HUD](analysis/hud-loading.md), [activation](analysis/session-activation-loading.md),
-[camera](analysis/camera-local-dispatch-loading.md),
+[camera/local dispatch](analysis/camera-local-dispatch-loading.md),
 [compiler](analysis/mission-script-loading.md),
 [receivers](analysis/mission-script-receivers.md),
 [sound](analysis/sound-world-loading.md).
 
+Previous verified actor checkpoints: Car cold runtime7acfb09, StaticWeapon1009ef3,
+Animation/SupplyBox2ef03b2, Fowl6d5ae97, Pike/Explosivef25acbd, Door89d3d2f,
+shared worldc9c80fc. Use their analysis contracts; no repeated broad audit.
+Mode7 is offline. Script77/79 are original unhandled base cases; unsupported
+snapshot masks still reject. Scene2 first header statuses/order, live lightmap
+scope and legacy check.bin close-only behavior are confirmed. Actual145/146
+Tutorial programs compile;114 binding names have source; context/notifications/
+derived runtime commands still need integration.
+
 ## Execution/evidence
 
-WORK=analysis/work/mission-world-20261103 (ignored durable, not /tmp).
-StaticWeapon exports static-weapon-loading-required/ and
-static-weapon-control-required/, actor-activation/006036d0, collider ASM, captured
-actor/object fields and base model/member hashes/strings; no repeat exports.
-GunShells is category1/model; payload+1C maps serializedbyte24. No repeat compiler/
-portal/subtitle/Door/Pike/Explosive/Fowl/Animation/SupplyBox audit needed.
-Git crash metadata repair preserved under WORK/git-crash-backup-20261109;
-exact staged blobs restored, fsck passed, commits succeeded. No push.
+WORK=analysis/work/mission-world-20261103 (ignored durable, not /tmp). Latest
+exports listed in Car activation contract. Use car-runtime-typed-v4-required/
+004ea780.c (correct three-arg SceneEC;004290A0 THISCALL/six stack args/RET24),
+not older v2/v3 initializer. v2/0050de60.c remains correct for core. Original
+client SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
+Seat export job produced00466010 then errored on undefined004DA090: do not claim
+whole-job success; existing4DA090 export lives in car-activation-required.
 
 Default sandbox normal commands; git/Ghidra config/native sanitizers need
 escalation. One read-only Ghidra process/fresh output; check ERROR even exit0.
 Java25:/home/control/.sdkman/candidates/java/25.0.0.0-oracle.
-Sanitizer libs:.tools/hd2-sanitizer-runtime/usr/lib64 (verified; do not reinstall).
+Ghidra project:/home/control/Documents/Projects/HD2ResearchProject HD2Research.
+Sanitizer libs:.tools/hd2-sanitizer-runtime/usr/lib64; do not reinstall.
 i386:.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
 App:make -C recovered -j1 application-launch WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.

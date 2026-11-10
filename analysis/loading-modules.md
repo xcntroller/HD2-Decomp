@@ -690,3 +690,5 @@ actual subtype3. Native sanitizers/84 frame failures plus explicit dependency
 failures, strict actual host i386/app link and27 tracker checks pass. Nine frozen
 partials; absent entries and cold callee null gates earn no new credit. Continue
 Car/containing-world integration; P2.2 remains open and loading is still declined.
+
+Car cold activation2026-11-10: [source composition](car-activation-loading.md) now supplies type4 dispatch, SAME initializer/physics/seat/DM/navigation owners and partial-failure/repeat retirement. Both offline passes/cold updates are native sanitizer-verified against explicit model/engine/session doubles; actual host/world dispatch compile-only. Application mission loading remains disabled. Continue containing session/Human/VM/FPV/HUD/SOUND owners and ordered loader; no new completed checkbox or desktop claim.

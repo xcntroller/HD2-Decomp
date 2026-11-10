@@ -3,6 +3,7 @@
 
 #include "game/car_wheel_geometry.h"
 #include "game/car_tyres.h"
+#include "game/car_contact_callbacks.h"
 #include <map>
 
 namespace hd2::game {
@@ -28,7 +29,8 @@ template<class Frames>struct CarWheelRuntime {
     using Frame=typename Frames::Frame;using Vector=typename Frames::Vector;
     Frame frame{},parent{};
     const void* query_identity=nullptr;const void* previous_query_identity=nullptr;
-    std::uint32_t previous_query_flags=0;
+    std::uint32_t query_flags=0,previous_query_flags=0;
+    CarCollisionIdentityKind query_kind=CarCollisionIdentityKind::triangle,previous_query_kind=CarCollisionIdentityKind::triangle;
     CarPhysicsScalars scalars;std::map<unsigned,Vector> vectors;
     std::array<float,4> rotation{},alignment{};
     std::uint32_t flags=0;
@@ -42,7 +44,8 @@ template<class Frames>struct CarWheelRuntime {
         scalars.set(0x1d8,geometry.radius);scalars.set(0x1dc,geometry.contact_radius);scalars.set(0x214,geometry.width);
         scalars.set(0x1e4,geometry.diagonal);scalars.set(0x1e8,geometry.contact_diagonal);scalars.set(0x1ec,geometry.angle);scalars.set(0x15c,geometry.local_x);
         material_id=physics.material_id;material_type=physics.material_index;material_surface=0;surface_id=0;
-        query_identity=previous_query_identity=nullptr;previous_query_flags=0;effect=-1;skid_cursor=0;
+        query_identity=previous_query_identity=nullptr;query_flags=previous_query_flags=0;effect=-1;skid_cursor=0;
+        query_kind=previous_query_kind=CarCollisionIdentityKind::triangle;
         scalars.set(0x1e0,0); //004E2E30's authored wheel construction, before the runtime query additions.
         vectors.clear();vectors[0x20]=geometry.local_position;vectors[0x30]=geometry.position;
         const auto world=frames.actor_world_matrix(frame);vectors[0x40]={{world[12],world[13],world[14],world[15]}};

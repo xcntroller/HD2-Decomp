@@ -32,6 +32,7 @@ public:
     std::int32_t hud_style224()const{return style224;}
     std::uint32_t hud_teams240()const{return static_cast<std::uint32_t>(rules228[6]);}
     bool crosshair274()const{return rules228[19]!=0;}
+    bool car_camera264()const{return rules228[15]!=0;} //004D16A0 reads current configuration264.
     void clear_rotations()noexcept {while(!rotations284.empty())rotations284.pop_back();rotation290=0xffffffffu;}
     std::uint32_t field04=0;std::array<std::uint8_t,0x168> identity08{};
     std::uint8_t flag170=0;std::uint32_t field174=0,field178=0;

@@ -1,5 +1,7 @@
 # Technical research guide
 
+Car cold activation checkpoint2026-11-10: [actual source sequence, evidence and limitations](analysis/car-activation-loading.md). Both offline passes, cold update, repeat and53 failure prefixes pass native sanitizers; actual host/world dispatch compile-only. Application loading remains disabled. Ledger34 complete/1,807 partial; no complete or desktop promotion. Continue the full P2.2 checkbox.
+
 ## 2026-11-10 — Car cold runtime source checkpoint
 
 [Contract](analysis/car-runtime-loading.md), [receipt](analysis/checkpoints/p2.2-car-cold-runtime-20261110.json).

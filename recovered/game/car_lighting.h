@@ -21,9 +21,20 @@ public:
     struct Light {
         Frame frame{},billboard{};
         std::size_t projector=none;
-        std::uint16_t type=0,part=0xffff;
+        std::uint16_t type=0,part1a=0xffff;
+        std::uint32_t flags10=0;float field14=0; //SAME native594 records used by damage/part detachment.
         bool shared=false;
     };
+    void scale_projectors(Frames& frames,std::uint32_t mask,const Vector& scale)const { //004F4E40.
+        struct Family {std::uint32_t mask;std::uint16_t first,last;};
+        constexpr Family families[]={{0x100000,1,2},{0x200000,5,6},{0x400000,3,4},
+                                     {0x800000,7,7},{0x1000000,8,8},{0x2000000,9,9}};
+        for(const auto& family:families)if(mask&family.mask)for(auto n=lights_.size();n;) {
+            const auto& light=lights_[--n];
+            if(light.type<family.first||light.type>family.last||light.projector==none)continue;
+            if(const auto visual=projectors_.at(light.projector).visual.get())frames.car_projector_scale(visual,scale);
+        }
+    }
     template<class Parts> void discover(Frames& frames,Frame model,const Parts& parts) {
         struct Family {const char* pattern;std::uint16_t first,second;};
         constexpr Family families[]={{"LIGHTRE*",7,7},{"LIGHTIN*",1,2},{"LIGHTBI*",3,4},
@@ -61,9 +72,11 @@ public:
             const auto index=projectors_.size();projectors_.push_back(std::move(projector));
             lights_[first].projector=index;lights_[second].projector=index;
             lights_[first].shared=lights_[second].shared=true;
+            lights_[first].flags10|=0x80000000u;lights_[second].flags10|=0x80000000u;
         }
     }
     const std::vector<Light>& lights() const {return lights_;}
+    std::vector<Light>& lights() {return lights_;}
     const std::vector<Projector>& projectors() const {return projectors_;}
 private:
     static bool single_texture(const std::string& text,std::string& name) {
@@ -95,7 +108,7 @@ private:
             auto match=[&](Frame frame,bool exact) {
                 for(auto i=parts.size();i;--i)if(parts[i-1].frame==frame&&(!exact||parts[i-1].type==5)) {
                     if(i-1>=0xffff)throw std::runtime_error("Car light part index overflow");
-                    light->part=static_cast<std::uint16_t>(i-1);return true;
+                    light->part1a=static_cast<std::uint16_t>(i-1);return true;
                 }
                 return false;
             };

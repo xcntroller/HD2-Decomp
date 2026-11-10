@@ -11,6 +11,7 @@ namespace hd2::game {
 
 using CarContactVector=std::array<float,4>;
 using CarContactMatrix=std::array<float,16>;
+enum class CarCollisionIdentityKind : std::uint8_t {triangle,shape,dynamic}; //Typed native primitive owner, independent of mutable flags.
 
 //Borrowed native collision descriptor fields; never a cast of serialized or
 //original client memory. The actual collision producer must supply real owners.
@@ -320,11 +321,6 @@ struct CarWheelDamageEvent {
     std::int32_t value;
     CarContactVector point;
 };
-struct CarContactLink { //Actor+624's32-byte records, distinct from128-byte doors.
-    std::uint32_t flags10=0;
-    float field14=0;
-    std::uint16_t part1a=0xffff;
-};
 
 template<class Backend,class Frame,class Request>
 bool car_launch_contact_item(Backend& backend,Frame frame,const Request& request,unsigned mode) { //004D5140.
@@ -355,8 +351,8 @@ bool car_launch_contact_item(Backend& backend,Frame frame,const Request& request
     return true;
 }
 
-template<class Backend,class Parts>
-bool car_detach_contact_part(Backend& backend,Parts& parts,std::vector<CarContactLink>& links,
+template<class Backend,class Parts,class Links>
+bool car_detach_contact_part(Backend& backend,Parts& parts,Links& links,
         std::size_t index,const CarContactVector& velocity,const CarContactVector* impulse) { //004D4CA0,694.
     auto& part=parts.at(index);
     float mass;
@@ -401,8 +397,8 @@ bool car_detach_contact_wheel(Backend& backend,const std::uint32_t& mode_flags,c
     const bool create_item=(mode_flags&2)!=0;
     if(create_item) {
         CarDetachedWheelRequest request;
-        request.velocity=velocity;request.field10=wheel.field1d8;request.field14=wheel.field214;
-        request.field1c=wheel.field1b0;request.field20=wheel.field1c0;
+        request.velocity=velocity;request.field10=wheel.scalars.get(0x1d8);request.field14=wheel.scalars.get(0x214);
+        request.field1c=wheel.scalars.get(0x1b0);request.field20=wheel.scalars.get(0x1c0);
         if(impulse) {
             for(unsigned i=0;i!=2;++i)request.velocity[i]=static_cast<float>(request.velocity[i]+
                 static_cast<long double>((*impulse)[i])*.1f);
@@ -413,13 +409,13 @@ bool car_detach_contact_wheel(Backend& backend,const std::uint32_t& mode_flags,c
     wheel.flags|=0x40000000;
     backend.object_visible(wheel.frame,false);backend.update_scene_object(wheel.frame);
     if(!create_item||(mode_flags&1)) {
-        const CarWheelDamageEvent event{2,static_cast<std::uint32_t>(index),car_contact_integer(wheel.field230),velocity};
+        const CarWheelDamageEvent event{2,static_cast<std::uint32_t>(index),car_contact_integer(wheel.scalars.get(0x230)),velocity};
         backend.apply_car_wheel_damage(self,event); //004DB2B0.
     }else if(backend.car_occupant(self,0)) {
         const auto driver=backend.car_occupant(self,0);
         if(!driver)throw std::runtime_error("Car driver disappeared during wheel damage query");
         if(backend.actor_id(driver)==local_actor_id) {
-            const CarWheelDamageEvent event{2,static_cast<std::uint32_t>(index),car_contact_integer(wheel.field230),velocity};
+            const CarWheelDamageEvent event{2,static_cast<std::uint32_t>(index),car_contact_integer(wheel.scalars.get(0x230)),velocity};
             backend.submit_car_wheel_damage(self,event); //004DB2E0.
         }
     }

@@ -21,10 +21,20 @@ public:
     CarSoundLoading(const CarSoundLoading&)=delete;CarSoundLoading& operator=(const CarSoundLoading&)=delete;
     Frame sound(unsigned offset)const{const auto at=slots_.find(offset);return at==slots_.end()?Frame{}:at->second.get();}
     const auto& slots()const{return slots_;}
-    void clear(){ //0051C180: detach, release and null in the original order. No disable call.
+    void stop_all(){ //0051B8F0, exact81-slot order, AC(sound,0,1); no release/detach.
+        for(auto offset:slot_order())if(auto frame=sound(offset))frames_.car_sound_stop(frame);
+    }
+    void clear(const std::vector<Frame>* failure_receivers=nullptr){ //0051C180: detach, release and null in the original order. No disable call.
         std::exception_ptr error;
         const auto retire=[&](Slot& slot){
-            if(slot.get())try{frames_.human_sound_detach(slot.get());}catch(...){if(!error)error=std::current_exception();}
+            if(slot.get())try{frames_.human_sound_detach(slot.get());}catch(...){
+                if(!error)error=std::current_exception();
+                //Native exception guard: detach failed while receiver owners
+                //still borrow this voice. Retract them BEFORE releasing it.
+                //The ordinary successful path retains the original ordering.
+                if(failure_receivers)for(auto n=failure_receivers->size();n;)
+                    try{frames_.car_sound_unregister(failure_receivers->at(--n),slot.get());}catch(...){if(!error)error=std::current_exception();}
+            }
             slot.owner.reset();
         };
         for(auto offset:slot_order())if(auto at=slots_.find(offset);at!=slots_.end())retire(at->second);

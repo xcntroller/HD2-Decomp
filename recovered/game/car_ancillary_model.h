@@ -49,7 +49,13 @@ public:
         if(!model_)throw std::runtime_error("Car activation requires its actual DM model");
         seats_.clear();planes_.clear();zones_.clear();explosions_.clear();particle_=Frame{};
         parse(frames,seat_count);
+        countdown_=0;triggered_=false; //004E0EA0 AFTER004E0DC0/004E09D0, not004E08C0's initial-1.
     }
+    void update_cold(std::uint32_t){ //004E1990's actual post-reset cold gate.
+        if(triggered_||countdown_==0)return;
+        throw std::runtime_error("Car timed DM destruction requires its actual004E1FE0/004DBF00 receiver");
+    }
+    std::int32_t countdown()const{return countdown_;}
     Frame model() const {return model_?model_->get():Frame{};}
     const std::vector<Frame>& seats() const {return seats_;}
     const std::vector<Frame>& planes() const {return planes_;}
@@ -93,6 +99,7 @@ private:
     std::vector<Explosion> explosions_;
     Frame particle_{};
     std::int32_t sound_=-1,fire_=-1,smoke_=-1;
+    std::int32_t countdown_=-1;bool triggered_=false; //004E08C0 C/64, before actor activation's reset.
 };
 
 } //namespace hd2::game

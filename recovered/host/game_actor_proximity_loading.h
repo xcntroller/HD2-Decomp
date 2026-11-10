@@ -16,7 +16,8 @@ public:
         :startup_(startup),source_(startup.actor_proximity_state(),frames,*this){}
     std::int32_t add_human_proximity(Human& human,unsigned kind){return add_actor(&human,kind);}
     std::int32_t add_actor(Actor actor,unsigned kind){return source_.add(actor,kind,startup_.application_flags());}
-    void remove_human_proximity(std::int32_t index){(void)source_.remove(index,startup_.application_flags());}
+    void remove_actor(std::int32_t index){(void)source_.remove(index,startup_.application_flags());}
+    void remove_human_proximity(std::int32_t index){remove_actor(index);}
     void release_human_proximity(std::int32_t index){remove_human_proximity(index);} //0059E3E0's same006DFE50 endpoint.
     bool speed_kind(std::int32_t index,unsigned kind){return source_.speed_kind(index,kind,startup_.application_flags());}
     void tick100(){source_.tick100();}void clear()noexcept{source_.clear();}Source& source(){return source_;}

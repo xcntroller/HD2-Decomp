@@ -57,6 +57,11 @@ public:
     }
     const CarPhysicsGeometry& geometry() const { return geometry_; }
     const CarPhysicsScalars& scalars() const { return body_; }
+    //Native1E0/220..228 are live centre/inertia fields as well as initial
+    //004ED270 outputs.004F3950 updates this SAME storage before the solver.
+    void load_mass_result(const std::array<float,3>& centre,const std::array<float,3>& inertia) {
+        for(unsigned axis=0;axis!=3;++axis){body_.set(0x1e0+axis*4,centre[axis]);body_.set(0x220+axis*4,inertia[axis]);}
+    }
     const std::map<std::size_t,std::uint8_t>& flags() const { return flags_; }
     const std::optional<CarParameters>& applied_parameters() const { return applied_; }
     std::int32_t gear_count() const { return gear_count_; }
@@ -215,7 +220,9 @@ public:
         put(0x96c,r(0x221)*get(0x8e8)*-.009999999776482582f);
         put(0x970,r(0x222)*get(0x768)*.01f);set(0x974,0x223);set(0x978,0x224);
         for (std::size_t i=0;i!=4;++i) {
-            put(0xc34 + i*4,r(0x344 + i)*kph_to_mps*get(0x918));flags_[0x22ac + i]=p.flag(0x122b + i);
+            //004EF4xx's reverse loop ends at C38/22AD. C34 belongs to
+            //puncture volume and is subsequently set to1, not impact level0.
+            put(0xc38 + i*4,r(0x344 + i)*kph_to_mps*get(0x918));flags_[0x22ad + i]=p.flag(0x122b + i);
             put(0xf38 + i*4,r(0x477 + i)*kph_to_mps*get(0x918));flags_[0x22bb + i]=p.flag(0x1239 + i);
         }
         if (!sound_rpm(p,0x26d,0x33d,0xbfc)||!sound_rpm(p,0x394,0x468,0xedc)) return false;

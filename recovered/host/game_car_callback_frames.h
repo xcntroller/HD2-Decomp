@@ -3,6 +3,7 @@
 
 #include "host/game_actor_services.h"
 #include "game/car_callback_services.h"
+#include "game/car_scene_actor.h"
 
 namespace hd2::host {
 
@@ -32,6 +33,20 @@ public:
         if(!frame)throw std::logic_error("Collision actor has no actual frame");
         const auto world=frames_.car_world_matrix(frame);return {{world[12],world[13],world[14],world[15]}};
     }
+    const game::CarContactState& car_contact_state(Actor actor) override {return car_state(actor).contact_state();}
+    float car_speed958(Actor actor) override {return car_state(actor).solver.speed;} //Actor958 = core8C8.
+    Vector car_position4a0(Actor actor) override {return car_state(actor).body.motion().velocity;} //Actor4A0 = core410, a velocity.
+    Vector car_axis2d0(Actor actor) override {return car_state(actor).body.pose().forward;} //Actor2D0 = core240.
+    Vector car_axis2f0(Actor actor) override {return car_state(actor).body.pose().up;} //Actor2F0 = core260.
+    bool car_flag2319(Actor actor) override {return car_actor(actor).geometry.value().physics().flags().at(0x2289)!=0;}
+    bool car_field5e0(Actor actor) override {return car_actor(actor).geometry.value().physics().scalars().get(0x550)!=0;}
+    float car_field6a0(Actor actor) override {return car_state(actor).health.body;} //Actor6A0 = core610.
+    std::vector<WheelContactState>& car_wheel_contact_states(Actor actor) override {return car_state(actor).wheels;}
+    Actor car_driver_actor(Actor actor) override {return car_actor(actor).driver24ac;}
+    Actor car_occupant(Actor actor,std::size_t index) override {
+        const auto& seats=car_actor(actor).occupants;return index<seats.size()?seats[index]:nullptr; //004D99D0.
+    }
+    const Vector& car_wheel_world_position(Actor actor,unsigned index) override {return car_state(actor).wheels.at(index).vectors.at(0x50);}
     void car_transform_in_place(Vector& value,const Matrix& matrix) override {frames_.car_transform_in_place(value,matrix);}
     float car_vector_angle(const Vector& a,const Vector& b) override {return frames_.car_vector_angle(a,b);}
     bool car_frame_visible(Frame frame) override {return frames_.car_frame_visible(frame);}
@@ -70,6 +85,14 @@ public:
 protected:
     GameActorServices& frames_;
 private:
+    static game::CarSceneActor<GameActorServices>& car_actor(Actor actor){
+        auto* car=dynamic_cast<game::CarSceneActor<GameActorServices>*>(&require_actor(actor));
+        if(!car)throw std::logic_error("Car callback runtime requires an actual Car actor");return *car;
+    }
+    static game::CarActorColdState<GameActorServices>& car_state(Actor actor){
+        auto& car=car_actor(actor);if(!car.loading)throw std::logic_error("Car callback requires its actual initialized runtime owner");
+        return car.loading->cold_state();
+    }
     static game::SceneActor<GameActorServices>& require_actor(Actor actor) {
         if(!actor)throw std::logic_error("Car callback requires an actual native actor");return *actor;
     }

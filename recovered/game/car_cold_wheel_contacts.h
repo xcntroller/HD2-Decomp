@@ -9,20 +9,21 @@ namespace hd2::game {
 struct CarWheelQueryState {
     float projected_radius=0; //8DC: also written by the low-speed plane pass.
     bool moving_primitive=false; //2286, set by the actual previous primitive's10000 flag.
+    float cache_elapsed=0,cache_period=0;bool alternate=false; //004EA780 F4C/F50/22C8.
 };
 
-//00512390, the loading/ordinary first-frame F6C&800 path. Uses real query
-//identities and the same wheel/tyre/body owners. Alternate timed query caches
-//(!800) are explicitly outside this path. Notification methods are mandatory
+//00512390, F6C&800 and the20000 per-wheel timed cache selected by004D3970.
+//Uses live query identities and the same wheel/tyre/body owners. The separate
+//front/rear plane cache remains excluded. Notification methods are mandatory
 //receivers, called only by their native feature/audibility gates.
 template<class Frames,class Queries,class Receivers>
 typename Frames::Vector car_cold_wheel_contacts(Frames& frames,typename Frames::Frame model,
         CarBodyIntegration<Frames>& body,std::vector<CarWheelRuntime<Frames>>& wheels,
         const CarTyres& tyres,Queries& queries,Receivers& receivers,CarWheelQueryState& query_state,
         float elapsed,const typename Frames::Vector& down,bool impacts,std::uint32_t features,
-        std::uint32_t body_flags,float speed,bool audible,std::uint32_t layers,std::uint32_t flags){
+        std::uint32_t body_flags,float speed,bool audible,std::uint32_t layers,std::uint32_t flags,std::uint16_t substep_count=1){
     using Vector=typename Frames::Vector;using Wheel=CarWheelRuntime<Frames>;
-    if(!(features&0x800u))throw std::runtime_error("Car timed wheel-query cache requires its actual controller");
+    if(!(features&0x20800u))throw std::runtime_error("Car front/rear plane cache requires its actual controller");
     if(!(elapsed>0)||!std::isfinite(elapsed))throw std::runtime_error("Car wheel contact interval must be positive and finite");
     const auto& pose=body.pose();const auto& up=pose.up;
     const auto dot=[](const Vector& a,const Vector& b){return (static_cast<long double>(a[0])*b[0]+static_cast<long double>(a[1])*b[1])+static_cast<long double>(a[2])*b[2];};
@@ -69,7 +70,10 @@ typename Frames::Vector car_cold_wheel_contacts(Frames& frames,typename Frames::
             if(reuse)wheel.vectors.at(0xd0)[axis]+=difference;
         }wheel.vectors[0x40]=centre;if(!reuse)wheel.vectors[0xd0]=Vector{};
     };
-    for(auto n=wheels.size();n;){auto& wheel=wheels[--n];frames.update_scene_object(wheel.parent);frames.update_scene_object(wheel.frame);wheel.vectors[0x60]=wheel.vectors.at(0x50);wheel.query_identity=nullptr;}
+    for(auto n=wheels.size();n;){auto& wheel=wheels[--n];frames.update_scene_object(wheel.parent);frames.update_scene_object(wheel.frame);wheel.vectors[0x60]=wheel.vectors.at(0x50);if(features&0x800u){wheel.query_identity=nullptr;wheel.query_flags=0;}}
+    if(!(features&0x800u)&&(!(features&0x10000u)||substep_count==1)&&(features&0x20000u)){
+        query_state.cache_elapsed+=elapsed;if(query_state.cache_period<query_state.cache_elapsed)query_state.alternate=!query_state.alternate;
+    }
     bool reuse=!wheels.empty()&&!(body_flags&0x2000000u)&&speed<1.562600016593933f;
     for(auto n=wheels.size();reuse&&n;){const auto& wheel=wheels[--n];if(!(wheel.flags&0x40000400u))reuse=dot(wheel.vectors.at(0xa0),wheel.vectors.at(0xa0))<=1.5625f&&dot(wheel.vectors.at(0xd0),wheel.vectors.at(0xd0))<=.0024999999441206455f;}
     if(reuse)for(auto n=wheels.size();n;){
@@ -83,19 +87,35 @@ typename Frames::Vector car_cold_wheel_contacts(Frames& frames,typename Frames::
         query_state.projected_radius=projection(wheel,normal);const auto& s=wheel.scalars;
         if(length(travel)>query_state.projected_radius+s.get(0x264)+s.get(0x1e0)+s.get(0x164)+.20000000298023224f)continue;
         wheel.flags|=0x20000000u;wheel.vectors[0x50]=point;move_centre(wheel,point,query_state.projected_radius,true);
-        wheel.vectors[0x130]=normal;wheel.scalars.set(0x13c,constant);wheel.query_identity=wheel.previous_query_identity;
+        wheel.vectors[0x130]=normal;wheel.scalars.set(0x13c,constant);wheel.query_identity=wheel.previous_query_identity;wheel.query_flags=wheel.previous_query_flags;wheel.query_kind=wheel.previous_query_kind;
     }
     for(auto n=wheels.size();n;){
         const auto index=--n;auto& wheel=wheels[index];
         if((wheel.flags&0x40000400u)||((wheel.flags&0x20000000u)&&!(body_flags&0x2000000u)))continue;
-        const auto start=origin(wheel),segment=displacement(wheel);auto hit=queries.ray(start,segment,layers,flags);
+        const auto start=origin(wheel),segment=displacement(wheel);
+        bool fresh=true;
+        if((features&0x20000u)&&wheel.query_identity){
+            const bool alternate=query_state.alternate^((index&3u)>1u);
+            fresh=(!(features&0x10000u)||substep_count==1)&&((index&1u)==static_cast<unsigned>(alternate))&&query_state.cache_period<query_state.cache_elapsed;
+        }
+        auto hit=[&](){
+            if(fresh)return queries.ray(start,segment,layers,flags);
+            const auto& normal=wheel.vectors.at(0x130);const float denominator=static_cast<float>(dot(segment,normal));
+            if(std::abs(denominator)<9.99999993922529e-09f)return decltype(queries.ray(start,segment,layers,flags)){};
+            const float parameter=static_cast<float>(-(dot(normal,start)+wheel.scalars.get(0x13c))/denominator);
+            Vector point{},travel{};
+            for(unsigned axis=0;axis!=3;++axis){const float scaled=parameter*segment[axis];point[axis]=start[axis]+scaled;travel[axis]=point[axis]-start[axis];}
+            if(dot(travel,travel)>dot(segment,segment))return decltype(queries.ray(start,segment,layers,flags)){}; //No native parameter>=0 gate.
+            return queries.cached(wheel.query_identity,wheel.query_kind,point,normal);
+        }();
         float projected=0;bool accepted=false;
         if(hit){
-            wheel.vectors[0x130]=hit->normal;wheel.scalars.set(0x13c,static_cast<float>(-dot(hit->position,hit->normal)));wheel.query_identity=hit->identity;
+            wheel.vectors[0x130]=hit->normal;wheel.scalars.set(0x13c,static_cast<float>(-dot(hit->position,hit->normal)));wheel.query_identity=hit->identity;wheel.query_flags=hit->flags;wheel.query_kind=hit->identity_kind;
             projected=projection(wheel,hit->normal);Vector travel{};for(unsigned axis=0;axis!=3;++axis)travel[axis]=hit->position[axis]-start[axis];
             const auto& s=wheel.scalars;if(projected+s.get(0x264)+s.get(0x1e0)+s.get(0x164)+.20000000298023224f<length(travel))hit.reset();
-        }else wheel.query_identity=nullptr;
+        }else{wheel.query_identity=nullptr;wheel.query_flags=0;}
         wheel.previous_query_identity=hit?hit->identity:nullptr;wheel.previous_query_flags=hit?hit->flags:0;
+        wheel.previous_query_kind=hit?hit->identity_kind:CarCollisionIdentityKind::triangle;
         //Native stores previous200 before invoking actual surface6AC, which may reject.
         auto* filtered=hit?receivers.surface(*hit,static_cast<unsigned>(index)):nullptr;
         if(filtered&&wheel.material_id>=0){
@@ -113,6 +133,7 @@ typename Frames::Vector car_cold_wheel_contacts(Frames& frames,typename Frames::
         if(!accepted)wheel.flags&=~8u;
         move_centre(wheel,wheel.vectors.at(0x50),projected,false);
     }
+    if(query_state.cache_period<query_state.cache_elapsed)query_state.cache_elapsed=0;
     Vector direction_sum{},linear_change{},angular_change{};unsigned impact_count=0;float sound_volume=0;
     for(auto n=wheels.size();n;){
         const auto index=--n;auto& wheel=wheels[index];auto& s=wheel.scalars;

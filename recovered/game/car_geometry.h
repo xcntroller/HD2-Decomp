@@ -69,6 +69,7 @@ public:
     const CarDeformableParts<Frames>& deformables() const {return deformables_;}
     CarDeformableParts<Frames>& deformables() {return deformables_;}
     const CarLighting<Frames>& lighting() const {return lighting_;}
+    CarLighting<Frames>& lighting() {return lighting_;}
     CarPhysics& physics() {return physics_.value();}
     const CarPhysics& physics() const {return physics_.value();}
 private:

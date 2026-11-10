@@ -48,7 +48,7 @@ template<class Frames,class Queries,class Receivers,class Collision>void car_col
     state.speed=length(body.motion().velocity);state.rolling_speed=0;
     Vector down{};for(unsigned axis=0;axis!=3;++axis)down[axis]=-body.pose().up[axis];
     auto sum=car_cold_wheel_contacts(frames,model,body,wheels,tyres,queries,receivers,state.queries,
-        elapsed,down,true,state.substeps.flags,drive.body_flags,state.speed,drive.audible,layers,flags);
+        elapsed,down,true,state.substeps.flags,drive.body_flags,state.speed,drive.audible,layers,flags,state.substeps.count);
     if(square(sum)<=.5f)state.rolling_speed=state.speed;
     else{
         const float squared=static_cast<float>((static_cast<long double>(sum[0])*sum[0]+static_cast<long double>(sum[1])*sum[1])+static_cast<long double>(sum[2])*sum[2]);

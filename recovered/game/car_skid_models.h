@@ -45,8 +45,12 @@ public:
         if(cursor>=pairs.size()||!pairs[cursor].active)return;
         pairs[cursor].active=false;++cursor;if(cursor>=pairs.size())cursor=0;
     }
+    void clear_wheel(std::size_t index){
+        auto& wheel=wheels_.at(index);
+        while(!wheel.empty()){wheel.back().first.reset();wheel.back().second.reset();wheel.pop_back();}
+    }
     void clear(){ //004EC5C0: ascending wheels, reverse pairs, first then second release.
-        for(auto& wheel:wheels_)while(!wheel.empty()){wheel.back().first.reset();wheel.back().second.reset();wheel.pop_back();}
+        for(std::size_t n=0;n<wheels_.size();++n)clear_wheel(n);
         initialized_=false;
     }
     const auto& wheels()const{return wheels_;}

@@ -3,6 +3,7 @@
 
 #include "game/scene_actor.h"
 #include "game/car_particles.h"
+#include "game/car_wheel_runtime.h"
 #include <memory>
 
 namespace hd2::game {
@@ -44,11 +45,7 @@ public:
     virtual bool car_flag2319(Actor)=0;
     virtual bool car_field5e0(Actor)=0;
     virtual float car_field6a0(Actor)=0;
-    struct WheelContactState {
-        Frame frame{};
-        std::uint32_t flags=0;
-        float field1d8,field214,field1b0,field1c0,field230;
-    };
+    using WheelContactState=CarWheelRuntime<Backend>; //Borrow the SAME runtime, including mutable flags/health.
     virtual std::vector<WheelContactState>& car_wheel_contact_states(Actor)=0;
     virtual Actor car_driver_actor(Actor)=0;
     virtual Actor car_occupant(Actor,std::size_t)=0;

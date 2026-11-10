@@ -523,6 +523,9 @@ public:
     }
     void car_sound_pitch(Frame sound,float value){call<void>(sound,0x88,value);}
     bool car_sound_state(Frame sound){return call<std::uint8_t>(sound,0x78,std::uint32_t{0})!=0;}
+    float car_sound_volume(Frame sound)const{return field<float>(sound,0x16c);} //0051B560.
+    std::uint32_t car_sound_elapsed(Frame sound){return call<std::uint32_t>(sound,0xa4);} //0051A950.
+    void car_sound_stop(Frame sound){call<void>(sound,0xac,std::uint32_t{0},std::uint32_t{1});} //0051B8F0.
     void car_sound_parameter98(Frame sound,float value){call<void>(sound,0x98,value);}
     void car_sound_cone(Frame sound,float first,float second){call<void>(sound,0x84,first,second);}
     void car_sound_register(Frame receiver,Frame sound){call<void>(receiver,0x7c,sound);} //00517CF0.

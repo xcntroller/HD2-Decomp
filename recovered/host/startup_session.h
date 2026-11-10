@@ -246,6 +246,7 @@ public:
     frontend::ProfileSettings& profile_settings() { return data_.profile().options.settings; }
     bool human_face_quality_enabled(){return profile_settings().quality_byte(3)!=0;} //006B6740→006B33E0(3).
     frontend::GameConfiguration& game_configuration(){return data_.game_configuration();}
+    bool car_camera_setting264(){return game_configuration().car_camera264();}
     std::uint8_t hud_crosshair_allowed(){return frontend::hud_crosshair_preference(gate_,game_configuration(),profile_settings());}
 
     bool mission_active() const { return game_views_.owner()!=nullptr; } //00698500 actual owner, distinct from loaded camera.

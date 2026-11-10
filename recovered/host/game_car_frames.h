@@ -189,6 +189,11 @@ public:
         return assigned;
     }
     Frame car_mesh(Frame visual) const {return field<Frame>(visual,0x1e0);}
+    void car_projector_scale(Frame frame,const Vector& scale) { //004F4E40, no frame24 call.
+        for(unsigned axis=0;axis!=3;++axis)put(frame,0xd0+axis*4,scale[axis]);
+        car_rotation(frame);
+        put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
+    }
     CarProjector car_projector(Frame marker,const std::array<std::string,3>& names,
                               std::size_t count,const Vector& light_direction) {
         if(count!=1&&count!=3)throw std::logic_error("Invalid Car projector texture count");
@@ -227,6 +232,14 @@ public:
         return result;
     }
     MenuDriver::Owner create_car_particle_frame() {return create_visual(0x52544d45);}
+    ResourceOwner load_car_glass_texture(const std::string& primary,const std::string& secondary) {
+        Frame texture=nullptr;
+        //004FE850 passes the actual inline secondary pointer, even when empty.
+        const auto result=graphics_.methods->load_texture(&graphics_,primary.c_str(),secondary.c_str(),4,&texture);
+        auto owner=own_car_resource(texture);
+        if(result!=0)return ResourceOwner(nullptr,ResourceRelease{module_});
+        return owner;
+    }
     ResourceOwner load_car_particle_texture(const std::string& primary,const std::string& secondary,unsigned flags) {
         Frame texture=nullptr;
         const auto result=graphics_.methods->load_texture(&graphics_,primary.c_str(),secondary.empty()?nullptr:secondary.c_str(),flags,&texture);

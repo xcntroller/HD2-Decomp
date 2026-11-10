@@ -59,6 +59,15 @@ public:
         frames_.update_scene_object(marker_);return true;
     }
     Frame marker()const{return marker_;}
+    bool restore(){ //00466010, called by seat removal and again before camera storage retirement.
+        if(!marker_)return false;
+        frames_.car_suspension_position(marker_,local_);frames_.car_steering_rotation(marker_,rotation_);
+        frames_.update_scene_object(marker_);
+        const auto parent=frames_.object_parent(marker_);
+        if(!parent)throw std::runtime_error("Car seat camera restore lost its actual parent");
+        parent_position_=position(frames_.actor_world_matrix(parent));world_position_=position(frames_.actor_world_matrix(marker_));
+        snap_=true;return true;
+    }
     const std::array<float,4>& initial_rotation()const{return rotation_;}
     const Vector& initial_local_position()const{return local_;}
     const Vector& initial_parent_position()const{return parent_position_;}
