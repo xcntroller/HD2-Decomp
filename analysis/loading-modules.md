@@ -1,5 +1,13 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [Registered dispatch and retirement](module-loading-dispatch.md) now binds eighteen actual module owners and original reverse finish order, real Items/runtime cleanup and shared hand-model/visual light-map state. Source-only verified; actual containing session/Car consumers, ordered loader/integrity publication and first frame remain.
+
+2026-11-10: [GEffects1 loading](geffects-module-loading.md) — GEffects1 loading/activation/finish/file-unload now use actual shared process/scene owners, water, borrowed Birds and real decoration data. Source-only verified; registered dispatch/retirement and containing session/loader/first frame remain.
+
+2026-11-10: [Versions7 loading](version-module-loading.md) — Versions7 cold activation/finish now owns actual matched model/part/EC/grid receivers, verified with positive matches and20 frame failure prefixes. GEffects and containing dispatcher/session/loader still remain.
+
+2026-11-10: [Module loading lifetimes](module-loading-lifetimes.md) — Script bank/SOUND lifecycle and cold Particles17/HeavyFire16 now use actual process state. Initialized particle finish clears definitions; never-activated finish retains them. Source verification passes; actual Versions/GEffects and containing loader remain.
+
 2026-11-10: [session loading consumers](session-loading-consumers.md) add real activation API order, shared effect file/cache/scene receivers and [ShotMgr](shot-manager-loading.md) models/pools/textures/retirement. Source-only verified; remaining module owners, containing session/loader/integrity publication and first frame stay open.
 
 2026-11-10: [Human/VM world composition](human-vm-world-composition.md) replaces the external VM declaration with actual module/runtime/contexts and checked same-world Human linkage. Source-only verified; actual session/loader/integrity publication and first-frame delivery remain.

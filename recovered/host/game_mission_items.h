@@ -80,6 +80,30 @@ public:
         if(bool(consumers_.mode_flags()&1)!=authority)return;
         require_catalogue();current_identity_=-1;pending_identities_.clear();
     }
+    template<class Actors,class HandModels>void finish(bool authority,Actors& actors,HandModels& hand_models) { //007DD240.
+        if(bool(consumers_.mode_flags()&1)!=authority)return;
+        current_identity_=-1;pending_identities_.clear();enabled_=false;
+        //007D8A90 visits the SAME Scene2 identities in ascending order. This is
+        //inventory retirement, not deletion of all registered83C items/models.
+        for(std::size_t n=0;n<actors.scene_actor_identity_count();++n)if(auto* actor=actors.scene_actor_identity(static_cast<std::int32_t>(n))) {
+            if(auto* storage=actor->base().storage())storage->reset_spawn_entries(); //007DDEF0.
+            actor->base().field7c(0);
+        }
+        std::vector<Placed>().swap(placed_); //7E8/count/capacity zero; entries already transferred or retired above.
+        models_.clear_loading_kind20_index();
+        hand_models.clear();
+    }
+    void unload() { //007DCFB0, authority ignored. Only the still-queued placements own entries here.
+        //The source entry sidecar retracts deleted placement references. Native
+        //leaves stale rows until007D8A90; consume them to make failed/repeat
+        //unload safe without destroying registered83C items a second time.
+        while(!placed_.empty()) {
+            const auto entry=placed_.front().entry;
+            frames_.release_entry(entry);
+            if(!placed_.empty()&&placed_.front().entry==entry)placed_.erase(placed_.begin());
+        }
+        models_.clear_loading_kind20_index();
+    }
     void activate(bool authority,const std::string& mission) { //007DD010, required loading path.
         flag7e5_=false;
         if(bool(consumers_.mode_flags()&1)!=authority)return;

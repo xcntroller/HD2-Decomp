@@ -9,6 +9,7 @@
 #include "game/human_face_mesh_pool.h"
 #include "game/mission_script_frame_snapshots.h"
 #include <mmsystem.h>
+#include <cstdlib>
 
 namespace hd2::host {
 
@@ -18,6 +19,9 @@ class GameActorFrames : public GameCarFrames {
 public:
     using GameCarFrames::GameCarFrames;
     MenuDriver::Owner retain_actor_frame(Frame frame) {return retain(frame);}
+    std::uint32_t visual_lightmap_group(Frame frame)const{return field<std::uint32_t>(frame,0x210);}
+    void set_visual_lightmap_group(Frame frame,std::uint32_t group){call<void>(frame,0xc8,group);} //0048D270/0048C790.
+    std::int32_t vertex_random(){return std::rand();} //00474B40, SAME process CRT stream.
     void script_cutscene_viewport() { //00428B30, same actual graphics and world scene.
         const auto width=graphics_.methods->width(&graphics_);const auto height=graphics_.methods->height(&graphics_);
         const auto rectangle=game::mission_script_cutscene_viewport(width,height);
@@ -113,6 +117,10 @@ public:
     bool physics_inverse_world_below_half(Frame frame) { //0040BD70 copies frame10..3F, compares the final FLOAT at3C.
         if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
         return field<float>(frame,0x3c)<.5f;
+    }
+    bool version_collision_retires_immediately(Frame frame) { //0043C320, sphere radius3C after lazy bounds58.
+        if(!(field<std::uint32_t>(frame,0xe0)&0x100u))call<void>(frame,0x58);
+        return field<float>(frame,0x3c)<=.10000000149011612f;
     }
     void actor_link_preserving_world(Frame frame,Frame parent) {
         if(call<std::int32_t>(frame,0x38,parent,std::uint32_t{1})<0)
@@ -795,6 +803,13 @@ public:
         call<void>(frame,0x1c,forward.data(),std::uint32_t{0});
     }
     MenuDriver::Owner create_item_template_model() {return driver_.create(9);}
+    void configure_item_cigarette(Frame model) { //007D76C0, borrowed lensf lookup; +24 updates, it does not release.
+        if(const auto lens=call<Frame>(model,0x48,"lensf",std::uint32_t{1})) {
+            put(lens,0x1e4,.15f);put(lens,0x244,.35f);
+            put(lens,0x1e0,1.f);put(lens,0x240,120.f);
+            object_visible(lens,false);update_scene_object(lens);
+        }
+    }
     std::int32_t load_item_template_model(Frame model,const std::string& key) {
         return resources_.load_model(model,key,0); //007DF750 preserves the resource key verbatim.
     }
@@ -869,6 +884,28 @@ public:
         rotation[3]=-rotation[3];object_rotation(second,rotation);
     }
     Frame camera_root_sector()const{return field<Frame>(scene_.frame(),0x1f8);}
+    void effects_enable_loading_sectors(){ //004885D0, root THEN hidden sector94(1).
+        for(const auto offset:{0x1f8u,0x200u}){
+            const auto sector=field<Frame>(scene_.frame(),offset);
+            if(!sector)throw std::runtime_error("Effects loading requires its actual scene sectors");
+            call<void>(sector,0x94,std::uint32_t{1});
+        }
+    }
+    void effects_link_root(Frame frame){actor_link_preserving_world(frame,camera_root_sector());}
+    void effects_scene_water(){call<void>(scene_.frame(),0x11c,std::uint32_t{0},std::uint32_t{0});}
+    void effects_restore_water_children(bool visible){ //00486520, actual scene1FC child methods3C/40, reverse order.
+        const auto sector=field<Frame>(scene_.frame(),0x1fc);
+        if(!sector)throw std::runtime_error("Water visibility requires its actual scene sector");
+        for(auto n=call<std::uint32_t>(sector,0x3c);n;){
+            const auto child=call<Frame>(field<Frame>(scene_.frame(),0x1fc),0x40,--n);
+            object_visible(child,visible);
+        }
+    }
+    std::array<float,3> effects_active_camera_parameters()const{
+        const auto camera=field<Frame>(scene_.frame(),0x15c);
+        if(!camera)throw std::runtime_error("Water loading requires the actual active scene camera");
+        return {{field<float>(camera,0x120),field<float>(camera,0x124),field<float>(camera,0x128)}};
+    }
     std::string camera_sector_properties(Frame sector)const{return car_user_data(sector);} //0046C370 uses Frame+F0 text.
     void active_game_camera(Frame camera) {
         using Active=void(WINAPI*)(Frame,Frame);

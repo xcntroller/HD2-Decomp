@@ -10648,7 +10648,8 @@
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
-        "analysis/session-loading-consumers.md"
+        "analysis/session-loading-consumers.md",
+        "analysis/module-loading-lifetimes.md"
       ]
     },
     {
@@ -23282,26 +23283,32 @@
       "program": "client",
       "entry": "004797c0",
       "status": "partial",
-      "coverage": "Generated Bird actual CRT timers, root/pose, EC binding and actual wing borrowers/visibility; existing borrowed-Bird restore branch excluded.",
-      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "coverage": "Generated true and borrowed false Bird loading branches: shared CRT timers, root/pose/checked EC binding and actual wing borrowers/visibility. Borrowed records use the actual GEffects scene manager; generated records remain with their Fowl actor.",
+      "limitations": "Source-only typed retained native frames and actual scene/CRT dependencies; original layout/allocator/SEH ABI excluded. Borrowed mode0 Fowl transfer and borrowed Bird runtime movement/rendering remain unavailable. No application world or new desktop verification.",
       "evidence": [
         "recovered/game/fowl_bird.h",
         "recovered/game/fowl_generator_loading.h",
         "analysis/fowl-loading.md",
-        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json",
+        "recovered/game/effects_birds_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
       ]
     },
     {
       "program": "client",
       "entry": "004799e0",
       "status": "partial",
-      "coverage": "Generated Bird matching-EC clear and actual scene removal with retained source frame safety; native borrowed pool branch excluded.",
-      "limitations": "Source-only generated mode1/2 birds; borrowed mode0 pool and existing Bird frame restoration excluded. Typed RAII/STL records/required runtime services replace original layout/refcount/allocator/SEH/virtual ABI. Native checks use frame/model/math/ground/actor/audio doubles; actual host composition compile-only. No original execution, loaded-world/first-frame/desktop or whole-body equivalence claim. Delegates and absent inventory entries earn no credit.",
+      "coverage": "Matching Bird EC clear; generated true branch removes actual scene model, borrowed false branch restores XYZ/quaternion, hides/updates then transfers to the actual deferred show/update list with retained source frame safety.",
+      "limitations": "Source-only typed retained native frames and actual scene/CRT dependencies; original layout/allocator/SEH ABI excluded. Borrowed mode0 Fowl transfer and borrowed Bird runtime movement/rendering remain unavailable. No application world or new desktop verification.",
       "evidence": [
         "recovered/game/fowl_bird.h",
         "recovered/game/fowl_generator_loading.h",
         "analysis/fowl-loading.md",
-        "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+        "analysis/checkpoints/p2.2-fowl-loading-20261109.json",
+        "recovered/game/effects_birds_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
       ]
     },
     {
@@ -25721,6 +25728,535 @@
         "recovered/host/game_actor_frames.h",
         "analysis/shot-manager-loading.md",
         "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00444110",
+      "status": "partial",
+      "coverage": "Module17 loading tail assigns the SAME actual game scene to separate particle100C borrower on both authority/presentation passes; typed source lifetime guard rejects missing or foreign scene.",
+      "limitations": "Source-only typed process/STL lifetime instead of original object/container/allocator/virtual ABI. Active particle instances, textures, simulation and rendering remain unsupported; no containing application world or desktop verification and no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/particle_module_loading.h",
+        "analysis/module-loading-lifetimes.md",
+        "analysis/checkpoints/p2.2-module-loading-lifetimes-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00445980",
+      "status": "partial",
+      "coverage": "Initialized module17 finish clears the SAME typed definition owners used by00444140 before1034 instance retirement, preserving the never-initialized cache branch.",
+      "limitations": "Source-only typed process/STL lifetime instead of original object/container/allocator/virtual ABI. Active particle instances, textures, simulation and rendering remain unsupported; no containing application world or desktop verification and no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_effects_loading.h",
+        "analysis/module-loading-lifetimes.md",
+        "analysis/checkpoints/p2.2-module-loading-lifetimes-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e240",
+      "status": "partial",
+      "coverage": "Bounded embedded-keyword decimal metadata parsing with native defaults and safe overflow rejection.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e2c0",
+      "status": "partial",
+      "coverage": "Reverse actual model-master retirement, reverse deferred collision retirement and cold empty borrowed-reload list.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e3e0",
+      "status": "partial",
+      "coverage": "Enumerate actual scene with maskFFFF and metadata callback against same containing owner.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e560",
+      "status": "partial",
+      "coverage": "Validate model100/kind9, reuse same checked EC5 master, create actual collision/master and part owners.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c220",
+      "status": "partial",
+      "coverage": "Retain model, publish EC5, create real model collision snapshot and record index; cold C/28 fields.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c440",
+      "status": "partial",
+      "coverage": "Gate existing partEC5, construct/publish actual part keeper and append in native order.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043adb0",
+      "status": "partial",
+      "coverage": "Retain actual part, publish masterEC5/partEC6, store version/particle/material/trans/index and cold resource arrays.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043aef0",
+      "status": "partial",
+      "coverage": "Clear matching partEC5/6 before actual retained-frame release; cold resource array retirement.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c320",
+      "status": "partial",
+      "coverage": "Lazy actual sphere-radius threshold selects immediate or deferred grid descriptor retirement; master metadata then reverse part release.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043c1a0",
+      "status": "partial",
+      "coverage": "Reverse actual part owner retirement then retained model release; cold null C branch.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043ddb0",
+      "status": "partial",
+      "coverage": "Actual kind9 aggregate bounds, local-scale normalized world matrix/inverse, world-scale radius, descriptor and same-grid insertion/move.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e1f0",
+      "status": "partial",
+      "coverage": "Remove actual version descriptor from same dynamic collision buckets during immediate/deferred cleanup.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0043e830",
+      "status": "partial",
+      "coverage": "Append actual deferred collision owner for ordered retirement after model masters.",
+      "limitations": "Source-only native/STL/RAII and typed borrowed frame/grid adaptation, not original allocator/container/virtual/SEH ABI equivalence. Cold loading only: positive runtime version mutation/mesh extraction/borrowed model reload and their resource producers are excluded; kind6 collision branch is excluded. No containing application-world/desktop verification.",
+      "evidence": [
+        "recovered/game/version_module_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/version-module-loading.md",
+        "analysis/checkpoints/p2.2-version-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047a790",
+      "status": "partial",
+      "coverage": "Enumerate actual scene mask80, bounded lowercase name substring matching and real borrowed Bird owner construction.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_birds_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047aa10",
+      "status": "partial",
+      "coverage": "Reverse borrowed Bird retirement followed by reverse deferred frame show/update and source reference release.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_birds_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00488b80",
+      "status": "partial",
+      "coverage": "Reset RGB/scalar24-word state, reverse frame-fade/storage retirement and SAME actual Human228 queue clear; cold210/304 branches.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_module_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00489c60",
+      "status": "partial",
+      "coverage": "Actual selected watercam.set version/chunk framing, zero41 DWORDs/read40, decode loading flags/names and retain scalar settings.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_water_settings.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047c530",
+      "status": "partial",
+      "coverage": "Actual decoration file path, root version/header, sparse group replacement and real spatial-mask post-load.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047cc90",
+      "status": "partial",
+      "coverage": "Typed group/entry version-dependent scalar/string/byte decoding with native defaults and bounded malformed reads.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047c930",
+      "status": "partial",
+      "coverage": "Actual decorator_sl.bin first chunk, seven header words and dimension-checked byte mask owner.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047d0c0",
+      "status": "partial",
+      "coverage": "Release actual spatial byte buffer while preserving process metadata.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047b0b0",
+      "status": "partial",
+      "coverage": "Reverse sparse entry setup, lowercase/reuse shared definition names, actual active-entry references, cold grid/profile/FPV state.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047b010",
+      "status": "partial",
+      "coverage": "Native quality/enable gate and cold grid traversal/state flip; no actual positive runtime cell model producer.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047e0f0",
+      "status": "partial",
+      "coverage": "Allocate actual cold cell grid and initialize scalar coordinates, timing and actual first-person snapshot.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047ea60",
+      "status": "partial",
+      "coverage": "Retire actual cold cell grid allocation; active request/model producers remain absent.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047c020",
+      "status": "partial",
+      "coverage": "Ordered active-entry/group/shared-definition/mask retirement in actual process state.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047b090",
+      "status": "partial",
+      "coverage": "Actual grid retirement then definition/mask cleanup and enable flag clear.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047ad10",
+      "status": "partial",
+      "coverage": "Reverse definition template-owner retirement and actual owned name release, cold template vectors.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047d030",
+      "status": "partial",
+      "coverage": "Initialize actual typed entry scalar/byte/name/null model/default fields and cold resource arrays.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0047ac40",
+      "status": "partial",
+      "coverage": "Own normalized definition string and initialize actual empty template vector used by shared entry bindings.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_decorations_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00462770",
+      "status": "partial",
+      "coverage": "Read SAME detached-camera enabled48 state, initially false; no active toggle producer.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/detached_camera.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00486520",
+      "status": "partial",
+      "coverage": "Actual water flags gate and reverse scene1FC child3C/40 visibility dispatch.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/host/game_actor_frames.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00486580",
+      "status": "partial",
+      "coverage": "Configured above-water name128 bounded lookup in actual sceneFFFF and shared frame visibility consumer.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_module_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00486750",
+      "status": "partial",
+      "coverage": "Configured below-water name168 bounded lookup in actual sceneFFFF and shared frame visibility consumer.",
+      "limitations": "Source-only typed native/STL/RAII owners and mandatory actual engine/process borrowers, not original allocator/container/virtual/SEH ABI equivalence. Only cold loading/retirement and the documented data branches are supplied; positive simulation/rendering/grass/template/cell generation and active detached/water-camera/special-frame/pose producers remain excluded. No containing application world or desktop verification.",
+      "evidence": [
+        "recovered/game/effects_module_loading.h",
+        "analysis/geffects-module-loading.md",
+        "analysis/checkpoints/p2.2-geffects-module-loading-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048db90",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0048db90: Fresh reverse registration traversal for actual virtual20 finish receivers.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/game/mission_module_dispatch.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048dc20",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0048dc20: Fresh ascending registration traversal for actual virtual18 file-unload receivers.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/game/mission_module_dispatch.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004285d0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 004285d0: Loaded Script finish before authority binding retirement.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/game/mission_script_module_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007dcfb0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 007dcfb0: Still-queued placement entry destruction and shared kind20 index clearing, with source sidecar retraction.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/host/game_mission_items.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d8a90",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 007d8a90: Ascending actual Scene2 inventory reset and field7C clearing, placement buffer release and kind20 index reset.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/host/game_mission_items.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007d76c0",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 007d76c0: Actual process shared cards/bottle/cigarette model loading, failure retry, optional lens configuration and ownership.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/game/item_hand_models.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0048d270",
+      "status": "partial",
+      "coverage": "P2.2 source reconstruction at original entry 0048d270: Actual retained visual light-map group changes, reverse lookup, original group preservation and swap/pop restoration.",
+      "limitations": "Source-only typed STL/RAII owners and mandatory engine/session consumers replace original native layout, allocator, SEH and virtual ABI. Focused explicit-boundary native ASan/UBSan and strict actual i386 composition; containing session/Car consumers remain borrowed. No loaded-world/first-frame/desktop or whole-body equivalence claim.",
+      "evidence": [
+        "analysis/module-loading-dispatch.md",
+        "analysis/module-lifecycle-map.json",
+        "recovered/game/mission_auxiliary_module_loading.h"
       ]
     }
   ]

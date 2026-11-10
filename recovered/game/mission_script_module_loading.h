@@ -21,14 +21,14 @@ public:
     using Snapshots=MissionScriptFrameSnapshots<Frames>;
     using Visibility=MissionScriptVisibility<Frames,Snapshots,Models>;
     MissionScriptModuleLoading(frontend::ClientModuleRegistry& registry,Frames& frames,Files& files,Runtime& runtime,
-                                Models& models,SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource)
+                                Models& models,SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource,MissionScriptVariables& variables)
         :registration_(registry,4,"Script"),frames_(frames),files_(files),runtime_(runtime),resource_(std::move(resource)),mode_(mode),
-         contexts_(frames,files,runtime,resource_),frame_commands_(frames,contexts_),snapshots_(frames),rotations_(frames,snapshots_),visibility_(frames,snapshots_,models,packets,mode){}
+         contexts_(frames,files,runtime,resource_),frame_commands_(frames,contexts_),snapshots_(frames),rotations_(frames,snapshots_),visibility_(frames,snapshots_,models,packets,mode),variables_(variables){}
     MissionScriptModuleLoading(frontend::ClientModuleRegistry& registry,Frames& frames,Files& files,Runtime& runtime,
-                                Models& models,SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource,
+                                Models& models,SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource,MissionScriptVariables& variables,
                                 frontend::ClientModuleRegistration& shared_registration)
         :registration_(registry,shared_registration,4,"Script"),frames_(frames),files_(files),runtime_(runtime),resource_(std::move(resource)),mode_(mode),
-         contexts_(frames,files,runtime,resource_),frame_commands_(frames,contexts_),snapshots_(frames),rotations_(frames,snapshots_),visibility_(frames,snapshots_,models,packets,mode){}
+         contexts_(frames,files,runtime,resource_),frame_commands_(frames,contexts_),snapshots_(frames),rotations_(frames,snapshots_),visibility_(frames,snapshots_,models,packets,mode),variables_(variables){}
     auto& registration(){return registration_.get();}auto& contexts(){return contexts_;}auto& variables(){return variables_;}
     Runtime& runtime(){return runtime_;} //Containing source identity check, no new original-function credit.
     Frames& frames(){return frames_;} //SAME containing registry for checked Human/VM borrowers.
@@ -79,10 +79,14 @@ public:
         try{runtime_.script_loading_finish();}catch(...){if(!failure)failure=std::current_exception();}
         if(failure)std::rethrow_exception(failure);
     }
+    void unload(bool authority) { //004285D0: finish first, then authority binding retirement.
+        if(loaded_)finish(authority);
+        if(authority)bindings_.clear();
+    }
 private:
     frontend::ClientModuleBinding registration_;
     Frames& frames_;Files& files_;Runtime& runtime_;std::string resource_;std::uint32_t& mode_;
-    Contexts contexts_;MissionScriptFrameCommands<Frames,Contexts> frame_commands_;Snapshots snapshots_;MissionScriptRotations<Frames,Snapshots> rotations_;Visibility visibility_;MissionScriptVariables variables_;MissionScriptBindings bindings_;
+    Contexts contexts_;MissionScriptFrameCommands<Frames,Contexts> frame_commands_;Snapshots snapshots_;MissionScriptRotations<Frames,Snapshots> rotations_;Visibility visibility_;MissionScriptVariables& variables_;MissionScriptBindings bindings_; //SAME process module4 bank, not reset by world destruction/finish.
     std::vector<MissionScriptBindings::Binding> failed_bindings_;
     std::array<std::uint32_t,5> fields824_{};std::uint32_t timer_=0;bool loaded_=false,flag11_=false,flag825_=false;
 };

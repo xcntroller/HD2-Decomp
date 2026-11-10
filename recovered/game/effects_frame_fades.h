@@ -72,6 +72,7 @@ public:
         }
     }
     void clear()noexcept{while(!records_.empty())records_.pop_back();}
+    void reset_loading()noexcept{clear();decltype(records_){}.swap(records_);} //00488B80 releases200 queue storage after reverse record retirement.
 private:
     static std::int32_t signed_word(std::uint32_t bits){std::int32_t result;std::memcpy(&result,&bits,4);return result;}
     Frames& frames_;std::vector<std::unique_ptr<Record>> records_;

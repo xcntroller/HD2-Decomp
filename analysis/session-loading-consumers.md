@@ -44,6 +44,8 @@ and preserves00445AF0's invalid-definition return. A valid populated effect
 still rejects until the real particle/resource producer exists. Version101
 remains unsupported. No particle instances or successful drawing service exist.
 Close retracts only this published scene while retaining process definitions.
+The later [module17 lifecycle](module-loading-lifetimes.md) now implements the
+separate initialized finish that clears those definitions via00445980.
 The containing world must close it before scene reset/retirement.
 
 Native sanitizers cover both captured empty201 roots, named populated-producer

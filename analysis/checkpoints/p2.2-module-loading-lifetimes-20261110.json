@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 2,
+  "added": [
+    "00444110",
+    "00445980"
+  ],
+  "absent_no_credit": [
+    "00443f30",
+    "00443fe0",
+    "00472250",
+    "00472270",
+    "004338d0"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1902,
+    "client_partial": 1897,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "scope": "Full first P2.2 checkbox; process Script bank, actual SOUND module lifecycle and cold Particles17/HeavyFire16 state. Continue Versions/GEffects and containing module/session/loader.",
+  "corrections": [
+    "Initialized particle module finish clears definitions via00445980; the effects file facade alone and never-activated module finish retain them."
+  ],
+  "verification": {
+    "script": "Native ASan/UBSan/LSan actual two-world module construction/destruction sharing one process variable bank and registration; current/previous preservation and standalone/campaign transitions. No contexts executed.",
+    "particles": "Native ASan/UBSan/LSan cache/latch/scene lifetime, both passes, initialized versus never-activated finish, missing/malformed/throwing file reads, duplicate borrower, stale/null/foreign scene and repeat. BASE definition fixture and explicit file/frame doubles; no valid placed producer.",
+    "heavyfire": "Native ASan/UBSan/LSan cold registration/scalar/empty-list lifetime and repeat, no active fire support producer.",
+    "host": "Strict actual i386 complete prior Human/VM graph plus actual SOUND wrappers, process bank, Particles/HeavyFire registrations/state. Containing WorldActors/Car runtime/session remain borrowed boundaries.",
+    "application": "Compile/link passes; loading remains declined.",
+    "tracker": "27 tests, frozen inventory/fingerprints/unique statuses/evidence/README checks pass."
+  },
+  "research_exceptions": [
+    "First plain particle retirement export stopped at absent00443FE0; transient read-only definitions then succeeded without modifying original project/inventory.",
+    "Initial native particle fixture had a wrong BASE fixture pathname and failed its file assertion; corrected fixture passes."
+  ],
+  "limitations": [
+    "No containing loaded world/session or ordered loader/first frame/desktop acceptance.",
+    "Particle active bucket/1014/1034 instances and HeavyFire active lists have no source producers; positive simulation/rendering/cleanup not supplied.",
+    "Guard tables uninitialized; no raw API substitutions or forced equality."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/script-bank-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-bank-native-run.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/particle-module-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/particle-module-native-run.log",
+      "bytes": 46,
+      "sha256": "1677731b8d21e81bf61bfa8fd50292adf31ae5e4ab75c2834138b2e2177bed5f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-dispatch-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-lifetimes-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-lifetimes-tracker-render.log",
+      "bytes": 380,
+      "sha256": "23a84f4dde68bbd6bd4c781bfdc7e8b4437dc56e0b518003975f3b13c8e46dd0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-lifetimes-tracker-check.log",
+      "bytes": 437,
+      "sha256": "2de1a71771bd1994546d268015e40e6f940dda710509b3e0a8d6378ae069ef4f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-lifetimes-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "31714d60f56904d1364dbb1043950677fd309d0fb550cc4bd67ccd3236c2a71e"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/mission-world-20261103/particle-sound-module-retirement.log",
+      "bytes": 5504,
+      "sha256": "dc1962b3e63bc736f8e4901d8771539236f0f80d82e87351c8dbcdfbdc546bc1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/particle-retirement-required.log",
+      "bytes": 5034,
+      "sha256": "b96560b3676e491f52457a06afbe941b6d1cc8587a708726c2a18a3b222c8005"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/particle-constructor.asm",
+      "bytes": 4155,
+      "sha256": "7af8e778041a9a64e440f75385af1dc7d0b8b267dff8733487bde5f0025a9388"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/particle-retirement.asm",
+      "bytes": 5572,
+      "sha256": "ff64cdc5ba9e31f6097ce24f22c8467cf3a1adc25c2a85bd4cbfad1502294e27"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/heavy-fire-activation-retirement.asm",
+      "bytes": 1204,
+      "sha256": "d4afc730ad5e868f4307cdb6579100a7c7b418a1c382093fa4f68441018fd1ce"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-bank-audit.cpp",
+      "bytes": 2673,
+      "sha256": "a55cba5902948a41003ffc414d1bad2d073db02d8ad6edc019ec656eca0d0c15"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-script-bank-audit",
+      "bytes": 1476664,
+      "sha256": "8099a53333af1f4471495f34a7b3766c755ee1e0a7a2e67c133fbf367a69105d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-particle-module-audit.cpp",
+      "bytes": 5373,
+      "sha256": "3e7f75bd570f73f9db3e350942fb7ff76bc1f5240414f32d5c90c4a882122fa5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-particle-module-audit",
+      "bytes": 1318992,
+      "sha256": "837eaf0d9a9cb40da4785c0d2a16a788f037cdc4b19c55b50824fa6b87271ef2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-module-dispatch-host.cpp",
+      "bytes": 11670,
+      "sha256": "6967cd4ea020d8c4fe5e6c0c9ad57f2164bf9846b52874968de1f22398c6c114"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-module-dispatch-host.o",
+      "bytes": 11929166,
+      "sha256": "0b06d8fd7438dcc5e576b74341ca926775d5f56d23a621e0ea395bc91a092696"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/DefineExportSelected.java",
+      "bytes": 842,
+      "sha256": "c9b123ce52d207a2419803c2782ed63ff30a44c1b12adb59debde6a9927db93e"
+    }
+  ]
+}

@@ -1,0 +1,328 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 7,
+  "added": [
+    "0048db90",
+    "0048dc20",
+    "004285d0",
+    "007dcfb0",
+    "007d8a90",
+    "007d76c0",
+    "0048d270"
+  ],
+  "ledger_complete": 34,
+  "ledger_partial": 1943,
+  "absent_no_credit": [
+    "00402020",
+    "00402030",
+    "00401f40",
+    "004338f0",
+    "00477a90",
+    "007dd240",
+    "0048c790",
+    "0048cb70",
+    "0048cb60",
+    "0048e190"
+  ],
+  "cold_or_unimplemented_no_credit": [
+    "00401140",
+    "00401fd0",
+    "0048cb10",
+    "0048e1f0"
+  ],
+  "native_checks": [
+    "All eighteen typed module routes/arguments",
+    "Required failed script bindings reject",
+    "Original registration and replacement validation",
+    "Live mode reread between tail passes",
+    "Fresh reverse registration reads",
+    "Positive lightmap original-state/refcount/restore/unload",
+    "Ten injected lightmap frame-operation failure prefixes",
+    "Shared item hand-model failure/retry/cache/clear/repeat"
+  ],
+  "host_compile": "Complete actual typed router, auxiliary endpoints, process WorldScene constructor and actual WorldActors constructor. Containing Consumers explicitly borrowed declarations; not linked application services.",
+  "application_link": "PASS",
+  "tracker_checks": 27,
+  "temporary_audits_removed": true,
+  "original_evidence": [
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00401f40.c",
+      "sha256": "33af51320a3edcbc258fa896b250a6ff2f2a941ce32ddd6e497bac4eab39fb33"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00401f40.json",
+      "sha256": "a054c2e9e9d61856c9b5ff0b64fd34a2a393c283d2d981ea02176e3a7204cec3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00402030.c",
+      "sha256": "e972cb56cdac48e1dfee979588c1338b2f9130a65c77c52db180375d3f5b4213"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00402030.json",
+      "sha256": "7f40aac2d7cc90b4e0b95c3e37dfbe515fdd6a342125a688d483ddffcb804ac0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/004106f0.c",
+      "sha256": "e41d8914ea6c4918bdea57ac479e689bd3d9533c87e39435e538bc9295d636e9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/004106f0.json",
+      "sha256": "20197734050193ddac876853d5cd8fd878f223f8591a04b690cbbd9f5095e68f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00410a70.c",
+      "sha256": "47716daddab1c54aac8267d73396c84f3c5d1f56df2a0b5fd910daad2b8b9e72"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00410a70.json",
+      "sha256": "74ed03ed044462c6449aca9245826f74c44fb19a36e497c3cde7707d95e85e0c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/004115f0.c",
+      "sha256": "5db34925c2ca86208e2903e6f260fc64ae2d26dc260589897ba2caa62f48c5bd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/004115f0.json",
+      "sha256": "fc4ea1abb3c2a1db15809e5e383e91c9982c1a68ed9c5ea715b1a95c21ddc74d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/004285d0.c",
+      "sha256": "a8467ca725d2a9e43c09b4eb9e8cd4c2b429bb0843a47529bc4700e8107e1de6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/004285d0.json",
+      "sha256": "1e386ad0e1eb502642534d7e150ee35919b83635da594ffb5e34754379f8bb30"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/004338f0.c",
+      "sha256": "fdfd10577f8bdfae4f9c60696d2da730c262a1798ee11d7f50607577db2da942"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/004338f0.json",
+      "sha256": "704b9bf594e4409bcd683c4cd1b2d636ac797e8e20d28a337efc6b5c59537a4b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0043dca0.c",
+      "sha256": "facbdc316b6f3f7bea7d9d1f608664f55ccf6f456579ffb5f20003bd17fabe6b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0043dca0.json",
+      "sha256": "e65cca52bf00bd070e418ffe966a128b4fc38dc812df7cb999f837e751c3c857"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00444130.c",
+      "sha256": "fbf65efa2d15d4f2d252e415de1db89982377ff05fd7268a0ae49a3e97211e93"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00444130.json",
+      "sha256": "58a7e61e3315ce5b1e979fe351df97b140fde9ec54dae5e69800157008502726"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0046eef0.c",
+      "sha256": "e1e2cbb6fc7ebc7f8322fed19016588ea5241e3af85d44cbe3ba6e95a05d5d32"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0046eef0.json",
+      "sha256": "f86ea7db20b5abff83ffd37dd72834740dbbb72c4e0a0755f0dbd0ef97cc73e8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0046eff0.c",
+      "sha256": "f5502dca8698b15f97911819b6515a8c7f8fbacfa3cd4a2515282ab4c5b86a00"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0046eff0.json",
+      "sha256": "e2189429b4a88e1e4084d1639bc6be881dd163b405d8b3dfdc5cd0019249e336"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00475760.c",
+      "sha256": "3c05a27c8a930012684132ccb8e0634d906753231cc3b03fa9227ff124154edf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00475760.json",
+      "sha256": "100e9b8a8bf88d02e38fe19cadeb20cc4228a29e29745e4f53831e68ceee85dc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00476fb0.c",
+      "sha256": "81b640fe89e7f317806238e96240c14b42d94d9b6500802aa74f6a9bc1c996d3"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00476fb0.json",
+      "sha256": "7b5d173384c18fc6365315bc5c9075e6af3821eed84b4c3899268b09426ecb3e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00477a90.c",
+      "sha256": "0829ac8a903d6e432d8c6f5a9e7b1cc31d683d11c8cc075726c9a7dce84d2b52"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/00477a90.json",
+      "sha256": "93007177934d833942b1541adc1065a48f982373a3fedd2de6f9dbfa0f6bc5df"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0048cb60.c",
+      "sha256": "6a30ff6bd231aa663179111668c6c0ebe74fef3a20a5d81cdee87e5b1541aaa4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0048cb60.json",
+      "sha256": "51d2d962b6fe4711e34fdf33074fb3d8ce281bb2353ce93e5d9c59409d66eca4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0048cb70.c",
+      "sha256": "38037e43af3d38042571469e33b27ab6115a6f4f5fec8cead2df0b8198e27c70"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0048cb70.json",
+      "sha256": "f89d1708ca6e9ffdb54d398433d9ae6770b262c8c677c59c708b8e9e4e322f16"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0048e190.c",
+      "sha256": "da46aa509ba68d5c322b02134ca6694b85a133a461bfa562284462ed823dd8d8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0048e190.json",
+      "sha256": "f4be7dcecf8b72312b7d1c4e7c487abf850ce2ca80cdc0c94372b582e0a8f012"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0048e1d0.c",
+      "sha256": "2961423cfeed6115aebe960e354e4cf70cfdd4a55d8a79b03f79ae87862b6f85"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/0048e1d0.json",
+      "sha256": "5447c5970385eba0397da60af270173f48b794ef906704af6416d56af63f4898"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/007dcfb0.c",
+      "sha256": "67aa30ddd35bb24f555e280448b9aec0de31087985cd36a47891f3e3ee33319e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/007dcfb0.json",
+      "sha256": "b0a13c4bc261f01c268e6a272cdc93aaa97670be665e02c98fba2736172668f6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/007dd240.c",
+      "sha256": "fe550ab772c74ec0b30f30ec1b7ce263b40b2c46af44b72a975e40cf17d94d76"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/registered-module-retirement/007dd240.json",
+      "sha256": "aa85d3a704f12184c46f734539d18c796ae081fd811e857e410c0297f1ae46ce"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/00401140.c",
+      "sha256": "eab693e68807a50bc1ba2c42ccc6bdba846268418668eea9ad6765b987642dbb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/00401140.json",
+      "sha256": "b6eecb111d794b4c3f0954497095e07f1014d7720a09e7b56605bc4e8869aa77"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/00401fd0.c",
+      "sha256": "4ee81dec6c6a93145084331b7c176a60f9b0c929d312b46845477ab753e61dc6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/00401fd0.json",
+      "sha256": "3d1fe36f0c90b2ad5871a2812efd8c6533c96070965025514ebd48fda25d35b0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/0048c790.c",
+      "sha256": "7cf2775a3f7745ab463162184238ee9d1952432dd94b5e466e872612784aff4e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/0048c790.json",
+      "sha256": "245a0a95922b165e05ec14c1b46edce119f86d79dca396ea6c8b888e1553b918"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/0048c820.c",
+      "sha256": "fe2a8e9944d2f87bec604b99487a02d88179a2327ab680d05dd06e0e18254727"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/0048c820.json",
+      "sha256": "800b5fcb15087cb9c91ce1d1571cc380cb534305e30b9e6f58f731c1246334f2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/0048c920.c",
+      "sha256": "a545283ce53beb357d65ff8841cd5bc5b9ca41604ecbd9172ce5509370c794b4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/0048c920.json",
+      "sha256": "4e20abe65929e2cdfc468c1003945231292a1adba1d298893bbc93c51e7fbc1e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/0048cc40.c",
+      "sha256": "0df4a9b58aec70a9cc2e2fb36d9de38c101b21d94f3c39f3d0f690518ebe3264"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-owners/0048cc40.json",
+      "sha256": "6cec84df5fa574cbd98dc701edb1d1a370701810e48c9de125cc275c8874b520"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-state/0048cb10.c",
+      "sha256": "faaeffba434c5793be0d79e43ad1a62a4e690fae68b86c91a850581dee72c3b5"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-state/0048cb10.json",
+      "sha256": "d9d756ea3375c00c200bfb07e5035233f0cf2a6df8e84ccbb9974859df633c90"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-state/0048d270.c",
+      "sha256": "dad8dddea21341b4ee239d4ee6c5249348705b2e518fa7b8b2f3eba28536fa0e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-state/0048d270.json",
+      "sha256": "5a705c2ea687712aeead76752e040b00aa7477176f671b92c5c409fe943ce16d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-state/0048e1f0.c",
+      "sha256": "c14bf1cb2585bbe3bba45fb3dc906066b9d26559c8e4c3eb4ef65d6a3f59fb0f"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-state/0048e1f0.json",
+      "sha256": "080b01cc367af4aedaadbc3dc254d218f8aa62b4cfc403a9fa12cc36c126a339"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-state/007d76c0.c",
+      "sha256": "b9e33d0b38ed2f82c7a35b368fe55ab17d977a43e0921aa862b5151c6629b1bf"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-state/007d76c0.json",
+      "sha256": "5fff6d099bde213c86042118d2cb471a2550c4c0697a6c10bb4029431e72b6d2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-loading-retirement-map.json",
+      "sha256": "ed3e7439ce3d8b61039e0340a3eb008d6dfe43deef2d1f209090c9490a7a4581"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-dispatch.asm",
+      "sha256": "dacac2921462c4bf95d346573dfe65bf47efbe4217590ea120a04fef06b672bb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/lmap-change-prefix.asm",
+      "sha256": "5e4236d0467f795875764774b97197971213ab318a3324011256f1a113ea6165"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/module-retirement-references.log",
+      "sha256": "e8313c980612696d9851ab6a8efd8a21201973d706af2b7a277c0154b8e08e9e"
+    }
+  ],
+  "temporary_audits": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-module-router-native.cpp",
+      "sha256": "69439a9e2097cf38312be05bd45b28a5b5a1643a47d7e5f5db51850091471b20"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-module-router-host.cpp",
+      "sha256": "1ec46f2a72c6d009c815de4e134b76495ba95ee14184109caab3397cd0598cca"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/DefineExportModuleRetirement.java",
+      "sha256": "7f51c9b3d9047dcdd8cc44ffa1ae6c1b685c2d671d5bb707e8442fb7e9e2c82d"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/ModuleRetirementReferences.java",
+      "sha256": "5eba4530a26789376602d39e57207bb9b8344301ae082a9fbb19b92508f19d77"
+    }
+  ]
+}

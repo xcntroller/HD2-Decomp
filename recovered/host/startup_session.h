@@ -24,8 +24,12 @@
 #include "game/human_morph_tables.h"
 #include "game/human_physics_globals.h"
 #include "game/mission_integrity_tables.h"
+#include "game/mission_script_variables.h"
 #include "game/mission_effects_loading.h"
 #include "game/shot_manager_loading.h"
+#include "game/heavy_fire_module_loading.h"
+#include "game/effects_loading_process.h"
+#include "game/item_hand_models.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
 #include "game/actor_proximity_loading.h"
@@ -177,6 +181,7 @@ public:
         multiplayer_request_.reset();
         errors.attempt([&] { data_.close(); }); //006B6010 four actually owned components.
         errors.attempt([&] { modules_.shutdown(gate_); }); //0048DA80, after data.
+        item_hand_models_.clear();
         game_animations_.close();
         std::printf("Shutdown: input/sound/data/module cleanup completed=%u\n",
                     errors.failed() ? 0u : 1u);
@@ -194,8 +199,12 @@ public:
     void seed_random(std::uint32_t seed){std::srand(seed);} //006E9EA0 uses the SAME CRT stream as sound/AI.
     bool& script_advance_override(){return script_advance_override_;} //008692D0;00424900 reset scope owns its writes.
     game::MissionIntegrityTables& mission_integrity_tables(){return mission_integrity_tables_;} //SAME process owner; no invented initialized/healthy state.
+    game::MissionScriptVariables& mission_script_variables(){return mission_script_variables_;} //Module4 survives world finish/reconstruction;004270D0 applies actual selection kind afterward.
     game::MissionEffectsProcess<EngineFrame*>& mission_effects_process(){return mission_effects_process_;}
     game::ShotManagerLoadingState<GameActorServices>& shot_manager_process(){return shot_manager_process_;}
+    game::HeavyFireLoadingState& heavy_fire_process(){return heavy_fire_process_;}
+    auto& effects_loading_process(){return effects_loading_process_;}
+    auto& item_hand_models(){return item_hand_models_;}
     std::uint8_t& first_person_preference(){return data_.first_person_preference();}
     const frontend::LocalizedTextCache& text() const { return text_; }
     LoadedResources& loaded_resources() { return loaded_resources_; }
@@ -221,6 +230,28 @@ public:
     bool remove_game_sound_listener(std::int32_t slot){return frontend::remove_sound_listener(sound_data_.runtime,gate_,slot);} //00433E80.
     void set_game_sound_voice_limit(std::uint32_t group,std::uint32_t limit) {
         frontend::set_sound_voice_limit(sound_data_.runtime,group,limit); //004324C0, SAME client sound manager.
+    }
+    void finish_game_sound_loading(bool authority) { //004338D0, module6 virtual14.
+        if(!authority&&(gate_&1u))return;
+        frontend::reset_sound_runtime(sound_data_.runtime,sound_catalog_,files_,
+            sound_data_.settings,sound_data_.fade,sound_data_.secondary,sound_data_.selection,
+            gate_,game_sound_application(),1,1,sound_backend_);
+    }
+    void activate_game_sound(bool authority) { //00433840, module6 virtual1C.
+        frontend::start_sound_runtime(sound_data_.runtime,sound_catalog_,files_,
+            sound_data_.settings,sound_data_.fade,sound_data_.secondary,sound_data_.selection,
+            gate_,game_sound_application(),std::uint8_t(authority),sound_backend_);
+    }
+    void unload_game_sound(bool authority) { //004338F0, virtual18; no sector clearing here.
+        if(!authority&&(gate_&1u))return;
+        frontend::reset_sound_runtime(sound_data_.runtime,sound_catalog_,files_,
+            sound_data_.settings,sound_data_.fade,sound_data_.secondary,sound_data_.selection,
+            gate_,game_sound_application(),1,0,sound_backend_);
+    }
+    void finish_game_sound(bool authority) { //004338A0, module6 virtual20.
+        frontend::stop_sound_runtime(sound_data_.runtime,sound_catalog_,files_,
+            sound_data_.settings,sound_data_.fade,sound_data_.secondary,sound_data_.selection,
+            gate_,game_sound_application(),std::uint8_t(authority),sound_backend_);
     }
     void stop_game_sound_voice(std::int32_t& handle) {
         frontend::stop_sound_voice(sound_data_.runtime,handle,sound_backend_); //00437340.
@@ -264,6 +295,11 @@ public:
     frontend::ProfileSettings& profile_settings() { return data_.profile().options.settings; }
     bool human_face_quality_enabled(){return profile_settings().quality_byte(3)!=0;} //006B6740→006B33E0(3).
     frontend::GameConfiguration& game_configuration(){return data_.game_configuration();}
+    frontend::SoundApplicationMode game_sound_application(){
+        const auto& configuration=game_configuration();
+        //006B66B0 tests this opaque native DWORD for nonzero only; it is never dereferenced.
+        return {reinterpret_cast<void*>(std::uintptr_t(configuration.field04)),std::uint32_t(configuration.style224)};
+    }
     bool human_remote_ai_enabled(){return game_configuration().remote_ai_enabled();} //006B66B0, SAME application24 data.
     unsigned human_difficulty(){ //006B6700; remote predicate precedes offline7/profile test.
         return frontend::human_difficulty_preference(application_flags(),game_configuration(),[this]{return profile_difficulty();});
@@ -628,8 +664,12 @@ private:
     const float human_animation_time_scale_=0x1.666666p+0f;
     game::HumanPhysicsGlobals human_physics_globals_;
     game::MissionIntegrityTables mission_integrity_tables_;
+    game::MissionScriptVariables mission_script_variables_;
     game::MissionEffectsProcess<EngineFrame*> mission_effects_process_;
     game::ShotManagerLoadingState<GameActorServices> shot_manager_process_;
+    game::HeavyFireLoadingState heavy_fire_process_;
+    game::EffectsLoadingProcess<EngineFrame*> effects_loading_process_;
+    game::ItemHandModels<GameActorServices> item_hand_models_;
     game::HumanAIEventPool human_ai_events_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
     game::HumanAIAction1Pool human_ai_actions1_;

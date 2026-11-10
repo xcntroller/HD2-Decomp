@@ -6,7 +6,7 @@
   "policy": "User postpones exhaustive pre-Phase2 pass; function completion follows delivery with one consolidated sweep. P2.0 research belongs inside the first implementation batch.",
   "source_contract": "analysis/phase2-delivery-plan.md",
   "boundary_evidence": "analysis/phase2-boundary-map.json",
-  "ledger_sha256": "c72bd090ffc838dd4c5b3b1479541e56d76580f272d8dfc24978dc929bc4619d",
+  "ledger_sha256": "212b120d894714a71d450ec73dd9d5d079ab612abde11303849dd1bb2cf05327",
   "first_visible_targets": [
     "P2.2",
     "P2.3"
@@ -110,7 +110,12 @@
         "world_owner_receipt": "analysis/checkpoints/p2.2-world-owners-20261109.json",
         "door_loading_receipt": "analysis/checkpoints/p2.2-door-loading-20261109.json",
         "pike_explosive_receipt": "analysis/checkpoints/p2.2-pike-explosive-20261109.json",
-        "fowl_loading_receipt": "analysis/checkpoints/p2.2-fowl-loading-20261109.json"
+        "fowl_loading_receipt": "analysis/checkpoints/p2.2-fowl-loading-20261109.json",
+        "registered_module_dispatch": {
+          "contract": "analysis/module-loading-dispatch.md",
+          "receipt": "analysis/checkpoints/p2.2-module-loading-dispatch-20261110.json",
+          "status": "source-only verified; actual containing session/Car consumers, loader and first frame remain"
+        }
       },
       "checkpoint_record": "analysis/checkpoints/p2.2-20261109.json",
       "latest_shared_world_consumers": {

@@ -2,107 +2,91 @@
 
 Continue FULL P2.2 first unchecked implementation checkbox in plan.md. Read
 AGENTS.md. Continue dependencies/checkpoints until done or concretely blocked.
-Larger verified subsystem commits; consolidate docs/tally there. No push,
-subagents/goals, original game/DLL/Proton or Windows fixture execution. Preserve
-assets/user changes; focused verification only. Heavy builds/Ghidra sequential
-because of memory shortages/crashes. No permanent tests.
+Larger verified subsystem commits; consolidate documentation/tally there. No
+push, agents/goals, original EXE/DLL/Proton or Windows fixture execution. Preserve
+assets/user changes. Focused checks; heavy builds/Ghidra SEQUENTIAL (memory
+crashes). No permanent tests. Interactive changes need user desktop acceptance;
+source-only work needs no invented desktop test.
 
-GameApplicationState still declines loading. No loaded world, first rendered
-world frame or new desktop acceptance. Ledger34 complete/1,900 partial
-(1,895 client/five engine)/18,783 frozen. Zero complete promotions.
+GameApplicationState still DECLINES loading. No loaded world, first frame or new
+desktop acceptance. Ledger34 complete/1,943 partial(1,938 client/five engine)
+/18,783 frozen. Zero complete promotions. Both P2.2 checkboxes remain OPEN.
 
-## Latest verified source checkpoint
+## Latest source checkpoint
 
-[Session loading consumers](analysis/session-loading-consumers.md),
-[ShotMgr](analysis/shot-manager-loading.md),
-[receipt](analysis/checkpoints/p2.2-session-loading-consumers-20261110.json).
-Actual activation GetTickCount/IsWindowVisible/GetCapture order with real host
-GetIGraph/window endpoints. Mission effects use actual selected files, shared
-process definition cache/scene borrower; both captured roots empty201, valid
-placed particle producer still rejects. ShotMgr14 now owns actual cold16+16
-pools, humanzones/WeaponOdds/models/16textures and ordered retirement. Startup
-owns SAME process state; registration14/mode borrowed. No projectile/damage/
-rendering or populated record cleanup offered. Focused three native sanitizer
-fixtures (ShotMgr ALL40 endpoint failure prefixes), strict i386 actual source
-graph/app link and27 tracker checks pass. Six new partials, no completes.
-0044DDE0/0044E110 absent frozen: no credit; static ASM used for absent cleanup.
-Original exports/failed guesses documented honestly in note/receipt. Temporary
-checkpoint fixtures hashed/removed; logs/research retained. Source-only.
+[Registered dispatch/retirement](analysis/module-loading-dispatch.md),
+[receipt](analysis/checkpoints/p2.2-module-loading-dispatch-20261110.json),
+[all18 original vtables](analysis/module-lifecycle-map.json).
+GameLoadingModules binds SAME actual Startup registrations/mode/request to real
+source module owners. +14 tail/+1C activation/+18 unload ASCENDING;0048DB90/+20
+finish REVERSE fresh slots. Required failed Script bindings reject activation;
+configuration kind is owned preparation.standalone, not request.mode. Actual
+camera parameters come from scene.documents().fields(). SOUND unload reset1,0
+has no sectorclear. Script unload finishes before authority binding clear.
+Items finish matches authority==bool(mode&1): identity/deque reset,7E4 false,
+ascending SAME Scene2 inventories reset007DDEF0, placement buffer free/kind20
+indexclear, then shared hand models clear. Unload only retires queued placements
+and kind20 index. Registered83C/definition caches are separate. Source sidecars
+retract freed placements instead of retaining stale native rows. Actual shared
+cards/bottle/cigarette process model owner added; borrowed lensf +24 is UPDATE,
+NOT release. Runtime finish retires actors then frees BOTH spawn buffers.
+Positive direct visual lightmap changes/restoration supplied; named-group array
+has no producer. Tracks definitions real; playback and texture-shift arrays
+remain genuinely cold with no successful producer/API. Absent/cold wrappers get
+no extra credit. Seven new frozen partials. Native ASan/UBSan route/ownership,
+ten lightmap failure prefixes/repeat, strict COMPLETE actual typed router AND
+WorldActors/WorldScene constructors/app link/27 tracker checks PASS. Containing
+Consumers are still borrowed declarations in the strict fixture, NOT linked
+application services. Completed temporary audits removed. Active next ignored
+fixture WORK/checkpoint-world-runtime-host.cpp.
 
-Previousde81817 [Human/VM world](analysis/human-vm-world-composition.md),
-11fe11e [Human factory](analysis/human-factory-world-bindings.md),
-58b1095 [visibility](analysis/human-selection-visibility-loading.md),
-4f752cd [speech](analysis/human-speech-loading.md),
-9621549 [shared consumers](analysis/shared-world-loading-consumers.md).
-Human/VM WorldLink binds actual module/context/authority after construction,
-finishes before unlink before Human retirement. Frames=GameActorServices sharing
-actual derived GameSceneActors; do not invent SceneActor<GameSceneActors>.
-Actual005AC0F0 uses SAME DD0 A9C shadow, NOT SOUND. Startup physical009832B0 and
-FLOAT0084E80C=1.4 shared. Cold primary projections empty; runtime producer absent.
+Prior6021978 [GEffects1](analysis/geffects-module-loading.md),4af20a3
+[Versions7](analysis/version-module-loading.md),c97d95b
+[module lifetimes](analysis/module-loading-lifetimes.md),52c5689
+[session consumers](analysis/session-loading-consumers.md)/[ShotMgr](analysis/shot-manager-loading.md).
+Human/VM/FPV/HUD/Players source links in RESEARCH.md/loading-modules.md.
 
-## Next — same entire checkbox
+## Next — SAME full checkbox
 
-Continue actual registered module dispatch/remaining real receivers, containing
-world/session, ordered006CA780 loader, first camera/update/render, failure/repeat
-then desktop acceptance. App still declines loading. Source WorldScene/WorldActors/
-VM are uncalled by application; strict checks borrow WorldActors/Car runtime and
-session boundaries, not actual containing instances. Do not stop at dependencies
-or expand all P2.3. Active temporary full type graph for further integration:
-WORK/checkpoint-module-dispatch-host.cpp (audit not permanent test).
+Actual containing session/Car/world consumers and instances, ordered006CA780
+loader, actual first camera/update/render, failure/repeat then desktop acceptance.
+Source WorldScene/WorldActors/VM/router are still UNCALLED by application. Strict
+graph constructs source WorldActors but BORROWS Consumers/Car/SceneActorRuntime.
+Existing game/scene_actor_loading_runtime.h already supplies typed Human/Switch
+runtime; bind it rather than reinventing it. GameCarCallbackFrames remains
+abstract until actual actor/item/script/effect/particle receivers are supplied.
+Runtime source receivers now expose concrete requirements through full router
+instantiation; ignored host fixture explicitly declares missing Consumers.
 
-Use loading-modules.md dispatch table and WORK/module-load-activation-map.json:
-all19 original registrations. Existing source Track/Physics/Items/VM/Sight/SOUND/
-Vertex/Players/actors/camera owners should supply their actual methods. Shot14
-now source. GEffects1/Versions7/Particles17 and other remaining reached receivers
-still need actual ownership/activation where not yet supplied.8/10 verifiedRET,
-18 coldnull. Never add a successful default handler for a missing module.
+Ownership: VM finishes/unlinks before Human/B0/Items/scene. Clear FPV/camera
+and dubbing actor borrowers first. Same EC registry, roster, collision grid,
+caches/pools, process CRT/mode/config/registrations. Human Frames=GameActorServices
+sharing derived GameSceneActors, no separate actor store. Fresh B0 stance74/78=0,
+previous-null Area8 skips B4. Positive stance/area/Dog534/nonoffline friendship
+reject. Script bank survives finish; standalone kind1 clears current/campaign
+snapshots after contexts begin. Source mode0 Fowl transfer/grass/update/positive
+particle producers remain excluded; keep first-frame gates honest.
 
-Activation original API mapping in WORK/session-activation-api-resolution.json:
-00698AAE GetTickCount beforeprogress5=.05;00698C09 IsWindowVisible after5=.8;
-00698C5D GetCapture beforestatus5/spawn.006E9EC2 seed alsoGetTickCount.
-Private expected/observed side effects remain unresolved; tables uninitialized.
-Do NOT store raw API results in observed slots or force equality. Original-address/
-per-thread VM stays outside accepted startup scope. Actual observations still
-required; no fabricated guard or loaded-world readiness.
-Fresh B0 clears stance74/78; previous-null Area8 skips B4. Positive stance/area,
-Dog534/nonoffline friendship reject; guards earn no credit. Clear FPV/camera/
-dubbing before Human/VM/Items and scene as detailed ownership notes require.
+Guard: Startup tables still UNINITIALIZED; private observed publication unresolved.
+006E9EA0 initializer896 SAME CRT draws, WORD indices/DWORD expected+observed.
+API payload order00698AAE ticks,00698C09 IsWindowVisible,00698C5D GetCapture is
+source. Do NOT put raw API values in observed slots or force equality.
+Original-address/per-thread VM outside accepted startup scope; actual meaningful
+observations remain required. Initial114 bindings/Block controls/faces/camera/
+tactical/objectives source supplied; later NPC CreateItem not initial prerequisite.
+Live file overlays authoritative. BASE ISD0 fixtures never establish ISD1 Patch/
+language precedence/absence; see WORK/geffects-archive-census.json.
 
-Previous069a96f [HUD/player](analysis/hud-player-presentation-loading.md),
-d6b81e9 [FPV/player](analysis/first-person-loading-composition.md),
-5cf27a0 [VM/objectives/camera look](analysis/mission-script-runtime-composition.md),
-ad54f4c [initial controls](analysis/mission-script-initial-controls.md),
-1b703b8 [Human ownership](analysis/human-world-composition.md),
-99c8688 [Car activation](analysis/car-activation-loading.md).
-Retire Human/B0/VM before world actors/Items, before entries/models/tree/session;
-clear FPV/camera targets before actor retirement. No extra process/roster/cache.
-Guard006E9EA0 uses896 CRT draws, WORD indices/DWORD values; real observed producer
-required, never production equality. Original-address integrity VM outside
-accepted startup scope.008692D0 defaultsfalse, advance=override OR game28;
-confirmed scoped writer00424900 reset. Module loaded10 can latch on bad bindings;
-actual loader must inspect failed_bindings. Static census145/146 programs and
-114/114 initial binding names compile; initial Tutorial Block required controls/
-face/camera/tactical/objective bodies source-supplied. Later NPC CreateItem is
-not an initial114 prerequisite. Actual Files overlays authoritative.
+## Execution
 
-Canonical [world](analysis/mission-world-loading.md),
-[ownership](analysis/world-scene-ownership.md), [modules](analysis/loading-modules.md),
-[Human](analysis/human-state-loading.md), [HUD](analysis/hud-loading.md),
-[activation](analysis/session-activation-loading.md),
-[camera](analysis/camera-local-dispatch-loading.md),
-[compiler](analysis/mission-script-loading.md), [receivers](analysis/mission-script-receivers.md),
-[sound](analysis/sound-world-loading.md).
-
-## Execution/evidence
-
-WORK=analysis/work/mission-world-20261103 (ignored durable, not /tmp).
+WORK=analysis/work/mission-world-20261103 (ignored durable, not/tmp).
 Client SHA8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307.
-Default sandbox normal reads/edits; git/Ghidra/native sanitizers need escalation.
-One read-only Ghidra process/fresh output; check ERROR even exit0.
-Java25:/home/control/.sdkman/candidates/java/25.0.0.0-oracle.
-Ghidra project:/home/control/Documents/Projects/HD2ResearchProject HD2Research.
-Sanitizer libs:.tools/hd2-sanitizer-runtime/usr/lib64; do not reinstall.
-i386:.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
-App:make -C recovered -j1 application-launch WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
-Tracker:python3 tools/function_progress.py --render / --check;
-python3 tools/test_function_progress.py (not unittest package mode).
+Native sanitizer libs .tools/hd2-sanitizer-runtime/usr/lib64; do not reinstall.
+i386 .tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
+App make -C recovered -j1 application-launch WINDOWS_CXX=../.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++.
+Ghidra JAVA_HOME=/home/control/.sdkman/candidates/java/25.0.0.0-oracle;
+project /home/control/Documents/Projects/HD2ResearchProject HD2Research.
+Read-only/noanalysis/fresh output. Check ERROR even if exit0. Check frozen entries
+FIRST; absent confirmed entries use static instructions/transient definition.
+Default sandbox reads/edits; git/Ghidra/native run escalation. Tracker python3
+tools/function_progress.py --render/--check; python3 tools/test_function_progress.py.

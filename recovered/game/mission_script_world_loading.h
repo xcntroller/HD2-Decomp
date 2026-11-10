@@ -43,7 +43,7 @@ public:
             Frames& frames,FileBackend& files,
             Lookup& lookup,Players& players,FirstPlayers& first_players,Sight& sight,Hearing& hearing,
             View& view,Camera& camera,Effects& effects,Random& random,Hint& hint,Collisions& collisions,
-            Clock& clock,SessionActivationState& session,MissionIntegrityTables& guard,
+            Clock& clock,SessionActivationState& session,MissionIntegrityTables& guard,MissionScriptVariables& variables,
             SessionBroadcastPackets& packets,std::uint32_t& mode,bool& advance_override,
             std::string resource,Link& link)
         :frames_(frames),link_(link),bindings_(frames,lookup,players.control()),
@@ -51,7 +51,7 @@ public:
          lifecycle_(frames,controls_,players.control()),views_(frames,camera,view,effects,session,mode),
          predicates_(frames,players),experience_(mode),objectives_(session,mode,guard,random,players.control(),experience_,hint),
          animation_(frames,collisions),models_(frames,effects,lookup,animation_,players,view,mode),
-         script_(registry,frames,files,models_,packets,mode,std::move(resource),
+         script_(registry,frames,files,models_,packets,mode,std::move(resource),variables,
              Dependencies{mode,advance_override,session,clock,bindings_,views_,objectives_,lifecycle_,controls_,predicates_,lookup,effects},registration){
         link_.bind(script_.module());
     }

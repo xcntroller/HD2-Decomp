@@ -18,11 +18,14 @@ namespace hd2::game {
 template<class Frames>
 class EffectsShadowModels {
 public:
+    using Services=Frames;
     using Frame=typename Frames::Frame;
-    EffectsShadowModels(Frames& frames,const EffectsEnvironment& environment):frames_(frames),environment_(environment),frame_fades_(frames),human_fades_(frames) {}
+    EffectsShadowModels(Frames& frames,const EffectsEnvironment& environment,EffectsFade& fade):frames_(frames),environment_(environment),fade_(fade),frame_fades_(frames),human_fades_(frames) {}
     auto& fade(){return fade_;}const auto& fade()const{return fade_;}
     auto& frame_fades(){return frame_fades_;}
     auto& human_fades(){return human_fades_;}
+    Frames& frames(){return frames_;} //Same containing registry used by the module1 facade.
+    const EffectsEnvironment& environment()const{return environment_;}
     bool model_opacity(std::uint32_t mode,Frame model,float value) { //00486DF0.
         if(!(mode&2)||!model)return false;
         frames_.effects_model_opacity(model,value);return true;
@@ -134,7 +137,7 @@ private:
         }
         return Frame{};
     }
-    Frames& frames_;const EffectsEnvironment& environment_;EffectsFade fade_;EffectsFrameFades<Frames> frame_fades_;
+    Frames& frames_;const EffectsEnvironment& environment_;EffectsFade& fade_;EffectsFrameFades<Frames> frame_fades_;
     EffectsHumanFades<Frames> human_fades_;
 };
 

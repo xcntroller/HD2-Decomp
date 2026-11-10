@@ -96,14 +96,14 @@ public:
     using Runtime=MissionScriptLoadingRuntime<Dependencies>;using Module=typename Runtime::Module;
     using Frames=typename Runtime::Frames;using Files=typename Runtime::Files;using Models=typename Runtime::Models;
     MissionScriptLoadingComposition(frontend::ClientModuleRegistry& registry,Frames& frames,Files& files,Models& models,
-            SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource,Dependencies dependencies)
-        :frames_(frames),runtime_(frames,dependencies),module_(registry,frames,files,runtime_,models,packets,mode,std::move(resource)){
+            SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource,MissionScriptVariables& variables,Dependencies dependencies)
+        :frames_(frames),runtime_(frames,dependencies),module_(registry,frames,files,runtime_,models,packets,mode,std::move(resource),variables){
         runtime_.bind_module(module_,mode);
     }
     MissionScriptLoadingComposition(frontend::ClientModuleRegistry& registry,Frames& frames,Files& files,Models& models,
-            SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource,Dependencies dependencies,
+            SessionBroadcastPackets& packets,std::uint32_t& mode,std::string resource,MissionScriptVariables& variables,Dependencies dependencies,
             frontend::ClientModuleRegistration& shared)
-        :frames_(frames),runtime_(frames,dependencies),module_(registry,frames,files,runtime_,models,packets,mode,std::move(resource),shared){
+        :frames_(frames),runtime_(frames,dependencies),module_(registry,frames,files,runtime_,models,packets,mode,std::move(resource),variables,shared){
         runtime_.bind_module(module_,mode);
     }
     ~MissionScriptLoadingComposition(){
