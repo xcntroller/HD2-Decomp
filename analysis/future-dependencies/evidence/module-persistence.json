@@ -1,0 +1,121 @@
+{
+  "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "body_status": "Targets confirmed; unexported bodies are unresolved, not assumed no-op",
+  "provenance": "Existing final vtable bases from analysis/loading-modules.md and ignored module-load-activation-map.json; static PE u32 at vtable+30/+34 verified against fingerprint",
+  "schema_version": 1,
+  "slot18": {
+    "source": "analysis/loading-modules.md",
+    "state": "cold-null",
+    "targets": null
+  },
+  "slots": [
+    {
+      "kind": 0,
+      "load": "00401440",
+      "save": "00401160",
+      "vtable": "0080f4d0"
+    },
+    {
+      "kind": 1,
+      "load": "00486470",
+      "save": "00486460",
+      "vtable": "008101f0"
+    },
+    {
+      "kind": 2,
+      "load": "00410710",
+      "save": "00410700",
+      "vtable": "0080f640"
+    },
+    {
+      "kind": 3,
+      "load": "007ddcb0",
+      "save": "007dda90",
+      "vtable": "00817208"
+    },
+    {
+      "kind": 4,
+      "load": "004257b0",
+      "save": "00424970",
+      "vtable": "0080f750"
+    },
+    {
+      "kind": 5,
+      "load": "0046ef10",
+      "save": "0046ef00",
+      "vtable": "0080ffc8"
+    },
+    {
+      "kind": 6,
+      "load": "00433b10",
+      "save": "00433950",
+      "vtable": "0080f7b8"
+    },
+    {
+      "kind": 7,
+      "load": "0043ee10",
+      "save": "0043eba0",
+      "vtable": "0080f908"
+    },
+    {
+      "kind": 8,
+      "load": "0048c920",
+      "save": "0048c820",
+      "vtable": "00810398"
+    },
+    {
+      "kind": 9,
+      "load": "00473dc0",
+      "save": "00473db0",
+      "vtable": "00810060"
+    },
+    {
+      "kind": 10,
+      "load": "00411640",
+      "save": "00411630",
+      "vtable": "00810418"
+    },
+    {
+      "kind": 11,
+      "load": "00460fb0",
+      "save": "00460cd0",
+      "vtable": "0080fc98"
+    },
+    {
+      "kind": 12,
+      "load": "00477f50",
+      "save": "00477b90",
+      "vtable": "008100e8"
+    },
+    {
+      "kind": 13,
+      "load": "004764d0",
+      "save": "00476370",
+      "vtable": "008100a8"
+    },
+    {
+      "kind": 14,
+      "load": "004527e0",
+      "save": "004524c0",
+      "vtable": "0080fa18"
+    },
+    {
+      "kind": 15,
+      "load": "00464e70",
+      "save": "00464e60",
+      "vtable": "0080fdd0"
+    },
+    {
+      "kind": 16,
+      "load": "00411640",
+      "save": "00411630",
+      "vtable": "00810010"
+    },
+    {
+      "kind": 17,
+      "load": "00447c20",
+      "save": "004478f0",
+      "vtable": "0080f9a0"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "checks": {
+    "deterministic_regeneration": "pass",
+    "edge_endpoint_and_blocking_semantics": "pass",
+    "git_diff_check": "pass",
+    "input_sha256_digests": "pass",
+    "markdown_local_links": "pass",
+    "provenance_paths_and_json_pointers": "pass",
+    "scheduling_dependency_dag": "pass",
+    "unique_node_and_edge_ids": "pass"
+  },
+  "desktop_verification": false,
+  "edges": 255,
+  "game_builds": "not_applicable_no_source_changes",
+  "graph_sha256": "3aa9e4e31a6c48a7496adde73c3f3f311baecdaecd88a0e4e8f3b1a1e5a0a67a",
+  "implementation_readiness": "partial_research_checkpoint_not_whole_world_ready",
+  "native_sanitizers": "not_applicable_no_source_changes",
+  "nodes": 143,
+  "original_binary_execution": false,
+  "schema_version": 1,
+  "scope": "Research documents and versioned export only",
+  "source_commit_sha": "52c568964063207b0d15bea8ef98af09f89d84df"
+}
