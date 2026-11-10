@@ -62,6 +62,8 @@ class Publication:
                     meta, path = record.split('\t', 1)
                     self.published[path] = meta.split()[2]
         self.links = {}
+        self.revision_blobs = {}
+        self.revision_public = {}
 
     def link(self, item):
         if isinstance(item, str):
@@ -70,12 +72,26 @@ class Publication:
         path = Path(name)
         if not name or path.is_absolute() or '..' in path.parts or path.as_posix() != name:
             return None
-        if name not in self.tracked or path.suffix.lower() not in ALLOWED_SUFFIXES:
+        revision = item.get('revision')
+        if (revision is None and name not in self.tracked) or path.suffix.lower() not in ALLOWED_SUFFIXES:
             return None
         if path.parts[0] not in {'analysis', 'recovered', 'tools', 'docs', 'README.md', 'RESEARCH.md', 'plan.md'}:
             return None
         if {'work', 'ghidra', 'assets', 'extracted', 'captures', 'build'} & set(path.parts):
             return None
+        if revision is not None:
+            self.revision_bytes(name, revision)
+            if revision not in self.revision_public:
+                self.revision_public[revision] = bool(self.ref) and subprocess.run(
+                    ['git', '-C', str(ROOT), 'merge-base', '--is-ancestor', revision, self.ref],
+                    capture_output=True).returncode == 0
+            from urllib.parse import quote
+            line = item.get('line')
+            line = line if type(line) is int and line > 0 else None
+            url = f'{REPOSITORY}/blob/{revision}/{quote(name, safe="/")}' if self.revision_public[revision] else None
+            return {'path': name, 'revision': revision, 'url': url + (f'#L{line}' if line else '') if url else None,
+                    'line': line, 'pointer': item.get('json_pointer'),
+                    'availability': 'published' if url else 'unpublished'}
         actual = ROOT / path
         if actual.resolve() != actual or not actual.is_file():
             return None
@@ -89,6 +105,31 @@ class Publication:
         return {'path': name, 'url': self.links[name] + (f'#L{line}' if line else '') if self.links[name] else None,
                 'line': line, 'pointer': item.get('json_pointer'),
                 'availability': 'published' if self.links[name] else 'unpublished'}
+
+    def revision_bytes(self, name, revision):
+        """Read only an exact regular Git blob; never execute or check out history."""
+        if not isinstance(revision, str) or not re.fullmatch(r'[0-9a-f]{40}', revision):
+            raise ValueError('Evidence revision must be a full commit SHA')
+        path = Path(name)
+        if not name or path.is_absolute() or '..' in path.parts or path.as_posix() != name:
+            raise ValueError('Unsafe revisioned evidence path')
+        key = (revision, name)
+        if key not in self.revision_blobs:
+            if git('cat-file', '-t', revision) != 'commit':
+                raise ValueError('Evidence revision is not a commit')
+            tree = git('ls-tree', revision, '--', name)
+            if not re.fullmatch(r'100(?:644|755) blob [0-9a-f]{40}\t' + re.escape(name), tree):
+                raise ValueError('Missing or non-regular revisioned evidence: ' + name)
+            self.revision_blobs[key] = subprocess.check_output(
+                ['git', '-C', str(ROOT), 'cat-file', 'blob', f'{revision}:{name}'])
+        return self.revision_blobs[key]
+
+    def input_bytes(self, item):
+        if self.link(item) is None:
+            raise ValueError('Missing or unsafe tracked input: ' + item.get('path', ''))
+        if item.get('revision') is not None:
+            return self.revision_bytes(item['path'], item['revision'])
+        return (ROOT / item['path']).read_bytes()
 
     def evidence(self, items):
         links = [self.link(item) for item in items]

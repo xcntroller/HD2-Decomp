@@ -240,3 +240,19 @@ is displayed alongside the graph. When the research graph supplies `batch_ids`,
 those declared associations take precedence over address-mention fallback matching.
 A batch without its own heading retains its table summary and links to associated
 research contracts; the website does not invent missing acceptance requirements.
+
+Research verification is checkpoint-specific. The adapter checks tracked
+`analysis/future-dependencies/evidence/verification.json` and named
+`*-verification.json` receipts, then selects only receipts whose SHA-256 matches
+the exact graph bytes. A matching receipt must also match graph node/edge counts
+and the pinned implementation SHA and contain recorded checks. A missing match
+still fails the build. Historical receipts retain their original scope; the
+Research overview links the matching receipt rather than relabeling an older one.
+
+Optional `revision` on research inputs/evidence is a full immutable commit SHA.
+Input hashes and JSON pointers resolve against regular blobs at that revision,
+not the current ledger. Historical public links use that same revision and are
+linked only when it is an ancestor of the asserted public build ref. Unknown
+revisions, missing blobs, unsafe paths and historical symlinks are rejected.
+`revision_of_observation` remains descriptive metadata and does not change where
+a local research sidecar is read.
