@@ -1,0 +1,280 @@
+{
+  "desktop_verification": false,
+  "findings": [
+    {
+      "blocker": "Reconcile assigns specialization but spawn reads separately initialized speech_variant; packet specialization is native40, not48",
+      "confidence": "confirmed",
+      "id": "P24-F01",
+      "original": [
+        "00695b30",
+        "00695ad0",
+        "0059edc0"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/frontend/pre_mission_squad.h",
+        "recovered/frontend/pre_mission_inventory.h",
+        "recovered/game/prepared_human_spawn.h"
+      ],
+      "summary": "Native48 producer/consumer mismatch"
+    },
+    {
+      "blocker": "Original unavailable cleanup calls918 wrapper; flow.return_equipment always credits primary stock",
+      "confidence": "confirmed",
+      "id": "P24-F02",
+      "original": [
+        "00694520",
+        "006a2920",
+        "006a2940"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/frontend/pre_mission_flow.h"
+      ],
+      "summary": "Unavailable soldier equipment returned to wrong stock owner"
+    },
+    {
+      "blocker": "Original marks deselected identities-1, reuses those records before allocating, changes name/identity/capacity without clearing inventory; source constructs default new record",
+      "confidence": "confirmed",
+      "id": "P24-F03",
+      "original": [
+        "00695b30",
+        "006a2340"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/frontend/pre_mission_squad.h",
+        "recovered/frontend/pre_mission_flow.h"
+      ],
+      "summary": "Replacement reconciliation loses original spare-record reuse"
+    },
+    {
+      "blocker": "Use mask1 kind16/head, mask2 kind15/uniform; existing actual mask code already follows this; correct research labels only",
+      "confidence": "confirmed",
+      "id": "P24-F04",
+      "original": [
+        "007df950",
+        "0059eb60",
+        "00611c90"
+      ],
+      "priority": "normal",
+      "source": [
+        "recovered/frontend/pre_mission_data.h",
+        "recovered/game/prepared_human_spawn.h"
+      ],
+      "summary": "Prior slot labels reversed head/uniform"
+    },
+    {
+      "blocker": "MissionRequest copies squad and exposes const request; activation requires mutable live_squad; concrete containing services not bound. Resolve once in P2.2/P2.3, verify in P2.4, no second owner",
+      "confidence": "unresolved",
+      "id": "P24-F05",
+      "original": [
+        "006989b0",
+        "00611c90"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/game/session_owner.h",
+        "recovered/game/session_activation.h"
+      ],
+      "summary": "Mutable live squad owner not bound to session consumers"
+    },
+    {
+      "blocker": "begin_selected handles0 or standalone; later campaign requires bounded preparation read and traversal restoration, not live snapshot",
+      "confidence": "confirmed",
+      "id": "P24-F06",
+      "original": [
+        "00638d30",
+        "006c3340"
+      ],
+      "priority": "high",
+      "source": [
+        "recovered/host/single_player_menu.h"
+      ],
+      "summary": "Later campaign selections still explicit unavailable-save boundary"
+    }
+  ],
+  "new_reused_exports": 24,
+  "original_evidence": "analysis/future-dependencies/evidence/manifest.json",
+  "original_execution": false,
+  "schema_version": 1,
+  "scope": "Read-only inspected main source; separate from graph pinned ledger claims",
+  "source_commit_sha": "dcbef5786db397def454a29b4b68ec2feff401e3",
+  "sources": [
+    {
+      "path": "AGENTS.md",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "4a69ac74eaa5f191fe4cb3d5aef7658eb8e1bd26a12585e79a03c090146de095"
+    },
+    {
+      "path": "HANDOFF.md",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "03f75275ac61dbb7251a7e70b435e035033cc6ad2643c4e56820ba819fba16ac"
+    },
+    {
+      "path": "plan.md",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "0a5434ecbc7cee88c209716f8a4bfe02d947e37ecd412a1b76b6dea1499d3e4f"
+    },
+    {
+      "path": "analysis/phase2-delivery-plan.md",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "877bf40e40d8e75a1a56bc692e2f8ca77986ff11accdb871e1a30a97e55282bc"
+    },
+    {
+      "path": "analysis/singleplayer-pipeline.md",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "8de133fa2b2cb283bc1b0778ce9646d4db755ce5b101c2fe228d97b1443560bd"
+    },
+    {
+      "path": "analysis/menu-family-delivery.md",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "21caa85573ed8c6c0be5d00d1d34404691170c1a9f9a982e05a4f86c277ac6b2"
+    },
+    {
+      "path": "analysis/game-owner-integration.md",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "5dce2250d831d0ed8fd5c96e2dddfedb10cb94b708843094729be61b7ab88343"
+    },
+    {
+      "path": "analysis/world-actor-loading-consumers.md",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "e14919bddaa2076f0a33f8b0c560131c216cb35a693b080d60f3445f143e0e98"
+    },
+    {
+      "path": "analysis/team-removal.md",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "cf58f00ea4804dbf75907c873271bc3babb319325efdd0a0b028fef40bd1f4fd"
+    },
+    {
+      "path": "recovered/frontend/pre_mission_flow.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "83c0e4a6162bcdf15366a309db4ea75f71aaa4c0d0ec4b59eaff80b1e183e891"
+    },
+    {
+      "path": "recovered/frontend/pre_mission_handoff.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "dfbcdb6a0ef9942f8857332a5741d856995dace2d147159eeb0db80e3ad93415"
+    },
+    {
+      "path": "recovered/frontend/pre_mission_route.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "e00ae78d38c7c2cbfbb2caa27073f78b382753c10cf1441afe70a8ecf3a449d7"
+    },
+    {
+      "path": "recovered/frontend/pre_mission_inventory.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "581b7014e88d8dcd7858b2cd5b7fcf43710b66f61f206090439b8249d24dc727"
+    },
+    {
+      "path": "recovered/frontend/pre_mission_squad.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "66ccb29656dde9cf3481c86f68a64d7170f591e5c8486e336a8d343fa2cd12ec"
+    },
+    {
+      "path": "recovered/frontend/pre_mission_resources.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "722eda66bb6df30a8ec20bdd8a4140e30a16b7f038e202d2b8d474f285e2f6d3"
+    },
+    {
+      "path": "recovered/frontend/pre_mission_auto_equipment.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "253837bca165115362505221aa6c36c47e23a0fdb937cb2c4184b2fda5c4a8be"
+    },
+    {
+      "path": "recovered/frontend/pre_mission_data.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "86ab02f3a29802805f1f2912afb87bfa35982b3f8a610074c746080c7281de0e"
+    },
+    {
+      "path": "recovered/frontend/application_states.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "ad340a7b8b37dafb45838861562356a7bf202f0786b9583f62ad2dea018e556e"
+    },
+    {
+      "path": "recovered/host/application_launch.cpp",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "c60f4ffbd67b1d72fc0471751736ea64444110bb137a0403a703fd3abf7c84a0"
+    },
+    {
+      "path": "recovered/host/single_player_menu.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "41813c17199d9cf766020a743883c99a61c418d341076013d40f009071abc6c7"
+    },
+    {
+      "path": "recovered/host/pre_mission_menu.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "ccab928036e4f33200507c09e846439323be38d476dc544712d21949d15c1d70"
+    },
+    {
+      "path": "recovered/host/pre_mission_team_menu.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "1b2ef8ecb874de0afffbc05999e316acf318fc905bebf364e9d9c4a8a389aa8c"
+    },
+    {
+      "path": "recovered/host/pre_mission_soldier_selection.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "cf8f1d5146ec85b56159828f12b9467685b8edbde6081aa1df5db89d54c94d77"
+    },
+    {
+      "path": "recovered/host/pre_mission_hero_menu.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "93329e18a28c3fb2b6ded1548805b4868f1c3ae85b29d45ca416a8566eaeb2fa"
+    },
+    {
+      "path": "recovered/host/pre_mission_equipment_menu.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "c4d13b6ef6b127b3a2ede57ef9566703bdc1a26e2ca3fe513c986083ba1ea6f9"
+    },
+    {
+      "path": "recovered/host/pre_mission_item_row.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "9321f3ad2454cff8aba108b209ac2ccd419211eb6b88b4b3894500fcf3650fd6"
+    },
+    {
+      "path": "recovered/host/startup_session.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "ddc3b4a9a3fe54bcadfbce0c83c7aaa6b1d3755241033971eecd1ee6b2b374b8"
+    },
+    {
+      "path": "recovered/host/game_owner.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "28c7aaa6dcdf5f3ba7524f7048fc8b8bba7777b2c8f0a946e244a30d747cbb2c"
+    },
+    {
+      "path": "recovered/game/session_owner.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "2b4b5581fbceb20a090218d2005901263c25299f30943cd2659467850b6a823c"
+    },
+    {
+      "path": "recovered/game/session_activation.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "e1ee44e98d7a33bafb92fd1029c5ab3853920ea58f5fd44be506b7bf78622391"
+    },
+    {
+      "path": "recovered/game/prepared_human_spawn.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "dbae88e4a6eeaaa4a5a7d176dd0e27d93afc6c939cee4a3c969e0cb5c5d56ed8"
+    },
+    {
+      "path": "recovered/game/prepared_item_transfer.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "25e46b48bc0b7eb5c323bb05b12f49e2d8ec63cb471293963be53078ad882816"
+    },
+    {
+      "path": "recovered/game/prepared_human_clothing.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "e41dbbc2f09148a19dac9d7191f2004ad3dd0cd46d4f69a4f8699e3e51cf7fc8"
+    },
+    {
+      "path": "recovered/game/prepared_spawn_packets.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "9d66a396d88add2cb604c94b6ecc85caa588670cdee4f1f8ed6d94eb6a116d9d"
+    },
+    {
+      "path": "recovered/game/offline_spawn_presentation.h",
+      "revision": "dcbef5786db397def454a29b4b68ec2feff401e3",
+      "sha256": "5d8d7388d22c1c33489fb2a8c7f93a5aaced90ced368a409d727638829157c47"
+    }
+  ]
+}

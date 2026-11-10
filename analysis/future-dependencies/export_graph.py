@@ -204,6 +204,10 @@ def generate():
     }
     for sid,blocker in corrections.items():
         nodes['subsystem:future:'+sid]['data']['blockers']=[blocker]
+    p24_review_path='analysis/future-dependencies/evidence/p24-review.json'
+    reviewed=read(p24_review_path)
+    for sid in ['p24_fields','p24_routes','p24_squad','p24_inventory','p24_bridge','p24_media','p24_acceptance']:
+        nodes['subsystem:future:'+sid]['data']['source_observations']=[prov(p24_review_path,revision_of_observation=reviewed['source_commit_sha'],json_pointer='/sources'),prov(p24_review_path,json_pointer='/findings')]
     for a,(i,r) in exports.items():
         src='function:client:'+a
         if src not in nodes: continue
@@ -244,7 +248,7 @@ def generate():
             'analysis/future-dependencies/phase2-overview.md','analysis/future-dependencies/p2.6-save-load.md',
             'analysis/future-dependencies/p2.6-context-layout.md','analysis/future-dependencies/p2.7-results.md',
             'analysis/future-dependencies/implementation-guide.md','tools/progress-analyzer.md','tools/progress_graph.py','analysis/future-dependencies/export_graph.py']
-    inputs.extend(['analysis/future-dependencies/README.md','analysis/future-dependencies/p2.6-car-format.md','analysis/future-dependencies/p2.6-human-state-leaves.md','analysis/future-dependencies/evidence/car-packed-v10.json'])
+    inputs.extend(['analysis/future-dependencies/README.md','analysis/future-dependencies/p2.6-car-format.md','analysis/future-dependencies/p2.6-human-state-leaves.md','analysis/future-dependencies/evidence/car-packed-v10.json','analysis/future-dependencies/evidence/p24-review.json','analysis/future-dependencies/p2.4-preparation.md','analysis/future-dependencies/p2.4-squad-equipment.md','analysis/future-dependencies/p2.4-game-handoff.md','analysis/future-dependencies/p2.4-acceptance.md'])
     return {'schema_id':'hd2.future-dependencies','schema_version':1,'source_commit_sha':SOURCE,
             'binary':manifest['binary'],'inputs':[{'path':p,'sha256':hashlib.sha256(ledger_bytes).hexdigest(),'revision':SOURCE} if p=='analysis/function-status.json' else {'path':p,'sha256':digest(p)} for p in sorted(inputs)],
             'epistemic_policy':{'call_edge_implies_blocking':False,'dependency_direction':'prerequisite_to_dependent',

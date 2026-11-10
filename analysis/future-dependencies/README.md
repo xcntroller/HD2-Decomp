@@ -102,3 +102,14 @@ retain the existing working-tree path semantics. Source SHA stays52c5689; no
 implementation status is silently refreshed. Export regeneration needs that commit
 in the local Git object database. Website rendering can use the self-contained
 export and attach revision-aware repository links; no website code is changed.
+
+
+P2.4 reconnaissance adds four focused contracts and version1
+[evidence/p24-review.json](evidence/p24-review.json). It contains source_commit_sha,
+revisioned source file digests, stable finding IDs and explicit original/source
+boundaries; observations do not overwrite pinned ledger status. New optional
+node data.source_observations links to that record, with revision_of_observation
+identifying reviewed main (not a revision to use for reading the local sidecar).
+Graph shapes, ID hashing and existing P2.6/P2.7 data are preserved. No website or
+analyzer changes.281 exports now include24 reused fingerprint-checked preparation
+exports; no duplicate Ghidra pass was needed for already recovered functions.

@@ -1,72 +1,76 @@
-# Forward research handoff — Car packed-format checkpoint
+# Forward research handoff — P2.4 reconnaissance checkpoint
 
-Branch `research/future-dependencies`. Implementation status remains pinned to
-52c568964063207b0d15bea8ef98af09f89d84df. Main source, ledger, root plan/handoff,
-website/analyzer, networking and other worktrees unchanged. No original EXE/DLL,
-Windows fixture or Proton execution; no desktop result or new reconstruction credit.
-No push or merge.
+Worktree/branch research/future-dependencies only. P2.6/P2.7 research preserved,
+temporarily deprioritized by user. No main source/ledger/root plan/handoff,
+website/analyzer/networking or other worktree edits. No original executable,
+DLL, Windows fixture or Proton run; no desktop claim, push or merge.
 
-New: [Car version10](p2.6-car-format.md), [numeric byte map](evidence/car-packed-v10.json)
-and [Player nested state](p2.6-human-state-leaves.md). Existing actor/context/module/
-result contracts remain prerequisites. Do not redo confirmed vtables, IDs, globals
-or result arithmetic. [Batches](implementation-guide.md) now distinguish layout,
-mesh, Car restore and Player leaf work; whole live save/load remains blocked.
+Start with [P2.4 route/inventory](p2.4-preparation.md),
+[squad/stock/fields](p2.4-squad-equipment.md), [game handoff](p2.4-game-handoff.md),
+[desktop matrix](p2.4-acceptance.md) and [batches](implementation-guide.md).
+Main was read at dcbef5786db397def454a29b4b68ec2feff401e3:35 source/doc digests
+in [review](evidence/p24-review.json). Main still declines actual loading at that
+snapshot; its strict source composition does not imply P2.2 or gameplay acceptance.
+Graph ledger claims remain52c5689; reviewed main observations are separate.
 
-Resolved in this checkpoint:
+High-value new findings, stable IDs in review:
 
--108 fixed Car header fields cover000..170;171..173 are unwritten padding.
- Complete variable boundaries:12-byte point records;20-byte geometry headers plus
- four bytes per changed LOD0/LOD1 vertex;20-byte ancillary records;100-byte wheels.
- Full raw word/byte map, point quantizer, six-bit mesh displacement quantizer,
- suffix hash/lookup, existing-array matching and skipped-record behavior recorded.
--IMPORTANT correction:004F7300 size is174h+12P+20G+4*sum(n0+n1)+20A+100W.
- Its decompilation lost the live changed-vertex byte accumulator. Assembly counts
- both LODs. The previous formula would underallocate deformed saves.
--Outer packed byte count and internal computed size are distinct;004F8510 checks
- version10, not buffer length. It destructively detaches before changing model
- pose.004E95B0/004E98C0/004F5840 side effects and required real collision/model/
- mesh owners mapped. Allocation padding and null ancillary-child bytes are not
- deterministically initialized by the original writer.
--10006 receiver is inline Car+24E0. Its bytes contain no actor-ID resolution;
- previous seat/attachment label was unsupported and is corrected. Mounted Human
- references remain in established Human1001/1006, not a new Car passenger array.
--Player B0 kind1 owns18-byte0840 and optional68-byte0841 (64 bytes plus counter).
- Reader omission retains constructor state; no count-sized input allocation.
- Common B0/real Human-controller dependencies remain mandatory.
+- F01:00695B30/00695AD0 assign native live48 first-unused1..4, consumed by
+0059EDC0 speech. PreMissionTeam instead writes specialization (packet native40)
+while spawn reads speech_variant initialized-1. Connect actual48 producer/consumer;
+do not alias40 to48 or accept extra random fallback draws.
+- F02:00694520 unavailable-member cleanup calls006A2920→SECONDARY008AE918.
+006A2930 is distinct PRIMARY008AE914 wrapper. Flow.return_equipment always
+credits primary; correct destination per original caller before loadout acceptance.
+- F03:00695B30 marks deselected IDs-1, reuses spare records before allocation,
+006A2340 changes name/id/capacity WITHOUT clearing inventory, swaps pointer order,
+then retires negatives. Source defaults new records and refunds unselected gear;
+that is not the observed original replacement contract.
+- F04: prior research labels reversed mask1/2. Actual code already uses kind16
+head=1, kind15 uniform=2. Correct prose, do not swap working mask code.
+- F05: one authoritative mutable squad must feed activation/spawn/HUD/extraction.
+MissionRequest copies squad and exposes const request(); activation live_squad
+services are not concretely application-bound. P2.2/P2.3 agent owns this integration;
+P2.4 verifies it, not a competing world implementation or second roster.
+- F06: later ordinary mission selection remains unavailable_saved_game source.
+It needs previous nonlive preparation006C3340(false) and traversal restoration;
+full live save/actor/VM replay is not required. Reuse existing P2.6 format research.
 
-Evidence:257 fingerprinted exports, seven new targeted Car support exports.
-Prior indices retained. New assembly anchors cover size accumulation, byte
-quantization, short-name hashing and24E0 receiver. Full exports/disassembly remain
-ignored or temporary, outside Git. Heavy Ghidra was sequential readOnly/noanalysis.
-[Verification](evidence/verification.json): direct header copy fields independently
-matched assembly, field nonoverlap/padding/wheel extent, constants, new export and
-anchor digests, deterministic graph/provenance/dependency validation. Graph320 nodes,
-659 edges, unchanged schema1 with new catalog groups and sidecar documented in README.
-This branch contains newer main-agent commits; exporter now reads ledger/source
-mentions from the actual pinned Git snapshot. Optional revision on evidence/inputs
-is documented. Previous HEAD-dependent joins must not be used to refresh status.
-No codec execution against original save files, runtime equivalence or desktop test.
+Original routes are descriptor-driven: Tutorial team→game has no loadout page;
+Arctic briefing can precede equipment; standalone copies eligible movies and
+aggregates prior equipment, with ordinal10 exception. Status2/3 and queued modal
+callbacks must not double-advance/refresh retired team owners. Mode0/1/2/3 is
+separate from standalone/config flag and process mode7. No manufactured unlocks.
 
-Next research boundary, in order:
+B24.fields is the smallest immediate correction batch. Then routes/squad/inventory,
+accepted P2.3 bridge, ordinary media and15 pending desktop scenarios. Existing
+team acceptance and P2.1 unloaded-constructor/error-return acceptance are bounded.
+Loadout screens remain completely desktop-untested; November2 team-removal source
+corrections still need their own recheck. A request log or fixture does not prove
+modified clothing/items reached actual controllable Humans.
 
-1.004F8510 tipped-pose correction004F8600..004F89EF: match x87 AngleTo gate,
- source axes, basis reconstruction and normalize branches against instructions.
- Then verify real mesh clone/lock/invalidate and part post-read receiver semantics;
- the byte format is closed, whole Car restore is not. Resolve actual producers of
-24E0 fields without assuming seats. Reuse existing Car loading/mass/deformation owners.
-2. Human ordinary00576FE0/005774A0 command leaves, Guard/Script/Active extensions,
- inline98 animation0077FE20/00780100,00783FD0/00784310,007938C0/00794430.
- Player payload discovery need not repeat; common B0 and actual control tail remain.
-3. Pending Script2600 tick receiver, rotations/frame animation and derived context
- bytes. Existing tick rejects pending_pc!=-1; module4 stays before11/12/13 replay.
-4. Remaining demonstrated nonempty module consumers and optional missionA8;
- full GameData/HumanStore, reset0069C390 and failed activation/repeat shutdown.
-006B7410/006B7D30 are already mapped; reopen only their unknown called leaves.
-5. P2.7 repeated activation/modal gates, protection producers, PRNG seed lifetime.
- Rank/medal/nine-draw arithmetic and producer order are already confirmed.
+Evidence:281 fingerprinted exports total;24 existing targeted preparation/spawn
+exports reused and hash-checked. No duplicate Ghidra discovery or heavy analysis
+needed. New instruction anchors verify distinct stock globals and native48 write.
+Raw exports stay ignored. [P2.4 verification](evidence/p24-verification.json)
+checks source revisions/digests, new evidence, original stock targets, source
+mismatches, graph determinism/IDs/edges/pointers, pinned ledger and protected files.
+Graph369 nodes/774 edges, schema1; new source_observations field is documented.
+Prior persistence receipt remains [preserved](evidence/verification.json).
 
-Regenerate graph with `python3 analysis/future-dependencies/export_graph.py`.
-Research readiness does not promote implementation readiness; Car layout group
-remains implementation-blocked on real owners/integration. Explicit native length,
-count/index/cleanup guards and zero padding are sensible deviations, not original
-atomic rollback or proven successful recovery.
+Next: Agent #1 can consume B24.fields after P2.3, reusing existing owners and
+focused native checks. Research is adequate for bounded corrections and ordinary
+route integration; whole milestone remains blocked on F01/F02/F03, P2.3 authority
+binding, conditional nonlive preparation leaves/legitimate progress and desktop
+acceptance. Actual installed required resources may expose conditional gaps.
+Kind7 ordinal>=3 protection observations remain the main agent's existing startup
+boundary; never force equality or re-research it as a new P2.4 unlock service.
+
+Persistence next targets remain linked in p2.6-car-format.md and prior guide:
+tipped-pose correction/live mesh consumers, Human commands/animation, Script async,
+nonempty modules, reset/failure tails and result lifecycle. Do not discard their
+contracts or redo confirmed vtables, ID domains, globals or award arithmetic.
+
+Regenerate: python3 analysis/future-dependencies/export_graph.py. Keep source SHA
+explicit, original call edges nonblocking, conditional progress separate from
+universal scheduling prerequisites. No reconstructed function credit from research.

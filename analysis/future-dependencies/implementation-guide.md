@@ -8,7 +8,7 @@ work is requested in this branch.
 
 | Batch | Required predecessors | Research state | Purpose |
 | --- | --- | --- | --- |
-| B24.preparation | P2.3 | contract-ready for existing route integration | Carry actual preparation into spawned actors |
+| B24.preparation | P2.3 | partial: native field/stock/reuse corrections and live authority binding | Carry actual preparation into spawned actors |
 | B25.retention | P2.3 | partial; pause/audio leaves remain | Retain same world through menus/Options |
 | B26.envelope | none for source recovery | contract-ready bounded I/O and metadata | Separate metadata, preparation and snapshot envelopes |
 | B26.preparation | B26.envelope | partial; bounded child batches below | Existing application persistence |
@@ -29,8 +29,10 @@ quantities. Reuse pre_mission_flow/data/route/squad/inventory/handoff headers an
 ordinary BriefingApplicationState; preserve [single-player](../singleplayer-pipeline.md)
 order and original capacity/required-items/firearm gates. Missing: verify real
 world consumes same soldier IDs/equipment; do not bypass progress for equipment.
-Failure/teardown: reverse/Back returns inventory exactly once and destroys only
-current screen owners; request keeps descriptor valid through receiver lifetime.
+Failure/teardown: Back follows original descriptor traversal; only caller-specific
+return operations refund inventory to their actual stock owner. There is no blanket
+Back refund. Current screen owners retire while request/descriptor lifetime remains
+valid; detailed P2.4 batches below supersede earlier generic integration assumptions.
 Focused verification: actual request→actor identity/equipment trace, stock balance,
 Back/cancel loops. Desktop: accessible loadout, briefing then actual mission with
 changed equipment; prior team acceptance does not cover untested loadout.
@@ -240,3 +242,29 @@ moving/damaged/occupied-vehicle round trips. Decoder round trips alone are insuf
 Player initialization and Human/controller owners. Implement exact18-byte0840 and
 optional68-byte0841; preserve absent-field constructor defaults. Remaining ordinary
 command/AI/inline98 and Script async leaves keep whole Human compatibility blocked.
+
+
+## Detailed P2.4 delivery batches (current main review)
+
+Read [routes/inventory](p2.4-preparation.md), [squad/stock](p2.4-squad-equipment.md),
+[game handoff](p2.4-game-handoff.md) and [desktop matrix](p2.4-acceptance.md).
+Source observations are pinned to dcbef57; graph ledger claims retain52c5689.
+P2.6/P2.7 research stays preserved and temporarily deprioritized.
+
+| Batch | Mandatory predecessors | Exact work, failure and verification boundary |
+| --- | --- | --- |
+|B24.fields|None for source correction; P2.3 for live verification|Smallest immediate batch.00695B30/00695AD0 native48→0059EDC0;00694520→006A2920 secondary918 vs006A2930 primary914; original spare reuse before allocation. Reuse frontend/pre_mission_squad/inventory/flow, never another owner. Fix F01/F02/F03; F04 is documentation label correction. Native distinguish40/48, retained/reassigned records and BOTH stock balances including failed assignment. No desktop acceptance from these checks.|
+|B24.routes|B24.fields; existing GameData/Startup resolver|Reuse PreMissionRoute, SinglePlayerMenu, transition_pre_mission and accepted team guard.006B8A20/8AA0/8B20/9680/93C0 exact tree/cursor/flag behavior; states2/3, Lone Wolf skip, synthetic ordinal10. Screen deletion must leave descriptors valid. Native real decoded trees and Back/queued popup double-advance prefixes. Desktop A01-A05/A10 only through legitimate eligibility.|
+|B24.squad|B24.fields,B24.routes|Hero18 rows/shared20 and nine-field acceptance; eligibility0..29/unavailable70, subtype1 locked active44, max4/one-soldier variants, manual versus Automatic action. Reuse actual portrait/name/modal owners and November2 focused correction. Failure leaves live/profile identities coherent; no blanket reset of candidates. Native reordered/spare/locked/dead records and confirm/cancel. Desktop A04-A06 with profile/name write failures.|
+|B24.inventory|B24.squad; real catalogue/policies/presets|Reuse PreMissionEquipmentMenu/ItemRow/flow/inventory/auto_equipment.00675900 store selection,00671200/006A3080 transfers,00673DD0 validation/mutation order. No complete save/load requirement for fresh route. Preserve partial quantities, force-only auto shortage, submenu cancellation and source safety deviations explicitly. Native actual item definitions, stock+residual equations, partial rejection/pack/required/firearm cases and repeated newly constructed pages. Desktop A07-A10.|
+|B24.bridge|B24.fields,B24.routes,accepted P2.3|Verify actual SessionActivation services use SAME mutable records; resolve F05 once in containing owner, not a duplicate squad.006989B0→00611C90→00612A60→0059EDC0/0059EB60→real Items/clothing→006123A0. Preserve model factory/registry/profile lifetimes, split counts and IDs. Failure after publication requires actual acquired-prefix teardown; request copy alone is insufficient. Native real composed owners and late failure/repeat, then desktop A01/A06/A12/A13/A15. Equipment paths require B24.inventory; Tutorial need not.|
+|B24.media|B24.routes; actual ordinary movie/subtitle/audio backend|Reuse BriefingApplicationState/OpeningBackend; descriptor filename/flag and filename-derived subtitles, completion/Escape, actual next descriptor. No extra Cinematics state. Partial resource failure closes acquired movie/audio/scene prefix exactly once. Native begin/complete/skip/fail ownership; desktop A11 on each legitimately accessible conditional descriptor.|
+|B24.progression|B24.routes, B26.preparation bounded nonlive leaves only|Conditional later ordinary missions.00638D30→previous save006B76E0→006C3340(false), actual preparation reset/read/cursor restoration. Reuse P2.6 framing/preparation map; no actor/VM/live snapshot/restart work required. F06 not ready until required preparation leaves and explicit failure policy close. Native compatible/missing/truncated previous preparation and cursor/stock partial mutation; desktop A14 with legitimate progress. Do not unlock for tests.|
+|B24.acceptance|B24.bridge,B24.inventory,B24.media; conditional B24.progression where reached|Execute matrix with actual compiled desktop. Track tested route/build/profile/resource and before/after owners. Equipment remains completely untested historically. No function quotas, broad unchanged-code audit, UI/request-only pass, forced progress or synthetic successful gameplay.|
+
+B24.preparation remains the stable parent. Conditional later progress does not
+block the already accessible bridge; full P2.4 acceptance still records every
+unexercised branch honestly. Remaining blockers are F01/F02/F03 source corrections,
+F05 containing authority binding, F06 bounded preparation persistence, live
+acceptance and any required installed resource that fails its actual resolver.
+Kind7 protection observations belong to the existing P2.2 startup contract.
