@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [Module loading lifetimes](module-loading-lifetimes.md) — Script bank/SOUND lifecycle and cold Particles17/HeavyFire16 now use actual process state. Initialized particle finish clears definitions; never-activated finish retains them. Source verification passes; actual Versions/GEffects and containing loader remain.
+
 2026-11-10: [session loading consumers](session-loading-consumers.md) add real activation API order, shared effect file/cache/scene receivers and [ShotMgr](shot-manager-loading.md) models/pools/textures/retirement. Source-only verified; remaining module owners, containing session/loader/integrity publication and first frame stay open.
 
 2026-11-10: [Human/VM world composition](human-vm-world-composition.md) replaces the external VM declaration with actual module/runtime/contexts and checked same-world Human linkage. Source-only verified; actual session/loader/integrity publication and first-frame delivery remain.

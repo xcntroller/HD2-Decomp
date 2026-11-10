@@ -8,26 +8,30 @@ assets/user changes; focused verification only. Heavy builds/Ghidra sequential
 because of memory shortages/crashes. No permanent tests.
 
 GameApplicationState still declines loading. No loaded world, first rendered
-world frame or new desktop acceptance. Ledger34 complete/1,900 partial
-(1,895 client/five engine)/18,783 frozen. Zero complete promotions.
+world frame or new desktop acceptance. Ledger34 complete/1,902 partial
+(1,897 client/five engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
 
-[Session loading consumers](analysis/session-loading-consumers.md),
-[ShotMgr](analysis/shot-manager-loading.md),
-[receipt](analysis/checkpoints/p2.2-session-loading-consumers-20261110.json).
-Actual activation GetTickCount/IsWindowVisible/GetCapture order with real host
-GetIGraph/window endpoints. Mission effects use actual selected files, shared
-process definition cache/scene borrower; both captured roots empty201, valid
-placed particle producer still rejects. ShotMgr14 now owns actual cold16+16
-pools, humanzones/WeaponOdds/models/16textures and ordered retirement. Startup
-owns SAME process state; registration14/mode borrowed. No projectile/damage/
-rendering or populated record cleanup offered. Focused three native sanitizer
-fixtures (ShotMgr ALL40 endpoint failure prefixes), strict i386 actual source
-graph/app link and27 tracker checks pass. Six new partials, no completes.
-0044DDE0/0044E110 absent frozen: no credit; static ASM used for absent cleanup.
-Original exports/failed guesses documented honestly in note/receipt. Temporary
-checkpoint fixtures hashed/removed; logs/research retained. Source-only.
+[Module loading lifetimes](analysis/module-loading-lifetimes.md),
+[receipt](analysis/checkpoints/p2.2-module-loading-lifetimes-20261110.json).
+Startup now owns SAME Script variable bank across worlds; all actual VM
+constructors require it. Native00427B80 leaves bank intact;004270D0 activates
+variables AFTER context begin. kind04==1 standalone clears current; campaign
+copies current→previous. Owned request.preparation.standalone supplies this
+selection (00638D30 same kind04==1→006B9680); request.mode is different.
+SOUND6 actual tail/start/finish now use SAME Startup owners/config/mode.
+Particles17 borrows separate100C scene and shared definitions/latch. IMPORTANT:
+00443FE0 initialized finish clears definitions00445980; never-initialized
+finish retains cache. File-facade close alone does not clear definitions.
+Cold HeavyFire16 process flags/empty lifetime now supplied. No positive particle/
+fire-support producers. Native targeted sanitizers, strict actual full i386
+Human/VM/SOUND/new module graph, app link/27 tracker checks pass. Two new
+partials00444110/00445980; absent entries no credit. Temporary audits removed.
+
+Prior52c5689 [session loading consumers](analysis/session-loading-consumers.md)
+and [ShotMgr](analysis/shot-manager-loading.md) supplied real API query order,
+effects live-file owner and40-failure-prefix cold ShotMgr lifecycle. No world.
 
 Previousde81817 [Human/VM world](analysis/human-vm-world-composition.md),
 11fe11e [Human factory](analysis/human-factory-world-bindings.md),
@@ -48,12 +52,26 @@ then desktop acceptance. App still declines loading. Source WorldScene/WorldActo
 VM are uncalled by application; strict checks borrow WorldActors/Car runtime and
 session boundaries, not actual containing instances. Do not stop at dependencies
 or expand all P2.3. Active temporary full type graph for further integration:
-WORK/checkpoint-module-dispatch-host.cpp (audit not permanent test).
+WORK/checkpoint-remaining-modules-host.cpp (audit not permanent test).
+
+Next research already exported Versions contracts in WORK/remaining-module-world-boundary,
+remaining-module-enumeration-callbacks, version-and-decoration-module-dependencies,
+version-frame-physics-required, versions-construction-required and
+versions-part-collision-owners (latter may still be running: check log).
+Versions+20 static versions-finish.asm: same authority OR !(mode&1) clear gate.
+NOTE earlier research interpretation corrected:0043C9F0 is vector INSERT for
+borrowed models to reload, NOT unregister.0043E830 INSERTS deferred collision
+owners, NOT removes.0043C220 builds model master with0043DDB0 collision owner;
+0043C440 creates0043ADB0 parts unless frameEC word5 already set. Need their
+actual positive constructor/resource/lifetime before implementing Versions.
+GEffects water/decorations/birds captures already in same WORK; no successful
+empty scene enumeration assumption from raw token census. All remaining
+positive receivers need actual behavior before dispatch/application integration.
 
 Use loading-modules.md dispatch table and WORK/module-load-activation-map.json:
 all19 original registrations. Existing source Track/Physics/Items/VM/Sight/SOUND/
-Vertex/Players/actors/camera owners should supply their actual methods. Shot14
-now source. GEffects1/Versions7/Particles17 and other remaining reached receivers
+Vertex/Players/actors/camera owners should supply their actual methods. Shot14/HeavyFire16/coldParticles17
+now source. GEffects1/Versions7 and other remaining reached receivers
 still need actual ownership/activation where not yet supplied.8/10 verifiedRET,
 18 coldnull. Never add a successful default handler for a missing module.
 

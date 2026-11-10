@@ -1,5 +1,7 @@
 # Technical research guide
 
+2026-11-10: [Module loading lifetimes](analysis/module-loading-lifetimes.md) — Script variables now survive world teardown in Startup; actual SOUND module lifecycle, distinct particle scene/latch/cache retirement and cold HeavyFire state are source-supplied. Focused native sanitizers, strict actual i386 graph and app link pass. Two partials added:34 complete/1,902 partial. Source-only; continue Versions/GEffects and containing session/loader.
+
 2026-11-10: [session loading consumers](analysis/session-loading-consumers.md) supply actual activation/window API order, shared mission effect file/cache/scene lifetime and [ShotMgr cold loading](analysis/shot-manager-loading.md). Three focused native sanitizer fixtures, whole actual i386 composition and app link pass. ShotMgr verifies40 failure prefixes and process reuse. Six partials added:34 complete/1,900 partial. Source-only; remaining modules/session/loader/guard/first frame remain.
 
 2026-11-10: [Human/VM world composition](analysis/human-vm-world-composition.md) constructs actual VM receivers/module/runtime with the same Human/Players/FPV/HUD/SOUND owners. Checked context/authority link closes the construction cycle and finishes before Human retirement; actual process registration/mode are borrowed. Native link sanitizers, whole actual i386 composition and app link pass. Tally unchanged. Activation API mappings resolved; private observed publication and containing session/loader remain.

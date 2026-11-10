@@ -7,10 +7,23 @@
 
 namespace hd2::game {
 
+template<class Files,class Frames>class ParticleModuleLoading;
 //Particle-manager definition cache and0089A8F4 borrowed scene have process
-//lifetime. No placed instance, texture or animation producer is invented here.
+//lifetime.00445980 clears definitions on initialized module17 finish; closing
+//the mission-file facade alone does not. No placed instance producer exists.
 template<class Frame>struct MissionEffectsProcess {
     EffectDefinitions definitions;Frame scene{};
+    Frame particle_scene()const{return particle_scene_;} //Native module17+100C, distinct from0089A8F4.
+    bool particles_initialized()const{return particles_initialized_;}
+    std::int32_t particle_identity()const{return particle_identity_;}
+private:
+    template<class Files,class Frames>friend class ParticleModuleLoading;
+    //Only cold owners are exposed: active bucket/1014/1034 producers still
+    //reject before creating instances. None can reach a successful empty cleanup.
+    Frame particle_scene_{};
+    std::int32_t particle_identity_=-1; //00443D30; process1044 is initially BSS zero.
+    bool particles_initialized_=false;
+    const void* particle_world_=nullptr; //Source lifetime guard, not native readiness.
 };
 
 //00445D90 over actual selected files,00444140's nonempty definition cache and
@@ -23,6 +36,7 @@ public:
     ~MissionEffectsLoading(){close();}
     MissionEffectsLoading(const MissionEffectsLoading&)=delete;
     MissionEffectsLoading& operator=(const MissionEffectsLoading&)=delete;
+    Frames& frames(){return frames_;}Process& process(){return process_;}
     void publish_scene(){ //006CA780 after collision tree, BEFORE00445D90.
         const auto scene=frames_.world_scene_frame();
         if(!scene||(process_.scene&&process_.scene!=scene))throw std::logic_error("Effects require the SAME containing world scene");
@@ -31,15 +45,18 @@ public:
     void load(const std::string& resource){
         if(!published_||process_.scene!=published_||frames_.world_scene_frame()!=published_)
             throw std::logic_error("Mission effects require their actual published world scene");
+        ensure_definitions();
+        const auto path="missions\\"+resource+"\\effects.bin";
+        const auto bytes=frontend::pre_mission_detail::read_file(files_,path.c_str());
+        if(!bytes){std::fprintf(stderr,"Effects.bin : could not open '%s'\n",path.c_str());return;} //Original diagnostic/return, not required placed-instance success.
+        read_mission_effects(SerializedBytes(*bytes),*this);
+    }
+    void ensure_definitions(){ //00444140, also called by00443F30 before its initialized latch.
         if(process_.definitions.values().empty()){
             const auto definitions=frontend::pre_mission_detail::read_file(files_,"tables\\effects.def");
             if(definitions)(void)process_.definitions.load(SerializedBytes(*definitions));
             else std::fputs("Could not load data from 'tables\\effects.def'\n",stderr);
         }
-        const auto path="missions\\"+resource+"\\effects.bin";
-        const auto bytes=frontend::pre_mission_detail::read_file(files_,path.c_str());
-        if(!bytes){std::fprintf(stderr,"Effects.bin : could not open '%s'\n",path.c_str());return;} //Original diagnostic/return, not required placed-instance success.
-        read_mission_effects(SerializedBytes(*bytes),*this);
     }
     Frame find_effect_frame(const std::string& name){return frames_.find_scene_frame(name,0xffff);} //004464A0 scene7C, not a separate model cache.
     void create_placed_effect(std::uint32_t identity,const std::array<std::uint32_t,16>&,Frame){

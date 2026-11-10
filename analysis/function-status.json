@@ -10648,7 +10648,8 @@
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
-        "analysis/session-loading-consumers.md"
+        "analysis/session-loading-consumers.md",
+        "analysis/module-loading-lifetimes.md"
       ]
     },
     {
@@ -25721,6 +25722,30 @@
         "recovered/host/game_actor_frames.h",
         "analysis/shot-manager-loading.md",
         "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00444110",
+      "status": "partial",
+      "coverage": "Module17 loading tail assigns the SAME actual game scene to separate particle100C borrower on both authority/presentation passes; typed source lifetime guard rejects missing or foreign scene.",
+      "limitations": "Source-only typed process/STL lifetime instead of original object/container/allocator/virtual ABI. Active particle instances, textures, simulation and rendering remain unsupported; no containing application world or desktop verification and no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/particle_module_loading.h",
+        "analysis/module-loading-lifetimes.md",
+        "analysis/checkpoints/p2.2-module-loading-lifetimes-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00445980",
+      "status": "partial",
+      "coverage": "Initialized module17 finish clears the SAME typed definition owners used by00444140 before1034 instance retirement, preserving the never-initialized cache branch.",
+      "limitations": "Source-only typed process/STL lifetime instead of original object/container/allocator/virtual ABI. Active particle instances, textures, simulation and rendering remain unsupported; no containing application world or desktop verification and no whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/mission_effects_loading.h",
+        "analysis/module-loading-lifetimes.md",
+        "analysis/checkpoints/p2.2-module-loading-lifetimes-20261110.json"
       ]
     }
   ]
