@@ -22,6 +22,7 @@ public:
         state_.set(0x4e4,std::uint32_t{3}); //Inline4E0 type3 command, no runtime producer exposed.
     }
     ~HumanPlayerStateLoading(){detach_callbacks();}
+    HumanSightMetricFamily sight_metric_family()const override{return HumanSightMetricFamily::player;} //B0+38=00542320,+34 remains RET12.
     template<class Services>void bind_sight_services(Services& services) {
         if(bound_)throw std::logic_error("Cannot replace a bound player's Sight receivers");
         sight_known_=[&services](Human& actor){return services.player_knows_enemy(actor);};

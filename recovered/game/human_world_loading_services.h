@@ -7,6 +7,7 @@
 #include "game/human_speech_loading.h"
 #include "game/human_speech_notifications.h"
 #include "game/human_sight_relations.h"
+#include "game/collision_ray.h"
 #include <stdexcept>
 
 namespace hd2::game {
@@ -90,6 +91,44 @@ public:
     template<class Human>auto& human_state_factory(Human& human){return composition(human).state_factory();}
     template<class Human>auto& human_state_owner(Human& human){return composition(human).states();}
     template<class Human>auto& human_inline(Human& human){return composition(human).control();}
+    template<class Human>bool sight_controlled_target(Human& human){ //005A59E0's SAME00461410/20 roster membership.
+        if((mode_flags()&7u)!=7u&&human_remote_ai_enabled()&&(mode_flags()&1u))return dependencies().players.auxiliary().human_roster().contains(&human);
+        return dependencies().players.control().human_roster().contains(&human);
+    }
+    template<class Human>float sight_range_factor(Human& human){ //005AC350, actual DD0+DA4 field0, not smoothed opacity.
+        auto* control=human_inline(human).control();if(!control)throw std::runtime_error("Sight range requires actual Human DD0");
+        return control->opacity().field0();
+    }
+    template<class Human>std::optional<float> sight_surface_factor(Human& human){ //005AC430 reads actual DD0+754.
+        auto* control=human_inline(human).control();if(!control)throw std::runtime_error("Sight surface query requires actual Human DD0");
+        if(control->physical().state().template get<std::uint32_t>(0x754))throw std::runtime_error("Sight surface requires actual populated DD0+754 material and GEffects94 receiver");
+        return std::nullopt; //Actual cold NULL754 branch; no producer for a synthetic surface.
+    }
+    long double sight_view_distance(){return dependencies().scene.frames().sight_view_distance();}
+    template<class Human>bool sight_attachment_direction(Human&,HumanVector&){throw std::runtime_error("Sight attachment direction requires actual actor virtual98/A4 receivers");}
+    std::uint32_t sight_time()const{return game_word28();}
+    template<class Frame>HumanVector sight_position(Frame frame){
+        if(!frame)throw std::runtime_error("Sight position requires actual marker frame");
+        const auto matrix=dependencies().scene.frames().actor_world_matrix(frame);return {{matrix[12],matrix[13],matrix[14],matrix[15]}};
+    }
+    template<class Actor>HumanVector sight_human_origin(Actor actor){return sight_position(selection_human(*actor).head_marker);}
+    template<class Actor>auto sight_human_attachment(Actor actor){return selection_human(*actor).field160;}
+    template<class Actor>void sight_exclude_human(Actor actor){human_inline(selection_human(*actor)).exclude_query(false);}
+    template<class Actor>void sight_restore_human(Actor actor){human_inline(selection_human(*actor)).restore_query(false);}
+    void sight_restore_dog(){dependencies().scene.exclusions().clear();} //0046DF80 clears even with no populated Dog exclusions.
+    struct SightRayHit{std::uint32_t flags;const void* actor;};
+    std::optional<SightRayHit> sight_ray(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags){
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Sight ray requires actual loaded World/tree");
+        auto& scene=d.scene;using Scene=std::remove_reference_t<decltype(scene)>;
+        using Resources=std::remove_reference_t<decltype(scene.collision_resources())>;
+        CollisionRay<typename Dependencies::Frame,typename Scene::Descriptor,Resources,typename Dependencies::ActorFrames>
+            ray(&scene.collision_tree(),&scene.buckets(),scene.collision_resources(),scene.frames());
+        const auto hit=ray.ray(start,displacement,layers,flags,false);if(!hit)return std::nullopt;
+        if(hit->dynamic_identity)return SightRayHit{hit->dynamic_identity->flags,hit->dynamic_identity->actor};
+        if(!hit->static_identity)throw std::logic_error("Sight ray lost actual collision identity");
+        const auto id=*hit->static_identity;const auto& tree=scene.collision_tree();
+        return SightRayHit{id.kind?tree.shapes.at(id.kind-0x80).at(id.index).flags:tree.triangles.at(id.index).flags,nullptr};
+    }
     template<class Composition,class Human>Composition& human_loading_owner(Human& human){return dependencies().world_actors.template human_loading_owner<Composition>(human);}
     template<class Human>bool human_selected_suppressed(Human& human){return dependencies().presentation.human_selected_suppressed(human);}
     template<class Human>auto human_attached_actor(Human& human){return human.field160;}

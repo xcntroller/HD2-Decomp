@@ -890,6 +890,10 @@ public:
         scene_method<MenuDriver::Release>(frame,module_,0,0x1c370)(frame);
     }
     Frame active_game_camera() const {return field<Frame>(scene_.frame(),0x15c);}
+    float sight_view_distance()const{ //00465DE0 via SAME scene+15C camera+128, not controller's saved240 frame.
+        const auto camera=active_game_camera();if(!camera)throw std::runtime_error("Sight view distance requires actual active scene camera");
+        return field<float>(camera,0x128);
+    }
     bool script_scene_available()const{return scene_.frame()!=nullptr;} //0041D030's actual game18 borrower.
     MenuDriver::Owner static_weapon_shells(){MenuDriver::Owner result(nullptr,nullptr);if(resources_.cache(1).get("GunShells",result)!=0)result.reset();return result;} //004C76C0, model category1.
     void static_weapon_axis_angle(Frame frame,Vector& axis,float& angle){

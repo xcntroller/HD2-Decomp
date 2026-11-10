@@ -69,6 +69,7 @@ public:
     HumanVector current_direction()const override{return resources_.direction().state().template get<HumanVector>(0);} //0056FBF0.
     HumanVector target_direction()const override{return resources_.direction().state().template get<HumanVector>(0x10);} //0056FC00.
     bool bound()const{return bound_;}
+    HumanSightMetricFamily sight_metric_family()const override{return HumanSightMetricFamily::ai;} //B0+34=0056FC80,+38=00570280.
     void sight_enemy_acquired(Human& actor) override {
         const auto kind=this->words().template get<std::uint32_t>(0x48);
         if(kind==6)return; //005A4360 genuinely returns without side effects.

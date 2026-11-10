@@ -43,7 +43,32 @@ public:
     void player_sight_dog(Human& observer,GameSceneActors::Instance& target){world_.player_sight_dog(observer,target);}
     void dog_sight_changed(Actor observer,bool lost,std::uint32_t target){world_.dog_sight_changed(*observer,lost,target);}
     using Source=game::SightLoading<GameSceneActors,GameSightLoading,Actor>;
-    GameSightLoading(GameSceneActors& frames,World& world):frames_(frames),world_(world),source_(frames,*this){}
+    std::optional<float> sight_human_metric(Actor observer,Actor target){return game::human_sight_human_metric(human(observer),human(target),frames_,world_).score;}
+    template<class DogQueries>std::optional<float> sight_dog_metric(Actor observer,Actor target,DogQueries& dogs){return game::human_sight_dog_metric(human(observer),target,frames_,world_,dogs).score;}
+    GameSightLoading(GameSceneActors& frames,World& world,float& work_clock):frames_(frames),world_(world),work_clock_(work_clock),source_(frames,*this){}
+    template<class Queries>void tick(std::uint32_t elapsed,Queries& queries){
+        struct Pass {
+            GameSightLoading& owner;Source& source;Queries& queries;
+            void sight_observe(typename Source::Observer& observer,std::uint32_t mask,std::uint32_t target,std::uint32_t elapsed){source.observe(observer,mask,target,elapsed,*this);}
+            std::int32_t sight_human_health(Actor actor){const auto bits=human(actor).properties.stats_ec[0];std::int32_t health;std::memcpy(&health,&bits,4);return health;}
+            std::optional<float> sight_human_metric(Actor observer,Actor target){return owner.sight_human_metric(observer,target);}
+            std::optional<float> sight_dog_metric(Actor observer,Actor target){return owner.sight_dog_metric(observer,target,queries);}
+            typename Source::HumanProbe sight_human_probe(typename Source::Observer& observer,std::uint32_t target,std::uint32_t elapsed){return source.probe_human(observer,target,elapsed,*this);}
+            bool sight_dog_probe(typename Source::Observer& observer,std::uint32_t target,std::uint32_t elapsed){return source.probe_dog(observer,target,elapsed,*this);}
+            std::uint32_t sight_time(){return owner.world_.sight_time();}
+            typename Source::Vector sight_position(Frame frame){return owner.world_.sight_position(frame);}
+            typename Source::Vector sight_human_origin(Actor actor){return owner.world_.sight_human_origin(actor);}
+            Actor sight_human_attachment(Actor actor){return owner.world_.sight_human_attachment(actor);}
+            void sight_exclude_human(Actor actor){owner.world_.sight_exclude_human(actor);}
+            void sight_restore_human(Actor actor){owner.world_.sight_restore_human(actor);}
+            std::optional<typename World::SightRayHit> sight_ray(const typename Source::Vector& origin,const typename Source::Vector& delta,std::uint32_t layers,std::uint32_t flags){return owner.world_.sight_ray(origin,delta,layers,flags);}
+            void sight_exclude_dog(Actor actor){queries.sight_exclude_dog(actor);}
+            void sight_restore_dog(){owner.world_.sight_restore_dog();}
+            std::optional<typename Source::Vector> sight_dog_origin(Actor actor){return queries.sight_dog_origin(actor);}
+            void sight_dog_marker_metric(Actor observer,Actor target,std::uint32_t& interval,float& score){queries.sight_dog_marker_metric(observer,target,interval,score);}
+        } pass{*this,source_,queries};
+        source_.tick(elapsed,work_clock_,pass);
+    }
     Source& source(){return source_;}
 private:
     static Human& human(Actor actor) {
@@ -51,7 +76,7 @@ private:
         if(!result)throw std::runtime_error("Sight Human receiver has a different actual actor family");
         return *result;
     }
-    GameSceneActors& frames_;World& world_;Source source_;
+    GameSceneActors& frames_;World& world_;float& work_clock_;Source source_;
 };
 } //namespace hd2::host
 #endif

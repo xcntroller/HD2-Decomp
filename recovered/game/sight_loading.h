@@ -5,13 +5,16 @@
 #include <cstdint>
 #include <limits>
 #include <memory>
+#include <optional>
 #include <stdexcept>
 #include <utility>
 #include <vector>
+#include <cmath>
+#include <cstring>
 
 namespace hd2::game {
 
-//Module0089B178, loading registration/lifetime only. The two lists contain
+//Module0089B178, registration/lifetime and frame scheduling. The two lists contain
 //owned records and BORROWED actors/frames. Actual relationship and Human/Dog
 //feedback receivers are required; no simulation/visibility test is supplied.
 template<class Frames,class Receivers,
@@ -48,6 +51,168 @@ public:
         if(authority){observer_cursor_=target_cursor_=0;delay_=4000;}
     }
     void close_loading(bool authority){if(authority)clear();} //0046EFF0.
+    //0046F000 scheduler. Queries must supply actual Human/Dog virtual00;
+    //the caller supplies SAME process FLOAT00839390 (initial1), not a World
+    //copy. This does not replace positive visibility with a successful probe.
+    template<class Queries>void tick(std::uint32_t elapsed,float& accumulator,Queries& queries){
+        if(delay_){delay_-=elapsed;if(signed_word(delay_)<=0)delay_=0;return;}
+        accumulator=static_cast<float>(static_cast<long double>(accumulator)+signed_word(elapsed));
+        const auto pairs=static_cast<std::uint32_t>(targets_.size())*static_cast<std::uint32_t>(observers_.size());
+        const auto product=signed_word(pairs);
+        const auto quotient=(static_cast<long double>(accumulator)*.0010000000474974513f)*product;
+        if(!std::isfinite(quotient)||quotient<-9223372036854775808.L||quotient>=9223372036854775808.L)
+            throw std::runtime_error("Sight work budget exceeds original signed conversion range");
+        auto budget=signed_word(static_cast<std::uint32_t>(static_cast<std::int64_t>(std::trunc(quotient))));
+        if(!budget)return;
+        accumulator=static_cast<float>(static_cast<long double>(accumulator)-(1000.L/product)*budget);
+        if(target_cursor_>=targets_.size())target_cursor_=0;
+        const auto first_target=target_cursor_;
+        for(;;){
+            auto* current=record_at(targets_,static_cast<std::int32_t>(target_cursor_));if(!current)return;
+            const auto original_field10=current->field10;
+            const auto paired=current->own_observer;
+            if(current->mask&&paired!=-1){
+                while(observer_cursor_<observers_.size()){
+                    auto* observer=record_at(observers_,static_cast<std::int32_t>(observer_cursor_));if(!observer)return;
+                    const auto other_target=observer->own_target;
+                    if(static_cast<std::uint32_t>(paired)!=observer_cursor_&&observer->mask){
+                        current=record_at(targets_,static_cast<std::int32_t>(target_cursor_));if(!current)return;
+                        const auto mask=current->field10&observer->mask;
+                        const bool marker=next_marker_requires_update(*observer,target_cursor_); //Called even when mask!=0.
+                        current=record_at(targets_,static_cast<std::int32_t>(target_cursor_));if(!current)return;
+                        if((mask||marker)&&!current->flag29){
+                            observer=record_at(observers_,static_cast<std::int32_t>(observer_cursor_));if(!observer)return;
+                            queries.sight_observe(*observer,mask,target_cursor_,elapsed);
+                        }
+                        if(other_target!=-1){
+                            auto* reciprocal=record_at(observers_,paired);if(!reciprocal)return;
+                            const auto reciprocal_mask=reciprocal->mask;
+                            (void)next_marker_requires_update(*reciprocal,static_cast<std::uint32_t>(other_target)); //Native ignores this result.
+                            const auto* target=record_at(targets_,other_target);
+                            if(!target)throw std::runtime_error("Sight reciprocal target is absent");
+                            if(reciprocal_mask&&!target->flag29){
+                                reciprocal=record_at(observers_,paired);if(!reciprocal)return;
+                                queries.sight_observe(*reciprocal,reciprocal_mask,static_cast<std::uint32_t>(other_target),elapsed);
+                            }
+                        }
+                    }
+                    ++observer_cursor_;
+                    if(budget<=0)return; //Native tests BEFORE decrement: budget1 permits a second iteration.
+                    budget=signed_word(static_cast<std::uint32_t>(budget)-1);
+                }
+                observer_cursor_=0;
+            }
+            ++target_cursor_;if(target_cursor_>=targets_.size())target_cursor_=0;
+            if(target_cursor_==first_target)return;
+            if(!original_field10){
+                const auto spent=observer_cursor_-static_cast<std::uint32_t>(observers_.size());
+                observer_cursor_=0;budget=signed_word(static_cast<std::uint32_t>(budget)+spent);
+                if(budget<=0)return;
+            }
+        }
+    }
+    struct HumanProbe {bool visible,deferred;};
+    using Vector=std::array<float,4>;
+    struct RayHit {std::uint32_t flags;Actor actor;};
+    //0046DF80: advance ONE actual marker. Human deadlines use an unsigned
+    //comparison; a future deadline returns the old aggregate and suppresses
+    //feedback. Shared exclusions bracket the ray, not the marker/time writes.
+    template<class Queries>HumanProbe probe_human(Observer& observer,std::uint32_t index,
+            std::uint32_t elapsed,Queries& queries){
+        auto* target=live_target(static_cast<std::int32_t>(index));if(!target)return {false,false};
+        auto& relation=required_relation(observer,static_cast<std::int32_t>(index));const auto before=relation.words[0];
+        const auto marker=advance_marker(relation,*target);
+        if(queries.sight_time()<relation.words[16+marker])return {before!=0,true};
+        relation.words[16+marker]=0;
+        const auto frame=target->markers.at(marker);const auto actor=receivers_.sight_actor(target->frame);
+        if(!actor)throw std::runtime_error("Sight Human probe lost its actual target actor");
+        auto interval=std::uint32_t{0};const auto score=word_float(relation.words[6+marker]);
+        if(score==0)interval=elapsed;
+        if(score>0){interval=queries.sight_time()-relation.words[11+marker];relation.words[11+marker]=queries.sight_time();}
+        relation.words[16+marker]=queries.sight_time()+interval;
+        const auto origin=queries.sight_human_origin(observer.actor); //Head260 is required even when marker is NULL.
+        if(!frame)return {false,false};
+        const auto displacement=marker_displacement(queries.sight_position(frame),origin);
+        auto layers=target->enabled?0u:2u;const auto kind=target->kind;
+        Actor match{};
+        const auto restore=[&]{if(kind==0)queries.sight_restore_human(actor);else if(kind==1)queries.sight_restore_dog();};
+        //The source boundary restores the SAME shared exclusion owner on a
+        //query exception, preserving the first failure during partial teardown.
+        const auto hit=[&]{try{
+                if(kind==0){queries.sight_exclude_human(actor);match=queries.sight_human_attachment(actor);}
+                else if(kind==1){queries.sight_exclude_dog(actor);layers|=2u;}
+                return queries.sight_ray(origin,displacement,layers|0x2cc100u,0x100000u);}
+            catch(...){try{restore();}catch(...){}throw;}}();
+        restore();
+        if(!hit||(match&&(hit->flags&0x40u)&&hit->actor==match))return {true,false};
+        required_relation(observer,static_cast<std::int32_t>(index)).words[6+marker]=0;return {false,false};
+    }
+    //0046E3B0: Dog deadline subtraction is SIGNED, and visibility requires an
+    //actual target-actor hit. The original NULL544 path reads model position
+    //then still dereferences544; the real receiver must reject that bad state,
+    //not turn the model read into a successful head-marker fallback.
+    template<class Queries>bool probe_dog(Observer& observer,std::uint32_t index,
+            std::uint32_t elapsed,Queries& queries){
+        auto* target=live_target(static_cast<std::int32_t>(index));if(!target)return false;
+        auto& relation=required_relation(observer,static_cast<std::int32_t>(index));
+        const auto marker=advance_marker(relation,*target);
+        if(signed_word(relation.words[16+marker]-queries.sight_time())>0)return false;
+        relation.words[16+marker]=0;
+        const auto frame=target->markers.at(marker);const auto actor=receivers_.sight_actor(target->frame);
+        if(!actor)throw std::runtime_error("Sight Dog probe lost its actual target actor");
+        const auto score=word_float(relation.words[6+marker]);std::uint32_t interval;
+        if(score==0)interval=elapsed;
+        else if(score>0){interval=queries.sight_time()-relation.words[11+marker];relation.words[11+marker]=queries.sight_time();}
+        else throw std::runtime_error("Sight Dog interval is unwritten for a negative or unordered cached score");
+        if(target->kind>1)return false;
+        auto metric=score;queries.sight_dog_marker_metric(observer.actor,actor,interval,metric); //Actual005D64C0.
+        auto& fresh=required_relation(observer,static_cast<std::int32_t>(index));
+        fresh.words[6+marker]=float_word(metric);fresh.words[16+marker]=queries.sight_time()+interval;
+        if(metric!=100.f)return false;
+        const auto origin=queries.sight_dog_origin(observer.actor);if(!origin||!frame)return false;
+        const auto displacement=marker_displacement(queries.sight_position(frame),*origin);
+        target=live_target(static_cast<std::int32_t>(index));if(!target)throw std::runtime_error("Sight Dog probe lost its target after metric callback");
+        const auto hit=queries.sight_ray(*origin,displacement,(target->enabled?0u:2u)|0x208000u,0x100000u);
+        if(hit&&(hit->flags&0x40u)&&hit->actor==actor)return true;
+        required_relation(observer,static_cast<std::int32_t>(index)).words[6+marker]=0;return false;
+    }
+    //Human0046DCF0 (absent frozen) and Dog0046DEA0 observer virtual00.
+    //Queries supplies the actual B0 metric and marker/ray receivers, which
+    //may mutate SAME relation fields. No clear-ray or score100 fallback.
+    template<class Queries>void observe(Observer& observer,std::uint32_t,std::uint32_t index,
+            std::uint32_t elapsed,Queries& queries){
+        if(observer.flag24)return;
+        auto& relation=required_relation(observer,static_cast<std::int32_t>(index));if(relation.mode()!=2)return;
+        const auto before=relation.words[0];relation.words[2]=relation.words[1];
+        const auto kind=receivers_.sight_actor_type(observer.actor);
+        if(kind==3){
+            auto* target=live_target(static_cast<std::int32_t>(index));if(!target)throw std::runtime_error("Sight Human observer lost its actual target");
+            const auto actor=receivers_.sight_actor(target->frame);if(!actor)throw std::runtime_error("Sight target has no actual actor");
+            const auto target_kind=receivers_.sight_actor_type(actor);std::optional<float> score;
+            if(target_kind==3){if(queries.sight_human_health(actor)<=0&&before)return;score=queries.sight_human_metric(observer.actor,actor);}
+            else if(target_kind==30)score=queries.sight_dog_metric(observer.actor,actor);
+            else return;
+            if(!score)throw std::runtime_error("Sight observer would consume an unwritten native metric score");
+            if(*score!=100.f){
+                if(before)receivers_.human_sight_changed(observer.actor,true,index); //Native notifies BEFORE clearing fields.
+                auto& fresh=required_relation(observer,static_cast<std::int32_t>(index));fresh.words[0]=fresh.words[1]=0;fresh.words[3]&=0xffffff00u;return;
+            }
+            const HumanProbe result=queries.sight_human_probe(observer,index,elapsed);
+            auto& fresh=required_relation(observer,static_cast<std::int32_t>(index));const auto bit=1u<<(fresh.words[4]&31u);
+            if(result.visible){fresh.words[0]|=bit;if(fresh.words[0]!=before)++fresh.words[1];fresh.words[3]=(fresh.words[3]&0xffffff00u)|1u;}
+            else{fresh.words[0]&=~bit;if(fresh.words[0]!=before)--fresh.words[1];fresh.words[3]&=0xffffff00u;}
+            if(result.deferred)return;
+            if(before&&!fresh.words[0])receivers_.human_sight_changed(observer.actor,true,index);
+            else if(!before&&fresh.words[0])receivers_.human_sight_changed(observer.actor,false,index);
+        }else if(kind==30){
+            const bool visible=queries.sight_dog_probe(observer,index,elapsed);
+            auto& fresh=required_relation(observer,static_cast<std::int32_t>(index));const auto bit=1u<<(fresh.words[4]&31u);
+            if(visible){fresh.words[0]|=bit;fresh.words[3]=(fresh.words[3]&0xffffff00u)|1u;}
+            else{fresh.words[0]&=~bit;fresh.words[3]&=0xffffff00u;}
+            if(before&&!fresh.words[0])receivers_.dog_sight_changed(observer.actor,true,index);
+            else if(!before&&fresh.words[0])receivers_.dog_sight_changed(observer.actor,false,index);
+        }else throw std::runtime_error("Sight observer has an unsupported actual actor family");
+    }
     void clear() noexcept { //0046FFB0: observers reverse, then targets reverse, retaining list capacity.
         while(!observers_.empty())observers_.pop_back();
         while(!targets_.empty())targets_.pop_back();
@@ -172,6 +337,25 @@ public:
     Target* target(std::int32_t index){return live_target(index);}
     const auto& observers()const{return observers_;}const auto& targets()const{return targets_;}
 private:
+    static std::int32_t signed_word(std::uint32_t bits){std::int32_t value;std::memcpy(&value,&bits,4);return value;}
+    static float word_float(std::uint32_t bits){float value;std::memcpy(&value,&bits,4);return value;}
+    static std::uint32_t float_word(float value){std::uint32_t bits;std::memcpy(&bits,&value,4);return bits;}
+    static std::uint32_t advance_marker(Relation& relation,const Target& target){
+        ++relation.words[4];if(relation.words[4]==target.markers.size())relation.words[4]=0;
+        if(relation.words[4]>=target.markers.size()||relation.words[4]>=5)
+            throw std::runtime_error("Sight probe marker cursor exceeds its actual relation record");
+        return relation.words[4];
+    }
+    static Vector marker_displacement(const Vector& point,const Vector& origin){
+        Vector result{};for(unsigned n=0;n!=3;++n)result[n]=static_cast<float>(static_cast<long double>(point[n])-origin[n]);return result;
+    }
+    bool next_marker_requires_update(Observer& observer,std::uint32_t index){ //0046D840/0046DC70, both absent frozen.
+        const auto* target=live_target(static_cast<std::int32_t>(index));if(!target)return false;
+        auto& relation=required_relation(observer,static_cast<std::int32_t>(index));auto next=relation.words[4]+1;
+        if(next==target->markers.size())next=0;
+        if(next>=target->markers.size()||6u+next>=relation.words.size())throw std::runtime_error("Sight marker cursor exceeds its actual relation record");
+        return relation.words[6+next]!=0x42c80000u;
+    }
     template<class Record>static Record* record_at(const std::vector<std::unique_ptr<Record>>& records,std::int32_t index) {
         return index>=0&&static_cast<std::size_t>(index)<records.size()?records[static_cast<std::size_t>(index)].get():nullptr;
     }
@@ -224,7 +408,7 @@ private:
     }
     Frames& frames_;Receivers& receivers_;
     std::vector<std::unique_ptr<Target>> targets_;std::vector<std::unique_ptr<Observer>> observers_;
-    std::uint32_t observer_cursor_=0,target_cursor_=0,delay_=0; //Cold guards;0046EFD0 supplies actual loading state.
+    std::uint32_t observer_cursor_=0,target_cursor_=0,delay_=0; //Native2C/30/34;0046EFD0 supplies actual loading state.
 };
 } //namespace hd2::game
 #endif

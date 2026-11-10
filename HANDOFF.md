@@ -9,36 +9,41 @@ WORK, hash/remove temporary fixtures at checkpoint. Interactive changes require
 actual user desktop acceptance.
 
 Application still DECLINES loading. Both P2.2 boxes OPEN; no first world frame or
-mission desktop claim. Tally34 complete/2,023 partial(2,018 client/five engine)/
+mission desktop claim. Tally34 complete/2,035 partial(2,030 client/five engine)/
 18,783 frozen; zero complete promotions.
 
 ## Latest source checkpoint
 
-[Physics motion/pivot/tipping](analysis/physics-object-frame-motion.md),
-[receipt](analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json).
-Actual type0..5 frame bodies now use SAME module2 lists/handles/EC, ray/sweep/grid
-and shared World exclusions. Prior manager/four-family checkpointe97e1d4.
-Type3 phase0 tentative translation/ordered rays/angular/gravity; support phase1
-actual lever×gravity step, FARTHER endpoint first/tie1, BOTH trajectories. A hit
-restores quaternion+position before ONE24, sets phase2 and RETURNS FALSE, causing
-actual retirement; later contact may wake SAME phase2. Phase2 checks ONE farther
-secondary trajectory. BEA0/BEC0 delegate gravity/angular only phase0, not RETs.
-Type5 non-tree actual00408780 contact seeds202/targets/clocks; down×incoming free
-axis. Kind0 oscillates; other kinds use requested angle and disable/remove collider
-at strict angle>1.2566371.004070C0 preserves strict boundaries/onephase/exacttargets,
-Slerp true rising/false returning;00406D10 BOTH static rays even first hit, masks
-FFFFFFFF/200000/no normal; blocked OWNER-only .01progress rollback.004094D0 is
-genuine RET12; manager still emits event2. Debug004D0440 genuine RET16/no credit.
-Required branches: pickup clears204 then throws at00407BD0 notification; tree
-nonzero with actual parent kind9 requires model/cache/proximity replacement.
-Tree kind0 DOES NOT initialize202; early frame read still rejects unwritten state.
-Type6 unresolved registration still rejects.0043C6A0 is separate grouped Physics.
-Three native sanitizer fixtures/actual-host i386 two18-module routes/app link/27
-tracker PASS. Eight temp source/binary/object files hashed/removed. Seven new
-partials; existing00408780 expanded; no complete/desktop promotion.
-NEXT SAME full checkbox: actual remaining Human/Dog/movement/Sight/Shot frame
-receivers, volumetric visibility/procedural, meaningful guard publication and
-actual GameApplicationState loading/activation; user Python desktop last.
+[Sight/Shot frame source](analysis/sight-shot-frame-source.md),
+[receipt](analysis/checkpoints/p2.2-sight-frame-20261110.json).
+SAME Startup FLOAT00839390 initial1 persists across module activation. Actual
+0046F000 scheduler, Human/Dog observer and marker/ray policies, Human TARGET range
+005A59E0, player00542320 and AI00570280/0056FC80 metrics now source-bound.
+Human real head260/markers, SAME World collision tree/buckets/resources/exclusions,
+actual DD0+DA4 field0 and actual scene active-camera128 are used. Typed B0 families
+preserve real player/AI/base dispatch; base/player-to-Dog UNWRITTEN scores reject
+consumption rather than inventing score0/100. QWORD00810D30 is60degree angle, not
+its FLOAT low word2. Dog ray requires actual HIT+40+target actor, unlike Human's
+clear-ray/attachment identity success. Preserve signed versus unsigned deadlines.
+Actual positive Dog534/544/+26C, attachment98/A4 and populated DD0+754/material94
+remain required. Baseline Tutorial has no Dog; live overrides remain authoritative.
+ShotMgr module14 cold queues tick in original order/strict100 cadence; positive
+opaque records still reject. No new diagnostics markers/desktop claim.
+Two Sight native sanitizer fixtures plus prior Shot fixture, strict actual-host
+BOTH18-module passes, app link and27 tracker checks PASS. Eight temporary fixture
+source/binary/object files hashed/removed; logs/original evidence retained in WORK.
+Twelve new partials, zero complete promotions; application still DECLINES loading.
+NEXT SAME full checkbox: actual Human0059FE30/0059FFD0 + movement005647C0/frame
+receivers, required positive module/render/volumetric consumers, actual guard
+observations and GameApplicationState loading/activation, then user desktop.
+
+Prior [Physics motion/pivot/tipping](analysis/physics-object-frame-motion.md),
+commit21e1d7c and prior e97e1d4. Actual type0..5 frames use SAME lists/handles/EC,
+queries/exclusions and ordered retirement. Type3 phase1 hit writesphase2 butRETURNS
+FALSE, retirement follows; later contact may wake samephase2. Actual gravity×lever
+pivot axis; phase-only BEA0/BEC0 delegation. Type5 non-tree contact seeds202;
+tree kind0 leaves202 genuinely unwritten. Required00407BD0 pickup/tree replacement
+and type6 registration still reject. Grouped blastforce0043C6A0 remains separate.
 
 Prior [Human projection process](analysis/human-projection-frame-process.md),
 commit1addb8f: actual Items3→0078AD70 SAME Startup primary/fading/pool/counters,
@@ -50,8 +55,8 @@ Prior [module/actor frames](analysis/module-actor-frame-source.md), commit7d6166
 Both module tick passes freshASC all19 slots. Scene2 FORWARD/captured/FIFO;
 runtime REVERSE/drainsREVERSE. Actual Human summary/Script-suspension byte1D2.
 Vertex live selected-profile quality byte1 and UNSIGNED clock>=300/one subtraction.
-Typed GameSceneActorFrames joins existing family updates; actual Human/Dog/
-movement/Physics/Sight/Shot consumers still required, not successful substitutes.
+Typed GameSceneActorFrames joins existing family updates; remaining Human/Dog/movement consumers still required; later checkpoints above
+bind Physics/Sight/Shot policies without successful substitutes.
 Tracks/HeavyFire/Particles cold updates earn no new credit. TShift registered
 0048E7E0 is genuineRET, distinct0048E7F0 worker.00476160/004749A0 absent/no credit.
 

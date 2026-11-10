@@ -142,7 +142,7 @@ public:
          animation_sound_(sound_,startup,dubbing_),events_(scene.frames(),animation_actors_,animation_sound_),
          sweep_(scene.collision_resources(),scene.frames()),
          script_link_(scene.frames()),contexts_(scene.frames(),script_link_,script_link_,audio_.random_source(),bindings.services),
-         sight_(scene.frames(),bindings.services),router_(scene.frames(),bindings.services),
+         sight_(scene.frames(),bindings.services,startup.game_sight_work_clock()),router_(scene.frames(),bindings.services),
          hearing_(scene.frames(),sight_,bindings.services,router_,startup),proximity_(scene.frames(),startup),
          first_players_(players_.control(),actors_,scene.frames(),session,startup.local_player_identity()),
          hud_world_(scene.frames(),session,*parent.tables()),

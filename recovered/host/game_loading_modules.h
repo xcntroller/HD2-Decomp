@@ -37,7 +37,7 @@ public:
         case 3:d_.presentation_shared.tick_item_projections(authority,elapsed);return;
         case 4:bound(module,d_.scripts.module());
             if(authority)d_.scripts.module().tick(elapsed);else d_.scripts.module().frame_update(signed_elapsed(elapsed));return;
-        case 5:if(authority)frames.tick_sight(elapsed);return;
+        case 5:if(authority)d_.sight.tick(elapsed,frames);return;
         case 6:if(!authority)d_.startup.update_sound(elapsed);return; //00436820 RET4/00436830→004368D0.
         case 7:bound(module,d_.versions);return; //Both original RET4.
         case 8:bound(module,d_.lightmap_groups);return; //Both original RET4.
@@ -47,7 +47,7 @@ public:
             if(authority)d_.players.tick(elapsed,d_.session.words.template get<std::uint32_t>(0x28),d_.startup.delayed_player_speech(),d_.human_services);return;
         case 12:frames.tick_runtime_actors(authority,elapsed);return;
         case 13:frames.tick_scene_actors(authority,elapsed);return;
-        case 14:bound(module,d_.shots);frames.tick_shots(authority,elapsed);return;
+        case 14:bound(module,d_.shots);d_.shots.tick(authority,elapsed);return;
         case 15:if(!authority)frames.tick_camera(elapsed);return;
         case 16:bound(module,d_.heavy_fire);d_.heavy_fire.update(authority,elapsed);return;
         case 17:bound(module,d_.particles);if(!authority)d_.particles.update(elapsed);return; //004455A0 RET4.

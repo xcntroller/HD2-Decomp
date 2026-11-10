@@ -1,0 +1,374 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "previous_checkpoint": "21e1d7c",
+  "added_entries": [
+    "0046f000",
+    "0046dea0",
+    "0046df80",
+    "0046e3b0",
+    "00542320",
+    "00570280",
+    "0056fc80",
+    "005a59e0",
+    "005a59d0",
+    "005a59a0",
+    "005ac350",
+    "005ac430"
+  ],
+  "ledger_added_partial_client": 12,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2035,
+  "native_checks": "PASS two focused Sight ASan/UBSan/leak fixtures: actual scheduler/observer/marker policies, deadlines, field/callback order, shared exclusion failure reset, target identity; actual Human target range/player/AI/Dog metric bodies, state/roster/range gates, materials, asymmetric FOV/inclusive edges and unwritten outputs. Earlier cold ShotMgr fixture PASS. Engine/owner leaves are doubles.",
+  "strict_i386": "PASS actual World and both18-module frame passes with actual Human metrics, head/query/exclusion/ray binding. Positive Dog and unrelated frame leaves are declarations; no Windows execution.",
+  "application_link": "PASS",
+  "tracker_tests": 27,
+  "no_new_credit": [
+    "0046dcf0/0046d840/0046dc70 absent frozen",
+    "005830b0/005830c0 absent frozen genuine RET12 outputs",
+    "00465de0 absent frozen",
+    "00451ec0/00451fb0 absent frozen, cold ShotMgr only",
+    "0069bfe0 debug RET and delegated LS3DF leaves"
+  ],
+  "artifacts": {
+    "analysis/work/mission-world-20261103/frame-sight-native.cpp": {
+      "sha256": "0b5391e0723ec8387fac15d4f00e09fa5a66ee7e8b91f9374dbd6e9dafd4f453",
+      "bytes": 11216,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-sight-native": {
+      "sha256": "464578581274716fe2565184124a5237264070c215b945139fec62ea63392407",
+      "bytes": 1407120,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-sight-metrics-native.cpp": {
+      "sha256": "aca4a9955bca220b6b5a330e27b7e2e3beb16bdb86c62f624b826e169df3fa5e",
+      "bytes": 6840,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-sight-metrics-native": {
+      "sha256": "694c18ebc1052f701876e2aaacb68b5da2f0ed04395228022e8f18d70210b4fa",
+      "bytes": 392120,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-shot-native.cpp": {
+      "sha256": "e732246f957656cb841063710b0187dc3336f786d7b8978616d830d8d3e008e0",
+      "bytes": 1701,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-shot-native": {
+      "sha256": "4dcc01a3149dcd8a30b6f669e38acc56958db97778be25d2727ce8677523956b",
+      "bytes": 787280,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-sight-host.cpp": {
+      "sha256": "316eaf22c9eae3417f3596b2a8a4d7ececb13ddcfcacd06be68f133fe440128e",
+      "bytes": 802,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-sight-host.o": {
+      "sha256": "a8f5d4e3e015f149d1cc23595eaa27b9cffa81c07e5eba56473a2ba0c2f8fbcc",
+      "bytes": 7693379,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-sight-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-native-run.log": {
+      "sha256": "9766db83174bb72bc6e6483ecec6cca5c8e8d63aa736524d278dd42c47b7aaeb",
+      "bytes": 439,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-metrics-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-metrics-native-run.log": {
+      "sha256": "53c64e0b58a68d8e5ea7945ec980ccf58e422058e4679ec3303c115654f8f2d6",
+      "bytes": 294,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shot-native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shot-native-run.log": {
+      "sha256": "d2a90d61cb5fa547c349d816e797c29582d5df23a3cb7847233c6637ec68ad45",
+      "bytes": 165,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-host-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-metrics-application-build.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies.log": {
+      "sha256": "b444553b8e4ae28508c14a69bf4ff690e8544f4af409170936cfbc3488a38931",
+      "bytes": 5008,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-scheduler.asm": {
+      "sha256": "873eb73d45ef34fb079516ec4519e00323327c071aa08379c96ed97e3467fecd",
+      "bytes": 16571,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-human-observer.asm": {
+      "sha256": "07bb6be4d8a6933375724fd5a060fa108be5d94670dedc1834115cf58f5f9fde",
+      "bytes": 10479,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-dog-marker-predicate.asm": {
+      "sha256": "746874dda9670049f770941f10cf125a3905248c7b79da9b65ef2ecb004340de",
+      "bytes": 2929,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-base-metrics.asm": {
+      "sha256": "c6e38ec1e5ffeab5066c896ca03d267f73e1cdc8d980dde82aee38d05ea4293d",
+      "bytes": 1140,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-human-marker-ray.asm": {
+      "sha256": "f2c01d5de2a3bce8e24688c9bcc95db2267e43193d59e115502880970b489e88",
+      "bytes": 18448,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-dog-marker-ray.asm": {
+      "sha256": "ad0e9f2bb76fa298e31f249a0a4baac0993b6b88111a929433f923a112dd4f49",
+      "bytes": 18066,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-dog-metric.asm": {
+      "sha256": "9c986520bf5ef7a5a0d25edc8a6066db47cf073ee0c7a0fedc583ada3fff8ed3",
+      "bytes": 889,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range.asm": {
+      "sha256": "a0a08bbde36c6aad5b527f87fb2527b65f1275019b0b73fb6c5b51f81e9b65b3",
+      "bytes": 9537,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-debug-hook.asm": {
+      "sha256": "802e70c4e77c8b11d604a45cd8659afbfb58026e2820e2e9e2f1180d33c7909c",
+      "bytes": 694,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-player-triangle.asm": {
+      "sha256": "ae3de0b4271ec65125ba7c68c43f3ec71606719db809fe5ad0f15837e0074ae3",
+      "bytes": 20090,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-ai-angles.asm": {
+      "sha256": "c54e37589581050ed9c6d6add98a0d40e74c23d5178742e9686d9d836e803a48",
+      "bytes": 9390,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-ai-dog-metric.asm": {
+      "sha256": "e20d159c241d8a701c76a51afe49bbc4522c3e68b4e312e9e7b91abfd657e3f8",
+      "bytes": 24151,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-ai-human-metric.asm": {
+      "sha256": "b67ff2bdca06ee1e1e7ebc89d28f083e870432d524bc08834b01611715b33180",
+      "bytes": 34026,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-metric-constants.json": {
+      "sha256": "97291728b6f94c6c2971e57933ad757fdc54d604edfda9af496ee67d9e6b2f4d",
+      "bytes": 1226,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shot-module-ticks.asm": {
+      "sha256": "f63c6d657a392f0b799ccf7ddf293848808c92c449dd4e7d05aed8eaef7836ad",
+      "bytes": 17277,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-scheduler/0046f000.c": {
+      "sha256": "818ce3fbc6742cb37b6f8f2d3e5fe3ce16718539cd388c738a4e081751623502",
+      "bytes": 4706,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-scheduler/0046f000.json": {
+      "sha256": "f5010f6223261da1cde28f3f5f24c9f08f13a7a971430cbf2e336cef0447e9fe",
+      "bytes": 9703,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-positive-boundary/005a59d0.c": {
+      "sha256": "f02dae628aa6aa7e15f3a0aba538ac5adcbbfb892b13c1ae11708018d01b1043",
+      "bytes": 275,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-positive-boundary/005a59d0.json": {
+      "sha256": "aaee45f5b4c285dcecc657f91462a679f82ed3d7305bb1139c93db884eb1b7d8",
+      "bytes": 476,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-positive-boundary/005a59a0.c": {
+      "sha256": "956f12b46890b695bb5e1775c98ad4f084afc3a98294f3e963b249ceff74b46c",
+      "bytes": 416,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-positive-boundary/005a59a0.json": {
+      "sha256": "d24b94e929797ec8cfc6fb277e56e4149b00e81380c68adb931cd82abe776df3",
+      "bytes": 972,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-positive-boundary/0046df80.c": {
+      "sha256": "f0f74aa98282c82ff4347f13a7102d96cd737d50c9a170e1483245b520d774a1",
+      "bytes": 6005,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-positive-boundary/0046df80.json": {
+      "sha256": "37ddde4920bca848be711ffe471066176947b11e9a879bbfc359963a1dded545",
+      "bytes": 17014,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-positive-boundary/0046dea0.c": {
+      "sha256": "e76badccb0b5c6bd587aeedbb093e0ee51b78c152a235c2491ac2a7e53236ab3",
+      "bytes": 1265,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-positive-boundary/0046dea0.json": {
+      "sha256": "e708119f0fd9f472b09ea20b3df39b318605f853c9056540720f42ddd71c717b",
+      "bytes": 2833,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-state-metrics/00542320.c": {
+      "sha256": "09ddd46585833d2f0af7ad6f46733e4fd5fca7810d026477d60dfb6103ae0eab",
+      "bytes": 5640,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-state-metrics/00542320.json": {
+      "sha256": "1973a58b45a807f07638d6dcd1ff6edab0fb492b19cbb064e5145a2a694a60e7",
+      "bytes": 17283,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-state-metrics/0056fc80.c": {
+      "sha256": "c4ca638a60a3af8f9704dd7b4c94ec885d6de6e457698bb18217b7db09e0bda9",
+      "bytes": 5783,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-state-metrics/0056fc80.json": {
+      "sha256": "79e26267478062751fbcce74042bbd0058f38c080e16223b830910ded38ac380",
+      "bytes": 17212,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-state-metrics/00570280.c": {
+      "sha256": "aeca6ebb486b38dcc84163fedb703d75fd415c584ed95698d75f872df5820f00",
+      "bytes": 7243,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-state-metrics/00570280.json": {
+      "sha256": "37bfdc96f5d919166bdd84e4cd1877657077c2ed7ddac9be0da696a90eb1bb46",
+      "bytes": 22929,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-state-metrics/0046e3b0.c": {
+      "sha256": "0542f6ebff2b51c9b33121f9d7a5bbfd7fa55c146ec0716d9c4a028cee176bf8",
+      "bytes": 5836,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-state-metrics/0046e3b0.json": {
+      "sha256": "a28b0a2551d72186038071ea44bca080a9854b093286cfd6ecfe347424b03b90",
+      "bytes": 13351,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/005a59e0.c": {
+      "sha256": "b1f5e136e64cf0fccd69dfd01ec43bd09d9d26c17c18879d5ff1b38fae9360fa",
+      "bytes": 2901,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/005a59e0.json": {
+      "sha256": "9147a4978c037c70c341129d473c432e46d287ef497d1d867efe95fca87660a7",
+      "bytes": 17329,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/005ac350.c": {
+      "sha256": "1670a0aeb77492ce094c3a49c98dbeee970bf58163baa3900daebe948a75f8ef",
+      "bytes": 113,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/005ac350.json": {
+      "sha256": "66cd739b966e2b0938d8d874b49e33afe2c63e37aa12dd605147775d05dc5740",
+      "bytes": 467,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/005ac430.c": {
+      "sha256": "21ba7e34c22d4b4fc73cd42e9c99e65bd6588da7be9b3d8243c5c50e4a83a15f",
+      "bytes": 112,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/005ac430.json": {
+      "sha256": "6fd511936a383324aa38d7e54e532a8cb30dd9c84c02a822901bab0248a9f99b",
+      "bytes": 536,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/00461a20.c": {
+      "sha256": "f1db6ba2ab3becfe1e8cfe8dd89b75cbc5572b98d8b35a48dd75da196ca70d59",
+      "bytes": 548,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/00461a20.json": {
+      "sha256": "d7cf49e377473d5bacacd68c8fbc72df226eb441a16824aca7966de29d50f528",
+      "bytes": 2723,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/00461410.c": {
+      "sha256": "1491f3b401f3417fea01923774eb7f2680f15cf9e7fc08a4bcddc9350bf5186f",
+      "bytes": 73,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/00461410.json": {
+      "sha256": "0727d2de728d9275ed4891ca75249faf863cb75a023ee8af561d6a49d0373302",
+      "bytes": 11506,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/00461420.c": {
+      "sha256": "a5cf9fb8737b089fbdf0d6889a44474670dbfb11f4db5c6dab277fe17f433622",
+      "bytes": 73,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/00461420.json": {
+      "sha256": "4732257ca1c4b0dcd43a98afaa55d7d97cabb2f2d1141fe5ee89b546f44ee5c2",
+      "bytes": 949,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/005d64c0.c": {
+      "sha256": "39a849caa52fff18a875adc45450b4e1e3a40e38eb2d10351178c974a3212231",
+      "bytes": 338,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-range-dependencies/005d64c0.json": {
+      "sha256": "b951def892e47424a48e7aca693df4fa548e3802b997cdfdf1d84aee508643c3",
+      "bytes": 636,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-tracker-render.log": {
+      "sha256": "0b38d0f2951ab14a08fabec479e18305b17296c5c11a614d8192c0f9e1b69bff",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-tracker-check.log": {
+      "sha256": "a12841a9fd21e4c8eca92eac0580106b211c3f881f3ecf8179dac2e2e9b97364",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-sight-tracker-tests.log": {
+      "sha256": "dbb212ef4c90d2b5c0df23a39f3994e9d475f73adca2f32d642f7d632fe18a1f",
+      "bytes": 126,
+      "retained": true
+    }
+  }
+}

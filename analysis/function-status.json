@@ -27416,6 +27416,210 @@
         "analysis/physics-object-frame-motion.md",
         "analysis/checkpoints/p2.2-physics-pivot-tipping-20261110.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0046f000",
+      "status": "partial",
+      "coverage": "SAME process FLOAT clock and real Sight lists, signed work budget, native cursor/reciprocal scheduling and observer calls.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0046dea0",
+      "status": "partial",
+      "coverage": "Dog observer bitmask/byte writes, previous counter, no counter mutation and actual transition feedback dispatch.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0046df80",
+      "status": "partial",
+      "coverage": "Human marker advance and unsigned deadlines, cached interval/score, actual head/marker ray policy and ordered shared exclusions/attachment matching.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0046e3b0",
+      "status": "partial",
+      "coverage": "Dog marker advance and signed deadlines, required actual metric, hit-only target identity ray policy and score clearing.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00542320",
+      "status": "partial",
+      "coverage": "Player Human metric flag/range/view cap, actual head/model geometry and inclusive symmetric view triangle.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00570280",
+      "status": "partial",
+      "coverage": "AI Human metric state/flags/range and observer stat limit, actual head/required attachment direction, asymmetric view angles and triangle.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0056fc80",
+      "status": "partial",
+      "coverage": "AI Human-to-Dog metric state/kind gates, actual target head dependency,100/view range cap and symmetric triangle.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a59e0",
+      "status": "partial",
+      "coverage": "Actual target Sight range with SAME state/Players roster, clocks, flags/scales, DD0 DA4 and optional surface policy.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a59d0",
+      "status": "partial",
+      "coverage": "Human B0 metric-family dispatch to actual player/AI or genuine no-output base bodies.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a59a0",
+      "status": "partial",
+      "coverage": "Dog B0 metric dispatch, player interval500 with score left unwritten, actual AI or no-output base policy.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac350",
+      "status": "partial",
+      "coverage": "SAME Human inline98/DD0 DA4 field0 range factor getter, distinct from smoothed opacity.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac430",
+      "status": "partial",
+      "coverage": "SAME DD0 754 cold null query; positive material producer remains required and rejects.",
+      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "evidence": [
+        "recovered/game/sight_loading.h",
+        "recovered/game/human_sight_metrics.h",
+        "recovered/game/human_loading_state_view.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_sight_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/sight-shot-frame-source.md",
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+      ]
     }
   ]
 }

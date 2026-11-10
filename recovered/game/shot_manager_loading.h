@@ -6,6 +6,7 @@
 #include "game/human_joint_owners.h"
 #include <array>
 #include <list>
+#include <cstring>
 #include <memory>
 #include <optional>
 #include <string>
@@ -78,6 +79,20 @@ public:
     ~ShotManagerLoading(){close();}
     ShotManagerLoading(const ShotManagerLoading&)=delete;ShotManagerLoading& operator=(const ShotManagerLoading&)=delete;
     auto& registration(){return registration_.get();}
+    void tick(bool authority,std::uint32_t elapsed){ //00451EC0/00451FB0, both absent frozen; cold source queues only, no new credit.
+        require_open();
+        if(authority){require_empty(state_.transient[0]);return;}
+        if(!(mode_&1u)){
+            state_.field140+=elapsed;std::int32_t time;std::memcpy(&time,&state_.field140,4);
+            if(time>100){state_.field140-=100;tick(true,100);} //Strict signed>100, ONE subtraction BEFORE virtual0C.
+            require_empty(state_.transient[1]);
+        }
+        require_empty(state_.transient[0]); //Projectile visual virtual0C pass, no retirement in this pass.
+        require_empty(state_.transient[2]);
+        require_empty(state_.render[3]);require_empty(state_.render[2]);require_empty(state_.render[1]);
+        //Native render80 vector is not updated here. Actual populated queue
+        //producers/records remain unavailable; never dispatch an opaque pointer.
+    }
     void finish_loading(bool)noexcept{} //004115E0 genuine RET4, module14 virtual14.
     void activate(bool authority){
         require_open();

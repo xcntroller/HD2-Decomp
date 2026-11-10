@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_LOADING_STATE_VIEW_H
 
 #include "game/human_joint_owners.h"
+#include "game/human_sight_metrics.h"
 
 namespace hd2::game {
 
@@ -20,6 +21,7 @@ public:
     virtual void sight_enemy_acquired(Human&)=0;
     virtual void sight_enemy_lost(Human&)=0;
     virtual void sight_dead_acquired(Human&)=0;
+    virtual HumanSightMetricFamily sight_metric_family()const{return HumanSightMetricFamily::base;} //005830B0/C0 genuine RET12.
     virtual std::int32_t hud_first_mode()const{throw std::runtime_error("Human state has no actual Active AI HUD first-mode receiver");}
     virtual std::int32_t hud_second_mode()const{throw std::runtime_error("Human state has no actual Active AI HUD second-mode receiver");}
 };

@@ -236,6 +236,7 @@ public:
     auto& car_tyres(){return car_tyres_;} //004D6900/004EC980 process registry, reloaded in place.
     auto& car_materials(){return car_materials_;} //004D57A0 canonical process material lookup.
     std::int32_t& game_vertex_clock(){return game_vertex_clock_;} //0089B398, persists across instance cleanup.
+    float& game_sight_work_clock(){return game_sight_work_clock_;} //00839390 initialized1, persists across World/module activation.
     auto& car_seat_camera_shared(){return car_seat_camera_;} //Actual process0089B0F8, separate from MissionCamera258.
     auto& car_light_receivers(){return car_light_receivers_;} //0089C0A4,004E2810 initializes the actual process list empty.
     auto& car_sound_receivers(){return car_sound_receivers_;} //0089C0B4, separate sound registrations.
@@ -700,6 +701,7 @@ private:
     EngineFrame* car_loading_scene_=nullptr;
     game::CarDefinitionTables car_definitions_;game::CarTyres car_tyres_;game::CarMaterialRegistry car_materials_;
     std::int32_t game_vertex_clock_=0;
+    float game_sight_work_clock_=1.f;
     game::CarSeatCameraShared car_seat_camera_;
     std::vector<EngineFrame*> car_light_receivers_,car_sound_receivers_;
     game::PlayersProcess<PlayerHuman> players_process_;
