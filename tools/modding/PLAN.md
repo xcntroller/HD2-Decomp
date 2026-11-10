@@ -17,14 +17,16 @@
 
 - [x] Improve verified spatial/resource/material fidelity and comparable coverage; validate three missions.
 
-Fidelity checkpoint and positive-Z display-camera correction are toolkit-desktop
-tested and user-accepted (“Looks good; commit”); local checkpoint authorized.
-No push/merge.
-Further read-only reconstruction is essential before safe binary editing; exact
-sector identity, Arctic1 discrepancies and device/material/lightmap consumers
-remain explicit blockers, not successful fallbacks.
+- [x] Integrate bounded spatial script relationships, overlays and source navigation; verify real missions.
 
-Current boundary: [fidelity/coverage/editing readiness](FIDELITY.md), [partial spatial mission viewing](SPATIAL.md), [4DS/viewer coverage](MODEL4DS.md),
+Spatial script intelligence is implemented and toolkit-desktop verified across
+Tutorial/ALPS1/Arctic1. The independent query layer is a source-only local
+checkpoint; interactive integration awaits user desktop confirmation under
+repository AGENTS.md. No push/merge. Runtime assignments/data flow remain
+unobserved, ambiguous/unplaced endpoints are withheld. Safe binary editing still
+requires the read-only reconstruction identified in FIDELITY.md.
+
+Current boundary: [spatial script relationships](SPATIAL-SCRIPTS.md), [fidelity/coverage/editing readiness](FIDELITY.md), [partial spatial mission viewing](SPATIAL.md), [4DS/viewer coverage](MODEL4DS.md),
 [format/model contracts](FORMATS.md), [resolution](RESOLUTION.md),
 [script/include contract and verification](SCRIPT-ANALYSIS.md),
 [archive verification](ISD1.md); [prior validation](INTEGRATED-VALIDATION.md). Full format/world/engine-cache

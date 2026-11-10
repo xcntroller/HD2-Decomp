@@ -1,86 +1,82 @@
 # Modding-tools handoff — 2026-11-10
 
-Latest work: **3D Mission Explorer fidelity and comparable coverage**, following
-user-tested interactive spatial viewing. Read [FIDELITY.md](FIDELITY.md) for exact
-original addresses, structural/material contracts, three-mission verification,
-budgets and remaining blockers. Only `tools/modding` changed; original assets and
-client/server/shared handoffs/plan/function ledger are untouched. No push/merge.
+Latest work: **spatial script intelligence**, extending the user-accepted fidelity
+checkpoint2a1c8f3. Start with [SPATIAL-SCRIPTS.md](SPATIAL-SCRIPTS.md) for exact
+relationships, original addresses, limits, schemas and verification. Only
+tools/modding changed; client/server/shared handoffs/plan/ledger and original
+assets are untouched. No push/merge.
 
-User desktop acceptance: after reporting a flipped world, the user rechecked the
-positive-Z display correction and confirmed **“Looks good; commit.”** This accepts
-the fidelity checkpoint and corrected orientation and authorizes its local commit.
-No broader case-level testing or full renderer compatibility is inferred. No
-permanent tests, extracted assets/reports or raw code/captures belong in commits.
+Implementation and toolkit desktop verification are complete. The independent
+`spatial_scripts.py` query layer is a verified source-only local checkpoint.
+**The interactive panel/overlay integration remains uncommitted pending user
+desktop confirmation**: repository AGENTS.md requires “Changes to interactive
+behavior require user desktop confirmation before committing.” Existing fidelity
+acceptance does not cover this new interaction. Next step: user recheck below,
+then record acceptance and commit the remaining verified tools/modding changes
+locally. No further unchecked development objective is added here.
 
-Start `make -C tools/modding gui` → Mission explorer → Open installation → choose
-profile/mission → Inspect mission → Explore 3D / selected object. Existing input,
-picking/tree, record/model/script navigation remain integrated. Material properties
-now distinguish source decoding, supported RGBA previews, unsupported-alpha RGB
-fallbacks and gray materials. Coverage distinguishes known world matrices from
-unknown sector parent identities; mesh omissions and original unsupported records
-remain visible. A temporary `/tmp/hd2-fidelity-preview.png` shows corrected Tutorial
-geometry outside Git.
+Run `make -C tools/modding gui` → Mission explorer → Open installation → Tutorial
+→ Inspect mission → Explore 3D → select an instructor/soldier mesh → **Script
+relationships**. The tab beneath the viewport keeps source/evidence alongside
+3D. Browse bindings/events/references, search/filter incoming/outgoing, enable
+Static links/Labels, select a line, inspect its exact source, use Source/Target
+object and Back to context, and open/return from the existing Script Inspector.
+TUT_Instructor9 is a verified original Human example; no fabricated demo link.
+A viewport-only preview may remain at/tmp/hd2-spatial-script-preview.png.
 
-Original10009B30/10009CC0 establishes positive-Z clip W. The previous preview
-used negative-Z OpenGL camera handedness directly, causing mirroring. Both
-viewports now use the same positive-Z camera basis and explicit OpenGL view
-conversion in spatial_camera.py. Movement, culling, bounds/origins and picking
-share it; serialized vertices/world matrices and export are untouched. Focused
-math/native asymmetric display-and-pick checks, actual Tutorial/ALPS1 rendering,
-standalone shared-model viewing and lifecycle passed. Corrected Tutorial capture
-was visually inspected; ALPS1 close/obstructed views do not establish a matching
-gameplay viewpoint. Original runtime was not executed. See FIDELITY.md.
+`ScriptRelations(scene)` is independent of Tk/GL. Typed binding/reference/overlay
+records reuse original graph/statement/instruction identities and certainty.
+Selected imported members expose their actual model owner's binding with that
+scope labelled; generic ancestors do not inherit VM ownership. Exact serialized
+binding-name matches remain static observations, not original runtime acceptance.
+Unique ASCII-insensitive scene-name matches are candidates; duplicates/case
+variants remain ambiguous. Runtime ScriptAssign receivers, dynamic names and
+child-frame parents are not evaluated and get no guessed spatial endpoints.
 
-`spatial_scene.py` registers imported instance.member names in original load order
-and supports unique ASCII-insensitive scene fallback after exact scratch lookup.
-A guarded translation-only sector invariant establishes world TRS independently
-of unknown sector identity; it never guesses which sector won. Complete model
-frame tables/no failed assets/no changed or rotated sectors are required. Parent
-remains unresolved with candidate IDs. Arbitrary dotted path splitting, full
-registration/traversal scope and exact containment/list order are not implemented.
+`spatial_script_gui.py` supplies the docked panel and original source/evidence;
+`spatial_overlay.py` draws bounded X-ray candidate lines with native edge-ID
+picking and optional context-owned X11 font labels. Sources require retained
+map identity, bounded size and matching SHA256. Original include/profile/Patch
+resolution is preserved; selected invalid data never becomes an alternate source.
+Worker requests are bounded/coalesced, stale generations discarded, old edges
+cleared on reload and font resources released with the GL context. Original
+world transforms/model rendering remain unchanged.
 
-`resource_lookup.py` separates explicit ordered directory profiles from exact
-ResourceStore archive selection. Model roots search forward; native texture
-probes use direct / last successful directory / reverse registered order. Client
-and engine suffix stripping are separate. Patch/profile/CRC/codec barriers remain;
-selected invalid data never becomes another root or shadowed archive. Descendant
-registration enumeration and warm/global caches remain outside scope.
+Queries return250 primary rows, cap scans12000 and overlays96, preserve up to64
+ambiguous/source-binding contexts and mark lower-bound totals explicitly. Full
+spatial schema2 adds coverage.scripts; neighborhood schema1 has filtered/paged
+rows, original object/script provenance and evidence-linked edges, no asset/source
+bodies. GUI exports new files outside the installation. Headless example:
+`spatial_inspect.py /path/to/game tutorial --inspector /tmp/hd2-inspect
+--script-object TUT_Instructor9 --relationship-search FRM_FindFrame --output
+/path/outside-game/neighborhood.json` (one shell command).
 
-`model4ds.py` now traverses verified visual3/4/5 tails, visual6 effect records,
-target7 and common8 bodies. Geometry remains undeformed; animation/target/effect
-consumers remain partial. `material_preview.py` retains established opacity and
-alpha-source interpretation independently of `gl_material.py` preview state.
-Texture caches budget source RGB/indices/alpha and derived RGBA; geometry and GPU
-resources remain shared between instances. No original lighting/lightmaps, skin,
-animation, runtime actor/script execution or full visibility/LOD reproduction.
-Some vegetation rectangles remain; RGBA8 keying is not every native device branch.
+Verified local original-profile observations: Tutorial/ALPS1/Arctic1 have114/148/
+105 binding records and131/138/83 retained analyzed scripts, including2/8/2 Patch
+selections. All1337 compiled reference source spans were checked. Distinct placed
+reference contexts250/438/385; nonspatial/unresolved/self-only99/89/76. This is
+retained analysis coverage, not whole-installation or runtime compatibility.
+Human/Switch/SpawnPoint and actual Arctic1 Door examples are evidenced; actors
+without bindings say so honestly. Existing format/fidelity limitations remain.
 
-Current observations (not universal format claims): Tutorial/ALPS1/Arctic1 have
-7473/9462/15017 nodes and106/73/141 assets; placed visible mesh instances
-3223/4235/8388. World matrices withheld0/0/281; automatic sector identities still
-unknown16/75/46. Actor bindings all unique in these examples. Fallback checks
-1168/1168,1438/1438,1992/2039; Arctic1's47 disagreements remain explicit, with no
-guessed correction. ALPS1 Scene2 is the selected CRC-verified Patch ISD1 resource.
-Full spatial export schema2 includes deterministic coverage schema1; use
-`spatial_inspect.py ... --coverage-only --output ...` for comparable reports.
+Focused temporary checks cover original graph IDs/certainty, source spans/includes,
+world endpoints, incoming/outgoing union, filters/paging/scan limits, deterministic
+JSON/write barriers, ambiguous/case-variant names, runtime-only/dynamic/child
+references and changed/foreign/oversized source protection. A real AFRICA3 include
+construct reaches its actual original file/span. Native X11/GLX checks pick a real
+Tutorial Human mesh, browse events/references/source, open/return from Inspector,
+select labelled edges, navigate endpoints/back with camera preserved, and follow
+a script resource into the same Explorer session. Actual ALPS1/Arctic1 loads,
+Door/Switch/SpawnPoint source inspection, Arctic1 reload and close during pending
+queries pass. Captured real panel/viewport images were visually inspected; no
+exercised GL/Tk errors. Peak RSS648196KiB is an observation, not a leak-free claim.
 
-Verified: independent temporary native reader matched306 unique selected model
-frame tables/end offsets; ASan/UBSan/LeakSanitizer passed for that audit reader.
-Focused synthetic bounds/truncation/lookup/alpha/invariant/export checks passed.
-Real BMP source pixel comparisons327/288/531 passed. Actual native X11/GLX scenes
-and images were exercised/visually inspected for all three missions, including
-alpha-aware picking and shared model viewing. Repeated Arctic1 reloads and final
-close deleted4042 buffers each with immediate handle checks; peak RSS about493MiB
-in that desktop audit, not a universal leak-free guarantee. Details in FIDELITY.md.
-No original executable/DLL/Proton/Ghidra or heavy game build was run. Temporary
-audits are removed after verification; only the optional preview remains in/tmp.
-
-The selected plan checkbox is implemented with concrete partial boundaries.
-**Safe mission binary editing is not ready.** Further read-only work must address
-exact sector containment/registration scope, Arctic1 transform discrepancies,
-material/device-alpha/lightmap/visibility consumers, unknown records/streams and
-round-trip preservation. Editing, binary serialization and runtime simulation
-remain excluded. No additional unchecked development item is authorized here.
-Prior contracts: [spatial](SPATIAL.md), [4DS](MODEL4DS.md),
-[scripts/includes](SCRIPT-ANALYSIS.md), [ISD1](ISD1.md),
-[formats](FORMATS.md), [resolution](RESOLUTION.md).
+Existing native compiler build is up to date; Python compilation/diff checks
+pass. No new C++ parser or compiler path, original EXE/DLL/Proton/Ghidra execution,
+heavy concurrent build or permanent test was introduced. Temporary audit fixtures,
+reports/captures are outside Git and removed after final verification; only the
+optional viewport preview remains. No original commercial assets in commits.
+Runtime execution, simulation/debugging, mission editing and binary serialization
+remain excluded. More read-only reconstruction is essential before safe editing.
+Prior contracts: [fidelity](FIDELITY.md), [spatial](SPATIAL.md),
+[scripts/includes](SCRIPT-ANALYSIS.md), [4DS](MODEL4DS.md), [ISD1](ISD1.md).
