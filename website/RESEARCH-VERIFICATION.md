@@ -96,3 +96,31 @@ node associations, full child prerequisite IDs, child-batch selection, formatted
 inspection, 390px mobile width and no runtime errors. Research files unchanged.
 The user accepted the updated preview and explicitly authorized committing these
 compatibility changes. Nothing was pushed or deployed.
+
+## Named checkpoint receipts and historical evidence
+
+Reproduced the Pages failure against merged master `3b8cd19`. Its current graph
+is 369 nodes/774 edges, SHA-256
+`372de641d0af085499a0923d6dc91f778a4b882b037c34ae1b3c54b20230bb0f`.
+The legacy receipt describes the earlier 320-node/659-edge graph; the matching
+receipt already exists in `evidence/p24-verification.json`. Website import now
+selects tracked receipts by exact graph digest, checks counts/source SHA and
+preserves the receipt's own verification scope. The overview links that receipt.
+No research files or receipts were changed, and the digest check remains strict.
+
+Research `revision` references now read regular Git blobs at the exact recorded
+commit for input hashing and JSON-pointer validation. Evidence/source-mention
+links use the same revision, subject to the existing public-ancestor boundary.
+This avoids applying pinned ledger pointers to a newer ledger or silently
+substituting current source for historical evidence.
+
+Passed: production build with `GITHUB_ACTIONS=true`, current `GITHUB_SHA` and
+matching `HD2_PUBLIC_REF`, TypeScript and static-artifact audit; all 27 existing
+analyzer tests; temporary negative receipt tests for wrong digest, counts, source,
+schema, missing checks and untracked receipts; historical input hashes, links,
+pointers and invalid revision rejection. A temporary Chromium check passed for
+the selected P2.4 receipt/readiness, all 369 research nodes and 774 edges, pinned
+source URLs, P2.4 graph/batch views, formatted inspection, mobile width and runtime
+errors. Temporary audit sources removed. No game, DLL, Ghidra or Proton executed.
+The user reviewed the result and explicitly authorized committing the fix.
+Nothing was pushed or deployed.
