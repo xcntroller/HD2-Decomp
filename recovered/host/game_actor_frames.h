@@ -642,6 +642,14 @@ public:
     std::uint32_t hud_driver_state(std::uint32_t state)const{return driver_.render_state(state);}
     void hud_driver_state(std::uint32_t state,std::uint32_t value){(void)driver_.set_render_state(state,value);}
     MenuDriver::Owner create_hud_info_model(){return driver_.create(9);}
+    MenuDriver::Owner create_shot_model(){return driver_.create(9);}
+    std::int32_t load_shot_model(Frame model,const char* name){return resources_.load_model(model,name,0);} //004290A0 verbatim resource keys.
+    Frame shot_hidden_sector()const{return field<Frame>(scene_.frame(),0x200);}
+    void shot_query_performance_clock(){LARGE_INTEGER frequency{},counter{};(void)QueryPerformanceFrequency(&frequency);(void)QueryPerformanceCounter(&counter);} //0044DDE0 discards both results.
+    ResourceOwner load_shot_texture(const std::string& name){
+        Frame texture=nullptr;(void)graphics_.methods->load_texture(&graphics_,name.c_str(),nullptr,2,&texture);
+        return ResourceOwner(texture,ResourceRelease{module_}); //0044E520 ignores HRESULT; own the ACTUAL output, even on nonzero status.
+    }
     MenuDriver::Owner create_hud_scene(){return driver_.create(13);}
     void hud_render_scene(Frame scene){call<void>(scene,0x78,std::uint32_t{0});} //0049B9F0 Scene78(scene,0).
     MenuDriver::Owner create_hud_light(){return driver_.create(2);}

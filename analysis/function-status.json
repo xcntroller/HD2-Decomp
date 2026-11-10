@@ -8570,7 +8570,8 @@
         "analysis/game-owner-integration-map.json",
         "recovered/game/session_activation.h",
         "analysis/session-activation-loading.md",
-        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+        "analysis/session-loading-consumers.md"
       ]
     },
     {
@@ -10646,7 +10647,8 @@
         "recovered/game/effect_definitions.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/session-loading-consumers.md"
       ]
     },
     {
@@ -10711,7 +10713,8 @@
         "recovered/game/effect_definitions.h",
         "analysis/mission-world-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/session-loading-consumers.md"
       ]
     },
     {
@@ -25640,6 +25643,84 @@
         "recovered/game/human_projection_models.h",
         "analysis/human-selection-visibility-loading.md",
         "analysis/checkpoints/p2.2-human-selection-visibility-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044d920",
+      "status": "partial",
+      "coverage": "Actual cold ShotMgr process ownership: two16-record aligned reusable pools and retained empty runtime buffers; process registration remains the existing Startup owner.",
+      "limitations": "Source-only typed/STL/RAII ownership replaces native vtable/container/allocation/SEH ABI. Cold loading only; projectile/decal producers, live row cleanup, damage and rendering excluded. Engine/frame/clock/cache endpoints doubled in native checks; actual host composition compile-only. No containing application world or desktop equivalence claim.",
+      "evidence": [
+        "recovered/game/shot_manager_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/shot-manager-loading.md",
+        "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044db10",
+      "status": "partial",
+      "coverage": "Known cold40-byte decal record zero fields20/24/28, aligned source allocation; no populated runtime resource producer.",
+      "limitations": "Source-only typed/STL/RAII ownership replaces native vtable/container/allocation/SEH ABI. Cold loading only; projectile/decal producers, live row cleanup, damage and rendering excluded. Engine/frame/clock/cache endpoints doubled in native checks; actual host composition compile-only. No containing application world or desktop equivalence claim.",
+      "evidence": [
+        "recovered/game/shot_manager_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/shot-manager-loading.md",
+        "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044db40",
+      "status": "partial",
+      "coverage": "Known coldC0 mark record fields5C=1,64/68=0,byte6C=0 and aligned pool ownership; unwritten bytes are zero guards only.",
+      "limitations": "Source-only typed/STL/RAII ownership replaces native vtable/container/allocation/SEH ABI. Cold loading only; projectile/decal producers, live row cleanup, damage and rendering excluded. Engine/frame/clock/cache endpoints doubled in native checks; actual host composition compile-only. No containing application world or desktop equivalence claim.",
+      "evidence": [
+        "recovered/game/shot_manager_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/shot-manager-loading.md",
+        "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00455490",
+      "status": "partial",
+      "coverage": "Actual humanzones model create/exact-zero load gate, ten original marker names, hidden-sector link and visibility; source world/process ownership.",
+      "limitations": "Source-only typed/STL/RAII ownership replaces native vtable/container/allocation/SEH ABI. Cold loading only; projectile/decal producers, live row cleanup, damage and rendering excluded. Engine/frame/clock/cache endpoints doubled in native checks; actual host composition compile-only. No containing application world or desktop equivalence claim.",
+      "evidence": [
+        "recovered/game/shot_manager_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/shot-manager-loading.md",
+        "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00455520",
+      "status": "partial",
+      "coverage": "Release/null actual humanzones model while preserving borrowed marker entries.",
+      "limitations": "Source-only typed/STL/RAII ownership replaces native vtable/container/allocation/SEH ABI. Cold loading only; projectile/decal producers, live row cleanup, damage and rendering excluded. Engine/frame/clock/cache endpoints doubled in native checks; actual host composition compile-only. No containing application world or desktop equivalence claim.",
+      "evidence": [
+        "recovered/game/shot_manager_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/shot-manager-loading.md",
+        "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0044e520",
+      "status": "partial",
+      "coverage": "Actual ordered9decal/1explosion/6blood texture requests, flags2 and original ignored HRESULT with actual output-pointer ownership.",
+      "limitations": "Source-only typed/STL/RAII ownership replaces native vtable/container/allocation/SEH ABI. Cold loading only; projectile/decal producers, live row cleanup, damage and rendering excluded. Engine/frame/clock/cache endpoints doubled in native checks; actual host composition compile-only. No containing application world or desktop equivalence claim.",
+      "evidence": [
+        "recovered/game/shot_manager_loading.h",
+        "recovered/host/game_actor_frames.h",
+        "analysis/shot-manager-loading.md",
+        "analysis/checkpoints/p2.2-session-loading-consumers-20261110.json"
       ]
     }
   ]

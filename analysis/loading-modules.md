@@ -1,5 +1,7 @@
 # Mission module loading and activation — in progress
 
+2026-11-10: [session loading consumers](session-loading-consumers.md) add real activation API order, shared effect file/cache/scene receivers and [ShotMgr](shot-manager-loading.md) models/pools/textures/retirement. Source-only verified; remaining module owners, containing session/loader/integrity publication and first frame stay open.
+
 2026-11-10: [Human/VM world composition](human-vm-world-composition.md) replaces the external VM declaration with actual module/runtime/contexts and checked same-world Human linkage. Source-only verified; actual session/loader/integrity publication and first-frame delivery remain.
 
 2026-11-10: [Human factory/world bindings](human-factory-world-bindings.md) supply actual same-owner construction, animation callbacks, remaining cold Sight/hearing and common presentation bindings. Full Human/FPV/HUD/Players/source activation composition compiles; no containing application world or first-frame delivery. Continue actual VM/session/loader.

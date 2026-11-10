@@ -41,6 +41,7 @@ bool activate_offline_session(SessionActivationState& state,Services& services,
             if(!services.load_mission(services.current_mission_resource(),nullptr))return false;
             if(!state.loaded)throw std::runtime_error("Mission loader returned without publishing its actual loaded stages");
         }
+        (void)services.query_activation_ticks(); //00698AAE→real GetTickCount; private table effects are separate.
         services.loading_progress(5,.05f);
         state.words.set(0x6e,std::uint8_t{1});state.words.set(0x6f,std::uint8_t{0});
         (void)services.car_definitions().load(services.files()); //0071F9B0 original result ignored.
@@ -60,6 +61,8 @@ bool activate_offline_session(SessionActivationState& state,Services& services,
         services.loading_progress(5,.5f);
         if(services.mode_flags()&2u)services.initialize_loaded_first_person(); //004909D0.
         services.loading_progress(5,.8f);
+        (void)services.query_activation_visible_window(); //00698C09→actual GetIGraph/virtual48/IsWindowVisible.
+        (void)services.query_activation_capture(); //00698C5D→GetCapture, before status5/spawning.
         state.status=5;state.words.set(0x20,std::uint32_t{500});state.words.set(0x24,std::uint32_t{0});
         if((services.mode_flags()&7u)==7u) {
             //008AE910 is the LIVE SQUAD, distinct from008AE90C HumanStore.

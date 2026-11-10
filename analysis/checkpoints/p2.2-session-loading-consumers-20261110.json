@@ -1,0 +1,201 @@
+{
+  "date": "2026-11-10",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 6,
+  "added": [
+    "0044d920",
+    "0044db10",
+    "0044db40",
+    "00455490",
+    "00455520",
+    "0044e520"
+  ],
+  "absent_no_credit": [
+    "0044dde0",
+    "0044e110"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1900,
+    "client_partial": 1895,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "scope": "Full first P2.2 checkbox; actual session API payload order, mission effects file/cache/scene lifetime, complete cold ShotMgr loading/retirement. Continue module/session/loader.",
+  "extended": [
+    "00445d90",
+    "00444140",
+    "006989b0"
+  ],
+  "verification": {
+    "native_activation": "Focused ASan/UBSan/LSan actual activation policy API order/progress/status publication, zero/false/null results, three query failure prefixes/graphics restoration and new-owner repeat. All other file/actor/module/presentation/API endpoints doubled.",
+    "native_effects": "Focused ASan/UBSan/LSan actual file/cache/scene owner with both captured empty201 roots; cached base definition fixture, named populated producer rejection, invalid-definition gate, missing/legacy/short-read cleanup, foreign scene and repeat. File/frame endpoints doubled; base definition fixture is not a runtime-selected override claim.",
+    "native_shots": "Focused ASan/UBSan/LSan actual cold process pools/models/textures/retirement and ALL40 endpoint failure prefixes, process reuse/capacity, optional outputs, exact-zero versus nonnegative load gates and stale-world rejection. Frame/engine/clock/cache endpoints doubled; no live projectile/damage/rendering body.",
+    "host": "Strict actual i386 query/effect/ShotMgr process owners/registration/both passes with full prior Human/VM/FPV/HUD/Players/Sight/hearing/SOUND source type graph. WorldActors/Car runtime and containing application session remain borrowed boundaries, not constructed world instances.",
+    "application": "Compile/link passed; loading still disabled.",
+    "tracker": "27 tests and frozen fingerprint/unique status/README checks."
+  },
+  "research_exceptions": [
+    "First ShotMgr read-only export stopped at guessed non-entry0044DC70; second stopped at absent0044E110. Partial valid exports preserved; later frozen-entry/pool-owner exports pass.",
+    "0044DDE0 and0044E110 absent frozen: no credit. Static original cleanup instructions used when Ghidra has no0044E110 function."
+  ],
+  "limitations": [
+    "No actual containing world/session, module dispatcher, ordered loader or first frame.",
+    "Private guard observed publication unresolved; tables uninitialized. No raw API result substitution or forced equality.",
+    "Valid placed particles and live ShotMgr projectile/decal/damage/rendering producers remain unsupported; unproduced cold paths verified."
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/session-activation-api-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/session-activation-api-native-run.log",
+      "bytes": 267,
+      "sha256": "953e2812dc432f4f470081ae69a2f6bb0e7e49e8cd2d2f80fb93c6822bbce004"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/mission-effects-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/mission-effects-native-run.log",
+      "bytes": 496,
+      "sha256": "36db362da190ffb5e09b7e01ad813e4ef6f43beab7a7a9cf8ffc3ee173973f36"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shot-manager-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shot-manager-native-run.log",
+      "bytes": 387,
+      "sha256": "064892b5262dd0cb0e9375e8a04e92bc6d0a78680acb5c405a98928af20785a6"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/session-world-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/session-world-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/session-world-tracker-render.log",
+      "bytes": 380,
+      "sha256": "b572a7dbf3a38595ced52114769f19c7d82f95e4662bb9c2ce52df8b3a3befd2"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/session-world-tracker-check.log",
+      "bytes": 437,
+      "sha256": "a7c216153fff840af180a70d67c0d63ffe689335e10681565f77fc878b9c0e0e"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/session-world-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e"
+    }
+  ],
+  "research": [
+    {
+      "path": "analysis/work/mission-world-20261103/session-activation-api-resolution.json",
+      "bytes": 538,
+      "sha256": "cd9f33252b94d2d8dec9167a0780e17f637f28107fcfe271bf4f585d1cdf65f8"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/session-activation-api-boundaries.asm",
+      "bytes": 25805,
+      "sha256": "8940ab02d3951fa95b355607614e38ddf43d07cbb6112045aa90f3e4c90075dc"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shot-manager-vtable-writes.asm",
+      "bytes": 128,
+      "sha256": "2bbb5c49fedd53257f70c25b7cb9a2956e13f184434ee7731e53f1df667d207b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shot-manager-constructor-abi.asm",
+      "bytes": 7323,
+      "sha256": "60bac0f97f2e9fa3ac6d1c26c8776367b5dc9e3e7e0f8c32bf00af3f57352b57"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shot-manager-retirement-abi.asm",
+      "bytes": 17927,
+      "sha256": "8a170b6e60a17a6bf4a0f79910d89d0d3116051fdad30acc6a8fba42495783f4"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shot-manager-hit-zone-names.json",
+      "bytes": 670,
+      "sha256": "2d612b33d96491e02c75788a18872c344da4d46202405b8a8785a3c7aeb9f006"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shot-manager-loading-boundary.log",
+      "bytes": 5728,
+      "sha256": "90a2d309f3893a63fa6764b9d17a75b270e87e28a38884a3ddd9e7b3a99f74bd"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shot-manager-lifetime-required.log",
+      "bytes": 5626,
+      "sha256": "620402a7ea725981f3986405ca30141d2867ad8347f5282bbed9ba2756413590"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shot-manager-cold-pools.log",
+      "bytes": 4794,
+      "sha256": "efc9e01c892cbc57bb4573334fa6d95c4a6d9ea25883f26420a52d810817f423"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/shot-manager-pool-owners.log",
+      "bytes": 5104,
+      "sha256": "814b7b80047460ec081b8fd50aa772dd0bf18aefc69a5a02ebdd1562b1079821"
+    }
+  ],
+  "temporary_artifacts_removed": [
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-activation-api-audit.cpp",
+      "bytes": 5766,
+      "sha256": "b158733b2ed9f47f6265396e08bc26adee34eab665509d7e976764f63042ef2b"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-activation-api-audit",
+      "bytes": 740224,
+      "sha256": "05273faf0f54ca2f5582b669a16c7147686979972bd12e2867416f1806e83480"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-effects-audit.cpp",
+      "bytes": 4939,
+      "sha256": "41493d4ced185f4d6794f92ee6aacb1c9d4451bba2a1ed02806e83833b8f412c"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-mission-effects-audit",
+      "bytes": 1587272,
+      "sha256": "948e564d849823baa4cbc36ceb4a62d0f44afb1909343c6b089e9c636a113772"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-shot-manager-audit.cpp",
+      "bytes": 7434,
+      "sha256": "e536c4b5ad845428e22bd694910d8abfbc80cc87756bc08a0381f4fd5e2a16d0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-shot-manager-audit",
+      "bytes": 1888992,
+      "sha256": "181017d7379f5914587b8308dd48ec56fd76fe344aaddaaf09a3a81d976e4a58"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-world-host.cpp",
+      "bytes": 10829,
+      "sha256": "547c2297f8f0bf19519d45f593cb52fe36cca217913db07283de7af61c3563cb"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/checkpoint-session-world-host.o",
+      "bytes": 11540143,
+      "sha256": "36b72013802d0bbcbb17aea347e060c5207ceb699ed0e39097bda5d4b328cd6f"
+    }
+  ]
+}

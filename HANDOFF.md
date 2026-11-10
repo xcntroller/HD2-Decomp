@@ -8,56 +8,65 @@ assets/user changes; focused verification only. Heavy builds/Ghidra sequential
 because of memory shortages/crashes. No permanent tests.
 
 GameApplicationState still declines loading. No loaded world, first rendered
-world frame or new desktop acceptance. Ledger34 complete/1,894 partial
-(1,889 client/five engine)/18,783 frozen. Zero complete promotions.
+world frame or new desktop acceptance. Ledger34 complete/1,900 partial
+(1,895 client/five engine)/18,783 frozen. Zero complete promotions.
 
 ## Latest verified source checkpoint
 
-[Human/VM world composition](analysis/human-vm-world-composition.md),
-[receipt](analysis/checkpoints/p2.2-human-vm-world-20261110.json).
-MissionScriptWorldLoading owns actual bindings/controls/lifecycle/views/player
-predicates/objectives/visibility/runtime/module; borrows SAME Human/Players/
-FPV/HUD/camera/Sight/hearing/SOUND/session/process owners. Requires existing
-process Script registration, Startup00982100/008692D0 refs. WorldLink supplies
-actual context lookup/authority AFTER module construction, rejects unbound calls,
-finishes module before unlink, before Human retirement. HumanScriptContextServices
-uses link for both Contexts/Runtime types, removing external VM declaration.
-Actor Frames must be GameActorServices, sharing SAME derived GameSceneActors;
-SceneActor<GameSceneActors> is not Human's actor backend. HUD hint signed-ID
-wrapper uses actual small-panel owner, no flags gate. Focused native link
-ASan/UBSan/LSan, full actual i386 Human/VM/module/FPV/SOUND construction, app
-link and27 tracker checks pass. No new tally credit. Source-only, no loadedworld.
+[Session loading consumers](analysis/session-loading-consumers.md),
+[ShotMgr](analysis/shot-manager-loading.md),
+[receipt](analysis/checkpoints/p2.2-session-loading-consumers-20261110.json).
+Actual activation GetTickCount/IsWindowVisible/GetCapture order with real host
+GetIGraph/window endpoints. Mission effects use actual selected files, shared
+process definition cache/scene borrower; both captured roots empty201, valid
+placed particle producer still rejects. ShotMgr14 now owns actual cold16+16
+pools, humanzones/WeaponOdds/models/16textures and ordered retirement. Startup
+owns SAME process state; registration14/mode borrowed. No projectile/damage/
+rendering or populated record cleanup offered. Focused three native sanitizer
+fixtures (ShotMgr ALL40 endpoint failure prefixes), strict i386 actual source
+graph/app link and27 tracker checks pass. Six new partials, no completes.
+0044DDE0/0044E110 absent frozen: no credit; static ASM used for absent cleanup.
+Original exports/failed guesses documented honestly in note/receipt. Temporary
+checkpoint fixtures hashed/removed; logs/research retained. Source-only.
 
-Previous11fe11e [Human factory](analysis/human-factory-world-bindings.md),
-58b1095 [selection/visibility](analysis/human-selection-visibility-loading.md),
-4f752cd [speech/dubbing](analysis/human-speech-loading.md),
+Previousde81817 [Human/VM world](analysis/human-vm-world-composition.md),
+11fe11e [Human factory](analysis/human-factory-world-bindings.md),
+58b1095 [visibility](analysis/human-selection-visibility-loading.md),
+4f752cd [speech](analysis/human-speech-loading.md),
 9621549 [shared consumers](analysis/shared-world-loading-consumers.md).
-Actual005AC0F0 controls SAME DD0 A9C shadow, NOT SOUND. Startup owns physical
-009832B0/shared FLOAT0084E80C=1.4. Cold primary projections empty; producers
-unimplemented. Human228 queue update supplied, live world update unintegrated.
-Fresh B0 clears stance74/78; previous-null Area8 skips B4. Positive stance/area,
-Dog534/nonoffline friendship reject; guards earn no credit.
+Human/VM WorldLink binds actual module/context/authority after construction,
+finishes before unlink before Human retirement. Frames=GameActorServices sharing
+actual derived GameSceneActors; do not invent SceneActor<GameSceneActors>.
+Actual005AC0F0 uses SAME DD0 A9C shadow, NOT SOUND. Startup physical009832B0 and
+FLOAT0084E80C=1.4 shared. Cold primary projections empty; runtime producer absent.
 
 ## Next — same entire checkbox
 
-Continue actual activation APIs/observed publication and containing session/world,
-ordered006CA780 loading/postactivation, first camera/update/render, failure/repeat
-then user desktop acceptance. App still declines loading; WorldScene/WorldActors
-and source VM world remain uncalled. Do not stop at dependency or expand all P2.3.
+Continue actual registered module dispatch/remaining real receivers, containing
+world/session, ordered006CA780 loader, first camera/update/render, failure/repeat
+then desktop acceptance. App still declines loading. Source WorldScene/WorldActors/
+VM are uncalled by application; strict checks borrow WorldActors/Car runtime and
+session boundaries, not actual containing instances. Do not stop at dependencies
+or expand all P2.3. Active temporary full type graph for further integration:
+WORK/checkpoint-module-dispatch-host.cpp (audit not permanent test).
 
-NEW targeted static evidence in WORK: session-activation-api-resolution.json,
-session-activation-api-boundaries.asm, script-guard-slot13-direct-refs.asm and
-script-guard-slot13-api-resolution.json.006989B0 real API payloads:
-00698AAE→GetTickCount beforeprogress5=.05;00698C09→IsWindowVisible after5=.8,
-GetIGraph virtual48 supplies window;00698C5D→GetCapture beforestatus5/spawn.
-006E9EC2 initializer seed also GetTickCount. Original006989B0 export remains in
-loader-module-composition/. Existing source activate_offline_session currently
-omits those activation API queries; next needs actual payload receivers/order.
-Private expected/observed side effects remain unresolved; do NOT assign raw API
-values or force equality. Original-address/per-thread VM outside accepted startup
-scope. Actual observations still required; no fabricated guard readiness.
-Current active temporary session-world host fixture retains full verified type
-graph for continuing integration; old checkpoint fixtures removed/hashed.
+Use loading-modules.md dispatch table and WORK/module-load-activation-map.json:
+all19 original registrations. Existing source Track/Physics/Items/VM/Sight/SOUND/
+Vertex/Players/actors/camera owners should supply their actual methods. Shot14
+now source. GEffects1/Versions7/Particles17 and other remaining reached receivers
+still need actual ownership/activation where not yet supplied.8/10 verifiedRET,
+18 coldnull. Never add a successful default handler for a missing module.
+
+Activation original API mapping in WORK/session-activation-api-resolution.json:
+00698AAE GetTickCount beforeprogress5=.05;00698C09 IsWindowVisible after5=.8;
+00698C5D GetCapture beforestatus5/spawn.006E9EC2 seed alsoGetTickCount.
+Private expected/observed side effects remain unresolved; tables uninitialized.
+Do NOT store raw API results in observed slots or force equality. Original-address/
+per-thread VM stays outside accepted startup scope. Actual observations still
+required; no fabricated guard or loaded-world readiness.
+Fresh B0 clears stance74/78; previous-null Area8 skips B4. Positive stance/area,
+Dog534/nonoffline friendship reject; guards earn no credit. Clear FPV/camera/
+dubbing before Human/VM/Items and scene as detailed ownership notes require.
 
 Previous069a96f [HUD/player](analysis/hud-player-presentation-loading.md),
 d6b81e9 [FPV/player](analysis/first-person-loading-composition.md),

@@ -1,5 +1,7 @@
 # Technical research guide
 
+2026-11-10: [session loading consumers](analysis/session-loading-consumers.md) supply actual activation/window API order, shared mission effect file/cache/scene lifetime and [ShotMgr cold loading](analysis/shot-manager-loading.md). Three focused native sanitizer fixtures, whole actual i386 composition and app link pass. ShotMgr verifies40 failure prefixes and process reuse. Six partials added:34 complete/1,900 partial. Source-only; remaining modules/session/loader/guard/first frame remain.
+
 2026-11-10: [Human/VM world composition](analysis/human-vm-world-composition.md) constructs actual VM receivers/module/runtime with the same Human/Players/FPV/HUD/SOUND owners. Checked context/authority link closes the construction cycle and finishes before Human retirement; actual process registration/mode are borrowed. Native link sanitizers, whole actual i386 composition and app link pass. Tally unchanged. Activation API mappings resolved; private observed publication and containing session/loader remain.
 
 2026-11-10: [Human factory/world bindings](analysis/human-factory-world-bindings.md) construct the actual per-Human composition from shared owners and supply concrete animation/hearing/alignment/HUD/FPV receivers. Full actual-host construction exposed and fixed enemy base-pointer and cursor item-interface mismatches; physics counter now belongs to Startup. Native sanitizers/strict i386/app link pass. No new tally credit;34 complete/1,894 partial. Continue actual VM/session/loader.

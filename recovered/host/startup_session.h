@@ -24,6 +24,8 @@
 #include "game/human_morph_tables.h"
 #include "game/human_physics_globals.h"
 #include "game/mission_integrity_tables.h"
+#include "game/mission_effects_loading.h"
+#include "game/shot_manager_loading.h"
 #include "game/human_ai_event_queue.h"
 #include "game/human_ai_action_pool.h"
 #include "game/actor_proximity_loading.h"
@@ -192,6 +194,8 @@ public:
     void seed_random(std::uint32_t seed){std::srand(seed);} //006E9EA0 uses the SAME CRT stream as sound/AI.
     bool& script_advance_override(){return script_advance_override_;} //008692D0;00424900 reset scope owns its writes.
     game::MissionIntegrityTables& mission_integrity_tables(){return mission_integrity_tables_;} //SAME process owner; no invented initialized/healthy state.
+    game::MissionEffectsProcess<EngineFrame*>& mission_effects_process(){return mission_effects_process_;}
+    game::ShotManagerLoadingState<GameActorServices>& shot_manager_process(){return shot_manager_process_;}
     std::uint8_t& first_person_preference(){return data_.first_person_preference();}
     const frontend::LocalizedTextCache& text() const { return text_; }
     LoadedResources& loaded_resources() { return loaded_resources_; }
@@ -624,6 +628,8 @@ private:
     const float human_animation_time_scale_=0x1.666666p+0f;
     game::HumanPhysicsGlobals human_physics_globals_;
     game::MissionIntegrityTables mission_integrity_tables_;
+    game::MissionEffectsProcess<EngineFrame*> mission_effects_process_;
+    game::ShotManagerLoadingState<GameActorServices> shot_manager_process_;
     game::HumanAIEventPool human_ai_events_;
     game::HumanPerceptionRecordPool<GameSceneActors::Instance*> human_perception_records_;
     game::HumanAIAction1Pool human_ai_actions1_;
