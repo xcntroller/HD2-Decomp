@@ -26,3 +26,20 @@ a full live snapshot is not established as a hard dependency of every debrief.
 Do not make all calls in either milestone into mandatory initialization work.
 Detailed unresolved boundaries appear in the graph and guide; whole-world
 save/load and P2.7 integration batches remain research-blocked.
+
+
+The second checkpoint resolves separate mission-slot and runtime actor ID domains,
+module12 type-specific reconstruction, module13 positional replay and its proximity
+prelude. See [actor contracts](p2.6-actor-persistence.md). Proximity pair records are
+scheduler state, not generic reference fixups;00476A50 recomputes Human counters.
+Module4 Script reads before11/12/13; loaded identities and frames already exist.
+[Module classification](p2.6-module-persistence.md) preserves original slot order
+and distinguishes no-op, reset-only and conditional nonempty behavior.
+
+[Context mappings](p2.6-context-layout.md) now identify PC/signals/delay, integer
+slots, Gosub returns, Whenever timing and three actual frame resolver paths.
+Pending animation and nested actor/item/Car/module leaves remain material gaps.
+[Result research](p2.7-results.md) traces offline producer→world shutdown extraction
+→debrief activation→commit, with rank/medal gates and exact redistribution draw
+order. Repeated activation, protection producers and full persistence remain open.
+No whole save compatibility, live acceptance or implementation credit follows.

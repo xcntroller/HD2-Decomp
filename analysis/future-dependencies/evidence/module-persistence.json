@@ -1,6 +1,6 @@
 {
   "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
-  "body_status": "Targets confirmed; unexported bodies are unresolved, not assumed no-op",
+  "body_status": "All registered targets classified; no-op bodies instruction-verified; detailed payload gaps remain explicit",
   "provenance": "Existing final vtable bases from analysis/loading-modules.md and ignored module-load-activation-map.json; static PE u32 at vtable+30/+34 verified against fingerprint",
   "schema_version": 1,
   "slot18": {
@@ -10,109 +10,193 @@
   },
   "slots": [
     {
+      "classification": "partially_researched",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 0,
+      "label": "Tracks",
       "load": "00401440",
       "save": "00401160",
       "vtable": "0080f4d0"
     },
     {
+      "classification": "fully_researched_persistence_contract",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 1,
+      "label": "GEffects",
       "load": "00486470",
       "save": "00486460",
+      "save_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "vtable": "008101f0"
     },
     {
+      "classification": "verified_no_op",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 2,
+      "label": "Physics",
       "load": "00410710",
+      "load_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "save": "00410700",
+      "save_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "vtable": "0080f640"
     },
     {
+      "classification": "partially_researched",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 3,
+      "label": "Items",
       "load": "007ddcb0",
       "save": "007dda90",
       "vtable": "00817208"
     },
     {
+      "classification": "partially_researched",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 4,
+      "label": "Script",
       "load": "004257b0",
       "save": "00424970",
       "vtable": "0080f750"
     },
     {
+      "classification": "verified_no_op",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 5,
+      "label": "Sight",
       "load": "0046ef10",
+      "load_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "save": "0046ef00",
+      "save_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "vtable": "0080ffc8"
     },
     {
+      "classification": "partially_researched",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 6,
+      "label": "Sound",
       "load": "00433b10",
       "save": "00433950",
       "vtable": "0080f7b8"
     },
     {
+      "classification": "partially_researched",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 7,
+      "label": "Versions",
       "load": "0043ee10",
       "save": "0043eba0",
       "vtable": "0080f908"
     },
     {
+      "classification": "partially_researched",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 8,
+      "label": "LMapsGrp",
       "load": "0048c920",
       "save": "0048c820",
       "vtable": "00810398"
     },
     {
+      "classification": "verified_no_op",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 9,
+      "label": "VertexAnim",
       "load": "00473dc0",
+      "load_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "save": "00473db0",
+      "save_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "vtable": "00810060"
     },
     {
+      "classification": "verified_no_op",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 10,
+      "label": "TShift",
       "load": "00411640",
+      "load_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "save": "00411630",
+      "save_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "vtable": "00810418"
     },
     {
+      "classification": "partially_researched",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 11,
+      "label": "TeamMgr",
       "load": "00460fb0",
       "save": "00460cd0",
       "vtable": "0080fc98"
     },
     {
+      "classification": "partially_researched",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 12,
+      "label": "TempActors",
       "load": "00477f50",
       "save": "00477b90",
       "vtable": "008100e8"
     },
     {
+      "classification": "partially_researched",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 13,
+      "label": "Actors",
       "load": "004764d0",
       "save": "00476370",
       "vtable": "008100a8"
     },
     {
+      "classification": "conditionally_required",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 14,
+      "label": "ShotMgr",
       "load": "004527e0",
       "save": "004524c0",
       "vtable": "0080fa18"
     },
     {
+      "classification": "conditionally_required",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 15,
+      "label": "CameraModule",
       "load": "00464e70",
       "save": "00464e60",
+      "save_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "vtable": "0080fdd0"
     },
     {
+      "classification": "verified_no_op",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 16,
+      "label": "HeavyFireSupport",
       "load": "00411640",
+      "load_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "save": "00411630",
+      "save_no_io_body_sha256": "f4c6d7ae520f88aecb3ea65952e885437fa4a6ce4b5c3439a161d1c5d8e42863",
       "vtable": "00810010"
     },
     {
+      "classification": "partially_researched",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
       "kind": 17,
+      "label": "Particles",
       "load": "00447c20",
       "save": "004478f0",
       "vtable": "0080f9a0"
