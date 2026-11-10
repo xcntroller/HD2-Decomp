@@ -11,13 +11,15 @@ work is requested in this branch.
 | B24.preparation | P2.3 | contract-ready for existing route integration | Carry actual preparation into spawned actors |
 | B25.retention | P2.3 | partial; pause/audio leaves remain | Retain same world through menus/Options |
 | B26.envelope | none for source recovery | contract-ready bounded I/O and metadata | Separate metadata, preparation and snapshot envelopes |
-| B26.preparation | B26.envelope | research-blocked leaf payloads | Recover application persistence without world |
-| B26.identity | P2.3,B26.preparation | research-blocked actor leaves | Restore actual identities, never a parallel world |
-| B26.script | B26.identity | research-blocked exact context meanings | Restore VM, frame links, pending work |
-| B26.snapshot | B26.envelope,B26.identity,B26.script,B25.retention | research-blocked remaining modules | Live round trip/reset/failure |
-| B26.resume | B26.preparation,B26.snapshot | research-blocked006B7410 and failure path | Main/retained load, explicit/quick operations |
-| B27.commit | B24.preparation,B26.preparation | research-blocked arithmetic/producer | Commit genuine squad results/progression |
-| B27.presentation | B27.commit,B26.resume | partial existing UI contracts | Debrief/diary/campaign/retry/next |
+| B26.preparation | B26.envelope | partial; bounded child batches below | Existing application persistence |
+| B26.identity | P2.3 | partial; registry/proximity dispatch closed | Loaded identities and actor replay |
+| B26.script | P2.3, B26.envelope | partial; scalar/stack/Whenever closed | VM state on actual loaded frames |
+| B26.snapshot | B26.preparation, B26.identity, B26.script, B26.modules, B25.retention | blocked by nested leaves | Whole live snapshot |
+| B26.resume | B26.snapshot, B26.failure | blocked whole path | Parent for live/quick/restart/frontend receivers |
+| B27.producer | B24.preparation, P2.3 | bounded extraction/order available | Capture actual Human results before world death |
+| B27.awards | B27.producer | arithmetic available; lifecycle partial | Rank, medal and redistribution |
+| B27.commit | B27.awards, B26.preparation | blocked lifecycle/persistence | Commit actual results/progress/save |
+| B27.presentation | B27.commit, B26.resume | partial existing UI contracts | Debrief/diary/campaign/retry/next |
 
 ## B24.preparation
 
@@ -57,90 +59,158 @@ Focused verification: isolated headers/chunk seeks/backpatch/truncation, wrong
 version/root/mission, negative metadata ordinal distinction and resource cleanup.
 Desktop boundary: labels/eligibility only until full receiver closes.
 
-## B26.preparation
+## P2.6 child batches and execution order
 
-Entries006B6A50/006B6DE0, wrappers006B71C0/006B72B0 and reset006B6FF0.
-Reuse application owners, profile plumbing, current pre-mission records and
-catalogue; see [child map](p2.6-save-load.md). Missing exact GameData/mode/HumanStore/
-store/variables payloads006B4250/4400,006B46B0/47B0,006A1780/1B40,
-006A57B0/5890. Script global00427010/27050 is now exact0x400 current bytes. Soldier reader006A4940/006A4E00 is field-based;
-verify paired writer006A2020 before claiming format compatibility.
-Failure: original resets/destroys existing state before some reads; no rollback
-assumed. Retire old soldiers backward; dependent world references must be detached
-or rebound by actual owning path. Focused verification: field-by-field original
-stream pairs, live/no-game conditional skips, partial-read/allocate failures.
-Desktop: no independent gameplay claim; later preparation retry/next profile route.
+Parent IDs above remain stable. Child IDs below are the bounded work units;
+`contract-ready` means source work can start with the stated existing owners.
+It does not authorize enabling an incomplete load command. Build order may
+prepare services first; replay must keep the original stream order.
 
-## B26.identity
+| Batch | Mandatory predecessors | State / exact work boundary |
+| --- | --- | --- |
+| B26.preparation.mode-stock | B26.envelope | contract-ready: mode225C, stock sparse framing, current globals0x400 |
+| B26.preparation.squad | B26.envelope, B24.preparation | partial: paired soldier/equipment fields and aggregate current stream; full GameData/HumanStore and legacy aggregate remain |
+| B26.identity.registry | P2.3 | contract-ready: preserve mission slot/generation/retired and runtime ID domains |
+| B26.actors.items | B26.envelope, real catalogue/holder owners | contract-ready: four item+44/+48 subtype formats and original common-tag asymmetry; actual catalogue/holders required |
+| B26.actors.base | B26.actors.items, initialized model/holder owners | contract-ready base format; actual inventory/model owners required |
+| B26.actors.car | B26.actors.base, initialized Car solver/parts | blocked variable packed version10 leaves |
+| B26.actors.human | B26.actors.base, B26.identity.registry, reached vehicle/target owners | outer and state selection closed; nested B0/input/animation/AI leaves open |
+| B26.actors.conditional | B26.actors.base where actually called | small actor pairs available; other reached families partial, catalog is conditional |
+| B26.identity.dynamic | B26.identity.registry, B26.actors.items, reached type2/11 payloads | dispatcher/item formats closed; type2/11 physical leaves and type35 actual motion receiver remain |
+| B26.identity.proximity | B26.identity.registry | contract-ready: entries/speeds/buckets/three-byte pairs, no notifications |
+| B26.identity.replay | B26.identity.proximity, all reached actor payloads | positional module13 dispatcher closed; payloads block full replay |
+| B26.script.layout | P2.3 compiler/scene/bindings, B26.envelope | contract-ready for scalars, integer slots, references, Gosub, Whenever and globals |
+| B26.script.async | B26.script.layout, actual animation/rotation owners | blocked pending animation receiver, derived contexts and module leaves |
+| B26.modules | P2.3, matching real module owners | use classifications; close required nested consumers, preserve empty wrappers |
+| B26.live | B26.snapshot, B26.failure | same-world explicit save/load receiver; blocked transitive snapshot |
+| B26.quick | B26.live, profile directory/caption publication | quick filename and command gates closed; blocked snapshot |
+| B26.restart | B26.preparation, B26.failure, real current mission initialization | receiver known; verify full reset/reinit path before ready |
+| B26.frontend | B26.preparation, B26.snapshot, B26.failure | preparation reader/path closed; destructive new-world activation failure open |
+| B26.failure | relevant reset/shutdown owners and each reader mutation contract | partial: no rollback is supplied; close failed initialization/repeat teardown |
 
-Entries module12 00477B90/00477F50, module13 00476370/004764D0,
-006E0890/006E0B70 and actor+48/+4C methods. Reuse actual WorldActors/Items/process
-registry, never save-specific duplicates. Existing slots must be populated in
-matching order before positional replay; dynamic allocation/relationship prelude
-must match before script/objective borrowed lookups. Missing: all relevant Human,
-Car, item and other reached actor payloads, fixed/runtime IDs, relationship triplet
-semantics and00476A50 reconciliation. Failure: partially restored pointers cannot
-outlive actual actor owners. Verification: null first32 slots, dynamic slots,
-cycles/missing IDs, references surviving replay and ordered teardown under native
-sanitizers. Desktop: actors/inventory/target identities after actual world load.
+`B26.snapshot` aggregates these child contracts; `B26.resume` aggregates receiver
+batches. Neither parent is ready while any reached required leaf remains open.
+Conditional actor/module requirements must come from the supported mission's
+actual registry/resources, not a guessed “standard mission” exclusion list.
 
-## B26.script
+## Preparation: mode, stock, squad and aggregate
 
-Entries00424970/004257B0,004147D0/00414E30,00427010/00427050.
-Reuse mission_script_module_loading/contexts/variables and scene lookup/compiler.
-Frame names and compiled binding/context layout precede restore. Raw fields and
-pending records are mapped in [context note](p2.6-context-layout.md); exact meanings,
-all special frame resolvers still block whole batch; global variable payload is exact0x400 current bytes.
-Failure: old contexts/rotation owners retire first; unknown context chunks fail;
-missing frames/compile errors retain diagnostic paths. Do not reconstruct a fresh
-successful context or lose pending work. Verify scalar/variable/reference stream
-order, kind-specific byte, stack cardinality, wait/timer/rotation/animation resume,
-missing binding and partial mutation. Desktop: saved suspended script resumes once,
-objectives/pending timers continue with real actors.
+Exact entries006B6A50/006B6DE0, wrapper006B71C0/006B72B0, reset006B6FF0,
+frontend reader006B7410. Use existing application owners and profile plumbing;
+reuse recovered frontend/pre_mission_data/squad/inventory/route rather than new
+save-only records. [Child map](p2.6-save-load.md) defines ownership and live-reader
+skips. Mode006B46B0/47B0 is16 raw bytes at+4 inside225C. Stock006A57B0/5890 puts
+quantity AFTER leaving1234(index), not inside it. Global00427010/50 is exactly
+0x400 current bytes; do not write previous snapshot or declaration metadata.
+Soldier006A2020→006A46D0 and006A2150→006A4940 are field streams; equipment
+006A4D00/006A4E00 is exactly six bytes. Aggregate006B4250/4400 wraps006A7A30/7C80;
+current0x6F/70 vectors and legacy0/2 handling remain separate compatibility cases.
 
-## B26.snapshot
+Failure: stock/aggregate readers clear first; preparation reset retires old
+soldiers before some reads. No transaction or silent successful empty fallback.
+Verify exact emitted/consumed byte positions, sparse stock zero entries, repeated
+reads, live skips versus frontend no-skips, partial allocation/reads. Desktop:
+no gameplay credit alone; real retry/next/profile persistence later exercises it.
 
-Entries0069C8E0/0069CFC0,0048DC90/0048DE60,0069C390.
-Reuse same nineteen module owners; route virtual30/34 through verified targets.
-Source recovery of another lifecycle slot does not supply persistence methods.
-Required top-level order: preparation → module state → HUD → objective/marker →
-subowner8000 → presentation → FPV reset → optional missionA8. Missing remaining
-module leaves and mission virtual+10/+14 format. Whole batch is NOT ready.
-Failure: wrappers ignore nested failures, no atomic transaction; report native
-rejection honestly and preserve explicit source deviations if cleanup is improved.
-Verify mutation prefixes, short writes/backpatch failures, wrong mission/version,
-repeated restore, post-load presentation and borrowed-pointer cleanup. Desktop:
-actual state changes survive snapshot reload, including squad/items/VM/objectives.
+## Identities and actor payloads
 
-## B26.resume
+Reuse SceneActorRegistry, WorldActors/Items and actor_proximity_loading services.
+`00475D50` can find retained retired actors for null reserved slots; do not turn
+that into a factory. Runtime004772F0 reverse-searches separate IDs. Module12
+`00477B90/00477F50` uses type-specific recreation004793F0/00478E50 and existing
+lookup for35; module13 `00476370/004764D0` uses existing slots, no saved type/ID
+per record. `00476A50` recomputes Human counters, not references.
+[Actor contract](p2.6-actor-persistence.md) and [catalog](evidence/actor-persistence.json)
+supply exact virtual48/4C targets, chunks and nested readiness. Reuse existing
+Human/Car loading owners and their real teardown. Human1001 creates selected B0
+before1003; mounted actor/target identity must already resolve. Model/solver/
+holders/compiled bindings must exist before decoding their state.
 
-Entries006DCAE0 command dispatcher,006C3230/006C38F0/006C3ED0/006C4070,
-0069C340,006B7A00/006B7D30/006B7410 and006B3C90/006B3D00.
-Dispatch only after update with actual mode/status/6E gates; keep commands distinct
-from state statuses. Command1 restart;2 quick save;3 quick load;4/5 explicit path;
-6 frontend resume when no game. Reuse profile directory/caption writers and ordinary
-controller descriptor transitions. Missing final006B7410/006B7D30 contracts,
-all caption alternatives and safe failed-init/load unwind before enabling.
-Failure: explicit filename clears and delay100 may occur even on failure; quick
-resume destroys frontend before new game activation, no proven rollback.
-Verify explicit/quick/nonquick split, open failures, frontend destruction order,
-receiver failure cleanup, command clearing and repeat. Desktop: Main resume,
-same-world load, restart, cancel/fail and return Main on isolated profile copies.
+Failure: type2 recreation can return null that outer reader dereferences; base
+inventory clears before rebuilding; Human state changes and Car packed restore
+can partially mutate. Native guarded failure may improve this, but must remain
+an explicit deviation and clean resources through actual registries, not a new
+parallel factory/transaction. Release borrowers before actual owners. Verify
+reserved null slots, compacted mission indices, retired lookup, runtime IDs
+unrelated to position, missing mounted target, item subtree failure and repeat
+cleanup. Desktop requires actual changed actors/equipment/vehicle state after
+reload; a decoded object list cannot satisfy it.
 
-## B27.commit and B27.presentation
+## Script and registered modules
 
-Entries0068C300/006B12D0/0068CE00 and0068D2F0/0068EAD0/0068F3D0/
-0068E0F0/0068D5C0; campaign0068BD10/0068BDD0/0068BDE0/0068C0F0.
-Reuse real objective/squad producer and B26 preparation persistence, accepted
-menu identities, profile reader/writer. Missing producer→descriptor handoff,
-rank/medal/stat formulas, exact randomized redistribution and repeated-entry gate.
-Apply results before profile progress before preparation save before continuation
-queue; original dispatcher ignores save result, so do not claim atomic advancement.
-Retry from prior non-live save, standalone recreated route, conditional Diary,
-null/empty campaign variants retain distinct behavior. Failure: model/load errors
-are real, save failure must not be hidden by an invented success; explicit native
-policy differences require review. Verify exact raw field mutations, randomized
-draw count, dead-member reverse erase, zero survivors, repeated modal cancellation,
-failed persistence and table sentinels. Desktop: genuine mission completion/failure,
-stat changes, diary/Back, retry, next and Main/reopen persistence. Captured UI-only
-results cannot close these acceptance boundaries.
+Use existing mission_script_program/context(s)/variables/module_loading and real
+scene/compiler. `00424970/004257B0`, `004147D0/00414E30` restore after binding frame
+resolution/recompile. [Context mapping](p2.6-context-layout.md) closes scalar/PC,
+integer `reusable==false` slots, retained named frame references, Gosub stack and
+nine bytes per already compiled Whenever record. Pending animation2600 is not a
+generic event queue; the current tick rejects it and needs its actual receiver.
+Use the three original frame resolvers in order; no reserved magic-name factory.
+
+Actual module read order4 Script→11 Team→12 runtime actors→13 mission actors.
+The world identity prerequisite means loaded owners, not actor payload replay
+before Script. [Classification](p2.6-module-persistence.md) distinguishes verified
+no-ops, reset-only readers and nonempty/conditional modules. Keep0..18 wrappers,
+slot IDs and order. Close Tracks/Items/Script/Sound/Versions/LMaps/Team/Particles
+leaves when reached; projectile reader skips four recognized tags even though
+writer can emit nonempty payload. Optional missionA8+10/+14 remains unresolved.
+
+Failure: context reader releases references and mutates before possible0;
+module dispatcher ignores nested returns. No success follows from ignored AL.
+Verify tag/order/counts against same compiled program, reference release/retain,
+missing frame diagnostics, strict Whenever timing, pending animation/rotation
+and frame-borrower retirement before world death. Desktop: real suspended script,
+objectives, delays and animation continue once after load, with same real actors.
+
+## Live, quick, restart and frontend receivers
+
+Entries006DCAE0 dispatcher,006C3230/006C38F0/006C3ED0/006C4070,0069C340,
+006B7A00/006B7D30/006B7410 and006B3C90/006B3D00. Preserve mode/status/6E gates and
+dispatch after update. Commands1 restart,2 quick save,3 quick load,4/5 explicit
+save/load,6 frontend resume are distinct from state statuses.
+
+Live006C3340 uses exact same current mission/version, reset0069C390 and ordered
+read; writer006C39F0 uses actual owners. Quick paths use profile directory plus
+mode-specific quick name and publish caption/LASTSAVE through actual profile.
+Restart006C3ED0 follows real teardown/reset/reinitialization and preparation
+semantics, not generic snapshot reload. Frontend006C4070 obtains last path via
+006B7D30, checks case-sensitive `quick`, reads006B7410 without live-game skips;
+quick resume destroys frontend, constructs game00698510 then0069C340 initializes
+real world BEFORE replay. Do not impose same-world mission guard on this branch.
+
+Failure/repeat/shutdown: filenames may clear and delay100 be set even on failure;
+frontend is already destroyed on failed new-game init. Close0069C390/full shutdown
+cleanup tails before enabling these paths. Record mutated prefixes and dispose
+through real owners in reverse dependency order. No original transactional rollback
+is established. Verify explicit/quick/nonquick path ownership, short writes,
+failed activation, command clearing, repeated reset and final application shutdown.
+Desktop boundaries are separate: same-world explicit load; quick round trip;
+restart current mission; Main resume into a new world; cancellation/failure and
+return Main. Use isolated profile copies. No desktop result is asserted here.
+
+## P2.7 producer, awards and continuation
+
+`B27.producer`:0069BC40→0069B230→status6/2→006C0EF0, with offline6F/pause and
+objective gates. `00698F80` must extract005A9040 into same squad via006B7390,
+006A27C0/2A90/2E50 BEFORE actor/module cleanup. Existing preparation/Human owners
+supply state; no saved actor stream is required for a fresh result. Verify actual
+Human identity, side/equipment/deltas and teardown order; desktop actual mission
+completion/failure feeds debrief, not captured UI results.
+
+`B27.awards`: activation0068CCF0→0068CB70 produces score/counters/rank/medals;
+accept/leave0068CE00→0068C300 consumes pending fields. [Results contract](p2.7-results.md)
+records thresholds, overwrite/return medal semantics, nine PRNG draws per eligible
+candidate and exact cleared-delta mutation. Bounded arithmetic is ready for source
+work; protection producers, PRNG seed lifetime and repeated owner activation still
+block whole lifecycle readiness. Focused checks: rank equality boundary, medal8
+category uniqueness and overwrites, zero survivors, record70==1 versus other
+nonzero values, reverse removal, signed mean, x87 stores and repeated activation.
+
+`B27.commit` then006B12D0 progress→006B76E0→006C39F0 nonlive→continuation queue.
+Reuse B26 preparation/profile format. Original ignores write success; do not
+invent successful persistence or roll back mutation without documenting deviation.
+`B27.presentation` reuses0068D2F0/0068EAD0/0068F3D0/0068E0F0/0068D5C0 and campaign
+0068BD10/BDD0/BDE0/C0F0. Keep Diary mode gate, retry prior preparation save,
+standalone recreated route and null/empty table variants. Verify modal cancel/
+re-entry/failed write, real profile reopen and descriptor lifetime. Desktop:
+actual result stats, retry, next, Diary/Back, Main/reopen; UI-only panels do not
+close arithmetic, save or campaign acceptance.

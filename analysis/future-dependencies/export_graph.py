@@ -2,6 +2,7 @@
 """Deterministic research export; no ledger writes or inferred call dependencies."""
 import hashlib
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -17,7 +18,10 @@ def digest(path):
 def generate():
     manifest_path = 'analysis/future-dependencies/evidence/manifest.json'
     modules_path = 'analysis/future-dependencies/evidence/module-persistence.json'
+    actors_path = 'analysis/future-dependencies/evidence/actor-persistence.json'
+    contracts_path = 'analysis/future-dependencies/evidence/research-contracts.json'
     manifest, modules = read(manifest_path), read(modules_path)
+    actors, contracts = read(actors_path), read(contracts_path)
     ledger = {(r['program'], r['entry']): (i, r) for i, r in enumerate(read('analysis/function-status.json')['functions'])}
     # Catalog associations are scope groupings, not call or initialization proofs.
     specs = [
@@ -51,10 +55,31 @@ def generate():
     ]
     nodes, edges = {}, {}
     exports = {r['entry']: (i, r) for i, r in enumerate(manifest['exports'])}
+    mentions = {}
+    for file in sorted((ROOT/'recovered').rglob('*')):
+        if file.suffix not in ('.h','.cpp'): continue
+        for number,line in enumerate(file.read_text(errors='replace').splitlines(),1):
+            for a in set(re.findall(r'(?<![0-9a-f])[0-9a-f]{8}(?![0-9a-f])',line.lower())):
+                mentions.setdefault(a,[]).append({'path':str(file.relative_to(ROOT)), 'line':number,'relationship':'address_mention_only'})
     def node(key, kind, **data):
+        data.setdefault('batch_ids',[])
+        data.setdefault('status',data.get('implementation_status','unknown'))
+        data.setdefault('verification_levels',{stage:{'status':'unknown','provenance':[]} for stage in ['source_recovery','integration','native','i386','desktop']})
         nodes[key] = {'id':key,'type':kind,'data':data}
     def edge(source, target, role, evidence, blocking=False, condition=None, confidence='confirmed', **extra):
         key = 'relationship:' + hashlib.sha256(json.dumps([source,target,role], separators=(',',':')).encode()).hexdigest()
+        if role=='virtual_dispatch':
+            dispatch={'condition':condition,**extra}
+            if key in edges:
+                data=edges[key]['data']
+                data['dispatches'].append(dispatch)
+                data['dispatches']=sorted({json.dumps(d,sort_keys=True):d for d in data['dispatches']}.values(),key=lambda d:json.dumps(d,sort_keys=True))
+                data['provenance']=sorted({json.dumps(p,sort_keys=True):p for p in data['provenance']+evidence}.values(),key=lambda p:json.dumps(p,sort_keys=True))
+                data['condition']='See dispatches for all concrete selectors sharing this target'
+                for k in extra:
+                    if data.get(k)!=extra[k]: data.pop(k,None)
+                return
+            extra={**extra,'dispatches':[dispatch]}
         edges[key] = {'id':key,'source':source,'target':target,'type':'dependency' if role=='depends_on' else 'relationship',
                       'data':{'relationship':role,'blocking':blocking,'condition':condition,'confidence':confidence,
                               'basis':'explicit' if confidence=='confirmed' else 'inferred','evidence_state':'verified' if confidence=='confirmed' else 'unknown',
@@ -70,11 +95,7 @@ def generate():
         mapping = []
         if row:
             mapping = [p for p in row[1].get('evidence',[]) if p.startswith('recovered/')]
-        source_mentions = []
-        for file in sorted((ROOT/'recovered').rglob('*')):
-            if file.suffix not in ('.h','.cpp'): continue
-            for number,line in enumerate(file.read_text(errors='replace').splitlines(),1):
-                if a in line.lower(): source_mentions.append({'path':str(file.relative_to(ROOT)), 'line':number,'relationship':'address_mention_only'})
+        source_mentions = mentions.get(a,[])
         provenance = [prov(evidence)]
         if indexed: provenance.append(prov(manifest_path,json_pointer=f'/exports/{indexed[0]}'))
         if row: provenance.append(prov('analysis/function-status.json',json_pointer=f'/functions/{row[0]}'))
@@ -112,7 +133,71 @@ def generate():
         for role in ['save','load']:
             fk=function(slot[role],'snapshot','P2.6','Existing registered module slot'+str(slot['kind']),modules_path,'Persistence body must be recovered; lifecycle recovery is insufficient')
             edge('function:client:'+('0048dc90' if role=='save' else '0048de60'),fk,'virtual_dispatch',
-                 [prov(modules_path,json_pointer=f'/slots/{i}')],condition=f'registered slot {slot["kind"]}, vtable+{48 if role=="save" else 52:02x}',slot=slot['kind'])
+                 [prov(modules_path,json_pointer=f'/slots/{i}')],condition=f'registered slot {slot["kind"]}, vtable+{48 if role=="save" else 52:02x}',slot=slot['kind'],module_kind=slot['kind'],virtual_slot='30' if role=='save' else '34',vtable=slot['vtable'])
+            data=nodes[fk]['data']
+            data['provenance'].append(prov(modules_path,json_pointer=f'/slots/{i}'))
+            data['research_readiness']=slot['classification']
+            data['confidence']='confirmed'
+            data['blockers']=['See module classification and actual downstream receivers'] if slot['classification'] not in ('verified_no_op','fully_researched_persistence_contract') else []
+            data['implementation_readiness']='bounded_contract_available' if not data['blockers'] else 'blocked'
+    for i,c in enumerate(contracts['contracts']):
+        key=c['id']; evidence=[prov(c['contract']),prov(contracts_path,json_pointer=f'/contracts/{i}')]
+        node(key,'subsystem',**{k:v for k,v in c.items() if k not in ('id','contract')},
+             source_mapping=[],implementation_status='research_only_no_new_implementation',prerequisites=[],ordering_constraints=[],provenance=evidence)
+        for ms in c['milestones']: edge('milestone:'+ms,key,'contains_subsystem',evidence)
+        for a in c['original_addresses']:
+            fk=function(a,c['subsystem'],c['milestones'][0],c['owner'],c['contract'],'; '.join(c['blockers']) or 'Actual owners and called services must be integrated')
+            data=nodes[fk]['data'];data.setdefault('batch_ids',[]).extend(c['batch_ids'])
+            data['milestones'].extend(c['milestones'])
+            data['owner']=c['owner'];data['lifetime']=c['lifetime'];data['subsystem']=c['subsystem']
+            data['provenance'].append(prov(contracts_path,json_pointer=f'/contracts/{i}'))
+            edge(key,fk,'original_function_reference',evidence)
+    for association in contracts['existing_associations']:
+        data=nodes[association['id']]['data'];data['batch_ids']=association['batch_ids']
+        for a in data['original_addresses']:nodes['function:client:'+a]['data'].setdefault('batch_ids',[]).extend(association['batch_ids'])
+    for i,a in enumerate(actors['actors']):
+        evidence=[prov(actors_path,json_pointer=f'/actors/{i}'),prov(a['contract'])]
+        for role in ['save','load']:
+            fk=function(a[role],'actor_'+str(a['kind']),'P2.6',a['owner'],a['contract'],a['boundary'])
+            data=nodes[fk]['data'];data['provenance'].extend(evidence)
+            data['research_readiness']=a['research_readiness'];data['implementation_readiness']=a['implementation_readiness']
+            data['owner']=a['owner'];data['lifetime']=a['lifetime']
+            data['blockers']=[] if a['research_readiness']=='verified_no_op' else [a['boundary']]
+            data.setdefault('batch_ids',[]).append('B26.actors.human' if a['kind']==3 else 'B26.actors.car' if a['kind']==4 else 'B26.actors.items' if a['kind'] in [2,11] else 'B26.actors.conditional')
+            edge('function:client:'+('00476370' if role=='save' else '004764d0'),fk,'virtual_dispatch',evidence,
+                 condition=a['conditional_requirement'],vtable=a['vtable'],slot=a['slots'][role],actor_type=a['kind'])
+            if a['kind'] in [2,11,35]:
+                edge('function:client:'+('00477b90' if role=='save' else '00477f50'),fk,'virtual_dispatch',evidence,
+                     condition='Module12 type-specific creation branch',vtable=a['vtable'],slot=a['slots'][role],actor_type=a['kind'])
+    for i,state in enumerate(actors['human_states']):
+        for role in ['save','load']:
+            edge('function:client:'+('0059d5d0' if role=='save' else '0059ddf0'),
+                 'function:client:'+state[role],'virtual_dispatch',[prov(actors_path,json_pointer=f'/human_states/{i}')],
+                 condition=state['condition'],vtable=state['vtable'],slot=state['slots'][role],state_kind=state['kind'])
+    for i,item in enumerate(actors['item_subtypes']):
+        evidence=[prov(actors_path,json_pointer=f'/item_subtypes/{i}')]
+        for role in ['save','load']:
+            fk='function:client:'+item[role]
+            nodes[fk]['data']['provenance'].extend(evidence)
+            edge('function:client:'+('007de3e0' if role=='save' else '007de700'),fk,'virtual_dispatch',evidence,
+                 condition='Catalogue-selected actual item family '+item['label'],vtable=item['vtable'],slot=item['slots'][role],item_family=item['family'])
+        edge('function:client:'+item['factory'],'function:client:'+item['load'],'initialization_order',evidence,
+             condition='Catalogue-specific constructor and real virtual04 initialization precede item deserialization')
+    for a,readiness in contracts['function_bounded_readiness'].items():
+        data=nodes['function:client:'+a]['data'];data['research_readiness']=readiness
+        data['provenance'].append(prov(contracts_path,json_pointer='/function_bounded_readiness/'+a))
+        # This closes the bounded format/dispatch, not all transitive consumers.
+        data['implementation_readiness']='bounded_contract_available'
+        data['blockers']=['Whole-path readiness still requires actual owners and downstream contracts; see batch']
+    corrections={
+      'identity':'Dispatch/ID/proximity/item formats closed; Human/Car/physical actor leaves and actual type35 motion receiver remain',
+      'script_persistence':'Scalar/PC/Gosub/Whenever/frame slots mapped; derived contexts, pending animation and module rotation leaves remain',
+      'resume':'Frontend preparation/path leaves closed; whole snapshot, restart/reset and failed activation teardown remain',
+      'results':'Producer and arithmetic mapped; repeated activation/protection producers and complete persistence remain',
+      'application_persistence':'Mode/stock/current aggregate/squad framing closed; full GameData/HumanStore/legacy aggregate remain',
+    }
+    for sid,blocker in corrections.items():
+        nodes['subsystem:future:'+sid]['data']['blockers']=[blocker]
     for a,(i,r) in exports.items():
         src='function:client:'+a
         if src not in nodes: continue
@@ -126,7 +211,6 @@ def generate():
       ('milestone:P2.3','subsystem:future:retention','Ordinary pause requires live owner'),
       ('subsystem:future:envelope','subsystem:future:application_persistence','Chunk framing precedes application decoding'),
       ('subsystem:future:application_persistence','subsystem:future:snapshot','Receiver reads application state before game snapshot'),
-      ('subsystem:future:identity','subsystem:future:script_persistence','Frame/actor references require original identities'),
       ('subsystem:future:script_persistence','subsystem:future:snapshot','Required registered Script persistence consumer'),
       ('subsystem:future:retention','subsystem:future:snapshot','Required for retained-menu acceptance, not standalone parser'),
       ('subsystem:future:snapshot','subsystem:future:resume','Required for quick/live resume branch'),
@@ -135,21 +219,26 @@ def generate():
     for src,dst,reason in dependencies: edge(src,dst,'depends_on',doc,True,condition=reason)
     edge('function:client:00476370','function:client:004764d0','data_dependency',doc,condition='Same actor slot order/population across save and replay')
     edge('subsystem:future:identity','function:client:006dece0','data_dependency',doc,condition='Objective child5000 immediately resolves actor index00475D50')
-    edge('subsystem:future:identity','subsystem:future:script_persistence','ownership',doc,condition='Contexts borrow scene frames; scene outlives contexts')
+    edge('subsystem:future:world_identity','subsystem:future:script_persistence','ownership',doc,condition='Contexts retain actual scene frames; world collections outlive contexts')
     edge('subsystem:future:script_persistence','subsystem:future:identity','cleanup_order',doc,condition='Retire frame borrowers before actor/scene owner destruction')
     edge('subsystem:future:application_persistence','subsystem:future:snapshot','initialization_order',doc,condition='006C3340 reset/read preparation before0069C390/0069CFC0')
     edge('function:client:0068c300','function:client:006b12d0','initialization_order',[prov('analysis/future-dependencies/p2.7-results.md')],condition='Debrief accept/leave commit before progress before save before queued transition')
+    for i,r in enumerate(contracts['relationships']):
+        edge(r['source'],r['target'],r['relationship'],[prov(r['contract']),prov(contracts_path,json_pointer=f'/relationships/{i}')],r['blocking'],r['condition'],r['confidence'])
     for e in edges.values():
         if e['data']['relationship']=='depends_on': nodes[e['target']]['data']['prerequisites'].append(e['source'])
         if e['data']['relationship'] in ('initialization_order','cleanup_order'):
             nodes[e['target']]['data']['ordering_constraints'].append(e['id'])
     for n in nodes.values():
-        for key in ('prerequisites','ordering_constraints','milestones'):
+        for key in ('prerequisites','ordering_constraints','milestones','batch_ids'):
             if key in n['data']: n['data'][key]=sorted(set(n['data'][key]))
-    inputs=['analysis/function-status.json','analysis/phase2-delivery-plan.json',manifest_path,modules_path,
+    inputs=['analysis/function-status.json','analysis/phase2-delivery-plan.json',manifest_path,modules_path,actors_path,contracts_path,
+            'analysis/future-dependencies/evidence/results-arithmetic.json',
+            'analysis/future-dependencies/p2.6-actor-persistence.md','analysis/future-dependencies/p2.6-module-persistence.md',
             'analysis/future-dependencies/phase2-overview.md','analysis/future-dependencies/p2.6-save-load.md',
             'analysis/future-dependencies/p2.6-context-layout.md','analysis/future-dependencies/p2.7-results.md',
             'analysis/future-dependencies/implementation-guide.md','tools/progress-analyzer.md','tools/progress_graph.py','analysis/future-dependencies/export_graph.py']
+    inputs.append('analysis/future-dependencies/README.md')
     return {'schema_id':'hd2.future-dependencies','schema_version':1,'source_commit_sha':SOURCE,
             'binary':manifest['binary'],'inputs':[{'path':p,'sha256':digest(p)} for p in sorted(inputs)],
             'epistemic_policy':{'call_edge_implies_blocking':False,'dependency_direction':'prerequisite_to_dependent',

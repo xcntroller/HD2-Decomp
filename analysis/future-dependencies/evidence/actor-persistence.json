@@ -1,0 +1,593 @@
+{
+  "actors": [
+    {
+      "boundary": "Model/catalogue item and base payload; item/physics leaves",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type2",
+      "implementation_readiness": "blocked",
+      "kind": 2,
+      "label": "PlacedItem",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "005fe800",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "partial_contract",
+      "save": "005fe440",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00812f08",
+      "vtable_bytes_sha256": "99be169fe151d37726384be4318b96c5a45177d52375ddafed9d9c35674a9c43"
+    },
+    {
+      "boundary": "Outer/state-selector/action queues mapped; B0/animation/input/item leaves",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type3",
+      "implementation_readiness": "blocked",
+      "kind": 3,
+      "label": "Human",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "0059ddf0",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "partial_contract",
+      "save": "0059d5d0",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "008111e0",
+      "vtable_bytes_sha256": "325e7e15d8332d60f1a34044dd2a34fa2713e4d407d60c4bc87e968104e019cc"
+    },
+    {
+      "boundary": "Outer chunks mapped; variable packed solver layout remains",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type4",
+      "implementation_readiness": "blocked",
+      "kind": 4,
+      "label": "Car",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "004dd750",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "partial_contract",
+      "save": "004dd350",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00810778",
+      "vtable_bytes_sha256": "cf6fadfcfe2173f88a0add41a40575f9ebe12268a453ed9382155736baaa0065"
+    },
+    {
+      "boundary": "Initialized portal/sound/model receivers required",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type6",
+      "implementation_readiness": "bounded_contract_available",
+      "kind": 6,
+      "label": "Door",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "00602700",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "contract_ready",
+      "save": "00602500",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00812ff8",
+      "vtable_bytes_sha256": "d1aa43e28dfbd10b19ec81bc830bc6b933c40d13c33623e48f4a3a395b12a559"
+    },
+    {
+      "boundary": "No I/O in these two slots",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type8",
+      "implementation_readiness": "bounded_contract_available",
+      "kind": 8,
+      "label": "Ladder",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "005ea510",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "verified_no_op",
+      "save": "005ea500",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00812a30",
+      "vtable_bytes_sha256": "e21972f93b1e4dfad8a57a4eb5776a0f868ebccf1b34c9ad1df19955d025041f"
+    },
+    {
+      "boundary": "Base inventory and96-byte representation consumer",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type9",
+      "implementation_readiness": "blocked",
+      "kind": 9,
+      "label": "SupplyBox",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "005fc640",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "partial_contract",
+      "save": "005fc530",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00812d10",
+      "vtable_bytes_sha256": "2b61db1ceca7ae6491441b300f348051a2d7cec5c4f3c2dc359f87f7c7c53fc3"
+    },
+    {
+      "boundary": "No I/O in these two slots",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type10",
+      "implementation_readiness": "bounded_contract_available",
+      "kind": 10,
+      "label": "SpawnPoint",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "006118c0",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "verified_no_op",
+      "save": "006118b0",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "008138e0",
+      "vtable_bytes_sha256": "30dbd0985fffb07aa8f4bf9be7bfde8b1106ca3ec0ea2965acf362d23ed25912"
+    },
+    {
+      "boundary": "Real decoded item binding; physical/item subtype leaves",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type11",
+      "implementation_readiness": "blocked",
+      "kind": 11,
+      "label": "RuntimeWeapon",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "005b6e20",
+      "owner": "Module12 runtime registry",
+      "research_readiness": "partial_contract",
+      "save": "005b6b80",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00811aa8",
+      "vtable_bytes_sha256": "1dfd805d68e21bce002724b179ba8c4745c6c1d144ea6420faf4b96c89ba06ad"
+    },
+    {
+      "boundary": "Base plus D4; original state consumer and E0 guard",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type13",
+      "implementation_readiness": "bounded_contract_available",
+      "kind": 13,
+      "label": "Switch",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "006132f0",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "contract_ready",
+      "save": "006132b0",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "008139d0",
+      "vtable_bytes_sha256": "a06e10f33cd8abaa792fc598735c6fb425a74927795a57487581e198a739a708"
+    },
+    {
+      "boundary": "Equipment and physical leaves not fully closed",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type21",
+      "implementation_readiness": "blocked",
+      "kind": 21,
+      "label": "StaticWeapon",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "006053c0",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "partial_contract",
+      "save": "00605120",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00813130",
+      "vtable_bytes_sha256": "63ff500e5ee204aa119c20cadeff64756526e81f4bb815b6272911d2a7dd359a"
+    },
+    {
+      "boundary": "Chunk3000 and actual activation consumer",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type22",
+      "implementation_readiness": "bounded_contract_available",
+      "kind": 22,
+      "label": "ExplosivePlace",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "0060d0c0",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "contract_ready",
+      "save": "0060cf70",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "008134f0",
+      "vtable_bytes_sha256": "de9b9c9a0997a7b157a54a8554da063c9e7452a52ee206c47da74ae9fe480721"
+    },
+    {
+      "boundary": "Playback markers/state consumer order; engine clip leaves",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type25",
+      "implementation_readiness": "blocked",
+      "kind": 25,
+      "label": "Animation",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "005b3450",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "partial_contract",
+      "save": "005b3210",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "008119b8",
+      "vtable_bytes_sha256": "65345082465cbb8948fa0d35768b3ae68eae62d16ea5e44b82a2f9904916433e"
+    },
+    {
+      "boundary": "Three scalar fields and actual update",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type28",
+      "implementation_readiness": "bounded_contract_available",
+      "kind": 28,
+      "label": "Pike",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "005b8b00",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "contract_ready",
+      "save": "005b89b0",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00811c90",
+      "vtable_bytes_sha256": "d8ddda953c385469742cdddca711a429c03e02666c94e53b85f04ebace15d93e"
+    },
+    {
+      "boundary": "Byte and conditional DWORD; actual state rebuild",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type29",
+      "implementation_readiness": "bounded_contract_available",
+      "kind": 29,
+      "label": "FowlGenerator",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "005ba300",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "contract_ready",
+      "save": "005ba1e0",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00811d80",
+      "vtable_bytes_sha256": "c54c524fea8458a8403834f013407f0f705ed894ecb39323c1a644d8c2e7e66c"
+    },
+    {
+      "boundary": "Independent substantial stream; do not reuse Human",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type30",
+      "implementation_readiness": "blocked",
+      "kind": 30,
+      "label": "Dog",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "005d3a50",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "partial_contract",
+      "save": "005d3310",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "008120e0",
+      "vtable_bytes_sha256": "abf2f570d36f729e2bcc60ba53443e9ce9f794715d9c57674e83907c38cb87c1"
+    },
+    {
+      "boundary": "Calls00610780/00610A80; earlier no-op hypothesis invalidated",
+      "conditional_requirement": "Only if reached by supported mission registry or module12 type dispatch",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type33",
+      "implementation_readiness": "blocked",
+      "kind": 33,
+      "label": "NullActor",
+      "lifetime": "World; references borrow actual actor; frame-owned resources retain their own lifetimes",
+      "load": "005e2b00",
+      "owner": "Actual mission/runtime actor registry and bound model",
+      "research_readiness": "delegates_base",
+      "save": "005e2af0",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00812840",
+      "vtable_bytes_sha256": "ffa124f54046feb59b41fd22daa604631a1a2cbb0745b4232c039169a61122c3"
+    },
+    {
+      "boundary": "Chunk1000 vec3 motion and real005E2510 receiver; actual physics/navigation/callback dependencies",
+      "conditional_requirement": "Module12 restores existing459 ID; world initialization must already create this actor",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "actor:client:type35",
+      "implementation_readiness": "bounded_contract_available",
+      "kind": 35,
+      "label": "Placed physics actor",
+      "lifetime": "World; deactivate before actual physics/navigation owners die",
+      "load": "005e2730",
+      "owner": "Module12 runtime actor borrows original physics object90 created by004794D0",
+      "research_readiness": "contract_ready",
+      "save": "005e2630",
+      "slots": {
+        "load": "4c",
+        "save": "48"
+      },
+      "vtable": "00812750",
+      "vtable_bytes_sha256": "c78fb58534d270ab863089ec5bb64138c71f2eb519abe76a99d61e133f33a892"
+    }
+  ],
+  "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "common_item_asymmetry": {
+    "confidence": "confirmed",
+    "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+    "reader": "007d3d90",
+    "reader_routes": [
+      {
+        "selector": 0,
+        "tag": 100,
+        "target": "007d3f35"
+      },
+      {
+        "selector": 1,
+        "tag": 101,
+        "target": "007d3f58"
+      },
+      {
+        "selector": 5,
+        "tag": 102,
+        "target": "007d4005"
+      },
+      {
+        "selector": 5,
+        "tag": 103,
+        "target": "007d4005"
+      },
+      {
+        "selector": 2,
+        "tag": 104,
+        "target": "007d3fdd"
+      },
+      {
+        "selector": 3,
+        "tag": 202,
+        "target": "007d3f7b"
+      },
+      {
+        "selector": 4,
+        "tag": 203,
+        "target": "007d3f9e"
+      }
+    ],
+    "reader_tags": {
+      "20": 203,
+      "24": 202
+    },
+    "writer": "007d3b50",
+    "writer_tags": {
+      "20": 103,
+      "24": 102
+    }
+  },
+  "human_states": [
+    {
+      "condition": "B0 kind selected by005A3F20; kind7 editor is later/conditional, not required offline merely by registration",
+      "confidence": "confirmed",
+      "kind": 1,
+      "label": "Player",
+      "load": "005464b0",
+      "research_readiness": "partial_contract",
+      "save": "005461f0",
+      "slots": {
+        "load": "30",
+        "save": "2c"
+      },
+      "vtable": "00811848",
+      "vtable_bytes_sha256": "4ddf4fc254b63ec6673e218d3332d596f78378b628e32ab7c5615ccab457db5a"
+    },
+    {
+      "condition": "B0 kind selected by005A3F20; kind7 editor is later/conditional, not required offline merely by registration",
+      "confidence": "confirmed",
+      "kind": 3,
+      "label": "Active",
+      "load": "0055cb50",
+      "research_readiness": "partial_contract",
+      "save": "0055c820",
+      "slots": {
+        "load": "30",
+        "save": "2c"
+      },
+      "vtable": "00811618",
+      "vtable_bytes_sha256": "fdac05ee4184c9a5242a110643d452dce6c6deb22e53b549981992db41ca9a1c"
+    },
+    {
+      "condition": "B0 kind selected by005A3F20; kind7 editor is later/conditional, not required offline merely by registration",
+      "confidence": "confirmed",
+      "kind": 4,
+      "label": "Guard",
+      "load": "0054c430",
+      "research_readiness": "partial_contract",
+      "save": "0054c000",
+      "slots": {
+        "load": "30",
+        "save": "2c"
+      },
+      "vtable": "00811730",
+      "vtable_bytes_sha256": "c837447e927093456e2ad00a06b644f5cb4f45d327dee61464521e7d89def991"
+    },
+    {
+      "condition": "B0 kind selected by005A3F20; kind7 editor is later/conditional, not required offline merely by registration",
+      "confidence": "confirmed",
+      "kind": 5,
+      "label": "Script",
+      "load": "00590b60",
+      "research_readiness": "partial_contract",
+      "save": "005907d0",
+      "slots": {
+        "load": "30",
+        "save": "2c"
+      },
+      "vtable": "00811500",
+      "vtable_bytes_sha256": "f6a6672e619984be0230ca9ef5b8323f3d241cfcdf30fe4ac857ced940b43624"
+    },
+    {
+      "condition": "B0 kind selected by005A3F20; kind7 editor is later/conditional, not required offline merely by registration",
+      "confidence": "confirmed",
+      "kind": 6,
+      "label": "Ordinary",
+      "load": "005774a0",
+      "research_readiness": "partial_contract",
+      "save": "00576fe0",
+      "slots": {
+        "load": "30",
+        "save": "2c"
+      },
+      "vtable": "008113e8",
+      "vtable_bytes_sha256": "5fc46513732e9f24bcd5da84913150c945453f8a8708dfd61b15ccdb9b725e96"
+    },
+    {
+      "condition": "B0 kind selected by005A3F20; kind7 editor is later/conditional, not required offline merely by registration",
+      "confidence": "confirmed",
+      "kind": 7,
+      "label": "Editor",
+      "load": "00587830",
+      "research_readiness": "partial_contract",
+      "save": "00587550",
+      "slots": {
+        "load": "30",
+        "save": "2c"
+      },
+      "vtable": "008112d8",
+      "vtable_bytes_sha256": "699278ed15792ccb89bafb9d3045e2932415bb21659416e8e2f4000fbd97afb2"
+    },
+    {
+      "condition": "B0 kind selected by005A3F20; kind7 editor is later/conditional, not required offline merely by registration",
+      "confidence": "confirmed",
+      "kind": 8,
+      "label": "Other reached state",
+      "load": "005774a0",
+      "research_readiness": "partial_contract",
+      "save": "00576fe0",
+      "slots": {
+        "load": "30",
+        "save": "2c"
+      },
+      "vtable": "00810e20",
+      "vtable_bytes_sha256": "5fc46513732e9f24bcd5da84913150c945453f8a8708dfd61b15ccdb9b725e96"
+    }
+  ],
+  "item_subtypes": [
+    {
+      "confidence": "confirmed",
+      "constructor": "007d45c0",
+      "factory": "007dd560",
+      "family": 0,
+      "label": "weapon",
+      "load": "007d5730",
+      "research_readiness": "contract_ready",
+      "save": "007d54f0",
+      "slots": {
+        "load": "48",
+        "save": "44"
+      },
+      "vtable": "00817018",
+      "vtable_bytes_sha256": "71a6fc53aefc17c20a72983fbb1236b0988769136de8d89e132f1901ba151bb3"
+    },
+    {
+      "confidence": "confirmed",
+      "constructor": "007d3800",
+      "factory": "007dd480",
+      "family": 1,
+      "label": "pack",
+      "load": "007d3d90",
+      "research_readiness": "contract_ready",
+      "save": "007d3b50",
+      "slots": {
+        "load": "48",
+        "save": "44"
+      },
+      "vtable": "00816f28",
+      "vtable_bytes_sha256": "7d78d50e3715693685dda8e55c334dc1a5eb867d9035dca6cabc1b54e1363d0e"
+    },
+    {
+      "confidence": "confirmed",
+      "constructor": "007d3220",
+      "factory": "007dd400",
+      "family": 2,
+      "label": "basic",
+      "load": "007d35c0",
+      "research_readiness": "contract_ready",
+      "save": "007d33c0",
+      "slots": {
+        "load": "48",
+        "save": "44"
+      },
+      "vtable": "00816ed8",
+      "vtable_bytes_sha256": "5837e9772e9a19e90ee0bb87542d739cb1b8083229e50fc668f7ec661fbfbdc4"
+    },
+    {
+      "confidence": "confirmed",
+      "constructor": "007d4150",
+      "factory": "007dd4f0",
+      "family": 3,
+      "label": "other",
+      "load": "007d4350",
+      "research_readiness": "contract_ready",
+      "save": "007d4240",
+      "slots": {
+        "load": "48",
+        "save": "44"
+      },
+      "vtable": "00816fc8",
+      "vtable_bytes_sha256": "d469de43a889d19ae5778aeb1d45b2afbebb242639b0763d0e213cb40796e85a"
+    }
+  ],
+  "provenance": "Fingerprint-checked PE vtable+48/+4C, verified against constructor/factory evidence and paired targeted exports",
+  "schema_version": 1,
+  "unresolved": [
+    {
+      "reason": "Other scene-registered actor families are conditional; this catalog is not a complete all-mission actor inventory"
+    }
+  ]
+}
