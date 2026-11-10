@@ -1,0 +1,70 @@
+{
+  "binary_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "contract": "analysis/future-dependencies/p2.7-results.md",
+  "functions": [
+    "00698f80",
+    "005a9040",
+    "0068ccf0",
+    "0068cb70",
+    "0068c900",
+    "0068c890",
+    "0068c300"
+  ],
+  "gaps": [
+    "Repeated debrief activation and modal gates",
+    "Protection-table producer meanings",
+    "Original PRNG seed/state ownership across surrounding flows"
+  ],
+  "rank_thresholds": {
+    "address": "008423c0",
+    "comparison": "strict_greater",
+    "max_next_rank_exclusive": 8,
+    "type": "signed_dword",
+    "values": [
+      10000,
+      25000,
+      50000,
+      80000,
+      115000,
+      160000,
+      210000
+    ]
+  },
+  "redistribution": {
+    "candidate_indices": "ascending; index<count and index<=29",
+    "draw_count_per_candidate": 9,
+    "draw_destinations": [
+      "38",
+      "48",
+      "4c",
+      "50",
+      "54",
+      "58",
+      "60",
+      "64",
+      "68"
+    ],
+    "factor_constants": [
+      {
+        "address": "0080ff64",
+        "type": "float",
+        "value": 3.0518509447574615e-05
+      },
+      {
+        "address": "0080fad4",
+        "type": "float",
+        "value": 0.800000011920929
+      },
+      {
+        "address": "00815910",
+        "type": "double",
+        "value": 0.6
+      }
+    ],
+    "precision": "Original x87 evaluation and store/conversion points required",
+    "skip": "record70==1",
+    "zero_mean_draw_index": 2,
+    "zero_survivors_draw_count": 0
+  },
+  "schema_version": 1
+}

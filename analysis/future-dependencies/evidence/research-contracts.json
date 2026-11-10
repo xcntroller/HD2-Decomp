@@ -1,0 +1,770 @@
+{
+  "contracts": [
+    {
+      "batch_ids": [
+        "B26.identity.registry",
+        "B26.identity.replay",
+        "B27.producer"
+      ],
+      "blockers": [],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "subsystem:future:world_identity",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Loaded mission and runtime identity services",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6",
+        "P2.7"
+      ],
+      "original_addresses": [
+        "00475d50",
+        "00475ec0",
+        "00475940",
+        "00475a70",
+        "00476680",
+        "004770b0",
+        "004772f0",
+        "00477330",
+        "00610230",
+        "00476a50",
+        "004759c0",
+        "00475c50",
+        "00476860"
+      ],
+      "owner": "Module13 mission slots, Module12 dynamic registry; actual scene frameEC associations",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "contract_ready",
+      "subsystem": "world_identity"
+    },
+    {
+      "batch_ids": [
+        "B26.identity.proximity"
+      ],
+      "blockers": [],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "subsystem:future:proximity",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Proximity entry and bucket restoration",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "006e0890",
+        "006e0b70",
+        "006e07c0",
+        "006e00b0"
+      ],
+      "owner": "Existing008AED54 owner owns entries and ten buckets; actors borrowed",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "contract_ready",
+      "subsystem": "proximity"
+    },
+    {
+      "batch_ids": [
+        "B26.identity.dynamic"
+      ],
+      "blockers": [
+        "Type2/11 physical actor state leaves and real initialized physics/motion services; all concrete item subtype formats now mapped"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "subsystem:future:dynamic_creation",
+      "implementation_readiness": "blocked",
+      "label": "Type-specific dynamic recreation",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "004793f0",
+        "00478e50",
+        "005b69b0",
+        "005fe010"
+      ],
+      "owner": "Module12 owns created actors; decoded item is bound through actual owner",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "partial_contract",
+      "subsystem": "dynamic_creation"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.base"
+      ],
+      "blockers": [],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "subsystem:future:actor_base",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Base actor inventory and transform",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "00610780",
+        "00610a80",
+        "007ddf60",
+        "007de140",
+        "005e2af0",
+        "005e2b00"
+      ],
+      "owner": "Actual actor/model/holder topology; parent frame borrowed",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "contract_ready",
+      "subsystem": "actor_base"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.items",
+        "B26.actors.base",
+        "B26.identity.dynamic"
+      ],
+      "blockers": [],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "subsystem:future:actor_items",
+      "implementation_readiness": "bounded_contract_available",
+      "label": "Catalogue-specific item trees",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "007de3e0",
+        "007de700",
+        "007dd560",
+        "007dd400",
+        "007dd480",
+        "007dd4f0",
+        "007d45c0",
+        "007d3220",
+        "007d3800",
+        "007d4150",
+        "007d3b50",
+        "007d3d90",
+        "007d33c0",
+        "007d35c0",
+        "007d54f0",
+        "007d5730",
+        "007d4240",
+        "007d4350",
+        "007dc6e0",
+        "00475dd0"
+      ],
+      "owner": "Actual Items catalogue and item subclass owners; nested contents owned by holders",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "contract_ready",
+      "subsystem": "actor_items"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.human",
+        "B27.producer"
+      ],
+      "blockers": [
+        "Nested Human state/AI/command/input/animation leaves; mounted identities must already exist"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "subsystem:future:actor_human",
+      "implementation_readiness": "blocked",
+      "label": "Human state and nested persistence",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6",
+        "P2.7"
+      ],
+      "original_addresses": [
+        "0059bf00",
+        "0059d5d0",
+        "0059ddf0",
+        "0059d190",
+        "0059d970",
+        "005ab4e0",
+        "005ab7a0",
+        "005ad040",
+        "005ad390",
+        "005942d0",
+        "00594560",
+        "005641b0",
+        "005643e0",
+        "0059d940",
+        "005a3f20",
+        "005aca70",
+        "005accd0"
+      ],
+      "owner": "Same Human, owned B0 state, inline98 animation, pointed B4 action queues; borrowed Car/targets",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "partial_contract",
+      "subsystem": "actor_human"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.human"
+      ],
+      "blockers": [
+        "Remaining nested command, AI and input leaf interpretation"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "subsystem:future:human_states",
+      "implementation_readiness": "blocked",
+      "label": "Human B0 concrete persistence dispatch",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "005461f0",
+        "005464b0",
+        "0055c820",
+        "0055cb50",
+        "0054c000",
+        "0054c430",
+        "005907d0",
+        "00590b60",
+        "00576fe0",
+        "005774a0",
+        "00587550",
+        "00587830"
+      ],
+      "owner": "State family selected and constructed by005A3F20 after retiring old B0; same owning Human",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "partial_contract",
+      "subsystem": "human_states"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.car"
+      ],
+      "blockers": [
+        "Exact variable packed vehicle version10 layout, x87 transforms and derived rebuilding"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "subsystem:future:actor_car",
+      "implementation_readiness": "blocked",
+      "label": "Vehicle state and packed solver",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "004d0b60",
+        "004dd350",
+        "004dd750",
+        "004f7300",
+        "004f7650",
+        "004f8510",
+        "004c6660",
+        "004c68b0",
+        "004e0f70",
+        "004e1230"
+      ],
+      "owner": "Actual Car solver/model arrays, parts, seats and emitter owners",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "partial_contract",
+      "subsystem": "actor_car"
+    },
+    {
+      "batch_ids": [
+        "B26.script.layout",
+        "B26.script.async"
+      ],
+      "blockers": [
+        "Pending animation receiver and module rotation/animation leaves; derived kind1/2 receivers"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-context-layout.md",
+      "id": "subsystem:future:script_runtime",
+      "implementation_readiness": "blocked",
+      "label": "Context scalar, stack, Whenever and frame mapping",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "004167b0",
+        "0041d8d0",
+        "00416610",
+        "0041dcb0",
+        "00414dd0"
+      ],
+      "owner": "Actual compiled program/context; retained reference slots; borrowed pending animation frame",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "partial_contract",
+      "subsystem": "script_runtime"
+    },
+    {
+      "batch_ids": [
+        "B26.preparation.mode-stock",
+        "B26.preparation.squad",
+        "B27.awards"
+      ],
+      "blockers": [
+        "Legacy aggregate case2 helper0053B1D0; complete GameData/HumanStore leaves remain"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-save-load.md",
+      "id": "subsystem:future:preparation_leaves",
+      "implementation_readiness": "blocked",
+      "label": "Mode, stock, squad and aggregate streams",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6",
+        "P2.7"
+      ],
+      "original_addresses": [
+        "006a2020",
+        "006a46d0",
+        "006a4d00",
+        "006a5aa0",
+        "006a7a30",
+        "006a7c80",
+        "006a79d0",
+        "006a80e0"
+      ],
+      "owner": "Existing application mode/stores/squad/aggregate owners",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "partial_contract",
+      "subsystem": "preparation_leaves"
+    },
+    {
+      "batch_ids": [
+        "B26.modules"
+      ],
+      "blockers": [
+        "Tracks/Items/Script/Sound/Versions/LMaps/Team/Particles and populated projectile writer leaves"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
+      "id": "subsystem:future:module_leaves",
+      "implementation_readiness": "blocked",
+      "label": "Registered module side-effect consumers",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "0043d550",
+        "0043d7f0",
+        "0048d270"
+      ],
+      "owner": "Actual existing module owners and scene/backend resources",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "partial_contract",
+      "subsystem": "module_leaves"
+    },
+    {
+      "batch_ids": [
+        "B27.producer"
+      ],
+      "blockers": [
+        "Whole shutdown and repeated owner activation/cancel gates need integration; preserve objective status/6F branches"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.7-results.md",
+      "id": "subsystem:future:result_producer",
+      "implementation_readiness": "blocked",
+      "label": "Offline result extraction and transition",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.7"
+      ],
+      "original_addresses": [
+        "0069b230",
+        "00698f80",
+        "006997b0",
+        "0069b870",
+        "005a9040",
+        "005a8b50",
+        "005a8820",
+        "006b7390",
+        "006a27c0",
+        "006a2a90",
+        "006a2e50",
+        "005a9640",
+        "00699680",
+        "0069b9f0",
+        "00699b50",
+        "00699320",
+        "0049de30",
+        "004ad880"
+      ],
+      "owner": "Current game retained until squad extraction; application-owned soldier records survive world",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "partial_contract",
+      "subsystem": "result_producer"
+    },
+    {
+      "batch_ids": [
+        "B27.awards",
+        "B27.commit"
+      ],
+      "blockers": [
+        "Protection-table producers and repeated activation gates; original PRNG seed/state lifetime"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.7-results.md",
+      "id": "subsystem:future:result_awards",
+      "implementation_readiness": "blocked",
+      "label": "Rank, medal and redistribution arithmetic",
+      "lifetime": "Existing process/world/state lifetime; see owner and teardown contract",
+      "milestones": [
+        "P2.7"
+      ],
+      "original_addresses": [
+        "0068ccf0",
+        "0068cdf0",
+        "0068cb70",
+        "0068c900",
+        "0068c890",
+        "006a0ef0",
+        "006a2920",
+        "006a2940"
+      ],
+      "owner": "Debrief activation and actual squad/HumanStore/PRNG; no independent result objects",
+      "priority": "high",
+      "priority_reason": "User-prioritized identity, persistence or result lifecycle dependency",
+      "research_readiness": "partial_contract",
+      "subsystem": "result_awards"
+    },
+    {
+      "batch_ids": [
+        "B26.actors.conditional",
+        "B26.identity.dynamic"
+      ],
+      "blockers": [
+        "Real005E2510 motion/physics/navigation callbacks still required; no generic recreation"
+      ],
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "id": "subsystem:future:actor_physics35",
+      "implementation_readiness": "blocked",
+      "label": "Existing physics actor motion restoration",
+      "lifetime": "World, actual physics/navigation owners outlive actor deactivation",
+      "milestones": [
+        "P2.6"
+      ],
+      "original_addresses": [
+        "005e2630",
+        "005e2730",
+        "005e2510",
+        "004794d0"
+      ],
+      "owner": "Module12 actor35 borrows original physics object90; no factory during read",
+      "priority": "high",
+      "priority_reason": "Existing459 identity must be initialized by real physics queue producer",
+      "research_readiness": "partial_contract",
+      "subsystem": "actor_physics35"
+    }
+  ],
+  "existing_associations": [
+    {
+      "batch_ids": [
+        "B24.preparation"
+      ],
+      "id": "subsystem:future:preparation"
+    },
+    {
+      "batch_ids": [
+        "B25.retention"
+      ],
+      "id": "subsystem:future:retention"
+    },
+    {
+      "batch_ids": [
+        "B26.envelope"
+      ],
+      "id": "subsystem:future:envelope"
+    },
+    {
+      "batch_ids": [
+        "B26.preparation",
+        "B26.preparation.mode-stock",
+        "B26.preparation.squad"
+      ],
+      "id": "subsystem:future:application_persistence"
+    },
+    {
+      "batch_ids": [
+        "B26.snapshot",
+        "B26.modules",
+        "B26.failure"
+      ],
+      "id": "subsystem:future:snapshot"
+    },
+    {
+      "batch_ids": [
+        "B26.identity",
+        "B26.identity.replay",
+        "B26.identity.dynamic"
+      ],
+      "id": "subsystem:future:identity"
+    },
+    {
+      "batch_ids": [
+        "B26.script",
+        "B26.script.layout",
+        "B26.script.async"
+      ],
+      "id": "subsystem:future:script_persistence"
+    },
+    {
+      "batch_ids": [
+        "B26.resume",
+        "B26.live",
+        "B26.quick",
+        "B26.restart",
+        "B26.frontend",
+        "B26.failure"
+      ],
+      "id": "subsystem:future:resume"
+    },
+    {
+      "batch_ids": [
+        "B27.commit",
+        "B27.producer",
+        "B27.awards",
+        "B27.presentation"
+      ],
+      "id": "subsystem:future:results"
+    },
+    {
+      "batch_ids": [
+        "B27.presentation"
+      ],
+      "id": "subsystem:future:campaign"
+    }
+  ],
+  "function_bounded_readiness": {
+    "004147d0": "contract_ready",
+    "00414e30": "contract_ready",
+    "00427010": "contract_ready",
+    "00427050": "contract_ready",
+    "00475d50": "contract_ready",
+    "00475dd0": "contract_ready",
+    "00475ec0": "contract_ready",
+    "00476370": "contract_ready",
+    "004764d0": "contract_ready",
+    "00476a50": "contract_ready",
+    "004770b0": "contract_ready",
+    "004772f0": "contract_ready",
+    "00477330": "contract_ready",
+    "00477b90": "contract_ready",
+    "00477f50": "contract_ready",
+    "005e2630": "contract_ready",
+    "005e2730": "contract_ready",
+    "00610230": "contract_ready",
+    "00610780": "contract_ready",
+    "00610a80": "contract_ready",
+    "0068c300": "contract_ready",
+    "0068c890": "contract_ready",
+    "0068c900": "contract_ready",
+    "0068cb70": "contract_ready",
+    "006a0ef0": "contract_ready",
+    "006a2020": "contract_ready",
+    "006a46d0": "contract_ready",
+    "006a4d00": "contract_ready",
+    "006a57b0": "contract_ready",
+    "006a5890": "contract_ready",
+    "006b46b0": "contract_ready",
+    "006b47b0": "contract_ready",
+    "006b7410": "contract_ready",
+    "006b7d30": "contract_ready",
+    "006e0890": "contract_ready",
+    "006e0b70": "contract_ready",
+    "007d33c0": "contract_ready",
+    "007d35c0": "contract_ready",
+    "007d3b50": "contract_ready",
+    "007d3d90": "contract_ready",
+    "007d4240": "contract_ready",
+    "007d4350": "contract_ready",
+    "007d54f0": "contract_ready",
+    "007d5730": "contract_ready",
+    "007ddf60": "contract_ready",
+    "007de140": "contract_ready",
+    "007de3e0": "contract_ready",
+    "007de700": "contract_ready"
+  },
+  "relationships": [
+    {
+      "blocking": true,
+      "condition": "Loaded actual mission actors/frame and catalog owners are the external prerequisite",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "relationship": "depends_on",
+      "source": "milestone:P2.3",
+      "target": "subsystem:future:world_identity"
+    },
+    {
+      "blocking": true,
+      "condition": "Identity availability before replay; this is not actor payload replay before Script",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:world_identity",
+      "target": "subsystem:future:identity"
+    },
+    {
+      "blocking": true,
+      "condition": "Identity availability before replay; this is not actor payload replay before Script",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:world_identity",
+      "target": "subsystem:future:script_persistence"
+    },
+    {
+      "blocking": true,
+      "condition": "Identity availability before replay; this is not actor payload replay before Script",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:world_identity",
+      "target": "subsystem:future:proximity"
+    },
+    {
+      "blocking": true,
+      "condition": "Identity availability before replay; this is not actor payload replay before Script",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
+      "relationship": "depends_on",
+      "source": "subsystem:future:world_identity",
+      "target": "subsystem:future:dynamic_creation"
+    },
+    {
+      "blocking": false,
+      "condition": "Registered original stream order4\u219211\u219212\u219213",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
+      "relationship": "initialization_order",
+      "source": "function:client:004257b0",
+      "target": "function:client:00460fb0"
+    },
+    {
+      "blocking": false,
+      "condition": "Registered original stream order4\u219211\u219212\u219213",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
+      "relationship": "initialization_order",
+      "source": "function:client:00460fb0",
+      "target": "function:client:00477f50"
+    },
+    {
+      "blocking": false,
+      "condition": "Registered original stream order4\u219211\u219212\u219213",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-module-persistence.md",
+      "relationship": "initialization_order",
+      "source": "function:client:00477f50",
+      "target": "function:client:004764d0"
+    },
+    {
+      "blocking": false,
+      "condition": "Proximity prelude consumed before positional actor state",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "relationship": "initialization_order",
+      "source": "function:client:006e0b70",
+      "target": "function:client:004764d0"
+    },
+    {
+      "blocking": false,
+      "condition": "Human1001 retires/recreates B0 selector before outer1003 state read",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "relationship": "initialization_order",
+      "source": "function:client:0059d970",
+      "target": "function:client:0059ddf0"
+    },
+    {
+      "blocking": false,
+      "condition": "Mounted/target mission identities resolved immediately, including unguarded mounted receiver",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "relationship": "data_dependency",
+      "source": "subsystem:future:world_identity",
+      "target": "function:client:0059d970"
+    },
+    {
+      "blocking": false,
+      "condition": "Mounted Human borrows actual vehicle/seat; no ownership transfer",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "relationship": "ownership",
+      "source": "subsystem:future:actor_car",
+      "target": "subsystem:future:actor_human"
+    },
+    {
+      "blocking": false,
+      "condition": "Release retained context frame slots before destruction of actual world owners",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-context-layout.md",
+      "relationship": "cleanup_order",
+      "source": "subsystem:future:script_persistence",
+      "target": "subsystem:future:world_identity"
+    },
+    {
+      "blocking": false,
+      "condition": "Extract squad results before destroying module/scene actor owners",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.7-results.md",
+      "relationship": "cleanup_order",
+      "source": "function:client:00698f80",
+      "target": "subsystem:future:world_identity"
+    },
+    {
+      "blocking": false,
+      "condition": "Extraction \u2192 activation award production \u2192 accept/leave commit",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.7-results.md",
+      "relationship": "initialization_order",
+      "source": "function:client:005a9040",
+      "target": "function:client:0068cb70"
+    },
+    {
+      "blocking": false,
+      "condition": "Extraction \u2192 activation award production \u2192 accept/leave commit",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.7-results.md",
+      "relationship": "initialization_order",
+      "source": "function:client:0068cb70",
+      "target": "function:client:0068c300"
+    },
+    {
+      "blocking": false,
+      "condition": "Live Human fields/holders are source; serialized actor payload is not required for a fresh mission result",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.7-results.md",
+      "relationship": "data_dependency",
+      "source": "subsystem:future:actor_human",
+      "target": "subsystem:future:result_producer"
+    },
+    {
+      "blocking": false,
+      "condition": "Legacy203 resolves borrowed holder through physical mission slot00475DD0, no retired/runtime lookup",
+      "confidence": "confirmed",
+      "contract": "analysis/future-dependencies/p2.6-actor-persistence.md",
+      "relationship": "data_dependency",
+      "source": "subsystem:future:world_identity",
+      "target": "function:client:007d3d90"
+    }
+  ],
+  "schema_version": 1
+}
