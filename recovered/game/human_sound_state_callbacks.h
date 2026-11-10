@@ -112,5 +112,35 @@ private:
     }
     Frames& frames_;Factory& factory_;
 };
+//The shared SOUND listener bridge serves many Humans. Their state factories
+//share world/context services but each owns a different inline98. Resolve the
+//receiver's actual factory for every call rather than retaining one Human's
+//control as the successful handler for all listeners.
+template<class Factory,class State,class Lookup>Factory& human_sound_receiver_factory(State& state,Lookup& lookup){
+    auto* human=state.human();
+    if(!human||human->loading_state!=&state)throw std::logic_error("Human sound requires the actual published receiver state");
+    auto& factory=lookup.human_state_factory(*human);
+    if(factory.control().human()!=human)throw std::logic_error("Human sound factory belongs to a different inline98");
+    return factory;
+}
+template<class Frames,class Human,class Factory,class Lookup>class HumanSoundStateRouter {
+public:
+    using Base=typename Factory::Base;
+    using Receiver=HumanSoundStateCallbacks<Frames,Human,Factory>;
+    using Actor=typename Receiver::Actor;
+    using Record=typename Receiver::Record;
+    HumanSoundStateRouter(Frames& frames,Lookup& lookup):frames_(frames),lookup_(lookup){}
+    void a8(Base& state,Actor actor){receiver(state).a8(state,actor);}
+    void ac(Base& state,Actor actor){receiver(state).ac(state,actor);}
+    void b0(Base& state,Actor actor){receiver(state).b0(state,actor);}
+    void b4(Base& state,Record& record){receiver(state).b4(state,record);}
+private:
+    Receiver receiver(Base& state){
+        auto& factory=human_sound_receiver_factory<Factory>(state,lookup_);
+        return Receiver(frames_,factory);
+    }
+    Frames& frames_;Lookup& lookup_;
+};
+
 } //namespace hd2::game
 #endif

@@ -40,6 +40,7 @@ public:
     void sight_dead_acquired(Human& actor)override{this->emit_sight(actor,2);interrupt(actor,0x200);} //0058FFE0.
     using AI::sight_enemy_lost;
     Context* context()const{return context_;}
+    void script_context(Context* context){context_=context;} //005907C0, actual B0+1AC borrower update.
     std::uint32_t derived_loading_word(unsigned offset)const override {
         if(offset!=0x1b0)throw std::runtime_error("Unrecovered script AI handover word");
         return state_.template get<std::uint32_t>(offset);

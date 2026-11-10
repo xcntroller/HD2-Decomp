@@ -1,5 +1,7 @@
 # Technical research guide
 
+Human/world composition checkpoint2026-11-10: [actual source lifetimes and script binding](analysis/human-world-composition.md). Concrete DD0/230/B0/inventory ownership, per-Human SOUND routing, pending EC context and native precompile notifications. Focused native sanitizers/strict actual-host compile pass; containing session/VM receivers remain required. Ledger34 complete/1,811 partial; no world/desktop promotion. Continue P2.2.
+
 Car cold activation checkpoint2026-11-10: [actual source sequence, evidence and limitations](analysis/car-activation-loading.md). Both offline passes, cold update, repeat and53 failure prefixes pass native sanitizers; actual host/world dispatch compile-only. Application loading remains disabled. Ledger34 complete/1,807 partial; no complete or desktop promotion. Continue the full P2.2 checkbox.
 
 ## 2026-11-10 — Car cold runtime source checkpoint

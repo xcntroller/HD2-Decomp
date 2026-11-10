@@ -84,6 +84,12 @@ public:
     void record_state_cleanup_failure(std::exception_ptr error)noexcept{services_.record_state_cleanup_failure(error);}
     auto& services(){return services_;}auto& contexts(){return contexts_;} //SAME owners for derived sound dispatch.
     auto& control(){return control_;}
+    void script_context(Base& state,typename Contexts::Context* context){
+        auto* script=dynamic_cast<Script*>(&state);
+        if(!script||state.words().template get<std::uint32_t>(0x48)!=5)
+            throw std::logic_error("Script binding notification requires the actual current state5");
+        script->script_context(context);
+    }
 private:
     Frames& frames_;Inputs& inputs_;MissionTableSet& second_;MissionNavigation* navigation_;
     HumanInputCallbacks& callbacks_;HumanAIAction1Pool& actions_;Random& random_;Contexts& contexts_;

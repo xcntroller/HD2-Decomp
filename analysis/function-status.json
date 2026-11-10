@@ -22451,14 +22451,16 @@
       "program": "client",
       "entry": "00427730",
       "status": "partial",
-      "coverage": "Source mission script actual-factory source load compile begin notify and exit-remove owner. Actual EC-owned lookup and reverse Exit/destruction pass for module finish; reject executing self-assignment.",
+      "coverage": "Source mission script actual-factory source load compile begin notify and exit-remove owner. Actual EC-owned lookup and reverse Exit/destruction pass for module finish; reject executing self-assignment. Actual base/Human/Dog source family construction and precompile/captured-target completion notification ordering are now composed; pending local context ownership remains resolvable during Human state bind.",
       "limitations": "Source-only typed C++ ownership/index/string/frame ABI; bounded malformed/unsafe source cases reject. No original heap/SEH/object ABI or whole-body promotion. Actual base/Human/Dog world commands, non-signal predicates, asynchronous/deferred operations, activation and live world composition remain required; strict actual-host declarations and native boundary doubles are not runtime or desktop delivery. See compiler/context contract for per-branch restrictions. Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "analysis/mission-script-loading.md",
         "recovered/game/mission_script_contexts.h",
         "analysis/checkpoints/p2.2-script-compiler-context-20261109.json",
         "analysis/mission-script-receivers.md",
-        "analysis/checkpoints/p2.2-script-receivers-20261109.json"
+        "analysis/checkpoints/p2.2-script-receivers-20261109.json",
+        "analysis/human-world-composition.md",
+        "recovered/game/mission_script_actor_bindings.h"
       ]
     },
     {
@@ -22477,12 +22479,13 @@
       "program": "client",
       "entry": "0041cfa0",
       "status": "partial",
-      "coverage": "Read the SAME frame EC word1 and validate its containing script module owner.",
+      "coverage": "Read the SAME frame EC word1 and validate its containing script module owner. Resolve and validate the actual bind-local pending EC context before module-vector publication, alongside already appended context owners.",
       "limitations": "Source-only typed ownership/ABI; no containing world activation or desktop delivery. Unsupported VM/presentation/transform/async branches require actual receivers; invalid native memory cases reject. Engine/Human/FPV boundaries in temporary fixtures are doubles or declarations, not credited receiver implementations.",
       "evidence": [
         "analysis/mission-script-receivers.md",
         "analysis/checkpoints/p2.2-script-receivers-20261109.json",
-        "recovered/game/mission_script_contexts.h"
+        "recovered/game/mission_script_contexts.h",
+        "analysis/human-world-composition.md"
       ]
     },
     {
@@ -24567,6 +24570,50 @@
       "evidence": [
         "analysis/car-activation-loading.md",
         "recovered/game/car_scene_actor.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a3df0",
+      "status": "partial",
+      "coverage": "Actual null-B0 gate, script selection with active-AI reset and animation disable, and player/AI restoration using SAME Players current Human.",
+      "limitations": "Native Human/B0 object ABI differs; containing world/Players receivers remain required.",
+      "evidence": [
+        "analysis/human-world-composition.md",
+        "recovered/game/human_state_loading_owner.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005907c0",
+      "status": "partial",
+      "coverage": "Actual current script state1AC borrower assignment, used after success or failure compilation notification.",
+      "limitations": "Native object/pointer ABI differs; no whole derived command-dispatch claim.",
+      "evidence": [
+        "analysis/human-world-composition.md",
+        "recovered/game/human_script_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00421bc0",
+      "status": "partial",
+      "coverage": "Actual Human context construction with base retained frame/EC word1, borrowed actor10C and zero108.",
+      "limitations": "Native layout/vtable ABI differs; Human00421C00 commands still require actual receivers.",
+      "evidence": [
+        "analysis/human-world-composition.md",
+        "recovered/game/mission_script_actor_context.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00421930",
+      "status": "partial",
+      "coverage": "Actual Dog context construction with base retained frame/EC word1, borrowed actor10C and zero108.",
+      "limitations": "Native layout/vtable ABI differs; Dog00421970 commands and positive534 owner remain excluded.",
+      "evidence": [
+        "analysis/human-world-composition.md",
+        "recovered/game/mission_script_actor_context.h"
       ]
     }
   ]

@@ -1492,3 +1492,5 @@ follower cleanup and registration lifetime. Strict actual-host i386 and app
 compile/link pass. Frame/presentation/speech boundaries use explicit doubles;
 no original/Windows program or DLL executed. Saved checks share the camera
 [checkpoint record](checkpoints/p2.2-detached-camera-20261109.json).
+
+2026-11-10 continuation: [Human/world composition](human-world-composition.md) now owns SAME DD0/E0/230/B0/inventory/activation lifetimes, source type3 dispatch and per-Human SOUND factory routing. Actual precompile005A3DF0 and postcompile005907C0 use source family contexts with scoped pending EC lookup. The application remains unloaded; continue containing VM/session/FPV/HUD/SOUND/module owners.

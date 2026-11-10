@@ -1,0 +1,121 @@
+{
+  "date": "2026-11-10",
+  "scope": "Continue full first P2.2 implementation checkbox; concrete source Human/world lifetime and script binding subsystem checkpoint.",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "complete_promotions": 0,
+  "ledger_added_partial_client": 4,
+  "added": [
+    "005a3df0",
+    "005907c0",
+    "00421bc0",
+    "00421930"
+  ],
+  "tally": {
+    "complete": 34,
+    "partial": 1811,
+    "client_partial": 1806,
+    "engine_partial": 5,
+    "frozen": 18783
+  },
+  "verification": {
+    "native": "ASan/UBSan/LSan: B0 failed handover/either close failure/retry, script enable/null/current-player selection, SOUND factory identity routing; actual source actor/family/compiler/context/EC/pending binding and notification order including nested binds, bad/missing script and retain/prepare failures",
+    "host": "Strict i386 compiles actual Frame/DD0/E0/230/all seven B0/inventory/Items/animations/Sight/process SOUND/proximity/Players/camera and context/compiler/binding compositions; required session/VM/presentation consumers are declarations, no Windows execution",
+    "application": "application-launch compile/link only; mission loading remains disabled",
+    "tracker": "27 tests, exact fingerprints, frozen inventory and README checks pass"
+  },
+  "limitations": [
+    "Complete containing world is not instantiated; actual consumer definitions still required",
+    "Native state/inline/frame/file/lookup boundaries use explicit doubles; not native full Human/DD0/world execution",
+    "Human00421C00 and Dog00421970 derived commands/predicates, context return/end and other actual VM/session receivers remain required",
+    "Positive Dog534 binding explicitly rejects; no successful Dog control manufactured"
+  ],
+  "logs": [
+    {
+      "path": "analysis/work/mission-world-20261103/human-owned-state-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-owned-state-native-run.log",
+      "bytes": 254,
+      "sha256": "e25211803070c204d59f999e3b42dc5de4daa7a7dd9cb25137eae9a45bf7bbfa"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-actor-bindings-native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/script-actor-bindings-native-run.log",
+      "bytes": 241,
+      "sha256": "f9ce094b5d32e36240b2f949a4ab2669bccae9c55ccb5e1e5965dc6e9c07c5d9"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-composition-i386-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-composition-application-build.log",
+      "bytes": 547,
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-composition-tracker-check.log",
+      "bytes": 437,
+      "sha256": "57c2b40ad7510a37277c6dc1281109a440a01bad68f307201a30568e243a42c0"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-composition-tracker-tests.log",
+      "bytes": 126,
+      "sha256": "e6003b583cb2a86a68695abe02a47c7e996ee2aaf2b27c3a8b337ad86d844097"
+    },
+    {
+      "path": "analysis/work/mission-world-20261103/human-script-binding-notifications.log",
+      "bytes": 4813,
+      "sha256": "45c1040dda9df6420b1fc54847e85914f87dcaa296b96b0b58916fdb8ab481f1"
+    }
+  ],
+  "temporary_audits": {
+    "removed": true,
+    "artifacts": [
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-composition-host.cpp",
+        "bytes": 9049,
+        "sha256": "edc8e83fa8cc7704f439aeae418a6bf11efed4ce7a2c49e4349e693d1b20b15b"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-composition-host.o",
+        "bytes": 7314768,
+        "sha256": "17e86165619e859785957c2c01808b2872946e3838fae7986a0320f2c846991f"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-owned-state-audit",
+        "bytes": 212320,
+        "sha256": "590f18e926b5db3b72e7bd9702ccdf8eda6d6daad74ea8db420c3488324d17a2"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-human-owned-state-audit.cpp",
+        "bytes": 4528,
+        "sha256": "d927fad4060cff449e4c9ace4fc1959df185f9c9e06df934aaa3b6738612d5bc"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-script-actor-bindings-audit",
+        "bytes": 5700600,
+        "sha256": "6d0690a1c6b987b11932d76f9cb905ab644f273d8705a15f7c5afc3e126b1ee7"
+      },
+      {
+        "path": "analysis/work/mission-world-20261103/checkpoint-script-actor-bindings-audit.cpp",
+        "bytes": 8921,
+        "sha256": "4e2e7d4f0c3cf919b285ceba06d4191015759b95851edd0f7c189b97b3ba3629"
+      }
+    ]
+  },
+  "not_credited": [
+    "Absent family getters0041DF10/00421BF0/00421960",
+    "Source compositions/lookup/routing guards without new original bodies",
+    "Delegated engine/CRT/resource boundaries"
+  ]
+}

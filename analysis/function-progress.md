@@ -32,8 +32,9 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are34 complete client functions and1,557 partial entries
-(1,552 client/five engine). The [P2.2 source reconciliation](function-ledger-p2.2-reconciliation.md)
+The current totals are34 complete client functions and1,811 partial entries
+(1,806 client/five engine), including [Car activation](car-activation-loading.md)
+and [Human/world composition](human-world-composition.md). The [P2.2 source reconciliation](function-ledger-p2.2-reconciliation.md)
 adds881 implemented client subsets and extends six existing partial rows, with
 zero complete promotions or denominator changes. The [weapon swap checkpoint](human-equipment-loading.md#same-human-weapon-exchange--2026-11-09) adds eight further partials; [active reselection](human-state-loading.md#active-weapon-reselection--2026-11-09) adds four, and [formation loading](human-state-loading.md#formation-loading-owner--2026-11-09) adds seventeen. [Detached-camera references](human-state-loading.md#detached-camera-human-references--2026-11-09) add six. The later camera/Players checkpoint adds another fifteen,
 [activation/prepared spawning](session-activation-loading.md) adds39 and

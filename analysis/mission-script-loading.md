@@ -74,8 +74,9 @@ world receivers. Pending asynchronous stream operations explicitly reject.
 
 `mission_script_contexts.h` reconstructs00427730 ownership and binding:
 construct actual base/Human/Dog through a required factory, load/expand/compile,
-append, begin, notify. Required005A3DF0/005907C0/Dog534+40 remain external
-receivers, not credited implementations. Only exact `.scr` or `.SCR`
+append, begin, notify. [Human/world composition](human-world-composition.md) now supplies actual
+005A3DF0/005907C0 and source family construction/pending ownership; positive
+Dog534+40 remains a required receiver. Only exact `.scr` or `.SCR`
 substrings suppress appending the extension. Null/empty removes; an existing
 context with a nonempty script runs exit, destroys and swap-pops, then returns
 false instead of replacing it. Failure destroys the context/EC binding before

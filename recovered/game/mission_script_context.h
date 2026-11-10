@@ -31,6 +31,7 @@ public:
     MissionScriptContext(const MissionScriptContext&)=delete;
     MissionScriptContext& operator=(const MissionScriptContext&)=delete;
     Frame frame()const{return frame_;}
+    virtual std::uint32_t family()const{return 0;} //0041DF10, actual context virtual+04.
     MissionScriptProgram& program(){return program_;}
     const MissionScriptProgram& program()const{return program_;}
     std::int32_t pc()const{return pc_;}

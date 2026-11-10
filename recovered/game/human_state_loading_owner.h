@@ -7,6 +7,7 @@
 #include <exception>
 #include <type_traits>
 #include <utility>
+#include "frontend/cleanup.h"
 
 namespace hd2::game {
 
@@ -61,12 +62,23 @@ public:
         const bool remote=(mode&7u)!=7u&&!(mode&1u)&&factory_.human_remote_ai_enabled(); //006B66B0, exact short circuit.
         change(remote?7u:kind==2?4u:6u);
     }
+    template<class Inline,class Players>void select_script(bool enabled,Inline& control,Players& players,
+            std::uint32_t mode,std::int32_t local_player){ //005A3DF0, genuine null-B0 gate.
+        if(!current_)return;
+        if(enabled){
+            if(current_->words().template get<std::uint32_t>(0x48)==3)factory_.reset_active_ai_orders(*current_);
+            control.enable_animation_control(false);change(5);
+        }else select_player(players.current_player()==&human_,mode,local_player,control);
+    }
     void retire() {
         //0059FA60 closes before deleting and clears the published pointer last.
-        if(current_){factory_.close_human_state(*current_);current_.reset();}
+        //A failed real close must not leave B0 borrowing inline98 after its
+        //containing activation proceeds with DD0/230 retirement.
+        frontend::CleanupErrors errors;
+        if(current_){errors.attempt([&]{factory_.close_human_state(*current_);});current_.reset();}
         factory_.publish_human_state(human_,nullptr);
-        if(previous_){factory_.close_human_state(*previous_);previous_.reset();}
-        failed_=false;
+        if(previous_){errors.attempt([&]{factory_.close_human_state(*previous_);});previous_.reset();}
+        failed_=false;errors.rethrow();
     }
 private:
     Human& human_;Factory& factory_;std::unique_ptr<Base> current_,previous_;bool failed_=false,binding_=false;

@@ -14,6 +14,8 @@
 #include "game/static_weapon_loading.h"
 #include "host/game_static_weapon_events.h"
 #include "game/car_loading_activation.h"
+#include "game/human_loading_composition.h"
+#include <map>
 
 namespace hd2::host {
 
@@ -44,7 +46,37 @@ public:
     auto& items(){require_open();return items_;}auto& runtime(){require_open();return runtime_;}
     auto& physics(){require_open();return physics_;}auto& item_models(){require_open();return models_;}
     auto& rigid_bodies(){require_open();return bodies_;}
+    using Human=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
+    template<class Owner>Owner& human_loading_owner(Human& actor){
+        require_open();const auto found=human_loading_.find(&actor);
+        if(found==human_loading_.end()||actor.loading_lifetime!=found->second.get())
+            throw std::runtime_error("Human callback requires its actual containing loading owner");
+        auto* owner=dynamic_cast<Owner*>(found->second.get());
+        if(!owner)throw std::runtime_error("Human callback loading owner has a different concrete type");
+        return *owner;
+    }
+    void activate_human(Human& actor,bool authority){
+        require_open();if(closing_)throw std::logic_error("Human activation during world retirement");
+        auto found=human_loading_.find(&actor);
+        if(found==human_loading_.end()){
+            if(actor.loading_lifetime)throw std::logic_error("Human loading already belongs to another containing world");
+            auto owner=consumers_.make_human_loading_owner(scene_.frames(),*this,actor);
+            if(!owner||actor.loading_lifetime!=owner.get())throw std::runtime_error("Human factory must publish its actual composed loading owner");
+            found=human_loading_.emplace(&actor,std::move(owner)).first;
+        }
+        found->second->activate(authority);
+    }
+    void deactivate_human(Human& actor,bool authority){
+        const auto found=human_loading_.find(&actor);
+        if(found==human_loading_.end())throw std::runtime_error("Human retirement requires its actual containing loading owner");
+        frontend::CleanupErrors errors;errors.attempt([&]{found->second->deactivate(authority);});
+        //Scene2 removes reserved Humans immediately after the authority call,
+        //including when a receiver fails. Retract all borrowers while it lives.
+        if(authority)human_loading_.erase(found);
+        errors.rethrow();
+    }
     std::uint32_t mode_flags()const{return consumers_.mode_flags();}
+    std::int32_t human_current_player_id(){return consumers_.human_current_player_id();}
     std::string actor_localized(std::uint32_t id){return frontend::lookup_localized_text(text_,static_cast<std::int32_t>(id));}
     std::string actor_item_caption(std::uint32_t id) {
         if(id>static_cast<std::uint32_t>(std::numeric_limits<std::int32_t>::max()))throw std::runtime_error("ExplosivePlace item definition is unavailable");
@@ -169,7 +201,17 @@ public:
     void set_runtime_actor_active(GameActorServices::Actor& actor,bool value){runtime_.set_active(actor,value);}
     void remove_actor_presentation_references(typename Runtime::Instance& actor){consumers_.remove_actor_presentation_references(actor);}
     void close()noexcept {
-        if(closed_)return;
+        if(closed_||closing_)return;
+        closing_=true;
+        //Human B0/inline/VM presentation borrowers retire while Scene2 actor
+        //identities, Items and the shared world dependencies still exist.
+        frontend::CleanupErrors human_errors;
+        for(auto& record:human_loading_){
+            human_errors.attempt([&]{record.second->deactivate(false);});
+            human_errors.attempt([&]{record.second->deactivate(true);});
+        }
+        human_loading_.clear();
+        if(human_errors.failed())try{human_errors.rethrow();}catch(...){scene_.frames().record_actor_cleanup_failure(std::current_exception());}
         closed_=true;
         //Runtime35 borrows Physics descriptors. Runtime11 owns a body and an
         //Items entry. Retire both before either producer, then ordinary Scene2
@@ -179,13 +221,14 @@ public:
         fowl_sound_.clear();
         animation_events_.clear();
         static_weapon_events_.clear();
-        items_.clear();frames.clear_actor_entries();models_.clear_model_cache();
+        items_.clear();frames.clear_actor_entries();models_.clear_model_cache();closing_=false;
     }
 private:
     void require_open()const{if(closed_)throw std::logic_error("World actor owners are closed");}
     Scene& scene_;Consumers& consumers_;Vertices& vertices_;game::MissionNavigation& navigation_;const frontend::LocalizedTextCache& text_;const frontend::PreMissionItemCatalogue& catalogue_;
     typename Body::Registry bodies_;GameRuntimeItemServices models_;
-    Items items_;Runtime runtime_;Physics physics_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;GameStaticWeaponEvents static_weapon_events_;bool closed_=false;
+    std::map<Human*,std::unique_ptr<game::HumanLoadingLifetime>> human_loading_;
+    Items items_;Runtime runtime_;Physics physics_;GameFowlSoundLoading<Consumers> fowl_sound_;GameAnimationActorEvents<Consumers> animation_events_;GameStaticWeaponEvents static_weapon_events_;bool closed_=false,closing_=false;
 };
 } //namespace hd2::host
 #endif

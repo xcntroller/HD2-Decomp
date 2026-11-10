@@ -21,6 +21,12 @@ public:
     Context* context_for_frame(Frame frame)const { //0041CFA0, against this actual module's owners.
         if(!frame)return nullptr;
         const auto* data=frames_.find_actor_frame_data(frame);if(!data||!data->words[1])return nullptr;
+        //00427730's just-constructed local context already owns EC word1
+        //while005A3DF0 binds Human state5, before compilation/vector append.
+        for(auto n=pending_.size();n;)if(pending_[--n]==reinterpret_cast<Context*>(data->words[1])){
+            if(pending_[n]->frame()!=frame)throw std::runtime_error("Pending script EC binding disagrees with its actual frame");
+            return pending_[n];
+        }
         for(std::size_t n=contexts_.size();n;)if(contexts_[--n].get()==reinterpret_cast<Context*>(data->words[1])) {
             if(contexts_[n]->frame()!=frame)throw std::runtime_error("Script EC binding disagrees with its actual owner");
             return contexts_[n].get();
@@ -62,6 +68,13 @@ public:
         auto context=runtime_.make_script_context(frames_,frame);
         if(!context)throw std::runtime_error("Actual script context factory returned no owner");
         if(context->frame()!=frame)throw std::runtime_error("Script context factory changed its bound frame");
+        struct Pending {
+            std::vector<Context*>& stack;Context* context;
+            Pending(std::vector<Context*>& values,Context* value):stack(values),context(value){stack.push_back(context);}
+            ~Pending(){close();}
+            void close()noexcept{if(context){stack.pop_back();context=nullptr;}}
+        } pending(pending_,context.get());
+        const auto target=runtime_.prepare_script_binding(*context);
         std::string path="Scripts\\"+resource_+"\\"+script;
         //Native uses strstr twice, not a case-insensitive extension test.
         if(path.find(".scr")==std::string::npos&&path.find(".SCR")==std::string::npos)path+=".scr";
@@ -70,18 +83,19 @@ public:
         if(text) {
             MissionScriptCompiler compiler(context->program());
             if(compiler.compile(std::move(*text))) {
-                auto* published=context.get();contexts_.push_back(std::move(context));
+                auto* published=context.get();contexts_.push_back(std::move(context));pending.close();
                 published->begin(runtime_.script_authority());
-                runtime_.script_binding_completed(frame,published);return true;
+                runtime_.script_binding_completed(target,published);return true;
             }
             error_=compiler.error();
         }else error_="Cannot open script: "+path;
-        context.reset(); //Frame word1 and retained reference are gone before failure notification.
-        runtime_.script_binding_completed(frame,static_cast<Context*>(nullptr));return false;
+        pending.close();context.reset(); //EC/ref gone BEFORE the actual captured failure notification.
+        runtime_.script_binding_completed(target,static_cast<Context*>(nullptr));return false;
     }
 private:
     Frames& frames_;MissionScriptSource<Files> source_;Runtime& runtime_;std::string resource_,error_;
     std::vector<std::unique_ptr<Context>> contexts_;
+    std::vector<Context*> pending_; //Borrow only each active bind()'s actual local owner, including nested frames.
 };
 } //namespace hd2::game
 #endif

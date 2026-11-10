@@ -29,6 +29,7 @@ public:
     void unbind_visibility(HumanEquipmentVisibilityReceiver<Frame>& receiver) noexcept {
         if(visibility_==&receiver)visibility_=nullptr;
     }
+    bool visibility_bound()const noexcept{return visibility_!=nullptr;}
     std::uint32_t mode_flags()const{return world_.mode_flags();}
     float equipment_opacity()const{return control_.opacity().opacity();}
     int equipment_mode()const{return signed_word(control_.animation_state_word(0xa44));}
