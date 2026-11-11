@@ -55,6 +55,7 @@ public:
         //otherwise overwritten at the next00444110, not a retained reference.
         process_.particle_scene_=Frame{};process_.particle_world_=nullptr;
     }
+    void discard_scene_borrower(){require_open();process_.particle_scene_=Frame{};} //Source file-reset guard; retains the actual module owner for another load.
 private:
     void require_open()const{if(process_.particle_world_!=this)throw std::logic_error("Particle module world has been retired");}
     frontend::ClientModuleBinding registration_;Effects& effects_;Process& process_;

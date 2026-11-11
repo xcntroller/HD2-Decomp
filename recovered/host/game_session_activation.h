@@ -15,7 +15,8 @@ namespace hd2::host {
 //second squad/Items/input/roster/music state. Controller is the real containing
 //application controller (006DC940); null is its genuine absent-pointer branch.
 //Still source-only: this does not initialize protection observations, render a
-//first frame, supply full00698F80 finish or enable the application entry path.
+//first frame or enable the application entry path. GameSessionLifecycle supplies
+//tracked rollback and the actual process finalizer around this adapter.
 class GameSessionTransientFinish {
 public:
     virtual ~GameSessionTransientFinish()=default;
@@ -38,12 +39,18 @@ public:
            &parent.live_squad()!=&startup.pre_mission().squad())
             throw std::logic_error("Activation requires SAME actual loading/session/application squad owners");
     }
-    bool activate(){return game::activate_offline_session(session_,*this,parent_.request().mission.get());}
+    bool activate(game::SessionActivationProgress* progress=nullptr){return game::activate_offline_session(session_,*this,parent_.request().mission.get(),progress,&flags_failure_);}
     bool finish(GameSessionTransientFinish& transients){
         transients_.bind(transients);
         struct Unbind {game::WorldLoadingDependencyLink<GameSessionTransientFinish>& link;GameSessionTransientFinish& owner;~Unbind(){link.unbind(owner);}} unbind{transients_,transients};
         return game::finish_offline_session(session_,*this);
     }
+    bool finish_prefix(game::SessionActivationProgress& progress,GameSessionTransientFinish& transients){
+        transients_.bind(transients);
+        struct Unbind {game::WorldLoadingDependencyLink<GameSessionTransientFinish>& link;GameSessionTransientFinish& owner;~Unbind(){link.unbind(owner);}} unbind{transients_,transients};
+        return game::finish_offline_session_prefix(session_,progress,*this);
+    }
+    std::exception_ptr activation_flag_failure()const noexcept{return flags_failure_;}
     std::uint32_t mode_flags()const{return startup_.application_flags();}
     const game::SessionSelection& application_data()const{return selection_;}
     std::uint32_t selected_mission_ordinal(std::uint32_t root)const{return selection_.selected_mission_ordinal(root);}
@@ -118,7 +125,7 @@ private:
     GameMissionLoadingSession& loading_;Parent& parent_;GameOwnerBackend& backend_;StartupSession& startup_;
     Graphics& graphics_;FrameClockPlatform& clock_;game::SessionActivationState& session_;Controller* controller_;
     world_loading::Dependencies& d_;GameLoadingQueries queries_;game::SessionSelection selection_;InputBinding input_;
-    game::WorldLoadingDependencyLink<GameSessionTransientFinish> transients_;
+    game::WorldLoadingDependencyLink<GameSessionTransientFinish> transients_;std::exception_ptr flags_failure_;
     game::MissionLightVisibility<GameActorServices> lights_;GamePreparedHumanLoading prepared_;
 };
 } //namespace hd2::host

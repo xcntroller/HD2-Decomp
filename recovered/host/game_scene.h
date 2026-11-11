@@ -46,6 +46,16 @@ public:
         set_callback_(scene_.get(), &callback, 6);
         registered_ = true;
     }
+    void bind_callbacks(GameSceneCallbacks& callbacks){
+        if(borrowed_callbacks_&&borrowed_callbacks_!=&callbacks)throw std::logic_error("Game scene already has a borrowed dispatcher");
+        borrowed_callbacks_=&callbacks;
+        try{if(!registered_)install_callback();}catch(...){borrowed_callbacks_=nullptr;throw;}
+    }
+    void unbind_callbacks(GameSceneCallbacks& callbacks)noexcept{if(borrowed_callbacks_==&callbacks)borrowed_callbacks_=nullptr;}
+    void suspend_callback()noexcept{
+        if(registered_){set_callback_(scene_.get(),nullptr,0);registered_=false;}
+        if(active_==this)active_=nullptr;
+    }
     void fit_viewport() {
         const auto width = width_(reinterpret_cast<EngineFrame*>(&graphics_));
         const auto height = height_(reinterpret_cast<EngineFrame*>(&graphics_));
@@ -158,16 +168,15 @@ public:
         update_frame(camera);
         return camera; //Borrowed; usable-world readiness still belongs to loader.
     }
-    void rethrow_callback_failure() const {
-        if (callback_failure_) std::rethrow_exception(callback_failure_);
+    void rethrow_callback_failure() {
+        //Source exception delivery is consumed once, like actor cleanup errors.
+        //A prior callback failure must not poison later unload/reset/re-entry.
+        auto failure=std::exchange(callback_failure_,{});
+        if(failure)std::rethrow_exception(failure);
     }
     void close() noexcept {
-        if (registered_) {
-            //10046820(null) clears both callback and flags. Clear before release
-            // so no engine-held callback can outlive the client dispatcher.
-            set_callback_(scene_.get(), nullptr, 0);
-            registered_ = false;
-        }
+        suspend_callback(); //10046820(null), before any borrowed dispatcher/scene dies.
+        borrowed_callbacks_=nullptr;
         scene_.reset();
         if (active_ == this) active_ = nullptr;
     }
@@ -213,7 +222,7 @@ private:
         // LS3DF; latch an actual failure for the caller to rethrow after its call.
         auto& self = *active_;
         if (!self.callback_failure_) {
-            try { return self.callbacks_.dispatch_game_scene(stage); }
+            try { return (self.borrowed_callbacks_?*self.borrowed_callbacks_:self.callbacks_).dispatch_game_scene(stage); }
             catch (...) { self.callback_failure_ = std::current_exception(); }
         }
         return 0; // Original callback always returns0; this is not load success.
@@ -224,6 +233,7 @@ private:
     HMODULE module_;
     Graphics& graphics_;
     GameSceneCallbacks& callbacks_;
+    GameSceneCallbacks* borrowed_callbacks_=nullptr; //Explicit containing presentation loan, retracted before its owners retire.
     MenuDriver::Owner scene_;
     SetCallback set_callback_ = nullptr;
     SetViewport set_viewport_ = nullptr;

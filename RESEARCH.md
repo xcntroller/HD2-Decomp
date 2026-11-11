@@ -1,5 +1,7 @@
 # Technical research guide
 
+2026-11-11: [P22-LIFE lifecycle boundary](analysis/p22-life-implementation.md) supplies concrete rollback/finish/file retirement over the SAME World and actual process blast owner; [remaining work](analysis/p22-life-plan.md) separates source verification from external application/desktop acceptance.
+
 
 2026-11-11 — [Human motion and pose source checkpoint](analysis/human-frame-source.md#aimed-weapon-mount-and-head-pose) adds100 frozen client partials and extends nine existing rows. Current tally is34 complete/2,471 partial. Actual shared animation arbitration, step/water/air, face hits, secondary clips, hand IK and stowed/aimed/mount/head presentation pass focused source checks. Native sanitizer fixtures use explicit engine/query doubles. Strict actual World i386 and launcher compile/link pass. [P22-HUM remains open](analysis/p22-hum-plan.md), with Look processing next. User-authorized subsystem commits precede continued checkbox work. No mission loading or desktop acceptance is claimed.
 

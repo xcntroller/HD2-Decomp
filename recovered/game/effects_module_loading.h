@@ -100,6 +100,7 @@ public:
         process_.sun1b0=Frame{};process_.water_frames238.fill(Frame{});process_.world=nullptr;
         try{errors.rethrow();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}
     }
+    void finish_file_borrowers(){if(!finished_)finish(false);} //Authority birds are retired by the presentation receiver, even on a partial authority pass.
 private:
     void require_open()const{if(process_.world!=this)throw std::logic_error("GEffects world has been retired");}
     void water_name_visibility(const std::string& name,bool show){if(!name.empty())if(const auto frame=frames_.find_scene_frame(name,0xffff))effects_.frame_visibility(frame,show,0xffff);}
@@ -107,7 +108,7 @@ private:
     void set_water_frames(){set_water_pair(0);set_water_pair(1);}
     frontend::ClientModuleBinding registration_;Frames& frames_;Files& files_;Effects& effects_;Process& process_;
     EffectsBirdsLoading<Frames,Random> birds_;VolumetricLights<Frames> volumes_;MeshMovie<Frames> movie_;
-    Camera& camera_;View& view_;Startup& startup_;const std::uint32_t& mode_;std::string resource_;bool finished_=false,unloaded_=true; //Source destructor guards, not native readiness.
+    Camera& camera_;View& view_;Startup& startup_;const std::uint32_t& mode_;std::string resource_;bool finished_=true,unloaded_=true; //Cold construction has no activation prefix. Source destructor guards, not native readiness.
 };
 } //namespace hd2::game
 #endif

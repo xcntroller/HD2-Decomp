@@ -22,8 +22,10 @@ public:
         restore();frames_.enumerate_activation_scene(false,2,[&](Frame frame){
             const auto light=frames_.mission_light_properties(frame);
             if(!light.visible||light.type<=0||(light.type>4&&light.type!=8)||(light.flags&9u))return;
+            //Source lifetime guard: reserve/publish restoration before a
+            //throwing engine call can hide the light. No engine call reordered.
+            hidden_.push_back(frame);
             frames_.object_visible(frame,false);frames_.update_scene_object(frame);
-            hidden_.push_back(frame); //Publish after visibility/update; preserve writes if allocation fails.
         });
     }
     const auto& hidden()const{return hidden_;}
