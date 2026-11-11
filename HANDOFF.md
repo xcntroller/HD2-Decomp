@@ -10,14 +10,14 @@ and evidence. The user performs desktop acceptance. No push.
 ## Latest result
 
 [Shared Scene2 movement](analysis/human-scene-movement.md) and
-[verification receipt](analysis/checkpoints/p2.2-shared-scene-movement-20261111.json).
+[detour verification receipt](analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json).
 005647C0/008AADD0 now gathers actual active20, publishes Human+2C4 steering,
 runs eight ordered substeps, and applies Human/Car and linked floor constraints.
 Car radii come from the original 180/190 bounds in its embedded physics owner.
-0056A0F0 trims blocked leading jobs in order. The positive local detour search
-0056A8E0/0056C230/0056A6D0 remains required before live frame integration.
-Native sanitizer, actual-host i386, launcher link and 27 tracker checks pass.
-The tally is 34 complete and 2,242 partial entries (2,237 client and five engine)
+0056A0F0 trims leading jobs and inserts local detours through the same B0 and
+Startup pool. Native sanitizer exercises standing, prone and Car detours.
+Actual-host i386 compile, launcher link and 27 tracker checks pass.
+The tally is 34 complete and 2,247 partial entries (2,242 client and five engine)
 across 18,783 frozen functions. Both P2.2 checkboxes remain open. Application
 loading still declines and no mission desktop test has occurred.
 
@@ -33,10 +33,7 @@ action leases, hostile scoring and supported movement/item output.
   Human Door kind 6 and floor-list 00581E30 still require actual receivers.
   Original files are in WORK directories `frame-human-positive-{guard,aim}`,
   `frame-human-guard-area-authority` and `frame-human-ai-path-receivers`.
-- Continue local detour construction and collision sampling 0056A8E0/0056C230,
-  then original 0056A6D0 route extraction and 0056A0F0 pooled path insertion.
-  WORK exports are in `frame-shared-movement-replan` and
-  `frame-shared-movement-path`. Use the same process scratch and collision owners.
+- Use the recovered movement facade when binding the actual active20 frame pass.
 - Connect the real frame graph and its required positive modules, FPV/HUD/text,
   control and render callbacks. 00482260 calls procedural 00482E50 before the
   volume-light loop. Preserve the process texture owner, actual driver state

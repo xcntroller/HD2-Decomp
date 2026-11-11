@@ -1,0 +1,82 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "previous_checkpoint": "f910bc4",
+  "added_entries": [
+    "00563f90",
+    "0056a6d0",
+    "0056a8e0",
+    "0056c230",
+    "0056de90"
+  ],
+  "ledger_added_partial_client": 5,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2247,
+  "checks": {
+    "native_detours": "PASS (ASan/UBSan/LSan)",
+    "actual_host_i386": "PASS (strict compile)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/movement-detour-native.cpp": {
+      "sha256": "36edb569e0262545d4b0746b02c9b0381e573ab076a3cdcf34a9deff411c2cac",
+      "bytes": 7721,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/movement-detour-native": {
+      "sha256": "5814e53cab8257ed3b60fcecf83a405556dda682b00a1ef1e79a21bc25a3c3d7",
+      "bytes": 2179688,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/movement-detour-native.log": {
+      "sha256": "0dedbc62f00ea4c548bd9582daeef5917a19a79a606973229a41f8038c1bff19",
+      "bytes": 171,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/movement-detour-host.cpp": {
+      "sha256": "1612d0867dc82c5e4e94730bd96874fedc190558e40d0312f94eec84711886f8",
+      "bytes": 340,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/movement-detour-host.o": {
+      "sha256": "784ac03c3626f787e99537abae4e3eed58e05c2cce6ad2d450082c2523623e7d",
+      "bytes": 829829,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/movement-detour-host.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/movement-detour-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-replan/0056a6d0.c": {
+      "sha256": "0aaeb68e2e2f695ac8d99f96b1722fc24a48ce7d14df3f95474ec3ce16b17368",
+      "bytes": 3162,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-replan/0056a8e0.c": {
+      "sha256": "52f638e409cd99291127a802b732285fa19937433a32f5ce2508b4f9bda8f051",
+      "bytes": 8983,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-replan/0056c230.c": {
+      "sha256": "50f6ae1a1942d50fc8fe7de66fdfad7f34cba9930b1434f5c4b38a07ee00539c",
+      "bytes": 28879,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-shared-movement-detour-ellipse/0056de90.c": {
+      "sha256": "6a567f83ace2f0b32851c047db005446bfdfefc1a54d5be7e3b9e369a3c54645",
+      "bytes": 4880,
+      "retained": true
+    }
+  }
+}

@@ -29817,7 +29817,7 @@
       "entry": "00475d50",
       "status": "partial",
       "coverage": "Resolve command identity slots and the native reserved-identity retirement fallback.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -29829,7 +29829,7 @@
       "entry": "005647c0",
       "status": "partial",
       "coverage": "Gather active Scene2 actors, apply native shared movement ordering and publish 2C4 steering.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -29841,7 +29841,7 @@
       "entry": "00564ef0",
       "status": "partial",
       "coverage": "Prepare detached Human steering and exclude the appropriate candidates from substeps.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -29853,11 +29853,11 @@
       "entry": "005653c0",
       "status": "partial",
       "coverage": "Advance the WORD job cursor by the original projected destination tests.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
-        "recovered/game/human_scene_movement.h"
+        "recovered/game/human_scene_movement_geometry.h"
       ]
     },
     {
@@ -29865,11 +29865,11 @@
       "entry": "00565540",
       "status": "partial",
       "coverage": "Combine movement corrections using the original projection branches.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
-        "recovered/game/human_scene_movement.h"
+        "recovered/game/human_scene_movement_geometry.h"
       ]
     },
     {
@@ -29877,7 +29877,7 @@
       "entry": "005656e0",
       "status": "partial",
       "coverage": "Prepare actual Human pose, path, floor and posture before movement substeps.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -29889,7 +29889,7 @@
       "entry": "00565f30",
       "status": "partial",
       "coverage": "Apply path or ordinary velocity and publish the prone centre for the substep.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -29901,11 +29901,11 @@
       "entry": "00566130",
       "status": "partial",
       "coverage": "Resolve ordinary and prone Human pair motion constraints from actual 2C4 state.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
-        "recovered/game/human_scene_movement.h"
+        "recovered/game/human_scene_movement_geometry.h"
       ]
     },
     {
@@ -29913,11 +29913,11 @@
       "entry": "00566e50",
       "status": "partial",
       "coverage": "Resolve ordinary and prone Human target separations and project reached floor points.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
-        "recovered/game/human_scene_movement.h"
+        "recovered/game/human_scene_movement_geometry.h"
       ]
     },
     {
@@ -29925,7 +29925,7 @@
       "entry": "00567ab0",
       "status": "partial",
       "coverage": "Accumulate the projected Human floor correction when the original floor flag is active.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -29937,7 +29937,7 @@
       "entry": "00567ba0",
       "status": "partial",
       "coverage": "Apply the projected position after the movement correction is integrated.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -29949,11 +29949,11 @@
       "entry": "00567c80",
       "status": "partial",
       "coverage": "Apply the original lateral correction for a near-opposing contact response.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
-        "recovered/game/human_scene_movement.h"
+        "recovered/game/human_scene_movement_geometry.h"
       ]
     },
     {
@@ -29961,11 +29961,11 @@
       "entry": "00567df0",
       "status": "partial",
       "coverage": "Test and project a point against linked floor endpoints and interpolated radius.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
-        "recovered/game/human_scene_movement.h"
+        "recovered/game/human_scene_movement_geometry.h"
       ]
     },
     {
@@ -29973,11 +29973,11 @@
       "entry": "00568190",
       "status": "partial",
       "coverage": "Select the supported linked floor record and clamp the point when outside its volume.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
-        "recovered/game/human_scene_movement.h"
+        "recovered/game/human_scene_movement_geometry.h"
       ]
     },
     {
@@ -29985,7 +29985,7 @@
       "entry": "00568580",
       "status": "partial",
       "coverage": "Resolve Car ellipsoid motion against the live Car model axes and body velocity.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -29997,7 +29997,7 @@
       "entry": "00568dc0",
       "status": "partial",
       "coverage": "Apply Car target ellipsoid separation and its required floor projection.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -30009,11 +30009,11 @@
       "entry": "00569530",
       "status": "partial",
       "coverage": "Track improving path distance and age the native signed WORD deadline.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
-        "recovered/game/human_scene_movement.h"
+        "recovered/game/human_scene_movement_geometry.h"
       ]
     },
     {
@@ -30021,23 +30021,24 @@
       "entry": "00569890",
       "status": "partial",
       "coverage": "Refresh a borrowed floor record through actual linked navigation volumes.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
-        "recovered/game/human_scene_movement.h"
+        "recovered/game/human_scene_movement_geometry.h"
       ]
     },
     {
       "program": "client",
       "entry": "0056a0f0",
       "status": "partial",
-      "coverage": "Retire overlapped leading job leases and preserve the original no-horizontal-span gate.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "coverage": "Retire overlapping leading jobs, select local detours and insert pooled navigation leases into the actual B0 path.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
-        "recovered/game/human_scene_movement.h"
+        "recovered/game/human_scene_movement.h",
+        "analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json"
       ]
     },
     {
@@ -30045,7 +30046,7 @@
       "entry": "0056be90",
       "status": "partial",
       "coverage": "Test actual movement peers and stationary Car ellipsoids at a path destination.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -30057,7 +30058,7 @@
       "entry": "005a45c0",
       "status": "partial",
       "coverage": "Test the actual B0 action code for the Human movement mask.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -30069,7 +30070,7 @@
       "entry": "005a5c70",
       "status": "partial",
       "coverage": "Read the native B0 locomotion mask for motion sampling.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -30081,7 +30082,7 @@
       "entry": "005aa7b0",
       "status": "partial",
       "coverage": "Gate the movement pass using the actual current B0 family.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -30093,7 +30094,7 @@
       "entry": "005ae230",
       "status": "partial",
       "coverage": "Resolve the native B4 command-neighbour handle.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
@@ -30105,11 +30106,71 @@
       "entry": "005ac210",
       "status": "partial",
       "coverage": "Read the actual E0 posture used by movement.",
-      "limitations": "Source-only. Original ABI, positive local detour construction and containing mission desktop execution remain open.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-scene-movement.md",
         "analysis/checkpoints/p2.2-shared-scene-movement-20261111.json",
         "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00563f90",
+      "status": "partial",
+      "coverage": "Allocate the shared movement search’s 200 aligned work records and ten selected-route records.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-scene-movement.md",
+        "analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json",
+        "recovered/game/human_scene_movement_detour.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0056a6d0",
+      "status": "partial",
+      "coverage": "Select a local detour by remaining squared distance and accumulated squared segment cost.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-scene-movement.md",
+        "analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json",
+        "recovered/game/human_scene_movement_detour.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0056a8e0",
+      "status": "partial",
+      "coverage": "Build and traverse the bounded local detour graph, retaining original child order and edge failure.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-scene-movement.md",
+        "analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json",
+        "recovered/game/human_scene_movement_detour.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0056c230",
+      "status": "partial",
+      "coverage": "Project navigation endpoints and sample real standing, prone and stationary Car detour obstacles.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-scene-movement.md",
+        "analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json",
+        "recovered/game/human_scene_movement.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0056de90",
+      "status": "partial",
+      "coverage": "Group and order the original four ellipsoid detour corners on two lateral sides.",
+      "limitations": "Source-only. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-scene-movement.md",
+        "analysis/checkpoints/p2.2-shared-scene-movement-detours-20261111.json",
+        "recovered/game/human_scene_movement_detour.h"
       ]
     }
   ]

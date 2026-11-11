@@ -8,14 +8,13 @@
 namespace hd2::host {
 
 //Binds the shared solver to the containing Startup, Scene2 and Human owners.
-//Runtime supplies the original positive local path replanning worker.
-template<class Dependencies,class Services,class Runtime>class GameSceneMovementFrames {
+template<class Dependencies,class Services>class GameSceneMovementFrames {
 public:
     using Actor=GameSceneActors::Instance;
     using Human=GameSceneActors::Human;
     using Car=game::CarSceneActor<GameActorServices>;
-    GameSceneMovementFrames(Dependencies& dependencies,Services& services,Runtime& runtime)
-        :d_(dependencies),services_(services),runtime_(runtime){}
+    GameSceneMovementFrames(Dependencies& dependencies,Services& services)
+        :d_(dependencies),services_(services){}
     void advance(std::uint32_t elapsed,const std::vector<Actor*>& active){
         d_.startup.human_scene_movement_process().advance(elapsed,active,*this);
     }
@@ -81,6 +80,8 @@ public:
         return static_cast<float>(static_cast<long double>(d_.startup.human_animation_time_scale())*speeds[posture][stance]);
     }
     auto* movement_table_record(std::uint16_t index){return d_.navigation.record(index);}
+    std::uint16_t movement_table_index(const game::MissionTableRecord& record){return d_.navigation.index_of(record);}
+    auto& movement_job_pool(){return d_.startup.human_ai_navigation_jobs();}
     auto* nearest_movement_record(const game::HumanVector& position){
         return d_.navigation.record(d_.navigation.nearest_volume({{position[0],position[1],position[2]}},5.f,-1.f));
     }
@@ -89,7 +90,6 @@ public:
         auto& movement=*human.scene_movement;
         game::human_scene_movement::refresh_floor(movement.position20,movement.floor_record,previous,*this);
     }
-    void replan_movement_path(Human& human){runtime_.replan_movement_path(human);}
     void prepare_movement_prone_axes(Human& human){ //005656E0, actual local frame rotation and X/Z normalization.
         auto& movement=*human.scene_movement;
         if(!human.base().frame())throw std::logic_error("Prone movement requires the actual Human model");
@@ -104,7 +104,7 @@ public:
         movement.radiiD0={{.7f,.3f,1.3f}};
     }
 private:
-    Dependencies& d_;Services& services_;Runtime& runtime_;
+    Dependencies& d_;Services& services_;
 };
 
 //Actual Scene2 frame facade: SAME registered actors, buckets, proximity and
