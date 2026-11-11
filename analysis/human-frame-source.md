@@ -680,3 +680,45 @@ Application loading and user mission desktop acceptance remain pending.
 Original bodies and assembly are in WORK `frame-human-ground-motion` and
 `frame-human-motion-selection`. Positive ground collision/replay/air,
 0074A690 exit preparation and00788840 collision response remain required.
+
+
+## Ground geometry and direction replay
+
+00763EC0 now uses the actual DD0 physical, AC0 movement, E0, Human and model
+owners. Native direction/timer/animation gates select translation-only reuse
+or marker/shot resnapshot. 0075C250 translates cached marker centers and
+0075BBF0 translates both shot spheres from the same retained relative data.
+Posture and shot descriptors publish into the actual collision buckets.
+Temporary model position and parent restore in native order, including
+exception cleanup after failed snapshot or descriptor publication. Cooldown
+uses the original animation scale, two truncations and stance multipliers.
+The kind-one crouch multiplier yields179 from200 times the original FLOAT .9.
+
+0076CF90,0076CFE0 and0076DB30 now supply shared ground/presentation replay and
+its request producer. They preserve opposite angle argument orders, complete
+versus partial rotation, actual engine transforms, posture validation,
+CC4 feedback and rejected-query fallback. Fallback queries the actual model
+twice, preserves the requested physical240 vector, invalidates AC020X and
+publishes delay500. Presentation preparation preserves the native two delay
+truncations and elapsed-time small-angle gate. These paths replace three
+required runtime callbacks with the actual shared owners.
+
+00749E60 now uses real first/last sphere sweeps and middle segment rays,
+masksC8002/230000, signed quarter-turn steps and blocking-normal handling.
+Query exclusions restore after every query, including exceptions. Static
+instructions0074A21C..0074A276 retain a nonnegative remainder for a positive
+request. Exact positive quarter-turn requests reach a repeating zero/PI2
+remainder after clear probes. Source explicitly fails at that zero boundary.
+This is a source adaptation whose runtime significance remains unverified.
+WORK `human-direction-turn-cardinal-cycle.json` preserves the static trace.
+No original program execution was used to establish it.
+
+[Verification receipt](checkpoints/p2.2-human-ground-direction-20261111.json).
+Native ASan/UBSan/LSan exercised marker translation, cooldown, temporary model
+restoration after failed refresh/publication, all query families, exclusion
+cleanup, replay completion/partial/fallback and presentation command ordering.
+Fixtures used actual state/marker/E0 owners with explicit frame, physical
+publication and collision doubles. Actual World authority/presentation passes
+compiled under strict i386 and the source launcher linked. Ground collision,
+air and other positive receivers remain required. Application loading still
+declines and user mission desktop acceptance remains pending.

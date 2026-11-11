@@ -218,6 +218,24 @@ public:
         }
     }
     void refresh_ground_geometry(){markers_.snapshot();shot_spheres();} //0075C4F0→0075C070/0075B870.
+    void translate_ground_geometry(const Vector& position){ //00763EC0 calls0075C250 then0075BBF0.
+        markers_.translate(position);state_.set(0x69c,std::int32_t{2});
+        for(unsigned index=0;index!=2;++index)for(unsigned axis=0;axis!=3;++axis)
+            shots_[index][axis]=shot_relative_[index][axis]+position[axis];
+    }
+    void publish_ground_geometry(std::uint32_t posture){ //00763EC0 descriptor tail, actual SAME buckets.
+        rebind_posture(posture);
+        for(int index=0;index<primary_count();++index){
+            auto& descriptor=required(primary_,index);descriptor.position=posture_.at(static_cast<std::size_t>(index));
+            descriptor.radius=static_cast<float>(static_cast<long double>(descriptor.position[3])*state_.template get<float>(0x1c8));
+            collisions_.move(descriptor);
+        }
+        for(int index=0;index<state_.template get<std::int32_t>(0x69c);++index){
+            auto& descriptor=required(shot_,index);descriptor.position=shots_.at(static_cast<std::size_t>(index));
+            descriptor.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(index?0x1d0:0x1cc))*descriptor.position[3]);
+            collisions_.move(descriptor);
+        }
+    }
     int primary_count() const{return state_.template get<std::int32_t>(0x698);}
     Human** human_slot_address(){return &human_;}
 private:

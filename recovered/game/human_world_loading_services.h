@@ -405,16 +405,19 @@ public:
     template<class Actor>void sight_restore_human(Actor actor){human_inline(selection_human(*actor)).restore_query(false);}
     void sight_restore_dog(){dependencies().scene.exclusions().clear();} //0046DF80 clears even with no populated Dog exclusions.
     struct SightRayHit{std::uint32_t flags;const void* actor;};
-    std::optional<SightRayHit> sight_ray(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags){
-        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Sight ray requires actual loaded World/tree");
+    auto human_geometry_ray(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags,bool normal=true){
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Human ray requires actual loaded World/tree");
         auto& scene=d.scene;using Scene=std::remove_reference_t<decltype(scene)>;
         using Resources=std::remove_reference_t<decltype(scene.collision_resources())>;
         CollisionRay<typename Dependencies::Frame,typename Scene::Descriptor,Resources,typename Dependencies::ActorFrames>
             ray(&scene.collision_tree(),&scene.buckets(),scene.collision_resources(),scene.frames());
-        const auto hit=ray.ray(start,displacement,layers,flags,false);if(!hit)return std::nullopt;
+        return ray.ray(start,displacement,layers,flags,normal);
+    }
+    std::optional<SightRayHit> sight_ray(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags){
+        const auto hit=human_geometry_ray(start,displacement,layers,flags,false);if(!hit)return std::nullopt;
         if(hit->dynamic_identity)return SightRayHit{hit->dynamic_identity->flags,hit->dynamic_identity->actor};
         if(!hit->static_identity)throw std::logic_error("Sight ray lost actual collision identity");
-        const auto id=*hit->static_identity;const auto& tree=scene.collision_tree();
+        const auto id=*hit->static_identity;const auto& tree=dependencies().scene.collision_tree();
         return SightRayHit{id.kind?tree.shapes.at(id.kind-0x80).at(id.index).flags:tree.triangles.at(id.index).flags,nullptr};
     }
     template<class Composition,class Human>Composition& human_loading_owner(Human& human){return dependencies().world_actors.template human_loading_owner<Composition>(human);}

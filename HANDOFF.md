@@ -9,21 +9,21 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[Animation-driven motion velocity](analysis/human-frame-source.md#animation-driven-motion-velocity)
-and [verification receipt](analysis/checkpoints/p2.2-human-motion-velocity-20261111.json).
-0076B670 now supplies actual shared-owner velocity/playback selection and E0
-positive floor commands. 00773980 and00774D50 supply its track receivers.
-All237 original table words and288 mappings passed native sanitizer checks,
-as did the actual E0 forward/backward entry points with explicit doubles.
-The early106 zero-speed branch uses a documented zero guard for unwritten
-native XYZ. Strict actual-host i386 and launcher link passed. The tally is
-34 complete and2,308 partial entries (2,303 client and five engine) across
-18,783 frozen functions. Both P2.2 checkboxes remain open. Application loading
-still declines and no mission desktop test has occurred.
+[Ground geometry and direction replay](analysis/human-frame-source.md#ground-geometry-and-direction-replay)
+and [verification receipt](analysis/checkpoints/p2.2-human-ground-direction-20261111.json).
+Seven new source partials supply actual marker translation, temporary geometry
+refresh/publication, shared replay and presentation direction preparation.
+Native sanitizer checks, strict actual-host i386 and launcher link passed.
+00749E60 explicitly fails at the original static exact positive cardinal
+zero-remainder cycle. Its runtime significance remains unverified. The earlier
+106 unwritten zero-speed direction guard remains documented in the velocity
+checkpoint. Tally is34 complete and2,315 partial (2,310 client and five engine)
+across18,783 frozen functions. Both P2.2 checkboxes remain open. Application
+loading still declines and no mission desktop test has occurred.
 
 ## Continue P2.2
 
-- Continue positive DD0 ground collision/replay/air workers, 0077DE30 look apply,
+- Continue positive DD0 ground collision/air workers, 0077DE30 look apply,
   00779B30/00755500 track/motion and remaining 007A7470 geometry workers.
   WORK `frame-human-live-model-geometry` contains foot, hand, look and
   mount/attachment originals. Climb movement still requires

@@ -1,0 +1,168 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "previous_checkpoint": "3bc636a",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "00763ec0",
+    "0075c250",
+    "0075bbf0",
+    "0076cf90",
+    "00749e60",
+    "0076cfe0",
+    "0076db30"
+  ],
+  "ledger_added_partial_client": 7,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2315,
+  "assumptions": [
+    "Explicit source failure at00749E60 exact positive cardinal zero-remainder cycle observed statically after clear probes. Runtime significance is unverified.",
+    "Prior0076B670 early106 unwritten zero-speed XYZ guard remains recorded in its checkpoint."
+  ],
+  "checks": {
+    "native": "PASS (two ASan/UBSan/LSan fixtures, actual marker/state/E0 owners with explicit frame, descriptor-publication and collision doubles)",
+    "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining Runtime leaves declaration-only)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-ground-geometry-i386.cpp": {
+      "sha256": "e58326a34b0691d88532754f2239fc5a620e6b850956824c44b3d5d42b340dc8",
+      "bytes": 7368,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-geometry-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-geometry-i386.o": {
+      "sha256": "6054e91ccd03dcfa0718f21636e78dc7190526fa850b0312e66677574162d1d0",
+      "bytes": 12357376,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-geometry-native.cpp": {
+      "sha256": "bcc2de2bddba01e29422b873f059cf8404a918d8fb60b9779c68a0a5e68b1122",
+      "bytes": 7789,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-geometry-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-geometry-native": {
+      "sha256": "a27ba5d684709ca3250c2f688b586fc8ee82b5205547b0c84123aaec8d0ae711",
+      "bytes": 411976,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-geometry-native.log": {
+      "sha256": "a8f7d4fa99fd964259278091d61cc4986e8126ee525a87f9e702aae3d345f39e",
+      "bytes": 160,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-geometry-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-direction-replay-i386.cpp": {
+      "sha256": "567a0be424bb6bdbaa9f4aea0802a178f4318a5768019605dac2faf7edd17b27",
+      "bytes": 7217,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-direction-replay-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-direction-replay-native.cpp": {
+      "sha256": "01f5314aa0104cee7b8e27b6a4d21392054db2ec1df023db510ef0488836e191",
+      "bytes": 9057,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-direction-replay-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-direction-replay-native": {
+      "sha256": "da946372cb34abae3f1eb62077243fcdeda52257a2e41ae1a3c6c33a2cd15cdb",
+      "bytes": 595336,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-direction-replay-native.log": {
+      "sha256": "52fdd2ea751cda581e1499c7aa953d13e7500c00dacc8a535dfca42baa9f7a0c",
+      "bytes": 153,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-direction-replay-i386.o": {
+      "sha256": "d9fa05ca36bc747fda16cef0a09c518ff9225ef6b63e75ca6762b50eced5d79a",
+      "bytes": 12393341,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-direction-replay-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-direction-tracker.log": {
+      "sha256": "018a2fd6088a91c9ff071ce13667f27afba4f40b0cfed9500756ae4a9c11c636",
+      "bytes": 943,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-direction-turn-cardinal-cycle.json": {
+      "sha256": "2a8f2f06e46cbeed127730b940412d138bd80c91c39f8f1dd5af2daae64dfe83",
+      "bytes": 1431,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-direction-replay/00749e60.c": {
+      "sha256": "b613ed0cd80a1e8d58195dcfea53573e790976b7b7bd389fea32bf498819552a",
+      "bytes": 4348,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-direction-replay/00749e60.asm": {
+      "sha256": "43be8849a97ed841e1693ee6dc342ce4f9a019b924cd2acf40c0c0bf6b8e0ea5",
+      "bytes": 31814,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-direction-replay/0076cf90.c": {
+      "sha256": "a745ad0fe2c8d94370241911c178f30b12a1f12466da11e4a6f2e106bd5d208f",
+      "bytes": 461,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-direction-replay/0076cfe0-prefix.asm": {
+      "sha256": "00aa919ee666002adc3b5a3fab94f6846025961bad762fc832be2efede959cf0",
+      "bytes": 5906,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-marker-translation/0075bbf0.c": {
+      "sha256": "a0d6b6d305300035da5ad39f3969f773db1d25b70cd8e8ef3b32a43787c4022a",
+      "bytes": 655,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-marker-translation/0075c250.c": {
+      "sha256": "cb6c1afe239d98d1aaf05d7f7721f3de044febad39b3f33251d69cb905991f99",
+      "bytes": 614,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-dd0-animation-workers/00763ec0.c": {
+      "sha256": "c1fe7515c5f0f2e7f6baa1d9905649870b75d441e543a53c3fd912f8bf5da21b",
+      "bytes": 9491,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-dd0-bound-workers/0076db30.c": {
+      "sha256": "dede034b28efdfa6d24717102a77021e235e5e33169a22af950b52474628075a",
+      "bytes": 4021,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-dd0-bound-workers/0076db30.asm": {
+      "sha256": "aa3c77c37ce07039c82d162780ab0430345d8d82cd7817fb0e0a0de1ec584b4e",
+      "bytes": 15776,
+      "retained": true
+    }
+  }
+}

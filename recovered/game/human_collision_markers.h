@@ -50,6 +50,10 @@ public:
         }
         return present;
     }
+    void translate(const Vector& position){ //0075C250, relative centres from the actual last snapshot.
+        for(unsigned index=0;index!=markers_.size();++index)if(markers_[index])
+            for(unsigned axis=0;axis!=3;++axis)positions_[index][axis]=relative_[index][axis]+position[axis];
+    }
     const auto& markers() const {return markers_;}
     const auto& positions() const {return positions_;}
     const auto& relative() const {return relative_;}

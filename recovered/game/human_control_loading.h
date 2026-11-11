@@ -5,6 +5,8 @@
 #include "game/human_control_action_queue.h"
 #include "game/human_ladder_control.h"
 #include "game/human_motion_velocity.h"
+#include "game/human_ground_geometry.h"
+#include "game/human_direction_replay.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
 #include "game/human_face_control.h"
@@ -109,6 +111,16 @@ public:
     Movement& movement(){return movement_;}
     template<class Look>void prepare_motion_velocity(Look& look,bool refresh){ //0076B670.
         prepare_human_motion_velocity(*this,look,*human_,services_,frames_,refresh);
+    }
+    template<class Look>void refresh_ground_geometry(const Look& look,bool presentation){ //00763EC0.
+        refresh_human_ground_geometry(*this,look,*human_,services_,frames_,presentation);
+    }
+    template<class Look>bool advance_direction_replay(Look& look,std::uint32_t elapsed,bool constrained){ //0076CFE0.
+        return advance_human_direction_replay(*this,look,*human_,services_,frames_,human_frame_signed_word(elapsed),constrained);
+    }
+    template<class Look>void prepare_direction_replay(Look& look,const HumanVector& requested,std::uint32_t elapsed){ //0076DB30.
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        prepare_human_direction_replay(*this,look,*human_,requested,human_frame_signed_word(elapsed),publish);
     }
     Tracks& tracks(){return tracks_;}Action& action(){return action_;}
     Shadow& shadow(){return shadow_;}
@@ -228,7 +240,7 @@ public:
                 }
                 const bool player=human_is_player();
                 movement.set(0x8c,player?.006f:.008f); //0084E8EC/0084E8F0.
-                if(runtime.advance_human_control_replay(*this,elapsed,!player||signed_word(0x998)!=-10000))
+                if(advance_direction_replay(look,elapsed,!player||signed_word(0x998)!=-10000))
                     movement.set(0x20,-10000.099609375f); //0076CFE0.
             }
         }
@@ -297,7 +309,7 @@ public:
         }
         if(!movement.template get<std::uint8_t>(0x51))
             for(unsigned axis=0;axis!=3;++axis)movement.set(0x10+4*axis,0.f);
-        if(signed_word(0x1ac)>=7||word(0x1ac)==1)runtime.refresh_prone_human_control(*this,false); //00763EC0.
+        if(signed_word(0x1ac)>=7||word(0x1ac)==1)refresh_ground_geometry(look,false); //00763EC0.
         movement.set(0x50,std::uint8_t{0});movement.set(0x51,std::uint8_t{0});
     }
     bool active() const{return active_;}
@@ -472,7 +484,7 @@ public:
         }
         //0076DF10 is a genuine RET 4 in this client.
         if(!human_is_player()){
-            runtime.advance_human_presentation_direction(*this,look.state().template get<HumanVector>(0x20),elapsed); //0076DB30.
+            prepare_direction_replay(look,look.state().template get<HumanVector>(0x20),elapsed); //0076DB30.
             const auto animation=human_frame_signed_word(word(0x1d8));
             constexpr auto inactive=static_cast<std::uint32_t>(-10000);
             if((animation<=8||animation>14)&&animation!=18&&(word(0x988)==inactive||word(0x998)!=inactive)){
@@ -481,7 +493,7 @@ public:
                         const auto remaining=word(0x998)-elapsed;
                         state.set(0x998,human_frame_signed_word(remaining)<1?inactive:remaining);
                     }
-                },[&]{return runtime.advance_human_presentation_replay(*this,elapsed);}); //0076CFE0(step,1).
+                },[&]{return advance_direction_replay(look,elapsed,true);}); //0076CFE0(step,1).
             }else movement_.cancel_presentation_replay();
         }
         if(state.template get<std::uint8_t>(0x18c))synchronize_presentation_direction(look,runtime);
@@ -586,7 +598,7 @@ private:
         physical_.invalidate_current_direction();
         frames_.human_control_set_position(human_->base().frame(),position);
     }
-    template<class Look,class Runtime>void synchronize_presentation_direction(const Look& look,Runtime& runtime){ //00759B80.
+    template<class Look,class Runtime>void synchronize_presentation_direction(const Look& look,Runtime&){ //00759B80.
         auto& state=physical_.control_frame_words();
         const auto mode=state.template get<std::uint32_t>(0x1ac);
         if(mode>2&&mode!=9&&state.template get<std::int32_t>(0x9cc)==-10000)return;
@@ -603,7 +615,7 @@ private:
            (state.template get<float>(0x254)==roll&&static_cast<long double>(z)+y+x<.002f))return;
         state.set(0x254,roll);
         frames_.human_control_set_direction(model,target,roll);
-        if(look.state().template get<std::uint32_t>(0x4c)==2)runtime.refresh_prone_human_control(*this,true); //00763EC0(1).
+        if(look.state().template get<std::uint32_t>(0x4c)==2)refresh_ground_geometry(look,true); //00763EC0(1).
     }
     void publish_control_frame_command(std::uint32_t command){ //005A5C90.
         if(auto* state=services_.human_state_owner(*human_).get())state->publish_frame_command_flags(command);

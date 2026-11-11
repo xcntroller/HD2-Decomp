@@ -30921,6 +30921,90 @@
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-motion-velocity-20261111.json"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "00763ec0",
+      "status": "partial",
+      "coverage": "Actual DD0 ground geometry refresh and cooldown gates, temporary model alignment, shared marker snapshot or translation, posture/shot descriptor publication and original parent restoration order.",
+      "limitations": "Source-only typed owner and engine/query endpoint adaptation. Exact positive cardinal turns explicitly fail where the static original comparison repeats after clear probes. Its runtime significance remains unverified. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. Required ground collision/air workers, application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-direction-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075c250",
+      "status": "partial",
+      "coverage": "Translate actual cached primary marker centers from their last snapshot-relative coordinates, retaining radius and missing-marker behavior.",
+      "limitations": "Source-only typed owner and engine/query endpoint adaptation. Exact positive cardinal turns explicitly fail where the static original comparison repeats after clear probes. Its runtime significance remains unverified. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. Required ground collision/air workers, application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_collision_markers.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-direction-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075bbf0",
+      "status": "partial",
+      "coverage": "Translate both actual shot sphere XYZ from retained relative centers and publish count two while retaining radius.",
+      "limitations": "Source-only typed owner and engine/query endpoint adaptation. Exact positive cardinal turns explicitly fail where the static original comparison repeats after clear probes. Its runtime significance remains unverified. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. Required ground collision/air workers, application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_physics_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-direction-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076cf90",
+      "status": "partial",
+      "coverage": "Actual animation, attachment and action gates for shared direction replay, preserving native low-byte boolean.",
+      "limitations": "Source-only typed owner and engine/query endpoint adaptation. Exact positive cardinal turns explicitly fail where the static original comparison repeats after clear probes. Its runtime significance remains unverified. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. Required ground collision/air workers, application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_direction_replay.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-direction-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00749e60",
+      "status": "partial",
+      "coverage": "Actual per-posture sphere/ray turn probes, signed quarter-turn subdivision, exclusion restoration and queued idle normalization after blocking normals. Explicit source failure at the original exact positive cardinal zero-remainder cycle.",
+      "limitations": "Source-only typed owner and engine/query endpoint adaptation. Exact positive cardinal turns explicitly fail where the static original comparison repeats after clear probes. Its runtime significance remains unverified. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. Required ground collision/air workers, application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_direction_replay.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-direction-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076cfe0",
+      "status": "partial",
+      "coverage": "Actual complete/partial direction replay, current/target angle order, stance turn rates, collision validation, feedback and actual-model fallback with native target invalidation and delay.",
+      "limitations": "Source-only typed owner and engine/query endpoint adaptation. Exact positive cardinal turns explicitly fail where the static original comparison repeats after clear probes. Its runtime significance remains unverified. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. Required ground collision/air workers, application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_direction_replay.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-direction-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076db30",
+      "status": "partial",
+      "coverage": "Actual presentation direction request, idle-turn command selection, native signed angle threshold and two truncations, player settling and shared replay target publication.",
+      "limitations": "Source-only typed owner and engine/query endpoint adaptation. Exact positive cardinal turns explicitly fail where the static original comparison repeats after clear probes. Its runtime significance remains unverified. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. Required ground collision/air workers, application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_direction_replay.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-direction-20261111.json"
+      ]
     }
   ]
 }
