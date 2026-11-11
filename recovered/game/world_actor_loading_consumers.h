@@ -71,6 +71,7 @@ public:
     std::uint32_t door_sound_cursor(std::int32_t handle){return d().startup.game_sound_voice_cursor(handle);}
     void door_sound_cursor(std::int32_t handle,std::uint32_t cursor){d().startup.game_sound_voice_cursor(handle,cursor);}
     std::int32_t emit_scene_actor_sound(const frontend::SpatialSoundRequest& request){return d().sound.emit(request);}
+    auto mounted_sound_entry(std::int32_t id)const{return d().startup.mounted_sound_entry(id);}
     std::int32_t emit_door_sound(const frontend::SpatialSoundRequest& request){return d().sound.emit(request);}
     void emit_supply_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}
     void emit_fowl_sound(const frontend::SpatialSoundRequest& request){(void)d().sound.emit(request);}

@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "e9697146c0512fcaf2db977f2b24c310a9f37218",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "added_entries": [
+    "004c6e50",
+    "004c6dd0",
+    "004c7630"
+  ],
+  "extended_entries": [
+    "004c1ad0",
+    "004c2380"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2573,
+  "source_files": {
+    "recovered/game/mounted_weapon_control.h": {
+      "sha256": "a9db60e138e5ddaf4f81dc0266e63c2df3b24f6db4af4711275c5aa588efccdd",
+      "bytes": 1371
+    },
+    "recovered/game/mounted_weapon_control_loading.h": {
+      "sha256": "f7961175078fd0509b220e5d0e89c4733fcead2a5238f8407977c388638ace8d",
+      "bytes": 9305
+    },
+    "recovered/game/world_actor_loading_consumers.h": {
+      "sha256": "a3decdf31c44e4068fcdebf1b02ee18711f502e18b64b5183570bad99920d986",
+      "bytes": 7170
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "e99a13b03c4729a605406eff53823f02e31651fef6048d2b26f06a51f01e2680",
+      "bytes": 21330
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "909db927e6db5f6220a98f659875da3f1fb4f3fddd3ba3ff2d9aacf1370fa395",
+      "bytes": 56814
+    },
+    "recovered/game/mounted_weapon_movement_sounds.h": {
+      "sha256": "82b736f61545d0babd226325692dd11b89c63cebb7de4b7741622ccae6d45f76",
+      "bytes": 3475
+    }
+  },
+  "temporary_audit": {
+    "source": {
+      "sha256": "c6e45c7f7095696982d7f49f9a2e69d9e6b2eef6e4c2cfbfd6fd42ef29307c21",
+      "bytes": 4908
+    },
+    "binary": {
+      "sha256": "c29891e66fb86c532be273353a99d65fe7f6a31e089270dbaac0d693a788ea66",
+      "bytes": 1310528
+    },
+    "log": {
+      "sha256": "9f3c62d9098748beb02acf99186f78d447c388168edcd5e4de7eada49902e5fb",
+      "bytes": 159
+    },
+    "removed": false
+  },
+  "checks": {
+    "native": "PASS focused ASan/UBSan/LSan actual catalogue/owner with explicit cache/engine doubles;100 retirements and failed-prefix cleanup",
+    "actual_i386": "PASS human-mounted-sound-host-i386.log compile only",
+    "launcher": "PASS human-mounted-sound-application-i386.log compile/link only",
+    "original_or_windows_execution": false
+  },
+  "research": [
+    "static-weapon-control-required/004c6e50.c",
+    "mounted-sound-loading.asm",
+    "mounted-sound-name.asm",
+    "mounted-sound-retirement.asm",
+    "human-reaction-mounted-occupant.asm"
+  ],
+  "excluded_credit": [
+    "Existing0044A1C0 load-into cache body and engine calls",
+    "Absent frozen004326D0 catalogue getter",
+    "Positive occupant/running/firing/wider Car simulation"
+  ]
+}

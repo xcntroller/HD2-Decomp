@@ -1,0 +1,99 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "30b681c1f3cb9135d0916335920aa4d0b39569cb",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "imported_source_pin": "feature/p22-pack@31b8786",
+  "other_worktree_modified": false,
+  "ledger_added_entries": 0,
+  "complete_promotions": 0,
+  "ledger_partial": 2570,
+  "ledger_complete": 34,
+  "source_files": {
+    "recovered/game/human_damage_commands.h": {
+      "sha256": "30c5ad121238601c5207cdf13adb6ac3d316e29e1efb9e708c7ab0d37a740c25",
+      "bytes": 916
+    },
+    "recovered/game/human_damage_presentation.h": {
+      "sha256": "a4e3144ed2ad90079312cf94d57298ec70217beb2fc869c486aa1c585a69db6d",
+      "bytes": 3890
+    },
+    "recovered/game/human_frame_commands.h": {
+      "sha256": "914f7ae4350628a75ee7ad614ecb11b28ae69f68a99aa8fb7122eb6b78bbdf26",
+      "bytes": 2943
+    },
+    "recovered/game/human_loading_inventory.h": {
+      "sha256": "fc1acc03ca8887d26edf75688ef1097042ad205f7dfd8269b09f7d3bc0f63a73",
+      "bytes": 14156
+    },
+    "recovered/game/human_packet_commands.h": {
+      "sha256": "347a44d9edf8856809c741db6bd1544f9711c8e6aa07d5988e86ee3b5ec4ccab",
+      "bytes": 10976
+    },
+    "recovered/game/human_packet_notifications.h": {
+      "sha256": "5bb306d1508d962076c7db4890732e2d66e73b9031d473f866f208d8023eda80",
+      "bytes": 5451
+    },
+    "recovered/game/human_packet_receiver.h": {
+      "sha256": "3ea78f29d8b968cdaa7459e72e241aa58116e8e4e9372b27d0a370377cbdb5ee",
+      "bytes": 2450
+    },
+    "recovered/game/human_passive_states_loading.h": {
+      "sha256": "3e8fbe48b3292fcfd06e5de01fb91414d09728748488d5da5952d6451d18859c",
+      "bytes": 3672
+    },
+    "recovered/game/human_player_state_loading.h": {
+      "sha256": "01ccc0cf5f3c0c60bd65eadf51fc923dc2886d190f9046e5031726689be011d8",
+      "bytes": 18840
+    },
+    "recovered/game/human_speech_loading.h": {
+      "sha256": "a4f43df7f85983788f14b81cf35fb9ffda91ee878c267f2d95d1ff83a6d39323",
+      "bytes": 8986
+    },
+    "recovered/game/human_state_base_loading.h": {
+      "sha256": "c45d34718e8a65d552f371bebdada008740253c28a738ccf97a7ceaabfd87580",
+      "bytes": 14973
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "5d49acbad62a72d4482f3cc3372d153863d49cfa037e5ed249c5e7f7d1a5e527",
+      "bytes": 102048
+    },
+    "recovered/host/game_loading_modules.h": {
+      "sha256": "66e4c3bf69ca91e2075be3215d28b36c4d80cff65bfd8fe723806cd6f928cab0",
+      "bytes": 13425
+    }
+  },
+  "audit": {
+    "source": {
+      "sha256": "143e509209b151a88b98b06692fe3c08c8f9d81d57210091e19a255e6c9d23da",
+      "bytes": 5953
+    },
+    "binary": {
+      "sha256": "5320329bdc4dcdffe441f2953b95e68a51bca0829dbfd997b063b6b8406030c4",
+      "bytes": 1544288
+    },
+    "log": {
+      "sha256": "9eae72adf2b53219a6d37a3866fb6a4227b4b9bb7ea064ed76bb6727d23be446",
+      "bytes": 170
+    },
+    "temporary_removed": false,
+    "scope": "Production packet serializer/receiver and received-damage body;1/10/16 literal wire,16 drop codes, destruction/failure/re-entry; Human/State/Scene/engine endpoints doubled, no full FIFO or application run"
+  },
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan",
+    "actual_i386": "PASS human-damage-pack-host-i386.log; compile only",
+    "launcher": "PASS human-damage-pack-application-i386.log; compile/link only",
+    "original_or_windows_execution": false
+  },
+  "evidence": [
+    "human-drop-command-write.asm",
+    "human-drop-writer-stack-check.json",
+    "human-drop-command-read.asm",
+    "human-damage-policy-abi-v3/005a8320.c",
+    "PACK retained00592FE0 export (read-only from its worktree)"
+  ],
+  "remaining": "Mounted movement sound, Player objective/kind12 metadata, real nonoffline peer/console owners and containing frame/retirement; broader PACK action/item effects remain required"
+}

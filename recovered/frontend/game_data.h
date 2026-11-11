@@ -11,10 +11,10 @@
 
 namespace hd2::frontend {
 
-// Native representation of original kinds 1..7. Offset labels refer to each
+// Native representation of original kinds1..7 and runtime objective12. Offset labels refer to each
 // original derived layout; overlapping fields belong to different kinds.
 struct GameDataNode {
-    explicit GameDataNode(std::uint32_t type) : kind(type), word10(type == 4 ? 4u : type == 6 ? 0xffffffffu : 0u) {}
+    explicit GameDataNode(std::uint32_t type) : kind(type), word10(type == 4 || type == 12 ? 4u : type == 6 ? 0xffffffffu : 0u) {}
     ~GameDataNode() {
         while (!related.empty()) related.pop_back();
         while (!children.empty()) children.pop_back();
@@ -26,6 +26,10 @@ struct GameDataNode {
     std::vector<std::array<unsigned char, 16>> entries;
     std::vector<std::uint32_t> items;
     std::vector<std::unique_ptr<GameDataNode>> children, related;
+    struct NetworkObjectiveFields {std::uint32_t side18,field1c,field20,score24,selector28,field2c;};
+    //Only006B8700's actual map-row producer defines these native kind12 words.
+    //Offline flag18/text24/text28 have different layouts and cannot substitute.
+    std::optional<NetworkObjectiveFields> network_objective;
 };
 
 // Original application data manager's loaded roots, independent of its other

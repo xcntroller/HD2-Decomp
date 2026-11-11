@@ -6,6 +6,8 @@
 #include "frontend/control_actor_records.h"
 #include "frontend/control_frame.h"
 #include "game/session_local_packets.h"
+#include "game/session_application_commands.h"
+#include "host/application_command_lock.h"
 #include "game/session_packet_world.h"
 #include "game/blast_wave_process.h"
 #include "game/human_projection_process.h"
@@ -391,6 +393,7 @@ public:
         return dubbing_sound_.play_speech(actor,frame,id,near_range,far_range,subtitles,gate_,world);
     }
     std::uint32_t game_speech_length(std::int32_t id){return sound_catalog_.speech_sample_size(id);} //SOUND virtual94, SAME catalogue mappings.
+    const frontend::CatalogSoundEntry* mounted_sound_entry(std::int32_t id)const{return sound_catalog_.sound_entry(3,id);} //Actual SOUND+8C; no implicit catalogue load.
     const char* missing_speech_caption()const{return missing_speech_caption_;} //Process0089BB44 cold null; no populated writer is fabricated.
     void initialize_game_dubbing(){dubbing_sound_.initialize_loading();}
     void synchronize_game_dubbing(){dubbing_sound_.synchronize_attachments();}
@@ -734,6 +737,18 @@ public:
     }
     auto& game_broadcast_packets(){return broadcast_packets_;}
     auto& game_local_packets(){return local_packets_;}
+    void enter_application_command_lock(){application_command_lock_.enter();}
+    void leave_application_command_lock()noexcept{application_command_lock_.leave();}
+    void queue_application_command(std::uint32_t kind,std::uint32_t target,std::uint32_t first,std::uint32_t second){
+        application_commands_.enqueue({kind,first,second,target},gate_,*this);
+    }
+    void drain_application_commands(){application_commands_.drain(*this);}
+    void flush_application_command_packets(std::uint32_t elapsed){local_packets_.flush(elapsed);}
+    auto& begin_application_command(std::uint32_t target,std::uint32_t kind){ //0072BDE0/0072BE00 local=true, priority0.
+        if(target)throw std::runtime_error("Application command requires actual targeted scratch/transport receiver");
+        auto& stream=broadcast_packets_.begin(20,0);stream.write(kind,32);return stream;
+    }
+    void finish_application_command(game::SessionPacketStream& stream){stream.finish_broadcast();}
     void bind_game_packet_world(game::SessionPacketWorld& world){packet_world_.bind(world);}
     void unbind_game_packet_world(game::SessionPacketWorld& world)noexcept{packet_world_.unbind(world);}
     void enter_control_lock(unsigned index) { lock_services_.enter_control_lock(index); }
@@ -858,6 +873,8 @@ private:
     frontend::StartupModules modules_;
     frontend::ControlStartupState control_data_;
     ControlStartupServices lock_services_;
+    ApplicationCommandLock application_command_lock_;
+    game::SessionApplicationCommands application_commands_; //SAME process lifetime, survives World unbind.
     frontend::ProfileSelectionWords profile_words_;
     frontend::LocalizedTextCache text_;
     std::uint32_t gate_ = 0;

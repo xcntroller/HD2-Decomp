@@ -7,6 +7,18 @@ from tkinter import ttk, messagebox
 PAGE=250
 
 
+def source_display(data):
+    """Reversible byte-to-Tk display mapping shared with the spatial panel."""
+    chars=[];offsets=[0];size=0;previous=None
+    for byte in data:
+        if byte==10 and previous==13:part=''
+        elif byte in (10,13):part='\n'
+        elif byte<32 and byte!=9 or byte==127:part=f'\\x{byte:02x}'
+        else:part=chr(byte)
+        chars.append(part);size+=len(part);offsets.append(size);previous=byte
+    return ''.join(chars),offsets
+
+
 class ScriptPanels:
     def __init__(self,owner,source_tab):
         self.owner=owner;self.report=None;self.source=b'';self.identity=None;self.reader=None
@@ -76,14 +88,7 @@ class ScriptPanels:
         if metadata and hashlib.sha256(data).hexdigest()!=metadata['sha256']:
             raise ValueError('Source changed since analysis; inspect again before navigating')
         self.identity=identity;self.source=data;self.choice.set(identity)
-        chars=[];offsets=[0];size=0;previous=None
-        for byte in data:
-            if byte==10 and previous==13:part=''
-            elif byte in (10,13):part='\n'
-            elif byte<32 and byte!=9 or byte==127:part=f'\\x{byte:02x}'
-            else:part=chr(byte)
-            chars.append(part);size+=len(part);offsets.append(size);previous=byte
-        self.offsets=offsets;self.owner.set_text(self.owner.source_text,''.join(chars))
+        text,self.offsets=source_display(data);self.owner.set_text(self.owner.source_text,text)
         names={m['span']['start'] for m in self.report['lexical_mentions']}
         for token in self.report['tokens']:
             kind='keyword' if token['span']['start'] in names else token['kind']

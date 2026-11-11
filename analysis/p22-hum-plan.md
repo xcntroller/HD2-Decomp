@@ -1,6 +1,6 @@
 # P22-HUM implementation plan
 
-Updated 2026-11-11 for the Human damage-presentation/scoring source checkpoint. P22-HUM remains OPEN.
+Updated 2026-11-11 through the Player death objective/session source checkpoint. P22-HUM remains OPEN.
 Both P2.2 checkboxes in `plan.md` remain OPEN. Mission loading still declines,
 and no mission desktop acceptance has occurred.
 
@@ -72,8 +72,10 @@ Continue reactions/damage/ragdoll in main `H&D2 Decomp 4`. Clip/rest/selection,
 actual authority/received damage, inventory drops, death, policy, localized messages,
 shared session scoring/ranks and auxiliary death selection have source checkpoints.
 [Latest evidence](checkpoints/p2.2-human-damage-presentation-20261111.json).
-Integrate existing PACK grammar/lifetime work with these actual effects, then close
-Player objective, reached session/console/peer dependencies and containing failure,
-re-entry and teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
+Shared PACK grammar/lifetime work is now bound to these actual effects.
+Player objective selection/status/score and the actual scalar application FIFO now
+have a [source checkpoint](checkpoints/p2.2-human-death-objective-session-20261111.json).
+Close reached console/peer dependencies, normal non7 metadata/transport and
+containing failure, re-entry and teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
 The full selected checkbox, P22-HUM and P2.2 remain open; no application or desktop
 acceptance is claimed.

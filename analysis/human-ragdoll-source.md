@@ -249,9 +249,9 @@ Reached seat removal uses actual Car occupants/mass/cameras/controls and
 StaticWeapon seats/control/collision descriptor. Car004D9A40/004D9FC0 and
 StaticWeapon00604630/00604A10 preserve signed bounds and existing owner identity.
 00604630 is absent frozen and receives no new credit.004C6DD0(NULL) clears the
-actual mounted occupant and view. Positive movement SOUND frames still require
-their missing authored producer; no raw pointer is dispatched. Destroyed Car
-engine transitions remain a required00518710 branch when reached.
+actual mounted occupant and view. Positive movement SOUND frames now use the actual authored producer/lifetime
+described below; no raw DWORD pointer is dispatched. The reached destroyed-Car
+00518710(false) transition is also in source; running simulation remains separate.
 
 ### Containing damage source in progress
 
@@ -532,3 +532,173 @@ damage/drop/rank effects; retain Remote-specific ordering. Continue Player550
 objective/kind12 metadata and actual nonoffline session/console/peer dependencies,
 then containing frame/failure/re-entry/retirement. Reactions/damage/ragdoll and
 P2.2 remain OPEN. Application loading and user desktop acceptance remain pending.
+
+
+**PACK integration discrepancy — exact drop writer:** PACK's zero-multiplier
+claim is incorrect. Let S be ESP before005B20AB.005B2099 writes[S+0C]=0;
+005B20A7 writes[S+08]=mask[4]=15. PUSH at005B20AB makes ESP=S-4, so005B20B2
+FIMUL[ESP+0C] reads[S+08], **15**. The current `(speed-1)*.25*15` writer matches
+the original.008119A0 is DOUBLE8, making its calculated width4; the actual mask
+at00816398 is15. Keep this corrected behavior when importing PACK source.
+Evidence: `human-drop-command-write.asm`, `human-drop-writer-stack-check.json`.
+No new export, absent-function credit or original execution was needed.
+
+
+### Shared PACK effect integration — 2026-11-11
+
+Reused pinned `feature/p22-pack`31b8786 source for23 value codecs, exact
+Player/Remote/discard grammars, Scene2/B0 re-resolution, actual input/inventory
+queue producers, late inventory/equipment snapshots and notification14. Its
+worktree/history remain untouched. This is a source dependency import, not a
+merge of PACK's plan/ledger or a claim that its missing positive effects are done.
+
+B0 FIRST80/SECOND90 now own ONE HumanPacketCommand value type. Existing actual
+kind1 damage,10 drop and16 rank producers fill that same type; the former optional
+parallel payload fields are retired. The containing HumanWorld services bind
+actual005A15D0/005A3490/005A3750/005A1C90 and rank effects. Original command17
+supplies kind/amount/source/hit with zero point/impulse. Authority still rejects
+unimplemented nonoffline forwarding. Nonoffline presentation supports these real
+effects; other reached mode-specific gaps retain required failures. Remote16
+uses its previous rank for stats before final publication, while Player writes54
+first. Module13 routes through the same checked grammar, rechecking Scene2/B0
+between every command. Owned decoded values never retain a Human/B0 borrower.
+
+Two original-instruction details supersede the initial checkpoint/source notes:
+005B1F10 keeps division/multiply/add in x87 through its final20 FLOAT store; no
+intermediate FLOAT division store exists.005A8320's empty user-name14 falls back
+to full-name0C, not short-name10. Current source corrects both. The PACK writer's
+zero-multiplier claim is rejected by the exact stack proof immediately above.
+The shared writer retains the original15 multiplier. No unsupported success or
+absent-function credit is introduced by these fidelity corrections.
+
+Focused `human-damage-pack-native.log` passes ASan/UBSan/LSan over production
+packet serializer/receiver→actual received-damage body, independent1/10/16 wire
+checks, all16 drop codes, native quantizer values, actual Human destruction at
+the final callback, thrown callback followed by a later packet, and100 repeated
+entries. Human/State/Scene/engine endpoints are explicit doubles; this is not a
+full FIFO/application run. Actual World/B0/module i386 compile passes in
+`human-damage-pack-host-i386.log`; launcher compile/link passes in
+`human-damage-pack-application-i386.log`. No output was executed. Receipt:
+[shared packet effects](checkpoints/p2.2-human-packet-effects-20261111.json).
+
+Broader imported codecs receive no NEW ledger entries in this integration
+checkpoint; their existing PACK branch claims await explicit reconciliation.
+Existing damage entries now point to the shared codec. Full selected checkbox,
+application integration and user acceptance remain open. Next reaction-specific
+gaps: actual mounted movement SOUND producer/release, Player550 objective/
+kind12 metadata and nonoffline peer/console owners, then containing frame and
+retirement checks. Other PACK clothing/control/item/special-animation effects
+remain required and belong to the following Human action/item boundaries.
+
+
+### Mounted movement SOUND source checkpoint — 2026-11-11
+
+004C6E50 is now bound into the SAME MountedWeaponControlLoading used by both
+StaticWeapon and actual indexed Car gun-seat controls. Native120/124 are owned
+kind4 SOUND frames in that lifetime, not DWORDs in StaticWeaponControl. Resolve
+`soundm` then actual Startup SOUND catalogue group3. A missing nonnegative first
+entry returns immediately, skipping `sounds`; a missing/empty second entry has no
+sound. Only the first real variant is selected, with no random draw.004370D0
+copies that variant's name. Existing0044A1C0 load-into cache supplies the resource;
+its inlined body is delegated and receives no new credit.
+
+On successful load preserve native7C(1), cone3FC90FDB/pi2, movement-only90(1),
+variant14 volume, variant08 FLOAT bits/0C ranges and two.5 parameters, actual
+horizontal13C parent, direct zero local position/flags and final30(false). Failed
+resource load releases that slot then continues. C++ engine failures retain the
+acquired prefix for containing retirement; missing frame/null variant source
+undefined-dereference paths reject explicitly.
+
+004C6DD0(NULL) clears occupant/view, then, only under14C&400, disables120,
+enables124 and clears400 AFTER both calls. A failed second call retains400 and
+its actual owners.004C7630 releases120 then124 without detach/disable. This
+retirement follows normal pose/item/barrel/shell/pivot retirement in004C2380;
+partial source guards still reclaim every acquired sound. No positive occupant,
+occupied aiming/fire004C5080 or wider running-Car body is invented.
+
+Research index preceded reuse; original evidence is WORK
+`static-weapon-control-required/004c6e50.c`, `mounted-sound-loading.asm`,
+`mounted-sound-name.asm`, `mounted-sound-retirement.asm` and
+`human-reaction-mounted-occupant.asm`. Raw instructions establish first-variant
+08/0C/14 reads and native engine-call order; decompiler register aliases around
+the inlined cache are not used as independent ABI claims.
+
+`human-mounted-sound-native.log` passes ASan/UBSan/LSan over actual SoundCatalog/
+movement-owner classes: metadata/lookup/load order, early missing-first return,
+empty first/positive second, resource failure, acquired-prefix exception, loop/
+cone/volume/range/parent/zero/enable order, interrupted release flag and100 owner
+cycles. Engine/cache endpoints are doubles. Strict actual Car/StaticWeapon/World
+composition and launcher checks are `human-mounted-sound-host-i386.log` and
+`human-mounted-sound-application-i386.log`; no Windows output was executed.
+[Receipt](checkpoints/p2.2-human-mounted-sounds-20261111.json) adds three frozen
+client partials and extends two, with no complete promotion. Totals34/2573 partial.
+Continue Player550 objective/kind12 metadata and actual peer/console dependencies,
+then the full containing frame/retirement boundary. Selected checkbox remains OPEN.
+
+### Player death objective and application scalar FIFO — 2026-11-11
+
+0053BD00's positive550 tail now reaches the SAME script runtime/objective owner
+through MissionScriptWorldLink. Ascending selection finds the first kind12
+objective28==1, but compares the FIRST objective's18 side to0069E070's selected
+team. Preserve that original first-row quirk. Team selection uses actual game71,
+selected78, existing Scene actor and process record64/default2, not00982104 or
+the offline specialization mapping. Values are copied before the final callback;
+no mission borrower survives it.0053BD00 is absent frozen and gets no credit.
+
+006B8700's one-row producer initializes kind12/status4 and maps selected-map
+row4→18,1→1C,0→20,2→24,3→28,5→2C. These are explicit optional network fields,
+separate from offline byte18/text24/text28. **Full selected-map parsing, normal
+application inline descriptor publication and non7 admission remain required.**
+This helper is only a credited producer slice, not a substitute for those bodies.
+
+0069BA60 non7 style2/status1 calls0069B900 BEFORE status application; unlike
+offline it does not suppress repeated awards with flag15.00730650 adds to SAME
+process team44C only under authority bit1, with signed reward rounded to FLOAT
+before addition. Then0069B900 takes418 and traverses named, actual3C Humans with
+health>0, B064 false and005A8820 side matching.0072EDD0 takes418 recursively,
+adds wrapping4C/60 and conditionally publishes actual B0 rank commands. An
+interrupted rank allocation retains the earlier team/player score mutations.
+All eight vtables' B064 targets005A4240/005A4400/00524D40 read byte70; the former
+non7 kind1-only presentation rejection is removed. All three leaves are absent
+frozen and earn no new credit.
+
+0069BC40 keeps status store/flag15 and3/4 early exits, but its completion/result/
+clock scan is **offline only**. Non7 bit2 selects the SAME HUD objective icons.
+Success uses18; other statuses use00724EA0, a register-argument signed
+`(side+1)%2` with wrapping addition, not a local-team getter.0049F0C0 gates on
+any nonzero actual HUD flags, then calls the existing16×3 icon owner.
+
+After score/status/HUD,0069BA60 appends application kind10 with scalar ID/status.
+0072A0B0's process FIFO now owns reached kinds10/17; no Human/mission/caller-buffer
+borrower is retained. Non7 append takes the DISTINCT application2C Win32 lock,
+not control418/430 or peerB4. Offline false **also only appends**: the drain is
+the separate ELSE in the original, not a fallthrough. Explicit drain flushes
+1000 before EACH envelope0072BDE0→0072BE00, writes20/32-bit command into SAME
+priority0 broadcast stream, then10's5/4-bit values or17's32/32-bit values and
+0072BF90 before retiring the node. The actual application fixed-frame finalizer
+now invokes that process owner. Other owning command families and targeted
+scratch reject; nonoffline flush remains required and throws BEFORE envelope
+production, retaining the scalar node. A later serializer/finalizer exception
+also retains it; no native partial-wire rollback/retry guarantee is asserted.
+
+Research index preceded static reads and reuse of existing006B8700/0072A0B0 C
+from the research checkout. MAIN WORK `human-objective-reused-originals` copies
+and hashes that evidence without modifying the research worktree. Original
+instructions/vtables are in `human-objective-score-leaves.asm`,
+`human-objective-containing-leaves.asm`, `human-objective-state-vtable64.json`.
+No new Ghidra export or original execution was needed for this checkpoint.
+
+`human-death-objective-native.log` and `human-objective-session-native.log` pass
+focused ASan/UBSan/LSan: actual descriptors, Player selection quirk, callback
+destruction, shared score/status/FIFO/bitstream source, recursive418, rank/HUD/
+queue/flush/finalization failures, offline completion regression and100 process
+lifetimes. Human/HUD/transport/OS locks are explicit doubles. Strict actual
+World and launcher compile/link pass in `human-objective-session-host-i386.log`
+and `human-objective-session-application-i386.log`; Windows output was not run.
+[Receipt](checkpoints/p2.2-human-death-objective-session-20261111.json) adds nine
+client partials, extends three; totals34 complete/2582 partial, no promotions.
+
+Next: reached0072F2F0 scalar publication and actual006C4B40/0069F1E0/00744870
+console/application lifetime, then containing reaction/frame/failure/re-entry/
+retirement. Ordinary non7 metadata/peer3C/transport remain required. The full
+selected checkbox, P22-HUM, application integration and desktop acceptance remain OPEN.

@@ -108,6 +108,7 @@ public:
     auto& messages(){return messages_;}auto& crosshair(){return crosshair_;}auto& hands(){return hands_;}auto& small(){return small_;}
     auto& dialogs(){return dialogs_;}auto& timers(){return timers_;}auto& inventory(){return inventory_;}auto& map(){return map_;}
     auto& info(){return info_;}auto& selector(){return selector_;}auto& auxiliary(){return auxiliary_;}auto& scoreboard(){return scoreboard_;}
+    void select_objective(unsigned index,std::int32_t side){objectives_.select(index,side);}
     template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){compass_.sound_direction(direction,kind,players_);} //0049DE80→004947E0.
     auto& cursor(){return cursor_;} //FPV borrows the SAME HUD2E60 artwork/cursor owner.
     void set_hint(bool enabled,std::uint32_t identity){small_.set_hint(enabled,identity);}

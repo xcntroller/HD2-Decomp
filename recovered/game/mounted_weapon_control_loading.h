@@ -4,6 +4,7 @@
 #include "game/mounted_weapon_control.h"
 #include "game/static_weapon_metadata.h"
 #include "game/human_ai_shot_direction.h"
+#include "game/mounted_weapon_movement_sounds.h"
 #include "frontend/cleanup.h"
 #include <cstdio>
 #include <optional>
@@ -21,19 +22,15 @@ public:
     struct Barrel {Frame frame{},shell{},cartridge{};std::optional<Clip> clip;};
     struct AxisAngle {typename Frames::Vector axis{};float angle=0;};
     MountedWeaponControlLoading(Frames& frames,Services& services,Items& items,StaticWeaponControl& control)
-        :frames_(frames),services_(services),items_(items),control_(control){}
+        :frames_(frames),services_(services),items_(items),control_(control),movement_sounds_(frames){}
     ~MountedWeaponControlLoading()override{try{retire();}catch(...){frames_.record_actor_cleanup_failure(std::current_exception());}}
     const auto& barrels()const{return barrels_;}Entry weapon_item()const{return item_;}
     bool failed()const{return failed_;}
     bool occupied()const{return control_occupant_!=nullptr;}
+    auto& movement_sounds(){return movement_sounds_;}
     void clear_occupant()override{ //004C6DD0(NULL), actual null-only caller reached by reaction seat release.
         control_occupant_=nullptr;view(false);
-        //Both native120/124 are null in this loading boundary. Their positive
-        //producer still fails at authored movement-sound loading, before use.
-        if(control_.field14c&0x400u){
-            if(control_.field120||control_.field124)throw std::runtime_error("Mounted release requires its actual retained movement SOUND frames");
-            control_.field14c&=~0x400u;
-        }
+        movement_sounds_.release_motion(control_.field14c);
     }
     void fire_marker()override{throw std::runtime_error("Mounted weapon S marker requires actual004C5080 firing receiver");}
     std::array<float,4> limits()const override{return {{control_.field128,control_.field12c,control_.field130,control_.field134}};}
@@ -94,7 +91,7 @@ public:
         frames_.static_weapon_axis_angle(vertical_,vertical_pose_.axis,vertical_pose_.angle);
         frames_.update_scene_object(vertical_);frames_.update_scene_object(horizontal_);
         frames_.static_weapon_axis_angle(horizontal_,horizontal_pose_.axis,horizontal_pose_.angle);poses_=true;
-        if(metadata(horizontal_,"soundm")>=0||metadata(horizontal_,"sounds")>=0)throw std::runtime_error("StaticWeapon authored movement sounds require actual004C6E50 sound owners");
+        movement_sounds_.load(horizontal_,[&](const char* key){return metadata(horizontal_,key);},services_);
         projectile_=frames_.actor_find(model,"projectile",1);return true;
     }
     void retire()override { //004C2380; callback/backlink retirement additionally guards native C++ lifetimes.
@@ -108,7 +105,8 @@ public:
         }
         if(item_){const auto item=std::exchange(item_,Entry{});errors.attempt([&]{items_.remove_runtime_item(item);});}
         for(auto& barrel:barrels_)errors.attempt([&]{services_.remove_static_weapon_events(barrel.frame,*this);});
-        barrels_.clear();shells_.reset();horizontal_=vertical_=aim_=Frame{};poses_=false;errors.rethrow();
+        barrels_.clear();shells_.reset();horizontal_=vertical_=aim_=Frame{};poses_=false;
+        movement_sounds_.clear();errors.rethrow(); //004C7630 follows pivot/shell retirement.
     }
 private:
     int metadata(Frame frame,const char* key){return frame?static_weapon_metadata(frames_.actor_user_data(frame),key):-1;}
@@ -127,6 +125,7 @@ private:
     void* control_occupant_=nullptr;
     std::uint32_t ammunition_=0;
     bool failed_=true,poses_=false;
+    MountedWeaponMovementSounds<Frames> movement_sounds_;
 };
 
 } //namespace hd2::game

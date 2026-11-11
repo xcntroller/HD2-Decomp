@@ -49,6 +49,7 @@ public:
         return human->loading_state->words().template get<std::uint32_t>(0x48)==5;
     }
     void fail_human_mission(){dependencies_.objectives.fail_all(false);} //005A0220→0045E790→0069BED0.
+    void set_human_objective_status(std::int32_t identity,std::int32_t status){dependencies_.objectives.set_status(identity,status);} //0053BD00→actual0069BA60 owner.
     void script_return_end(Context& context){dependencies_.lifecycle.return_end_human(context,script_authority());}
     void script_loading_finish(){dependencies_.effects.fade().configure(0,false,nullptr);} //00427B80→GEffects8C/00486B30.
     bool human_remote_ai_enabled(){return dependencies_.world.human_remote_ai_enabled();}

@@ -136,26 +136,34 @@ public:
             if(command&group)flags=(flags&~group)|(command&group);
         words_.set(0x50,flags);
     }
-    using DamageCommand=HumanDamageCommand;
-    using DropCommand=HumanDropCommand;
-    struct FrameCommand {
-        std::uint32_t kind;std::int32_t actor_identity;std::optional<DamageCommand> damage;std::optional<DropCommand> drop;
-        FrameCommand(std::uint32_t type,std::int32_t actor):kind(type),actor_identity(actor){}
-    };
+    using FrameCommand=HumanPacketCommand;
     void queue_damage_command(std::uint32_t kind,std::uint32_t hit_kind,std::int32_t health,Human* source,
-            const HumanVector& point,const HumanVector& direction){ //0053DB90/00574560 construct kind1, then00547460 appends to SECOND90.
-        if(!human_)throw std::logic_error("Human damage command requires the actual B0 Human");
+            const HumanVector& point,const HumanVector& direction){ //0053DB90/00574560, SAME SECOND90.
+        if(!human_)throw std::logic_error("Human damage command requires actual B0 Human");
         auto relative=point;const auto origin=human_->base().world_position();
         for(unsigned axis=0;axis!=3;++axis)relative[axis]-=origin[axis];
-        FrameCommand command(1,-1);command.damage=DamageCommand{kind,hit_kind,static_cast<std::uint32_t>(health),source?source->base().id10():-1,relative,direction};
-        second_.push_back(std::move(command));
+        FrameCommand command;command.kind=1;auto& f=command.fields;f.set(8,kind);f.set(0xc,hit_kind);
+        f.set(0x10,health);f.set(0x14,source?source->base().id10():-1);f.set(0x20,relative);f.set(0x30,direction);
+        queue_frame_command(std::move(command),true);
     }
     const auto& first_frame_commands()const{return first_;}
     const auto& second_frame_commands()const{return second_;}
-    void queue_drop_command(std::int32_t actor,std::int32_t item,const HumanVector& direction,float speed){ //00588EF0, actual SECOND90.
-        FrameCommand command(10,-1);command.drop=DropCommand{item,actor,direction,speed};second_.push_back(std::move(command));
+    void queue_frame_command(FrameCommand command,bool second){(second?second_:first_).push_back(std::move(command));}
+    void queue_drop_command(std::int32_t actor,std::int32_t item,const HumanVector& direction,float speed){ //00588EF0.
+        FrameCommand command;command.kind=10;auto& f=command.fields;f.set(8,item);f.set(0x10,direction);f.set(0x20,speed);f.set(0x24,actor);
+        queue_frame_command(std::move(command),true);
     }
-    void queue_score_rank(std::uint32_t rank){second_.emplace_back(16,human_frame_signed_word(rank));} //005470B0, SAME SECOND90; not presentation stat mutation.
+    void queue_score_rank(std::uint32_t rank){FrameCommand command;command.kind=16;command.fields.set(8,rank);queue_frame_command(std::move(command),true);} //005470B0.
+    bool queue_inventory_move(std::int32_t item,std::int32_t actor,std::int32_t from,std::int32_t to,std::int32_t index){ //0053E610/00592320.
+        FrameCommand command;command.kind=7;command.fields.set(8,item);command.fields.set(0xc,actor);
+        command.fields.set(0x10,from);command.fields.set(0x14,to);command.fields.set(0x18,index);
+        queue_frame_command(std::move(command),false);return true;
+    }
+    bool queue_inventory_swap(std::int32_t current,std::int32_t current_slot,std::int32_t actor,std::int32_t selected,std::int32_t selected_slot){ //0053E7F0/00592500.
+        FrameCommand command;command.kind=8;command.fields.set(8,current);command.fields.set(0xc,current_slot);
+        command.fields.set(0x10,actor);command.fields.set(0x14,selected);command.fields.set(0x18,selected_slot);
+        queue_frame_command(std::move(command),false);return true;
+    }
     bool project_ground_position(HumanVector&)override{return false;} //00583140, genuine AL0/RET4, absent frozen.
     bool frame_actor_contact(std::uint32_t,std::int32_t,std::uint32_t)override{return true;} //00583230, genuine AL1/RET28, absent frozen.
     template<class Services>void bind_frame_command_packets(Services& services){
@@ -184,7 +192,7 @@ public:
     }
 protected:
     Frames& state_frames(){return frames_;}
-    void queue_ladder_contact(std::int32_t identity){first_.push_back(FrameCommand{6u,identity});} //00544B40, actual first80 command vector.
+    void queue_ladder_contact(std::int32_t identity){FrameCommand command;command.kind=6;command.actor_identity=identity;first_.push_back(std::move(command));} //00544B40, actual first80 command vector.
 
     void navigation_point(MissionTableRecord* point){point_=point;} //Actual A4 borrower.
     void clear_human_reference()noexcept{human_=nullptr;} //Derived+20 may clear44 without removing shared7C.

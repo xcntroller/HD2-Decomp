@@ -81,6 +81,7 @@ public:
     void inventory_changed(){panels_.inventory_changed();}
     template<class Random>void show_human_damage(Random& random){panels_.show_human_damage(random);}
     void set_hint(bool enabled,std::uint32_t identity){panels_.set_hint(enabled,identity);} //SAME inline small-panel owner.
+    void select_objective(unsigned index,std::int32_t side){if(hud_.flags)panels_.select_objective(index,side);} //0049F0C0: any nonzero flags.
     void set_hint(std::int32_t identity){set_hint(identity>=0,static_cast<std::uint32_t>(identity));} //0049DE30, signed ID gate; no flags gate.
     void set_injury_message(std::uint32_t identity,std::uint32_t time){panels_.set_injury_message(identity,time);} //0049DE50, no HUD-flags gate.
     template<class Direction>void hud_sound_direction(const Direction& direction,std::uint32_t kind){panels_.hud_sound_direction(direction,kind);} //0049DE80 has no flags gate.
