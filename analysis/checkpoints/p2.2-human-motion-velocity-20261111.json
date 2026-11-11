@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "previous_checkpoint": "c7749ab",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "0076b670",
+    "00773980",
+    "00774d50"
+  ],
+  "ledger_added_partial_client": 3,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2308,
+  "assumptions": [
+    "Early106 transition zero-speed direction uses a source zero guard for native unwritten XYZ."
+  ],
+  "checks": {
+    "native": "PASS (ASan/UBSan/LSan, all237 table words, 288 mappings, actual track/movement/E0 owners with explicit frame/owner doubles)",
+    "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining runtime leaves declaration-only)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-motion-velocity-native.cpp": {
+      "sha256": "54225c40c3a91b013aabaf57d3e94b3dd1c5a8f70c39adf3d1b1d0c316b756d3",
+      "bytes": 10725,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-motion-velocity-native": {
+      "sha256": "b80734532b928b7fb24bc11568a67cf978626ea9dafdffa842e1c5f0497d39db",
+      "bytes": 562928,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-motion-velocity-i386.cpp": {
+      "sha256": "f94b8cab657d5428646efce6cbafa3a0f15b184f87538f856c41879cf0aa12dc",
+      "bytes": 7440,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-motion-velocity-i386.o": {
+      "sha256": "f835c5c4af1afe1b2c9f95f4b4c288ce17ec24c556f408673232d8450f8a6349",
+      "bytes": 12319385,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-motion-velocity-native.log": {
+      "sha256": "0a65c17675a7fdbcce8f2674ee672008d5fd5b4ee8c49989fda0ad888fc0cd95",
+      "bytes": 149,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-motion-velocity-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-motion-velocity-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-motion-velocity-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-motion-velocity-tables.json": {
+      "sha256": "9056544cf523c941092e62ad18450556431ca71704114f1586d333226b341027",
+      "bytes": 4055,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/0076b670.c": {
+      "sha256": "c8819131c4c6c1a604d8861d8b86ce91a66ea46a980fd1f1e1fa4f8334b32c1a",
+      "bytes": 21816,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/0076b670.asm": {
+      "sha256": "8ff8b976e77b0cce8322c137acb0c756e85351f3c6af6eb32c24f3dfe4d6c297",
+      "bytes": 93303,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-selection/00773980.c": {
+      "sha256": "0944d0a7a0f834cd385e4ab9cb878bc56acd1692c49576e24255f29e4be94d4d",
+      "bytes": 1120,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-selection/00774d50.c": {
+      "sha256": "6a50c19db0a95571e91b1f7c7a6739e717069d92d954110f1233eba7c40c7398",
+      "bytes": 261,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-motion-selection/00788490.c": {
+      "sha256": "432a082017e6b5f836e7a515a34a2fbfbb38b82b61278b9423210cd4aa8a9f39",
+      "bytes": 324,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-motion-velocity-tracker.log": {
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e",
+      "bytes": 126,
+      "retained": true
+    }
+  }
+}

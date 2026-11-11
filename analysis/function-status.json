@@ -28566,13 +28566,14 @@
       "program": "client",
       "entry": "0077ec00",
       "status": "partial",
-      "coverage": "Select and publish the offline E0 climb animation for subtype 1E, including the original defer and mode gates. Native changed flag now gates E0+40 publication while preserving command and serial writes.",
+      "coverage": "Select and publish the offline E0 climb animation for subtype 1E, including the original defer and mode gates. Native changed flag now gates E0+40 publication while preserving command and serial writes. Positive E0 floor forward/backward commands now invoke actual0076B670 before item lookup, animation90/92 and task publication.",
       "limitations": "Offline climb animation request only. Other movement and animation commands require their actual receivers.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
         "recovered/game/human_look_control.h",
-        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
+        "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json",
+        "analysis/checkpoints/p2.2-human-motion-velocity-20261111.json"
       ]
     },
     {
@@ -30880,6 +30881,45 @@
         "recovered/game/human_ladder_control.h",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ladder-frame-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076b670",
+      "status": "partial",
+      "coverage": "Actual animation-driven velocity selection across current/queued descriptors, special and directional families, shared original speed tables, engine planar steering, E0 input/stance, C00 command and equipment rate. Native early106 unwritten zero-speed XYZ uses an explicit source zero guard.",
+      "limitations": "Source-only typed owner and engine-endpoint adaptation, with explicit unwritten native stack guard. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. Required positive ground collision/replay/air and containing application integration remain open. User mission desktop acceptance is pending. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_motion_velocity.h",
+        "recovered/game/human_motion_tables.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-velocity-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00773980",
+      "status": "partial",
+      "coverage": "Actual current velocity/speed/maximum writes with retained previous backup, inactive-lane output preservation and native old/new sample selection.",
+      "limitations": "Source-only typed owner and engine-endpoint adaptation, with explicit unwritten native stack guard. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. Required positive ground collision/replay/air and containing application integration remain open. User mission desktop acceptance is pending. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "recovered/game/human_motion_tables.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-velocity-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00774d50",
+      "status": "partial",
+      "coverage": "Actual group active-lane lookup and playback-rate publication; inactive lane returns before writing.",
+      "limitations": "Source-only typed owner and engine-endpoint adaptation, with explicit unwritten native stack guard. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. Required positive ground collision/replay/air and containing application integration remain open. User mission desktop acceptance is pending. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "recovered/game/human_motion_tables.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-velocity-20261111.json"
       ]
     }
   ]

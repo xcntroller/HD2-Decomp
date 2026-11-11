@@ -230,6 +230,21 @@ public:
         for(unsigned axis=0;axis!=3;++axis)output[axis]=real(source+4*axis)*amount;
         words_.set(0x264,maximum);
     }
+    void refresh_motion_velocity(const HumanVector& direction,float speed,float maximum,HumanVector& output){ //00773980.
+        words_.set(0x250,direction);words_.set(0x260,speed);words_.set(0x264,maximum);
+        if(integer(0xc)==-1)return;
+        const auto source=speed<=real(0x240)?0x230u:0x250u;
+        const auto amount=source==0x230u?real(0x240):speed;
+        for(unsigned axis=0;axis!=3;++axis)output[axis]=real(source+4*axis)*amount;
+    }
+    void motion_animation_scale(float scale){words_.set(0x32c,scale);} //0076B670, actual DD0+58C.
+    void motion_animation_rate(unsigned group,float rate){ //00774D50.
+        if(group>=4)throw std::out_of_range("Human animation rate group");
+        const auto lane=integer(0xc+group*0x2c);
+        if(lane==-1)return;
+        if(lane<0||lane>1)throw std::runtime_error("Human animation rate has an invalid lane");
+        words_.set(0xd0+(static_cast<unsigned>(lane)+group*2)*0x24,rate);
+    }
     void motion_impulse(const HumanVector& displacement,std::int32_t duration){ //00773A90.
         words_.set(0x280,displacement);words_.set(0x290,0u);words_.set(0x294,duration);
     }

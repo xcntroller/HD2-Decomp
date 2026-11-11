@@ -196,7 +196,7 @@ void advance_human_ladder_motion(Control& control,Look& look,Human& human,Servic
         std::int32_t elapsed,Runtime& runtime,Publish& publish){ //00768230, SAME AC0 movement and DD0 actor borrower.
     auto position=human.base().world_position();
     if((control.mode_flags()&7u)!=7u&&!control.human_is_player()&&!control.animation_authority_actor())return;
-    runtime.advance_human_floor_contacts(control,true); //0076B670, real contact/height receiver remains required.
+    control.prepare_motion_velocity(look,true); //0076B670, actual shared animation velocity selector.
     auto& physical=control.physical();auto& state=physical.control_frame_words();
     auto& movement=control.movement().frame_words();
     const auto displacement=control.tracks().words().template get<HumanVector>(0x270);

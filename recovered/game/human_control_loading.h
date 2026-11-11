@@ -4,6 +4,7 @@
 #include "game/human_action_control.h"
 #include "game/human_control_action_queue.h"
 #include "game/human_ladder_control.h"
+#include "game/human_motion_velocity.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
 #include "game/human_face_control.h"
@@ -106,6 +107,9 @@ public:
     }
     Geometry& geometry(){return geometry_;}Face& face(){return face_;}Physical& physical(){return physical_;}
     Movement& movement(){return movement_;}
+    template<class Look>void prepare_motion_velocity(Look& look,bool refresh){ //0076B670.
+        prepare_human_motion_velocity(*this,look,*human_,services_,frames_,refresh);
+    }
     Tracks& tracks(){return tracks_;}Action& action(){return action_;}
     Shadow& shadow(){return shadow_;}
     const Links& links() const{return links_;}const auto& motion() const{return motion_;}
@@ -228,7 +232,7 @@ public:
                     movement.set(0x20,-10000.099609375f); //0076CFE0.
             }
         }
-        if(contact)runtime.advance_human_floor_contacts(*this,true); //0076B670.
+        if(contact)prepare_motion_velocity(look,true); //0076B670.
         tracks_.advance_motion(human_frame_signed_word(elapsed),human_is_player()); //00772A00.
         if(signed_word(0xa1c)!=-10000&&signed_word(0xa1c)>0){
             const auto remaining=word(0xa1c)-elapsed;

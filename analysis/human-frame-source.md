@@ -615,7 +615,7 @@ ordering, offset posture sphere selection, CC002 sweep blockers, queued
 top-exit preparation and bottom-exit impulses. A real blocked sweep requires
 the positive 00788840 response. A rejected 0074A690 top-exit preparation
 normalizes queued206 and returns before position publication or occupancy
-removal. The floor/contact receiver 0076B670 remains required. 007709C0
+removal. The shared 0076B670 velocity selector is supplied below. 007709C0
 projects from the actual cached ActorBase position, independently of the
 caller's proposed vector. Its calls before/after native position publication
 retain that distinction. The final transition branch keeps its elapsed-time
@@ -635,9 +635,48 @@ projection/clamping, player facing, E0 modes, actual blocked-query gates and
 query-failure exclusion cleanup. It used real track/movement/E0 owners with
 explicit actor/frame/collision and unresolved-receiver doubles. Actual
 secondary descriptor writes and both containing World passes were strict
-i386 compile-verified. The source launcher linked. Required positive contact,
+i386 compile-verified. The source launcher linked. Required positive
 exit-preparation, collision-response, AI0057CC50 and nonoffline command bodies
 remain open. Application loading still declines and desktop acceptance is
 pending. WORK `frame-human-climb-action`, `frame-human-motion-producers`,
 `frame-human-climb-state`, `frame-human-ground-motion` and
 `frame-human-ladder-movement` preserve the original bodies.
+
+## Animation-driven motion velocity
+
+0076B670 now selects the actual movement velocity and primary playback rate
+from DD0's current/queued descriptors, E0 position/stance and C00 command.
+It preserves the special18/23/24 and30..33 branches, target-driven90/92,
+Ladder106..108 and all190..205 forward/back/side/diagonal mappings. The
+selector writes the same track scale and equipment transition rate used
+by the containing DD0 and230 owners. Planar steering reaches the existing
+engine quaternion, rotation-matrix and vector-transform exports.
+
+The 237 original read-only FLOAT words00816878..00816C28 now have one shared
+source table. CD0's existing table reads retain their original36-word bounds.
+WORK `human-motion-velocity-tables.json` records every original word and the
+raw-byte hash. The native fixture verified the complete source table against
+those original bits and exercised all288 direction/detail/variant mappings.
+
+00773980 writes current velocity while retaining the prior backup sample.
+Its inactive-lane return leaves the caller's output unchanged. 00774D50
+updates only the active lane of the requested group. Ground and Ladder
+movement now call the actual selector. E0's positive floor forward/backward
+commands call it before slot-five lookup, animation90/92 selection and task
+publication, preserving 0077EC00's original ordering.
+
+The early106 transition branch passes an unwritten native stack direction
+with zero speed to00773850. Source uses a zero guard for those unspecified
+XYZ values. This remains an explicit source adaptation. The actual prior
+velocity backup and output selection are preserved.
+
+[Verification receipt](checkpoints/p2.2-human-motion-velocity-20261111.json).
+Native ASan/UBSan/LSan exercised original table bits, all direction-table
+mappings, signed and Ladder motion, playback rates, alternate velocity
+publication, equipment rate and the real E0 forward/backward entry points.
+Engine/frame and containing-owner doubles were explicit. Both actual World
+module passes compiled under strict i386 and the source launcher linked.
+Application loading and user mission desktop acceptance remain pending.
+Original bodies and assembly are in WORK `frame-human-ground-motion` and
+`frame-human-motion-selection`. Positive ground collision/replay/air,
+0074A690 exit preparation and00788840 collision response remain required.

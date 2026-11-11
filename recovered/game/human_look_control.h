@@ -120,9 +120,10 @@ public:
         }else if(mode==5&&!in_sequence(animation)){
             if(forward||backward){
                 control_->frame_climb_direction(backward);
-                throw std::runtime_error("Human floor movement requires actual 0076B670 contact handling");
-            }
-            if(animation>=0x2d&&animation<=0x41){
+                control_->prepare_motion_velocity(*this,true); //0076B670 before the native slot-five lookup and task publication.
+                animation=control_->frame_special_movement_item()?0x5c:0x5a;
+                publish(backward?0x10u:8u);
+            }else if(animation>=0x2d&&animation<=0x41){
                 control_->frame_climb_direction(false);
                 if(animation==0x2d){
                     animation=control_->frame_special_movement_item()?0x5d:0x5b;

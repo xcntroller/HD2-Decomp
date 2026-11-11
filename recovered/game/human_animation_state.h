@@ -4,6 +4,7 @@
 #include "game/human_animation_tracks.h"
 #include "game/human_opacity_control.h"
 #include "game/human_state_frame_timers.h"
+#include "game/human_motion_tables.h"
 
 namespace hd2::game {
 
@@ -244,11 +245,8 @@ private:
     static float table_value(bool second,std::int64_t index) {
         //Read-only original DWORD slices00816AB8/00816B48, fingerprinted in
         //human-animation-motion-data.json. Reject reads outside recovered slices.
-        static constexpr std::array<float,36> first{{0,1.8f,3.5f,0,5,6,0,0,0,0,2,0}};
-        static constexpr std::array<float,36> other{{0,0,0,0,0,0,0,1.5f,2.5f,0,1.5f,2.5f,0,0,0,0,0,0,
-            .7f,.7f,1.4f,.7f,.7f,1.4f,.7f,.7f,1.4f,.7f,.7f,1.4f,.7f,.7f,1.4f,.7f,.7f,1.4f}};
         if(index<0||index>=36)throw std::runtime_error("Human animation motion table index is outside recovered data");
-        return (second?other:first)[static_cast<unsigned>(index)];
+        return human_motion_table_value(second?0x816b48u:0x816ab8u,index);
     }
     Frames& frames_;Tracks& tracks_;Shadow& shadow_;Control& control_;HumanOpacityControl& opacity_;Random& random_;
     HumanJointWords<0xd4> words_;Frame model_{},sector_{};bool started_=false;

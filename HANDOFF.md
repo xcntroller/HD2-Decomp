@@ -9,16 +9,17 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[Ladder setup and movement](analysis/human-frame-source.md#ladder-setup-and-movement)
-and [verification receipt](analysis/checkpoints/p2.2-human-ladder-frame-20261111.json).
-0074B4F0/0074BBE0/0074C1E0 now supply actual shared-owner climb setup and
-loaded-tree clearance. 00768230 supplies movement and exit ordering, using
-007709C0 projection, real E0 modes and typed Ladder occupancy. Positive floor
-contacts0076B670, exit preparation0074A690 and collision response00788840 remain
-required. Native sanitizers, strict actual-host i386 and launcher link passed.
-The tally is 34 complete and 2,305 partial entries (2,300 client and five engine)
-across 18,783 frozen functions. Both P2.2 checkboxes remain open. Application
-loading still declines and no mission desktop test has occurred.
+[Animation-driven motion velocity](analysis/human-frame-source.md#animation-driven-motion-velocity)
+and [verification receipt](analysis/checkpoints/p2.2-human-motion-velocity-20261111.json).
+0076B670 now supplies actual shared-owner velocity/playback selection and E0
+positive floor commands. 00773980 and00774D50 supply its track receivers.
+All237 original table words and288 mappings passed native sanitizer checks,
+as did the actual E0 forward/backward entry points with explicit doubles.
+The early106 zero-speed branch uses a documented zero guard for unwritten
+native XYZ. Strict actual-host i386 and launcher link passed. The tally is
+34 complete and2,308 partial entries (2,303 client and five engine) across
+18,783 frozen functions. Both P2.2 checkboxes remain open. Application loading
+still declines and no mission desktop test has occurred.
 
 ## Continue P2.2
 
@@ -26,14 +27,14 @@ loading still declines and no mission desktop test has occurred.
   00779B30/00755500 track/motion and remaining 007A7470 geometry workers.
   WORK `frame-human-live-model-geometry` contains foot, hand, look and
   mount/attachment originals. Climb movement still requires
-  positive0076B670/0074A690/00788840 and AI0057CC50. WORK
+  positive0074A690/00788840 and AI0057CC50. WORK
   `frame-human-ground-motion`, `frame-human-ladder-movement` and
   `frame-human-motion-producers` preserve the originals. Presentation track events4..9/13..20/22..24 still need
   positive workers, as do the camera reset and attached230 branch. WORK `frame-human-dd0-bound-workers`,
   `frame-human-dd0-animation-workers`, `frame-human-presentation-effects`,
   `frame-human-breathing-audio` and `frame-human-shot-and-control-workers`
   preserve the exact bodies. Continue other B0 families, positive 00584E30
-  effects and queued 00577B30. Guard cover/door, 0057CC50/007861A0,
+  effects and queued 00577B30. Guard cover/door, AI0057CC50,
   floor-list 00581E30 and 0058BAF0 kind9 release remain required. For item
   virtual24 follow 007D4FD0 through the actual ShotMgr pool and 0044B910.
   Original files are in WORK `frame-human-control-updates`,
