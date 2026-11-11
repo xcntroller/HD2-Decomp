@@ -26,7 +26,7 @@ and P22-HUM remain open; no mission desktop verification has occurred.
 
 [Damage/scoring receipt](analysis/checkpoints/p2.2-human-damage-presentation-20261111.json)
 adds32 frozen client partials and extends four existing partials, preserving GUARD
-credit. Totals:34 complete/2570 partial of18783; no complete promotions.
+credit. Totals before mounted sounds:34 complete/2570 partial of18783; no complete promotions.
 Earlier accumulated joint/clip/selection source retains its uncredited status.
 [Particle/surface receipt](analysis/checkpoints/p2.2-human-particle-surface-20261111.json)
 is the previous dependency checkpoint. Full contracts are in the source note.
@@ -53,12 +53,17 @@ indices3/5. Player writes54 before stats/publication; Remote must use its old ra
    bound, including Remote's old-rank order and command17 zero point/impulse.
    PACK worktree remains untouched; broader imported bodies get no new credit
    here. Keep actual nonoffline authority forwarding required.
-2. Finish reaction-specific mounted movement SOUND producer/release004C6E50/
-   004C6DD0. Then Player0053BD00 byte550 objective: actual nonoffline descriptors
-   are GameData kind12, native28 selector/18 side; metadata/transport still required.
-3. Continue actual peer removal0072F2F0 application11/0072A0B0 and nonrender
-   console0069F1E0/00744870 owners, then full containing frame/failure/re-entry/
-   retirement. Do not invent successful missing positive dependencies.
+2. Mounted movement SOUND producer/release004C6E50/004C6DD0 and ordered
+   004C7630 retirement are now source-closed through SAME StaticWeapon/Car gun
+   control owner. [Receipt](analysis/checkpoints/p2.2-human-mounted-sounds-20261111.json)
+   adds three client partials, extends two; totals34 complete/2573 partial.
+3. Continue Player0053BD00 byte550 objective: actual nonoffline descriptors are
+   GameData kind12, native28 selector/18 side. Metadata/score/transport remain
+   required. Existing original006B8700 C is in the research worktree ignored
+   `analysis/work/future-dependencies/p28-entry-handoff`; inspect/reuse before
+   exporting again. Actual0072A0B0 C is there under `p28-peer-send`.
+4. Continue peer/console and full containing frame/failure/re-entry/retirement.
+   Do not invent successful missing positive dependencies.
 
 **PACK discrepancy:** its zero-multiplier drop-writer claim is wrong. At20A7
 [S+08]=mask15; PUSH20AB makesESP=S-4; FIMUL[ESP+0C] reads[S+08],15. Original
@@ -83,8 +88,8 @@ disabled, no resource-loading equivalence. Temporary audit files are ignored,
 fingerprinted in receipt and retained only for this ongoing full-checkbox work;
 remove them at full completion. No permanent tests.
 
-Strict actual World i386: `human-damage-pack-host-i386.log` PASS.
-Latest main launcher compile/link: `human-damage-pack-application-i386.log`
+Strict actual World i386: `human-mounted-sound-host-i386.log` PASS.
+Latest main launcher compile/link: `human-mounted-sound-application-i386.log`
 PASS. Outputs were NOT executed. Tracker render/check and diff checks required
 at checkpoint. Do not repeatedly audit unchanged verified solver/particle source.
 

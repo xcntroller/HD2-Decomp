@@ -139,6 +139,7 @@ public:
     void remove_car_proximity(std::int32_t index){consumers_.actor_proximity().remove_actor(index);}
     const Car* car_current_attachment(){return consumers_.car_current_attachment();}
     unsigned car_game_kind(){return consumers_.car_game_kind();}
+    auto mounted_sound_entry(std::int32_t id)const{return consumers_.mounted_sound_entry(id);}
     std::unique_ptr<game::CarMountedWeaponControl> make_car_weapon_control(Car& actor,GameActorServices::Frame pivot,unsigned index){ //004D16A0's actual100 branch.
         auto control=std::make_unique<game::CarMountedWeaponControl>();
         auto loading=std::make_unique<game::MountedWeaponControlLoading<GameActorServices,GameWorldActors,Items>>(scene_.frames(),*this,items_,control->state);

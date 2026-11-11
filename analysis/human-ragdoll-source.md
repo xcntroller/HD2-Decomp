@@ -249,9 +249,9 @@ Reached seat removal uses actual Car occupants/mass/cameras/controls and
 StaticWeapon seats/control/collision descriptor. Car004D9A40/004D9FC0 and
 StaticWeapon00604630/00604A10 preserve signed bounds and existing owner identity.
 00604630 is absent frozen and receives no new credit.004C6DD0(NULL) clears the
-actual mounted occupant and view. Positive movement SOUND frames still require
-their missing authored producer; no raw pointer is dispatched. Destroyed Car
-engine transitions remain a required00518710 branch when reached.
+actual mounted occupant and view. Positive movement SOUND frames now use the actual authored producer/lifetime
+described below; no raw DWORD pointer is dispatched. The reached destroyed-Car
+00518710(false) transition is also in source; running simulation remains separate.
 
 ### Containing damage source in progress
 
@@ -589,3 +589,48 @@ gaps: actual mounted movement SOUND producer/release, Player550 objective/
 kind12 metadata and nonoffline peer/console owners, then containing frame and
 retirement checks. Other PACK clothing/control/item/special-animation effects
 remain required and belong to the following Human action/item boundaries.
+
+
+### Mounted movement SOUND source checkpoint — 2026-11-11
+
+004C6E50 is now bound into the SAME MountedWeaponControlLoading used by both
+StaticWeapon and actual indexed Car gun-seat controls. Native120/124 are owned
+kind4 SOUND frames in that lifetime, not DWORDs in StaticWeaponControl. Resolve
+`soundm` then actual Startup SOUND catalogue group3. A missing nonnegative first
+entry returns immediately, skipping `sounds`; a missing/empty second entry has no
+sound. Only the first real variant is selected, with no random draw.004370D0
+copies that variant's name. Existing0044A1C0 load-into cache supplies the resource;
+its inlined body is delegated and receives no new credit.
+
+On successful load preserve native7C(1), cone3FC90FDB/pi2, movement-only90(1),
+variant14 volume, variant08 FLOAT bits/0C ranges and two.5 parameters, actual
+horizontal13C parent, direct zero local position/flags and final30(false). Failed
+resource load releases that slot then continues. C++ engine failures retain the
+acquired prefix for containing retirement; missing frame/null variant source
+undefined-dereference paths reject explicitly.
+
+004C6DD0(NULL) clears occupant/view, then, only under14C&400, disables120,
+enables124 and clears400 AFTER both calls. A failed second call retains400 and
+its actual owners.004C7630 releases120 then124 without detach/disable. This
+retirement follows normal pose/item/barrel/shell/pivot retirement in004C2380;
+partial source guards still reclaim every acquired sound. No positive occupant,
+occupied aiming/fire004C5080 or wider running-Car body is invented.
+
+Research index preceded reuse; original evidence is WORK
+`static-weapon-control-required/004c6e50.c`, `mounted-sound-loading.asm`,
+`mounted-sound-name.asm`, `mounted-sound-retirement.asm` and
+`human-reaction-mounted-occupant.asm`. Raw instructions establish first-variant
+08/0C/14 reads and native engine-call order; decompiler register aliases around
+the inlined cache are not used as independent ABI claims.
+
+`human-mounted-sound-native.log` passes ASan/UBSan/LSan over actual SoundCatalog/
+movement-owner classes: metadata/lookup/load order, early missing-first return,
+empty first/positive second, resource failure, acquired-prefix exception, loop/
+cone/volume/range/parent/zero/enable order, interrupted release flag and100 owner
+cycles. Engine/cache endpoints are doubles. Strict actual Car/StaticWeapon/World
+composition and launcher checks are `human-mounted-sound-host-i386.log` and
+`human-mounted-sound-application-i386.log`; no Windows output was executed.
+[Receipt](checkpoints/p2.2-human-mounted-sounds-20261111.json) adds three frozen
+client partials and extends two, with no complete promotion. Totals34/2573 partial.
+Continue Player550 objective/kind12 metadata and actual peer/console dependencies,
+then the full containing frame/retirement boundary. Selected checkbox remains OPEN.

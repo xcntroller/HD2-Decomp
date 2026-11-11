@@ -63,8 +63,11 @@ Actual HORT00*/VERT00*/AIM00* and `projectile` borrowers use native masks.
 actual model is hidden. Real S_quat::Inverse(axis,angle) preserves original
 horizontal/vertical poses; native Make(axis,angle)/normalize/update restores them
 on retirement. These engine math calls are delegated, without new credit.
-Positive soundm/sounds metadata requires unrecovered004C6E50 movement-sound
-owners and rejects; this base Tutorial HORT metadata does not select them.
+Positive soundm/sounds metadata now uses actual004C6E50 group3/first-variant SOUND
+owners and the same existing cache. Reaction release004C6DD0 and ordered004C7630
+retirement are bound. [Mounted sound checkpoint](checkpoints/p2.2-human-mounted-sounds-20261111.json).
+The base Tutorial HORT metadata does not select these positive paths; native
+endpoint doubles and compilation do not establish mission/desktop behavior.
 
 ## Collision, navigation, initial update and cleanup
 
