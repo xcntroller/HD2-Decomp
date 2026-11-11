@@ -5,6 +5,7 @@
 #include "game/human_look_state.h"
 #include "game/human_weapon_binding.h"
 #include "game/human_face_model.h"
+#include "game/human_state_frame_timers.h"
 #include <limits>
 #include <optional>
 
@@ -72,6 +73,8 @@ public:
     Frame weapon2() const {return weapon2_;}
     const auto& feet() const {return feet_;}
     std::uint32_t random_seed() const {return seed_;}
+    std::uint32_t frame_elapsed()const{return frame_elapsed_;}
+    bool geometry_detail_enabled()const{return geometry_detail_;}
     void command_look(std::uint32_t flags,const Vector* target) {
         look_.command(frames_,random_,model_,skeleton_.bones()[6].frame,flags,target);
     }
@@ -113,6 +116,63 @@ public:
         movement_.direction6370=movement_.direction6360;movement_.direction6380=target;
     }
     void blend_equipment_weapon(std::int32_t duration){equipped_weapon_.blend(duration);} //007B8D00.
+    template<class Human,class Control,class Runtime>void present_frame(Human& human,Control& control,std::uint32_t elapsed,Runtime& runtime){ //007A7470.
+        if(human_!=&human||control_!=&control||!model_)throw std::logic_error("Human geometry frame lost its actual owners");
+        frame_elapsed_=elapsed;++seed_; //Native62B4/62B8.
+        auto countdown=movement_.field6410-elapsed;
+        movement_.field6410=countdown;
+        if(human_frame_signed_word(countdown)<1){
+            movement_.field6410=countdown+100u;
+            movement_.field63e0=movement_.field63d0;
+            const auto world=frames_.actor_world_matrix(model_);
+            const float scale=static_cast<float>(1000.L/human_frame_signed_word(elapsed)); //0080F708.
+            for(unsigned axis=0;axis!=2;++axis)
+                movement_.field63f0[axis]=static_cast<float>((static_cast<long double>(world[12+axis])-movement_.position6400[axis])*scale);
+            const float z=world[14]-movement_.position6400[2];
+            movement_.field63f0[2]=z*scale;
+        }
+        const auto world=frames_.actor_world_matrix(model_);
+        movement_.position6400={{world[12],world[13],world[14],world[15]}};
+        const float fraction=static_cast<float>(static_cast<long double>(human_frame_signed_word(movement_.field6410))*.01f);
+        const float complement=1.f-fraction;
+        for(unsigned axis=0;axis!=3;++axis){
+            const float latest=complement*movement_.field63f0[axis];
+            movement_.field63d0[axis]=static_cast<float>(static_cast<long double>(fraction)*movement_.field63e0[axis]+latest);
+        }
+        geometry_detail_=(control.animation_state_word(0x22c)&0x380u)==0; //Native62C9.
+        if(movement_.field6304&0x200u){
+            runtime.present_human_ragdoll_geometry(*this,control,human,elapsed);
+            return;
+        }
+        if(human_frame_signed_word(human.properties.stats_ec[0])<1)return;
+        if(movement_.flag65f0&&control.animation_look_word(0xb8)!=5&&
+           ((control.mode_flags()&7u)==7u||control.human_is_player()))
+            runtime.present_human_foot_geometry(*this,control,human); //007A8520.
+        const auto flags=movement_.field6304;
+        if((flags&1u)||(!(flags&0x3du)&&(flags&2u))){
+            const auto weapon=equipped_weapon_.model();
+            if(!weapon||!frames_.object_parent(weapon)||(!equipped_weapon_.left()&&!equipped_weapon_.right())||
+               ((movement_.field62d8&0x80000000u)&&!equipped_weapon_.left())){
+                movement_.field6304=0;movement_.flag62c8=false;
+                return;
+            }
+            if(flags&1u)runtime.present_human_aimed_weapon_geometry(*this,control,human); //007B9CB0.
+            else if((control.mode_flags()&2u)&&movement_.field62cc!=4&&(movement_.field62d8&0x80000000u))
+                runtime.present_human_stowed_weapon_geometry(*this,control,human); //007B9750's positive gate.
+        }else if(flags&4u)runtime.present_human_weapon_mount_geometry(*this,control,human); //007BA0C0.
+        else if(flags&8u)runtime.present_human_attached_weapon_geometry(*this,control,human); //007AE3C0 and007ADA10.
+        else if(flags&0x10u)runtime.present_human_vehicle_weapon_geometry(*this,control,human); //007AF320.
+        else if(flags&0x20u)runtime.present_human_target_weapon_geometry(*this,control,human); //007AEBE0.
+        equipped_weapon_.advance_frame(elapsed);
+        if(movement_.field6304&0x40u)runtime.present_human_target_weapon_geometry(*this,control,human);
+        if(movement_.field6304&0x100u)runtime.present_human_geometry_overlay(*this,control,human); //007AFD70.
+        if(movement_.field6304&0x80u)runtime.present_human_geometry_clip(*this,control,human); //007AFC20.
+        if(control.mode_flags()&2u){
+            if(look_.flags||(movement_.field6304&0x35u))runtime.present_human_look_geometry(*this,control,human,elapsed); //007ACCC0.
+            control.resolve_model_geometry_camera();
+        }
+        if(runtime.human_model_debug_enabled())runtime.present_human_model_debug(*this);
+    }
 private:
     void reset_loading() { //0079BD30(false), state written before any model-dependent work.
         const auto random=random_();if(random>0x7fff)throw std::runtime_error("Human geometry requires shared CRT random");
@@ -152,7 +212,8 @@ private:
     std::optional<Owner> camera3rd_,camera_fpv_;
     Frame weapon1_{},weapon2_{},marker_z_{};
     std::array<Frame,2> feet_{};
-    std::uint32_t seed_=0;
+    std::uint32_t seed_=0,frame_elapsed_=0;
+    bool geometry_detail_=true;
     Movement movement_;
     HumanWeaponBinding<Frames,Movement> equipped_weapon_{frames_,movement_};
     OfflineFaces* offline_faces_=nullptr;bool offline_quality_=false;std::int32_t offline_camouflage_=0;

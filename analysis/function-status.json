@@ -30599,6 +30599,42 @@
         "analysis/checkpoints/p2.2-human-presentation-face-audio-20261111.json",
         "recovered/game/human_control_loading.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0075f230",
+      "status": "partial",
+      "coverage": "Consume actual DD0 action records0..22 with original mode/countdown, posture and animation gates, equipment receiver and retained E0 override on native early exits. Climb remains required.",
+      "limitations": "Source-only typed state/owners and delegated engine methods. Native fixtures exercise state/frame doubles. Positive DD0 ground/look/track and geometry workers, actual runtime/application integration and user desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json",
+        "recovered/game/human_control_action_queue.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00791c60",
+      "status": "partial",
+      "coverage": "Actual retained hand hide/restore, item-kind lookup, 230 flags, changed E0 commands, DD0 mode and current-player first-person requests.",
+      "limitations": "Source-only typed state/owners and delegated engine methods. Native fixtures exercise state/frame doubles. Positive DD0 ground/look/track and geometry workers, actual runtime/application integration and user desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json",
+        "recovered/game/human_equipment_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a7470",
+      "status": "partial",
+      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required.",
+      "limitations": "Source-only typed state/owners and delegated engine methods. Native fixtures exercise state/frame doubles. Positive DD0 ground/look/track and geometry workers, actual runtime/application integration and user desktop mission frame remain required.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json",
+        "recovered/game/human_model_geometry.h"
+      ]
     }
   ]
 }

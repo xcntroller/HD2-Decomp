@@ -2,6 +2,7 @@
 #define HD2_GAME_HUMAN_CONTROL_LOADING_H
 
 #include "game/human_action_control.h"
+#include "game/human_control_action_queue.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
 #include "game/human_face_control.h"
@@ -118,6 +119,24 @@ public:
         return entry&&entry->definition_identifier()==0xe7u;
     }
     void frame_climb_direction(bool backward){movement_.frame_climb_direction(backward);}
+    void resolve_model_geometry_camera(){ //007A7470 tail, actual Camera virtual6C.
+        const auto camera=services_.human_geometry_camera_target();
+        Frame bone{};
+        if(camera==geometry_.camera3rd())bone=geometry_.skeleton().bones().at(6).frame;
+        else if(camera==geometry_.camera_fpv())bone=geometry_.skeleton().bones().at(8).frame;
+        else return;
+        if(!camera||!bone)throw std::runtime_error("Human camera collision requires its actual target and skeleton bone");
+        physical_.exclude_query(false);
+        struct Restore {
+            Physical& physical;
+            ~Restore(){physical.restore_query(false);}
+        } restore{physical_};
+        const auto source=frames_.actor_world_matrix(bone),target=frames_.actor_world_matrix(camera);
+        const HumanVector origin{{source[12],source[13],source[14],source[15]}};
+        const HumanVector delta{{target[12]-source[12],target[13]-source[13],target[14]-source[14],0}};
+        if(const auto hit=services_.human_geometry_sweep().sweep(origin,delta,.15f,0xc8002u,0x230000u))
+            frames_.car_camera_position(camera,hit->position);
+    }
     bool active() const{return active_;}
     bool collision_disabled()const{return flag_dc4_;} //No loading producer changes this DD0 byte.
     float presentation_amount() const{return amount_;}
@@ -140,6 +159,7 @@ public:
     int animation_look_word5c() const{return services_.human_look_control(*human_).state().template get<std::int32_t>(0x5c);}
     int animation_property_a0() const{return services_.human_look_control(*human_).state().template get<std::int32_t>(0xa0);}
     int animation_look_stance() const{return services_.human_look_control(*human_).state().template get<std::int32_t>(0x50);}
+    int animation_look_word(unsigned offset)const{return services_.human_look_control(*human_).state().template get<std::int32_t>(offset);}
     Frame human_animation_resource(unsigned table,unsigned row){return services_.human_animation_resource(table,row);}
     void refresh_equipment_visibility(){services_.refresh_human_equipment_visibility(*human_,shadow_);}
     void human_opacity_changed(Frame model,float value){(void)effects_.model_opacity(mode_flags(),model,value);}
@@ -171,7 +191,8 @@ public:
         const auto finish_clock=[&]{state.set(0x1c0,physical_word(0x1c0)+services_.human_control_microseconds());};
         if(!physical_word(0x1ac)&&!physical_word(0x9c0)){
             finish_clock();state.set(0x1d4,std::uint8_t{0});
-            if((geometry_.movement().field6304&0x200u)&&movement_.state().template get<float>(0x114)==-10000.099609375f)
+            if((geometry_.movement().field6304&0x200u)&&geometry_.joints().field68d0>=1.e-8f&&
+               movement_.state().template get<float>(0x114)==-10000.099609375f)
                 runtime.update_inactive_human_obstruction(*this); //0074EA80 and the live geometry height gate.
             return;
         }
@@ -189,7 +210,8 @@ public:
         }
         auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
         look.advance_timed_posture(elapsed,publish);
-        runtime.advance_human_control_actions(*this,elapsed); //0075F230.
+        auto& equipment_owner=services_.human_presentation_equipment(*human_);
+        advance_human_control_action_queue(*this,look,physical_.control_action_queue(),equipment_owner,elapsed,publish,runtime);
         runtime.apply_human_look_frame(*this,look,elapsed); //0077DE30.
         const auto animation=physical_word(0x1d8);
         if(!((animation>=0x29&&animation<=0x41)||(animation>=0x1e&&animation<=0x21)||
@@ -265,7 +287,7 @@ public:
         const auto word=[&](unsigned offset){return state.template get<std::uint32_t>(offset);};
         if(!word(0x1ac)&&!word(0x9c0)){
             state.set(0x1c4,0u);
-            runtime.present_human_control_geometry(*this,elapsed); //007A7470.
+            geometry_.present_frame(*human_,*this,elapsed,runtime);
             return;
         }
         if((mode_flags()&7u)!=7u&&!frames_.human_control_visible(human_->base().frame()))
@@ -311,7 +333,7 @@ public:
         const auto ticks=word(0xa7c)+elapsed;
         state.set(0xa7c,ticks>0xfffffc17u?0u:ticks);
         finish_clock();
-        runtime.present_human_control_geometry(*this,elapsed); //007A7470.
+        geometry_.present_frame(*human_,*this,elapsed,runtime);
     }
 private:
     template<class Look,class Runtime>void present_control_effects(const Look& look,std::uint32_t elapsed,Runtime& runtime){ //00758830.
@@ -341,7 +363,7 @@ private:
                 if(!(mode_flags()&2u))return;
                 const auto root=frames_.camera_root_sector();
                 if((!previous||!next||previous==root||next==root)&&services_.current_human_frame_player()==human_)
-                    runtime.reset_human_presentation_camera(*this); //Actual game Camera virtual40(0).
+                    services_.refresh_human_presentation_camera();
             });
         if(state.template get<std::int32_t>(0xa30)>0)
             runtime.present_human_control_attachment(*this,elapsed,mode); //00793490 and attached opacity.

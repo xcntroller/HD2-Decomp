@@ -92,7 +92,7 @@ using SpawnRefresh=std::function<void(Camera&)>;
 using SpawnPresentation=game::OfflineSpawnPresentation<Human,Control,Camera,SpawnRefresh>;
 using SpawnRecords=game::PreparedSpawnPackets<StartupSession,GameSceneActors,SpawnPresentation>;
 using SpawnDecoder=game::OfflineSpawnPacketDecoder<SpawnRecords,SpawnPresentation>;
-struct Dependencies{using Frame=EngineFrame*;using ActorFrames=Frames;using Composition=Composition;StartupSession& startup;const game::MissionRequest& request;game::SessionActivationState& session;Scene& scene;Actors& world_actors;Players& players;FirstPerson& first_person;game::HumanFaceResources<Frames>& faces;GameAnimations& animations;Shared& presentation_shared;Music& music;Sound& sound;Dubbing& dubbing;game::MissionSubtitlesLoading<GameOwnerBackend::DisplayText>& subtitles;Hud& hud;
+struct Dependencies{using Frame=EngineFrame*;using ActorFrames=Frames;using Composition=Composition;StartupSession& startup;const game::MissionRequest& request;game::SessionActivationState& session;Scene& scene;Actors& world_actors;Players& players;FirstPerson& first_person;game::HumanFaceResources<Frames>& faces;GameAnimations& animations;Shared& presentation_shared;Music& music;Sound& sound;Dubbing& dubbing;game::MissionSubtitlesLoading<GameOwnerBackend::DisplayText>& subtitles;Hud& hud;FirstPlayers& first_players;
  GameHumanAudioLoading& audio;Events& animation_events;Presentation& presentation;const frontend::PreMissionItemCatalogue& catalogue;Sweep& sweep;Inputs& inputs;game::MissionTableSet& second_tables;game::MissionNavigation& navigation;game::HumanInputCallbacks& input_callbacks;Contexts& contexts;frontend::HumanStore<HumanPortraits>& profiles;Sight& sight;Hearing& hearing;GameActorProximityLoading& proximity;Camera& camera;OwnerFactory& human_factory;ScriptLink& script_link;game::CarLoadingResources<Frames>& car_resources;game::CarDefinitionTables& car_definitions;game::SessionBroadcastPackets& broadcast_packets;SpawnDecoder& spawn_decoder;FrameClockPlatform& clock;game::MissionWorldBounds& bounds;};
 using Scripts=game::MissionScriptWorldLoading<Composition,ChunkFiles,Services,Players,FirstPlayers,Sight::Source,Hearing,FirstPerson::View,Camera,game::EffectsShadowModels<Frames>,GameHumanAudioLoading::Random,Hud,Scene::Buckets,FrameClockPlatform>;
 
@@ -157,7 +157,7 @@ public:
          spawn_records_(startup.game_control_records(),packets_,startup,scene.frames(),spawn_presentation_,mode_,session),
          spawn_decoder_(spawn_records_,spawn_presentation_,mode_),
          presentation_dependencies_{shared_,mode_,startup,startup.local_player_identity(),player_modes_,first_person_,camera_,players_,first_players_,hud_.scene()},
-         dependencies_{startup,parent.request(),session,scene,actors_,players_,first_person_,faces_,startup.game_animations(),shared_,music_,sound_,dubbing_,subtitles_,hud_.scene(),
+         dependencies_{startup,parent.request(),session,scene,actors_,players_,first_person_,faces_,startup.game_animations(),shared_,music_,sound_,dubbing_,subtitles_,hud_.scene(),first_players_,
             audio_,events_,bindings.presentation,catalogue,sweep_,inputs_,parent.tables()->sets()[1],navigation_,input_callbacks_,contexts_,startup.pre_mission_humans(),sight_,hearing_,proximity_,camera_,bindings.human_factory,script_link_,car_resources_,definitions,packets_,spawn_decoder_,clock,bounds_} {
         try {
             bindings_.services.bind_dependencies(dependencies_);

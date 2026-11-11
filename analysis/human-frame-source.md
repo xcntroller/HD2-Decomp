@@ -496,3 +496,41 @@ expiry. It used an absent morph visual. Existing morph arithmetic remains
 unchanged. The strict i386 fixture compiled both containing World module
 passes with declarations for remaining runtime leaves. No original program,
 Windows fixture or desktop game was executed.
+
+## DD0 queued actions and model geometry
+
+0075F230 now consumes the existing DD0+A4C three-word action deque.
+Commands 0..22 preserve their posture/animation waits, native deadlines,
+mode 2 to mode 3 transition, 16-second retirement and E0 override order.
+Commands 19..22 retain E0+B0 on the original early-completion return.
+The climb receiver remains required. The source reads the live queue,
+current DD0 and E0 state and actual equipment owner.
+
+00791C60 now hides or restores the retained hand equipment through its real
+item identity, kind, model and transfer owner. It preserves 230+50, current
+player FPV requests, E0 changed-command publication and DD0 mode. The
+original assembly is WORK `human-equipment-hide-00791c60.asm`.
+Its body is distinct from the already recovered 00791AC0 pose toggle.
+
+007A7470 now dispatches the actual model geometry from DD0. Its live motion
+sample countdown, model serial, speed vectors and detail gate precede health,
+ragdoll and weapon processing. Hand validity and flag priority match the
+original. Required positive foot, aimed/stowed hand, mounted/attached, overlay
+and look workers remain explicit. The weapon binding now owns the original
+blend/stow countdowns, strict endpoint flags and unstow frame projection.
+Camera target collision uses the same Camera virtual6C, bones 6/8, loaded
+sweep and DD0 descriptor exclusions. It clears exclusions on exit and writes
+only the actual hit position. Unwritten native vector fourth lanes retain
+their known source values.
+
+The presentation sector-change callback now calls the existing Camera
+0046C370 receiver through the same FirstPlayers and FPV owners. A second
+Camera or roster was not created.
+
+[Verification receipt](checkpoints/p2.2-human-queued-actions-model-frames-20261111.json).
+Native ASan/UBSan/LSan exercised queue commands0..22, mode/override boundaries,
+weapon blend/stow deadlines and frame-call ordering using explicit state and
+frame doubles. Actual equipment hide, geometry dispatch and both containing
+World module passes were strict i386 compile-verified. The remaining runtime
+leaves in that fixture are declarations. The source launcher linked.
+Application loading and user desktop verification remain pending.

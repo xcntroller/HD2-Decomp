@@ -50,7 +50,8 @@ public:
     std::int32_t equipment_look_command()const{return look_.state().template get<std::int32_t>(0x5c);}
     void blend_equipment_weapon(std::int32_t duration){control_.geometry().blend_equipment_weapon(duration);}
     void equipment_transfer_mode(std::uint32_t command,std::uint32_t mode,bool moved){control_.equipment_transfer_mode(command,mode,moved);}
-    void force_equipment_command(std::int32_t command){look_.force_equipment_command(command);}
+    void force_equipment_command(std::int32_t command,bool changed=false){look_.force_equipment_command(command,changed);}
+    void equipment_first_person_request(std::int32_t animation){world_.human_frame_item_action_fpv(human_,animation);}
     void refresh_inventory_holster_animation() { //00791EB0:350.f/1.4f x87→truncate EAX=250.
         if(control_.animation_state_word(0x1e8)==0x20u)control_.tracks().fade_pair(1,250);
     }

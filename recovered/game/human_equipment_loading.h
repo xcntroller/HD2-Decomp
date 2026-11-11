@@ -54,6 +54,48 @@ public:
         else{services_.equipment_secondary_face(0);services_.equipment_primary_face(2);}
         words.set(0x4c,static_cast<std::uint8_t>(!previous));
     }
+    void set_hidden(bool hidden){ //00791C60.
+        auto& words=state_.words();
+        if(hidden){
+            bool incompatible=false;
+            const auto identity=words.template get<std::int32_t>(0x30);
+            if(identity>=0)if(auto* item=services_.equipment_item(identity)){
+                const auto kind=item->definition().kind();
+                incompatible=kind<3||(kind>7&&kind!=12);
+                if(!incompatible)words.set(0x50,words.template get<std::uint32_t>(0x50)&~1u);
+            }
+            if(incompatible){
+                words.set(0x50,words.template get<std::uint32_t>(0x50)|1u);
+                services_.equipment_first_person_request(9);
+                if(const auto model=state_.model(0))frames_.object_visible(model,false);
+            }else{
+                if(words.template get<std::uint32_t>(0x50)&1u)return;
+                words.set(0x50,words.template get<std::uint32_t>(0x50)|1u);
+                if(services_.equipment_weapon_stowed())transfers_.event(1);
+                if(state_.model(0)){
+                    services_.equipment_first_person_request(9);
+                    attachments_.attach(10);
+                }
+            }
+            services_.set_equipment_weapon(Frame{},-1);
+            services_.equipment_transfer_mode(0,0,false);
+            services_.force_equipment_command(100,true);
+            return;
+        }
+        if(!(words.template get<std::uint32_t>(0x50)&1u))return;
+        words.set(0x50,words.template get<std::uint32_t>(0x50)&~1u);
+        if(state_.model(0)){
+            attachments_.attach(3);
+            if(auto* item=services_.equipment_item(words.template get<std::int32_t>(0x30))){
+                const auto command=item->definition().equipment_command();
+                services_.force_equipment_command(command,true);
+                services_.equipment_transfer_mode(command,3,false);
+            }
+        }
+        if(words.template get<std::uint32_t>(0x50)&2u)transfers_.event(0);
+        words.set(0x50,0u);
+        if(state_.model(0))services_.equipment_first_person_request(8);
+    }
     void advance_frame(std::uint32_t elapsed){advance_human_equipment_frame(frames_,state_,services_,attachments_,transfers_,activation_.light(),catalogue_,elapsed);} //00792CE0.
 private:
     Frames& frames_;const frontend::PreMissionItemCatalogue& catalogue_;

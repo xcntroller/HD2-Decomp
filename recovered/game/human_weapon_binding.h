@@ -9,6 +9,7 @@
 #include <optional>
 #include <stdexcept>
 #include <utility>
+#include "game/human_state_frame_timers.h"
 
 namespace hd2::game {
 
@@ -45,6 +46,66 @@ public:
             converted=static_cast<std::uint32_t>(static_cast<std::int64_t>(value));
         if(enabled)state_.field62d8|=0x80000000u;
         state_.field6314=converted;state_.field6304|=(enabled?0x04000000u:0x08000000u)|2u;
+    }
+    void advance_frame(std::uint32_t elapsed){ //007A7470's weapon blend and stow timers.
+        auto flags=state_.field6304;
+        if(flags&0x40000000u){
+            auto next=state_.field6308+elapsed;
+            if(human_frame_signed_word(next)>human_frame_signed_word(state_.field630c)){
+                next=state_.field630c;state_.field6304&=0xbfffffffu;
+            }
+            state_.field6308=next;
+            const float ratio=static_cast<float>(static_cast<long double>(human_frame_signed_word(next))/human_frame_signed_word(state_.field630c));
+            std::memcpy(&state_.field6318,&ratio,4);
+        }else if(flags&0x80000000u){
+            auto next=state_.field6308-elapsed;
+            if(human_frame_signed_word(next)<1){
+                next=0;state_.field6304=flags&0x7ffffffau;
+                if(model()&&state_.field62cc==4)
+                    frames_.car_direction(model(),Vector{{(state_.field62d8&0xffu)?1.f:-1.f,0,0,0}});
+            }
+            state_.field6308=next;
+            const float ratio=static_cast<float>(static_cast<long double>(human_frame_signed_word(next))/human_frame_signed_word(state_.field630c));
+            std::memcpy(&state_.field6318,&ratio,4);
+        }else if(flags&0x10000000u){
+            const auto next=state_.field6310-elapsed;
+            state_.field6310=next;
+            if(human_frame_signed_word(next)<1){
+                state_.field6310=0;
+                if(!(flags&0x20000000u))blend(300);
+                state_.field6304&=0xcffffffbu;
+            }
+        }
+        flags=state_.field6304;
+        bool publish=false;
+        if(flags&0x04000000u){
+            auto next=state_.field6314+elapsed;
+            if(human_frame_signed_word(next)>200){next=200;state_.field6304&=0xfbffffffu;}
+            state_.field6314=next;publish=true;
+        }else if(flags&0x08000000u){
+            auto next=state_.field6314-elapsed;
+            publish=true;
+            if(human_frame_signed_word(next)<1){
+                next=0;state_.field6304&=0xf7ffffffu;state_.field62d8&=0x7fffffffu;
+                const auto pose=state_.field62d8&0xffu;
+                if(model()&&pose<2){
+                    if(!right_)throw std::runtime_error("Weapon stow completion requires its actual RW frame");
+                    const auto hand=pose?first_:second_;
+                    if(!hand)throw std::runtime_error("Weapon stow completion requires its actual hand frame");
+                    frames_.car_direction(model(),Vector{{pose?1.f:-1.f,0,0,0}});
+                    const auto source=frames_.actor_world_matrix(right_),weapon=frames_.actor_world_matrix(model());
+                    Vector delta{};
+                    for(unsigned axis=0;axis!=3;++axis)delta[axis]=weapon[12+axis]-source[12+axis];
+                    const auto z=frames_.actor_world_matrix(hand),y=frames_.actor_world_matrix(hand),x=frames_.actor_world_matrix(hand);
+                    frames_.object_position(model(),{{dot(delta,x,0),dot(delta,y,4),dot(delta,z,8)}});
+                }
+            }
+            state_.field6314=next;
+        }
+        if(publish){
+            const float ratio=static_cast<float>(static_cast<long double>(human_frame_signed_word(state_.field6314))*.005f);
+            std::memcpy(&state_.field631c,&ratio,4);
+        }
     }
     void select(Frame frame,std::int32_t kind) { //007B90B0.
         if(model()==frame)return; //Same model leaves even the old kind untouched.

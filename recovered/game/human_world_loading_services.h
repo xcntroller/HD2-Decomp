@@ -97,6 +97,13 @@ public:
     bool human_view_offset_enabled(){auto& view=dependencies().first_person.view();return view.enabled()||view.secondary_enabled();} //0069A4B0, actual58 OR59.
     template<class Human>void player_select_human(Human& human){dependencies().players.control().select_human(human);} //00461410→0045DA60.
     auto* current_human_frame_player(){return dependencies().players.control().current_player();}
+    auto human_geometry_camera_target(){return dependencies().camera.target_frame();} //004650B0, Camera virtual6C.
+    auto& human_geometry_sweep(){return dependencies().sweep;}
+    void refresh_human_presentation_camera(){ //0046C370, Camera virtual40(0).
+        auto& d=dependencies();auto& view=d.first_person.view();
+        d.camera.refresh_current_loading_target(d.players.control(),view.enabled(),view.secondary_enabled(),
+            [&](auto& human){return d.first_players.control_sector(human);},d.first_players.camera_retirement());
+    }
     template<class Human>void human_frame_first_person_state(Human& human,std::uint32_t state){
         const auto mode=mode_flags();
         if((mode&2u)&&dependencies().players.control().current_player()==&human)

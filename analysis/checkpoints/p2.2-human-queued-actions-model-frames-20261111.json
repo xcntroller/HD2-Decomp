@@ -1,0 +1,80 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "previous_checkpoint": "1b0ee25",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "0075f230",
+    "00791c60",
+    "007a7470"
+  ],
+  "ledger_added_partial_client": 3,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2285,
+  "checks": {
+    "native": "PASS (ASan/UBSan/LSan, queued commands and weapon timers with state/frame doubles)",
+    "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining runtime leaves declaration-only)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-model-frame-native.cpp": {
+      "sha256": "281b84c1cd09cd7faec3012efb9e657cefe6e1cbc3a9c462dfbbd08cddc62149",
+      "bytes": 5276,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-model-frame-native": {
+      "sha256": "e4d9859bf8aed4fb60ca55a0c600f9aef20e97c6368d779c9e2c95483d0c0047",
+      "bytes": 511728,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-model-frame-i386.cpp": {
+      "sha256": "59d86825e831132a4da13af33907aef5cf37515b265f2d4415408c3da86eae65",
+      "bytes": 4548,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-model-frame-i386.o": {
+      "sha256": "6977f739d46e78d9390d84c475de245c6d07a65c196335c04c099d442df96248",
+      "bytes": 12040831,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-model-frame-native.log": {
+      "sha256": "c1cc4420203656949a4c0c6f9189d1e2d3c8f296cafce7894f564be770ecde84",
+      "bytes": 154,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-model-frame-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-model-frame-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-model-frame-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-equipment-hide-00791c60.asm": {
+      "sha256": "22001642b20e38e1c61653bf183287a7fc0a9d2423a3fec345b573c227c0241c",
+      "bytes": 9593,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-shot-projectile-workers/0075f230.c": {
+      "sha256": "17928cbe295eb0fa3c42d9ee9d6f3357eabad5880d03a7a654ee496eb9fde7b2",
+      "bytes": 20499,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-drip-and-geometry/007a7470.c": {
+      "sha256": "f95b6cd6e7b68082426ce705a4465bb0978dcb4cb9654b084f17327be6e13407",
+      "bytes": 18450,
+      "retained": true
+    }
+  }
+}

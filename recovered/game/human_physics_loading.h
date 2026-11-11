@@ -166,6 +166,7 @@ public:
     }
     const auto& state() const{return state_;}
     auto& control_frame_words(){return state_;} //DD0 physical scalar writes in the actual frame bodies.
+    auto& control_action_queue(){return queue_;} //DD0+A4C, SAME deque retired by0075B6C0.
     float control_projection_height(float model_height)const{ //00770100, unscaled marker DD0+6E0.
         const auto count=primary_count();
         if(count<1)return model_height;

@@ -163,9 +163,9 @@ public:
         if(posture<=2)publish(4u>>posture);
     }
     Frame action_model()const{return action_model_;}
-    void force_equipment_command(std::int32_t command) { //00792590/00792720/00792AB0 set B0=1 then0.
+    void force_equipment_command(std::int32_t command,bool changed=false) { //00792590/00792720/00792AB0 and00791C60.
         state_.set(0xb0,std::uint8_t{1});
-        try{equipment_command(command,false);}catch(...){state_.set(0xb0,std::uint8_t{0});throw;}
+        try{equipment_command(command,changed);}catch(...){state_.set(0xb0,std::uint8_t{0});throw;}
         state_.set(0xb0,std::uint8_t{0});
     }
     const auto& state() const {return state_;}
@@ -231,6 +231,11 @@ public:
         state_.set(0xb0,std::uint8_t{0});state_.set(0xbc,std::int32_t{-10000});state_.set(0xc0,0u);
     }
     void clear_control_frame_commands(){state_.set(0x40,0u);}
+    void force_frame_commands(bool enabled){state_.set(0xb0,static_cast<std::uint8_t>(enabled));}
+    void control_frame_animation_lock(bool enabled){ //0075F230 commands13..15.
+        const auto flags=state_.template get<std::uint32_t>(0xd0);
+        state_.set(0xd0,enabled?flags|1u:flags&~1u);
+    }
 private:
     bool locked(std::uint32_t mask)const{return !state_.template get<std::uint8_t>(0xb0)&&((state_.template get<std::uint32_t>(0xd0)|state_.template get<std::uint32_t>(0xd4))&mask);}
     void defer(std::uint32_t mask){state_.set(0xc8,state_.template get<std::uint32_t>(0xc8)|mask);}
