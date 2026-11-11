@@ -1,0 +1,343 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "83e77da320a256e64dd517e33154efdeeb566753",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "006ad580",
+    "006ad590",
+    "006ad5b0",
+    "006ad6e0",
+    "006ad780",
+    "006ad820",
+    "006ad990",
+    "006adb70",
+    "006adbd0",
+    "006adc30",
+    "006adc70",
+    "006b5620",
+    "006b83c0",
+    "006b8ec0"
+  ],
+  "extended_entries": [
+    "006b8700",
+    "006b9190"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2607,
+  "source_files": {
+    "recovered/frontend/application_startup_data.h": {
+      "sha256": "f58c9216de08b8708aa3885b85e35082069b31725dea9248bc2f13c59b1608da",
+      "bytes": 4134
+    },
+    "recovered/frontend/control_startup.h": {
+      "sha256": "254d25fdcf165fa9cd12e7f384981b7af6a24c5be12b34bd09d5b014080d43ef",
+      "bytes": 6572
+    },
+    "recovered/frontend/game_configuration.h": {
+      "sha256": "fd22274f54fe94b9cf6b2c256edbfc1cc5cc668b93c9584ca3d7b98d0ef84648",
+      "bytes": 4117
+    },
+    "recovered/frontend/game_data.h": {
+      "sha256": "15785e00857813d6b856c65583034bd7c249934b47d19f789449296865e68f16",
+      "bytes": 16509
+    },
+    "recovered/frontend/pre_mission_route.h": {
+      "sha256": "beb2fe5421b080dcfda7d759d2275171e8b764f940b1bb38f5a131ccc035ca7a",
+      "bytes": 11508
+    },
+    "recovered/frontend/network_map_packets.h": {
+      "sha256": "b2cb9624e8bdf71e3d049eef0fb9450e79ab1fd2687b3bc1c4df0dd5ced35aeb",
+      "bytes": 6239
+    },
+    "recovered/game/network_mission_metadata.h": {
+      "sha256": "89ce6f194dbdef0bcc8a622f6e4f18feaa23f28c5b36b9d85230d61b248f3346",
+      "bytes": 2779
+    },
+    "recovered/game/session_network_parameters.h": {
+      "sha256": "dd68be30fde6ab629a057937c58426dff04568e581efb35cf04bb5f2ece351f5",
+      "bytes": 469
+    },
+    "recovered/game/session_owner.h": {
+      "sha256": "659795dc4729cac33232b0bd77f7e2ac5f9d1d691082b36fc235508d3727b84c",
+      "bytes": 11229
+    },
+    "recovered/game/session_selection.h": {
+      "sha256": "bd3f776ff6d7478493a45e3a0b4634e715472b30def7f5c7ea4ce4e9d2cabeed",
+      "bytes": 2957
+    },
+    "recovered/host/game_session_activation.h": {
+      "sha256": "bf6bd455ac67b20c7cabe523c43af78878c640446e3e5f03bcce851717c211ec",
+      "bytes": 9701
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "331c033a71599018d54c97387c869649efb1b861ae466e427d76c506f14517c6",
+      "bytes": 61084
+    }
+  },
+  "temporary_audits": {
+    "human-network-mission-native": {
+      ".cpp": {
+        "sha256": "2adc0c02d54539a9faf4a47840051cbd001c851bb21639054af96dc04660e074",
+        "bytes": 15306
+      },
+      "": {
+        "sha256": "2025017040ed25b5fcb6a9c2509cc72719aba9d8bc41c6a220b03e3b5915ea75",
+        "bytes": 4346760
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      ".log": {
+        "sha256": "9e16dd55b37483aafe8cc9874c7088bf2d59ebcf8022a74faabfe5ee328cb8d3",
+        "bytes": 348
+      }
+    }
+  },
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan actual map/rules codec, metadata producer, retained ownership, Player objective selection, source request admission, actual loaded graph selection, SessionOwner failure and100 repeated lifetimes; engine/backend/OS endpoints are doubles. No activation/transport/desktop claim.",
+    "actual_i386": "PASS human-network-mission-host-i386.log -O0 -Wall -Wextra -Wpedantic -Werror actual World/DD0 source composition compile only",
+    "launcher_probe": "PASS human-network-mission-application-i386.log -O2 -Wall -Wextra -Wpedantic -Werror compile/link only, sequential",
+    "ghidra": "Read-only rollback focused human-network-mission-abi and human-network-selection-abi exports; no ERROR in logs; research index before new exports.",
+    "original_or_windows_execution": false
+  },
+  "verification_artifacts": {
+    "human-network-mission-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-network-mission-host-i386.o": {
+      "sha256": "43db5246d4d105ca741efa2e19b9e4aa15d724ab80070008fcac3c0fee10fa66",
+      "bytes": 8290679
+    },
+    "human-network-mission-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    },
+    "human-network-mission-export.log": {
+      "sha256": "756466f661fe05b94b3b70c8f19dcda28b0a9d16f800fa97912f63979e03fa53",
+      "bytes": 5060
+    },
+    "human-network-selection-export.log": {
+      "sha256": "a584c029d01afa1b9eaa607cd4ffb280b0f925db7bbf90ef25e7e7f9b3d2f374",
+      "bytes": 6683
+    },
+    "human-network-map-reused-originals/provenance.json": {
+      "sha256": "9f2519be4eda867249b56e0b29e65412f597c10ccd613a0145e380047b0b7f53",
+      "bytes": 5048
+    }
+  },
+  "original_evidence": {
+    "human-network-map-reused-originals/006ad580.c": {
+      "sha256": "d4006718cfec10f99b1c093cc63a8b5120498619977f1928b802a12508551e72",
+      "bytes": 140
+    },
+    "human-network-map-reused-originals/006ad580.json": {
+      "sha256": "fb969276a91b29331d9c286e51bfaef3ce9f1dd9b68a6b4fe3a5534566f98ce6",
+      "bytes": 674
+    },
+    "human-network-map-reused-originals/006ad590.c": {
+      "sha256": "82bb8d2eae3764058767c3387554ff3ec32607e4387d8044798997c1858a69f0",
+      "bytes": 59
+    },
+    "human-network-map-reused-originals/006ad590.json": {
+      "sha256": "86df79b655a3997ed50f217c20f535608cbafcf85326acae11cc73a87c3d4b57",
+      "bytes": 743
+    },
+    "human-network-map-reused-originals/006ad5b0.c": {
+      "sha256": "459de21bd40f4e876d52544b5f3bc5f646c6a934eae70befaa2faeb6bcb72b73",
+      "bytes": 1822
+    },
+    "human-network-map-reused-originals/006ad5b0.json": {
+      "sha256": "6ccb0d37e454233296b0fe0eef1191e29ab37f32036f8f098979e9423bff285f",
+      "bytes": 5949
+    },
+    "human-network-map-reused-originals/006ad6e0.c": {
+      "sha256": "443ee5ac1e0335b80b6600e0bd72efe1ff2ddb76053771a54e4868fc7c1acdd4",
+      "bytes": 569
+    },
+    "human-network-map-reused-originals/006ad6e0.json": {
+      "sha256": "2c9d7b74bafc30723bb36a618a2668ceda863917dedda61558fa9a766d1601fc",
+      "bytes": 2819
+    },
+    "human-network-map-reused-originals/006ad780.c": {
+      "sha256": "d864728ac1565cc6860e1109dc45af634090c976ccb267d20d13ed9321754d1e",
+      "bytes": 682
+    },
+    "human-network-map-reused-originals/006ad780.json": {
+      "sha256": "6f1302b2830e23887f594fb6f099f7d3be86d10e76b782625aa8253349890d85",
+      "bytes": 2822
+    },
+    "human-network-map-reused-originals/006ad820.c": {
+      "sha256": "f766e8666ccf8bd7a82328f37a4c92056a4cc6612a978991a75982316e3ebeb1",
+      "bytes": 1745
+    },
+    "human-network-map-reused-originals/006ad820.json": {
+      "sha256": "298ee5b27a62bdeaa83c8257777e8f73eb8a12296ab43f5297741d3541ae7839",
+      "bytes": 6798
+    },
+    "human-network-map-reused-originals/006ad990.c": {
+      "sha256": "7e8f4f66fe7ce5241feb3d18adea7161e21afa1fee63175152e9e86e32e30226",
+      "bytes": 2227
+    },
+    "human-network-map-reused-originals/006ad990.json": {
+      "sha256": "3ca87b0f30ea0b5f7d7c23d65cbd3edea22ef813499d8fd7fdb2b8fc5abbdb22",
+      "bytes": 10063
+    },
+    "human-network-map-reused-originals/006adb70.c": {
+      "sha256": "201175b20bf601c88b8b532aed04215be2ba12cca4277cfd7821619af8d1af50",
+      "bytes": 257
+    },
+    "human-network-map-reused-originals/006adb70.json": {
+      "sha256": "355e795ba3ed3a031114cb91e28de994369d96fde53c4a22506b80dbf0679cc3",
+      "bytes": 1725
+    },
+    "human-network-map-reused-originals/006adbd0.c": {
+      "sha256": "bd7a4e3ed5ac4efcd93d3a36108d74d34434389e9848d7e26bc871bb65386bb2",
+      "bytes": 415
+    },
+    "human-network-map-reused-originals/006adbd0.json": {
+      "sha256": "98bcd6dc194c42d0fa5ea32494765386c98fac146e293aa31aba680054cbf564",
+      "bytes": 1725
+    },
+    "human-network-map-reused-originals/006adc30.c": {
+      "sha256": "0737f1cc2b249b99c714b172a9f9d5429c98b3538aaf5d834e68cc093ceaa2b5",
+      "bytes": 158
+    },
+    "human-network-map-reused-originals/006adc30.json": {
+      "sha256": "f9b819948d52a3337e835556dee5a92a2b788aff09aa35a5b412aacfbc06093c",
+      "bytes": 1215
+    },
+    "human-network-map-reused-originals/006adc70.c": {
+      "sha256": "d550af68b71a48c7f5b978d762f9b77e7d806a55fdd47ce0cf07839e9bfbca04",
+      "bytes": 244
+    },
+    "human-network-map-reused-originals/006adc70.json": {
+      "sha256": "db96ac6e2f2f20b24f8c57123ca96b1f86e9d2c42b15cf7eade7bdae90ac30d0",
+      "bytes": 1215
+    },
+    "human-network-map-reused-originals/006b9190.c": {
+      "sha256": "465c4d7786be5d8f837c046e3d39f6af720a25a4a18c7bff136fae067108c676",
+      "bytes": 1284
+    },
+    "human-network-map-reused-originals/006b9190.json": {
+      "sha256": "5385d5ba49f7e2690267bc06ec01f4cc9993f389186552e26de255cc61ba5c83",
+      "bytes": 3792
+    },
+    "human-network-map-reused-originals/provenance.json": {
+      "sha256": "9f2519be4eda867249b56e0b29e65412f597c10ccd613a0145e380047b0b7f53",
+      "bytes": 5048
+    },
+    "human-network-mission-abi/006b5620.c": {
+      "sha256": "8a2a623e443fbee1cc55eb2b96e2f0961a79d3df26a94d3cb22d83eaf930aa3a",
+      "bytes": 1468
+    },
+    "human-network-mission-abi/006b5620.json": {
+      "sha256": "9bc29f0946cf9e5c8582839a576dcc403d391124077c34dd1c73625fdbbb5fd0",
+      "bytes": 2681
+    },
+    "human-network-mission-abi/006b5890.c": {
+      "sha256": "ede6d1b57ec49ffde1f6616feb963d613b0649ac47c71bf8edaa4f9eb56b59b2",
+      "bytes": 1264
+    },
+    "human-network-mission-abi/006b5890.json": {
+      "sha256": "348bc29a9f37056810e1c682d1f9d0cc2876f317c5818c5c3a92910b7a28e9dd",
+      "bytes": 2746
+    },
+    "human-network-mission-abi/006b5960.c": {
+      "sha256": "40e95f3f75663b0311cc31a69d9fd8c8526552cef7d4baf0dc47b78f34583712",
+      "bytes": 2157
+    },
+    "human-network-mission-abi/006b5960.json": {
+      "sha256": "cbf2dbafce582cb1b76a1eaf53a89106b022a1b679a6edb45985f31a426cf967",
+      "bytes": 5192
+    },
+    "human-network-mission-abi/006b83b0.c": {
+      "sha256": "21482c336380fa4fa2d42466036f61a1d1277f1f4fa62c776f4ee403aeb9dd5d",
+      "bytes": 130
+    },
+    "human-network-mission-abi/006b83b0.json": {
+      "sha256": "0f05dd47900ab2d3b6fdbff13d05821ad47f890ca06a673d367239f205034856",
+      "bytes": 679
+    },
+    "human-network-mission-abi/006b83c0.c": {
+      "sha256": "b2b319baaf5f8af6e2177c6c862f0d368beae56c5b842f817b21b61ff592f516",
+      "bytes": 325
+    },
+    "human-network-mission-abi/006b83c0.json": {
+      "sha256": "511b1323549078004db248cb2abd92f2577f05d6e82f49e46706761c060e68a3",
+      "bytes": 1056
+    },
+    "human-network-mission-abi/006b8700.c": {
+      "sha256": "7f1a39767a400e21b3f64d2dd3977db4bd26e28c03b97d05db5949dba6cc5820",
+      "bytes": 3054
+    },
+    "human-network-mission-abi/006b8700.json": {
+      "sha256": "7813182bb208d337ec230013315a998e0be7926bf7a56aac3556685211b44a25",
+      "bytes": 5118
+    },
+    "human-network-mission-abi/006ba0f0.c": {
+      "sha256": "d3dba4f594c62bdfb2aa725a55be03932232ee408888c5ea323794a0bfbae8a9",
+      "bytes": 4946
+    },
+    "human-network-mission-abi/006ba0f0.json": {
+      "sha256": "6c49b29e2d95f5487d797ee40cf292e4042af7e742c91c7e8a56e5502a6f6643",
+      "bytes": 10517
+    },
+    "human-network-selection-abi/006b8480.c": {
+      "sha256": "8eb0ba68fdd88b0043a00654dc0939bb4141484a2d90d8f6b416e1d5aa159fa5",
+      "bytes": 805
+    },
+    "human-network-selection-abi/006b8480.json": {
+      "sha256": "f455be505d72a8b446dda13ba14a6e38eaa3b2661d676d086cc89a8f0516b9b1",
+      "bytes": 2353
+    },
+    "human-network-selection-abi/006b8570.c": {
+      "sha256": "8181d099c5bda1a8767aa77e858302b0557312c7dfdbe7335da037b835af720c",
+      "bytes": 805
+    },
+    "human-network-selection-abi/006b8570.json": {
+      "sha256": "7ea6769a72fe086370126890028803a4012d489af2e654833da70e6dc6bb79b9",
+      "bytes": 2422
+    },
+    "human-network-selection-abi/006b85d0.c": {
+      "sha256": "971023b76fbffb8f7b778d579d901b06d51e9468db1e6adab5b5e4c45428a0cf",
+      "bytes": 840
+    },
+    "human-network-selection-abi/006b85d0.json": {
+      "sha256": "68bc83ea87c3730cc7eeccefa77edebba9eb5de7b121c040052ca06a102ff5be",
+      "bytes": 3393
+    },
+    "human-network-selection-abi/006b8ec0.c": {
+      "sha256": "99c2560f3647e5f3e8245ab0b69419d93e30319413b0a79d3131c676a5f82f47",
+      "bytes": 1177
+    },
+    "human-network-selection-abi/006b8ec0.json": {
+      "sha256": "b74a81f29c6cfa9c974bf7bc7c2ce86c504b405f3401112b2d8197cdf937474d",
+      "bytes": 4805
+    }
+  },
+  "deviations": [
+    "Typed stable unique owner adapts original inline MP GameData+14, including one additional allocation; preparation reload graph allocates no second MP descriptor.",
+    "Bounded packet reads and typed RAII/allocation errors reject native unsafe/truncated cases; destructive mutation prefixes are preserved without invented rollback.",
+    "Map counts>255 reject at reached writer count rather than native wrapped count and excess rows.",
+    "Native fourth stack DWORD copied to16-byte table row is represented undefined.",
+    "Network request borrows SAME application mission and actual config/process/route owners; source validation retains offline squad requirements and rejects standalone precedence rather than implementing Saved descriptor."
+  ],
+  "excluded_credit": [
+    "006B5890/006B5960/006B83B0 absent frozen inventory: implementation and evidence retained, zero credit.",
+    "006BA0F0 generic16-byte STL insertion is evidence only, not separately reconstructed original body.",
+    "Full006B6100 Saved+94/application ABI and engine endpoints are excluded; no destructor credit.",
+    "Fused006B8480/006B8570/006B85D0 traversal helpers receive no separate credit."
+  ],
+  "remaining": [
+    "Ordinary non7 peer3C creation/configuration/storage and matching input/roster/HUD/registry retirement",
+    "Actual non7 activation/transport, other reached PACK effects, full containing mission/World/Human frame failures/re-entry/retirement",
+    "Application loading remains disabled; actual integration and user desktop acceptance required"
+  ]
+}

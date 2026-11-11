@@ -2,6 +2,7 @@
 #define HD2_GAME_SESSION_OWNER_H
 
 #include "frontend/pre_mission_handoff.h"
+#include "frontend/game_configuration.h"
 #include "game/mission_tables.h"
 #include "game/overlay_owner.h"
 #include <array>
@@ -16,17 +17,77 @@ namespace hd2::game {
 // descriptors consumed after loading. Its copied soldier/equipment payload is
 // immutable handoff metadata, not another live squad. SessionOwner separately
 // borrows application+14's authoritative mutable records through all spawning.
+class MissionDescriptor {
+public:
+    MissionDescriptor()=default;
+    MissionDescriptor(std::unique_ptr<frontend::GameDataNode> owned):owned_(std::move(owned)){}
+    MissionDescriptor(MissionDescriptor&& other)noexcept:owned_(std::move(other.owned_)),borrowed_(std::exchange(other.borrowed_,nullptr)){}
+    MissionDescriptor& operator=(MissionDescriptor&& other)noexcept{
+        if(this!=&other){owned_=std::move(other.owned_);borrowed_=std::exchange(other.borrowed_,nullptr);}return *this;
+    }
+    MissionDescriptor(const MissionDescriptor&)=delete;MissionDescriptor& operator=(const MissionDescriptor&)=delete;
+    static MissionDescriptor borrow_network(frontend::GameData& application){
+        MissionDescriptor result;result.borrowed_=&application.multiplayer_mission();return result;
+    }
+    frontend::GameDataNode* get()const{return owned_?owned_.get():borrowed_;}
+    frontend::GameDataNode* operator->()const{return get();}
+    frontend::GameDataNode& operator*()const{return *get();}
+    explicit operator bool()const{return get()!=nullptr;}
+    bool borrowed()const{return borrowed_!=nullptr;}
+private:
+    std::unique_ptr<frontend::GameDataNode> owned_;frontend::GameDataNode* borrowed_=nullptr;
+};
 struct MissionRequest {
     frontend::PreMissionGameRequest preparation;
-    std::unique_ptr<frontend::GameDataNode> mission;
+    MissionDescriptor mission;
+    struct NetworkContext {
+        frontend::GameData& data;const frontend::GameConfiguration& configuration;
+        const std::uint32_t& process_flags;const frontend::PreMissionRoute& route;
+    };
+    std::optional<NetworkContext> network;
 };
+inline void validate_mission_request(const MissionRequest& request){
+    if(!request.mission||request.mission->text24.empty()||request.mission->text24!=request.preparation.mission_resource)
+        throw std::logic_error("Game receiver requires its actual selected mission");
+    if(request.network){
+        const auto& context=*request.network;
+        //006B9190 tests the existing standalone mode FIRST. The source route
+        //owns that adapted mode, as in the offline selection bridge. Its saved
+        //descriptor is not interchangeable with inline MP+14.
+        if(context.route.standalone())throw std::runtime_error("Network request requires the actual standalone descriptor selection first");
+        if((context.process_flags&7u)==7u||!context.configuration.field04||
+           request.mission.get()!=&context.data.multiplayer_mission()||!request.mission.borrowed()||
+           request.mission->kind!=13||!request.mission->network_mission)
+            throw std::logic_error("Network request requires SAME application map/configuration/process owners");
+        for(const auto& word:request.mission->network_mission->words50)
+            if(!word)throw std::runtime_error("Network mission metadata lacks its actual producer");
+        for(const auto& row:request.mission->related)
+            if(!row||row->kind!=12||!row->network_objective)throw std::logic_error("Network mission objective lacks its actual kind12 producer");
+    }else if(request.mission.borrowed()||request.mission->kind!=3||request.preparation.squad.empty())
+        throw std::logic_error("Game receiver requires its prepared campaign mission and squad");
+}
 inline MissionRequest copy_mission_request(const frontend::PreMissionGameRequest& request,
                                            const frontend::GameDataNode& mission) {
     if (mission.kind != 3 || mission.text24.empty() || mission.text24 != request.mission_resource)
         throw std::logic_error("Game receiver requires its actual selected mission");
     if (request.squad.empty()) throw std::logic_error("Game receiver requires its prepared squad");
-    return {request, frontend::copy_pre_mission_node(mission)};
+    return {request, frontend::copy_pre_mission_node(mission),std::nullopt};
 }
+//006B9190's nonzero config04 selection BORROWS application GameData+14.
+//The application must outlive the request/session and its World borrowers.
+//No route, peer, loading status or successful connection is manufactured here.
+inline MissionRequest make_network_mission_request(frontend::GameData& data,
+        frontend::GameConfiguration& configuration,std::uint32_t& process_flags,
+        const frontend::PreMissionRoute& route){
+    if(route.standalone())throw std::runtime_error("Network request requires the actual standalone descriptor selection first");
+    MissionRequest result;result.mission=MissionDescriptor::borrow_network(data);
+    result.network.emplace(MissionRequest::NetworkContext{data,configuration,process_flags,route});
+    result.preparation.root=data.field_e8;result.preparation.mission_resource=result.mission->text24;
+    result.preparation.mission_caption=result.mission->word8;
+    validate_mission_request(result);return result;
+}
+inline MissionRequest make_network_mission_request(frontend::GameData&,
+        frontend::GameConfiguration&,std::uint32_t&,const frontend::PreMissionRoute&&)=delete;
 
 // Native construction/lifetime composition of00698510 and the unloaded
 // branch of00698830/00699270. Backend supplies real HUD/text factories and a
@@ -53,9 +114,8 @@ public:
     SessionOwner(Backend& backend, Registry& registry, MissionRequest request,LiveSquad& live_squad)
         : backend_(backend), registry_(registry), request_(std::move(request)),live_squad_(live_squad) {
         if (registry_.current) throw std::logic_error("A game owner is already published");
-        if (!request_.mission || request_.mission->kind != 3 ||
-            request_.mission->text24 != request_.preparation.mission_resource ||
-            request_.preparation.squad.empty()||live_squad_.empty())
+        validate_mission_request(request_);
+        if (!request_.network&&live_squad_.empty())
             throw std::logic_error("Game receiver request is incomplete");
         try {
             hud_ = require(backend_.make_hud()); //006985C4→0049A420

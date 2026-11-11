@@ -851,3 +851,91 @@ GameData80 is selected name. Inline vtable00815AA8 has24=006B83B0 finalize,
 evidence before recovering that containing producer.00612A60 ECX is separate peer
 slot, EDX Scene identity; its late3C/A8 write and remote-AI auxiliary publication
 must preserve418 and actual teardown. Never conflate those identities.
+
+
+### Application-owned network mission metadata/request checkpoint — 2026-11-11
+
+The reached Player death-objective path now has its normal selected-map producer,
+not just a one-row fixture.006AD580/590/5B0 resolve/write/destructively replace the
+SAME application24 rotations.006AD820/990 preserve strings, five unsigned bytes,
+last signed16 scalar, objective count8/74-bit rows and table count8/32-bit rows.
+006ADB70/BD0 use row1/0/2/3/4/5 with16/16/16/8/2/16 bits; wide reads sign-extend.
+006ADC30/70 use16/8/8 bits. Reader phase order is incremental: a missing second
+string leaves the first replaced; each count is read before clearing its old
+vector. Replacement retires old maps in ascending order, reads a new local record
+before appending, then writes index0. A failure leaves an empty list and the old
+index, with RAII reclaiming the failed prefix. Count>255 writers reject at the
+reached count phase instead of native wrapped count plus all trailing rows.
+Actual SessionPacketStream bounds errors are safety deviations, not atomic native
+rollback. Native4096-byte string limit/termination behavior remains in that codec.
+
+006AD6E0/780 preserve416 rule bits: domain174/style224 each8,22 signed16 rule
+words, process009820D8/D4/DC each16, with DC seconds conversion. Writes divide
+signed milliseconds by1000 toward zero; reads multiply signed seconds by1000.
+SAME Startup control owner retains these three process values across Worlds.
+Original PE section bounds prove they lie in loader-zero-filled .data; the focused
+Ghidra reference export records only packet/advertisement/console-variable users.
+This is actual process data, not a transport or runtime input-history substitute.
+
+ApplicationStartupData explicitly constructs ONE MP mission owner before config
+loading, adapting original inline GameData+14 to a stable unique owner. The
+preparation-only reloaded GameData graph allocates no extra MP mission.006B5620
+sets kind13, initializes50/54/58/5C toFFFFFFFF and leaves60/64 undefined until
+received. This adds a typed allocation in place of original inline ABI.006B8700
+clears the same descriptor through006B5890 (reverse objectives, table clear,
+reverse children), sets caption2002, retains selected name into GameData80,
+copies resource into GameData38 (mission24), and appends actual kind12 objectives
+through006B5960. It maps all six row words, copies three table words, then stores
+GameData68-before64,6C-before70,74, retained7C and78. A late undefined scalar
+throws at that phase, retaining earlier mutations. Native006BA0F0 copies a fourth
+unwritten stack DWORD into each16-byte row; source represents that word as
+undefined, with no invented zero or consumer.006B83B0 sets cursorFFFFFFFF then
+006B83C0 sets every actual objective status4.
+
+Retirement preserves roots before the MP descriptor; its reverse objective
+retirement/table clear/children retirement precedes table allocation release,
+name6C and metadata68 release, then base mission storage/strings. Roots vector
+allocation retires last.006B7F50 is ONLY an end-cursor clear, **not allocation
+release**; raw006B5330 confirms related allocation retires in the base mission.
+Saved inline94/full original GameData ABI remain outside this subset and receive
+no destructor credit.006B5890/006B5960/006B83B0 are absent from the frozen
+inventory and receive no new credit. Typed graph copying now preserves network objective and
+mission fields with retained COW strings.
+
+MissionRequest now distinguishes its existing owned offline copy from a typed
+borrow of SAME application MP descriptor. Non7 actual process flags plus nonzero
+config04 admit a complete sourced mission13 with empty campaign/live squad;
+offline kind3 still requires prepared AND live squads. No campaign preparation
+is fabricated. Borrowed process/configuration/route references are re-read during
+validation; factory requires actual lvalue owners. Existing route owns the adapted
+standalone mode; native006B9190 tests that mode first, so this network factory
+rejects it before looking at MP storage. Full saved descriptor handling stays
+required. Application must outlive request/session/World borrowers; no map or
+packet borrower is retained after metadata copy. SessionSelection now chooses the
+actual application GameData for a network request while preserving the offline
+preparation bridge.006B8EC0 traverses actual container cursors and filtered kind2/
+kind3 ordinal order; invalid campaign selection returnsFFFFFFFF, not zero.
+Its root bounds precede standalone E4. Network activation still rejects at the
+existing required non7 consumer; no UI connection, status9 or loading success is
+exposed by these source admission methods.
+
+Research index preceded reuse and new exports. MAIN WORK
+`human-network-map-reused-originals/provenance.json` pins copied research C/JSON;
+`human-network-mission-abi` and `human-network-selection-abi` are focused read-only
+rollback exports, no project edits. Raw `human-network-*` disassembly retains
+inline field, clear/finalize,16-byte copy, ordinal and retirement evidence.
+`human-network-mission-native.log` passes ASan/UBSan/LSan: independent exact wire,
+signed rows/rules, actual config→stable mission13/objectives→Player selection,
+map/packet retirement, COW copies, destructive failures, actual loaded mixed-node
+selection, offline-empty rejection, same borrowed session descriptor, allocation
+failure prefixes and100 session constructions/retirements. Engine/backend/OS
+endpoints are explicit doubles. Strict actual World i386 and launcher/probe
+compile/link are recorded in the linked receipt; Windows output is never run.
+
+[Receipt](checkpoints/p2.2-human-network-mission-metadata-20261111.json) adds14
+client partials and extends006B8700/006B9190, no complete promotions; totals34
+complete/2607 partial of18783. This closes the reached metadata/source request
+batch, not P2.8 delivery or the full Human checkbox. Next is actual non7 peer3C
+creation/configuration/storage and matching borrower teardown, then containing
+Human frame/reaction failure, re-entry and retirement. Live transport and actual
+application/desktop acceptance remain open.

@@ -3,6 +3,7 @@
 #include "frontend/multiplayer_server.h"
 #include "frontend/profile_settings.h"
 #include <memory>
+#include <optional>
 #include <string>
 namespace hd2::frontend {
 //Application+24's ACTUAL configuration DATA, initialized by006B4A60→006AD350.
@@ -10,12 +11,15 @@ namespace hd2::frontend {
 //activation, network consumers and294 producer/retirement are not exposed here.
 class GameConfiguration {
 public:
-    //0061B440 lifetime of a rotation descriptor: strings44, raw table38, raw
-    //table28, string05, string01. Unknown payload bytes/producer stay unexposed.
+    //0061B440 lifetime: string44, table38, table28, string05, string01.
+    //006AD990 defines the six scalar words incrementally; an unreceived word
+    //cannot be replaced with a zero-valued selected-map default.
     struct Rotation {
         std::shared_ptr<const std::string> text1,text5,metadata44;
-        std::vector<std::uint8_t> table28,table38;
-        ~Rotation(){metadata44.reset();std::vector<std::uint8_t>().swap(table38);std::vector<std::uint8_t>().swap(table28);text5.reset();text1.reset();}
+        std::array<std::optional<std::uint32_t>,6> words0c{};
+        std::vector<std::array<std::uint32_t,6>> table28;
+        std::vector<std::array<std::uint32_t,3>> table38;
+        ~Rotation(){metadata44.reset();decltype(table38)().swap(table38);decltype(table28)().swap(table28);text5.reset();text1.reset();}
     };
     inline static constexpr std::array<std::int32_t,22> startup_rules{{
         32,20,0,3,30,10,1,1,1,0,1,100,1,1,1,1,0,3,-1,1,0,1

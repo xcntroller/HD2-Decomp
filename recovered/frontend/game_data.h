@@ -11,13 +11,22 @@
 
 namespace hd2::frontend {
 
-// Native representation of original kinds1..7 and runtime objective12. Offset labels refer to each
+// Native representation of original kinds1..7, objective12 and inline MP mission13. Offset labels refer to each
 // original derived layout; overlapping fields belong to different kinds.
 struct GameDataNode {
-    explicit GameDataNode(std::uint32_t type) : kind(type), word10(type == 4 || type == 12 ? 4u : type == 6 ? 0xffffffffu : 0u) {}
+    explicit GameDataNode(std::uint32_t type) : kind(type), word10(type == 4 || type == 12 ? 4u : type == 6 ? 0xffffffffu : 0u) {
+        if(type==13)network_mission.emplace(); //006B5620, actual inline mission constructor.
+    }
     ~GameDataNode() {
         while (!related.empty()) related.pop_back();
+        //006B7F50 only resets the related end cursor; its allocation survives
+        //the MP table/children/string tail and retires in the base mission.
+        if(network_mission)network_mission->table74.clear();
         while (!children.empty()) children.pop_back();
+        if(network_mission){ //006B6100 inline MP tail: storage, name6C, metadata68, then base strings.
+            decltype(network_mission->table74)().swap(network_mission->table74);
+            network_mission->name6c.reset();network_mission->metadata68.reset();
+        }
     }
     std::uint32_t kind, word8 = 0, word10, word20 = 0xffffffffu;
     std::uint8_t flag14 = 0, flag15 = 0, flag18 = 0, flag2c = 0;
@@ -30,6 +39,17 @@ struct GameDataNode {
     //Only006B8700's actual map-row producer defines these native kind12 words.
     //Offline flag18/text24/text28 have different layouts and cannot substitute.
     std::optional<NetworkObjectiveFields> network_objective;
+    struct NetworkMissionFields {
+        //Mission50/54/58/5C are initializedFFFFFFFF by006B5620;60/64 have
+        //no cold producer. These are GameData64/68/6C/70/74/78 respectively.
+        std::array<std::optional<std::uint32_t>,6> words50{{0xffffffffu,0xffffffffu,0xffffffffu,0xffffffffu,std::nullopt,std::nullopt}};
+        struct TableRow {std::array<std::uint32_t,3> words;std::optional<std::uint32_t> fourth;};
+        //006B8700 defines three stack words;006BA0F0 also copies an unwritten
+        //fourth DWORD into its16-byte element. Do not invent a value for it.
+        std::vector<TableRow> table74;
+        std::shared_ptr<const std::string> name6c,metadata68;
+    };
+    std::optional<NetworkMissionFields> network_mission;
 };
 
 // Original application data manager's loaded roots, independent of its other
@@ -37,9 +57,49 @@ struct GameDataNode {
 // zero. Loading appends; it does not silently reset previously loaded roots.
 class GameData {
 public:
-    std::uint32_t format = 2, field_e8 = 0;
+    GameData()=default;
+    GameData(GameData&&)=default;
+    GameData& operator=(GameData&& other)noexcept{
+        if(this!=&other){
+            while(!roots_.empty()){roots_.pop_back();}multiplayer_mission_.reset();
+            roots_=std::move(other.roots_);multiplayer_mission_=std::move(other.multiplayer_mission_);
+            format=other.format;field_e4=other.field_e4;field_e8=other.field_e8;rejected_root_=other.rejected_root_;
+        }
+        return *this;
+    }
+    ~GameData(){while(!roots_.empty())roots_.pop_back();} //006B6100 roots before inline mission; vector allocation retires after inline member.
+    void construct_multiplayer_mission(){
+        if(multiplayer_mission_)throw std::logic_error("Application inline MP mission was already constructed");
+        multiplayer_mission_=std::make_unique<GameDataNode>(13);
+    }
+    GameDataNode& multiplayer_mission(){if(!multiplayer_mission_)throw std::logic_error("GameData has no application inline MP mission owner");return *multiplayer_mission_;}
+    const GameDataNode& multiplayer_mission()const{if(!multiplayer_mission_)throw std::logic_error("GameData has no application inline MP mission owner");return *multiplayer_mission_;}
+    std::uint32_t format = 2, field_e4 = 0xffffffffu, field_e8 = 0;
     const auto& roots() const { return roots_; }
     std::optional<std::uint16_t> rejected_root() const { return rejected_root_; }
+    //006B8EC0 through006B8570/006B8480/006B85D0. The native root bounds
+    //check PRECEDES the standalone ordinal. Ordinary selection uses the actual
+    //container cursors, counting only kind2 campaigns and kind3 missions.
+    std::uint32_t selected_mission_ordinal(std::uint32_t root,bool standalone)const{
+        if(root>=roots_.size())return 0xffffffffu;
+        if(standalone)return field_e4;
+        const auto& container=*roots_[root];
+        if(container.word20>=0x80000000u||container.word20>=container.children.size())return 0xffffffffu;
+        const auto* campaign=container.children[container.word20].get();
+        if(!campaign||campaign->kind!=2||campaign->word20>=0x80000000u||campaign->word20>=campaign->children.size())return 0xffffffffu;
+        const auto* selected=campaign->children[campaign->word20].get();
+        if(!selected||selected->kind!=3)return 0xffffffffu;
+        std::uint32_t ordinal=0;
+        for(const auto& entry:container.children){
+            if(entry->kind!=2)continue;
+            for(const auto& mission:entry->children){
+                if(mission->kind!=3)continue;
+                if(mission.get()==selected)return ordinal;
+                ++ordinal;
+            }
+        }
+        return 0xffffffffu;
+    }
     // 006B9030 and read-only lookup006B8D20: count/flatten only kind2
     // campaigns and kind3 missions, preserving order among mixed children.
     std::int32_t mission_count(std::uint32_t root) const {
@@ -257,6 +317,9 @@ private:
         }
     }
     std::vector<std::unique_ptr<GameDataNode>> roots_;
+    //Only application+04 constructs this native inline+14 lifetime. The existing
+    //preparation-only loaded graph does not allocate another MP mission owner.
+    std::unique_ptr<GameDataNode> multiplayer_mission_;
     std::optional<std::uint16_t> rejected_root_;
 };
 

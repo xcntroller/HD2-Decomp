@@ -7,6 +7,8 @@
 #include "frontend/control_frame.h"
 #include "game/session_local_packets.h"
 #include "game/session_application_commands.h"
+#include "game/network_mission_metadata.h"
+#include "game/session_owner.h"
 #include "host/application_command_lock.h"
 #include "host/game_console.h"
 #include "game/session_packet_world.h"
@@ -414,6 +416,14 @@ public:
     frontend::ProfileSettings& profile_settings() { return data_.profile().options.settings; }
     bool human_face_quality_enabled(){return profile_settings().quality_byte(3)!=0;} //006B6740→006B33E0(3).
     frontend::GameConfiguration& game_configuration(){return data_.game_configuration();}
+    frontend::GameData& game_application_data(){return data_.game();} //SAME application+04, distinct from preparation's reloaded graph.
+    void read_game_network_map(game::SessionPacketStream& packet){frontend::replace_selected_network_map(packet,game_configuration());}
+    void write_game_network_map(game::SessionPacketStream& packet){frontend::write_selected_network_map(packet,game_configuration());}
+    void read_game_network_rules(game::SessionPacketStream& packet){frontend::read_network_rules(packet,game_configuration(),game_network_parameters());}
+    void write_game_network_rules(game::SessionPacketStream& packet){frontend::write_network_rules(packet,game_configuration(),game_network_parameters());}
+    game::SessionNetworkParameters& game_network_parameters(){return game_control_records().network_parameters;}
+    bool rebuild_game_network_mission(){return game::populate_network_mission(data_.game(),game_configuration());}
+    game::MissionRequest make_game_network_request(){return game::make_network_mission_request(data_.game(),game_configuration(),gate_,pre_mission().route());}
     frontend::SoundApplicationMode game_sound_application(){
         const auto& configuration=game_configuration();
         //006B66B0 tests this opaque native DWORD for nonzero only; it is never dereferenced.

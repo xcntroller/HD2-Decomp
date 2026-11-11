@@ -7219,12 +7219,15 @@
       "program": "client",
       "entry": "006b9190",
       "status": "partial",
-      "coverage": "Select the current mission descriptor or synthetic standalone mission for the owned request.",
-      "limitations": "Native object ownership, storage, event and safety checks replace the original ABI; this entry claims only the described body subset. Original engine services are delegated and uncredited. Only the bounded team-selection checkpoint has user desktop acceptance; equipment screens remain completely untested until accessible. Full original-function equivalence and other screen/route acceptance are not claimed.",
+      "coverage": "Preserve offline copied selected mission validation; nonzero actual configuration04 admits a borrowed application inline MP mission13 with empty campaign squad. Existing source standalone mode takes precedence and explicitly rejects this network factory. Context borrows actual mode/configuration/route owners.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
       "evidence": [
         "analysis/singleplayer-pipeline.md",
         "analysis/singleplayer-function-audit.md",
-        "recovered/frontend/pre_mission_route.h"
+        "recovered/frontend/pre_mission_route.h",
+        "recovered/game/session_owner.h",
+        "recovered/game/session_selection.h",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
       ]
     },
     {
@@ -34432,12 +34435,15 @@
       "program": "client",
       "entry": "006b8700",
       "status": "partial",
-      "coverage": "One-objective producer slice only: actual kind12/status4 and all six selected-map words mapped to18/1C/20/24/28/2C.",
-      "limitations": "Source-only native typed ownership/STL/RAII replaces original class/allocator/SEH ABI. Focused ASan/UBSan/LSan and strict actual World i386/launcher link verify the recorded subset with explicit Human/HUD/transport/OS-lock doubles. Full selected-map metadata admission and peer3C producer, nonoffline flush/targeted transport, console/application owners and containing frame integration remain required; no application or desktop acceptance. Partially written packet exceptions retain scalar nodes without a native wire rollback guarantee.",
+      "coverage": "Rebuild SAME application-owned inline kind13 mission from actual selected map: clear, caption2002, copied resource/retained names, all kind12 objective rows, three defined table words plus explicit unwritten fourth, ordered six scalars/string retention and status4 finalization.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
       "evidence": [
         "recovered/game/human_death_objective.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+        "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json",
+        "recovered/game/network_mission_metadata.h",
+        "recovered/frontend/game_data.h",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
       ]
     },
     {
@@ -34573,6 +34579,174 @@
         "recovered/game/human_control_loading.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ad580",
+      "status": "partial",
+      "coverage": "Resolve actual selected configuration rotation; reject absent/out-of-range native record access.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ad590",
+      "status": "partial",
+      "coverage": "Serialize the actual currently selected map through its record codec.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ad5b0",
+      "status": "partial",
+      "coverage": "Ascending old-map retirement, destructive full replacement read before append and selected-index0 publication; preserve vector capacity and failure prefix.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ad6e0",
+      "status": "partial",
+      "coverage": "Write actual domain/style,22 rule words and SAME process D8/D4/DC seconds values in native416-bit order.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ad780",
+      "status": "partial",
+      "coverage": "Incrementally read actual domain/style,22 signed16 rules and SAME process D8/D4/DC; convert final signed seconds to milliseconds.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ad820",
+      "status": "partial",
+      "coverage": "Serialize selected map strings, six scalars, count8 objective/table vectors and actual row codecs.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006ad990",
+      "status": "partial",
+      "coverage": "Destructively decode map strings/scalars, signed16 fields and counted row vectors in native update order.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006adb70",
+      "status": "partial",
+      "coverage": "Write six objective words in native1/0/2/3/4/5 order and16/16/16/8/2/16 widths.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006adbd0",
+      "status": "partial",
+      "coverage": "Read objective rows in native permutation, signed16 wide fields and zero-extended8/2-bit fields.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006adc30",
+      "status": "partial",
+      "coverage": "Write three-word map row in16/8/8-bit order.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006adc70",
+      "status": "partial",
+      "coverage": "Read three-word map row with signed16 first word and zero-extended bytes.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/network_map_packets.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b5620",
+      "status": "partial",
+      "coverage": "Application-owned MP mission13 source construction, defined FFFFFFFF scalar words, unwritten60/64 and actual retained strings/table lifetime; generic typed node replaces original layout.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/game_data.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b83c0",
+      "status": "partial",
+      "coverage": "Walk actual inline mission related descriptors and set each status word10 to4.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/game/network_mission_metadata.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006b8ec0",
+      "status": "partial",
+      "coverage": "Original root-bounds-before-standalone ordinal and ordinary actual container-cursor selection, filtering kind2 campaigns/kind3 missions and returningFFFFFFFF when absent; helper traversals are fused.",
+      "limitations": "Source-only typed/STL/RAII adaptation, not original object/allocator/SEH ABI. Packet bounds/allocation rejection and oversized count8 writer rejection are explicit native safety deviations; destructive failure prefixes are preserved without invented rollback. Actual application metadata/request/selection owners and native sanitizer/strict i386/link checks do not establish activation, transport, full containing Human frame or desktop acceptance. No complete-function equivalence claim.",
+      "evidence": [
+        "recovered/frontend/game_data.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
       ]
     }
   ]

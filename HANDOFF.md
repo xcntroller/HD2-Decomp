@@ -9,10 +9,11 @@ Continue dependencies until the full selected checkbox completes or genuinely bl
 
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
 explicitly requested returning here. Inspect HEAD/status before acting. Transfer
-base50f9193 and22 pending Human files were verified; MAIN ignored WORK
+base50f9193 and22 pending Human files were verified; ignored MAIN WORK
 `human-return-main-20261111` records before/after hashes. Earlier LIFE/UI/PACK
 worktrees and `/tmp/hd2-p22-hum-continue` are separate, inactive for this task.
-Preserve their work and newer master merges. Latest preceding checkpoint5981afa; inspect current HEAD.
+Preserve their work and newer master merges. Latest preceding checkpoint83e77da;
+external master pulls have rebased earlier checkpoints: inspect current history.
 
 No original EXE/DLL/Proton or Windows fixture execution. Compile/link only.
 Heavy compilation and Ghidra must run **sequentially**. No push. Source-only
@@ -21,96 +22,86 @@ Application mission loading remains disabled; no mission desktop verification.
 
 ## Latest verified source checkpoint
 
-[Reaction/authority retirement receipt](analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json)
-adds one client partial0074D510/extends four; totals34 complete/2593 partial of18783,
-no complete promotions. [Peer/console](analysis/checkpoints/p2.2-human-peer-console-20261111.json)
-and [objective/session](analysis/checkpoints/p2.2-human-death-objective-session-20261111.json)
-remain the preceding dependency checkpoints. Contracts are consolidated in the
-source note; do not re-audit unchanged solver/particles.
+[Network mission metadata/request receipt](analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json)
+adds14 client partials/extends006B8700/006B9190; totals34 complete/2607 partial
+(2602 client+5 engine) of18783, no complete promotions.006B5890/006B5960/006B83B0
+are implemented but absent frozen: zero credit. Do not re-audit unchanged kernels.
 
-World now admits actual non7 authority reaction17/damage and drop10; remaining
-missing PACK effects reject at their actual receivers.6 forwards AFTER action
-only non7, with Scene2/B0 recheck. Nonreserved Remote authority is genuine empty
-00583220; reserved Remote consumes authority DISCARD. Input0 stores C4/1C4 BEFORE
-queue insertion. Motion4 uses priority3(clamped2), ordinary0, lazily opening groups
-and finishing motion before ordinary; authority FIRST may alias both to2BC.
-Native tests preserve that actual append quirk, not an invented split.
+Actual map/rules codecs now use SAME application configuration and process
+parameters. Destructive reads preserve partial prefixes; count>255 writers reject
+explicitly. ApplicationStartupData constructs ONE stable MP mission13 owner
+(adapting native inline+14) before configuration; preparation reload graph creates
+no second MP owner.006B8700 clears/rebuilds SAME mission, actual kind12 objectives,
+ordered scalars, retained name/metadata, resource at GameData38/mission24 and
+status4 finalization. Native table destination copies a fourth UNWRITTEN DWORD;
+source keeps it undefined.006B7F50 clears end cursor, **not allocation**.
 
-0074D510 selected retirement now shares one source body with actual DD0, with all
-original owner refs and phase order. Pool lookup remains late. Native Look hit→
-selection→retirement and packet→damage→actual Player B0→packet→presentation pass
-ordered failure/re-entry, callback B0-before-Human retirement and100 lifetimes.
-These are source/native boundary tests, NOT a full World/application run.
+MissionRequest distinguishes owned offline descriptor from borrowed actual MP
+mission. Valid non7 process/config04 can have empty campaign/live squad; offline
+still requires both squads. Borrow actual process/config/route refs. Existing
+source route is the adapted standalone-mode authority; its precedence rejects
+this network factory before MP lookup. Full Saved descriptor remains required.
+SessionSelection uses actual application GameData for network request;006B8EC0
+returnsFFFFFFFF for absent campaign selection, with root check before standalone.
+No new positive UI/connection/status9/activation path is exposed.
 
-0072F2F0 now preserves absent record00 return, scalar17(reason,peer) publication
-BEFORE localized text, then actual006C4B40 application routing. It does NOT itself
-remove the peer/Human.0069F1E0 owns one actual lazy Win32 console, published before
-CreateWindow re-entry; damage/rank/nonrender messages use SAME output owner.
-Console text copies before48 lock, prepends/caps100, unlocks then invalidates.
-Submitted input owns a FIFO. Actual window/font/paint/scroll/status4-close source
-exists, with callback exceptions rethrown at the actual control phase. Source
-RAII also reclaims HWND/font and pending strings beyond original cleanup.
-No window/desktop behavior has been tested. Console parser/frame and application
-kind12/210 remain required. Win32/GDI bodies absent frozen receive zero credit.
-00744FC0 is the NEXT transport class, not console cleanup; do not reuse it here.
+Native ASan/UBSan/LSan PASS `human-network-mission-native.log`: independent wire,
+signed fields/rules416, same-owner map→mission→Player objectives, copy/packet/map
+retirement, destructive failure, actual loaded selection, offline-empty rejection,
+SessionOwner failure prefixes and100 constructions/retirements. Backend/engine/OS
+endpoints are doubles. Strict actual World i386 and launcher/startup-probe compile/
+link PASS `human-network-mission-host-i386.log` and
+`human-network-mission-application-i386.log`. Neither Windows output was run.
 
-Objective0069BA60 uses score→status/HUD→scalar10 queue.0069BC40 completion/result
-scan is offline only.00724EA0 is signed(side+1)%2, not local team. All B064 states
-read70. Application queue uses DISTINCT application2C lock, not418/430/peerB4;
-false appends in BOTH modes, true drains. Each node flushes1000 first. Non7
-transport still throws before envelope writing and retains the pending node.
-Kind12 fields are explicit;006B8700 only has a one-row producer, not full normal
-selected-map admission/publication. Ordinary non7 peer3C producer also remains.
-
-PACK writer discrepancy remains corrected: PUSH20AB changesESP, so FIMUL20B2
-reads the mask15 at[S+08], NOT zero. Keep `(speed-1)*.25*15`.005B1F10 retains x87
-until final FLOAT store;005A8320 fallback is full_name0C. Existing actual clip
-007B3C80, ragdoll007A7470, rest007B37C0→DD000787110→ShotMgr A0 and DD0+AA0
-0074D510 selection remain preserved.184=5/188=NULL is normal reset;00761690 is
-saved DD0 restore via00784310/005AB7A0, not a missing authored loader.
+Preceding checkpoints remain valid: [reaction/authority retirement](analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json),
+[peer/console](analysis/checkpoints/p2.2-human-peer-console-20261111.json),
+[objective/session](analysis/checkpoints/p2.2-human-death-objective-session-20261111.json).
+0074D510 receives DD0+AA0, not Look. Selected retirement uses SAME owner refs and
+late sound pool lookup. Authority17/damage and10/drop reach actual effects;
+Remote nonreserved C4 is genuine empty00583220; input0 copies C4/1C4 BEFORE queue
+insertion. Motion group priority3 clamps2; finish motion before ordinary0, with
+native authority FIRST stream alias preserved. Other PACK effects retain failures.
+PACK drop writer multiplier15 is confirmed across PUSH20AB: retain
+`(speed-1)*.25*15`;005B1F10 x87 and005A8320 name fallback remain preserved.
+0072F2F0 publishes scalar17 BEFORE logging; it does not remove the peer/Human.
+Scalar application FIFO uses actual application2C, not418/430/peerB4; non7 flush
+still throws before envelope and retains node. Console is one actual lazy Win32/
+GDI owner, never desktop-tested; console parser/frame and kind12/210 remain open.
 
 ## Immediate next work
 
-1. Continue normal non7 selected metadata/peer3C/lifecycle. **Inline MP mission
-   is kind13**, native006B5620 at006B56AF; objectives are kind12.006B8700 resource
-   goes to GameData38 (mission-relative24), name to80. Vtable00815AA8:
-   24=006B83B0 finalize,28=006B5890 clear,3C=006B5960 append; use index first.
-   Reused map/rules C remains in research worktree ignored
-   `analysis/work/future-dependencies/p28-*`; consult before new exports.
-   `human-objective-reused-originals` in MAIN already has006B8700/0072A0B0.
-2. Ordinary00612A60 ECX peer slot differs from EDX Scene identity. Late3C/A8
-   write, remote-AI auxiliary publication under418, and actual teardown must all
-   be recovered together; do not publish a dangling borrower or invent a map.
-   Existing MAIN C `offline-squad-storage-and-input/00612a60.c` and raw
-   `prepared-human-model.asm` retain evidence. Existing non7 storage/spawn
-   preconditions still reject; do not bypass them to manufacture a producer.
-3. Close the full containing Human frame/World/failure/re-entry/retirement
-   boundary. New focused audits use actual shared HumanPacketCommand. Old ignored
-   `human-state-damage-native.cpp` predates PACK and is not current evidence.
-   No permanent tests; remove temporary audits only at full checkbox completion.
-   Other PACK item/action/typed-control/speech effects retain required failures.
+1. Finish ordinary non7 peer3C creation/configuration/storage **with matching
+   borrower teardown**.00612A60 ECX peer slot differs from EDX Scene identity;
+   late3C/A8 write and remote-AI auxiliary publication occur under418 AFTER
+   actual0059EDC0.0059EB60 still rejects non7 identity writeback; recover full
+   reached setup and lifecycle before removing it. Never publish a dangling peer.
+2. Research index already run for00730140/00730460/0069E340/00722180/00746B50/
+   00746D20; WORK `human-network-peer-lifecycle-index.txt`. Reuse ignored original
+   C in research checkout `analysis/work/future-dependencies/p28-*` read-only;
+   0069E720 additionally needs its own lookup before any new export. Actual MAIN
+   C00612A60/0059EB60/0059EDC0 are under WORK `offline-squad-storage-and-input`
+   and `offline-squad-human-equipment`. Current source still rejects positive
+   non7 spawn/configuration/decoder branches. Full entry/transport remains required.
+3. Continue full containing Human frame/damage/reaction, partial failure/re-entry
+   and ordered teardown. Temporary native fixtures stay ignored for this ongoing
+   full checkbox; no permanent tests. Commit larger verified checkpoints and
+   consolidate notes/ledger. Full selected checkbox, P22-HUM and P2.2 stay OPEN.
 
-## Verification and commands
+## Commands and evidence
 
-WORK=`analysis/work/mission-world-20261103`. Latest ASan/UBSan/LSan PASS:
-`human-authority-damage-native.log` (actual Player B0/input registry/codec/damage,
-Base::bind queue boundary only; access checks disabled for private-input OOM
-inspection), `human-reaction-retirement-native.log` (actual Look/selection/body,
-component/engine/geometry doubles). Each includes100 entries/lifetimes.
-Previous peer/console/formatter and objective/score/damage evidence stays linked.
-Strict actual World/DD0 authority/presentation i386:
-`human-reaction-containing-host-i386.log` PASS. Launcher AND startup-probe:
-`human-reaction-containing-application-i386.log` PASS, compile/link only.
-Outputs NOT executed. Tracker render/check and diff check required at checkpoint.
+WORK=`analysis/work/mission-world-20261103`. Latest metadata original reuse:
+`human-network-map-reused-originals/provenance.json`; focused Ghidra read-only
+rollback exports `human-network-mission-abi` / `human-network-selection-abi`, logs
+complete without ERROR. Raw `human-network-*` assembly retains field/retirement
+and ordinal evidence. Network parameter globals009820D4/D8/DC are loader-zero
+.data tail; focused reference export pins later packet/advertisement/console users.
 
 Client=`analysis/work/hd2.unpacked.exe`, SHA256
 `8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307`.
 Frozen=`analysis/work/function-progress/client.json`.
 `python3 -B tools/research_index.py find ADDRESS...` before new exports;
 `neighbors ADDRESS` has no `--count`. Candidates are not equivalence proof.
-Latest read-only rollback exports `human-console-owner-abi` and
-`human-console-window-abi`; logs complete without ERROR.0069F1E0's correct ABI
-is no-argument/pointer-return, not the old thiscall(void*,text) decompiler shape.
+`python3 -B tools/function_progress.py --render` / `--check`, `git diff --check`.
 
 Compiler `.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++`;
 native runtime `.tools/hd2-sanitizer-runtime/usr/lib64`.

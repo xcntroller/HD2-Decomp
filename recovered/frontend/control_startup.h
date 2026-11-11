@@ -2,6 +2,7 @@
 #define HD2_FRONTEND_CONTROL_STARTUP_H
 
 #include "frontend/settings_sound.h"
+#include "game/session_network_parameters.h"
 #include <bitset>
 #include <optional>
 #include <stdexcept>
@@ -79,6 +80,7 @@ enum class ControlStartupCallback { packed_event_0072c360 };
 // Pointer owners are borrowed here. Initialization overwrites without release,
 // matching the original; normal startup constructs the full owner beforehand.
 struct ControlStartupState {
+    game::SessionNetworkParameters network_parameters; //Process-shared packet/console values, not per-world copies.
     std::uint8_t byte08 = 0;
     SettingsControlInterface* wrapper0c = nullptr;
     void* wrapper10 = nullptr;
