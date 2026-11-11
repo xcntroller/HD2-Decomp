@@ -626,7 +626,8 @@ public:
             });
             target_.reset();
         }
-        retire_target_={};errors.rethrow();
+        retire_target_={};look_target_=Frame{};sector_=Frame{};previous_hit_=nullptr;
+        errors.rethrow(); //Source guards retract borrowed frames/descriptors before file scene reset.
     }
 private:
     static std::uint32_t bits(float value){std::uint32_t result;std::memcpy(&result,&value,4);return result;}

@@ -38,6 +38,11 @@ adds100 frozen client partials and extends nine existing partials, with no compl
 promotions or denominator changes. P22-HUM and mission desktop delivery remain open.
 The [ledger](function-status.json) and generated README tally remain authoritative.
 
+The [P22-LIFE source checkpoint](p22-life-implementation.md) extends five existing
+partials with concrete prefix rollback/finish/file retirement and partial-VM
+lifetime guards. It adds zero entries or complete promotions; totals and frozen
+denominator are unchanged. Application and desktop acceptance remain pending.
+
 An earlier checkpoint had34 complete client functions and1,833 partial entries
 (1,828 client/five engine), including [Car activation](car-activation-loading.md)
 and [Human/world composition](human-world-composition.md), followed by22

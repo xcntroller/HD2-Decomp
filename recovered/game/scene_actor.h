@@ -23,6 +23,7 @@ public:
     const Base& base() const {return base_;}
     virtual bool initialize(Frame)=0;
     virtual void load(SerializedBytes&)=0;
+    std::uint8_t loading_activation_passes=0; //Source partial-prefix guard, not a native actor flag/readiness/roster.
 protected:
     Backend& backend_;
     Base base_;

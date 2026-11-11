@@ -53,6 +53,7 @@ public:
     long double entry_volume(Entry entry) const {if(!entry)throw std::logic_error("Missing item entry");return entry->volume();}
     void release_entry(Entry entry) noexcept {entries_.release_entry(entry);}
     void clear_actor_entries() noexcept {entries_.clear();} //After actors/queues, before item services/catalogue.
+    void clear_file_frame_data()noexcept{frame_data_.clear();} //Source sidecar tail, including retained frames outside the scene enumeration.
     void register_context(Context& context) {contexts_.add(context);}
     void unregister_context(Context& context) noexcept {contexts_.remove(context);}
     void clear_actor_references(Actor* actor) noexcept {contexts_.clear_actor_references(actor);}

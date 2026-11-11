@@ -2,6 +2,7 @@
 #define HD2_GAME_SESSION_ACTIVATION_H
 
 #include "game/activation_flags.h"
+#include "game/session_lifetime_progress.h"
 #include <memory>
 #include <string>
 #include "game/mission_module_dispatch.h"
@@ -38,7 +39,8 @@ struct SessionActivationState {
 //This source policy does not itself install a live world or enable the host UI.
 template<class Services>
 bool activate_offline_session(SessionActivationState& state,Services& services,
-                              const frontend::GameDataNode* mission) {
+                              const frontend::GameDataNode* mission,SessionActivationProgress* progress=nullptr,
+                              std::exception_ptr* restoration_failure=nullptr) {
     if(state.status==5)return false; //Original returns0 even for a previously active owner.
     if((services.mode_flags()&7u)!=7u)throw std::runtime_error("Session activation requires its actual nonoffline descriptor/transport consumers");
     const auto root=services.application_data().field_e8;
@@ -59,27 +61,42 @@ bool activate_offline_session(SessionActivationState& state,Services& services,
         (void)services.query_activation_ticks(); //00698AAE→real GetTickCount; private table effects are separate.
         services.loading_progress(5,.05f);
         state.words.set(0x6e,std::uint8_t{1});state.words.set(0x6f,std::uint8_t{0});
+        if(progress)progress->resources.entered=true;
         (void)services.car_definitions().load(services.files()); //0071F9B0 original result ignored.
         (void)services.car_tyres().load(services.files()); //004D6900 original result ignored.
         services.car_materials().rebuild(services.car_definitions().materials(),services); //004D57A0.
         (void)services.car_particles().initialize(services.car_definitions().particles()); //004D5A50.
+        if(progress)progress->resources.completed=true;
         services.rebuild_session_world_bounds(); //0072D2B0(3,0,0), SAME input/session owner.
         services.loading_progress(5,.1f);
+        if(progress)progress->lights.entered=true;
         services.mission_light_visibility().collect(); //0069BFF0(false), SAME loaded scene.
-        if((services.mode_flags()&7u)==7u&&services.human_face_loading_enabled())services.human_faces().initialize(); //006B6740→006B33E0/00796430.
-        if(services.mode_flags()&1u)activate_mission_module_pass(services.module_registry(),services,true);
+        if(progress)progress->lights.completed=true;
+        if((services.mode_flags()&7u)==7u&&services.human_face_loading_enabled()){
+            if(progress)progress->faces.entered=true;
+            services.human_faces().initialize(); //006B6740→006B33E0/00796430.
+            if(progress)progress->faces.completed=true;
+        }
+        if(services.mode_flags()&1u)activate_session_module_prefix(services.module_registry(),services,true,progress);
         services.loading_progress(5,.35f);
         if(services.mode_flags()&2u) {
+            if(progress)progress->hud.entered=true;
             services.initialize_loaded_hud(); //0049A940 BEFORE presentation module pass.
-            activate_mission_module_pass(services.module_registry(),services,false);
+            if(progress)progress->hud.completed=true;
+            activate_session_module_prefix(services.module_registry(),services,false,progress);
         }
         services.loading_progress(5,.5f);
-        if(services.mode_flags()&2u)services.initialize_loaded_first_person(); //004909D0.
+        if(services.mode_flags()&2u){
+            if(progress)progress->first_person.entered=true;
+            services.initialize_loaded_first_person(); //004909D0.
+            if(progress)progress->first_person.completed=true;
+        }
         services.loading_progress(5,.8f);
         (void)services.query_activation_visible_window(); //00698C09→actual GetIGraph/virtual48/IsWindowVisible.
         (void)services.query_activation_capture(); //00698C5D→GetCapture, before status5/spawning.
         state.status=5;state.words.set(0x20,std::uint32_t{500});state.words.set(0x24,std::uint32_t{0});
         if((services.mode_flags()&7u)==7u) {
+            if(progress)progress->spawn.entered=true;
             //008AE910 is the LIVE SQUAD, distinct from008AE90C HumanStore.
             //Use SessionOwner's SAME borrowed application records, not its
             //immutable request snapshot. Reread count/entry after every callback.
@@ -89,10 +106,19 @@ bool activate_offline_session(SessionActivationState& state,Services& services,
                 auto* spawn=services.loading_spawn_point(0);if(!spawn)break; //00475940, queried anew for each live record.
                 services.spawn_prepared_human(*spawn,soldier); //00611C90(0,record,0), consumes SAME prepared equipment.
             }
+            if(progress)progress->spawn.completed=true;
         }
-        if(services.mode_flags()&2u)services.initialize_loaded_dubbing(); //0071DE10 known zero state, not generic stop.
+        if(services.mode_flags()&2u){
+            if(progress)progress->dubbing.entered=true;
+            services.initialize_loaded_dubbing(); //0071DE10 known zero state, not generic stop.
+            if(progress)progress->dubbing.completed=true;
+        }
         state.words.set(0x64,std::uint8_t{0});services.loading_progress(5,.9f);
-        if(services.has_mission_text_definition())services.initialize_loaded_mission_text(); //0048EB70(actual6A+8).
+        if(services.has_mission_text_definition()){
+            if(progress)progress->text.entered=true;
+            services.initialize_loaded_mission_text(); //0048EB70(actual6A+8).
+            if(progress)progress->text.completed=true;
+        }
         for(auto offset:{0x74u,0x8cu,0x90u,0x7cu,0x84u})state.words.set(offset,std::uint32_t{0});
         for(auto offset:{0x70u,0x71u,0x94u,0x80u})state.words.set(offset,std::uint8_t{0});
         state.words.set(0x78,std::int32_t{-1});state.words.set(0x88,std::uint32_t{0});
@@ -104,7 +130,7 @@ bool activate_offline_session(SessionActivationState& state,Services& services,
         if((services.mode_flags()&7u)==7u&&services.has_application_game_context())
             state.words.set(0x0c,static_cast<std::uint8_t>(services.restore_session_context())); //006DC940→006C4BD0.
         return true;
-    });
+    },restoration_failure);
 }
 } //namespace hd2::game
 #endif

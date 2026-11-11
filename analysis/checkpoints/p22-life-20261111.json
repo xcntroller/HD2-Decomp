@@ -1,0 +1,247 @@
+{
+  "date": "2026-11-11",
+  "agent": 3,
+  "branch": "feature/p22-life",
+  "starting_master_sha": "49ff7dc12710cd645dc2224f9879b829cf055308",
+  "latest_fetched_origin_master_sha": "49ff7dc12710cd645dc2224f9879b829cf055308",
+  "source_only": true,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "scope": "P22-LIFE supported offline lifecycle source boundary; mandatory cleanup receivers and concrete SAME World binding. Source close does not close external Human/UI/FRAME/RENDER/GUARD/OWN or desktop delivery.",
+  "address_correction": {
+    "006987e0": "MOV EAX,1; RET; absent frozen inventory, no credit",
+    "00698810": "deleting wrapper",
+    "00698830": "actual destructor; retains existing unloaded partial, no new credit"
+  },
+  "native_verification": {
+    "status": "PASS ASan/UBSan/LSan, explicit endpoint doubles, no original code execution",
+    "cycles": 100,
+    "real_source_owners": [
+      "SessionLifecycleBoundary",
+      "load_mission and activate_offline_session",
+      "finish_offline_session_prefix and retire_session_files",
+      "SessionOwner acquired-prefix constructor/destructor",
+      "MissionLightVisibility",
+      "ActorFrameDataStore",
+      "DynamicCollisionBuckets",
+      "FrameTextOverlay/PageOwner",
+      "BlastWaveProcess positive create/advance/clear with raw hit actor already retired and retained node frame",
+      "MissionScriptModuleLoading with actual contexts/compiler/EC/retained frames"
+    ],
+    "cases": [
+      "every distinct observed load/activation throwing endpoint",
+      "animation/Scene2 false returns and required cold module tail",
+      "scratch release before loading tail",
+      "partial failures before tree and after loaded14/status5 publication",
+      "reverse finish and ascending file unload plus final loaded14 publication",
+      "mandatory cleanup failure/retry and missing module receiver retains dependent graph",
+      "snapshot failure preserved and snapshot not repeated after Human removal",
+      "retained status1 finish before file loaded guard",
+      "constructor factory failure, null factory, every allocation failure including post-publication COW",
+      "100 real partial Script module cycles: one bound compiled context then second prepare binding throws before native loaded10; finish removes EC/frame users",
+      "graphics setup throw and primary load error plus secondary restoration failure",
+      "callback/page retirement, same state/live squad identity, frameEC and dynamic bucket detach before grid destruction"
+    ],
+    "limits": "Native composition uses engine/archive/graphics/clock/module/actor endpoints as explicit doubles; actual Windows host World/controller/lifecycle is compiled and linked, not run. Actual Scene2 actor-prefix, camera/FPV/HUD and registered module implementations have strict host validation and existing focused baseline audits, not native whole-engine execution."
+  },
+  "strict_i386": {
+    "status": "PASS strict compile/link of complete GameSessionLifecycle using actual LaunchOwners::Controller from application_launch.cpp, SAME real World/request/session/owners, positive GameBlastWaves create/update/clear, UI callback/page binding, activate/finish/unload/close. Never executed.",
+    "flags": "-std=c++17 -Wall -Wextra -Wpedantic -Werror -static -municode"
+  },
+  "application_link": "PASS sequential existing application-launch target; Windows executable not run",
+  "ledger": {
+    "added_entries": 0,
+    "complete_promotions": 0,
+    "extended_partials": [
+      "006989b0",
+      "00698f80",
+      "0069a3d0",
+      "006ca780",
+      "004285d0"
+    ],
+    "frozen_total": 18783,
+    "complete": 34,
+    "partial": 2471
+  },
+  "external_dependencies": [
+    "P22-HUM/GUARD genuine positive simulation and integrity producers",
+    "P22-UI populated roll/signal cleanup, full HUD/input orchestration and order/seat/focus producer contracts",
+    "P22-FRAME scheduling and borrower retirement",
+    "P22-RENDER mandatory render receivers",
+    "P22-OWN GameApplicationState activation/forwarding and parent lifetime",
+    "Application failure/Main-return/re-entry and user desktop acceptance"
+  ],
+  "verification_notes": [
+    "LSan cannot inspect sandbox ptraced threads; successful native runs used authorized unsandboxed execution of the temporary audit only.",
+    "GCC sanitizer linker scripts point to missing /usr/lib64 runtimes; instrumentation objects link the existing actual sanitizer .so files explicitly, with rpath.",
+    "Temporary fixture corrections: typed GameDataNode/activation query methods, completed Frame type, noinline allocation replacement instrumentation, -municode for actual launcher inclusion and used attribute for anonymous controller fixture. These were audit scaffolding fixes, not original execution failures.",
+    "Ledger checks initially found five baseline ignored evidence paths absent from the isolated worktree. Exact existing files were copied read-only from main into matching ignored paths, with hashes recorded; no baseline claim/source was changed."
+  ],
+  "contract": "analysis/p22-life-implementation.md",
+  "artifacts": {
+    "analysis/work/p22-life-20261111/application-build.log": {
+      "sha256": "41d1740e1efee26be8109431208cca48370ed6826ad4cd89ad0cd8e017f2e65f",
+      "bytes": 603,
+      "retained": true
+    },
+    "analysis/work/p22-life-20261111/destruction.asm": {
+      "sha256": "f43d45f33971904a98af47d57714e2c206288a4aa5df07e04037404cff03f9d0",
+      "bytes": 9964,
+      "retained": true
+    },
+    "analysis/work/p22-life-20261111/host-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-life-20261111/host.cpp": {
+      "sha256": "90ae8fd70353966a5a20f1e2d7ab4f89a6d6537a1f3467db68f2d480f7a7ce70",
+      "bytes": 1043,
+      "retained": false
+    },
+    "analysis/work/p22-life-20261111/host.exe": {
+      "sha256": "aa0809eb78967758d66f7f985d9bd84f913e58557793ab4473193a1a56e733b5",
+      "bytes": 19030016,
+      "retained": false
+    },
+    "analysis/work/p22-life-20261111/native": {
+      "sha256": "2cb74e1b6ed9a0131cc9b01782e8188b40866ccc22a86efcc6d82b35f6be455b",
+      "bytes": 10242984,
+      "retained": false
+    },
+    "analysis/work/p22-life-20261111/native-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-life-20261111/native-link.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-life-20261111/native-run.log": {
+      "sha256": "82758fe6f8aa0ea3a2742df31a61b839638a49a4d348f496c284370affa4ae74",
+      "bytes": 206,
+      "retained": true
+    },
+    "analysis/work/p22-life-20261111/native.cpp": {
+      "sha256": "01baa41f35f39c3577b81f453898419a9dad25f97b6dcdfc82a97e20e8dddf78",
+      "bytes": 25207,
+      "retained": false
+    },
+    "analysis/work/p22-life-20261111/native.o": {
+      "sha256": "2f754b702da8d0346eb76cb6a79f4075a15d77655192e49d4f12db36f4d42199",
+      "bytes": 19237056,
+      "retained": false
+    },
+    "analysis/work/p22-life-20261111/tracker-check.log": {
+      "sha256": "4eb872597c74076ec9aa8a8ebd291716bcba928f405068d17a51618fe77cd332",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/p22-life-20261111/tracker-render.log": {
+      "sha256": "2834fa7be688a2ac5228b4c813e4544b830f30d73a4135efb1e6aeb05488521f",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/p22-life-20261111/tracker-tests.log": {
+      "sha256": "32123c06afaa22405df0ae455b2a9957a73a7a30732623e89bdb1eee75d7e097",
+      "bytes": 126,
+      "retained": true
+    },
+    "recovered/build/application_launch.exe": {
+      "sha256": "1796cb267e43b10871e6f18179d7a7fa1a4d9efc8917b69d47a8fa13b774f310",
+      "bytes": 3821568,
+      "retained": true,
+      "executed": false
+    }
+  },
+  "temporary_audits_removed": true,
+  "baseline_evidence_restored": {
+    "analysis/work/multiplayer-discovery-20261101/006363e0.c": {
+      "source": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/multiplayer-discovery-20261101/006363e0.c",
+      "sha256": "4e35f225530a13f206428d93d57010437a23b038fe950148798417100c93a828"
+    },
+    "analysis/work/multiplayer-review-widgets-20261101/00654c60.c": {
+      "source": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/multiplayer-review-widgets-20261101/00654c60.c",
+      "sha256": "af7dae94859577e38bb4633c0a3312f0fa9ad346eea78ae50134f67e8335e550"
+    },
+    "analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm": {
+      "source": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm",
+      "sha256": "c2093693dcbdd9cd3af6af43f1d944a50cc827cff53ec49793589ba2f60c7683"
+    },
+    "analysis/work/multiplayer-wire-20261101/00637440.c": {
+      "source": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/multiplayer-wire-20261101/00637440.c",
+      "sha256": "87cbb6ff89c760893f11c228e3add77d380bba1ad043eb74e43f86381e28a46b"
+    },
+    "analysis/work/options-caret-20261031/00648c80.c": {
+      "source": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/options-caret-20261031/00648c80.c",
+      "sha256": "ff0c640fc6510db34a19fd3d7a446cc492d76ca1a279237c7134e98d3eda999f"
+    }
+  },
+  "original_evidence": {
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/phase2-owner-20261103/exports/00698f80.c": {
+      "sha256": "08076c7d4e9c809583ce313d8904c0dae0f2af455e565f9c1641222dedc06400",
+      "bytes": 1836
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/phase2-owner-20261103/exports/00698f80.json": {
+      "sha256": "88c00a3ad479ba8a74502d0e91650a0e1a72b644f7a959c5544dec2b1eaec395",
+      "bytes": 15814
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/actor-base-lifetime/0069a3d0.c": {
+      "sha256": "ad240f3f1752a1e079ca9745a230cbb49ef77573312d1ff97ee182ccc78df4ad",
+      "bytes": 1107
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/actor-base-lifetime/0069a3d0.json": {
+      "sha256": "36a9e6d15c1853b7eac87542bbfa06a5f4f0bce8811b9714e3813f9599bb4678",
+      "bytes": 4008
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/loader-module-composition/006ca780.c": {
+      "sha256": "d1085778cd82058e99e9fb5cb7a6520d1cb4fdc4cc664a9bcb75040bbafd86bb",
+      "bytes": 4812
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/loader-module-composition/006ca780.json": {
+      "sha256": "ecf37eb8854ee0308e177dda4fa0a5f9102aaa5ec65830761cf1f0b3b5808d06",
+      "bytes": 34746
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/loader-module-composition/006989b0.c": {
+      "sha256": "beb93c7e6b001637abc9912f34089d1ad279bc66f6bcf2c09a7ccd1bbd1c6b47",
+      "bytes": 7596
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/loader-module-composition/006989b0.json": {
+      "sha256": "4a52b0377cb2a64209f8b66c754c898339fe074301eeea3b3068aae2186acdd9",
+      "bytes": 31467
+    }
+  },
+  "source_files": {
+    "recovered/game/activation_flags.h": "635c77d645c5c3e4b559e05e17d5d5006997a5077849f4c54cf84135ff1832b8",
+    "recovered/game/effects_module_loading.h": "6afa3520793b81c9a5e969797f86713836ce10a682b8c9db97835e9323a60c5e",
+    "recovered/game/mission_camera.h": "93e907d33fbbdc0c07943c5cc5928275f35176fd70c92c216cb827a1cfb863d5",
+    "recovered/game/mission_scene_activation.h": "0207e96be08e5d4d5affa20664ef8687802f99e953e9bd2aceb8e7ef89c8f82e",
+    "recovered/game/mission_script_module_loading.h": "5b3ade0cd6563ae60e90cd78e9daef99a55e00ee19bcca9327098e7bf42a53b2",
+    "recovered/game/particle_module_loading.h": "adb00b01c9b41350489112d17660c60ed7d6a364752ca7fef48ce265b66736c8",
+    "recovered/game/scene_actor.h": "122a117c289aff534adca32bd2782946d6613792c31c2db4436f4c1612a95be0",
+    "recovered/game/session_activation.h": "64a408e0db83434d126bea50fe6caf07c7263d7b61b71eeb12f7949e4d5cd172",
+    "recovered/game/session_finish.h": "abdcc4be938d681c74eb7a096d815ea593dc34b0158ecf43093b42248ea7b933",
+    "recovered/host/game_actor_services.h": "f3f3f6ed97de260cd8e3fea49f91218ff9d4a051bca7dd95148036be8ae25640",
+    "recovered/host/game_mission_loading.h": "14ae6ecbd8c1e1b542683ad2530e37442d18d555dc09141aae9eda6141c7e045",
+    "recovered/host/game_scene.h": "7982aa0bd7e5567056f70c9c435a037166f08fdfb1a47693aa8d4d141f55e857",
+    "recovered/host/game_scene_actors.h": "08ca86a329f2e8fc8c2317d496a74dae93265dede363e6b49bc06aab881bca0a",
+    "recovered/host/game_session_activation.h": "ed04961310972f43ebc055a00741b51471f684194b7d814e2be4556a57f4142a",
+    "recovered/host/game_world_actors.h": "85821d1189fb51d21f717e4b4780ef10c6bb507fc124ed5eedc443619040ede4",
+    "recovered/host/game_world_loading.h": "a2ec9e996742aa91acb958b96d5aa4f1120193fb44bed14a4f66b3f98fd9bc85",
+    "recovered/game/session_file_retirement.h": "2e4c0b78439754f12262d83211561954f2cbc7a2409ddd65a0027c0f2072146e",
+    "recovered/game/session_lifecycle.h": "b63d64e4cf6fc9dd7c14e0bfb7ca5684078e1b9b78e57bb73dd452afff2f9396",
+    "recovered/game/session_lifetime_progress.h": "9a65aea2d6a655e0e0d1cb1b0d3fcba6ee134feb2d022cef1ffde0beeb285919",
+    "recovered/host/game_session_lifecycle.h": "f588f97628e5e64c5c1ea73c3528b627b44dc8782d56309eca0ee9605024d5fd"
+  },
+  "tracker": {
+    "render": "PASS",
+    "check": "PASS exact fingerprints, frozen inventory/counts, unique statuses/evidence/README",
+    "tests": 27,
+    "tests_passed": true
+  },
+  "source_closed": true,
+  "remaining_life_owned_source_receivers": []
+}

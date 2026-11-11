@@ -37,6 +37,7 @@ public:
     bool loaded()const{return loaded_;}const auto& failed_bindings()const{return failed_bindings_;}
     void activate(bool authority,std::uint32_t configuration_kind) { //004270D0.
         if(!authority||loaded_)return;
+        activation_started_=true; //Source guard: bound contexts can exist before native loaded10 publication.
         flag825_=false;failed_bindings_.clear();
         (void)bindings_.load(files_,frames_,resource_,(mode_&7u)!=7u);
         const auto& bindings=bindings_.values();
@@ -68,19 +69,19 @@ public:
         return visibility_.execute(context,instruction,runtime_);
     }
     void finish(bool authority) { //00427B80 supported loading/SetOn owners, real restore BEFORE exit.
-        if(!loaded_||!authority)return;
+        if((!loaded_&&!activation_started_)||!authority)return;
         visibility_.clear_lights();flag825_=false;
         std::exception_ptr failure;
         try{snapshots_.clear();}catch(...){failure=std::current_exception();}
         rotations_.clear(); //Native restores snapshot rotations BEFORE releasing84C record frame references.
         try{contexts_.finish_contexts();}catch(...){if(!failure)failure=std::current_exception();}
-        loaded_=false;
+        loaded_=false;activation_started_=false;
         //Original always notifies GEffects+8C(0,false,nullptr), even with empty queues.
         try{runtime_.script_loading_finish();}catch(...){if(!failure)failure=std::current_exception();}
         if(failure)std::rethrow_exception(failure);
     }
     void unload(bool authority) { //004285D0: finish first, then authority binding retirement.
-        if(loaded_)finish(authority);
+        if(loaded_||activation_started_)finish(authority);
         if(authority)bindings_.clear();
     }
 private:
@@ -88,7 +89,7 @@ private:
     Frames& frames_;Files& files_;Runtime& runtime_;std::string resource_;std::uint32_t& mode_;
     Contexts contexts_;MissionScriptFrameCommands<Frames,Contexts> frame_commands_;Snapshots snapshots_;MissionScriptRotations<Frames,Snapshots> rotations_;Visibility visibility_;MissionScriptVariables& variables_;MissionScriptBindings bindings_; //SAME process module4 bank, not reset by world destruction/finish.
     std::vector<MissionScriptBindings::Binding> failed_bindings_;
-    std::array<std::uint32_t,5> fields824_{};std::uint32_t timer_=0;bool loaded_=false,flag11_=false,flag825_=false;
+    std::array<std::uint32_t,5> fields824_{};std::uint32_t timer_=0;bool loaded_=false,flag11_=false,flag825_=false,activation_started_=false;
 };
 } //namespace hd2::game
 #endif

@@ -78,10 +78,19 @@ public:
         }
         return *found->second;
     }
-    void activate_human(Human& actor,bool authority){prepare_human_loading(actor).activate(authority);}
+    void activate_human(Human& actor,bool authority){
+        actor.loading_activation_passes|=authority?1u:2u; //Includes prepared Humans spawned after module13's captured pass.
+        prepare_human_loading(actor).activate(authority);
+    }
     void deactivate_human(Human& actor,bool authority){
         const auto found=human_loading_.find(&actor);
-        if(found==human_loading_.end())throw std::runtime_error("Human retirement requires its actual containing loading owner");
+        if(found==human_loading_.end()){
+            //Source partial-activation guard: Scene2's captured pass includes
+            //later Humans whose factory was never entered. An actual published
+            //owner may never be replaced by a successful missing receiver.
+            if(actor.loading_lifetime)throw std::runtime_error("Human retirement lost its published containing owner");
+            return;
+        }
         frontend::CleanupErrors errors;errors.attempt([&]{found->second->deactivate(authority);});
         //Scene2 removes reserved Humans immediately after the authority call,
         //including when a receiver fails. Retract all borrowers while it lives.
@@ -219,6 +228,15 @@ public:
     void set_runtime_actor_active(GameActorServices::Actor& actor,bool value){runtime_.set_active(actor,value);}
     void remove_actor_presentation_references(typename Runtime::Instance& actor){consumers_.remove_actor_presentation_references(actor);}
     void clear_retired_actor_record(std::int32_t identity){consumers_.clear_retired_actor_record(identity);}
+    void retire_file_resources(){
+        require_open();
+        if(has_human_loading_owners())throw std::logic_error("File resource retirement still has actual Human lifetimes");
+        //Unpublished load/activation prefixes may own these before their native
+        //module finish call. Keep the same persistent facades for file repeats.
+        runtime_.clear();physics_.clear();fowl_sound_.clear();
+        animation_events_.clear();static_weapon_events_.clear();
+        items_.clear();scene_.frames().clear_actor_entries();models_.clear_model_cache();
+    }
     void close()noexcept {
         if(closed_||closing_)return;
         closing_=true;
