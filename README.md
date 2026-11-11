@@ -89,10 +89,11 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and 2,367 partial entries (2,362 client and five engine).
+complete client functions and 2,471 partial entries (2,466 client and five engine).
 The [Physics object frame checkpoint](analysis/physics-object-frame-motion.md) supplies type0..5 motion, contact-seeded tipping, actual module2 queries, impulse/wake and ordered retirement source-only. Tree replacement/pickup and application/desktop integration remain required.
-The [Sight frame checkpoint](analysis/sight-shot-frame-source.md) binds scheduling, Human range/visibility metrics and marker rays to SAME World owners, source-only. Positive Dog/attachment/material branches and application/desktop delivery remain required.
+The [Sight frame checkpoint](analysis/sight-shot-frame-source.md) binds scheduling, Human range/visibility metrics and marker rays to SAME World owners, source-only. Positive Dog/attachment branches and application/desktop delivery remain required.
 The [Human frame checkpoint](analysis/human-frame-source.md) covers callback order, perception, E0 commands, Guard, Area and Script dispatch, action completion, reload, AI aim and DD0 frame coordination, queued control actions, face transitions, pooled breathing/motion audio, ground-frame coordination, shared track displacement and velocity selection, ground geometry, walking collision, water/fall state and direction replay, Human contacts, shared ground projection/geometry publication, Look dispatch/posture-room/lateral collision and lazy held-model classification, Player command/input phases, weapon readiness/scope and breath state, and offline Ladder requests, Ladder setup/movement and model-geometry dispatch in source. The [shared Scene2 movement source](analysis/human-scene-movement.md) supplies floor and actor contacts and pooled local detours. The containing module facade uses these owners. Positive B0, DD0, fire and application integration remain required.
+The [Human motion/pose checkpoint](analysis/checkpoints/p2.2-human-motion-pose-20261111.json) adds source arbitration, step/water/air motion, face hits, secondary clips, hand IK and weapon posture/camera receivers. [P22-HUM remains open](analysis/p22-hum-plan.md) for the remaining model, reaction/ragdoll, action, AI, Player and particle paths.
 The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) records
 the earlier accumulated source subsets. Later checkpoints include Human
 weapons/formation/Players, [prepared spawning](analysis/session-activation-loading.md),
@@ -241,11 +242,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **2,371 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **2,471 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 2,366 |
+| Base game client | 17,294 | 34 | 2,466 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

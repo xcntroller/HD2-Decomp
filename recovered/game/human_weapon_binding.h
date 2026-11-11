@@ -10,6 +10,7 @@
 #include <stdexcept>
 #include <utility>
 #include "game/human_state_frame_timers.h"
+#include "game/human_animation_requests.h"
 
 namespace hd2::game {
 
@@ -36,6 +37,24 @@ public:
         state_.field630c=static_cast<std::uint32_t>(duration);
         state_.field6308=std::isfinite(value)&&value>=-0x1p63L&&value<0x1p63L?static_cast<std::uint32_t>(static_cast<std::int64_t>(value)):0;
         state_.flag62c8=true;state_.field6304=(state_.field6304&0x0fffffc2u)|0x40000001u;
+    }
+    void unblend(std::int32_t duration){ //007B8D60, existing6950 weapon model and blend progress.
+        if(!state_.flag62c8||!model()||!(state_.field6304&1u))return;
+        state_.field630c=static_cast<std::uint32_t>(duration);
+        state_.field6308=static_cast<std::uint32_t>(human_animation_time_integer(static_cast<long double>(duration)*human_animation_word_float(state_.field6318)));
+        state_.flag62c8=false;state_.field6304=(state_.field6304&0x3fffffffu)|0x80000000u;
+    }
+    void suspend(std::int32_t duration,bool detach){ //007B8E10, native300-ms unblend before optional immediate detach flags.
+        if(!model()||!(state_.field6304&1u))return;
+        state_.field6304|=0x10000000u;state_.field6310=static_cast<std::uint32_t>(duration);
+        unblend(300);
+        if(detach){state_.field6318=0;state_.field6304=(state_.field6304&0x7ffffffau)|4u;}
+    }
+    void suspend_for_item_action(std::int32_t duration){ //007B8DC0.
+        if(model()&&(state_.field6304&1u)){suspend(duration,true);return;}
+        if(state_.field6304&0x40u){
+            state_.field6310=static_cast<std::uint32_t>(duration);state_.field6304|=0x30000004u;state_.field6318=0;
+        }
     }
     void stow(bool enabled) { //007B96C0; clearing is completed by the later geometry update.
         if(!model()||stowed()==enabled)return;

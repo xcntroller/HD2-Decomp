@@ -3,6 +3,7 @@
 
 #include "game/human_joint_owners.h"
 #include "game/human_equipment_command.h"
+#include "game/human_ai_shot_direction.h"
 
 namespace hd2::game {
 
@@ -29,7 +30,7 @@ public:
     void reset(std::uint32_t property) { //0077DDC0 calls0077FD40 before its own writes.
         reset_human_look_words(state_);
         action_model_=Frame{}; //Native04 is a typed borrowed frame, never a host pointer DWORD.
-        interaction_actor_=nullptr; //Native08.
+        interaction_actor_=nullptr;interaction_frame_=Frame{}; //Native08 and typed94 frame alternative.
         state_.set(0xbc,std::int32_t{-10000});state_.set(0xa0,property);state_.set(0xb0,std::uint8_t{0});
         for(auto offset:{0xb8u,0xc0u,0xd4u,0xd0u,0x40u,0xc8u,0xccu,0xb4u,0xd8u})state_.set(offset,std::uint32_t{0});
     }
@@ -53,7 +54,7 @@ public:
             if(state_.template get<std::int32_t>(0x48)!=command){state_.set(0x48,command);if(changed)state_.set(0x40,state_.template get<std::uint32_t>(0x40)|2u);}
         }else state_.set(0xc8,state_.template get<std::uint32_t>(0xc8)|2u);
     }
-    void interaction_command(Actor* actor,std::uint32_t subtype,std::uint32_t argument){ //0077FBB0, changed=true.
+    void interaction_command(Actor* actor,std::uint32_t subtype,std::uint32_t argument,Frame frame=Frame{}){ //0077FBB0, changed=true.
         if(!control_)throw std::logic_error("Human interaction command requires actual DD0");
         const auto animation=static_cast<std::int32_t>(control_->animation_state_word(0x1d8));
         constexpr std::uint32_t mask=0x4000u;
@@ -64,9 +65,11 @@ public:
         if(state_.template get<std::uint32_t>(0x90)==subtype)return;
         state_.set(0x90,subtype);interaction_actor_=actor;
         state_.set(0x94,argument);
+        interaction_frame_=frame; //The model argument stays outside native DWORD storage on wider hosts.
         state_.set(0x40,state_.template get<std::uint32_t>(0x40)|mask);
     }
     Actor* interaction_actor()const{return interaction_actor_;}
+    Frame interaction_frame_argument()const{return interaction_frame_;}
     void frame_item_action(std::int32_t command){ //0077F380.
         if(locked(0x200u)){defer(0x200u);return;}
         if(state_.template get<std::int32_t>(0x58)==command)return;
@@ -206,6 +209,45 @@ public:
         control_->geometry().command_target_direction(value,control_->human_is_player());
         control_->physical().target_direction(value);
     }
+    template<class Frames,class Services>void hit_command(std::uint32_t flags,const HumanVector& position,
+            const HumanVector& direction,Frames& frames,Services& services){ //0077F7B0.
+        if(locked(0x2000u)){defer(0x2000u);return;}
+        if(!control_||!human_slot_||!*human_slot_)throw std::logic_error("Human hit command requires its actual DD0 and Human slot");
+        if(control_->animation_state_word(0x1d8)==98){control_->geometry().command_hit(flags,position,direction,services);return;}
+        state_.set(0x60,flags);
+        auto reverse=direction;
+        for(unsigned axis=0;axis!=3;++axis)reverse[axis]=-reverse[axis];
+        const auto square=(static_cast<long double>(reverse[2])*reverse[2]+
+            static_cast<long double>(reverse[1])*reverse[1])+static_cast<long double>(reverse[0])*reverse[0];
+        normalize_human_ai_shot(reverse,square);
+        const auto model=(*human_slot_)->base().frame();
+        const auto matrix=frames.actor_world_matrix(model);
+        std::array<long double,3> forward{{matrix[8],matrix[9],matrix[10]}};
+        const auto forward_square=(forward[2]*forward[2]+forward[1]*forward[1])+forward[0]*forward[0];
+        constexpr float epsilon=9.99999993922529e-09f;
+        if(!(std::abs(forward_square-1)<epsilon)){
+            const float stored=static_cast<float>(forward_square);
+            if(!(stored<epsilon)){
+                const auto inverse=1.L/std::sqrt(static_cast<long double>(stored));
+                forward[0]*=inverse;forward[1]*=inverse;
+                forward[2]=static_cast<float>(forward[2]*inverse); //Native X/Y remain extended through classification.
+            }else{
+                const auto axis=forward[0]!=0?0u:forward[2]!=0?2u:1u;
+                forward[axis]=forward[axis]<0?-1.L:1.L;
+            }
+        }
+        const auto dot=(forward[2]*reverse[2]+forward[1]*reverse[1])+forward[0]*reverse[0];
+        if(dot>.707)flags|=0x40u;
+        else if(dot<-.707)flags|=0x80u;
+        else{
+            const auto current=frames.actor_world_matrix(model);
+            const auto side=(static_cast<long double>(reverse[2])*current[2]+
+                static_cast<long double>(reverse[1])*current[1])+static_cast<long double>(reverse[0])*current[0];
+            flags|=side>0?0x200u:0x100u;
+        }
+        state_.set(0x60,flags);state_.set(0x80,position);state_.set(0x70,direction);
+        control_->geometry().command_hit(flags&0x3fu,position,direction,services);
+    }
     std::uint32_t consume_frame_feedback(){ //005AC0D0, EAX returns OLD CC before clearing one-shot bits.
         const auto flags=state_.template get<std::uint32_t>(0xcc);state_.set(0xcc,flags&0xfffd0fefu);return flags;
     }
@@ -276,7 +318,7 @@ private:
     bool locked(std::uint32_t mask)const{return !state_.template get<std::uint8_t>(0xb0)&&((state_.template get<std::uint32_t>(0xd0)|state_.template get<std::uint32_t>(0xd4))&mask);}
     void defer(std::uint32_t mask){state_.set(0xc8,state_.template get<std::uint32_t>(0xc8)|mask);}
     HumanJointWords<0xe0> state_; //Only the stores above are behaviorally reconstructed.
-    Control* control_=nullptr;Control* second_control_=nullptr;Frame action_model_{};
+    Control* control_=nullptr;Control* second_control_=nullptr;Frame action_model_{},interaction_frame_{};
     Actor* interaction_actor_=nullptr;
     decltype(std::declval<Control&>().human_slot_address()) human_slot_=nullptr;
 };

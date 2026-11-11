@@ -9,6 +9,7 @@
 #include "game/human_sight_relations.h"
 #include "game/collision_ray.h"
 #include "game/collision_water_queries.h"
+#include "game/dynamic_collision_point_queries.h"
 #include "game/human_frame_feedback.h"
 #include "game/human_item_frame_execution.h"
 #include "game/human_scene_frame.h"
@@ -19,6 +20,7 @@
 #include "game/human_frame_stats.h"
 #include "game/human_actor_contact.h"
 #include "game/human_frame_commands.h"
+#include "game/scene_light_sample.h"
 #include "game/geometry_scene_actors.h"
 #include "game/simple_scene_actors.h"
 #include <algorithm>
@@ -50,6 +52,10 @@ public:
     auto& human_ai_frame_inputs(){return dependencies().startup.human_ai_frame_inputs();}
     auto& human_ai_navigation_jobs(){return dependencies().startup.human_ai_navigation_jobs();}
     std::uint32_t human_frame_random_word(){return dependencies().startup.random_word();}
+    bool human_integrity_matches(std::size_t stage){
+        auto& tables=dependencies().startup.mission_integrity_tables();
+        return tables.expected(stage)==tables.observed(stage);
+    }
     std::uint32_t human_control_microseconds(){return dependencies().clock.microseconds();}
     float human_control_animation_scale(){return dependencies().startup.human_animation_time_scale();}
     float human_control_world_floor()const{return dependencies().bounds.scene_minimum_y();}
@@ -67,6 +73,9 @@ public:
         if(!door)throw std::runtime_error("AI navigation reference requires an actual Door");
         return *door;
     }
+    void human_action_request_door(void* actor,std::uint32_t command){ //00751480 case1, real005FF4B0(command,1,0,0).
+        human_navigation_door(actor).change_state(command,true,false,false,dependencies().world_actors);
+    }
     void human_navigation_request_door(void* actor,std::uint32_t flags){ //00586200 subtype1B.
         auto& door=human_navigation_door(actor);
         if((flags&1u)&&(mode_flags()&1u)){
@@ -82,11 +91,24 @@ public:
     template<class Actor>bool human_scene_actor_matches(Actor& actor){return dependencies().scene.frames().scene_actor_identity(actor.base().id10())==&actor;} //00475DD0.
     auto& human_perception_record_pool(){return dependencies().startup.human_perception_record_pool();}
     bool human_face_quality_enabled(){return dependencies().startup.human_face_quality_enabled();}
+    bool human_geometry_effect_quality(){return dependencies().startup.profile_settings().quality_byte(5)!=0;}
+    void* human_geometry_containing_actor(const HumanVector& point,std::uint32_t mask){
+        auto& d=dependencies();
+        if(!d.session.loaded)throw std::logic_error("Human geometry point query requires actual loaded World");
+        using Scene=std::remove_reference_t<decltype(d.scene)>;
+        DynamicCollisionPointQueries<typename Scene::Descriptor,typename Scene::Tree::DynamicGrid,typename Dependencies::ActorFrames>
+            query(d.scene.buckets(),d.scene.frames());
+        const auto* descriptor=query.containing(point,mask);
+        if(!descriptor||!(descriptor->flags&0xc0u)||!descriptor->frame)return nullptr;
+        return d.sight.sight_actor(descriptor->frame);
+    }
     bool presentation_application_fallback(){return human_remote_ai_enabled();} //00785BE0→006B66B0.
     const auto& presentation_mission_name()const{return dependencies().request.preparation.mission_resource;}
     auto& human_face_resources(){return dependencies().faces;}
     std::int32_t human_face_camouflage(){return static_cast<std::int32_t>(dependencies().presentation_shared.settings().terrain);} //Actual0098A6B0.
     auto human_animation_resource(unsigned table,unsigned row){return dependencies().animations.resource(table,row);}
+    const auto& human_animation_row(unsigned table,unsigned row){return dependencies().animations.row(table,row);}
+    auto& human_animation_arbitration(){return dependencies().animations.arbitration_process();}
     template<class Human>auto& human_look_control(Human& human){
         auto* look=composition(human).control().look();
         if(!look)throw std::runtime_error("Human animation requires its actual inline E0");
@@ -102,6 +124,16 @@ public:
         auto* equipment=composition(human).control().equipment();
         if(!equipment)throw std::logic_error("Human presentation requires actual equipment");
         return *equipment;
+    }
+    auto human_hand_action_model(){auto& d=dependencies();return d.startup.item_hand_models().get(d.scene.frames(),0);} //007D76C0(0), SAME process cards cache.
+    template<class Human,class Frame>Human* human_mounted_model_actor(Frame frame){
+        auto* actor=dependencies().sight.sight_actor(frame);if(!actor)return nullptr;
+        auto* human=dynamic_cast<Human*>(actor);
+        if(!human)throw std::runtime_error("Human mount model is bound to a different actor family");
+        return human;
+    }
+    template<class Frame>void restore_human_mount_camera_amount(Frame frame){
+        (void)dependencies().scene.effects().model_camera_amount(frame,0.f); //00486510 GEffects virtual50=00486D30.
     }
     template<class Human>bool human_is_player(const Human& human)const{return human_camera_is_player(human,mode_flags(),human_current_player_id());} //005A0890, AL.
     template<class Human>bool human_is_view_actor(const Human& human)const{return human_is_player(human);}
@@ -411,8 +443,10 @@ public:
     }
     template<class Human>std::optional<float> sight_surface_factor(Human& human){ //005AC430 reads actual DD0+754.
         auto* control=human_inline(human).control();if(!control)throw std::runtime_error("Sight surface query requires actual Human DD0");
-        if(control->physical().ground_contact())throw std::runtime_error("Sight surface requires actual populated DD0+754 material and GEffects94 receiver");
-        return std::nullopt; //Actual cold NULL754 branch; no producer for a synthetic surface.
+        const auto& contact=control->physical().ground_contact();
+        if(!contact)return std::nullopt;
+        const auto material=human_geometry_flags(*contact)>>24; //Original byte754+3, SAME collision identity flags.
+        return dependencies().startup.effects_loading_process().decorations.material_sight_factor(material); //GEffects+94.
     }
     long double sight_view_distance(){return dependencies().scene.frames().sight_view_distance();}
     template<class Human>bool sight_attachment_direction(Human&,HumanVector&){throw std::runtime_error("Sight attachment direction requires actual actor virtual98/A4 receivers");}
@@ -522,6 +556,23 @@ public:
         const auto id=*hit->static_identity;const auto& tree=dependencies().scene.collision_tree();
         return SightRayHit{id.kind?tree.shapes.at(id.kind-0x80).at(id.index).flags:tree.triangles.at(id.index).flags,nullptr};
     }
+    template<class Frame>bool human_light_observation(Frame model,float& shadowed,float& plain){ //005A6710 via actual modelEC/Actor/B0.
+        auto* actor=dependencies().sight.sight_actor(model);
+        if(!actor)throw std::logic_error("Human light observation requires the actual model Actor binding");
+        auto& human=selection_human(*actor);
+        return human.loading_state&&human.loading_state->observe_navigation_light(shadowed,plain);
+    }
+    template<class Frame>long double human_scene_light(const HumanVector& position,Frame sector,bool shadows){
+        struct Queries {
+            HumanWorldLoadingServices& world;
+            auto ray(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags,bool){
+                return world.sight_ray(start,displacement,layers,flags);
+            }
+        } queries{*this};
+        auto& d=dependencies();
+        return sample_scene_light(d.scene.frames(),queries,position,sector,shadows,d.session.status);
+    }
+    template<class Actor>bool human_action_car_disabled(Actor& actor){return dependencies().scene.car_callbacks().car_field6a0(&actor)==0;} //004DDCF0, actual Car body health.
     template<class Composition,class Human>Composition& human_loading_owner(Human& human){return dependencies().world_actors.template human_loading_owner<Composition>(human);}
     template<class Human>bool human_selected_suppressed(Human& human){return dependencies().presentation.human_selected_suppressed(human);}
     template<class Human>auto human_attached_actor(Human& human){return human.field160;}

@@ -175,6 +175,11 @@ public:
         if(state_.template get<std::uint32_t>(0x11c))throw std::runtime_error("Human movement sound requires its actual return owner");
         close_motion_audio(frames,pool);
     }
+    void fade_motion_audio(){ //007706F0(false), also called by0076AE70.
+        const auto timer=state_.template get<std::int32_t>(0x120);
+        if(timer==-10000)state_.set(0x120,std::int32_t{-500});
+        else if(timer>0)state_.set(0x120,0u-static_cast<std::uint32_t>(timer));
+    }
 private:
     static void normalize_ground_direction(HumanVector& value){
         const auto square=(static_cast<long double>(value[2])*value[2]+
@@ -188,11 +193,6 @@ private:
             if(initial)frames.human_sound_volume(sound.get(),0.f);
             sound_.emplace(std::move(sound));
         }
-    }
-    void fade_motion_audio(){ //007706F0(false).
-        const auto timer=state_.template get<std::int32_t>(0x120);
-        if(timer==-10000)state_.set(0x120,std::int32_t{-500});
-        else if(timer>0)state_.set(0x120,0u-static_cast<std::uint32_t>(timer));
     }
     template<class Frames,class Pool>void close_motion_audio(Frames& frames,Pool& pool){ //007706F0(true).
         if(sound_){

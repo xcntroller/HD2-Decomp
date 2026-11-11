@@ -2,7 +2,9 @@
 #define HD2_GAME_HUMAN_FACE_MODEL_H
 
 #include "game/human_face_resources.h"
+#include "game/human_face_hit_geometry.h"
 #include <algorithm>
+#include <cstring>
 #include <optional>
 
 namespace hd2::game {
@@ -68,6 +70,47 @@ public:
         variant_=variant;
         if(private_textures_)upload_first();
         else set_group_texture(0,variant?shared_.camouflage(variant):shared_.base());
+    }
+    template<class Random,class Clock>void apply_hit(const HumanVector& position,const HumanVector& direction,
+            std::uint32_t flags,Random& random,Clock&& clock){ //00799760, SAME62B0 graph, masks and private textures.
+        if(!flags||!data_||!visual_||!lod_)return;
+        frames_.with_human_face_hit_mesh(lod_,visual_,[&](auto& mesh){
+            const auto world=frames_.actor_world_matrix(visual_);
+            human_face_hit::Position offset{{position[0]-world[12],position[1]-world[13],position[2]-world[14]}},local;
+            for(unsigned axis=0;axis!=3;++axis){
+                const auto matrix=frames_.actor_world_matrix(visual_);
+                local[axis]=static_cast<float>((static_cast<long double>(offset[2])*matrix[axis*4+2]+
+                    static_cast<long double>(offset[1])*matrix[axis*4+1])+static_cast<long double>(offset[0])*matrix[axis*4]);
+            }
+            const auto forward_matrix=frames_.actor_world_matrix(visual_);
+            const float forward=static_cast<float>((static_cast<long double>(forward_matrix[9])*direction[1]+
+                static_cast<long double>(forward_matrix[10])*direction[2])+static_cast<long double>(forward_matrix[8])*direction[0]);
+            const auto side_matrix=frames_.actor_world_matrix(visual_);
+            const float side=static_cast<float>((static_cast<long double>(side_matrix[1])*direction[1]+
+                static_cast<long double>(side_matrix[2])*direction[2])+static_cast<long double>(side_matrix[0])*direction[0]);
+            if(std::abs(forward)>std::abs(side))flags|=std::signbit(forward)?0x40u:0x80u;
+            else flags|=std::signbit(side)?0x200u:0x100u;
+            struct Hit {human_face_hit::Node* node=nullptr;unsigned group=0;};
+            std::array<Hit,2> hits{};
+            const auto body=[&](unsigned group){return Hit{human_face_hit::closest_body_node(data_->groups.at(group),local,mesh,random),group};};
+            switch(flags&0x3fu){
+            case 1:hits[0]={human_face_hit::closest_head_node(data_->groups[0],local,mesh,random),0};break;
+            case 2:hits[0]=body(5);break;
+            case 4:hits[0]=body(6);break;
+            case 8:
+                if(flags&0x40u)hits[0]=body(1);
+                else if(flags&0x80u)hits[0]=body(2);
+                else if(flags&0x300u){hits[0]=body(1);hits[1]=body(2);}
+                break;
+            case 16:case 32:
+                if(flags&0x40u)hits[0]=body(3);
+                else if(flags&0x80u)hits[0]=body(4);
+                else if(flags&0x300u){hits[0]=body(3);hits[1]=body(4);}
+                break;
+            default:break;
+            }
+            for(const auto& hit:hits)if(hit.node)paint_hit(*hit.node,local,mesh,hit.group,random,clock);
+        });
     }
     void use_private_textures() { //00799080; partial native loops do not set38.
         if(private_textures_||!lod_)return;
@@ -137,15 +180,23 @@ private:
     void restore_mask() {if(!masks_[0].empty()&&!scratch_.empty())masks_[0]=scratch_;}
     void blend(const std::array<std::uint16_t,4096>& source) {
         auto& mask=masks_[0];if(mask.size()<source.size())throw std::runtime_error("Human face blending requires original4096 pixels");
-        for(std::size_t n=0;n!=source.size();++n) {
-            const std::uint32_t from=source[n],to=mask[n],a=from>>12,b=to>>12,total=a+b;
-            std::uint32_t value=0;
-            if(total) {
-                value=std::max(a,b)<<12;
-                for(auto bits:{0xf00u,0xf0u,0xfu})value|=(((to&bits)*b+(from&bits)*a)/total)&bits;
-            }
-            mask[n]=static_cast<std::uint16_t>(value);
-        }
+        for(std::size_t n=0;n!=source.size();++n)mask[n]=human_face_hit::blend_pixel(source[n],mask[n]);
+    }
+    template<class Mesh,class Random,class Clock>void paint_hit(human_face_hit::Node& node,
+            const human_face_hit::Position& point,Mesh& mesh,unsigned group,Random& random,Clock& clock){ //00799BB0.
+        const auto uv=human_face_hit::texture_coordinates(node,point,mesh);
+        epoch_=clock();
+        if(masks_.at(group).empty())return;
+        fields10_[group]=1;
+        if(!private_textures_)use_private_textures();
+        frames_.with_human_face_stain_texture(textures_[group],width_,[&](unsigned char* pixels){
+            const auto& pattern=*human_face_patterns::stamps[random()%11u];
+            const auto x=human_face_hit::coordinate(static_cast<long double>(width_)*uv[0]);
+            const auto y=human_face_hit::coordinate(static_cast<long double>(height_)*uv[1]);
+            human_face_hit::stamp(masks_[group],width_mask_,height_mask_,width_log_,x,y,pattern,16,16);
+            if(pixels)std::memcpy(pixels,masks_[group].data(),masks_[group].size()*sizeof(std::uint16_t));
+            if(!group)human_face_hit::stamp(scratch_,width_mask_,height_mask_,width_log_,x,y,pattern,16,16);
+        });
     }
     void upload_first(){if(textures_[0])frames_.human_face_upload(textures_[0],masks_[0],height_);}
     Frames& frames_;Resources& shared_;

@@ -14463,13 +14463,16 @@
       "program": "client",
       "entry": "00790520",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 00790520: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 00790520: Actual inventory notification/typed peer model handoff and event0..3/removal0..3 source; action-model branches excluded. Actual mounted-equipment case9 now uses the shared inventory/model and typed Human control receivers.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_equipment_transfers.h",
         "analysis/human-equipment-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_equipment_mount.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
       ]
     },
     {
@@ -15837,13 +15840,15 @@
       "program": "client",
       "entry": "007c0d90",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007c0d90: Actual Human joint loading and allocation/binding order.",
+      "coverage": "P2.2 source reconstruction at original entry 007c0d90: Actual Human joint loading and allocation/binding order. Actual zeroed eight/two impulse arrays and ordered contact-frame retirement now share the existing loading joint lifetime.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_loading_joints.h",
         "analysis/human-model-geometry.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
       ]
     },
     {
@@ -16034,13 +16039,15 @@
       "program": "client",
       "entry": "0079bd30",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0079bd30: Actual Human geometry/skeleton/model loading and ordinary offline face lifetime; preserve-pose replacement/simulation excluded.",
+      "coverage": "P2.2 source reconstruction at original entry 0079bd30: Actual Human geometry/skeleton/model loading and ordinary offline face lifetime; preserve-pose replacement/simulation excluded. Actual retained secondary clip state, direction-work defaults and loading preference defaults support the new live pose consumers.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_model_geometry.h",
         "analysis/human-model-geometry.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
       ]
     },
     {
@@ -17199,13 +17206,16 @@
       "program": "client",
       "entry": "007a23f0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 007a23f0: Actual skeleton lookup/bone range, neighbour flags/weights and loading matrix projection.",
+      "coverage": "P2.2 source reconstruction at original entry 007a23f0: Actual skeleton lookup/bone range, neighbour flags/weights and loading matrix projection. Full general basis worker now supports arbitrary existing bases, original X projection/Y fallback, stored reciprocal and extended X normalization. Existing loading reuses this worker.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_skeleton.h",
         "analysis/human-model-geometry.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_joint_math.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
       ]
     },
     {
@@ -27634,8 +27644,8 @@
       "program": "client",
       "entry": "005ac430",
       "status": "partial",
-      "coverage": "SAME DD0 754 cold null query; positive material producer remains required and rejects.",
-      "limitations": "Source-only typed adaptation; original object/vtable/container/allocator/SEH ABI and exact x87 intermediate equivalence excluded. Actual Human frame metrics/rays bind SAME World owners; positive Dog534/544/26C, attachment98/A4 and populated DD0 754 material receivers remain required. Missing native metric outputs are explicit and their consumption rejects. No first application mission frame, graphics presentation or desktop acceptance.",
+      "coverage": "Actual positive DD0 ground-contact754 material lookup now uses existing collision identity flags and GEffects decoration94 sight factors.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
       "evidence": [
         "recovered/game/sight_loading.h",
         "recovered/game/human_sight_metrics.h",
@@ -27644,7 +27654,9 @@
         "recovered/host/game_sight_loading.h",
         "recovered/host/game_actor_frames.h",
         "analysis/sight-shot-frame-source.md",
-        "analysis/checkpoints/p2.2-sight-frame-20261110.json"
+        "analysis/checkpoints/p2.2-sight-frame-20261110.json",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
       ]
     },
     {
@@ -30499,12 +30511,13 @@
       "program": "client",
       "entry": "00787270",
       "status": "partial",
-      "coverage": "DD0 authority control order, E0 feedback, actual timing, task publication and special presentation tail.",
+      "coverage": "DD0 authority control order, E0 feedback, actual timing, task publication and special presentation tail. Actual animation arbitration, step/water/air motion, face/light, obstruction and presentation sound receivers now replace their former whole-worker Runtime leaves.",
       "limitations": "Source-only typed owners and delegated engine calls replace the original ABI. Positive Script, DD0 motion/effects, equipment and geometry receivers remain required where reached. No application or desktop mission attempt exercised this path.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-script-ai-dd0-frames-20261111.json",
-        "recovered/game/human_control_loading.h"
+        "recovered/game/human_control_loading.h",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
       ]
     },
     {
@@ -30655,12 +30668,13 @@
       "program": "client",
       "entry": "007a7470",
       "status": "partial",
-      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required.",
+      "coverage": "Actual model frame dispatch, motion samples, serial/detail/health gates, weapon flag priority and blend/stow timers, plus real target-camera collision sweep. Positive geometry workers remain required. Actual secondary clips, equipment overlays, stowed/aimed weapon presentation, mounted direction and attached head-direction publication now run at their native frame boundaries. Foot/look/attached/vehicle/target and ragdoll receivers remain required.",
       "limitations": "Source-only typed state/owners and delegated engine methods. Native fixtures exercise state/frame doubles. Positive DD0 ground/look/track and geometry workers, actual runtime/application integration and user desktop mission frame remain required.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-queued-actions-model-frames-20261111.json",
-        "recovered/game/human_model_geometry.h"
+        "recovered/game/human_model_geometry.h",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
       ]
     },
     {
@@ -31204,12 +31218,14 @@
       "program": "client",
       "entry": "00770b90",
       "status": "partial",
-      "coverage": "Actual fall completion order, E0 fallback command, positive landing voice gate and falling/velocity/phase/predicted-ground reset.",
+      "coverage": "Actual fall completion order, E0 fallback command, positive landing voice gate and falling/velocity/phase/predicted-ground reset. Actual step preparation, pooled presentation sound and Human face receiver bindings replace former callback leaves.",
       "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ground_motion.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json",
+        "recovered/game/human_physics_loading.h",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
       ]
     },
     {
@@ -31576,12 +31592,13 @@
       "program": "client",
       "entry": "0077de30",
       "status": "partial",
-      "coverage": "Apply real Look commands, normalized primary/secondary selections, equipment/actions, face state and typed retained snapshot.",
+      "coverage": "Apply real Look commands, normalized primary/secondary selections, equipment/actions, face state and typed retained snapshot. Remote held-equipment selection and mounted retirement now use their actual same-owner receivers.",
       "limitations": "Positive interaction retirement/execution, Ladder exit, occupied remote equipment and mounted actor retirement remain mandatory Runtime receivers. Source-only. Application loading and desktop execution remain pending.",
       "evidence": [
         "recovered/game/human_look_frame.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-look-posture-20261111.json"
+        "analysis/checkpoints/p2.2-human-look-posture-20261111.json",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
       ]
     },
     {
@@ -31786,6 +31803,1206 @@
         "recovered/game/first_person_view_loading.h",
         "analysis/p22-ui-implementation.md",
         "analysis/checkpoints/p22-ui-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0071b650",
+      "status": "partial",
+      "coverage": "Actual three-axis collision displacement, nearest result and sliding through the existing query owner.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/collision_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057f880",
+      "status": "partial",
+      "coverage": "Actual navigation-light observation using existing B0 modes, points and pooled path jobs.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_ai_light_observation.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00524b50",
+      "status": "partial",
+      "coverage": "Actual navigation-point proximity lookup with native strict range tests.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/mission_navigation.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00773d90",
+      "status": "partial",
+      "coverage": "Actual primary/equipment/secondary selection and two-entry pending descriptor rings.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00774440",
+      "status": "partial",
+      "coverage": "Actual primary/equipment/secondary selection and two-entry pending descriptor rings.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00774470",
+      "status": "partial",
+      "coverage": "Actual primary/equipment/secondary selection and two-entry pending descriptor rings.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007749d0",
+      "status": "partial",
+      "coverage": "Actual primary/equipment/secondary selection and two-entry pending descriptor rings.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007749f0",
+      "status": "partial",
+      "coverage": "Actual primary/equipment/secondary selection and two-entry pending descriptor rings.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00774a20",
+      "status": "partial",
+      "coverage": "Actual primary/equipment/secondary selection and two-entry pending descriptor rings.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00774c60",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00775210",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007752a0",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00775310",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00775450",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00775510",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007755b0",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007755f0",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00775670",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007756a0",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00775710",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00776110",
+      "status": "partial",
+      "coverage": "Actual selected track time/threshold, resume, descriptor retirement/hold, channel masks, completion tags, mirror and clip-fraction/stop controls.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_tracks.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075c7e0",
+      "status": "partial",
+      "coverage": "Actual animation blocking/family classification used by the shared arbitration state.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075c8d0",
+      "status": "partial",
+      "coverage": "Actual animation blocking/family classification used by the shared arbitration state.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075c900",
+      "status": "partial",
+      "coverage": "Actual animation blocking/family classification used by the shared arbitration state.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00779390",
+      "status": "partial",
+      "coverage": "Actual animation blocking/family classification used by the shared arbitration state.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00777ad0",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00778b20",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007793f0",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00779b30",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00779e60",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077b870",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077c140",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077c690",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077c8d0",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077cd30",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077d3a0",
+      "status": "partial",
+      "coverage": "Actual arbitration preprocessing, three selectors/transitions, clip publication, primary constraints and ready relaxation using the existing GameAnimations scratch/C00/tracks.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_animation_arbitration.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075cba0",
+      "status": "partial",
+      "coverage": "Actual raw animation-duration lookup, preserving missing-row/clip and duration semantics.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_door_action.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00751480",
+      "status": "partial",
+      "coverage": "Door entry/completion and model-attachment actions8..10 with authored/fallback exits, typed target lifetime, real pose/link/timer/equipment and track receivers. Other occupied actions/exits remain required.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_door_action.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00755500",
+      "status": "partial",
+      "coverage": "Door entry/completion and model-attachment actions8..10 with authored/fallback exits, typed target lifetime, real pose/link/timer/equipment and track receivers. Other occupied actions/exits remain required.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_door_action.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007918c0",
+      "status": "partial",
+      "coverage": "Actual holster group4 visibility through retained parts138/13C/140.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_holsters.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075e770",
+      "status": "partial",
+      "coverage": "Actual pooled presentation sound198 and Ladder178 climb voice using the existing SOUND owner and bone16.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_physics_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075ede0",
+      "status": "partial",
+      "coverage": "Actual pooled presentation sound198 and Ladder178 climb voice using the existing SOUND owner and bone16.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_physics_loading.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075e290",
+      "status": "partial",
+      "coverage": "Actual mounted Human retirement, same-owner physical/equipment/visibility restoration and reason4 geometry entry.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_mount_retirement.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0074a690",
+      "status": "partial",
+      "coverage": "Actual step-clearance preparation, remote/authority gates, ordered sweeps, secondary collider publication and deferred posture requests.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_step_preparation.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007507a0",
+      "status": "partial",
+      "coverage": "Actual CB0 idle/breath timers, shared CRT/posture selection and descriptor/timing transforms. Positive breath particle instance emission remains required.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_idle_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00767d40",
+      "status": "partial",
+      "coverage": "Actual step HD displacement, C00/track timing windows, delayed impulses and authority publication.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_step_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00768e50",
+      "status": "partial",
+      "coverage": "Actual swimming coordination, water direction/pitch, collision displacement, breath phase and water-exit state/equipment restoration.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_water_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007694f0",
+      "status": "partial",
+      "coverage": "Actual swimming coordination, water direction/pitch, collision displacement, breath phase and water-exit state/equipment restoration.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_water_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076ae70",
+      "status": "partial",
+      "coverage": "Actual swimming coordination, water direction/pitch, collision displacement, breath phase and water-exit state/equipment restoration.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_water_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007884f0",
+      "status": "partial",
+      "coverage": "Actual swimming coordination, water direction/pitch, collision displacement, breath phase and water-exit state/equipment restoration.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_water_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00769920",
+      "status": "partial",
+      "coverage": "Actual airborne motion, landing/alignment coordination and authority/state publication through shared physical/face owners.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_air_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00769e40",
+      "status": "partial",
+      "coverage": "Actual airborne motion, landing/alignment coordination and authority/state publication through shared physical/face owners.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_air_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076a310",
+      "status": "partial",
+      "coverage": "Actual airborne motion, landing/alignment coordination and authority/state publication through shared physical/face owners.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_air_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076df20",
+      "status": "partial",
+      "coverage": "Actual terrain-alignment queries and native geometry publication. The native positive-pose/floor-miss uninitialized-normal path raises an explicit source error.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_air_alignment.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00781310",
+      "status": "partial",
+      "coverage": "Actual face-control frame gates, shared morph tables, eight expression coefficients and eye/camera transformations.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_face_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00789db0",
+      "status": "partial",
+      "coverage": "Actual light/opacity sampling, B0 observation and scene/equipment effect publication using retained model owners.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_opacity_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075ebe0",
+      "status": "partial",
+      "coverage": "Actual obstruction timers, E0 commands, voice/stage39 integrity ordering and shared physical state. Positive Human damage remains required.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_obstruction_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007c6100",
+      "status": "partial",
+      "coverage": "Actual recursive joint-point displacement/reset, retained body pose and endpoint capture using the existing body/point trees.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007c80e0",
+      "status": "partial",
+      "coverage": "Actual recursive joint-point displacement/reset, retained body pose and endpoint capture using the existing body/point trees.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cdb70",
+      "status": "partial",
+      "coverage": "Actual recursive joint-point displacement/reset, retained body pose and endpoint capture using the existing body/point trees.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_joint_owners.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cd610",
+      "status": "partial",
+      "coverage": "Actual eight/two impulse queues, original cross-queue duration store, wake/publication and retained contact-frame retirement.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cd6c0",
+      "status": "partial",
+      "coverage": "Actual eight/two impulse queues, original cross-queue duration store, wake/publication and retained contact-frame retirement.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007cda40",
+      "status": "partial",
+      "coverage": "Actual eight/two impulse queues, original cross-queue duration store, wake/publication and retained contact-frame retirement.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b0910",
+      "status": "partial",
+      "coverage": "Actual reason4/non-null-source geometry effect initialization, saved-pose/point/contact reset and containing-grid publication. Other reasons/source branches and ragdoll simulation remain required.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b3270",
+      "status": "partial",
+      "coverage": "Actual masked distributed impulses through the same joint points, native CRT draws and weight/ratio ordering.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_loading_joints.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b8c10",
+      "status": "partial",
+      "coverage": "Actual six-key action overlay capture across all23 retained bones, native missing-position/rotation sentinels and null disable.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f7b0",
+      "status": "partial",
+      "coverage": "Actual deferred/special/ordinary hit commands, native direction classification, saved flags/position/direction and geometry publication.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_look_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b8450",
+      "status": "partial",
+      "coverage": "Actual face-first hit dispatch, geometry/source gates, normalized/capped impulses, root wake and200ms queue publication.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00797620",
+      "status": "partial",
+      "coverage": "Actual mesh-node head/body searches and clipped signed-word ARGB4444 stamps using the retained mesh graph and native patterns.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_face_hit_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00797780",
+      "status": "partial",
+      "coverage": "Actual mesh-node head/body searches and clipped signed-word ARGB4444 stamps using the retained mesh graph and native patterns.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_face_hit_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00797e40",
+      "status": "partial",
+      "coverage": "Actual mesh-node head/body searches and clipped signed-word ARGB4444 stamps using the retained mesh graph and native patterns.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_face_hit_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00798010",
+      "status": "partial",
+      "coverage": "Actual mesh-node head/body searches and clipped signed-word ARGB4444 stamps using the retained mesh graph and native patterns.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_face_hit_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0079a420",
+      "status": "partial",
+      "coverage": "Actual mesh-node head/body searches and clipped signed-word ARGB4444 stamps using the retained mesh graph and native patterns.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_face_hit_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00799760",
+      "status": "partial",
+      "coverage": "Actual model face-hit classification, repeated mesh/frame queries, epoch/private texture slots, UV/stamp selection and locked texture/scratch publication.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_face_model.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00799bb0",
+      "status": "partial",
+      "coverage": "Actual model face-hit classification, repeated mesh/frame queries, epoch/private texture slots, UV/stamp selection and locked texture/scratch publication.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_face_model.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007ae320",
+      "status": "partial",
+      "coverage": "Actual mode-gated secondary pose/equipment overlay selection, retained cursors and frame flags.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007ae390",
+      "status": "partial",
+      "coverage": "Actual mode-gated secondary pose/equipment overlay selection, retained cursors and frame flags.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b02b0",
+      "status": "partial",
+      "coverage": "Actual retained-skeleton secondary clip traversal, independent position/rotation cursors, per-bone influence and engine pose publication.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_clip_pose.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007afc20",
+      "status": "partial",
+      "coverage": "Actual secondary-clip frame entry/exit ramp, signed scaled time, model update and strict duration expiry.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a2310",
+      "status": "partial",
+      "coverage": "Actual unchecked bone-matrix orthonormalization and native spherical direction interpolation, including parallel/opposite/NaN gates and FLOAT spill order.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_joint_math.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a4140",
+      "status": "partial",
+      "coverage": "Actual unchecked bone-matrix orthonormalization and native spherical direction interpolation, including parallel/opposite/NaN gates and FLOAT spill order.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_joint_math.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a2f10",
+      "status": "partial",
+      "coverage": "Actual matrix-up alignment, retained-bone orientation and weighted correction through real model/reference/parent matrices and quaternion APIs.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_bone_direction.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a43c0",
+      "status": "partial",
+      "coverage": "Actual matrix-up alignment, retained-bone orientation and weighted correction through real model/reference/parent matrices and quaternion APIs.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_bone_direction.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007bf980",
+      "status": "partial",
+      "coverage": "Actual matrix-up alignment, retained-bone orientation and weighted correction through real model/reference/parent matrices and quaternion APIs.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_bone_direction.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007bfe80",
+      "status": "partial",
+      "coverage": "Actual matrix-up alignment, retained-bone orientation and weighted correction through real model/reference/parent matrices and quaternion APIs.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_bone_direction.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007a3710",
+      "status": "partial",
+      "coverage": "Actual two-bone position solver, sign-bit reach failure, preferred/opposed bends and stored/extended geometry arithmetic.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_two_bone_ik.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007c02f0",
+      "status": "partial",
+      "coverage": "Actual hand/weapon orientation, retained grip/butt/shoulder blend, two-bone arm chains and real local-frame publication.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007c09c0",
+      "status": "partial",
+      "coverage": "Actual hand/weapon orientation, retained grip/butt/shoulder blend, two-bone arm chains and real local-frame publication.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007afd70",
+      "status": "partial",
+      "coverage": "Actual complete equipment overlay and stowed presentation branches, same retained weapon, ordered hand offsets/IK and parent restoration.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b9750",
+      "status": "partial",
+      "coverage": "Actual complete equipment overlay and stowed presentation branches, same retained weapon, ordered hand offsets/IK and parent restoration.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b8d60",
+      "status": "partial",
+      "coverage": "Actual weapon unblend/suspend/item-action transitions using the existing retained model and shared geometry flags/timers.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_weapon_binding.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b8dc0",
+      "status": "partial",
+      "coverage": "Actual weapon unblend/suspend/item-action transitions using the existing retained model and shared geometry flags/timers.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_weapon_binding.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b8e10",
+      "status": "partial",
+      "coverage": "Actual weapon unblend/suspend/item-action transitions using the existing retained model and shared geometry flags/timers.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_weapon_binding.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007b9cb0",
+      "status": "partial",
+      "coverage": "Actual aimed wrapper and four posture workers, real Human activation vector, prone World ray, bone/hand/weapon posing, target interpolation and retained camera adjustment.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007ba830",
+      "status": "partial",
+      "coverage": "Actual aimed wrapper and four posture workers, real Human activation vector, prone World ray, bone/hand/weapon posing, target interpolation and retained camera adjustment.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007bb540",
+      "status": "partial",
+      "coverage": "Actual aimed wrapper and four posture workers, real Human activation vector, prone World ray, bone/hand/weapon posing, target interpolation and retained camera adjustment.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007bcfc0",
+      "status": "partial",
+      "coverage": "Actual aimed wrapper and four posture workers, real Human activation vector, prone World ray, bone/hand/weapon posing, target interpolation and retained camera adjustment.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007be6f0",
+      "status": "partial",
+      "coverage": "Actual aimed wrapper and four posture workers, real Human activation vector, prone World ray, bone/hand/weapon posing, target interpolation and retained camera adjustment.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007ba0c0",
+      "status": "partial",
+      "coverage": "Actual mount-specific timer/direction correction and head-direction quaternion blending through the retained skeleton and real engine publication.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007ada10",
+      "status": "partial",
+      "coverage": "Actual mount-specific timer/direction correction and head-direction quaternion blending through the retained skeleton and real engine publication.",
+      "limitations": "Source-only reconstruction using existing typed owners and native host adaptations. Only the bodies/branches documented in the Human frame contract are covered. Original object/container/allocator/SEH ABI, remaining positive Runtime receivers, containing application loading and mission desktop acceptance are excluded. Engine and CRT calls remain delegated. No whole-body equivalence or complete-function promotion is claimed.",
+      "evidence": [
+        "recovered/game/human_model_geometry.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
       ]
     }
   ]

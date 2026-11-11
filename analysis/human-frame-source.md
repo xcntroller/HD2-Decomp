@@ -1005,3 +1005,559 @@ partial credit, with zero complete or desktop promotions. Both P2.2 checkboxes
 remain open. Application loading still declines and mission desktop acceptance
 has not occurred. Continue the positive interaction and Ladder receivers, then
 remaining DD0/B0/frame/render/integrity/application integration.
+
+
+## Mounted retirement, motion and model pose checkpoint
+
+This work belongs to P22-HUM. The user requests commits only after a complete
+blocker-matrix ID. Function credit and consolidated verification remain pending.
+Application loading still declines and no mission desktop test has occurred.
+
+00790520 case9 now animates the actual retained action model using table0 row291,
+ticks1000, performs the original placement sweep under actual Human exclusions,
+then publishes position, scene144, update and release in order. Near/far/no-hit
+placement follows native thresholds.0077DE30 remote selection rereads the real
+hand holder and uses existing230 selection and transfer events3/0.
+
+0075E290 now restores current equipment, removes its action model, resolves the
+actual model EC-bound target Human, refreshes target posture/shots/shadow and
+flattened visual list, publishes current shot descriptors and invokes target
+geometry007B0910 reason4 with the current Human as source. Actual GEffects
+virtual50=00486D30 resets target camera amount after geometry initialization.
+
+The selected007B0910 invocation bypasses clip capture and source-null impulses.
+It preserves offline quality5 observation and repeated005A6380 queries, rebuilds
+existing joints when required, restores saved local bones9/12/13/7/15/14/4/5/6,
+rebinds actual bodies, retires degenerate endpoint leaves and initializes real
+points.007CDA40 releases retained engine frames at point150 before clearing them.
+Original007CC262/007CCD48 publish these retained frames, and0079BAC0 releases them
+before either joint tree. Eleven saved body180 words at691C have an actual zero
+producer at0079C18B..0079C1A1. Their later producer coverage remains open.
+007CDB70 captures parent-relative matrices/quaternions and007C80E0 captures actual
+endpoints.007C6100 resets point trees and anchored body origins. Model detach5,
+scene138(model,z,q), scene144, geometry200 and FPV snapshot precede actual006FB920
+containing queries under Human exclusions. Support actor6414 comes from the
+actual descriptor frame EC binding. Source-null effect entry, clip effects and
+positive ragdoll simulation/presentation remain required.
+
+Source retains existing padding for native unwritten fourth lanes in recursive
+point translation and effect point/previous-position scratch. Local pose restore
+uses the established adapter that writes scale XYZ and preserves native DC
+padding. Geometry gravity retains its prior padding. Pure local velocity
+arithmetic overwritten by the non-null source's zero XYZ is omitted. Actual
+engine matrix, quaternion, scale, frame and scene boundaries remain mandatory.
+
+0074A690 is the shared step/climb clearance worker also reached at Ladder exit.
+Rollback-only AngleTo/sweep/ray ABI corrections resolve the original decompiler's
+stack aliases. Three forward downward probes (two for the native running gate),
+normal-angle qualification, underfoot ray, vertical/forward/headroom sweeps,
+secondary descriptor shortening, exact rise thresholds and queued posture changes
+now use the actual owners. The initial sphere is captured before posture rebind.
+The native intermediate float spills and extended comparisons are retained.
+All query exits restore exclusions. Nonoffline B0 notifications remain required
+at their actual call boundaries. Secondary descriptor padding remains preserved.
+
+WORK `human-geometry-effect-begin`, `human-geometry-effect-begin-abi`,
+`human-geometry-effect-joint-workers`, `human-step-preparation-abi`, the corresponding
+assembly and constants JSON preserve original evidence. Rollback-only exporters
+never save Ghidra changes. Native ASan/UBSan/LSan fixtures cover actual geometry and
+joint owners with explicit engine/unexercised offline-face doubles, plus step
+clearance and coordinator paths with explicit containing-owner/collision doubles.
+The actual World i386 fixture instantiates all real source owners and both passes,
+with declaration-only remaining Runtime receivers. Logs remain in durable WORK.
+
+### Uncommitted animation arbitration
+
+00779B30 now uses process-shared scratch009833B8..0098354C in the existing
+GameAnimations owner. The three selection workers00777AD0/007793F0/00778B20,
+primary/equipment compatibility0077C690/0077C8D0 and secondary preprocessing
+0077CD30 are in source. Descriptor copies preserve their native meaningful
+three/two words and retain padding. Native table indices persist across the
+original valid/invalid property gates. Primary/secondary duration words are raw
+FLOAT, confirmed by FLD77841A/7784AD/7798DE. Equipment rows use raw FLOAT
+weight/blend, confirmed779114 and77918B. Actual resource failures retain the
+previous descriptor and clear only the native queued ID.
+
+New track receivers cover00774C60,00775210,007752A0,00775310,00775450,
+007755B0/007755F0/00775670,007756A0,00773D90,00774470,00774A20,00775510
+and00775710. Bone masking preserves the original donor-before-decrement and
+advancing-index behavior. Actual native caller supplies eight bones and count7.
+Shared native __ftol conversion retains the prior signed64/low-DWORD behavior.
+DD0 scalar frame access now aliases real track storage260..603, including
+pause274 and displacement4D0, through a bound view with typed-pointer guards.
+
+Secondary transition0077C140 publishes actual C00 wait commands and tags,
+borrows the process cards cache007D76C0(0), creates/copies real kind9 models,
+uses actual equipment events and transfers native references. Equipment
+transition0077B870 publishes real A20/A24/A1C, command locks and the existing
+posture deque. Assembly77BFD9..77C063 confirms the distinct follow-up blend,
+double truncation and remaining x87 value used by A1C. Weapon receivers
+007B8D60/007B8DC0/007B8E10 use the existing model and movement blend state.
+007AE320/007AE390 publish actual geometry clip/overlay gates. Their positive
+presentation workers remain required. Native007AE390 ignores its clip argument.
+
+Equipment attachment0078DF60 cases5..8 and removal00790520 cases5..7 now share
+actual230 state. Saved world quaternion and selected world position snapshots,
+reference increments, selected HW1/HW2 volumes, hidden150, local position,
+opacity, release-before-unlink for attached kind7 and scene reparenting for kind5
+retain native order. Transfer events6..11 route these actual action bodies.
+Other action attachment/removal cases remain required. Climb voice0075EDE0
+uses actual Ladder178, DD0 bone16 and SOUND emission, retaining the994 handle.
+
+Primary transition00779E60 is now source-bound. It preserves follow-up descriptor
+normalization, turn delay, Ladder projection, step displacement/rise timings,
+posture and lateral stopping, real clip duration/blend truncation, deferred
+posture and secondary collider insertion, command locks and voice retirement.
+00776110 uses the actual minimum FLOAT fraction.22, whose1000-ms product
+truncates to219. Native trailing x87 state and intermediate FLOAT spills are
+preserved in the wait calculations. Unwritten marker/impulse fourth lanes
+retain their existing source values. A native five-word secondary event scratch
+overflow becomes an explicit source error.
+
+00751480 case1 now publishes the actual typed A3C Door borrower and action words,
+uses existing00602320 side/005FF4B0 state services and0075CBA0 raw duration.
+00755500 handles its genuine inactive gates and Door timer completion, retaining
+the original target after completion. Other positive action cases remain
+mandatory. Primary Door handle lookup now reads this same A3C owner.
+
+0075E770 now uses the actual initialized physical198 sound vector and existing
+shared pool lease. Its mode/current-player/group gates, bone7 orientation-cache
+side effects, native zero-offset playback and ordered0075EAA0 pool returns are
+bound.0075EDE0 similarly publishes the actual SOUND result in994 and preserves
+repeat/stop/failure gates.007918C0 is group4 holster visibility, correcting the
+initial sound interpretation. Native138/13C/140 correspond to group4's existing
+count/count/first-frame record at D8+4*24. Actual0078CE20 initializes those
+records and007919C0/00791910 publish their counts. No new owner is needed.
+
+Equipment transition SOUND now preserves third-person gates and repeated hand
+lookups005A2B10/005A2AC0, or the existing reverse/cooldown kind9 holster search.
+Native catalogue48 is the primary payload. All four weapon vtables dispatch
+slot18 to007E0290, reading native payload14/serialized10. Source uses the SAME
+runtime item/catalogue, explicit payload dispatch and SOUND request group2,
+flags1 and actual Human source. Failed playback results are retained by the
+SOUND owner and no readiness is inferred. Unsupported native payload dispatch
+and disappearing-item dereferences report explicit source errors.
+
+Focused native ASan/UBSan/LSan passes actual tracks and all three selectors and
+transitions, raw-row timing, wait/stride/step/retirement gates, posture queues,
+Door publication/completion, actual initialized holster visibility, hand-action
+attach/retire ordering and transition-sound lookups with explicit engine and
+remaining containing-stage doubles. A separate fixture initializes the actual
+physical owner and exercises its sound pool/vector returns, climb handle/bones,
+failure/repeat gates and ordered secondary collider inserts. Actual World i386
+instantiation passes. Application compile/link passes through the arbitration and Door additions.
+Evidence is in WORK arbitration exports, targeted assembly and constants JSON.
+No new ledger credit or P22-HUM completion is claimed while the ID remains open.
+
+
+### Uncommitted idle, step and swimming motion
+
+007507A0 now advances the existing CB0 timers, shared CRT draws and actual queued
+primary descriptor. Idle selection retains posture-dependent draw order and
+normalization. The swimming phase uses native constants and a single wrap
+subtraction. Winter breath retains mission settings, first-person/current-player
+suppression, timer publication before root-sector qualification, two head-bone
+world-matrix reads and native normalization/spills. Definitions17/76 reach the
+required00445150→004451B0 particle lifetime receiver. Module17 currently owns
+only cold definition/loading state. Positive particle allocation remains open.
+No successful emission or particle instance is synthesized.
+
+00767D40 now uses the actual C00 HD marker and DD0 track displacement. It retains
+the delayed impulse trigger, native height-window crossings, parent world-matrix
+rotation with translation removed, repeated local-marker read and remote
+publication gate. Native unwritten vector W retains destination padding.
+00787270 now removes the actual secondary step descriptors in ascending order
+when980 expires, then clears984 at its original boundary.
+
+00768E50,007694F0 and0076AE70 now use the actual water queries, same posture
+spheres, E0 locks/feedback, track impulses and existing movement-sound fade.
+Depth/pitch limits, roll recovery, swimming phase displacement, direction-rate
+limit and local-authority publication preserve original ordering.007884F0 uses
+the native X-rotation matrix, actual engine vector rotation and existing Y-matrix
+receivers.0071B650's three-axis multisphere sliding now shares the existing
+CollisionMotion representation, sweep service, plane math and process iteration
+budget. It preserves ascending nearest-hit selection, last observed hit through
+a subsequent miss, contact order and the native .01 normal offset. Invalid
+sphere counts or contact budgets exceeding native storage report explicit
+source errors. Query exclusions are restored on failure.
+
+WORK retains original C/JSON, targeted assembly and constants in
+`human-breath-particle*`, `human-idle-breath*`, `human-step-motion*`,
+`human-air-water-workers`, `human-water-direction*`, `human-water-motion*` and
+`human-water-collision-dispatch`. The rollback-only direction exports clarify
+engine stack ABIs. Their planar-angle rendering remains imperfect, so the
+existing007885B0 source contract and native register/assembly evidence govern
+that call. No Ghidra changes were saved.
+
+Focused native ASan/UBSan/LSan passes idle/breath draw/timer/gates and required
+particle failure propagation, actual C00/track step motion, actual initialized
+physical secondary retirement, swimming entry/exit/depth/authority/failure
+paths and multisphere nearest/sliding/budget behavior. Engine, collision and
+remaining actor/particle boundaries are explicit doubles. Actual World i386
+instantiation passes with declaration-only remaining Runtime receivers. The
+launcher compile/link previously passed the arbitration/Door checkpoint and
+will be rebuilt after the remaining affected Human work. P22-HUM stays open.
+
+
+### Uncommitted air motion and face receiver
+
+00769920 now coordinates actual shot publication, motion/sentinel/countdown
+stores, direction levelling and the original single100-ms periodic boundary.
+0076A310 reuses the actual multisphere solver and00767530 fall coordinator,
+with native elapsed0 at that call. It preserves edge response, timer arithmetic,
+normal-angle damping, reflected impulse/deceleration and position publication.
+00769E40 keeps three ordered bone-based edge rays and requires the original
+single-outer-hit/middle-miss pattern and normal threshold.
+
+0076DF20 now uses actual bones, excluded terrain probes, original fallback order,
+vertical/pitch limits, six-step direction-change hysteresis and roll limiting.
+Its final contact observation uses actual engine RandFloat and the original
+4/5/7 bone selection. A native positive-pose/floor-miss path later consumes an
+uninitialized floor normal. Source reports an explicit error at that boundary.
+Unwritten vector W retains known destination padding. No replacement normal or
+successful missing-terrain result is supplied.
+
+00781310 uses the SAME HumanFaceControl and HumanMorphTables. Its shared CRT
+selection precedes the loaded-table gate. Actual morph count and original face
+state stores precede the strict camera-distance gate. Eight direct coefficient
+groups, Leye then Reye lookups, one engine RandFloat and ordered local-axis eye
+transforms use existing engine adapters.0075BC80 now publishes its native
+contact reset and status/dirty stores before invoking this same face owner.
+The real initialized physical owner publishes scaled shot radii without changing
+native flags or masks, and removes actual secondary step descriptors in order.
+
+Focused native ASan/UBSan/LSan passes coordinator sentinels/timers/failure prefixes,
+edge combinations, positive landing and no-hit collision, terrain alignment,
+query failure cleanup and final contact publication. A separate actual face/table
+fixture covers loaded/distance gates, all coefficients, repeat and engine-failure
+prefixes. Initialized physical tests cover shot masks/radii and secondary
+retirement. Actual World i386 and application compile/link pass through this
+source in WORK `human-mount-frame-i386.log` and
+`human-motion-application-i386.log`. Engine/collision and containing-stage
+boundaries in native fixtures remain explicit doubles. No Windows code ran.
+
+Original evidence is in WORK `human-air-water-workers`, `human-air-workers-abi`,
+`human-air-vector-workers-abi`, `human-air-contact.asm`,
+`human-air-alignment.asm`, `human-air-face.asm` and corresponding constants/name
+JSON. Temporary ABI corrections roll back. The face's axis argument is the
+first row of each original local matrix, confirmed by781569..781574 and
+78161C..781626. No WIP tally credit or P22-HUM completion is claimed.
+
+### Uncommitted Human light and opacity observation
+
+00789DB0 now uses the SAME DD0 opacity owner, B0 navigation observation and
+existing0069E9D0 scene-light query.0057F880 uses actual A4 points and pooled
+current/next jobs, native mode-dependent00524B50 byte values and three-dimensional
+interpolation. Native assembly preserves Z/Y/X accumulation, the extended first
+comparison and unordered interpolation for a zero-length segment. Failed local
+interpolation samples leave caller outputs unchanged. A nearby invalid cached
+point returns failure immediately. Genuine00583150 false receivers remain
+separate and receive no frozen-inventory credit.
+
+00789DB0 consumes the refresh flag before hiding its actual model, preserves
+direct versus stored-FLOAT shadow ratios, applies native ambient/clamp/smoothing
+and always invokes the actual GEffects+54 receiver. Visibility restoration and
+model update follow it. Failure cleanup restores visibility and exclusions.
+00787270 now binds this stage using actual bone16, CE4 sector, equipment model9
+and typed A3C. Its Car004DDCF0 gate reuses actual body health. Equipment queries
+are repeated in native order and final visibility follows the current Human.
+Unwritten stack-vector W retains the known frame padding.
+
+The positive Sight DD0+754 path now reads material from the actual static or
+dynamic collision identity. GEffects virtual94=004867E0 adjusts this by20 and
+tail-calls0047B4C0. That receiver reads actual decoration group14 or returns1
+for absent/out-of-range groups. Existing serialized Group ownership supplies it.
+Both tiny receivers are absent from the frozen inventory and get no new credit.
+Their original assembly and vtable evidence are in WORK
+`human-sight-material-receiver.asm`, `human-sight-material-target.asm` and
+`human-sight-effects-material-vtable.json`. Ghidra function exports correctly
+reported absent function starts, so the raw instructions govern these leaves.
+
+Focused native ASan/UBSan/LSan passes navigation modes/sentinels, strict radius,
+pooled jobs, interpolation/endpoints/unordered values, refresh/effect order,
+direct/stored ratios, clamps, attached-model requeries and failure cleanup.
+Actual serialized decoration groups cover populated, absent, sparse and cleared
+material factors. Native fixtures use explicit containing/engine doubles.
+Actual World i386 passes through these sources. Temporary fixture/log is WORK
+`human-light-observation-native`. Full HUM and P2.2 remain open and uncredited.
+
+0075EBE0 now owns obstruction/breath timers in actual physical scalar storage
+and uses existing E0 action commands and pooled presentation sounds18/19.
+The slot5 scuba gate preserves actual integrity stage39 comparison and draws
+no random value there. Uninitialized process integrity tables still reject at
+their existing access boundary. This receiver does not publish observations.
+Authority damage remains a required actual HumanD4 callback before timer clamp
+and voice handling. The inactive00787270 water check now calls existing0074EA80
+directly. Native focused sanitizers pass signed timer wrapping, strict thresholds,
+scuba/mismatch/missing-initializer paths, damage/voice order, real E0 commands
+and failure prefixes using explicit physical, integrity and damage doubles.
+Evidence and temporary fixture are WORK `human-obstruction-motion.asm`,
+`human-obstruction-constants.json` and `human-obstruction-native`.
+
+Action dependencies007B8C10 and007B3270 now use actual geometry661C/6620
+pose arrays and SAME HumanLoadingJoints points. Overlay capture visits23 names
+in native order and six keys per bone, querying each position/rotation count
+again for each key. Missing position writes only X=7FC00000. Missing rotation
+writes only W=7FC00000. Existing values/padding survive the other lanes.
+Native engine key-time output is ignored. Null clip disables6624 and retains
+the arrays. The containing00755500 positive action remains required.
+
+007C0D90 now allocates its actual zeroed eight-entry68E0 and two-entry68E4
+queues after pose snapshots and retires them after the trees.007CD610 takes the
+first free record, copies the supplied vector and signed-duration seconds,
+publishes remaining time and wakes actual points. A full queue silently drops
+the impulse.007CD6C0 preserves its native cross-queue store at7CD71E..7CD724,
+writing68E0[index]+20 while leaving68E4 duration/remaining untouched. It does
+not wake the points.007B3270 consumes all three shared CRT draws before its
+mask/missing-point gates. The first split ratio remains extended, later ratios
+are stored FLOATs. Split temporary W retains the known input padding.
+Joint solver consumption and the positive geometry/action callers remain open.
+
+Focused native sanitizers pass actual overlay arrays, sparse/negative key counts,
+lane-only sentinels, padding, failures, actual initialized queue lifetime/capacity,
+all impulse masks, native ratio storage and secondary cross-queue behavior.
+WORK fixtures/logs are `human-action-overlay-native` and
+`human-joint-impulse-native`. Assembly is `human-action-overlay-pose.asm`,
+`human-joint-distributed-impulse.asm`, `human-point-impulse.asm` and
+`human-point-secondary-impulse.asm`. Actual World i386 passes through the new
+queue ownership. Application compile/link passes through these queues and the
+model actions below in `human-light-action-application-i386.log`.
+
+WORK `human-actions-explicit-abi-v3` has rollback-only entry/update call-site
+corrections, with explicit ECX plus stack arguments for Actor virtual calls.
+The raw assembly governs nested geometry workers whose indirect engine calls
+were not corrected in that export. Car action vtable slots are retained in
+`human-car-action-vtable.json`. The next dependency is occupied Car seat
+entry/exit and model geometry in00755500/00751480. Reuse existing Car loading
+lifetime/seats, occupants and physical core. Do not add a parallel seat owner.
+
+00751480/00755500 model actions8–10 now have actual entry/completion callbacks.
+Action8 publishes A44=5 before rejection, resolves the existing raw clip duration,
+discards actual track0 pending descriptors and retains the frame argument outside
+DWORD storage. Existing E0 interaction command accepts this typed94 alternative,
+and the770 snapshot retains its corresponding804 borrower. A40 retains its
+actual model separately from the scalar Door/seat argument. The positive action8
+engine boundary calls SetPos, SetDir, LinkTo(flags1) and update24 in order,
+preserving the original ignored LinkTo result. Equipment hiding follows it.
+Expiry retains native A34/A3C/A40 and clears only the original timer/Look lock.
+
+Actions9/10 retain that actual A40 model and use the native900/scale entry delay
+and500/scale movement130 tail. Their completion always registers the actual
+model before the positive frame/400 gate. Authored __* exit marker, fallback
+normalized planar direction,700/scale secondary track impulse, scene144 and
+native position snapshot precede same-owner equipment/shot/shadow restoration.
+The authored-marker direction's otherwise unused matrix cache query and both
+Human matrix queries are retained. Temporary displacement W retains known pose
+padding. Existing scalar-word callers stay supported. Model-bearing callers
+supply the actual typed frame, and a nonzero scalar in that frame-only argument
+raises an explicit missing-frame error. No DWORD is converted into a pointer.
+
+The shared normalizer now preserves native unordered sqrt propagation instead
+of a zero-length fallback for NaN. This was confirmed at75646A..75648A while
+binding action8. Focused sanitizer checks cover actual E0 typed argument,
+unchanged-subtype/reset behavior, model rejection gates, native timers and
+argument retention, attachment, authored/fallback exits, unconditional scene
+registration, null/non400 gates, cleanup and failure prefixes. Existing Door
+checks pass after shared dispatch changes. Actual World i386 and launcher
+compile/link pass. Temporary fixtures are WORK `human-model-action-native`
+and `human-door-action-native`.
+
+0077F7B0 hit commands and007B8450 now use actual E0, geometry, face and impulse
+owners. The Look lock defers2000 before mutation. Animation98 dispatches directly
+with original flags. Ordinary commands retain normalized reverse-direction
+classification, native DOUBLE±.707 thresholds, repeated matrix queries and
+the low-six-bit geometry call. Geometry always invokes its face first, then
+preserves6304bit200/source6744 gates, native stored-FLOAT normalization,
+length/9 capped150, upward third, sleeping-root reset and200ms queued impulses.
+
+00799760 now selects actual shared mesh groups, using00797620/00797E40 head
+walks or00797780/00798010 body searches.00799BB0 projects UVs from the first two
+edges, publishes the actual game2C epoch, acquires existing private textures,
+locks before the shared CRT stamp draw and reuses original eleven16×16 patterns.
+0079A420 clips signed-word coordinates and blends actual ARGB4444 masks.
+Head stains also update the original scratch mask used by shadow/camouflage
+restoration. Engine adapters borrow live skinned vertices and retained UVs,
+preserving LOD/texture lock ordering. No second mesh or texture-slot owner exists.
+
+Two portability decisions are explicit. Native00797620 allocates uninitialized
+visit bytes. Source zero-initializes this temporary scratch, retaining four CRT
+walks and the native graph, so its initial search state can differ from original
+allocator contents. Native00799BB0 returns with a mismatched-pitch texture lock
+held. Source releases that acquired lock while rejecting before any stamp draw.
+Geometry impulse temporary W retains known input padding.
+
+Original evidence is WORK `human-hit-dependencies-abi-v2`, `human-face-hit.asm`,
+`human-face-hit-stain.asm`, `human-face-head-nearest.asm`,
+`human-face-greedy-node.asm`, `human-face-recursive-node.asm`,
+`human-action-direction-command.asm` and `human-look-hit-command.asm`.
+The v2 stain decompilation has an incorrect engine-lock argument count.
+Raw assembly governs it. The v3 corrected exporter still fails Ghidra block
+collapse at00799BB0. No source claim relies on that failed decompilation.
+
+Focused native ASan/UBSan/LSan passes actual mesh-pool/face owners with explicit
+shared-resource and engine doubles, including searches, UV projection, masks,
+texture borrowers, overlays, pitch rejection and cleanup. A separate native
+fixture passes actual Look/geometry/joint owners, lock/animation98/source gates,
+direction classification, NaN propagation and queued impulses. Work fixtures
+are `human-face-hit-native` and `human-hit-command-native`. Strict actual World
+i386 explicitly instantiates Look→geometry→face with real host types. Launcher
+compile/link passes in `human-face-hit-application-i386.log`. Reaction/action
+callers and other positive model/particle workers remain required. No new tally
+credit, integration readiness or desktop acceptance is claimed.
+
+007AFC20 now invokes actual007B02B0 secondary clip pose application through the
+same retained skeleton and6638/6694 per-bone cursors. Position and rotation key
+counts remain separate, with native repeated count queries and cursor advance
+only past the next timestamp. Original signed quiet-NaN sentinel bit patterns
+gate missing samples. Ordered child0/1/2 traversal, per-bone007AFD10 weights,
+300ms entry/exit influence, engine quaternion Slerp/cache normalization, model24,
+signed wrapping time at1.4×elapsed and strict duration expiry are preserved.
+No Runtime clip callback remains at the actual007A7470 boundary.007AFD10 is absent
+from the frozen inventory and receives no credit.
+
+WORK `human-secondary-clip-worker-abi` corrects the original indirect engine call
+argument counts in a rollback-only transaction. Raw instructions are retained
+in `human-secondary-clip-worker.asm` and `human-secondary-clip-frame.asm`.
+Focused native sanitizers pass actual skeleton/clip traversal with explicit
+engine key/pose doubles, independent cursors, missing tracks, held last keys,
+equal timestamps, per-bone weights and failure prefixes. Strict actual World
+i386 and launcher compile/link pass, the latter in
+`human-secondary-clip-application-i386.log`. The native fixture is
+`human-secondary-clip-native`. Other model IK/foot/weapon/overlay and ragdoll
+workers remain required.
+
+007BF980 now applies weighted bone direction correction through the SAME
+skeleton/model frames. It retains six ordered direction-matrix queries, model
+transpose, actual bone quaternion extraction, the signed stored-length-bit gate,
+native asin rotation, stored half-angle cosine, quaternion-product spill order,
+model/parent transforms and local translation preservation. Engine matrix and
+quaternion APIs stay delegated. Temporary vector W retains known input padding.
+The original00454660 dot uses Z/Y/X accumulation, confirmed from instructions.
+
+007AFD70's actual kind4 branch now calls this worker for bones18/16/8, using the
+existing weapon model,66F0 timer,6350 direction and native0.1736 height offset.
+The stored fade sign gate expires at300ms with the original FLOAT scale.
+Other weapon kinds now use the actual hand/weapon and two-bone IK workers below.
+
+Focused native sanitizers pass `human-bone-direction-native` and
+`human-equipment-overlay-native`, covering actual skeleton/geometry/weapon
+owners with explicit engine doubles, query/bone order, zero/tiny/NaN gates,
+native clock/expiry and publication failure prefixes. Strict actual World i386
+and launcher compile/link pass in `human-bone-overlay-application-i386.log`.
+Evidence is `human-model-ik-workers-abi`, `human-model-ik-bone.asm` and
+`human-equipment-overlay-frame.asm` in WORK. The new research index found no
+existing IK-worker body exports before these rollback-only ABI exports.
+Additional pose-chain exports are research evidence and remain unimplemented.
+
+007AFD70 is now source-bound for all weapon kinds, using actual007C02F0 hand/
+weapon posing,007C09C0 arm chains and007A3710 two-bone positions.007A43C0 uses
+the SAME skeleton first-child basis/lengths, actual parent and frame APIs.
+007A2310 retains native unchecked normalization. The general007A23F0 worker
+serves both live IK and existing loading, including its X-row projection,
+Y-row fallback, stored reciprocal and extended X components. This corrects a
+concrete loading approximation found while binding live IK. The loading wrapper
+retains its existing non-finite-input rejection. No repeated broad audit ran.
+
+The IK solver preserves the sign-bit reach-failure gate before middle-point
+mutation, stored/extended distance calculations, preferred/opposed bend and
+constructor6628/662C defaults at0079BDC5/0079BDCF. Actual hand frames21/20,
+grip markers and retained weapon remain borrowed from existing owners.
+007C02F0 calls full engine SetDir with explicit up, preserves the native hand
+and shoulder/butt blend, and publishes real local matrices.007AFD70 computes
+right/left offsets6340/6330 in order, runs the original left/right chain gates,
+and restores the retained weapon's parent with LinkTo flags5 and ignored result.
+Source additionally restores this parent when a callback throws, recording a
+secondary cleanup failure while preserving the first exception. Undefined native
+vector W temporaries retain known input padding.
+
+Focused native sanitizers pass `human-two-bone-native`, `human-bone-basis-native`
+and the expanded `human-weapon-pose-native`. These cover actual skeleton,
+geometry, weapon and joint owners with explicit engine doubles, reach/tangent/
+preference branches, loading-basis reuse, complete overlay bone/callback order,
+same-owner offsets and failure restoration. Strict actual World i386 and
+launcher compile/link pass through the full overlay in
+`human-weapon-overlay-application-i386.log`. Evidence includes WORK
+`human-two-bone-ik-abi`, `human-two-bone-solver.asm`, `human-bone-basis.asm`,
+`human-bone-orientation.asm`, `human-hand-chain.asm`, `human-weapon-pose.asm` and
+`human-model-overlay-constants.json`. Continue stowed/aimed/attached weapon,
+foot/look and ragdoll workers and remaining action/reaction callers. No new
+ledger credit, application readiness or desktop acceptance is claimed.
+
+007B9750 stowed weapon now runs at its actual007A7470 boundary. It reuses the
+same model, saved parent, hand frames,6340/6330 offsets,007C02F0 posing and
+007C09C0 chain. Original mode/kind/stowed/detail gates and both repeated
+right-before-left offset passes are preserved.007A4140 direction interpolation
+retains the Y/X/Z dot, original clamp/angle tests, parallel/antiparallel snap,
+stored angle and per-component interpolation spills. It keeps known last-vector
+W on the native unwritten interpolation path. Source failure restoration uses
+the same parent-cleanup policy as the overlay above.
+
+The expanded actual geometry/weapon native fixture passes stowed entry gates,
+hand/chain order and failure restoration. The focused math fixture adds native
+direction interpolation and parallel/antiparallel/NaN gates. Strict actual World
+i386 and launcher compile/link pass in `human-stowed-weapon-application-i386.log`.
+Evidence is WORK `human-stowed-weapon-abi`, `human-stowed-weapon-frame.asm` and
+`human-direction-interpolation.asm`. Research-index lookup confirmed that the
+four required aimed posture workers007BCFC0/007BB540/007BA830/007BE6F0 had no
+body exports. Their next rollback-only export is `human-aimed-postures-abi`.
+
+
+### Aimed weapon, mount and head pose
+
+007B9CB0 now runs at the actual007A7470 boundary. It advances the retained62C0/
+62C4 target countdown and native angle/sine interpolation before the process
+mode gate, unlinks the SAME retained weapon with flags5, dispatches the original
+four postures and restores its saved parent. Player camera adjustment uses the
+actual retained62F8 camera, head bone6,6390 offset, repeated model queries and
+original projection/blend spills. A callback failure restores the parent while
+preserving the first exception, following the source cleanup policy above.
+
+Standing007BCFC0, crouched007BB540, prone007BA830 and special007BE6F0 now use the
+existing skeleton, hand/grip/butt frames and actual Human activation.vector1b0.
+Native up/forward limits, ordered bone12/7/14 corrections, stationary/moving
+weights, saved-right-hand correction, detail/stowed gates and arm chains remain
+in their original sequence. Prone reads the existing660C direction-work
+allocation's second vector, initialized by0079BD30. This allocation is separate
+from the joint body/point trees. Its real World ray uses layersC8102 and
+flags230000. A miss preserves the supplied normal. Normal Human control forwards
+the query through its existing World service and loaded collision tree.
+
+007BFE80 projects through the supplied reference matrix and stores its cross
+product before applying weights.007BF980 applies weights before the cross
+product FLOAT spill. Their common quaternion arithmetic retains the original
+signed length gate, stored length, extended reciprocal, asin half-angle and
+composition order.007A2F10 uses the existing nine-entry007A3E60 rotation and
+actual engine matrix product.007BA0C0 preserves its separate always-decrementing
+mount timer and direction correction.007ADA10 uses actual head/current/target
+quaternions and the real head parent, preserving local translation on publication.
+Temporary unwritten vector W retains known source padding.
+
+Evidence is WORK `human-aimed-postures-abi`, `human-aimed-dependencies-abi`,
+`human-aimed-standing.asm`, `human-aimed-crouch.asm`, `human-aimed-prone.asm`,
+`human-aimed-special.asm`, `human-aimed-wrapper.asm`,
+`human-bone-reference-correction.asm`, `human-weapon-mount.asm`,
+`human-head-direction.asm` and `human-aimed-constants.json`. ABI exports use
+rollback-only transactions against the guarded original image. No original
+program, DLL, Windows fixture or Proton execution occurred.
+
+The expanded native geometry/weapon fixture passes all four postures, moving/
+stationary and kind4 paths, butt/grip/stow gates, positive/missing ray results,
+ray failure parent restoration, native target-clock boundaries, retained camera
+writes, mount timer/mode/posture gates and head bone/quaternion publication.
+Normal geometry entry reaches the source aimed receiver before the separately
+required Look boundary. Actual World i386 and launcher compile/link pass through
+mount/head in `human-mount-head-application-i386.log`. Native fixtures explicitly
+supply engine math/pose and containing query doubles. They establish source
+behavior and callback order. Application mission loading remains unavailable.
+
+### Ledger and commit checkpoint
+
+The user authorized committing accumulated source in subsystem batches, then
+committing each completed Human-plan checkbox. The checkpoint adds100 frozen
+client partials and extends nine existing partials, giving34 complete and2,471
+partial entries (2,466 client/five engine). No complete promotions or denominator
+changes occur. Delegated engine/CRT calls, absent helpers, positive particle
+instances and unimplemented pose/action receivers receive no new credit.
+Verification artifacts, source hashes and temporary audit cleanup are recorded in
+[the checkpoint receipt](checkpoints/p2.2-human-motion-pose-20261111.json).
+Continue [the Human checklist](p22-hum-plan.md), beginning with look007ACCC0.

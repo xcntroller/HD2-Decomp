@@ -45,6 +45,44 @@ template<class Frames>void toggle_human_equipment_action(Frames& frames,
     if(lens){frames.object_visible(lens,enabled);frames.update_scene_object(lens);}
 }
 
+template<class Frames,class State,class Services>
+void attach_human_equipment_action(Frames& frames,State& state,Services& services,unsigned kind){ //0078DF60 cases5..8.
+    using Frame=typename Frames::Frame;
+    const auto model=state.model(1);if(!model)return;
+    auto& words=state.words();words.set(0xb0,kind);
+    auto retained=frames.retain_actor_frame(model);retained.release();
+    words.set(0x90,frames.actor_world_rotation(model));
+    if(kind==5||kind==8){
+        const auto matrix=frames.actor_world_matrix(model);
+        words.set(0xa0,std::array<float,4>{{matrix[12],matrix[13],matrix[14],matrix[15]}});
+    }
+    frames.human_equipment_link(model,Frame{},0);
+    const auto volume=kind==8||words.template get<std::uint8_t>(0x2c)?state.first_volume():state.second_volume();
+    frames.human_equipment_link(model,volume,2);
+    frames.object_visible(model,!services.equipment_human_hidden());
+    frames.object_position(model,{{0,0,0}});frames.update_scene_object(model);
+    if(frames.visual_type(model)==0x5f4a424fu)frames.human_equipment_opacity(model,services.equipment_opacity());
+}
+
+//00790520 cases5..7, after the caller has selected the native B0 retirement mode.
+template<class Frames,class State>
+void retire_human_equipment_hand_action(Frames& frames,State& state,unsigned kind){
+    using Frame=typename Frames::Frame;
+    const auto model=state.model(1);if(!model)return;
+    auto& words=state.words();
+    if(kind==7&&frames.object_parent(model))frames.release_item_frame(model);
+    words.set(0x54,std::int32_t{-10000});frames.human_equipment_link(model,Frame{},1);
+    if(kind==5)frames.human_equipment_link(model,frames.camera_root_sector(),0);
+    frames.object_rotation(model,words.template get<std::array<float,4>>(0x90));
+    if(kind==5){
+        const auto position=words.template get<std::array<float,4>>(0xa0);
+        frames.object_position(model,{{position[0],position[1],position[2]}});
+    }
+    frames.update_scene_object(model);
+    if(kind==5){frames.auto_parent_object(model);frames.update_scene_object(model);}
+    frames.release_item_frame(model);state.model(1,Frame{});words.set(0xb0,11u);
+}
+
 //0078DE30 tail, AFTER light release/weapon clear/four attachment roots.
 //Saved90 quaternion/A0 position belong to the actual action producer.
 template<class Frames>void retire_human_equipment_action_model(Frames& frames,

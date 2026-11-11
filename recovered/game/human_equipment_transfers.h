@@ -3,13 +3,14 @@
 
 #include "game/human_holsters.h"
 #include "game/human_equipment_state.h"
+#include "game/human_equipment_mount.h"
 
 namespace hd2::game {
 
-//00792590/00792720/00792AB0 inventory notifications and007913D0 events0..3.
+//00792590/00792720/00792AB0 inventory notifications and007913D0 events0..3/14.
 //This is the SAME230 state/holsters/DD0/E0, not an inventory or animation owner.
 //Pending peers must outlive the handoff; the world stops animation before
-//retiring Human inline owners. Action-model events4..18 have separate producers.
+//retiring Human inline owners. Event14 shares the actual mounted-model release.
 template<class Frames,class Items,class Services,class Holsters,class Attachments>
 class HumanEquipmentTransfers final : public HumanEquipmentTransferPeer<typename Frames::Frame> {
 public:
@@ -26,7 +27,15 @@ public:
         if(slot==1||(slot==3&&human_item_holster_group(item.definition())==0))holsters_.hide_items(item.definition(),1);
     }
     void refresh_inventory_holster_animation(){services_.refresh_inventory_holster_animation();}
-    void remove_inventory_model(unsigned kind)override { //00790520 inventory model cases0..3 only.
+    void remove_inventory_model(unsigned kind)override { //00790520 inventory0..3, hand actions5..7 and mounted action9.
+        if(kind==9){retire_human_equipment_mount(frames_,state_,services_);return;}
+        if(kind==5){retire_human_equipment_hand_action(frames_,state_,kind);return;}
+        if(kind==6||kind==7){
+            const auto model=state_.model(1);if(!model)return;
+            auto& words=state_.words();const auto mode=words.template get<std::uint32_t>(0xb0);
+            if(mode!=kind&&mode!=11){remove_inventory_model(mode);return;}
+            retire_human_equipment_hand_action(frames_,state_,kind);return;
+        }
         unsigned index;
         switch(kind){case 0:index=3;break;case 1:index=4;break;case 2:index=2;break;case 3:index=0;break;
             default:throw std::runtime_error("Equipment removal requires its actual action-model producer");}
@@ -161,6 +170,13 @@ public:
             }
             if(state_.model(0))attachments_.attach(back(*this)?10u:3u);
             return;
+        case 14:remove_inventory_model(9);return;
+        case 6:remove_inventory_model(5);return;
+        case 7:attachments_.attach(5);return;
+        case 8:remove_inventory_model(6);return;
+        case 9:attachments_.attach(6);return;
+        case 10:remove_inventory_model(7);return;
+        case 11:attachments_.attach(7);return;
         default:throw std::runtime_error("Equipment event requires its actual action-model producer");
         }
     }

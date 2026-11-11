@@ -62,6 +62,12 @@ public:
     void reset_equipment_command(){control_.reset_equipment_command();}
     void set_equipment_command(std::int32_t command,bool changed){look_.equipment_command(command,changed);}
     std::uint32_t game_word28()const{return world_.game_word28();}
+    Frame equipment_human_model()const{return human_.base().frame();}
+    bool equipment_human_hidden()const{return world_.human_hidden(human_);} //Actual Human150.
+    Frame equipment_animation_resource(unsigned table,unsigned row){return world_.human_animation_resource(table,row);}
+    auto& equipment_sweep(){return world_.human_geometry_sweep();}
+    void exclude_equipment_query(){control_.physical().exclude_query(false);}
+    void restore_equipment_query(){control_.physical().restore_query(false);}
     std::int32_t equipment_life_value()const{return signed_word(human_.properties.stats_ec[0]);} //Human+EC, signed compare.
     void equipment_sound(std::uint32_t id) {
         frontend::SpatialSoundRequest request;request.group=3;request.entry=signed_word(id);request.source=&human_;

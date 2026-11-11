@@ -6,6 +6,7 @@
 #include "game/human_camera_state.h"
 #include "game/human_state_frame_timers.h"
 #include <cmath>
+#include <cstring>
 #include <optional>
 
 namespace hd2::game {
@@ -62,6 +63,41 @@ public:
     }
     void equipment_primary_command(std::uint32_t value){state_.set(0x78,value);} //00781300.
     void equipment_secondary_command(std::uint32_t value){state_.set(0x64,value);} //007812F0.
+    void activate_air_pose(){ //00781310, actual shared morph table and retained Human/model borrowers.
+        const auto& record=tables_.record(property_,15+static_cast<std::int32_t>(random_()%4u));
+        if(record.loaded!=1)return;
+        if(!human_||!morph_)throw std::runtime_error("Human air face requires its actual bound morph visual");
+        const auto count=frames_.human_morph_count(morph_);
+        for(unsigned offset:{0x1cu,0x20u,0x30u,0x34u,0x3cu,0x44u,0x48u})state_.set(offset,0u);
+        state_.set(0x24,std::int32_t{-1});state_.set(0x38,std::int32_t{-1});
+        state_.set(0x40,std::uint8_t{0});state_.set(0x4c,100u);state_.set(0x50,1u);
+        const auto camera=frames_.active_game_camera();
+        const auto model=human_->base().frame();
+        if(!camera||!model)throw std::runtime_error("Human air face requires its actual model and active scene camera");
+        const auto position=frames_.actor_world_matrix(model),view=frames_.actor_world_matrix(camera);
+        const auto x=static_cast<long double>(position[12])-view[12];
+        const auto y=static_cast<long double>(position[13])-view[13];
+        const auto z=static_cast<long double>(position[14])-view[14];
+        const float square=static_cast<float>((y*y+z*z)+x*x);
+        std::uint32_t bits;std::memcpy(&bits,&square,4);
+        const long double distance=human_frame_signed_word(bits)<0x322bcc77?0.L:
+            std::abs(static_cast<long double>(square)-1)>=1.e-8f?std::sqrt(static_cast<long double>(square)):1.L;
+        const auto threshold=(static_cast<long double>(2.4f)-frames_.human_face_camera_parameter(camera))*3.f;
+        if(!(distance>threshold))return; //Original applies only beyond this strict camera-distance gate.
+        if(count>8)throw std::runtime_error("Human air face exceeds its eight-coefficient morph groups");
+        for(unsigned group=0;group!=8;++group)if(record.metadata[12+group])
+            for(std::uint32_t index=0;index<count;++index)
+                frames_.human_morph_weight(morph_,group,index,record.coefficients[group*8+index]);
+        const auto first=frames_.actor_find(model,"Leye",0xffff),second=frames_.actor_find(model,"Reye",0xffff); //0084E868/0084E860.
+        const float angle=static_cast<float>(static_cast<long double>(frames_.volume_random_unit())*.05f+.025f);
+        for(const auto frame:{first,second})if(frame){
+            const auto local=frames_.car_local_matrix(frame);
+            const HumanVector axis{{local[0],local[1],local[2],local[3]}};
+            const auto rotation=frames_.human_axis_rotation(axis,angle);
+            frames_.human_equipment_local_matrix(frame,frames_.rigid_matrix_product(local,rotation));
+            frames_.update_scene_object(frame);
+        }
+    }
     template<class Pool>void close_sound(Pool& pool) { //00780AB0, typed native7C owner.
         if(sound_){
             auto previous=std::move(*sound_);sound_.reset();

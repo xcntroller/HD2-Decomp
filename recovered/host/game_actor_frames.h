@@ -150,6 +150,27 @@ public:
         Vector result{};using Slerp=void*(WINAPI*)(const void*,void*,const void*,float,std::uint8_t);
         exported<Slerp>("?Slerp@S_quat@@QBG?AU1@ABU1@M_N@Z",0x302e0)(first.data(),result.data(),last.data(),factor,static_cast<std::uint8_t>(shortest));return result;
     }
+    void human_clip_blend_position(Frame frame,const Vector& target,float influence){ //007B02B0, direct B0 before the signed flag80 gate.
+        const auto previous=field<Vector>(frame,0xb0);
+        const auto complement=1.L-influence;
+        Vector position=previous;
+        position[0]=static_cast<float>(complement*previous[0]+static_cast<long double>(target[0])*influence);
+        const float old_y=static_cast<float>(complement*previous[1]),old_z=static_cast<float>(complement*previous[2]);
+        const float new_z=static_cast<float>(static_cast<long double>(target[2])*influence);
+        position[1]=static_cast<float>(old_y+static_cast<long double>(target[1])*influence);
+        position[2]=old_z+new_z;
+        car_suspension_position(frame,position);
+    }
+    void human_clip_blend_rotation(Frame frame,const Vector& target,float influence){ //007B02B0, actual engine quaternion cache.
+        const auto flags=field<std::uint32_t>(frame,0xe0);
+        if(!(flags&8u)){
+            put(frame,0xe0,flags|8u);
+            using Make=void(WINAPI*)(void*,const void*);
+            exported<Make>("?Make@S_quat@@QAGXABUS_matrix@@@Z",0x2f220)(address(frame,0xc0),address(frame,0x80));
+        }
+        const float complement=1.f-influence;
+        car_steering_rotation(frame,physics_slerp(target,field<Vector>(frame,0xc0),complement,false));
+    }
     template<class Visit>void enumerate_physics_scene(Visit&& visit) { //00410B00/00410B40.
         using Visitor=std::remove_reference_t<Visit>;
         struct Context {
@@ -255,6 +276,39 @@ public:
         std::vector<game::HumanFaceMeshData::Position> vertices(count);
         for(std::uint32_t n=0;n!=count;++n)std::memcpy(vertices[n].data(),bytes+static_cast<std::size_t>(n)*32,12);
         visit(vertices);
+    }
+    template<class Visit>void with_human_face_hit_mesh(Frame lod,Frame visual,Visit&& visit){ //00799760 locks before the live skinned-position query.
+        const auto* locked=call<const unsigned char*>(lod,4,std::uint32_t{0});
+        if(!locked)return;
+        struct Unlock {
+            Frame lod;HMODULE module;
+            ~Unlock(){using Method=void(WINAPI*)(Frame);checked_engine_method<Method>(lod,module,8)(lod);}
+        } unlock{lod,module_};
+        struct Mesh {
+            const unsigned char* positions;const unsigned char* coordinates;std::uint32_t count;
+            game::HumanFaceMeshData::Position position(std::uint16_t vertex)const{
+                if(vertex>=count||!positions)throw std::runtime_error("Human face hit requires its actual live vertex position");
+                game::HumanFaceMeshData::Position value;
+                std::memcpy(value.data(),positions+static_cast<std::size_t>(vertex)*16,12);return value;
+            }
+            std::array<float,2> uv(std::uint16_t vertex)const{
+                if(vertex>=count||!coordinates)throw std::runtime_error("Human face hit requires its actual retained UV coordinates");
+                std::array<float,2> value;
+                std::memcpy(value.data(),coordinates+static_cast<std::size_t>(vertex)*8,8);return value;
+            }
+        } mesh{call<const unsigned char*>(visual,0xbc,std::uint32_t{0}),field<const unsigned char*>(lod,0x4c),field<std::uint32_t>(lod,0x54)};
+        visit(mesh);
+    }
+    template<class Visit>void with_human_face_stain_texture(Frame texture,std::uint32_t width,Visit&& visit){ //00799BB0 lock precedes the CRT stamp draw.
+        if(!texture){visit(nullptr);return;}
+        std::uint32_t pitch=0;
+        auto* pixels=call<unsigned char*>(texture,0x14,std::uint32_t{0},&pitch,std::uint32_t{0});
+        struct Unlock {
+            Frame texture;HMODULE module;
+            ~Unlock(){using Method=void(WINAPI*)(Frame);checked_engine_method<Method>(texture,module,0x18)(texture);}
+        } unlock{texture,module_};
+        if(pitch!=width*2)return; //Original rejects before any stamp draw. Source releases the acquired lock on this path.
+        visit(pixels);
     }
     std::vector<game::HumanFaceMeshData::Triangle> human_face_triangles(Frame lod,unsigned index) {
         const auto group=call<Frame>(lod,0x14,static_cast<std::uint32_t>(index));
@@ -375,6 +429,28 @@ public:
         exported<Make>("?Make@S_quat@@QAGXABUS_matrix@@@Z",0x2f220)(result.data(),matrix.data());
         return result;
     }
+    void human_set_matrix_rotation(Matrix& matrix,const Vector& rotation){
+        using Set=void(WINAPI*)(void*,const void*);
+        exported<Set>("?SetRot3@S_matrix@@QAGXABUS_quat@@@Z",0x2d450)(matrix.data(),rotation.data());
+    }
+    void human_set_matrix_quaternion(Matrix& matrix,const Vector& rotation){ //007A43C0 uses full SetRot.
+        using Set=void(WINAPI*)(void*,const void*);
+        exported<Set>("?SetRot@S_matrix@@QAGXABUS_quat@@@Z",0x2d260)(matrix.data(),rotation.data());
+    }
+    Matrix human_direction_matrix(const Vector& direction,const Vector& up){ //007C02F0, full SetDir with explicit up.
+        Matrix result{};using Set=void(WINAPI*)(void*,const void*,const void*);
+        exported<Set>("?SetDir@S_matrix@@QAGXABUS_vector@@0@Z",0x2ced0)(result.data(),direction.data(),up.data());
+        return result;
+    }
+    void human_publish_bone_rotation(Frame bone,Matrix matrix){ //007BF980, preserve direct B0 translation before publishing80.
+        const auto position=field<Vector>(bone,0xb0);
+        for(unsigned axis=0;axis!=4;++axis)matrix[12+axis]=position[axis];
+        human_equipment_local_matrix(bone,matrix);
+        update_scene_object(bone);
+    }
+    void human_geometry_weapon_link(Frame weapon,Frame parent){ //007AFD70, native LinkTo flags5 and ignored result.
+        (void)call<std::int32_t>(weapon,0x38,parent,std::uint32_t{5});
+    }
     Matrix human_axis_rotation(const Vector& axis,float angle) {
         game::MissionQuaternion rotation{};Matrix result{};
         using Make=void(WINAPI*)(void*,const void*,float);
@@ -429,6 +505,10 @@ public:
     void human_model_weight(Frame model,std::uint32_t slot,float weight) {call<void>(model,0x94,slot,weight);}
     std::int32_t human_model_time(Frame model,std::uint32_t slot) {return call<std::int32_t>(model,0xa0,slot);}
     void human_model_time(Frame model,std::uint32_t slot,std::int32_t time) {call<void>(model,0x9c,slot,time);}
+    std::int32_t human_model_channel_count(Frame model){return call<std::int32_t>(model,0xd0);}
+    Frame* human_model_channels(Frame model){return call<Frame*>(model,0xd4);}
+    Frame human_model_channel_target(Frame binding){return field<Frame>(binding,0xec);}
+    void remove_human_model_channel_animation(Frame binding,std::int32_t slot){call<void>(binding,0,slot);} //00775510, channel virtual0 takes the slot.
     std::uint32_t human_model_animation_flags(Frame model,std::uint32_t slot) {return call<std::uint32_t>(model,0xa8,slot);}
     void human_model_animation_flags(Frame model,std::uint32_t slot,std::uint32_t flags) {call<void>(model,0xa4,slot,flags);}
     bool human_model_animation_enabled(Frame model,std::uint32_t slot) {return call<std::uint8_t>(model,0xac,slot)!=0;}
@@ -437,8 +517,27 @@ public:
     }
     void human_model_advance(Frame model,const std::array<std::int32_t,8>& times) {call<void>(model,0xb0,times.data());}
     void human_model_remove_animation(Frame model,std::uint32_t slot) {call<void>(model,0x8c,slot);}
+    void human_equipment_tick_model(Frame model,std::int32_t elapsed){call<void>(model,0x20,elapsed);} //00790520 case9.
+    void restore_human_mount_visuals(Frame model){ //0075E290, native flattened model120/128 array is reread each visit.
+        for(std::uint32_t n=0;n<field<std::uint32_t>(model,0x128);++n){
+            const auto list=field<Frame*>(model,0x120);
+            if(!list||n>=0x100000u)throw std::runtime_error("Human mount model has an invalid frame array");
+            const auto frame=list[n];
+            if(!frame)throw std::runtime_error("Human mount model contains a null frame");
+            if(frame_kind(frame)==1)call<void>(frame,0x80,2u);
+        }
+    }
     void human_model_parameter_c4(Frame model,std::uint32_t value) {call<void>(model,0xc4,value);}
     std::int32_t human_clip_duration(Frame clip) {return call<std::int32_t>(clip,8);}
+    std::int32_t human_clip_bone_index(Frame clip,const char* bone){return call<std::int32_t>(clip,0x14,bone);}
+    std::int32_t human_clip_position_count(Frame clip,std::int32_t bone){return call<std::int32_t>(clip,0x18,bone);}
+    void human_clip_position_key(Frame clip,std::int32_t bone,std::int32_t key,std::uint32_t& time,Vector& position){
+        (void)call<std::int32_t>(clip,0x1c,bone,key,&time,position.data());
+    }
+    std::int32_t human_clip_rotation_count(Frame clip,std::int32_t bone){return call<std::int32_t>(clip,0x20,bone);}
+    void human_clip_rotation_key(Frame clip,std::int32_t bone,std::int32_t key,std::uint32_t& time,Vector& rotation){
+        (void)call<std::int32_t>(clip,0x24,bone,key,&time,rotation.data());
+    }
     void human_clip_word8(Frame clip,std::uint32_t value) {put(clip,8,value);}
     Frame human_scene_sector(const Vector& position) {return call<Frame>(scene_.frame(),0xe0,position.data());}
     Bounds blast_frame_bounds(Frame frame){ //006DDFC0 uses driver+A8, DISTINCT from Car bounds+AC.
@@ -470,6 +569,8 @@ public:
         call<void>(scene_.frame(),0x138,model,q,z);
     }
     void refresh_dynamic_human_model(Frame model){call<void>(scene_.frame(),0x144,model);} //007646F0/00755500, original scene receiver.
+    void detach_human_effect_model(Frame model){(void)call<std::int32_t>(model,0x38,Frame{},std::uint32_t{5});} //007B0910 ignores native LinkTo return.
+    void register_human_effect_model(Frame model,Frame z,Frame q){call<void>(scene_.frame(),0x138,model,z,q);} //007B2B3D..007B2B4C, actual retained markers.
     void unregister_human_model(Frame model) {call<void>(scene_.frame(),0x13c,model);}
     void flag_human_model(Frame model) {put(model,0xe0,field<std::uint32_t>(model,0xe0)|0x400000u);}
     using HumanAnimationCallback=std::int32_t(WINAPI*)(Frame,std::uint32_t,const char*,std::int32_t);
@@ -504,6 +605,12 @@ public:
     }
     void human_equipment_restore_action(Frame model,const std::array<float,4>& position,const std::array<float,4>& rotation) {
         call<void>(model,8,position.data());object_rotation(model,rotation);
+    }
+    void human_action_model_pose(Frame model,const Vector& position,const Vector& direction,Frame parent){ //00755500 case8.
+        call<void>(model,8,position.data());
+        call<void>(model,0x0c,direction.data(),0.f);
+        (void)call<std::int32_t>(model,0x38,parent,std::uint32_t{1}); //Original ignores the LinkTo result.
+        call<void>(model,0x24);
     }
     std::int32_t load_human_holster_model(Frame model,const char* key) {return resources_.load_model(model,key,0x10);}
     void remove_human_holster_frame(Frame model,Frame frame) {call<void>(model,0x80,frame);}
@@ -594,6 +701,12 @@ public:
         exported<Rotate>("?RotateByMatrix@S_vector@@QBG?AU1@ABUS_matrix@@@Z",0x2ec80)(value.data(),result.data(),matrix.data());
         return result;
     }
+    Matrix human_y_rotation(float angle){ //007694F0, actual LS3DF RotateYMatrix.
+        Matrix result{};using Rotate=Matrix*(WINAPI*)(void*,float);
+        exported<Rotate>("?RotateYMatrix@@YG?AUS_matrix@@M@Z",0x2c4d0)(result.data(),angle);
+        return result;
+    }
+    void mark_human_air_shadow(Frame frame){put(frame,0xe0,field<std::uint32_t>(frame,0xe0)|0x80u);} //00769920.
     MenuDriver::Owner create_game_camera() {return driver_.create(3);}
     MenuDriver::Owner create_human_sound() {return driver_.create(4);}
     bool human_sound_available() {
@@ -921,6 +1034,7 @@ public:
         scene_method<MenuDriver::Release>(frame,module_,0,0x1c370)(frame);
     }
     Frame active_game_camera() const {return field<Frame>(scene_.frame(),0x15c);}
+    float human_face_camera_parameter(Frame camera)const{return field<float>(camera,0x120);} //00781310's original distance gate.
     float sight_view_distance()const{ //00465DE0 via SAME scene+15C camera+128, not controller's saved240 frame.
         const auto camera=active_game_camera();if(!camera)throw std::runtime_error("Sight view distance requires actual active scene camera");
         return field<float>(camera,0x128);

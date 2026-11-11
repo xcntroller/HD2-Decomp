@@ -4,6 +4,7 @@
 #include <array>
 #include <cstdint>
 #include <cstring>
+#include <exception>
 #include <stdexcept>
 
 namespace hd2::game {
@@ -19,6 +20,45 @@ public:
     float opacity() const{return target_>1?1.f:target_;}
     float applied() const{return applied_;}
     void target(float value){target_=value;} //Borrowed producers write native+04.
+    template<class Frames,class Services,class Changed>
+    void observe(Frames& frames,Services& services,typename Frames::Frame sector,
+            typename Frames::Frame model,const typename Frames::Vector& point,bool direct,Changed&& changed){ //00789DB0.
+        if(!flag10_)return;
+        flag10_=false;
+        const auto position=point; //Native captures all four words before hiding the model.
+        const bool visible=frames.car_frame_visible(model);
+        struct Restore {
+            Frames& frames;typename Frames::Frame model;bool visible,active=true;
+            ~Restore(){
+                if(!active)return;
+                try{frames.object_visible(model,visible);}catch(...){frames.record_actor_cleanup_failure(std::current_exception());}
+                try{frames.update_scene_object(model);}catch(...){frames.record_actor_cleanup_failure(std::current_exception());}
+            }
+        } restore{frames,model,visible};
+        frames.object_visible(model,false);
+        float plain;
+        if(direct){
+            plain=static_cast<float>(services.human_scene_light(position,sector,false));
+            const auto shadowed=services.human_scene_light(position,sector,true);
+            field0_=static_cast<float>(shadowed);
+            target_=plain!=0?static_cast<float>(shadowed/plain):1.f;
+        }else{
+            if(!services.human_light_observation(model,field0_,plain)){
+                plain=static_cast<float>(services.human_scene_light(position,sector,false));
+                field0_=static_cast<float>(services.human_scene_light(position,sector,true));
+            }
+            target_=plain!=0?static_cast<float>(static_cast<long double>(field0_)/plain):1.f;
+        }
+        const auto blended=(1.L-target_)*ambient_+target_;
+        target_=static_cast<float>(blended);
+        if(blended>1)target_=1;
+        else if(blended<.1f)target_=.1f;
+        smooth(timer_);
+        changed(model,applied_); //Actual GEffects+54 runs even when the value is unchanged.
+        restore.active=false;
+        frames.object_visible(model,visible);
+        frames.update_scene_object(model);
+    }
     void smooth(std::int32_t elapsed) {
         const float step=static_cast<float>(static_cast<long double>(elapsed)*.001f*2);
         const auto value=opacity();

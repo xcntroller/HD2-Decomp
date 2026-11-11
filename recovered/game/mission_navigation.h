@@ -139,6 +139,14 @@ public:
         if(!table_.records4)throw std::runtime_error("Navigation table has no records");
         return static_cast<MissionTableRecord*>(table_.records4)+index;
     }
+    static bool light_values(const MissionTableRecord& point,unsigned mode,float& shadowed,float& plain){ //00524B50.
+        shadowed=plain=-1.f;
+        if(mode>1)return false;
+        const auto first=point.reserved17[mode?4u:5u],second=point.reserved17[mode?6u:7u]; //Native1B/1C and1D/1E.
+        if(first!=0xffu)shadowed=static_cast<float>(static_cast<long double>(first)*.003937007859349251f);
+        if(second!=0xffu)plain=static_cast<float>(static_cast<long double>(second)*.003937007859349251f);
+        return shadowed>=0&&plain>=0;
+    }
     auto& movement_floor_candidates(){return movement_floor_candidates_;}
     std::uint16_t index_of(const MissionTableRecord& point)const{
         //The reference comes from this table's actual A4/record() borrower.

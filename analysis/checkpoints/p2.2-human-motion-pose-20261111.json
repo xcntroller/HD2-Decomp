@@ -1,0 +1,843 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "31b01f9c0e60e9f20125d5d5f6c554df12c7d47f",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "p22_hum_complete": false,
+  "added_entries": [
+    "0071b650",
+    "0057f880",
+    "00524b50",
+    "00773d90",
+    "00774440",
+    "00774470",
+    "007749d0",
+    "007749f0",
+    "00774a20",
+    "00774c60",
+    "00775210",
+    "007752a0",
+    "00775310",
+    "00775450",
+    "00775510",
+    "007755b0",
+    "007755f0",
+    "00775670",
+    "007756a0",
+    "00775710",
+    "00776110",
+    "0075c7e0",
+    "0075c8d0",
+    "0075c900",
+    "00779390",
+    "00777ad0",
+    "00778b20",
+    "007793f0",
+    "00779b30",
+    "00779e60",
+    "0077b870",
+    "0077c140",
+    "0077c690",
+    "0077c8d0",
+    "0077cd30",
+    "0077d3a0",
+    "0075cba0",
+    "00751480",
+    "00755500",
+    "007918c0",
+    "0075e770",
+    "0075ede0",
+    "0075e290",
+    "0074a690",
+    "007507a0",
+    "00767d40",
+    "00768e50",
+    "007694f0",
+    "0076ae70",
+    "007884f0",
+    "00769920",
+    "00769e40",
+    "0076a310",
+    "0076df20",
+    "00781310",
+    "00789db0",
+    "0075ebe0",
+    "007c6100",
+    "007c80e0",
+    "007cdb70",
+    "007cd610",
+    "007cd6c0",
+    "007cda40",
+    "007b0910",
+    "007b3270",
+    "007b8c10",
+    "0077f7b0",
+    "007b8450",
+    "00797620",
+    "00797780",
+    "00797e40",
+    "00798010",
+    "0079a420",
+    "00799760",
+    "00799bb0",
+    "007ae320",
+    "007ae390",
+    "007b02b0",
+    "007afc20",
+    "007a2310",
+    "007a4140",
+    "007a2f10",
+    "007a43c0",
+    "007bf980",
+    "007bfe80",
+    "007a3710",
+    "007c02f0",
+    "007c09c0",
+    "007afd70",
+    "007b9750",
+    "007b8d60",
+    "007b8dc0",
+    "007b8e10",
+    "007b9cb0",
+    "007ba830",
+    "007bb540",
+    "007bcfc0",
+    "007be6f0",
+    "007ba0c0",
+    "007ada10"
+  ],
+  "extended_entries": [
+    "005ac430",
+    "00770b90",
+    "0077de30",
+    "00787270",
+    "00790520",
+    "0079bd30",
+    "007a23f0",
+    "007a7470",
+    "007c0d90"
+  ],
+  "ledger_added_partial_client": 100,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2471,
+  "checks": {
+    "focused_native_sanitizers": "PASS across retained stage logs, explicit engine/query doubles",
+    "latest_weapon_pose_native": "PASS all four postures, normal frame boundary, camera, failure cleanup, mount and head",
+    "latest_bone_direction_native": "PASS actual skeleton, distinct correction boundaries and matrix-up alignment",
+    "actual_world_i386": "PASS strict compile with real host types",
+    "application_launch": "PASS i386 compile/link, not executed",
+    "function_tracker": "PASS render/check and all27 existing tests",
+    "diff_check": "PASS"
+  },
+  "portability_decisions": [
+    "Native positive-pose/floor-miss uninitialized terrain normal raises an explicit source error.",
+    "Native head-search visit scratch is uninitialized. Source zero-initializes the scratch, preserving the four shared CRT walks.",
+    "Native mismatched-pitch stain return leaves a lock held. Source unlocks on rejection before stamp selection.",
+    "Unwritten vector W lanes retain known input padding where described in the Human frame contract.",
+    "Source weapon parent cleanup also runs on exceptions, retaining the first failure and recording a secondary cleanup failure."
+  ],
+  "excluded_credit": [
+    "Delegated engine and CRT bodies",
+    "Absent frozen helpers, including007AFD10",
+    "Positive breath/blood particle instance bodies00445150/004451B0",
+    "Unimplemented foot/look/attached/vehicle/target, reaction/ragdoll and other required action/AI/Player receivers"
+  ],
+  "source_files": {
+    "recovered/game/collision_motion.h": {
+      "sha256": "43d4c433c22ef37dfeb8b78f82145255c4686de371f809f059c4486cd47c22cc",
+      "bytes": 16634
+    },
+    "recovered/game/effects_decorations_loading.h": {
+      "sha256": "c53783c8b7a6645f791479eda93817887ed6a04bb2487e9103f9ec6d9f26e0f5",
+      "bytes": 9531
+    },
+    "recovered/game/human_action_control.h": {
+      "sha256": "90394fa2442d0168c79ac95712b79e5f770ccd448bfe63770182e294abf5f0ec",
+      "bytes": 3173
+    },
+    "recovered/game/human_ai_shot_direction.h": {
+      "sha256": "707bcdc417b4d7cac66ca91b2af6c3464cb4ff5830a1018e1a2c86fd9be6ab1d",
+      "bytes": 5935
+    },
+    "recovered/game/human_ai_state_loading.h": {
+      "sha256": "3db7cbdd272eaed18a352551dfc072219f138b83cb9053907ee18e158292adde",
+      "bytes": 33155
+    },
+    "recovered/game/human_animation_tracks.h": {
+      "sha256": "8978d790a5121c2fe77dfcdf4a65dda80f9e3ca5a1e394b334baba867313a32f",
+      "bytes": 44518
+    },
+    "recovered/game/human_control_loading.h": {
+      "sha256": "c042e5f7fa4a39adba12bc4a06e9342abd718875d2a5f81783f084ada5dbfecb",
+      "bytes": 48115
+    },
+    "recovered/game/human_equipment_action.h": {
+      "sha256": "e3952bc938b0a8abe047e8b80de8d84d38e6f221ad2bc5ffc52a25555627c7a9",
+      "bytes": 5337
+    },
+    "recovered/game/human_equipment_attachments.h": {
+      "sha256": "c8ee94642a65c0796e755d30e35213381d0b89f1b1bd4f68f6b2d41bfbf71eff",
+      "bytes": 15224
+    },
+    "recovered/game/human_equipment_loading.h": {
+      "sha256": "b5d2c6d27a8ee1cc3c0037886916d27f9003af2d5e3aa2c550950d0e30e4c3cc",
+      "bytes": 6211
+    },
+    "recovered/game/human_equipment_services.h": {
+      "sha256": "2b9ba456c3fcdb6b4f4eddb3a09da431926416f5230c79f419c307863011e0f0",
+      "bytes": 5616
+    },
+    "recovered/game/human_equipment_transfers.h": {
+      "sha256": "744b0b38e877fc5078178e5246a24c65283ed96d5f8b2eb2185e4c2795969bcb",
+      "bytes": 11536
+    },
+    "recovered/game/human_face_control.h": {
+      "sha256": "0e14280ebd639a44176a78dae3614360ed8d92a8e786b5dc9dae27df3e0df5ac",
+      "bytes": 16658
+    },
+    "recovered/game/human_face_model.h": {
+      "sha256": "c6631d48a30f569a4d4513ec1a9dc800d358aa84a9df1813033c31dc290c8d49",
+      "bytes": 12265
+    },
+    "recovered/game/human_face_patterns.h": {
+      "sha256": "740b272a04add2952f894de6ab31dcacc291716cb53257dfb5b7a002ba13489d",
+      "bytes": 201352
+    },
+    "recovered/game/human_ground_motion.h": {
+      "sha256": "68d0b1bfc95dd1631e0bd340f2efd833c1a4d7244da5372b666712a8d0fb1820",
+      "bytes": 36610
+    },
+    "recovered/game/human_holsters.h": {
+      "sha256": "a58816eeb2a1ca6e3c5808ed77e70ae00d49a071cbd633321b5b954233e04b17",
+      "bytes": 11602
+    },
+    "recovered/game/human_joint_math.h": {
+      "sha256": "e719e10f1558f5640e0753fe8ff40fcfc1fee0c2da9ca926c80f31f8c6503330",
+      "bytes": 8764
+    },
+    "recovered/game/human_joint_owners.h": {
+      "sha256": "1d149baf548b5da36a94b5cc2cb29f9940bea55048397fcaec9ea478946509c1",
+      "bytes": 13670
+    },
+    "recovered/game/human_ladder_control.h": {
+      "sha256": "ce50a45fea7c49620b0b19587846aa2f6053171603cf1faa5d8d1f09816295f5",
+      "bytes": 22984
+    },
+    "recovered/game/human_loading_joints.h": {
+      "sha256": "e9d04d483d3865372e338fe2922f5a92c144931a909c87f5e6cbe717121e21ef",
+      "bytes": 17977
+    },
+    "recovered/game/human_loading_state_view.h": {
+      "sha256": "fa5366c8e820269df53ab79875e89807131831bc2ba8cc73e072713f1a3f0e25",
+      "bytes": 2413
+    },
+    "recovered/game/human_look_control.h": {
+      "sha256": "20f5e52f767f7d9b371ead023c10ca2e6472f61c2b2fd6613aae5d0c354c48b4",
+      "bytes": 19834
+    },
+    "recovered/game/human_look_frame.h": {
+      "sha256": "c8548552dcd6e82c8ad2f12921de82db764eb19b1045789aea692940283efc0e",
+      "bytes": 12825
+    },
+    "recovered/game/human_model_geometry.h": {
+      "sha256": "ddf7a3a8cc56ad26be753b475bc8d2f3e0b0037625cba3c2a8228bc218f6f3a1",
+      "bytes": 65763
+    },
+    "recovered/game/human_movement_control.h": {
+      "sha256": "55425e812cf16c6a2e1f9562d7dd0375142ef36299d041f64109d96a6cc5d46b",
+      "bytes": 12146
+    },
+    "recovered/game/human_opacity_control.h": {
+      "sha256": "a698787cff9c5f8d78eb87cd62800035a1816b1d5196f9be8b5e7c51de01d477",
+      "bytes": 5621
+    },
+    "recovered/game/human_physics_loading.h": {
+      "sha256": "f9aef526da17cfe9574162419f2417d95445cc68cc611eeb462b4f9737d70313",
+      "bytes": 32679
+    },
+    "recovered/game/human_skeleton.h": {
+      "sha256": "10daba880fee97f454ecf6487606c3b6dfd296776e6d1d0f39886bc8a792c6c4",
+      "bytes": 6468
+    },
+    "recovered/game/human_weapon_binding.h": {
+      "sha256": "674e9119cf13c42dff572af89f907d6a957869ea59a366f881ab63d6e3ddb0ec",
+      "bytes": 10115
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "042f86cc7bb236b5a80a96cf92d1b3f2292c305c6558654d29d16c0bc0e469d0",
+      "bytes": 49249
+    },
+    "recovered/game/mission_navigation.h": {
+      "sha256": "eb02d77701a2c1489b6f14f0cfe662ef1f67a56717ec16cad9b3778a8c4d3564",
+      "bytes": 25975
+    },
+    "recovered/game/runtime_item.h": {
+      "sha256": "d55965c9b9e609acdf4f014f728282f480c0d5ce9346630bb4f0a3d0ac619787",
+      "bytes": 13257
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "1a91a9bb83d6685b1b51ed78bcfaeaaa469706338f811dcf080432b704222c96",
+      "bytes": 85165
+    },
+    "recovered/host/game_animations.h": {
+      "sha256": "6562269522449e1326d16f07c114bec269fbc8e5212694499350e7d72e87abd5",
+      "bytes": 3875
+    },
+    "recovered/game/human_ai_light_observation.h": {
+      "sha256": "e64ea7944d94bbe20d09df9df51ac7b951b8cc7cd5ac4c3bef1f192b7a296437",
+      "bytes": 4585
+    },
+    "recovered/game/human_air_alignment.h": {
+      "sha256": "1fefea72ed113991b67add3eabd16069f1304fdc569f21994942cd37c5352aa2",
+      "bytes": 9628
+    },
+    "recovered/game/human_air_motion.h": {
+      "sha256": "d7c934bd4423002a8d84271e61aa16c8591dcca3dbe75f5c29ade220b3e9442a",
+      "bytes": 13250
+    },
+    "recovered/game/human_animation_arbitration.h": {
+      "sha256": "8194b4d334266b34eb4c52b4d8735e462be3ac69dc2e0bc89713cc2a7d5e36d7",
+      "bytes": 62063
+    },
+    "recovered/game/human_animation_requests.h": {
+      "sha256": "df08a9d3b400f07e587a7ba6389fef5131a64703c7db9af17a9f4688c24dffbe",
+      "bytes": 1176
+    },
+    "recovered/game/human_bone_direction.h": {
+      "sha256": "0ae9fbd2a6f87e94d149036aed80dacfa5fed9c417daacea06147c466e83ea11",
+      "bytes": 10109
+    },
+    "recovered/game/human_clip_pose.h": {
+      "sha256": "78820181e571f647768d71f02e4542bee2e95aff334f0503ece8326b62386829",
+      "bytes": 5320
+    },
+    "recovered/game/human_door_action.h": {
+      "sha256": "25f6cf8b1f031bcfd9f4d714bf3fc7b52f66ccf3cf89a92b83023ccb21c386d6",
+      "bytes": 3386
+    },
+    "recovered/game/human_equipment_mount.h": {
+      "sha256": "522296141bb5c6e3090647e207b93c438c6d75ad22502cba36545fffb5f3d736",
+      "bytes": 4230
+    },
+    "recovered/game/human_equipment_transition_sound.h": {
+      "sha256": "d0bf20345636f8a42f9efa218f1216c697ca5efab5fb38adaf8700002efec94e",
+      "bytes": 2865
+    },
+    "recovered/game/human_face_hit_geometry.h": {
+      "sha256": "b9b514612f01d5576060273229888efa6cf872d10838038121fe6257248d8672",
+      "bytes": 9379
+    },
+    "recovered/game/human_frame_light.h": {
+      "sha256": "f53bae7498d0e94b4fc7a76536de889eda6327111949f7909ba5c6ffa18f244e",
+      "bytes": 2920
+    },
+    "recovered/game/human_idle_motion.h": {
+      "sha256": "eb013bc13a5382ada804d1b3004329c5924f306b6b756f1b93dae0cd5ad242a8",
+      "bytes": 4835
+    },
+    "recovered/game/human_model_action.h": {
+      "sha256": "053a2f063fe9934f1c52bdedf4f492ddd3b6e0eadd6cf3d33c254cfc63b76b4d",
+      "bytes": 8523
+    },
+    "recovered/game/human_mount_retirement.h": {
+      "sha256": "6b660685128e4936f314976c831aba0ad0dac81aee589de17bb06030fb34d474",
+      "bytes": 2497
+    },
+    "recovered/game/human_obstruction_motion.h": {
+      "sha256": "980abd75145cd70483f89f496680367750254e505b146d372152abb0d7619b39",
+      "bytes": 1902
+    },
+    "recovered/game/human_physical_frame_words.h": {
+      "sha256": "c2d51c27fb78282d2b977dcf713f573b87ccf68dc2a1a4a6d7afd699f8211252",
+      "bytes": 1956
+    },
+    "recovered/game/human_step_motion.h": {
+      "sha256": "0f028ad02431b2eeb18a0d0f0ee693ace6fa39dbdb6c4a9afbdacc6ca66cb913",
+      "bytes": 3644
+    },
+    "recovered/game/human_step_preparation.h": {
+      "sha256": "2cab088f4fb61712e8475c9b94b9d34afeafaaa28ca8d4af3bba764cea062aca",
+      "bytes": 8017
+    },
+    "recovered/game/human_two_bone_ik.h": {
+      "sha256": "c1b177b49c0dbff623a6d461c28f7e848b30391ce5b2adf5d5ff70bec2cf4c52",
+      "bytes": 4711
+    },
+    "recovered/game/human_water_motion.h": {
+      "sha256": "e629f8416bacbbe9bdb8df3dbfb63e680b9bbfb782655a181d60ef522ee905c0",
+      "bytes": 8819
+    }
+  },
+  "retained_stage_logs": {
+    "analysis/work/mission-world-20261103/human-mount-frame-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "analysis/work/mission-world-20261103/human-mount-native.log": {
+      "sha256": "aea8b9914ce1dbbae404a83bd7f0dcec3a61e67e096bfe743f49a22bee818056",
+      "bytes": 178
+    },
+    "analysis/work/mission-world-20261103/human-joint-reset-native.log": {
+      "sha256": "b914c0c9160bda2fb817ad3a4d3ab18cf184d063222144cf83d735cbf5b7ac31",
+      "bytes": 214
+    },
+    "analysis/work/mission-world-20261103/human-mounted-geometry-native.log": {
+      "sha256": "d49959e057609f2471871d204404035133a88b91be325af57baa8f7f16616d70",
+      "bytes": 255
+    },
+    "analysis/work/mission-world-20261103/human-step-native.log": {
+      "sha256": "cd62081d9d65f26339925a8a0ed7fba99493407ac394d71059d1d29592b73df2",
+      "bytes": 265
+    },
+    "analysis/work/mission-world-20261103/human-animation-arbitration-native.log": {
+      "sha256": "048191a2cb92ce9aabceaf6a42762924cc96a2b5e4f0334729c38a0b2afa25de",
+      "bytes": 183
+    },
+    "analysis/work/mission-world-20261103/human-primary-arbitration-native.log": {
+      "sha256": "145f76c702065fd97333db41f8057333c8bf36a53d5051053e2e48c8b62d6445",
+      "bytes": 408
+    },
+    "analysis/work/mission-world-20261103/human-hand-action-native.log": {
+      "sha256": "cbdecaecf706c0e7f7ca3a7840f1f928ce3abac01ea1fff3784b371bb6c47a10",
+      "bytes": 189
+    },
+    "analysis/work/mission-world-20261103/human-action-holster-native.log": {
+      "sha256": "040dc9ce42db19a46f22dfaae236ae21d46f432eb9a16f34a9dfa2a59bd253d3",
+      "bytes": 193
+    },
+    "analysis/work/mission-world-20261103/human-transition-sound-native.log": {
+      "sha256": "e24aeda9fd1faf2dc32ace8fbc3434182301b2c48677da9f0cd50a41183de916",
+      "bytes": 223
+    },
+    "analysis/work/mission-world-20261103/human-door-action-native.log": {
+      "sha256": "2e314bae0d6ef0db1378378aa0094590e4c26ff4108c03e75477004bbce9fe26",
+      "bytes": 188
+    },
+    "analysis/work/mission-world-20261103/human-frame-audio-native.log": {
+      "sha256": "06812b5d538717ea68c91f8e919f7913b5a6941a894c050aed8e79e0f0450477",
+      "bytes": 262
+    },
+    "analysis/work/mission-world-20261103/human-idle-breath-native.log": {
+      "sha256": "92ba0bf73eeedbd113ab1be7684ec09c4e77d4e63a050850abdfb96c2e783542",
+      "bytes": 177
+    },
+    "analysis/work/mission-world-20261103/human-step-motion-native.log": {
+      "sha256": "2f70a4ca96b8970d38cd2ba354f255fb4d98c8d530d1f56ec00e4f23e3837548",
+      "bytes": 147
+    },
+    "analysis/work/mission-world-20261103/human-water-motion-native.log": {
+      "sha256": "630967a89f54104507ae358631e11732f1923b399957067321f26f2e827b61a2",
+      "bytes": 252
+    },
+    "analysis/work/mission-world-20261103/human-air-motion-native.log": {
+      "sha256": "b7daa5efd801b0c4dd6af2e49fdee0a844f7b74fac4ddb6ae2dfd1253d4ecac9",
+      "bytes": 480
+    },
+    "analysis/work/mission-world-20261103/human-air-face-native.log": {
+      "sha256": "f2cdb1529849e7640b0958883554df03fd80a00be73a3cc9e69d25489b8dd8c5",
+      "bytes": 217
+    },
+    "analysis/work/mission-world-20261103/human-light-observation-native.log": {
+      "sha256": "47e1e2a55ec1728ca9e029655da00e803ac5941c4d60f80449808eeb37d6baa2",
+      "bytes": 238
+    },
+    "analysis/work/mission-world-20261103/human-obstruction-native.log": {
+      "sha256": "235ea9d789fe0ca297d6f343430e72f367634daa2e8586415c877f4c2b7b5fd9",
+      "bytes": 192
+    },
+    "analysis/work/mission-world-20261103/human-action-overlay-native.log": {
+      "sha256": "907e3315b9f3a9507779887c94c09cceddda9ba9569195e39c1377a6bed27934",
+      "bytes": 227
+    },
+    "analysis/work/mission-world-20261103/human-joint-impulse-native.log": {
+      "sha256": "bf716a025f73aaa579a7ef0b279c497bb1b36892242501f376c3e69aa5eca07e",
+      "bytes": 238
+    },
+    "analysis/work/mission-world-20261103/human-model-action-native.log": {
+      "sha256": "21b5ba04f7d332478462dd9a50fd6e09ec566587799fcfc296ad97fc666e6b44",
+      "bytes": 224
+    },
+    "analysis/work/mission-world-20261103/human-face-hit-native.log": {
+      "sha256": "1e855e139db1178a7938bcc523d1614dcb5f654188adbc446be28f178783e703",
+      "bytes": 70
+    },
+    "analysis/work/mission-world-20261103/human-hit-command-native.log": {
+      "sha256": "8b106ebe7c91436f4da2c59384f52139b587bcc02ffc92b02bbf5263189ce4bc",
+      "bytes": 98
+    },
+    "analysis/work/mission-world-20261103/human-secondary-clip-native.log": {
+      "sha256": "beb048c990e9e2c9a6288227c89eadd9df6e2c17e25e95d148ee452877562144",
+      "bytes": 89
+    },
+    "analysis/work/mission-world-20261103/human-bone-direction-native.log": {
+      "sha256": "52580cb01b3f6301e5ab39a583238c3fd2478321aeaa60bd43a2fc7b0e468fe6",
+      "bytes": 94
+    },
+    "analysis/work/mission-world-20261103/human-equipment-overlay-native.log": {
+      "sha256": "e936b9b398cf99a94e735dc01f72978394d19c2072a1102fb09fa128318a3477",
+      "bytes": 91
+    },
+    "analysis/work/mission-world-20261103/human-weapon-pose-native.log": {
+      "sha256": "30c4a8f551bb54dc7f0f780fe6a1afd0348367543d302d357806823e7715bb5f",
+      "bytes": 92
+    },
+    "analysis/work/mission-world-20261103/human-two-bone-native.log": {
+      "sha256": "8e0ec163d8442d966406ef211a330bc9a67aeee416e53090d42c38427f2acac5",
+      "bytes": 85
+    },
+    "analysis/work/mission-world-20261103/human-bone-basis-native.log": {
+      "sha256": "221785e74b1470f01123b250849124ac7a19cb400e6a597bfdb2a71b8bf79d21",
+      "bytes": 98
+    },
+    "analysis/work/mission-world-20261103/human-aimed-weapon-application-i386.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547
+    },
+    "analysis/work/mission-world-20261103/human-mount-head-application-i386.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547
+    }
+  },
+  "temporary_artifacts": {
+    "analysis/work/mission-world-20261103/human-mount-frame-i386.cpp": {
+      "sha256": "1d7fa4cf74de7de63bf20ec1bcfdebae30cc7c438f54cbeb4cd23cef48185b12",
+      "bytes": 9755,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-mount-frame-i386.o": {
+      "sha256": "ca23d15da11f18bae64ce00bf3b76f21fc93284db8afcecfd0dbacdb3a2e05a1",
+      "bytes": 14277720,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-mount-native.cpp": {
+      "sha256": "f6705f93ba54b2bd7e3bf6cffab70666e80324667f072b5a60021ba461d45cc8",
+      "bytes": 7703,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-mount-native": {
+      "sha256": "5b37b849abb1a042b292c9f3bbcfd1649e8797194ed0a763578b7ca50ef7b587",
+      "bytes": 709256,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-joint-reset-native.cpp": {
+      "sha256": "7d55f17e987b04cc8e235323982b8a2e3956351f034b042528e319ef67d16d19",
+      "bytes": 3503,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-joint-reset-native": {
+      "sha256": "b9b3955f443a210a200c88534bf97153d0bce3e4aeadb063bf51850d09555cc0",
+      "bytes": 966520,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-mounted-geometry-native.cpp": {
+      "sha256": "dd13fb0fa8fccb6e8b4bfb287497d14d889d2ca1e40e07d948b451b91ccef006",
+      "bytes": 6786,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-mounted-geometry-native": {
+      "sha256": "8d2787f18266634534d3a8c3911af72f360cc9e249d514009886f5568e7c1df4",
+      "bytes": 2053040,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-step-native.cpp": {
+      "sha256": "4ee1b0202460d92809e42cb027e9031d2e5ab71e24b2af82427a9b11c6b92808",
+      "bytes": 8121,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-step-native": {
+      "sha256": "acbe15450fea2f79fba0facc0c87d0f9b67381552f0fd85779786ddf7919a7eb",
+      "bytes": 681184,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-animation-arbitration-native.cpp": {
+      "sha256": "8e9d2755d28601e66404b6717231694595f0b16e156a9b6cdc604067b5e8337c",
+      "bytes": 6683,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-animation-arbitration-native": {
+      "sha256": "e6637e342504169ac9529237bcb2df241c2120fcea554a90a7c41022a8376ea8",
+      "bytes": 552096,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-primary-arbitration-native.cpp": {
+      "sha256": "15071edae183ed97751307a879f3e9a6532e8131c9c24b0d5db5976399b59dc8",
+      "bytes": 19044,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-primary-arbitration-native": {
+      "sha256": "265a6248d16f6da77696b7d3be03f918a1a3048b67db11bba9652222edd5a4d3",
+      "bytes": 2382368,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-hand-action-native.cpp": {
+      "sha256": "858f6b8dd232ec52bcf1f364a9f18ae21a0e09dccdecef7f9a03193c93cb47a1",
+      "bytes": 5321,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-hand-action-native": {
+      "sha256": "f855c2ba61ca222a80eb2a76cd9aa0dc4439539e824d03c60fd337063fd4f8db",
+      "bytes": 660752,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-action-holster-native.cpp": {
+      "sha256": "89855b92431f98f38af5361c319b74c24b50e44147ced1ad8f224cc1e5d921ee",
+      "bytes": 3591,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-action-holster-native": {
+      "sha256": "565bec116232c88e1c5db1558bef0fe6c612b1bbbed8431daa0c4e42613e82c7",
+      "bytes": 693824,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-transition-sound-native.cpp": {
+      "sha256": "62a7aebfcf7cf84e1f7de234b9a61a317fdbcbc020c80f152ae1b1c5c0d5a293",
+      "bytes": 5601,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-transition-sound-native": {
+      "sha256": "638d31e7cfa0d8643b35e9d3287eb3a6235882ab97c0906682b6880c296b438d",
+      "bytes": 797560,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-door-action-native.cpp": {
+      "sha256": "82100c2ea693567b88e4c7e79a7946633a7603999ce1a0bd105869c77bd06aab",
+      "bytes": 5475,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-door-action-native": {
+      "sha256": "4a982b91309ef72888a875cb5376c1ca083a705b92a0fca716aa71e5912f0d5c",
+      "bytes": 250824,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-frame-audio-native.cpp": {
+      "sha256": "7c616503ba0bd64ee9dd8ed036a90a06ccb911ee4baf7fbf272304ab58c415d5",
+      "bytes": 7080,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-frame-audio-native": {
+      "sha256": "84991f5272d0ce4e71c6ea569dbcb47e039d0d1ed2481515170747d775bc47f6",
+      "bytes": 1352104,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-idle-breath-native.cpp": {
+      "sha256": "cad2cd6b9d8bf0813d5d5bacfeaeca4bf3c13a1b240aa0cc26894413191b269f",
+      "bytes": 5880,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-idle-breath-native": {
+      "sha256": "780b413a4c5af860418cb3597c7dd6cd80602f525f57395f21d1f26c151e673b",
+      "bytes": 305032,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-step-motion-native.cpp": {
+      "sha256": "a8904582aedcfb1250ba54333ebef8c9916673e17943f592913d72b5cb8365f8",
+      "bytes": 6106,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-step-motion-native": {
+      "sha256": "5a0fca3cfff4d276f14d7acd2fe4e96e674bd1e7b0d17be1566c868f3a001d23",
+      "bytes": 326568,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-water-motion-native.cpp": {
+      "sha256": "b71fc017cdb7b827931047780bbf800389eefe4acf8cd1eea6bbb92bd3f10d58",
+      "bytes": 10814,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-water-motion-native": {
+      "sha256": "d6fa9a40834092189e26d0e92250cb1701fc3df23b22a44cd860d3fbf1833364",
+      "bytes": 878336,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-air-motion-native.cpp": {
+      "sha256": "efc5d98d4bf1bab7002d700df5df22d0177442c4ee946e5eb0ab4d3de2a9e037",
+      "bytes": 19689,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-air-motion-native": {
+      "sha256": "83359f49e8ba448bf460d2ef3fd7fbd85a26cedc10da44a9cd60661d3f211e43",
+      "bytes": 1497592,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-air-face-native.cpp": {
+      "sha256": "2965c10b44d7e9de62cd1918c93331816c836c54769a6038e017f1eac290a2ff",
+      "bytes": 5380,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-air-face-native": {
+      "sha256": "3ac226aeb214e73379b455d6aa7a02e974f4661ad1d2d309ae4a79a68db0ad41",
+      "bytes": 766824,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-light-observation-native.cpp": {
+      "sha256": "beef8cedc93fc80c3701151fc1d5251d0fb21b451905f312caa76ad5d9ac1584",
+      "bytes": 17909,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-light-observation-native": {
+      "sha256": "95562acbfc1f38cb601063124978ff8eb3681121a244750d661f7a68c1c66477",
+      "bytes": 2310048,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-obstruction-native.cpp": {
+      "sha256": "2b5a775f3c61f0c2e26a33cd3da3ae6fe156fbdc2cc20c18264b61345766a67d",
+      "bytes": 5490,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-obstruction-native": {
+      "sha256": "3c1d82f5eabdc4414f694b4ffea39ed53ee28760179ba787e3a04d8e817e238c",
+      "bytes": 364992,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-action-overlay-native.cpp": {
+      "sha256": "8ec985bb75d1a4041b94ced4770e7b0f26366edd4e61ff8c1b246550913a7c4f",
+      "bytes": 7671,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-action-overlay-native": {
+      "sha256": "250b32f6525215674c73e2bddb57e5b11f3666126c962da45b701883591b678f",
+      "bytes": 1077224,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-joint-impulse-native.cpp": {
+      "sha256": "6e7c2ccf889fcca8dcc8948432807a82a7745d2764952d5c17dd0bbc2e74aae8",
+      "bytes": 8310,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-joint-impulse-native": {
+      "sha256": "b1ea00eaca95f1d521690736fcdb24a6969903069e1c0323b84a3c3bcb92c3b3",
+      "bytes": 1988880,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-model-action-native.cpp": {
+      "sha256": "b005031c5764fccd6bf77533461929048476b6093d84891e569f79278b65f236",
+      "bytes": 13724,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-model-action-native": {
+      "sha256": "eb198605c86bcc98b0f7da2cc51a9a7f72d6285f35b5b92dd1ce7c0cb0a1b5b2",
+      "bytes": 903560,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-face-hit-native.cpp": {
+      "sha256": "02e1f2e93edcd359b8b19d1eaba6beba0f59b8dc2c28e140f4b9d44bf790b1ba",
+      "bytes": 7283,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-face-hit-native": {
+      "sha256": "053fbd52b2e4d837200c246d5277e8673ea28ba5bdcd1ee30c52ecdd9af5930f",
+      "bytes": 2029816,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-hit-command-native.cpp": {
+      "sha256": "cb61b274e4e2e488571f572aee94101a97e9877e6e2db3d120b44570f8dd6450",
+      "bytes": 7776,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-hit-command-native": {
+      "sha256": "35a4e4634700fb2c9f9e71760715b6c87f766f4dc78f87ed63ac6e38cf5241bd",
+      "bytes": 2284624,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-secondary-clip-native.cpp": {
+      "sha256": "e1de44cfabd26c87c188405cc25730af6a65b0a315be21ea247b3f64c6c02a72",
+      "bytes": 5191,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-secondary-clip-native": {
+      "sha256": "2d15b929ac195b2c5f0b53a8296b00d7f72a6d27f3ead1369276a53c077a1e3a",
+      "bytes": 708192,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-bone-direction-native.cpp": {
+      "sha256": "d87419d7cb8ebe50f3976a00e9991e410fad7f89a041f803ed37906465e54526",
+      "bytes": 4569,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-bone-direction-native": {
+      "sha256": "ede6fc44061207f46ef4ee3aa504e88930037a282389c8acae0f9bcc492ae398",
+      "bytes": 407368,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-equipment-overlay-native.cpp": {
+      "sha256": "9c5c210211ac3a45575a3812a8ce9b10daf06ddf3f3d425b3bf4c9ee16ff1605",
+      "bytes": 7991,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-equipment-overlay-native": {
+      "sha256": "d9712d3fae5b0f5c9497f2ffad7e35c2effc5a9a264a289f6af06ff32176dee8",
+      "bytes": 2214568,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-weapon-pose-native.cpp": {
+      "sha256": "155ee14a886616d72f51c4669a61059c3f05506f3f4eeed5051efb623af62c33",
+      "bytes": 17261,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-weapon-pose-native": {
+      "sha256": "4e923bc72c7b7d349a1b40cb8833978f3a0661c2e04be05f6bdce0f4cd5e8c64",
+      "bytes": 3190608,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-two-bone-native.cpp": {
+      "sha256": "43a6f003651b59eef6ef0c41774fa6528957ac9cedb3c2acbf9bf67567f89ad3",
+      "bytes": 1799,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-two-bone-native": {
+      "sha256": "f3fcc4f135d0c25bf3c3b1c5652b85ced3f87ecf07083c60c2671613a2e44a3a",
+      "bytes": 101864,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-bone-basis-native.cpp": {
+      "sha256": "2a56356e8c55c151e6fa475790239aecd4d8097f074cbfa8e5be90aabfb2b118",
+      "bytes": 2353,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-bone-basis-native": {
+      "sha256": "c535108da27b700b99a416b93d85f1eb770401fa6de3fef111e2577f633b2545",
+      "bytes": 191576,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/ExportHumanHitABI.java": {
+      "sha256": "c91f7eb5ac689f4ebb364637b572a4e3be895e5ad675d8c8009a824b507018c3",
+      "bytes": 4451,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/ExportHumanClipABI.java": {
+      "sha256": "aed1bbe6efeea9c4fa15c74b585a343a18acd0ae18ca1e42308a85d0173e2c64",
+      "bytes": 3560,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/ExportHumanModelABI.java": {
+      "sha256": "d5f17164531b6e628dd1dcde0569a4e9c5b910e03fbceb49ab7c93d02eb7102b",
+      "bytes": 3818,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/ExportHumanIKABI.java": {
+      "sha256": "60c4d1688b4fa57089180c742b232197d57c2da3d2b5ba1b06ca0ff52fe73f33",
+      "bytes": 3954,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/ExportHumanStowedABI.java": {
+      "sha256": "aadd7daea9178ce1d5a5f1e25e7aa8cc5e0fbe207c639d1c5baa438e5df87907",
+      "bytes": 4725,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/ExportHumanAimedABI.java": {
+      "sha256": "86e371c03e5141658a7fdb31501779fcebe8ef8fbd8d63769b90dc215de935eb",
+      "bytes": 4918,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/ExportHumanAimedDependenciesABI.java": {
+      "sha256": "45ef14b83cceac05382ee30ecce1dad97f98acea6e0faf3a839fc7feb3a29c79",
+      "bytes": 5021,
+      "retained": false
+    }
+  },
+  "cleanup": "Temporary native fixture source/binaries/objects and listed rollback-only exporters removed after hashing. Logs, static exports and original evidence retained.",
+  "continuation": "Continue analysis/p22-hum-plan.md. User authorizes accumulated subsystem commits and commits at each completed plan checkbox. Next is007ACCC0."
+}

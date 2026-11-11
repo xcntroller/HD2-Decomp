@@ -36,6 +36,10 @@ public:
     const auto& groups()const{return groups_;}const auto& definitions()const{return definitions_;}
     const auto& cells()const{return cells_;}const auto& mask()const{return mask_;}
     const auto& active_entries()const{return active_entries_;}
+    float material_sight_factor(std::uint32_t material)const{ //004867E0→0047B4C0, absent frozen inventory.
+        if(material>=groups_.size()||!groups_[material])return 1.f;
+        return groups_[material]->field14;
+    }
     std::int32_t width()const{return width_;}std::int32_t height()const{return height_;}
     float density()const{return density_;}bool enabled()const{return enabled_;}bool quality()const{return quality_;}
     bool initial_first_person()const{return first_person_;}

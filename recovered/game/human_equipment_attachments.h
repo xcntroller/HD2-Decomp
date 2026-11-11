@@ -2,15 +2,16 @@
 #define HD2_GAME_HUMAN_EQUIPMENT_ATTACHMENTS_H
 
 #include "game/human_equipment_state.h"
+#include "game/human_equipment_action.h"
 #include "game/human_equipment_offsets.h"
 #include "game/item_model_cache.h"
 
 namespace hd2::game {
 
-//0078DF60's loading attachment cases0/1/2/3/10. The SAME catalogue/item cache and
+//0078DF60's loading cases0/1/2/3/10 and action cases5..8. The SAME catalogue/item cache and
 //Human230 state are borrowed. Services must supply the actual DD0 opacity,
 //identity lookup,6950 flag receiver and007920B0 visibility refresh; none has
-//a successful default. Cases4..9 require their separate action producers.
+//a successful default. Cases4/9 require their separate action producers.
 template<class Frames,class Items,class Services>
 class HumanEquipmentAttachments {
 public:
@@ -37,6 +38,7 @@ public:
         case 1:attach_bag();return;
         case 2:attach_back_model();return;
         case 3:attach_hand();return;
+        case 5:case 6:case 7:case 8:attach_human_equipment_action(frames_,state_,services_,kind);return;
         case 10:attach_hand_on_back();return;
         default:throw std::runtime_error("Human equipment hands/action attachment is not reconstructed");
         }

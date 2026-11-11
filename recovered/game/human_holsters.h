@@ -95,6 +95,13 @@ public:
         pose_accessed_=false;started_=false;
     }
     const auto& groups() const{return groups_;}
+    void set_action_holster_visible(bool visible){ //007918C0, native138/13C/140 are group4's existing count/frame words.
+        if(!started_)throw std::logic_error("Human action holster requires actual initialized groups");
+        const auto& group=groups_[4];
+        if(frontend::pre_mission_detail::Bytes::integer(group.field0)<=0||!group.count)return;
+        if(!group.frames[0])throw std::runtime_error("Human action holster lost its actual first frame");
+        frames_.object_visible(group.frames[0]->get(),visible);
+    }
     void show_items(const frontend::PreMissionItem& definition,std::int32_t amount,float opacity) { //007919C0.
         if(!started_)throw std::logic_error("Human holsters are not initialized");
         const auto index=human_item_holster_group(definition);if(index==14)return;

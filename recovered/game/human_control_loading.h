@@ -4,13 +4,21 @@
 #include "game/human_action_control.h"
 #include "game/human_control_action_queue.h"
 #include "game/human_ladder_control.h"
+#include "game/human_step_preparation.h"
+#include "game/human_step_motion.h"
 #include "game/human_motion_velocity.h"
 #include "game/human_ground_geometry.h"
 #include "game/human_ground_motion.h"
+#include "game/human_water_motion.h"
+#include "game/human_air_motion.h"
 #include "game/human_look_frame.h"
+#include "game/human_door_action.h"
+#include "game/human_model_action.h"
+#include "game/human_animation_arbitration.h"
 #include "game/human_posture_transition.h"
 #include "game/human_lateral_stride.h"
 #include "game/human_posture_room.h"
+#include "game/human_mount_retirement.h"
 #include "game/human_direction_replay.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
@@ -19,6 +27,9 @@
 #include "game/human_movement_control.h"
 #include "game/human_physics_loading.h"
 #include "game/human_motion_state.h"
+#include "game/human_idle_motion.h"
+#include "game/human_frame_light.h"
+#include "game/human_obstruction_motion.h"
 #include "game/effects_shadow_models.h"
 #include "game/human_camera_amount.h"
 #include "game/human_ai_shot_direction.h"
@@ -57,9 +68,10 @@ public:
         :frames_(frames),audio_(audio),random_(random),effects_(effects),presentation_(presentation),services_(services),
          geometry_(frames,random),face_(frames,morph,random),physical_(frames,collisions,exclusions,face_,audio,physics_globals,[this]{return shadow_.frame();}),
          tracks_(frames,callbacks),shadow_(frames,effects),animation_(frames,tracks_,shadow_,*this,opacity_,random) {
+        physical_.bind_animation_tracks(tracks_.frame_words());
         pool_.emplace(audio_.acquire_pool()); //Geometry constructor precedes007855C0's shared pool lease.
     }
-    ~HumanControlLoading(){deactivate();geometry_.clear();pool_.reset();} //00785950 ordering.
+    ~HumanControlLoading(){deactivate();geometry_.clear();pool_.reset();physical_.unbind_animation_tracks();} //00785950 ordering.
     HumanControlLoading(const HumanControlLoading&)=delete;
     HumanControlLoading& operator=(const HumanControlLoading&)=delete;
     template<class Resources,class Sweep>void bind(Human& human,Resources& resources,Sweep& sweep,const CollisionTree<Frame>* tree) {
@@ -135,12 +147,39 @@ public:
         frames_.refresh_dynamic_human_model(human_->base().frame()); //Actual SAME scene144(model), ignored native result.
     }
     Tracks& tracks(){return tracks_;}Action& action(){return action_;}
+    void play_presentation_track_sound(unsigned group){physical_.play_frame_presentation_sound(group,services_,pool_->pool());} //0075E770, SAME retained pool lease.
+    template<class Look,class Runtime,class Publish>void finish_step_fall(Look& look,Runtime& runtime,Publish& publish){
+        finish_human_walk_fall(*this,look,*human_,services_,runtime,false,publish); //00770B90(0).
+    }
+    template<class Look,class Runtime>void apply_look_interaction(Look& look,SceneInstance* target,std::uint32_t flags,std::uint32_t argument,Runtime& runtime){
+        if((flags&0x3ffu)==1u){(void)begin_human_door_action(*this,look,*human_,services_,frames_,target,flags,argument);return;}
+        if((flags&0x3ffu)==8u){
+            auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+            (void)begin_human_model_action(*this,look,services_,frames_,target,flags,argument,look.interaction_frame_argument(),publish);
+            return;
+        }
+        if((flags&0x3ffu)==9u||(flags&0x3ffu)==10u){
+            auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+            (void)begin_human_model_exit(*this,look,services_,flags,publish);return;
+        }
+        runtime.apply_human_look_interaction(*this,target,flags,argument); //00751480's remaining required action cases.
+    }
+    template<class Look>void advance_model_action(Look& look,std::uint32_t elapsed){
+        const auto flags=physical_.control_frame_words().template get<std::uint32_t>(0xa34);
+        if((flags&0x3ffu)==8u)advance_human_model_action(*this,look,*human_,services_,frames_,elapsed);
+        else advance_human_model_exit(*this,look,*human_,services_,frames_,elapsed);
+    }
     Shadow& shadow(){return shadow_;}
     const Links& links() const{return links_;}const auto& motion() const{return motion_;}
     const auto& animation() const{return animation_;}const auto& opacity() const{return opacity_;}
+    auto& opacity(){return opacity_;}
     Human** human_slot_address(){return physical_.human_slot_address();}
     std::uint32_t mode_flags() const{return services_.mode_flags();}
     bool human_is_player()const{if(!human_)throw std::logic_error("Human control has no bound actor");return services_.human_is_player(*human_);}
+    auto human_geometry_ray(const HumanVector& start,const HumanVector& displacement,
+            std::uint32_t layers,std::uint32_t flags,bool normal=true){
+        return services_.human_geometry_ray(start,displacement,layers,flags,normal);
+    }
     bool frame_special_movement_item()const{ //005A66B0.
         auto* storage=human_?human_->base().storage():nullptr;
         if(!storage||storage->single()||!storage->holder(5))
@@ -282,7 +321,7 @@ public:
                 services_.current_human_frame_player()==human_,services_.human_alternate_motion_sound(),
                 physical_.bones().at(4),physical_.bones().at(7));
         }
-        if(word(0x1ac)!=1)runtime.advance_human_air_motion(*this,elapsed); //00769920.
+        if(word(0x1ac)!=1)advance_human_air_motion(*this,look,*human_,services_,frames_,runtime,publish,elapsed); //00769920.
         else{
             const auto mode=look_word(0xb8),animation=word(0x1d8);
             const auto attachment=word(0xa34);
@@ -304,8 +343,8 @@ public:
                     if(!interaction)physical_.clear_ground_contact();
                     state.set(0x758,0u);state.set(0x75c,std::int32_t{-1});
                     state.set(0x761,std::uint8_t{0});state.set(0x762,std::uint8_t{0});
-                    if(mode==5)runtime.advance_human_floor_motion(*this,step); //00768E50.
-                    else if(interaction)runtime.advance_human_interaction_motion(*this,step); //00767D40.
+                    if(mode==5)advance_human_water_motion(*this,look,*human_,services_,frames_,runtime,publish,step); //00768E50, actual water mode and collision owner.
+                    else if(interaction)advance_human_step_motion(*this,*human_,services_,frames_,step); //00767D40, actual HD displacement and height curve.
                     else if(special)advance_special_ground_motion(step,runtime); //00768170.
                     else advance_human_ladder_motion(*this,look,*human_,services_,step,runtime,publish); //00768230.
                 }else advance_human_walk_motion(*this,look,*human_,services_,step,runtime,publish); //007646F0.
@@ -335,7 +374,6 @@ public:
     float presentation_amount() const{return amount_;}
     std::uint32_t animation_state_word(unsigned offset) const {
         if(offset==0xa9c)throw std::logic_error("DD0 A9C is the actual typed shadow frame, not a scalar word");
-        if(offset>=0x260&&offset<0x604)return tracks_.words().template get<std::uint32_t>(offset-0x260);
         if(offset<0xaa0)return physical_.state().template get<std::uint32_t>(offset);
         if(offset>=0xac0&&offset<0xc00)return movement_.state().template get<std::uint32_t>(offset-0xac0);
         if(offset>=0xc00&&offset<0xcb0)return action_.state().template get<std::uint32_t>(offset-0xc00);
@@ -381,6 +419,15 @@ public:
     template<class Look>void refine_look_lateral_stride(const Look& look){
         refine_human_lateral_stride(*this,look,*human_,frames_,services_.human_geometry_sweep());
     }
+    void begin_mounted_geometry_effect(Human& source){geometry_.begin_mounted_effect(*human_,*this,source,services_);}
+    template<class Look,class Runtime>bool prepare_step_motion(Look& look,Runtime& runtime){
+        auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
+        return prepare_human_step_motion(*this,look,*human_,services_,frames_,runtime,publish);
+    }
+    template<class Look>void retire_look_mount(Look& look,Frame model){
+        auto* actor=services_.template human_mounted_model_actor<Human>(model);
+        retire_human_control_mount(*this,look,*human_,actor,services_,frames_);
+    }
     template<class Look,class Sweep,class Runtime>void advance_control_frame(Look& look,Sweep& sweep,std::uint32_t elapsed,Runtime& runtime){ //00787270.
         if(flag_dc4_)return;
         if(!active_||!human_)throw std::logic_error("Human control update requires actual live DD0");
@@ -396,7 +443,7 @@ public:
             finish_clock();state.set(0x1d4,std::uint8_t{0});
             if((geometry_.movement().field6304&0x200u)&&geometry_.joints().field68d0>=1.e-8f&&
                movement_.state().template get<float>(0x114)==-10000.099609375f)
-                runtime.update_inactive_human_obstruction(*this); //0074EA80 and the live geometry height gate.
+                (void)query_human_ground_water(*this,look,*human_,services_,runtime); //0074EA80, SAME existing water coordinator.
             return;
         }
         if(physical_word(0x22c)&8u){
@@ -431,19 +478,19 @@ public:
             state.set(0xa28,human_frame_signed_word(remaining)<0?0u:remaining);
         }
         if(physical_word(0x1ac)==1)advance_ground_frame(look,elapsed,runtime);
-        runtime.advance_human_control_transitions(*this,elapsed); //007507A0.
-        runtime.advance_human_attachment_control(*this); //00779B30.
-        if(mode_flags()&2u)runtime.refresh_human_control_sector(*this); //0075C960/00789DB0/0075CAC0.
+        advance_human_idle_motion(motion_,*this,look,*human_,services_,frames_,runtime,elapsed,presentation_.settings().winter); //007507A0, SAME CB0 and process winter flag.
+        arbitrate_human_animation_frame(*this,look,*human_,services_,frames_,runtime,publish); //00779B30, SAME process/track owners.
+        if(mode_flags()&2u)refresh_human_frame_light(*this,look,*human_,services_,frames_); //0075C960/00789DB0/0075CAC0.
         look.clear_control_frame_commands();
         if(human_frame_signed_word(physical_word(0x980))>0){
             const auto remaining=physical_word(0x980)-elapsed;
             state.set(0x980,remaining);
             if(human_frame_signed_word(remaining)<1){
-                if(human_frame_signed_word(physical_word(0x984))>0)runtime.retire_human_control_contacts(*this);
+                if(human_frame_signed_word(physical_word(0x984))>0)physical_.retire_step_secondary();
                 state.set(0x984,0u);
             }
         }
-        runtime.advance_human_control_motion(*this,elapsed); //00755500.
+        advance_human_control_actions(*this,look,elapsed,runtime); //00755500, actual inactive/Door cases and required positive receivers.
         physical_.retire_frame_audio(mode_flags(),[&]{return services_.current_human_frame_player()==human_;},pool_->pool());
         if(mode_flags()&1u){
             if(look_word(0xb8)==5&&physical_word(0x764)==0x46)runtime.advance_human_motion_event(*this,0x46,elapsed);
@@ -663,7 +710,8 @@ private:
             obstruction=static_cast<long double>(frames_.actor_world_matrix(bone)[13])+.08f<=height;
             if(obstruction)task|=0x40000u;
         }
-        runtime.update_human_control_obstruction(*this,elapsed,obstruction); //0075EBE0.
+        auto& look=services_.human_look_control(*human_);
+        advance_human_obstruction(*this,look,*human_,services_,runtime,random_,elapsed,obstruction); //0075EBE0.
         publish_control_frame_command(task?task:0x1e0000u);
     }
     template<class Resources,class Sweep>void bind_controls(Resources& resources,Sweep& sweep,const CollisionTree<Frame>* tree) {

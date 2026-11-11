@@ -40,6 +40,8 @@ public:
     auto& state(){return state_;}const auto& state()const{return state_;}
     auto& attachments(){return attachments_;}
     auto& transfers(){return transfers_;}
+    void toggle_frame_action(bool enabled){toggle_human_equipment_action(frames_,state_,activation_.light(),services_.mode_flags(),enabled);} //007931B0.
+    void set_action_holster_visible(bool visible){holsters_.set_action_holster_visible(visible);} //007918C0, SAME initialized group4.
     void set_frame_weapon_pose(bool ready,bool toggle){ //00791AC0.
         auto& words=state_.words();
         const bool previous=words.template get<std::uint8_t>(0x4c)!=0;

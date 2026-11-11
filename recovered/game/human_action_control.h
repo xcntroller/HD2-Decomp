@@ -41,6 +41,7 @@ public:
     Movement* movement() const{return movement_;}Human* human() const{return human_;}
     Frame marker() const{return marker_;}
     const auto& state() const{return state_;}
+    auto& frame_words(){return state_;} //C00 scalar commands shared with00779B30's actual workers.
     void advance_presentation_timer(std::uint32_t elapsed){ //00787D50, DD0+C58.
         const auto timer=state_.template get<std::uint32_t>(0x58);
         if(human_frame_signed_word(timer)>0)state_.set(0x58,timer-elapsed);

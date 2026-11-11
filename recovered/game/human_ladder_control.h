@@ -290,7 +290,7 @@ void advance_human_ladder_motion(Control& control,Look& look,Human& human,Servic
     };
     const auto finish_top=[&]{
         state.set(0x1fc,10u);normalize_human_primary_animation(state,0x1fc);
-        if(!runtime.prepare_human_ladder_exit(control)){ //0074A690, actual queued primary descriptor.
+        if(!control.prepare_step_motion(look,runtime)){ //0074A690, actual queued primary descriptor.
             state.set(0x1fc,206u);normalize_human_primary_animation(state,0x1fc);return false;
         }
         look.control_movement_mode(0,false,publish);state.set(0x988,std::int32_t{-10000});

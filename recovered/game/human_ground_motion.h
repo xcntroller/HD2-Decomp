@@ -271,7 +271,7 @@ void finish_human_walk_fall(Control& control,Look& look,Human& human,Services& s
     if(state.template get<std::int32_t>(0x1d8)==17||state.template get<std::uint8_t>(0xa90))look.frame_movement_animation(45,publish,false);
     if(impact){
         if(movement.template get<float>(0xf4)>9.81f&&human.activation.vector1b0[1]<-1.f)
-            runtime.play_human_landing_voice(control,17u); //0075E770.
+            control.play_presentation_track_sound(17); //0075E770, SAME physical sound vector and shared pool.
         state.set(0xa90,std::uint8_t{0});
     }
     movement.set(0xf4,0.f);movement.set(0xf8,0.f);movement.set(0x60,std::int32_t{-10000});movement.set(0x5c,-10000.099609375f);

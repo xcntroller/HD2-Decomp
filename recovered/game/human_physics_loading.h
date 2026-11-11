@@ -9,6 +9,9 @@
 #include "game/dynamic_collision_exclusions.h"
 #include "game/human_state_ground.h"
 #include "game/human_physics_globals.h"
+#include "game/human_physical_frame_words.h"
+#include "game/human_state_frame_timers.h"
+#include "frontend/spatial_sound.h"
 #include <deque>
 #include <functional>
 
@@ -129,11 +132,36 @@ public:
         if(mode&2u)while(!sounds_.empty()) {
             auto sound=std::move(sounds_.back());sounds_.pop_back();pool.give(std::move(sound));
         }
+        stop_frame_voice();
+    }
+    void stop_frame_voice(){ //0075EEB0, SAME actual native994 handle, also called by00777AD0.
         auto handle=state_.template get<std::int32_t>(0x994);
         if(handle!=-1) { //0075EEB0 passes the actual handle by address to SOUND+5C.
             try{audio_.stop_voice(handle);}catch(...){state_.set(0x994,handle);throw;}
             state_.set(0x994,handle);
         }
+    }
+    template<class Services>void play_frame_climb_voice(Services& services){ //0075EDE0, actual Ladder178 and shared SOUND handle994.
+        if(!interaction_actor_)return;
+        const auto entry=human_frame_signed_word(services.human_ladder(interaction_actor_).properties.settings170[2]);
+        if(entry==-1||state_.template get<std::int32_t>(0x994)!=-1)return;
+        if(!human_||!bones_[16])throw std::runtime_error("Human climb voice requires its actual actor and relative bone");
+        frontend::SpatialSoundRequest request;
+        request.position={{0,-.4f,0}};request.flags=5;request.relative=bones_[16];request.source=human_;
+        request.group=0;request.entry=entry;request.voice_group=4;
+        state_.set(0x994,services.emit_human_equipment_sound(request));
+    }
+    template<class Services,class Pool>void play_frame_presentation_sound(unsigned group,Services& services,Pool& pool){ //0075E770.
+        if(!(services.mode_flags()&2u))return;
+        if(!human_)throw std::logic_error("Human presentation sound requires its actual actor");
+        if(services.current_human_frame_player()!=human_||group<4||group>=20)return;
+        const auto marker=bones_[7]; //Native864, SAME cached bone/flag records.
+        if(services.human_is_player(*human_)&&services.human_view_offset_enabled()){
+            if(!marker)throw std::runtime_error("Human presentation sound requires its actual orientation bone");
+            (void)frames_.car_forward(marker); //75E7E5..75E865, actual quaternion/matrix cache side effects.
+        }
+        auto sound=pool.play(group,marker,{{0,0,0}});
+        if(sound)sounds_.push_back(std::move(sound)); //Matching0075EAA0 returns this SAME owner to the shared pool.
     }
     template<class CurrentPlayer,class Pool>void retire_frame_audio(std::uint32_t mode,CurrentPlayer&& current_player,Pool& pool){ //0075EAA0(false).
         if(!(mode&2u))return;
@@ -166,16 +194,20 @@ public:
         if((mask&8u)&&(old&8u))suspend_collisions(false,look.state().template get<std::uint32_t>(0x4c));
         if(!(next&6u)&&(old&6u)&&next!=old)reposition_human_state_on_ground(frames_,*human_,*this,look,sweep);
     }
-    const auto& state() const{return state_;}
+    const auto& state() const{return frame_words_;}
     auto& frame_globals(){return globals_;}
     template<class Look>void capture_look_frame(const Look& look){ //0077DE30's retained A0-byte770 snapshot.
         for(unsigned offset=0;offset!=0xa0;offset+=4)
             if(offset!=4&&offset!=8)state_.set(0x770+offset,look.state().template get<std::uint32_t>(offset));
         look_snapshot_model_=look.action_model();look_snapshot_actor_=look.interaction_actor();
+        look_snapshot_argument_=look.interaction_frame_argument(); //Native804, typed94 frame alternative in the retained snapshot.
     }
     Frame look_snapshot_model()const{return look_snapshot_model_;}
     SceneActor<Frames>* look_snapshot_actor()const{return look_snapshot_actor_;}
-    auto& control_frame_words(){return state_;} //DD0 physical scalar writes in the actual frame bodies.
+    Frame look_snapshot_argument()const{return look_snapshot_argument_;}
+    auto& control_frame_words(){return frame_words_;}
+    void bind_animation_tracks(HumanJointWords<0x3a4>& tracks){frame_words_.bind(tracks);}
+    void unbind_animation_tracks()noexcept{frame_words_.unbind();}
     auto& control_action_queue(){return queue_;} //DD0+A4C, SAME deque retired by0075B6C0.
     void rebind_frame_posture(std::uint32_t posture){rebind_posture(posture);} //0075BC80.
     float control_projection_height(float model_height)const{ //00770100, unscaled marker DD0+6E0.
@@ -206,6 +238,10 @@ public:
     }
     auto* control_action_actor()const{return interaction_actor_;}
     void control_action_actor(void* actor){interaction_actor_=actor;}
+    SceneActor<Frames>* control_interaction_target()const{return interaction_target_;} //Native A3C, borrowed actual action target.
+    void control_interaction_target(SceneActor<Frames>* actor){interaction_target_=actor;}
+    Frame control_action_frame()const{return action_frame_;} //Native A40 frame alternative, borrowed actual model.
+    void control_action_frame(Frame frame){action_frame_=frame;}
     void animation_loading_word(unsigned offset,std::uint32_t value) {
         if(offset!=0x750)throw std::out_of_range("Human animation loading scalar");
         state_.set(offset,value);
@@ -222,6 +258,25 @@ public:
     const auto& offset740() const{return offset740_;}
     const auto& posture_spheres()const{return posture_;}
     void prepare_ladder_secondary(){state_.set(0x984,state_.template get<std::uint32_t>(0x698));} //0074BBE0.
+    void activate_step_secondary(std::int32_t duration){ //00779E60, native980 before ascending inserts of the SAME970 descriptors.
+        state_.set(0x980,duration);
+        const auto count=state_.template get<std::int32_t>(0x984);
+        for(std::int32_t index=0;index<count;++index)collisions_.insert(required(secondary_,index));
+    }
+    void retire_step_secondary(){ //00787270, ascending006EF5E0 calls on the SAME970 descriptors.
+        const auto count=state_.template get<std::int32_t>(0x984);
+        for(std::int32_t index=0;index<count;++index)collisions_.remove(required(secondary_,index));
+    }
+    void publish_step_secondary(const Vector& forward,float height,bool shortened){ //0074A690's actual secondary descriptors.
+        if(shortened)state_.set(0x984,state_.template get<std::uint32_t>(0x984)-1u);
+        const auto count=state_.template get<std::int32_t>(0x984);
+        for(int index=0;index<count;++index){
+            auto& descriptor=required(secondary_,index);
+            const auto& sphere=posture_.at(static_cast<std::size_t>(index));
+            descriptor.position[0]=forward[0]+sphere[0];descriptor.position[1]=height+sphere[1];
+            descriptor.position[2]=forward[2]+sphere[2];descriptor.radius=sphere[3];
+        }
+    }
     void publish_ladder_secondary(const Vector& origin,const Vector& step){ //0074BBE0, SAME allocated secondary descriptors.
         const auto count=state_.template get<std::int32_t>(0x984);
         for(int index=0;index<count;++index){
@@ -232,6 +287,26 @@ public:
         }
     }
     void refresh_ground_geometry(){markers_.snapshot();shot_spheres();} //0075C4F0→0075C070/0075B870.
+    void refresh_shot_geometry(){shot_spheres();} //0075B870, SAME actual shot marker snapshots.
+    void publish_air_shots(){ //00769920, scaled positions/radii without changing the native descriptor flags.
+        const auto count=state_.template get<std::int32_t>(0x69c);
+        for(int index=0;index<count;++index){
+            auto& descriptor=required(shot_,index);
+            descriptor.position=shots_.at(static_cast<std::size_t>(index));
+            descriptor.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(index?0x1d0:0x1cc))*descriptor.position[3]);
+            collisions_.move(descriptor);
+        }
+    }
+    void publish_retired_mount_shots(){ //0075E290, current DD0 descriptors after a separate0075B870 call.
+        state_.set(0x1cc,1.f);state_.set(0x1d0,1.f);
+        const auto count=state_.template get<std::int32_t>(0x69c);
+        if(count>2)throw std::runtime_error("Human mount retirement exceeds actual shot descriptors");
+        for(int n=0;n<count;++n){
+            auto& descriptor=required(shot_,n);descriptor.position=shots_[static_cast<std::size_t>(n)];
+            descriptor.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(n?0x1d0:0x1cc))*descriptor.position[3]);
+            descriptor.flags=0x42;descriptor.mask=0x10002;collisions_.move(descriptor);
+        }
+    }
     void translate_ground_geometry(const Vector& position){ //00763EC0 calls0075C250 then0075BBF0.
         markers_.translate(position);state_.set(0x69c,std::int32_t{2});
         for(unsigned index=0;index!=2;++index)for(unsigned axis=0;axis!=3;++axis)
@@ -280,8 +355,8 @@ public:
     int primary_count() const{return state_.template get<std::int32_t>(0x698);}
     Human** human_slot_address(){return &human_;}
 private:
-    Frame look_snapshot_model_{};SceneActor<Frames>* look_snapshot_actor_=nullptr; //Native774/778 borrowed identities.
-    std::vector<SoundOwner> sounds_; //Native198; no unresearched playback producer is exposed.
+    Frame look_snapshot_model_{},look_snapshot_argument_{};SceneActor<Frames>* look_snapshot_actor_=nullptr; //Native774/778/804 borrowed identities.
+    std::vector<SoundOwner> sounds_; //Native198, populated by0075E770 and returned by0075EAA0.
     void rebind_posture(std::uint32_t requested) { //0075BC80 ordinary descriptor branch.
         if(state_.template get<std::uint32_t>(0x22c)&8u)return;
         const int old_primary=std::max(0,primary_count()),old_shots=state_.template get<std::int32_t>(0x69c);
@@ -309,8 +384,11 @@ private:
         if(motion!=1&&motion!=7&&motion!=8)count=0;
         const auto animation=state_.template get<std::int32_t>(0x1d8),action=state_.template get<std::int32_t>(0x9b8);
         if(animation>112&&animation<155&&(action==0||action==-10000)&&state_.template get<float>(0x9f0)!=-10000.099609375f) {
-            if(motion<7)throw std::runtime_error("Human posture transition requires actual00781310 face/morph/model receiver");
             state_.set(0x9f0,-10000.099609375f);state_.set(0x9f4,0.f);state_.set(0x9f8,0.f);
+            if(motion<7){
+                state_.set(0x1ac,0u);state_.set(0x18c,std::uint8_t{1});
+                face_.activate_air_pose(); //00781310, after the native contact and motion-state stores.
+            }
         }
         if(state_.template get<float>(0x1c8)==0)count=0;
         if(state_.template get<float>(0x1cc)==0)state_.set(0x69c,std::int32_t{0});
@@ -338,9 +416,9 @@ private:
         markers_.snapshot();state_.set(0x18c,std::uint8_t{1});
         for(auto offset:{0xa7cu,0x1bcu,0x1c0u,0x1c4u,0x230u,0x1ecu,0x1f8u,0x220u,0x228u,0x950u,
             0x250u,0x254u,0x9d0u,0x9d4u,0x9d8u,0xa18u,0x758u,0xa24u,
-            0xa20u,0x188u,0xa34u,0xa3cu,0xa40u,0xa44u,0xa94u,
+            0xa20u,0x188u,0xa34u,0xa40u,0xa44u,0xa94u,
             0x190u,0x234u,0x1a4u,0x1a8u,0x944u,0x940u,0x948u})state_.set(offset,std::uint32_t{0});
-        ground_contact_.reset();interaction_actor_=nullptr; //Native754/990 retain actual typed identity borrowers.
+        ground_contact_.reset();interaction_actor_=nullptr;interaction_target_=nullptr;action_frame_=Frame{}; //Native754/990/A3C/A40 retain typed identity borrowers.
         for(auto offset:{0x988u,0x998u,0x9b8u,0x9bcu,0x9c0u,0x9c4u,0x9ccu,0x9acu,0x9b0u,
             0xa2cu,0xa30u,0xa1cu,0xa0cu,0xa38u,0x99cu,0x9a0u,0x9b4u})state_.set(offset,std::int32_t{-10000});
         for(auto offset:{0x98cu,0xa90u,0x1b4u,0x760u,0x761u,0x762u,0x96cu,0x1d4u,0x9c8u,0x9c9u})state_.set(offset,std::uint8_t{0});
@@ -357,7 +435,7 @@ private:
         shot_markers_[0]=frames_.actor_find(model,"shot1",0x20);shot_markers_[1]=frames_.actor_find(model,"shot2",0x20);
         state_.set(0x9a4,std::uint32_t{3});state_.set(0x9a8,std::uint32_t{3});
         audio_.configure_physics_voices();reset_human_look_words(state_,0x770);
-        look_snapshot_model_=Frame{};look_snapshot_actor_=nullptr;queue_.clear();
+        look_snapshot_model_=look_snapshot_argument_=Frame{};look_snapshot_actor_=nullptr;queue_.clear();
     }
     void shot_spheres() { //0075B870: relative centres are saved BEFORE the health adjustment.
         state_.set(0x69c,std::int32_t{2});
@@ -396,6 +474,7 @@ private:
     Frames& frames_;Collisions& collisions_;DynamicCollisionExclusions<Descriptor>& exclusions_;
     Face& face_;Audio& audio_;HumanPhysicsGlobals& globals_;Human* human_=nullptr;
     HumanCollisionMarkers<Frames> markers_;HumanJointWords<0xaa0> state_;
+    HumanPhysicalFrameWords frame_words_{state_};
     std::array<std::unique_ptr<Descriptor>,4> primary_{},secondary_{};
     std::array<std::unique_ptr<Descriptor>,2> shot_{};
     std::array<Vector,4> posture_{};std::array<Vector,2> shots_{},shot_relative_{};
@@ -403,6 +482,8 @@ private:
     Vector offset740_{};std::deque<std::array<std::uint32_t,3>> queue_;
     std::function<Frame()> shadow_; //Borrow actual HumanShadowModel's A9C; owner outlives calls, including failure retirement.
     void* interaction_actor_=nullptr; //Identity matches MissionTableReference::object; no virtual actor calls through this slot.
+    Frame action_frame_{};
+    SceneActor<Frames>* interaction_target_=nullptr; //A3C, SAME action target published by00751480.
     std::optional<GroundContact> ground_contact_;
     bool active_=false,initializing_=false;
 };

@@ -1,5 +1,8 @@
 # Technical research guide
 
+
+2026-11-11 — [Human motion and pose source checkpoint](analysis/human-frame-source.md#aimed-weapon-mount-and-head-pose) adds100 frozen client partials and extends nine existing rows. Current tally is34 complete/2,471 partial. Actual shared animation arbitration, step/water/air, face hits, secondary clips, hand IK and stowed/aimed/mount/head presentation pass focused source checks. Native sanitizer fixtures use explicit engine/query doubles. Strict actual World i386 and launcher compile/link pass. [P22-HUM remains open](analysis/p22-hum-plan.md), with Look processing next. User-authorized subsystem commits precede continued checkbox work. No mission loading or desktop acceptance is claimed.
+
 2026-11-11. [Guard and Area waits and navigation](analysis/human-frame-source.md#guard-and-area-waits-and-navigation) now drive real table routes and pooled path jobs in source. Native sanitizers, actual-host i386 and the launcher link passed. The [receipt](analysis/checkpoints/p2.2-human-ai-navigation-20261111.json) records 66 new partial client entries. Containing authority dispatch, specialized interactions and the live mission load remain open.
 
 2026-11-10. The [Human AI frame source](analysis/human-frame-source.md#b0-ai-timers-steering-and-task-selection) covers shared B0 timers and steering, Guard and Area action pools, and event based task selection. The [receipt](analysis/checkpoints/p2.2-human-ai-task-selection-20261110.json) records native sanitizer, i386 and launcher link checks. Added 37 partial client entries for a total of 2,105 partial entries and 34 complete functions. The action workers, B0 output, DD0 and live frame integration remain open.

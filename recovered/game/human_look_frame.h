@@ -6,18 +6,49 @@
 
 namespace hd2::game {
 
+//0077DE30's nonoffline, nonplayer action1 hand-equipment reconstruction.
+//005A2AC0 rereads the actual holder for each native call. Model selection and
+//transfer events use the SAME230 owner as activation and inventory changes.
+template<class Human,class Look,class World>
+void prepare_human_remote_look_equipment(Human& human,Look& look,World& world){
+    auto& items=world.human_reload_items();
+    using Item=std::remove_reference_t<decltype(items.runtime_item(human.base().storage()->holder(3)->entry()))>;
+    const auto hand=[&]()->Item*{
+        auto* storage=human.base().storage();auto* holder=storage?storage->holder(3):nullptr;
+        if(!holder)throw std::runtime_error("Remote Human look requires the actual hand holder");
+        const auto entry=holder->entry();return entry?&items.runtime_item(entry):nullptr;
+    };
+    const auto required_hand=[&]()->Item&{
+        auto* item=hand();if(!item)throw std::runtime_error("Remote Human look lost its hand item");
+        return *item;
+    };
+    auto& equipment=world.human_presentation_equipment(human);
+    if(!equipment.state().selected_model(3)&&hand()){
+        auto& item=required_hand();
+        const auto identity=item.identity;
+        const auto definition=item.definition().identifier;
+        const auto model=item.model();
+        equipment.state().select(model,3,static_cast<std::uint32_t>(identity),-10000,static_cast<std::int32_t>(definition));
+        equipment.transfers().event(3);
+    }
+    if(!look.state().template get<std::uint32_t>(0x54)&&hand()&&required_hand().definition().item_class==1)
+        look.frame_words().set(0x54,required_hand().definition().equipment_command());
+    const auto command=look.state().template get<std::uint32_t>(0x54);
+    if(command!=2&&command!=6)equipment.transfers().event(0);
+}
+
 //0077DE30's equipment/action selection. Native previous values are the SAME
 //DD0+770 snapshot. Mounted-object retirement and reload-family lookup retain
 //their required actual receivers.
-template<class Control,class Look,class Human,class World,class Runtime>
-void apply_human_look_equipment(Control& control,Look& look,Human& human,World& world,Runtime& runtime,bool walking){
+template<class Control,class Look,class Human,class World>
+void apply_human_look_equipment(Control& control,Look& look,Human& human,World& world,bool walking){
     auto& request=look.frame_words();auto& state=control.physical().control_frame_words();
     const auto wanted=[&](unsigned offset){return request.template get<std::int32_t>(offset);};
     const auto current=[&](unsigned offset){return state.template get<std::int32_t>(offset);};
     const auto primary=[&](std::int32_t id){state.set(0x1fc,id);normalize_human_primary_animation(state,0x1fc);};
     const auto mounted=[&]{
         auto& equipment=world.human_presentation_equipment(human);
-        runtime.retire_human_look_mount(control,equipment.state().selected_model(9)); //0075E290, native userdata/actor handling remains required.
+        control.retire_look_mount(look,equipment.state().selected_model(9)); //0075E290, actual EC-bound Human.
     };
     const auto can_throw=[&]{return wanted(0x4c)!=2||current(0x1d8)<0xbe;};
     auto equipment=wanted(0x54);
@@ -135,12 +166,12 @@ void apply_human_look_frame(Control& control,Look& look,Human& human,World& worl
         if(((world.mode_flags()&7u)==7u||control.human_is_player()||control.animation_authority_actor())&&current(0x988)==-10000){
             if(!ladder(current(0x1d8))){
                 state.set(0x1fc,10u);normalize();
-                if(wanted(0xb8)==5||!runtime.prepare_human_ladder_exit(control))cancel_ladder();
+                if(wanted(0xb8)==5||!control.prepare_step_motion(look,runtime))cancel_ladder();
             }else cancel_ladder();
         }
     }else if(ladder(queued)){
         if(wanted(0xb8)==5)cancel_ladder();
-        else if(queued!=8&&queued!=14&&!runtime.prepare_human_ladder_exit(control))cancel_ladder();
+        else if(queued!=8&&queued!=14&&!control.prepare_step_motion(look,runtime))cancel_ladder();
     }else if((queued==0x22||queued==0x23)&&wanted(0xb8)!=2&&wanted(0xb8)!=3){
         const auto clip=current(0x1d8);
         if(clip!=0x9f&&clip!=0x9e&&clip!=0x9b&&clip!=0x6f&&clip!=0x22){state.set(0x1fc,queued==0x22?0x1cu:0x24u);normalize();} //0074E820.
@@ -156,9 +187,9 @@ void apply_human_look_frame(Control& control,Look& look,Human& human,World& worl
     }
     if(!(world.mode_flags()&1u)&&!control.human_is_player()&&wanted(0x58)==1){
         request.set(0x5c,1u);
-        runtime.prepare_human_remote_equipment(control,look); //Actual model selection/attachment and live hand item.
+        prepare_human_remote_look_equipment(human,look,world);
     }
-    apply_human_look_equipment(control,look,human,world,runtime,walking);
+    apply_human_look_equipment(control,look,human,world,walking);
     if(wanted(0xb8)!=5&&(current(0xa34)==0||current(0xa34)==1)){
         const auto flags=request.template get<std::uint32_t>(0x60);
         if(flags&0x3fu){
@@ -187,7 +218,7 @@ void apply_human_look_frame(Control& control,Look& look,Human& human,World& worl
     state.set(0x210,wanted(0x4c));state.set(0x21c,wanted(0x4c));state.set(0x204,wanted(0x50));
     if(current(0x1fc)>=0xa2&&current(0x1fc)<=0xa5)control.refine_look_lateral_stride(look); //0074A290, original ID gate.
     if(wanted(0x90)){
-        runtime.apply_human_look_interaction(control,look.interaction_actor(),wanted(0x90),request.template get<std::uint32_t>(0x94)); //00751480.
+        control.apply_look_interaction(look,look.interaction_actor(),wanted(0x90),request.template get<std::uint32_t>(0x94),runtime); //00751480.
         look.complete_frame_interaction();
     }
     finish();

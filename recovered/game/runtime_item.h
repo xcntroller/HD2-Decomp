@@ -73,6 +73,11 @@ public:
         if(payload.type==4)return frontend::pre_mission_detail::Bytes::integer(payload_word(payload,0x28));
         return -1; //007E02A0.
     }
+    std::int32_t primary_action_sound()const{ //007E0290, native primary payload14 via weapon vtables' +18.
+        const auto& payload=definition_.payloads[0];
+        if(payload.type<1||payload.type>4)throw std::runtime_error("Human action sound requires actual weapon-payload dispatch");
+        return frontend::pre_mission_detail::Bytes::integer(payload_word(payload,0x10));
+    }
     float loaded_ammunition()const{return real(fields50_54[0]);}
     void loaded_ammunition(float value){fields50_54[0]=bits(value);}
     void magazine_amount(float value){
