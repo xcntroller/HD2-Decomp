@@ -29259,6 +29259,558 @@
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
         "recovered/game/human_ai_direction.h"
       ]
+    },
+    {
+      "program": "client",
+      "entry": "0046f2a0",
+      "status": "partial",
+      "coverage": "Read the actual Human observer relation state or native mode-zero mask.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/sight_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005710b0",
+      "status": "partial",
+      "coverage": "Rank detached Human hostile candidates using native eligibility, geometry, Sight, stance, and allied selection.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_ai_frame_metrics.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00572c20",
+      "status": "partial",
+      "coverage": "Clear ordinary aim state and resolve the original stop delay against actual item deadlines.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00575d50",
+      "status": "partial",
+      "coverage": "Evaluate the empty-hand, weapon-deadline, and reaction gates before geometry and line-of-fire work.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00576350",
+      "status": "partial",
+      "coverage": "Publish typed aim target and selection, evaluate supported statuses, and stop the existing aim state.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548130",
+      "status": "partial",
+      "coverage": "Reach the original empty deferred queue after the original Guard offline presentation gate.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559da0",
+      "status": "partial",
+      "coverage": "Reach the original empty deferred queue after the original Area offline presentation gate.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00583c30",
+      "status": "partial",
+      "coverage": "Publish B0 movement vector and E0 movement, stance, posture, jump and stop commands.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_ai_frame_output.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058baf0",
+      "status": "partial",
+      "coverage": "Advance B0 item time, apply input gates and dispatch supported kind 9 actions and readiness.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_ai_frame_output.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00547d80",
+      "status": "partial",
+      "coverage": "Apply the original Guard exit stat increment.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548080",
+      "status": "partial",
+      "coverage": "Advance actual common aim state in Guard and guard the required positive stop effects.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548170",
+      "status": "partial",
+      "coverage": "Run the Guard authority callback with actual shared buffers, action state and ordered outputs.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005482a0",
+      "status": "partial",
+      "coverage": "Route queued events to the actual current Guard action family.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005482f0",
+      "status": "partial",
+      "coverage": "Merge retained events and apply the supported Guard stat and speech effects.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005484b0",
+      "status": "partial",
+      "coverage": "Transition Guard radius policies from actual movement and health state.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548520",
+      "status": "partial",
+      "coverage": "Prepare actual held equipment and choose the initial Guard action.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548610",
+      "status": "partial",
+      "coverage": "Select and transition supported Guard actions with health, skill, equipment and event gates.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548840",
+      "status": "partial",
+      "coverage": "Dispatch the typed Guard action lease to its matching supported worker.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548b00",
+      "status": "partial",
+      "coverage": "Run Guard kind 1 wait, hostile acquisition, missing-cover and timed attack paths.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00548900",
+      "status": "partial",
+      "coverage": "Handle supported Guard kind 1 damage and report events.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00549940",
+      "status": "partial",
+      "coverage": "Clone and retain supported kind 2 target events before generic merge.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054ab70",
+      "status": "partial",
+      "coverage": "Aim toward reported nonhostile Human markers for kind 3.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054ac40",
+      "status": "partial",
+      "coverage": "Run Guard kind 3 wait and hostile acquisition, and handle its stationary attack state.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054b730",
+      "status": "partial",
+      "coverage": "Retire the previous action, lease kind 5 and publish the original idle start mode.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054b770",
+      "status": "partial",
+      "coverage": "Apply supported Guard idle-action event aim and damage transitions.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0054e600",
+      "status": "partial",
+      "coverage": "Advance the CRT Door-search deadline before checking the actual Guard Door list.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005582a0",
+      "status": "partial",
+      "coverage": "Check the selected Human against the actual hostile perception list.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558960",
+      "status": "partial",
+      "coverage": "Check the current typed kind 5 attack mode.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00558ae0",
+      "status": "partial",
+      "coverage": "Bind a selected target through the actual readiness gates or track its head marker.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559420",
+      "status": "partial",
+      "coverage": "Resolve the current hand, cooldown, shoulder and holster paths for Guard weapon selection.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559610",
+      "status": "partial",
+      "coverage": "Apply null and actor-kind gates before the required vehicle seat capability check.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00575670",
+      "status": "partial",
+      "coverage": "Compute the normalized direction between actual Human head markers.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_guard_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005594b0",
+      "status": "partial",
+      "coverage": "Choose the actual preferred hand weapon through shoulder, holster and inventory movement.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559d40",
+      "status": "partial",
+      "coverage": "Advance actual common aim state in Area and gate the required empty-weapon follow-up.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00559de0",
+      "status": "partial",
+      "coverage": "Run Area authority with actual shared buffers, wait actions and ordered output or Script handover.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_area_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00582a40",
+      "status": "partial",
+      "coverage": "Lease and publish the typed kind 5 action mode while retaining other record fields.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_ai_action_pool.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058a9f0",
+      "status": "partial",
+      "coverage": "Grow the process kind 5 pool and initialize the original scalar fields.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_ai_action_pool.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00584b60",
+      "status": "partial",
+      "coverage": "Publish the original grouped B0 command flag updates.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_state_base_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058c330",
+      "status": "partial",
+      "coverage": "Dispatch actual E0 weapon readiness and the selected player's FPV state.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0058c4d0",
+      "status": "partial",
+      "coverage": "Dispatch actual kind 9 action state before requesting the selected player's FPV mode.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005abd90",
+      "status": "partial",
+      "coverage": "Dispatch the original supported E0 movement, stance, posture and item actions.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_inline_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00590700",
+      "status": "partial",
+      "coverage": "Rebind the Script context and notify actual alarm completion before look reset.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_script_ai_state_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f0a0",
+      "status": "partial",
+      "coverage": "Apply original E0 posture gates and publish the changed command and flags.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077f190",
+      "status": "partial",
+      "coverage": "Publish the original E0 movement mode and dirty mask.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0077ebd0",
+      "status": "partial",
+      "coverage": "Read the actual DD0 pitch for E0 movement-animation selection.",
+      "limitations": "Source-only. The original ABI, additional positive branches and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_look_control.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a66b0",
+      "status": "partial",
+      "coverage": "Test the actual Human holder-five entry for definition E7.",
+      "limitations": "Typed item and holder ownership. Original ABI and containing mission desktop execution remain open.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
+        "recovered/game/human_control_loading.h"
+      ]
     }
   ]
 }

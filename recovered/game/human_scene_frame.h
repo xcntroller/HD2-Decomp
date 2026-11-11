@@ -36,7 +36,7 @@ void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed
         }
         if(human.base().id14()<0)return; //004D0E80 virtual64, separate from runtime byte1C.
         human.activation.flag178=false;refresh();runtime.advance_human_bleeding(human,elapsed); //005A0480.
-        runtime.advance_human_state(human,false,elapsed); //Actual B0 virtual24.
+        world.advance_human_state(human,false,elapsed,runtime); //Actual B0 virtual24.
         directions();world.human_inline(human).advance_presentation_frame(elapsed,runtime);
         if(!(world.mode_flags()&1u))sample_human_frame_motion(human,frames,elapsed);
         const auto flags=world.human_inline(human).consume_frame_feedback();
@@ -46,7 +46,7 @@ void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed
     refresh();advance_human_float_timer(human.activation,elapsed);
     world.refresh_human_frame_perception(human); //005A50A0 THEN pooled005A5380, even when first is a dead-Human RET.
     if((world.mode_flags()&7u)==7u&&world.sight_controlled_target(human))world.adjust_human_sight_alignment(human,.5f);
-    world.advance_human_command_events(human,elapsed);runtime.advance_human_state(human,true,elapsed); //B0+28 AFTER queues.
+    world.advance_human_command_events(human,elapsed);world.advance_human_state(human,true,elapsed,runtime); //B0+28 AFTER queues.
     if((world.mode_flags()&1u)||(world.mode_flags()&7u)==7u)directions();
     world.human_inline(human).advance_authority_frame(elapsed,runtime);
     if(!(world.mode_flags()&2u)){

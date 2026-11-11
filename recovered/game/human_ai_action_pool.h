@@ -109,6 +109,14 @@ public:
         return result;
     }
 };
+class HumanAIAction5Pool : public HumanAIActionPool<5,0x14> { //008AB048+C0, 0058A9F0.
+public:
+    Lease acquire(std::uint32_t mode){ //00582A40 leaves age and lifetime intact.
+        auto result=acquire_record();
+        result->state.set(8,mode);
+        return result;
+    }
+};
 static_assert(sizeof(HumanAIPooledAction<2,0x50>)==0x50);
 static_assert(sizeof(HumanAIPooledAction<3,0x40>)==0x40);
 
@@ -116,6 +124,7 @@ struct HumanAIActionPools {
     HumanAIAction1Pool kind1;
     HumanAIAction2Pool kind2;
     HumanAIAction3Pool kind3;
+    HumanAIAction5Pool kind5;
 };
 } //namespace hd2::game
 #endif

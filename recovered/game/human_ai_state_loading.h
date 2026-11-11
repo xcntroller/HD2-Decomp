@@ -9,6 +9,7 @@
 #include "game/human_ai_direction_frame.h"
 #include "game/human_ai_scene_steering.h"
 #include "game/human_ai_frame_query.h"
+#include "game/human_ai_frame_output.h"
 
 namespace hd2::game {
 
@@ -70,8 +71,16 @@ public:
     }
     virtual void reset_frame_action(){resources_.retire_current_action();} //AI virtual10C:00575820.
     auto& resources(){return resources_;}const auto& resources()const{return resources_;}
+    void publish_frame_command_flags(std::uint32_t command)override{ //0056FC30.
+        const auto previous=this->words().template get<std::uint32_t>(0x50)&7u;
+        Base::publish_frame_command_flags(command);
+        const auto posture=this->words().template get<std::uint32_t>(0x50)&7u;
+        if(posture!=previous)resources_.direction().state().set(0x44,posture&1u?.94f:.7f);
+    }
     HumanVector current_direction()const override{return resources_.direction().state().template get<HumanVector>(0);} //0056FBF0.
     HumanVector target_direction()const override{return resources_.direction().state().template get<HumanVector>(0x10);} //0056FC00.
+    bool aims_at_human(const Human& target)const override{return resources_.aimed_actor()==&target;}
+    bool selected_hostile_is(const Human& target)const override{return resources_.selected_actor()==&target;} //00524DD0.
     bool bound()const{return bound_;}
     template<class Queries>void advance_frame_timers(std::uint32_t elapsed,Queries& queries){
         advance_human_ai_frame_timers(resources_.state(),elapsed);Base::advance_frame_timers(elapsed,queries); //00571680→00588010.
@@ -90,6 +99,59 @@ public:
     template<class Inline>std::uint32_t advance_frame_direction(std::uint32_t elapsed,Inline& control){
         auto look=[&](std::uint32_t command,const HumanVector* target){look_command(command,control,target);};
         return advance_human_ai_frame_direction(*this,elapsed,this->state_frames(),look); //00575940.
+    }
+    template<class Inline>void apply_frame_movement(Inline& control){apply_human_ai_frame_movement(*this,control);}
+    template<class Inline,class World>void apply_frame_items(Inline& control,World& world,std::uint32_t elapsed){
+        apply_human_ai_frame_items(*this,control,world,elapsed);
+    }
+    void advance_frame_presentation(std::uint32_t mode){ //Guard00548130 and Area00559DA0.
+        if(!(this->words().template get<std::uint32_t>(0x50)&0x4000800u)&&(mode&7u)!=7u)
+            throw std::runtime_error("AI presentation requires the actual 0056F710 nonoffline receiver");
+        this->process_second_frame_commands();
+    }
+    template<class Inline>void publish_authority_input_gate(Inline& control){
+        auto* input=this->input();
+        if(!input)return;
+        auto* animation=control.control();
+        if(!animation)throw std::logic_error("AI authority input gate requires actual DD0");
+        input->word38=animation->animation_state_word(0x1ac)||animation->animation_state_word(0x9c0)?7u:0u;
+    }
+    template<class World>void advance_frame_aim(World& world){ //00576350.
+        auto& target=resources_.target();
+        const auto delta=target.state.template get<std::array<float,3>>(0x10);
+        if(target.state.template get<std::uint8_t>(0x35)||target.state.template get<std::uint8_t>(0x34))
+            throw std::runtime_error("AI aim frame requires its actual special-item target receiver");
+        const bool firing=(this->words().template get<std::uint32_t>(0x50)&0x200000u)!=0;
+        if(!target.actor&&human_scene_steering_square(delta)<1.e-16f){
+            if(firing)stop_frame_aim(100,world);
+            target.state.set(0x38,8u);
+            return;
+        }
+        if(!firing){
+            resources_.publish_aimed_actor(target.actor);
+            resources_.state().set(0xd8,target.actor?0u:2u);
+        }
+        std::uint32_t result;
+        if(!this->item()){
+            if(firing){stop_frame_aim(400,world);stop_frame_aim(100,world);} //00575D50, then 00576350's status-10 mask.
+            result=0x10;
+        }else{
+            const auto& item=world.human_frame_output_item(this->item());
+            const auto now=world.game_word28();
+            if(now<item.field14||human_frame_signed_word(now-item.field58)<0)result=0x40;
+            else if(now<item.field5c)result=1;
+            else if(resources_.state().template get<std::int32_t>(0xc8)>0)result=4;
+            else if(firing&&!resources_.state().template get<std::uint32_t>(0xc4)){
+                stop_frame_aim(static_cast<std::uint32_t>(static_cast<long double>(world.human_sound_random())*400.f+300.f),world);
+                result=4;
+            }
+            else throw std::runtime_error("AI aim frame requires actual weapon alignment and line-of-fire receivers");
+            if(firing){
+                if(result==1)stop_frame_aim(100,world);
+                else if(target.actor!=resources_.aimed_actor()){stop_frame_aim(100,world);result=0x80;}
+            }
+        }
+        target.state.set(0x38,result);
     }
     void advance_scene_steering(){advance_human_ai_scene_steering(*this);} //0057F610.
     template<class Graph>std::uint32_t advance_frame_query(Graph& graph,std::uint32_t elapsed){
@@ -251,6 +313,27 @@ protected:
         queue_human_ai_sight_event(this->state_frames(),command->first.events,actor,kind);
     }
 private:
+    template<class World>void stop_frame_aim(std::uint32_t delay,World& world){ //00572C20, no inline action-kind 4 stop.
+        auto& target=resources_.target().state;
+        const auto base=target.template get<std::int32_t>(0x44);
+        if(base!=-1){
+            const auto random=static_cast<long double>(world.human_sound_random());
+            const auto span=target.template get<std::int32_t>(0x48);
+            delay=static_cast<std::uint32_t>(static_cast<std::int64_t>((random-.5L)*span*2+base));
+        }
+        const auto flags=this->words().template get<std::uint32_t>(0x50);
+        this->words().set(0x50,flags&~0x200000u);
+        if(flags&0x8000000u)throw std::runtime_error("AI aim stop requires the actual inline action and B0 command receivers");
+        resources_.publish_aimed_actor(nullptr);
+        resources_.state().set(0xd8,0u);
+        if(this->item()){
+            const auto& item=world.human_frame_output_item(this->item());
+            const auto now=world.game_word28();
+            const auto interval=std::max(human_frame_signed_word(item.field14-now),human_frame_signed_word(item.field58-now));
+            if(interval>0&&static_cast<std::uint32_t>(interval)>delay)delay=static_cast<std::uint32_t>(interval);
+        }
+        resources_.state().set(0xc8,delay);
+    }
     HumanVector frame_navigation_origin(){
         auto* human=this->human();
         if(!human||!human->base().frame())throw std::logic_error("AI route requires the actual Human model");
@@ -311,11 +394,7 @@ private:
                 state.set(0x120,1000u);
                 throw std::runtime_error("AI path climb requires the actual nonoffline command receiver");
             }
-            control.frame_climb([&]{
-                //0056FC30 ->00584B60(0) preserves the low posture bits.
-                auto& words=this->words();
-                words.set(0x50,words.template get<std::uint32_t>(0x50)&0xfcffff07u);
-            });
+            control.frame_movement_animation(0x6a,[&](std::uint32_t flags){publish_frame_command_flags(flags);});
         };
         if(!reached){
             const auto* current=this->point();

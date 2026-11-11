@@ -1,4 +1,4 @@
-# Human frame execution — source checkpoint 2026-11-10
+# Human frame execution — source checkpoints
 
 Continuation of FULL first P2.2 checkbox after Sight checkpoint595f195. Current
 source covers the0059FE30/0059FFD0 containing order, pooled perception/commands,
@@ -308,3 +308,50 @@ Startup owner types. The application link and tracker checks are recorded in
 the [receipt](checkpoints/p2.2-human-ai-navigation-20261111.json).
 The containing authority dispatch, specialized interactions and first live
 mission load remain open.
+## Guard and Area frame dispatch
+
+Guard 00548170 and Area 00559DE0 now dispatch through the actual Human B0
+owner. They share Startup's two frame input buffers and retain their distinct
+direction and aim order. Input7C uses actual DD0+1AC/+9C0. The early 4000800
+gate still reaches the deferred queue. Its populated serializer and transport
+remain required. Guard's +24 and Area's +24 presentation calls follow the
+original offline return from 0056F710. The owner retires a Guard or Area state
+after its authority method returns, then rebinds the actual Script context
+and calls 0041DA80 before the new look request (00590700).
+
+Guard 00548610 and 00548520 reach actual inventory preparation, event
+dispatch, wait and idle transitions. The pooled kind 5 action uses the
+same Startup 008AB048+C0 list and retains age and lifetime on reacquire
+(0058A9F0, 00582A40). The event path dispatches the current action before
+merging retained events and applying stat and speech effects (005482A0,
+005482F0). Live attachment, route refresh and other action modes still
+require their original receivers.
+
+005710B0 runs the ordinary detached hostile chooser. One candidate uses the
+actual eligibility and health gates without scoring. Multiple candidates use
+reverse traversal, live world matrices, the actual Sight relation mask
+(0046F2A0 to 0046DC10), B0 direction and typed D0/D4 actor borrowers. Equal
+scores keep the first candidate encountered. Guard 00548B00 and 0054AC40
+use this chooser on actual Human perception lists. The kind 1 route includes
+the CRT draw before the 0054E600 Door-list gate, missing-cover transition,
+timed attack and lost-target branch. 00558AE0 reaches readiness and the
+selected-target publication. Populated cover, Door, grenade and alternate
+attack branches remain required. 00576350 and 00575D50 publish supported
+no-item and weapon-deadline statuses and preserve actual stop timers
+(00572C20). Aligned armed fire, line-of-fire and derived stop follow-ups
+remain required.
+
+00583C30 applies the actual shared movement input to B0 velocity, E0
+movement animation, stance, posture, jump endurance and stop. Mode 2/3
+command 6A maps to CE under the same native climb gate as mode 4.
+0058BAF0 advances B0+B0 before checking the input buffers, suppresses the
+first scratch trigger where required, and dispatches actual kind 9 actions
+6/7 before current-player FPV requests 2/4. Attachments, the deferred climb
+command, reload, positive fire and kind 9 release still require their actual
+consumers. The shared 005647C0 Scene2 solver is a separate producer for
+Human+2C4 and remains open.
+
+The [source checkpoint receipt](checkpoints/p2.2-human-ai-frame-dispatch-20261111.json)
+records native ASan/UBSan/LSan, strict actual-host i386 and launcher link
+checks. The native fixtures used doubles for the game frame clock, input and
+unimplemented runtime leaves. The application still declines mission loading.

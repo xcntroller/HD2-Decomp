@@ -117,7 +117,7 @@ public:
         state_.set(0xf4,static_cast<std::uint8_t>(kind));
         //00576AC0 receiver is embedded at C0.
         state_.set(0xc0,std::uint8_t{0});
-        for(auto offset:{0xc4u,0xd8u,0xccu,0xc8u,0xd0u,0xd4u,0x108u,0x10cu,0x110u,0xf0u})
+        for(auto offset:{0xc4u,0xd8u,0xccu,0xc8u,0x108u,0x10cu,0x110u,0xf0u})
             state_.set(offset,std::uint32_t{0});
         state_.set(0x114,std::int32_t{-1});state_.set(0x118,std::int32_t{-1});
         try {
@@ -136,6 +136,12 @@ public:
     const Direction& direction()const{return required(direction_);}
     HumanAIFlagLoading& flag(){return required(flag_);}HumanAIQueryLoading& query(){return required(query_);}
     HumanAIPathLoading& path(){return required(path_);}auto& state(){return state_;}const auto& state()const{return state_;}
+    Actor* aimed_actor()const{return aimed_actor_;}
+    Actor* selected_actor()const{return selected_actor_;}
+    void publish_aimed_actor(Actor* actor){ //00576350 clears D0 for a vector while D4 retains its previous selection.
+        aimed_actor_=actor;
+        if(actor)selected_actor_=actor;
+    }
     auto& navigation_jobs(){return jobs_;}
     const HumanAINavigationJob* current_navigation_job()const{return current_job_.get();}
     void advance_navigation_job(){
@@ -152,7 +158,8 @@ public:
     void current_action(HumanAIAction1Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction2Pool::Lease value){current_action_=std::move(value);}
     void current_action(HumanAIAction3Pool::Lease value){current_action_=std::move(value);}
-    template<class Pool>auto* current_action_as(){
+    void current_action(HumanAIAction5Pool::Lease value){current_action_=std::move(value);}
+    template<class Pool>auto* current_action_as()const{
         const auto* lease=std::get_if<typename Pool::Lease>(&current_action_);
         return lease?lease->get():nullptr;
     }
@@ -193,11 +200,13 @@ private:
     }
     HumanJointWords<0x140> state_;
     std::unique_ptr<Direction> direction_;std::unique_ptr<Target> target_;
+    Actor* aimed_actor_=nullptr;
+    Actor* selected_actor_=nullptr;
     std::unique_ptr<HumanAIFlagLoading> flag_;std::unique_ptr<HumanAIQueryLoading> query_;std::unique_ptr<HumanAIPathLoading> path_;
     std::vector<HumanAINavigationJobPool::Lease> jobs_; //NativeF8.
     HumanAINavigationJobPool::Lease current_job_{nullptr,HumanAINavigationJobPool::Return{}}; //Native104.
     std::variant<std::monostate,HumanAIAction1Pool::Lease,HumanAIAction2Pool::Lease,
-        HumanAIAction3Pool::Lease> current_action_;
+        HumanAIAction3Pool::Lease,HumanAIAction5Pool::Lease> current_action_;
 };
 } //namespace hd2::game
 #endif

@@ -14,7 +14,7 @@ sound, proximity and the script compiler/context/module receivers. These are sou
 declines loading until the actual world and remaining consumers are connected.
 [Current boundary and remaining work](analysis/mission-world-loading.md) |
 [Source progress](analysis/loading-modules.md) |
-[Guard and Area navigation checks](analysis/checkpoints/p2.2-human-ai-navigation-20261111.json).
+[Guard and Area frame checks](analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json).
 [Cold Car physics/finalization](analysis/car-runtime-loading.md) now has a verified
 source composition; [cold Car actor activation](analysis/car-activation-loading.md) is also recovered.
 [Cold Car callback/world binding](analysis/car-callback-world-binding.md) supplies the actual factory, Physics contact and shared solver/pool owners.
@@ -89,10 +89,10 @@ The earlier function-completion work includes the
 [delta/scroll group](analysis/delta-scroll-completion.md),
 [scalar/input batch](analysis/scalar-input-batch.md) and
 [input-owner batch](analysis/input-owner-batch.md). The current ledger has34
-complete client functions and 2,171 partial entries (2,166 client and five engine).
+complete client functions and 2,217 partial entries (2,212 client and five engine).
 The [Physics object frame checkpoint](analysis/physics-object-frame-motion.md) supplies type0..5 motion, contact-seeded tipping, actual module2 queries, impulse/wake and ordered retirement source-only. Tree replacement/pickup and application/desktop integration remain required.
 The [Sight frame checkpoint](analysis/sight-shot-frame-source.md) binds scheduling, Human range/visibility metrics and marker rays to SAME World owners, source-only. Positive Dog/attachment/material branches and application/desktop delivery remain required.
-The [Human frame checkpoint](analysis/human-frame-source.md) supplies containing callback order, perception/command ageing, E0 feedback/directions, camera/item poses, equipment and periodic stats source-only. The AI continuation covers shared timers, steering and Guard/Area task selection. Actual derived B0/DD0/fire/movement and the live application frame graph remain required.
+The [Human frame checkpoint](analysis/human-frame-source.md) supplies containing callback order, perception/command ageing, E0 feedback/directions, camera/item poses, equipment and periodic stats source-only. The AI continuation covers shared timers, navigation, Guard and Area frame dispatch, hostile selection and B0 movement output. Actual derived B0/DD0/fire/movement and the live application frame graph remain required.
 The [P2.2 reconciliation](analysis/function-ledger-p2.2-reconciliation.md) records
 the earlier accumulated source subsets. Later checkpoints include Human
 weapons/formation/Players, [prepared spawning](analysis/session-activation-loading.md),
@@ -241,11 +241,11 @@ A working checkpoint can depend on partial bodies and delegated engine calls.
 
 `[------------------------------] 0.18% complete`
 
-**34 complete / 18,783 identified functions** (frozen, estimated baseline); **2,171 unique functions partially reconstructed**.
+**34 complete / 18,783 identified functions** (frozen, estimated baseline); **2,217 unique functions partially reconstructed**.
 
 | Program | Counted functions | Complete | Partial |
 | --- | ---: | ---: | ---: |
-| Base game client | 17,294 | 34 | 2,166 |
+| Base game client | 17,294 | 34 | 2,212 |
 | Original LS3DF.dll | 1,489 | 0 | 5 |
 
 This covers the **base game and original LS3D engine only**, not Sabre

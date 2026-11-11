@@ -58,6 +58,34 @@ public:
     auto& state(){return state_;}const auto& state()const{return state_;}
     Actor* timer_target()const{return timer_target_;}void timer_target(Actor* target){timer_target_=target;}
     template<class Queries>void advance_frame_prefix(std::uint32_t elapsed,Queries& queries){advance_human_area_frame_prefix(*this,elapsed,queries);} //00559C60.
+    template<class Queries,class Inline,class World>
+    bool advance_authority_frame(std::uint32_t elapsed,Queries& queries,Inline& control,World& world){ //00559DE0.
+        this->publish_authority_input_gate(control);
+        if(this->words().template get<std::uint32_t>(0x50)&0x4000800u){
+            this->process_second_frame_commands();
+            return false;
+        }
+        advance_frame_prefix(elapsed,queries);
+        if(!advance_frame_decision(elapsed)){
+            this->process_second_frame_commands();
+            return true; //005AF680 runs after dispatch returns to the owning composition.
+        }
+        if(!advance_frame_wait_action())throw std::runtime_error("Area frame requires its actual positive action worker");
+        this->resources().reconcile_direction_flags();
+        this->advance_frame_query(control,world,elapsed);
+        this->advance_frame_direction(elapsed,control);
+        const auto was_firing=this->words().template get<std::uint32_t>(0x50)&0x200000u;
+        this->advance_frame_aim(world); //00559D40 ->00576350.
+        if(was_firing&&!(this->words().template get<std::uint32_t>(0x50)&0x200000u)&&this->item()){
+            const auto& item=world.human_frame_output_item(this->item());
+            if(item.definition().identifier==0x26&&item.amount()==0)
+                throw std::runtime_error("Area aim stop requires its actual empty-weapon 00559CF0 receiver");
+        }
+        this->apply_frame_movement(control);
+        this->apply_frame_items(control,world,elapsed);
+        this->process_second_frame_commands();
+        return false;
+    }
     void select_area_action(){ //0055A130. Area virtual10C is00575820.
         this->resources().retire_current_action();
         //The original stack vector initializes XYZ only.

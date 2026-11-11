@@ -52,6 +52,7 @@ public:
         controller_->falling(true);
     }
     const auto& state() const {return state_;}
+    void frame_climb_direction(bool backward){state_.set(0x12c,static_cast<std::uint8_t>(backward));} //DD0+BEC.
     void animation_control_delay(std::uint32_t value){state_.set(0x130,value);} //DD0+BF0,007870D0.
     void close_loading() { //007637C0→007706F0(true), the proven loading branch.
         //No motion-sound producer is exposed by this owner. A populated native

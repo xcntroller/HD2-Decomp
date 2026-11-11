@@ -85,6 +85,38 @@ public:
     Actor* timer_target()const{return timer_target_;}void timer_target(Actor* target){timer_target_=target;}
     void refresh_reaction_timer(){refresh_human_guard_reaction_timer(*this,this->state_frames(),random_);} //00547DA0.
     template<class Queries>void advance_frame_prefix(std::uint32_t elapsed,Queries& queries){advance_human_guard_frame_prefix(*this,elapsed,queries);} //00547E70.
+    template<class Queries,class Inline,class World>
+    bool advance_authority_frame(std::uint32_t elapsed,Queries& queries,Inline& control,World& world){ //00548170.
+        this->publish_authority_input_gate(control);
+        if(this->words().template get<std::uint32_t>(0x50)&0x4000800u){
+            this->process_second_frame_commands();
+            return false;
+        }
+        advance_frame_prefix(elapsed,queries);
+        if(advance_frame_decision(elapsed,control,world)){
+            advance_frame_action(elapsed,world,control);
+            const auto* attachment=this->human()->field160;
+            if(attachment){
+                const auto type=attachment->base().type();
+                if(type==4||type==0x14||type==0x15||type==0x22)
+                    throw std::runtime_error("Guard attachment frame requires its actual command receiver");
+            }
+            this->resources().reconcile_direction_flags();
+            this->advance_frame_query(control,world,elapsed);
+            const auto was_firing=this->words().template get<std::uint32_t>(0x50)&0x200000u;
+            this->advance_frame_aim(world); //00548080 ->00576350.
+            if(was_firing&&!(this->words().template get<std::uint32_t>(0x50)&0x200000u))
+                throw std::runtime_error("Guard aim stop requires its actual 00548080 reaction and item receivers");
+            this->advance_frame_direction(elapsed,control);
+            this->apply_frame_movement(control);
+            this->apply_frame_items(control,world,elapsed);
+        }
+        this->process_second_frame_commands();
+        if(this->resources().current_action_kind()&&!(this->words().template get<std::uint32_t>(0x50)&0x400u))return false;
+        adjust_human_frame_stat3(*this->human(),100); //00547D80.
+        reset_frame_action();
+        return true;
+    }
     void reset_frame_action()override{ //00548040→005ADD20, then00575820.
         const auto kind=this->resources().current_action_kind();
         if(kind==2)selected_event_.reset();
@@ -92,6 +124,11 @@ public:
         this->resources().retire_current_action();
     }
     const HumanAIEvent* selected_frame_event()const{return selected_event_.get();}
+    bool suppress_hostile_selection()const override{ //00558E20.
+        const auto* idle=this->resources().template current_action_as<HumanAIAction5Pool>();
+        return !(this->words().template get<std::uint32_t>(0x50)&0x4000800u)&&
+            idle&&idle->state.template get<std::uint32_t>(8)==0x2000003u;
+    }
     template<class World,class Inline>void select_frame_task(World& world,Inline& control){ //00549360.
         auto* human=this->human();
         auto* command=this->command();
@@ -175,6 +212,339 @@ public:
         return true;
     }
 private:
+    template<class Inline,class World>
+    bool advance_frame_decision(std::uint32_t elapsed,Inline& control,World& world){ //00548610.
+        auto& words=this->words();
+        const auto flags=words.template get<std::uint32_t>(0x50);
+        auto* human=this->human();
+        state_.set(0x198,state_.template get<std::uint32_t>(0x198)+elapsed);
+        if(!(flags&0x400u)&&(flags&0xf8u)&&control.frame_movement_mode()==3){ //005484B0.
+            words.set(0x50,(flags&0xfffffcffu)|0x400u);
+            reset_frame_action();
+            radius_timers(true);
+        }else if((flags&0x100u)&&guard_health_percent(*human)<50){
+            words.set(0x50,(flags&~0x100u)|0x200u);
+            reset_frame_action();
+            radius_timers(false);
+        }
+        const bool hostile=!human->perception.lists()[0].empty(); //005582F0.
+        const auto require_attachment=[&]{
+            if(const auto* attachment=human->field160){
+                const auto type=attachment->base().type();
+                if(type==4||type==0x14||type==0x15||type==0x22)
+                    throw std::runtime_error("Guard task requires its actual 00548590 attachment query");
+            }
+        };
+        auto& resources=this->resources();
+        auto kind=resources.current_action_kind();
+        if(!kind){ //00548520.
+            if(state_.template get<std::uint32_t>(0x144)&4u)return false;
+            (void)world.prepare_guard_frame_weapon(*this);
+            require_attachment();
+            if(hostile)select_hostile_action();else select_frame_task(world,control);
+            return resources.current_action_kind()!=0;
+        }
+        drain_guard_frame_events(world,control); //005A8480, via current Guard F4.
+        if(!can_interrupt_task(control))return true;
+        kind=resources.current_action_kind();
+        if(!kind)return false;
+        const auto skill=signed_stat(*human,3);
+        if(kind==5){
+            if(skill>40&&equip_missing_frame_weapon(world))
+                throw std::runtime_error("Guard armed task requires the actual inline weapon command");
+            return true;
+        }
+        require_attachment();
+        if(kind==6){
+            state_.set(0x144,state_.template get<std::uint32_t>(0x144)&~0x20u);
+            if(hostile)select_hostile_action();else select_frame_task(world,control);
+            return resources.current_action_kind()!=0;
+        }
+        if(skill>19||(state_.template get<std::uint32_t>(0x144)&1u)){
+            if(this->item())return true;
+            this->refresh_item(); //005593D0.
+            if((this->item()||world.human_guard_shoulder_weapon(*human)||world.human_guard_holster_weapon(*human))&&
+               human_frame_signed_word(state_.template get<std::uint32_t>(0x1d0))<1000){
+                (void)equip_missing_frame_weapon(world);
+                return true;
+            }
+        }
+        reset_frame_action(); //0054B730.
+        resources.current_action(actions_.kind5.acquire(0x1000001u));
+        state_.set(0x198,0u);
+        if(words.template get<std::uint32_t>(0x50)&1u)request_posture(4,control,world.mode_flags());
+        return true;
+    }
+    template<class World,class Inline>void drain_guard_frame_events(World& world,Inline& control){
+        auto* command=this->command();
+        if(!command)throw std::logic_error("Guard event processing requires actual B4 command owner");
+        auto& incoming=command->first.events;
+        auto& retained=command->second.events;
+        auto& resources=this->resources();
+        auto& human=*this->human();
+        const auto speech=[&](std::int32_t category,std::uint32_t delay){
+            if(!suppress_hostile_selection())world.queue_guard_frame_speech(*this,category,delay);
+        };
+        while(incoming.size()){
+            auto event=incoming.pop_front();
+            const auto code=event->words[0];
+            const auto kind=resources.current_action_kind();
+            if(kind==2){ //005482A0 ->00549940.
+                if(auto* target=world.human_ai_resolve_actor(event->words[4])){
+                    auto* action=resources.template current_action_as<HumanAIAction2Pool>();
+                    const auto priority=code&0xf0000000u;
+                    if(!selected_event_&&priority){
+                        clone_frame_event(incoming,*event,event->words[4]);
+                        action->state.set(8,4u);
+                    }else if(selected_event_&&priority<0x40000000u&&
+                             world.human_ai_resolve_actor(selected_event_->words[4])==target){
+                        if(action->state.template get<std::uint32_t>(8)==7)
+                            throw std::runtime_error("Guard target refresh requires the actual 00549760 route receiver");
+                    }else if(code==0x30000001u){
+                        if(can_interrupt_task(control))select_hostile_action();
+                    }else if(code==0x20000013u||(code>=0x3000000bu&&code<=0x3000000du)||
+                             code==0x3000000fu||code==0x40000010u||code==0x40000011u||code==0x40000015u)
+                        throw std::runtime_error("Guard wait event requires its actual positive route receiver");
+                }
+            }else{
+                const bool damage=code==0x40000010u||code==0x40000011u||code==0x40000015u;
+                const bool report=code==0x3000000bu||code==0x3000000cu;
+                const auto& hostiles=human.perception.lists()[0];
+                if(kind==6)throw std::runtime_error("Guard attachment event requires its actual current action receiver");
+                if((kind==1&&(damage||report||code==0x30000001u||(code==0x20000013u&&hostiles.empty())))||
+                   (kind==3&&(damage||report))||(kind==5&&(damage||(code>=0x3000000bu&&code<=0x3000000fu)))){
+                    if(auto* actor=world.human_ai_resolve_actor(event->words[4])){
+                        auto* source=dynamic_cast<Human*>(actor);
+                        if(!source)throw std::logic_error("Guard event aim requires its actual Human");
+                        const bool hostile=std::find(hostiles.rbegin(),hostiles.rend(),actor)!=hostiles.rend();
+                        const auto look=[&]{resources.direction().target_frame(source->head_marker);};
+                        if(kind==3){
+                            if(!hostile)look(); //0054AB70.
+                        }else if(kind==1){
+                            if(damage||code==0x30000001u){
+                                if(const auto* vehicle=source->field160){
+                                    const auto type=vehicle->base().type();
+                                    if(type==4||type==0x15)throw std::runtime_error("Guard event requires the actual target vehicle query");
+                                }
+                                auto& action=resources.template current_action_as<HumanAIAction1Pool>()->state;
+                                const auto mode=action.template get<std::uint32_t>(8);
+                                if(damage&&!hostile)look();
+                                if(mode==0||mode==0x12eu)action.set(8,1u);
+                            }else if(!hostile)look();
+                        }else{
+                            auto& action=resources.template current_action_as<HumanAIAction5Pool>()->state;
+                            const auto mode=action.template get<std::uint32_t>(8);
+                            if(!damage){
+                                if(!hostile&&(!(mode&0x2000000u)||hostiles.empty()))look();
+                            }else if(!(mode&0x4000000u)){
+                                if(!hostile){if(hostiles.empty())look();}
+                                else if(mode&0x2000000u){
+                                    if(!this->item())throw std::runtime_error("Guard damage response requires the actual weapon lookup");
+                                    action.set(8,0x8000001u);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            switch(code){ //005482F0 runs after the current-action event worker.
+            case 0x10000002u:retained.merge(std::move(event),30000,false);break;
+            case 0x10000003u:adjust_human_frame_stat3(human,10);speech(0x76,8000);break;
+            case 0x20000004u:case 0x20000012u:adjust_human_frame_stat3(human,0xfffffffbu);break;
+            case 0x30000001u:speech(0x79,10000);break;
+            case 0x3000000bu:case 0x3000000cu:case 0x3000000du:case 0x3000000fu:
+                retained.merge(std::move(event),20000,false);
+                break;
+            case 0x40000010u:case 0x40000011u:
+                adjust_human_frame_stat3(human,0xfffffffeu);
+                retained.merge(std::move(event),10000,false);
+                speech(0x7a,5000);
+                break;
+            case 0x40000015u:
+                this->extend_frame_reaction(static_cast<std::uint32_t>(static_cast<long double>(random_word())*random_scale*300.f+100.f));
+                adjust_human_frame_stat3(human,0xfffffff1u);
+                retained.merge(std::move(event),10000,false);
+                break;
+            default:break;
+            }
+        }
+    }
+    template<class World>bool equip_missing_frame_weapon(World& world){ //00559420.
+        this->refresh_item();
+        if(this->item())return true;
+        auto* human=this->human();
+        if(human->base().storage()->holder(3)->cooling_down(world.game_word28()))return false;
+        auto* inventory=human->loading_inventory;
+        if(!inventory)throw std::logic_error("Guard weapon selection requires the actual inventory owner");
+        if(const auto shoulder=world.human_guard_shoulder_weapon(*human)){
+            if(world.human_frame_output_item(shoulder).definition().kind()==6&&inventory->equip_holster(2))return true;
+            if(inventory->equip_shoulder())return true;
+        }
+        return inventory->equip_holster(2);
+    }
+    template<class World,class Inline>
+    void advance_frame_action(std::uint32_t elapsed,World& world,Inline& control){ //00548840.
+        auto& resources=this->resources();
+        const auto kind=resources.current_action_kind();
+        if(kind==2&&advance_frame_wait_action(world,control))return;
+        const bool hostile=!this->human()->perception.lists()[0].empty();
+        if(kind==3&&!(resources.query().state.template get<std::uint32_t>(0x50)&0x10000000u))
+            state_.set(0x1cc,state_.template get<std::uint32_t>(0x1cc)+elapsed);
+        if(kind==1||kind==3){
+            const auto wait_or_retry=[&](auto& action,std::uint32_t wait,std::uint32_t select){
+                const auto mode=action.template get<std::uint32_t>(8);
+                if(mode==wait){
+                    if(!hostile){
+                        if(!action.template get<std::uint32_t>(0x10))select_frame_task(world,control);
+                        return true;
+                    }
+                    action.set(8,select);
+                }else if(mode!=select)return false;
+                this->look_command(0,control);
+                timer_target_=select_human_hostile<Human>(*this,this->state_frames(),world);
+                if(!timer_target_){
+                    action.set(0x10,200u);
+                    action.set(8,wait);
+                    return true;
+                }
+                if(kind==1){ //00548B00 invokes the Door search before classifying the target attachment.
+                    state_.set(0x1c4,static_cast<std::uint32_t>((static_cast<long double>(random_word())*random_scale+1)*2000.f));
+                    if(!doors_.empty())throw std::runtime_error("Guard target requires the actual populated 0054E600 Door search");
+                }
+                auto& target=static_cast<Human&>(*timer_target_);
+                if(const auto* attachment=target.field160){
+                    const auto type=attachment->base().type();
+                    if(type==4||type==0x15)
+                        throw std::runtime_error("Guard target requires the actual vehicle seat capability");
+                }
+                action.set(8,kind==1?3u:1u);
+                return false;
+            };
+            if(kind==1){ //00548B00.
+                auto& action=resources.template current_action_as<HumanAIAction1Pool>()->state;
+                if(wait_or_retry(action,0,1))return;
+                if(action.template get<std::uint32_t>(8)==3){
+                    if(timer_target_&&!secondary_.empty())
+                        throw std::runtime_error("Guard target requires actual 005579E0 cover selection");
+                    action.set(8,7u); //00553D10 returns false for the missing cover point.
+                    return;
+                }
+                if(action.template get<std::uint32_t>(8)==7){
+                    const auto distance=human_ai_closest_enemy_distance(*this->human(),this->state_frames());
+                    action.set(0x10,distance>=10.f?6000u:3000u);
+                    if(this->point()&&timer_target_)
+                        throw std::runtime_error("Guard target requires actual 00552970 cover posture");
+                    resources.flag().request(2);
+                    action.set(8,8u);
+                    this->look_command(0,control);
+                }
+                if(action.template get<std::uint32_t>(8)==8){
+                    if(!target_still_hostile()||!action.template get<std::uint32_t>(0x10)){
+                        resources.target().bind_actor(nullptr);
+                        action.set(8,1u);
+                        resources.flag().request(0);
+                    }else advance_attack(world,control);
+                    return;
+                }
+            }else{ //0054AC40.
+                auto& action=resources.template current_action_as<HumanAIAction3Pool>()->state;
+                if(wait_or_retry(action,5,0))return;
+                if(action.template get<std::uint32_t>(8)==4){
+                    if(target_still_hostile())advance_attack(world,control);
+                    else{
+                        resources.target().bind_actor(nullptr);
+                        action.set(8,0u);
+                        resources.flag().request(0);
+                    }
+                    if(!action.template get<std::uint32_t>(0x10)){
+                        action.set(8,0u);
+                        resources.flag().request(0);
+                    }
+                    return;
+                }
+            }
+        }
+        if(kind==5&&!hostile){
+            auto& action=resources.template current_action_as<HumanAIAction5Pool>()->state;
+            const auto mode=action.template get<std::uint32_t>(8);
+            if(mode==0x1000000u)return;
+            if(mode==0x1000001u){
+                resources.flag().request(0);
+                action.set(8,0x1000000u);
+                return;
+            }
+        }
+        if(!kind)return;
+        throw std::runtime_error("Guard frame requires its actual positive action worker");
+    }
+    bool target_still_hostile()const{ //005582A0 and its caller's signed health gate.
+        if(!timer_target_)return false;
+        auto* target=dynamic_cast<Human*>(timer_target_);
+        if(!target)throw std::logic_error("Guard attack requires the actual selected Human");
+        if(human_frame_signed_word(target->properties.stats_ec[0])<1)return false;
+        const auto& enemies=this->human()->perception.lists()[0];
+        return std::find(enemies.rbegin(),enemies.rend(),timer_target_)!=enemies.rend();
+    }
+    template<class World,class Inline>void advance_attack(World& world,Inline& control){ //00558AE0.
+        auto& resources=this->resources();
+        const auto* idle=resources.template current_action_as<HumanAIAction5Pool>();
+        if(idle&&(idle->state.template get<std::uint32_t>(8)&0x8000000u)&&timer_target_){ //00558960.
+            resources.target().bind_actor(timer_target_);
+            return;
+        }
+        if(state_.template get<std::uint32_t>(0x1a8)&&!state_.template get<std::uint32_t>(0x1b0)){
+            if(this->words().template get<std::uint8_t>(0xad))resources.target().bind_actor(timer_target_);
+            else{
+                control.set_frame_item_ready(true,[&](std::uint32_t value){world.human_frame_first_person_state(*this->human(),value);});
+                if((world.mode_flags()&7u)!=7u)throw std::runtime_error("Guard attack readiness requires actual command01 transport");
+            }
+            return;
+        }
+        const auto grenade=world.human_feedback_kind9(*this->human()); //005584B0 first queries the real holder.
+        const auto age=state_.template get<std::int32_t>(0x1ac);
+        const auto flags=this->words().template get<std::uint32_t>(0x50);
+        if(grenade&&age>=10000&&state_.template get<std::uint32_t>(0x1a8)&&!(flags&0x200001u)){
+            const auto count=this->human()->perception.lists()[0].size();
+            if(!count||static_cast<long double>(age)>=40.L/count*1000.f)
+                throw std::runtime_error("Guard attack requires the actual grenade selection and trajectory receivers");
+        }
+        if(timer_target_&&resources.state().template get<std::int32_t>(0xcc)<1){
+            auto* target=dynamic_cast<Human*>(timer_target_);
+            if(!target||!target->head_marker||!this->human()->head_marker)
+                throw std::logic_error("Guard attack requires both actual head markers");
+            auto& frames=this->state_frames();
+            const auto from=frames.actor_world_matrix(this->human()->head_marker);
+            const auto to=frames.actor_world_matrix(target->head_marker);
+            auto direction=this->target_direction();
+            for(unsigned axis=0;axis!=3;++axis)direction[axis]=static_cast<float>(static_cast<long double>(to[12+axis])-from[12+axis]);
+            //00575670 stores XYZ differences before its (Z²+Y²)+X² normalization.
+            const auto x=static_cast<long double>(direction[0]),y=static_cast<long double>(direction[1]),z=static_cast<long double>(direction[2]);
+            const auto exact_square=(z*z+y*y)+x*x;
+            const float square=static_cast<float>(exact_square);
+            constexpr float epsilon=9.99999993922529e-09f;
+            if(std::abs(exact_square-1)>=epsilon){
+                if(square>=epsilon){
+                    const auto scale=1/std::sqrt(static_cast<long double>(square));
+                    for(unsigned axis=0;axis!=3;++axis)direction[axis]=static_cast<float>(direction[axis]*scale);
+                }else{
+                    const auto axis=x!=0?0u:z!=0?2u:1u;
+                    direction[axis]=direction[axis]<0?-1.f:1.f;
+                }
+            }
+            resources.direction().set_target(direction);
+        }
+        resources.target().bind_actor(nullptr);
+    }
+    static std::int32_t guard_health_percent(const Human& human){ //005A5FF0.
+        const auto health=human_frame_signed_word(human.properties.stats_ec[0]);
+        if(!health)return 0;
+        const auto base=human_frame_signed_word(human.properties.stats_11c[0]);
+        const auto percent=static_cast<long double>(health)*100.f/base;
+        if(percent>100)return 100;
+        if(percent>0&&percent<1)return 1;
+        if(!std::isfinite(percent))return 0; //The x87 indefinite integer has a zero low DWORD.
+        return human_frame_signed_word(static_cast<std::uint32_t>(static_cast<std::int64_t>(percent)));
+    }
     template<class Inline>static bool can_interrupt_task(Inline& control){ //00553CC0→005AC2B0.
         const auto* animation=control.control();
         if(!animation)throw std::logic_error("Guard worker requires the actual DD0 owner");
@@ -207,12 +577,15 @@ private:
         HumanVector position;
         std::memcpy(position.data(),event.words.data()+8,sizeof position);
         this->resources().current_action(actions_.kind2.acquire(position,frame_position(target),mode));
+        clone_frame_event(queue,event,retarget?static_cast<std::uint32_t>(target.base().id10()):event.words[4]);
+    }
+    void clone_frame_event(HumanAIEventQueue& queue,const HumanAIEvent& event,std::uint32_t target){
         auto copy=queue.pool().acquire();
         copy->words[0]=event.words[0];
         copy->words[1]=10000;
         copy->words[2]=event.words[2];
         copy->words[3]=event.words[3];
-        copy->words[4]=retarget?static_cast<std::uint32_t>(target.base().id10()):event.words[4];
+        copy->words[4]=target;
         std::copy_n(event.words.begin()+8,5,copy->words.begin()+8);
         selected_event_=std::move(copy);
     }

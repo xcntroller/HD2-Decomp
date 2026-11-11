@@ -47,6 +47,7 @@ public:
     Context* human_script_context(Human& human){return contexts_.context_for_frame(human.base().frame());}
     std::int32_t human_script_status(const Context& context)const{return context.program().events.at(4);}
     void interrupt_human_script_context(Context& context){context.alarm(runtime_.script_authority());} //0041DA20.
+    void finish_human_script_alarm(Context& context){(void)context.alarm_done(runtime_.script_authority());} //0041DA80.
     std::uint32_t human_script_random(){return random_();}
     template<class Guard,class Previous>void replay_guard_ai_handover(Guard& guard,const Previous& previous){
         auto* human=guard.human();if(!human||human->loading_state!=&guard)

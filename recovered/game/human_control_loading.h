@@ -106,6 +106,14 @@ public:
     Human** human_slot_address(){return physical_.human_slot_address();}
     std::uint32_t mode_flags() const{return services_.mode_flags();}
     bool human_is_player()const{if(!human_)throw std::logic_error("Human control has no bound actor");return services_.human_is_player(*human_);}
+    bool frame_special_movement_item()const{ //005A66B0.
+        auto* storage=human_?human_->base().storage():nullptr;
+        if(!storage||storage->single()||!storage->holder(5))
+            throw std::logic_error("Human movement requires the actual slot-five holder");
+        const auto entry=storage->holder(5)->entry();
+        return entry&&entry->definition_identifier()==0xe7u;
+    }
+    void frame_climb_direction(bool backward){movement_.frame_climb_direction(backward);}
     bool active() const{return active_;}
     bool collision_disabled()const{return flag_dc4_;} //No loading producer changes this DD0 byte.
     float presentation_amount() const{return amount_;}

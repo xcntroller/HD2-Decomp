@@ -87,6 +87,11 @@ public:
         if((mode&2u)&&dependencies().players.control().current_player()==&human)
             dependencies().first_person.view().set_state(mode,state); //0077F3D0→00491640.
     }
+    template<class Human>void human_frame_item_action_fpv(Human& human,std::int32_t animation){ //0058C4D0.
+        const auto mode=mode_flags();
+        if((mode&2u)&&dependencies().players.control().current_player()==&human)
+            dependencies().first_person.view().request(mode,animation,0);
+    }
     template<class Human>void remove_human_player(Human& human){(void)dependencies().players.control().remove_human(&human);} //0045E670.
     template<class Human>bool player_knows_enemy(Human& human){return dependencies().players.control().selection().knows(&human);} //0045E920.
     template<class Human>void player_add_enemy(Human* human){
@@ -131,6 +136,29 @@ public:
         human.command->advance_events(elapsed);
     }
     template<class Entry>bool human_feedback_item_ready(Entry entry){return dependencies().world_actors.items().runtime_item(entry).field14<=game_word28();}
+    template<class Entry>auto& human_frame_output_item(Entry entry){return dependencies().world_actors.items().runtime_item(entry);}
+    template<class Human>auto human_guard_holster_weapon(Human& human){
+        return find_player_mode_holster(human,dependencies().world_actors.items(),2,game_word28());
+    }
+    template<class Human>auto human_guard_shoulder_weapon(Human& human){
+        auto* storage=human.base().storage();
+        if(!storage||storage->single()||!storage->holder(2))throw std::logic_error("Guard weapon selection requires the actual shoulder holder");
+        return storage->holder(2)->entry();
+    }
+    template<class State>bool prepare_guard_frame_weapon(State& state){ //005594B0.
+        state.refresh_item();
+        auto* human=state.human();
+        auto& inventory=composition(*human).inventory();
+        auto& items=dependencies().world_actors.items();
+        if(state.item()&&items.runtime_item(state.item()).definition().kind()!=6)return true;
+        const auto equip=[&](auto entry,std::int32_t slot){
+            if(!entry)return false;
+            return state.item()?inventory.swap(state.item(),3,*human,entry,slot):inventory.move(entry,*human,slot,3,0);
+        };
+        const auto shoulder=human_guard_shoulder_weapon(*human);
+        if(shoulder&&items.runtime_item(shoulder).definition().kind()!=6&&equip(shoulder,2))return true;
+        return equip(human_guard_holster_weapon(*human),1);
+    }
     template<class Human>auto human_feedback_kind9(Human& human){return find_player_mode_holster(human,dependencies().world_actors.items(),9,game_word28());}
     auto human_projectile_direction(){return dependencies().first_person.view().projectile_direction();}
     auto human_projectile_position(){return dependencies().first_person.view().projectile_position(mode_flags());}
@@ -154,6 +182,30 @@ public:
     }
     template<class Human,class Runtime>void advance_human_scene_frame(Human& human,bool authority,std::uint32_t elapsed,Runtime& runtime){
         game::advance_human_scene_frame(human,authority,elapsed,*this,runtime,dependencies().scene.frames());
+    }
+    template<class Human,class Runtime>void advance_human_state(Human& human,bool authority,std::uint32_t elapsed,Runtime& runtime){
+        auto& owner=composition(human);
+        auto* state=owner.states().get();
+        if(!state||!owner.states().ready())throw std::logic_error("Human frame requires its actual bound B0 state");
+        const auto kind=state->words().template get<std::uint32_t>(0x48);
+        if(kind!=4&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}
+        using Actor=SceneActor<typename Dependencies::ActorFrames>;
+        using Base=std::remove_reference_t<decltype(*state)>;
+        struct Queries {
+            HumanWorldLoadingServices& world;
+            Runtime& runtime;
+            auto& human_ai_frame_inputs(){return world.human_ai_frame_inputs();}
+            bool human_scene_actor_matches(Actor& actor){return world.human_scene_actor_matches(actor);}
+            bool human_action_target_list_contains(Actor* actor){return runtime.human_action_target_list_contains(actor);}
+            std::uint32_t human_action_target_field94(Actor& actor){return runtime.human_action_target_field94(actor);}
+            bool human_action_target_alive(Actor& actor){return runtime.human_action_target_alive(actor);}
+            void finish_human_state_action(Base& state,bool success){runtime.finish_human_state_action(state,success);}
+        } queries{*this,runtime};
+        auto& factory=owner.state_factory();
+        if(factory.advance_guard_or_area_frame(*state,authority,elapsed,queries)){
+            owner.states().change(5); //005AF680, retire the previous state after its frame returns.
+            factory.resume_script_after_ai(*owner.states().get());
+        }
     }
     template<class Human,class Drops>void advance_human_bleeding(Human& human,std::uint32_t elapsed,Drops& drops){
         auto& frames=dependencies().scene.frames();auto random=[&]{return frames.volume_random_unit();};
@@ -239,6 +291,10 @@ public:
         if(health<1||!human.loading_state||human.properties.field19c==1)return false;
         return (human.loading_state->words().template get<std::uint32_t>(0x50)&0x4000000u)!=0;
     }
+    template<class Human>std::uint32_t human_hostile_relation_mask(const Human& observer,const Human& target){
+        return dependencies().sight.source().human_relation_mask(human_frame_signed_word(observer.field258),
+            human_frame_signed_word(target.field25c));
+    }
     template<class Actor>auto actor_inventory_capacity(const Actor& actor){return dependencies().scene.frames().actor_inventory_capacity(actor);}
     template<class Actor>void set_scene_actor_active(Actor& actor,bool enabled){dependencies().scene.frames().set_scene_actor_active(actor,enabled);}
     template<class Actor>void set_runtime_actor_active(Actor& actor,bool enabled){dependencies().world_actors.runtime().set_active(actor,enabled);}
@@ -263,6 +319,10 @@ public:
     }
     template<class State>void queue_player_ai_speech(State& state,std::uint32_t category,std::uint32_t delay){
         HumanSpeechLoading speech(dependencies().scene.frames(),*this);speech.player(state,speech_signed_word(category),delay);
+    }
+    template<class State>void queue_guard_frame_speech(State& state,std::int32_t category,std::uint32_t delay){
+        HumanSpeechLoading speech(dependencies().scene.frames(),*this);
+        (void)speech.request(state,category,delay,1,false); //005882F0.
     }
     void record_state_cleanup_failure(std::exception_ptr failure)noexcept{dependencies().scene.frames().record_actor_cleanup_failure(std::move(failure));}
     //These reached branches require populated nonoffline/attachment producers.

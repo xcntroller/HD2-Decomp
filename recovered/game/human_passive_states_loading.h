@@ -45,6 +45,7 @@ public:
     void close(std::uint32_t mode){Base::close(mode);bound_=false;} //Removes input, unlike state6.
     const auto& first()const{return first_;}const auto& second()const{return second_;}
     bool bound()const{return bound_;}
+    bool suppress_hostile_selection()const override{return flag2c1_;} //005A4410.
 private:
     void detach_callbacks()noexcept {
         auto* input=this->input();

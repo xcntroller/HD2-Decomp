@@ -41,6 +41,13 @@ public:
     using AI::sight_enemy_lost;
     Context* context()const{return context_;}
     void script_context(Context* context){context_=context;} //005907C0, actual B0+1AC borrower update.
+    template<class Inline>void resume_after_ai(Inline& control){ //00590700.
+        auto* human=this->human();
+        if(!human)throw std::logic_error("Script AI resume requires the actual Human");
+        context_=contexts_.human_script_context(*human);
+        if(context_)contexts_.finish_human_script_alarm(*context_);
+        this->look_command(0,control);
+    }
     void set_alarm(bool enabled) { //0058E710; true is genuinely empty.
         if(enabled)return;
         this->words().set(0x50,this->words().template get<std::uint32_t>(0x50)&0x7fffffffu);

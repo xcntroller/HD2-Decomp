@@ -1,0 +1,149 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "previous_checkpoint": "d12f391",
+  "added_entries": [
+    "0046f2a0",
+    "005710b0",
+    "00572c20",
+    "00575d50",
+    "00576350",
+    "00548130",
+    "00559da0",
+    "00583c30",
+    "0058baf0",
+    "00547d80",
+    "00548080",
+    "00548170",
+    "005482a0",
+    "005482f0",
+    "005484b0",
+    "00548520",
+    "00548610",
+    "00548840",
+    "00548b00",
+    "00548900",
+    "00549940",
+    "0054ab70",
+    "0054ac40",
+    "0054b730",
+    "0054b770",
+    "0054e600",
+    "005582a0",
+    "00558960",
+    "00558ae0",
+    "00559420",
+    "00559610",
+    "00575670",
+    "005594b0",
+    "00559d40",
+    "00559de0",
+    "00582a40",
+    "0058a9f0",
+    "00584b60",
+    "0058c330",
+    "0058c4d0",
+    "005abd90",
+    "00590700",
+    "0077f0a0",
+    "0077f190",
+    "0077ebd0",
+    "005a66b0"
+  ],
+  "ledger_added_partial_client": 46,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2217,
+  "checks": {
+    "native_ai_movement_and_item_output": "PASS (ASan/UBSan/LSan)",
+    "native_guard_area_authority_and_positive_hostile": "PASS (ASan/UBSan/LSan)",
+    "actual_host_i386": "PASS (strict compile)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and 27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/frame-human-ai-output-native.cpp": {
+      "sha256": "c9f3105b2dadff4f855935858e8933d6d64f5baba4b137ac79defba27ecffdf1",
+      "bytes": 6888,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-output-native": {
+      "sha256": "41be37836617f77281b1ea1963751565266759b3396cd3f80eb8334e345729e0",
+      "bytes": 411288,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-human-guard-area-authority-native.cpp": {
+      "sha256": "c34998b6a81e0ae2ba903e41e75cf527b3d1a14824362e62831005f7eb5d0eea",
+      "bytes": 12377,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-human-guard-area-authority-native": {
+      "sha256": "6853d48924a92e2da1f26ec8887253af0304b471b18b333047bab0ef4ddb46b5",
+      "bytes": 7644040,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-output-host.cpp": {
+      "sha256": "e8fb128bcd11ad74573afb8968c4ad0f46ed1bba58bd5c487c60603492fc381a",
+      "bytes": 950,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-output-host.o": {
+      "sha256": "70fe4b606942a41624621e53662d4899077bd146241d8dcb08708d56410238dc",
+      "bytes": 6805405,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-output-native.log": {
+      "sha256": "fd4b7d211479f364a56fbb5c51a08a2da63b84f7201a3688863f50b69f501214",
+      "bytes": 114,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-guard-area-authority-native.log": {
+      "sha256": "e0c82a024804caa8e1a9ade688a9348aa7a9447bcdce56c1cdd1338ce367d0ee",
+      "bytes": 133,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-output-host.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-output-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-state-updates/00548170.c": {
+      "sha256": "5c54b3cf0baeda7a1e238b59ba87816bc625de1eacb40dd3a489f2d85ace16a6",
+      "bytes": 1267,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-state-updates/00559de0.c": {
+      "sha256": "f589463e861ac0d29f6fc08a87eb8b735e588fc4586d3fed6210f6e197be6dc2",
+      "bytes": 860,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-guard-event-workers/005710b0.c": {
+      "sha256": "c0e2c0dc7bb3203bf1099f67e6b465d289f4288553236c12777676c433a5559f",
+      "bytes": 7233,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-positive-aim/00558ae0.c": {
+      "sha256": "9e3915c59b58a933f3e3ae35019e0e19ad5fe08da588a0087ab427b176357702",
+      "bytes": 767,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-positive-guard/0054e600.c": {
+      "sha256": "b8024df74b598d3e69f5e336a423696903924b3d0e15cb688529f99d645ee86f",
+      "bytes": 1678,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ai-selection-leaves/00576350.c": {
+      "sha256": "87ec294f9557ffa48c128d0e4e38992bf48dffe663769f674aeca3e50c2a15c7",
+      "bytes": 3292,
+      "retained": true
+    }
+  }
+}

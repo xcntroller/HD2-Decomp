@@ -117,6 +117,21 @@ public:
         return words_.template get<std::uint8_t>(0xad)?2u:1u;
     }
     HumanJointWords<0xc0>& words()override{return words_;}const HumanJointWords<0xc0>& words()const override{return words_;}
+    virtual void publish_frame_command_flags(std::uint32_t command){ //00584B60.
+        auto flags=words_.template get<std::uint32_t>(0x50);
+        if(!command){words_.set(0x50,flags&0xfcffff07u);return;}
+        constexpr std::uint32_t task=0x1e0000u;
+        if(command&task){
+            const auto requested=command&task;
+            flags=(flags&~task)|(requested==task?0u:requested);
+        }
+        for(auto group:{0x3000000u,0xf8u,0x1f000u,7u})
+            if(command&group)flags=(flags&~group)|(command&group);
+        words_.set(0x50,flags);
+    }
+    void process_second_frame_commands(){ //00577B30(1), actual B0+94.
+        if(!second_.empty())throw std::runtime_error("Human frame requires the actual deferred input command receiver");
+    }
     Human* human()const{return human_;}Command command()const{return command_;}Entry item()const{return item_;}
     void clear_cached_item()noexcept{item_=Entry{};} //005839D0/005783D0 clears A8 AFTER command08, not the hand holder.
     ActionTarget* action_target()const{return action_target_;}

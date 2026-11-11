@@ -65,8 +65,8 @@ public:
         notify(ready?2u:1u);
         state_.set(0x40,state_.template get<std::uint32_t>(0x40)|mask);
     }
-    template<class ClearMovement>void frame_climb(ClearMovement&& clear_movement){ //0077EC00, subtype1E supplies 6A.
-        if(!control_)throw std::logic_error("Human climb requires actual DD0");
+    template<class Publish>void frame_movement_animation(std::int32_t animation,Publish&& publish){ //0077EC00.
+        if(!control_)throw std::logic_error("Human movement animation requires actual DD0");
         const auto mask=state_.template get<std::uint32_t>(0xc0)|state_.template get<std::uint32_t>(0xd0)|
             state_.template get<std::uint32_t>(0xd4)|state_.template get<std::uint32_t>(0xd8);
         if(((mask&1u)||(control_->animation_state_word(0xbd0)&0x80000000u))&&
@@ -77,12 +77,74 @@ public:
         const auto old=state_.template get<std::int32_t>(0x44);
         if(old>0x70&&old<0x9b)return;
         const auto mode=state_.template get<std::uint32_t>(0xb8);
-        if(mode==1)clear_movement(); //005A5C90(0).
-        const std::int32_t animation=mode==4?0xce:0x6a;
-        if(old==animation||(animation>=0xbe&&control_->animation_state_word(0x1d8)==0x11))return;
+        const auto current=static_cast<std::int32_t>(control_->animation_state_word(0x1d8));
+        const auto in_sequence=[](std::int32_t value){return value>0x70&&value<0x9b;};
+        const bool forward=animation==0xbe||animation==0xc6;
+        const bool backward=animation==0xbf||animation==0xc7;
+        if(mode==1){
+            if(forward||backward){
+                const auto down=state_.template get<std::uint32_t>(0x50)==2?0x6c:0x6b;
+                if(!control_->human_is_player())animation=forward?0x6a:down;
+                else if(backward)animation=0xce;
+                else{
+                    const auto pitch=control_->physical().state().template get<float>(0x944); //0077EBD0.
+                    animation=pitch>.17f?0x6a:pitch<-.2f?down:0xce;
+                }
+            }else{
+                if(!(animation>=0x6a&&animation<=0x6c)&&animation!=8&&animation!=0xe&&
+                   !in_sequence(animation)&&!(animation==0x12&&current>=0x6a&&current<=0x6c))
+                    animation=0xce;
+                publish(0u); //005A5C90(0).
+            }
+        }else if(mode>=2&&mode<=4){
+            if(mode==3&&(animation==0x1d||animation==0x25||animation==0x26))animation=0x25;
+            else if(mode==2&&(animation==0x1d||animation==0x25||animation==0x26))
+                throw std::runtime_error("Human movement requires the actual queued door-look receiver");
+            else if(!in_sequence(animation))animation=0xce;
+        }else if(mode==5&&!in_sequence(animation)){
+            if(forward||backward){
+                control_->frame_climb_direction(backward);
+                throw std::runtime_error("Human floor movement requires actual 0076B670 contact handling");
+            }
+            if(animation>=0x2d&&animation<=0x41){
+                control_->frame_climb_direction(false);
+                if(animation==0x2d){
+                    animation=control_->frame_special_movement_item()?0x5d:0x5b;
+                    publish(0u);
+                }
+            }else if(animation!=0x59&&animation!=0x68&&animation!=0x69&&animation!=0x5b&&animation!=0x6a){
+                control_->frame_climb_direction(false);
+                return;
+            }
+        }
+        if(old==animation||(animation>=0xbe&&current==0x11)||(animation==0x1d&&old!=0x22))return;
         state_.set(0xb4,state_.template get<std::uint32_t>(0xb4)+1);
         state_.set(0x44,animation);
         state_.set(0x40,state_.template get<std::uint32_t>(0x40)|1u);
+    }
+    template<class Publish>void frame_movement_mode(std::uint32_t mode,Publish&& publish){ //0077F190.
+        if(locked(0x10u)){defer(0x10u);return;}
+        if(state_.template get<std::uint32_t>(0x50)==mode)return;
+        state_.set(0x50,mode);
+        state_.set(0x40,state_.template get<std::uint32_t>(0x40)|0x10u);
+        publish(mode==0?0x1000u:mode==5?0x10000u:mode==1?0x2000u:mode==2?0x4000u:0x8000u);
+    }
+    template<class Publish>void frame_posture(std::uint32_t posture,Publish&& publish){ //0077F0A0.
+        if(!control_)throw std::logic_error("Human posture command requires actual DD0");
+        const auto mask=state_.template get<std::uint32_t>(0xc0)|state_.template get<std::uint32_t>(0xd0)|
+            state_.template get<std::uint32_t>(0xd4);
+        const auto current=static_cast<std::int32_t>(control_->animation_state_word(0x1d8));
+        if(!state_.template get<std::uint8_t>(0xb0)&&((mask&8u)||state_.template get<std::uint32_t>(0xb8)==5||
+           control_->animation_state_word(0xa2c)!=0xffffd8f0u||control_->animation_state_word(0xa30)!=0xffffd8f0u||
+           (control_->animation_state_word(0xbd0)&0x80000000u)||(current>=0xa2&&current<=0xa5))){
+            defer(8);
+            return;
+        }
+        if(state_.template get<std::uint32_t>(0x4c)!=posture){
+            state_.set(0x4c,posture);
+            state_.set(0x40,state_.template get<std::uint32_t>(0x40)|8u);
+        }
+        if(posture<=2)publish(4u>>posture);
     }
     Frame action_model()const{return action_model_;}
     void force_equipment_command(std::int32_t command) { //00792590/00792720/00792AB0 set B0=1 then0.

@@ -77,6 +77,19 @@ public:
         }
     }
     void publish_human_state(Human& human,Base* state)noexcept{human.loading_state=state;}
+    template<class Queries>bool advance_guard_or_area_frame(Base& state,bool authority,std::uint32_t elapsed,Queries& queries){
+        const auto kind=state.words().template get<std::uint32_t>(0x48);
+        if(kind!=4&&kind!=8)throw std::logic_error("Guard or Area frame requires its actual B0 state");
+        if(!authority){
+            static_cast<AI&>(state).advance_frame_presentation(services_.mode_flags());
+            return false;
+        }
+        if(kind==4)return static_cast<Guard&>(state).advance_authority_frame(elapsed,queries,control_,services_);
+        return static_cast<Area&>(state).advance_authority_frame(elapsed,queries,control_,services_);
+    }
+    void resume_script_after_ai(Base& state){
+        if(state.words().template get<std::uint32_t>(0x48)==5)static_cast<Script&>(state).resume_after_ai(control_);
+    }
     void reset_active_ai_orders(Base& state){
         if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Active AI reset requires state3");
         static_cast<Active&>(state).reset_orders_loading();

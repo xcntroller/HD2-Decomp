@@ -21,6 +21,9 @@ public:
     virtual void sight_enemy_acquired(Human&)=0;
     virtual void sight_enemy_lost(Human&)=0;
     virtual void sight_dead_acquired(Human&)=0;
+    virtual bool suppress_hostile_selection()const{return false;} //00524DB0 returns AL=0.
+    virtual bool aims_at_human(const Human&)const{return false;} //Typed view of AI D0.
+    virtual bool selected_hostile_is(const Human&)const{return false;} //Base virtualA4 005831A0.
     virtual HumanSightMetricFamily sight_metric_family()const{return HumanSightMetricFamily::base;} //005830B0/C0 genuine RET12.
     virtual std::int32_t hud_first_mode()const{throw std::runtime_error("Human state has no actual Active AI HUD first-mode receiver");}
     virtual std::int32_t hud_second_mode()const{throw std::runtime_error("Human state has no actual Active AI HUD second-mode receiver");}

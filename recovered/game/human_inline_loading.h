@@ -91,6 +91,10 @@ public:
         if(!look_)throw std::logic_error("Human navigation requires actual live E0");
         return look_->state().template get<std::uint32_t>(0xb8)==5;
     }
+    std::uint32_t frame_movement_mode()const{ //005AC220, actual E0 stance mode.
+        if(!look_)throw std::logic_error("Human frame movement mode requires actual live E0");
+        return look_->state().template get<std::uint32_t>(0x50);
+    }
     std::uint32_t frame_navigation_control_mode()const{ //005AC3F0.
         if(!control_)throw std::logic_error("Human navigation requires actual live DD0");
         return control_->physical().state().template get<std::uint32_t>(0x22c)&7u;
@@ -124,9 +128,22 @@ public:
         look_->action_command(command,true);
     }
     void clear_frame_item_action(){required_look().frame_item_action(-1);} //005ABE30 subtype16.
-    template<class Notify>void clear_frame_item_ready(Notify&& notify){required_look().frame_item_ready(false,notify);} //005ABE30 subtype15.
-    template<class ClearMovement>void frame_climb(ClearMovement&& clear_movement){
-        required_look().frame_climb(clear_movement); //005ABE30 subtype1E, reached under offline authority.
+    void set_frame_item_action(std::int32_t action){ //005ABE30 subtype6/7, null model argument.
+        auto& look=required_look();
+        look.action_model(typename Control::Frame{},true);
+        look.frame_item_action(action);
+    }
+    template<class Notify>void clear_frame_item_ready(Notify&& notify){set_frame_item_ready(false,notify);} //005ABE30 subtype15.
+    template<class Notify>void set_frame_item_ready(bool ready,Notify&& notify){required_look().frame_item_ready(ready,notify);} //005ABE30 subtype14/15.
+    bool frame_special_movement_item(){return required_control().frame_special_movement_item();}
+    template<class Publish>void frame_movement_animation(std::int32_t animation,Publish&& publish){
+        required_look().frame_movement_animation(animation,publish); //005ABD90 kind0 or offline subtype1E.
+    }
+    template<class Publish>void frame_movement_mode(std::uint32_t mode,Publish&& publish){
+        required_look().frame_movement_mode(flag14_?3u:mode,publish); //005ABD90 kind2.
+    }
+    template<class Publish>void frame_posture(std::uint32_t posture,Publish&& publish){
+        required_look().frame_posture(posture,publish); //005ABD90 kind3.
     }
     void add_control_flags(std::uint32_t mask) { //005AC390, actual owned DD0.
         if(!initialized_||!control_)throw std::logic_error("Human control flags require live inline98");
@@ -146,6 +163,7 @@ public:
     }
 private:
     Look& required_look(){if(!initialized_||!look_)throw std::logic_error("Human frame requires actual live E0");return *look_;}
+    Control& required_control(){if(!initialized_||!control_)throw std::logic_error("Human frame requires actual live DD0");return *control_;}
     Factory& factory_;Human* human_=nullptr;std::uint32_t property_=0;
     std::unique_ptr<Look> look_;std::unique_ptr<Control> control_;std::unique_ptr<Equipment> equipment_;
     bool flag14_=false,initialized_=false;
