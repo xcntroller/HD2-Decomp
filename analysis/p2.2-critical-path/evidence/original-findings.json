@@ -11,7 +11,7 @@
         "009f0d39"
       ],
       "contract": "009905b0 writes pointer00b3bd8c; 009f02a0 allocates00b52f6c and writes00b4c2cc; 009f0a60 allocates00b555b0. This identifies producers, not healthy values.",
-      "unresolved": "009905b0 allocation semantics, startup ordering, indirect payload provenance and validated publication remain unknown.",
+      "unresolved": "Original writer provenance retained. Known-CFG producer ordering now established in P22-R06. Environment payloads, successful startup wrapper relation and validated publication remain unresolved.",
       "implementation_at_review": "open"
     },
     {
@@ -35,7 +35,7 @@
         "00486bf0",
         "00482e50"
       ],
-      "contract": "GEffects pre-scene wrapper delegates volume224; procedural owner is invoked before per-volume visibility loop. No volumes does not prove no procedural work.",
+      "contract": "00486BF0 loads clock224, sets ECX to GEffects+C4 and calls00482260. That owner invokes procedural00482E50 on process0089B63C before the light loop.",
       "unresolved": "Live texture and phase state, actual camera selection, initial volume history.",
       "implementation_at_review": "open"
     },
@@ -55,8 +55,9 @@
         "00569530"
       ],
       "contract": "Offline7 or remote-AI gate; rebuild shared Human/Car working vectors, classify Human2c4+10a, reverse preparation, eight solver iterations, commit motion and navigation feedback. Not a generic per-actor no-op.",
-      "unresolved": "Positive helper fidelity and ambiguous decompiler indexing require instruction checks during implementation.",
-      "implementation_at_review": "open"
+      "unresolved": "Application frame invocation remains open. Source guards around kind2 detour continuation and invalid source inputs retain runtime uncertainty. Recovered helper bodies and positive detours are covered by the solver receipts.",
+      "implementation_at_review": "implemented and bound in actual source World/Scene2 facade; application invocation pending",
+      "implemented_revision": "799a79305c70bc8de1860ac7e438bba25a71a8ac"
     },
     {
       "id": "P22-R05",
@@ -69,8 +70,46 @@
       "contract": "DD0 control and presentation gate at dc4; presentation1ac==0 and9c0==0 still calls geometry007a7470. Offline7 bypasses nonoffline model visibility branch, not geometry.",
       "unresolved": "Complete state-dependent animation/geometry branches; Agent1 overlap.",
       "implementation_at_review": "open"
+    },
+    {
+      "id": "P22-R06",
+      "classification": "confirmed_in_known_static_cfg",
+      "addresses": [
+        "009c5335",
+        "009cad19",
+        "009cae28",
+        "00992a9a",
+        "00990934",
+        "0099093e"
+      ],
+      "contract": "Within0099AEB0, known-CFG dominance orders009F0A60 before009F02A0 before009905B0. The last conditionally calls009995F0.009905B0 allocates40hex bytes for00B3BD8C at00990934 and publishes at0099093E.",
+      "unresolved": "495 known blocks with one outside-owner outgoing edge. No dynamic route or successful environment branch established. The40hex allocation is16 DWORDs; values are not inferred zero."
+    },
+    {
+      "id": "P22-R07",
+      "classification": "confirmed_original_callsite",
+      "addresses": [
+        "006db104",
+        "006e9ebc"
+      ],
+      "contract": "006DB0F0 calls006E9EA0 before graphics initialization. Single known direct caller has no mission/mode gate at this call. Seed source passes through00A59000, then shared CRT is seeded and896 draws occur.",
+      "unresolved": "Actual wrapper seed API/validation relation and number of startup attempts remain to confirm. Initialize per actual device-startup invocation, preserving process ordering; do not seed per mission."
+    },
+    {
+      "id": "P22-R08",
+      "classification": "corrected_from_original_instructions",
+      "addresses": [
+        "00486bf0",
+        "00486bf6",
+        "00486bfc",
+        "00486bfd",
+        "004822c1",
+        "004822c7"
+      ],
+      "contract": "Prior volume224 wording corrected: native volume receiver is GEffects+C4; field224 is its time argument.00482260 forwards that argument to process00482E50 with ECX0089B63C.",
+      "unresolved": "Actual scene15C camera versus128 role, first volume phase/history and populated procedural rendering remain open."
     }
   ],
-  "source_review_sha": "841d89a35c02de2c12c73bb3df8792e758450aed",
-  "refresh_note": "Prior original exports retained. This checkpoint changes Human AI source coverage, with no implementation of the five independent contracts below."
+  "source_review_sha": "799a79305c70bc8de1860ac7e438bba25a71a8ac",
+  "refresh_note": "Movement finding implemented at reviewed source. New targeted static evidence narrows startup lifetime/order and corrects render receiver/clock interpretation."
 }
