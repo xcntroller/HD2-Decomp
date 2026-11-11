@@ -364,7 +364,7 @@ bool advance_human_walk_motion(Control& control,Look& look,Human& human,Services
     const float seconds=static_cast<float>(elapsed)*.001f;
     if(state.template get<std::uint32_t>(0x22c)&4u){
         const auto original=human.base().world_position();auto destination=add(original,displacement);
-        if(runtime.project_human_walk_position(control,destination)){
+        if(services.project_human_walk_position(human,destination)){
             const float unprojected=original[1]+displacement[1],maximum=seconds*4.5f;
             if(maximum<std::abs(static_cast<long double>(unprojected)-destination[1]))
                 destination[1]=unprojected<=destination[1]?unprojected+maximum:unprojected-maximum;
@@ -493,7 +493,7 @@ bool advance_human_walk_motion(Control& control,Look& look,Human& human,Services
                 }else if((std::abs(static_cast<long double>(delta[0]))>.0001||std::abs(static_cast<long double>(delta[2]))>.0001)&&
                         (std::abs(static_cast<long double>(displacement[0]))>.0001||std::abs(static_cast<long double>(displacement[2]))>.0001||(!steep&&!secondary_steep))){
                     human.base().world_position(request.position);state.set(0x228,0u);
-                    control.publish_dynamic_ground_position(runtime);movement.set(0x51,std::uint8_t{1});
+                    control.publish_dynamic_ground_position();movement.set(0x51,std::uint8_t{1});
                 }
             }
         }

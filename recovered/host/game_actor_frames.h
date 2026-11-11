@@ -460,6 +460,7 @@ public:
         const auto z=actor_find(model,"z",0xffff),q=actor_find(model,"q",0xffff);
         call<void>(scene_.frame(),0x138,model,q,z);
     }
+    void refresh_dynamic_human_model(Frame model){call<void>(scene_.frame(),0x144,model);} //007646F0/00755500, original scene receiver.
     void unregister_human_model(Frame model) {call<void>(scene_.frame(),0x13c,model);}
     void flag_human_model(Frame model) {put(model,0xe0,field<std::uint32_t>(model,0xe0)|0x400000u);}
     using HumanAnimationCallback=std::int32_t(WINAPI*)(Frame,std::uint32_t,const char*,std::int32_t);

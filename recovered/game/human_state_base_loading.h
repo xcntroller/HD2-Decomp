@@ -132,6 +132,7 @@ public:
     }
     struct FrameCommand {std::uint32_t kind;std::int32_t actor_identity;};
     const auto& first_frame_commands()const{return first_;}
+    bool project_ground_position(HumanVector&)override{return false;} //00583140, genuine AL0/RET4, absent frozen.
     bool frame_actor_contact(std::uint32_t,std::int32_t,std::uint32_t)override{return true;} //00583230, genuine AL1/RET28, absent frozen.
     template<class Services>void bind_frame_command_packets(Services& services){
         frame_packets_=[&services](std::int32_t identity,bool second,const std::vector<FrameCommand>& commands){

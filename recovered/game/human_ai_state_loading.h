@@ -10,6 +10,7 @@
 #include "game/human_ai_scene_steering.h"
 #include "game/human_ai_frame_query.h"
 #include "game/human_ai_frame_output.h"
+#include "game/human_ai_ground_projection.h"
 
 namespace hd2::game {
 
@@ -25,6 +26,9 @@ public:
                         HumanInputCallbacks& callbacks,std::uint32_t kind)
         :Base(frames,inputs,kind),inputs_(inputs),callbacks_(callbacks),resources_(kind,second) {}
     ~HumanAIStateLoading(){detach_callbacks();}
+    bool project_ground_position(HumanVector& position)override{
+        return project_human_ai_ground_position(*this,this->state_frames(),position); //0057FBC0.
+    }
     bool frame_actor_contact(std::uint32_t kind,std::int32_t,std::uint32_t)override{return kind!=8u;} //005765F0, genuine AI Ladder rejection, absent frozen.
     template<class Inline>
     void bind(Human& human,const Base* previous,MissionNavigation* navigation,std::uint32_t mode,Inline& control) {

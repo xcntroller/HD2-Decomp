@@ -19,6 +19,7 @@ public:
     virtual HumanVector target_direction()const=0;
     virtual std::uint32_t derived_loading_word(unsigned)const=0;
     virtual PlayerHandover player_handover()const=0;
+    virtual bool project_ground_position(HumanVector&)=0; //Actual B0+58.
     virtual bool frame_actor_contact(std::uint32_t actor_kind,std::int32_t actor_identity,std::uint32_t mode)=0; //Actual B0+C8, three native families.
     virtual void sight_enemy_acquired(Human&)=0;
     virtual void sight_enemy_lost(Human&)=0;

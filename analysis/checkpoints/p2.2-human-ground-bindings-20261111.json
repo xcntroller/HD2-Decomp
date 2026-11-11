@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "original_execution": false,
+  "previous_checkpoint": "32ba571",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "0057fbc0",
+    "005a66f0"
+  ],
+  "ledger_added_partial_client": 2,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2353,
+  "assumptions": [
+    "B0+58 active-job interpolation returns true. A4 fallback can snap Y while returning false. Ordered clamps preserve native NaN for a zero horizontal span.",
+    "Native missing-job/lost-A4 dereferences raise explicit source errors. Player/Remote00583140 is absent frozen and earns no credit.",
+    "Dynamic ground preserves both position synchronizations, actual CD0 sector timer and the existing opacity DB4 flag before the SAME scene144(model). Engine body is delegated and desktop execution remains untested.",
+    "Corrected005AC400 binding uses actual230 equipment50 mask1 from original005AB330 inline10. Direct FPV binding and item-frame callers share this getter.",
+    "Native inline checks use actual getter/equipment state and normal Look commands, with explicit loading boundaries. Native AI checks use actual pooled jobs/projection/query and a model-matrix boundary.",
+    "Earlier00749E60 cardinal-cycle failure,0076B670 early106 zero-speed guard and native division/missing-receiver guards remain documented."
+  ],
+  "checks": {
+    "native_projection": "PASS ASan/UBSan/LSan actual AI path/fallback/clamp/unordered/radius/receiver checks and shared CD0 sector timer",
+    "native_inline": "PASS ASan/UBSan/LSan actual inline230 equipment flag selection, movement independence and retired owner failure",
+    "actual_host_i386": "PASS strict actual World authority/presentation instantiation, mandatory remaining Runtime leaves declaration-only",
+    "application_launch": "PASS i386 link",
+    "function_tracker": "PASS render/check and27 tests"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-ground-projection-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-i386.cpp": {
+      "sha256": "31204dc78ffb6c78b9199375bbe454372705d4785991ec1967a8b2931bf28e2e",
+      "bytes": 8226,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-i386.o": {
+      "sha256": "759729ec83b185b7edcc4762ae21962d37a760f2084ba6d0d2a34670cb95ecfb",
+      "bytes": 12906811,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-native": {
+      "sha256": "aa6fb147c6d965e4f00fc78c32b0565e634ec32dd681498c360393b6b05bdce4",
+      "bytes": 706344,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-native.cpp": {
+      "sha256": "15e16a16d7badd3fe1e2f9ebdbd95d38673779561981e5d2dffd91ceaccb1cad",
+      "bytes": 3613,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-native.log": {
+      "sha256": "edb7632b2055509a4a3de07f14b87266f59753cbf7651e78ab8b88c936888d65",
+      "bytes": 155,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-receiver/0057fbc0.c": {
+      "sha256": "4acc9cb9af49fb8b8daa4b07216f026e5b06abd0f10ed62a7570a7598a463f08",
+      "bytes": 2279,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-receiver/0057fbc0.json": {
+      "sha256": "8b3cae9112da561198fb6f0ef371828a36adc2d4b38d42baaa051dbca70f6eeb",
+      "bytes": 6001,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-receiver.asm": {
+      "sha256": "46b72f96f7c671d271a6dc7a8d3e8a869bb1c6c2f9b044778e455d9c6e5c88d3",
+      "bytes": 6301,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-receiver.log": {
+      "sha256": "984b44819d77d80d855ce6ed3f821a423230605a3a159c98bd5fb76163839fed",
+      "bytes": 4391,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-wrapper.asm": {
+      "sha256": "73dd842bc82fa2a67a06c09724ff50133dee6ef1e13aea90c11632aba8f8469c",
+      "bytes": 1237,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-inline-suppression-native": {
+      "sha256": "0ac17e3fbdecd0d8dc247ff89a312d7f0cc0a9c0a3ce6c5c581ca95bb47ca382",
+      "bytes": 342472,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-inline-suppression-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-inline-suppression-native.cpp": {
+      "sha256": "554b29526685256a83dd97d334b9610fc23165289d0beda98cc77c7b7448164c",
+      "bytes": 2541,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-inline-suppression-native.log": {
+      "sha256": "1f6fc66f7494ce4541e4bc596d0b852f63617fc3385c601b3274fc69ce9398a9",
+      "bytes": 139,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-inline-suppression-original.asm": {
+      "sha256": "a0702fb3deb201d6a451b2d7bcdfc090729f4f6502a0aa58b72a3348dcdc07ae",
+      "bytes": 329,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-loading-dependencies/005ab330.c": {
+      "sha256": "ef4fde94d40a856f3b8dd7f20101413eb0ceae7c7b6014c2cec31ed18344281b",
+      "bytes": 1277,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-loading-dependencies/005ab330.json": {
+      "sha256": "68d6dd46e757be51ea38fa4ba0aac8093cbc2fa986f0c6ef1d6bed4844e852f3",
+      "bytes": 7950,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-model-control-owners/007855c0.c": {
+      "sha256": "0a0cf12dc22f241d21a2f9973a7858b8e420896249a284afddb75b65a005c128",
+      "bytes": 1909,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-model-control-owners/007855c0.json": {
+      "sha256": "e6f7291bc25517ff5d83e49f356c608837ab8d3dd18544b3a463290ef495e00a",
+      "bytes": 8558,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-tracker-render.log": {
+      "sha256": "dddef1f5676fc1d6b9717e552008031bc7b38c5306e80eb4924d7d50882dc1b2",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-tracker-check.log": {
+      "sha256": "b5f9a2c994d71a3eacbfc5a6b13afce6acb4e7091bbfbc77849edfa4281f4e03",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-projection-tracker-tests.log": {
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e",
+      "bytes": 126,
+      "retained": true
+    }
+  }
+}

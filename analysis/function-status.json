@@ -15089,13 +15089,18 @@
       "program": "client",
       "entry": "005ac400",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005ac400: Actual inline98 E0/DD0/230 lifetime and proven loading/control dispatch branches.",
+      "coverage": "P2.2 source reconstruction at original entry 005ac400: Actual inline98 E0/DD0/230 lifetime and proven loading/control dispatch branches. Corrected concrete owner selection from original005AB330 and005AC400: inline10 is actual230 equipment, whose50 mask1 controls suppression. Both FPV binding and Player item frames reuse this same getter.",
       "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_inline_loading.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "analysis/checkpoints/p2.2-human-ground-bindings-20261111.json",
+        "recovered/game/human_control_loading.h",
+        "recovered/game/human_animation_state.h",
+        "recovered/game/human_opacity_control.h",
+        "recovered/host/game_actor_frames.h"
       ]
     },
     {
@@ -31061,12 +31066,18 @@
       "program": "client",
       "entry": "007646f0",
       "status": "partial",
-      "coverage": "Actual DD0 walking coordinator, projection/slope gate, impulses, stationary support, multisphere queries, material/contact/fall routing, dynamic position and stall handling, water polling and original boolean hit result. Required positive projection, dynamic geometry and derived contact receivers remain explicit.",
+      "coverage": "Actual DD0 walking coordinator, projection/slope gate, impulses, stationary support, multisphere queries, material/contact/fall routing, dynamic position and stall handling, water polling and original boolean hit result. Required positive projection, dynamic geometry and derived contact receivers remain explicit. Concrete projection uses actual B0 receiver. Dynamic-position tail writes same CD0 sector timer and existing opacity DB4 flag before real scene144(model), after both actual position synchronizations.",
       "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ground_motion.h",
         "analysis/human-frame-source.md",
-        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json",
+        "analysis/checkpoints/p2.2-human-ground-bindings-20261111.json",
+        "recovered/game/human_inline_loading.h",
+        "recovered/game/human_control_loading.h",
+        "recovered/game/human_animation_state.h",
+        "recovered/game/human_opacity_control.h",
+        "recovered/host/game_actor_frames.h"
       ]
     },
     {
@@ -31531,6 +31542,34 @@
         "recovered/game/human_frame_stats.h",
         "recovered/game/human_world_loading_services.h",
         "recovered/game/first_person_view_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0057fbc0",
+      "status": "partial",
+      "coverage": "Actual AI B0+58 active-job XZ/Y interpolation with native ordered clamp and unordered span behavior, existing query/job/table owners, A4 proximity snap and genuine false fallback result.",
+      "limitations": "Source-only typed owners and direct calls replace native object/vtable/allocator ABI. Invalid native receiver dereferences raise explicit errors. Wider Human/frame/application, rendering, integrity and desktop delivery remain required. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-bindings-20261111.json",
+        "recovered/game/human_ai_ground_projection.h",
+        "recovered/game/human_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a66f0",
+      "status": "partial",
+      "coverage": "Actual Human B0+58 dispatch through the same published state, including native missing-B0 false result and genuine Player/Remote false receiver.",
+      "limitations": "Source-only typed owners and direct calls replace native object/vtable/allocator ABI. Invalid native receiver dereferences raise explicit errors. Wider Human/frame/application, rendering, integrity and desktop delivery remain required. Engine bodies are delegated.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-bindings-20261111.json",
+        "recovered/game/human_ai_ground_projection.h",
+        "recovered/game/human_ai_state_loading.h",
+        "recovered/game/human_world_loading_services.h"
       ]
     }
   ]

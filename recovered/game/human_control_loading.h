@@ -123,10 +123,12 @@ public:
         auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
         prepare_human_direction_replay(*this,look,*human_,requested,human_frame_signed_word(elapsed),publish);
     }
-    template<class Runtime>void publish_dynamic_ground_position(Runtime& runtime){ //007646F0 dynamic descriptor publication tail.
+    void publish_dynamic_ground_position(){ //007646F0 dynamic descriptor publication tail.
         synchronize_control_position(human_->base().world_position());
         synchronize_control_position(human_->base().world_position());
-        runtime.publish_human_dynamic_ground_geometry(*this); //NativeCE8=10000, DB4=1 and SAME scene144(model).
+        animation_.force_sector_refresh();
+        opacity_.request_refresh();
+        frames_.refresh_dynamic_human_model(human_->base().frame()); //Actual SAME scene144(model), ignored native result.
     }
     Tracks& tracks(){return tracks_;}Action& action(){return action_;}
     Shadow& shadow(){return shadow_;}

@@ -107,9 +107,9 @@ public:
         if(!initialized_||!control_||!equipment_)throw std::logic_error("Human camera amount requires live inline98");
         control_->apply_camera_amount(amount,equipment_->state());
     }
-    bool first_person_weapon_suppressed()const { //005AC400 reads SAME inline10/E0+50, not an item flag.
-        if(!initialized_||!look_)throw std::logic_error("First-person weapon gate requires live Human E0");
-        return (look_->state().template get<std::uint32_t>(0x50)&1u)!=0;
+    bool first_person_weapon_suppressed()const { //005AC400, inline+10 is the SAME230 equipment owner.
+        if(!initialized_||!equipment_)throw std::logic_error("First-person weapon gate requires live Human230 equipment");
+        return (equipment_->state().words().template get<std::uint32_t>(0x50)&1u)!=0;
     }
     void enable_animation_control(bool enabled) { //005AC070→007870D0, same owned DD0/230.
         if(!initialized_||!control_||!equipment_)throw std::logic_error("Human animation control requires live inline98");

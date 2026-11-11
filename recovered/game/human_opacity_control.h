@@ -59,6 +59,7 @@ public:
     float ambient() const{return ambient_;}
     std::int32_t timer() const{return timer_;}
     bool flag10() const{return flag10_;}
+    void request_refresh(){flag10_=true;} //Native DB4 writer in007646F0/00755500.
     float field0() const{return field0_;}
 private:
     float field0_=1,target_=1,applied_=1;

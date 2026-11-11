@@ -437,6 +437,9 @@ public:
     }
     template<class Actor>auto* human_collision_car_driver(Actor& actor){return dependencies().scene.car_callbacks().car_driver_actor(&actor);}
     template<class Actor>void human_collision_alignment(Actor& actor,float value){set_human_sight_alignment(selection_human(actor),value,mode_flags());}
+    template<class Human>bool project_human_walk_position(Human& human,HumanVector& position){ //005A66F0.
+        return human.loading_state&&human.loading_state->project_ground_position(position);
+    }
     template<class Human,class Actor,class Runtime>bool human_actor_collision(Human& human,Actor& actor,const HumanVector& point,Runtime& runtime){
         return receive_human_actor_contact(human,actor,point,*this,runtime);
     }

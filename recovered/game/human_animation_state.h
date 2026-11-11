@@ -210,6 +210,7 @@ public:
     }
     bool equipment_frame_timer_active()const{return words_.template get<std::int32_t>(0x1c)>0;}
     void clear_equipment_frame_timer(){words_.set(0x1c,std::int32_t{-1});}
+    void force_sector_refresh(){words_.set(0x18,10000u);} //Actual CE8 writer in007646F0/00755500.
     const auto& words() const{return words_;}
     Frame sector() const{return sector_;}
     bool active() const{return words_.template get<std::uint8_t>(0x10)!=0;}

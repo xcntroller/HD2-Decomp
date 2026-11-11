@@ -4810,3 +4810,10 @@ and item-frame gates through the shared owners. Seven source partials. Focused
 native sanitizers, strict actual World i386 and launcher link pass. Positive
 item/attachment, frame, rendering, integrity and application integration remain
 required. Both P2.2 checkboxes and user mission acceptance remain open.
+
+2026-11-11. [Ground projection and shared receiver bindings](analysis/human-frame-source.md#ground-projection-and-shared-receiver-bindings)
+now supplies actual B0 projection and same CD0/opacity/scene144 publication.
+Targeted tracing corrected005AC400 to the actual230 equipment flag. Native
+sanitizers, strict actual World i386 and launcher link pass. Two source partials.
+Scene144 desktop execution, positive look/frame workers, rendering, integrity and
+application integration remain. Both P2.2 checkboxes remain open.

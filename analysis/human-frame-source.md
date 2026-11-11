@@ -901,3 +901,46 @@ attachment and frame leaves use explicit boundary doubles. Strict actual World
 phase instantiation and launcher linking pass. Seven frozen client entries gain
 partial credit. Both P2.2 checkboxes remain open. Application loading and actual
 mission desktop acceptance remain pending.
+
+## Ground projection and shared receiver bindings
+
+005A66F0 now dispatches through the SAME published B0+58 view, with the original
+missing-B0 false return. Player/Remote00583140 is a genuine false receiver and
+is absent from the frozen inventory. AI0057FBC0 consumes its existing query,
+current104 job, first F8 queued job and A4 table point. The active-path XZ
+projection retains x87 intermediates, clamps ordered fractions to0..1, writes
+only Y and returns true. A zero horizontal span retains native NaN behavior.
+The A4 fallback reuses0057FE40 and the actual table radius. It can change Y while
+returning false. DD0's existing rate limiter therefore runs only for the active
+job projection. Missing pooled jobs and lost A4 after a model query raise source
+errors at native invalid-dereference boundaries.
+
+007646F0's dynamic-position tail now uses its actual two007599F0 synchronizations,
+CD0+18/CE8 sector timer=10000 and the existing opacity owner's10/DB4 refresh flag.
+The SAME scene receives model20 through virtual144. Engine results remain
+ignored as in the client. The engine body is delegated and gains no credit.
+Opacity and animation state remain their existing per-Human owners.
+
+Targeted static tracing also corrected005AC400. Original005AB330 publishes DD0
+at inline08, E0 at0C and230 equipment at10.005AC400 reads inline10→equipment50
+mask1. The source now observes that equipment flag. Both actual FPV player
+binding and Player item frames use this same getter. The prior E0 interpretation
+in the state-loading notes was corrected. Native checks exercise the actual
+inline getter and equipment state through normal Look movement-mode commands,
+including clear, hidden, other flag bits and retired-owner rejection.
+
+[Verification receipt](checkpoints/p2.2-human-ground-bindings-20261111.json).
+Focused native ASan/UBSan/LSan verifies AI interpolation/clamps/NaN, A4 snap with
+false result, strict radius, missing receivers, the shared CD0 timer and actual
+005AC400 owner selection. Strict actual World phase instantiation and launcher
+linking pass. Scene144 execution remains untested. Two frozen client entries gain
+partial credit. Both P2.2 checkboxes remain open and application loading/mission
+desktop acceptance remain pending.
+
+Continue0077DE30 and its actual positive workers. Fresh originals are in WORK
+`human-look-frame-animation-workers`.0074A290 applies only to lateral162..165.
+0074E820 maps0x22 to0x1C and other input to0x24 before primary normalization.
+0076AF70 requires the real posture room query0074EF60, geometry62D0/65F0/65F4,
+230+CC and mixed physical99C..9B4 transitions. The previous mixed-posture count
+risk remains recorded.0075CD00(2,0) calls007812B0. Retained Look snapshots must
+keep native04 model and08 actor pointers typed outside DWORD scalar storage.

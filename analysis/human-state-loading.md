@@ -683,8 +683,9 @@ and005A2AC0 at74[3] hand holder.005A2B10 repeats holder reads and accepts only
 native family0/weapon. Actual GameMissionItems validates same live entry ownership;
 its RuntimeItem supplies definition/amount. RuntimeItemServices exposes the SAME
 FPV definition cache and retained magazine rather than creating a second cache.
-005AC400 is a Human inline98 getter of E0+50 mask1, NOT a definition/item flag;
-HumanInlineLoading reads its SAME owned look state.005A80F0→00587530 reads B0+AD
+005AC400 reads mask1 from the SAME230 equipment owner's50 field. Original
+005AB330 publishes230 at inline+10 and E0 at inline+0C. The earlier E0 binding
+was corrected during ground-receiver integration.005A80F0→00587530 reads B0+AD
 and returns1 or2; HumanStateBaseLoading now supplies that exact getter.
 
 `first_person_current_player` recovers0045D1D0 from actual control override58,
