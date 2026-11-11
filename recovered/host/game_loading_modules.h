@@ -159,7 +159,13 @@ public:
         if(kind>=module_registry().size())return false;
         auto* module=module_registry()[kind];if(!module)return false;
         (void)checked_kind(*module);
-        if(kind==13&&!authority)return game::receive_scene2_presentation_packet(d_.scene.frames(),packet,d_.world_actors,*this);
+        if(kind==13){
+            if(!authority)return game::receive_scene2_presentation_packet(d_.scene.frames(),packet,d_.world_actors,*this);
+            const auto identity=packet.read(10); //004755D0, reserved0..31 use005A5F80.
+            auto* actor=d_.scene.frames().scene_actor_identity(static_cast<std::int32_t>(identity));
+            d_.human_services.receive_human_authority_packet(actor,packet,identity<32u);
+            return true;
+        }
         throw std::runtime_error("Required actual authority/presentation module packet receiver is unavailable");
     }
     template<class Actor>void receive_player_packet(Actor*,game::SessionPacketStream&){

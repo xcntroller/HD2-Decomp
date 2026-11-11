@@ -4796,3 +4796,10 @@ now connects actual multisphere, material, water/fall and Ladder contact owners.
 Twenty new source partials. Focused native sanitizers, strict actual World i386
 and launcher link pass. Positive damage/contact and frame/application bindings
 remain required. Both P2.2 checkboxes and user mission acceptance remain open.
+
+2026-11-11. [Human contacts and Player command frames](analysis/human-frame-source.md#human-contacts-and-player-command-frames)
+now route actual C8 families, kind6 Ladder requests and the shared offline
+authority FIFO. Player24/28 phases preserve command, collision visibility, timer
+and direction order. Nine source partials. Focused native sanitizers, strict
+actual World i386 and launcher link pass. Positive Player workers, rendering,
+integrity and application integration remain. Both P2.2 checkboxes remain open.

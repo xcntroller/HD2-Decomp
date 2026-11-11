@@ -57,7 +57,7 @@ auto resolve_human_motion_contacts(Control& control,const Look& look,Human& huma
         if(!result.actor)return result;
         const auto kind=result.actor->base().type();
         if(kind==3){
-            runtime.human_contact_human(human,*result.actor,request.position,request.displacement,contact.normal); //Actual Human virtual5C.
+            (void)services.human_actor_collision(human,*result.actor,request.position,runtime); //Actual Human virtual5C.
             const auto toward=subtract(result.actor->base().world_position(),human.base().world_position());
             result.kind=human_motion_planar_angle(request.displacement,toward)>=0?1u:2u;return result;
         }
@@ -70,7 +70,7 @@ auto resolve_human_motion_contacts(Control& control,const Look& look,Human& huma
                 motion=scale(state.template get<HumanVector>(0x4d0),100.f);
             const auto pitch=state.template get<float>(0x944);
             if(human_ladder_contact_eligible(ladder,human.base().world_position(),human.base().world_direction(),motion,pitch>=-.08)&&
-                    physical.control_action_queue().empty()&&runtime.human_contact_ladder(human,*result.actor)){
+                    physical.control_action_queue().empty()&&services.human_actor_collision(human,*result.actor,HumanVector{},runtime)){
                 physical.control_action_actor(result.actor);
                 physical.control_action_queue().push_back({{0,3,0}}); //007504E0/00750630 native append, actual SAME deque.
             }

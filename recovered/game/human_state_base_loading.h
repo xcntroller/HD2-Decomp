@@ -6,6 +6,7 @@
 #include "game/mission_navigation.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_frame_inputs.h"
+#include "game/human_frame_commands.h"
 #include <functional>
 
 namespace hd2::game {
@@ -129,9 +130,16 @@ public:
             if(command&group)flags=(flags&~group)|(command&group);
         words_.set(0x50,flags);
     }
-    void process_second_frame_commands(){ //00577B30(1), actual B0+94.
-        if(!second_.empty())throw std::runtime_error("Human frame requires the actual deferred input command receiver");
+    struct FrameCommand {std::uint32_t kind;std::int32_t actor_identity;};
+    const auto& first_frame_commands()const{return first_;}
+    bool frame_actor_contact(std::uint32_t,std::int32_t,std::uint32_t)override{return true;} //00583230, genuine AL1/RET28, absent frozen.
+    template<class Services>void bind_frame_command_packets(Services& services){
+        frame_packets_=[&services](std::int32_t identity,bool second,const std::vector<FrameCommand>& commands){
+            services.publish_human_frame_commands(identity,second,commands);
+        };
     }
+    void process_first_frame_commands(){process_frame_commands(false);} //00577B30(0), actual B0+84.
+    void process_second_frame_commands(){process_frame_commands(true);} //00577B30(1), actual B0+94.
     Human* human()const{return human_;}Command command()const{return command_;}Entry item()const{return item_;}
     void clear_cached_item()noexcept{item_=Entry{};} //005839D0/005783D0 clears A8 AFTER command08, not the hand holder.
     ActionTarget* action_target()const{return action_target_;}
@@ -151,20 +159,30 @@ public:
     }
 protected:
     Frames& state_frames(){return frames_;}
+    void queue_ladder_contact(std::int32_t identity){first_.push_back(FrameCommand{6u,identity});} //00544B40, actual first80 command vector.
+
     void navigation_point(MissionTableRecord* point){point_=point;} //Actual A4 borrower.
     void clear_human_reference()noexcept{human_=nullptr;} //Derived+20 may clear44 without removing shared7C.
 private:
+    void process_frame_commands(bool second){
+        auto& commands=second?second_:first_;
+        if(commands.empty())return;
+        if(!human_||!frame_packets_)throw std::logic_error("Human queued command has no actual packet owner");
+        frame_packets_(human_->base().id10(),second,commands);
+        commands.clear(); //00588C60/00588CC0, only after all actual stream finishes.
+    }
     static bool positive_health(const Human& human){
         const auto word=human.properties.stats_ec[0];std::int32_t value;std::memcpy(&value,&word,4);return value>0;
     }
     void require_music_reference()const{if(!special_music_reference_)throw std::runtime_error("Human state4/8 requires actual game special-music reference owner");}
     Frames& frames_;Inputs& inputs_;HumanJointWords<0xc0> words_;
-    struct Task;std::vector<Task*> first_,second_; //Native84/94, no unresearched producers.
+    std::vector<FrameCommand> first_,second_; //Native84/94, typed actual kind6 producer and shared packet serializer.
     Human* human_=nullptr;Command command_=nullptr;Entry item_{};Input* input_=nullptr;
     ActionTarget* action_target_=nullptr; //Borrowed native68. Initial no-previous bind leaves it unwritten in original; cold guard only.
     HumanFrameInputBuffer* first_frame_inputs_=nullptr;HumanFrameInputBuffer* second_frame_inputs_=nullptr; //Actual74/78 borrowers.
     MissionNavigation* navigation_=nullptr;MissionTableRecord* point_=nullptr;
     std::function<void(bool)> special_music_reference_;
+    std::function<void(std::int32_t,bool,const std::vector<FrameCommand>&)> frame_packets_;
 };
 } //namespace hd2::game
 #endif

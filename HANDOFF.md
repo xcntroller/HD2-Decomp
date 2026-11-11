@@ -9,17 +9,16 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[Ground collision and fall state](analysis/human-frame-source.md#ground-collision-and-fall-state)
-and [verification receipt](analysis/checkpoints/p2.2-human-ground-collision-20261111.json).
-Twenty new source partials supply DD0 walking, standing/prone multisphere
-resolution, material/contact routing, water/fall state and shared face recovery.
-Actual tree/buckets/material tables and process state are shared. Native
-ASan/UBSan/LSan, strict actual World i386 and launcher link passed. Required
-positive Human collision/damage and frame bindings remain explicit.
-00749E60's static cardinal zero-remainder cycle has an explicit source failure
-and unverified runtime significance. Earlier106 unwritten zero-speed XYZ uses
-a documented guard. Tally is34 complete and2,335 partial (2,330 client and five
-engine) across18,783 frozen functions. Both P2.2 checkboxes remain open.
+[Human contacts and Player command frames](analysis/human-frame-source.md#human-contacts-and-player-command-frames)
+and [verification receipt](analysis/checkpoints/p2.2-human-contact-player-20261111.json).
+Actual Human5C/C8, Player kind6 Ladder requests, shared process2BC authority
+packets and reserved Scene2 command6 receivers are in source. Player24/28 phases
+preserve queue, DC4/bucket/shadow/model visibility, timer/input and direction
+ordering. Positive Player input/weapon/FPV and moving-Car damage remain required.
+Native ASan/UBSan/LSan, strict actual World i386 and launcher link passed.
+Tally is34 complete and2,344 partial (2,339 client and five engine) across18,783
+frozen functions. Earlier00749E60 cardinal-cycle failure and0076B670 early106
+zero-speed XYZ guard remain documented. Both P2.2 checkboxes remain open.
 Application loading still declines and no mission desktop test has occurred.
 
 ## Continue P2.2
@@ -29,14 +28,16 @@ Application loading still declines and no mission desktop test has occurred.
   00779B30/00755500 track/motion and remaining 007A7470 geometry workers.
   WORK `frame-human-live-model-geometry` contains foot, hand, look and
   mount/attachment originals. Climb movement still requires
-  positive0074A690, derived Human5C and AI0057CC50. WORK
+  positive0074A690, derived Human damage and AI0057CC50. WORK
   `frame-human-ground-motion`, `frame-human-ladder-movement` and
   `frame-human-motion-producers` preserve the originals. Presentation track events4..9/13..20/22..24 still need
   positive workers, as do the camera reset and attached230 branch. WORK `frame-human-dd0-bound-workers`,
   `frame-human-dd0-animation-workers`, `frame-human-presentation-effects`,
   `frame-human-breathing-audio` and `frame-human-shot-and-control-workers`
   preserve the exact bodies. Continue other B0 families, positive 00584E30
-  effects and queued 00577B30. Guard cover/door, AI0057CC50,
+  effects and remaining queued command payloads. Player0053F9B0/005433B0,
+  00545B90/00588710/0053CD90 originals are in WORK
+  `human-player-live-frame-workers` and `frame-human-state-common-updates`. Guard cover/door, AI0057CC50,
   floor-list 00581E30 and 0058BAF0 kind9 release remain required. For item
   virtual24 follow 007D4FD0 through the actual ShotMgr pool and 0044B910.
   Original files are in WORK `frame-human-control-updates`,

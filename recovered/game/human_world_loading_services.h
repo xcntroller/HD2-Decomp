@@ -17,6 +17,8 @@
 #include "game/human_ai_shot_direction.h"
 #include "game/human_weapon_reload.h"
 #include "game/human_frame_stats.h"
+#include "game/human_actor_contact.h"
+#include "game/human_frame_commands.h"
 #include "game/geometry_scene_actors.h"
 #include "game/simple_scene_actors.h"
 #include <algorithm>
@@ -330,7 +332,7 @@ public:
         if(kind==6)return; //Actual005A4330/005A4340 are RET4.
         auto& factory=owner.state_factory();
         if(kind==5&&!authority){factory.advance_script_presentation(*state,elapsed,runtime);return;}
-        if(kind!=4&&kind!=5&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}
+        if(kind!=1&&kind!=4&&kind!=5&&kind!=8){runtime.advance_human_state(human,authority,elapsed);return;}
         using Actor=SceneActor<typename Dependencies::ActorFrames>;
         using Base=std::remove_reference_t<decltype(*state)>;
         struct Queries {
@@ -352,6 +354,7 @@ public:
             }
             void finish_human_state_action(Base& state,bool success){complete_human_state_action(state,success,world,runtime);}
         } queries{*this,runtime};
+        if(kind==1){factory.advance_player_frame(*state,authority,elapsed,queries,runtime);return;}
         if(kind==5){factory.advance_script_authority(*state,elapsed,queries,runtime);return;}
         if(factory.advance_guard_or_area_frame(*state,authority,elapsed,queries,runtime)){
             owner.states().change(5); //005AF680, retire the previous state after its frame returns.
@@ -413,6 +416,42 @@ public:
         CollisionRay<typename Dependencies::Frame,typename Scene::Descriptor,Resources,typename Dependencies::ActorFrames>
             ray(&scene.collision_tree(),&scene.buckets(),scene.collision_resources(),scene.frames());
         return ray.ray(start,displacement,layers,flags,normal);
+    }
+    template<class Actor>float human_collision_car_speed(Actor& actor){return dependencies().scene.car_callbacks().car_speed958(&actor);}
+    template<class Actor>auto& human_collision_car_occupants(Actor& actor){
+        auto* car=dynamic_cast<CarSceneActor<typename Dependencies::ActorFrames>*>(&actor);
+        if(!car)throw std::logic_error("Human Car contact requires the actual Car actor");
+        return car->occupants;
+    }
+    template<class Actor>auto* human_collision_car_driver(Actor& actor){return dependencies().scene.car_callbacks().car_driver_actor(&actor);}
+    template<class Actor>void human_collision_alignment(Actor& actor,float value){set_human_sight_alignment(selection_human(actor),value,mode_flags());}
+    template<class Human,class Actor,class Runtime>bool human_actor_collision(Human& human,Actor& actor,const HumanVector& point,Runtime& runtime){
+        return receive_human_actor_contact(human,actor,point,*this,runtime);
+    }
+    template<class Commands>
+    void publish_human_frame_commands(std::int32_t identity,bool second,const Commands& commands){
+        write_human_frame_commands(dependencies().broadcast_packets,mode_flags(),identity,second,commands);
+    }
+    template<class Actor>
+    void receive_human_authority_packet(Actor* actor,SessionPacketStream& packet,bool reserved){
+        if((mode_flags()&7u)!=7u)
+            throw std::runtime_error("Human authority commands require actual nonoffline forwarding");
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=dynamic_cast<Human*>(actor);
+        if(!reserved&&(!human||!human->loading_state||human->loading_state->words().template get<std::uint32_t>(0x48)!=1u))
+            throw std::runtime_error("Scene2 authority packet requires its actual actor20/B0+C4 receiver");
+        auto request=[&](std::uint32_t identity){
+            if(!human||!human->loading_state||human->loading_state->words().template get<std::uint32_t>(0x48)!=1u)return;
+            auto& owner=composition(*human).control();
+            auto* control=owner.control();auto* look=owner.look();
+            if(!control||!look)throw std::logic_error("Player Ladder command requires the actual DD0/E0 owners");
+            auto* target=dependencies().scene.frames().scene_actor_identity(static_cast<std::int32_t>(identity));
+            (void)control->request_frame_ladder(target,*look,*this); //00540DB0 case6 ignores the result.
+        };
+        receive_human_ladder_commands(packet,request);
+    }
+    template<class Human>void notify_human_ladder_probe(Human&,std::uint32_t){
+        throw std::runtime_error("Nonoffline Ladder probe requires actual00588D20 command15 publication");
     }
     template<class Descriptor>const ActorFrameData* human_geometry_contact_data(const Descriptor& descriptor){
         return dependencies().scene.frames().find_actor_frame_data(descriptor.frame);

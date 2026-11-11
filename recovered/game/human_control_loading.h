@@ -319,7 +319,13 @@ public:
         movement.set(0x50,std::uint8_t{0});movement.set(0x51,std::uint8_t{0});
     }
     bool active() const{return active_;}
-    bool collision_disabled()const{return flag_dc4_;} //No loading producer changes this DD0 byte.
+    bool collision_disabled()const{return flag_dc4_;}
+    template<class Look>void frame_collision_disabled(bool disabled,const Look& look){ //00540090's actual DC4 transition.
+        if(flag_dc4_==disabled)return;
+        flag_dc4_=disabled; //Native publishes BEFORE rebuilding descriptors.
+        physical_.suspend_collisions(disabled,look.state().template get<std::uint32_t>(0x4c)); //0075C2D0, SAME buckets/shadow.
+        frames_.object_visible(human_->base().frame(),!disabled);
+    }
     float presentation_amount() const{return amount_;}
     std::uint32_t animation_state_word(unsigned offset) const {
         if(offset==0xa9c)throw std::logic_error("DD0 A9C is the actual typed shadow frame, not a scalar word");

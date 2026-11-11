@@ -14,7 +14,6 @@ namespace hd2::frontend {
 // interfaces/peers or a mode change are unsupported, never treated as success.
 struct ColdControlFrameState {
     std::array<std::uint32_t, 2> queue_counts{}; // +1F8/+204
-    std::uint32_t request_words=0,request_bits=0; //Only native2BC request stream; broadcasts have their actual process owners/cursors.
     std::uint32_t pending_words = 0, pending_bits = 0; // +300/+304
     std::uint32_t saved_graphics_flags = 0; // +4DFC, static zero until mode-switch writer.
     std::uint32_t timer_started = 0;
@@ -77,7 +76,7 @@ private:
         ~Lock() { backend.leave_control_lock(index); }
     };
     template<class Flush,class Clear>void reset_impl(bool packets,Flush flush_packets,Clear clear_packets){
-        require_cold(packets); //Reject live transport/unknown request state BEFORE mutation.
+        require_cold(packets); //Reject live transport or streams lacking their packet pump BEFORE mutation.
         backend_.restore_cold_firewall(state_.firewall_changed);
         backend_.restore_graphics_flags(state_.saved_graphics_flags);
         flush_packets();
@@ -102,9 +101,7 @@ private:
                 state_.firewall_changed || startup_.wrapper0c || startup_.wrapper10 ||
                 startup_.service14 || startup_.handle4d3c != -1 || state_.timer_enabled)
             throw std::logic_error("Only standalone cold control lifetime is reconstructed");
-        if(state_.request_words||state_.request_bits)
-            throw std::logic_error("Control request stream requires its actual producer/decoder");
-        if(!packets&&broadcasts_.pending())throw std::logic_error("Control broadcasts require their actual packet pump");
+        if(!packets&&broadcasts_.pending())throw std::logic_error("Control streams require their actual packet pump");
         if(!packets&&(state_.queue_counts[0]||state_.queue_counts[1]))
             throw std::logic_error("Control packet queues require their actual packet pump");
         for (const auto& record : startup_.records)

@@ -8,8 +8,8 @@
 namespace hd2::game {
 
 //0072C170/0072C230/0072C3B0/0072C5D0/0072CE70 ordinary offline local packet
-//ownership. Borrow the SAME containing control state, process timer and three
-//broadcast streams. Dispatcher supplies real loaded14/module packet receivers.
+//ownership. Borrow the SAME containing control state, process timer, three
+//broadcast streams and the authority-request stream. Dispatcher supplies real loaded14/module packet receivers.
 //This does not enable the host's currently cold control/world entry path.
 template<class Backend,class Dispatcher>
 class SessionLocalPackets {
@@ -74,13 +74,17 @@ public:
         }
         if(frame_.timer_enabled)throw std::runtime_error("Local maintenance timer has an unrecovered enabled producer");
         frame_.packet_maintenance_seen=true; //0072CA10's0097C90C=1; disabled timer skips all remote work.
-        for(auto* stream:{&streams_.first,&streams_.second,&streams_.third})if(stream->bit_count()) {
-            stream->write(19,5); //Terminator is added only at FLUSH, not0072BF90 target0 finish.
-            if((mode_&1u)&&(mode_&2u))enqueue(false,stream->written_bytes(),0);
-            stream->position(0,0); //Reset cursor only AFTER successful enqueue.
-        }
-        if(frame_.request_words||frame_.request_bits)
-            throw std::runtime_error("Local authority request stream requires its actual producer/decoder");
+        const auto flush_stream=[&](SessionPacketStream& stream,bool authority,bool deliver){
+            const auto original=stream.bit_count();if(!original)return;
+            try{
+                stream.write(19,5); //Native FLUSH terminator, distinct from command-list24.
+                if(deliver)enqueue(authority,stream.written_bytes(),0);
+            }catch(...){stream.position(original/32,static_cast<unsigned>(original%32));throw;}
+            stream.position(0,0); //Reset cursor only AFTER successful enqueue.
+        };
+        for(auto* stream:{&streams_.first,&streams_.second,&streams_.third})
+            flush_stream(*stream,false,(mode_&1u)&&(mode_&2u));
+        flush_stream(streams_.request,true,true); //Native2BC→0072C170, after all broadcasts.
         frame_.pending_words=frame_.pending_bits=0; //Native2F8 scratch cursor reset.
     }
     void clear() { //0072E4E0 queue portion, same430 lock; no implicit decoder/flush.

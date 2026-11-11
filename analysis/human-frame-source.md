@@ -783,3 +783,62 @@ remain open. Both P2.2 checkboxes remain open and no mission desktop test has
 occurred. Original bodies are in WORK `frame-human-ground-motion`,
 `frame-human-ground-collision-workers`, `frame-human-ground-multisphere`,
 `frame-human-ground-water-fall` and `frame-human-ground-contact-actors`.
+
+## Human contacts and Player command frames
+
+005A07C0 now supplies the actual Human actor5C dispatch. Missing B0 returns false.
+Authority moving-Car contact uses the same Car speed958, reverse occupants,
+offline alignment and driver. Positive virtualD4 damage remains required. B0 is
+reread after damage, then actual C8 executes. Player00544B40 queues a kind6 Ladder
+identity when mode2 is set and returns true. AI005765F0 rejects kind8. Base and
+Remote00583230 return true. Static vtable words and005A3F20 distinguish passive
+AI kind6 at008113E8 from Remote kind7 at008112D8. Native C8 vector arguments have
+no consumers in these three bodies. A missing B0 after damage raises a source
+failure in place of the native invalid dereference.
+
+The actual first80/second90 command vectors now retain typed kind6 values.
+00577B30 and Player0053F370 serialize this recovered producer through005B0F90.
+00475570/00475530 receive boolean1 for this group and map it to native priority0.
+The stream carries module13/5bits, Human identity/10bits, repeated6/5bits plus
+Ladder identity/10bits and command terminator24/5bits. Writes preserve the existing
+unmasked bit-buffer semantics. First commands use0072BED0/0072BEF0's SAME process
+2BC request stream when mode1 is set. Second commands use208 broadcast. Target0
+finish clears active1C without flushing. Successful queue retirement preserves
+00588C60/00588CC0 order. Unsupported command payloads remain required.
+
+0072C5D0 flushes208/244/280 broadcasts before2BC requests, appending the distinct
+module terminator19. Requests enter the existing authority FIFO through0072C170.
+The control lifetime observes this actual stream and its cursor. The former
+shadow request counters are removed. Source exceptions restore the pending cursor
+and selected stream metadata so retries preserve one logical packet. An enqueue
+failure removes the attempted terminator before any subsequent command append.
+These recovery guards do not alter successful native ordering.
+
+004755D0 authority dispatch uses the SAME Scene2 identity map. Reserved0..31
+routes005A5F80. Missing/nonplayer reserved owners consume kind6 through00541CB0.
+A Player invokes actual00540DB0 case6, resolving the Ladder identity and calling
+its existing DD0007861A0, whose result is ignored. Nonoffline forwarding and all
+other positive command payloads remain required. Presentation Scene2 packet
+routing retains its existing receiver requirements.
+
+Player B0+24=00540090 is the presentation callback. It incrementsBC, drains
+second then first commands through0053F370, publishes the actual DC4 transition,
+reuses0075C2D0 collision/shadow ownership and changes model visibility. Suppressed
+camera, inline4E0 dispatch and positive local/remote input workers remain required
+receivers. Signed timers540/520 and native mode gates retain their order.
+B0+28=00540240 is the authority callback. It publishes input38 from actual DD0
+1AC/9C0, clears525, runs base timers, applies the four retained input accumulators,
+calls required005433B0, retires the overrides, normalizes the actual model's
+forward direction into20 and drains second commands last. The containing factory
+now selects these real Player callbacks in their original phases.
+
+[Verification receipt](checkpoints/p2.2-human-contact-player-20261111.json).
+Focused native ASan/UBSan/LSan covers actual base/Player C8, moving-Car order,
+post-damage B0 reread, duplicate requests, packet FIFO, truncation, failure/retry,
+priority selection and Player phase/timer/input/direction order. Engine, physical,
+query and still-required worker receivers are explicit doubles. Actual World
+instantiation checks all AI C8 families under strict i386. The launcher links.
+Nine frozen bodies gain partial credit. Absent005A07C0,00544B40,005765F0,
+00583230,00577B30,0053F370,00540090,005A5F70 and004755D0 receive no new credit.
+Application loading still declines. Both P2.2 checkboxes remain open and mission
+desktop acceptance remains pending.

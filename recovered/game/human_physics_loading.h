@@ -241,6 +241,33 @@ public:
             collisions_.move(descriptor);
         }
     }
+    void suspend_collisions(bool suspended,std::uint32_t posture) { //0075C2D0.
+        if(!human_)throw std::logic_error("Human collision transition has no bound Human");
+        if(suspended) {
+            const auto primary=primary_count(),shots=state_.template get<std::int32_t>(0x69c);
+            if(primary>4||shots>2)throw std::runtime_error("Human collision transition exceeds owned allocations");
+            for(int n=0;n<primary;++n)collisions_.remove(required(primary_,n));
+            state_.set(0x698,std::int32_t{0});
+            for(int n=0;n<shots;++n)collisions_.remove(required(shot_,n));
+            state_.set(0x69c,std::int32_t{0});
+        }else {
+            markers_.snapshot();rebind_posture(posture);
+            for(int n=0;n<primary_count();++n) {
+                auto& descriptor=required(primary_,n);descriptor.position=posture_[static_cast<std::size_t>(n)];
+                descriptor.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(0x1c8))*descriptor.position[3]);
+                collisions_.move(descriptor);
+            }
+            shot_spheres();
+            for(int n=0;n<state_.template get<std::int32_t>(0x69c);++n) {
+                auto& descriptor=required(shot_,n);descriptor.position=shots_[static_cast<std::size_t>(n)];
+                descriptor.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(n?0x1d0:0x1cc))*descriptor.position[3]);
+                descriptor.flags=0x42;descriptor.mask=2;
+                if(static_cast<std::int32_t>(human_->properties.stats_ec[0])<1)descriptor.mask|=0x10000;
+                collisions_.insert(descriptor);
+            }
+        }
+        if(const auto shadow=shadow_())frames_.object_visible(shadow,!suspended); //SAME DD0+A9C, not a second zero-only borrower.
+    }
     int primary_count() const{return state_.template get<std::int32_t>(0x698);}
     Human** human_slot_address(){return &human_;}
 private:
@@ -289,33 +316,6 @@ private:
         if(index<0||static_cast<std::size_t>(index)>=Count||!descriptors[static_cast<std::size_t>(index)])
             throw std::runtime_error("Human collision transition has no actual descriptor");
         return *descriptors[static_cast<std::size_t>(index)];
-    }
-    void suspend_collisions(bool suspended,std::uint32_t posture) { //0075C2D0.
-        if(!human_)throw std::logic_error("Human collision transition has no bound Human");
-        if(suspended) {
-            const auto primary=primary_count(),shots=state_.template get<std::int32_t>(0x69c);
-            if(primary>4||shots>2)throw std::runtime_error("Human collision transition exceeds owned allocations");
-            for(int n=0;n<primary;++n)collisions_.remove(required(primary_,n));
-            state_.set(0x698,std::int32_t{0});
-            for(int n=0;n<shots;++n)collisions_.remove(required(shot_,n));
-            state_.set(0x69c,std::int32_t{0});
-        }else {
-            markers_.snapshot();rebind_posture(posture);
-            for(int n=0;n<primary_count();++n) {
-                auto& descriptor=required(primary_,n);descriptor.position=posture_[static_cast<std::size_t>(n)];
-                descriptor.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(0x1c8))*descriptor.position[3]);
-                collisions_.move(descriptor);
-            }
-            shot_spheres();
-            for(int n=0;n<state_.template get<std::int32_t>(0x69c);++n) {
-                auto& descriptor=required(shot_,n);descriptor.position=shots_[static_cast<std::size_t>(n)];
-                descriptor.radius=static_cast<float>(static_cast<long double>(state_.template get<float>(n?0x1d0:0x1cc))*descriptor.position[3]);
-                descriptor.flags=0x42;descriptor.mask=2;
-                if(static_cast<std::int32_t>(human_->properties.stats_ec[0])<1)descriptor.mask|=0x10000;
-                collisions_.insert(descriptor);
-            }
-        }
-        if(const auto shadow=shadow_())frames_.object_visible(shadow,!suspended); //SAME DD0+A9C, not a second zero-only borrower.
     }
     std::unique_ptr<Descriptor> make(std::uint32_t flags,std::uint32_t mask) {
         auto descriptor=std::make_unique<Descriptor>();descriptor->flags=flags;descriptor->mask=mask;

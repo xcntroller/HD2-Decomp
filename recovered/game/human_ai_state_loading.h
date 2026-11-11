@@ -25,6 +25,7 @@ public:
                         HumanInputCallbacks& callbacks,std::uint32_t kind)
         :Base(frames,inputs,kind),inputs_(inputs),callbacks_(callbacks),resources_(kind,second) {}
     ~HumanAIStateLoading(){detach_callbacks();}
+    bool frame_actor_contact(std::uint32_t kind,std::int32_t,std::uint32_t)override{return kind!=8u;} //005765F0, genuine AI Ladder rejection, absent frozen.
     template<class Inline>
     void bind(Human& human,const Base* previous,MissionNavigation* navigation,std::uint32_t mode,Inline& control) {
         if((mode&7u)!=7u&&(mode&1u)&&!previous)throw std::runtime_error("Human AI authority binding requires actual initial command20 transport");

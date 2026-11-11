@@ -48,6 +48,7 @@ public:
         case 8:result=std::make_unique<Area>(frames_,inputs_,second_,callbacks_,actions_.kind3,contexts_,services_);break;
         default:throw std::runtime_error("No original Human B0 factory case");
         }
+        result->bind_frame_command_packets(services_);
         if(kind==4||kind==8)result->bind_special_music_reference([this](bool enabled){services_.human_special_music_reference(enabled);});
         return result;
     }
@@ -89,6 +90,12 @@ public:
         }
         if(kind==4)return static_cast<Guard&>(state).advance_authority_frame(elapsed,queries,control_,services_,runtime);
         return static_cast<Area&>(state).advance_authority_frame(elapsed,queries,control_,services_,runtime);
+    }
+    template<class Queries,class Runtime>
+    void advance_player_frame(Base& state,bool authority,std::uint32_t elapsed,Queries& queries,Runtime& runtime){
+        auto& player=static_cast<Player&>(state);
+        if(authority)player.advance_authority_frame(elapsed,queries,control_,runtime);
+        else player.advance_presentation_frame(elapsed,services_,queries,control_,runtime);
     }
     void resume_script_after_ai(Base& state){
         if(state.words().template get<std::uint32_t>(0x48)==5)static_cast<Script&>(state).resume_after_ai(control_);

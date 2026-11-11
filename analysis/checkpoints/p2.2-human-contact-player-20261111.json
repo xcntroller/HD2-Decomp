@@ -1,0 +1,350 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "original_execution": false,
+  "previous_checkpoint": "ca70a44",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "00540240",
+    "00588c60",
+    "00588cc0",
+    "0072bed0",
+    "00475570",
+    "00475530",
+    "00540db0",
+    "005a5f80",
+    "00541cb0"
+  ],
+  "ledger_added_partial_client": 9,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2344,
+  "assumptions": [
+    "Only actual kind6 producer/payload is implemented. Other command payloads and nonoffline forwarding remain required.",
+    "Native unused C8 vectors and allocator/SEH layout are excluded. Typed queue values retain duplicate identities and container capacity.",
+    "Missing B0 after moving-Car damage raises a source failure at the native invalid-dereference boundary. Positive damage remains required.",
+    "Native command serialization/flush success order is preserved. Source exceptions restore pending cursors/stream metadata for retry.",
+    "Player B0+24=00540090 is presentation and B0+28=00540240 is authority. Positive local/remote inputs,005433B0 and camera/inline command receivers remain required.",
+    "Earlier00749E60 cardinal-cycle failure and0076B670 early106 zero-speed guard remain documented."
+  ],
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan actual base/Player contact, request FIFO, truncation/failure/retry, original priority0 and Player phase/timing/input/direction with explicit owner/engine/positive-worker doubles",
+    "actual_host_i386": "PASS strict actual World authority/presentation instantiation, required Runtime leaves declaration-only",
+    "application_launch": "PASS i386 link",
+    "function_tracker": "PASS render/check and27 tests"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/ReadOnlyStaticFunctions.java": {
+      "sha256": "627d321e604c70d6ac3e4333fa15a798b1c9ae092a1034dbf8b2332c64c13e2f",
+      "bytes": 2186,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-contact-005a07c0.asm": {
+      "sha256": "5f3691475cc1debb326726a99312a63c2eff785bc4c75251f6b18b8407087c77",
+      "bytes": 4246,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-c8-vtables.json": {
+      "sha256": "6a25cd8bec84f3920e5cbc21548c64bed9424f0e478bb497fbe5f9f445d72360",
+      "bytes": 1134,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-command-reader-005a5f80.asm": {
+      "sha256": "e5bba2a05637f41a03e693ad4f907e55166f7ddd481448af6150e49561d49e3c",
+      "bytes": 6272,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-i386.cpp": {
+      "sha256": "136c032823a00edc3b83930748e342a2b0e033d21235d7b7cbbbfc706525d295",
+      "bytes": 7943,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-contact-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-i386.o": {
+      "sha256": "f05fcd0cfa69fa6f514994b96ae09924488d239ab4621a292b67098030db0044",
+      "bytes": 12784486,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-contact-native": {
+      "sha256": "bd16aa9854aa73e10533ffce4742d84812804a9eea53f0ace686ee85fcd70f49",
+      "bytes": 2164808,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-contact-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-native.cpp": {
+      "sha256": "ec4224dd85302abf8322a2fa35a0a7dc333f0f228f1537786b2efcfb311f8e2c",
+      "bytes": 11870,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-contact-native.log": {
+      "sha256": "ceeb0a5ae0af289475123b803d16635415656b650ad636b1d2a63585dd953788",
+      "bytes": 174,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-request-packets/0072bef0.c": {
+      "sha256": "e6558f8c85159d05d78f1f655f6a7e7d4ddf49f89010f2cd67de40fd5b3d4b07",
+      "bytes": 813,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-request-packets/0072bef0.json": {
+      "sha256": "3e49b4ba9663aae5f8ef189149725f29016d5ce3c04900bd237ded523e7012a8",
+      "bytes": 3302,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-request-packets/0072c5d0.c": {
+      "sha256": "735d0b7df94b5165d6c56506eb755d7171df49293df10b9782125b6f01e1213f",
+      "bytes": 4841,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-request-packets/0072c5d0.json": {
+      "sha256": "c831a58e8f8ed1e3936519c026d3ce524c9a26ddbb4853fb84e983eec2acd745",
+      "bytes": 17127,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-request-packets.log": {
+      "sha256": "83e80b743248310d44b8025554214884eda1fd10628bd52f9617508e77f8fa6b",
+      "bytes": 4491,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/00540db0.c": {
+      "sha256": "02adbf2ae579692c46b74dad66d9fcb1e3c0796a9e92f68e46a079b3b504e749",
+      "bytes": 12894,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/00540db0.json": {
+      "sha256": "03a1527f921aa126001f98aa7ec0c6c09e26937aa9df86395943d958e8fb2775",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/00544b40.c": {
+      "sha256": "34cbf27f86d9ed9923c8887ddbfa40ed7747e74cefe2aabc3a14d7c0082ef116",
+      "bytes": 2519,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/00544b40.json": {
+      "sha256": "844590ef92bf777d7b5ca0fc280710ee885823f0e966f0fb7a9e10a595f7407d",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/005765f0.c": {
+      "sha256": "d947b7a4d455d6c2c29ce91c8db9f9578e4e5077c2c1b173b8e4b5125035fb35",
+      "bytes": 83,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/005765f0.json": {
+      "sha256": "bb8bf4fac5d408b1e062b8c2a3c74b0054a07166c7cdb15ad461ea899a0bc93a",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/00577b30.c": {
+      "sha256": "cb5fc9c03490a78dadea1112c0f657e3897299685605a96da424c839754d86fe",
+      "bytes": 2090,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/00577b30.json": {
+      "sha256": "7f88005731235a69653ff62688fcd2a40219d4040798914e52fa4bb6223c7af7",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/00583230.c": {
+      "sha256": "c94057c9db92764ea187f0fa96052991c3777e54f0c38a13d1d932cf76aaecff",
+      "bytes": 54,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/00583230.json": {
+      "sha256": "80c92ead290f5738e94fbe87d327f7b6a87196724707a2f796d6a469c60a63a3",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/005a07c0.c": {
+      "sha256": "ee7c984364e6457ee787d4d2448345dac4da391b31b387ceae60058011bcdf7f",
+      "bytes": 1160,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/005a07c0.json": {
+      "sha256": "bd2af2ab904915b97b668c2e0b17bff52f2ff5d670f8b175cfc24cd71a274bc5",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/005b0f90.c": {
+      "sha256": "2ad92f863577b52f0e385651f026b3c704a8244746048dbbd4749cc6fb58c4b7",
+      "bytes": 331,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing/005b0f90.json": {
+      "sha256": "e355acda2209dc954078905d10083966091521efe3b8e461524961e08e570253",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-static-missing.log": {
+      "sha256": "8fdf8a4eed4a1fbe8c0d9c6b567b1ba8d5efe3bda1149ca9865b4aea05233f6d",
+      "bytes": 4971,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-authority-frame.asm": {
+      "sha256": "547a810954df5162d93844fa52e7e5dc21e6b1d61356945d7f2ed5900e3879a2",
+      "bytes": 7627,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-drain/0053f370.c": {
+      "sha256": "c7531b61a67045a94aa03b42e08697f4ee85825dc37912703f7a4b005812bc49",
+      "bytes": 2075,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-drain/0053f370.json": {
+      "sha256": "f7fe667c60c3b5a67fe793a0c5ad16d15d39f3293aa205a6ff48e532c891acae",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-drain/00542300.c": {
+      "sha256": "f79d58027f59b4c6074d88f79de1b135b6285a6f6c4607d7dea38c0368db9200",
+      "bytes": 117,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-drain/00542300.json": {
+      "sha256": "f11f4b285131bc2af6486852784a430d81493c682afd50c5f9c2c86d1e349bb8",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-drain.log": {
+      "sha256": "6fdae467d1ea3ff96d873f9b235d387b18ba1822853b4668b777d0f609d4707b",
+      "bytes": 4534,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-frame/00540090.c": {
+      "sha256": "a2a03b5e992f2f8c1e3de05608890226014b8df0ec803f03029b4260b58df43a",
+      "bytes": 1871,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-frame/00540090.json": {
+      "sha256": "01a5e2c3f1dfc334d0da5bdf565b10dacf7010e88d83247e99e71c4171034fa3",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-frame/00588c60.c": {
+      "sha256": "d05383338c91b11300f586b46c1dc0bc1985b64cb53cf6d7ac9ecdc0856cf0ed",
+      "bytes": 449,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-frame/00588c60.json": {
+      "sha256": "65535d0147ad743aba0a0db519d76cc6c7fcc58355082d96756c846fdab9c81b",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-frame/00588cc0.c": {
+      "sha256": "522e9f26a6795e2fb5e422583300bdb2ccf79817f58cbc488bb62d7639c4877b",
+      "bytes": 449,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-frame/00588cc0.json": {
+      "sha256": "ce010c8f9c99f740aed402c75d7b75997d2ae2c6c4510899aebba20c917dc64b",
+      "bytes": 194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-command-frame.log": {
+      "sha256": "c11d362e2d963b6bf285b98cd049196051ab546120130f9e9330194f86f14d37",
+      "bytes": 4621,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-discard-command.asm": {
+      "sha256": "695c8c034717f918b66377f15d5b89b0c67b8e302f77f87a0c175b95771b61b4",
+      "bytes": 4138,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-discard-ladder.asm": {
+      "sha256": "e734a9de1268a0881651a4c1f6b412b2be7a6d0dcd1c239d9d330c4d4101be5f",
+      "bytes": 675,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-ladder-command-reader.asm": {
+      "sha256": "45d99f0beca39279437f4e5f0bbe20fcba363995588bf9ea2b76934dbfd3adf8",
+      "bytes": 1394,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/0053cd90.c": {
+      "sha256": "e9654e963f511e887d6e086fc79cff041cc3ce05fa81343653cb5ea602e8a38d",
+      "bytes": 2765,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/0053cd90.json": {
+      "sha256": "285da4d71d9db4adcd2b346d0617fd17a60556a1cc309d94d213675ee41263ac",
+      "bytes": 8687,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/005433b0.c": {
+      "sha256": "6468d537214beb8193f6db8ba1dcae8cbeccfc8bdc25f929a3c48f0d903c7aeb",
+      "bytes": 17662,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/005433b0.json": {
+      "sha256": "972c5a2650dcac5484e087e48b14990cc8bfc6264a114b4e4c626ddd981d4a24",
+      "bytes": 39647,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/00545b90.c": {
+      "sha256": "e0564be6ab4bc930019ca21ceb41204f206ea51eb73473591be5193239660be6",
+      "bytes": 3332,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/00545b90.json": {
+      "sha256": "58e0652d53e9d1266384fae2ec2c459da19ff1caacc4f008bf0fa13f173a73b7",
+      "bytes": 11346,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/00588710.c": {
+      "sha256": "def85b530e49f4f83bafc316ae2ae837845630d832f4bf00106f2b4ba7aab0e2",
+      "bytes": 1679,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/00588710.json": {
+      "sha256": "2cb13008c760e844d27103892f0609d5f3965c7503a0069b32d27eba344dce4e",
+      "bytes": 6598,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/0058c320.c": {
+      "sha256": "5c92cc3af61fc98eea6c0c6e83dad01c7576f52a29b22273ee6302c943505ac1",
+      "bytes": 41,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers/0058c320.json": {
+      "sha256": "84e4a7e27850f7129cd9e385717c2113d83046e11fe88e871b442d8825386248",
+      "bytes": 535,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-player-live-frame-workers.log": {
+      "sha256": "bc48b48e03d08f23c5bb0442bae4ca44fe41ebaef79f83386b5679a25ab6fba3",
+      "bytes": 4802,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-tracker-render.log": {
+      "sha256": "abd14e75b758fb3f547bb93f3b44d7aed31ab9cabc76ee316f829e067fa87eee",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-tracker-check.log": {
+      "sha256": "e646165a29cd17255545bbc6a4cf9a983f716869a709915a59a72e1987bedd50",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-contact-tracker-tests.log": {
+      "sha256": "b00e402dccc16c154b884971a1d580b67fa907ef94ecc61d35a35b027def2f2e",
+      "bytes": 126,
+      "retained": true
+    }
+  }
+}
