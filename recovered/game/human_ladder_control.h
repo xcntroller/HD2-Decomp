@@ -2,10 +2,84 @@
 #define HD2_GAME_HUMAN_LADDER_CONTROL_H
 
 #include "game/human_animation_tracks.h"
+#include "game/collision_motion.h"
+#include "game/actor_frame_data.h"
+#include "game/human_motion_velocity.h"
 #include "game/human_state_frame_timers.h"
 #include <cmath>
 
 namespace hd2::game {
+
+template<class Ladder>
+bool human_ladder_contact_eligible(const Ladder& ladder,const HumanVector& position,HumanVector direction,
+        HumanVector motion,bool approach){ //005EB1D0, native AL and exact nearest-end comparison.
+    using namespace collision_motion_math;
+    if(direction[1]!=0){direction[1]=0;direction=normalized(direction);}
+    motion[1]=0;
+    const auto speed=length(motion);
+    if(speed!=0)motion=scale(motion,1.L/speed);
+    const auto& geometry=*ladder.geometry;
+    const auto up=subtract(position,geometry.up_position()),down=subtract(position,geometry.down_position());
+    const auto& axis=geometry.direction();
+    if(square(down)<=square(up)){
+        if(!approach||static_cast<long double>(position[1])-geometry.down_position()[1]>.5f)return false;
+        const auto toward=normalized({{geometry.up_position()[0]-position[0],0,geometry.up_position()[2]-position[2],0}});
+        const float threshold=ladder.properties.flag180?.5f:.95f;
+        const auto facing=extended_dot(toward,axis);
+        if(facing<(ladder.properties.flag180?.5f:.85f))return false;
+        if(extended_dot(motion,axis)<=threshold)return false;
+        return extended_dot(direction,axis)>threshold;
+    }
+    if(speed<.001||approach||static_cast<long double>(position[1])-geometry.up_position()[1]<-.3f)return false;
+    const auto away=normalized({{down[0],0,down[2],0}});
+    if(extended_dot(away,axis)<.8f||extended_dot(motion,axis)>-.8f)return false;
+    return std::abs(extended_dot(direction,axis))>.800000011920929;
+}
+
+template<class Actor>struct HumanMotionActorResponse {std::uint32_t kind=0;Actor* actor=nullptr;};
+
+template<class Control,class Look,class Human,class Services,class Hit,class Runtime>
+auto resolve_human_motion_contacts(Control& control,const Look& look,Human& human,Services& services,
+        const CollisionMotion<Hit>& request,bool interact,Runtime& runtime){ //00788840, actual retained query contacts.
+    using namespace collision_motion_math;
+    using Actor=typename Control::SceneInstance;
+    HumanMotionActorResponse<Actor> result;
+    auto& physical=control.physical();auto& state=physical.control_frame_words();
+    for(std::size_t index=0;index<request.contact_count;++index){
+        const auto& contact=request.contacts.at(index).value();const auto* descriptor=contact.identity.dynamic_identity;
+        if(!descriptor||!(descriptor->flags&0x40u)||!descriptor->frame||(descriptor->mask&0x40000u))continue;
+        const auto* data=services.human_geometry_contact_data(*descriptor);
+        const auto physics=data?data->words[4]:ActorFrameData::empty_text_token();
+        if(physics!=ActorFrameData::empty_text_token()){
+            services.human_geometry_physics_contact(physics,human.activation.vector1b0);continue;
+        }
+        result.actor=data?reinterpret_cast<Actor*>(data->words[0]):nullptr;
+        if(!result.actor)return result;
+        const auto kind=result.actor->base().type();
+        if(kind==3){
+            runtime.human_contact_human(human,*result.actor,request.position,request.displacement,contact.normal); //Actual Human virtual5C.
+            const auto toward=subtract(result.actor->base().world_position(),human.base().world_position());
+            result.kind=human_motion_planar_angle(request.displacement,toward)>=0?1u:2u;return result;
+        }
+        if(kind==8){
+            const auto secondary=state.template get<std::int32_t>(0x1e8);
+            if(state.template get<std::int32_t>(0xa30)!=-10000||look.state().template get<std::uint32_t>(0x4c)==2||(secondary>=76&&secondary<=79))continue;
+            auto& ladder=services.human_ladder(result.actor);
+            HumanVector motion{};
+            if(state.template get<std::int32_t>(0x1d8)>=190||look.state().template get<std::uint32_t>(0xb8)==5)
+                motion=scale(state.template get<HumanVector>(0x4d0),100.f);
+            const auto pitch=state.template get<float>(0x944);
+            if(human_ladder_contact_eligible(ladder,human.base().world_position(),human.base().world_direction(),motion,pitch>=-.08)&&
+                    physical.control_action_queue().empty()&&runtime.human_contact_ladder(human,*result.actor)){
+                physical.control_action_actor(result.actor);
+                physical.control_action_queue().push_back({{0,3,0}}); //007504E0/00750630 native append, actual SAME deque.
+            }
+        }else if(kind==6&&(control.mode_flags()&1u)&&interact)services.human_contact_door(result.actor,human);
+        else if((kind==14||kind==5)&&(control.mode_flags()&1u))
+            runtime.human_contact_actor(*result.actor,human,request.position,request.displacement,request.contacts.at(request.contact_count-1)->normal); //Actual actor58.
+    }
+    return result;
+}
 
 template<class Physical,class Look,class Geometry,class Sweep,class Notify>
 bool probe_human_ladder_down(Physical& physical,const Look& look,const Geometry& ladder,
@@ -239,7 +313,10 @@ void advance_human_ladder_motion(Control& control,Look& look,Human& human,Servic
             HumanVector origin=sphere;for(unsigned axis=0;axis!=3;++axis)origin[axis]=sphere[axis]+offset[axis];
             return services.human_geometry_sweep().sweep(origin,displacement,sphere[3]-.05f,0xcc002u,0xffffffffu);
         }();
-        if(hit){runtime.resolve_human_ladder_contact(control,*hit);return;} //00788840 with one actual contact.
+        if(hit){
+            CollisionMotion<std::decay_t<decltype(*hit)>> contact;contact.count=1;contact.position=hit->position;contact.append(*hit,0);
+            (void)resolve_human_motion_contacts(control,look,human,services,contact,true,runtime);return; //00788840 with one actual contact.
+        }
         for(unsigned axis=0;axis!=3;++axis)position[axis]+=displacement[axis];
         if(ascending){if(near_top()&&!finish_top())return;}
         else if(position[1]<geometry.down_position()[1]){

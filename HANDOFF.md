@@ -9,25 +9,27 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[Ground geometry and direction replay](analysis/human-frame-source.md#ground-geometry-and-direction-replay)
-and [verification receipt](analysis/checkpoints/p2.2-human-ground-direction-20261111.json).
-Seven new source partials supply actual marker translation, temporary geometry
-refresh/publication, shared replay and presentation direction preparation.
-Native sanitizer checks, strict actual-host i386 and launcher link passed.
-00749E60 explicitly fails at the original static exact positive cardinal
-zero-remainder cycle. Its runtime significance remains unverified. The earlier
-106 unwritten zero-speed direction guard remains documented in the velocity
-checkpoint. Tally is34 complete and2,315 partial (2,310 client and five engine)
-across18,783 frozen functions. Both P2.2 checkboxes remain open. Application
-loading still declines and no mission desktop test has occurred.
+[Ground collision and fall state](analysis/human-frame-source.md#ground-collision-and-fall-state)
+and [verification receipt](analysis/checkpoints/p2.2-human-ground-collision-20261111.json).
+Twenty new source partials supply DD0 walking, standing/prone multisphere
+resolution, material/contact routing, water/fall state and shared face recovery.
+Actual tree/buckets/material tables and process state are shared. Native
+ASan/UBSan/LSan, strict actual World i386 and launcher link passed. Required
+positive Human collision/damage and frame bindings remain explicit.
+00749E60's static cardinal zero-remainder cycle has an explicit source failure
+and unverified runtime significance. Earlier106 unwritten zero-speed XYZ uses
+a documented guard. Tally is34 complete and2,335 partial (2,330 client and five
+engine) across18,783 frozen functions. Both P2.2 checkboxes remain open.
+Application loading still declines and no mission desktop test has occurred.
 
 ## Continue P2.2
 
-- Continue positive DD0 ground collision/air workers, 0077DE30 look apply,
+- Continue positive DD0 air, interaction/floor, B0+58 projection and dynamic ground
+  CE8/DB4/scene144 publication receivers, 0077DE30 look apply,
   00779B30/00755500 track/motion and remaining 007A7470 geometry workers.
   WORK `frame-human-live-model-geometry` contains foot, hand, look and
   mount/attachment originals. Climb movement still requires
-  positive0074A690/00788840 and AI0057CC50. WORK
+  positive0074A690, derived Human5C and AI0057CC50. WORK
   `frame-human-ground-motion`, `frame-human-ladder-movement` and
   `frame-human-motion-producers` preserve the originals. Presentation track events4..9/13..20/22..24 still need
   positive workers, as do the camera reset and attached230 branch. WORK `frame-human-dd0-bound-workers`,

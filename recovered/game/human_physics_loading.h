@@ -91,7 +91,7 @@ public:
         for(unsigned index=0;index!=4;++index) {
             retire(primary_[index]);retire(secondary_[index]);
         }
-        queue_.clear();
+        queue_.clear();ground_contact_.reset();
         for(auto& descriptor:shot_)retire(descriptor);
         state_.set(0x698,std::int32_t{-1});
         state_.set(0x1c8,.8f);state_.set(0x1cc,1.f);state_.set(0x1d0,1.f);
@@ -165,6 +165,7 @@ public:
         if(!(next&6u)&&(old&6u)&&next!=old)reposition_human_state_on_ground(frames_,*human_,*this,look,sweep);
     }
     const auto& state() const{return state_;}
+    auto& frame_globals(){return globals_;}
     auto& control_frame_words(){return state_;} //DD0 physical scalar writes in the actual frame bodies.
     auto& control_action_queue(){return queue_;} //DD0+A4C, SAME deque retired by0075B6C0.
     void rebind_frame_posture(std::uint32_t posture){rebind_posture(posture);} //0075BC80.
@@ -200,6 +201,10 @@ public:
         if(offset!=0x750)throw std::out_of_range("Human animation loading scalar");
         state_.set(offset,value);
     }
+    struct GroundContact {std::optional<CollisionCellReference> static_identity;const Descriptor* dynamic_identity;};
+    const auto& ground_contact()const{return ground_contact_;}
+    void clear_ground_contact(){ground_contact_.reset();} //Native754 is a typed identity borrower.
+    template<class Hit>void ground_contact(const Hit& hit){ground_contact_=GroundContact{hit.static_identity,hit.dynamic_identity};}
     const auto& primary() const{return primary_;}
     const auto& secondary() const{return secondary_;}
     const auto& shots() const{return shot_;}
@@ -322,10 +327,10 @@ private:
     void reset() { //0075AE40. Native scratch/SIMD padding is deliberately excluded.
         markers_.snapshot();state_.set(0x18c,std::uint8_t{1});
         for(auto offset:{0xa7cu,0x1bcu,0x1c0u,0x1c4u,0x230u,0x1ecu,0x1f8u,0x220u,0x228u,0x950u,
-            0x250u,0x254u,0x9d0u,0x9d4u,0x9d8u,0xa18u,0x754u,0x758u,0xa24u,
+            0x250u,0x254u,0x9d0u,0x9d4u,0x9d8u,0xa18u,0x758u,0xa24u,
             0xa20u,0x188u,0xa34u,0xa3cu,0xa40u,0xa44u,0xa94u,
             0x190u,0x234u,0x1a4u,0x1a8u,0x944u,0x940u,0x948u})state_.set(offset,std::uint32_t{0});
-        interaction_actor_=nullptr; //Native990; runtime actor-selection producer is not exposed.
+        ground_contact_.reset();interaction_actor_=nullptr; //Native754/990 retain actual typed identity borrowers.
         for(auto offset:{0x988u,0x998u,0x9b8u,0x9bcu,0x9c0u,0x9c4u,0x9ccu,0x9acu,0x9b0u,
             0xa2cu,0xa30u,0xa1cu,0xa0cu,0xa38u,0x99cu,0x9a0u,0x9b4u})state_.set(offset,std::int32_t{-10000});
         for(auto offset:{0x98cu,0xa90u,0x1b4u,0x760u,0x761u,0x762u,0x96cu,0x1d4u,0x9c8u,0x9c9u})state_.set(offset,std::uint8_t{0});
@@ -387,6 +392,7 @@ private:
     Vector offset740_{};std::deque<std::array<std::uint32_t,3>> queue_;
     std::function<Frame()> shadow_; //Borrow actual HumanShadowModel's A9C; owner outlives calls, including failure retirement.
     void* interaction_actor_=nullptr; //Identity matches MissionTableReference::object; no virtual actor calls through this slot.
+    std::optional<GroundContact> ground_contact_;
     bool active_=false,initializing_=false;
 };
 } //namespace hd2::game

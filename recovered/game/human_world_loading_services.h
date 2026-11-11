@@ -8,6 +8,7 @@
 #include "game/human_speech_notifications.h"
 #include "game/human_sight_relations.h"
 #include "game/collision_ray.h"
+#include "game/collision_water_queries.h"
 #include "game/human_frame_feedback.h"
 #include "game/human_item_frame_execution.h"
 #include "game/human_scene_frame.h"
@@ -389,7 +390,7 @@ public:
     }
     template<class Human>std::optional<float> sight_surface_factor(Human& human){ //005AC430 reads actual DD0+754.
         auto* control=human_inline(human).control();if(!control)throw std::runtime_error("Sight surface query requires actual Human DD0");
-        if(control->physical().state().template get<std::uint32_t>(0x754))throw std::runtime_error("Sight surface requires actual populated DD0+754 material and GEffects94 receiver");
+        if(control->physical().ground_contact())throw std::runtime_error("Sight surface requires actual populated DD0+754 material and GEffects94 receiver");
         return std::nullopt; //Actual cold NULL754 branch; no producer for a synthetic surface.
     }
     long double sight_view_distance(){return dependencies().scene.frames().sight_view_distance();}
@@ -412,6 +413,47 @@ public:
         CollisionRay<typename Dependencies::Frame,typename Scene::Descriptor,Resources,typename Dependencies::ActorFrames>
             ray(&scene.collision_tree(),&scene.buckets(),scene.collision_resources(),scene.frames());
         return ray.ray(start,displacement,layers,flags,normal);
+    }
+    template<class Descriptor>const ActorFrameData* human_geometry_contact_data(const Descriptor& descriptor){
+        return dependencies().scene.frames().find_actor_frame_data(descriptor.frame);
+    }
+    void human_geometry_physics_contact(std::uintptr_t handle,const HumanVector& velocity){
+        dependencies().scene.car_callbacks().car_physics_contact(handle,0u,velocity,{{0,0,0,0}}); //SAME00410630 module2 binding.
+    }
+    template<class Human>void human_contact_door(void* actor,Human& human){
+        auto& door=human_navigation_door(actor);
+        if(!door.properties.fields220[1])door.change_state(2,false,false,human.properties.field19c!=1,dependencies().world_actors);
+    }
+    auto human_geometry_water_ray(const HumanVector& start,const HumanVector& displacement,std::uint32_t flags=0){
+        auto& d=dependencies();if(!d.session.loaded)throw std::logic_error("Human water ray requires actual loaded World/tree");
+        auto& scene=d.scene;using Resources=std::remove_reference_t<decltype(scene.collision_resources())>;
+        CollisionWaterQueries<typename Dependencies::Frame,Resources,typename Dependencies::ActorFrames>
+            query(scene.collision_tree(),scene.collision_resources(),scene.frames());
+        using Hit=typename std::remove_reference_t<decltype(d.sweep)>::Hit;
+        const auto water=query.ray(start,displacement,flags);std::optional<Hit> result;
+        if(water){result.emplace();result->position=water->position;result->normal=water->normal;result->static_identity=water->identity;}
+        return result;
+    }
+    template<class Hit>std::uint32_t human_geometry_flags(const Hit& hit){
+        if(hit.dynamic_identity)return hit.dynamic_identity->flags;
+        if(!hit.static_identity)throw std::logic_error("Human geometry hit has no actual identity");
+        const auto id=*hit.static_identity;const auto& tree=dependencies().scene.collision_tree();
+        return id.kind?tree.shapes.at(id.kind-0x80).at(id.index).flags:tree.triangles.at(id.index).flags;
+    }
+    template<class Hit>std::uint32_t human_geometry_material(const Hit& hit){ //0075C940, SAME0071F9B0 process table/count.
+        const auto material=human_geometry_flags(hit)>>24;
+        return material<dependencies().startup.car_definitions().materials().size()?material:0xffffffffu;
+    }
+    template<class Hit>std::uint32_t human_geometry_mask(const Hit& hit){
+        if(!hit.dynamic_identity)throw std::logic_error("Human dynamic contact has no actual descriptor");
+        return hit.dynamic_identity->mask;
+    }
+    template<class Hit>std::uint32_t human_geometry_human_mode(const Hit& hit){ //0071BEBC calls005A5D10 on actual descriptor48.
+        if(!hit.dynamic_identity||!hit.dynamic_identity->actor)throw std::logic_error("Human motion contact lost its actual actor");
+        auto& human=selection_human(*static_cast<SceneActor<typename Dependencies::ActorFrames>*>(hit.dynamic_identity->actor));
+        auto* state=human_state_owner(human).get();
+        if(!state)throw std::logic_error("Human motion contact requires actual B0 state");
+        return state->words().template get<std::uint32_t>(0x50)&7u;
     }
     std::optional<SightRayHit> sight_ray(const HumanVector& start,const HumanVector& displacement,std::uint32_t layers,std::uint32_t flags){
         const auto hit=human_geometry_ray(start,displacement,layers,flags,false);if(!hit)return std::nullopt;

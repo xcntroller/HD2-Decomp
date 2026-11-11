@@ -6,6 +6,7 @@
 #include "game/human_ladder_control.h"
 #include "game/human_motion_velocity.h"
 #include "game/human_ground_geometry.h"
+#include "game/human_ground_motion.h"
 #include "game/human_direction_replay.h"
 #include "game/human_state_frame_timers.h"
 #include "game/human_animation_state.h"
@@ -121,6 +122,11 @@ public:
     template<class Look>void prepare_direction_replay(Look& look,const HumanVector& requested,std::uint32_t elapsed){ //0076DB30.
         auto publish=[&](std::uint32_t command){publish_control_frame_command(command);};
         prepare_human_direction_replay(*this,look,*human_,requested,human_frame_signed_word(elapsed),publish);
+    }
+    template<class Runtime>void publish_dynamic_ground_position(Runtime& runtime){ //007646F0 dynamic descriptor publication tail.
+        synchronize_control_position(human_->base().world_position());
+        synchronize_control_position(human_->base().world_position());
+        runtime.publish_human_dynamic_ground_geometry(*this); //NativeCE8=10000, DB4=1 and SAME scene144(model).
     }
     Tracks& tracks(){return tracks_;}Action& action(){return action_;}
     Shadow& shadow(){return shadow_;}
@@ -289,14 +295,14 @@ public:
                 const bool special=animation==18||animation==23||animation==24;
                 if(mode==5||interaction||special||signed_word(0x988)!=-10000){
                     state.set(0x750,std::int32_t{-1});
-                    if(!interaction)state.set(0x754,0u);
+                    if(!interaction)physical_.clear_ground_contact();
                     state.set(0x758,0u);state.set(0x75c,std::int32_t{-1});
                     state.set(0x761,std::uint8_t{0});state.set(0x762,std::uint8_t{0});
                     if(mode==5)runtime.advance_human_floor_motion(*this,step); //00768E50.
                     else if(interaction)runtime.advance_human_interaction_motion(*this,step); //00767D40.
                     else if(special)advance_special_ground_motion(step,runtime); //00768170.
                     else advance_human_ladder_motion(*this,look,*human_,services_,step,runtime,publish); //00768230.
-                }else runtime.advance_human_walk_motion(*this,step); //007646F0.
+                }else advance_human_walk_motion(*this,look,*human_,services_,step,runtime,publish); //007646F0.
             }
         }
         if(move_signed(0x68)>=0)movement.set(0x68,movement.template get<std::uint32_t>(0x68)-elapsed);

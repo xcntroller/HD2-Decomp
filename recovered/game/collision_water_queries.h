@@ -14,7 +14,11 @@ public:
     using Tree=CollisionTree<Frame>;using Vector=CollisionRayState::Vector;using Matrix=std::array<float,16>;
     CollisionWaterQueries(const Tree& tree,Resources& resources,Math& math):tree_(tree),resources_(resources),math_(math){}
     auto bounds(){return collision_vertical_limits(&tree_,resources_,math_);} //SAME already-recovered006FDA00.
-    bool segment(const Vector& start,const Vector& displacement,std::uint32_t excluded_flags=0){ //006FCDA0; no dynamic query.
+    struct Hit {Vector position{},normal{};CollisionCellReference identity;};
+    bool segment(const Vector& start,const Vector& displacement,std::uint32_t excluded_flags=0){
+        return ray(start,displacement,excluded_flags,false).has_value();
+    }
+    std::optional<Hit> ray(const Vector& start,const Vector& displacement,std::uint32_t excluded_flags=0,bool normal=true){ //006FCDA0; no dynamic query.
         CollisionRayState state;state.start=start;state.displacement=displacement;state.excluded_flags=excluded_flags|0x20u;
         for(unsigned axis=0;axis!=3;++axis){
             const float end=start[axis]+displacement[axis];
@@ -27,14 +31,22 @@ public:
         const auto y=collision_sweep_cell_range(state.minimum[1],state.maximum[1],tree_.fields20[1],tree_.fields20[3],tree_.count_y);
         for(auto iz=z.begin;iz<z.end;++iz)for(auto iy=y.begin;iy<y.end;++iy)for(auto ix=x.begin;ix<x.end;++ix){
             const auto index=tree_.cell_index(ix,iy,iz);const auto limits=tree_.cell_fields8.at(index);
-            if(state.minimum[1]<=limits[0]&&limits[1]<=state.maximum[1])cell(tree_.cells.at(index),state);
+            if(state.minimum[1]<=limits[0]&&limits[1]<=state.maximum[1])cell(tree_.cells.at(index),state,normal);
         }
-        return state.hit_static.has_value();
+        if(!state.hit_static)return std::nullopt;
+        Hit hit;hit.identity=*state.hit_static;
+        for(unsigned axis=0;axis!=3;++axis)
+            hit.position[axis]=static_cast<float>(static_cast<long double>(state.parameter)*displacement[axis]+start[axis]);
+        if(normal){
+            for(unsigned axis=0;axis!=3;++axis)state.normal[axis]=-state.normal[axis];
+            hit.normal=actor_activation_direction(state.normal);
+        }
+        return hit;
     }
 private:
     static float real(const CollisionShape<Frame>& shape,unsigned offset){const auto bits=shape.fields8.at((offset-8)/4);float value;std::memcpy(&value,&bits,4);return value;}
     static Matrix matrix(const CollisionShape<Frame>& shape,unsigned offset){Matrix result{};for(unsigned n=0;n!=16;++n)result[n]=real(shape,offset+n*4);return result;}
-    void shape(const CollisionCellReference& id,const CollisionShape<Frame>& shape,CollisionRayState& state){ //006FD7E0.
+    void shape(const CollisionCellReference& id,const CollisionShape<Frame>& shape,CollisionRayState& state,bool normal){ //006FD7E0.
         if(id.kind!=0x83)return;
         const auto inverse=matrix(shape,0x60);const auto local=math_.car_transform(state.start,inverse);
         const auto direction=math_.collision_sweep_rotate(state.displacement,inverse);
@@ -45,11 +57,12 @@ private:
         const float z=static_cast<float>(static_cast<long double>(direction[2])*parameter+local[2]);
         if(!(real(shape,8)<=x&&x<=real(shape,0x14)&&real(shape,0x10)<=z&&z<=real(shape,0x1c)))return;
         state.parameter=parameter;state.hit_static=id;
+        if(normal)state.normal=math_.collision_sweep_rotate({{0,1,0,0}},matrix(shape,0x20));
     }
-    void cell(const std::vector<CollisionCellReference>& entries,CollisionRayState& state){ //006FD340.
+    void cell(const std::vector<CollisionCellReference>& entries,CollisionRayState& state,bool normal){ //006FD340.
         for(const auto& id:entries){
             if(id.kind){const auto& primitive=tree_.shapes.at(id.kind-0x80).at(id.index);
-                if((primitive.flags&0x10000u)&&!(primitive.flags&state.excluded_flags))shape(id,primitive,state);
+                if((primitive.flags&0x10000u)&&!(primitive.flags&state.excluded_flags))shape(id,primitive,state,normal);
                 continue;
             }
             const auto& triangle=tree_.triangles.at(id.index);const auto flags=triangle.flags;
@@ -85,7 +98,7 @@ private:
             default:continue;
             }
             if(!(0<=u&&u<=1&&0<=q&&u+q<=1))continue;
-            state.parameter=parameter;state.hit_static=id;
+            state.parameter=parameter;state.hit_static=id;state.normal=plane;
         }
     }
     const Tree& tree_;Resources& resources_;Math& math_;

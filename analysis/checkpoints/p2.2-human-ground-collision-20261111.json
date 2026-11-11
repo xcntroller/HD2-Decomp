@@ -1,0 +1,404 @@
+{
+  "date": "2026-11-11",
+  "source_only": true,
+  "desktop_verified": false,
+  "application_loading_enabled": false,
+  "original_execution": false,
+  "previous_checkpoint": "36c524e",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "added_entries": [
+    "0071baf0",
+    "0071c7d0",
+    "00766050",
+    "007646f0",
+    "00766f10",
+    "007671c0",
+    "00788600",
+    "00789bc0",
+    "0075c940",
+    "0074ea80",
+    "0076ac80",
+    "00781150",
+    "00789b00",
+    "00770c30",
+    "00770b90",
+    "00767530",
+    "0075eee0",
+    "0075f180",
+    "005eb1d0",
+    "00788840"
+  ],
+  "ledger_added_partial_client": 20,
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2335,
+  "assumptions": [
+    "Native ten-sphere/contact storage is bounded. Unwritten SIMD/padding lanes are excluded.",
+    "00766050 simple remote-pose branch remains an explicit required failure.",
+    "Positive Human5C, Ladder acceptance, actor58, damage/packet/effect, projection and dynamic-geometry receivers remain mandatory.",
+    "Earlier00749E60 cardinal-cycle failure and0076B670 early106 zero-speed XYZ guard remain documented."
+  ],
+  "checks": {
+    "native": "PASS (ASan/UBSan/LSan, actual ground/state/face/water-query code with explicit collision/frame/equipment/positive-receiver doubles)",
+    "actual_host_i386": "PASS (strict actual World authority/presentation instantiation, remaining Runtime leaves declaration-only)",
+    "application_launch": "PASS (i386 link)",
+    "function_tracker": "PASS (render, check and27 tests)"
+  },
+  "artifacts": {
+    "analysis/work/mission-world-20261103/human-ground-motion-constants.json": {
+      "sha256": "785584dde9bce30d90404c861b8abf780c80a11c67d78cb8a730a1b9af02f2e6",
+      "bytes": 1510,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-motion-i386.cpp": {
+      "sha256": "664abcf68317aa74102e8fc072b7e1f92c785e504d3de81d76b09fc3ec5d989d",
+      "bytes": 8170,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-motion-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-motion-native.cpp": {
+      "sha256": "ea66288a8f98ea931106c99981ab0eefd374da55ffbe64c5fcc85fe69f3c7954",
+      "bytes": 23614,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-motion-native-compile.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-motion-native.log": {
+      "sha256": "89cd3d9dda2c28ad13fcd1819bcf2084b272ee040c62029f2b006314e0b44828",
+      "bytes": 123,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-motion-native": {
+      "sha256": "388f88cf02a242601454452c736de61664898b16ed5eb5c9ce033acd3ebcdcbe",
+      "bytes": 3375216,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-motion-i386.o": {
+      "sha256": "84bc6508cfbde417f9b6260a78f77d7ea7f91400810821d63f8e23096c4721de",
+      "bytes": 12616651,
+      "retained": false
+    },
+    "analysis/work/mission-world-20261103/human-ground-motion-app-link.log": {
+      "sha256": "bff3851ae388976c1f532e9eb82c6bc155a77bbabed1f78508550e3fbf4f17b1",
+      "bytes": 547,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/human-ground-motion-tracker.log": {
+      "sha256": "e0c03c3f86cb4d62731229731b4ccff21aaeb994b90c04e625d05f3fde119971",
+      "bytes": 943,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00766050.c": {
+      "sha256": "3b9f303d641f4cddfe4f07b1140275a4b4c5ed8d3acebd16b72928ba92bc1215",
+      "bytes": 15194,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00766050.json": {
+      "sha256": "5b3aa81b9bfafcd433bf1379b1de10bc1f347395fbcc0401bef99eaa01df7aaf",
+      "bytes": 78309,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00766f10.c": {
+      "sha256": "78a44757538f13623f20cb446021fbc276ccfe46c5fd4ef80efdd7b335ad9093",
+      "bytes": 2530,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00766f10.json": {
+      "sha256": "83d630784e1a2baaf7ff40c31bc6e0ba0bb44dd364d92c7582f365cfcac4e913",
+      "bytes": 16155,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/007671c0.c": {
+      "sha256": "7a04ec2cfaa02baa80be10feba3fa22e68d5e6a34287a16eb2fe8ec631a20b4d",
+      "bytes": 3248,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/007671c0.json": {
+      "sha256": "5f9a4cd90c878abeeba0809064751d0e422e5b3d39de16ac8e38509b8c2955a3",
+      "bytes": 20051,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00767530.c": {
+      "sha256": "4911d35b04899da317e6f40ac95ea5202093b0077d8dd234a17a3fc8af19d5bf",
+      "bytes": 9622,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00767530.json": {
+      "sha256": "4b5cdf68ae8a553e244e105a89f0a94dca9354e28571feb580dd22259fffeaaa",
+      "bytes": 37400,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00788600.c": {
+      "sha256": "b7877020c5e22af85714c5bbcd791a5d41529c3095c8b1dfb45457b79c93d0f3",
+      "bytes": 1849,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00788600.json": {
+      "sha256": "769c1eb56c5e53ae6bf39678483673741d523cfec77a53baeaa8b73233cb6562",
+      "bytes": 4567,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00789bc0.c": {
+      "sha256": "702458ea6542f212539f1558b8fd1f82290fa559bec1f74404c87e79c4e9d7f5",
+      "bytes": 703,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00789bc0.json": {
+      "sha256": "cec16a7759575ac7e2647cec7e642d5bf2a4a393ede7dbee5391ff7cfb147034",
+      "bytes": 3550,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/0076ac80.c": {
+      "sha256": "5992aa60f41ad0f0676e21a4af189c96aae0742446f4dbe70fcec46f1c63f1b4",
+      "bytes": 1819,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/0076ac80.json": {
+      "sha256": "640b3c0b97083ae460b5fa135e7abb514260171a22e9c2be8882285083889d42",
+      "bytes": 8074,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/0074ea80.c": {
+      "sha256": "dcf5656f54242767fd7e32bfb009e59769f4ed289b7fd5801300051f981ecfee",
+      "bytes": 4731,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/0074ea80.json": {
+      "sha256": "957a10f1fa74d8aab6597dfbfb2a7430b754806f739350e5258dd254bd989f36",
+      "bytes": 20225,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/0075f180.c": {
+      "sha256": "15e09be4b6fe30fc27fae350609b03f1cef406ff15a61ee10d764f0336237f6e",
+      "bytes": 1051,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/0075f180.json": {
+      "sha256": "ab47e8fc06a6561b6feb5049539e7c4e40ebcfc257d5f32e8fa4b56f0f0f9e94",
+      "bytes": 3921,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/0075c940.c": {
+      "sha256": "2f62cce5712b9507d2a98331353961211685a1847de90a02686b644dad3833d2",
+      "bytes": 188,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/0075c940.json": {
+      "sha256": "1743360700709e8c6bfb3205f8fcacaae656ce46bd3190a87af7bb5967a4d98b",
+      "bytes": 1388,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/007671c0.asm": {
+      "sha256": "a3b05483aea783cdca81e214e887229519b13a07e50e6a1f192e295fd541cfac",
+      "bytes": 13731,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/00766f10.asm": {
+      "sha256": "7d45ab2f15b8c3fc2d185ccfab32829006d33e5f600f99a7756546c00acb2eb9",
+      "bytes": 10754,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers/0076ac80.asm": {
+      "sha256": "1616b42d33e40454ddce4f0ef85f7a2f7b8c2fa7d383bb4013b1f395dcb2bffb",
+      "bytes": 6998,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-collision-workers.log": {
+      "sha256": "ddfbdc0eeb4c71d0a3040436712020186fbf7ea2819bd9b7c7038cf0a03ffb9e",
+      "bytes": 5322,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/0071baf0.c": {
+      "sha256": "d1595080648f3e731fac0432f74dda052489d0629c92ce199c935690a5c1dfd0",
+      "bytes": 14776,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/0071baf0.json": {
+      "sha256": "5a224dfd2e884acff1922c764962129203208c0bbeb5282b676e9acde5b98d07",
+      "bytes": 70199,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/0071c7d0.c": {
+      "sha256": "0c65522f3a77d3e5cec67ac1d8005d6d1e8b8fc54914a205fb543db251acb569",
+      "bytes": 23093,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/0071c7d0.json": {
+      "sha256": "0baa31723f3d7a809bc7130fea72aecb884d65474bf7526431176c412c1d9d76",
+      "bytes": 116940,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/00789b00.c": {
+      "sha256": "f747df731181696eede4faef47e169a1354f4b77a2120b62181df805b2b70722",
+      "bytes": 819,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/00789b00.json": {
+      "sha256": "e420967b6276b483d3dc8f96fe207374b4037689c1229c16fcc5b785fbe7f5dd",
+      "bytes": 4021,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/00770c30.c": {
+      "sha256": "f8052794d1311c359057572424f14ad4cff47c8a90107b41155e24f5df42cb97",
+      "bytes": 4869,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/00770c30.json": {
+      "sha256": "cd65b68c7fe2ce8b72971d6e5275607efa07942681f8174e4a6668e7be55dc03",
+      "bytes": 23571,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/00770b90.c": {
+      "sha256": "de1f48cca8981376fecdb204c10defea7ee26801c09e89ef5d0e7d1deb619d3b",
+      "bytes": 755,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/00770b90.json": {
+      "sha256": "381048cf903c9af15ce7a5440ba7bd9945bb2c2d0beed58a96fafc0b900126f4",
+      "bytes": 2870,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/006fcda0.c": {
+      "sha256": "0789128b71f514a0f9f5349879e614444fff13c629ab8a370d4c1d9ece41ac35",
+      "bytes": 5342,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/006fcda0.json": {
+      "sha256": "6b6aa19a83950b6e703b86f6b892399d506f84d27c2d35f006d919d7090311f9",
+      "bytes": 29377,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/0075eee0.c": {
+      "sha256": "195564557401edb9270d1169b9e58cbfe5f9a3d5fa28f2572f12b94ceacf5cad",
+      "bytes": 2286,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/0075eee0.json": {
+      "sha256": "70444ab97198ed6a4bc32c9e08181f11a69466909fa536e2efdc2778430f7096",
+      "bytes": 11297,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/0071baf0.asm": {
+      "sha256": "089a8a884f1491db517329218db4ffc0c006d01dfef91536e346aba5351850dd",
+      "bytes": 45300,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/0071c7d0.asm": {
+      "sha256": "beb6411bf85d679938998e8f782c26c70d3dba25259a4b44847918e9695533e6",
+      "bytes": 74119,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere/00789b00.asm": {
+      "sha256": "b8bd1fca857f545de29781060581f552adfc3ae169a2becd23fa0da4fb83b001",
+      "bytes": 3304,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-multisphere.log": {
+      "sha256": "ae391600d421141d9b390a11d0cc151932f96263fa89e939971834ab8da08767",
+      "bytes": 5007,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-water-fall/005a97c0.c": {
+      "sha256": "66706ee912c8cc3e0f1eb53a4de18cbed11b397d15cde3d3a982291ad50e8e57",
+      "bytes": 472,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-water-fall/005a97c0.json": {
+      "sha256": "e8282213f6bb8ad777482f6c0a303410ea4ef06cff17a38d1558d6b070578e68",
+      "bytes": 2795,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-water-fall/00781150.c": {
+      "sha256": "d391d4a10f99048d426ef8a010bf75df25c6f8cc816a5d52fb54a3bbd05a6c7d",
+      "bytes": 1303,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-water-fall/00781150.json": {
+      "sha256": "b22a7d27cfade873649393796b64bb667655437c8462e9073ec5652274ee78cf",
+      "bytes": 5001,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-water-fall/007e67d0.c": {
+      "sha256": "ffcbfbc8b43b9af9963804e94b461e6a78ef18e32e90647235c7434c80ea4d47",
+      "bytes": 112,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-water-fall/007e67d0.json": {
+      "sha256": "66f8e0c8c8ea17a8d4f084b94bdd06f257fc558e5eb199635dfdcdb19073d27b",
+      "bytes": 1545,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-water-fall/00781150.asm": {
+      "sha256": "818bc2bb72d83afbc2d2df8456b02d6124a198967cb6c102a4c833fc2335d4de",
+      "bytes": 4007,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-water-fall.log": {
+      "sha256": "1e2f329fa4f16b92d1d0918856037cc9d9c0817c4305df98ce3a3a7cd0547874",
+      "bytes": 4594,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-contact-actors/005eb1d0.c": {
+      "sha256": "19c30e031d41423367783c3f1597af84c3929e4a1590a7f72b8ed4392b86aebd",
+      "bytes": 7764,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-contact-actors/005eb1d0.json": {
+      "sha256": "fa97b61320fb25afa519a207f7bed76977cb6acdebb16a25f7df0e9ae3969bb7",
+      "bytes": 38546,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-contact-actors/005eb1d0.asm": {
+      "sha256": "cd099a483a1e97cb7497fb868db149bac8e83d5aeeb9d5015adf63f001d0e75f",
+      "bytes": 27750,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-contact-actors.log": {
+      "sha256": "ed9d9a2bd4041a92d538ea72ea3ba0308f497c640a71e75edd2d40cf4baba56b",
+      "bytes": 4392,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/007646f0.c": {
+      "sha256": "a5f86933b29369cdfb89973297561957c6657c5b0c9efb06a7f47e25b6403978",
+      "bytes": 30299,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/007646f0.asm": {
+      "sha256": "d9f1b31b84825572d3e4c4b5b31f7b803181317c535c05797b2a8fc7407a34b5",
+      "bytes": 94550,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ground-motion/00768230.c": {
+      "sha256": "3a89ef7db0501ebf1913c985fca4595005b255f1e1b43771fc47903aa7bcaa73",
+      "bytes": 12113,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ladder-movement/00788840.c": {
+      "sha256": "56dc9d5deed26abb4a491e96178522936a11806b4249d054034f04ad106ed7f5",
+      "bytes": 6258,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/frame-human-ladder-movement/00788840.asm": {
+      "sha256": "7c6047ce7c28b1c1c0d544d475e4045e8ac4a160a2dbdf0f6fddd65767be49a3",
+      "bytes": 20755,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/car-actor-dm-water-required/006fd7e0.asm": {
+      "sha256": "72f829bb0aac9065201be95b14af229ec69346e8abfda1bd9f9e9e9e37c01811",
+      "bytes": 8790,
+      "retained": true
+    },
+    "analysis/work/mission-world-20261103/loading-module-dependencies/0071f9b0.c": {
+      "sha256": "6bec98d3c1a0924be2f673e23db1d28247dd6330c985e5f00a8f157010ebd15a",
+      "bytes": 782,
+      "retained": true
+    }
+  }
+}

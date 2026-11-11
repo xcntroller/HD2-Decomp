@@ -41,6 +41,22 @@ public:
         else if(state_.template get<std::int32_t>(0x24)==-1)
             state_.set(0x24,static_cast<std::int32_t>(random_()%human_face_delay_range)+human_face_delay_base);
     }
+    void frame_running(bool running,bool bounded,float animation_scale){ //00781150, SAME face38/3C used by007816B0.
+        const auto current=state_.template get<std::int32_t>(0x38);
+        if(current==-1){
+            if(running){state_.set(0x38,state_.template get<std::uint32_t>(0x3c));state_.set(0x3c,0u);}
+            return;
+        }
+        if(running)return;
+        const auto onset=8500.L/animation_scale;
+        auto recovery=current<onset?truncate(onset):current;
+        if(bounded&&recovery>onset+101.f)recovery=truncate(onset+101.f);
+        else{
+            const float limit=static_cast<float>(onset+1000.f);
+            if(recovery>onset&&recovery<limit)recovery=truncate(limit);
+        }
+        state_.set(0x3c,recovery);state_.set(0x38,std::int32_t{-1});
+    }
     void equipment_primary_command(std::uint32_t value){state_.set(0x78,value);} //00781300.
     void equipment_secondary_command(std::uint32_t value){state_.set(0x64,value);} //007812F0.
     template<class Pool>void close_sound(Pool& pool) { //00780AB0, typed native7C owner.

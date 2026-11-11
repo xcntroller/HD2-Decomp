@@ -24664,11 +24664,12 @@
       "program": "client",
       "entry": "006fcda0",
       "status": "partial",
-      "coverage": "Actual no-output water segment wrapper using SAME tree and static Y/Z/X cell traversal.",
+      "coverage": "Actual water segment and optional hit position/normal using SAME static tree Y/Z/X traversal, original triangle/83 identities and retained no-output caller behavior.",
       "limitations": "Point/normal output modes and original ABI excluded; no dynamic query invented.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/collision_water_queries.h"
+        "recovered/game/collision_water_queries.h",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
       ]
     },
     {
@@ -24686,11 +24687,12 @@
       "program": "client",
       "entry": "006fd7e0",
       "status": "partial",
-      "coverage": "Actual family83 inverse local plane segment, strict parameter and inclusive rectangle bounds; other families return false.",
+      "coverage": "Actual family83 inverse local plane segment, strict parameter/inclusive rectangle bounds and requested world-normal rotation. Other families return false.",
       "limitations": "Point/normal output modes excluded; transform engine calls delegated.",
       "evidence": [
         "analysis/car-activation-loading.md",
-        "recovered/game/collision_water_queries.h"
+        "recovered/game/collision_water_queries.h",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
       ]
     },
     {
@@ -30875,7 +30877,7 @@
       "program": "client",
       "entry": "00768230",
       "status": "partial",
-      "coverage": "Actual shared Ladder motion routing, track displacement, posture sweeps, accepted/rejected exit ordering, bottom impulses, equipment/occupant retirement and transition clamp. Positive0076B670/0074A690/00788840 remain required.",
+      "coverage": "Actual shared Ladder motion routing, track displacement, posture sweeps, accepted/rejected exit ordering, bottom impulses, equipment/occupant retirement and transition clamp. Shared0076B670 and00788840 coordination is supplied. Positive0074A690 and derived Human contact endpoints remain required.",
       "limitations": "Source-only typed owner/STL/RAII adaptation. Required positive contact, exit-preparation, collision-response, nonoffline command and AI traversal workers remain open, as do application integration and user mission desktop acceptance. Original object/allocator/SEH ABI, undefined padding/malformed data and delegated engine bodies are excluded. No whole-body equivalence claim.",
       "evidence": [
         "recovered/game/human_ladder_control.h",
@@ -31004,6 +31006,246 @@
         "recovered/game/human_direction_replay.h",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ground-direction-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0071baf0",
+      "status": "partial",
+      "coverage": "Standing multisphere horizontal sweep selection, raised-pose restart, contacted-Human descriptor retention, plane sliding and signed vertical tail using actual tree/bucket queries.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/collision_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0071c7d0",
+      "status": "partial",
+      "coverage": "Prone/floor multisphere horizontal restart, reverse vertical selection, side-obstacle probes, three slide attempts and raised fallback with retained actual identities.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/collision_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00766050",
+      "status": "partial",
+      "coverage": "Actual DD0 posture request, masks/radius changes, shared iteration budget, standing/prone solver selection and supported-floor normal publication with exclusion cleanup. Simple remote-pose query remains required.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_collision.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007646f0",
+      "status": "partial",
+      "coverage": "Actual DD0 walking coordinator, projection/slope gate, impulses, stationary support, multisphere queries, material/contact/fall routing, dynamic position and stall handling, water polling and original boolean hit result. Required positive projection, dynamic geometry and derived contact receivers remain explicit.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00766f10",
+      "status": "partial",
+      "coverage": "Actual smoothed slope amount, stance multipliers, shared track playback rate and destination interpolation with original clamp thresholds.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007671c0",
+      "status": "partial",
+      "coverage": "Actual selected ground-normal adjustment, motion alignment, DD0 slope value and ordered shared playback/destination correction.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00788600",
+      "status": "partial",
+      "coverage": "Reverse actual contact selection with primary/prone sphere filtering, signed-normal transition suppression and native steep/identity result conventions.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00789bc0",
+      "status": "partial",
+      "coverage": "Actual piecewise fall displacement with retained extended speed and 85ms phase boundaries, original velocity increment and remainder truncation.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075c940",
+      "status": "partial",
+      "coverage": "Actual contact high-byte material extraction bounded by the SAME loaded0071F9B0 hdmaterials definition count.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0074ea80",
+      "status": "partial",
+      "coverage": "Actual shared water maximum gate, upward water-only segment, retained surface/depth, downward floor segment, posture thresholds and E0 feedback. Positive attachment retirement remains required.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0076ac80",
+      "status": "partial",
+      "coverage": "Actual water-entry fall completion, shared breathing transition, forced E0 animation/mode/feedback, hidden equipment and animation-scaled track impulse/delay.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00781150",
+      "status": "partial",
+      "coverage": "Actual running/recovery handover, animation-scale onset and bounded recovery clamps over the SAME face state used by presentation.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_face_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00789b00",
+      "status": "partial",
+      "coverage": "Actual 85ms velocity/phase advancement and falling-flag drag with native minimum speed.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00770c30",
+      "status": "partial",
+      "coverage": "Actual final/nonfinal fall thresholds, retained height, water-surface lethal-damage recheck, authority/health gates and capped damage or packet routing. Required actual damage/packet receivers remain explicit.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00770b90",
+      "status": "partial",
+      "coverage": "Actual fall completion order, E0 fallback command, positive landing voice gate and falling/velocity/phase/predicted-ground reset.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00767530",
+      "status": "partial",
+      "coverage": "Actual fall-state water probing, speed/phase/height update, lower floor and sphere probes, predicted ground classes, no-hit displacement and queued posture-specific fall animations.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075eee0",
+      "status": "partial",
+      "coverage": "Actual material threshold, five damage families, retained hazard ID, tick-gated surface effects and genuine ordinary-material return. Positive damage/effect endpoints remain required.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0075f180",
+      "status": "partial",
+      "coverage": "Actual material-processing flags, direct identity handling and reverse contact traversal with native three-slot duplicate suppression. Incidental native EAX is unused.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ground_motion.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005eb1d0",
+      "status": "partial",
+      "coverage": "Actual Ladder contact eligibility with assembly-confirmed down-nearest/equal selection, motion/facing thresholds, pitch request and flag180.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ladder_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00788840",
+      "status": "partial",
+      "coverage": "Actual retained contact filtering, SAME frame userdata/Physics link, Human side result, Ladder eligibility and shared deque append, Door command and actor contact routing. Required derived Human/actor contact endpoints remain explicit.",
+      "limitations": "Source-only typed owner/STL/RAII and query/engine endpoint adaptation. Original ten-sphere/contact storage is bounded and unwritten SIMD/padding lanes are excluded. Simple remote-pose collision, positive Human collision/damage/packet/effect, attachment, dynamic geometry and other frame workers remain required. Original object/allocator/SEH ABI and delegated engine/CRT bodies are excluded. Application integration and user mission desktop acceptance remain open. No whole-body equivalence claim.",
+      "evidence": [
+        "recovered/game/human_ladder_control.h",
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-ground-collision-20261111.json"
       ]
     }
   ]

@@ -4789,3 +4789,10 @@ world remain required. Continue the entire P2.2 checkbox after this checkpoint.
 2026-11-10: [Frame/render source](analysis/frame-render-source.md) now covers offline coordination policies, same-status warming, actual Car/dubbing/HUD ticks, fades, separate overlay owner and volumetric draw leaves. Five focused sanitizer fixtures, strict actual-host i386 and app link pass.20 partials, no complete/desktop promotions; actual full frame services, volumetric visibility/procedural owner and transient/guard integration remain. Continue FULL P2.2.
 
 2026-11-10: [Shared blast-wave process](analysis/blast-wave-process.md) now supplies actual persistent008AED48 storage, positive constructor/update/retirement policies, same collision grid point/radius queries, camera1 and concrete ordered-finish receiver. Focused sanitizers cover callback reallocation/dedup/cleanup, full actual i386 binding and app link pass.11 partials; positive damage/Physics leaves, actual frame/visibility/guard integration and desktop delivery remain. Continue FULL P2.2.
+
+
+2026-11-11. [Human ground collision and fall state](analysis/human-frame-source.md#ground-collision-and-fall-state)
+now connects actual multisphere, material, water/fall and Ladder contact owners.
+Twenty new source partials. Focused native sanitizers, strict actual World i386
+and launcher link pass. Positive damage/contact and frame/application bindings
+remain required. Both P2.2 checkboxes and user mission acceptance remain open.

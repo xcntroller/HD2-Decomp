@@ -722,3 +722,64 @@ publication and collision doubles. Actual World authority/presentation passes
 compiled under strict i386 and the source launcher linked. Ground collision,
 air and other positive receivers remain required. Application loading still
 declines and user mission desktop acceptance remains pending.
+
+
+## Ground collision and fall state
+
+007646F0 now coordinates DD0 walking through the actual physical, AC0, E0,
+track, Human and loaded World owners. 00766050 constructs real posture sphere
+requests, masks and radius adjustments. Shared process84411C iteration budget
+and983340 ground normal remain with the persistent Human physics process.
+0071BAF0 and0071C7D0 supply standing and prone/floor multisphere resolution,
+including raised restarts, descriptor identity retention, plane slides, reverse
+vertical probes and fallback ordering. The native ten-sphere/contact storage
+is bounded in source. Unwritten SIMD/padding lanes remain excluded.
+
+00788600 selects actual retained normals. 00766F10/007671C0 supply smoothed
+slope playback and position adjustment. 00789BC0/00789B00 preserve the original
+85ms fall integration and remainder truncation. 00767530 supplies actual
+water/fall state, predicted lower-ground classes, no-hit motion and queued
+posture-specific landing animations. 00770C30/00770B90 preserve ordered damage,
+water-surface lethal recheck, voice gates and fall-state reset. Positive damage,
+packet, landing voice and surface effects remain mandatory real receivers.
+
+The water-only006FCDA0 query now returns actual position/normal and static
+identity for triangles and83 rectangles. Existing boolean callers retain their
+no-normal-query path. Rectangle normals use the original world-matrix rotation.
+0074EA80 binds this query and the actual downward floor ray to retained water
+height/depth, E0 feedback and posture gates. 0076AC80 uses the same face, E0,
+equipment and track owners for water entry. 00781150 now supplies the running/
+recovery handover over the actual face38/3C state used by007816B0.
+
+0075C940 reads material IDs against the existing0071F9B0 process table count.
+0075EEE0/0075F180 preserve genuine ordinary-material returns, five damage families,
+tick-gated effects and reverse three-slot duplicate suppression. Physical754 is
+now a typed borrowed tree/descriptor identity. Sight observes this same field
+and still requires its positive GEffects material receiver.
+
+00788840 now filters actual contacts and frame userdata, forwards Physics
+through the existing shared module2 contact link, selects Human side results,
+queues accepted Ladder requests and invokes the actual Door command. Derived
+Human5C, Ladder acceptance, actor58 and damage endpoints remain required.
+Ladder sweep contacts preserve hit position, zero request displacement and
+interaction flag1 from00768230. 005EB1D0 eligibility uses assembly-confirmed
+down-nearest/equal selection, flag180, pitch and motion/facing thresholds.
+The previously required0074A690 top-exit preparation remains open.
+
+[Verification receipt](checkpoints/p2.2-human-ground-collision-20261111.json).
+Native ASan/UBSan/LSan exercised standing/prone query order, restarts, identity
+retention, slope/gravity, query-failure cleanup, actual walking entry, triangle/
+rectangle water outputs and retained boolean calls, water entry, damage gates,
+material duplicate suppression, actor/Ladder contact and actual face recovery.
+Actual state/face/water-query owners used explicit frame, collision, equipment
+and unresolved-positive-receiver doubles. Actual World authority/presentation
+passes compiled under strict i386 and the source launcher linked.
+
+The simple remote-pose branch of00766050 remains an explicit required failure.
+Projection through B0+58 and dynamic ground publication through CE8/DB4 and the
+scene144 callback still require their concrete receivers. Air, interaction,
+floor, remaining animation/geometry, B0 and containing application integration
+remain open. Both P2.2 checkboxes remain open and no mission desktop test has
+occurred. Original bodies are in WORK `frame-human-ground-motion`,
+`frame-human-ground-collision-workers`, `frame-human-ground-multisphere`,
+`frame-human-ground-water-fall` and `frame-human-ground-contact-actors`.

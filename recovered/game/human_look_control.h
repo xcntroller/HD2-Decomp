@@ -232,7 +232,8 @@ public:
         state_.set(0xb0,std::uint8_t{0});state_.set(0xbc,std::int32_t{-10000});state_.set(0xc0,0u);
     }
     void clear_control_frame_commands(){state_.set(0x40,0u);}
-    void mark_direction_frame_feedback(){state_.set(0xcc,state_.template get<std::uint32_t>(0xcc)|4u);} //0076CFE0.
+    void mark_frame_feedback(std::uint32_t flags){state_.set(0xcc,state_.template get<std::uint32_t>(0xcc)|flags);}
+    void mark_direction_frame_feedback(){mark_frame_feedback(4u);} //0076CFE0.
     void force_frame_commands(bool enabled){state_.set(0xb0,static_cast<std::uint8_t>(enabled));}
     template<class Publish>void control_movement_mode(std::uint32_t kind,bool enabled,Publish& publish){ //0075CD50.
         if(!control_)throw std::logic_error("Human movement-mode command requires actual DD0");
