@@ -8,6 +8,7 @@
 #include "game/session_local_packets.h"
 #include "game/session_application_commands.h"
 #include "host/application_command_lock.h"
+#include "host/game_console.h"
 #include "game/session_packet_world.h"
 #include "game/blast_wave_process.h"
 #include "game/human_projection_process.h"
@@ -228,6 +229,7 @@ public:
         if (phase_ == Phase::closed) return;
         phase_ = Phase::closed;
         frontend::CleanupErrors errors;
+        console_.reset(); //Stop the process console's window callbacks before retiring its borrowers.
         //0072E460 final reset is required even after status4 reset. Failed
         // pre-device acquisition instead abandons only acquired native locks.
         errors.attempt([&] {
@@ -726,6 +728,7 @@ public:
         errors.rethrow();
     }
     void control_phase(std::uint32_t milliseconds,bool fixed){
+        if(console_)console_->rethrow_failure();
         if(source_packet_path())local_packets_.phase(fixed);else control_frame_.phase(milliseconds,fixed);
     }
     void control_maintenance(std::uint32_t milliseconds){
@@ -743,6 +746,21 @@ public:
         application_commands_.enqueue({kind,first,second,target},gate_,*this);
     }
     void drain_application_commands(){application_commands_.drain(*this);}
+    void bind_application_console_owner(void* owner,std::function<bool()> route,std::function<void()> close){
+        if(application_console_owner_||!owner||!route||!close)throw std::logic_error("Invalid application console owner binding");
+        application_console_route_=std::move(route);application_console_close_=std::move(close);application_console_owner_=owner;
+    }
+    void unbind_application_console_owner(void* owner)noexcept{
+        if(application_console_owner_!=owner)return;
+        application_console_owner_=nullptr;application_console_route_={};application_console_close_={};
+    }
+    bool application_log_to_console(){ //006C4B40: configuration170 FIRST, then current application state12/210.
+        if(game_configuration().flag170)return true;
+        if(!application_console_route_)throw std::logic_error("Application log requires its actual current-state owner");
+        return application_console_route_();
+    }
+    void append_game_console(const std::string& text){game_console().append(text);}
+    auto take_game_console_command(){return game_console().take_command();}
     void flush_application_command_packets(std::uint32_t elapsed){local_packets_.flush(elapsed);}
     auto& begin_application_command(std::uint32_t target,std::uint32_t kind){ //0072BDE0/0072BE00 local=true, priority0.
         if(target)throw std::runtime_error("Application command requires actual targeted scratch/transport receiver");
@@ -782,6 +800,13 @@ public:
         }
     }
 private:
+    GameConsole& game_console(){ //0069F1E0, publish before Win32 CreateWindow re-entry.
+        if(!console_)console_=std::make_unique<GameConsole>([this]{
+            if(!application_console_close_)throw std::logic_error("Console close requires the actual current application state");
+            application_console_close_();
+        });
+        console_->open();return *console_;
+    }
     template<class Api>game::SteamIntegrityResult steam_window_probe(game::SteamIntegritySite site,Api api){
         return game::steam_integrity_window_call(*this,site,[&]{
             using Window=HWND (WINAPI *)(EngineFrame*);
@@ -875,6 +900,8 @@ private:
     ControlStartupServices lock_services_;
     ApplicationCommandLock application_command_lock_;
     game::SessionApplicationCommands application_commands_; //SAME process lifetime, survives World unbind.
+    std::unique_ptr<GameConsole> console_;void* application_console_owner_=nullptr;
+    std::function<bool()> application_console_route_;std::function<void()> application_console_close_;
     frontend::ProfileSelectionWords profile_words_;
     frontend::LocalizedTextCache text_;
     std::uint32_t gate_ = 0;

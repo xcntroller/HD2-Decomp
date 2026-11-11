@@ -336,6 +336,17 @@ public:
     LaunchServices(host::StartupSession& startup, host::MenuDriver& driver, HMODULE module,
                    host::Graphics* graphics, HWND window, host::BorrowedGraphicsInput& keyboard)
         : startup_(startup), driver_(driver), module_(module), graphics_(graphics), window_(window), keyboard_(keyboard) {}
+    ~LaunchServices(){startup_.unbind_application_console_owner(this);}
+    template<class Controller>void bind_controller_console(Controller& controller){
+        startup_.bind_application_console_owner(this,[&controller]{
+            auto* state=controller.active();
+            if(state&&state->type()==12)throw std::runtime_error("Application12 console route requires its actual210 field producer");
+            return false; //Actual absent/non12 state skips the210 read.
+        },[&controller]{
+            auto* state=controller.active();if(!state)throw std::logic_error("Console close has no current application state");
+            state->status(4);
+        });
+    }
     std::uint32_t application_flags() const { return startup_.application_flags(); }
     bool application_input_enabled() const { return startup_.application_input_enabled(); }
     void initialize_mouse(std::uint32_t flags) { startup_.initialize_mouse(flags); }
@@ -580,6 +591,7 @@ int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int widt
         auto& keyboard = owners.keyboard.emplace(startup.graphics(), module);
         auto& services = owners.services.emplace(startup, driver, module, graphics.graphics(), graphics.window(), keyboard);
         auto& controller = owners.controller.emplace(services);
+        services.bind_controller_console(controller);
         if (!controller.start(false)) throw std::runtime_error("Controller application preparation failed");
         startup.complete_steam_controller_integrity();
         host::FrameClockPlatform clock_platform;

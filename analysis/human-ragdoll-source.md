@@ -702,3 +702,76 @@ Next: reached0072F2F0 scalar publication and actual006C4B40/0069F1E0/00744870
 console/application lifetime, then containing reaction/frame/failure/re-entry/
 retirement. Ordinary non7 metadata/peer3C/transport remain required. The full
 selected checkbox, P22-HUM, application integration and desktop acceptance remain OPEN.
+
+### Reached peer logging and console source lifetime — 2026-11-11
+
+0072F2F0 now uses actual process record00, preserving its genuine absent-transport
+return. Authority publishes scalar application17(reason,peer) BEFORE localization
+or logging. Reasons0/1/2/3 use22AB/22AA/22AD/22AC; default retains the native
+`%s kicked because unknow(new?) reason` spelling. The peer name is read after
+publication. This producer does **not** remove/close the peer or its Human;
+actual received17 and remote transport remain required. Failure in text/logging
+retains the already queued scalar record. Native undefined bounds/varargs reject.
+
+006C4B40 first reads actual config170; true selects console directly with only
+the first name formatter. Otherwise the SAME application controller's actual
+current state is queried. Absent/non12 skips210, while kind12 explicitly requires
+its unreconstructed210 producer. A genuinely absent published game returns;
+an existing game invokes0069BF70 with white text, choosing actual HUD or console
+by mode2. Preserve this second zero-argument formatter ONLY on the game route;
+dedicated console retains first-stage percent bytes. Damage still uses its two
+format stages; rank uses its native fixed string assembly. All three nonrender
+message paths now reach the same actual console owner, with no terminal substitute.
+
+0069F1E0 lazily publishes a process GameConsole BEFORE actual Win32 creation,
+matching reentrant CreateWindow callbacks.00744340 supplies distinct48 lock,
+owned output/submitted input and initial `>` at0083686C.00744870 copies caller
+text before48, prepends newest output, caps100 by releasing oldest, unlocks then
+invalidates the HWND.00744A00 first enqueues submitted input, then copies output,
+then resets prompt;007447B0 transfers oldest owned input or genuinely returns
+empty.00744800 uses the low byte, Enter/backspace, native50-byte length gate
+(including prompt), and input redraw. Empty backspace's native underflow rejects.
+
+Actual00744C60 Win32 class/window/font calls,00744640 window dispatch and
+00744B80 GDI paint are reconstructed but absent frozen, so receive **zero** new
+credit. Class WndConsole/styleB, title `Hidden & Dangerous II Console`, window
+10EE000D/480×360,10-point bold Courier, native scroll-height/thumb handling,
+paint's bottom*2-offset-17 and12-pixel upward lines are preserved. WM_CLOSE sets
+actual current application status4; it does not destroy/post quit.00744A70 uses
+original511-byte space padding/backgroundC0C0C0 and releases its DC. Its native
+auxiliary callback vector64 is constructor-empty; no positive producer is exposed.
+The window boundary catches callback exceptions and the actual control phase
+rethrows them, rather than losing a required failure across CALLBACK ABI.
+
+Source RAII intentionally reclaims acquired HWND/font before retiring callback
+dependencies and frees pending typed input strings; native00744490 does not
+destroy HWND/font and erases pending input nodes without freeing their buffers.
+This ownership adaptation is explicit, not original allocator/SEH equivalence.
+The console owner outlives World exit. Actual application controller borrowers
+unbind before retirement. Console input parser/containing non7 frame consumers
+and kind12/210 remain required; exposing its FIFO is not command execution.
+
+Research index preceded focused rollback/read-only ABI exports in MAIN WORK
+`human-console-owner-abi`/`human-console-window-abi`; both export logs complete
+without ERROR. Correct0069F1E0 is no-argument/pointer-returning, not the old
+decompiler's thiscall(void*,text) prototype.008165E8's base console table has two
+slots;00744FA0/00744FC0 belong to the NEXT transport class, not console teardown.
+Their exploratory export receives no source/function credit. Raw window dispatch
+is retained in `human-console-window-procedure.asm`.
+
+Focused `human-peer-console-native.log` passes ASan/UBSan/LSan over actual typed
+console text/FIFO and peer producer: copy lifetime, cap100/order, FIFO/prompt/byte
+limit, unlock-before-invalidation, failure prefixes, exact reason IDs and route
+format differences, plus100 lifetimes. Win32/GDI/transport/OS locks are explicit
+boundaries, not desktop evidence. The changed damage formatter's existing focused
+audit also passes. Strict actual World i386 passes in
+`human-peer-console-host-i386.log`; launcher AND startup probe compile/link pass
+sequentially in `human-peer-console-application-i386.log` with actual GDI import
+library. No Windows output or original binary was executed.
+[Receipt](checkpoints/p2.2-human-peer-console-20261111.json) adds ten client partials,
+extends four; totals34 complete/2592 partial. No complete promotions.
+
+Continue reaction-specific authority packet admission/publication, actual non7
+metadata/peer3C/transport dependencies and the containing Human frame/failure/
+re-entry/retirement boundary. Full selected checkbox remains OPEN; no application
+mission integration or user desktop acceptance is claimed.

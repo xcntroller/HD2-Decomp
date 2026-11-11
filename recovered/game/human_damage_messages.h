@@ -10,7 +10,7 @@ namespace hd2::game {
 //005A4600's two string arguments, then0069BF70's second zero-argument
 //formatter. Reject native buffer overflow or a conversion without its actual
 //argument, like the existing speech formatter; do not read unwritten stack.
-inline std::string format_human_damage_text(const std::string& format,const std::array<std::string,2>& arguments){
+inline std::string format_human_damage_arguments(const std::string& format,const std::array<std::string,2>& arguments,unsigned provided=2){
     if(format.size()>=512)throw std::length_error("Damage message format exceeds native buffer");
     unsigned strings=0;
     for(std::size_t n=0;n<format.size();++n)if(format[n]=='%'){
@@ -19,16 +19,22 @@ inline std::string format_human_damage_text(const std::string& format,const std:
         while(n<format.size()&&(format[n]=='-'||format[n]=='+'||format[n]==' '||format[n]=='#'||format[n]=='0'))++n;
         while(n<format.size()&&format[n]>='0'&&format[n]<='9')++n;
         if(n<format.size()&&format[n]=='.'){++n;while(n<format.size()&&format[n]>='0'&&format[n]<='9')++n;}
-        if(n>=format.size()||format[n]!='s'||++strings>2)throw std::runtime_error("Damage format requires an unprovided native vararg");
+        if(n>=format.size()||format[n]!='s'||++strings>provided)throw std::runtime_error("Damage format requires an unprovided native vararg");
     }
     std::array<char,1024> bytes{};const auto count=std::snprintf(bytes.data(),bytes.size(),format.c_str(),arguments[0].c_str(),arguments[1].c_str());
     if(count<0||static_cast<std::size_t>(count)>=bytes.size())throw std::length_error("Damage message exceeds native first formatter buffer");
-    std::string message;for(std::size_t n=0;n<static_cast<std::size_t>(count);++n){
-        if(bytes[n]=='%'){if(n+1>=static_cast<std::size_t>(count)||bytes[n+1]!='%')throw std::runtime_error("Damage message has undefined native second-format conversion");++n;}
-        message+=bytes[n];
+    return std::string(bytes.data(),static_cast<std::size_t>(count));
+}
+inline std::string format_human_game_message(const std::string& text){ //0069BF70 with no varargs; used ONLY on game-message route.
+    std::string message;for(std::size_t n=0;n<text.size();++n){
+        if(text[n]=='%'){if(n+1>=text.size()||text[n+1]!='%')throw std::runtime_error("Damage message has undefined native second-format conversion");++n;}
+        message+=text[n];
     }
     if(message.size()>=512)throw std::length_error("Damage message exceeds native game formatter buffer");
     return message;
+}
+inline std::string format_human_damage_text(const std::string& format,const std::array<std::string,2>& arguments){
+    return format_human_game_message(format_human_damage_arguments(format,arguments));
 }
 //005A0DA0. Zone localization precedes source lookup, even for a dead victim.
 //The local-player predicate applies to SOURCE in other-Human branches. Native

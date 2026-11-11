@@ -1,0 +1,249 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "60f43dcc8aa6c4249a94817712324a9e18d8e6ae",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "0069f1e0",
+    "00744340",
+    "00744870",
+    "00744800",
+    "00744a00",
+    "007447b0",
+    "00744a70",
+    "00744490",
+    "0072f2f0",
+    "006c4b40"
+  ],
+  "extended_entries": [
+    "005a0da0",
+    "0069bf70",
+    "0072ee60",
+    "0072fac0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2592,
+  "source_files": {
+    "recovered/Makefile": {
+      "sha256": "0e426df691805d176c9dc4880854c5d5af514bedd8daa16f6c328e93de78805e",
+      "bytes": 9190
+    },
+    "recovered/game/human_damage_messages.h": {
+      "sha256": "569eb604ee4cd1b0ab56ddb07fe6727a75f6a5b6549006e9ce06682038e69390",
+      "bytes": 5714
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "fffcc61ab556a78b37d2a15a1281784bb226e95d846b0d5ac407d5f31aa4ab44",
+      "bytes": 104198
+    },
+    "recovered/host/application_launch.cpp": {
+      "sha256": "3b0133835f857d32b3a3226489f844590f6da6c049b8c1d49961a3f48d9faae3",
+      "bytes": 37111
+    },
+    "recovered/host/startup_session.h": {
+      "sha256": "32d7150f9916ededccb9f06f7fac5e5bdcb00fcd4282c1aac8e18fd2d811a115",
+      "bytes": 59903
+    },
+    "recovered/game/console_text_store.h": {
+      "sha256": "bb1a83338f970069cbdb005048bfba0b76b3350f1c4039d464882b1722ee0cfb",
+      "bytes": 2299
+    },
+    "recovered/game/human_peer_removal.h": {
+      "sha256": "902764d6ed3127c2034e59661a9a2c8335ddb41dc714e200c64ee5d433204337",
+      "bytes": 1224
+    },
+    "recovered/host/game_console.h": {
+      "sha256": "8b221a9d9655fb03f5c18154c33a0e2d83a0d9ca3ee3f3c880d97c3dbc873071",
+      "bytes": 6307
+    }
+  },
+  "checks": {
+    "native": "PASS human-peer-console-native.log and rerun changed formatter in human-damage-messages-native.log ASan/UBSan/LSan;100 console text lifetimes",
+    "actual_i386": "PASS human-peer-console-host-i386.log strict compile only",
+    "launcher_and_probe": "PASS human-peer-console-application-i386.log sequential compile/link with actual GDI import library",
+    "original_or_windows_execution": false
+  },
+  "research": {
+    "human-console-owner-abi": {
+      "0069f1e0.c": {
+        "sha256": "b70d1a2a2ebea735b10e703e9d13d49b4f0b52a58a93635d20d94a2c1be19345",
+        "bytes": 576
+      },
+      "0069f1e0.json": {
+        "sha256": "92ca4434cf4ffc9fd34559fb534846bcbed9ba500937b591a4f893ab4cf1c7cb",
+        "bytes": 3554
+      },
+      "006c4b40.c": {
+        "sha256": "504c0d40bd9f191a1505f1cbdd5201c7a8f6d0e53a87c6fcabfc524c640c5a9b",
+        "bytes": 798
+      },
+      "006c4b40.json": {
+        "sha256": "4ffaf7ec18c6ff8f946ae0c7ba092bb0ba4b6c9d7eeba629a858d9b0dcb2a4ae",
+        "bytes": 4001
+      },
+      "00744340.c": {
+        "sha256": "e3e80ae3dae1da5757857ae03bb7d63f6e029b3fab9c71fc6cdbb907af3fc3d0",
+        "bytes": 2132
+      },
+      "00744340.json": {
+        "sha256": "e9540348c618a873a47f5dd59c6875935d6c1d88391a01619a28f86d27212466",
+        "bytes": 6377
+      },
+      "00744470.c": {
+        "sha256": "cb45fee0da1cb4ce74711dc7ca026f553c84af96da946f107d92031b92a2e7ec",
+        "bytes": 171
+      },
+      "00744470.json": {
+        "sha256": "6111ad81c6d19779c9024ad59b2a09e64d62f541fb41eab5e40d51f469745e24",
+        "bytes": 1250
+      },
+      "00744870.c": {
+        "sha256": "9a06f2c4a698169beacfc82b237ce9c5864f6bea7ca3f987ca299f653897bbeb",
+        "bytes": 1279
+      },
+      "00744870.json": {
+        "sha256": "b9be7561e2e081442c0b5e6ddf9ba4d8a04c4b110ba2406d47dde4c0be71d046",
+        "bytes": 4321
+      },
+      "00744c60.c": {
+        "sha256": "fd681edc6456d1a67c6a95569fc719d4657f181adb2b6081281aa8cd28e81794",
+        "bytes": 1295
+      },
+      "00744c60.json": {
+        "sha256": "f806d5e34805286388e781635e83a681bdf27ebc0525f4f560fe7d955dc2985b",
+        "bytes": 2396
+      },
+      "00744d70.c": {
+        "sha256": "21b3c2a22131f8eeed8f09482cf875f614145a3be68875128c485a67dea813fd",
+        "bytes": 83
+      },
+      "00744d70.json": {
+        "sha256": "b5a90563d98cd48199ecdced9d6b581d7a5a6de30a48c288faa29d0db2d2e56c",
+        "bytes": 411
+      },
+      "00744fa0.c": {
+        "sha256": "e242ba599cafa3c1798369e2d0bb814dc01e86a40e4f387da085efc96ba371f3",
+        "bytes": 171
+      },
+      "00744fa0.json": {
+        "sha256": "36193d461e375f9fe6aa20709f16b8ffc98f333dcf73b4689ed4becfe4fc98be",
+        "bytes": 1250
+      }
+    },
+    "human-console-window-abi": {
+      "00744490.c": {
+        "sha256": "9d575300d0b864c06c59f9c01fd2e74fdd08babce42b1d0e76f915b0b29d7cf0",
+        "bytes": 2282
+      },
+      "00744490.json": {
+        "sha256": "376201d4bed900c29b9ff30a3e5f870b1f8381c34e393f5ea3e7c0614b5700c4",
+        "bytes": 6813
+      },
+      "00744640.c": {
+        "sha256": "e7afa92356b60dae4414aed8e5351691cf63caa39d4694c617be0f235d60b684",
+        "bytes": 1470
+      },
+      "00744640.json": {
+        "sha256": "0e036e3838605abe00a1ce63ec30ed74a61f844756a3205e3a3be849beed435e",
+        "bytes": 5143
+      },
+      "007447b0.c": {
+        "sha256": "dab9dd3f50cb0b6aa2334e22ad53f396d7944c0b38e4d3b77ba5d469f34aeb0b",
+        "bytes": 449
+      },
+      "007447b0.json": {
+        "sha256": "bf3251816bad7fa537953a6dabf84f4b3dce2a6da772e2dc800466883408a513",
+        "bytes": 1057
+      },
+      "00744800.c": {
+        "sha256": "1290abb851fa71fe13556631e2d573ad267d475f3e0990813a15a7ce7b292f9f",
+        "bytes": 870
+      },
+      "00744800.json": {
+        "sha256": "cace5fb0ea07d1d2693ea5c180ca3cd72dd638cfe07b8bf70ebc118a6a01e126",
+        "bytes": 2289
+      },
+      "00744940.c": {
+        "sha256": "45242bceb6992476c6abdb3c5f2b1bcf311ee50f7ff2c55b832426c7bf90ae75",
+        "bytes": 1150
+      },
+      "00744940.json": {
+        "sha256": "3f442c6fa427f018c18b383b0d7be4b3dc5094d5f0708401559ca28d9c12392d",
+        "bytes": 4030
+      },
+      "00744a00.c": {
+        "sha256": "8a82e7575cc34e405dc7a26fab60c0ef174609bbfdb323e6c221cf40e5e859ce",
+        "bytes": 839
+      },
+      "00744a00.json": {
+        "sha256": "5925a6883778b59cd3a477b778c4ad2e1e3e0698d71d224bc7663b3304c3f16b",
+        "bytes": 2167
+      },
+      "00744a70.c": {
+        "sha256": "5af27872d3d77565b64f265178edee8f5965bdd4f68f0267f1e0d5eea2a180ea",
+        "bytes": 1814
+      },
+      "00744a70.json": {
+        "sha256": "b0a4687f6c3c9ccae54dbc957745ce77f21b8b1f44e0e85f13a10a2fc158a4a3",
+        "bytes": 5051
+      },
+      "00744b80.c": {
+        "sha256": "2e23e4cd66dd09a331605128a4a4c4dbf1346943f22bff798dc591f57691612b",
+        "bytes": 1197
+      },
+      "00744b80.json": {
+        "sha256": "a88479b7850f709a9b834f5caa32c8b9857ee2c8c49eb18af3d736f9deb2ff2b",
+        "bytes": 1763
+      },
+      "00744fc0.c": {
+        "sha256": "c069d4c789037729ed276440cc887679ec8b5cae271b97a904ea6a8b48aa9741",
+        "bytes": 1541
+      },
+      "00744fc0.json": {
+        "sha256": "3013719087f7ee7673fd9513332ec896692be8ad1c5526272663045ee3ac0b8f",
+        "bytes": 4123
+      }
+    },
+    "human-console-owner-export.log": {
+      "sha256": "a371945616d452220d3bd416f364ea7901941386e2024743a3927830ce761ead",
+      "bytes": 5146
+    },
+    "human-console-window-export.log": {
+      "sha256": "a54ecddf4c03abae210e4240709e477594970bab94c7e6f8e9c1c073f7fe11f3",
+      "bytes": 5241
+    },
+    "human-console-window-procedure.asm": {
+      "sha256": "ef2ed30fe6be40b224527c89e08f14a4ed8a6556b4a839b0f4d5f6221dca631d",
+      "bytes": 13671
+    }
+  },
+  "temporary_audit": {
+    ".cpp": {
+      "sha256": "d15131b8e9e731b65e6b569fbc3cc3399c735d42bdbc7b4c6f50273971f27d7d",
+      "bytes": 5281
+    },
+    "": {
+      "sha256": "e63606b6e36eb7401964847c97941309792e8afe2fa36ad857c180094c60abfa",
+      "bytes": 974952
+    },
+    ".log": {
+      "sha256": "df84fb88b7b989ff35278e8788f210665f726780f1f15b0a6612827d5572c0b3",
+      "bytes": 205
+    }
+  },
+  "temporary_audit_removed": false,
+  "remaining": [
+    "Actual non7 metadata/admission, ordinary peer3C, remote transport/disconnect and console parser/frame consumers",
+    "Application kind12 native210 owner",
+    "Full containing reaction/frame/failure/re-entry/retirement; application loading and user desktop acceptance"
+  ],
+  "excluded_credit": [
+    "00744C60,00744B80,00744640 are absent frozen; no new credit despite reconstructed Win32/GDI bodies",
+    "00744FC0 is unrelated next-class transport queue teardown; exported for disambiguation only, no source credit",
+    "Positive console auxiliary callback-vector64 producer/receiver is unexposed and required when introduced"
+  ]
+}

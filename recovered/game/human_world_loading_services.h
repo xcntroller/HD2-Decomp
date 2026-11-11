@@ -40,6 +40,7 @@
 #include "game/human_squad_snapshot.h"
 #include "game/human_score_presentation.h"
 #include "game/human_death_objective.h"
+#include "game/human_peer_removal.h"
 #include <algorithm>
 #include <stdexcept>
 
@@ -156,8 +157,16 @@ public:
         auto& human=human_score_actor(actor);auto* state=human_state_owner(human).get();if(!state)return false;state->queue_score_rank(rank);return true;
     }
     void remove_human_score_peer(std::uint32_t identity,std::uint32_t reason){
-        if(!dependencies().startup.game_control_records().records.at(identity).word(0))return; //0072F2F0 genuine absent transport guard.
-        (void)reason;throw std::runtime_error("Friendly-kill removal requires actual0072F2F0 application11/0072A0B0 peer transport receiver");
+        remove_human_peer(dependencies().startup.game_control_records(),identity,reason,*this);
+    }
+    void queue_human_peer_removal(std::uint32_t reason,std::uint32_t identity){dependencies().startup.queue_application_command(17,0,reason,identity);}
+    void emit_human_peer_removal_log(const std::string& text){ //006C4B40, called with SAME current World owner.
+        auto& startup=dependencies().startup;
+        if(startup.application_log_to_console()){startup.append_game_console(text);return;}
+        if(!startup.game_views().owner())return; //Native00698500 genuine absent-game gate.
+        const auto message=format_human_game_message(text);
+        if(!(mode_flags()&2u)){startup.append_game_console(message);return;}
+        dependencies().hud.append_message(message.c_str(),{{255,255,255}});
     }
     template<class Human>void human_damage_score(Human& human,std::int32_t source){score_human_death(dependencies().startup.game_control_records(),static_cast<std::uint32_t>(human.base().id10()),static_cast<std::uint32_t>(source),*this);}
     std::string human_score_rank_label(frontend::ControlStartupRecord& record){ //00725B00, SAME holder4 and definition44.
@@ -170,7 +179,7 @@ public:
         return human_damage_localize((side==1?0x2792u:0x279cu)+record.word(0x54));
     }
     void emit_human_rank_text(const std::string& message,const std::array<float,3>& colour){
-        if(!(mode_flags()&2u))throw std::runtime_error("Nonrendered rank text requires actual0069F1E0/00744870 console window/process owner");
+        if(!(mode_flags()&2u)){dependencies().startup.append_game_console(message);return;}
         dependencies().hud.append_message(message.c_str(),colour);
     }
     template<class Human>void receive_human_score_rank(Human& human,std::uint32_t rank,bool player=true){ //005406C0 case16.
@@ -201,7 +210,7 @@ public:
     }
     void emit_human_damage_text(std::uint32_t id,const std::array<float,3>& colour,const std::array<std::string,2>& arguments){ //005A4600→0069BF70.
         const auto message=format_human_damage_text(human_damage_localize(id),arguments);
-        if(!(mode_flags()&2u))throw std::runtime_error("Nonrendered damage text requires actual0069F1E0/00744870 console window/process owner");
+        if(!(mode_flags()&2u)){dependencies().startup.append_game_console(message);return;}
         dependencies().hud.append_message(message.c_str(),colour);
     }
     template<class Human>void human_damage_packet(Human& human,std::uint32_t kind,std::uint32_t hit,Human& source){human_damage_message(human,kind,hit,source.base().id10());}

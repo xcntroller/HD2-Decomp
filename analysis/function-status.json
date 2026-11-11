@@ -34015,12 +34015,13 @@
       "program": "client",
       "entry": "005a0da0",
       "status": "partial",
-      "coverage": "Original zone/hit/death localized message selection, SOURCE local-player predicate, name evaluation and colors.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "coverage": "Original zone/hit/death localized message selection, SOURCE local-player predicate, name evaluation and colors. Reached nonrender messages now use actual process console owner.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
       "evidence": [
         "recovered/game/human_damage_messages.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
       ]
     },
     {
@@ -34039,24 +34040,26 @@
       "program": "client",
       "entry": "0069bf70",
       "status": "partial",
-      "coverage": "Reached damage second formatting pass and rank fixed string formatting followed by actual rendered HUD message insertion; nonrender console still required.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "coverage": "Reached actual damage/game zero-argument formatting, rank fixed string formatting, actual rendered HUD or nonrender process console publication.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
       "evidence": [
         "recovered/game/human_world_loading_services.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "0072ee60",
       "status": "partial",
-      "coverage": "Actual shared process player/team scores under418, remote-AI and friendly/self deaths, wrapping counters/ranks and unlock-before-peer-removal ordering.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "coverage": "Actual shared process player/team scores under418, remote-AI and friendly/self deaths, wrapping counters/ranks and unlock-before-peer-removal ordering. Reached nonrender messages now use actual process console; friendly peer-removal source now queues scalar17 then actual application log.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
       "evidence": [
         "recovered/game/human_damage_score.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
       ]
     },
     {
@@ -34117,12 +34120,13 @@
       "program": "client",
       "entry": "0072fac0",
       "status": "partial",
-      "coverage": "Actual process418 lock through rank write, local/remote downgrade/promotion captions, colors and HUD publication.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "coverage": "Actual process418 lock through rank write, local/remote downgrade/promotion captions, colors and HUD publication. Reached nonrender messages now use actual process console owner.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
       "evidence": [
         "recovered/game/human_score_presentation.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
       ]
     },
     {
@@ -34428,6 +34432,126 @@
         "recovered/game/human_death_objective.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-death-objective-session-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069f1e0",
+      "status": "partial",
+      "coverage": "One actual lazy process console owner published before reentrant Win32 creation; failures retained and rethrown, no successful terminal substitute.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
+      "evidence": [
+        "recovered/host/startup_session.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00744340",
+      "status": "partial",
+      "coverage": "Console text/command owners, empty auxiliary callback collection, distinct48 critical section, cold HWND/scroll and actual initial > prompt.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
+      "evidence": [
+        "recovered/host/game_console.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00744870",
+      "status": "partial",
+      "coverage": "Own caller text before48, newest-first insertion/cap100, release oldest, unlock then actual window invalidation.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
+      "evidence": [
+        "recovered/game/console_text_store.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00744800",
+      "status": "partial",
+      "coverage": "Low-byte input dispatch, Enter submission, native length50 append limit and backspace/redraw; source rejects empty-input native underflow.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
+      "evidence": [
+        "recovered/game/console_text_store.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00744a00",
+      "status": "partial",
+      "coverage": "Queue current submitted input before output copy, then reset to > prompt, with independently owned typed source strings.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
+      "evidence": [
+        "recovered/game/console_text_store.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "007447b0",
+      "status": "partial",
+      "coverage": "Genuine empty null return or transfer oldest owned input command out of SAME FIFO, no implicit parser or lock.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
+      "evidence": [
+        "recovered/game/console_text_store.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00744a70",
+      "status": "partial",
+      "coverage": "Actual GDI input redraw with original rectangle/offset,511-byte space fill, colour and released DC, for native empty callback-vector boundary.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
+      "evidence": [
+        "recovered/host/game_console.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00744490",
+      "status": "partial",
+      "coverage": "Typed acquired-prefix retirement for console48/current input/output/submitted command owners; empty auxiliary callback collection only. Source RAII additionally reclaims HWND/font before retiring callback dependencies.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
+      "evidence": [
+        "recovered/host/game_console.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072f2f0",
+      "status": "partial",
+      "coverage": "Actual transport00 absent guard; authority scalar17(reason,peer) publication precedes four localized reason/name messages and SAME application log. Does not itself disconnect/retire Human.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_peer_removal.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006c4b40",
+      "status": "partial",
+      "coverage": "Actual config170-first console routing and borrowed controller non12 guard; published current game routes white text through actual HUD/console0069BF70; no-game genuine no-op. Native kind12/210 remains an explicit required failure.",
+      "limitations": "Source-only native typed ownership/STL/RAII replaces original object/allocator/SEH ABI; native buffer underflow/overflow/undefined varargs reject. Focused ASan/UBSan/LSan verify actual text/FIFO/peer bodies with explicit lock/Win32/GDI/transport boundary doubles; actual World i386 and launcher/probe compile/link are not execution. Nonoffline metadata/peer3C/transport, application12/210 and console command parser/frame consumers remain required. Source RAII reclaims HWND/font and pending command strings beyond original cleanup; no application mission loading or desktop acceptance.",
+      "evidence": [
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-console-20261111.json"
       ]
     }
   ]
