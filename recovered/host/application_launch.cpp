@@ -542,6 +542,7 @@ int launch(HMODULE module, HMODULE rw, HMODULE joy, std::uint32_t limit,int widt
     try {
         auto& startup = owners.startup.emplace(module, rw, joy,language); // game.cfg before graphics.
         startup.before_devices();
+        startup.begin_device_attempt();
         auto& graphics = owners.graphics.emplace(module,fullscreen);
         owners.sound.emplace(module, graphics.window());
         auto& driver = owners.driver.emplace(module);

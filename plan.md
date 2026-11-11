@@ -237,6 +237,8 @@ preparation, not a standalone audit-only milestone.
 
 ## 2. Load an original mission to its first world frame
 
+[P22-GUARD source plan](analysis/p22-guard-plan.md): device initializer is source-bound; private producers, validation/actions and concrete publication remain open.
+
 - [ ] Implement required loading-screen, Scene/Scene2/object/resource stages and
   required actor/collision loading and ordered cleanup; finish needed parser/loader bodies.
   [Full boundary/source progress](analysis/mission-world-loading.md), [frame/render](analysis/frame-render-source.md), [module/actor frames](analysis/module-actor-frame-source.md), [projection process](analysis/human-projection-frame-process.md), [Physics frames](analysis/physics-object-frame-motion.md), [Sight frames](analysis/sight-shot-frame-source.md), [Human frames](analysis/human-frame-source.md), [shared movement](analysis/human-scene-movement.md). The containing module facade, ground collision/water/fall coordination, Human contacts, Look/posture collision and Player frame/input state are in source. Positive actor, rendering, integrity and application integration remain.

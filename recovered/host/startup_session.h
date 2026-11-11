@@ -114,6 +114,18 @@ public:
         control_ready_ = true;
         phase_ = Phase::control_ready;
     }
+    //006DB0F0 calls006E9EA0 at006DB104, before graphics acquisition.
+    //Call for each device attempt, including retries; never from mission load.
+    void begin_device_attempt() {
+        if (phase_ != Phase::control_ready) throw std::logic_error("Integrity device-startup order mismatch");
+        struct SharedRandom {
+            StartupSession& startup;
+            void seed(std::uint32_t value){startup.seed_random(value);}
+            std::uint32_t operator()(){return startup.random_word();}
+        } random{*this};
+        //006E9EBC -> return006E9EC2 -> table00A59120 -> IAT0080F1B4.
+        mission_integrity_tables_.initialize_from_seed([]{return GetTickCount();},random);
+    }
     // Called only after real graphics, sound and I3D initialization. The caller
     // retains device ownership; close_consumers must run before device close.
     void setup_devices() {

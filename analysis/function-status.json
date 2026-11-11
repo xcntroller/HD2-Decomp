@@ -25081,11 +25081,14 @@
       "program": "client",
       "entry": "006e9ea0",
       "status": "partial",
-      "coverage": "Process scalar128-entry expected/observed DWORD tables, independent WORD permutations, shared CRT seed and896 ordered random draws; three auxiliary arrays preserved.",
+      "coverage": "Process scalar128-entry expected/observed DWORD tables, independent WORD permutations, shared CRT seed and896 ordered random draws; three auxiliary arrays preserved. Actual GetTickCount seed supplier now runs after identity permutations at the pre-graphics device-attempt boundary through SAME StartupSession/shared CRT; no per-mission reseed.",
       "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
       "evidence": [
         "analysis/mission-script-runtime-composition.md",
-        "recovered/game/mission_integrity_tables.h"
+        "recovered/game/mission_integrity_tables.h",
+        "recovered/host/startup_session.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-20261111.json"
       ]
     },
     {
@@ -33378,6 +33381,90 @@
         "recovered/game/mounted_weapon_control_loading.h",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-model-presentation-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00994810",
+      "status": "partial",
+      "coverage": "First-match32 descriptor scan, active/optional comparison flags, register/argument selectors and12/16 overlapping caller-stack windows; returns all matched DWORDs and slot32 on absence.",
+      "limitations": "Source-only portable scalar bodies/predicates; original register/stack/caller ABI and private startup/import/configuration producers remain unbound. Validation predicates omit containing clock/debug side effects; actions omit non-scalar receivers and actual process-thread continuation ownership. Native endpoint-double ASan/UBSan/LSan and strict i386 compile/link verify only the recorded scalar boundary. No positive production GUARD composition, original-engine execution, desktop delivery or whole-function completion is claimed.",
+      "evidence": [
+        "recovered/game/integrity_descriptors.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "009fb050",
+      "status": "partial",
+      "coverage": "Nullable two-DWORD blocked-state predicate with slot low-five-bit shift and actual key/XOR relation.",
+      "limitations": "Source-only portable scalar bodies/predicates; original register/stack/caller ABI and private startup/import/configuration producers remain unbound. Validation predicates omit containing clock/debug side effects; actions omit non-scalar receivers and actual process-thread continuation ownership. Native endpoint-double ASan/UBSan/LSan and strict i386 compile/link verify only the recorded scalar boundary. No positive production GUARD composition, original-engine execution, desktop delivery or whole-function completion is claimed.",
+      "evidence": [
+        "recovered/game/integrity_descriptors.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00a0db60",
+      "status": "partial",
+      "coverage": "Null branch and actual84hex configuration decode: magic/low-byte mask, unaligned DWORD XOR and indexed byte transform. Does not supply or validate a missing configuration.",
+      "limitations": "Source-only portable scalar bodies/predicates; original register/stack/caller ABI and private startup/import/configuration producers remain unbound. Validation predicates omit containing clock/debug side effects; actions omit non-scalar receivers and actual process-thread continuation ownership. Native endpoint-double ASan/UBSan/LSan and strict i386 compile/link verify only the recorded scalar boundary. No positive production GUARD composition, original-engine execution, desktop delivery or whole-function completion is claimed.",
+      "evidence": [
+        "recovered/game/integrity_configuration.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00a0d960",
+      "status": "partial",
+      "coverage": "Construct all256 WORD checksum table entries using originalC0C1/4003 recurrence.",
+      "limitations": "Source-only portable scalar bodies/predicates; original register/stack/caller ABI and private startup/import/configuration producers remain unbound. Validation predicates omit containing clock/debug side effects; actions omit non-scalar receivers and actual process-thread continuation ownership. Native endpoint-double ASan/UBSan/LSan and strict i386 compile/link verify only the recorded scalar boundary. No positive production GUARD composition, original-engine execution, desktop delivery or whole-function completion is claimed.",
+      "evidence": [
+        "recovered/game/integrity_checksum.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00a0daf0",
+      "status": "partial",
+      "coverage": "WORD CRC byte accumulator using the actual table, prior CRC and supplied byte range; no file contents or expected CRC are synthesized.",
+      "limitations": "Source-only portable scalar bodies/predicates; original register/stack/caller ABI and private startup/import/configuration producers remain unbound. Validation predicates omit containing clock/debug side effects; actions omit non-scalar receivers and actual process-thread continuation ownership. Native endpoint-double ASan/UBSan/LSan and strict i386 compile/link verify only the recorded scalar boundary. No positive production GUARD composition, original-engine execution, desktop delivery or whole-function completion is claimed.",
+      "evidence": [
+        "recovered/game/integrity_checksum.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00994df0",
+      "status": "partial",
+      "coverage": "Scalar validation11/20/21 predicates with signed counter remainder/DWORD wrap, actual private score/length/configuration gates and mandatory external query/checksum endpoints. No original private environment population or containing timestamp/debug/service side effects.",
+      "limitations": "Source-only portable scalar bodies/predicates; original register/stack/caller ABI and private startup/import/configuration producers remain unbound. Validation predicates omit containing clock/debug side effects; actions omit non-scalar receivers and actual process-thread continuation ownership. Native endpoint-double ASan/UBSan/LSan and strict i386 compile/link verify only the recorded scalar boundary. No positive production GUARD composition, original-engine execution, desktop delivery or whole-function completion is claimed.",
+      "evidence": [
+        "recovered/game/integrity_validation.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00996330",
+      "status": "partial",
+      "coverage": "Recovered scalar actions0/1/2/3/60/61/62/63 gated by validated/unblocked input, distinct destination publication and return override/XOR state. Other action receivers explicitly remain unavailable.",
+      "limitations": "Source-only portable scalar bodies/predicates; original register/stack/caller ABI and private startup/import/configuration producers remain unbound. Validation predicates omit containing clock/debug side effects; actions omit non-scalar receivers and actual process-thread continuation ownership. Native endpoint-double ASan/UBSan/LSan and strict i386 compile/link verify only the recorded scalar boundary. No positive production GUARD composition, original-engine execution, desktop delivery or whole-function completion is claimed.",
+      "evidence": [
+        "recovered/game/integrity_observation_actions.h",
+        "analysis/p22-guard-implementation.md",
+        "analysis/checkpoints/p22-guard-20261111.json"
       ]
     }
   ]
