@@ -3,104 +3,79 @@
 FULL P2.2 / **second Human checkbox: reactions/damage/ragdoll** remains OPEN.
 Read `AGENTS.md`, section2 of `plan.md`, [Human plan](analysis/p22-hum-plan.md)
 and [original contracts/current gaps](analysis/human-ragdoll-source.md).
-Continue dependencies until the full selected checkbox completes or genuinely blocks.
+Continue dependencies until the FULL selected checkbox completes or genuinely blocks.
 
 ## Active checkout and boundaries
 
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
-explicitly requested returning here. Inspect HEAD/status before acting. Transfer
-base50f9193 and22 pending Human files were verified; ignored MAIN WORK
-`human-return-main-20261111` records before/after hashes. Other LIFE/UI/PACK/research
-worktrees and `/tmp/hd2-p22-hum-continue` are separate. Preserve their work and
-newer master merges. Latest preceding checkpointb4e9617; external master pulls
-have rebased earlier checkpoints: inspect current history.
+explicitly requested returning here. Check HEAD/status before acting. Transfer
+base50f9193/22 pending Human files was byte-verified in ignored WORK
+`human-return-main-20261111`. Other LIFE/UI/PACK/research worktrees and
+`/tmp/hd2-p22-hum-continue` are separate; preserve them and external master merges.
+Latest preceding checkpoint e77c833; earlier checkpoints were externally rebased.
 
 No original EXE/DLL/Proton or Windows fixture execution. Compile/link only.
-Heavy compilation and Ghidra must run **sequentially**. No push. Source-only
-checkpoints may be committed; interactive acceptance requires the user.
-Application mission loading remains disabled; no mission desktop verification.
+Heavy compilation and Ghidra **sequentially**. No push. Source-only checkpoints
+may be committed; interactive acceptance requires the user. Application mission
+loading remains disabled; no mission desktop verification.
 
 ## Latest verified source checkpoint
 
-[Canonical process-input receipt](analysis/checkpoints/p2.2-human-process-input-20261112.json)
-adds3 client partials/extends3:34 complete/2620 partial (2615 client+5 engine), no
-promotions. StartupSession owns ONE actual manager14/profiles and stable B0 handle;
-World borrows it.00723000 replacement deletes old manager then publishes/configures
-new, without atomic rollback; Remote retirement remains safe through actual
-contains/remove, while old Player close after record retirement still throws.
-Stateless callback bundle/getters are process-lived; source current-game/default
-getter link remains until Human/B0 teardown. World does not clear all process
-records. Cold World acquisition lazily creates actual manager only if absent;
-full native control-start/entry caller timing is not claimed.
+[Car/contact/protection receipt](analysis/checkpoints/p2.2-human-car-contact-20261112.json)
+adds ONLY004DE800 and extends0059F2C0/0049DE50:34 complete/2621 partial (2616
+client+5 engine) of18783; no promotions. Detailed original contracts are in the
+active Human analysis, including retained C/raw evidence and exact exclusions.
 
-0072E890 now clears peer3C/stats under418, then actual input records after unlock,
-then team stats/scores; manager/embedded30/defaults survive. Cold reset accepts
-only actual owned process14, publishes mode7 before input clear; final shutdown
-deletes manager before locks. Live transport still required. Native ASan/UBSan/
-LSan PASS actual Remote, Player Base/retired-record failure, failed prefixes,
-entry/control reset and100 lifetimes; clock/Scene/frames/presentation are doubles.
-Strict actual World and launcher/probe compile/link PASS
-`human-process-input-{host,application}-i386.log`. No Windows output ran.
+004DE800 uses actual seat0 and local peer3C, both-null equality, repeated virtual78,
+kind19C and late mode. Ragdoll007CBF90/007CC740 directly call004F2790 after that
+policy in both modes; unsupported blanket non7 impulse guard removed. SAME actual
+Car body receives impulse; wider Car hit58/non7 event publication still required.
+Human Car callback now binds through SAME loading_lifetime→existing005A07C0→B0 C8.
+Post-damage B0/current mode are reread; native unordered speed also enters damage.
+Missing B0/lifetime/damage failure remains honest.005A07C0/0059C2D0/C8 leaves absent
+frozen: zero new credit. Existing uncredited collision/impulse kernels reused,
+no new credit here.0059F2C0 protection prefix now reads config250/rule10 (NOT
+respawn23C/rule5) and reaches SAME injury TextState before local initialization.
 
-## Previous source checkpoint
+Focused native ASan/UBSan/LSan PASS ownership matrix/impulse100x4, contact100,
+protection HUD100, and owner retirement modes1/2/3/7x100 after interface update.
+Engine/policy/damage/lifetime/HUD endpoints are explicit doubles, not a full World
+run. Strict actual World/Car/Human i386 and latest launcher/probe compile/link PASS
+`human-ragdoll-car-authority-{host,application}-i386.log`. No Windows output ran.
+Temporary native fixtures stay ignored for this ongoing full-checkbox task.
 
-[Containing application-packet receipt](analysis/checkpoints/p2.2-human-application-packets-20261111.json)
-adds3 client partials/extends5:34 complete/2617 partial (2612 client+5 engine) of
-18783, no promotions.0072C0B0 routes application20 BEFORE loaded-World gate through
-SAME StartupSession. Presentation00728450:2 client departure log→0069E720;
-10 direct SAME0069BC40 objective apply without score/FIFO echo;17 local result4/
-clock/HUD hint→late mode gate→scalar0072F2F0 log.17 does NOT retire peer/Human.
-0072EC90 forward active08/transport00 lookup locks418, unlocks before name query.
-One actual process006C4B40 log route is shared by Human and received messages.
-
-Non7 owned queue drain is now distinct from transport. Authority domain174==1
-requires real007239F0 BEFORE queue pop; authority application grammar, history
-packet decoder, unknown presentation commands and non7 flush/transport still
-throw. Current packet retires on receiver failure, later queue nodes survive.
-No new UI/loading/connection success. Native ASan/UBSan/LSan PASS independent
-wire, actual scalar FIFO/broadcast/queues/objective/session/peer policy, late mode/
-name/vector growth, failures and100 lifetimes; platform/HUD/log/Scene endpoints
-are doubles. Strict actual World i386 and launcher/probe compile/link PASS
-`human-application-packets-{host,application}-i386.log`; no Windows output ran.
-
-Preceding [cold peer/Human lifecycle](analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json)
-checkpoint7a2ec6d retains actual00612A60 distinct ECX peer/EDX Scene identities,
-0059EDC0/0059EB60 live setup/writeback and late3C/A8/aux publication; actual0069E720/
-005A7FE0 ordered delayed retirement; Remote7 FC7/8/10 filter; HUD timer/rank/name;
-mode2/1 containing composition guard with reset-before-erase map publication.
-Six focused native fixtures and strict World/launcher checks PASS there. Positive
-00479700 kind2 Human-reference9C and occupied attachment80 remain required.
-Native destructor/delayed record clears use Scene identity, not peer slot.
-
-Preceding [metadata/request](analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json)
-and [reaction/authority retirement](analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json)
-checkpoints remain valid. Do not re-audit unchanged kernels or conflate source
-receivers with admitted network/application success.
+Earlier verified checkpoints remain valid:
+[process input](analysis/checkpoints/p2.2-human-process-input-20261112.json) e77c833,
+[application messages](analysis/checkpoints/p2.2-human-application-packets-20261111.json) b4e9617,
+[peer lifecycle](analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json)7a2ec6d,
+[network metadata](analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json)05dbdee.
+ONE canonical process input manager/profiles/callback bundle; World/B0 borrow a
+stable source handle.0072E890 clears records; received-start00723000 REPLACES
+manager before old-game retirement. Do not merge these protocols. Old Player
+close after its input record retires remains required failure. Presentation
+application2 retires peer/Human;17 sets result/hint/log, not retirement.10 applies
+objective status without score/FIFO echo. Queues outlive World; no false transport.
 
 ## Immediate next work
 
-1. Continue reaction-specific non7 Car ownership/direct impulse, then actual
-   normal non7 spawn/entry/transport. Research index for004DE800/005A09A0 is WORK
-   `human-reaction-network-leaves-index.txt`.004DE800 original C already exists
-   in `car-callback-body-world-required`.007CBF90/007CC740 call004F2790 DIRECTLY
-   after that ownership check, including non7; current Human impulse guard is
-   unnecessarily broad and should follow the original actual call boundary.
-2. Full entry callers still need00730A40/00731610 (status9), and00724110 optional
-   service/current-state/map/load/sync (received0). Canonical input ownership and
-  0072E890 body now exist; do not merge reset with manager replacement. Normal
-  00611C90/006123A0/006125A0 non7 callers still reject unrecovered tails. Positive
-  00479700 kind2/9C and occupied attachment80 also remain required.
-3. Finish full containing Human frame/reaction, failure/re-entry and ordered
-   teardown. Application loading/rendering and user desktop acceptance remain
-   required. Commit larger verified checkpoints; keep documentation consolidated.
+1. Continue actual non7 spawn callers00611C90/006123A0/006125A0, entry and transport.
+   Full caller boundaries remain required despite verified00612A60 factory/setup/
+   publication and matching delayed retirement. Normal rules, match phase, camera/
+   selection/HUD/name, generation/stat decode and roster changes need actual owners.
+2. Full entry: status9 needs00730A40/00731610 around implemented0072E890; received0
+   needs00724110 optional service/current-state/map/load/sync around canonical
+   replacement. Cold World manager acquisition is explicitly a source-only lazy
+   adapter, not native control-start timing. Positive00479700 kind2/9C and occupied
+   attachment80 remain required. Preserve Scene-id versus peer-slot clear quirks.
+3. Finish full containing reaction/frame, failure/re-entry and ordered teardown.
+   Keep actual application loading/rendering/user desktop acceptance separate.
+   Commit larger verified checkpoints and consolidate docs; do not stop at one slice.
 
-Research indexes: WORK `human-control-next-index.txt`, `human-application-scalar-index.txt`
-and `human-entry-input-index.txt`. Reused originals `human-application-reused-originals`
-pin research C read-only; raw00699A20 result/hint evidence is retained.
-Peer evidence: `human-peer-lifecycle-abi` correct fastcall read-only rollback
-exports; `human-peer-lifecycle-reused-originals/provenance.json` pins research
-checkout C reused read-only. Static vtable60/FC and raw HUD/override/aux/timer leaves
-retain local evidence. No broad unchanged-system audit is needed.
+Research indexes: WORK `human-control-next-index.txt`, `human-application-scalar-index.txt`,
+`human-entry-input-index.txt`, `human-entry-input-replacement-index.txt`,
+`human-reaction-network-leaves-index.txt`, `human-actor-contact-index.txt`,
+`human-respawn-activation-index.txt`, `human-spawn-protection-hud-index.txt`.
+Prior reused-original provenance remains pinned; research checkout is read-only.
 
 ## Commands and evidence
 

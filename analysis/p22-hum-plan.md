@@ -1,6 +1,6 @@
 # P22-HUM implementation plan
 
-Updated 2026-11-12 through the canonical process-input source checkpoint. P22-HUM remains OPEN.
+Updated 2026-11-12 through the Car/contact/protection source checkpoint. P22-HUM remains OPEN.
 Both P2.2 checkboxes in `plan.md` remain OPEN. Mission loading still declines,
 and no mission desktop acceptance has occurred.
 
@@ -87,7 +87,9 @@ Containing process application presentation2/10/17 now has a
 [source checkpoint](checkpoints/p2.2-human-application-packets-20261111.json).
 Canonical process input ownership and entry record reset now have a
 [source checkpoint](checkpoints/p2.2-human-process-input-20261112.json).
-Continue reaction-specific Car authority/impulses, actual non7 spawn/entry/transport and the full containing frame/failure,
+Reached Car authority/impulses, actual Human contact callback and spawn-protection
+HUD now have a [source checkpoint](checkpoints/p2.2-human-car-contact-20261112.json).
+Continue actual non7 spawn/entry/transport and the full containing frame/failure,
 re-entry and teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
 The full selected checkbox, P22-HUM and P2.2 remain open; no application or desktop
 acceptance is claimed.

@@ -9,6 +9,15 @@
 
 namespace hd2::game {
 
+//0059F2C0 prefix after Actor activation, BEFORE local Human initialization.
+//Configuration250 is spawn protection, distinct from respawn interval23C.
+template<class Human,class Services>void present_human_spawn_protection(Human& human,bool authority,
+        std::uint32_t mode,Services& services){
+    if((mode&7u)==7u||authority||!(mode&2u)||services.human_current_player_id()!=human.base().id10())return;
+    const auto seconds=services.human_spawn_protection_seconds();
+    if(seconds>0)services.hud_human_spawn_protection(0x4f59u,static_cast<std::uint32_t>(seconds)*1000u);
+}
+
 template<class Human>long double human_loading_stat(const Human& human,unsigned index) { //005A6530, x87 return.
     if(index>=9)return 0;
     std::int32_t value;std::memcpy(&value,&human.properties.stats_ec[index],4);

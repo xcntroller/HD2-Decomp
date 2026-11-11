@@ -4,6 +4,7 @@
 #include "host/game_car_callback_frames.h"
 #include "host/startup_session.h"
 #include "game/car_external_impulses.h"
+#include "game/human_actor_contact.h"
 #include "game/car_cold_deformation.h"
 #include "game/car_particle_pool.h"
 #include "game/car_definition_tables.h"
@@ -62,10 +63,9 @@ public:
                 [&](const Vector& value,const Vector& at,bool collision){if(car.callbacks->passenger690)car.callbacks->passenger690(value,at,collision,nullptr);},[]{});
         }
     }
-    void car_actor_hit5c(Actor actor,Actor,const Vector&,const Vector&,const Vector&,float,Frame,Actor)override{
+    void car_actor_hit5c(Actor actor,Actor source,const Vector& point,const Vector&,const Vector&,float,Frame,Actor)override{
         if(actor_type(actor)==3){
-            if(!human_actor(actor).loading_state)return; //005A07C0's genuine absent-B0 gate.
-            throw std::runtime_error("Human collision requires actual005A07C0 B0+C8 and damage receivers");
+            (void)game::dispatch_human_actor_contact(human_actor(actor),source,point);return;
         }
         //The fourteen actual Scene2 constructors' nonHuman5C entries all bind
         //00611070, genuine AL0/RET28. Unknown runtime families are not assumed.
@@ -78,8 +78,7 @@ public:
         car_actor_hit5c(actor,source,point,impulse,normal,mass,contact_frame,nullptr); //0059C2D0 preserves sixth frame argument and appends null seventh.
     }
     void human_ragdoll_car_impulse(Actor actor,const Vector& impulse,const Vector& point)override{
-        if((car_mode_flags()&7u)!=7u)
-            throw std::runtime_error("Human ragdoll Car impulse requires actual nonoffline004DE800 ownership");
+        //007CBF90/007CC740 already checked004DE800, then call004F2790 directly.
         auto& state=car_state(actor);
         game::apply_car_direct_impulse(frames_,state,impulse,point,0,Vector{{1,1,1,0}},[]{}); //Actual cold6A4 is null.
     }

@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
 #define HD2_GAME_HUMAN_WORLD_LOADING_SERVICES_H
+#include "game/car_actor_authority.h"
 
 #include "game/world_loading_dependency_link.h"
 #include "game/human_camera_state.h"
@@ -1019,6 +1020,12 @@ public:
     template<class Human,class Actor,class Runtime>bool human_actor_collision(Human& human,Actor& actor,const HumanVector& point,Runtime& runtime){
         return receive_human_actor_contact(human,actor,point,*this,runtime);
     }
+    template<class Human>bool human_loading_actor_contact(Human& human,void* source,const HumanVector& point){
+        if(!human.loading_state)return false;
+        if(!source)throw std::logic_error("Human contact requires its actual source actor");
+        auto& actor=*static_cast<SceneActor<typename Dependencies::ActorFrames>*>(source);
+        return receive_human_actor_contact(human,actor,point,*this,*this);
+    }
     template<class Commands>
     void publish_human_frame_commands(std::int32_t identity,bool second,const Commands& commands){
         for(const auto& command:commands)dependencies().scene.frames().observe_data("execution","Human command publication attempted",second?"broadcast stream0":"request stream0",command.kind);
@@ -1205,8 +1212,11 @@ public:
     }
     template<class Actor>bool human_ragdoll_car_authority(Actor& actor){
         if(actor.base().type()!=4)throw std::logic_error("Human ragdoll Car query requires its actual Car actor");
-        if((mode_flags()&7u)==7u)return true; //004DE800's actual offline branch.
-        throw std::runtime_error("Human ragdoll Car query requires actual nonoffline004DE800 authority");
+        auto& callbacks=dependencies().scene.car_callbacks();
+        return car_actor_authority([this]{return mode_flags();},[&]{return callbacks.car_occupant(&actor,0);},
+            [this]{using Human=typename Dependencies::Composition::Human;
+                return static_cast<SceneActor<typename Dependencies::ActorFrames>*>(static_cast<Human*>(local_peer_human()));},
+            [&](auto* occupant){return callbacks.car_human_role(occupant);});
     }
     template<class Actor>void human_ragdoll_car_impulse(Actor& actor,const HumanVector& impulse,const HumanVector& point){
         dependencies().scene.car_callbacks().human_ragdoll_car_impulse(&actor,impulse,point);
@@ -1315,10 +1325,8 @@ public:
         (void)speech.request(state,category,delay,1,false); //005882F0.
     }
     void record_state_cleanup_failure(std::exception_ptr failure)noexcept{dependencies().scene.frames().record_actor_cleanup_failure(std::move(failure));}
-    //These reached branches require populated nonoffline/attachment producers.
-    //The normal offline, freshly unattached loading path never invokes them.
-    std::int32_t human_respawn_delay_seconds(){throw std::runtime_error("Human respawn requires its actual nonoffline configuration consumer");}
-    void hud_human_respawn(std::uint32_t,std::uint32_t){throw std::runtime_error("Human respawn requires its actual live HUD message consumer");}
+    std::int32_t human_spawn_protection_seconds(){return dependencies().startup.game_configuration().rules228[10];} //Actual configuration250.
+    void hud_human_spawn_protection(std::uint32_t identity,std::uint32_t duration){dependencies().hud.set_injury_message(identity,duration);} //0049DE50, before local initialization.
     template<class Human>void human_initial_dead_notification(Human& human){HumanDamageCommand command;command.kind=14;present_human_damage(human,command,*this,dependencies().scene.frames());}
     template<class Actor>void detach_human_attachment(Actor&,std::int32_t){throw std::runtime_error("Occupied Human attachment requires its actual actor virtual80 receiver");}
 private:

@@ -68,6 +68,7 @@ public:
     void damage(std::uint32_t kind,float amount,const HumanVector& point,const HumanVector& impulse,void* source,std::uint32_t hit_kind)override{
         activation_.damage(kind,amount,point,impulse,source,hit_kind);
     }
+    bool actor_contact(void* source,const HumanVector& point)override{return activation_.actor_contact(source,point);}
     Inline& control(){return control_;}States& states(){return states_;}Inventory& inventory(){return inventory_;}
     StateFactory& state_factory(){return state_factory_;}
 private:

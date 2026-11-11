@@ -1186,3 +1186,64 @@ and extends3:34 complete/2620 partial of18783 (2615 client+5 engine partials), n
 complete promotions. Full selected Human checkbox and application/desktop gates
 remain OPEN. Continue reaction-specific non7 Car ownership/direct impulse, normal
 spawn/entry callers and the full containing frame/failure/teardown boundary.
+
+
+### Reached Car authority, Human contact binding and spawn protection — 2026-11-12
+
+004DE800 now has the actual source AL policy, bound to SAME Car seat0 and actual
+process local peer3C (not cached driver24AC). Offline7 returns true without peer/
+seat reads. Otherwise virtual78(0) precedes00730460; equality includes BOTH NULL.
+On mismatch retain repeated seat calls, actual occupant kind19C and late mode:
+authority admits non-kind1 occupant or empty seat; other unmatched ownership is
+false. A seat disappearing at native required kind dereference remains an explicit
+source failure. Do not collapse this into authority bit alone or cache all seats.
+
+007CBF90/007CC740 call004F2790 DIRECTLY after that check in both modes. The old
+blanket non7 guard in `human_ragdoll_car_impulse` was unsupported by those original
+calls and is removed. SAME Car body velocity/direction/angular impulse/inertia/
+mass-change notification now receive admitted ragdoll impulses. Existing actual
+cold6A4=NULL contract remains; no positive callback producer was fabricated.
+Other Car hit58 non7 paths still require actual004D3D10 event publication and
+retain their failure. This checkpoint makes no new solver/clip/kernel credit.
+
+Actual Car callback Human5C now dispatches through the SAME published Human
+loading_lifetime to its existing005A07C0 source body, then actual B0 C8. No second
+Human/World or copied health receiver exists. Absent B0 returns false BEFORE
+source/lifetime requirement. Moving-Car authority damage preserves reverse offline
+occupant alignment, point/forward direction, kind13/amount-1/driver, then re-reads
+B0 after actual damage. Source contact preserves initial mode snapshot for its
+native initial/offline tests; C8 now receives CURRENT mode after damage, matching
+its own native global-mode read. Raw x87 `TEST AH,41; JNP` also confirms unordered
+speed enters damage: use `!(speed<=2)` rather than ordered greater-than. Required
+missing post-damage B0/damage failures remain visible. Unused vectors of the
+three verified C8 families stay with their callers.005A07C0/0059C2D0/C8 leaf bodies
+are absent frozen inventory and receive ZERO new credit.
+
+0059F2C0's local presentation prefix now reads actual configuration250/rule10
+for spawn protection, DISTINCT from respawn interval23C/rule5. After base Actor
+activation and before local initialization, non7 presentation bit2/local Human/
+positive signed seconds publish4F59 and wrapped seconds*1000 through SAME actual
+0049DE50 injury TextState/time/flag owner. No flags gate, new queue or successful
+missing HUD receiver. Repeated activation still executes this prefix even if90
+already set. Helper/service names now identify protection rather than respawn.
+
+Research index preceded reuse;004DE800 C/raw,005A07C0 C/raw, corrected original
+007CBF90/007CC740 and0059F2C0/0049DE50 C retain the contracts. No new Ghidra export.
+Focused ASan/UBSan/LSan PASS: all mode0..7/seat/local/kind ownership combinations,
+repeated getters/late mode/invalid seat, actual direct impulse100x4; callback
+binding→same lifetime→actual contact/Base/Player C8 with damage/failure100 lifetimes;
+actual spawn prefix→injury TextState100 panel lifetimes and destructive failures.
+Containing owner-map/mode retirement regression modes1/2/3/7x100 also passes after
+its source interface update. Policy/frames/damage/lifetime/geometry/fonts/
+localization endpoints are explicit doubles. Strict actual World/Car callback/
+Human composition i386 and latest sequential launcher/probe compile/link PASS.
+No original/DLL/Windows output or desktop test occurred.
+
+[Receipt](checkpoints/p2.2-human-car-contact-20261112.json) adds ONLY004DE800 and
+extends0059F2C0/0049DE50:34 complete/2621 partial of18783 (2616 client+5 engine),
+no complete promotions. Existing uncredited007CBF90/007CC740/004F2790 source
+kernels were reused without new ledger credit in this focused integration batch.
+Temporary native audits stay ignored until full selected checkbox completion.
+Continue actual non7 spawn/entry/transport and occupied/runtime owners, then the
+full containing Human frame/reaction/failure/teardown. Full Human checkbox,
+application loading/rendering and user desktop acceptance remain OPEN.

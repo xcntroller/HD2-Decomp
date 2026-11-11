@@ -15793,15 +15793,24 @@
       "program": "client",
       "entry": "0059f2c0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 0059f2c0: Containing Human loading composition and ordered close/failure cleanup using actual same profile/inline/B0/Sight/SOUND/proximity owners; required formation/VM/player consumers remain.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "P2.2 source reconstruction at original entry 0059f2c0: Containing Human loading composition and ordered close/failure cleanup using actual same profile/inline/B0/Sight/SOUND/proximity owners; required formation/VM/player consumers remain. Actual non7 local presentation spawn-protection prefix reads configuration250/rule10, positive signed seconds and wrapped milliseconds, then SAME HUD injury-text0049DE50 before local initialization; distinct from respawn23C.",
+      "limitations": "Source-only typed/STL/RAII and source callback interfaces replace original class/allocator/SEH/virtual ABI. Focused ASan/UBSan/LSan uses explicit policy/frame/damage/lifetime/geometry/font/localization doubles; strict actual World and launcher compile/link only. No full World/frame/activation/application or desktop execution. Wider Car58 non7 publication, occupied Human attachment, normal spawn/entry/transport/history and other reaction/frame dependencies remain required. No complete-function promotion.",
       "evidence": [
         "recovered/game/human_loading_activation.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
         "analysis/human-factory-world-bindings.md",
-        "analysis/human-vm-world-composition.md"
+        "analysis/human-vm-world-composition.md",
+        "recovered/game/car_actor_authority.h",
+        "recovered/game/human_actor_contact.h",
+        "recovered/game/human_loading_stats.h",
+        "recovered/game/human_loading_lifetime.h",
+        "recovered/game/human_loading_composition.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_car_callbacks.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-car-contact-20261112.json"
       ]
     },
     {
@@ -34326,12 +34335,21 @@
       "program": "client",
       "entry": "0049de50",
       "status": "partial",
-      "coverage": "Actual injury-message helper into existing HUD small-text owner with native text/duration and no new message queue.",
-      "limitations": "Source-only typed owners/STL/RAII replace native object/container/allocator/SEH ABI. Only the documented bodies/branches are claimed; native undefined bounds/varargs reject. Actual nonoffline spawn peer3C producer, peer removal transport, nonrender console, Player objective metadata, Remote-specific effects and wider frame integration remain required. Native engine/Scene/platform endpoints are doubles; strict concrete i386 and launcher compile/link are not execution or desktop acceptance.",
+      "coverage": "Actual injury-message helper into existing HUD small-text owner with native text/duration and no new message queue. Actual initial spawn-protection producer now uses same injury TextState/time/flag owner with required unbound/localization failures; no flags gate or separate HUD queue.",
+      "limitations": "Source-only typed/STL/RAII and source callback interfaces replace original class/allocator/SEH/virtual ABI. Focused ASan/UBSan/LSan uses explicit policy/frame/damage/lifetime/geometry/font/localization doubles; strict actual World and launcher compile/link only. No full World/frame/activation/application or desktop execution. Wider Car58 non7 publication, occupied Human attachment, normal spawn/entry/transport/history and other reaction/frame dependencies remain required. No complete-function promotion.",
       "evidence": [
         "recovered/game/hud_scene_loading.h",
         "analysis/human-ragdoll-source.md",
-        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json"
+        "analysis/checkpoints/p2.2-human-damage-presentation-20261111.json",
+        "recovered/game/car_actor_authority.h",
+        "recovered/game/human_actor_contact.h",
+        "recovered/game/human_loading_stats.h",
+        "recovered/game/human_loading_lifetime.h",
+        "recovered/game/human_loading_activation.h",
+        "recovered/game/human_loading_composition.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_car_callbacks.h",
+        "analysis/checkpoints/p2.2-human-car-contact-20261112.json"
       ]
     },
     {
@@ -35006,6 +35024,25 @@
         "recovered/host/game_world_loading.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-process-input-20261112.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004de800",
+      "status": "partial",
+      "coverage": "Actual AL ownership policy: offline true, seat0/local process peer3C equality including both-null, repeated virtual78(0) and current kind19C/mode reads, authority nonplayer/empty admission. Bound to actual Human ragdoll point/body Car queries before direct004F2790 impulse in both modes.",
+      "limitations": "Source-only typed/STL/RAII and source callback interfaces replace original class/allocator/SEH/virtual ABI. Focused ASan/UBSan/LSan uses explicit policy/frame/damage/lifetime/geometry/font/localization doubles; strict actual World and launcher compile/link only. No full World/frame/activation/application or desktop execution. Wider Car58 non7 publication, occupied Human attachment, normal spawn/entry/transport/history and other reaction/frame dependencies remain required. No complete-function promotion.",
+      "evidence": [
+        "recovered/game/car_actor_authority.h",
+        "recovered/game/human_actor_contact.h",
+        "recovered/game/human_loading_stats.h",
+        "recovered/game/human_loading_lifetime.h",
+        "recovered/game/human_loading_activation.h",
+        "recovered/game/human_loading_composition.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/host/game_car_callbacks.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-car-contact-20261112.json"
       ]
     }
   ]
