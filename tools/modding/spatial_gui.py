@@ -1,7 +1,6 @@
 """Integrated read-only spatial hierarchy, navigation and mission viewport."""
 from concurrent.futures import ThreadPoolExecutor
 from collections import Counter,deque
-import hashlib
 import json
 import math
 from pathlib import Path
@@ -30,7 +29,7 @@ class SpatialWindow:
         self.reload_button=ttk.Button(bar,text='Reload snapshot',command=self.reload,state='disabled');self.reload_button.pack(side='left',padx=5)
         self.inspect_button=ttk.Button(bar,text='Inspect record',command=self.inspect,state='disabled');self.inspect_button.pack(side='left',padx=5)
         self.model_button=ttk.Button(bar,text='Inspect model',command=self.model,state='disabled');self.model_button.pack(side='left',padx=5)
-        self.script_button=ttk.Button(bar,text='Open associated script',command=self.script,state='disabled');self.script_button.pack(side='left',padx=5)
+        self.script_button=ttk.Button(bar,text='Script relationships',command=self.script,state='disabled');self.script_button.pack(side='left',padx=5)
         self.export_button=ttk.Button(bar,text='Export spatial report…',command=self.export,state='disabled');self.export_button.pack(side='right')
         self.status=ttk.Label(shell,text='Choose an installation-aware mission in the existing Mission Explorer.',wraplength=1380)
         self.status.pack(anchor='w',pady=(7,4))
@@ -75,6 +74,10 @@ class SpatialWindow:
         self.tabs=ttk.Notebook(detail);self.tabs.pack(fill='both',expand=True)
         props=ttk.Frame(self.tabs);self.tabs.add(props,text='Selected object / links');self.properties=owner.text(props);self.properties.configure(wrap='word',height=10)
         issues=ttk.Frame(self.tabs);self.tabs.add(issues,text='Coverage / diagnostics');self.issues=owner.text(issues);self.issues.configure(wrap='word')
+        from spatial_script_gui import SpatialScriptPanel
+        scripts=ttk.Frame(self.tabs);self.tabs.add(scripts,text='Script Relationships')
+        self.script_panel=SpatialScriptPanel(self,scripts)
+        self.viewport.on_relationship=self.script_panel.edge_selected
         self.stats=ttk.Label(shell,text='OpenGL pending',wraplength=1400);self.stats.pack(anchor='w',pady=(5,0))
 
     def choose(self):
@@ -106,23 +109,17 @@ class SpatialWindow:
         if not future.done():
             if self.progress:self.status.configure(text=self.progress[-1])
             self.timer=self.root.after(50,self.poll);return
-        if kind=='script' and self.owner.pending:
-            self.timer=self.root.after(50,self.poll);return
         self.pending=None
         try:
             result=future.result()
-            if kind=='scene':
-                self.session=self.loading_session;self.loading_session=None;self.show(result)
-            else:
-                source,report=result
-                self.owner.show_snapshot(source,report,[self.scene.store.root],self.session.include_context.source,
-                    on_return=self.comeback)
+            self.session=self.loading_session;self.loading_session=None;self.show(result)
         except Exception as exc:
             self.loading_session=None;self.error(str(exc))
         finally:self.busy(False)
 
     def show(self,scene):
         self.scene=scene;self.selected=None;self.viewport.set_scene(scene)
+        self.script_panel.reset(scene.script_relations)
         self.mode.set('orbit');self.speed.set(f'{self.viewport.camera.speed:.2f}');self.far.set(f'{self.viewport.camera.far:.1f}')
         c=scene.counts
         self.status.configure(text=f"{scene.mission} · partial serialized spatial view · {c['mesh_instances']} placed mesh instances · {c['unresolved_transforms']} unresolved transforms · {scene.coverage['spatial']['unresolved_parent_identity']} unresolved parent identities · {c['unresolved_actors']} unresolved actors · {c['assets']} unique assets")
@@ -220,6 +217,7 @@ class SpatialWindow:
     def details(self,identity):
         node=self.scene.nodes.get(identity)
         if not node:return
+        if self.script_panel.identity!=identity:self.script_panel.choose(identity)
         owner=self.owner_node(node)
         value=node.metadata()
         value['omission_reasons']=next((r['reasons'] for r in self.scene.coverage['geometry']['omissions'] if r['identity']==identity),[])
@@ -234,7 +232,7 @@ class SpatialWindow:
         self.text(self.properties,value)
         self.inspect_button.configure(state='normal' if node.inspection_file else 'disabled')
         self.model_button.configure(state='normal' if node.asset in self.scene.assets else 'disabled')
-        self.script_button.configure(state='normal' if any(l['relation']=='script' and l.get('targets') for l in self.associated_links(node)) else 'disabled')
+        self.script_button.configure(state='normal')
 
     def text(self,widget,value):
         chunks=[];size=0
@@ -263,22 +261,7 @@ class SpatialWindow:
         viewer.show(self.scene.assets[node.asset]);viewer.busy(False);viewer.root.lift()
 
     def script(self):
-        if self.pending:return
-        node=self.selected_node()
-        if not node:return
-        link=next((l for l in self.associated_links(node) if l['relation']=='script' and l.get('targets')),None)
-        if not link:return
-        identity=link['targets'][0]
-        if not identity.startswith('resource/'):return
-        scene=self.scene;session=self.session
-        def work():
-            from script_client import inspect_bytes
-            data=scene.store.read(identity[9:])
-            entry=next((e for e in session.report.files if e.path==identity),None)
-            if entry and entry.script and hashlib.sha256(data).hexdigest()==entry.sha256:report=entry.script
-            else:report=inspect_bytes(self.owner.inspector,data,identity,session.include_context)
-            return data,report
-        self.pending=('script',self.executor.submit(work));self.busy(True);self.timer=self.root.after(50,self.poll)
+        self.tabs.select(self.script_panel.frame)
 
     def focus(self):
         self.viewport.focus(self.selected);self.mode.set(self.viewport.camera.mode)
@@ -308,6 +291,7 @@ class SpatialWindow:
     def close(self):
         if self.closed:return
         self.closed=True;self.cancel.set()
+        self.script_panel.close()
         for timer in (self.timer,self.tree_timer,self.query_timer):
             if timer:self.root.after_cancel(timer)
         self.viewport.close();self.executor.shutdown(wait=False,cancel_futures=True)

@@ -1,5 +1,8 @@
 # Read-only 3D Mission Explorer — initial milestone, 2026-11-10
 
+Current [spatial script intelligence](SPATIAL-SCRIPTS.md) adds the docked script
+panel, static overlays and source/context navigation.
+
 Current fidelity improvements and three-mission verification are documented in
 [FIDELITY.md](FIDELITY.md). The initial verification receipt below is historical;
 its counts are superseded by that checkpoint.

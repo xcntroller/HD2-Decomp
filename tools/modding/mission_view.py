@@ -22,6 +22,8 @@ class MissionViewport(GLViewport):
         self.origins=False
         self.keys=set();self.last_tick=time.monotonic();self.bound=False;self.buffers={};self.gpu_ready=False
         self.mouse_start=None;self.mouse_moved=False;self.draw_list=[];self.stats={};self.last_stats=0.
+        from spatial_overlay import RelationshipOverlay
+        self.relationships=RelationshipOverlay(self);self.on_relationship=None
 
     def extra_gl(self):
         if self.bound:return
@@ -45,6 +47,7 @@ class MissionViewport(GLViewport):
         if self.ready:
             self.extra_gl();self.gl.glXMakeCurrent(self.display,self.window,self.context);self.release_buffers()
         self.scene=scene;self.selected=None;self.keys.clear();self.draw_list=[]
+        self.relationships.edges=[];self.relationships.selected=None
         self.images={(path,index):image for path,asset in scene.assets.items() for index,image in asset.images.items()}
         if self.ready:self.upload_textures(self.images)
         self.camera=Camera();self.camera.focus(scene.bounds);self.camera.far=max(500.,self.camera.distance*2.)
@@ -199,12 +202,16 @@ class MissionViewport(GLViewport):
         g=self.gl
         for state in (0x0b50,0x0de1,0x0bd0,0x809d,0x8db9):g.glDisable(state)
         g.glPolygonMode(0x0408,0x1b02);g.glClearColor(0,0,0,1);g.glClear(0x4100)
-        self.draw_list=self.candidates();self.render_objects(True);g.glFinish();g.glReadBuffer(0x0405)
+        self.draw_list=self.candidates();self.render_objects(True);self.relationships.draw(True);g.glFinish();g.glReadBuffer(0x0405)
         pixel=(C.c_ubyte*3)();g.glPixelStorei(0x0d05,1)
         if 0<=x<self.winfo_width() and 0<=y<self.winfo_height():
             g.glReadPixels(x,self.winfo_height()-1-y,1,1,0x1907,0x1401,pixel)
             index=pixel[0]+(pixel[1]<<8)+(pixel[2]<<16)
-            self.selection(self.draw_list[index-1].identity if 0<index<=len(self.draw_list) else None)
+            edge=self.relationships.picked(index)
+            if edge:
+                self.relationships.selected=edge.identity
+                if self.on_relationship:self.on_relationship(edge)
+            else:self.selection(self.draw_list[index-1].identity if 0<index<=len(self.draw_list) else None)
         self.dirty=True
 
     def draw(self):
@@ -236,6 +243,7 @@ class MissionViewport(GLViewport):
             for axis in range(3):
                 for sign in (-1,1):g.glVertex3f(*(point[k]+(sign*.5 if k==axis else 0) for k in range(3)))
             g.glEnd()
+        self.relationships.draw()
         error=g.glGetError()
         if error:raise RuntimeError(f'Mission OpenGL error0x{error:04x}')
         g.glXSwapBuffers(self.display,self.window)
@@ -247,5 +255,5 @@ class MissionViewport(GLViewport):
     def close(self,destroy_window=True):
         if self.closed:return
         if self.display and self.context and self.bound:
-            self.gl.glXMakeCurrent(self.display,self.window,self.context);self.release_buffers()
+            self.gl.glXMakeCurrent(self.display,self.window,self.context);self.release_buffers();self.relationships.close()
         self.scene=None;self.keys.clear();super().close(destroy_window)

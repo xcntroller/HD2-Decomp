@@ -33,7 +33,8 @@ def freeze_session(session):
     are copied because a later Explorer inspection may relink them in place.
     """
     files=tuple(replace(entry,references=[replace(ref,targets=list(ref.targets)) for ref in entry.references]) for entry in session.report.files)
-    return SimpleNamespace(store=session.store,report=SimpleNamespace(files=files,mission_name=session.report.mission_name))
+    graph={key:tuple(value) for key,value in session.report.graph.items()}
+    return SimpleNamespace(store=session.store,report=SimpleNamespace(files=files,mission_name=session.report.mission_name,graph=graph))
 
 
 @dataclass
@@ -406,6 +407,9 @@ class SpatialScene:
         self.counts['world_fallback_comparisons']=sum(n.world is not None and n.fallback is not None for n in self.nodes.values())
         from spatial_coverage import report
         self.coverage=report(self)
+        from spatial_scripts import ScriptRelations
+        self.script_relations=ScriptRelations(self)
+        self.coverage['scripts']=self.script_relations.coverage()
 
     def metadata(self):
         return {'schema_version':2,'mission':self.mission,'status':'partial_serialized_spatial_snapshot','evidence':EVIDENCE,
