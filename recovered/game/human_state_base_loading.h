@@ -130,8 +130,21 @@ public:
             if(command&group)flags=(flags&~group)|(command&group);
         words_.set(0x50,flags);
     }
-    struct FrameCommand {std::uint32_t kind;std::int32_t actor_identity;};
+    using FrameCommand=HumanPacketCommand;
     const auto& first_frame_commands()const{return first_;}
+    const auto& second_frame_commands()const{return second_;}
+    void queue_frame_command(FrameCommand command,bool second){(second?second_:first_).push_back(std::move(command));}
+
+    bool queue_inventory_move(std::int32_t item,std::int32_t actor,std::int32_t from,std::int32_t to,std::int32_t index){ //0053E610/00592320.
+        FrameCommand command;command.kind=7;command.fields.set(8,item);command.fields.set(0xc,actor);
+        command.fields.set(0x10,from);command.fields.set(0x14,to);command.fields.set(0x18,index);
+        queue_frame_command(std::move(command),false);return true; //Actual first80 append, not completed inventory mutation.
+    }
+    bool queue_inventory_swap(std::int32_t current,std::int32_t current_slot,std::int32_t actor,std::int32_t selected,std::int32_t selected_slot){ //0053E7F0/00592500.
+        FrameCommand command;command.kind=8;command.fields.set(8,current);command.fields.set(0xc,current_slot);
+        command.fields.set(0x10,actor);command.fields.set(0x14,selected);command.fields.set(0x18,selected_slot);
+        queue_frame_command(std::move(command),false);return true;
+    }
     bool project_ground_position(HumanVector&)override{return false;} //00583140, genuine AL0/RET4, absent frozen.
     bool frame_actor_contact(std::uint32_t,std::int32_t,std::uint32_t)override{return true;} //00583230, genuine AL1/RET28, absent frozen.
     template<class Services>void bind_frame_command_packets(Services& services){
@@ -160,7 +173,7 @@ public:
     }
 protected:
     Frames& state_frames(){return frames_;}
-    void queue_ladder_contact(std::int32_t identity){first_.push_back(FrameCommand{6u,identity});} //00544B40, actual first80 command vector.
+    void queue_ladder_contact(std::int32_t identity){FrameCommand command;command.kind=6;command.actor_identity=identity;first_.push_back(std::move(command));} //00544B40, actual first80 command vector.
 
     void navigation_point(MissionTableRecord* point){point_=point;} //Actual A4 borrower.
     void clear_human_reference()noexcept{human_=nullptr;} //Derived+20 may clear44 without removing shared7C.
@@ -177,7 +190,7 @@ private:
     }
     void require_music_reference()const{if(!special_music_reference_)throw std::runtime_error("Human state4/8 requires actual game special-music reference owner");}
     Frames& frames_;Inputs& inputs_;HumanJointWords<0xc0> words_;
-    std::vector<FrameCommand> first_,second_; //Native84/94, typed actual kind6 producer and shared packet serializer.
+    std::vector<FrameCommand> first_,second_; //Native84/94, owned command values and shared packet serializer.
     Human* human_=nullptr;Command command_=nullptr;Entry item_{};Input* input_=nullptr;
     ActionTarget* action_target_=nullptr; //Borrowed native68. Initial no-previous bind leaves it unwritten in original; cold guard only.
     HumanFrameInputBuffer* first_frame_inputs_=nullptr;HumanFrameInputBuffer* second_frame_inputs_=nullptr; //Actual74/78 borrowers.

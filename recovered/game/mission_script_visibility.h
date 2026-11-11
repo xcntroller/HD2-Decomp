@@ -25,9 +25,19 @@ public:
             if(frames_.frame_kind(frame)==4)queue_light(frame); //00423980 before scene update and packet creation.
             frames_.update_scene_object(frame);
             if((mode_&7u)!=7u)throw std::runtime_error("Script visibility requires actual nonoffline transport");
-            auto& packet=packets_.begin(4,0); //DL1 in00424540 selects priorityZERO.
-            packet.write(0x5f,8);packet.write_string(frames_.frame_name(frame));
-            packet.write(context.program().integers[value].value!=0,1);packet.finish_broadcast();
+            auto& packet=packets_.broadcast_stream(0); //DL1 in00424540 selects priorityZERO.
+            const auto before=packet.bit_count();
+            const auto active=packet.word1c,priority=packet.word20,target=packet.word24,kind=packet.word28;
+            const bool request=packet.flag18;
+            try{
+                packet.begin(4,0,0,true);packet.write(0x5f,8);packet.write_string(frames_.frame_name(frame));
+                packet.write(context.program().integers[value].value!=0,1);packet.finish_broadcast();
+                context.advance(runtime);return true;
+            }catch(...){ //Source guard: advance's runtime predicates precede its PC mutation.
+                packet.position(before/32,static_cast<unsigned>(before%32));
+                packet.word1c=active;packet.word20=priority;packet.word24=target;packet.word28=kind;packet.flag18=request;
+                throw;
+            }
         }
         context.advance(runtime);return true;
     }

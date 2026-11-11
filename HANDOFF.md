@@ -1,55 +1,38 @@
-# P22-LIFE handoff — 2026-11-11
+# P22-PACK handoff — 2026-11-11
 
-Agent #3, `feature/p22-life`, worktree `HD2-Decomp-p22-life`.
-Starting and latest read-only fetched `origin/master`:
-`49ff7dc12710cd645dc2224f9879b829cf055308`. No merge/rebase/push or modification
-of Agent #1's master or Agent #2's UI worktree. Research/p22 and UI d01face were
-read through Git. Application loading remains disabled.
+`feature/p22-pack`, isolated `HD2-Decomp-p22-pack`, starting clean HEAD and actual
+read-only fetched master `f9d5f03183900044ce191530a13f34690b7e8059`.
+Master/Human, UI and LIFE checkouts were not changed. No push or merge.
 
-[Exact LIFE checklist](analysis/p22-life-plan.md) ·
-[Lifecycle/API and original contracts](analysis/p22-life-implementation.md) ·
-[Verification receipt](analysis/checkpoints/p22-life-20261111.json).
+[Exact plan](analysis/p22-pack-plan.md) ·
+[Payload contracts and blockers](analysis/p22-pack-implementation.md) ·
+[Verification receipt](analysis/checkpoints/p22-pack-20261111.json).
 
-**P22-LIFE source boundary is closed for the reconstructed offline graph; external
-positive dependencies and application/desktop acceptance remain open.**
+**PACK is open at required positive Human effects; its independent wire/discard
+checkpoint is complete.** All23 payload codecs/serializers, different authority/
+presentation/Player/Remote/discard sets, reserved presentation dispatch, actual
+Player/Remote move/swap producers and late inventory/equipment snapshots are in
+source. Existing Script SetOn also reaches its real registered module/decoder.
+Available effects use SAME Human/B0/DD0/Items/Players/control owners.
+Callback replacement/retirement rechecks the physical Scene2 owner. Process
+streams/FIFOs survive World unbind; original spawn and LIFE contracts remain.
 
-The concrete `GameSessionLifecycle<Controller>` owns the existing actual loading
-World, activation, GameBlastWaves and UI adapters over SAME SessionOwner/request/
-mutable squad/process/Scene. It tracks entered/completed prefixes, preserves the
-primary error, records secondary cleanup/graphics failures, and separates finish,
-file unload and close. Real status1 finish precedes the file loaded14 guard.
-Mandatory retirement failures stop dependent teardown and retain the graph for
-explicit retry. Callback/page loans, partial VM contexts, actor prefixes,
-frameEC/item/model/Physics users, camera/effects/particle loans and collision
-sweep/buckets retire before their owners/parent reset. Native successful finish
-and file publication order is retained. Source guards and exclusions are explicit.
+Next: supply the exact existing-owner interfaces in the implementation blocker
+table, then bind their positive effects/producers. Events/death, active clothing,
+general item validation/apply/throw, B0 controls/actions, damage, notification/
+profile/speech and Remote equipment replacement still fail when reached. Do not
+mark PACK source-closed or enable application success on this checkpoint.
 
-Original address correction:006987E0 is `return 1`, not destruction. Actual
-wrapper/body are00698810/00698830. No new destructor or delegated engine credit.
-Five existing partial rows are extended; frozen18,783, complete34 and partial2,471
-are unchanged. No whole-function or desktop promotion.
+Native ASan/UBSan/LSan covers all payloads, null/missing/nonplayer/state gates,
+optional/signed goldens, every byte truncation, actual queued producers, receiver/
+serialization/enqueue/allocation failures, partial-flush retry, Human+B0 destruction
+inside a callback and100 process lifetime cycles. Engine/Items/DD0/clock/sound
+endpoints are doubles. Strict concrete i386 graph and existing application link
+pass without execution. Temporary audits/binaries are hashed and removed;
+logs/exports remain ignored `analysis/work/p22-pack-20261111`.
 
-Next for P22-OWN: stop/destroy frame borrowers before LIFE close; destroy LIFE
-before Parent/engine reset. Supply the real controller/Startup/catalogue/suffix/
-SessionActivationState and mandatory render receiver. The typed API is callable
-but has NOT been installed in GameApplicationState. Preserve original status and
-loaded publication; do not enable application success without the remaining
-Human/GUARD/FRAME/RENDER/UI dependencies. Explicit close reports mandatory errors;
-the destructor reports remaining failures and uses existing guarded RAII fallback.
-
-External work stays separate: Agent #1's positive Human/Guard/integrity work;
-Agent #2's populated roll/signal retirement, HUD/input orchestration and required
-order/seat/focus producers; FRAME/RENDER scheduling and OWN activation. Reached
-missing positive receivers still reject. Application loading/failure/Main-return/
-re-entry and user-operated desktop acceptance remain pending. No original EXE,
-DLL, Windows fixture or Proton was executed.
-
-Verification work/logs are ignored `analysis/work/p22-life-20261111`; original
-read-only exports/toolchain are in `/home/control/Documents/Projects/H&D2 Decomp 4`.
-Focused native ASan/UBSan/LSan includes every observed load/activation throw,
-false tails, cleanup retries,100 finish cycles, every parent-constructor allocation
-failure, actual partial Script context retirement, retained frame/page/EC/bucket
-lifetimes and graphics double failure. Engine/archive/clock/actor endpoints are
-doubles. Strict actual i386 composition uses the real launcher controller and
-links without execution. Temporary audits are fingerprinted and removed after
-verification; no permanent tests. No push or merge is authorized.
+40 frozen bodies gain partial claims; seven existing partials extend. Frozen18,783
+and complete34 stay unchanged (partial2,511). No delegated/absent function credit,
+real engine execution, desktop acceptance or application activation. FRAME/
+RENDER/GUARD/OWN/UI and later user mission/failure/repeat acceptance remain separate.
+LIFE details: [contract](analysis/p22-life-implementation.md).

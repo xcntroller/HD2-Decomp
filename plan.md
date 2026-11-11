@@ -242,6 +242,7 @@ preparation, not a standalone audit-only milestone.
   [Full boundary/source progress](analysis/mission-world-loading.md), [frame/render](analysis/frame-render-source.md), [module/actor frames](analysis/module-actor-frame-source.md), [projection process](analysis/human-projection-frame-process.md), [Physics frames](analysis/physics-object-frame-motion.md), [Sight frames](analysis/sight-shot-frame-source.md), [Human frames](analysis/human-frame-source.md), [shared movement](analysis/human-scene-movement.md). The containing module facade, ground collision/water/fall coordination, Human contacts, Look/posture collision and Player frame/input state are in source. Positive actor, rendering, integrity and application integration remain.
   [P22-HUM remaining sequence](analysis/p22-hum-plan.md) tracks the active Human blocker.
   [P22-UI implementation](analysis/p22-ui-implementation.md): presentation/text/timer leaves verified; full HUD/FPV updates remain open.
+  [P22-PACK plan](analysis/p22-pack-plan.md): wire/discard, queued inventory producers and available receivers verified; positive Human effects still block full source closure.
   [P22-LIFE plan](analysis/p22-life-plan.md) tracks partial rollback, finish/file unload and the typed ownership boundary.
 - [ ] User-verify actual mission scene/camera rendering, failure return and repeat
   loading through Python; unsupported required assets/data cannot report success.

@@ -5,6 +5,9 @@
 #include "game/human_camera_state.h"
 #include "frontend/spatial_sound.h"
 #include "game/human_speech_loading.h"
+#include "game/human_packet_receiver.h"
+#include "game/human_script_loading_controls.h"
+#include "game/human_squad_snapshot.h"
 #include "game/human_speech_notifications.h"
 #include "game/human_sight_relations.h"
 #include "game/collision_ray.h"
@@ -485,25 +488,128 @@ public:
     }
     template<class Commands>
     void publish_human_frame_commands(std::int32_t identity,bool second,const Commands& commands){
-        write_human_frame_commands(dependencies().broadcast_packets,mode_flags(),identity,second,commands);
-    }
-    template<class Actor>
-    void receive_human_authority_packet(Actor* actor,SessionPacketStream& packet,bool reserved){
-        if((mode_flags()&7u)!=7u)
-            throw std::runtime_error("Human authority commands require actual nonoffline forwarding");
-        using Human=typename Dependencies::Composition::Human;
-        auto* human=dynamic_cast<Human*>(actor);
-        if(!reserved&&(!human||!human->loading_state||human->loading_state->words().template get<std::uint32_t>(0x48)!=1u))
-            throw std::runtime_error("Scene2 authority packet requires its actual actor20/B0+C4 receiver");
-        auto request=[&](std::uint32_t identity){
-            if(!human||!human->loading_state||human->loading_state->words().template get<std::uint32_t>(0x48)!=1u)return;
-            auto& owner=composition(*human).control();
-            auto* control=owner.control();auto* look=owner.look();
-            if(!control||!look)throw std::logic_error("Player Ladder command requires the actual DD0/E0 owners");
-            auto* target=dependencies().scene.frames().scene_actor_identity(static_cast<std::int32_t>(identity));
-            (void)control->request_frame_ladder(target,*look,*this); //00540DB0 case6 ignores the result.
+        //005B2700/005B2D20 sample actual owners WHEN serialized, not when queued.
+        const auto prepare=[&](const HumanPacketCommand& value){
+            auto command=value;
+            if(command.kind==20){
+                auto* actor=dependencies().scene.frames().scene_actor_identity(command.fields.template get<std::int32_t>(8));
+                using Human=typename Dependencies::Composition::Human;auto* human=dynamic_cast<Human*>(actor);
+                if(!human)throw std::runtime_error("005B2D20 equipment publication requires its actual referenced Human");
+                command.equipment.clear_equipment();snapshot_human_equipment(*human,command.equipment,dependencies().world_actors.items(),mode_flags());
+            }else if(command.kind==13){
+                using Human=typename Dependencies::Composition::Human;
+                auto* human=dynamic_cast<Human*>(dependencies().scene.frames().scene_actor_identity(identity));
+                if(!human)throw std::runtime_error("005B2700 inventory publication requires its actual sending Human");
+                auto* storage=human->base().storage();if(!storage||storage->single())throw std::runtime_error("005B2700 requires actual Human storage");
+                command.inventory.clear();auto& items=dependencies().world_actors.items();
+                const auto append=[&](std::uint32_t slot,const auto& entry){if(entry){auto& item=items.runtime_item(entry);
+                    command.inventory.push_back({slot,item.definition().identifier,static_cast<std::uint32_t>(item.identity)});}};
+                for(const auto pair:std::array<std::pair<unsigned,unsigned>,5>{{{0,0},{4,4},{5,5},{2,2},{3,3}}}){
+                    auto* holder=storage->holder(pair.first);if(!holder)throw std::logic_error("Inventory packet lost its actual holder");append(pair.second,holder->entry());}
+                for(const auto slot:{1u,6u})if(auto* stacks=storage->slots(slot))
+                    for(std::size_t n=0;n<stacks->occupied_stacks();++n)for(const auto entry:stacks->slots().at(n).entries)append(slot,entry);
+            }
+            return command;
         };
-        receive_human_ladder_commands(packet,request);
+        write_human_frame_commands(dependencies().broadcast_packets,mode_flags(),identity,second,commands,prepare);
+    }
+    template<class Actor>void receive_human_authority_packet(Actor* actor,SessionPacketStream& packet,bool reserved){
+        receive_human_process_packet(actor,packet,true,reserved);
+    }
+    template<class Actor>void receive_human_presentation_packet(Actor* actor,SessionPacketStream& packet,bool reserved){
+        receive_human_process_packet(actor,packet,false,reserved);
+    }
+    template<class Actor>void receive_human_process_packet(Actor* actor,SessionPacketStream& packet,bool authority,bool reserved){
+        if((mode_flags()&7u)!=7u)throw std::runtime_error("Human process commands require actual nonoffline forwarding");
+        using Human=typename Dependencies::Composition::Human;
+        const auto identity=actor?actor->base().id10():-1;
+        const auto resolve=[&]()->Human*{
+            if(!actor)return nullptr;
+            auto* current=dependencies().scene.frames().scene_actor_identity(identity);
+            return current==actor?dynamic_cast<Human*>(current):nullptr;
+        };
+        receive_human_packet(packet,mode_flags(),authority,reserved,*this,resolve);
+    }
+    template<class Actor>bool try_human_presentation_packet(Actor& actor,SessionPacketStream& packet){
+        using Human=typename Dependencies::Composition::Human;
+        if(!dynamic_cast<Human*>(&actor))return false;
+        receive_human_presentation_packet(&actor,packet,false);return true;
+    }
+    void receive_human_equipment_packet(const HumanPacketCommand& command){ //005B2A90, including discard.
+        using Human=typename Dependencies::Composition::Human;
+        auto* human=dynamic_cast<Human*>(dependencies().scene.frames().scene_actor_identity(command.fields.template get<std::int32_t>(8)));
+        if(!human||!human->loading_state||human->loading_state->words().template get<std::uint32_t>(0x48)!=7u)return;
+        throw std::runtime_error("Human PACK command20 requires Remote equipment replacement0059EB60 on actual Items/B0/DD0");
+    }
+    template<class Human>void apply_human_packet_command(Human& human,const HumanPacketCommand& command,HumanPacketGrammar grammar){
+        using Factory=typename Dependencies::Composition::StateFactory;
+        const bool authority=grammar==HumanPacketGrammar::authority_player;
+        const bool player=grammar==HumanPacketGrammar::presentation_player||authority;
+        auto& owner=composition(human);auto* state=owner.states().get();
+        if(!state||state!=human.loading_state)throw std::logic_error("Human packet requires SAME actual published B0 owner");
+        const auto& f=command.fields;
+        switch(command.kind){
+        case 0:
+            if(authority){if(human.base().id10()!=human_current_player_id())static_cast<typename Factory::Player&>(*state).receive_packet_inputs(command);}
+            else if(!player)static_cast<typename Factory::Remote&>(*state).receive_packet_inputs(command);
+            return; //Player presentation only consumes;005AC540 is genuine AL1.
+        case 4:
+            if(!authority&&!player)state->words().set(0x10,f.template get<HumanVector>(0x30)); //00583120, Remote virtual54 copies direction only.
+            return; //Player/authority only decode this payload.
+        case 6:{
+            auto& control_owner=owner.control();auto* control=control_owner.control();auto* look=control_owner.look();
+            if(!control||!look)throw std::logic_error("Human Ladder command requires the actual DD0/E0 owners");
+            auto* target=dependencies().scene.frames().scene_actor_identity(command.actor_identity);
+            (void)control->request_frame_ladder(target,*look,*this);return; //00540DB0/005406C0/00592FE0 ignore result.
+        }
+        case 13:return; //005B2340 diagnostic side effects require !mode1; offline7 has mode1.
+        case 15:
+            if(authority)state->queue_frame_command(command,true); //00547600 even offline;007866F0 RET in mode7.
+            return; //Player presentation consumes only; Remote007866F0 mode7 RET.
+        case 16:
+            if(authority)return; //00540DB0 only decodes this command.
+            throw std::runtime_error("Human PACK command16 requires profile/Players005A96A0/0072FAC0 publication");
+        case 19:{
+            if(!human.speech_definition)throw std::runtime_error("Human speech packet has no actual speech definition");
+            HumanSpeechLoading speech(dependencies().scene.frames(),*this);
+            speech.offline(*state,static_cast<std::int32_t>(f.template get<std::uint32_t>(8)),f.template get<std::uint32_t>(0xc)!=0);return;
+        }
+        case 21:{ //Authority00540DB0 synthesizes20 in SAME second90 vector, including offline.
+            HumanPacketCommand response;response.kind=20;response.fields.set(8,f.template get<std::int32_t>(8));state->queue_frame_command(std::move(response),true);return;
+        }
+        case 22:{
+            if(authority||player)return; //Actual Player receivers consume only.
+            auto& d=dependencies();
+            using Controls=HumanScriptLoadingControls<typename Dependencies::ActorFrames,Human,HumanWorldLoadingServices,
+                std::remove_reference_t<decltype(d.sight.source())>,std::remove_reference_t<decltype(d.hearing)>,
+                std::remove_reference_t<decltype(d.first_players)>,std::remove_reference_t<decltype(d.first_person.view())>,HumanWorldLoadingServices>;
+            Controls controls(d.scene.frames(),*this,d.sight.source(),d.hearing,d.first_players,d.first_person.view(),*this);
+            controls.suspend_human(human,f.template get<std::uint32_t>(8)!=0);return;
+        }
+        case 23:
+            if(authority||player)return;
+            static_cast<typename Factory::Remote&>(*state).clear_packet_action_suppression(); //00592FE0 clears2C1, irrespective of decoded bool.
+            owner.control().action_command(0x4c);return; //Existing005A45F0→005ABB50 receiver, no retained B0 after call.
+        case 1:throw std::runtime_error("Human PACK command1 requires Human event/death005A15D0");
+        case 2:throw std::runtime_error(authority?"Human PACK command2 requires active clothing005A6930":"Human PACK command2 requires active clothing005A6A00");
+        case 3:
+            if(!authority&&player)return; //Presentation Player mode1 skips B0+DC.
+            throw std::runtime_error("Human PACK command3 requires actual B0+DC/00586200 typed control receiver");
+        case 7:throw std::runtime_error(authority?"Human PACK command7 requires inventory validation005A2D50":"Human PACK command7 requires inventory apply005A2E10");
+        case 8:throw std::runtime_error(authority?"Human PACK command8 requires inventory swap005A2E90":"Human PACK command8 requires inventory swap apply005A2F50");
+        case 9:throw std::runtime_error(authority?"Human PACK command9 requires item validation005A39D0":"Human PACK command9 requires item apply005A3A40");
+        case 10:throw std::runtime_error(authority?"Human PACK command10 requires item throw005A3490":"Human PACK command10 requires item throw apply005A3750");
+        case 11:throw std::runtime_error(authority?"Human PACK command11 requires item validation005A37C0":"Human PACK command11 requires item apply005A38F0");
+        case 12:throw std::runtime_error(authority?"Human PACK command12 requires Player action validation0053D5D0":player?"Human PACK command12 requires Player action apply0053D870":"Human PACK command12 requires Remote action apply00594110");
+        case 14:{
+            using PacketHuman=typename Dependencies::Composition::Human;
+            if(!dynamic_cast<PacketHuman*>(dependencies().scene.frames().scene_actor_identity(static_cast<std::int32_t>(f.template get<std::uint32_t>(8)))))return; //00588870 null/non-Human gate.
+            throw std::runtime_error("Human PACK command14 requires B0+10/00588870 Human notification005A4600");
+        }
+        case 17:throw std::runtime_error("Human PACK command17 requires actual Human virtualD4/005A1C90 damage receiver");
+        case 18:throw std::runtime_error("Human PACK command18 requires Remote speech005A9C20");
+        default:throw std::logic_error("Human command dispatched outside original grammar");
+        }
     }
     template<class Human>void notify_human_ladder_probe(Human&,std::uint32_t){
         throw std::runtime_error("Nonoffline Ladder probe requires actual00588D20 command15 publication");

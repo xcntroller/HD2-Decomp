@@ -160,16 +160,23 @@ public:
         auto* module=module_registry()[kind];if(!module)return false;
         (void)checked_kind(*module);
         if(kind==13){
-            if(!authority)return game::receive_scene2_presentation_packet(d_.scene.frames(),packet,d_.world_actors,*this);
+            if(!authority)return game::receive_scene2_presentation_packet(d_.scene.frames(),packet,*this,*this);
             const auto identity=packet.read(10); //004755D0, reserved0..31 use005A5F80.
             auto* actor=d_.scene.frames().scene_actor_identity(static_cast<std::int32_t>(identity));
             d_.human_services.receive_human_authority_packet(actor,packet,identity<32u);
             return true;
         }
+        if(kind==4&&!authority){bound(*module,d_.scripts.module());return d_.scripts.module().receive(&packet);} //00424590→existing0042B650 SetOn.
+        //Original default module24/28 receivers00405B20/30 returnfalse.
+        if(authority&&kind!=12)return false;
+        if(!authority&&kind!=4&&kind!=7&&kind!=12&&kind!=14&&kind!=16)return false;
         throw std::runtime_error("Required actual authority/presentation module packet receiver is unavailable");
     }
-    template<class Actor>void receive_player_packet(Actor*,game::SessionPacketStream&){
-        throw std::runtime_error("Reserved Scene2 packet requires actual005A5FB0/005418E0 player-state receiver");
+    template<class Actor>void receive_player_packet(Actor* actor,game::SessionPacketStream& packet){
+        d_.human_services.receive_human_presentation_packet(actor,packet,true);
+    }
+    template<class Actor>void receive_actor_packet(Actor& actor,game::SessionPacketStream& packet){
+        if(!d_.human_services.try_human_presentation_packet(actor,packet))d_.world_actors.receive_actor_packet(actor,packet);
     }
 private:
     static std::int32_t signed_elapsed(std::uint32_t elapsed){std::int32_t value;std::memcpy(&value,&elapsed,4);return value;}

@@ -15791,13 +15791,18 @@
       "program": "client",
       "entry": "005a2b40",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005a2b40: Offline AI same-Human source1/2-to-empty-hand3 loading command/caller and source identity lookup; queued player/remote/nonoffline packet and general transfers excluded.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "Existing immediate AI loading path plus actual Player/Remote first80 move request production from SAME item identity and Human/source identity. Request append is distinct from required authority transfer effect.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
       "evidence": [
         "recovered/game/human_loading_inventory.h",
         "analysis/human-state-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
       ]
     },
     {
@@ -20299,12 +20304,17 @@
       "program": "client",
       "entry": "005a2bb0",
       "status": "partial",
-      "coverage": "Same-Human weapon command identity lookup and offline AI B0 dispatch; reject queued player/remote paths before mutation.",
-      "limitations": "Source-only portable owner composition; original object/vtable/SEH ABI and containing live world are excluded. Weapon commands cover same-Human offline AI slots1/2/3/6 only; cross-Human, other item families, queued player/remote and network paths remain separate. No desktop or whole-body equivalence claim.",
+      "coverage": "Existing immediate AI loading swap plus Player/Remote first80 swap requests with actual current/selected item identities. Cross-Human clothing4 eligibility and positive authority/apply effects remain required.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
       "evidence": [
         "recovered/game/human_loading_inventory.h",
         "analysis/human-equipment-loading.md",
-        "analysis/checkpoints/p2.2-weapon-swap-20261109.json"
+        "analysis/checkpoints/p2.2-weapon-swap-20261109.json",
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
       ]
     },
     {
@@ -26685,26 +26695,36 @@
       "program": "client",
       "entry": "0048dc50",
       "status": "partial",
-      "coverage": "Fresh original module registration packet dispatch and native absent-module false result, concrete actual module13 presentation routing; process-owned streams/queues borrow a checked loaded World.",
-      "limitations": "Source-only typed dispatch; unsupported positive authority/other module and reserved Human/discard receivers explicitly require actual implementations. Original vtable/register ABI differs. No enabled application mission path, full update/render or desktop acceptance; delegated callees get no new credit.",
+      "coverage": "Fresh original module registration packet dispatch and native absent-module false result, concrete actual module13 presentation routing; process-owned streams/queues borrow a checked loaded World. PACK checkpoint: actual module13 authority grammar and fresh registration; original absent/default module false receivers preserve packet stop behavior.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
       "evidence": [
         "recovered/host/game_loading_modules.h",
         "recovered/game/session_packet_world.h",
         "analysis/process-packet-world-binding.md",
-        "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json"
+        "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json",
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "0048dc70",
       "status": "partial",
-      "coverage": "Fresh original module registration packet dispatch and native absent-module false result, concrete actual module13 presentation routing; process-owned streams/queues borrow a checked loaded World.",
-      "limitations": "Source-only typed dispatch; unsupported positive authority/other module and reserved Human/discard receivers explicitly require actual implementations. Original vtable/register ABI differs. No enabled application mission path, full update/render or desktop acceptance; delegated callees get no new credit.",
+      "coverage": "Fresh original module registration packet dispatch and native absent-module false result, concrete actual module13 presentation routing; process-owned streams/queues borrow a checked loaded World. PACK checkpoint: actual reserved and nonreserved Human presentation binding plus preserved existing actor/spawn receivers; original absent/default module false behavior. Existing Script module4 SetOn is bound through the same checked registration and process FIFO.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
       "evidence": [
         "recovered/host/game_loading_modules.h",
         "recovered/game/session_packet_world.h",
         "analysis/process-packet-world-binding.md",
-        "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json"
+        "analysis/checkpoints/p2.2-process-packet-world-binding-20261110.json",
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
       ]
     },
     {
@@ -31409,8 +31429,8 @@
       "program": "client",
       "entry": "00540db0",
       "status": "partial",
-      "coverage": "Player authority command-list kind6 decoder, actual Scene2 Ladder identity resolution and existing DD0007861A0 invocation with ignored result, through terminator24.",
-      "limitations": "Source-only typed native owners/containers replace original allocator, object/vtable and SEH ABI. Recovered kind6 producer/payload only. Positive Player weapon/input/FPV, moving-Car damage, nonoffline transport, other command payloads and containing application integration remain required. Explicit boundary doubles and compilation do not establish desktop delivery.",
+      "coverage": "Offline authority command grammar, same real Player input buffers/second0, Ladder6, consume-only4/16/22/23, actual15 queue and21-to20 response. Other reached positive Human effects report exact missing interfaces.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-contact-player-20261111.json",
@@ -31419,15 +31439,19 @@
         "recovered/game/human_world_loading_services.h",
         "recovered/game/human_state_base_loading.h",
         "recovered/game/session_broadcast_packets.h",
-        "recovered/host/game_loading_modules.h"
+        "recovered/host/game_loading_modules.h",
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "005a5f80",
       "status": "partial",
-      "coverage": "Reserved Scene2 authority dispatch, current Player B0 kind1 gating and actual kind6 discard for missing/nonplayer reserved owners.",
-      "limitations": "Source-only typed native owners/containers replace original allocator, object/vtable and SEH ABI. Recovered kind6 producer/payload only. Positive Player weapon/input/FPV, moving-Car damage, nonoffline transport, other command payloads and containing application integration remain required. Explicit boundary doubles and compilation do not establish desktop delivery.",
+      "coverage": "Authority reserved gate retains Player kind1 only; missing/nonplayer owners now consume the complete authority discard grammar, not only Ladder6.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-contact-player-20261111.json",
@@ -31436,15 +31460,19 @@
         "recovered/game/human_world_loading_services.h",
         "recovered/game/human_state_base_loading.h",
         "recovered/game/session_broadcast_packets.h",
-        "recovered/host/game_loading_modules.h"
+        "recovered/host/game_loading_modules.h",
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "00541cb0",
       "status": "partial",
-      "coverage": "Consume actual kind6 Ladder identity payload and command-list terminator24 for discarded reserved Player requests.",
-      "limitations": "Source-only typed native owners/containers replace original allocator, object/vtable and SEH ABI. Recovered kind6 producer/payload only. Positive Player weapon/input/FPV, moving-Car damage, nonoffline transport, other command payloads and containing application integration remain required. Explicit boundary doubles and compilation do not establish desktop delivery.",
+      "coverage": "Complete ordinary offline authority discard wire grammar through24, including null/nonplayer owners, signed/optional/quantized payloads and original tag-only switch holes.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-contact-player-20261111.json",
@@ -31453,7 +31481,11 @@
         "recovered/game/human_world_loading_services.h",
         "recovered/game/human_state_base_loading.h",
         "recovered/game/session_broadcast_packets.h",
-        "recovered/host/game_loading_modules.h"
+        "recovered/host/game_loading_modules.h",
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
       ]
     },
     {
@@ -33018,6 +33050,566 @@
         "recovered/game/human_model_geometry.h",
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-motion-pose-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0e50",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b0e50: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0ec0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b0ec0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0ee0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b0ee0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0f50",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b0f50: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0f70",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b0f70: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b0fe0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b0fe0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1000",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1000: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1090",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1090: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b10c0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b10c0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1150",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1150: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1180",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1180: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1230",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1230: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1290",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1290: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b13f0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b13f0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1510",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1510: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b16e0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b16e0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1800",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1800: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b18f0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b18f0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1980",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1980: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b19f0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b19f0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1a10",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1a10: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1bb0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1bb0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1d10",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1d10: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1e40",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1e40: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b1f10",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b1f10: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b2100",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b2100: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b21d0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b21d0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b22b0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b22b0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b2340",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b2340: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b2a90",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b2a90: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b2f80",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b2f80: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b2ff0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b2ff0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b3060",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005b3060: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac5f0",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005ac5f0: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005ac660",
+      "status": "partial",
+      "coverage": "Actual Human packet payload codec/helper body at 005ac660: original field ordering, widths, signedness and quantizer selection over the existing process stream; offline command12 layout and source-owned values. See the exact address/field table.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a5fb0",
+      "status": "partial",
+      "coverage": "Offline reserved presentation state gate, exact command grammar/discard and available actual Human/B0 effects; missing required positive Human effects fail explicitly.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005418e0",
+      "status": "partial",
+      "coverage": "Offline reserved presentation state gate, exact command grammar/discard and available actual Human/B0 effects; missing required positive Human effects fail explicitly.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005406c0",
+      "status": "partial",
+      "coverage": "Offline reserved presentation state gate, exact command grammar/discard and available actual Human/B0 effects; missing required positive Human effects fail explicitly.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00592fe0",
+      "status": "partial",
+      "coverage": "Offline reserved presentation state gate, exact command grammar/discard and available actual Human/B0 effects; missing required positive Human effects fail explicitly.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005b2d20",
+      "status": "partial",
+      "coverage": "Actual referenced-Human lookup, existing SAME Items equipment snapshot and equipment-only packet serialization at write time; missing required target rejects the append transaction.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_commands.h",
+        "recovered/game/human_packet_receiver.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-20261111.json"
       ]
     }
   ]

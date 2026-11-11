@@ -264,6 +264,10 @@ public:
         words.set(0x20,direction);
         this->process_second_frame_commands(); //FC(1), AFTER actual model direction publication.
     }
+    void receive_packet_inputs(const HumanPacketCommand& command){ //00540DB0 case0, SAME C4/1C4 buffers.
+        this->queue_frame_command(command,true); //Allocate before publishing, for source allocation-failure retry.
+        local_inputs_=command.inputs;
+    }
     //Dead00583190 genuinely inherits the base RET4 receiver.
 private:
     void require_sight_services()const {
