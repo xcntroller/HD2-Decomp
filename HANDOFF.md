@@ -9,22 +9,24 @@ and evidence. The user performs desktop acceptance. No push.
 
 ## Latest result
 
-[Human contacts and Player command frames](analysis/human-frame-source.md#human-contacts-and-player-command-frames)
-and [verification receipt](analysis/checkpoints/p2.2-human-contact-player-20261111.json).
-Actual Human5C/C8, Player kind6 Ladder requests, shared process2BC authority
-packets and reserved Scene2 command6 receivers are in source. Player24/28 phases
-preserve queue, DC4/bucket/shadow/model visibility, timer/input and direction
-ordering. Positive Player input/weapon/FPV and moving-Car damage remain required.
-Native ASan/UBSan/LSan, strict actual World i386 and launcher link passed.
-Tally is34 complete and2,344 partial (2,339 client and five engine) across18,783
-frozen functions. Earlier00749E60 cardinal-cycle failure and0076B670 early106
-zero-speed XYZ guard remain documented. Both P2.2 checkboxes remain open.
+[Player local input and weapon state](analysis/human-frame-source.md#player-local-input-and-weapon-state)
+and [verification receipt](analysis/checkpoints/p2.2-human-player-input-20261111.json).
+Actual0053F9B0 input ownership/coordination,00588710 endurance,005457E0/00545B90
+weapon mode/readiness,0053CD90 breath and005433B0 item gates now use the SAME World,
+inline, FPV, item, sound and process owners. Positive shot/held/dry-fire/repair,
+Car seats, command05 and broader input mapping remain required. Native
+ASan/UBSan/LSan, strict actual World i386 and launcher link passed.
+Tally is34 complete and2,351 partial (2,346 client and five engine) across18,783
+frozen functions. Explicit native division/missing-receiver fault guards are
+recorded. Earlier00749E60 cardinal-cycle failure and0076B670 early106 zero-speed
+XYZ guard remain documented. Both P2.2 checkboxes remain open.
 Application loading still declines and no mission desktop test has occurred.
 
 ## Continue P2.2
 
-- Continue positive DD0 air, interaction/floor, B0+58 projection and dynamic ground
-  CE8/DB4/scene144 publication receivers, 0077DE30 look apply,
+- Next close B0+58 projection (Player/Remote00583140 is genuine false, AI0057FBC0
+  is364 frozen bytes) and actual dynamic ground CE8/DB4/scene144 publication.
+  Continue positive DD0 air, interaction/floor, 0077DE30 look apply,
   00779B30/00755500 track/motion and remaining 007A7470 geometry workers.
   WORK `frame-human-live-model-geometry` contains foot, hand, look and
   mount/attachment originals. Climb movement still requires
@@ -35,9 +37,10 @@ Application loading still declines and no mission desktop test has occurred.
   `frame-human-dd0-animation-workers`, `frame-human-presentation-effects`,
   `frame-human-breathing-audio` and `frame-human-shot-and-control-workers`
   preserve the exact bodies. Continue other B0 families, positive 00584E30
-  effects and remaining queued command payloads. Player0053F9B0/005433B0,
-  00545B90/00588710/0053CD90 originals are in WORK
-  `human-player-live-frame-workers` and `frame-human-state-common-updates`. Guard cover/door, AI0057CC50,
+  effects and remaining queued command payloads. Positive Player00542E20,
+  00545140/005454D0, melee and item publication originals are in WORK
+  `human-player-item-action-workers`, `human-player-live-frame-workers` and
+  `frame-human-state-common-updates`. Guard cover/door, AI0057CC50,
   floor-list 00581E30 and 0058BAF0 kind9 release remain required. For item
   virtual24 follow 007D4FD0 through the actual ShotMgr pool and 0044B910.
   Original files are in WORK `frame-human-control-updates`,

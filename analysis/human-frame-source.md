@@ -842,3 +842,62 @@ Nine frozen bodies gain partial credit. Absent005A07C0,00544B40,005765F0,
 00583230,00577B30,0053F370,00540090,005A5F70 and004755D0 receive no new credit.
 Application loading still declines. Both P2.2 checkboxes remain open and mission
 desktop acceptance remains pending.
+
+## Player local input and weapon state
+
+0053F9B0 now supplies the actual local Player frame coordinator. A missing74 or78
+clears and binds the real retained C4/1C4 buffers. Existing external borrowers
+remain bound while their values are copied into these local buffers. The body
+uses the same00583C30 movement receiver, genuine0058C320 RET, endurance, weapon
+readiness, conditional item frame, breath and selected-item timers. Local buffers
+clear before the final first-command drain. The broader input-mapping0053BF90,
+occupied attachment controls and nonoffline history/transport remain required.
+Native2C4/3C4 initialization remains in scalar storage pending its real consumers.
+
+00588710 preserves Actor7C's FLOAT bit interpretation, Human virtual10's raw
+signed stat1 and signed integer division of stat2 by baseline stat2 before FLOAT
+conversion. Effective movement mode and posture select the original rates.
+Elapsed is unsigned, intermediate stores retain their FLOAT boundaries and the
+upper bound precedes the lower bound. NaN remains unordered. Exact zero switches
+10000 stance to4000. Native integer divide-by-zero and INT_MIN/-1 faults raise
+explicit source errors. Broader carrying-weight producers belong to the existing
+inventory owner, with no substituted load value here.
+
+005457E0 and00545B90 now provide actual weapon-mode/readiness decisions through
+same live inline, FPV, item, process random, presentation and integrity owners.
+00493500 tests actual FPV60 and animation94, independently of enabled58. Scope
+and secondary-view toggles retain existing005469E0 and its guard checks. Three
+LS3DF random draws publish their XYZ stores in order before normalization.
+Readiness uses the original inline14/15 and always follows with Player08, even
+when E0 retains its previous value. Existing00542920 now implements the reached
+command1 timer534=10000 and genuine command0 offline default. Positive Car seat
+8C/98 receivers remain mandatory.
+
+0053CD90 supplies held-breath gates, retained4D8/4D4 state, actual Human17C/180/184
+and category11 sound31/32 through the same process SOUND owner. Head-marker
+position and004374D0 defaults are retained. Release clears Human timers after the
+audio call, preserving native partial state on an audio failure. Missing-item
+hold and missing-input toggle/readiness dereferences raise explicit source
+errors. Debug0069BFE0 is a genuine RET.
+
+005433B0 now supplies the actual shot-age timer, retained input and game-mode
+spawn-delay gates, attachment/secondary-view/FPV gates, current item refresh and
+item-family dispatch. Actual reload shares007D4850 and its existing inventory,
+SOUND and holder retirement. Moving kind6 clears the original input words.
+Positive firing uses AC, separately from AD readiness. Existing native no-input,
+no-trigger, cooldown, full-magazine and unsupported-family returns remain real
+branches. Positive00542E20 held-item work, held-title publication, shot/dry-fire,
+command05/FOV notification, melee, repair and actor-action receivers remain
+required. No integrity result or random draw is invented in these branches.
+Their originals are retained in WORK `human-player-item-action-workers` and
+`human-player-live-frame-workers`.
+
+[Verification receipt](checkpoints/p2.2-human-player-input-20261111.json).
+Focused native ASan/UBSan/LSan covers local/external buffer ownership, the actual
+coordinator, FLOAT load/integer conditioning, NaN/fault guards, weapon readiness,
+three-draw toggles, scope selection, breath gates/audio/order/failure, actual AC
+fire gating, item-family mutation and reload/held dispatch. Positive item, engine,
+attachment and frame leaves use explicit boundary doubles. Strict actual World
+phase instantiation and launcher linking pass. Seven frozen client entries gain
+partial credit. Both P2.2 checkboxes remain open. Application loading and actual
+mission desktop acceptance remain pending.

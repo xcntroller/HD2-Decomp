@@ -4803,3 +4803,10 @@ authority FIFO. Player24/28 phases preserve command, collision visibility, timer
 and direction order. Nine source partials. Focused native sanitizers, strict
 actual World i386 and launcher link pass. Positive Player workers, rendering,
 integrity and application integration remain. Both P2.2 checkboxes remain open.
+
+2026-11-11. [Player local input and weapon state](analysis/human-frame-source.md#player-local-input-and-weapon-state)
+now supplies actual input-buffer coordination, endurance, readiness/scope, breath
+and item-frame gates through the shared owners. Seven source partials. Focused
+native sanitizers, strict actual World i386 and launcher link pass. Positive
+item/attachment, frame, rendering, integrity and application integration remain
+required. Both P2.2 checkboxes and user mission acceptance remain open.

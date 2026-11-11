@@ -94,7 +94,7 @@ public:
     template<class Queries,class Runtime>
     void advance_player_frame(Base& state,bool authority,std::uint32_t elapsed,Queries& queries,Runtime& runtime){
         auto& player=static_cast<Player&>(state);
-        if(authority)player.advance_authority_frame(elapsed,queries,control_,runtime);
+        if(authority)player.advance_authority_frame(elapsed,services_,queries,control_,runtime);
         else player.advance_presentation_frame(elapsed,services_,queries,control_,runtime);
     }
     void resume_script_after_ai(Base& state){
@@ -133,6 +133,8 @@ public:
         switch(state.words().template get<std::uint32_t>(0x48)){
         case 3:case 4:case 5:case 6:case 8:return; //005785B0 genuinely does nothing in offline7, AFTER actual item execution.
         case 1:
+            if(command==1){static_cast<Player&>(state).player_words().set(0x534,10000u);return;} //00542920, exact readiness command.
+            if(command==0)return; //Actual default branch, before nonoffline transport.
             if(command==8){auto* human=state.human();if(!human)throw std::logic_error("Player feedback command has no bound Human");set_human_sight_alignment(*human,-10.f,services_.mode_flags());return;} //00542920→005A6250.
             if(command==4||command==6||command==7)return; //Actual default branch of00542920, no offline packet.
             throw std::runtime_error("Other player command requires its actual00542920 effects");

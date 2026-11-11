@@ -115,6 +115,18 @@ public:
         d.camera.refresh_current_loading_target(d.players.control(),view.enabled(),view.secondary_enabled(),
             [&](auto& human){return d.first_players.control_sector(human);},d.first_players.camera_retirement());
     }
+    std::uint32_t player_item_spawn_delay_ms(){ //Actual game configuration250, DWORD multiplication before signed comparison.
+        return static_cast<std::uint32_t>(dependencies().startup.game_configuration().rules228[10])*1000u;
+    }
+    bool player_item_controls_available(){return dependencies().first_person.view().item_controls_available();}
+    template<class Player>void set_player_frame_mode(Player& state,std::int32_t mode){
+        if(!state.human())throw std::logic_error("Player mode requires the actual bound Human");
+        dependencies().presentation.set_player_mode(state,*state.human(),mode,mode_flags());
+    }
+    template<class Player>void notify_player_item_readiness(Player& state,std::uint32_t command){
+        if(!state.human())throw std::logic_error("Player readiness requires the actual bound Human");
+        composition(*state.human()).state_factory().notify_inline_frame_command(state,command);
+    }
     template<class Human>void human_frame_first_person_state(Human& human,std::uint32_t state){
         const auto mode=mode_flags();
         if((mode&2u)&&dependencies().players.control().current_player()==&human)

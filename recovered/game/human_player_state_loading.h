@@ -6,6 +6,11 @@
 #include "game/human_state_base_loading.h"
 #include "game/human_formation.h"
 #include "game/human_ai_shot_direction.h"
+#include "game/human_ai_frame_output.h"
+#include "game/human_frame_stats.h"
+#include "frontend/spatial_sound.h"
+#include "game/human_player_weapon_control.h"
+#include "game/human_player_item_frame.h"
 
 namespace hd2::game {
 
@@ -41,8 +46,9 @@ public:
         Base::bind(human,previous,navigation,mode);
         bound_mode_=mode;
         try {
-            for(auto base:{0xc4u,0x1c4u,0x2c4u,0x3c4u})
-                for(unsigned n=0;n!=64;++n)state_.set(base+n*4,std::uint32_t{0});
+            for(auto& input:local_inputs_)input.bytes.fill(0); //Actual C4/1C4 typed owners.
+            for(auto base:{0x2c4u,0x3c4u})
+                for(unsigned n=0;n!=64;++n)state_.set(base+n*4,0u);
             for(auto offset:{0x4d0u,0x4ccu,0x4c8u,0x4c4u,0x540u,0x528u})state_.set(offset,std::uint32_t{0});
             state_.set(0xc0,std::uint8_t{0});state_.set(0x548,std::uint32_t{12});
             if(previous&&previous->words().template get<std::uint32_t>(0x48)==3) {
@@ -143,15 +149,92 @@ public:
             }
         }
         if(!(world.mode_flags()&1u))this->advance_frame_timers(elapsed,queries);
-        if(world.mode_flags()&2u)runtime.advance_player_local_inputs(*this,elapsed); //0053F9B0.
+        if(world.mode_flags()&2u)advance_local_inputs(elapsed,world,owner,runtime); //0053F9B0.
         if(world.mode_flags()&1u){
             this->process_second_frame_commands(); //0053F520 always invokes FC(1) before its offline return.
             if((world.mode_flags()&7u)!=7u&&world.human_current_player_id()!=human->base().id10())
                 runtime.advance_player_remote_inputs(*this,elapsed); //Remaining positive0053F520 body.
         }
     }
-    template<class Queries,class Inline,class Runtime>
-    void advance_authority_frame(std::uint32_t elapsed,Queries& queries,Inline& owner,Runtime& runtime){ //00540240.
+    template<class World>void change_breath_hold(bool held,World& world){ //0053CD90.
+        auto* human=this->human();
+        if(!human)throw std::logic_error("Player breath control requires its actual Human");
+        const auto emit=[&](std::int32_t entry){
+            frontend::SpatialSoundRequest request; //Actual004374D0 defaults and process SOUND54.
+            request.position=world.sight_position(human->head_marker);
+            request.group=11;request.entry=entry;request.flags=0x41u;
+            (void)world.emit_human_equipment_sound(request);
+        };
+        if(held&&state_.template get<std::int32_t>(0x52c)==3){
+            this->refresh_item();
+            const auto entry=this->item();
+            if(!entry)throw std::runtime_error("Player breath hold reached the native missing-item dereference");
+            const auto& item=world.human_frame_output_item(entry);
+            if(item.field5c<=world.game_word28()&&item.field14<=world.game_word28()&&
+                    state_.template get<std::int32_t>(0x4d8)==3500){
+                state_.set(0x4d4,std::uint8_t{1});
+                human->activation.field17c=3500;human->activation.field180=3500;human->activation.field184=0x1a57u;
+                emit(31);
+            }
+            return;
+        }
+        if(!state_.template get<std::uint8_t>(0x4d4))return;
+        state_.set(0x4d4,std::uint8_t{0});
+        if(state_.template get<std::int32_t>(0x4d8)<2000)state_.set(0x4d8,2000u);
+        emit(32);
+        human->activation.field17c=human->activation.field180=human->activation.field184=0;
+        //0069BFE0 debug format receiver is a genuine RET.
+    }
+    template<class World,class Inline,class Runtime>
+    void advance_local_inputs(std::uint32_t elapsed,World& world,Inline& control,Runtime& runtime){ //0053F9B0.
+        auto* human=this->human();
+        if(!human)throw std::logic_error("Player local inputs require their actual Human");
+        if((world.mode_flags()&7u)!=7u&&world.human_current_player_id()!=human->base().id10()){
+            this->process_first_frame_commands();return; //Native common tail still drains FC(0).
+        }
+        const auto* first=this->first_frame_inputs();const auto* second=this->second_frame_inputs();
+        if(!first||!second){
+            local_inputs_[0].bytes.fill(0);local_inputs_[1].bytes.fill(0);
+            this->bind_frame_inputs(local_inputs_[0],local_inputs_[1]);
+        }else{
+            local_inputs_[0]=*first;local_inputs_[1]=*second; //Native preserves the existing74/78 pointers in this branch.
+        }
+        const auto* attachment=human->field160;
+        if(attachment&&(attachment->base().type()==4||attachment->base().type()==0x14||
+                attachment->base().type()==0x15||attachment->base().type()==0x22))
+            runtime.apply_player_attachment_inputs(*this); //Virtual0=00583BC0, actual Car/mounted control receivers.
+        else apply_human_ai_frame_movement(*this,control); //SAME00583C30 body, Player's direct00584B60 flag publication.
+        //0058C320 is a genuine RET.
+        advance_human_endurance(*human,*this,control,elapsed); //00588710.
+        advance_player_weapon_readiness(*this,control,world,runtime,elapsed); //00545B90.
+        if(!(world.mode_flags()&1u))advance_player_item_frame(*this,control,world,runtime,elapsed); //005433B0.
+        const auto breath=state_.template get<std::uint32_t>(0x4d8);
+        if(!state_.template get<std::uint8_t>(0x4d4)){
+            if(human_frame_signed_word(breath)<3500){
+                const auto next=breath+elapsed;
+                state_.set(0x4d8,human_frame_signed_word(next)>3499?3500u:next);
+            }
+        }else{
+            const auto next=breath-elapsed;state_.set(0x4d8,next);
+            if(human_frame_signed_word(next)<=0){
+                state_.set(0x4d8,0u);change_breath_hold(false,world); //0053CD90(0).
+            }
+        }
+        const auto delay=state_.template get<std::uint32_t>(0x530);
+        if(human_frame_signed_word(delay)>0){
+            const auto next=delay-elapsed;state_.set(0x530,next);
+            if(human_frame_signed_word(next)<=0){
+                runtime.notify_player_selected_item(*this); //00492130(1, actual item payload+10), before530 clear.
+                state_.set(0x530,0u);
+            }
+        }
+        if((world.mode_flags()&7u)!=7u)
+            runtime.advance_player_input_transport(*this,elapsed); //Actual history/position/velocity/0073E5A0 branch.
+        local_inputs_[0].bytes.fill(0);local_inputs_[1].bytes.fill(0);
+        this->process_first_frame_commands(); //FC(0), AFTER both retained local buffer clears.
+    }
+    template<class World,class Queries,class Inline,class Runtime>
+    void advance_authority_frame(std::uint32_t elapsed,World& world,Queries& queries,Inline& owner,Runtime& runtime){ //00540240.
         auto* human=this->human();
         auto* control=owner.control();
         if(!human||!control)throw std::logic_error("Player authority frame requires actual Human/DD0");
@@ -168,7 +251,7 @@ public:
                 const auto value=state_.template get<float>(source_offsets[n]);
                 if(value!=0)input->set(input_offsets[n],value);
             }
-        runtime.apply_player_item_inputs(*this,elapsed); //005433B0, actual positive movement/item/FPV consumers.
+        advance_player_item_frame(*this,owner,world,runtime,elapsed); //005433B0.
         if(auto* input=this->second_frame_inputs())
             for(unsigned n=0;n!=4;++n)
                 if(state_.template get<float>(source_offsets[n])!=0)input->set(input_offsets[n],0u);
@@ -197,7 +280,9 @@ private:
         if(input->first_owner==this){input->first_receiver=nullptr;input->first_owner=nullptr;}
         if(input->second_owner==this){input->second_receiver=nullptr;input->auxiliary_receiver=nullptr;input->second_owner=nullptr;}
     }
-    Inputs& inputs_;HumanInputCallbacks& callbacks_;HumanJointWords<0x560> state_;bool bound_=false;
+    Inputs& inputs_;HumanInputCallbacks& callbacks_;HumanJointWords<0x560> state_;
+    std::array<HumanFrameInputBuffer,2> local_inputs_; //Native C4/1C4, outside scalar/pointer storage.
+    bool bound_=false;
     std::uint32_t bound_mode_=0;
     std::function<bool(Human&)> sight_known_;
     std::function<void(Human&)> sight_add_,sight_remove_;

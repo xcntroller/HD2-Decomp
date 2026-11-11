@@ -48,6 +48,9 @@ public:
     std::int32_t storage_size() const {return frontend::pre_mission_detail::Bytes::integer(definition_.category);} //007D32A0.
     long double volume() const {const auto size=storage_size();return size?static_cast<long double>(size)*2:1.L;} //007D32B0.
     std::int32_t primary_payload_kind() const {return payload_kind(definition_.payloads[0]);}
+    std::int32_t primary_payload_command()const{ //Native payload+0C, serialized after its vtable.
+        return frontend::pre_mission_detail::Bytes::integer(payload_word(definition_.payloads[0],8));
+    }
     float primary_payload_ballistic_speed()const{return real(payload_word(definition_.payloads[0],0x34));} //Native payload+38.
     std::uint32_t ai_shot_interval()const{ //0058BAF0, native payload+18.
         return weapon_payload_time(0x14);

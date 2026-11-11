@@ -27826,12 +27826,14 @@
       "program": "client",
       "entry": "00542920",
       "status": "partial",
-      "coverage": "Offline frame command8 applies actual alignment-10, commands4/6/7 take genuine default no-effect path; other effects and nonoffline packet publication required.",
+      "coverage": "Offline frame command8 applies actual alignment-10, commands4/6/7 take genuine default no-effect path; other effects and nonoffline packet publication required. Player input checkpoint binds actual inline readiness and exact Player08 command1 timer534 publication plus command0 offline default through the same factory/FPV owners.",
       "limitations": "Source-only typed owners and mandatory containing receivers replace original class/virtual/SEH ABI. Focused native sanitizer checks use explicit engine/runtime doubles; real World/state/items/camera/control/equipment composition is strict i386 compile-verified. Required derived B0/DD0/fire/contact/formation/movement, live full frame graph, actual application loading and user desktop acceptance remain. Unwritten stack/output lanes, diagnostic-only formatting and delegated engine bodies receive no complete credit.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-frame-20261110.json",
-        "recovered/game/human_loading_state_factory.h"
+        "recovered/game/human_loading_state_factory.h",
+        "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+        "recovered/game/human_player_weapon_control.h"
       ]
     },
     {
@@ -28501,12 +28503,15 @@
       "program": "client",
       "entry": "0058c400",
       "status": "partial",
-      "coverage": "Clear the E0 item-ready state and notify the current FPV player before offline command dispatch.",
+      "coverage": "Clear the E0 item-ready state and notify the current FPV player before offline command dispatch. Player input checkpoint binds actual inline readiness and exact Player08 command1 timer534 publication plus command0 offline default through the same factory/FPV owners.",
       "limitations": "Source recovery uses native typed owners. Original ABI and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-navigation-20261111.json",
-        "recovered/game/human_guard_ai_state_loading.h"
+        "recovered/game/human_guard_ai_state_loading.h",
+        "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+        "recovered/game/human_player_weapon_control.h",
+        "recovered/game/human_loading_state_factory.h"
       ]
     },
     {
@@ -29740,13 +29745,16 @@
       "program": "client",
       "entry": "0058c330",
       "status": "partial",
-      "coverage": "Publish native E0 readiness and its actual FPV state in offline7. Nonoffline command transport remains required.",
+      "coverage": "Publish native E0 readiness and its actual FPV state in offline7. Nonoffline command transport remains required. Player input checkpoint binds actual inline readiness and exact Player08 command1 timer534 publication plus command0 offline default through the same factory/FPV owners.",
       "limitations": "Source-only. Original ABI, remaining positive runtime branches and containing mission desktop execution remain open.",
       "evidence": [
         "analysis/human-frame-source.md",
         "analysis/checkpoints/p2.2-human-ai-frame-dispatch-20261111.json",
         "recovered/game/human_inline_loading.h",
-        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json"
+        "analysis/checkpoints/p2.2-human-actions-and-module-frames-20261111.json",
+        "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+        "recovered/game/human_player_weapon_control.h",
+        "recovered/game/human_loading_state_factory.h"
       ]
     },
     {
@@ -31404,6 +31412,125 @@
         "recovered/game/human_state_base_loading.h",
         "recovered/game/session_broadcast_packets.h",
         "recovered/host/game_loading_modules.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0053f9b0",
+      "status": "partial",
+      "coverage": "Actual local Player input-frame coordination, same movement receiver, native C4/1C4 ownership/copy/clear, endurance/readiness/item calls, breath and item timers, final request drain. Positive attachment, selected-item notification and nonoffline transport remain required.",
+      "limitations": "Source-only typed owners/STL and direct calls replace native object/vtable, allocator and SEH ABI. Broader input mapping, positive attachment/shot/held/dry-fire/repair, command05/FPV and nonoffline transport remain required. Explicit native boundary doubles and strict compilation do not establish application or desktop delivery.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_player_weapon_control.h",
+        "recovered/game/human_player_item_frame.h",
+        "recovered/game/human_frame_stats.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/first_person_view_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00588710",
+      "status": "partial",
+      "coverage": "Actor7C FLOAT load, raw signed stat1, signed integer conditioning division, original movement/posture rates, unsigned elapsed, FLOAT stores, upper-before-lower clamp and exhausted stance switch. Native integer division faults raise explicit errors.",
+      "limitations": "Source-only typed owners/STL and direct calls replace native object/vtable, allocator and SEH ABI. Broader input mapping, positive attachment/shot/held/dry-fire/repair, command05/FPV and nonoffline transport remain required. Explicit native boundary doubles and strict compilation do not establish application or desktop delivery.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_player_weapon_control.h",
+        "recovered/game/human_player_item_frame.h",
+        "recovered/game/human_frame_stats.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/first_person_view_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0053cd90",
+      "status": "partial",
+      "coverage": "Actual hold/release gates, retained Player and Human timer/flag publication, head-marker SOUND11/31/32 through the same process sound owner, native release order and partial audio-failure state.",
+      "limitations": "Source-only typed owners/STL and direct calls replace native object/vtable, allocator and SEH ABI. Broader input mapping, positive attachment/shot/held/dry-fire/repair, command05/FPV and nonoffline transport remain required. Explicit native boundary doubles and strict compilation do not establish application or desktop delivery.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_player_weapon_control.h",
+        "recovered/game/human_player_item_frame.h",
+        "recovered/game/human_frame_stats.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/first_person_view_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005457e0",
+      "status": "partial",
+      "coverage": "Actual Player weapon-mode gates, native item payload command, existing FPV/zoom/secondary/integrity mode owner, three ordered engine draws and target direction normalization. Positive Car seat flags remain required.",
+      "limitations": "Source-only typed owners/STL and direct calls replace native object/vtable, allocator and SEH ABI. Broader input mapping, positive attachment/shot/held/dry-fire/repair, command05/FPV and nonoffline transport remain required. Explicit native boundary doubles and strict compilation do not establish application or desktop delivery.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_player_weapon_control.h",
+        "recovered/game/human_player_item_frame.h",
+        "recovered/game/human_frame_stats.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/first_person_view_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00545b90",
+      "status": "partial",
+      "coverage": "Actual Player weapon readiness through same item, inline and FPV owners, native mode/item/trigger/posture gates, countdown and exact Player08 notifications. Positive Car item-block receiver remains required.",
+      "limitations": "Source-only typed owners/STL and direct calls replace native object/vtable, allocator and SEH ABI. Broader input mapping, positive attachment/shot/held/dry-fire/repair, command05/FPV and nonoffline transport remain required. Explicit native boundary doubles and strict compilation do not establish application or desktop delivery.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_player_weapon_control.h",
+        "recovered/game/human_player_item_frame.h",
+        "recovered/game/human_frame_stats.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/first_person_view_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00493500",
+      "status": "partial",
+      "coverage": "Actual FPV item-control eligibility from state60 and animation94, preserving the AL predicate separately from view-enabled58.",
+      "limitations": "Source-only typed owners/STL and direct calls replace native object/vtable, allocator and SEH ABI. Broader input mapping, positive attachment/shot/held/dry-fire/repair, command05/FPV and nonoffline transport remain required. Explicit native boundary doubles and strict compilation do not establish application or desktop delivery.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_player_weapon_control.h",
+        "recovered/game/human_player_item_frame.h",
+        "recovered/game/human_frame_stats.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/first_person_view_loading.h"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005433b0",
+      "status": "partial",
+      "coverage": "Actual Player item-frame gates, shot-age, input/cooldown/spawn-delay and family dispatch, shared reload, moving kind6 input mutation and AC fire gate. Required shot/held/dry-fire/repair/actor/command05 leaves remain explicit.",
+      "limitations": "Source-only typed owners/STL and direct calls replace native object/vtable, allocator and SEH ABI. Broader input mapping, positive attachment/shot/held/dry-fire/repair, command05/FPV and nonoffline transport remain required. Explicit native boundary doubles and strict compilation do not establish application or desktop delivery.",
+      "evidence": [
+        "analysis/human-frame-source.md",
+        "analysis/checkpoints/p2.2-human-player-input-20261111.json",
+        "recovered/game/human_player_state_loading.h",
+        "recovered/game/human_player_weapon_control.h",
+        "recovered/game/human_player_item_frame.h",
+        "recovered/game/human_frame_stats.h",
+        "recovered/game/human_world_loading_services.h",
+        "recovered/game/first_person_view_loading.h"
       ]
     }
   ]

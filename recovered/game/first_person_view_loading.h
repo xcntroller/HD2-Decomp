@@ -34,6 +34,10 @@ public:
         :frames_(frames),view_(view),models_(models),items_(items),players_(players),camera_(camera),playback_(playback),
          cursor_(cursor),effects_(effects),game_fov_(game_fov),materials_(frames) {}
     std::uint32_t state()const{return state60_;}
+    bool item_controls_available()const{ //00493500, actual state60 and animation94, independent of view58.
+        const auto animation=models_.animation();
+        return state60_!=3&&state60_!=4&&state60_!=5&&animation!=6&&!(animation>=8&&animation<=12);
+    }
     bool enabled()const{return view_.bytes58[0]!=0;}
     bool secondary_enabled()const{return view_.bytes58[1]!=0;} //Native59 secondary view; camera tests58/59 independently.
     float bob()const{return bob64_;}
