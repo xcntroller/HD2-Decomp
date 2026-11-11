@@ -1,0 +1,296 @@
+{
+  "date": "2026-11-11",
+  "branch": "feature/p22-pack",
+  "resume_head": "287c6fc2107a1e60d1b44d0eb93a1badb7c57049",
+  "original_implementation_base": "f9d5f03183900044ce191530a13f34690b7e8059",
+  "freshly_fetched_origin_master": "494cbee40566248084aaf9c8f01e7f75724d13c5",
+  "master_imported": false,
+  "ui_contract_read_through_git": "a3de5e14549e1bf98cb0324fc1097a52960d4267",
+  "client_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "source_only": true,
+  "source_closed": false,
+  "ordinary_offline_notification14_boundary_complete": true,
+  "available_rank16_boundary_complete": true,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "original_or_windows_binaries_executed": false,
+  "native_audit": {
+    "status": "PASS ASan/UBSan/LSan, exit0",
+    "production_scope": "Actual codecs, shared process stream, flush/FIFO, SessionPacketWorldLink, GameLoadingModules, HumanWorldLoadingServices, notification/rank helpers and HudMessagesLoading owned queue",
+    "doubles": "Native Human/state/Scene/Items/control/platform endpoints and fixture-local initialized records/captions; not real engine or mission execution. Actual application owners are strictly instantiated by separate i386 composition.",
+    "cases": [
+      "Five notification branches/captions/colours, user/full/model names, absent target and missing B0 consumption",
+      "Two formatting passes, percent escapes, bounded width/precision/left alignment, missing arguments/unsupported conversion and combined padding overflow",
+      "Player new-rank prewrite versus Remote old-rank stats; six current/maximum words only, health/other fields intact",
+      "Existing actual process record bytes/name/family/config and lock0 held through HUD, missing profile defaults, signed upper-only clamps and NaN low-DWORD conversion",
+      "Explicit record3C Human/clothing failure and actual configuration224 bypass, retaining native mutation prefix and releasing lock",
+      "HUD receiver throw retires failed packet, later FIFO remains and executes once, storage/locks released",
+      "HUD callback clears process records, or destroys real native Human/B0/composition; later commands discard without stale borrower",
+      "Every pre-payload-complete byte truncation of14/16 prevents effects; no claim of rollback for already-complete earlier commands",
+      "Mixed14/16 commands and100 World unbind/rebind cycles"
+    ]
+  },
+  "strict_i386": "PASS -Wall -Wextra -Wpedantic -Werror, actual application controller/GameSessionLifecycle/World/modules/Human/packet graph compile and link; never executed",
+  "application_link": "PASS make -B -C recovered -j1 application-launch, strict existing target; never executed",
+  "remaining_required_effects": [
+    "Typed process record3C Human/clothing4 owner for00725B00 when configuration224==0 and3C nonzero",
+    "Remote18 named special-animation0077CE10 actual DD0 setup007757E0/reset00775970/track requests; previous speech label corrected",
+    "Earlier positive event/death, active clothing, B0 typed control/actions, general inventory/item/throw, damage and Remote equipment effects remain exact reached failures; see implementation table"
+  ],
+  "ledger": {
+    "added_partial": [
+      "00588870",
+      "005a4600",
+      "005a8320",
+      "006a1cb0",
+      "005a96a0",
+      "0072fac0",
+      "00725b00"
+    ],
+    "extended_partial": [
+      "005406c0",
+      "00592fe0"
+    ],
+    "complete_promotions": 0,
+    "complete": 34,
+    "partial": 2518,
+    "frozen_denominator": 18783,
+    "no_credit": "005A9C20/005AC4A0/0077CE10 research only, thin delegates, absent entries and delegated engine calls"
+  },
+  "artifacts": {
+    "analysis/work/p22-pack-notifications-20261111/00588870.asm": {
+      "sha256": "97db0250a2e2209ee6296579a06894add4432dec760d65b669096347bbd95799",
+      "bytes": 9812,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/0069bf70.c": {
+      "sha256": "170967f7aeddd44f54f8f26a9fd75835f356c20dae05e0cef057cdf2a8d6b559",
+      "bytes": 378,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/0069bf70.json": {
+      "sha256": "390524d78a9f5adb14a26936ad968127c49a8764ecb5fd11afe0e4fd53fb1e13",
+      "bytes": 3423,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/006a1cb0.asm": {
+      "sha256": "816b4b2884719c7adfe3164c91cce73886db6b85356f5705c03f3d4a46539014",
+      "bytes": 4744,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/006a1cb0.c": {
+      "sha256": "54bd9f7b52615e86202bf670424362349a37acb5585e9efe4c9f76f44fd36771",
+      "bytes": 912,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/006a1cb0.json": {
+      "sha256": "4d4b73d8587df4a6ee1fb62c63cb72d02d702c2ccde10b9e1c630201bf2848df",
+      "bytes": 4335,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/animation-export.log": {
+      "sha256": "36c012c4715c3d1fd34c0af6016736e438c0f4a8884308f405b2537398e615c2",
+      "bytes": 5022,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/application-link.log": {
+      "sha256": "bf3cf71175cdf5c03f6169996457670582d0a1dae330e7aae22797d73008fc87",
+      "bytes": 678,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/audit-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/audit-run.log": {
+      "sha256": "bd0b607d4b96adbbf1f41f1eb082767f11b34d1b0539f0fd33541b4b45ad1eea",
+      "bytes": 280,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/concrete-i386-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/dependencies-export.log": {
+      "sha256": "e267249901e0331904a5ce4b58bbf1e16a826cb9abe6196a8c1b4a5ef41ba96a",
+      "bytes": 5276,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-export.log": {
+      "sha256": "267ce7fa6a9e872821134067806981b02b0910b2eb09cb2dcd18d3315d7aa147",
+      "bytes": 5528,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/00588870.c": {
+      "sha256": "52bc322a11c22491e63410128f8de299806d36ed9c5ed2e53925e8999cb1a341",
+      "bytes": 2489,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/00588870.json": {
+      "sha256": "e2b3940509afde413092b62e7e482e1bd2ca80a3133ae87e4b96bae8b8362518",
+      "bytes": 11964,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/005a4600.c": {
+      "sha256": "9bf7a5ba0610c8c5b021638a32138a232f316638cd081e805dd70d1d937df87d",
+      "bytes": 788,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/005a4600.json": {
+      "sha256": "06768fefeb9df18543d448a9648af7b2c4ac546d909bc44e95a23b04c8043fff",
+      "bytes": 4516,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/005a8320.c": {
+      "sha256": "e967d1f3c9ad03027e55744ef5fd7db15d43906bb957a8f24b149db4e7df7355",
+      "bytes": 719,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/005a8320.json": {
+      "sha256": "5e837c9901891f801329274970731495ab442464944f7675832ca2d948666b54",
+      "bytes": 2631,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/005a96a0.c": {
+      "sha256": "8e75fc08f40886028f6e15169926e52f8f39045d81b403a5a1fb8c622072ef1c",
+      "bytes": 894,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/005a96a0.json": {
+      "sha256": "ce00f6fc6d6394d7a07bbf81cc0c0bbab6edbb7cd8fa4f5e4de4068292bcd304",
+      "bytes": 679,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/005a9c20.c": {
+      "sha256": "d1053bbb6672980039b7258319265c1f7e85f903209f280aaf6a3a9124c309b0",
+      "bytes": 59,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/005a9c20.json": {
+      "sha256": "629a5799ff41d1cd8ceeb538fdd505864784961668772af8573019186521cbb2",
+      "bytes": 1166,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/0072fac0.c": {
+      "sha256": "6d98daa418ac0c6b15841d5e1f82c69be89818cfeaa3c8a588b30abd16c9d7dc",
+      "bytes": 2848,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/notification-exports/0072fac0.json": {
+      "sha256": "737014472b795a510e921ed131f1d8c9311a629515e49a3418f33b9d005e3ac4",
+      "bytes": 16671,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/rank-animation-deps/005ac4a0.c": {
+      "sha256": "f36f932b43194071273892eaf8dbc6ef9e63f3066a3700a15fb3b22859f5401e",
+      "bytes": 59,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/rank-animation-deps/005ac4a0.json": {
+      "sha256": "0f7ac48664b472021cb4193cf878da9b9c046c459ae80a4644f40b1de91d274f",
+      "bytes": 1028,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/rank-animation-deps/00725b00.c": {
+      "sha256": "218a853464f9bbec65fdf6f9f0054faf42aaa367f441de37c651f6d18c9117d3",
+      "bytes": 889,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/rank-animation-deps/00725b00.json": {
+      "sha256": "aa31d75f8f7478c4da12ed8b1a1226415212ff70e952116d7bf33c2b5a594b24",
+      "bytes": 3438,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/rank-animation-deps/0072f4c0.c": {
+      "sha256": "9313aaa7eb63cad2d205e4f5d378a3af4952029ed019ca56536c85b4260a2a69",
+      "bytes": 120,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/rank-animation-deps/0072f4c0.json": {
+      "sha256": "bde454a1936e536563805cdb25e42c38571f77d00c78a7a02cd73924b2df2c42",
+      "bytes": 747,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/research-index.txt": {
+      "sha256": "548bbd81a09b619dc93e46a7737cec0a371fb37b5542e1adf295abb4b732260d",
+      "bytes": 6779,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/special-animation-exports/0077ce10.c": {
+      "sha256": "95284b852caf582de3665eb4eabf76890b6596de9ce7d3e730e9d9bc047112cb",
+      "bytes": 7851,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/special-animation-exports/0077ce10.json": {
+      "sha256": "7e73ec04d5fbaa3abd1912dbe6adb63621affacc6ab0e01bfc500ea898973fc0",
+      "bytes": 43559,
+      "retained": true
+    },
+    "/tmp/p22-pack-notify-audit.cpp": {
+      "sha256": "31fd66d22768e0d3f9669b5d60ddded178557c1440d5ae8b819b45ee613dd69f",
+      "bytes": 15000,
+      "retained": false
+    },
+    "/tmp/p22-pack-notify-audit": {
+      "sha256": "e47a0c1d2354f5ca31f4a75138f83fefe7a5229f6546a70b621845f782fb847e",
+      "bytes": 5094136,
+      "retained": false
+    },
+    "/tmp/p22-pack-notify-host.cpp": {
+      "sha256": "87715a5fc8c5107353264adf4d8ca92ff35e5756cd20d88d7473acf08ddd29b7",
+      "bytes": 428,
+      "retained": false
+    },
+    "/tmp/p22-pack-notify-host.exe": {
+      "sha256": "f575097ddce142f006796e1440b0c75df9f550560e6ed846d383663ee3bd5ab4",
+      "bytes": 12641280,
+      "retained": false
+    },
+    "/tmp/p22-pack-notify-application/application_launch.exe": {
+      "sha256": "3837ce0a14f6c8571686a5210fc761e447b640fa37ed06a2035c00efc6bfba78",
+      "bytes": 3821568,
+      "retained": false
+    },
+    "analysis/work/p22-pack-notifications-20261111/tracker-render.log": {
+      "sha256": "defe1cfdcea981f86ecb9a487ab26f86f40405f8645ad328ef2b39b74c896ccc",
+      "bytes": 380,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/tracker-check.log": {
+      "sha256": "bd7c43e9d8d5e53774845b5c47bdea162347e32b2dd65cb66252c2ac21a21f69",
+      "bytes": 437,
+      "retained": true
+    },
+    "analysis/work/p22-pack-notifications-20261111/tracker-tests.log": {
+      "sha256": "32123c06afaa22405df0ae455b2a9957a73a7a30732623e89bdb1eee75d7e097",
+      "bytes": 126,
+      "retained": true
+    }
+  },
+  "source_files": {
+    "recovered/game/human_packet_notifications.h": "5bb306d1508d962076c7db4890732e2d66e73b9031d473f866f208d8023eda80",
+    "recovered/game/human_packet_rank.h": "f05ba69ee559180dfe5fce108b88b418339a9cb7a27e3ddf0060e6df3221cc9c",
+    "recovered/game/human_world_loading_services.h": "715235141a45e800d9284111053a92b3c44a44fa95018d241a431ec5c6dbad0f"
+  },
+  "tracker": {
+    "render": "PASS",
+    "check": "PASS exact fingerprints/full inventories/frozen counts/unique statuses/evidence/README",
+    "tests_passed": 27
+  },
+  "evidence_verification": {
+    "research_index": "Locator consulted before exports; no index content treated as equivalence proof",
+    "exports": "Fingerprint-qualified client metadata, original x86 instructions/ABI and existing current owners verified",
+    "006A1CB0_ABI": "Three stack words, ret0C; signed FILD rank, FMUL exact FLOAT0080FD38 bits3CF5C28F, FADD FLOAT1, factor retained on x87 stack",
+    "source_guards": "Bounded typed formatting/missing model/record owner exceptions, callback-safe owned display values and lock RAII are documented separately from native behavior"
+  },
+  "verification_commands": {
+    "native_build": "g++ -std=c++17 -Wall -Wextra -Wpedantic -Werror -Wno-misleading-indentation -g -O1 -fsanitize=address,undefined -fno-omit-frame-pointer -L /tmp/p22-pack-sanitizers -Wl,-rpath,/tmp/p22-pack-sanitizers -I recovered /tmp/p22-pack-notify-audit.cpp -o /tmp/p22-pack-notify-audit",
+    "native_run": "ASAN_OPTIONS=detect_leaks=1:halt_on_error=1 UBSAN_OPTIONS=halt_on_error=1 /tmp/p22-pack-notify-audit",
+    "concrete_i386": "i686-w64-mingw32-clang++ -std=c++17 -Wall -Wextra -Wpedantic -Werror -static -municode -O0 -I recovered /tmp/p22-pack-notify-host.cpp recovered/host/bitmap_font.cpp recovered/host/multiplayer_discovery.cpp recovered/frontend/control_events.cpp recovered/frontend/menu_event_queue.cpp recovered/scene/model_resource_key.cpp -lwinmm -lole32 -ladvapi32 -o /tmp/p22-pack-notify-host.exe",
+    "windows_compiler": "/home/control/Documents/Projects/H&D2 Decomp 4/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-clang++",
+    "application": "make -B -C recovered -j1 application-launch BUILD_DIR=/tmp/p22-pack-notify-application WINDOWS_CXX=<same i386 compiler>"
+  },
+  "temporary_audits_removed": true
+}

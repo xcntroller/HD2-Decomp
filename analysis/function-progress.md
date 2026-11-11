@@ -32,8 +32,10 @@ The exact two SHA-256 values are guarded in both tools and in the
   fractional completion credit or an effort estimate. Equal function weights
   do not imply equal complexity. No percentage estimates time or playability.
 
-The current totals are34 complete client functions and2,511 partial entries
-(2,506 client and five engine). The [P22-PACK wire/discard checkpoint](p22-pack-implementation.md)
+The current totals are34 complete client functions and2,518 partial entries
+(2,513 client and five engine). The [P22-PACK notification/rank checkpoint](checkpoints/p22-pack-notifications-20261111.json)
+adds seven implemented frozen client partials and extends two presentation rows;
+conditional Human effect owners still prevent full PACK source closure. The [P22-PACK wire/discard checkpoint](p22-pack-implementation.md)
 adds40 frozen client partials and extends seven existing rows, with no complete
 promotions or denominator changes. Full PACK source closure remains blocked by
 explicit positive Human effect interfaces; application and desktop delivery remain open.

@@ -33574,28 +33574,34 @@
       "program": "client",
       "entry": "005406c0",
       "status": "partial",
-      "coverage": "Offline reserved presentation state gate, exact command grammar/discard and available actual Human/B0 effects; missing required positive Human effects fail explicitly.",
-      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "coverage": "Offline reserved presentation state gate, exact command grammar/discard and available actual Human/B0 effects; missing required positive Human effects fail explicitly. Command14 now binds all offline notifications; command16 applies six real Human stats and actual process rank/HUD publication, preserving Player new-rank prewrite.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit. Conditional process record3C Human/clothing rank name remains unavailable; Remote18 is special animation, not speech.",
       "evidence": [
         "recovered/game/human_packet_commands.h",
         "recovered/game/human_packet_receiver.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/p22-pack-implementation.md",
-        "analysis/checkpoints/p22-pack-20261111.json"
+        "analysis/checkpoints/p22-pack-20261111.json",
+        "recovered/game/human_packet_notifications.h",
+        "recovered/game/human_packet_rank.h",
+        "analysis/checkpoints/p22-pack-notifications-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "00592fe0",
       "status": "partial",
-      "coverage": "Offline reserved presentation state gate, exact command grammar/discard and available actual Human/B0 effects; missing required positive Human effects fail explicitly.",
-      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit.",
+      "coverage": "Offline reserved presentation state gate, exact command grammar/discard and available actual Human/B0 effects; missing required positive Human effects fail explicitly. Command14 now binds all offline notifications; command16 applies six real Human stats and actual process rank/HUD publication, preserving Remote old-rank stat scaling.",
+      "limitations": "Source-only portable values/owners replace native allocator, vtable and SEH ABI. Ordinary offline wire behavior only; positive Human effects listed in the PACK contract still reject. Nonoffline transport/diagnostics, containing application execution and desktop acceptance are excluded. Command11 absent fields use explicit sentinels, command17 writer does not mutate its input, bounded malformed-data and callback lifetime/exception guards are source adaptations. No full-body equivalence or delegated-engine credit. Conditional process record3C Human/clothing rank name remains unavailable; Remote18 is special animation, not speech.",
       "evidence": [
         "recovered/game/human_packet_commands.h",
         "recovered/game/human_packet_receiver.h",
         "recovered/game/human_world_loading_services.h",
         "analysis/p22-pack-implementation.md",
-        "analysis/checkpoints/p22-pack-20261111.json"
+        "analysis/checkpoints/p22-pack-20261111.json",
+        "recovered/game/human_packet_notifications.h",
+        "recovered/game/human_packet_rank.h",
+        "analysis/checkpoints/p22-pack-notifications-20261111.json"
       ]
     },
     {
@@ -33610,6 +33616,90 @@
         "recovered/game/human_world_loading_services.h",
         "analysis/p22-pack-implementation.md",
         "analysis/checkpoints/p22-pack-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00588870",
+      "status": "partial",
+      "coverage": "All five ordinary offline Human/B0 notification branches over actual Scene2 target, profile/model names and existing localized HUD owner; absent/non-Human target returns.",
+      "limitations": "Nonoffline medical-item/health mutation excluded; callback-safe owned display values and explicit invalid/missing model/format guards are source adaptations. Source-only native owners/strings replace original x86 object, varargs, allocator and SEH ABI. No application loading, real engine execution, desktop acceptance or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_notifications.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-notifications-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a4600",
+      "status": "partial",
+      "coverage": "Localized caption copy, typed string formatting into1024 then second no-argument formatting into512, preserving percent escapes and native call ordering to the existing HUD message owner.",
+      "limitations": "Only typed string conversions/width/precision/left alignment and percent escapes supported. Native unavailable-varargs/overflow behavior becomes explicit failure; no generic native varargs ABI. Source-only native owners/strings replace original x86 object, varargs, allocator and SEH ABI. No application loading, real engine execution, desktop acceptance or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_notifications.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-notifications-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a8320",
+      "status": "partial",
+      "coverage": "Offline display name from actual HumanStore user14 with full-name0C fallback, otherwise real model frame name.",
+      "limitations": "Nonoffline player display-name005A81B0 excluded; missing model explicitly rejects. Source-only native owners/strings replace original x86 object, varargs, allocator and SEH ABI. No application loading, real engine execution, desktop acceptance or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_notifications.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-notifications-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "006a1cb0",
+      "status": "partial",
+      "coverage": "Actual profile stat1/2 conversion and six skill fields scaled by signed rank/exact FLOAT0080FD38, x87 signed64 truncation low DWORD, upper-only signed100 clamps, missing-profile preservation.",
+      "limitations": "Portable long-double/native store access replaces original stack/x87 ABI; caller defaults remain separate from the original callee. Source-only native owners/strings replace original x86 object, varargs, allocator and SEH ABI. No application loading, real engine execution, desktop acceptance or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_rank.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-notifications-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "005a96a0",
+      "status": "partial",
+      "coverage": "Copy exactly stat indices2,1,4,6,7,8 from rank stats into both actual Human currentEC and maximum11C arrays, preserving other fields.",
+      "limitations": "Portable typed owner replaces original raw Human/array pointer ABI. Source-only native owners/strings replace original x86 object, varargs, allocator and SEH ABI. No application loading, real engine execution, desktop acceptance or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_rank.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-notifications-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0072fac0",
+      "status": "partial",
+      "coverage": "Actual process record54 rank mutation under Startup lock0 through caption/rank-name lookup and existing HUD publication; local and other-identity downgrade/equal/upgrade branches preserve names, colours and order.",
+      "limitations": "Conditional00725B00 typed record3C Human/clothing owner remains explicit failure; source RAII releases lock after callback throw, retaining prior mutation. No packet replay. Source-only native owners/strings replace original x86 object, varargs, allocator and SEH ABI. No application loading, real engine execution, desktop acceptance or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_rank.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-notifications-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00725b00",
+      "status": "partial",
+      "coverage": "Actual configuration224 short-circuit and process rank family64/name caption arithmetic, using existing localized text cache and record54 rank.",
+      "limitations": "Configuration224==0 with nonzero record3C still requires missing typed Human/clothing4 association and fails explicitly; no pointer cast, alternate roster or full-body equivalence. Source-only native owners/strings replace original x86 object, varargs, allocator and SEH ABI. No application loading, real engine execution, desktop acceptance or delegated-engine credit.",
+      "evidence": [
+        "recovered/game/human_packet_rank.h",
+        "analysis/p22-pack-implementation.md",
+        "analysis/checkpoints/p22-pack-notifications-20261111.json"
       ]
     }
   ]

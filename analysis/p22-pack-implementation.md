@@ -1,18 +1,26 @@
 # P22-PACK implementation — 2026-11-11
 
 **Wire/discard and available-owner checkpoint; PACK is not source-closed.**
-[Plan](p22-pack-plan.md) · [Receipt](checkpoints/p22-pack-20261111.json).
+[Plan](p22-pack-plan.md) · [Wire receipt](checkpoints/p22-pack-20261111.json) ·
+[Notification/rank receipt](checkpoints/p22-pack-notifications-20261111.json).
 Missing positive Human effects below prevent full closure. No successful
 application loading, real engine execution or desktop result is claimed.
 
 Worktree `HD2-Decomp-p22-pack`, branch `feature/p22-pack`, clean starting HEAD and
 read-only fetched master `f9d5f03183900044ce191530a13f34690b7e8059`.
 Existing worktrees/branches/history were inspected before writes; no reset,
-checkout change, merge, push, or change to master/LIFE/UI. Research/p22 was read
+checkout change, merge, or change to master/LIFE/UI during implementation. Research/p22 was read
 through Git at `ca3b314`; its PACK row reviewed older `799a793`. Current fetched
 source is implementation truth. UI contracts were read through Git at `a2d61c6`
 (the retained implementation contract names `d01face`), without copying source or
 ledger. No resource/mission observation is inferred from static command support.
+
+Resume started from `287c6fc2107a1e60d1b44d0eb93a1badb7c57049`, after the
+user-authorized non-force conflict-resolution push. Fresh read-only fetch observed
+`origin/master=494cbee40566248084aaf9c8f01e7f75724d13c5`; no master import.
+UI message contracts were re-read through Git at
+`a3de5e14549e1bf98cb0324fc1097a52960d4267`. They retain the same existing
+`append_message`/owned message queue interface used here. No UI source/ledger copied.
 
 ## Evidence and ABI
 
@@ -71,7 +79,7 @@ to original command fields (command18's88/8C/90 use typed8/C/10 plus separate te
 | 13 | 005B2340;2700 | repeated slot3 + definition32 + identity32; slot7 terminates |
 | 14 | 005B2100;2150 | Human10, item s16, argument10, bool1 |
 | 15 | 005B0EE0/0F50;0F00 | action4 |
-| 16 | 005B0E50/0EC0;0E70 | profile4 |
+| 16 | 005B0E50/0EC0;0E70 | rank4 |
 | 17 | 005B1800/18F0;1820 | amount10, type4, subtype4, actor10; writer clamps amount0..1023 |
 | 18 | 005B21D0;2230 | native128-byte-capacity NUL string, s16, s16, bool1 |
 | 19 | 005B22B0;22E0 | category8, quiet1 |
@@ -138,8 +146,8 @@ second0, consume-only4/16/22/23, existing Ladder6 and offline15 plus queueing,
 21→20; presentation Player consume-only0/3/4/13/15/22/23 and Ladder6; Remote0
 actual buffers,4→00583120 actual B0+10 direction copy,6,13/15,19 existing speech,
 22 existing HumanScriptLoadingControls suspension,23 clears actual2C1 then calls
-existing inline action76. Command14 preserves00588870's missing/non-Human target
-return. A present target reaches the missing notification explicitly.
+existing inline action76. Command14 now binds the ordinary offline notification;
+command16 binds six Human stats and actual process rank/message publication below.
 
 The receiver resolves the SAME physical Scene2 slot and published B0 before every
 command; an earlier callback can replace B0 or retire the actor. It does not keep
@@ -157,6 +165,81 @@ SetOn producer→stream→flush/FIFO→registered module→existing decoder, no-
 consumption, unsupported/default/receiver failures, predicate failure/retry and100
 cycles. Engine/model endpoints are doubles; no other VM opcode was credited.
 
+## Offline notification and rank receivers — resumed checkpoint
+
+`human_packet_notifications.h` completes00588870's ordinary offline branch of
+command14 over the SAME Scene2 Human identities, B0 kind, HumanStore profile,
+model name, localized text cache and existing HUD message owner. It preserves
+the absent/non-Human target return. Authority14 remains its original tag-only
+hole; no presentation layout is imposed on authority. Offline7 bypasses the
+native client-only medical-item/health mutation, so it needs no combat substitute.
+
+| Source/target classification by005A0890 | Caption | Colour FLOAT RGB | String arguments |
+| --- | --- | --- | --- |
+| Same Human, Player B0 | 2277 | 0,160,0 | none |
+| Same Human, other B0 | 2278 | 255,255,255 | source name |
+| Different, source Player | 2274 | 0,160,0 | target name |
+| Different, target Player | 2275 | 0,160,0 | source name |
+| Different, both other | 2276 | 255,255,255 | source then target name |
+
+005A8320 takes `user_name14`, falling back to **full_name0C**, unlike the existing
+005A82C0 objective helper's short name. Without a profile it takes the real model
+frame's name. Missing model is an explicit source guard. In the last case native
+instructions obtain the target name before the source name, with source,target
+varargs order; source preserves both. No Human/state/frame borrower is used after
+the callback-visible HUD append.
+
+005A4600 copies its localized caption through a512-byte buffer and formats into
+1024 bytes;0069BF70 then formats that result AGAIN, with no arguments, into512.
+The typed formatter preserves both passes, NUL termination semantics, `%s`, `%%`
+and bounded string width/precision/left alignment. For example an inserted name
+containing `%%` loses one percent on the second pass. Unavailable arguments,
+other conversions and buffer overflow throw instead of performing native
+varargs/stack UB. These are source exception guards, not native error semantics.
+Publication uses existing HudSceneLoading0049D2E0's flags gate and owned
+HudMessagesLoading00494A40 insertion, without another queue or UI orchestration.
+
+`human_packet_rank.h` implements command16's actual stats/rank path.
+005A96A0 copies exactly indices2,1,4,6,7,8 into both currentEC and maximum11C
+arrays. Health0, indices3/5 and all other fields remain intact.006A1CB0 starts
+with caller defaults800,80,80,80,80,80,50,30,20. Missing HumanStore profile leaves
+these intact. Profile stats1/2 are unscaled; stats3/5/6/7/8/9 scale by
+`signed(rank)*FLOAT0080FD38+1`, exact factor0.029999999329447746, with native x87
+signed64 truncation/low DWORD and signed upper-only100 clamps. Output3 remains
+its caller default. Decompiler signatures omit the rank argument; the retained
+native disassembly verifies the factor, stack ABI and source fields.
+
+Player005406C0 writes the incoming rank to the SAME process record54 **before**
+stats and0072FAC0, so the latter sees an equal rank and selects promotion/green.
+Remote00592FE0 scales stats with the **old** process rank, then publishes the
+new one. Authority16 still only consumes its payload. No replacement roster or
+fixture-derived application rank is introduced.
+
+0072FAC0 holds actual process lock418 (Startup lock0) through rank write,
+caption/name lookup and HUD publication. Local downgrade uses22C4/red255,0,0;
+equal/upgrade22C5/green0,255,0. Other identities use22C6/22C7 and prepend the
+actual process record name. Rank-name00725B00 uses family64==1 ?2792:279C, plus
+the new rank with DWORD wrap. All display values are copied before HUD may
+replace/clear process records or retire Human/B0. Source RAII releases the lock
+on throws; already-applied stats/rank prefixes are not rolled back or replayed.
+
+There is one exact conditional owner gap: when actual configuration224==0 and
+record3C is nonzero,00725B00 must read **that record's typed Human/clothing4**
+and its item definition44. Current process records have no typed association
+writer/view for3C. The actual00725A50 initializer sets3C=0 and family64=2; the
+existing spawn publication does not establish3C. Source uses those real fields,
+but explicitly throws if the missing association is reached. A raw32 pointer
+cast or lookup through a different Players roster would invent ownership.
+Configuration224!=0 short-circuits that lookup as native does. This branch is
+still mandatory before claiming the whole rank/effect boundary source-closed.
+
+Remote18 was incorrectly labelled speech in the first checkpoint. Verified
+005A9C20→005AC4A0→0077CE10 loads a **named special animation**, checks actual
+DD0 kind1, uses cache0041FC10, setup007757E0, process request groups/track update
+007724E0, and reset00775970 for empty/invalid animation. Existing DD0 lacks this
+setup/reset effect interface. Its exact reached failure now names that owner;
+no sound/subtitle substitute or research-only implementation credit is claimed.
+
 ## Precise remaining blockers
 
 These effects are reached failures, not successful empty callbacks. PACK parsing,
@@ -173,10 +256,9 @@ The names identify the required Human/state effect interface, not new packet own
 | 10 authority/presentation | Human item throw005A3490/005A3750 |
 | 11 authority/presentation | Human item005A37C0/005A38F0 |
 | 12 authority/Player/Remote | B0 action0053D5D0/0053D870/00594110 and their real control/effect owners |
-| 14 presentation, present Human | B0+10=00588870 notification005A4600/localized actor/item names; offline authority skips its client-only item mutation |
-| 16 presentation | profile/Players005A96A0/0072FAC0 publication on actual process records |
+| 16 presentation, configuration224==0 and record3C nonzero | typed process record3C Human/clothing4 association for00725B00 rank name; stat copy and other rank/message branches now implemented |
 | 17 authority | Human virtualD4=005A1C90 damage; existing Car Human impact endpoint already explicitly rejects the same missing receiver |
-| 18 Remote | Human speech005A9C20 with real model/sound/UI notification |
+| 18 Remote | special animation005A9C20/005AC4A0/0077CE10, actual DD0 setup007757E0/reset00775970 and track requests |
 | 20 presentation, including discard | referenced Remote Human0059EB60 equipment replacement, SAME Items/B0/DD0; absent/non-Remote target genuinely has no effect |
 
 Packets for these families are fully decoded then report the exact reached effect.
@@ -205,6 +287,17 @@ serializer/receiver/enqueue/partial-flush failures, storage/node allocation
 failure under lock, loaded gates and100 World unbind/rebind cycles. No engine
 outcome is inferred. Sanitizer runtimes are the existing local tools; LSan ran
 outside ptrace restrictions. Temporary sources/binaries are fingerprinted and removed.
+
+The resumed notification/rank audit separately runs serialization→shared stream→
+flush/FIFO→production module13/Human services→actual HudMessagesLoading queue,
+using native Human/state/Scene/platform endpoint doubles and initialized fixture
+records/captions. It covers the five notifications, Player/Remote rank order,
+stat preservation, conditional record3C failure/config bypass, formatting/overflow,
+HUD throw/later FIFO recovery, callback-driven process-record replacement and
+Human+B0 destruction, pre-payload-complete truncation and100 mixed-command
+unbind/rebind cycles. It does not supply real gameplay producers or mission data.
+Its receipt records separate source/binary fingerprints and retained logs. The
+strict i386 composition below instantiates the real application Human/state owners.
 
 Strict i386 compile/link instantiates the actual application controller,
 GameSessionLifecycle, World/module/Human/packet graph and concrete producers.

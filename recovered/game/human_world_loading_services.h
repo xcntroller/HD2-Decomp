@@ -6,6 +6,7 @@
 #include "frontend/spatial_sound.h"
 #include "game/human_speech_loading.h"
 #include "game/human_packet_receiver.h"
+#include "game/human_packet_rank.h"
 #include "game/human_script_loading_controls.h"
 #include "game/human_squad_snapshot.h"
 #include "game/human_speech_notifications.h"
@@ -568,7 +569,7 @@ public:
             return; //Player presentation consumes only; Remote007866F0 mode7 RET.
         case 16:
             if(authority)return; //00540DB0 only decodes this command.
-            throw std::runtime_error("Human PACK command16 requires profile/Players005A96A0/0072FAC0 publication");
+            receive_human_packet_rank(human,dependencies().profiles,dependencies().startup,dependencies().hud,f.template get<std::uint32_t>(8),player);return;
         case 19:{
             if(!human.speech_definition)throw std::runtime_error("Human speech packet has no actual speech definition");
             HumanSpeechLoading speech(dependencies().scene.frames(),*this);
@@ -603,11 +604,11 @@ public:
         case 12:throw std::runtime_error(authority?"Human PACK command12 requires Player action validation0053D5D0":player?"Human PACK command12 requires Player action apply0053D870":"Human PACK command12 requires Remote action apply00594110");
         case 14:{
             using PacketHuman=typename Dependencies::Composition::Human;
-            if(!dynamic_cast<PacketHuman*>(dependencies().scene.frames().scene_actor_identity(static_cast<std::int32_t>(f.template get<std::uint32_t>(8)))))return; //00588870 null/non-Human gate.
-            throw std::runtime_error("Human PACK command14 requires B0+10/00588870 Human notification005A4600");
+            auto* target=dynamic_cast<PacketHuman*>(dependencies().scene.frames().scene_actor_identity(static_cast<std::int32_t>(f.template get<std::uint32_t>(8))));
+            receive_human_offline_notification(human,target,dependencies().scene.frames(),dependencies().startup.text(),dependencies().hud,mode_flags(),human_current_player_id());return;
         }
         case 17:throw std::runtime_error("Human PACK command17 requires actual Human virtualD4/005A1C90 damage receiver");
-        case 18:throw std::runtime_error("Human PACK command18 requires Remote speech005A9C20");
+        case 18:throw std::runtime_error("Human PACK command18 requires Remote special-animation005A9C20/005AC4A0/0077CE10 loading and007757E0/00775970 control receivers");
         default:throw std::logic_error("Human command dispatched outside original grammar");
         }
     }
