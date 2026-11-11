@@ -19,3 +19,7 @@ The first attempt must expose actual stage, validation or receiver failure and p
 P22-VIS requires original actors/collision, active camera and genuine scene/update/present execution after the startup fade. Keep updates running during the approximately 3–4 second black/fade interval. Observe contact/material, packet and Runtime branches that static source cannot establish.
 
 P22-REPEAT requires user-operated Python failure return, Main re-entry and repeat mission loading with correct cleanup. P22-SECOND retains detailed-plan second original mission coverage. ALPS1's active data may require Dog services and additional positive branches. Full controllable-player/objective/save/result milestones follow their main-plan scope, while every operation actually required by mission loading remains part of P2.2. [Acceptance and reachability](mission-reachability.md)
+
+## Targeted DATA implementation closure
+
+DATA-owned implementation is verified on unmerged feature/p22-data `e76afc1`. Integrate that branch before using its owning resource/file/cache scopes and actual loader/frame/render hooks. Existing native tools independently validated the historical captured bytes. OWN/FRAME/RENDER and VIS/REPEAT/SECOND retain fresh runtime context, populated collections, reached positive failures and desktop acceptance. The old missing GEffects material94 receiver claim is superseded by actual source. [DATA verification](evidence/data-verification.json)
