@@ -13021,14 +13021,17 @@
       "program": "client",
       "entry": "004b3890",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 004b3890: Soldier HUD frame/material/text lifetime and conditional scene drawing source. Adds actual offline rank8C/name update, profile user/last/model-name distinctions, conditional rank prefix and same TextState record0/style3A.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "Existing offline HUD Human name/rank plus actual non7 cached rank54, clothing/side rank families27A6/27B0, short-name query and SAME TextObject record0/style3A publication in original order.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
       "evidence": [
         "recovered/game/hud_soldier_loading.h",
         "analysis/hud-loading.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
         "analysis/checkpoints/p2.2-20261109.json",
-        "analysis/hud-player-presentation-loading.md"
+        "analysis/hud-player-presentation-loading.md",
+        "recovered/game/human_hud_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
       ]
     },
     {
@@ -19386,13 +19389,17 @@
       "program": "client",
       "entry": "005a7fe0",
       "status": "partial",
-      "coverage": "P2.2 source reconstruction at original entry 005a7fe0: Actual Scene2 actor/frame identity registry, stable holes, load/property dispatch and ordered retirement; unsupported families remain explicit.",
-      "limitations": "Source-only native adaptation with typed borrowers/STL/RAII instead of the original object/container/allocator/SEH ABI. Only the branches and fields described in the source and linked contract are supported; unsupported runtime producers and delegated callee bodies are excluded. No containing application-world integration or mission desktop acceptance, and no whole-body equivalence claim.",
+      "coverage": "Actual Scene2 retained-Human retirement body: attachment, observer/target/listener/proximity invalidation in order, SAME DD0 collision/visibility disable, late B0 FC queue chosen by current low mode bit, then20C=false. This schedules/cancels without deleting Human or its shared input.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
       "evidence": [
         "recovered/game/scene_actor_registry.h",
         "analysis/actor-loading-ownership.md",
         "analysis/function-ledger-p2.2-reconciliation.md",
-        "analysis/checkpoints/p2.2-20261109.json"
+        "analysis/checkpoints/p2.2-20261109.json",
+        "recovered/game/human_scene_retirement.h",
+        "recovered/game/human_world_loading_services.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
       ]
     },
     {
@@ -21043,36 +21050,45 @@
       "program": "client",
       "entry": "00612a60",
       "status": "partial",
-      "coverage": "Offline actual kind9/category1 model key/root/pose/name and Scene2 Human creation; release factory reference before required property setup.",
-      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "coverage": "SAME model/Scene2 creation with distinct ECX peer and EDX Scene identity, current-mode clothing choice, factory frame release before setup, actual optional stats and late3C/A8/auxiliary publication under418. Existing offline wrapper shares the body.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
       "evidence": [
         "recovered/game/prepared_human_spawn.h",
         "analysis/session-activation-loading.md",
-        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+        "recovered/game/session_peer_records.h",
+        "recovered/host/game_prepared_human_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "0059eb60",
       "status": "partial",
-      "coverage": "Offline SAME Human storage reset and native fixed/holster/backpack creation order, with real cold clothing receiver between fixed slots.",
-      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "coverage": "SAME cold Human storage reset and original fixed/holster/pack creation order; non7 missing WORD identity writeback rereads live record/mode after creation and precedes clothing. Authored identities and native one-instance-per-record rule retained.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
       "evidence": [
         "recovered/game/prepared_human_spawn.h",
         "analysis/session-activation-loading.md",
-        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
       ]
     },
     {
       "program": "client",
       "entry": "0059edc0",
       "status": "partial",
-      "coverage": "Offline kind/personality/profile, actual speech variant selection/release, nine profile stat conversions or explicit twelve-word copy, inventory then eye binding.",
-      "limitations": "Source-only typed native ownership/STL/RAII replaces original object/allocator/SEH ABI. Cold/offline/broadcast/loading subset only as specified in the contract; wider active/nonoffline/transport branches and containing host world/VM/decoder/camera integration remain. Native boundary doubles and strict host compilation are not desktop verification.",
+      "coverage": "Shared cold property/profile/peer/speech/stats/storage/eye setup in native order. Non7 B060 stores original byte70, actual peer side64 and optional game78 precede speech/stat/storage work; explicit12-word stats or nine profile conversions retain other words.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
       "evidence": [
         "recovered/game/prepared_human_spawn.h",
         "analysis/session-activation-loading.md",
-        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json"
+        "analysis/checkpoints/p2.2-prepared-spawn-20261109.json",
+        "recovered/host/game_prepared_human_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
       ]
     },
     {
@@ -25215,11 +25231,14 @@
       "program": "client",
       "entry": "005a82c0",
       "status": "partial",
-      "coverage": "Offline Human name uses actual profile user14, fallback short10 or actual actor name when no profile.",
-      "limitations": "Source-only with native ownership/dispatch rather than original class/virtual/SEH ABI. Focused native sanitizers and strict actual-host i386 compile verified the recorded boundaries; engine/CRT/presentation/lifecycle endpoints are doubled or declarations. Application loading remains disabled; actual world/session/inline/FPV composition and integrity observed-value publication remain required. Nonoffline objective transport, live Dog/attached-player EndScript and wider gameplay are excluded.",
+      "coverage": "Existing offline profile user14/short10 or Actor virtual04 name and reached non7 kind1 actual peer name; non1 retains profile/Actor fallback. Network HUD short-name call uses SAME actual control records.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
       "evidence": [
         "analysis/mission-script-runtime-composition.md",
-        "recovered/game/human_objective_experience.h"
+        "recovered/game/human_objective_experience.h",
+        "recovered/game/human_hud_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
       ]
     },
     {
@@ -25437,11 +25456,13 @@
       "program": "client",
       "entry": "005a8380",
       "status": "partial",
-      "coverage": "Offline actual Human B8 profile.field24 rank or0 absent profile; distinct from profile stat/rank44.",
-      "limitations": "Source-only native template/ownership adaptation; original ABI/SEH/unsafe malformed-data behavior not claimed. Focused native sanitizers verify actual Human/AI getter/HUD/TextState/marker/Players/presentation source with explicit FPV/frame/item/localization/clock doubles; strict actual-host composition passes. Later HUD simulation, occupied/nonoffline consumers, current-player inventory refresh, guard observed publication and actual containing world/session/loader remain required. No application loading, engine execution or desktop claim.",
+      "coverage": "Existing offline profile24 rank and non7 copy of all nine actual peer40..60 words under418, returning copied54 after unlock.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
       "evidence": [
         "analysis/hud-player-presentation-loading.md",
-        "recovered/game/human_hud_loading.h"
+        "recovered/game/human_hud_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
       ]
     },
     {
@@ -34747,6 +34768,90 @@
         "recovered/frontend/game_data.h",
         "analysis/human-ragdoll-source.md",
         "analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00730140",
+      "status": "partial",
+      "coverage": "Original peer-vector bounds before418; update actual side64 or pending68 under SAME recursive process lock, with no record expansion.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
+      "evidence": [
+        "recovered/game/session_peer_records.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "00730460",
+      "status": "partial",
+      "coverage": "Unsigned local-slot bounds and actual borrowed peer3C return; no lock, allocation, retention or synthetic Human.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
+      "evidence": [
+        "recovered/game/session_peer_records.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0069e720",
+      "status": "partial",
+      "coverage": "Reverse transport00 lookup under418, stable peer slot/name reset, A2/game78, actual HUD refresh/override-camera-FPV/spectator/auxiliary phases, required runtime-link receiver then SAME Scene2 delayed retirement, peer3C/stat clear. Source actual World bindings preserve destructive failure prefixes.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
+      "evidence": [
+        "recovered/game/session_peer_lifetime.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0045e8f0",
+      "status": "partial",
+      "coverage": "Store SAME Players override58 before actual camera reset40(0) and FPV rebind; no roster mutation or replacement control owner.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
+      "evidence": [
+        "recovered/game/human_player_control_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049f0e0",
+      "status": "partial",
+      "coverage": "Actual nonzero HUD-flags gate and primary soldier Human74 borrower (HUD10394), distinct from6B8F8/FC selection pair.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_scene_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "0049f100",
+      "status": "partial",
+      "coverage": "Bind supplied primary soldier and show, or NULL refresh through fresh selected-player queries; late root read, actual timer positioning after selected bind/show, or hide retaining Human74/flags/geometry.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_player_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
+      ]
+    },
+    {
+      "program": "client",
+      "entry": "004af900",
+      "status": "partial",
+      "coverage": "Actual explosive-timer root positioning/update followed by ten forward TextState geometry binds and inset0 AFTER each bind. Existing engine position wrapper adapts original inlined root-cache write; failure retains completed prefix.",
+      "limitations": "Source-only typed/STL/RAII dispatch and ownership replace original object/allocator/SEH ABI. Native malformed/unwritten fields reject safely; destructive mutation prefixes remain without invented rollback. Focused native sanitizers use explicit model/Items/profile/audio/HUD/frame/platform/transport boundaries; strict concrete World/i386 and launcher/probe compile/link are not application or desktop tests. Normal spawn/rule/packet entry,0072E890 shared input reset and whole-session failure/shutdown remain required; occupied attachment80 and runtime kind2/00479700 stay honest failures. No full non7 simulation/transport or complete-function equivalence claim.",
+      "evidence": [
+        "recovered/game/hud_explosive_timers_loading.h",
+        "analysis/human-ragdoll-source.md",
+        "analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json"
       ]
     }
   ]

@@ -77,6 +77,12 @@ public:
         items_.consume_placed_items();
     }
     void remove(Instance* actor) noexcept {registry_.remove(actor);}
+    template<class Human>void remove_human_links(Human&){ //00479700; current factories admit no kind2 Human-reference owner.
+        registry_.remove_owned_forward([](Instance& actor){
+            if(actor.base().type()!=2)return false;
+            throw std::runtime_error("Human runtime retirement requires actual kind2 Human reference9C");
+        });
+    }
     void clear() noexcept {registry_.clear();}
     void finish(bool authority) { //00477A90; actor owners BEFORE both spawn buffers.
         if(!authority&&(mode_flags()&1))return;

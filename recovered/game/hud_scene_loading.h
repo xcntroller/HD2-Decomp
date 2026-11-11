@@ -91,6 +91,8 @@ public:
         hud_render(frames_,factory_,hud_,scene(),panels_,camera,mode,flags20_,fields6b8f8_,consumers);
     }
     auto& selection_actors(){return fields6b8f8_;} //SAME original6B8F8/FC borrowed actor pair.
+    const void* peer_human(){return hud_.flags?panels_.soldiers()[0].human_borrower():nullptr;} //0049F0E0: HUD10394, NOT6B8F8/FC.
+    template<class Human>void refresh_peer_human(Human* human,std::uint32_t mode,std::int32_t local){panels_.refresh_peer_human(human,mode,local);} //0049F100, no flags gate.
     template<class Actor>void remove_actor_references(std::uint32_t mode,unsigned kind,Actor* actor) { //0049EF70.
         retire_hud_actor(hud_,fields6b8f8_,panels_.dialogs(),panels_.command(),mode,kind,actor);
     }

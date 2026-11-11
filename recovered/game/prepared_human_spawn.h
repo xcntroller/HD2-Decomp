@@ -9,6 +9,9 @@
 #include <cstdio>
 
 namespace hd2::game {
+inline std::int16_t prepared_identity_word(std::int32_t identity){
+    const auto word=static_cast<std::uint16_t>(identity);std::int16_t value;std::memcpy(&value,&word,2);return value;
+}
 
 //00612A60/0048A780 use native clothing resource34. Keep the final dot while
 //discarding its suffix; no extension is added when there was no dot. NA01 is
@@ -27,10 +30,9 @@ inline std::string prepared_human_model_key(const frontend::PreMissionItemCatalo
 //0059EB60: populate the SAME Human storage from the live soldier, not a second
 //opaque inventory.007D7810 owns instance allocation/identity/transfer/registration;
 //clothing005A6930 must perform its real model replacement before controls bind.
-template<class Human,class Items,class Clothing>
-void populate_prepared_human_storage(Human& human,frontend::PreMissionSoldier& soldier,
-                                     Items& items,Clothing& clothing,std::uint32_t mode) {
-    if((mode&7u)!=7u)throw std::runtime_error("Prepared Human storage requires actual nonoffline identity writeback");
+template<class Human,class Items,class Clothing,class Mode>
+void populate_prepared_human_storage_live(Human& human,frontend::PreMissionSoldier& soldier,
+                                     Items& items,Clothing& clothing,Mode&& mode) {
     auto* storage=human.base().storage();
     if(!storage||storage->single())throw std::runtime_error("Prepared Human has no actual storage");
     storage->reset_spawn_entries();human.base().field7c(0); //007DDEF0 BEFORE any creation.
@@ -39,7 +41,11 @@ void populate_prepared_human_storage(Human& human,frontend::PreMissionSoldier& s
     for(unsigned n=0;n!=indices.size();++n) {
         const auto value=soldier.equipment[indices[n]];if(value.item<0)continue;
         const auto entry=items.create_prepared_human_item(human,value.item,slots[n],value.position);
-        if(n==1&&(mode&2u)&&entry)clothing.apply_prepared_human_clothing(human,items.runtime_item(entry).identity); //005A6930.
+        //Read actual record/mode AFTER creation, before clothing. Native writes
+        //only missing WORD identities; it does not replace an authored identity.
+        if((mode()&7u)!=7u&&soldier.equipment[indices[n]].position==-1&&entry)
+            soldier.equipment[indices[n]].position=prepared_identity_word(items.runtime_item(entry).identity);
+        if(n==1&&(mode()&2u)&&entry)clothing.apply_prepared_human_clothing(human,items.runtime_item(entry).identity); //005A6930.
     }
     //006A2C90 split counts before this routine. Original creates ONE per record
     //even when a caller left a larger count; it does not expand them here.
@@ -47,21 +53,29 @@ void populate_prepared_human_storage(Human& human,frontend::PreMissionSoldier& s
         const auto slot=list==&soldier.holsters?1:6;
         for(std::size_t n=0;n<list->size();++n) {
             const auto value=list->at(n);
-            (void)items.create_prepared_human_item(human,value.item,slot,value.position);
+            const auto entry=items.create_prepared_human_item(human,value.item,slot,value.position);
+            if((mode()&7u)!=7u&&list->at(n).position==-1&&entry)
+                list->at(n).position=prepared_identity_word(items.runtime_item(entry).identity);
         }
     }
+}
+template<class Human,class Items,class Clothing>
+void populate_prepared_human_storage(Human& human,frontend::PreMissionSoldier& soldier,
+        Items& items,Clothing& clothing,std::uint32_t mode){
+    populate_prepared_human_storage_live(human,soldier,items,clothing,[&]{return mode;});
 }
 
 //0059EDC0 offline property/profile/speech/equipment binding. Explicit stats copy
 //all12 words; the profile path converts only nine and preserves the other three.
 //Eye texture application follows storage/model replacement, not profile lookup.
-template<class Human,class Store,class Speech,class Random,class Inventory,class Effects>
-void configure_prepared_human(Human& human,frontend::PreMissionSoldier& soldier,
+template<class Human,class Store,class Speech,class Random,class Inventory,class Effects,class Peer>
+void configure_prepared_human_with_peer(Human& human,frontend::PreMissionSoldier& soldier,
                              std::uint32_t kind,std::uint32_t personality,const std::array<std::uint32_t,12>* stats,
-                             Store& store,Speech& speech,Random& random,Inventory& inventory,Effects& effects) {
+                             Store& store,Speech& speech,Random& random,Inventory& inventory,Effects& effects,Peer&& peer) {
     human.properties.field19c=kind;human.properties.field1a0=personality;
     human.properties.field170=static_cast<std::uint32_t>(soldier.human);
     if(soldier.human>=0)human.profile_record=store.record(soldier.human);
+    peer(human,soldier); //0059EDC0 non7 B060/side/game78, BEFORE speech/stats/storage.
     if(kind==1) {
         if(human.speech_definition){speech.release(human.speech_definition);human.speech_definition=nullptr;}
         auto variant=soldier.speech_variant;
@@ -78,22 +92,27 @@ void configure_prepared_human(Human& human,frontend::PreMissionSoldier& soldier,
     if(human.profile_record){human.fieldbc=human.profile_record->eye;effects.human_eye_texture(human.base().frame(),human.fieldbc);}
     human.activation.flag178=true;
 }
+template<class Human,class Store,class Speech,class Random,class Inventory,class Effects>
+void configure_prepared_human(Human& human,frontend::PreMissionSoldier& soldier,
+        std::uint32_t kind,std::uint32_t personality,const std::array<std::uint32_t,12>* stats,
+        Store& store,Speech& speech,Random& random,Inventory& inventory,Effects& effects){
+    configure_prepared_human_with_peer(human,soldier,kind,personality,stats,store,speech,random,inventory,effects,[](auto&,auto&){});
+}
 
 //00612A60 ordinary offline creation. Models uses the existing category1 cache
 //load_into on a real kind9 frame; Scene is the actual Scene2 identity registry.
 //Setup must construct the containing Human/inline/state owners and configure
 //them through the preceding source. Failure leaves registered actors available
 //to the containing world's ordered cleanup; no privately owned duplicate actor.
-template<class Frames,class Models,class Scene,class Setup>
-auto create_prepared_human(Frames& frames,Models& models,Scene& scene,Setup& setup,
+template<class Frames,class Models,class Scene,class Clothing,class Finish>
+auto create_prepared_human_body(Frames& frames,Models& models,Scene& scene,
                           const frontend::PreMissionItemCatalogue& catalogue,
                           const HumanVector& position,const HumanVector& direction,
-                          std::int32_t identity,frontend::PreMissionSoldier& soldier,
-                          std::int32_t clothing,bool alternate) {
+                          std::int32_t identity,Clothing&& clothing,Finish&& finish) {
     auto model=frames.create_prepared_human_model();
     using HumanPointer=decltype(scene.create_prepared_human(model.get(),identity));
     if(!model)return HumanPointer{};
-    const auto key=prepared_human_model_key(catalogue,clothing);
+    const auto key=prepared_human_model_key(catalogue,clothing());
     if(models.load_model(model.get(),key,0)!=0)return HumanPointer{};
     frames.link_prepared_human_root(model.get()); //Actual scene1F8, link flag0.
     frames.object_position(model.get(),{{position[0],position[1],position[2]}});
@@ -102,8 +121,26 @@ auto create_prepared_human(Frames& frames,Models& models,Scene& scene,Setup& set
     frames.game_camera_name(model.get(),name);frames.update_scene_object(model.get());
     auto* human=scene.create_prepared_human(model.get(),identity);
     model.reset(); //00612A60 releases factory reference BEFORE0059EDC0 setup.
-    if(human)setup.configure(*human,soldier,alternate?4u:1u,1u);
+    if(human)finish(*human);
     return human;
+}
+template<class Frames,class Models,class Scene,class Setup>
+auto create_prepared_human(Frames& frames,Models& models,Scene& scene,Setup& setup,
+        const frontend::PreMissionItemCatalogue& catalogue,const HumanVector& position,const HumanVector& direction,
+        std::int32_t identity,frontend::PreMissionSoldier& soldier,std::int32_t clothing,bool alternate){
+    return create_prepared_human_body(frames,models,scene,catalogue,position,direction,identity,[&]{return clothing;},
+        [&](auto& human){setup.configure(human,soldier,alternate?4u:1u,1u);});
+}
+//Full00612A60 source factory boundary: distinct ECX peer / EDX Scene identity,
+//actual optional stats and non7 clothing/setup/publication over SAME owners.
+template<class Frames,class Models,class Scene,class Setup>
+auto create_session_human(Frames& frames,Models& models,Scene& scene,Setup& setup,
+        const frontend::PreMissionItemCatalogue& catalogue,const HumanVector& position,const HumanVector& direction,
+        std::uint32_t peer,std::int32_t identity,frontend::PreMissionSoldier& soldier,
+        const std::array<std::uint32_t,12>* stats,std::int32_t clothing,bool alternate){
+    return create_prepared_human_body(frames,models,scene,catalogue,position,direction,identity,
+        [&]{return (setup.mode_flags()&7u)==7u?clothing:soldier.equipment[1].item;},
+        [&](auto& human){setup.configure_session(human,soldier,alternate?4u:1u,1u,stats,peer);setup.publish_peer_human(peer,human);});
 }
 
 //00611C90 offline authority spawn, including its actual initial identity and

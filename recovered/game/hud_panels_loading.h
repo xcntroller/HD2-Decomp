@@ -89,6 +89,9 @@ public:
     }
     template<class Human>bool remove_human(Human* human,std::int32_t index){return remove_hud_loading_human(frames_,hud_,soldiers_,compass_,human,index);}
     template<class Human>void select_human(Human* human,bool selected,std::uint32_t mode,std::uint32_t difficulty){select_hud_loading_human(hud_,compass_,human,selected,mode,difficulty);}
+    template<class Human>void refresh_peer_human(Human* supplied,std::uint32_t mode,std::int32_t local_player){ //0049F100.
+        refresh_hud_peer_human(frames_,soldiers_[0],players_,items_,timers_,supplied,mode,local_player);
+    }
     void inventory_changed(){ //0049FBF0; hidden inventory is a genuine RET, not a successful refresh substitute.
         const auto root=inventory_.root();if(!root)throw std::logic_error("Inventory notification requires its actual loaded HUD root");
         if(!frames_.hud_frame_visible(root))return;

@@ -41,6 +41,8 @@
 #include "game/human_score_presentation.h"
 #include "game/human_death_objective.h"
 #include "game/human_peer_removal.h"
+#include "game/human_scene_retirement.h"
+#include "game/session_peer_lifetime.h"
 #include <algorithm>
 #include <stdexcept>
 
@@ -160,6 +162,30 @@ public:
         remove_human_peer(dependencies().startup.game_control_records(),identity,reason,*this);
     }
     void queue_human_peer_removal(std::uint32_t reason,std::uint32_t identity){dependencies().startup.queue_application_command(17,0,reason,identity);}
+    const void* peer_hud_human(){return dependencies().hud.peer_human();}
+    void refresh_peer_hud_human(){
+        using Human=typename Dependencies::Composition::Human;
+        dependencies().hud.refresh_peer_human(static_cast<Human*>(nullptr),mode_flags(),dependencies().startup.local_player_identity());
+    }
+    void* peer_override_human(){return dependencies().players.control().override_player();}
+    void clear_peer_override_human(){dependencies().players.control().override_player(nullptr);}
+    void* local_peer_human(){return local_session_peer_human(dependencies().startup.game_control_records(),dependencies().startup.local_player_identity());}
+    bool peer_human_has_state(void* actor){return human_score_actor(actor).loading_state!=nullptr;}
+    void remove_peer_auxiliary_human(void* actor){(void)dependencies().players.auxiliary().human_roster().remove(&human_score_actor(actor));} //0045FDF0→00461C70, no selection release.
+    void remove_peer_runtime_links(void* actor){dependencies().world_actors.runtime().remove_human_links(human_score_actor(actor));}
+    void retire_peer_scene_human(void* actor){dependencies().world_actors.retire_scene_human(human_score_actor(actor));}
+    void retire_session_peer(std::uint32_t transport){
+        auto& d=dependencies();game::retire_session_peer(d.startup.game_control_records(),d.session,transport,*this);
+    }
+    template<class Human>void retire_scene_human(Human& human){
+        auto& d=dependencies();auto& owner=composition(human);
+        game::retire_scene_human(human,d.sight.source(),d.hearing,d.proximity,owner.control(),
+            [this]{return mode_flags();},[this](auto& actor,std::int32_t slot){this->detach_human_attachment(actor,slot);},
+            [&owner](auto& state,bool second){
+                auto* actual=owner.states().get();if(actual!=&state)throw std::logic_error("Scene retirement lost SAME actual B0 owner");
+                owner.state_factory().flush_scene_retirement_commands(*actual,second);
+            });
+    }
     void emit_human_peer_removal_log(const std::string& text){ //006C4B40, called with SAME current World owner.
         auto& startup=dependencies().startup;
         if(startup.application_log_to_console()){startup.append_game_console(text);return;}

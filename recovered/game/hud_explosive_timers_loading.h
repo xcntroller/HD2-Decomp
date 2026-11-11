@@ -42,6 +42,13 @@ public:
             factory_.hud_draw_text(*texts2c_[n]);
         }}
     }
+    void position(const std::array<float,3>& point){ //004AF900, root update then forward text geometry, inset0 AFTER each bind.
+        require(root_);frames_.hud_position(root_,point);frames_.update_scene_object(root_);
+        for(unsigned n=0;n!=10;++n){
+            if(!texts2c_[n])throw std::logic_error("HUD timer positioning requires actual text owner");
+            bind_hud_text_geometry(frames_,*texts2c_[n],scene_,frames4_[n]);texts2c_[n]->text.inset=0;
+        }
+    }
     //004AF980. Query validates the borrower against the current Scene2 owner
     //before reading its actual state94/countdownC8. Sorting is the native
     //eight-byte signed countdown/index comparison, not actor identity order.

@@ -939,3 +939,127 @@ batch, not P2.8 delivery or the full Human checkbox. Next is actual non7 peer3C
 creation/configuration/storage and matching borrower teardown, then containing
 Human frame/reaction failure, re-entry and retirement. Live transport and actual
 application/desktop acceptance remain open.
+
+
+### Cold peer/Human creation and reached retirement checkpoint — 2026-11-11
+
+00612A60 now has one shared model/Scene2 factory body for existing offline callers
+and the explicit session factory. Preserve distinct **ECX peer slot / EDX Scene
+identity**, model `_PLAYER_%2d` from Scene identity, current-mode clothing selection
+(soldier54 outside7, explicit clothing in7), and factory frame release BEFORE
+0059EDC0. The actual host passes optional12-word stats and SAME application,
+WorldActors/Items/profile/speech/effects owners; it creates no second Human graph.
+The old offline host interface rejects a missing network peer argument.
+
+0059EDC0's peer hook follows kind/personality/HumanStore170/profile lookup and
+precedes speech/stat/storage/eye work. Actual B060 stores the byte into SAME B070;
+all eight vtable60 entries prove identical byte setters.00730140 bounds BEFORE
+418 and stores actual side64 or pending68; flag09 writes actual session78.
+0059EB60 retains fixed-slot order0/4/5/2/3 then holster1/pack6, one instance per
+record. Non7 creation writes missing WORD identity back AFTER the actual item
+returns and BEFORE clothing. Reread the live record/mode at that phase; preserve
+an authored/mutated identity and low16-bit wrapping. Existing cold Items/clothing
+receivers still own real instances/model transfer; occupied transfers remain
+required. Stack counts are split by the containing caller, not expanded here.
+
+Only after complete setup/typed containing-owner construction does00612A60 enter
+418, publish SAME Human into peer3C, read actual **timeGetTime** and store A8,
+then conditionally append the late record borrower through auxiliary virtual8
+(0045FDE0 thunk→00461AA0) for authority/remote-AI. Unlock last. A setup failure
+leaves registered Scene ownership/earlier metadata without3C. A later clock/
+auxiliary failure preserves the published prefix; no native rollback is invented.
+00730460 uses actual local slot with unsigned bounds and returns a borrower,
+including genuine null for dedicatedFFFFFFFF. No reverse peer/Scene map exists.
+
+0069E720 now has actual source/World bindings: reverse-find transport00 under418;
+clear transport/name without erasing/shifting the peer; if3C exists set A2,
+clear matching game78, perform the native presentation refresh/override/spectator
+phases, conditionally remove auxiliary roster (0045FDF0→00461C70, no selection
+release), invoke required00479700 runtime links, then schedule SAME Human through
+00475C50(false)→00476680. Clear peer3C and nine40..60 words only AFTER that returns.
+All peer accesses reread the slot after callbacks; record-vector growth while the
+recursive lock is held never retains an invalid STL element pointer.
+
+**HUD refresh is not pointer erasure.**0049F0E0 reads primary soldier Human74 at
+HUD10394 behind any nonzero HUD flags, not selection6B8F8/FC.0049F100(NULL) queries
+the actual selected player twice; if present bind/show that SAME primary soldier
+then reposition actual explosive timers. If absent, hide and RETAIN Human74,
+flags and old geometry. Supplied-Human branch binds/shows without timer movement.
+Read the root AFTER binding.004AF900 moves/updates the actual root, then rebinds
+all ten TextState geometries in forward order and stores inset0 AFTER each bind.
+Native position wrapper/inlined engine cache equivalence is delegated/uncredited.
+0045E8F0 stores control override58 before camera40(0) and actual FPV rebind.
+
+Reached HUD name/rank now supports non7:005A8380 copies all nine40..60 words under
+418 and returns copied54 AFTER unlock.004B3890 caches it before later lookups;
+style0 selects27A6/27B0 rank family using real holder4/definition44, otherwise
+uses actual005A8820 side/configuration policy.005A82C0 kind1 gets real peer name
+by **Scene identity**, while other kinds keep profile user14/short10 or Actor
+name. Publish SAME TextObject record0/style3A after rank/name retention. No new
+profile, peer or HUD state substitutes these owners.
+
+005A7FE0 is now a shared body invoked AFTER actual Scene2 delayed ownership is
+published: optional actor160/164 virtual80, remove observer258/target25C/listener
+2A4/proximity188 and invalidate each field AFTER its receiver; disable SAME DD0
+collisions/visibility; then late B0 FC with current low mode bit; set20C=false
+last. This does NOT delete Human or remove its shared input. Missing DD0/posture
+and occupied attachment80 remain required failures. Actual delayed expiry still
+performs B0/input teardown before Human destruction. Native client-mode lifetime
+exposed an external-composition guard defect: client2 has no later authority call.
+World now retires its SAME composition after the last actual mode pass; destructor
+and failed-prefix World cleanup follow current bit2 then bit1, without inventing
+opposite-mode callbacks. Keep the map key published through owner.reset before
+erase, resolving the SAME Human loading_lifetime borrower during destructor
+callbacks. Reject re-entered owner destruction/new activation. This is typed
+ownership adaptation, not another owner graph or original ABI credit.
+
+Actual Remote state7 virtualFC is **00592220**, which forwards ONLY7/8/10 and
+clears the whole owning queue. A nonallocating borrowed range now shares that
+filter with actual B0 publication, retaining all command objects until successful
+serialization; no prepare/snapshot call occurs for discarded kinds. AI/Player
+ordinary/motion ordering and existing rollback remain intact.00592220 and the
+B060 setters are absent frozen and receive ZERO credit. No new solver/clip audit
+or credit was made.00479700 has a real forward ownership-scan boundary, preserving
+native increment after swap/removal, but its positive kind2 Human-reference9C
+owner remains unrecovered and throws; it receives ZERO new credit.
+
+Important identity/lifetime limits remain: native delayed A2 clear and Human
+destructor3C clear use **Scene id10**, while0069E720 clears its actual peer slot.
+The focused two-distinct-identities checks retain this quirk; do not invent a
+reverse map or corrective cleanup. Full0072E890 entry/input-manager reset and
+whole-session failure/shutdown must supply the original containing protocol.
+Normal00611C90/006123A0/006125A0 non7 rule/spawn/packet callers still reject before
+their unrecovered tails. Application20 control decoder, received2/10/17 routing,
+non7 transport and full containing Human frame remain required. These concrete
+source factory/retirement methods expose no new UI/connection/loading success.
+
+Research index preceded reuse/exports. WORK `human-peer-lifecycle-abi` is a
+read-only rollback export of00592220/005A7FE0/0069E720/00612A60/0059EDC0/0059EB60;
+correctfastcall612A60 now retains both saved register parameters. Other peer C
+is pinned in `human-peer-lifecycle-reused-originals/provenance.json`. Static
+vtable60/FC tables and raw HUD/override/auxiliary/timer leaves retain the evidence.
+
+Focused native ASan/UBSan/LSan PASS: `human-peer-preparation-native` (actual
+catalogue/model-factory policy/Scene2 registration/setup/storage/writeback/late
+publication,100 lifetimes); `human-peer-lifetime-native` (actual peer policy,
+Player Base queue/input boundary only, actual control override/HUD refresh/aux
+roster and Scene2 delayed retirement, recursive rank418, vector relocation,
+destructive failures and100 normal lifetimes); `human-scene-retirement-native`
+(actual Remote bind/filtered queue/codec/delayed owner, failure/re-entry and100
+lifetimes); `human-peer-hud-timers-native` (actual timer owner/TextState geometry,
+inset-after-bind/failure/re-entry and100 lifetimes); unchanged authority packet
+regression passes with the new range interface. Component/model/Items/profile/
+audio/HUD/frame/platform/transport boundaries are explicit doubles, not a full
+World run. `human-peer-owner-retirement-native` executes the SAME owner-map/mode
+guards with actual input/Scene2 ownership for1/2/3/7 x100, client failure,
+reset-before-erase callback lookup/re-entry rejection and fresh mode reads;
+composition/deactivation endpoints are doubles. Strict actual World/factory/HUD/
+retirement i386 and launcher/probe link evidence is pinned in the receipt.
+No original/DLL/Windows output or desktop run occurred.
+
+[Receipt](checkpoints/p2.2-human-peer-lifecycle-20261111.json) adds seven client
+partials and extends seven, no complete promotions:34 complete/2614 partial of
+18783 (2609 client+5 engine partials). Full selected Human checkbox, P22-HUM,
+application integration and desktop acceptance remain OPEN. Continue the actual
+spawn/application-packet/entry protocol and containing reaction/frame boundary;
+source lifecycle helpers are a verified dependency checkpoint, not delivery.

@@ -1,5 +1,6 @@
 #ifndef HD2_HOST_GAME_WORLD_ACTORS_H
 #define HD2_HOST_GAME_WORLD_ACTORS_H
+#include "game/human_loading_retirement.h"
 
 #include "game/session_time_word.h"
 #include "host/game_world_scene.h"
@@ -58,9 +59,11 @@ public:
     using Human=game::HumanSceneActor<GameActorServices,GameSceneActors::Runtime>;
     template<class Owner>Owner& human_loading_owner(Human& actor){
         require_open();const auto found=human_loading_.find(&actor);
-        if(found==human_loading_.end()||actor.loading_lifetime!=found->second.get())
+        if(found==human_loading_.end())
             throw std::runtime_error("Human callback requires its actual containing loading owner");
-        auto* owner=dynamic_cast<Owner*>(found->second.get());
+        auto* published=found->second?found->second.get():actor.loading_lifetime; //Same borrower during reset-before-erase destruction.
+        if(!published||actor.loading_lifetime!=published)throw std::runtime_error("Human callback lost its actual containing loading owner");
+        auto* owner=dynamic_cast<Owner*>(published);
         if(!owner)throw std::runtime_error("Human callback loading owner has a different concrete type");
         return *owner;
     }
@@ -76,6 +79,7 @@ public:
             if(!owner||actor.loading_lifetime!=owner.get())throw std::runtime_error("Human factory must publish its actual composed loading owner");
             found=human_loading_.emplace(&actor,std::move(owner)).first;
         }
+        if(!found->second)throw std::logic_error("Human activation during its containing owner retirement");
         return *found->second;
     }
     void activate_human(Human& actor,bool authority){
@@ -83,19 +87,7 @@ public:
         prepare_human_loading(actor).activate(authority);
     }
     void deactivate_human(Human& actor,bool authority){
-        const auto found=human_loading_.find(&actor);
-        if(found==human_loading_.end()){
-            //Source partial-activation guard: Scene2's captured pass includes
-            //later Humans whose factory was never entered. An actual published
-            //owner may never be replaced by a successful missing receiver.
-            if(actor.loading_lifetime)throw std::runtime_error("Human retirement lost its published containing owner");
-            return;
-        }
-        frontend::CleanupErrors errors;errors.attempt([&]{found->second->deactivate(authority);});
-        //Scene2 removes reserved Humans immediately after the authority call,
-        //including when a receiver fails. Retract all borrowers while it lives.
-        if(authority)human_loading_.erase(found);
-        errors.rethrow();
+        game::deactivate_human_loading_owner(human_loading_,actor,authority,[this]{return mode_flags();});
     }
     std::uint32_t mode_flags()const{return consumers_.mode_flags();}
     std::int32_t human_current_player_id(){return consumers_.human_current_player_id();}
@@ -236,6 +228,7 @@ public:
     void set_runtime_actor_active(GameActorServices::Actor& actor,bool value){runtime_.set_active(actor,value);}
     void remove_actor_presentation_references(typename Runtime::Instance& actor){consumers_.remove_actor_presentation_references(actor);}
     void clear_retired_actor_record(std::int32_t identity){consumers_.clear_retired_actor_record(identity);}
+    void retire_scene_human(Human& human){scene_.frames().retire_scene_actor(&human,[this](auto& actor){consumers_.retire_scene_human(dynamic_cast<Human&>(actor));});}
     void retire_file_resources(){
         require_open();
         if(has_human_loading_owners())throw std::logic_error("File resource retirement still has actual Human lifetimes");
@@ -252,8 +245,8 @@ public:
         //identities, Items and the shared world dependencies still exist.
         frontend::CleanupErrors human_errors;
         for(auto& record:human_loading_){
-            human_errors.attempt([&]{record.second->deactivate(false);});
-            human_errors.attempt([&]{record.second->deactivate(true);});
+            game::retire_human_mode_passes([this]{return mode_flags();},[&](bool authority){record.second->deactivate(authority);},human_errors);
+            record.second.reset(); //Retiring callbacks can still resolve the actual Human borrower through the published key.
         }
         human_loading_.clear();
         if(human_errors.failed())try{human_errors.rethrow();}catch(...){scene_.frames().record_actor_cleanup_failure(std::current_exception());}

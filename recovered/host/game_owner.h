@@ -23,6 +23,7 @@
 #include "game/human_input_loading_manager.h"
 #include "game/human_player_state_loading.h"
 #include "game/human_player_roster.h"
+#include "game/human_hud_loading.h"
 #include "game/game_music_references.h"
 #include "game/first_person_animation_table.h"
 #include "game/first_person_model_loading.h"
@@ -140,6 +141,9 @@ public:
     }
     std::uint8_t hud_crosshair_allowed(){return startup_.hud_crosshair_allowed();}
     std::int32_t hud_style224(){return startup_.game_configuration().hud_style224();}
+    template<class Human>std::uint32_t hud_network_human_rank(const Human& human){return game::network_human_hud_rank(human,startup_.game_control_records(),startup_);}
+    template<class Human>std::string hud_network_human_short_name(const Human& human){return game::network_human_hud_short_name(human,startup_.game_control_records());}
+    template<class Human>std::uint32_t hud_network_human_side(const Human& human){return game::network_human_hud_side(human,startup_.game_configuration(),startup_.game_control_records());}
     std::uint32_t hud_teams240(){return startup_.game_configuration().hud_teams240();}
     void hud_binding_mode(std::uint32_t mode){startup_.select_game_binding_mode(mode);}
     std::int32_t hud_no_gi(){return startup_.game_console_variables().integer(10);} //0049BA12→00720B80(10).

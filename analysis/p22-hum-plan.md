@@ -1,6 +1,6 @@
 # P22-HUM implementation plan
 
-Updated 2026-11-11 through the application-owned network mission metadata source checkpoint. P22-HUM remains OPEN.
+Updated 2026-11-11 through the cold peer/Human lifecycle source checkpoint. P22-HUM remains OPEN.
 Both P2.2 checkboxes in `plan.md` remain OPEN. Mission loading still declines,
 and no mission desktop acceptance has occurred.
 
@@ -81,7 +81,9 @@ Reaction-specific authority admission, native input/stream ordering and selected
 reaction retirement now have a [source checkpoint](checkpoints/p2.2-human-reaction-authority-retirement-20261111.json).
 Normal selected-map/rules metadata and borrowed network request admission now have a
 [source checkpoint](checkpoints/p2.2-human-network-mission-metadata-20261111.json).
-Continue ordinary non7 peer3C/transport and the full containing frame/failure,
+Cold peer creation/setup and reached disconnect/Scene2 retirement now have a
+[source checkpoint](checkpoints/p2.2-human-peer-lifecycle-20261111.json).
+Continue actual non7 spawn/application-packet/entry/transport and the full containing frame/failure,
 re-entry and teardown. Detailed boundaries are in [the active contract](human-ragdoll-source.md).
 The full selected checkbox, P22-HUM and P2.2 remain open; no application or desktop
 acceptance is claimed.

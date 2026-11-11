@@ -1,11 +1,36 @@
 #ifndef HD2_GAME_HUMAN_FRAME_COMMANDS_H
 #define HD2_GAME_HUMAN_FRAME_COMMANDS_H
+#include <utility>
 
 #include "game/human_packet_commands.h"
 #include "game/human_loading_stats.h"
 #include "game/human_damage_commands.h"
 
 namespace hd2::game {
+//00592220 Remote virtualFC forwards only7/8/10, then clears the WHOLE owning
+//queue. A borrowed range preserves queued objects until successful publication;
+//it allocates no substitute queue and never calls prepare() for discarded kinds.
+template<class Commands>class HumanFrameCommandRange {
+    using Cursor=decltype(std::declval<const Commands&>().begin());
+public:
+    class Iterator {
+    public:
+        Iterator(Cursor current,Cursor end,bool remote):current_(current),end_(end),remote_(remote){skip();}
+        const auto& operator*()const{return *current_;}
+        Iterator& operator++(){++current_;skip();return *this;}
+        bool operator==(const Iterator& other)const{return current_==other.current_;}
+        bool operator!=(const Iterator& other)const{return !(*this==other);}
+    private:
+        void skip(){while(current_!=end_&&remote_&&current_->kind!=7&&current_->kind!=8&&current_->kind!=10)++current_;}
+        Cursor current_,end_;bool remote_;
+    };
+    HumanFrameCommandRange(const Commands& commands,bool remote):commands_(commands),remote_(remote){}
+    Iterator begin()const{return {commands_.begin(),commands_.end(),remote_};}
+    Iterator end()const{return {commands_.end(),commands_.end(),remote_};}
+    bool empty()const{return begin()==end();}
+private:
+    const Commands& commands_;bool remote_;
+};
 template<class Packet>HumanDamageCommand read_human_damage_command(Packet& packet){return human_damage_command_value(read_human_packet_command(packet,1,7));}
 template<class Packet>HumanDropCommand read_human_drop_command(Packet& packet){return human_drop_command_value(read_human_packet_command(packet,10,7));}
 template<class Packet,class Damage,class Drop,class Rank>void receive_human_presentation_commands(Packet& packet,Damage&& damage,Drop&& drop,Rank&& rank){ //005406C0/005418E0 reached damage/drop/rank grammar.

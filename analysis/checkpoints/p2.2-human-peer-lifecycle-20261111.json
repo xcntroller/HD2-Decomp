@@ -1,0 +1,397 @@
+{
+  "date": "2026-11-11",
+  "base_commit": "05dbdee51cc366476317011b91b1a1863041dcee",
+  "source_only": true,
+  "selected_checkbox_complete": false,
+  "p22_hum_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "added_entries": [
+    "00730140",
+    "00730460",
+    "0069e720",
+    "0045e8f0",
+    "0049f0e0",
+    "0049f100",
+    "004af900"
+  ],
+  "extended_entries": [
+    "005a7fe0",
+    "00612a60",
+    "0059edc0",
+    "0059eb60",
+    "004b3890",
+    "005a8380",
+    "005a82c0"
+  ],
+  "complete_promotions": 0,
+  "ledger_complete": 34,
+  "ledger_partial": 2614,
+  "source_files": {
+    "recovered/game/hud_explosive_timers_loading.h": {
+      "sha256": "b396319b44b33e5f2a6a99795984e60534806918972eba0015420b70f8058f01",
+      "bytes": 5972
+    },
+    "recovered/game/hud_panels_loading.h": {
+      "sha256": "3cabb8d3efe36367c7069ebb20ed86340103c9e3392b335258857596187ee9aa",
+      "bytes": 10627
+    },
+    "recovered/game/hud_player_loading.h": {
+      "sha256": "5117b38224efe24cabdade4caf1b9168ccddc419b80895e367a62f74b9956409",
+      "bytes": 4750
+    },
+    "recovered/game/hud_scene_loading.h": {
+      "sha256": "fe7e7e169e17fb1b19afcb175e16e275aba875fe9552d83ba9fff019321769f7",
+      "bytes": 10212
+    },
+    "recovered/game/hud_soldier_loading.h": {
+      "sha256": "dd11e5786053ff2a0284ccad16f39707376cc9b2a19d5c07fbe55350fcc8a07a",
+      "bytes": 11697
+    },
+    "recovered/game/human_frame_commands.h": {
+      "sha256": "fe6401eb83d23e9452a596d47f095291b478fb1968cb82367db84058f9f4bf61",
+      "bytes": 5365
+    },
+    "recovered/game/human_hud_loading.h": {
+      "sha256": "a2a4739abce76def82c0d4ae02610953a0528b75d7ebbd8d55e7f86dbc63a110",
+      "bytes": 3919
+    },
+    "recovered/game/human_loading_composition.h": {
+      "sha256": "aa8c25c31f1c8f3268ee84bbc5576c10270a150f2182d882e3eadeec16d2fe14",
+      "bytes": 5057
+    },
+    "recovered/game/human_loading_state_factory.h": {
+      "sha256": "b9ee301ff166fc7861778362351cf5ecb3c238521de7b3a8f80c81d07747a72b",
+      "bytes": 15103
+    },
+    "recovered/game/human_loading_state_view.h": {
+      "sha256": "53c7401bbabf7fa278102bc2f07f30ec281a80d038f0803e59f74eae7038065a",
+      "bytes": 2771
+    },
+    "recovered/game/human_player_control_loading.h": {
+      "sha256": "82fa418b927849e606349622710e1bae948778241e7e46a2f3762e5c81339c23",
+      "bytes": 7237
+    },
+    "recovered/game/human_state_base_loading.h": {
+      "sha256": "c8f5ca23857db7d7d0643b45dd50adbb0fbc6614bf4443ba11d294a3c581a4bd",
+      "bytes": 15104
+    },
+    "recovered/game/human_world_loading_services.h": {
+      "sha256": "e605194e229a170607805d8d7a69de72d6ac07de46f00b0476f8db3928caaf16",
+      "bytes": 107519
+    },
+    "recovered/game/prepared_human_spawn.h": {
+      "sha256": "42906ff11bf6ef32fad65547563d55cbde480be93f6157be53f96a14e9034658",
+      "bytes": 12305
+    },
+    "recovered/game/runtime_actor_registry.h": {
+      "sha256": "46fa9fafe11257cb5072d399360793477de812d012463dce2cf71f09a60bba49",
+      "bytes": 8690
+    },
+    "recovered/game/world_actor_loading_consumers.h": {
+      "sha256": "2066861e15b81c86d90e6441c114249e130ecb93fe0b285cc8de97d4e90c768c",
+      "bytes": 7296
+    },
+    "recovered/host/game_owner.h": {
+      "sha256": "b2f7d738d0beaf52c44a45933269c95dbd945ae38f91a38d7e6576dd87eb0155",
+      "bytes": 16326
+    },
+    "recovered/host/game_prepared_human_loading.h": {
+      "sha256": "4b46eb79e95a7f0bee0a16a297f63f27c2d204c40d53547ccb19448bb9132414",
+      "bytes": 5019
+    },
+    "recovered/host/game_runtime_actors.h": {
+      "sha256": "1bebe80756d10544df6ed0fec2212fea885576a112c024d00f5d0b2f3058a1ff",
+      "bytes": 8770
+    },
+    "recovered/host/game_world_actors.h": {
+      "sha256": "b2f9476741e5fbd1ecd93dd7019c7d519c9b040f26488353af9d7a81b9d4446e",
+      "bytes": 21292
+    },
+    "recovered/game/human_loading_retirement.h": {
+      "sha256": "0f1958038d4d87f95fbc04e153d8a9bf9eea8b21c865447c496e83a7441a91e8",
+      "bytes": 1776
+    },
+    "recovered/game/human_scene_retirement.h": {
+      "sha256": "2c061d793e9b2ffc94ba8a3c2349237a7a5f770efcdee1d747b4caa7e2c6c3b5",
+      "bytes": 1948
+    },
+    "recovered/game/session_peer_lifetime.h": {
+      "sha256": "fa003cc43e09a9330df2ff822ddad09d3c2ff50ff68d8bfafeb155219771a839",
+      "bytes": 2199
+    },
+    "recovered/game/session_peer_records.h": {
+      "sha256": "62a502773130c47f45660dedf5f6bb18787ae796db8e033aa062f76e43f15f85",
+      "bytes": 1655
+    }
+  },
+  "temporary_audits": {
+    "human-peer-preparation-native": {
+      ".cpp": {
+        "sha256": "61ae5256a126474323b2ec50fdb0b1bdb0c3227a379488d57969a299f0cb1631",
+        "bytes": 11476
+      },
+      "": {
+        "sha256": "c03b2fa0b06ec9e285743567d3d7010342e60da63c8431c819e0f7f50ef8ab6c",
+        "bytes": 2258328
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      ".log": {
+        "sha256": "7fa8a31f719e63d6aa84d9e79357cc9edb6eb99e9f066c72713404c5dd8cd4de",
+        "bytes": 386
+      }
+    },
+    "human-peer-lifetime-native": {
+      ".cpp": {
+        "sha256": "2c0c8493fd47e3abac7870aa647da0ac8b29edd7f652776bf188b5dfaee4127b",
+        "bytes": 17554
+      },
+      "": {
+        "sha256": "67352414fb7763b259ed909ee6c003e040d7340928edea2e5f603356768e958d",
+        "bytes": 4825248
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      ".log": {
+        "sha256": "3aace7c4e4a5060e6cff973b31b15a410badefc5241940d195cfdfd8537711af",
+        "bytes": 502
+      }
+    },
+    "human-scene-retirement-native": {
+      ".cpp": {
+        "sha256": "2a621f47ddec3ce48dc2421444c803fcfeb4317566b4ebbacb477bb438272464",
+        "bytes": 9763
+      },
+      "": {
+        "sha256": "6b5efc3409ca1a94cb9b38e5e0b6bca5435fca143f98214d3e78886baf8b9e09",
+        "bytes": 3485944
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      ".log": {
+        "sha256": "5e297022e873ecc6b2523a424ba9fa67ecf5f7b4aa9cf59b23e9f84220456575",
+        "bytes": 266
+      }
+    },
+    "human-peer-hud-timers-native": {
+      ".cpp": {
+        "sha256": "485a2ca0e9f93d54c6eac4ef9c1ac55c42a11d8ca87669c933e7932db3b0b3b2",
+        "bytes": 3122
+      },
+      "": {
+        "sha256": "e2c6d9570addc8bebdadc5ccc9e6eb332b0c1761fc994f7c154d58e54363db01",
+        "bytes": 888360
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      ".log": {
+        "sha256": "7630909468a0d79fd8504103c56d05ad247218bdf1f4f7e95628cba6313027a6",
+        "bytes": 235
+      }
+    },
+    "human-authority-damage-native": {
+      ".cpp": {
+        "sha256": "a8ff9660402a6bf1230bdf276857be8c22a45948fd08c1b134ac416a5887a644",
+        "bytes": 13666
+      },
+      "": {
+        "sha256": "2459f739ac26b6f6c93bf2891300bc0487f6af6a519d4e600824f274184a4998",
+        "bytes": 3634720
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      ".log": {
+        "sha256": "41ee460f28b984a3ab6f42c49cac60b5b5e81a2523b5e08278213e798b47f68c",
+        "bytes": 294
+      }
+    },
+    "human-peer-owner-retirement-native": {
+      ".cpp": {
+        "sha256": "c4d022ab24e90a89cb31987d9c9e0058da8ef02b42dbd13706cb6d4512191ad2",
+        "bytes": 9123
+      },
+      "": {
+        "sha256": "a77f77a994f1a808492fa19c381769528873c174c187eb4e9da1554bd19e1860",
+        "bytes": 3061560
+      },
+      "-build.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      ".log": {
+        "sha256": "c6ca10d9316641340deffc06a4133db2c6203234edc70e4c9817667c1aa2a293",
+        "bytes": 356
+      }
+    }
+  },
+  "temporary_audits_removed": false,
+  "original_evidence": {
+    "human-peer-lifecycle-abi/00592220.c": {
+      "sha256": "6536725ab7df2e4486e57a2ba4275e045c79abfc8cb8c59c8c90512411568e2f",
+      "bytes": 1393
+    },
+    "human-peer-lifecycle-abi/00592220.json": {
+      "sha256": "d58a23765403d9718e9060cf2e9fa9216c1e69da8a143261d46f992529c7e120",
+      "bytes": 5244
+    },
+    "human-peer-lifecycle-abi/005a7fe0.c": {
+      "sha256": "346136e640fd463f58bfb9c9629fd82696bcdcff1371538193a6223a8368109b",
+      "bytes": 1392
+    },
+    "human-peer-lifecycle-abi/005a7fe0.json": {
+      "sha256": "9aaa7a94827e80d0168dc3da14d19c9ffb46431265781fa7c4a3685b7eb43de5",
+      "bytes": 3601
+    },
+    "human-peer-lifecycle-abi/0069e720.c": {
+      "sha256": "334d762a37b21817f9f2ed3b77ba429f3a7a3e56faa2c6504c1d0aa598a44219",
+      "bytes": 2355
+    },
+    "human-peer-lifecycle-abi/0069e720.json": {
+      "sha256": "b1dd3f7b58a2dcf6aac645405e30266d7b7fa4eebf2515b58d40a3675342c705",
+      "bytes": 10738
+    },
+    "human-peer-lifecycle-abi/00612a60.c": {
+      "sha256": "cdda2ce66b5165a4ee813abe26755c689f285702ca3448d22e19bc5ca79ddee5",
+      "bytes": 10011
+    },
+    "human-peer-lifecycle-abi/00612a60.json": {
+      "sha256": "1724a6f9e1efccca556f9411d96c96a61856c502987220e1c0c6241770e29ccd",
+      "bytes": 50805
+    },
+    "human-peer-lifecycle-abi/0059edc0.c": {
+      "sha256": "f0831159ebbc2e2114b245808492f103a87c106fabdb3e421d1ba41669f598f4",
+      "bytes": 2684
+    },
+    "human-peer-lifecycle-abi/0059edc0.json": {
+      "sha256": "fd74eaeb30313fe473fb0cb58191c4f506526d1f4641c14723235b09c68f6863",
+      "bytes": 8762
+    },
+    "human-peer-lifecycle-abi/0059eb60.c": {
+      "sha256": "554fc3279f5d88d3fcc63e38d445e8f542d918c941df0a01c9770c4b06ae1d3d",
+      "bytes": 3502
+    },
+    "human-peer-lifecycle-abi/0059eb60.json": {
+      "sha256": "ea3341cf04c77924674cb91143c75ea733242f1425408dd7e9a14a78a0ed8aa6",
+      "bytes": 11141
+    },
+    "human-peer-lifecycle-reused-originals/00730140.c": {
+      "sha256": "e1b820b8dad091a846434f2d9914c50f0c54c8e1ffcab1b4a5fe8ba9623fd854",
+      "bytes": 719
+    },
+    "human-peer-lifecycle-reused-originals/00730140.json": {
+      "sha256": "d603e9545048793378f7a81b2916ed8aedb365a24ae833218218c0bd8557e748",
+      "bytes": 3148
+    },
+    "human-peer-lifecycle-reused-originals/00730460.c": {
+      "sha256": "6c2ac18d6586f0ccf15f6eef54ed65b2c8ecff7cc35898c32e3df8e2f8df7e70",
+      "bytes": 294
+    },
+    "human-peer-lifecycle-reused-originals/00730460.json": {
+      "sha256": "55d38f373fc71bec98a2c5eb4df94d9b6f95ea6c5ee1e6374e01417f9af7248c",
+      "bytes": 1663
+    },
+    "human-peer-lifecycle-reused-originals/0069e720.c": {
+      "sha256": "a0ffec3d1e44c7d907a9bf16239e21d1df2a079db3d3e9bd5a7b7f3708c967fa",
+      "bytes": 2333
+    },
+    "human-peer-lifecycle-reused-originals/0069e720.json": {
+      "sha256": "547c1e2c753779f1a1f8e1164a69e1d2b2176a5ac2b6b5a2b7d5a26e73bcd5c5",
+      "bytes": 10711
+    },
+    "human-peer-lifecycle-reused-originals/0069e340.c": {
+      "sha256": "cfb9914bbb24b68ec49a9b8696557d5985130ad4d940be74f762b3f9d9c5990e",
+      "bytes": 3598
+    },
+    "human-peer-lifecycle-reused-originals/0069e340.json": {
+      "sha256": "3c602c4c81a3f04791fc6b5f1d932bb66f31efec6c3b3ff62547f08d66373a1c",
+      "bytes": 15558
+    },
+    "human-peer-lifecycle-reused-originals/provenance.json": {
+      "sha256": "ecb06e74a26ab395db3e918406a3317cc691cb9aa48ea93a10b91b8246a3fc4f",
+      "bytes": 1680
+    },
+    "human-peer-state-vtable60.json": {
+      "sha256": "79b4071a555a868d22088fa3590eb9d03ac313bc58b02a56ecd7570393f0df8f",
+      "bytes": 875
+    },
+    "human-peer-state-vtablefc.json": {
+      "sha256": "556acfd339ae9b98a4d8da5c62d0ecc0d50f238316e557dd388246582216ccc6",
+      "bytes": 211
+    },
+    "human-peer-state-scriptfc.asm": {
+      "sha256": "e5260df14c5fe281b2021b870e2f08b5e8c86915c78b2e3f579b884b89f3b6f3",
+      "bytes": 847
+    },
+    "human-peer-state-basefc.asm": {
+      "sha256": "72d520043e3cede0d40d5a3de003d9b7d7b0af0c9ba7c84e23d2e4fbd066d175",
+      "bytes": 727
+    },
+    "human-peer-hud-leaves.asm": {
+      "sha256": "8896950f3ee353c0cf04fd9c8d290e8688c417985ac91c4a8eebe1c0ed45eca2",
+      "bytes": 6399
+    },
+    "human-peer-aux-leaves.asm": {
+      "sha256": "6c42350fa77972df62a3aad42549cecedc425a524c349715b9e987dd25a19c9d",
+      "bytes": 1365
+    },
+    "human-peer-override-leaf.asm": {
+      "sha256": "a7ea66f045d4fe9f14a08223eaac49d2838874c09e0ce2ed4920ce9df1856a33",
+      "bytes": 777
+    },
+    "human-peer-hud-position-leaf.asm": {
+      "sha256": "7f0d9947b58b24671d0f04b9f9a3d3269010bf038973239508a0661665e3d5db",
+      "bytes": 2417
+    }
+  },
+  "checks": {
+    "native": "PASS ASan/UBSan/LSan six focused fixtures; component/engine/platform endpoints are doubles. World ownership guard uses same mode/map policy; not a full World run. Authority fixture uses -fno-access-control solely to inspect private input OOM buffers.",
+    "actual_i386": "PASS strict actual World/factory/HUD/retirement compile only; latest owner guard included.",
+    "launcher_probe": "PASS latest sequential -O2 strict application-launch and startup-probe compile/link, including containing-owner guard. Neither Windows output executed.",
+    "ghidra": "Focused read-only rollback human-peer-lifecycle-abi export, correct ECX peer/EDX Scene ABI; research index before reuse/export.",
+    "original_or_windows_execution": false
+  },
+  "excluded_credit": [
+    "00592220, B060 setters,0045FDE0 thunk absent frozen inventory",
+    "00479700 positive kind2 Human-reference9C owner remains unrecovered; no credit",
+    "Typed containing-owner map guard has no additional original ABI credit"
+  ],
+  "remaining": [
+    "Normal non7 spawn/application20 decoder/transport/entry and canonical shared input manager",
+    "Required runtime kind2/9C and occupied actor virtual80",
+    "Full containing Human reaction/frame, failure/re-entry/teardown",
+    "Actual application loading/rendering and user desktop acceptance"
+  ],
+  "verification_artifacts": {
+    "human-peer-lifecycle-host-i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "human-peer-lifecycle-host-i386.o": {
+      "sha256": "fcbb8314f699caca397314ae997ade2794191dc62aca90de62ebf58575017513",
+      "bytes": 15934755
+    },
+    "human-peer-lifecycle-export.log": {
+      "sha256": "297df461d8aea6f1e3ba771c25facc2686e7384b112304ee200de84dc33bebde",
+      "bytes": 4965
+    },
+    "human-peer-native-verification.json": {
+      "sha256": "34153bcb768766a83fd6dbbd9a2e954ba7b9ce5a5246d94eb1646b1ac909511e",
+      "bytes": 274
+    },
+    "human-peer-lifecycle-application-i386.log": {
+      "sha256": "39434ec9bb6e6c627ffb4a4992c212d9c3664afedbc954b552ba9e519c5286ec",
+      "bytes": 786
+    }
+  }
+}

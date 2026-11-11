@@ -2,6 +2,8 @@
 #define HD2_HOST_GAME_PREPARED_HUMAN_LOADING_H
 #include "host/game_world_loading.h"
 #include "game/prepared_human_clothing.h"
+#include "game/session_peer_records.h"
+#include <mmsystem.h>
 namespace hd2::host {
 
 //Actual00612A60/0059EDC0/0059EB60/005A6930 composition. Cold properties,
@@ -26,11 +28,34 @@ public:
             d_.catalogue,position,direction,identity,soldier,clothing,alternate);
     }
     void configure(Human& human,frontend::PreMissionSoldier& soldier,std::uint32_t kind,std::uint32_t personality){
-        game::configure_prepared_human(human,soldier,kind,personality,nullptr,d_.profiles,d_.audio,d_.audio.random_source(),*this,d_.scene.effects());
+        if((mode_flags()&7u)!=7u)throw std::logic_error("Network Human setup requires its separate actual peer identity");
+        configure_session(human,soldier,kind,personality,nullptr,0);
+    }
+    void configure_session(Human& human,frontend::PreMissionSoldier& soldier,std::uint32_t kind,std::uint32_t personality,
+            const std::array<std::uint32_t,12>* stats,std::uint32_t peer){
+        game::configure_prepared_human_with_peer(human,soldier,kind,personality,stats,d_.profiles,d_.audio,d_.audio.random_source(),*this,d_.scene.effects(),
+            [this,peer](auto& actor,auto& record){
+                if((mode_flags()&7u)==7u)return;
+                if(actor.loading_state)actor.loading_state->selection_suppressed(static_cast<std::uint8_t>(record.flag08));
+                game::set_session_peer_side(d_.startup.game_control_records(),d_.startup,peer,static_cast<std::uint32_t>(record.specialization),false);
+                if(record.flag09)d_.session.words.set(0x78,peer);
+            });
         (void)d_.world_actors.prepare_human_loading(human); //After cold clothing, BEFORE either direct activation pass.
     }
+    Human* create_session_human(std::uint32_t peer,std::int32_t identity,const game::HumanVector& position,const game::HumanVector& direction,
+            frontend::PreMissionSoldier& soldier,const std::array<std::uint32_t,12>* stats,std::int32_t clothing,bool alternate){
+        return game::create_session_human(d_.scene.frames(),d_.startup.loaded_resources(),d_.scene.frames(),*this,d_.catalogue,
+            position,direction,peer,identity,soldier,stats,clothing,alternate);
+    }
+    std::uint32_t mode_flags(){return d_.startup.application_flags();}
+    void enter_control_lock(unsigned index){d_.startup.enter_control_lock(index);}
+    void leave_control_lock(unsigned index)noexcept{d_.startup.leave_control_lock(index);}
+    bool human_remote_ai_enabled(){return d_.startup.human_remote_ai_enabled();}
+    std::uint32_t peer_human_ticks(){return timeGetTime();}
+    void append_peer_auxiliary_human(Human* human){(void)d_.players.auxiliary().human_roster().append(human);} //0045FDE0→00461AA0.
+    void publish_peer_human(std::uint32_t peer,Human& human){game::publish_session_peer_human(d_.startup.game_control_records(),peer,human,*this);}
     void populate(Human& human,frontend::PreMissionSoldier& soldier){
-        game::populate_prepared_human_storage(human,soldier,d_.world_actors.items(),clothing_,d_.startup.application_flags());
+        game::populate_prepared_human_storage_live(human,soldier,d_.world_actors.items(),clothing_,[this]{return mode_flags();});
     }
     void spawn_model_created(EngineFrame* frame){ //00611C90 frameEC+4 guard→0041D960(0).
         const auto* data=d_.scene.frames().find_actor_frame_data(frame);if(!data||!data->words[1])return;

@@ -179,6 +179,11 @@ public:
             services_.retire_presented_dead_player_tail(player);
         }
     }
+    void flush_scene_retirement_commands(Base& state,bool second){ //005A7FE0→actual B0+FC.
+        const auto type=state.words().template get<std::uint32_t>(0x48);
+        if(type!=1&&(type<3||type>8))throw std::runtime_error("Scene retirement has no actual B0 command family");
+        if(second)state.process_second_frame_commands();else state.process_first_frame_commands();
+    }
     void notify_nearby_player_damage(Base& state){
         if(state.words().template get<std::uint32_t>(0x48)!=3)throw std::logic_error("Nearby Player damage requires actual Active AI state");
         static_cast<Active&>(state).notify_nearby_player_damage();

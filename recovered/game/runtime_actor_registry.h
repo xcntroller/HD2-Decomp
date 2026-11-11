@@ -117,6 +117,9 @@ public:
         active_.clear();toggles_.clear();removals_.clear();clearing_=false;
     }
     const std::vector<Actor*>& active_actors() const {return active_;}
+    template<class Predicate>void remove_owned_forward(Predicate&& matches){ //00479700; native increment still skips a swapped-in owner after removal.
+        for(std::size_t index=0;index<owners_.size();++index){auto* actor=owners_[index].owner.get();if(matches(*actor))remove(actor);}
+    }
     std::size_t size() const {return owners_.size();}
 private:
     struct Record {ActorOwner owner;bool authority_started=false,presentation_started=false,removing=false;};

@@ -58,7 +58,7 @@ public:
         human74_=&human;
         if(!text_||!visibility_text_)throw std::logic_error("HUD Human binding requires its actual text owners");
         text_->text.clear();visibility_text_->text.clear();
-        update_name(human,mode);
+        update_name(human,items,mode);
         if(!alive(human))material_texture(art_.photo_material,death_.get());
         else if(const auto* profile=human.profile_record){
             if(profile->portrait)material_texture(art_.photo_material,frames_.hud_portrait_texture(profile->portrait));
@@ -74,9 +74,11 @@ public:
         show(art_.medic,signed_word(human.properties.stats_ec[7])>=41); //005A6600(7), raw signed stat108.
         update_first_mode(human,mode,local_player);update_second_mode(human,mode,local_player);
     }
-    template<class Human>void update_name(Human& human,std::uint32_t mode) { //004B3890, offline7 subset.
+    template<class Human,class Items>void update_name(Human& human,Items& items,std::uint32_t mode) { //004B3890.
         require_human(human);
-        if((mode&7u)!=7u)throw std::runtime_error("HUD Human name/rank requires actual network player/configuration receivers outside offline7");
+        if((mode&7u)!=7u){
+            bind_network_hud_human_name(human,items,factory_,*text_,field8c_);return;
+        }
         field8c_=offline_human_hud_rank(human);const auto name=offline_human_hud_name(frames_,human);
         auto value=name;
         if(human.properties.field19c!=4&&human.properties.field19c!=5){

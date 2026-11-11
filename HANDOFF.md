@@ -10,10 +10,10 @@ Continue dependencies until the full selected checkbox completes or genuinely bl
 **Work in `/home/control/Documents/Projects/H&D2 Decomp 4` (master).** User
 explicitly requested returning here. Inspect HEAD/status before acting. Transfer
 base50f9193 and22 pending Human files were verified; ignored MAIN WORK
-`human-return-main-20261111` records before/after hashes. Earlier LIFE/UI/PACK
-worktrees and `/tmp/hd2-p22-hum-continue` are separate, inactive for this task.
-Preserve their work and newer master merges. Latest preceding checkpoint83e77da;
-external master pulls have rebased earlier checkpoints: inspect current history.
+`human-return-main-20261111` records before/after hashes. Other LIFE/UI/PACK/research
+worktrees and `/tmp/hd2-p22-hum-continue` are separate. Preserve their work and
+newer master merges. Latest preceding checkpoint05dbdee; external master pulls
+have rebased earlier checkpoints: inspect current history.
 
 No original EXE/DLL/Proton or Windows fixture execution. Compile/link only.
 Heavy compilation and Ghidra must run **sequentially**. No push. Source-only
@@ -22,74 +22,65 @@ Application mission loading remains disabled; no mission desktop verification.
 
 ## Latest verified source checkpoint
 
-[Network mission metadata/request receipt](analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json)
-adds14 client partials/extends006B8700/006B9190; totals34 complete/2607 partial
-(2602 client+5 engine) of18783, no complete promotions.006B5890/006B5960/006B83B0
-are implemented but absent frozen: zero credit. Do not re-audit unchanged kernels.
+[Cold peer/Human lifecycle receipt](analysis/checkpoints/p2.2-human-peer-lifecycle-20261111.json)
+adds7 client partials/extends7; totals34 complete/2614 partial (2609 client+5 engine)
+of18783, no complete promotions. [Detailed contract](analysis/human-ragdoll-source.md)
+records original evidence, field/ABI boundaries and focused verification.
 
-Actual map/rules codecs now use SAME application configuration and process
-parameters. Destructive reads preserve partial prefixes; count>255 writers reject
-explicitly. ApplicationStartupData constructs ONE stable MP mission13 owner
-(adapting native inline+14) before configuration; preparation reload graph creates
-no second MP owner.006B8700 clears/rebuilds SAME mission, actual kind12 objectives,
-ordered scalars, retained name/metadata, resource at GameData38/mission24 and
-status4 finalization. Native table destination copies a fourth UNWRITTEN DWORD;
-source keeps it undefined.006B7F50 clears end cursor, **not allocation**.
+Actual00612A60 has distinct ECX peer/EDX Scene identity, live non7 clothing and
+0059EDC0 setup, fixed slot order and0059EB60 signed WORD identity writeback,
+then late3C/timeGetTime A8/auxiliary publication under418.00730140/00730460 use
+SAME records.0069E720 has ordered peer/HUD/override/spectator/auxiliary/runtime/
+delayed Scene2 retirement; peer3C/stats clear only after return.005A7FE0 retires
+actual observation borrowers/DD0 collisions/late B0 FC, without deleting Human.
+State7 Remote00592220 forwards7/8/10 only; absent frozen inventory, zero credit.
+HUD refresh retains hidden primary borrower; actual timer geometry and rank/name
+receivers now use SAME source owners.0045E8F0 includes camera/FPV rebind.
 
-MissionRequest distinguishes owned offline descriptor from borrowed actual MP
-mission. Valid non7 process/config04 can have empty campaign/live squad; offline
-still requires both squads. Borrow actual process/config/route refs. Existing
-source route is the adapted standalone-mode authority; its precedence rejects
-this network factory before MP lookup. Full Saved descriptor remains required.
-SessionSelection uses actual application GameData for network request;006B8EC0
-returnsFFFFFFFF for absent campaign selection, with root check before standalone.
-No new positive UI/connection/status9/activation path is exposed.
+Containing-owner adaptation now follows actual current mode2 then1; client2
+retires the external composition before Human destruction. Keep owner-map key
+published through reset-before-erase for SAME loading_lifetime callbacks; reject
+re-entered retirement/new activation. No second Human/input/peer owner graph.
+00479700 positive kind2 Human-reference9C and occupied attachment80 still require
+actual original receivers and throw. Native destructor/delayed record clears use
+Scene identity, not peer slot: preserve that quirk and recover containing entry.
 
-Native ASan/UBSan/LSan PASS `human-network-mission-native.log`: independent wire,
-signed fields/rules416, same-owner map→mission→Player objectives, copy/packet/map
-retirement, destructive failure, actual loaded selection, offline-empty rejection,
-SessionOwner failure prefixes and100 constructions/retirements. Backend/engine/OS
-endpoints are doubles. Strict actual World i386 and launcher/startup-probe compile/
-link PASS `human-network-mission-host-i386.log` and
-`human-network-mission-application-i386.log`. Neither Windows output was run.
+Six focused temporary native ASan/UBSan/LSan fixtures PASS, including preparation,
+peer delayed lifecycle, Remote/Scene retirement, HUD timers, authority packet
+regression and same-owner mode guards. Most have100 lifetimes; guard modes1/2/3/7
+x100. Engine/component/platform endpoints are doubles, not a full World run.
+Strict actual World/factory/HUD/retirement i386 and latest launcher/startup-probe
+compile/link PASS (`human-peer-lifecycle-{host,application}-i386.log`). No Windows
+output ran. Temporary fixtures remain ignored for the ongoing full checkbox.
 
-Preceding checkpoints remain valid: [reaction/authority retirement](analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json),
-[peer/console](analysis/checkpoints/p2.2-human-peer-console-20261111.json),
-[objective/session](analysis/checkpoints/p2.2-human-death-objective-session-20261111.json).
-0074D510 receives DD0+AA0, not Look. Selected retirement uses SAME owner refs and
-late sound pool lookup. Authority17/damage and10/drop reach actual effects;
-Remote nonreserved C4 is genuine empty00583220; input0 copies C4/1C4 BEFORE queue
-insertion. Motion group priority3 clamps2; finish motion before ordinary0, with
-native authority FIRST stream alias preserved. Other PACK effects retain failures.
-PACK drop writer multiplier15 is confirmed across PUSH20AB: retain
-`(speed-1)*.25*15`;005B1F10 x87 and005A8320 name fallback remain preserved.
-0072F2F0 publishes scalar17 BEFORE logging; it does not remove the peer/Human.
-Scalar application FIFO uses actual application2C, not418/430/peerB4; non7 flush
-still throws before envelope and retains node. Console is one actual lazy Win32/
-GDI owner, never desktop-tested; console parser/frame and kind12/210 remain open.
+Preceding [metadata/request](analysis/checkpoints/p2.2-human-network-mission-metadata-20261111.json)
+and [reaction/authority retirement](analysis/checkpoints/p2.2-human-reaction-authority-retirement-20261111.json)
+checkpoints remain valid. Do not re-audit unchanged kernels or conflate source
+receivers with admitted network/application success.
 
 ## Immediate next work
 
-1. Finish ordinary non7 peer3C creation/configuration/storage **with matching
-   borrower teardown**.00612A60 ECX peer slot differs from EDX Scene identity;
-   late3C/A8 write and remote-AI auxiliary publication occur under418 AFTER
-   actual0059EDC0.0059EB60 still rejects non7 identity writeback; recover full
-   reached setup and lifecycle before removing it. Never publish a dangling peer.
-2. Research index already run for00730140/00730460/0069E340/00722180/00746B50/
-   00746D20; WORK `human-network-peer-lifecycle-index.txt`. Reuse ignored original
-   C in research checkout `analysis/work/future-dependencies/p28-*` read-only;
-   0069E720 additionally needs its own lookup before any new export. Actual MAIN
-   C00612A60/0059EB60/0059EDC0 are under WORK `offline-squad-storage-and-input`
-   and `offline-squad-human-equipment`. Current source still rejects positive
-   non7 spawn/configuration/decoder branches. Full entry/transport remains required.
-3. Continue full containing Human frame/damage/reaction, partial failure/re-entry
-   and ordered teardown. Temporary native fixtures stay ignored for this ongoing
-   full checkbox; no permanent tests. Commit larger verified checkpoints and
-   consolidate notes/ledger. Full selected checkbox, P22-HUM and P2.2 stay OPEN.
+1. Continue actual normal non7 spawn/application20 packet/entry/transport chain.
+  00611C90/006123A0/006125A0 callers still reject before unrecovered tails.
+   SessionLocalPackets still rejects application20 and non7 transport. Original
+  00728450 reads application commands BEFORE loaded-World gate; received2/10/17
+   are distinct from module array dispatch. Scalar17 publishes/logs, not removal.
+2.0072E890 clears old peer borrowers and replaces canonical process input manager
+   BEFORE old World shutdown. Adapt SAME ownership; no invented reverse map or
+   fixture-only borrower cleanup. Positive00479700 kind2/9C needs original research.
+3. Finish full containing Human frame/reaction, failure/re-entry and ordered
+   teardown. Application loading/rendering and user desktop acceptance remain
+   required. Commit larger verified checkpoints; keep documentation consolidated.
+
+Research index run for next seeds in WORK `human-control-next-index.txt`.
+Peer evidence: `human-peer-lifecycle-abi` correct fastcall read-only rollback
+exports; `human-peer-lifecycle-reused-originals/provenance.json` pins research
+checkout C reused read-only. Static vtable60/FC and raw HUD/override/aux/timer leaves
+retain local evidence. No broad unchanged-system audit is needed.
 
 ## Commands and evidence
 
-WORK=`analysis/work/mission-world-20261103`. Latest metadata original reuse:
+WORK=`analysis/work/mission-world-20261103`. Earlier metadata original reuse:
 `human-network-map-reused-originals/provenance.json`; focused Ghidra read-only
 rollback exports `human-network-mission-abi` / `human-network-selection-abi`, logs
 complete without ERROR. Raw `human-network-*` assembly retains field/retirement
