@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_SHOT_BLOOD_MARKS_H
 #define HD2_GAME_SHOT_BLOOD_MARKS_H
+#include "io/resource_observations.h"
 #include "game/human_ai_shot_direction.h"
 #include "game/human_state_frame_timers.h"
 #include <functional>
@@ -99,6 +100,7 @@ template<class State,class Frames,class Services>void emit_shot_blood_mark_textu
         mark=std::move(state.blood_marks.front());state.blood_marks.erase(state.blood_marks.begin());mark->reuse(frames,services,texture,position,direction);
     }
     state.blood_marks.push_back(std::move(mark));
+    io::observe_bound_data(frames,"execution","ShotMgr blood_marks allocated","actual owner size",state.blood_marks.size());
 }
 template<class State,class Frames,class Services>void emit_shot_blood_mark(State& state,Frames& frames,Services& services,
         const HumanVector& position,const HumanVector& direction){ //0044F4D0, texture4C is x_blood_00.

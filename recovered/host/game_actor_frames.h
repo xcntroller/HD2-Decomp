@@ -954,6 +954,7 @@ public:
     void volume_graphics_state(std::uint32_t state,std::uint32_t value){graphics_.methods->set_state(&graphics_,state,value);}
     void volume_draw(const game::VolumetricVertex* vertices,std::uint32_t triangles){
         if(graphics_.methods->draw_primitive(&graphics_,3,triangles,vertices,0)<0)throw std::runtime_error("Actual volumetric draw failed");
+        observe_data("execution","volumetric primitive drawn","triangle count",triangles);
     }
     std::uint32_t hud_driver_state(std::uint32_t state)const{return driver_.render_state(state);}
     void hud_driver_state(std::uint32_t state,std::uint32_t value){(void)driver_.set_render_state(state,value);}

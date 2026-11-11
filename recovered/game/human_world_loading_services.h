@@ -854,6 +854,9 @@ public:
         auto* state=owner.states().get();
         if(!state||!owner.states().ready())throw std::logic_error("Human frame requires its actual bound B0 state");
         const auto kind=state->words().template get<std::uint32_t>(0x48);
+        dependencies().scene.frames().observe_data("execution","Human B0 frame",authority?"authority":"presentation",kind);
+        if(auto* control=owner.control().control())
+            dependencies().scene.frames().observe_data("execution","Human DD0 frame","field184",control->physical().control_frame_words().template get<std::uint32_t>(0x184));
         if(kind==6)return; //Actual005A4330/005A4340 are RET4.
         auto& factory=owner.state_factory();
         if(kind==5&&!authority){factory.advance_script_presentation(*state,elapsed,runtime);return;}
@@ -921,6 +924,7 @@ public:
         const auto& contact=control->physical().ground_contact();
         if(!contact)return std::nullopt;
         const auto material=human_geometry_flags(*contact)>>24; //Original byte754+3, SAME collision identity flags.
+        dependencies().scene.frames().observe_data("execution","Sight material754","GEffects94 lookup",material);
         return dependencies().startup.effects_loading_process().decorations.material_sight_factor(material); //GEffects+94.
     }
     long double sight_view_distance(){return dependencies().scene.frames().sight_view_distance();}
@@ -960,6 +964,7 @@ public:
     }
     template<class Commands>
     void publish_human_frame_commands(std::int32_t identity,bool second,const Commands& commands){
+        for(const auto& command:commands)dependencies().scene.frames().observe_data("execution","Human command publication attempted",second?"broadcast stream0":"request stream0",command.kind);
         write_human_frame_commands(dependencies().broadcast_packets,mode_flags(),identity,second,commands);
     }
     template<class Actor>void receive_human_presentation_packet(Actor* actor,SessionPacketStream& packet,bool reserved){ //005A5FB0→005406C0/005418E0.

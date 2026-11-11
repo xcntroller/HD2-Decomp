@@ -1,0 +1,579 @@
+{
+  "date": "2026-11-11",
+  "branch": "feature/p22-data",
+  "initial_fetched_origin_master": "30b681c1f3cb9135d0916335920aa4d0b39569cb",
+  "implementation_base": "30b681c1f3cb9135d0916335920aa4d0b39569cb",
+  "shared_origin_master_later_observed": "0ce2694aba97efd0f4c99efd13f4d5ebf8d9825e",
+  "later_source_imported": false,
+  "read_only_contract_refs": {
+    "research/p22": "19cdfdebd8c9455436da15e9d008ccf15e0b9e12",
+    "feature/p22-pack": "31b87862a49e8c43394ff7469d1a37a607facd6e",
+    "feature/p22-ui": "66889df20212c62adee7f6be8a448d792817b49e"
+  },
+  "source_boundary_complete": true,
+  "p22_data_live_closed": false,
+  "application_loading_enabled": false,
+  "engine_execution": false,
+  "desktop_verified": false,
+  "ledger_added": 0,
+  "ledger_changed": false,
+  "client_original_sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+  "original_contract_entries": [
+    "006CA780",
+    "006CBF30",
+    "006CC760",
+    "006CD940",
+    "006D4280",
+    "006EE570",
+    "00783350",
+    "00783BC0",
+    "00428600"
+  ],
+  "evidence_levels": {
+    "historical_capture": "Existing user-run initialized rw_data capture; verified 29 fingerprints/28 payloads/33 resource outcomes; stopped before game construction. No current installation claim.",
+    "static_requirements": "16 exact verified payloads accepted within declared production decoder scopes. Actor declarations and dependencies are not loaded owners or engine acceptance.",
+    "loaded_populations": "Source bindings and synchronous owning snapshots implemented; actual engine populations unobserved.",
+    "executed_branches": "Actual source publication hooks exercised with native endpoint doubles only. No original runtime branch claim."
+  },
+  "historical_capture": {
+    "root": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/startup-runtime/run/loading-inputs-90f74f210e9f4150a123e200e31f523a",
+    "fingerprint_inventory": {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/startup-runtime/run/loading-inputs-90f74f210e9f4150a123e200e31f523a/fingerprints.json",
+      "bytes": 4038,
+      "sha256": "8291fabc4abe0bd8b550505a9618ac1e197fdd2e8ab180db100bd1eca452d1fb"
+    },
+    "members": {
+      "GameData_Gamedata00.gdt": {
+        "bytes": 22777,
+        "sha256": "bbc686808c98dd704899e1c37d3fbb4a800d99c07bc0e9e3504d536b97606f93"
+      },
+      "Tables_anim.sav": {
+        "bytes": 111708,
+        "sha256": "442504017fdaf3e28bf788a751fc8aef17c0215c3219f68f1425db3791bb99e8"
+      },
+      "Tables_items.sav": {
+        "bytes": 128520,
+        "sha256": "9dbad22a089489eb4bf2e7600f7b88d6be5ffc6104146b1872080c41c60a92f0"
+      },
+      "manifest.tsv": {
+        "bytes": 1870,
+        "sha256": "3f11adf1cacb83872e898c6f2018e96b25a1dfae9f0fe5316ac2e61e4a6bcec3"
+      },
+      "missions_ALPS1_Scripts.dta": {
+        "bytes": 5700,
+        "sha256": "ba20d97c390c669c762b080eb2956ef6870566d8d1cae8698155d7793bc7f41b"
+      },
+      "missions_ALPS1_actors.bin": {
+        "bytes": 41052,
+        "sha256": "2523c437d5391fdedeb39b3094488fe1a490dc5cad44ad7f2b4397a5c2d8675b"
+      },
+      "missions_ALPS1_car_table.dat": {
+        "bytes": 4108,
+        "sha256": "edf55cebc86bc57c195421c3d06c6d1ff0cfa94f8862debaaabcab2052aa12bb"
+      },
+      "missions_ALPS1_check2.bin": {
+        "bytes": 277037,
+        "sha256": "5132139be1dbadab51be0e62b7ae29dff102228444554d9a61e402fcccd4d83b"
+      },
+      "missions_ALPS1_effects.bin": {
+        "bytes": 6,
+        "sha256": "b46347ee0c2deac1d59c297087436ff61c360af1060e69a5fbeeb126805211d6"
+      },
+      "missions_ALPS1_items.dat": {
+        "bytes": 13618,
+        "sha256": "1226592f55971fede2b700a6fe43309e9d83ae92214a9605859cea152090ff6b"
+      },
+      "missions_ALPS1_loader.4ds": {
+        "bytes": 3901,
+        "sha256": "206a5e630d0fb13bcc5f6c0a9a6cda687ce337f803d7164bb3795666953f5f46"
+      },
+      "missions_ALPS1_scene.4ds": {
+        "bytes": 1380788,
+        "sha256": "c051ff74dee4653a0d6590bd161784d913a2bed191a20eb98eedaf6dff19c5f4"
+      },
+      "missions_ALPS1_scene2.bin": {
+        "bytes": 6727085,
+        "sha256": "ba91c84be678571d5567594a1373a6197731f5e866c6bc0a95b1d1830ecae274"
+      },
+      "missions_ALPS1_sounds.bin": {
+        "bytes": 8039,
+        "sha256": "a91d1f979715dc7cac4161f45de79275f05c6a36e4efd12510bbfc4ca29be69e"
+      },
+      "missions_ALPS1_tree.klz": {
+        "bytes": 2189184,
+        "sha256": "a5e1a5d48879e83728a32e3accf07c1491b61688b1cdd64931ba99f5846affca"
+      },
+      "missions_Tutorial_Scripts.dta": {
+        "bytes": 4838,
+        "sha256": "2130b64f83281b0096bef5cac63bf4e40be2cfc43088246328ab1dcdc5add5ae"
+      },
+      "missions_Tutorial_actors.bin": {
+        "bytes": 21064,
+        "sha256": "b98bd7f6e73047fa2dc25ef3725cb8ba13212d6e41f2f0a3aa3e822057d6453d"
+      },
+      "missions_Tutorial_car_table.dat": {
+        "bytes": 4108,
+        "sha256": "edf55cebc86bc57c195421c3d06c6d1ff0cfa94f8862debaaabcab2052aa12bb"
+      },
+      "missions_Tutorial_check2.bin": {
+        "bytes": 46330,
+        "sha256": "2164a9ce012c30841e9c4bcd05ee5a609c5026f56ff6b0da6f8e3a677464425f"
+      },
+      "missions_Tutorial_effects.bin": {
+        "bytes": 6,
+        "sha256": "b46347ee0c2deac1d59c297087436ff61c360af1060e69a5fbeeb126805211d6"
+      },
+      "missions_Tutorial_items.dat": {
+        "bytes": 3543,
+        "sha256": "0cca1c0737e656e53d9362c2052165d5aa2daaa683aa8f26061d745f17063311"
+      },
+      "missions_Tutorial_loader.4ds": {
+        "bytes": 3901,
+        "sha256": "cc772d94dd5a761048d3666c003e4563d0f1aa3978b1359fd50324de244e047e"
+      },
+      "missions_Tutorial_mpscripts.dta": {
+        "bytes": 6,
+        "sha256": "3088dce2a45148d7383f53729aecb6d72a027d0e189085ba5e6ee52453e18622"
+      },
+      "missions_Tutorial_scene.4ds": {
+        "bytes": 2858981,
+        "sha256": "2daa12ed9d83c9a7d327f4786db99691314a7d7ed86d7427e16439e5aa814375"
+      },
+      "missions_Tutorial_scene.I3D": {
+        "bytes": 2699711,
+        "sha256": "f2edd3f3437f3be6fa26999faf7c80dccc69cb966739ad6b52e0d5b2c1fe6890"
+      },
+      "missions_Tutorial_scene2.bin": {
+        "bytes": 3684095,
+        "sha256": "89d9e37a57ad956804fc45e4f9790078a8d3999b14d41a0fca6ba94977ed4773"
+      },
+      "missions_Tutorial_sounds.bin": {
+        "bytes": 568,
+        "sha256": "57001c7e24d5c1d28d367a2238a4ac3dec5f8d3f6a38491848ea9061bb17e0e0"
+      },
+      "missions_Tutorial_tracks.dat": {
+        "bytes": 785,
+        "sha256": "f5550444249d85650d880662aec9a257e14de8a0c2c4dfd7bd43493c3131b40f"
+      },
+      "missions_Tutorial_tree.klz": {
+        "bytes": 2264348,
+        "sha256": "a0df9ae9acd513cceda4e32e6a73d62ae31dd9af4ed702ba77f587eb6c9d698e"
+      }
+    },
+    "mode_language_configuration": "unknown where absent from historical manifest",
+    "selected_resolver_origin": "unavailable from existing exposed rw_data API"
+  },
+  "static_summary": {
+    "GameData\\Gamedata00.gdt": {
+      "mission_resources": [
+        "Tutorial",
+        "Arctic1",
+        "Arctic2",
+        "Arctic3",
+        "Arctic4",
+        "Africa1",
+        "africa2",
+        "Africa3",
+        "Africa4",
+        "Africa5",
+        "Africa6",
+        "Norway",
+        "Burma1",
+        "Burma2",
+        "Alps1",
+        "Alps2",
+        "Normandy",
+        "Normandy2",
+        "Czech1",
+        "Czech2",
+        "Czech3",
+        "Czech4",
+        "Czech5",
+        "Czech6"
+      ]
+    },
+    "missions\\Tutorial\\scene2.bin": {
+      "serialized_actor_declarations_by_type": {
+        "6": 25,
+        "13": 1,
+        "28": 1
+      }
+    },
+    "missions\\Tutorial\\actors.bin": {
+      "serialized_actor_declarations_by_type": {
+        "3": 23,
+        "4": 4,
+        "8": 5,
+        "9": 7,
+        "10": 4,
+        "21": 1,
+        "22": 3,
+        "25": 5,
+        "29": 1
+      },
+      "equipment-definition": 5
+    },
+    "missions\\Tutorial\\check2.bin": {
+      "navigation_record_counts": [
+        863,
+        56
+      ]
+    },
+    "missions\\Tutorial\\items.dat": {
+      "equipment-definition": 75
+    },
+    "missions\\Tutorial\\tracks.dat": {
+      "track-definition": 1
+    },
+    "missions\\Tutorial\\Scripts.dta": {
+      "script-resource-reference": 114
+    },
+    "missions\\ALPS1\\scene2.bin": {
+      "serialized_actor_declarations_by_type": {
+        "6": 1
+      }
+    },
+    "missions\\ALPS1\\actors.bin": {
+      "serialized_actor_declarations_by_type": {
+        "3": 49,
+        "4": 5,
+        "9": 6,
+        "10": 4,
+        "13": 1,
+        "21": 3,
+        "29": 9,
+        "30": 1,
+        "33": 55
+      },
+      "equipment-definition": 5
+    },
+    "missions\\ALPS1\\check2.bin": {
+      "navigation_record_counts": [
+        5113,
+        100
+      ]
+    },
+    "missions\\ALPS1\\items.dat": {
+      "equipment-definition": 374
+    },
+    "missions\\ALPS1\\Scripts.dta": {
+      "script-resource-reference": 148
+    }
+  },
+  "native_verification": {
+    "status": "PASS ASan/UBSan/LSan",
+    "endpoint_cycles": 100,
+    "negative_cases": 16,
+    "captured_parser_scopes": 16,
+    "cases": [
+      "actual capture_loading_inputs with verified historical input bytes through a native layered resolver endpoint",
+      "actual read_loading_input and ResourceOperationObserver open/seek/full/short/empty/absent/close outcomes",
+      "cache search order, early success, hit, clear; actual LoadedResourceCache with engine backend double",
+      "actual MissionSceneDocuments optional actors/sounds, Scene2 status and legacy fallback policies with parser/Scene endpoints as doubles",
+      "required exception identity, seek/read failure, output failure, retry, scope replacement/restore and WorldLoadingDependencyLink unbind/rebind",
+      "actual typed actor, Car, navigation/storage, animation, GameData, items, scripts and track definition production decoders",
+      "actual particle module positive publication/reuse and ShotMgr surface publication hooks, using explicit engine endpoint doubles"
+    ],
+    "limits": "Actual Windows ChunkFiles/World construction and loading were compiled/linked, never executed. Native WorldLoadingDependencyLink retirement is not an actual engine World rebind. No successful external Runtime, UI, PACK, procedural or camera-history receiver was fabricated.",
+    "sanitizer_execution": "Outside ptrace sandbox after LeakSanitizer could not run under sandbox; native binaries only."
+  },
+  "strict_i386": {
+    "status": "PASS actual GameMissionLoadingSession cold World construction, load_observed/load, observation scopes, snapshot/manifests; compile/link only",
+    "compiler": "/home/control/Documents/Projects/H&D2 Decomp 4/.tools/llvm-mingw-20261020-ucrt-ubuntu-22.04-x86_64/bin/i686-w64-mingw32-g++",
+    "flags": "-std=c++17 -O0 -Wall -Wextra -Wpedantic -Werror -Irecovered -static -lwinmm -lole32 -ladvapi32",
+    "executed": false
+  },
+  "application_link": {
+    "status": "PASS",
+    "command": "make -C recovered -j1 application-launch WINDOWS_CXX=<recorded i386 compiler>",
+    "executed": false
+  },
+  "tracker_check": {
+    "status": "Cannot complete: pre-existing ignored assembly evidence absent from this isolated worktree",
+    "missing_evidence": "analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm",
+    "ledger_or_denominator_bypass": false
+  },
+  "remaining": [
+    "OWN installs existing lifecycle/loading/activation; FRAME supplies actual Runtime/session scheduling; RENDER supplies positive visibility/procedural/camera-history services.",
+    "Fresh user-operated resolver capture plus actual loaded populations and reached runtime positives/fault guards; selected configuration/route eligibility remain authoritative.",
+    "User desktop failure/return/repeat and second eligible original mission; no universal inactivity/absence inferred."
+  ],
+  "source_fingerprints": [
+    {
+      "path": "recovered/game/human_world_loading_services.h",
+      "bytes": 93275,
+      "sha256": "7f6f6c576638dbbb6b2b2656aa8f0a4d577905101c84fe19464f3b98860512a0"
+    },
+    {
+      "path": "recovered/game/mission_scene_documents.h",
+      "bytes": 4578,
+      "sha256": "de88f31360135ae2c3b935b8962ee683c2e7886f90eac0764ae3295837f99dd3"
+    },
+    {
+      "path": "recovered/game/mission_script_bindings.h",
+      "bytes": 3112,
+      "sha256": "a4b916a15478c458b0c709dddf0c8c8ddec3b53b2b37b67437f61959f45b6d68"
+    },
+    {
+      "path": "recovered/game/particle_module_loading.h",
+      "bytes": 8381,
+      "sha256": "0d495c1217b38fcaf6811c8cf0b395388f48d5393329303b722fcc4b9f94cecb"
+    },
+    {
+      "path": "recovered/game/selected_resource_analysis.h",
+      "bytes": 5523,
+      "sha256": "bacbcb1856c8f49b9da263df035257dec64e60bbefd913ed622f328f56ecbbce"
+    },
+    {
+      "path": "recovered/game/shot_blood_marks.h",
+      "bytes": 7479,
+      "sha256": "372464827194accfc36ed4505fa7a2b8008b709a305e91842a164402a46b1657"
+    },
+    {
+      "path": "recovered/game/shot_surface_marks.h",
+      "bytes": 5730,
+      "sha256": "c0f45f633200341f122479a2eb9e5680daacbb8225cd4bb7e3ab7c1cda8fe0d7"
+    },
+    {
+      "path": "recovered/host/application_launch.cpp",
+      "bytes": 36839,
+      "sha256": "a15bbe75bfa6dc09dd5c19d9bb1f2953f9623ad5596eabcb037c7b277f550724"
+    },
+    {
+      "path": "recovered/host/chunk_files.h",
+      "bytes": 3593,
+      "sha256": "1e77edbee8dcb39d66f814c84e86b238327c90d5fab075d3270e577bb71d8649"
+    },
+    {
+      "path": "recovered/host/game_actor_frames.h",
+      "bytes": 94950,
+      "sha256": "466d0b17dd9df27c3b13638c979f41010508d6d69b803a5924711a2c96dddd9b"
+    },
+    {
+      "path": "recovered/host/game_data_observations.h",
+      "bytes": 2129,
+      "sha256": "65e394b2cce3fc6a2c6b66aa50ee988314c6ea7e20c735b44586e5b8d4734d5b"
+    },
+    {
+      "path": "recovered/host/game_loading_modules.h",
+      "bytes": 13226,
+      "sha256": "80e879fd69523beb18579cc4f073d20cb2f3955a9fc8486d3cac315e1ee1e8af"
+    },
+    {
+      "path": "recovered/host/game_mission_loading.h",
+      "bytes": 15670,
+      "sha256": "6cfcf672270ac587a224946cf8a6dcbdaae7a271cf97c5d4aac4734328a88c4b"
+    },
+    {
+      "path": "recovered/host/game_mission_module_frames.h",
+      "bytes": 2469,
+      "sha256": "da6b10b904ddd5e4e5294d151138ea2d7c5610cab224e323616f39235555e35d"
+    },
+    {
+      "path": "recovered/host/game_runtime_actors.h",
+      "bytes": 8408,
+      "sha256": "8b490633b9c06242853f5da098c9903edd9335bbca66613cd7b62e310ae14b8b"
+    },
+    {
+      "path": "recovered/host/game_scene_actors.h",
+      "bytes": 17595,
+      "sha256": "a461cda44eb86559610437e82bc8fd5517c269821475d2bdb4929bf260d6264d"
+    },
+    {
+      "path": "recovered/host/game_scene_objects.h",
+      "bytes": 18862,
+      "sha256": "685f27711a2f920037044995cf7a01cc27e38e356b969071a6eae64af220bcd9"
+    },
+    {
+      "path": "recovered/host/loaded_resources.h",
+      "bytes": 8893,
+      "sha256": "8f4968eb4afdf3f833adb2569f969335aba1348d935709f5759a22b301efc1e5"
+    },
+    {
+      "path": "recovered/host/loading_input_capture.h",
+      "bytes": 8322,
+      "sha256": "62c0ee41a5787840260f183439cded53ac3c733bfc8112b2d9ea37a7f2285f54"
+    },
+    {
+      "path": "recovered/io/data_manifest.h",
+      "bytes": 2346,
+      "sha256": "ea2a5eb07aaa863f75f01f5ab0867ee0224525f5ff6ba0c4bf180cbe564c78cf"
+    },
+    {
+      "path": "recovered/io/data_operation.h",
+      "bytes": 1148,
+      "sha256": "85ece8c52b0e0596a5a1d7bacfa4bef3cf141eb66253e7fe8dd3bfa9e77c55f7"
+    },
+    {
+      "path": "recovered/io/loaded_resource_cache.h",
+      "bytes": 7341,
+      "sha256": "3f5335385a185e4bf92390d0ab5028a90f2ce2efffd5c7967ff2b0af6cdf0104"
+    },
+    {
+      "path": "recovered/io/resource_observations.h",
+      "bytes": 9311,
+      "sha256": "b30b43b6a2c84be2bc69d30f4351149e4ee7548be1499f6722f35094dc0e4e6c"
+    },
+    {
+      "path": "tools/validate_loading_capture.py",
+      "bytes": 4579,
+      "sha256": "eda77560e391405ec3c817986323c2df34854b72c9c2ca782f15f44661025e24"
+    },
+    {
+      "path": "tools/validate_selected_resource.cpp",
+      "bytes": 6565,
+      "sha256": "db04b9a2bbe029f324ab2c6125e5c18901d276b3ceef5b9821657aba9bbbd33f"
+    }
+  ],
+  "retained_artifacts": [
+    {
+      "path": "analysis/work/p22-data-20261111/application-i386.log",
+      "bytes": 603,
+      "sha256": "057704a5b6ad82c8bf86feee75e89403ab46b351af7d9409dd970ad39468bf21"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/concrete-i386.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/ledger-check.log",
+      "bytes": 109,
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/native-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/native-run.log",
+      "bytes": 2452,
+      "sha256": "e1eece1d0e55adfacc3cfa9a0fcd88fd6807b8d59f25f7da91ecd5bf910a6331"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/particle-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/particle-run.log",
+      "bytes": 142,
+      "sha256": "9e026a08c0ef906829dd879eab384fffe5dc96ee229e06768a6e1c7c76d97860"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/surface-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/surface-run.log",
+      "bytes": 40,
+      "sha256": "433a61d75fd2c74f4467687e3dfa4f6e222550c5b1a09dc45880eee50f8a059e"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/validator-san-build.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/validator-san-run.log",
+      "bytes": 202,
+      "sha256": "e2e06ca6746678ad795c0e9501bbc0f5faaee7205290a1f64149fe2e090c7446"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/validation-summary.json",
+      "bytes": 5022,
+      "sha256": "6e643703ba78e3bb8347fb6d80f75975583a55ef2eb5784d3cb1a5d9df854cd4"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/static-summary.json",
+      "bytes": 1808,
+      "sha256": "666495b317009142f9576558ece842e4ae4d82e3045ab57ea5cf5f0d39021e61"
+    },
+    {
+      "path": "analysis/work/p22-data-20261111/historical-validation.json",
+      "bytes": 1563875,
+      "sha256": "1bcefb60994c1cad43dfa28e710eb7c0aeb3c7ab86bdf812de0c8e136e192b98"
+    }
+  ],
+  "temporary_audit_artifacts_removed": [
+    {
+      "path": "/tmp/p22-data-host.cpp",
+      "bytes": 1024,
+      "sha256": "2a30012830db5c8605158fb26083474eeb2d2f8c671ca14466509a74dcd8b444"
+    },
+    {
+      "path": "/tmp/p22-data-host.exe",
+      "bytes": 9421312,
+      "sha256": "ff7b7e48d8f5d1adc058f7301e38f87d108ad35b16f40cec89f708fd04a6e6bc"
+    },
+    {
+      "path": "/tmp/p22-data-audit.cpp",
+      "bytes": 10754,
+      "sha256": "dd15f42ff4ed128ae695dc1ec53da961234629046f0268c1f3ba47a3db4baef1"
+    },
+    {
+      "path": "/tmp/p22-data-audit",
+      "bytes": 4760792,
+      "sha256": "e87647e72f6f02a8b8dcfcfb23c735116851b09c70663f85746e81d00f68f7d7"
+    },
+    {
+      "path": "/tmp/p22-data-validator",
+      "bytes": 220312,
+      "sha256": "63940b84b44af52a4a4fab0e08b7a065c08ae3558d7e13c3429f0cc3e7251287"
+    },
+    {
+      "path": "/tmp/p22-data-validator-san",
+      "bytes": 2476368,
+      "sha256": "bfbc5a3583e7d9a5b4d4424c433c37f03cad8f44a5ea0769a2db342504659ff2"
+    },
+    {
+      "path": "/tmp/p22-data-validator-audit.py",
+      "bytes": 3681,
+      "sha256": "23ebb19b1c9099f4119aee7a53607ae2b51aa65a9dda11ee3feb778b8aac7224"
+    },
+    {
+      "path": "/tmp/p22-data-run-audits.py",
+      "bytes": 677,
+      "sha256": "7fe3215e14cc17a7e30130c34977561a55294b98ee9374237454f2db8fa1fe13"
+    },
+    {
+      "path": "/tmp/p22-data-particle.cpp",
+      "bytes": 9508,
+      "sha256": "e818ea759fd1e8ac54aa946a1bfa2ee3de94e5f30cb27ab7f7e49421d2579f04"
+    },
+    {
+      "path": "/tmp/p22-data-particle",
+      "bytes": 4943016,
+      "sha256": "160ec646017ff1f54dfd1cf633c8874d08ce27f5268d10a72468b080ad2b16f4"
+    },
+    {
+      "path": "/tmp/p22-data-surface.cpp",
+      "bytes": 4883,
+      "sha256": "cd6d05dc8bed6c307a773468af849d2be023e682a7517eba4fc662be4693cc96"
+    },
+    {
+      "path": "/tmp/p22-data-surface",
+      "bytes": 2145688,
+      "sha256": "91e0763a1664733d5e9eaa0c44c083574eefe20400cd05b4cfff149b71ff77c5"
+    }
+  ],
+  "reused_native_fixture_sources": [
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/human-particle-module-native.cpp",
+      "bytes": 9218,
+      "sha256": "cb641d1aa75ce96dc85fa3e887de802c400f5a801f9468770575bbfdf2cc9277"
+    },
+    {
+      "path": "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/human-surface-native.cpp",
+      "bytes": 4585,
+      "sha256": "70b50eb9d37ba5db61f0ccd957c4e710af1bb825d9bc8696ed453378bef9208f"
+    }
+  ],
+  "production_application_binary": {
+    "path": "recovered/build/application_launch.exe",
+    "bytes": 3889152,
+    "sha256": "c07cace9e587b6512a533b3f83289d4ad079d9666a62288725ae3a00a565b6b1"
+  }
+}

@@ -3,6 +3,7 @@
 
 #include "host/game_scene.h"
 #include "host/chunk_files.h"
+#include "io/data_operation.h"
 #include "host/loaded_resources.h"
 #include "game/mission_scene_reader.h"
 #include "game/lightmap_payload.h"
@@ -46,9 +47,13 @@ public:
         DocumentView view{handle, document.bytes.data(), document.bytes.size()};
         document_ = &view;
         struct Reset { GameSceneObjects& owner; ~Reset() { owner.document_ = nullptr; } } reset{*this};
-        read(game::SerializedBytes(document.bytes));
+        io::observe_data_operation(files_.resource_observations(),path.c_str(),[&]{read(game::SerializedBytes(document.bytes));});
         scene_.rethrow_callback_failure();
         return true;
+    }
+    auto resource_observations()const noexcept{return files_.resource_observations();}
+    void observe_data(const char* level,const char* operation,const char* detail="",std::uint64_t value=0)const noexcept {
+        if(auto store=files_.resource_observations())store->event(level,operation,detail,value);
     }
     void scene_progress(unsigned stage, float fraction) { progress_(stage, fraction); }
     bool has_scene()const{return scene_.frame()!=nullptr;}
@@ -210,6 +215,7 @@ public:
         if (call<std::int32_t>(frame, 0x74, aligned.data(), std::uint32_t(aligned.size()),
                               triangles.data(), std::uint32_t(triangles.size()), std::uint32_t{16}) < 0)
             throw std::runtime_error("Cannot construct mission area geometry");
+        observe_data("execution","area geometry constructed","triangle count",triangles.size());
     }
     void visual_environment(Frame frame, std::uint16_t id, std::uint32_t bits) {
         if (frame_kind(frame) != 1 || visual_type(frame) != 0x534e454cu)

@@ -2,6 +2,7 @@
 #define HD2_GAME_MISSION_SCENE_DOCUMENTS_H
 
 #include "game/mission_scene_reader.h"
+#include "io/resource_observations.h"
 #include <functional>
 
 namespace hd2::game {
@@ -29,17 +30,20 @@ public:
             if(header.half()==0x4c53)data_.read_mission_scene_document(bytes,scratch.names,fields_,1);
             status=0; //Original also accepts a complete, different root without parsing it.
         });
+        io::observe_bound_data(data_,"loading-outcome","scene2.bin","original status",status);
         return status;
     }
     void load_actors(const std::string& resource,Scratch& scratch){load_optional(resource,"actors.bin",scratch,2);}
     void load_sounds(const std::string& resource,Scratch& scratch){load_optional(resource,"sounds.bin",scratch,3);}
     void load_check_tables(const std::string& resource) {
         if(data_.read_scene_document(path(resource,"check2.bin"),[&](SerializedBytes cursor){data_.read_scene_tables(cursor);}))
-            return; //00523C00 consumes two datasets; trailing file bytes are not parsed.
+            {io::observe_bound_data(data_,"loading-outcome","check2.bin","parsed both datasets");return;} //00523C00 consumes two datasets; trailing file bytes are not parsed.
+        io::observe_bound_data(data_,"original-fallback","check2.bin absent","probe check.bin without legacy decode");
         data_.clear_scene_tables(); //00523E10 before trying the older filename.
         Open check(files_,path(resource,"check.bin"));
         //006D4280's legacy-present branch only closes this handle. There is no
         //legacy decoder call or successful substitute dataset on this path.
+        io::observe_bound_data(data_,"loading-outcome","check.bin",check?"legacy present: close only":"legacy absent: clear tables");
         if(!check)data_.clear_scene_tables();
     }
 private:
@@ -54,13 +58,14 @@ private:
     };
     static std::string path(const std::string& resource,const char* file){return "missions\\"+resource+"\\"+file;}
     void load_optional(const std::string& resource,const char* name,Scratch& scratch,unsigned stage) {
-        data_.read_scene_document(path(resource,name),[&](SerializedBytes bytes) {
+        const auto present=data_.read_scene_document(path(resource,name),[&](SerializedBytes bytes) {
             //The host retains this SAME document's handle and byte view for
             //embedded light-map reads; do not reopen or copy the parser input.
             if(bytes.remaining()<6)throw std::runtime_error("Truncated optional mission document header");
             auto header=bytes;
             if(header.half()==0x4c53)data_.read_mission_scene_document(bytes,scratch.names,fields_,stage);
         });
+        io::observe_bound_data(data_,"loading-outcome",name,present?"present: original parser completed":"optional absent");
     }
     Files& files_;Scene& scene_;SceneData& data_;std::function<void()> prepare_cars_;MissionSceneFields fields_;
 };

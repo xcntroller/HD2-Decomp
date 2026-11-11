@@ -1,11 +1,14 @@
 #ifndef HD2_HOST_GAME_MISSION_LOADING_H
 #define HD2_HOST_GAME_MISSION_LOADING_H
 #include "host/game_world_loading.h"
+#include "host/game_data_observations.h"
 #include "host/game_loading_screen.h"
 #include "host/game_loading_queries.h"
 #include "game/mission_loading.h"
 #include "game/loading_progress.h"
 #include "game/session_file_retirement.h"
+#include "io/data_operation.h"
+#include "io/data_manifest.h"
 namespace hd2::host {
 
 class GameSessionFileFinish {
@@ -36,8 +39,44 @@ public:
         if(resource!=parent_.request().preparation.mission_resource||
            (mission&&mission!=parent_.request().mission.get()))
             throw std::logic_error("Mission loader must consume its actual owned request and descriptor");
-        return game::load_mission(*this,resource,mission);
+        //Also reached by the existing GameSessionActivation/lifecycle path when
+        //the caller opts into process file/cache observation scopes.
+        if(auto store=startup_.pre_mission_files().resource_observations()){
+            store->event("selection","mission-resource",resource.c_str());
+            store->event("selection","mode","application_flags",startup_.application_flags());
+            store->event("selection","descriptor-kind",mission?"actual descriptor argument":"reload/null argument",mission?mission->kind:0);
+            try{
+                const auto language=startup_.language();store->event("selection","language",language.c_str());
+                store->event("selection","configuration.flag170","actual GameConfiguration",startup_.game_configuration().flag170);
+            }catch(...){store->note_drop();} //Diagnostics cannot introduce a required loading failure.
+        }
+        return io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"006CA780 mission load",[&]{return game::load_mission(*this,resource,mission);});
     }
+    //Callable diagnostic composition over this exact loader/World/request. A new
+    //attempt replaces records; callers can retain the owning prior store. The
+    //previous process observer is restored on every exit, including exceptions.
+    bool load_observed(){
+        auto next=std::make_shared<io::ResourceObservations>();
+        auto& files=startup_.pre_mission_files();
+        observations_=next;auto scope=files.observe_scope(next);
+        auto caches=startup_.loaded_resources().observe_scope(next);
+        return load(parent_.request().preparation.mission_resource,parent_.request().mission.get());
+    }
+    auto data_observations()const noexcept{return observations_;}
+    template<class Output>void write_data_observations(Output& output)const{
+        if(!observations_)throw std::logic_error("No selected load observation attempt");
+        io::write_data_observations(*observations_,output);
+    }
+    struct RuntimeObservationScope {
+        ChunkFiles::ObservationScope files;LoadedResources::ObservationScope caches;
+        RuntimeObservationScope(StartupSession& startup,std::shared_ptr<io::ResourceObservations> store)
+            :files(startup.pre_mission_files(),store),caches(startup.loaded_resources(),std::move(store)){}
+    };
+    auto observe_runtime(){
+        if(!observations_)throw std::logic_error("Observe the selected load before its runtime");
+        return RuntimeObservationScope(startup_,observations_);
+    }
+    void snapshot_data_owners(){auto scope=observe_runtime();observe_world_data(world_);}
     void reset_loading_fields(){
         session_.words.set(0x66,std::uint16_t{0});session_.words.set(0x68,std::uint16_t{0});
         world_.scene().documents().fields().field_d8=0;
@@ -96,21 +135,23 @@ public:
     void clear_file_tables(){parent_.tables()->clear();}
     void reset_file_scene(){parent_.scene()->reset_mission_scene();}
     void release_file_resource(){resource_.reset();startup_.car_loading_scene()=nullptr;}
-    bool load_animation_tables(){return startup_.game_animations().ensure_loaded();}
-    void open_scene(const std::string& resource){(void)parent_.scene()->open_mission_scene(resource,*this);} //006D4180 ignores engine result.
+    bool load_animation_tables(){return io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"00783350 animation tables",[&]{return startup_.game_animations().ensure_loaded();});}
+    void open_scene(const std::string& resource){io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"006D4180 engine scene",[&]{return parent_.scene()->open_mission_scene(resource,*this);});} //006D4180 ignores engine result.
     void refresh_scene(){parent_.scene()->refresh();}
-    auto load_scene2(const std::string& resource,world_loading::Scene::Scratch& scratch){return world_.scene().documents().load_scene2(resource,scratch);}
-    void load_actors(const std::string& resource,world_loading::Scene::Scratch& scratch){world_.scene().documents().load_actors(resource,scratch);}
-    void load_sounds(const std::string& resource,world_loading::Scene::Scratch& scratch){world_.scene().documents().load_sounds(resource,scratch);}
-    void load_check_tables(const std::string& resource){world_.scene().documents().load_check_tables(resource);}
+    auto load_scene2(const std::string& resource,world_loading::Scene::Scratch& scratch){return io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"006CBF30 scene2",[&]{return world_.scene().documents().load_scene2(resource,scratch);});}
+    void load_actors(const std::string& resource,world_loading::Scene::Scratch& scratch){io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"006D45C0 actors",[&]{return world_.scene().documents().load_actors(resource,scratch);});}
+    void load_sounds(const std::string& resource,world_loading::Scene::Scratch& scratch){io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"006D4880 sounds",[&]{return world_.scene().documents().load_sounds(resource,scratch);});}
+    void load_check_tables(const std::string& resource){io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"006D4280 check tables",[&]{return world_.scene().documents().load_check_tables(resource);});}
     void load_collision_tree(const std::string& resource,bool dynamic){
-        if(!dynamic)throw std::logic_error("Mission loader requires its actual dynamic grid");world_.load_collision_tree(resource);
+        if(!dynamic)throw std::logic_error("Mission loader requires its actual dynamic grid");
+        io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"006EE570 collision tree",[&]{return world_.load_collision_tree(resource);});
     }
     void publish_effects_scene(){world_.modules().mission_effects().publish_scene();}
-    void load_effects(const std::string& resource){world_.modules().mission_effects().load(resource);}
+    void load_effects(const std::string& resource){io::observe_data_operation(startup_.pre_mission_files().resource_observations(),"00445D90 effects",[&]{return world_.modules().mission_effects().load(resource);});}
     void mark_mission_loaded(){
         if(!world_.scene().collision_tree_if_loaded()||!world_.scene().buckets().bound())
             throw std::logic_error("Mission stages have not produced their actual collision owners");
+        observe_world_data(world_);
         session_.loaded=true;
     }
     void finish_loading_screen(){screen_.finish_loading();}
@@ -125,6 +166,7 @@ public:
     void finish_loading_modules(){world_.modules().dispatch().finish_loading_modules();}
 private:
     World& world_;Parent& parent_;StartupSession& startup_;game::SessionActivationState& session_;
+    std::shared_ptr<io::ResourceObservations> observations_;
     GameLoadingScreen& screen_;GameLoadingQueries queries_;game::LoadingProgress progress_;
     std::shared_ptr<const std::string> resource_;
     game::SessionFileProgress files_;game::WorldLoadingDependencyLink<GameSessionFileFinish> finish_;

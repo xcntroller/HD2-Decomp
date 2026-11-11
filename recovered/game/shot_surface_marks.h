@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_SHOT_SURFACE_MARKS_H
 #define HD2_GAME_SHOT_SURFACE_MARKS_H
+#include "io/resource_observations.h"
 
 #include "game/human_joint_math.h"
 #include <optional>
@@ -91,6 +92,7 @@ template<class State,class Frames,class Services>void emit_shot_surface_mark(Sta
         mark->reuse(frames,services,position,normal,limit);
     }
     state.surfaces.push_back(std::move(mark));
+    io::observe_bound_data(frames,"execution","ShotMgr surfaces allocated","actual owner size",state.surfaces.size());
 }
 } //namespace hd2::game
 #endif

@@ -2,6 +2,8 @@
 #define HD2_HOST_GAME_MISSION_MODULE_FRAMES_H
 
 #include "host/game_camera_loading.h"
+#include "io/data_operation.h"
+#include "host/game_data_observations.h"
 #include "host/game_physics_frames.h"
 #include "host/game_scene_actor_frames.h"
 
@@ -15,10 +17,13 @@ public:
         :world_(world),d_(world.owners().dependencies()),physics_(world.owners()),camera_(world.owners()),
          actors_(d_,world.owners().human_services(),runtime),runtime_(runtime){}
     void tick(bool authority,std::uint32_t elapsed){
+        io::observe_data_operation(d_.scene.frames().resource_observations(),authority?"authority module frame":"presentation module frame",[&]{
         if(!d_.session.loaded)throw std::logic_error("Mission modules require the actual loaded World");
+        observe_world_data(world_);
         world_.modules().dispatch().tick_modules(authority,elapsed,*this);
         d_.scene.frames().rethrow_actor_cleanup_failure();
         d_.hearing.rethrow_callback_failure();
+        });
     }
     void tick_physics(bool authority,std::uint32_t elapsed){physics_.tick(authority,elapsed);}
     void tick_runtime_actors(bool authority,std::uint32_t elapsed){actors_.tick_runtime(authority,elapsed);}

@@ -1,5 +1,6 @@
 #ifndef HD2_GAME_PARTICLE_MODULE_LOADING_H
 #define HD2_GAME_PARTICLE_MODULE_LOADING_H
+#include "io/resource_observations.h"
 #include "frontend/module_registration.h"
 #include "game/mission_effects_loading.h"
 
@@ -41,14 +42,16 @@ public:
         else{instance=std::make_unique<Instance>(effects_.frames(),process_.points_,process_.scratch_);
             instance->initialize(process_.particle_scene_,matrix,parent,*definition,orientation,light);}
         const auto identity=particle_integer(static_cast<std::uint32_t>(process_.particle_identity_)+1u);process_.particle_identity_=identity;
-        process_.active_.push_back(Record{std::move(instance),identity,index,flag});return identity;
+        process_.active_.push_back(Record{std::move(instance),identity,index,flag});
+        io::observe_bound_data(effects_.frames(),"execution","particle allocated","004451B0 definition",index);return identity;
     }
     void place(std::uint32_t index,const HumanMatrix& matrix,Frame parent){ //00445AF0, separate1034 owner, id-1 and orientation1.
         require_open();const auto* definition=valid_definition(index);if(!definition)return;
         require_scene();auto instance=std::make_unique<Instance>(effects_.frames(),process_.points_,process_.scratch_);
         auto light=[this](const HumanVector& position){return lighting(position);};
         instance->initialize(process_.particle_scene_,matrix,parent,*definition,true,light);
-        process_.placed_.push_back(Record{std::move(instance),-1,index,false}); //Native final record byte is unwritten; source guard only.
+        process_.placed_.push_back(Record{std::move(instance),-1,index,false});
+        io::observe_bound_data(effects_.frames(),"execution","particle placed","00445AF0 definition",index); //Native final record byte is unwritten; source guard only.
     }
     void update(std::uint32_t elapsed){ //004455B0: reread game64 for EACH row; type2C/2D still update during pause.
         require_open();if(!process_.particle_scene_)return;
