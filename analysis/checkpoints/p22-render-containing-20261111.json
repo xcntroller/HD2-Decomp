@@ -1,0 +1,119 @@
+{
+  "date": "2026-11-11",
+  "branch": "feature/p22-render",
+  "fetched_sha": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "actual_implementation_base": "447e073ed90f9fc6fb0fdd305fe6d725115d1786",
+  "existing_worktree_preserved": true,
+  "source_only": true,
+  "render_implementation_complete": false,
+  "application_loading_enabled": false,
+  "desktop_verified": false,
+  "ledger_change": 0,
+  "source_fingerprints": {
+    "recovered/game/volumetric_lights.h": {
+      "sha256": "794cf312e0176d4d1a2a38ccb053ad27df0dda53a4c85af6c13d17eeaad5e510",
+      "bytes": 22336
+    },
+    "recovered/game/effects_module_loading.h": {
+      "sha256": "bd56f02b90d71131ab494caa0446f454f32f9d5a39b6cab2749fb49fd4f0f14a",
+      "bytes": 8684
+    },
+    "recovered/host/game_actor_frames.h": {
+      "sha256": "06b274612236d50e40511bbb293a3bee7dd795ba0516dd38d6bbe398b20f3e2b",
+      "bytes": 95755
+    },
+    "recovered/host/game_session_lifecycle.h": {
+      "sha256": "e7069647456d33c68f90683d698b0daa858c9e92d30e5eb1f4c9987d1c927a8e",
+      "bytes": 7214
+    }
+  },
+  "original_evidence": {
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/hd2.unpacked.exe": {
+      "sha256": "8c52ce664091d0fcf090b1af5c1f085e055a645ae4cb497227184ed36f10b307",
+      "bytes": 6889472
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-effects-render-required/00482260.c": {
+      "sha256": "9e44fb511b8f2fc12d76ddf076e52f68ef88ecd5ec017f2508bfe9a9fae2ba3a",
+      "bytes": 9004
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-effects-render-required/00482260.json": {
+      "sha256": "47ae4975aa70a2b58918264cb022ebdfa392dc177cb07f596a1252bbec4dee11",
+      "bytes": 25464
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-overlay-init-volume-geometry/00482e50.c": {
+      "sha256": "4385f07e0470e2a25ea2333d1d96cbd27d2804c423cde4c1b36ab8556055827d",
+      "bytes": 17584
+    },
+    "/home/control/Documents/Projects/H&D2 Decomp 4/analysis/work/mission-world-20261103/frame-overlay-and-volume-owners/007885b0.c": {
+      "sha256": "4c044e08b02c6757ee348f25f71f276407bd4387911598eb0ea3161303cd757d",
+      "bytes": 542
+    }
+  },
+  "resource_fingerprints": {},
+  "resource_scope": "No new procedural resources loaded or selected; no resource success claim. Existing texture leaves preserved.",
+  "verification": {
+    "native": "PASS ASan/UBSan/LSan positive source traversal/draw and injected failures; explicit engine/procedural doubles and seeded audit history, not production binding",
+    "i386": "PASS concrete World/frame/GEffects rendering and callable lifecycle/Scene compile+link; throwing procedural audit double; no execution",
+    "application": "PASS make application-launch; no execution",
+    "diff_check": "PASS",
+    "tracker": "BLOCKED existing missing ignored evidence analysis/work/multiplayer-rule-caret-20261101/rule-refresh.asm; ledger unchanged"
+  },
+  "remaining_render": [
+    "Original volume3C/40 initial-history boundary",
+    "Positive00482E50 and process resources/init/cleanup/configuration",
+    "Concrete GameUiRenderStages binding",
+    "0079B760/0079AC40 debug geometry and actual Human DC0 inputs"
+  ],
+  "artifacts": {
+    "analysis/work/p22-render-20261111/native.log": {
+      "sha256": "de7a4785cadddb61929675af5546a4fcad4e351bd8e317ebe55cfd8b4cf85e40",
+      "bytes": 146,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/i386.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/application.log": {
+      "sha256": "cc787481df22b89e4d709da27543a17909d56390a81dc91c200bf3ddfeb8fe3d",
+      "bytes": 615,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/tracker.log": {
+      "sha256": "e9584274645a020adb1c03d88a5a55f0076bb79dc8723831e238d81f9b48dbb1",
+      "bytes": 109,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/volume-containing.asm": {
+      "sha256": "d81530f8cac2e82738cc5458a00ad368732f7180251666d6c6525e3f794dd96d",
+      "bytes": 50161,
+      "retained": true
+    },
+    "analysis/work/p22-render-20261111/volume-constructor.asm": {
+      "sha256": "9117e291267983ffa0d2e04da7f8ee9224080e88715163bcc970fe85178e0f19",
+      "bytes": 2052,
+      "retained": true
+    },
+    "/tmp/p22-render-native.cpp": {
+      "sha256": "2bbe45f36cee7946db03a9ce27ac88fba1600fe08e531fcdc507cb91eefcfba6",
+      "bytes": 3190,
+      "retained": false
+    },
+    "/tmp/p22-render-native": {
+      "sha256": "85c2793d005a580c1a9ca1e5717fd20341fb1d2e3ff66407985585b2138d5935",
+      "bytes": 1370496,
+      "retained": false
+    },
+    "/tmp/p22-render-i386.cpp": {
+      "sha256": "9c24d4a34cbd9ec09f18efb68f374628ec15f4a202fba553853612ca3a518aa2",
+      "bytes": 582,
+      "retained": false
+    },
+    "/tmp/p22-render-i386.exe": {
+      "sha256": "0cda94e0686853033c13bb203c1edb41ab98fbaa6761225981dad5b7f3d49a93",
+      "bytes": 199680,
+      "retained": false
+    }
+  }
+}

@@ -4,6 +4,7 @@
 #include "host/game_blast_waves.h"
 #include "host/game_ui_presentation.h"
 #include "game/session_lifecycle.h"
+#include "game/session_render.h"
 #include <cstdio>
 #include <exception>
 #include <memory>
@@ -70,6 +71,19 @@ public:
         auto callbacks=std::make_unique<GameUiSceneCallbacks>(*ui_,render);
         parent_.scene()->bind_callbacks(*callbacks);
         callbacks_=std::move(callbacks);
+    }
+    //Callable source composition; OWN/FRAME still decide activation/scheduling.
+    //A required RENDER stages receiver must have been bound through the UI seam.
+    void render(){
+        require_open();
+        if(!callbacks_||boundary_.activation_progress().finished)
+            throw std::logic_error("Mission render requires a live bound presentation");
+        game::render_session(*this);
+    }
+    std::uint32_t mode_flags()const{return startup_.application_flags();}
+    bool external_loading_progress()const{return startup_.game_configuration().flag170!=0;}
+    void render_actual_mission_scene(){
+        require_open();parent_.scene()->render();
     }
     //Pages use the EXISTING process registry/font owner. Retire the real page
     //wrappers before World/HUD fonts; process overlay itself survives sessions.

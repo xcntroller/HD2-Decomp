@@ -942,6 +942,20 @@ public:
         (void)car_rotation(frame);
         put(frame,0xe0,(field<std::uint32_t>(frame,0xe0)&0xfffffecbu)|0x40000008u);
     }
+    Frame volume_render_camera(){
+        const auto camera=field<Frame>(scene_.frame(),0x15c);
+        if(!camera)throw std::runtime_error("Volumetrics require actual Scene15C render camera");
+        observe_data("execution","00482260 selected Scene15C render camera","flagsE0",field<std::uint32_t>(camera,0xe0));
+        return camera;
+    }
+    Frame volume_visibility_relation(Frame light)const{
+        if(!light)throw std::runtime_error("Null light borrower in00482260");
+        return field<Frame>(light,0x108);
+    }
+    bool volume_relation_visible(Frame relation)const{
+        return field<std::uint16_t>(relation,0xf8)==5&&(field<std::uint8_t>(relation,0x160)&1)!=0;
+    }
+    std::uint32_t volume_graphics_state(std::uint32_t state)const{return graphics_.methods->state(&graphics_,state);}
     bool volume_visible(Frame frame)const{return car_frame_visible(frame);}
     void volume_bind_texture(Frame texture){(void)graphics_.methods->bind_texture(&graphics_,texture,0);}
     void volume_set_dir3(Matrix& matrix,const Vector& forward,const Vector& up){

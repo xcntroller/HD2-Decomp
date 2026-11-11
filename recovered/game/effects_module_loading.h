@@ -34,6 +34,10 @@ public:
     EffectsModuleLoading(const EffectsModuleLoading&)=delete;EffectsModuleLoading& operator=(const EffectsModuleLoading&)=delete;
     auto& registration(){return registration_.get();}auto& birds(){return birds_;}auto& volumes(){return volumes_;}auto& movie(){return movie_;}
     template<class Draw>void render_after_scene(Draw& draw){require_open();render_loading_effects_fade(process_,draw);} //00486C10.
+    template<class Draw,class Procedural>void render_before_scene(Draw& draw,Procedural& procedural){
+        require_open();std::int32_t time;std::memcpy(&time,&process_.field224,4);
+        volumes_.render(time,draw,procedural); //00486BF0: C4 owner,224 clock.
+    }
     void reset(){ //00488B80's reached queues/scalars; unproduced210/304 genuinely empty.
         require_open();
         process_.colour2f4.fill(1);effects_.frame_fades().reset_loading();effects_.human_fades().clear();

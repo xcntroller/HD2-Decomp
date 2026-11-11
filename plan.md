@@ -335,3 +335,5 @@ is a usable test endpoint. Detailed ordering follows research after Phase 2.
 - Interactive commits require user desktop confirmation; no pushes without instruction.
 - Track functions separately in [README](README.md) and the
   [ledger](analysis/function-status.json); frozen 18,783 is not menu-delivery progress.
+
+P22-RENDER: [isolated implementation plan](analysis/p22-render-plan.md); source work in progress, desktop acceptance separate.
